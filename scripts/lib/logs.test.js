@@ -34,6 +34,18 @@ test('no new silent stage failures', () => {
     'cycle-2026-04-24_2204.log: Editor exit=124',    // editor timeout (1800s); cycle still published via run-cycle.sh
     'cycle-2026-04-23_1800.log: Selector exit=1',    // Claude API usage limit hit ("You've hit your limit · resets 9pm"); 4s — no retry path because the rate limit is per-account
     'cycle-2026-05-08_0404.log: Selector exit=1',    // Anthropic 5xx ("API Error: Internal server error") at 417s — transient upstream failure, no retry wired in run-cycle.sh; missed the 04:00 audio briefing as a side effect
+    'cycle-2026-05-27_0801.log: Selector exit=1',    // AUP false-positive block ("appears to violate our Usage Policy", req_011CbSiwiHZX697HL8MVrd4R) at 26s — transient content-policy trip on a conflict/surveillance-heavy feed; no retry path; cycle aborted cleanly (0 published) rather than shipping garbage
+    'cycle-2026-05-26_0802.log: Editor exit=124', // editor timeout (1801s) — benign mode: cycle still published 12 via run-cycle.sh (same as 2026-04-24_2204)
+    'cycle-2026-05-27_0404.log: Editor exit=124', // editor timeout (1800s) — benign mode: cycle still published 10 via run-cycle.sh
+    // Writer API stalls — investigated 2026-05-27. Both ran the full 1800s with zero output and
+    // published nothing. Root cause: the `claude -p` request stalled with no response — the
+    // service consumed only ~1.5min CPU over the 36min wall window (idle-blocked, not looping;
+    // box had 6GB free, no OOM), so the outer `timeout 1800` killed it (and the SIGTERM lost the
+    // session transcript, hence the blank log). Same class as the 2026-05-08 selector 5xx entry:
+    // transient upstream stall, no per-request timeout or retry wired in run-cycle.sh yet.
+    // TODO: retry the Writer once on exit=124 so a transient stall doesn't lose the whole cycle.
+    'cycle-2026-05-24_2201.log: Writer exit=124', // API stall — Published: 0
+    'cycle-2026-05-26_1701.log: Writer exit=124', // API stall — Published: 0
   ])
   const failures = []
   const stages = ['Selector', 'Writer', 'Editor', 'Edu context', 'Build', 'Deploy', 'Briefing']
@@ -52,17 +64,25 @@ test('no new silent stage failures', () => {
 
 // Git push failure is logged only as WARNING in run-cycle.sh and the cycle
 // proceeds. Deploy still works (wrangler uploads local files) but the git
-// remote drifts, and the next cycle's pull can conflict. 5 occurrences
-// total across the corpus, 3 clustered on 2026-04-18→19 — that cluster was
-// the original debt. A second cluster of 12 push failures hit 2026-04-23→25
-// when the remote had a parallel backlog merge that the cycle couldn't
-// fast-forward over; that drift was reconciled manually on 2026-04-25 and
-// the baseline raised to the post-reconciliation count. Ratchet prevents
-// further growth.
+// remote drifts, and the next cycle's pull can conflict. The recurring cause
+// is divergence: mobile-app work is pushed to the GitHub remote from a dev
+// machine while editorial cycles commit content/ locally, so a plain `git
+// push` is rejected non-fast-forward until someone reconciles. History:
+//   - 2026-04-18→19: 3 failures (original debt)
+//   - 2026-04-23→25: 12 failures from a parallel backlog merge; reconciled
+//     manually 2026-04-25, baseline raised to the post-reconciliation count (17)
+//   - 2026-05-22→27: 21 failures — every cycle's push rejected because local
+//     sat 70 ahead / 30 behind origin/master (30 mobile-only commits upstream).
+//     Reconciled 2026-05-27 via `git merge origin/master` (disjoint file sets,
+//     clean). Baseline reset below to the post-reconciliation count.
+// NOTE: this counts across ALL logs on disk, but cycle logs rotate, so the
+// baseline only stays meaningful while the failing logs are still present —
+// once they age out the count drops well under baseline (still passes). The
+// ratchet's real job is to fire when a NEW divergence cluster starts growing.
 test('git push failure rate does not grow', () => {
   const all = readdirSync(LOG_DIR).filter(f => f.startsWith('cycle-') && f.endsWith('.log'))
   const failed = all.filter(f => /WARNING: git push failed/.test(readFileSync(`${LOG_DIR}/${f}`, 'utf8')))
-  const BASELINE = 17 // 2026-04-25 reconciliation: 5 original + 12 from divergence cluster
+  const BASELINE = 21 // 2026-05-27 reconciliation: May 22→27 divergence cluster (April logs already rotated off disk)
   assert.ok(failed.length <= BASELINE,
     `git push failures ${failed.length} > baseline ${BASELINE}; new:\n  ${failed.slice(BASELINE).join('\n  ')}`)
 })

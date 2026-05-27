@@ -385,7 +385,12 @@ $BODY_LENGTHS
     git add content/articles/ content/.last-cycle.json content/.story-ledger.json content/.context-briefs.json 2>&1 | tee -a "$LOG_FILE"
     CYCLE_TIME=$(date -u +"%Y-%m-%d %H:%M UTC")
     git commit -m "Editorial cycle $CYCLE_TIME: $NEW_COUNT articles" 2>&1 | tee -a "$LOG_FILE"
-    git pull --rebase origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git pull --rebase failed (likely a mobile/backend file overlap — investigate)" | tee -a "$LOG_FILE"
+    # --autostash: the working tree always carries uncommitted churn (.analytics.json,
+    # .block-cache.json, rotated feed-snapshots) that a plain `pull --rebase` refuses to
+    # run over ("You have unstaged changes"), which let the remote drift unmerged and every
+    # subsequent push fail non-fast-forward (2026-05-22→27 divergence). Autostash reconciles
+    # regardless. The remote's only parallel writer is mobile/ work — disjoint from content/.
+    git pull --rebase --autostash origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git pull --rebase failed (likely a mobile/backend file overlap — investigate)" | tee -a "$LOG_FILE"
     git push origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git push failed" | tee -a "$LOG_FILE"
 
     # Deploy
@@ -586,7 +591,7 @@ if [ "${START_HOUR:-$HOUR_UTC}" = "04" ]; then
     node scripts/build.js 2>&1 | tee -a "$LOG_FILE"
     git add content/audio/ 2>&1 | tee -a "$LOG_FILE"
     git commit -m "Audio briefing $(date -u +%Y-%m-%d)" 2>&1 | tee -a "$LOG_FILE"
-    git pull --rebase origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git pull --rebase failed (likely a mobile/backend file overlap — investigate)" | tee -a "$LOG_FILE"
+    git pull --rebase --autostash origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git pull --rebase failed (likely a mobile/backend file overlap — investigate)" | tee -a "$LOG_FILE"
     git push origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git push failed" | tee -a "$LOG_FILE"
     npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true 2>&1 | tee -a "$LOG_FILE"
     DEPLOY_EXIT=$?
