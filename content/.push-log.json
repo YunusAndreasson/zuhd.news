@@ -1,77 +1,5 @@
 [
   {
-    "timestamp": "2026-05-02T08:30:44.200Z",
-    "candidateCount": 7,
-    "candidates": [
-      {
-        "slug": "2026-05-02-trump-pirates-iranian-ships-naval-blockade-hormuz",
-        "title": "Trump Calls Seizures 'Very Profitable'",
-        "category": "politics",
-        "eventCoverage": 20,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-02-germany-trump-troop-withdrawal-iran-criticism-nato",
-        "title": "Trump Punishes Germany, Pulls Troops",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-30-sinaloa-governor-rocha-moya-cartel-indictment-criminal-governance",
-        "title": "US Indicts Sinaloa's Governor",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-02-egypt-discrimination-verdicts-enforcement-gap-port-said",
-        "title": "Egypt Logs 2nd Discrimination Conviction",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-02-senate-clarity-act-stablecoin-yield-bitcoin-78k",
-        "title": "Senate Clears Stablecoin Yield Ban",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-02-synthetic-biomedical-data-generative-models-privacy",
-        "title": "Synthetic Data Unlocks Hospital Records",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-02-rawalpindi-to-become-first-plastic-free-district-from-june",
-        "title": "Rawalpindi Bans Thin Plastic Bags",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-05-02-trump-pirates-iranian-ships-naval-blockade-hormuz",
-      "title": "Trump Calls Seizures 'Very Profitable'",
-      "category": "politics",
-      "body": "[The US](country:US) blockaded [Iran](country:IR)'s ports; oil hit $120 a",
-      "eventCoverage": 20,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Trump calls US Navy seizures of Iranian oil tankers 'very profitable'",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 17
-    }
-  },
-  {
     "timestamp": "2026-05-02T12:29:49.334Z",
     "candidateCount": 9,
     "candidates": [
@@ -9979,6 +9907,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Biden sues Justice Department to block release of memoir interview audio",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 24
+    }
+  },
+  {
+    "timestamp": "2026-05-27T12:54:04.371Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-05-27-india-supreme-court-eci-sir-electoral-rolls",
+        "title": "India Court Backs Citizenship Rolls",
+        "category": "politics",
+        "eventCoverage": 167,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-26-uk-energy-price-cap-221-iran-war-gas",
+        "title": "Iran War Hits UK Bills",
+        "category": "economy",
+        "eventCoverage": 137,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-27-byju-raveendran-jailed-singapore-contempt-edtech",
+        "title": "Singapore Jails Byju's Founder",
+        "category": "economy",
+        "eventCoverage": 122,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-27-hungary-reverses-icc-exit-magyar-netanyahu",
+        "title": "Hungary Cancels ICC Exit",
+        "category": "politics",
+        "eventCoverage": 81,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-27-us-strike-drug-boat-pacific-extrajudicial-killing",
+        "title": "US Strikes Drug Boat Pacific",
+        "category": "politics",
+        "eventCoverage": 74,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-27-hong-kong-overtakes-switzerland-offshore-wealth-hub",
+        "title": "Hong Kong Tops Wealth Rankings",
+        "category": "economy",
+        "eventCoverage": 32,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-27-bellingcat-myanmar-rakhine-lost-villages-osint",
+        "title": "Satellites Map Rakhine Erasure",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-27-synthetic-controls-hurricane-urban-bee-biodiversity",
+        "title": "Hurricane Shrinks Urban Bee Population",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-27-indian-it-ai-deployment-gap-outsourcing",
+        "title": "Indian IT Targets AI Gap",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-27-us-anti-tech-extremism-surveillance-ai-backlash",
+        "title": "US Labels Tech Critics Extremists",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-27-tuvalu-digital-nation-sovereignty-sea-level-rise",
+        "title": "Tuvalu Builds Digital Statehood",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-27-imaging-quantum-chemistry-in-action-with-quantum-attomicrosc",
+        "title": "Researchers Design DNA Attomicroscope",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-05-27-india-supreme-court-eci-sir-electoral-rolls",
+      "title": "India Court Backs Citizenship Rolls",
+      "category": "politics",
+      "body": "[India](country:IN)'s court cleared Bihar's 65-lakh voter-roll citizenship",
+      "eventCoverage": 167,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "India Supreme Court upholds voter-roll citizenship purge, clears Bihar revision",
     "response": {
       "pushed": 1,
       "skipped": 0,
