@@ -244485,5 +244485,1120 @@
     "label": "Wireless Power & Combinatorial Optimization",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-05-26-modi-nordic-india-arctic-minerals-russia": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NORTHERN SEA ROUTE",
+        "body": "The Northern Sea Route runs along Russia's Arctic coast from Murmansk to the Bering Strait, cutting the Asia-Europe shipping distance by roughly 40% versus the Suez transit. Melting ice has stretched the navigable season from 2-3 months to nearly 6, but Russian icebreaker escorts and transit fees remain mandatory.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NO",
+              "RU",
+              "IS",
+              "DK",
+              "FI",
+              "SE",
+              "IN"
+            ],
+            "label": "the Arctic corridor",
+            "markers": [
+              {
+                "lat": 68.9585,
+                "lng": 33.0827,
+                "label": "Murmansk (NSR start)"
+              },
+              {
+                "lat": 66.0833,
+                "lng": -169.65,
+                "label": "Bering Strait (NSR end)"
+              },
+              {
+                "lat": 59.9139,
+                "lng": 10.7522,
+                "label": "Oslo"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY INDIA WANTS IN",
+        "body": "India became an Arctic Council observer in 2013 and published its Arctic Policy in 2022. The drivers are minerals (rare earths, nickel, phosphates under thawing tundra), shipping (a route to European markets that bypasses Suez and the Red Sea Houthi threat), and scientific positioning — the Himadri research base on Svalbard has operated since 2008."
+      },
+      {
+        "heading": "THE RUSSIAN GATEKEEPER",
+        "body": "Russia controls roughly half the Arctic coastline and treats the Northern Sea Route as internal waters under its 1998 federal law — a claim the US and most maritime powers reject. Any commercial transit requires Rosatomflot icebreaker escort and Russian permits, giving Moscow a veto over who uses the corridor and on what terms.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Russia",
+                "value": "~24,000 km",
+                "cc": "RU",
+                "weight": 24000,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Canada",
+                "value": "~18,000 km",
+                "cc": "CA",
+                "weight": 18000
+              },
+              {
+                "label": "Greenland (DK)",
+                "value": "~9,000 km",
+                "cc": "DK",
+                "weight": 9000
+              },
+              {
+                "label": "Norway",
+                "value": "~2,500 km",
+                "cc": "NO",
+                "weight": 2500
+              },
+              {
+                "label": "USA (Alaska)",
+                "value": "~1,700 km",
+                "cc": "US",
+                "weight": 1700
+              }
+            ],
+            "label": "Arctic coastline by state"
+          }
+        ]
+      },
+      {
+        "heading": "THE NORDIC ALTERNATIVE",
+        "body": "Norway offers India a different doorway: ice-free year-round ports (Kirkenes, Tromsø), a Svalbard Treaty that grants all 46 signatories — including India — equal commercial and research rights on the archipelago, and Western technology for cold-climate mineral extraction. The catch: Nordic Arctic access is shallower and politically tied to NATO posture toward Russia."
+      },
+      {
+        "heading": "THE BALANCING ACT",
+        "body": "India buys discounted Russian oil, runs joint defense production with Moscow, and abstains on Ukraine votes — while simultaneously courting the Quad, buying French Rafales, and now wooing NATO Nordics. The Arctic forces this contradiction into the open: India cannot use the NSR without Russia, and cannot get Nordic technology without distancing from it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "India's Arctic doctrine calls this *strategic autonomy* — the post-Cold War term for the **Nehruvian non-alignment** that Delhi has practiced since 1947, now stress-tested by polar geopolitics."
+          }
+        ]
+      },
+      {
+        "heading": "QUICK CHECK",
+        "body": "The Northern Sea Route's commercial value depends on one variable above all others.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the main reason the Northern Sea Route remains underused despite being ~40% shorter than Suez?",
+            "options": [
+              "Pirate activity in Arctic waters",
+              "Mandatory Russian icebreaker escort fees and permits",
+              "The route is physically longer in nautical miles",
+              "Container ships cannot operate in cold weather"
+            ],
+            "correct": 1,
+            "explanation": "Russia treats the NSR as internal waters and charges substantial escort and permit fees, making the shorter distance economically marginal for most operators."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-27T04:49:27.936Z",
+    "label": "India & the Arctic Pivot",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-26-smex-breadnet-2025-mena-digital-rights-outcomes": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY BEIRUT",
+        "body": "Lebanon hosts disproportionate Arab civil society infrastructure because its weak central state cannot effectively censor or shut down NGOs the way Cairo, Riyadh, or Abu Dhabi can. The same institutional failure that produces blackouts and currency collapse produces breathing room for organizations that would be illegal next door.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "SMEX — the *Social Media Exchange* — has operated from Beirut since 2008, tracking Arabic-language content moderation, internet shutdowns, and spyware deployments across **22 Arab states**."
+          }
+        ]
+      },
+      {
+        "heading": "THE SHUTDOWN PLAYBOOK",
+        "body": "MENA governments lead the world in deliberate internet shutdowns per capita. The standard sequence: throttle during protests, block specific platforms during elections, then full nationwide blackouts during security operations. Iran, Sudan, Algeria, and Iraq have each run multi-day national shutdowns since 2019.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "SD",
+              "DZ",
+              "IQ",
+              "EG",
+              "TR"
+            ],
+            "label": "states with multi-day shutdowns since 2019"
+          }
+        ]
+      },
+      {
+        "heading": "THE SPYWARE MARKET",
+        "body": "NSO Group's Pegasus, sold only to governments, has been forensically confirmed on devices belonging to Saudi, Emirati, Moroccan, and Bahraini dissidents and journalists. The Khashoggi case made the link between commercial spyware and physical violence concrete — his fiancée's phone was infected in the weeks before his killing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Pegasus spyware, used against MENA dissidents, is produced by a company headquartered where?",
+            "options": [
+              "United States",
+              "Israel",
+              "United Arab Emirates",
+              "Russia"
+            ],
+            "correct": 1,
+            "explanation": "NSO Group is an Israeli firm; export licenses are issued by Israel's Defense Ministry, which has made spyware sales a diplomatic tool — notably to Gulf states pre-Abraham Accords."
+          }
+        ]
+      },
+      {
+        "heading": "THE PLATFORM ASYMMETRY",
+        "body": "Meta, Google, and TikTok employ vastly fewer Arabic-language moderators per user than English-language ones. Internal Meta documents leaked in 2021 showed Arabic content was the largest moderation gap in the company — overzealous removal of Palestinian content alongside under-enforcement of incitement in Gulf dialects.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Arabic language has roughly **30 major dialects**; a moderator trained on Modern Standard Arabic often cannot parse Levantine, Maghrebi, or Khaleeji slang — the registers where political speech actually happens."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL VECTOR",
+        "body": "Most MENA states have passed cybercrime laws since 2012 that criminalize 'spreading false news' or 'harming national unity' — language broad enough to prosecute any online criticism. The UAE's 2021 law carries up to life imprisonment for online content deemed to threaten state security.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UAE",
+                "value": "life imprisonment",
+                "cc": "AE",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Egypt",
+                "value": "5+ years",
+                "cc": "EG",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "15 years",
+                "cc": "SA",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Jordan",
+                "value": "3 years",
+                "cc": "JO",
+                "tone": "neutral"
+              },
+              {
+                "label": "Tunisia",
+                "value": "5 years",
+                "cc": "TN",
+                "tone": "neutral"
+              }
+            ],
+            "label": "maximum penalties under MENA cybercrime laws"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-27T04:49:57.039Z",
+    "label": "MENA Digital Rights Infrastructure",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-27-akwa-ibom-market-fire-no-diesel-state-capacity": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARADOX",
+        "body": "Nigeria is Africa's largest oil producer, yet sub-national fire stations routinely run out of diesel. The bottleneck is not crude — it is the federal allocation system that routes oil revenue through Abuja before sending tranches back to states, with no earmark for operating fuel.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Akwa Ibom received **N397 billion** in Q1 2026 from federal allocations alone — enough to fuel every fire truck in West Africa for years. The shortage is *allocative*, not financial."
+          }
+        ]
+      },
+      {
+        "heading": "HOW THE FEDERATION ACCOUNT WORKS",
+        "body": "Oil revenue flows into a single federal pool, then splits roughly 52% federal, 26% states, 20% local governments, with a 13% derivation bonus to oil-producing states like Akwa Ibom. Once funds reach the state, the governor's office controls disbursement — fire services compete with motorcades, security votes, and contractor payments."
+      },
+      {
+        "heading": "WHY FIRE SERVICES LOSE",
+        "body": "Fire departments have no revenue of their own and no politically organized constituency. Unlike police (federal), schools (visible), or roads (contractor lobbies), they only matter the day a fire starts. Budget officers cut them first because the cost of failure is borne by whoever happens to burn that month."
+      },
+      {
+        "heading": "THE 106-METRE PROBLEM",
+        "body": "Urban fire response is governed by what fire engineers call the flashover window — roughly 4 to 8 minutes between ignition and the moment a room becomes unsurvivable. A station 106 metres away with diesel saves the market. The same station without diesel is decorative.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "After ignition, how long until a typical room reaches flashover — the point where everything inside ignites simultaneously?",
+            "options": [
+              "30 seconds",
+              "4–8 minutes",
+              "20–30 minutes",
+              "Over an hour"
+            ],
+            "correct": 1,
+            "explanation": "Flashover typically occurs within 4–8 minutes of ignition, which is why first-response time — not equipment quality — dominates fire mortality."
+          }
+        ]
+      },
+      {
+        "heading": "PEER COMPARISON",
+        "body": "Akwa Ibom's three functional trucks state-wide is not an outlier in Nigeria — it is roughly typical. Lagos, the commercial capital, runs about 20 functional trucks for 20+ million people. By contrast, a single mid-sized European city of one million typically operates more trucks than all of Nigeria.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Berlin",
+                "value": "~75",
+                "cc": "DE",
+                "weight": 75,
+                "tone": "favorable"
+              },
+              {
+                "label": "Tokyo",
+                "value": "~60",
+                "cc": "JP",
+                "weight": 60,
+                "tone": "favorable"
+              },
+              {
+                "label": "Lagos",
+                "value": "~1",
+                "cc": "NG",
+                "weight": 1,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Akwa Ibom",
+                "value": "~0.5",
+                "cc": "NG",
+                "weight": 0.5,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "functional fire trucks per million people (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE MARKET ECONOMY UNDERNEATH",
+        "body": "Open-air markets like the one that burned are not informal sideshows — they handle the majority of food and consumer goods distribution in Nigerian cities. A 16-shop fire wipes out working capital for traders who operate on cash, without insurance, and often without title to the stall itself. Recovery is individual, not institutional."
+      }
+    ],
+    "generatedAt": "2026-05-27T04:50:24.776Z",
+    "label": "State Capacity & Fire Service Failure",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-27-bangladesh-measles-children-deaths-vaccination-gap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 95% THRESHOLD",
+        "body": "Measles is the most contagious human disease known — one infected person spreads it to 12-18 unvaccinated others. Herd immunity requires roughly 95% vaccination coverage, the highest threshold of any vaccine-preventable disease. Drop below it and outbreaks become mathematically inevitable.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The basic reproduction number **R₀ is 12–18** for measles, compared to *2–3* for the original COVID strain and ~1.5 for seasonal flu."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHILDREN DIE",
+        "body": "Measles itself rarely kills directly. It causes 'immune amnesia' — the virus wipes out memory B-cells the body built against other pathogens, leaving survivors vulnerable to pneumonia, diarrhea, and secondary infections for years. Most measles deaths are actually deaths from these follow-on infections."
+      },
+      {
+        "heading": "THE COLD CHAIN PROBLEM",
+        "body": "Measles vaccine must stay between 2-8°C from factory to injection. Any break — a generator failure at a rural clinic, a delayed shipment in tropical heat — silently degrades potency. Children get jabbed with what looks like vaccine but no longer protects. Cold chain failures are invisible until outbreaks reveal them.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BD",
+              "IN",
+              "MM",
+              "BT",
+              "NP"
+            ],
+            "label": "Bangladesh & neighbors",
+            "caption": "Rohingya camps host ~1M with chronically low vaccine coverage",
+            "markers": [
+              {
+                "lat": 23.8103,
+                "lng": 90.4125,
+                "label": "Dhaka"
+              },
+              {
+                "lat": 22.3569,
+                "lng": 91.7832,
+                "label": "Chittagong"
+              },
+              {
+                "lat": 21.4272,
+                "lng": 92.0058,
+                "label": "Cox's Bazar (Rohingya camps)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PROCUREMENT SHIFT",
+        "body": "Most low-income countries buy vaccines through Gavi or UNICEF Supply Division — pooled procurement that secures WHO-prequalified doses at deep discounts. When a government pivots to direct national procurement, prices rise, lead times stretch, and quality-assurance shortcuts become tempting. UNICEF's ten warnings reflect a well-known pattern."
+      },
+      {
+        "heading": "THE EID MULTIPLIER",
+        "body": "Eid al-Fitr triggers the largest annual internal migration in Bangladesh — tens of millions travel from Dhaka to home villages. For an airborne virus with R₀ near 15, a single infected traveler in a packed bus or ferry seeds dozens of new transmission chains across districts that share no other epidemiological link.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many unvaccinated people does one measles case infect on average?",
+            "options": [
+              "2-3",
+              "6-8",
+              "12-18",
+              "30-40"
+            ],
+            "correct": 2,
+            "explanation": "Measles has a basic reproduction number of 12-18, making it the most contagious vaccine-preventable disease and requiring ~95% coverage for herd immunity."
+          }
+        ]
+      },
+      {
+        "heading": "THE ROHINGYA OVERLAY",
+        "body": "Bangladesh hosts roughly one million Rohingya refugees expelled from Myanmar since 2017, concentrated in Cox's Bazar camps. Camp vaccination coverage has historically lagged the national average; dense living conditions plus undervaccination create exactly the conditions measles exploits. Outbreaks rarely respect the camp perimeter."
+      }
+    ],
+    "generatedAt": "2026-05-27T04:50:52.793Z",
+    "label": "Measles & Herd Immunity",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-27-former-president-biden-sues-doj-over-release-of-interview-au": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STATUTE",
+        "body": "The Freedom of Information Act (1966) presumes federal records are public unless they fall into nine narrow exemptions. The burden is on the agency to justify withholding, not on the requester to justify access.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pivotal exemption here is **Exemption 7(A)** — records compiled for law enforcement purposes whose release could interfere with proceedings. Once the investigation closes, 7(A) evaporates and the same records become disclosable."
+          }
+        ]
+      },
+      {
+        "heading": "THE HUR REPORT PRECEDENT",
+        "body": "Special Counsel Robert Hur interviewed Biden in October 2023 about classified documents found at his Wilmington home and Penn Biden Center office. His February 2024 report declined to prosecute but described Biden as a 'well-meaning, elderly man with a poor memory' — a characterization that became central to the 2024 election."
+      },
+      {
+        "heading": "WHY AUDIO IS DIFFERENT",
+        "body": "The transcript was released in 2024; the audio was not. Transcripts neutralize tone, hesitation, and pauses. Audio carries paralinguistic evidence — the exact texture that turns a written 'I don't recall' into political theater. This is why every presidential tape fight since Nixon has been about audio, not text."
+      },
+      {
+        "heading": "THE NIXON THROUGH-LINE",
+        "body": "Nixon v. United States (1974) established that executive privilege yields to a demonstrated need for evidence in a criminal proceeding. The unanimous ruling forced release of the Oval Office tapes within weeks; Nixon resigned 16 days later. Every subsequent fight over presidential recordings runs through this precedent.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "neither the doctrine of separation of powers, nor the need for confidentiality of high-level communications, without more, can sustain an absolute, unqualified Presidential privilege of immunity from judicial process under all circumstances",
+            "speaker": "US v. Nixon, 418 U.S. 683",
+            "year": "1974"
+          }
+        ]
+      },
+      {
+        "heading": "THE ADMINISTRATION FLIP",
+        "body": "FOIA decisions are made by the agency holding the records, not the requester. When administrations change, the same request can flip from denied to granted overnight — the records didn't change, the political calculus did. Heritage's request was denied under Garland's DOJ and approved under Bondi's.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2023-10",
+                "label": "Hur interviews Biden"
+              },
+              {
+                "year": "2024-02",
+                "label": "Hur report released"
+              },
+              {
+                "year": "2024-03",
+                "label": "Heritage files FOIA"
+              },
+              {
+                "year": "2024",
+                "label": "DOJ denies under Garland"
+              },
+              {
+                "year": "2025",
+                "label": "Trump DOJ reverses",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026-06",
+                "label": "scheduled release"
+              }
+            ],
+            "label": "the audio's path"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT EX-PRESIDENTS CAN ACTUALLY DO",
+        "body": "Under the Presidential Records Act (1978), former presidents have a consultation right on records from their tenure but no veto. They can sue to enjoin release, but courts have consistently sided with the incumbent administration's disclosure decisions — the Nixon, Reagan, and Clinton library fights all ended this way.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Who legally owns the records of a US president's term in office?",
+            "options": [
+              "The former president personally",
+              "The National Archives, on behalf of the public",
+              "The political party that nominated the president",
+              "The president's designated literary executor"
+            ],
+            "correct": 1,
+            "explanation": "The Presidential Records Act (1978), passed after Nixon tried to destroy his tapes, made all presidential records public property held by NARA."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-27T04:51:27.261Z",
+    "label": "FOIA & Presidential Records",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-27-imf-pakistan-eff-105-conditions-sovereignty": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW IMF LOANS ACTUALLY WORK",
+        "body": "The IMF does not hand over a lump sum. It disburses in tranches, each unlocked by a review confirming the borrower met specific conditions. Miss a condition, lose the next tranche — that is the entire enforcement mechanism.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical name is a **Extended Fund Facility (EFF)** — longer tenor than a standby arrangement, designed for structural reform, not just balance-of-payments firefighting."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 105 KEEPS GROWING",
+        "body": "Conditions ratchet. When a borrower misses a benchmark, the IMF rarely deletes it — instead it adds a corrective action *plus* the original. Each review the total grows even when most targets are met. Pakistan entered its current EFF with fewer than 50 conditions.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What typically happens to an IMF condition that a borrower misses at review?",
+            "options": [
+              "It is removed and replaced with an easier target",
+              "It is kept, and a corrective action is added on top",
+              "The entire programme is cancelled",
+              "It is converted into a non-binding recommendation"
+            ],
+            "correct": 1,
+            "explanation": "Missed conditions usually survive the review and are layered with new corrective actions, which is why total conditionality counts climb over a programme's life."
+          }
+        ]
+      },
+      {
+        "heading": "PAKISTAN'S SERIAL BORROWING",
+        "body": "This is Pakistan's 24th IMF programme since 1958 — more than any other country. Each one promises to be the last. The recurrence itself is the diagnosis: the underlying fiscal structure — narrow tax base, untaxed agriculture, military-controlled enterprises, energy sector circular debt — has never been restructured.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1958",
+                "label": "First standby arrangement"
+              },
+              {
+                "year": "1988",
+                "label": "Structural Adjustment under Zia"
+              },
+              {
+                "year": "2008",
+                "label": "Post-Musharraf bailout"
+              },
+              {
+                "year": "2019",
+                "label": "EFF under Imran Khan"
+              },
+              {
+                "year": "2023",
+                "label": "$3bn SBA averts default",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Current $7bn EFF begins"
+              }
+            ],
+            "label": "Pakistan & the IMF"
+          }
+        ]
+      },
+      {
+        "heading": "THE RUPEE DIMENSION",
+        "body": "IMF programmes typically require letting the currency float at a market-clearing rate. For Pakistan that has meant repeated devaluations — each one makes dollar debt service more expensive in rupees, even as it satisfies the Fund.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377,
+              278.485848,
+              278.494701,
+              278.137253,
+              277.408487,
+              278.412506,
+              278.512908
+            ],
+            "periods": [
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY WRITES THE BUDGET",
+        "body": "When parliament must align a budget with IMF targets before a review, the order of operations inverts: the Fund's conditionality matrix sets the envelope, and elected officials allocate within it. Sovereignty over fiscal choices — tax rates, subsidy levels, SOE divestiture — moves to Washington for the duration of the programme.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Debt service",
+                "value": "~50%",
+                "tone": "unfavorable",
+                "weight": 50
+              },
+              {
+                "label": "Defense",
+                "value": "~17%",
+                "tone": "neutral",
+                "weight": 17
+              },
+              {
+                "label": "Subsidies",
+                "value": "~10%",
+                "tone": "unfavorable",
+                "weight": 10
+              },
+              {
+                "label": "Development",
+                "value": "~7%",
+                "tone": "favorable",
+                "weight": 7
+              },
+              {
+                "label": "Everything else",
+                "value": "~16%",
+                "tone": "neutral",
+                "weight": 16
+              }
+            ],
+            "label": "Pakistan FY25 federal budget pressure points"
+          }
+        ]
+      },
+      {
+        "heading": "THE EGYPT COMPARISON",
+        "body": "Egypt and Pakistan both run IMF programmes blocked by entrenched military-economic interests. In both, genuine privatization would require surrendering profitable assets the army controls. The Fund knows this; the conditions are written anyway, and the cycle repeats.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "EG",
+              "LK",
+              "AR",
+              "KE"
+            ],
+            "label": "chronic IMF clients",
+            "caption": "countries currently in their 10th+ IMF programme"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-27"
+    ],
+    "generatedAt": "2026-05-27T04:51:57.492Z",
+    "label": "IMF Conditionality & Pakistan",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-27-pentagon-spacex-starlink-lucas-drone-dependency": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY LEO WON",
+        "body": "Geostationary satellites sit 35,786 km up — their round-trip latency (~600ms) is too slow for drone control loops. Low Earth Orbit satellites at 550 km cut that to ~25ms, fast enough to fly a drone in real time. Starlink's 7,000+ satellite constellation is the only operational LEO broadband network at scale.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **link budget** — and at LEO altitudes with phased-array antennas, SpaceX achieved what Iridium and Globalstar spent two decades failing to do: consumer-priced bandwidth from space."
+          }
+        ]
+      },
+      {
+        "heading": "THE MONOPSONY INVERTED",
+        "body": "Military procurement usually creates monopsony — one buyer (the Pentagon) disciplining many sellers. Starlink inverts this: the Pentagon is one customer among millions, and SpaceX's pricing power comes from civilian scale the government cannot replicate. The buyer has lost its leverage."
+      },
+      {
+        "heading": "THE COMPETITORS",
+        "body": "Amazon's Project Kuiper has launched fewer than 100 of a planned 3,200 satellites. OneWeb (now Eutelsat) has ~650 satellites but lacks the inter-satellite laser links needed for contested-environment routing. China's Guowang and Qianfan constellations exist mostly on paper.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Starlink",
+                "value": "~7,000",
+                "tone": "unfavorable",
+                "weight": 7000
+              },
+              {
+                "label": "OneWeb",
+                "value": "~650",
+                "tone": "neutral",
+                "weight": 650
+              },
+              {
+                "label": "Kuiper",
+                "value": "<100",
+                "tone": "favorable",
+                "weight": 80
+              },
+              {
+                "label": "Guowang (CN)",
+                "value": "<50",
+                "tone": "favorable",
+                "weight": 40
+              }
+            ],
+            "label": "LEO broadband constellations, satellites in orbit (2026)"
+          }
+        ]
+      },
+      {
+        "heading": "THE UKRAINE PRECEDENT",
+        "body": "In September 2022, Musk personally denied Starlink coverage over Crimea during a Ukrainian naval drone strike on the Russian Black Sea Fleet. A private CEO unilaterally vetoed a military operation in real time. The Pentagon has been hunting for an alternative ever since — and has not found one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What happened when Ukraine tried to use Starlink-equipped naval drones against Russian ships in Crimea in 2022?",
+            "options": [
+              "The drones succeeded in destroying multiple warships",
+              "Elon Musk personally disabled Starlink coverage over Crimea, aborting the strike",
+              "Russia jammed the Starlink signal with electronic warfare",
+              "The Pentagon revoked Ukraine's Starlink access at Russia's request"
+            ],
+            "correct": 1,
+            "explanation": "Musk confirmed in a Walter Isaacson biography that he ordered Starlink turned off over Crimea to prevent escalation — a private veto over a sovereign military operation."
+          }
+        ]
+      },
+      {
+        "heading": "THE SUBSIDY PARADOX",
+        "body": "SpaceX's launch business has received over $15 billion in NASA and Pentagon contracts since 2008, which funded the Falcon 9 reusability that makes Starlink economically viable. The government built the platform that now charges it monopoly rents — a recurring pattern in dual-use technology, from GPS to the internet itself."
+      },
+      {
+        "heading": "AI SWARMING'S BANDWIDTH BILL",
+        "body": "A single drone streaming HD video needs ~5 Mbps. A coordinated swarm sharing sensor fusion, target handoff, and collision avoidance multiplies this nonlinearly — 100 drones can need 10× the bandwidth of 10 drones, not 10×. The $25,000/month figure is a floor, not a ceiling."
+      }
+    ],
+    "generatedAt": "2026-05-27T04:52:27.395Z",
+    "label": "Starlink & Military Dependency",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-27-situationer-continuation-of-urumqi-process-raises-hopes-for": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DURAND LINE",
+        "body": "The 2,640km border was drawn in 1893 by a British colonial officer to mark the limit of British India's influence — splitting Pashtun tribes across two jurisdictions. No Afghan government, monarchist, communist, or Taliban, has ever formally recognized it.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AF",
+              "PK",
+              "CN",
+              "TJ",
+              "UZ",
+              "IR"
+            ],
+            "label": "the Durand Line frontier",
+            "markers": [
+              {
+                "lat": 34.5553,
+                "lng": 69.2075,
+                "label": "Kabul"
+              },
+              {
+                "lat": 33.6844,
+                "lng": 73.0479,
+                "label": "Islamabad"
+              },
+              {
+                "lat": 43.8256,
+                "lng": 87.6168,
+                "label": "Ürümqi"
+              },
+              {
+                "lat": 36.7172,
+                "lng": 71.6,
+                "label": "Wakhan Corridor"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHO THE TTP ACTUALLY ARE",
+        "body": "The Tehrik-i-Taliban Pakistan formed in 2007 as an umbrella of Pashtun militant factions targeting the Pakistani state — distinct from the Afghan Taliban but ideologically aligned and historically sheltered across the border. Islamabad considers them an existential threat; Kabul considers them fellow mujahideen.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: *Tehrik-i-Taliban Pakistan* (TTP) wages war on **Pakistan**; the *Islamic Emirate* in Kabul wages no war at all since 2021. Conflating them is how Western coverage routinely garbles the story."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHINA MEDIATES",
+        "body": "Beijing's $62bn China-Pakistan Economic Corridor runs through Khyber Pakhtunkhwa and Balochistan — exactly the provinces where TTP and Baloch insurgents have killed Chinese engineers since 2021. China also borders Afghanistan via the 76km Wakhan Corridor and fears Uyghur ETIM militants using Afghan territory.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Wang Yi",
+                "role": "Chinese Foreign Minister",
+                "years": "2023–",
+                "cc": "CN"
+              },
+              {
+                "name": "Ishaq Dar",
+                "role": "Pakistani Foreign Minister",
+                "years": "2024–",
+                "cc": "PK"
+              },
+              {
+                "name": "Amir Khan Muttaqi",
+                "role": "Taliban Acting Foreign Minister",
+                "years": "2021–",
+                "cc": "AF"
+              }
+            ],
+            "label": "who sits at the Ürümqi table"
+          }
+        ]
+      },
+      {
+        "heading": "THE ÜRÜMQI VENUE",
+        "body": "Holding the talks in Xinjiang's capital is itself the message: China hosts on territory where it claims a successful counter-terror model, signalling to both delegations that Beijing's tolerance for cross-border militancy is finite. The same city has hosted previous trilateral and Belt and Road forums.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does China specifically worry about Afghan territory?",
+            "options": [
+              "The 76km Wakhan Corridor borders Xinjiang directly",
+              "China imports most of its lithium from Afghanistan",
+              "Afghanistan controls a major BRI rail terminus",
+              "Beijing has troops stationed near Kandahar"
+            ],
+            "correct": 0,
+            "explanation": "The narrow Wakhan Corridor gives Afghanistan a direct border with Xinjiang — Beijing's concern is Uyghur militants using Afghan territory as sanctuary."
+          }
+        ]
+      },
+      {
+        "heading": "THE PASHTUNWALI PROBLEM",
+        "body": "The Taliban's refusal to label the TTP as terrorists is not just politics — it runs into the Pashtun tribal code's principle of nanawatai, the obligation to shelter those who seek refuge. The same principle made Mullah Omar refuse to surrender bin Laden in 2001, triggering the US invasion.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1893",
+                "label": "Durand Line drawn"
+              },
+              {
+                "year": "1979",
+                "label": "Soviet invasion; mujahideen sheltered in Pakistan"
+              },
+              {
+                "year": "2001",
+                "label": "US invasion; Taliban flee to Pakistan",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2007",
+                "label": "TTP forms in FATA"
+              },
+              {
+                "year": "2021",
+                "label": "Taliban retakes Kabul; TTP attacks surge"
+              },
+              {
+                "year": "2026",
+                "label": "Ürümqi process"
+              }
+            ],
+            "label": "the cycle of cross-border sanctuary"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-27T04:52:58.210Z",
+    "label": "China, the TTP & the Durand Line",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-27-sk-hynix-1-trillion-ai-memory-hbm-monopoly": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT HBM ACTUALLY IS",
+        "body": "High-Bandwidth Memory stacks DRAM dies vertically and wires them through silicon with thousands of micro-channels called through-silicon vias. The stack sits millimeters from the GPU on a shared interposer, delivering an order of magnitude more bandwidth than standard DDR memory bolted to a motherboard.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bottleneck for AI training is not compute — it is *feeding* the compute. A modern GPU starves without HBM; the **memory wall**, not FLOPS, sets the ceiling on model size."
+          }
+        ]
+      },
+      {
+        "heading": "THE OLIGOPOLY",
+        "body": "Samsung, SK Hynix, and Micron produce roughly 95% of all DRAM on Earth. Four decades of sub-10nm lithography investment and multibillion-dollar fab costs eliminated every other competitor, leaving three companies to allocate global memory supply.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "SK Hynix",
+                "value": 57,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Samsung",
+                "value": 22,
+                "tone": "neutral"
+              },
+              {
+                "label": "Micron",
+                "value": 21,
+                "tone": "favorable"
+              }
+            ],
+            "label": "HBM revenue share, 2025 (Counterpoint)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE LEAD COMPOUNDS",
+        "body": "Each HBM generation is co-designed with NVIDIA years before tape-out — pin layouts, thermal envelopes, error-correction schemes. The first vendor to lock in the design wins yield experience that latecomers cannot replicate within one product cycle, so the gap widens at every node."
+      },
+      {
+        "heading": "THE KOREAN INDUSTRIAL BASE",
+        "body": "SK Hynix's fabs cluster in Icheon and Cheongju, an hour south of Seoul; Samsung's memory complex sits in Pyeongtaek. The same 50-kilometer corridor that Pyongyang's artillery ranges contains the world's HBM supply — a strategic fact NVIDIA, the Pentagon, and Beijing all track.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KR",
+              "KP",
+              "JP",
+              "CN",
+              "TW"
+            ],
+            "label": "Korea's memory corridor",
+            "markers": [
+              {
+                "lat": 37.275,
+                "lng": 127.435,
+                "label": "SK Hynix Icheon"
+              },
+              {
+                "lat": 36.6425,
+                "lng": 127.4892,
+                "label": "SK Hynix Cheongju"
+              },
+              {
+                "lat": 36.9921,
+                "lng": 127.0856,
+                "label": "Samsung Pyeongtaek"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE CYCLE THAT BROKE",
+        "body": "DRAM has historically been the most violent commodity cycle in tech — boom-bust swings that bankrupted Qimonda in 2009 and pushed Micron near collapse in 2012. AI training demand has flattened that cycle for the first time in forty years, because HBM is sold on multi-year allocation contracts rather than spot markets."
+      },
+      {
+        "heading": "RETRIEVAL",
+        "body": "A quick check on the substrate.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What primarily distinguishes HBM from standard DRAM?",
+            "options": [
+              "Faster transistor switching speed",
+              "Vertical die stacking with through-silicon vias",
+              "Use of a different semiconductor material than silicon",
+              "Non-volatile storage that retains data without power"
+            ],
+            "correct": 1,
+            "explanation": "HBM's advantage is architectural — stacking dies and wiring them through the silicon itself — not a faster or exotic transistor."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-27T04:53:27.667Z",
+    "label": "HBM & the AI Memory Squeeze",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-27-uganda-ebola-suspected-bengaluru-airport-surveillance": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE VIRUS",
+        "body": "Ebola is a filovirus that causes hemorrhagic fever with case-fatality rates ranging from 25% to 90% depending on the strain and care available. It spreads through direct contact with bodily fluids — not airborne — which makes airport screening tractable in a way COVID never was.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Sudan strain circulating in Uganda has no licensed vaccine — the **Ervebo** vaccine, stockpiled globally since 2019, only protects against the *Zaire* strain."
+          }
+        ]
+      },
+      {
+        "heading": "THE INCUBATION GAP",
+        "body": "Symptoms appear 2 to 21 days after exposure. A traveler can board a plane asymptomatic and seed an outbreak thousands of kilometers from the index zone before any fever shows. Airport thermal screening catches only those already symptomatic — a fraction of the actually infected.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How long can an Ebola-infected person remain asymptomatic before symptoms appear?",
+            "options": [
+              "A few hours",
+              "Up to 3 days",
+              "Up to 21 days",
+              "Up to 6 months"
+            ],
+            "correct": 2,
+            "explanation": "Ebola's incubation period is 2 to 21 days. This is why contact tracing — not just airport screening — is the backbone of containment."
+          }
+        ]
+      },
+      {
+        "heading": "THE PUNE LAB",
+        "body": "India's National Institute of Virology in Pune is one of a handful of BSL-4 facilities in Asia capable of safely handling filoviruses. It was also the lab that first isolated SARS-CoV-2 in India in 2020 and identified the Nipah outbreaks in Kerala."
+      },
+      {
+        "heading": "THE UGANDA OUTBREAK",
+        "body": "Uganda has had eight Ebola outbreaks since 2000, most caused by the Sudan strain that circulates in fruit bat reservoirs in the Congo Basin. The country's surveillance is among Africa's strongest — outbreaks are typically detected within weeks, not months.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UG",
+              "CD",
+              "RW",
+              "KE",
+              "TZ",
+              "SS"
+            ],
+            "label": "the Congo Basin reservoir",
+            "caption": "Fruit bat range overlaps Uganda, eastern DRC, and South Sudan"
+          }
+        ]
+      },
+      {
+        "heading": "THE BENGALURU CORRIDOR",
+        "body": "Kempegowda International is India's third-busiest airport and the country's primary hub for East African traffic — direct flights to Nairobi, Addis Ababa, and via Doha to Entebbe. Roughly 40,000 Indians live in Uganda, descendants of the trading diaspora expelled by Idi Amin in 1972 and gradually invited back since the 1990s."
+      },
+      {
+        "heading": "WHY ISOLATION FIRST",
+        "body": "WHO protocol on suspected viral hemorrhagic fever is isolate-then-test, not test-then-isolate. A negative PCR within the incubation window can be a false negative; the cost of releasing a true positive into a megacity dwarfs the cost of holding a fatigued traveler for 48 hours."
+      }
+    ],
+    "generatedAt": "2026-05-27T04:53:55.252Z",
+    "label": "Ebola & Airport Surveillance",
+    "category": "science",
+    "articleCount": 1
   }
 }

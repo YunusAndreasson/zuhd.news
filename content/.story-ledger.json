@@ -2,13 +2,191 @@
   "version": 1,
   "stories": [
     {
+      "id": "sk-hynix-1-trillion-ai-memory-hbm-monopoly",
+      "label": "SK Hynix Joins $1 Trillion Club on AI Memory Chip Dominance",
+      "firstSeen": "2026-05-27T04:08:35.694Z",
+      "lastCovered": "2026-05-27T04:08:35.694Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-27-sk-hynix-1-trillion-ai-memory-hbm-monopoly"
+      ],
+      "eventUri": "eng-11688006",
+      "summary": "SK Hynix crossed $1T market cap on HBM dominance and is filing for US ADRs — Korea now hosts the second pure AI-memory monopoly after TSMC. Lead with the structural point: the AI build-out has produced two single-country chokepoints (TSMC logic in Taiwan, SK Hynix HBM in Korea) whose valuations now dwarf entire national markets — pairs with [[taiwan-stock-market-surpasses-india-tsmc-ai-concentration]] as the same concentration story from the demand side. Mechanism: HBM yields favor incumbents because each generation requires deeper integration with NVIDIA's roadmap; Micron and Samsung can't close the gap fast enough to break the duopoly. Reader takeaway: 'AI sovereignty' debates are downstream of two Asian memory and logic fabs.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/SK_Hynix",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Micron_Technology",
+        "http://en.wikipedia.org/wiki/South_Korea",
+        "http://en.wikipedia.org/wiki/Semiconductor_memory",
+        "http://en.wikipedia.org/wiki/Market_capitalization",
+        "http://en.wikipedia.org/wiki/Samsung_Electronics",
+        "http://en.wikipedia.org/wiki/Stock"
+      ]
+    },
+    {
+      "id": "imf-pakistan-eff-105-conditions-sovereignty",
+      "label": "The lender that governs",
+      "firstSeen": "2026-05-27T04:08:35.694Z",
+      "lastCovered": "2026-05-27T04:08:35.694Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-27-imf-pakistan-eff-105-conditions-sovereignty"
+      ],
+      "eventUri": null,
+      "summary": "IMF approved Pakistan's third EFF review and added 11 new conditions — total structural conditionality now 75, with 30 standing commitments for 105 compliance requirements covering fiscal, governance, energy and trade policy. Lead with the number 105: this is no longer a 'loan with conditions', it is a parallel administration that has substituted for elected economic policy-making. Mechanism worth teaching: each review ratchets conditionality upward because compliance gaps from prior reviews are converted into new structural benchmarks — the program grows even when targets are met. Reader takeaway: Pakistan's sovereign budget process now runs through Washington, and Dawn says it plainly. Pakistan OIC; regional voice carried.",
+      "conceptUris": []
+    },
+    {
+      "id": "modi-nordic-india-arctic-minerals-russia",
+      "label": "More Than Trade: Modi's Visit to Sweden and Norway",
+      "firstSeen": "2026-05-27T04:08:35.694Z",
+      "lastCovered": "2026-05-27T04:08:35.694Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-26-modi-nordic-india-arctic-minerals-russia"
+      ],
+      "eventUri": null,
+      "summary": "Modi's Nordic tour is the opening move in India's Arctic strategy — but Russia's existing Arctic dominance is the obstacle Delhi has to negotiate around without breaking its Moscow rapport. Lead with the contradiction: India wants Arctic credentials (rare earths, shipping lanes, scientific stations) but the only northern path runs through Russian-controlled passages. Mechanism worth teaching: the Arctic is becoming the next critical-minerals theatre after Central Asia, and middle powers like India have to choose between US-aligned northern routes and Russian-aligned ones. Pairs with [[india-us-critical-minerals-rare-earths-framework-jaishankar-rubio]] as the parallel polar leg of the same minerals strategy.",
+      "conceptUris": []
+    },
+    {
+      "id": "akwa-ibom-market-fire-no-diesel-state-capacity",
+      "label": "SPECIAL REPORT: Day Akwa Ibom market burned because a fire truck had no fuel",
+      "firstSeen": "2026-05-27T04:08:35.694Z",
+      "lastCovered": "2026-05-27T04:08:35.694Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-27-akwa-ibom-market-fire-no-diesel-state-capacity"
+      ],
+      "eventUri": null,
+      "summary": "Premium Times investigation: an Akwa Ibom market burned to the ground because the local fire station had received 'no diesel for over two months' — traders lost stock worth millions of naira while a fueled truck sat idle. Lead with the named station and the two-month gap: this is the accountability failure rendered as a single missing fuel allocation, and Premium Times got the on-the-record admission. Mechanism worth teaching: Nigeria's fiscal devolution after subsidy removal left state-level emergency services unfunded, and the failures are now individually documented — palm oil flowing through burnt walkways while bureaucratic responsibility is dispersed across federal, state and municipal lines no one is willing to claim. Reader takeaway: 'state capacity' is not abstract; it is whether the truck has fuel on the day the market burns. Nigeria OIC; regional voice carried.",
+      "conceptUris": []
+    },
+    {
+      "id": "bangladesh-measles-children-deaths-vaccination-gap",
+      "label": "Bangladesh measles cases: Hundreds of children die within months",
+      "firstSeen": "2026-05-27T04:08:35.694Z",
+      "lastCovered": "2026-05-27T04:08:35.694Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-27-bangladesh-measles-children-deaths-vaccination-gap"
+      ],
+      "eventUri": "eng-11686007",
+      "summary": "Hundreds of Bangladeshi children dead from measles within months — a disease eliminable with a $1 dose. BBC opens on a named 4-year-old, Akira, learning English before she died. Lead with the named child and the count: this is the most preventable mass child death of the season, and it is happening in a country whose vaccination programme was a global model a decade ago. Mechanism worth teaching: measles is a herd-immunity disease, and Bangladesh's coverage dipped below the 95% threshold after pandemic-era catch-up campaigns lapsed and UNICEF funding tightened — the deaths are a delayed externality of a budgeting decision. Reader takeaway: when global vaccine financing slips, the body count appears in the Muslim-majority countries that had been the success cases. Bangladesh OIC.",
+      "conceptUris": []
+    },
+    {
+      "id": "uganda-ebola-suspected-bengaluru-airport-surveillance",
+      "label": "Traveller from Uganda isolated in Bengaluru after showing suspected Ebola symptoms",
+      "firstSeen": "2026-05-27T04:08:35.694Z",
+      "lastCovered": "2026-05-27T04:08:35.694Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-27-uganda-ebola-suspected-bengaluru-airport-surveillance"
+      ],
+      "eventUri": "eng-11687490",
+      "summary": "A woman who flew from Uganda via Ahmedabad to Bengaluru on 23 May was moved to Karnataka's State Epidemic Diseases Hospital after surveillance flagged fatigue and mild symptoms; samples sent to the National Institute of Virology. Lead with the routing — Uganda → Ahmedabad → Bengaluru — and the surveillance trigger: India's Ebola tracking on inbound passengers from affected regions actually caught a suspected case at the airport stage. Mechanism worth teaching: post-2014 international airport surveillance is the single most successful public-health upgrade of the last decade, and most of the catches never make headlines because samples come back negative. Reader takeaway: the system worked here — a suspected case isolated within four days of arrival — and that is the unsexy public-health infrastructure that prevents a second 2014. Flag for follow-up once NIV result is in.",
+      "conceptUris": []
+    },
+    {
+      "id": "smex-breadnet-2025-mena-digital-rights-outcomes",
+      "label": "Bread&Net 2025: Explore the Outcomes Reports",
+      "firstSeen": "2026-05-27T04:08:35.694Z",
+      "lastCovered": "2026-05-27T04:08:35.694Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-26-smex-breadnet-2025-mena-digital-rights-outcomes"
+      ],
+      "eventUri": null,
+      "summary": "SMEX publishes the outcome reports from Bread&Net 2025, the MENA region's main digital-rights convening — sessions on infrastructure control, platform takedowns of Arabic and Palestinian content, and surveillance baselines across Lebanon, Egypt, Jordan and the Gulf. Lead with the question the reports keep asking: who controls the digital infrastructure that Arab civil society depends on, and what does the cost of that dependence look like in 2025-2026's documented case data. Mechanism worth teaching: digital-rights work in the MENA region is increasingly a documentation exercise — these outcome reports are the institutional memory that survives even when individual orgs are shut down. Pairs with [[smex-ceasefire-digital-rights-mideast-surveillance-baseline]]. Lebanon OIC; SMEX is the regional voice.",
+      "conceptUris": []
+    },
+    {
+      "id": "pentagon-spacex-starlink-lucas-drone-dependency",
+      "label": "Cost To Link LUCAS Kamikaze Drones To Starlink Highlights Pentagon's Ever-Growing Dependence On SpaceX",
+      "firstSeen": "2026-05-27T04:08:35.694Z",
+      "lastCovered": "2026-05-27T04:08:35.694Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-27-pentagon-spacex-starlink-lucas-drone-dependency"
+      ],
+      "eventUri": null,
+      "summary": "Pentagon pushes back on reported upcharges to connect LUCAS one-way attack drones to Starlink — but the underlying story is that SpaceX's products have become 'largely essential' to US military operations, with no second supplier at parity. Lead with the lock-in: a single private satellite operator now sets the per-drone connectivity bill for a US weapon system, and the only public negotiation is over the size of the markup. Mechanism worth teaching: defence procurement was supposed to avoid monopoly suppliers by design (DoD Section 803), but LEO broadband is a winner-take-most market and Starlink's lead has converted into a procurement chokepoint the Pentagon admits is irreplaceable. Reader takeaway: 'critical infrastructure' is a category that now includes a private constellation whose owner the US government cannot replace and cannot fully discipline.",
+      "conceptUris": []
+    },
+    {
+      "id": "former-president-biden-sues-doj-over-release-of-interview-au",
+      "label": "Former President Biden sues DOJ over release of interview audio",
+      "firstSeen": "2026-05-27T04:08:35.694Z",
+      "lastCovered": "2026-05-27T04:08:35.694Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-27-former-president-biden-sues-doj-over-release-of-interview-au"
+      ],
+      "eventUri": "eng-11688024",
+      "summary": "[Auto-backfill for politics floor] Former President Joe Biden sued the Justice Department on Tuesday, urging a federal judge to block the release of audio recordings and transcripts of his private conversations with the ghostwriter of his 2017 memoir.\n\nThe suit stems from a 2024 Freedom of Information Act request by the conservative ",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Joe_Biden",
+        "http://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+        "http://en.wikipedia.org/wiki/Lawsuit",
+        "http://en.wikipedia.org/wiki/The_Heritage_Foundation",
+        "http://en.wikipedia.org/wiki/Washington,_D.C.",
+        "http://en.wikipedia.org/wiki/Classified_information",
+        "http://en.wikipedia.org/wiki/Conservatism_in_the_United_States",
+        "http://en.wikipedia.org/wiki/United_States_House_Committee_on_the_Judiciary"
+      ]
+    },
+    {
+      "id": "situationer-continuation-of-urumqi-process-raises-hopes-for",
+      "label": "Situationer: Continuation of 'Urumqi process' raises hopes for Pak-Afghan patch-up",
+      "firstSeen": "2026-05-27T04:08:35.694Z",
+      "lastCovered": "2026-05-27T04:08:35.694Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-27-situationer-continuation-of-urumqi-process-raises-hopes-for"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for politics floor] * Beijing's envoy already laying groundwork to continue Islamabad-Kabul mediation efforts\n\n* Pakistani circles 'fed up' by failure of bilateral efforts, pin their hopes on Chinese shepherding the process\n\nCHINA'S diplomatic mediation between Pak­istan and Taliban-ruled Afghanistan is keeping hopes a",
+      "conceptUris": []
+    },
+    {
       "id": "iran-says-new-us-strikes-violate-ceasefire",
       "label": "Iran says new US strikes violate ceasefire",
       "firstSeen": "2026-05-26T22:08:08.392Z",
       "lastCovered": "2026-05-26T22:08:08.392Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-26-iran-says-new-us-strikes-violate-ceasefire"
@@ -33,7 +211,7 @@
       "lastCovered": "2026-05-26T22:08:08.392Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-26-us-and-armenia-sign-partnership-agreement-ahead-of-armenian"
@@ -58,7 +236,7 @@
       "lastCovered": "2026-05-26T22:08:08.392Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-26-czech-ammo-coalition-for-ukraine-loses-support"
@@ -83,7 +261,7 @@
       "lastCovered": "2026-05-26T22:08:08.392Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-26-mali-banned-russian-submunitions-bellingcat-cluster-bomblets"
@@ -99,7 +277,7 @@
       "lastCovered": "2026-05-26T22:08:08.392Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-26-wall-street-records-iran-strikes-ceasefire-trade-brent-hormuz"
@@ -124,7 +302,7 @@
       "lastCovered": "2026-05-26T22:08:08.392Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-26-nippon-dynawave-longview-pulp-mill-explosion-osha-backlog"
@@ -148,7 +326,7 @@
       "lastCovered": "2026-05-26T22:08:08.392Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-26-pakistan-wapda-security-force-cpec-dasu-chinese-workers"
@@ -170,7 +348,7 @@
       "lastCovered": "2026-05-26T22:08:08.392Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-26-earth-oxygen-atmosphere-mantle-subduction-tectonics"
@@ -192,7 +370,7 @@
       "lastCovered": "2026-05-26T22:08:08.392Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-26-furtivovirus-giant-virus-evolution-tree-of-life"
@@ -208,7 +386,7 @@
       "lastCovered": "2026-05-26T22:08:08.392Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-26-starlette-fastapi-asgi-vulnerability-ai-agents-mcp-credentials"
@@ -230,7 +408,7 @@
       "lastCovered": "2026-05-26T22:08:08.392Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-26-wireless-sensor-network-charger-placement-graph-coloring-aquila"
@@ -246,7 +424,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-us-nato-bomber-warship-cuts-spiegel-hegseth-brussels"
@@ -271,7 +449,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-eu-germany-summon-russian-envoys-kyiv-evacuation"
@@ -296,7 +474,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-sudan-rsf-uae-colombian-mercenaries-hrw-report"
@@ -321,7 +499,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-dahiyeh-eid-displacement-netanyahu-strikes-lebanon-ceasefire-gap"
@@ -337,7 +515,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-xi-pyongyang-visit-china-north-korea-nuclear-mediator"
@@ -353,7 +531,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-bp-chairman-manifold-ousted-governance-oil-major"
@@ -378,7 +556,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-india-us-critical-minerals-rare-earths-framework-jaishankar-rubio"
@@ -403,7 +581,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-fico-slovakia-eu-russian-gas-ban-legal-challenge"
@@ -425,7 +603,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-china-rocket-stages-debris-orbital-sustainability-kessler"
@@ -441,7 +619,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-undersea-volcano-iceland-shallow-explosive-quanta"
@@ -457,7 +635,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-buspatrol-school-bus-alpr-law-enforcement-surveillance"
@@ -473,7 +651,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-stalkerware-millions-partners-phones-domestic-surveillance"
@@ -489,7 +667,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-lithuania-state-registry-breach-600k-records-foreign-actor"
@@ -505,7 +683,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-iran-mq9-drone-downed-persian-gulf-irgc-ceasefire"
@@ -530,7 +708,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-khamenei-no-going-back-us-bases-middle-east-realignment"
@@ -555,7 +733,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-altman-jobs-apocalypse-denial-wisetech-threats-sydney"
@@ -580,7 +758,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-sudanese-refugees-cairo-suicide-crisis-funding-collapse"
@@ -596,7 +774,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-eli-lilly-vaccine-developers-acquisitions-consolidation"
@@ -617,7 +795,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-stablr-usdr-eurr-peg-collapse-unbacked-mint-attack"
@@ -639,7 +817,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-taiwan-stock-market-surpasses-india-tsmc-ai-concentration"
@@ -663,7 +841,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-south-africa-labs-load-shedding-research-infrastructure-saiab"
@@ -683,7 +861,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-pomegranate-peel-water-purifier-4-nitrophenol-frugal-chemistry"
@@ -699,7 +877,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-yemen-cholera-dengue-drought-community-response-compounding"
@@ -715,7 +893,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-agentic-divide-ai-agent-inequality-global-south-productivity"
@@ -731,7 +909,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-kozlov-russia-security-council-rostec-gru-cyber-consolidation"
@@ -747,7 +925,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-smex-ceasefire-digital-rights-mideast-surveillance-baseline"
@@ -763,7 +941,7 @@
       "lastCovered": "2026-05-26T08:06:32.980Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-von-der-leyen-lithuania-drone-crisis-baltic-defense"
@@ -788,7 +966,7 @@
       "lastCovered": "2026-05-26T08:06:32.980Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-east-palestine-emergency-spending-accountability-gap"
@@ -804,7 +982,7 @@
       "lastCovered": "2026-05-26T08:06:32.980Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-starbucks-korea-tank-day-gwangju-massacre-memory"
@@ -820,7 +998,7 @@
       "lastCovered": "2026-05-26T08:06:32.980Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-stablecoins-318-billion-exceed-95-nations-fx-reserves"
@@ -836,7 +1014,7 @@
       "lastCovered": "2026-05-26T08:06:32.980Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-iran-war-global-south-economic-shock-oil-fertilizer"
@@ -852,7 +1030,7 @@
       "lastCovered": "2026-05-26T08:06:32.980Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-sulfonamide-resistance-one-health-integron-sul-genes"
@@ -868,7 +1046,7 @@
       "lastCovered": "2026-05-26T08:06:32.980Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-borno-cholera-2700-cases-iswap-water-collapse"
@@ -884,7 +1062,7 @@
       "lastCovered": "2026-05-26T08:06:32.980Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-tehran-refinery-fires-so2-satellites-tropomi"
@@ -900,7 +1078,7 @@
       "lastCovered": "2026-05-26T08:06:32.980Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-south-korea-nuclear-submarine-roadmap-enrichment-cap"
@@ -923,7 +1101,7 @@
       "lastCovered": "2026-05-26T08:06:32.980Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-china-bohai-wig-ekranoplan-weapons-hardpoints"
@@ -939,7 +1117,7 @@
       "lastCovered": "2026-05-26T08:06:32.980Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-usaf-ultra-drone-centcom-mq9-iran-attrition"
@@ -955,7 +1133,7 @@
       "lastCovered": "2026-05-26T04:07:08.176Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-us-strikes-iran-missile-sites-doha-talks-ceasefire-test"
@@ -971,7 +1149,7 @@
       "lastCovered": "2026-05-26T04:07:08.176Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-bangladesh-sufi-shrines-jamaat-attacks-pluralism-erosion"
@@ -987,7 +1165,7 @@
       "lastCovered": "2026-05-26T04:07:08.176Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-bhojshala-india-high-court-hindu-temple-sufi-mosque-precedent"
@@ -1003,7 +1181,7 @@
       "lastCovered": "2026-05-26T04:07:08.176Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-nicaragua-ortega-transnational-assassination-former-rebel-murder"
@@ -1019,7 +1197,7 @@
       "lastCovered": "2026-05-26T04:07:08.176Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-australia-japan-mogami-frigate-export-defence-industrial"
@@ -1035,7 +1213,7 @@
       "lastCovered": "2026-05-26T04:07:08.176Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-liddell-coal-demolition-australia-baseload-exit"
@@ -1051,7 +1229,7 @@
       "lastCovered": "2026-05-26T04:07:08.176Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-colombo-security-conclave-india-indian-ocean-trade-governance"
@@ -1067,7 +1245,7 @@
       "lastCovered": "2026-05-26T04:07:08.176Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-india-lpg-surrender-png-rollout-household-energy-migration"
@@ -1083,7 +1261,7 @@
       "lastCovered": "2026-05-26T04:07:08.176Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-china-carbon-metric-revision-germany-sized-emissions-gap"
@@ -1099,7 +1277,7 @@
       "lastCovered": "2026-05-26T04:07:08.176Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-yemen-sanaa-antipsychotic-qt-prolongation-cardiac-risk-polypharmacy"
@@ -1115,7 +1293,7 @@
       "lastCovered": "2026-05-26T04:07:08.176Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-google-search-degradation-alternatives-kagi-marginalia-mojeek"
@@ -1131,275 +1309,13 @@
       "lastCovered": "2026-05-26T04:07:08.176Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-meso-spintronics-magnetic-tunnel-junction-readout-post-cmos"
       ],
       "eventUri": null,
       "summary": "Nature Communications paper demonstrates a magnetoelectric spin-orbit (MESO) logic readout — using a magnetic tunnel junction — strong enough to start displacing CMOS transistors for low-energy compute. Lead with the engineering threshold (readout voltage finally high enough for circuit-level integration) and what it means for the AI-compute power problem: MESO devices switch at <100 mV vs CMOS at ~700 mV, which is the order-of-magnitude energy improvement the hyperscaler power budgets need. Reader takeaway: the post-CMOS transistor candidates have been laboratory curiosities for a decade — this paper is one of the first where the readout problem looks practically solved, and that is the gating step for spintronics to enter real datacentres.",
-      "conceptUris": []
-    },
-    {
-      "id": "trump-abraham-accords-mandatory-iran-ceasefire-precondition",
-      "label": "Trump calls for 'mandatory' adherence to Abraham Accords in Iran ceasefire talks",
-      "firstSeen": "2026-05-25T22:06:32.257Z",
-      "lastCovered": "2026-05-25T22:06:32.257Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-25-trump-abraham-accords-mandatory-iran-ceasefire-precondition"
-      ],
-      "eventUri": "eng-11682116",
-      "summary": "Trump has injected the Abraham Accords into the Iran ceasefire file — making Saudi/UAE/Qatar normalisation with Israel a precondition for ending the war. Lead with the diplomatic surprise (Arab and US diplomats blindsided) and the mechanism: Washington is using the war's leverage to force a political project that pre-October-7 had stalled. Reader takeaway: the Iran war becomes the instrument for finishing the Abraham Accords, and Riyadh is being asked to normalise with Israel while Lebanon and Gaza are still being bombed. Continues the [[rubio-taj-mahal-india-iran-diplomacy-backchannel]] arc by showing what the actual ask in the talks is.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/Qatar",
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Abraham_Accords",
-        "http://en.wikipedia.org/wiki/United_Arab_Emirates"
-      ]
-    },
-    {
-      "id": "ebola-drc-uganda-500-million-who-outpacing-response",
-      "label": "Ebola Crisis in Congo Draws $500 Million in Global Pledges",
-      "firstSeen": "2026-05-25T22:06:32.257Z",
-      "lastCovered": "2026-05-25T22:06:32.257Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-25-ebola-drc-uganda-500-million-who-outpacing-response"
-      ],
-      "eventUri": "eng-11682587",
-      "summary": "WHO chief says suspected Ebola deaths are at 220 and the epidemic is outpacing the US response; donors pledge $500M as 101 confirmed DRC cases and a cross-border death in Uganda mark the worst outbreak since 2019. Lead with the funding-vs-burden gap: the same week the US is paying for an Iran war, $500M arrives slowly for an African pathogen with measured 50% case-fatality. Mechanism: pandemic response now runs on pledge-and-delay financing while the virus moves on bus routes. Reader takeaway: this is what global health governance looks like when the WHO's contingency fund is $3.9M and the gap is filled by pledges that may not arrive before the next index case.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Democratic_Republic_of_the_Congo",
-        "http://en.wikipedia.org/wiki/Ebola",
-        "http://en.wikipedia.org/wiki/World_Health_Organization",
-        "http://en.wikipedia.org/wiki/Uganda",
-        "http://en.wikipedia.org/wiki/Western_African_Ebola_virus_epidemic",
-        "http://en.wikipedia.org/wiki/Virus",
-        "http://en.wikipedia.org/wiki/Tedros_Adhanom",
-        "http://en.wikipedia.org/wiki/Ituri_Province"
-      ]
-    },
-    {
-      "id": "lavrov-rubio-kyiv-evacuate-diplomats-russia-strike-warning",
-      "label": "Lavrov Tells Rubio to Evacuate US Diplomats, Citizens from Kyiv",
-      "firstSeen": "2026-05-25T22:06:32.257Z",
-      "lastCovered": "2026-05-25T22:06:32.257Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-25-lavrov-rubio-kyiv-evacuate-diplomats-russia-strike-warning"
-      ],
-      "eventUri": "rus-2071057",
-      "summary": "Russia's foreign minister phoned Rubio to warn Washington to pull diplomats and US citizens out of Kyiv ahead of a planned heavy-strike campaign. Lead with the diplomatic register: Moscow is using a Vienna Convention courtesy notification to telegraph an attack big enough that it expects civilian casualties at embassy level. Mechanism worth teaching is the escalation ladder — a phone call like this normally precedes either a major air offensive or a deliberate signal that the Kremlin wants the Americans out of the way before talks. Reader takeaway: the Ukraine war is reaching a point where Moscow is briefing Washington on its targeting, while Iran-war diplomacy absorbs US bandwidth.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Kyiv",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Sergey_Lavrov",
-        "http://en.wikipedia.org/wiki/Ministry_of_Foreign_Affairs_(Russia)",
-        "http://en.wikipedia.org/wiki/Moscow",
-        "http://en.wikipedia.org/wiki/Marco_Rubio",
-        "http://en.wikipedia.org/wiki/United_States_Secretary_of_State"
-      ]
-    },
-    {
-      "id": "africa-day-colonial-penal-codes-independence-laws-hrw",
-      "label": "Interview: Why, after Independence, Do We Still Hold onto Laws That Were Designed to Oppress Us?",
-      "firstSeen": "2026-05-25T22:06:32.257Z",
-      "lastCovered": "2026-05-25T22:06:32.257Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-25-africa-day-colonial-penal-codes-independence-laws-hrw"
-      ],
-      "eventUri": "eng-11681913",
-      "summary": "On the 63rd Africa Day, HRW interviews African legal scholars on why colonial-era penal codes — vagrancy, public-order, sedition, anti-LGBT statutes — remain on the books in nearly every former colony and are still actively prosecuted. Lead with named statutes still in force (e.g. Nigeria's Same Sex Marriage Prohibition Act inheriting 1907 Lagos colonial morality clauses; Kenya's Public Order Act 1950) and the mechanism: independence transferred sovereignty but not the legislative drafting capacity to rewrite criminal law, so independence-era governments kept colonial codes to maintain control. Reader takeaway: 'decolonisation' is unfinished as long as the daily criminal code is still British or French. Feed gap: no African-continent outlet covered this HRW interview today — note the feed-side gap.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Africa",
-        "http://en.wikipedia.org/wiki/Africa_Day",
-        "http://en.wikipedia.org/wiki/African_Union",
-        "http://en.wikipedia.org/wiki/Organisation_of_African_Unity",
-        "http://en.wikipedia.org/wiki/Pan-Africanism",
-        "http://en.wikipedia.org/wiki/Independence",
-        "http://en.wikipedia.org/wiki/Sovereignty",
-        "http://en.wikipedia.org/wiki/Colonialism"
-      ]
-    },
-    {
-      "id": "niger-france-severance-bazoum-coup-uranium-cfa-franc",
-      "label": "For most Nigeriens, France has no place in Niger",
-      "firstSeen": "2026-05-25T22:06:32.257Z",
-      "lastCovered": "2026-05-25T22:06:32.257Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-25-niger-france-severance-bazoum-coup-uranium-cfa-franc"
-      ],
-      "eventUri": null,
-      "summary": "Three years after the July 2023 coup that ousted Mohamed Bazoum, Global Voices documents how the Nigerien public has consolidated around full severance from France — French language, military bases, CFA franc, Orano's uranium contracts. Lead with the mechanism, not the sentiment: a former French colony is now systematically dismantling the four pillars of Françafrique in sequence, and the question for the reader is which African capital follows. Reader takeaway: Niger is the case study of post-coup states using sovereignty rhetoric to actually unwind colonial-era extraction frameworks, while Paris struggles to articulate what its Sahel policy is anymore. Niger is OIC; feed offered no regional African outlet on this analysis — note feed-side gap.",
-      "conceptUris": []
-    },
-    {
-      "id": "ferrari-first-electric-five-seater-550000-euro-maranello",
-      "label": "Ferrari reborn: a legend goes electric",
-      "firstSeen": "2026-05-25T22:06:32.257Z",
-      "lastCovered": "2026-05-25T22:06:32.257Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-25-ferrari-first-electric-five-seater-550000-euro-maranello"
-      ],
-      "eventUri": "eng-11682829",
-      "summary": "Ferrari unveiled its first fully electric vehicle in Rome — a €550,000 five-seater that ends 78 years of combustion-only DNA at Maranello. Lead with what the price actually means: at €550K Ferrari is not chasing Tesla on volume, it is defending its premium against an electric Bentley, Rolls-Royce Spectre, and Lotus, while keeping a combustion line for purists. The mechanism worth teaching is luxury-OEM EV transition: incumbents move when the residual values on combustion sports cars start to fall, and the Italian government's 2035 ICE ban left no flank to defend. Reader takeaway: when Ferrari blinks, the EV transition is locked in at the top of the market.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Ferrari",
-        "http://en.wikipedia.org/wiki/Rome",
-        "http://en.wikipedia.org/wiki/Maranello",
-        "http://en.wikipedia.org/wiki/Italy",
-        "http://en.wikipedia.org/wiki/Electric_vehicle",
-        "http://en.wikipedia.org/wiki/Mazda_Luce",
-        "http://en.wikipedia.org/wiki/Euro",
-        "http://en.wikipedia.org/wiki/Jony_Ive"
-      ]
-    },
-    {
-      "id": "iran-us-frozen-assets-qatar-mediation-deal-nears",
-      "label": "Iran-US deal nears as talks advance on frozen assets",
-      "firstSeen": "2026-05-25T22:06:32.257Z",
-      "lastCovered": "2026-05-25T22:06:32.257Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-25-iran-us-frozen-assets-qatar-mediation-deal-nears"
-      ],
-      "eventUri": "eng-11683618",
-      "summary": "Qatari mediation has narrowed the gap between Tehran and Washington on Iran's frozen financial assets — the technical piece that has blocked every prior nuclear-and-sanctions deal. Lead with what 'frozen assets' actually means here ($6B in South Korean banks, larger amounts in Japan and Europe) and the structural shift: Doha is now the operational mediator on the economic file while Trump talks Abraham-Accords politics in public. Mechanism: the Iran war's exit ramp runs through SWIFT-adjacent banking choreography that the Treasury can sign off on without Congress. Reader takeaway: the war ends when the assets unfreeze, and that release schedule is being drafted in Doha — pairs with [[trump-abraham-accords-mandatory-iran-ceasefire-precondition]] as the substance to its theatre.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Doha",
-        "http://en.wikipedia.org/wiki/Qatar",
-        "http://en.wikipedia.org/wiki/Mohammad_Bagher_Ghalibaf",
-        "http://en.wikipedia.org/wiki/Abbas_Araghchi",
-        "http://en.wikipedia.org/wiki/Minister_for_Foreign_Affairs_(Germany)",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz"
-      ]
-    },
-    {
-      "id": "kzn-magog-lithium-mine-1000-relocation-highbury-eia",
-      "label": "Hundreds face relocation in KZN lithium mine expansion plan",
-      "firstSeen": "2026-05-25T22:06:32.257Z",
-      "lastCovered": "2026-05-25T22:06:32.257Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-25-kzn-magog-lithium-mine-1000-relocation-highbury-eia"
-      ],
-      "eventUri": null,
-      "summary": "About 150 homesteads — close to 1,000 people — in Magog village, KwaZulu-Natal, face relocation for the SA Lithium group's Highbury mine expansion near Port Shepstone, per the company's own EIA. Lead with the numbers and the consultant: the EIA was filed by Joan Consultants on behalf of the mining company itself, which is the structural conflict that defines South African mining displacement. Mechanism worth teaching: the global EV transition is being financed by lithium contracts that displace rural Black communities under EIA processes the communities don't fund. Pairs with the [[ferrari-first-electric-five-seater-550000-euro-maranello]] pick as the extraction-side cost of the EV transition that the Rome unveiling buys.",
-      "conceptUris": []
-    },
-    {
-      "id": "europe-may-heat-dome-uk-france-spain-record-may",
-      "label": "'Mini version of hell': Heat dome over Europe scorches UK, France, Spain",
-      "firstSeen": "2026-05-25T22:06:32.257Z",
-      "lastCovered": "2026-05-25T22:06:32.257Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-25-europe-may-heat-dome-uk-france-spain-record-may"
-      ],
-      "eventUri": "eng-11683826",
-      "summary": "A May heat dome — warm air trapped under a high-pressure system, sourced from northern Africa — set new May records in the UK and France and is forecast to last the week. Lead with the mechanism (heat dome formation, why May matters more than July for record-setting) and what it means structurally: when the synoptic pattern that produced 2022's lethal European heatwave returns six weeks earlier in 2026, the European thermal-stress calendar has shifted left. Reader takeaway: this is the same physical regime that produced excess mortality across France and Spain three summers ago, only this year the grid, hospitals, and rail networks were not expecting it in May. Pairs with the [[nhs-67-flood-closures-climate-adaptation-hospital-infrastructure]] picture of Europe's climate-adaptation gap.",
-      "conceptUris": []
-    },
-    {
-      "id": "supermassive-black-holes-exoplanet-habitability-galactic-zone",
-      "label": "Supermassive black holes can render exoplanets uninhabitable at great distances",
-      "firstSeen": "2026-05-25T22:06:32.257Z",
-      "lastCovered": "2026-05-25T22:06:32.257Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-25-supermassive-black-holes-exoplanet-habitability-galactic-zone"
-      ],
-      "eventUri": null,
-      "summary": "New modelling argues that the active galactic nucleus around a supermassive black hole sterilises planets out to galaxy-scale distances by stripping atmospheres with X-ray and UV flux — far beyond a star's Goldilocks zone. Lead with what changes for the habitability literature: the search for life shifts from 'find the right star' to 'find the right galactic neighbourhood', and the Milky Way's quiet Sgr A* is now part of why Earth exists. Reader takeaway: habitability is hierarchical (stellar → galactic) and the field is starting to think of life as a function of where in the galaxy you are, not just what kind of star you orbit.",
-      "conceptUris": []
-    },
-    {
-      "id": "indonesia-polymarket-blocked-prediction-market-gambling-law",
-      "label": "Indonesia blocks Polymarket, calling prediction market online gambling in disguise",
-      "firstSeen": "2026-05-25T22:06:32.257Z",
-      "lastCovered": "2026-05-25T22:06:32.257Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-25-indonesia-polymarket-blocked-prediction-market-gambling-law"
-      ],
-      "eventUri": "eng-11676747",
-      "summary": "Indonesia's Ministry of Communication and Digital Affairs has blocked Polymarket on the grounds that crypto-settled prediction markets are gambling under Indonesian law — the third major Asian jurisdiction (after India and now Indonesia) to wall off the venue. Lead with the legal mechanism: Indonesia did not need a new statute, it applied an existing online-gambling block to a USDC-settled smart contract, which is the regulatory pattern Muslim-majority states will most likely copy. Reader takeaway: prediction markets ride on the same crypto rails as remittances, and the regulatory tools that catch one will catch the other — Polymarket has now lost ~300M potential Indonesian users on a single ministerial order.",
-      "conceptUris": []
-    },
-    {
-      "id": "buterin-ethereum-foundation-shrink-crops-longevity-strategy",
-      "label": "Vitalik Buterin breaks silence about Ethereum Foundation amid community frustration",
-      "firstSeen": "2026-05-25T22:06:32.257Z",
-      "lastCovered": "2026-05-25T22:06:32.257Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-25-buterin-ethereum-foundation-shrink-crops-longevity-strategy"
-      ],
-      "eventUri": "eng-11682079",
-      "summary": "Buterin has publicly committed the Ethereum Foundation to shrink, sell less ETH, and narrow its remit to 'CROPS' (censorship-resistance, openness, privacy, security) — explicitly rejecting maximising throughput as the project goal. Lead with the institutional pivot: the foundation that funds the second-largest crypto ecosystem is choosing 'longevity over breadth' just as Solana, Hyperliquid, and L2 ecosystems pull volume away. Mechanism worth teaching is governance: a non-profit foundation deciding to constrain its own fundraising and scope is the rare move in crypto-land. Reader takeaway: Ethereum is consciously trading market-share growth for institutional credibility — and that bet only pays off if regulators, not traders, are the next decade's audience.",
-      "conceptUris": []
-    },
-    {
-      "id": "asean-ai-agent-swarm-disinformation-southeast-asia-exposure",
-      "label": "ASEAN isn't yet ready for the AI agent swarm",
-      "firstSeen": "2026-05-25T22:06:32.257Z",
-      "lastCovered": "2026-05-25T22:06:32.257Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-25-asean-ai-agent-swarm-disinformation-southeast-asia-exposure"
-      ],
-      "eventUri": null,
-      "summary": "Lowy argues Southeast Asia's linguistic and platform diversity makes the region uniquely exposed to autonomous AI-agent disinformation campaigns — and that existing ASEAN information-integrity frameworks were drafted for human-run troll farms, not agent swarms. Lead with the threat model: an agent swarm operates in Bahasa Indonesia, Tagalog, Thai, and Vietnamese simultaneously at a cost that no human troll farm could match, and the platforms most exposed (Facebook, TikTok, Line) have weaker moderation in those languages than in English. Reader takeaway: AI-safety policy in the Global South will be shaped first by election interference, not by frontier-model evaluations — and the [[uk-australia-aisi-mou-frontier-ai-evaluations-treaty-club]] AISI treaty club has nothing to offer this problem.",
       "conceptUris": []
     }
   ]
