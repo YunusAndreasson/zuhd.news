@@ -355,6 +355,10 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.md,
   },
   globeTapZone: {
-    ...StyleSheet.absoluteFillObject,
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
   },
 });

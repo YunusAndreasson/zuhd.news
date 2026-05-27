@@ -18,11 +18,9 @@ interface TopoWithObjects extends Topology {
 // reference the same arcs, so they overlap exactly.
 const countriesData = countriesTopo as unknown as TopoWithObjects;
 
-const landObj = countriesData.objects.land;
 const countriesObj = countriesData.objects.countries;
-if (!landObj || !countriesObj) throw new Error('missing topojson objects');
+if (!countriesObj) throw new Error('missing topojson objects');
 
-export const land = feature(countriesData, landObj);
 export const countries = feature(
   countriesData,
   countriesObj,
@@ -63,15 +61,25 @@ const mediumData = simplify(presimplifiedData, 0.15) as unknown as TopoWithObjec
 const landObjSimp = simplifiedData.objects.land;
 const countriesObjSimp = simplifiedData.objects.countries;
 const landObjMed = mediumData.objects.land;
-if (!landObjSimp || !countriesObjSimp || !landObjMed) {
+const countriesObjMed = mediumData.objects.countries;
+if (!landObjSimp || !countriesObjSimp || !landObjMed || !countriesObjMed) {
   throw new Error('missing simplified topojson objects');
 }
 
 export const landSimplified = feature(simplifiedData, landObjSimp);
+/** Borders mesh from the same 0.5-weight simplified topology as
+ *  `landSimplified`. Same arcs guarantee mid-scroll borders align exactly
+ *  with the simplified coastline. ~56% cheaper to project than full
+ *  `bordersMesh`; swapped in by MiniGlobe when `!nearSettled`. */
+export const bordersMeshSimplified = mesh(simplifiedData, countriesObjSimp, (a, b) => a !== b);
 /** Mid-tier land for settled frames — denser than `landSimplified` so the
  *  coastline keeps its read at rest, but lighter than the full `land`
  *  mesh. Same arcs as the other two (alignment preserved). */
 export const landMedium = feature(mediumData, landObjMed);
+/** Borders mesh from the 0.15-weight medium topology — settled-frame
+ *  companion to `landMedium`. ~30% cheaper than full `bordersMesh` while
+ *  keeping border arcs aligned with the medium coastline. */
+export const bordersMeshMedium = mesh(mediumData, countriesObjMed, (a, b) => a !== b);
 const countriesSimplified = feature(
   simplifiedData,
   countriesObjSimp,

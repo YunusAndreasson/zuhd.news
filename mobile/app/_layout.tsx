@@ -17,6 +17,7 @@ import {
   clearLegacyScheduledNotifications,
   enableNotifications,
   registerPushToken,
+  setupNotificationChannels,
 } from '../lib/notifications';
 import {
   setBriefing as setPendingBriefing,
@@ -25,6 +26,27 @@ import {
 import { getPreferences, savePreferences } from '../lib/storage';
 
 configureReanimatedLogger({ level: ReanimatedLogLevel.warn, strict: false });
+
+// Skia 2.6.2 deprecates SkPath mutation methods (moveTo, lineTo, addCircle…)
+// in favor of `Skia.PathBuilder.Make().…detach()`. Reading the native binding
+// (cpp/api/JsiSkPathBuilder.h:326 — `build()` constructs a JsiSkPath whose
+// EXPORT_JSI_API_TYPENAME is "Path") confirms the built path satisfies the
+// `isPath` predicate the JSX <Path> renderer uses, so the migration works.
+// disaster-glyphs.ts is on the new API; remaining call sites
+// (LocationsBlock, TrendBlock, SankeyBlock, TrajectoryChart, MiniGlobe) still
+// emit deprecation warnings — silence them in dev until the sweep completes
+// so iteration logs stay readable. Remove this filter once all sites move
+// over.
+if (__DEV__) {
+  const origWarn = console.warn;
+  console.warn = (...args: unknown[]) => {
+    const first = args[0];
+    if (typeof first === 'string' && first.startsWith('[react-native-skia] SkPath.')) {
+      return;
+    }
+    origWarn(...args);
+  };
+}
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -67,6 +89,9 @@ export default function RootLayout() {
   useEffect(() => {
     registerBackgroundTask();
     clearLegacyScheduledNotifications();
+    // Set up Android channels at startup so they exist before any push, even
+    // if the user grants notification permission later via OS settings.
+    setupNotificationChannels();
     const stashResponse = (response: Notifications.NotificationResponse) => {
       const data = response.notification.request.content.data;
       // Daily-briefing pushes carry `kind: 'briefing'` — they have no article

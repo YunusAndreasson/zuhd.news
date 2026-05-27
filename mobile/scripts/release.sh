@@ -39,6 +39,11 @@ node scripts/bump.js
 git add app.json package.json
 git commit -m "chore: bump to $(node -p "require('./package.json').version")" || true
 
+# Push so the commit exists on GitHub — the EAS pre-install hook fetches
+# `shared/` by SHA from the remote during the build.
+echo "› Pushing to origin..."
+git push origin HEAD
+
 echo "› Building ($MODE) for $PLATFORM..."
 
 build_ios() {

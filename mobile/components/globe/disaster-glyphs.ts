@@ -1,30 +1,21 @@
 import type { ConflictEventFamily, GdacsEventType as EventType } from '@shared/types';
-import { Skia } from '@shopify/react-native-skia';
+import { Skia, type SkPath } from '@shopify/react-native-skia';
 
 /** Glyph paths for GDACS event types. Each path is centered at (0,0) inside
  *  a 22×22 unit box so MiniGlobe can translate by `(x - GLYPH_HALF, y - GLYPH_HALF)`
  *  to position. Stored as singleton SkPaths — Skia paths are immutable for
  *  drawing, so reuse is safe across frames and threads. */
 
-export const GLYPH_SIZE = 22;
+const GLYPH_SIZE = 22;
 export const GLYPH_HALF = GLYPH_SIZE / 2;
-
-type SkPath = ReturnType<typeof Skia.Path.Make>;
 
 function earthquakePath(): SkPath {
   // Three concentric circles + epicenter dot — the seismograph signature.
-  // Adding the small filled center grounds the glyph at small render sizes
-  // where bare rings can read as a generic target. Stroke-only on rings;
-  // the center dot is drawn via a tiny filled circle — Skia paths can mix
-  // both when the renderer uses style="stroke", since `addCircle` with a
-  // very small radius produces a near-filled mark under stroke too thin
-  // to matter. Kept simple here as three rings only — center accent is
-  // restored by the marker's backdrop disc, not the path.
-  const p = Skia.Path.Make();
+  const b = Skia.PathBuilder.Make();
   for (const r of [2.5, 5, 8]) {
-    p.addCircle(GLYPH_HALF, GLYPH_HALF, r);
+    b.addCircle(GLYPH_HALF, GLYPH_HALF, r);
   }
-  return p;
+  return b.detach();
 }
 
 function cyclonePath(): SkPath {
@@ -32,94 +23,101 @@ function cyclonePath(): SkPath {
   // cubic that sweeps from the outer rim toward the eye, mirrored 180°.
   // Reads cleanly as TC at 22px without trying to be a full logarithmic
   // spiral — point-symmetric layout matches the universal cyclone pictogram.
-  const p = Skia.Path.Make();
   const cx = GLYPH_HALF;
   const cy = GLYPH_HALF;
-  // Outer arm — sweeps clockwise from east into the eye
-  p.moveTo(cx + 9, cy);
-  p.cubicTo(cx + 9, cy + 5, cx + 4, cy + 8, cx, cy + 6);
-  p.cubicTo(cx - 3, cy + 4.5, cx - 1.5, cy + 1.5, cx + 1.5, cy + 0.5);
-  // Mirror arm — sweeps counter-clockwise from west
-  p.moveTo(cx - 9, cy);
-  p.cubicTo(cx - 9, cy - 5, cx - 4, cy - 8, cx, cy - 6);
-  p.cubicTo(cx + 3, cy - 4.5, cx + 1.5, cy - 1.5, cx - 1.5, cy - 0.5);
-  // Eye
-  p.addCircle(cx, cy, 1.4);
-  return p;
+  return (
+    Skia.PathBuilder.Make()
+      // Outer arm — sweeps clockwise from east into the eye
+      .moveTo(cx + 9, cy)
+      .cubicTo(cx + 9, cy + 5, cx + 4, cy + 8, cx, cy + 6)
+      .cubicTo(cx - 3, cy + 4.5, cx - 1.5, cy + 1.5, cx + 1.5, cy + 0.5)
+      // Mirror arm — sweeps counter-clockwise from west
+      .moveTo(cx - 9, cy)
+      .cubicTo(cx - 9, cy - 5, cx - 4, cy - 8, cx, cy - 6)
+      .cubicTo(cx + 3, cy - 4.5, cx + 1.5, cy - 1.5, cx - 1.5, cy - 0.5)
+      // Eye
+      .addCircle(cx, cy, 1.4)
+      .detach()
+  );
 }
 
 function floodPath(): SkPath {
   // Two stacked sine waves — the universal flood pictogram.
-  const p = Skia.Path.Make();
+  const b = Skia.PathBuilder.Make();
   const cy = GLYPH_HALF;
   for (const yOff of [-3, 1.5]) {
-    p.moveTo(GLYPH_HALF - 8, cy + yOff);
-    p.cubicTo(GLYPH_HALF - 4, cy + yOff - 3, GLYPH_HALF, cy + yOff + 3, GLYPH_HALF + 4, cy + yOff);
-    p.cubicTo(
-      GLYPH_HALF + 6,
-      cy + yOff - 1.5,
-      GLYPH_HALF + 7,
-      cy + yOff - 1,
-      GLYPH_HALF + 8,
-      cy + yOff,
-    );
+    b.moveTo(GLYPH_HALF - 8, cy + yOff)
+      .cubicTo(GLYPH_HALF - 4, cy + yOff - 3, GLYPH_HALF, cy + yOff + 3, GLYPH_HALF + 4, cy + yOff)
+      .cubicTo(
+        GLYPH_HALF + 6,
+        cy + yOff - 1.5,
+        GLYPH_HALF + 7,
+        cy + yOff - 1,
+        GLYPH_HALF + 8,
+        cy + yOff,
+      );
   }
-  return p;
+  return b.detach();
 }
 
 function volcanoPath(): SkPath {
   // Trapezoidal cone with a small lava plume above.
-  const p = Skia.Path.Make();
   const cx = GLYPH_HALF;
   const cy = GLYPH_HALF;
-  // Cone outline
-  p.moveTo(cx - 7, cy + 5);
-  p.lineTo(cx - 2, cy - 2);
-  p.lineTo(cx + 2, cy - 2);
-  p.lineTo(cx + 7, cy + 5);
-  p.close();
-  // Plume — three short verticals above the caldera
-  p.moveTo(cx - 1.5, cy - 4);
-  p.lineTo(cx - 1.5, cy - 7);
-  p.moveTo(cx, cy - 3.5);
-  p.lineTo(cx, cy - 8);
-  p.moveTo(cx + 1.5, cy - 4);
-  p.lineTo(cx + 1.5, cy - 7);
-  return p;
+  return (
+    Skia.PathBuilder.Make()
+      // Cone outline
+      .moveTo(cx - 7, cy + 5)
+      .lineTo(cx - 2, cy - 2)
+      .lineTo(cx + 2, cy - 2)
+      .lineTo(cx + 7, cy + 5)
+      .close()
+      // Plume — three short verticals above the caldera
+      .moveTo(cx - 1.5, cy - 4)
+      .lineTo(cx - 1.5, cy - 7)
+      .moveTo(cx, cy - 3.5)
+      .lineTo(cx, cy - 8)
+      .moveTo(cx + 1.5, cy - 4)
+      .lineTo(cx + 1.5, cy - 7)
+      .detach()
+  );
 }
 
 function droughtPath(): SkPath {
   // Sun with rays — heat / aridity. Center disc + 8 short rays.
-  const p = Skia.Path.Make();
   const cx = GLYPH_HALF;
   const cy = GLYPH_HALF;
-  p.addCircle(cx, cy, 2.5);
+  const b = Skia.PathBuilder.Make().addCircle(cx, cy, 2.5);
   for (let i = 0; i < 8; i++) {
     const a = (i * Math.PI) / 4;
     const inner = 4.5;
     const outer = 8;
-    p.moveTo(cx + Math.cos(a) * inner, cy + Math.sin(a) * inner);
-    p.lineTo(cx + Math.cos(a) * outer, cy + Math.sin(a) * outer);
+    b.moveTo(cx + Math.cos(a) * inner, cy + Math.sin(a) * inner).lineTo(
+      cx + Math.cos(a) * outer,
+      cy + Math.sin(a) * outer,
+    );
   }
-  return p;
+  return b.detach();
 }
 
 function wildfirePath(): SkPath {
   // Stylized flame — three curved lobes.
-  const p = Skia.Path.Make();
   const cx = GLYPH_HALF;
   const cy = GLYPH_HALF;
-  // Outer flame outline
-  p.moveTo(cx, cy + 7);
-  p.cubicTo(cx - 7, cy + 4, cx - 6, cy - 2, cx - 1, cy - 6);
-  p.cubicTo(cx - 2, cy - 1, cx + 2, cy + 1, cx + 3, cy - 4);
-  p.cubicTo(cx + 7, cy - 1, cx + 7, cy + 4, cx, cy + 7);
-  p.close();
-  // Inner glow ridge
-  p.moveTo(cx - 1, cy + 4);
-  p.cubicTo(cx - 3, cy + 2, cx - 2, cy - 1, cx, cy - 2);
-  p.cubicTo(cx + 2, cy - 1, cx + 3, cy + 2, cx - 1, cy + 4);
-  return p;
+  return (
+    Skia.PathBuilder.Make()
+      // Outer flame outline
+      .moveTo(cx, cy + 7)
+      .cubicTo(cx - 7, cy + 4, cx - 6, cy - 2, cx - 1, cy - 6)
+      .cubicTo(cx - 2, cy - 1, cx + 2, cy + 1, cx + 3, cy - 4)
+      .cubicTo(cx + 7, cy - 1, cx + 7, cy + 4, cx, cy + 7)
+      .close()
+      // Inner glow ridge
+      .moveTo(cx - 1, cy + 4)
+      .cubicTo(cx - 3, cy + 2, cx - 2, cy - 1, cx, cy - 2)
+      .cubicTo(cx + 2, cy - 1, cx + 3, cy + 2, cx - 1, cy + 4)
+      .detach()
+  );
 }
 
 const PATHS: Readonly<Record<EventType, SkPath>> = {
@@ -143,18 +141,20 @@ function chokepointPath(): SkPath {
   // exact location. Vertical orientation chosen because most named
   // chokepoints (Hormuz, Bab-el-Mandeb, Malacca, Gibraltar, Dover) read
   // as east/west land masses with north/south through-traffic.
-  const p = Skia.Path.Make();
   const cx = GLYPH_HALF;
   const cy = GLYPH_HALF;
-  // Left coastline arc — concave facing right (bulges left)
-  p.moveTo(cx - 3, cy - 7);
-  p.cubicTo(cx - 9, cy - 4, cx - 9, cy + 4, cx - 3, cy + 7);
-  // Right coastline arc — concave facing left (bulges right)
-  p.moveTo(cx + 3, cy - 7);
-  p.cubicTo(cx + 9, cy - 4, cx + 9, cy + 4, cx + 3, cy + 7);
-  // Center mark — the chokepoint itself
-  p.addCircle(cx, cy, 1.4);
-  return p;
+  return (
+    Skia.PathBuilder.Make()
+      // Left coastline arc — concave facing right (bulges left)
+      .moveTo(cx - 3, cy - 7)
+      .cubicTo(cx - 9, cy - 4, cx - 9, cy + 4, cx - 3, cy + 7)
+      // Right coastline arc — concave facing left (bulges right)
+      .moveTo(cx + 3, cy - 7)
+      .cubicTo(cx + 9, cy - 4, cx + 9, cy + 4, cx + 3, cy + 7)
+      // Center mark — the chokepoint itself
+      .addCircle(cx, cy, 1.4)
+      .detach()
+  );
 }
 
 /** Chokepoint pictogram — two facing coastline arcs around a center mark.
@@ -178,24 +178,22 @@ function kineticPath(): SkPath {
   // vocabularies (OCHA situation maps, Reuters Graphics, NATO joint
   // operations). Reads as a SITE, not a finality — quieter editorial
   // tone than the X-as-death pictogram, while staying geometrically
-  // distinct from every other glyph in the family (only one with the
-  // circle + orthogonal-cross combo; the earthquake uses concentric
-  // rings without cross-hairs, the drought uses radial spokes without
-  // a rim). Replaced the prior X (2026-05-03), which read as
-  // death-coded at globe scale alongside humanitarian context.
-  const p = Skia.Path.Make();
+  // distinct from every other glyph in the family.
   const cx = GLYPH_HALF;
   const cy = GLYPH_HALF;
-  // Outer ring — same family of stroked rings used by the earthquake
-  // glyph, sized so cross-hairs protrude ~3 units past the rim.
-  p.addCircle(cx, cy, 6.5);
-  // Horizontal cross-hair — runs the full glyph box width
-  p.moveTo(1.5, cy);
-  p.lineTo(20.5, cy);
-  // Vertical cross-hair
-  p.moveTo(cx, 1.5);
-  p.lineTo(cx, 20.5);
-  return p;
+  return (
+    Skia.PathBuilder.Make()
+      // Outer ring — same family of stroked rings used by the earthquake
+      // glyph, sized so cross-hairs protrude ~3 units past the rim.
+      .addCircle(cx, cy, 6.5)
+      // Horizontal cross-hair — runs the full glyph box width
+      .moveTo(1.5, cy)
+      .lineTo(20.5, cy)
+      // Vertical cross-hair
+      .moveTo(cx, 1.5)
+      .lineTo(cx, 20.5)
+      .detach()
+  );
 }
 
 function unrestPath(): SkPath {
@@ -205,16 +203,16 @@ function unrestPath(): SkPath {
   // beneath. The triadic arrangement is the universal "people" shorthand
   // used in icon vocabularies (think pedestrian-crossing signs scaled out
   // to multiple figures), and it stays legible at 22px.
-  const p = Skia.Path.Make();
   const cx = GLYPH_HALF;
   const cy = GLYPH_HALF;
+  const b = Skia.PathBuilder.Make();
   for (const xOff of [-5, 0, 5]) {
     const fx = cx + xOff;
-    p.addCircle(fx, cy - 3, 1.6);
-    p.moveTo(fx, cy - 1);
-    p.lineTo(fx, cy + 5);
+    b.addCircle(fx, cy - 3, 1.6)
+      .moveTo(fx, cy - 1)
+      .lineTo(fx, cy + 5);
   }
-  return p;
+  return b.detach();
 }
 
 const CONFLICT_PATHS: Readonly<Record<ConflictEventFamily, SkPath>> = {

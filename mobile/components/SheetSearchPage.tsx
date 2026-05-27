@@ -142,6 +142,7 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
           keyExtractor={keyExtractor}
           contentContainerStyle={[styles.listContent, { paddingBottom: bottomInset + SPACING.lg }]}
           keyboardShouldPersistTaps="handled"
+          keyboardDismissMode="on-drag"
           ListHeaderComponent={
             results.length > 0 ? (
               <Text variant="labelXs" style={styles.resultCount}>

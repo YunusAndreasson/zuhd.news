@@ -52,21 +52,16 @@ export const ProseBlock = memo(function ProseBlock({
 
   const proseText = (
     <Text style={[mdStyles.sentence, sizeStyle]} maxFontSizeMultiplier={MAX_FONT_SCALE.body}>
-      {dateline && (
-        <>
-          <Text style={mdStyles.dateline}>{dateline}</Text>
-          {'\u2002'}
-        </>
-      )}
       {renderSegments(parseInline(body), mdStyles, openLink)}
     </Text>
   );
 
-  if (!sourceLabel) return proseText;
+  if (!dateline && !sourceLabel) return proseText;
   return (
     <View>
+      {dateline && <Text style={mdStyles.dateline}>{dateline}</Text>}
       {proseText}
-      <SourceCaption label={sourceLabel} />
+      {sourceLabel && <SourceCaption label={sourceLabel} />}
     </View>
   );
 });

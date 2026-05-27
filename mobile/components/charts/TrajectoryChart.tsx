@@ -189,25 +189,28 @@ export const TrajectoryChart = memo(function TrajectoryChart({
 
     const buildPath = (vs: (number | null)[]) => {
       // Fast path: no gaps. Build a single SVG path string and parse it
-      // once — saves the empty Skia.Path.Make() + addPath() round-trip
-      // that the segmented path requires. Most country series are dense
-      // (climate is annual ERA5, World Bank fills back-years), so the
-      // fast path hits ~95% of the time in practice.
+      // once — saves the empty builder + addPath() round-trip that the
+      // segmented path requires. Most country series are dense (climate
+      // is annual ERA5, World Bank fills back-years), so the fast path
+      // hits ~95% of the time in practice.
       if (!vs.includes(null)) {
         const points = vs.map((v, i) => ({
           x: xFor(i, vs.length),
           y: yScaleFn(v as number),
         }));
-        return Skia.Path.MakeFromSVGString(lineGenerator(points) ?? '') ?? Skia.Path.Make();
+        return (
+          Skia.Path.MakeFromSVGString(lineGenerator(points) ?? '') ??
+          Skia.PathBuilder.Make().detach()
+        );
       }
       // Gappy data — split into contiguous segments at each null so the
       // line lifts cleanly across missing years instead of bridging them.
-      const skPath = Skia.Path.Make();
+      const builder = Skia.PathBuilder.Make();
       let segment: { x: number; y: number }[] = [];
       const flush = () => {
         if (segment.length === 0) return;
         const sub = Skia.Path.MakeFromSVGString(lineGenerator(segment) ?? '');
-        if (sub) skPath.addPath(sub);
+        if (sub) builder.addPath(sub);
         segment = [];
       };
       for (let i = 0; i < vs.length; i++) {
@@ -219,7 +222,7 @@ export const TrajectoryChart = memo(function TrajectoryChart({
         segment.push({ x: xFor(i, vs.length), y: yScaleFn(v) });
       }
       flush();
-      return skPath;
+      return builder.detach();
     };
 
     const lastEndpoint = (vs: (number | null)[]) => {

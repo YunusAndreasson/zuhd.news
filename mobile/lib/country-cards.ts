@@ -81,7 +81,7 @@ const NAME_ALIAS_TO_ISO2: Record<string, string> = {
   'Equatorial Guinea': 'GQ',
 };
 
-export function iso2FromCountryName(name: string | null | undefined): string | null {
+function iso2FromCountryName(name: string | null | undefined): string | null {
   if (!name) return null;
   return codeFromTopojsonName(name) ?? NAME_ALIAS_TO_ISO2[name] ?? null;
 }
@@ -96,12 +96,6 @@ export function getCountryCardData(name: string | null | undefined): CountryCard
 export function latest(series: YearValue[] | undefined): YearValue | null {
   if (!series || series.length === 0) return null;
   return series[series.length - 1] ?? null;
-}
-
-/** First year/value pair from a YearValue series — convenience for "since X" deltas. */
-export function first(series: YearValue[] | undefined): YearValue | null {
-  if (!series || series.length === 0) return null;
-  return series[0] ?? null;
 }
 
 /** Align a YearValue series to a [startYear, endYear] range, returning a

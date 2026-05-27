@@ -94,7 +94,8 @@ import {
   SOUTH_POLE,
 } from './projection';
 import {
-  bordersMesh,
+  bordersMeshMedium,
+  bordersMeshSimplified,
   countries,
   countryAreas,
   countryBboxes,
@@ -570,10 +571,8 @@ const Moon = memo(function Moon({
           <ColorMatrix
             // prettier-ignore
             matrix={[
-              0.2126, 0.7152, 0.0722, 0, 0,
-              0.2126, 0.7152, 0.0722, 0, 0,
-              0.2126, 0.7152, 0.0722, 0, 0,
-              0,      0,      0,      1, 0,
+              0.2126, 0.7152, 0.0722, 0, 0, 0.2126, 0.7152, 0.0722, 0, 0, 0.2126, 0.7152, 0.0722, 0,
+              0, 0, 0, 0, 1, 0,
             ]}
           />
         </Image>
@@ -730,7 +729,7 @@ function projectInitial(
   proj.precision(0);
   const bp = Skia.Path.Make();
   ctx.setPath(bp);
-  pg.context(ctx)(bordersMesh);
+  pg.context(ctx)(bordersMeshMedium);
   proj.precision(8);
 
   let cp: ReturnType<typeof Skia.Path.Make> | null = null;
@@ -1397,14 +1396,14 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
 
       // Neighbouring country borders — projected every frame so they rotate
-      // with the globe instead of popping at settle. This is the single
-      // heaviest projection on the globe (~3-5ms), but the cost becomes
-      // baseline rather than a settle-frame spike — uniform per-frame work
-      // reads as smoother than gated work that doubles at the boundary.
+      // with the globe instead of popping at settle. Settled uses medium
+      // (matches landMedium arcs); mid-scroll uses the 0.5-weight simplified
+      // mesh (matches landSimplified). ~30% cheaper at rest, ~56% cheaper
+      // during scroll vs the original full-topology mesh.
       const bordersPath = bordersPathRef.current;
       bordersPath.rewind();
       skiaCtx.setPath(bordersPath);
-      pg.context(skiaCtx)(bordersMesh);
+      pg.context(skiaCtx)(nearSettled ? bordersMeshMedium : bordersMeshSimplified);
 
       // --- Always-on cheap layers: project every frame so they stay present
       // during scroll instead of popping in/out at the nearSettled boundary.
