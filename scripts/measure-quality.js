@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 // Deterministic editorial-quality scan over the last 7 days of articles.
 // Outputs:
-//   /tmp/zuhd-quality-metrics.json — current snapshot (consumed by reflect)
+//   /tmp/zuhd-quality-metrics.json — current snapshot
 //   content/.quality-trend.json    — appended snapshot history (dashboard + git)
 //
-// Every metric maps to a rule in write-prompt.md or check-prompt.md so the
-// weekly reflection can tell whether prompt changes are landing in practice.
+// Every metric maps to a rule in write-prompt.md or check-prompt.md.
 
 import { readFileSync, writeFileSync, readdirSync, existsSync } from 'fs'
 import { join } from 'path'

@@ -29,7 +29,7 @@ fi
 # Models and effort levels — chosen per task type:
 #   Selector: Opus+medium — best editorial reasoning; medium effort sufficient for comparison/filtering
 #   Writer:   Sonnet+medium — format-constrained task; medium effort sufficient for templated writing
-#   Editor:   Sonnet+medium — mechanical style checks + editorial judgment; medium is right balance
+#   Editor:   Sonnet+medium — checklist-driven style checks; an effort=low experiment (2026-05-18-editor-effort-low) was proposed but never applied, voided 2026-05-26 (see .experiments.json history)
 #   Reflect:  Sonnet+medium — reflective audit, low frequency
 CLAUDE_MODEL="${ZUHD_MODEL:-claude-sonnet-4-6}"
 CLAUDE_SELECTOR_MODEL="${ZUHD_SELECTOR_MODEL:-claude-opus-4-7}"
@@ -41,7 +41,6 @@ export ZUHD_MODEL="$CLAUDE_MODEL"
 TOOLS_SELECTOR="Read,Write,Glob,Grep"
 TOOLS_WRITER="Read,Write"
 TOOLS_EDITOR="Read,Edit,Glob,Grep"
-TOOLS_REFLECT="Read,Write,Glob,Grep"
 # Common flags for all headless Claude CLI invocations (no --model: passed per stage).
 #   --no-session-persistence   don't write resume state for headless calls
 #   --setting-sources project  skip ~/.claude/settings.json — only project settings
@@ -680,34 +679,19 @@ else
   echo "--- Stage 4: Audio briefing (skipped — ${START_HOUR:-$HOUR_UTC}:xx UTC, runs at 04:00 only) ---" | tee -a "$LOG_FILE"
 fi
 
-# Stage 5: Weekly reflection — runs Sunday 22:30 UTC only (last cycle of the week)
+# Stage 5: Weekly quality snapshot — runs Sunday 22:00 UTC only.
+# Just the deterministic metric scan; appends to content/.quality-trend.json
+# for the dashboard's writing-quality panel. The LLM reflection step was
+# removed — the daily tuning stage (Stage 6) covers parameter changes, and
+# the ledger is maintained per-cycle by update-ledger.js.
 DAY_OF_WEEK=$(date -u +%u)
 if [ "$DAY_OF_WEEK" = "7" ] && [ "$START_HOUR" = "22" ]; then
   echo "" | tee -a "$LOG_FILE"
-  echo "--- Stage 5: Weekly reflection ---" | tee -a "$LOG_FILE"
-  # Compute deterministic quality metrics first — reflect reads the JSON
-  # output to ground its audit in measurable rule compliance.
+  echo "--- Stage 5: Weekly quality snapshot ---" | tee -a "$LOG_FILE"
   node scripts/measure-quality.js 2>&1 | tee -a "$LOG_FILE"
-  REFLECT_PROMPT=$(cat scripts/reflect-prompt.md)
-  # Opus + high effort for the weekly audit. The output proposes parameter
-  # changes that govern the next week's 35 cycles, so reasoning depth on
-  # this single weekly call compounds across the whole week of output.
-  # Cost is negligible at weekly cadence; the alternative is suboptimal
-  # parameter recommendations running for 7 days.
-  # Timeout 1800s (30min): Opus high thinks longer per turn than Sonnet
-  # medium did at 900s. 20 turns × ~60–90s per turn under high effort
-  # fits comfortably; partial-budget bump prevents silent timeout drops.
-  timeout 1800 claude $CLAUDE_FLAGS --effort high --model claude-opus-4-7 --allowedTools $TOOLS_REFLECT --max-turns 20 -p "$REFLECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
-  REFLECT_EXIT=$?
-  if [ "$REFLECT_EXIT" = "124" ]; then
-    echo "Reflection exit: 124 (TIMEOUT — exceeded 1800s budget; bump if recurring)" | tee -a "$LOG_FILE"
-  else
-    echo "Reflection exit: $REFLECT_EXIT" | tee -a "$LOG_FILE"
-  fi
-  # Failure here doesn't affect publishing — the cycle is already complete
 else
   echo "" | tee -a "$LOG_FILE"
-  echo "--- Stage 5: Weekly reflection (skipped — day $DAY_OF_WEEK $START_HOUR:00 UTC, runs Sunday 22:00 only) ---" | tee -a "$LOG_FILE"
+  echo "--- Stage 5: Weekly quality snapshot (skipped — day $DAY_OF_WEEK $START_HOUR:00 UTC, runs Sunday 22:00 only) ---" | tee -a "$LOG_FILE"
 fi
 
 # Stage 6: Daily tuning — runs at last cycle of each day (22:30 UTC)
