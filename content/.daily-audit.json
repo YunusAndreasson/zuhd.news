@@ -1,28 +1,28 @@
 {
-  "date": "2026-05-24",
+  "date": "2026-05-27",
   "metrics": {
-    "articles": { "value": 41, "detail": "5 cycles, 4 completed, avg 8/cycle" },
-    "freshness": { "median": 1.3, "p90": 1.5, "max": 1.6, "target": 1.0, "met": false },
-    "categories": { "politics": 14, "economy": 10, "science": 10, "tech": 7 },
-    "multiSource": { "value": 6, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 11, "ME": 8, "AS": 7, "AF": 11, "EU": 4 } },
-    "sciTech": { "ratio": 41, "target": 25, "met": true },
-    "topSourceShare": { "source": "Nature", "pct": 12, "target": 20, "met": true },
+    "articles": { "value": 32, "detail": "5 cycles scheduled, only 3 completed; 32 published" },
+    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
+    "categories": { "politics": 11, "economy": 7, "science": 7, "tech": 7 },
+    "multiSource": { "value": 10, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 12, "AS": 10, "EU": 4, "AF": 3, "ME": 2, "GL": 1 } },
+    "sciTech": { "ratio": 44, "target": 25, "met": true },
+    "topSourceShare": { "source": "BBC", "pct": 13, "target": 20, "met": true },
     "uniqueSources": 39,
     "duplicates": 0,
-    "avgCycleDuration": 1448
+    "avgCycleDuration": 1295
   },
-  "experiment": "Active: 2026-05-18-editor-effort-low (editor effort medium→low in run-cycle.sh). EvaluateAfter 2026-05-25 — not yet due; no new experiment proposed today to keep the editor-effort signal clean.",
-  "weakestArea": "Freshness median 1.3 days vs ≤1.0 target — the largest gap of the day. Yesterday's median was 0.9 with only 6 datapoints, so today's reading (n=14) is the more reliable signal and suggests the standalone tail is older than usual; worth watching whether this persists past the editor-effort experiment evaluation before touching the standalone cap again.",
+  "experiment": "Skipped — all editorial metrics within targets and there is no active experiment to evaluate. The one queued experiment (numerical-density) targets write-prompt.md, which is outside the daily-tuning parameter scope.",
+  "weakestArea": "No editorial metric missed target; the weakest point is operational, not tunable. Only 3 of 5 scheduled cycles completed today and avgCycleDuration rose to 1295s (vs ~1033s typical), with the editor stage averaging 754s — back near pre-cache levels. Throughput fell to 32 articles (51 yesterday). No tunable parameter addresses cycle completion or stage wall-time.",
   "watching": [
-    "Editor-effort-low experiment closes tomorrow (2026-05-25) — pull editor median/p90 from logs/cycle-2026-05-18..24 and check quality-trend guardrails before keep/revert.",
-    "Freshness median crept above target (1.3 vs 1.0) despite standalone cap at 22; check if NewsAPI standalone supply has aged or if event-cluster lag is the driver.",
-    "Only 4 of 5 cycles completed today — confirm the missed cycle in logs and that avg cycle duration (1448s) reflects healthy stages, not a single hung run.",
-    "EU regional share thin at 4/41 (~10%) vs AF/AM at 11 each — single-day noise, but flag if it persists."
+    "Editor stage averaged 754s today, back near pre-cache levels after the May-17 --exclude-dynamic-system-prompt-sections change had cut it to ~300s — confirm prompt-cache reuse is still firing in the cycle logs.",
+    "Two of five cycles did not complete today; if the pattern persists it will depress daily throughput regardless of per-cycle quality.",
+    "Multi-source rate remains structurally capped near ~22% by feed supply (~9 multi-source stories/cycle) per the reverted May-09 floor experiment — future gains require upstream feed work, not selector floors."
   ],
   "coverageGaps": [
-    "EU coverage thin (4 articles) relative to other regions; no OC representation today.",
-    "Tech mix narrow — CoinDesk, Anthropic, Rest of World, The Record, The Verge, Nature; no major enterprise/security wire (Reuters Tech, WSJ Tech) appeared in today's selection."
+    "Middle East light today at 2 articles and Africa at 3, well below the Americas (12) and Asia (10).",
+    "Oceania had zero coverage today (no OC region articles).",
+    "Science sourcing leaned on BBC and Hindustan Times alongside Nature/Phys.org/STAT — thinner specialist-outlet spread than usual."
   ],
-  "context": "Day sits inside the editor-effort-low experiment window (started 2026-05-18, evaluates 2026-05-25). No new variable should be introduced until that closes — both to keep the editor-stage timing signal uncontaminated and to honor the one-experiment-at-a-time rule. Freshness slippage and EU thinness are noted but deferred to post-evaluation."
+  "context": "Partial-day data: only 3 of 5 cycles completed, so daily totals are lower than a full day but per-cycle quality is healthy. No active experiments are running and there is no noNewExperimentsUntil gate. The queued numerical-density experiment is unblocked (title-echo evaluated 2026-05-08) but edits write-prompt.md, which is out of scope for daily tuning — its promotion is an operator/reflect-stage decision, not a parameter tune."
 }
