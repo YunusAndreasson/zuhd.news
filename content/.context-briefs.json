@@ -254618,5 +254618,1355 @@
     "label": "Gripen & Dispersed Air Operations",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-27-youtube-automatic-ai-generated-video-labels": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "TWO WAYS TO CATCH AI",
+        "body": "There are only two ways to know a video is synthetic: detect it after the fact with a classifier that guesses from statistical fingerprints, or sign it at creation with tamper-evident metadata. The first is probabilistic and can be wrong; the second is cryptographic and can be verified — but only if the creator's tool added it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Classifier",
+                "value": "probabilistic",
+                "tone": "neutral"
+              },
+              {
+                "label": "Provenance",
+                "value": "cryptographic",
+                "tone": "favorable"
+              }
+            ],
+            "label": "the two detection paths"
+          }
+        ]
+      },
+      {
+        "heading": "CONTENT CREDENTIALS",
+        "body": "The provenance standard YouTube leans on was not built by Google alone. A coalition of Adobe, Microsoft, the BBC, Sony and others created an open spec in 2021 that embeds a signed manifest into a file recording how it was made and edited — a nutrition label for media, cryptographically sealed so any later tampering breaks the signature.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The standard is **C2PA** — the Coalition for Content Provenance and Authenticity. Its consumer-facing badge is branded *Content Credentials*."
+          }
+        ]
+      },
+      {
+        "heading": "THE INVISIBLE WATERMARK",
+        "body": "Provenance metadata is fragile — a screenshot, a re-upload, or a re-encode strips it. So the harder layer is watermarking: nudging the actual pixels or audio samples in a statistical pattern invisible to the eye but detectable by an algorithm, designed to survive cropping and compression. This is why content 'made with YouTube's own tools' gets a permanent label — the watermark rides inside the content, not in removable metadata.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Google's watermarking system is **SynthID**, developed by DeepMind in 2023 — it perturbs pixels and tokens beneath the threshold of human perception."
+          }
+        ]
+      },
+      {
+        "heading": "THE ARMS RACE",
+        "body": "Detection is structurally on the losing side. A classifier learns the artifacts of today's generators; the next model is trained partly to erase exactly those artifacts. Every detector is obsolete the moment a better generator ships, which is why the field keeps shifting from 'detect the fake' toward 'authenticate the real.'",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2017",
+                "label": "'deepfake' enters the lexicon"
+              },
+              {
+                "year": "2019",
+                "label": "first major detection challenge"
+              },
+              {
+                "year": "2021",
+                "label": "C2PA provenance spec founded",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "SynthID watermarking launched"
+              },
+              {
+                "year": "2024",
+                "label": "EU AI Act mandates labeling"
+              },
+              {
+                "year": "2026",
+                "label": "YouTube auto-labels uploads"
+              }
+            ],
+            "label": "from detection to provenance"
+          }
+        ]
+      },
+      {
+        "heading": "WHY VOLUNTARY FAILED",
+        "body": "Self-disclosure is a coordination trap: the creators most likely to mislead are precisely the ones least likely to tick the box. Honest disclosure carries a small reputational cost and no enforcement upside, so the equilibrium drifts toward silence — which is why platforms eventually move detection from opt-in to automatic.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can YouTube make the AI label permanent only for videos made with its own tools?",
+            "options": [
+              "The provenance is known at creation, not inferred by a fallible classifier",
+              "Users waive removal rights in the terms of service",
+              "The classifier is 100% accurate on those videos",
+              "Copyright law requires it"
+            ],
+            "correct": 0,
+            "explanation": "When the platform's own tool generates the video, the synthetic origin is a recorded fact — not a probabilistic guess — so there is nothing to appeal."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T19:29:24.384Z",
+    "label": "Detecting Synthetic Media",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-28-apple-distill-google-gemini-on-device-iphone": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TEACHER-STUDENT TRICK",
+        "body": "Distillation, formalized by Geoffrey Hinton's team in 2015, trains a small 'student' model to copy the outputs of a large 'teacher.' The student never sees the teacher's billions of parameters — only its answers — and learns to approximate the same behavior at a fraction of the size.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The student doesn't just learn the *right* answer — it learns the teacher's **soft labels**, the full probability spread across all wrong answers too. That 'dark knowledge' (Hinton's term) is what lets a tiny model punch above its weight."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GO LOCAL AT ALL",
+        "body": "A model on the phone answers in milliseconds and never sends your words to a server. A model in the cloud has more raw capability but pays a round-trip latency tax and forfeits the privacy story. Apple's entire Siri pitch was that the smart part happens on the device.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does distillation trade away to run a model on-device?",
+            "options": [
+              "Some accuracy, in exchange for speed and privacy",
+              "Privacy, in exchange for higher accuracy",
+              "Nothing — the small model matches the large one",
+              "Battery life, in exchange for cloud access"
+            ],
+            "correct": 0,
+            "explanation": "The student model is smaller and slightly less capable than its teacher, but it runs locally — fast and without sending data off the phone."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPRESSION GAP",
+        "body": "Frontier models like Gemini run hundreds of billions to over a trillion parameters in a datacenter. A model small enough to live in a phone's memory budget is two to three orders of magnitude smaller. Distillation is the bridge across that gap.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Gemini (frontier)",
+                "value": "~1tn+ params",
+                "weight": 1000,
+                "tone": "neutral"
+              },
+              {
+                "label": "GPT-4 class",
+                "value": "~1tn params",
+                "weight": 1000,
+                "tone": "neutral"
+              },
+              {
+                "label": "Gemini Nano",
+                "value": "~3-4bn params",
+                "weight": 4,
+                "tone": "favorable"
+              },
+              {
+                "label": "On-device Siri",
+                "value": "~3bn params",
+                "weight": 3,
+                "tone": "favorable"
+              }
+            ],
+            "label": "model size: frontier vs on-device"
+          }
+        ]
+      },
+      {
+        "heading": "WHY APPLE LEANED ON GOOGLE",
+        "body": "Apple builds its own silicon and its own OS, but it arrived late to large language models and its in-house Siri overhaul slipped for years. Licensing Gemini as the teacher lets Apple ship a competitive model now while distilling it down to something its own chips can run privately."
+      },
+      {
+        "heading": "THE PRIVACY CONTRADICTION",
+        "body": "If hard queries still route to Google's and Nvidia's servers when the on-device model can't cope, the privacy guarantee becomes conditional. The architecture's credibility hinges on how much actually stays on the phone — and how clearly the fallback to the cloud is disclosed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Apple's earlier answer to this was **Private Cloud Compute** — server hardware it claims is cryptographically verifiable and stateless. Routing through *Google* and *Nvidia* instead is a different trust model entirely."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T19:29:57.315Z",
+    "label": "Knowledge Distillation",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-28-blue-origin-new-glenn-return-amazon-kuiper": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE USE-IT-OR-LOSE-IT RULE",
+        "body": "Amazon's July deadline is not self-imposed — it is an FCC license condition. To stop companies from hoarding orbital spectrum, the FCC requires a constellation operator to launch half its authorized satellites within six years of approval, or the license can be cut to the number actually flown. Kuiper was approved in 2020, so the clock runs out this summer.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Amazon face a hard July deadline to deploy half its Kuiper satellites?",
+            "options": [
+              "An FCC license condition: deploy 50% in 6 years or lose spectrum rights",
+              "A contract penalty owed to Blue Origin",
+              "The satellites' batteries degrade if not launched by then",
+              "A US-EU treaty on orbital slots"
+            ],
+            "correct": 0,
+            "explanation": "The FCC's milestone rule forces operators to build out spectrum they reserve, preventing speculative hoarding of finite orbital frequencies."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HYDROGEN LEAKS",
+        "body": "The failure that grounded New Glenn — a cryogenic leak that froze a hydraulic line — is the signature hazard of hydrogen-fueled upper stages. Liquid hydrogen is stored near absolute zero and its tiny molecule escapes through seals that would hold any other gas, then chills everything it touches into brittleness.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Liquid hydrogen sits at about **−253°C** — colder than liquid oxygen — and the molecule is so small it seeps through joints rated leak-tight for kerosene. This is why hydrogen stages are prized for *efficiency* (high specific impulse) but feared for *plumbing*."
+          }
+        ]
+      },
+      {
+        "heading": "THE PAYLOAD CLASS",
+        "body": "New Glenn is a heavy-lift vehicle — its 7-meter fairing and roughly 45-tonne capacity to low orbit put it well above the workhorse Falcon 9, which is exactly why Amazon needs it: stacking dozens of Kuiper satellites per flight is the only way to hit the deployment count in time.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Payload to low Earth orbit",
+            "peers": [
+              {
+                "value": 22.8,
+                "label": "Falcon 9"
+              },
+              {
+                "value": 21.6,
+                "label": "Ariane 6"
+              },
+              {
+                "value": 27.2,
+                "label": "Vulcan"
+              },
+              {
+                "value": 45,
+                "label": "New Glenn"
+              },
+              {
+                "value": 63.8,
+                "label": "Falcon Heavy"
+              },
+              {
+                "value": 100,
+                "label": "Starship"
+              }
+            ],
+            "subjectLabel": "New Glenn",
+            "unit": "t"
+          }
+        ]
+      },
+      {
+        "heading": "THE REUSABILITY BET",
+        "body": "Like SpaceX's Falcon 9, New Glenn is designed to land its first stage on a sea barge and fly again. Reuse is the entire economics of megaconstellations: at hundreds of launches, the cost of throwing away a booster each time would dwarf the satellites themselves. Blue Origin's BE-4 engines also power United Launch Alliance's Vulcan, making it the new American heavy-lift workhorse engine."
+      },
+      {
+        "heading": "THE CONSTELLATION RACE",
+        "body": "Kuiper's 3,232 planned satellites would be the second-largest broadband constellation in orbit — far behind Starlink's lead but ahead of every other contender. China's state-backed Guowang is authorized for far more still, making low orbit a strategic land-grab measured in thousands of satellites.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Starlink",
+                "value": "~8,000",
+                "weight": 8000,
+                "tone": "neutral"
+              },
+              {
+                "label": "Guowang (CN)",
+                "value": "~13,000 plan",
+                "weight": 13000,
+                "cc": "CN",
+                "tone": "neutral"
+              },
+              {
+                "label": "Kuiper",
+                "value": "3,232 plan",
+                "weight": 3232,
+                "tone": "favorable"
+              },
+              {
+                "label": "OneWeb",
+                "value": "~650",
+                "weight": 650,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Broadband constellations (satellites planned/deployed)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY LOW ORBIT",
+        "body": "Older satellite internet flew from geostationary orbit, 36,000 km up, where the round-trip signal delay alone made video calls painful. Constellations like Kuiper and Starlink fly at a few hundred kilometers, cutting latency to terrestrial levels — but at that altitude each satellite covers a tiny patch of ground, which is why you need thousands of them instead of three."
+      }
+    ],
+    "generatedAt": "2026-05-28T19:30:42.559Z",
+    "label": "Megaconstellations & the Launch Bottleneck",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-28-dea-sting-colombia-segunda-marquetalia-insurgency": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE NAME MEANS",
+        "body": "Marquetalia was a peasant enclave the Colombian army assaulted in 1964 — the attack that scattered its defenders and birthed the FARC two years later. Naming a 2019 splinter 'Segunda Marquetalia' was a deliberate claim to that founding myth: the original guerrilla, betrayed and forced back to the mountains.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does the name 'Segunda Marquetalia' refer back to?",
+            "options": [
+              "The 1964 army assault that birthed the FARC",
+              "The 2016 Havana peace summit",
+              "A Venezuelan oil field",
+              "A DEA forward base in Colombia"
+            ],
+            "correct": 0,
+            "explanation": "Marquetalia was the peasant enclave the army crushed in 1964, the event guerrillas treat as the FARC's origin story."
+          }
+        ]
+      },
+      {
+        "heading": "THE PEACE THAT WORKED",
+        "body": "The 2016 Havana accord ended a 52-year war that killed roughly 220,000 people. Some 13,000 fighters disarmed, the FARC became a legal political party, and crimes were routed through the JEP — a transitional court that traded confessions for reduced, non-prison sentences. The deal held for most who signed it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The catch was the **JEP** bargain: leniency held *only as long as* a commander confessed and stayed out of crime. An extradition request to a US court bypassed that entirely — and that exit ramp is exactly what broke."
+          }
+        ]
+      },
+      {
+        "heading": "THE STING THAT BACKFIRED",
+        "body": "In 2018 the DEA built a trafficking case against Santrich, a FARC negotiator who had signed the peace. The US extradition request put him outside the JEP's protection — proof, to skeptics, that disarming meant a prison cell in Manhattan rather than amnesty. He went underground and resurfaced in arms.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Iván Márquez",
+                "role": "Lead FARC negotiator, rearmed",
+                "cc": "CO"
+              },
+              {
+                "name": "Jesús Santrich",
+                "role": "FARC negotiator, rearmed",
+                "cc": "CO"
+              },
+              {
+                "name": "Rodrigo 'Timochenko' Londoño",
+                "role": "FARC chief, kept the peace",
+                "cc": "CO"
+              },
+              {
+                "name": "Nicolás Maduro",
+                "role": "Venezuelan president",
+                "years": "2013–",
+                "cc": "VE"
+              }
+            ],
+            "label": "who walked away from the peace"
+          }
+        ]
+      },
+      {
+        "heading": "THE CROSS-BORDER SANCTUARY",
+        "body": "Colombian dissident groups have long used Venezuela's lawless border states as rear bases — and Caracas has tolerated them as leverage against Bogotá and Washington. That geography is why a Colombian splinter ends up named in a Venezuelan president's indictment.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CO",
+              "VE",
+              "US"
+            ],
+            "label": "Bogotá, Caracas, Manhattan",
+            "markers": [
+              {
+                "lat": 4.711,
+                "lng": -74.0721,
+                "label": "Bogotá"
+              },
+              {
+                "lat": 10.4806,
+                "lng": -66.9036,
+                "label": "Caracas"
+              },
+              {
+                "lat": 40.7128,
+                "lng": -74.006,
+                "label": "Manhattan court"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "NARCO-TERRORISM AS A WEAPON",
+        "body": "US law lets prosecutors fuse drug-trafficking and terrorism charges, attaching decades-long sentences and a global arrest mandate. Washington has used it to indict sitting foreign leaders — Noriega of Panama in 1988, then Maduro in 2020 under the 'Cartel de los Soles' theory — turning a courtroom into an instrument of regime pressure.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1964",
+                "label": "Army assaults Marquetalia"
+              },
+              {
+                "year": "2016",
+                "label": "Havana peace accord"
+              },
+              {
+                "year": "2018",
+                "label": "DEA targets Santrich",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Segunda Marquetalia declared"
+              },
+              {
+                "year": "2020",
+                "label": "Maduro indicted in NY"
+              }
+            ],
+            "label": "from one Marquetalia to the next"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T19:31:30.315Z",
+    "label": "FARC, the Peace Deal & Its Splinters",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-28-israel-un-guterres-sexual-violence-blacklist": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MANDATE",
+        "body": "The Conflict-Related Sexual Violence report is not an advocacy document — it is a Security Council instrument. Resolution 1820 (2008) was the first time the Council declared rape a tactic of war and a threat to international peace, which is what gives this annual report the authority to formally name states and armed groups.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The report is compiled by the **Office of the SRSG on Sexual Violence in Conflict**, a post created in 2009 — a standing UN mandate that exists for this single category of crime."
+          }
+        ]
+      },
+      {
+        "heading": "THE LIST OF SHAME",
+        "body": "The report's power is its annex — a literal list of parties 'credibly suspected' of patterns of sexual violence. Inclusion carries no court, no fine, no troops. It is a reputational mechanism: the cost is being named in a document the entire Security Council reads, alongside militias and pariah regimes."
+      },
+      {
+        "heading": "FROM INEVITABLE TO PROSECUTABLE",
+        "body": "For most of history, wartime rape was treated as an unfortunate byproduct of conflict — looting that happened to be human. The legal reframing as a deliberate weapon is recent: the Rwanda tribunal's Akayesu judgment in 1998 was the first time an international court convicted rape as an act of genocide, and the Yugoslavia tribunal soon ruled it a crime against humanity.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1945",
+                "label": "Nuremberg charters omit sexual violence",
+                "emphasis": "start"
+              },
+              {
+                "year": "1998",
+                "label": "Akayesu: rape as genocide (ICTR)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1998",
+                "label": "Rome Statute codifies it as a war crime"
+              },
+              {
+                "year": "2001",
+                "label": "Foča case: rape as crime vs humanity (ICTY)"
+              },
+              {
+                "year": "2008",
+                "label": "UNSC Resolution 1820"
+              }
+            ],
+            "label": "rape becomes a war crime"
+          }
+        ]
+      },
+      {
+        "heading": "THE VERIFICATION BAR",
+        "body": "The report's credibility rests on a documentary standard: incidents must be verified by UN field presences, not merely alleged. This is also its limit — in places where UN monitors have no access, underreporting is structural, so the list reflects where the UN can see as much as where abuse occurs.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which 2008 measure first defined wartime sexual violence as a threat to international security?",
+            "options": [
+              "UNSC Resolution 1325",
+              "UNSC Resolution 1820",
+              "The Rome Statute",
+              "The Geneva Conventions"
+            ],
+            "correct": 1,
+            "explanation": "Resolution 1325 (2000) launched the women-peace-security agenda, but 1820 (2008) was the first to frame sexual violence itself as a tactic of war and a security threat."
+          }
+        ]
+      },
+      {
+        "heading": "BREAKING WITH THE SECRETARY-GENERAL",
+        "body": "Cutting contact with the Secretary-General is a sharp escalation, but not unprecedented in Israel-UN relations, which have been adversarial since the General Assembly's 1975 'Zionism is racism' resolution (repealed 1991). The leverage is asymmetric: the office is the report's named author, but it is also the UN's chief mediator and humanitarian coordinator.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "António Guterres",
+                "role": "UN Secretary-General",
+                "years": "2017–2026"
+              },
+              {
+                "name": "Pramila Patten",
+                "role": "SRSG on Sexual Violence in Conflict",
+                "years": "2017–",
+                "cc": "MU"
+              }
+            ],
+            "label": "the principals"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T19:32:04.289Z",
+    "label": "The UN's Sexual-Violence Registry",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-28-npt-review-failure-icbm-tests-arms-control-deadlock": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GRAND BARGAIN",
+        "body": "The NPT (1968) is a deal between two classes of states: the five who already had nuclear weapons promised to eventually disarm (Article VI), and everyone else promised never to build them in exchange for access to civilian nuclear technology. The treaty's legitimacy rests entirely on the first half being credible — which is why ICBM tests during a review conference are read as a breach of faith, not just a drill.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bargain has a name in the diplomatic literature: the **three pillars** — *nonproliferation*, *disarmament*, and the *peaceful use* of nuclear energy. The have-nots argue the nuclear powers have honored only the first."
+          }
+        ]
+      },
+      {
+        "heading": "WHO IS ALLOWED",
+        "body": "The NPT recognizes exactly five 'nuclear-weapon states' — defined as those that tested a device before January 1, 1967: the US, Russia, China, the UK, and France. The same five hold the permanent veto on the UN Security Council. That overlap is not a coincidence; the postwar order was built to keep the nuclear club and the diplomatic club identical.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How does the NPT define which states are legally allowed to hold nuclear weapons?",
+            "options": [
+              "Any UN Security Council member",
+              "States that tested a device before 1967",
+              "States that signed before 1968",
+              "States with civilian reactors"
+            ],
+            "correct": 1,
+            "explanation": "The 1967 cutoff freezes the club at five — the US, USSR/Russia, UK, France, and China — and matches the five permanent Security Council seats."
+          }
+        ]
+      },
+      {
+        "heading": "THE OUTLIERS",
+        "body": "Four nuclear-armed states sit outside the treaty's framework. India, Pakistan, and Israel never signed; North Korea signed, then withdrew in 2003 and built weapons anyway. Their existence is the proof the non-proliferation half also leaks — the treaty stopped the spread far better than skeptics expected, but never sealed it."
+      },
+      {
+        "heading": "WHY VERIFICATION IS THE TREATY",
+        "body": "A disarmament promise is worthless without proof the other side is keeping it. New START, signed in 2010, capped US and Russian deployed warheads and — crucially — allowed 18 on-site inspections per year plus data exchanges on every missile. Its February expiry removed that machinery. Now each side must guess at the other's arsenal, and guessing is what arms races run on.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1968",
+                "label": "NPT signed",
+                "emphasis": "start"
+              },
+              {
+                "year": "1972",
+                "label": "SALT I & ABM Treaty"
+              },
+              {
+                "year": "1987",
+                "label": "INF Treaty bans land missiles"
+              },
+              {
+                "year": "2002",
+                "label": "US exits ABM Treaty"
+              },
+              {
+                "year": "2010",
+                "label": "New START signed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "INF Treaty collapses"
+              },
+              {
+                "year": "2023",
+                "label": "Russia suspends New START"
+              },
+              {
+                "year": "2026-02",
+                "label": "New START expires",
+                "emphasis": "end"
+              }
+            ],
+            "label": "the arms-control architecture"
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO ARSENALS THAT MATTER",
+        "body": "Nine states have nuclear weapons, but two hold roughly 90% of all warheads. Every other arsenal — China's, France's, the UK's, the regional powers' — is a rounding error against the US-Russia total. This is why their bilateral treaties, not the NPT's universal language, are what actually constrains the global stockpile.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Russia",
+                "value": 5500,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "USA",
+                "value": 5000,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "China",
+                "value": 500,
+                "tone": "neutral"
+              },
+              {
+                "label": "France",
+                "value": 290,
+                "tone": "favorable"
+              },
+              {
+                "label": "UK",
+                "value": 225,
+                "tone": "favorable"
+              },
+              {
+                "label": "Pakistan",
+                "value": 170,
+                "tone": "favorable"
+              },
+              {
+                "label": "India",
+                "value": 170,
+                "tone": "favorable"
+              },
+              {
+                "label": "Israel",
+                "value": 90,
+                "tone": "favorable"
+              },
+              {
+                "label": "N. Korea",
+                "value": 50,
+                "tone": "favorable"
+              }
+            ],
+            "label": "estimated nuclear warheads by state, 2025"
+          }
+        ]
+      },
+      {
+        "heading": "WHY AN ICBM TEST IS A MESSAGE",
+        "body": "An intercontinental ballistic missile takes about 30 minutes to cross the globe and cannot be recalled once launched. Testing one during talks demonstrates the warhead works, the guidance is accurate, and the response time is intact — a way of negotiating with the hardware instead of the diplomats. The logic underneath is Mutual Assured Destruction: stability comes not from defense but from the certainty that neither side can strike first without being annihilated in return.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine's acronym, **MAD**, was coined as a deliberate provocation by its critics — yet it described the actual strategic equilibrium so well that planners adopted it. Its core requirement is a guaranteed *second-strike* capability: the ability to retaliate even after absorbing a first blow."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T19:32:45.313Z",
+    "label": "The NPT & Arms Control",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-28-pakistan-nccia-arrests-anti-state-propaganda-online": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "BUILT FOR FRAUD, AIMED AT CRITICS",
+        "body": "Pakistan's Prevention of Electronic Crimes Act passed in 2016 sold as a tool against financial scams, child exploitation, and online harassment. Buried inside was Section 11 on 'hate speech' and clauses on offences against the state — the provisions that now do the real work against activists.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pattern is called **mission creep**: a law justified by an uncontroversial harm (fraud) acquires elastic 'anti-state' clauses that outlive the original purpose. The agency here, the **NCCIA**, was carved out of the FIA's cybercrime wing in 2024 — a dedicated body for a power that began as a footnote."
+          }
+        ]
+      },
+      {
+        "heading": "THE COLONIAL INHERITANCE",
+        "body": "The idea that criticizing the government is itself a crime is not Pakistani — it is British. Section 124-A of the colonial Penal Code, drafted in 1870, criminalized 'disaffection' toward the Crown and was used to jail independence leaders across the subcontinent. Pakistan inherited the statute intact at partition.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "exciting or attempting to excite disaffection towards the Government established by law",
+            "speaker": "Penal Code, Section 124-A (1870)"
+          }
+        ]
+      },
+      {
+        "heading": "THE SHARED CODE",
+        "body": "Because the same colonial penal code was imposed across British India, near-identical sedition provisions still exist in Pakistan, India, Bangladesh, Myanmar, Malaysia and Singapore. When South Asian states prosecute online critics, they are reaching for the same 19th-century text under different flags.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IN",
+              "BD",
+              "MM",
+              "MY",
+              "SG",
+              "LK"
+            ],
+            "label": "where the British sedition code still lives"
+          }
+        ]
+      },
+      {
+        "heading": "THE LAW KEEPS EXPANDING",
+        "body": "PECA has not stood still. A 2022 ordinance that made 'defaming' state institutions a non-bailable offence was struck down by the Islamabad High Court as unconstitutional. A January 2025 amendment revived the project — adding a 'fake news' offence punishable by up to three years and creating the agency now making these arrests.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1870",
+                "label": "Colonial sedition law (124-A)"
+              },
+              {
+                "year": "2016",
+                "label": "PECA enacted"
+              },
+              {
+                "year": "2022",
+                "label": "Defamation ordinance struck down"
+              },
+              {
+                "year": "2025-01",
+                "label": "'Fake news' clause + NCCIA created",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "PECA's expanding reach"
+          }
+        ]
+      },
+      {
+        "heading": "ALREADY WATCHED",
+        "body": "The detail that the activists were 'already under surveillance' is the real architecture. Arrests are the visible end of a monitoring system that ingests posts continuously; the charge is filed after the watching, not because of a single post. The law supplies the pretext; the infrastructure supplies the targets.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Pakistan's online 'anti-state' offences ultimately descend from what?",
+            "options": [
+              "A 2016 anti-fraud statute written from scratch",
+              "An 1870 British colonial sedition law",
+              "A post-9/11 counterterrorism treaty",
+              "Sharia provisions on public order"
+            ],
+            "correct": 1,
+            "explanation": "Section 124-A of the 1870 colonial Penal Code criminalized 'disaffection' toward the government and was inherited intact across former British India."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T19:33:37.093Z",
+    "label": "Cybercrime Law as a Dissent Tool",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-28-parscale-israel-fara-ai-chatbot-influence-ops": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 1938 LAW",
+        "body": "FARA was passed in 1938 to expose Nazi propaganda flowing into American newspapers and radio. It does not ban foreign influence — it forces it into the open. Anyone acting politically on behalf of a foreign principal must register and label their output as foreign-sponsored.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The act's logic is *sunlight, not silence*: a foreign government may fund a US campaign, but the audience must be told. The crime is rarely the lobbying itself — it's the **failure to disclose**."
+          },
+          {
+            "type": "quiz",
+            "question": "What was the Foreign Agents Registration Act originally written to counter?",
+            "options": [
+              "Nazi propaganda in US media",
+              "Soviet nuclear espionage",
+              "Chinese trade lobbying",
+              "Cuban exile networks"
+            ],
+            "correct": 0,
+            "explanation": "FARA was enacted in 1938 specifically to surface German propaganda reaching American audiences before WWII."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ENFORCEMENT IS RARE",
+        "body": "For most of its life FARA was nearly dead law — the Justice Department brought only a handful of criminal cases in seven decades. It was revived after 2016, when the Manafort and Flynn prosecutions made unregistered foreign work a live legal risk for the first time in a generation.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1938",
+                "label": "Enacted vs. Nazi propaganda",
+                "emphasis": "start"
+              },
+              {
+                "year": "1966",
+                "label": "Amended toward lobbying disclosure"
+              },
+              {
+                "year": "2017",
+                "label": "Revived: Manafort, Flynn cases",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "FARA's long dormancy"
+          }
+        ]
+      },
+      {
+        "heading": "POISONING THE WELL",
+        "body": "The novel tactic here is not buying ads but seeding content into the data that trains AI models. If a chatbot ingests thousands of planted articles, it absorbs the framing as if it were consensus — and repeats it to every future user, unattributed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Targeting the *training corpus* rather than the reader is sometimes called **LLM grooming**: influence laundered through a model becomes invisible, because the source citation disappears the moment the text is absorbed into the weights."
+          }
+        ]
+      },
+      {
+        "heading": "HASBARA",
+        "body": "Israel runs one of the world's most institutionalized public-diplomacy operations, known by the Hebrew word for 'explaining.' Quadrupling its budget to $730M signals a shift from defending policy after the fact to shaping the information terrain in advance.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Hasbara* literally means **'explaining'** — a deliberately non-propagandistic framing. The discipline treats narrative as a domain of statecraft on par with diplomacy and defense."
+          },
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "IL"
+            ],
+            "label": "the funding channel"
+          }
+        ]
+      },
+      {
+        "heading": "THE PAYOLA PARALLEL",
+        "body": "Talk-radio hosts reading sponsored messaging as if it were their own opinion echoes the payola scandals of 1950s radio, when DJs took cash to push records without telling listeners. The law that emerged demands one thing: paid content must be announced as paid.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "US law since 1960 requires on-air **sponsorship identification** — the rule violated when a host carries a foreign-funded message *without disclosure*. The undisclosed payment, not the opinion, is the offense."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T19:34:16.866Z",
+    "label": "Foreign Agents & AI Influence Ops",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-28-south-africa-business-stepping-in-for-failing-state": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MORAL HAZARD",
+        "body": "Mavuso's warning is a textbook hazard: when firms quietly fund the policing, fix the roads, and pump the water a municipality should provide, the failure stops being visible — and an invisible failure generates no pressure to reform. The substitute becomes the reason the original is never repaired.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call this *moral hazard* — when a party shielded from the consequences of its own failure loses the incentive to prevent it. The state outsourcing its duties to business is the public-sector version."
+          },
+          {
+            "type": "quiz",
+            "question": "What economic concept describes a party losing the incentive to fix a problem because someone else absorbs the cost of its failure?",
+            "options": [
+              "Moral hazard",
+              "Adverse selection",
+              "The free-rider problem",
+              "Tragedy of the commons"
+            ],
+            "correct": 0,
+            "explanation": "Moral hazard: insulation from consequences removes the incentive to prevent the failure — exactly the dependency Mavuso warns business is creating."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE EASTERN CAPE BUILDS CARS",
+        "body": "Gqeberha sits at the center of a coastal auto belt built on a deepwater port and decades of assembly: Volkswagen at Kariega, Isuzu in the city, Mercedes-Benz up the coast at East London. The cluster exists because vehicle plants need port access and a dense web of nearby parts suppliers — geography that took 70 years to assemble.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ZA"
+            ],
+            "label": "South Africa's coastal auto belt",
+            "caption": "Plants cluster near ports — the supplier web is what locks them in place.",
+            "markers": [
+              {
+                "lat": -33.7639,
+                "lng": 25.3997,
+                "label": "VW Kariega plant"
+              },
+              {
+                "lat": -33.96,
+                "lng": 25.63,
+                "label": "Gqeberha port"
+              },
+              {
+                "lat": -33.02,
+                "lng": 27.91,
+                "label": "Mercedes East London"
+              },
+              {
+                "lat": -29.97,
+                "lng": 30.93,
+                "label": "Toyota Durban"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE THREAT IS CREDIBLE — AND COSTLY",
+        "body": "An assembly line is sunk capital: stamping presses, paint shops, and a supplier network can't be picked up and moved cheaply. That stickiness is exactly why VW stayed through load-shedding and water cuts — but it also means a decision to exit is near-permanent. When a captive employer with 50,000 dependent jobs starts naming conditions, it is because the math has tipped toward the rival plant in Mexico or Eastern Europe."
+      },
+      {
+        "heading": "THE METRO THAT STOPPED WORKING",
+        "body": "Nelson Mandela Bay is one of South Africa's eight metropolitan municipalities — units meant to be the strongest tier of local government, with their own revenue and mandates over water, electricity, and roads. Years of coalition instability and contested management have left the metro unable to reliably deliver the basics, which is the vacuum business is now filling."
+      },
+      {
+        "heading": "THE CURRENCY KEEPS SCORE",
+        "body": "Investor confidence in a country's governance doesn't stay abstract — it gets priced into the currency. South Africa's structural problems, from unreliable power to municipal collapse, show up as a steady, one-way pressure on the rand, which raises the cost of every imported component a plant like VW's needs.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              16.55256,
+              16.868635,
+              16.677723,
+              16.665525,
+              16.7113,
+              16.585522,
+              16.813,
+              16.549357,
+              16.3932,
+              16.456742,
+              16.38071,
+              16.38071,
+              16.452879,
+              16.47595,
+              16.499753,
+              16.423504,
+              16.648961,
+              16.68789,
+              16.68789,
+              16.742243,
+              16.6493,
+              16.708625,
+              16.511944,
+              16.472752,
+              16.96148,
+              16.8693,
+              16.3361,
+              16.329149,
+              16.352459,
+              16.479667
+            ],
+            "periods": [
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28"
+            ],
+            "label": "South African rand",
+            "unit": "ZAR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-28"
+    ],
+    "generatedAt": "2026-05-28T19:35:16.580Z",
+    "label": "When Business Replaces the State",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-28-sun-magnetic-activity-confined-space-weather": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DYNAMO",
+        "body": "The Sun's magnetic field isn't fixed — it's generated continuously by churning plasma in the outer third of the Sun, where rising heat and the Sun's own differential rotation twist ionized gas into electric currents. Those currents are the field. Stop the churning and the magnetism decays.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The key culprit is *differential rotation*: the Sun's equator spins once every **25 days**, the poles every **35**. That shear winds the magnetic field tighter with each turn — the engine that periodically tears sunspots to the surface."
+          }
+        ]
+      },
+      {
+        "heading": "THE 22-YEAR CLOCK",
+        "body": "The famous 11-year sunspot cycle is only half the story. At each minimum the Sun's magnetic poles flip — north becomes south — so the true magnetic period is 22 years. Solar Cycle 25, the one now misbehaving, is the 25th counted since systematic records began in 1755."
+      },
+      {
+        "heading": "SEEING INSIDE A STAR",
+        "body": "We can't look beneath the Sun's surface, but we can listen. Helioseismology tracks sound waves trapped inside the Sun that make its surface ripple by meters; the patterns reveal flows and magnetism kilometers down — the same way seismographs map Earth's core from earthquakes.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How do scientists detect magnetic activity below the Sun's visible surface?",
+            "options": [
+              "Direct telescope imaging of the interior",
+              "Sound waves rippling the surface (helioseismology)",
+              "Sampling solar wind particles at Earth",
+              "X-ray photos of the core"
+            ],
+            "correct": 1,
+            "explanation": "Light can't escape the dense interior, so the Sun's interior is mapped acoustically — surface oscillations encode the flows and fields beneath."
+          }
+        ]
+      },
+      {
+        "heading": "THE CARRINGTON BENCHMARK",
+        "body": "In 1859 a solar storm so strong it made telegraph lines spark and auroras appear over the Caribbean. A repeat today is the worst-case scenario every space-weather model is ultimately trying to predict — which is why a broken dynamo model is more than an academic problem.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1859",
+                "label": "Carrington Event: telegraphs spark",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1921",
+                "label": "New York railway storm"
+              },
+              {
+                "year": "1989",
+                "label": "Quebec grid blackout, 9 hours"
+              },
+              {
+                "year": "2003",
+                "label": "Halloween storms hit satellites"
+              },
+              {
+                "year": "2012",
+                "label": "Carrington-class near-miss"
+              }
+            ],
+            "label": "major space-weather events"
+          }
+        ]
+      },
+      {
+        "heading": "WHY GRIDS BURN",
+        "body": "A solar storm doesn't fry electronics directly. It distorts Earth's magnetic field, and a shifting magnetic field induces currents in any long conductor — power lines, pipelines, rail. These geomagnetically induced currents overload transformers. In 1989 they blacked out Quebec in 90 seconds."
+      },
+      {
+        "heading": "THE FORECAST GAP",
+        "body": "A coronal mass ejection takes one to three days to reach Earth, but the warning of severity comes only minutes ahead, when it crosses a satellite a million kilometers upstream. Better dynamo models are the only way to extend that lead time — and the data now contradicting them sets the effort back."
+      }
+    ],
+    "generatedAt": "2026-05-28T19:35:50.718Z",
+    "label": "The Solar Dynamo & Space Weather",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-28-treasury-250-bill-trump-portrait-currency": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LIVING-PERSON BAN",
+        "body": "Federal law has barred any living person from US currency and securities since 1866. The trigger was a scandal: Spencer Clark, head of the Currency Bureau, printed his own face on a 5-cent note. Congress responded by writing a permanent rule that only the dead can appear on money.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What prompted the 1866 US law banning living people from currency?",
+            "options": [
+              "A Treasury official printed his own portrait on a note",
+              "A president demanded his face on the dollar",
+              "Counterfeiters were copying living governors",
+              "A war-bond fraud involving fake signatures"
+            ],
+            "correct": 0,
+            "explanation": "Spencer Clark put his own face on a 5-cent fractional note, and an embarrassed Congress made the living-person bar permanent."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PORTRAITS AT ALL",
+        "body": "Faces are on banknotes for security, not honor. The human eye is extraordinarily sensitive to facial irregularity, so a finely engraved portrait is one of the hardest things for a counterfeiter to reproduce convincingly. The vignette is a fraud check disguised as a tribute."
+      },
+      {
+        "heading": "WHO ACTUALLY DECIDES",
+        "body": "The Treasury Secretary has discretion over which portraits appear on currency — but only within limits Congress already set. The living-person bar and the menu of legal denominations are written into statute, so a genuinely new $250 note honoring a sitting president needs an act of Congress, not a Treasury memo.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why the bill stalled in the **House Financial Services Committee**: Treasury can engrave a design, but it cannot lawfully *issue* one that breaks two statutes at once."
+          }
+        ]
+      },
+      {
+        "heading": "THE FACES YOU CARRY",
+        "body": "Every portrait on circulating US paper money is a long-dead statesman, and most have been fixed since the 1928 small-note redesign. Only two of the six are not presidents — Hamilton and Franklin — which already tells you the slot is about civic foundation, not the office.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "George Washington",
+                "role": "1st President",
+                "years": "1789–1797",
+                "cc": "US"
+              },
+              {
+                "name": "Abraham Lincoln",
+                "role": "16th President",
+                "years": "1861–1865",
+                "cc": "US"
+              },
+              {
+                "name": "Alexander Hamilton",
+                "role": "1st Treasury Secretary",
+                "years": "1789–1795",
+                "cc": "US"
+              },
+              {
+                "name": "Andrew Jackson",
+                "role": "7th President",
+                "years": "1829–1837",
+                "cc": "US"
+              },
+              {
+                "name": "Benjamin Franklin",
+                "role": "Founding statesman",
+                "years": "1706–1790",
+                "cc": "US"
+              }
+            ],
+            "label": "current circulating portraits"
+          }
+        ]
+      },
+      {
+        "heading": "THE VANISHED DENOMINATIONS",
+        "body": "The US once printed notes up to $100,000 — the latter a Woodrow Wilson certificate used only for transfers between Federal Reserve banks, never circulated to the public. Treasury stopped issuing everything above $100 in 1969, officially to fight money laundering. A brand-new $250 note would reverse a half-century policy of shrinking, not adding, denominations.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1934",
+                "label": "$500–$100,000 notes printed",
+                "emphasis": "start"
+              },
+              {
+                "year": "1945",
+                "label": "Large notes last printed"
+              },
+              {
+                "year": "1969",
+                "label": "High denominations retired",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2025",
+                "label": "$250 note proposed"
+              }
+            ],
+            "label": "high-denomination US currency"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T19:36:22.283Z",
+    "label": "Who Gets On the Money",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-28-us-pce-inflation-3-8-oil-price-spike-hormuz": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY A DISTANT WAR MOVES US PUMP PRICES",
+        "body": "Crude is a single global market — a barrel in Texas is priced off the same supply-demand balance as a barrel in the Gulf. The US can be a net oil exporter and still see pump prices jump when a war threatens the roughly fifth of seaborne crude that transits the Strait of Hormuz. Physical self-sufficiency does not buy price insulation.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "IQ",
+              "KW",
+              "QA"
+            ],
+            "label": "the Gulf oil corridor",
+            "markers": [
+              {
+                "lat": 26.57,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PASS-THROUGH",
+        "body": "Energy is one of the most volatile components of any price index, which is why economists strip it out to read 'core' inflation. But oil leaks everywhere — fertilizer, freight, plastics, airfares — so a sustained crude spike eventually pushes core up too, weeks after it hits the headline number.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Fed watches **core** inflation precisely because **headline** swings with oil and food. When core itself starts climbing, the spike has stopped being temporary."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GASOLINE OVERSHOOTS CRUDE",
+        "body": "Refiners earn the 'crack spread' — the gap between what they pay for crude and what they sell gasoline and diesel for. America has not built a major new refinery since 1977, and existing plants run above 90% capacity, so a supply scare lets pump prices leap faster than crude itself. The bottleneck is industrial, not geological."
+      },
+      {
+        "heading": "THE STAGFLATION TRAP",
+        "body": "An oil shock is the cruelest input for a central bank: it raises prices and slows growth at the same time. Cutting rates to support the economy fuels inflation; hiking to fight inflation deepens the slowdown. Historically, sustained Brent above $95-100 forces the Fed to lean toward tightening even into weakness — which is why rate cuts get locked away.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which price gauge does the Fed officially target at 2%?",
+            "options": [
+              "The PCE price index",
+              "The Consumer Price Index (CPI)",
+              "The Producer Price Index (PPI)",
+              "Average hourly earnings"
+            ],
+            "correct": 0,
+            "explanation": "The Fed targets PCE inflation, which weights spending differently than the more widely reported CPI and usually runs a few tenths lower."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1970s GHOST",
+        "body": "Every oil-driven inflation scare is read against the 1970s, when two Middle East shocks pushed US inflation into double digits. It took Paul Volcker raising rates to nearly 20% — and a brutal recession — to break it. The lesson central bankers internalized: let oil inflation become entrenched once, and the cure costs far more than the disease.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1973",
+                "label": "Arab oil embargo"
+              },
+              {
+                "year": "1979",
+                "label": "Iranian Revolution shock",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1980",
+                "label": "Volcker tightens to ~20%"
+              },
+              {
+                "year": "1990",
+                "label": "Gulf War price spike"
+              },
+              {
+                "year": "2008",
+                "label": "Crude hits ~$147"
+              },
+              {
+                "year": "2022",
+                "label": "Russia-Ukraine energy shock"
+              }
+            ],
+            "label": "oil shocks & US inflation"
+          }
+        ]
+      },
+      {
+        "heading": "WHY HIKES ARE EVEN ON THE TABLE",
+        "body": "Markets assume the Fed's next move is always a cut. But its legal mandate is dual — maximum employment and stable prices — and price stability dominates when inflation runs near double the target. Proposing hikes into a war-driven slowdown signals the committee fears 1970s-style entrenchment more than a recession."
+      }
+    ],
+    "generatedAt": "2026-05-28T19:37:14.710Z",
+    "label": "Oil Shocks & the Fed",
+    "category": "economy",
+    "articleCount": 1
   }
 }
