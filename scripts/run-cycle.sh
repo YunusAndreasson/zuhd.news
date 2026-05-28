@@ -29,10 +29,10 @@ fi
 # Models and effort levels — chosen per task type:
 #   Selector: Opus+medium — best editorial reasoning; medium effort sufficient for comparison/filtering
 #   Writer:   Sonnet+medium — format-constrained task; medium effort sufficient for templated writing
-#   Editor:   Sonnet+medium — checklist-driven style checks; an effort=low experiment (2026-05-18-editor-effort-low) was proposed but never applied, voided 2026-05-26 (see .experiments.json history)
+#   Editor:   Sonnet+low — checklist-driven style checks; dropped medium→low on 2026-05-28 to fix the May-26 editor-time regression (repeated 1800s timeouts at medium). First low run: 201s exit 0, 10/12 edited with quality intact. Override per-run with ZUHD_EDITOR_EFFORT.
 #   Reflect:  Sonnet+medium — reflective audit, low frequency
 CLAUDE_MODEL="${ZUHD_MODEL:-claude-sonnet-4-6}"
-CLAUDE_SELECTOR_MODEL="${ZUHD_SELECTOR_MODEL:-claude-opus-4-7}"
+CLAUDE_SELECTOR_MODEL="${ZUHD_SELECTOR_MODEL:-claude-opus-4-8}"
 export ZUHD_MODEL="$CLAUDE_MODEL"
 
 # Tool whitelist for Claude CLI (--dangerously-skip-permissions is blocked as root)
@@ -266,7 +266,7 @@ $ARTICLE_LIST
 <body-lengths>
 $BODY_LENGTHS
 </body-lengths>"
-  timeout 1800 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_MODEL --allowedTools $TOOLS_EDITOR --max-turns 50 --exclude-dynamic-system-prompt-sections -p "$CHECK_PROMPT$EDITOR_ADDENDUM" 2>&1 | tee -a "$LOG_FILE"
+  timeout 1800 claude $CLAUDE_FLAGS --effort "${ZUHD_EDITOR_EFFORT:-low}" --model $CLAUDE_MODEL --allowedTools $TOOLS_EDITOR --max-turns 50 --exclude-dynamic-system-prompt-sections -p "$CHECK_PROMPT$EDITOR_ADDENDUM" 2>&1 | tee -a "$LOG_FILE"
   EDITOR_EXIT=$?
   echo "Editor exit: $EDITOR_EXIT — $((SECONDS - T3))s" | tee -a "$LOG_FILE"
 
@@ -712,7 +712,7 @@ if [ "$START_HOUR" = "22" ]; then
     # enough since the metric inputs are deterministic.
     # Timeout 600s (10min): Opus medium runs slower per turn than Sonnet
     # medium; doubling the budget keeps 15 max-turns comfortably in scope.
-    timeout 600 claude $CLAUDE_FLAGS --effort medium --model claude-opus-4-7 --allowedTools $TOOLS_TUNE --max-turns 15 --exclude-dynamic-system-prompt-sections -p "$TUNE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+    timeout 600 claude $CLAUDE_FLAGS --effort medium --model claude-opus-4-8 --allowedTools $TOOLS_TUNE --max-turns 15 --exclude-dynamic-system-prompt-sections -p "$TUNE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
     TUNE_EXIT=$?
     if [ "$TUNE_EXIT" = "124" ]; then
       echo "Tuning exit: 124 (TIMEOUT — exceeded 600s budget; bump if recurring) — $((SECONDS - T6))s" | tee -a "$LOG_FILE"
