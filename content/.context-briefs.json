@@ -249927,5 +249927,1429 @@
     "label": "Decapitation Strikes & Hamas Succession",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-27-china-hydrogen-industry-future-electrolyser-dominance": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COLOR CODE",
+        "body": "Hydrogen is classified by how it's made. Grey hydrogen comes from natural gas via steam methane reforming and emits ~10 tonnes of CO2 per tonne of H2. Blue captures those emissions. Green splits water using renewable electricity. Today over 95% of global hydrogen is grey.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry talks about *green*, *blue*, *grey*, *pink* (nuclear), and *turquoise* (methane pyrolysis) — but only **green** has a path to zero emissions, and only at electricity prices below ~$20/MWh."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT HYDROGEN IS ACTUALLY FOR",
+        "body": "Most hydrogen today doesn't fuel anything — it's a chemical feedstock. Roughly half goes to ammonia (fertiliser), a third to oil refining, and the rest to methanol and steel. Decarbonising these uses matters more than hydrogen cars, which lost the passenger-vehicle race to batteries.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Ammonia/fertiliser",
+                "value": 45,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Oil refining",
+                "value": 35,
+                "tone": "neutral"
+              },
+              {
+                "label": "Methanol",
+                "value": 12,
+                "tone": "favorable"
+              },
+              {
+                "label": "Steel (DRI)",
+                "value": 5,
+                "tone": "favorable"
+              },
+              {
+                "label": "Other",
+                "value": 3,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global hydrogen demand by use (~95 Mt/yr)"
+          }
+        ]
+      },
+      {
+        "heading": "THE ELECTROLYSER",
+        "body": "An electrolyser splits water (H2O) into hydrogen and oxygen using electricity. Two dominant designs: alkaline (cheaper, mature, what China builds) and PEM (proton-exchange membrane — more flexible, responds faster to variable renewables, what Europe and the US favor). The cost gap is roughly 3-to-1 in China's favor."
+      },
+      {
+        "heading": "THE SOLAR PLAYBOOK",
+        "body": "In 2010 Germany, Japan, and the US led solar panel manufacturing. By 2015 China controlled 70% of global production; today it's over 80%. The mechanism was state-directed capacity buildout, below-cost pricing, and Western firms going bankrupt one by one. Beijing is applying the same template to electrolysers.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2009",
+                "label": "China lists solar as strategic industry",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011",
+                "label": "Solyndra (US) bankruptcy"
+              },
+              {
+                "year": "2012",
+                "label": "Q-Cells (Germany) bankruptcy"
+              },
+              {
+                "year": "2017",
+                "label": "China hits 60% global share"
+              },
+              {
+                "year": "2024",
+                "label": "China >80% of panels, polysilicon, wafers"
+              }
+            ],
+            "label": "China's solar conquest — the template"
+          }
+        ]
+      },
+      {
+        "heading": "THE ELECTROLYSER LEAGUE",
+        "body": "Chinese electrolyser makers — Longi, Sungrow, Envision — already ship units at roughly a third the price of European competitors like Nel, ITM Power, and Thyssenkrupp. The cost gap has widened, not narrowed, since 2022.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China (Longi, Sungrow)",
+                "value": "~$250/kW",
+                "tone": "favorable",
+                "cc": "CN",
+                "weight": 250
+              },
+              {
+                "label": "Europe (Nel, TKMS)",
+                "value": "~$800/kW",
+                "tone": "unfavorable",
+                "cc": "EU",
+                "weight": 800
+              },
+              {
+                "label": "US (Plug, Cummins)",
+                "value": "~$1,000/kW",
+                "tone": "unfavorable",
+                "cc": "US",
+                "weight": 1000
+              }
+            ],
+            "label": "alkaline electrolyser system cost (approx, $/kW)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY GREEN STAYS HARD",
+        "body": "Green hydrogen costs ~3-5x grey hydrogen at current electricity prices. The breakeven requires either cheap renewables (under $20/MWh, which China increasingly has), a carbon price on grey (which most of Asia doesn't have), or subsidy (the EU and US route). Even at 1% green today, China builds the world's largest green hydrogen projects because its solar floor is already there.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how much of global hydrogen production today is 'green' (from renewable electrolysis)?",
+            "options": [
+              "Under 1%",
+              "About 10%",
+              "About 25%",
+              "Over 40%"
+            ],
+            "correct": 0,
+            "explanation": "Despite a decade of headlines, green hydrogen remains under 1% of supply — the rest is made from fossil fuels, mostly natural gas."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T08:32:26.661Z",
+    "label": "Hydrogen & Electrolysers",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-27-mada-masr-us-iran-deal-no-longer-matters-regional": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 'CUSTODY' ACTUALLY MEANS",
+        "body": "In IAEA language, custody is a spectrum. At one end: seals and cameras on material that stays in country. At the other: physical removal to a third state. The 2015 JCPOA shipped 11 tonnes of low-enriched uranium to Russia. The current talks reportedly keep the stockpile on Iranian soil — closer to monitoring than disarmament.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: *in-country custody* is reversible within weeks. *Out-of-country custody* takes months to undo and creates a diplomatic incident if attempted."
+          }
+        ]
+      },
+      {
+        "heading": "THE ENRICHMENT LADDER",
+        "body": "Natural uranium is 0.7% U-235. Power reactors run on 3-5%. Research reactors use 20%. Weapons require 90%. Iran's stockpile sits at 60% — a level with no civilian justification but short of weapons-grade. The jump from 60% to 90% takes weeks, not years; most of the separation work is already done at 60%.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How much enrichment work remains between 60% U-235 and weapons-grade?",
+            "options": [
+              "Most of it — 60% is still far from a bomb",
+              "Roughly half",
+              "A small fraction — most of the work is done by 60%",
+              "Depends on the centrifuge generation"
+            ],
+            "correct": 2,
+            "explanation": "Separative work is logarithmic. Going from 0.7% to 60% does ~90% of the total work needed to reach 90%."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HORMUZ IS THE LEVER",
+        "body": "Roughly a fifth of global oil and a third of seaborne LNG transits the strait. Iran cannot win a naval war there, but it can raise war-risk insurance premiums enough to spike crude within hours. The threat is the deal — reopening is what the US is paying for.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the chokepoint and its bypasses",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 27.1833,
+                "lng": 56.2667,
+                "label": "Bandar Abbas (IRGC navy HQ)"
+              },
+              {
+                "lat": 25.4052,
+                "lng": 56.3411,
+                "label": "Fujairah (UAE bypass terminal)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "PAKISTAN AS MEDIATOR",
+        "body": "Islamabad sits in an unusual diplomatic slot: a Sunni nuclear power with working relations with Tehran, Riyadh, and Washington simultaneously. It mediated the 2023 Saudi-Iran rapprochement alongside Beijing. The choice of a Pakistani channel signals neither side wants Gulf Arab states inside the room."
+      },
+      {
+        "heading": "THE 60-DAY PATTERN",
+        "body": "Short rolling extensions — 60 or 120 days — are how nuclear diplomacy buys time without political ratification. The 2013 Joint Plan of Action that preceded the JCPOA was structured the same way: a six-month interim deal extended twice before the final agreement. Extensions favor whoever benefits from the status quo freeze.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2003",
+                "label": "Tehran Declaration suspends enrichment"
+              },
+              {
+                "year": "2013-11",
+                "label": "Joint Plan of Action (interim)"
+              },
+              {
+                "year": "2015-07",
+                "label": "JCPOA signed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018-05",
+                "label": "US withdrawal"
+              },
+              {
+                "year": "2021-04",
+                "label": "Vienna revival talks"
+              },
+              {
+                "year": "2025",
+                "label": "Direct US-Iran talks resume"
+              },
+              {
+                "year": "2026-05",
+                "label": "60-day ceasefire extension"
+              }
+            ],
+            "label": "Iran nuclear diplomacy"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE MARKET THINKS",
+        "body": "Prediction markets have been pricing a permanent deal in the single digits for months — the structural distrust on both sides is too deep for a comprehensive settlement. The relevant question is whether the short extensions keep stacking. The market is more bullish on the ceasefire rolling than on it ending in a treaty.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              16,
+              16,
+              17,
+              14,
+              16,
+              14,
+              16,
+              22,
+              18,
+              22,
+              18,
+              14,
+              10,
+              9,
+              11,
+              8,
+              11,
+              9,
+              8,
+              14,
+              9,
+              18,
+              10,
+              5,
+              20,
+              17,
+              28,
+              19,
+              12,
+              8
+            ],
+            "periods": [
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 28"
+            ],
+            "label": "US-Iran nuclear deal by May 31?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "16%"
+              },
+              {
+                "atIndex": 29,
+                "label": "8%"
+              }
+            ],
+            "link": "https://polymarket.com/event/us-iran-nuclear-deal-by-may-31-974",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-28"
+    ],
+    "generatedAt": "2026-05-28T08:33:06.241Z",
+    "label": "IAEA Custody & the Hormuz Lever",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-27-rcep-2027-general-review-trade-bloc-asia-fragmentation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT RCEP ACTUALLY IS",
+        "body": "RCEP is the 15-member trade bloc signed in 2020 covering ASEAN plus China, Japan, South Korea, Australia, and New Zealand. It is the largest free-trade area by GDP, but it is shallow by design — a tariff schedule with rules of origin, not a deep integration treaty.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bloc's signature trick is **regional cumulation**: a Vietnamese factory using Chinese inputs and Japanese components counts the whole product as RCEP-origin, qualifying for preferential tariffs across all 15 members. This is what makes the *supply chain*, not the tariff, the real product."
+          }
+        ]
+      },
+      {
+        "heading": "THE MEMBERS",
+        "body": "RCEP unites economies that don't otherwise sit in the same room — China and Japan have no bilateral FTA, Japan and South Korea have no bilateral FTA, but all three are inside RCEP. The bloc is the only forum where they grant each other preferential market access.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "JP",
+              "KR",
+              "AU",
+              "NZ",
+              "ID",
+              "TH",
+              "VN",
+              "MY",
+              "SG",
+              "PH",
+              "MM",
+              "KH",
+              "LA",
+              "BN"
+            ],
+            "label": "the 15 RCEP members",
+            "caption": "ASEAN-10 plus China, Japan, Korea, Australia, New Zealand"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ISN'T IN",
+        "body": "India walked out in 2019 over fears of Chinese import surges and a refusal to open agriculture and dairy. The US was never a candidate — it had pulled out of the rival TPP in 2017. RCEP is therefore the Asian trade order minus its two largest democracies-by-population.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "RCEP",
+                "value": "~30% world GDP",
+                "weight": 30
+              },
+              {
+                "label": "CPTPP",
+                "value": "~15% world GDP",
+                "weight": 15
+              }
+            ],
+            "label": "the two Pacific blocs"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SHALLOW WAS THE POINT",
+        "body": "RCEP's tariff cuts phase in over 20 years and leave sensitive sectors untouched. Services, digital trade, state-owned enterprises, labour, environment, and IP enforcement are largely absent — the deliberate price of getting China and the ASEAN least-developed countries inside the same tent. The 2027 review is the first scheduled chance to deepen the text.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does RCEP exclude binding rules on state-owned enterprises?",
+            "options": [
+              "China refused to accept disciplines its SOE-heavy economy couldn't meet",
+              "ASEAN members blocked the chapter to protect Singaporean GLCs",
+              "The WTO already covers SOE rules so RCEP defers to it"
+            ],
+            "correct": 0,
+            "explanation": "The CPTPP's SOE chapter — drafted partly to constrain Chinese practices — is exactly what RCEP omits. That omission was the price of Beijing's participation."
+          }
+        ]
+      },
+      {
+        "heading": "THE FRAGMENTATION BACKDROP",
+        "body": "The IMF estimates a hard split of the global economy into US-aligned and China-aligned blocs would cost roughly 7% of world GDP over the long run — worse than any post-1945 trade shock. RCEP's upgrade question is whether Asia builds a genuinely integrated middle ground or remains a loose tariff club that each member hedges from."
+      }
+    ],
+    "generatedAt": "2026-05-28T08:33:33.636Z",
+    "label": "RCEP & Asian Trade Architecture",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-27-romania-oregon-hack-extradition-cyber-prosecution": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY ROMANIA",
+        "body": "Romania became a cybercrime hub through a specific accident: heavy Soviet-era investment in technical universities, collapse of the post-1989 economy, and fiber infrastructure that arrived faster than wages rose. The town of Râmnicu Vâlcea earned the nickname Hackerville in the 2000s for its concentration of online fraud operations.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Romanian word for the craft is **șmecherie** — cleverness, working the system. A cultural register the prosecutions inherited."
+          }
+        ]
+      },
+      {
+        "heading": "THE EU FRAMEWORK",
+        "body": "Since 2004, the European Arrest Warrant replaced traditional extradition between EU members with a near-automatic surrender procedure. A judge in Bucharest receives a warrant from a judge in Portland's circuit and must execute it within 60 days absent narrow exceptions. No diplomatic channel, no political review."
+      },
+      {
+        "heading": "THE DUAL CRIMINALITY RULE",
+        "body": "Classical extradition treaties require that the alleged conduct be a crime in both countries. The EAW abolished this for 32 listed offenses including computer crime, fraud, and money laundering — the exact menu cyber prosecutors need."
+      },
+      {
+        "heading": "THE SAFE-HAVEN MAP",
+        "body": "Russia, Belarus, China, Iran, and North Korea have no extradition treaty with the US. A Russian indicted in Manhattan can vacation in Dubai but not Düsseldorf; the FBI's most-wanted cyber list is effectively a no-fly list for the Schengen zone.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "BY",
+              "CN",
+              "IR",
+              "KP",
+              "AE",
+              "TR"
+            ],
+            "label": "jurisdictions without US extradition",
+            "caption": "travel for indicted hackers is a map of these gaps"
+          }
+        ]
+      },
+      {
+        "heading": "THE ARREST-IN-TRANSIT TRICK",
+        "body": "US prosecutors routinely wait for non-extradition-treaty suspects to travel. Roman Seleznev was grabbed in the Maldives in 2014; Alexander Vinnik in Greece in 2017; Aleksei Burkov in Israel in 2015. The indictment is sealed for years; the arrest happens at a layover.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Roman Seleznev",
+                "role": "carding marketplace operator, 27 years",
+                "years": "arrested 2014",
+                "cc": "RU"
+              },
+              {
+                "name": "Alexander Vinnik",
+                "role": "BTC-e exchange, money laundering",
+                "years": "arrested 2017",
+                "cc": "RU"
+              },
+              {
+                "name": "Aleksei Burkov",
+                "role": "Cardplanet admin, 9 years",
+                "years": "arrested 2015",
+                "cc": "RU"
+              }
+            ],
+            "label": "caught at the border"
+          }
+        ]
+      },
+      {
+        "heading": "THE BUDAPEST CONVENTION",
+        "body": "The 2001 Council of Europe Convention on Cybercrime is the only binding international treaty on the topic. 70+ countries have ratified, including the US. Russia has refused to sign, citing sovereignty concerns over cross-border data access — the exact provision that makes the treaty useful.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which major country has refused to ratify the Budapest Convention on Cybercrime?",
+            "options": [
+              "Russia",
+              "Japan",
+              "Brazil",
+              "South Africa"
+            ],
+            "correct": 0,
+            "explanation": "Russia objects to Article 32, which permits cross-border access to stored data without consent of the host state — viewing it as a sovereignty violation."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T08:34:09.706Z",
+    "label": "Cybercrime Extradition",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-27-russia-kyrgyz-colonialism-textbook-history-pressure": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONQUEST",
+        "body": "The Russian Empire absorbed the Kyrgyz lands in the 1860s-70s as part of the broader conquest of Turkestan. This was settler colonialism in the classical sense: Slavic peasants were resettled onto Kyrgyz pastoral lands, displacing nomadic herders from their summer grazing routes.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1863",
+                "label": "Russian conquest of northern Kyrgyz tribes"
+              },
+              {
+                "year": "1876",
+                "label": "Kokand Khanate dissolved, full annexation"
+              },
+              {
+                "year": "1916",
+                "label": "Urkun revolt and massacre",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1924",
+                "label": "Soviet national delimitation creates Kyrgyz ASSR"
+              },
+              {
+                "year": "1936",
+                "label": "Kyrgyz SSR established"
+              },
+              {
+                "year": "1991",
+                "label": "Independence"
+              }
+            ],
+            "label": "Russian/Soviet rule over the Kyrgyz"
+          }
+        ]
+      },
+      {
+        "heading": "THE URKUN",
+        "body": "In 1916, tsarist Russia conscripted Central Asians for rear-line labor in WWI, breaking earlier exemptions. The Kyrgyz revolt was crushed; up to a third of the Kyrgyz population was killed or fled across the Tien Shan into Qing China. Kyrgyz call this the Urkun — the exodus.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **Urkun** of 1916 is to Kyrgyz historical memory what the *Holodomor* is to Ukrainian — a foundational atrocity whose naming itself is now contested."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE WORD MATTERS",
+        "body": "Moscow's official line is that Russia brought modernization — railways, literacy, industry — to a backward region, a civilizing mission narrative. Calling the period colonial reframes Russians as conquerors rather than developers, which undercuts the legitimacy of present-day Russian influence in the region."
+      },
+      {
+        "heading": "THE TEXTBOOK CHANNEL",
+        "body": "Joint historian commissions are a standard Russian tool across the post-Soviet space — used with Kazakhstan, Belarus, Armenia, and previously Ukraine. They produce shared narratives that constrain how each country's schools can describe the imperial past.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "KZ",
+              "KG",
+              "UZ",
+              "TJ",
+              "TM",
+              "BY",
+              "AM"
+            ],
+            "label": "states where Moscow has pushed joint history projects"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEVERAGE",
+        "body": "Roughly a million Kyrgyz citizens work in Russia; their remittances equal about a third of Kyrgyz GDP — one of the highest ratios in the world. Bishkek cannot easily refuse Moscow on symbolic matters when the household economy depends on Russian labor markets.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Remittances as share of GDP, 2024",
+            "peers": [
+              {
+                "value": 48,
+                "cc": "TJ"
+              },
+              {
+                "value": 31,
+                "cc": "KG"
+              },
+              {
+                "value": 25,
+                "cc": "NP"
+              },
+              {
+                "value": 27,
+                "cc": "HN"
+              },
+              {
+                "value": 28,
+                "cc": "LB"
+              },
+              {
+                "value": 17,
+                "cc": "UZ"
+              },
+              {
+                "value": 9,
+                "cc": "PH"
+              }
+            ],
+            "subjectCc": "KG",
+            "unit": "% of GDP"
+          }
+        ]
+      },
+      {
+        "heading": "THE QUIZ",
+        "body": "Central Asia's relationship to the Russian and Soviet states is layered — and the dates of each layer matter.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When was Kyrgyzstan first incorporated into the Russian Empire?",
+            "options": [
+              "1860s-70s, under tsarist conquest of Turkestan",
+              "1924, with Soviet national delimitation",
+              "1936, when the Kyrgyz SSR was established",
+              "1991, in reverse — they joined the CIS"
+            ],
+            "correct": 0,
+            "explanation": "Tsarist Russia conquered the Kyrgyz lands in the 1860s-70s; the Soviet-era dates are about administrative reorganization within an already-incorporated territory."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T08:34:43.535Z",
+    "label": "Russia & Central Asian Memory",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-28-iea-mideast-war-energy-security-largest-crisis-coal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE IEA EXISTS",
+        "body": "The International Energy Agency was created in 1974 in direct response to the OPEC oil embargo. Its founding mandate was coordinating strategic petroleum reserves among consumer nations — 90 days of net imports, releasable in concert during a supply shock.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The IEA was built by the **OECD** as a consumers' cartel to counter a producers' cartel. Its analytical authority came later; the **strategic reserve** coordination role came first."
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ NUMBER",
+        "body": "Roughly 21 million barrels per day — about one-fifth of global oil consumption — pass through a shipping channel 3 km wide on each side. There is no real alternative route for most of it; Saudi and Emirati bypass pipelines can reroute perhaps a third of Gulf exports, leaving the rest stranded.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "KW",
+              "BH",
+              "IQ"
+            ],
+            "label": "the Gulf chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.1667,
+                "lng": 56.35,
+                "label": "Fujairah (UAE bypass terminus)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY COAL COMES BACK FIRST",
+        "body": "In an oil or gas shock, coal is the swing fuel of last resort. It is stockpilable, transportable by rail rather than pipeline, and burns in plants that exist on every continent. Germany did this in 2022 after Nord Stream; Japan did it after Fukushima; the pattern is structural, not ideological."
+      },
+      {
+        "heading": "THE INVESTMENT GAP",
+        "body": "Oil and gas projects take 5–10 years from sanction to first production. When upstream capex collapses for three consecutive years, the supply gap shows up a decade later — long after the political crisis that caused the underinvestment has passed. Today's $500bn floor is shaping the 2032–2035 supply curve.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "2014 peak",
+                "value": "~$780bn",
+                "weight": 780,
+                "tone": "neutral"
+              },
+              {
+                "label": "2016 trough",
+                "value": "~$430bn",
+                "weight": 430,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "2019",
+                "value": "~$580bn",
+                "weight": 580,
+                "tone": "neutral"
+              },
+              {
+                "label": "2022",
+                "value": "~$520bn",
+                "weight": 520,
+                "tone": "neutral"
+              },
+              {
+                "label": "2026 est.",
+                "value": "<$500bn",
+                "weight": 490,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Annual upstream oil & gas investment ($bn, approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1973 TEMPLATE",
+        "body": "The first oil shock quadrupled crude prices in six months and ended the postwar economic order. It birthed not only the IEA but also fuel-economy standards, the US Strategic Petroleum Reserve, French nuclear buildout, and Japan's pivot to efficiency. Every energy crisis since has been measured against it.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1973",
+                "label": "OPEC embargo; oil quadruples",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1974",
+                "label": "IEA founded"
+              },
+              {
+                "year": "1979",
+                "label": "Iranian Revolution; second shock"
+              },
+              {
+                "year": "1986",
+                "label": "Saudi price war; oil collapses"
+              },
+              {
+                "year": "2008",
+                "label": "Oil hits $147/bbl"
+              },
+              {
+                "year": "2022",
+                "label": "Nord Stream sabotage; Europe gas crisis"
+              },
+              {
+                "year": "2026",
+                "label": "Hormuz disruption; IEA declares worst-ever"
+              }
+            ],
+            "label": "the energy-shock arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'ENERGY SECURITY' MEANS",
+        "body": "Energy security is the availability of energy at affordable prices, with tolerable risk of disruption. It rests on four pillars: diversity of supply, reliability of infrastructure, affordability, and environmental acceptability. A crisis is when two or more pillars fail at once.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which event prompted the founding of the International Energy Agency?",
+            "options": [
+              "The 1956 Suez Crisis",
+              "The 1973 OPEC oil embargo",
+              "The 1979 Iranian Revolution",
+              "The 1990 Gulf War"
+            ],
+            "correct": 1,
+            "explanation": "The IEA was established in 1974 by OECD members to coordinate responses to the 1973-74 Arab oil embargo, which quadrupled crude prices."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T08:35:14.497Z",
+    "label": "Energy Security & the IEA",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-28-india-us-trade-talks-resume-interim-deal-tariffs-security": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY INTERIM DEALS EXIST",
+        "body": "Full trade agreements take years — the US-Korea FTA took four years to negotiate and another four to ratify. Interim deals lock in tariff terms while the legal text catches up, giving exporters pricing certainty before lawyers finish drafting.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: a **full FTA** requires congressional approval under Trade Promotion Authority, but an **executive tariff arrangement** can be set unilaterally by the President under Section 232 or IEEPA — no Senate vote required."
+          }
+        ]
+      },
+      {
+        "heading": "INDIA'S TARIFF WALL",
+        "body": "India has historically been one of the most protectionist large economies. Its simple average applied tariff sits near 17%, against the US at roughly 3.4% and the EU at 5%. The asymmetry is why every US administration since Clinton has pushed for reciprocity — and why India has resisted.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Simple average applied MFN tariff",
+            "peers": [
+              {
+                "value": 17,
+                "cc": "IN"
+              },
+              {
+                "value": 13.4,
+                "cc": "BR"
+              },
+              {
+                "value": 7.5,
+                "cc": "CN"
+              },
+              {
+                "value": 6.8,
+                "cc": "MX"
+              },
+              {
+                "value": 5.1,
+                "cc": "EU"
+              },
+              {
+                "value": 4.2,
+                "cc": "JP"
+              },
+              {
+                "value": 3.4,
+                "cc": "US"
+              }
+            ],
+            "subjectCc": "IN",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'ECONOMIC SECURITY ALIGNMENT' MEANS",
+        "body": "It is the post-2022 vocabulary for tying trade access to geopolitical posture — export controls on China-bound tech, restrictions on Russian oil intermediation, semiconductor supply-chain commitments. The text reads as commerce; the substance is alignment.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The framework traces to the 2022 *CHIPS and Science Act* and the *Indo-Pacific Economic Framework* — both designed to make market access conditional on **friend-shoring** rather than open trade on WTO most-favored-nation terms."
+          }
+        ]
+      },
+      {
+        "heading": "THE GSP PRECEDENT",
+        "body": "India was the largest beneficiary of the US Generalized System of Preferences — duty-free access on ~$6bn of exports — until Trump revoked it in 2019 over dairy and medical-device market access. The revocation took 11 months of failed talks; restoration has never happened.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2019-06",
+                "label": "GSP benefits terminated",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020",
+                "label": "Mini-deal collapses pre-election"
+              },
+              {
+                "year": "2023",
+                "label": "Six WTO disputes withdrawn"
+              },
+              {
+                "year": "2025-04",
+                "label": "Trump 'reciprocal tariff' framework"
+              },
+              {
+                "year": "2026-06",
+                "label": "Interim 18% pact talks"
+              }
+            ],
+            "label": "India-US trade frictions"
+          }
+        ]
+      },
+      {
+        "heading": "WHO TRADES WHAT",
+        "body": "India runs a goods surplus with the US of roughly $45bn — pharma generics, gems, textiles, and software services flow west; aircraft, LNG, almonds, and crude flow east. The composition matters: pharma is the politically protected category on both sides.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Pharmaceuticals",
+                "value": "~$9bn",
+                "weight": 9
+              },
+              {
+                "label": "Gems & jewelry",
+                "value": "~$8bn",
+                "weight": 8
+              },
+              {
+                "label": "Petroleum products",
+                "value": "~$6bn",
+                "weight": 6
+              },
+              {
+                "label": "Textiles & apparel",
+                "value": "~$5bn",
+                "weight": 5
+              },
+              {
+                "label": "Machinery",
+                "value": "~$4bn",
+                "weight": 4
+              }
+            ],
+            "label": "India's top exports to US, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE JULY 24 DEADLINE",
+        "body": "The flat 10% baseline tariff applies to all US trading partners while bilateral deals are negotiated. When it expires, country-specific 'reciprocal' rates snap back — for India that rate was set at 26% in April 2025. The 18% interim figure is the negotiated discount.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What happens to US tariffs on Indian goods if no deal is reached by July 24?",
+            "options": [
+              "They fall to zero under WTO rules",
+              "They stay at the flat 10% baseline",
+              "They snap to the 26% reciprocal rate set in April 2025",
+              "They rise to match India's average tariff"
+            ],
+            "correct": 2,
+            "explanation": "The 10% flat tariff is a pause on the country-specific reciprocal rates announced in April 2025; expiry restores India's assigned 26% rate."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T08:35:47.640Z",
+    "label": "India-US Trade & Tariff Mechanics",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-28-iran-strikes-us-airbase-kuwait-bandar-abbas-retaliation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY KUWAIT",
+        "body": "Kuwait hosts Ali Al Salem Air Base and Camp Arifjan — the logistics spine for US Central Command since 1991. Striking Kuwait is not striking a peripheral ally; it is striking the platform that makes American Gulf power projection possible.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "KW",
+              "IQ",
+              "SA",
+              "BH",
+              "QA",
+              "AE",
+              "OM"
+            ],
+            "label": "the US footprint Iran can reach",
+            "markers": [
+              {
+                "lat": 29.3469,
+                "lng": 47.5208,
+                "label": "Ali Al Salem Air Base"
+              },
+              {
+                "lat": 29.0667,
+                "lng": 48.0833,
+                "label": "Camp Arifjan"
+              },
+              {
+                "lat": 27.1865,
+                "lng": 56.2808,
+                "label": "Bandar Abbas"
+              },
+              {
+                "lat": 26.2235,
+                "lng": 50.5876,
+                "label": "5th Fleet HQ, Bahrain"
+              },
+              {
+                "lat": 25.1173,
+                "lng": 51.3247,
+                "label": "Al Udeid, Qatar"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. The US responded with Operation Earnest Will — reflagging Kuwaiti tankers under the American flag and escorting them with warships. It was the largest naval convoy operation since WWII, and it pulled Washington directly into the war.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "We will fight the United States until the complete elimination of its influence in the region.",
+            "speaker": "Ayatollah Khomeini, on the Tanker War",
+            "year": "1987"
+          }
+        ]
+      },
+      {
+        "heading": "THE IRGC, NOT THE ARMY",
+        "body": "Iran has two parallel militaries. The Artesh is the conventional army inherited from the Shah; the **IRGC** (Pasdaran) is the post-1979 revolutionary force that answers directly to the Supreme Leader. The IRGC controls the ballistic missile program, the drone fleet, and the Quds Force proxies — every tool Iran uses to project outside its borders.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The IRGC is not a service branch — it is a parallel state with its own navy, air arm, intelligence wing, and an industrial empire (*Khatam al-Anbiya*) estimated at a double-digit share of Iranian GDP."
+          }
+        ]
+      },
+      {
+        "heading": "BANDAR ABBAS",
+        "body": "Bandar Abbas is the headquarters of the IRGC Navy and the principal port for the Iranian regular navy. It sits at the mouth of the Strait of Hormuz, hosts Iran's submarine pens, and is the launch point for the small-boat swarms Iran has practiced against US warships for two decades. Striking it is striking the operational hub of Iran's Gulf strategy."
+      },
+      {
+        "heading": "THE CHOKEPOINT NEXT DOOR",
+        "body": "Roughly 21 million barrels per day — about a fifth of global oil consumption — pass through the Strait of Hormuz, in shipping lanes just 3 km wide on the Iranian side. Every escalation step is priced through that channel: insurance war-risk premiums spike before any mine is laid.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Crude oil passing through global chokepoints",
+            "peers": [
+              {
+                "value": 21,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "value": 17,
+                "label": "Strait of Malacca"
+              },
+              {
+                "value": 9,
+                "label": "Suez/SUMED"
+              },
+              {
+                "value": 6,
+                "label": "Bab el-Mandeb"
+              },
+              {
+                "value": 3,
+                "label": "Turkish Straits"
+              },
+              {
+                "value": 1,
+                "label": "Panama Canal"
+              }
+            ],
+            "subjectLabel": "Strait of Hormuz",
+            "unit": "mn bbl/day"
+          }
+        ]
+      },
+      {
+        "heading": "KUWAIT'S DILEMMA",
+        "body": "Kuwait was invaded by Iraq in 1990 and liberated by a US-led coalition staging from its soil. The 1991 defense agreement that followed made Kuwait one of the most US-dependent states in the Gulf — but Kuwait also shares the Dorra/Arash gas field with Iran and has no strategic depth. It cannot afford either patron's exit.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Kuwait's freshwater comes from desalination?",
+            "options": [
+              "About 30%",
+              "About 60%",
+              "Over 90%",
+              "Nearly all groundwater"
+            ],
+            "correct": 2,
+            "explanation": "Kuwait has no rivers and almost no aquifers — desalination plants on the Gulf coast supply over 90% of drinking water, and they are within Iranian missile range."
+          }
+        ]
+      },
+      {
+        "heading": "THE ESCALATION LADDER",
+        "body": "Iran's doctrine is calibrated retaliation: respond visibly enough to restore deterrence, but not so hard that it triggers a regime-ending US response. The 2020 Ain al-Asad strike after the Soleimani killing was the template — telegraphed, sized to wound facilities rather than personnel, framed as 'concluded' the next morning.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Embassy hostage crisis"
+              },
+              {
+                "year": "1988-04",
+                "label": "Operation Praying Mantis"
+              },
+              {
+                "year": "1988-07",
+                "label": "USS Vincennes downs IR655"
+              },
+              {
+                "year": "2020-01",
+                "label": "Soleimani killed; Ain al-Asad strike",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024-04",
+                "label": "Iran strikes Israel directly"
+              },
+              {
+                "year": "2026-05",
+                "label": "Bandar Abbas → Kuwait base"
+              }
+            ],
+            "label": "US–Iran direct exchanges"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T08:36:28.135Z",
+    "label": "Iran, Kuwait & the Gulf Escalation Ladder",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-28-kenya-gilgil-girls-boarding-school-fire-16-dead": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PATTERN",
+        "body": "Kenya has had a recurring epidemic of fatal boarding school fires for over three decades. The 2001 Kyanguli Secondary fire killed 67 boys; the 1998 Bombolulu Girls fire killed 26. Investigations repeatedly find the same proximate cause: locked dormitory doors.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1998",
+                "label": "Bombolulu Girls — 26 dead"
+              },
+              {
+                "year": "1999",
+                "label": "Nyeri High — 4 dead"
+              },
+              {
+                "year": "2001",
+                "label": "Kyanguli Secondary — 67 dead",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017",
+                "label": "Moi Girls Nairobi — 10 dead"
+              },
+              {
+                "year": "2024",
+                "label": "Hillside Endarasha — 21 dead"
+              },
+              {
+                "year": "2026",
+                "label": "Utumishi Girls — 16 dead"
+              }
+            ],
+            "label": "Kenya's deadliest school dorm fires"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DOORS LOCK",
+        "body": "Kenyan boarding schools — a colonial-era inheritance still housing roughly a million students — lock dormitories at night to prevent unauthorized exits, theft between students, and intrusion. The discipline logic is older than the fire codes; the lock survives every reform cycle.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "After Kyanguli, the Ministry of Education issued the **2008 Safety Standards Manual** mandating unlocked emergency exits and fire drills every term. Enforcement is delegated to school heads — the same authority that wants the doors locked."
+          }
+        ]
+      },
+      {
+        "heading": "THE ARSON FACTOR",
+        "body": "A 2018 government taskforce found that the majority of Kenyan school fires are set by students themselves — typically before national exams or after disciplinary crackdowns. The pattern is so established that the Ministry runs a dedicated arson-prevention curriculum. This reframes \"fire safety\" from accident-prevention to a question about adolescent agency inside coercive institutions."
+      },
+      {
+        "heading": "THE FLASHOVER WINDOW",
+        "body": "A dormitory fire reaches flashover — the point at which every combustible surface ignites simultaneously — in roughly 3 to 5 minutes once curtains and bedding catch. A two-hour unreported burn means the structure was fully involved long before anyone could intervene. Locked doors only matter for the first few minutes; after that, the doors are irrelevant.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How long does a typical bedroom fire take to reach flashover — when every surface in the room ignites at once?",
+            "options": [
+              "30 seconds",
+              "3–5 minutes",
+              "20 minutes",
+              "About an hour"
+            ],
+            "correct": 1,
+            "explanation": "Modern synthetic bedding and foam mattresses can drive a room to flashover in 3–5 minutes, far faster than 20th-century furnishings allowed."
+          }
+        ]
+      },
+      {
+        "heading": "THE REGULATORY GAP",
+        "body": "Kenya's school safety rules require smoke detectors, fire extinguishers, and two exits per dormitory. Compliance audits after the 2017 Moi Girls fire found that most boarding schools met none of the three. The rules exist; the inspectorate that would enforce them is understaffed by an order of magnitude relative to the school population."
+      }
+    ],
+    "generatedAt": "2026-05-28T08:36:55.942Z",
+    "label": "Kenya's Boarding School Fires",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-28-nature-women-healthtech-wearables-male-algorithm-bias": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BASELINE PROBLEM",
+        "body": "Most physiological reference ranges in modern medicine were established in studies dominated by male subjects. Until 1993, the NIH did not require women be included in clinical trials at all — the assumption was that female hormonal cycles introduced 'noise' that complicated cleaner male data.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The FDA only lifted its **1977 ban** on women of childbearing potential in early-phase drug trials in *1993* — meaning the pharmacology of most pre-2000 drugs was characterized almost entirely on male bodies."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE CYCLE ACTUALLY DOES",
+        "body": "Resting heart rate rises 2-5 bpm in the luteal phase. Core body temperature climbs roughly 0.3-0.5°C after ovulation. Heart rate variability drops, deep sleep shortens, and respiratory rate increases. These are not artifacts — they are predictable physiological signals tracking ovarian hormones."
+      },
+      {
+        "heading": "HOW ALGORITHMS LEARN 'NORMAL'",
+        "body": "Anomaly detection models flag deviations from a learned baseline. When the training data treats cyclical variation as unwanted variance, the model learns to smooth it away. A signal that recurs every 28 days gets filtered out as noise rather than recognized as the menstrual cycle itself.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how much does a woman's resting heart rate typically rise in the luteal phase (post-ovulation)?",
+            "options": [
+              "No measurable change",
+              "2-5 bpm higher",
+              "15-20 bpm higher",
+              "Heart rate drops in the luteal phase"
+            ],
+            "correct": 1,
+            "explanation": "Resting heart rate rises 2-5 bpm after ovulation, driven by progesterone's thermogenic and metabolic effects — a signal wearables routinely flag as anomalous."
+          }
+        ]
+      },
+      {
+        "heading": "THE REGULATORY GAP",
+        "body": "Consumer wearables fall under FDA's 'general wellness' category, which exempts them from the clinical validation required of medical devices. There is no mandate to test accuracy across sex, race, or skin tone. The same gap let pulse oximeters underread hypoxia in dark-skinned patients for decades before COVID forced the issue.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "General wellness",
+                "value": "none required",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Class II medical",
+                "value": "510(k) clearance",
+                "tone": "neutral"
+              },
+              {
+                "label": "Class III medical",
+                "value": "PMA + trials",
+                "tone": "favorable"
+              }
+            ],
+            "label": "validation requirements by device class"
+          }
+        ]
+      },
+      {
+        "heading": "THE MARKET PARADOX",
+        "body": "Women buy wearables at higher rates than men and are the primary users of cycle-tracking apps. Yet the underlying sensor algorithms — heart rate variability, sleep staging, stress scores — were trained predominantly on male physiology. The most engaged users get the least accurate readings."
+      },
+      {
+        "heading": "WHY IT PERSISTS",
+        "body": "Sex-stratified validation roughly doubles trial cost and timeline. Without a regulatory floor forcing the spend, the market equilibrium is the cheaper single-cohort model. The 1993 NIH revitalization act fixed this for federally-funded research; consumer tech operates outside that perimeter entirely."
+      }
+    ],
+    "generatedAt": "2026-05-28T08:37:22.736Z",
+    "label": "Sex Bias in Medical Algorithms",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-28-wmo-record-temperatures-2026-2030-new-baseline": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 1.5°C ACTUALLY MEANS",
+        "body": "The Paris target is a 20-year average, not a single year. A single year above 1.5°C does not breach the agreement; a sustained two-decade mean does. The WMO forecast matters because it signals the running average is closing on the threshold.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The baseline is *pre-industrial* — averaged **1850–1900**, before fossil combustion began reshaping the atmosphere. Every anomaly figure you read is measured against that window."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ARCTIC AMPLIFICATION",
+        "body": "The Arctic warms 3-4× faster than the global mean because melting sea ice exposes dark ocean that absorbs sunlight instead of reflecting it. This albedo feedback compounds: less ice means more absorption means less ice. The 2.8°C anomaly is the feedback running.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "CA",
+              "US",
+              "NO",
+              "GL",
+              "IS",
+              "FI",
+              "SE"
+            ],
+            "label": "the Arctic amplification zone",
+            "caption": "land masses inside the 60°N parallel warm fastest"
+          }
+        ]
+      },
+      {
+        "heading": "EL NIÑO AS ACCELERANT",
+        "body": "El Niño releases heat the Pacific has been storing in its deep layers, briefly boosting global surface temperature by 0.1-0.2°C. It does not cause warming — it surfaces warming already banked. The hottest calendar years align with El Niño phases stacked on the rising trend."
+      },
+      {
+        "heading": "WHY EVERY RECORD IS RECENT",
+        "body": "The ten warmest years in the instrumental record (since 1850) have all occurred since 2014. The probability of this happening by chance under a stable climate is functionally zero — roughly 1 in 2.7 million. The clustering is the signal.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In what year did the instrumental temperature record begin?",
+            "options": [
+              "1750, with the Industrial Revolution",
+              "1850, when reliable thermometers became widespread",
+              "1950, with the IGY",
+              "1979, with satellite observations"
+            ],
+            "correct": 1,
+            "explanation": "Systematic land and sea temperature measurement began around 1850. Satellites added independent verification in 1979 — and agree closely with the surface record."
+          }
+        ]
+      },
+      {
+        "heading": "THE WMO'S ROLE",
+        "body": "The World Meteorological Organization is a UN specialized agency founded in 1950 that coordinates the national weather services of 193 member states. Its forecasts aggregate model runs from the UK Met Office, NOAA, ECMWF, and others — the consensus signal across institutions that compete on accuracy."
+      },
+      {
+        "heading": "WHAT 1.5°C BUYS",
+        "body": "The IPCC's special report found that 1.5°C versus 2.0°C is the difference between losing 70-90% of coral reefs and losing essentially all of them; between ice-free Arctic summers once per century and once per decade; between roughly 6 million and 16 million people exposed to sea-level rise.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Coral reef loss",
+                "value": "70-90% vs >99%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Ice-free Arctic summer",
+                "value": "1/century vs 1/decade",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Sea-level rise exposure",
+                "value": "~6M vs ~16M people",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Species losing half their range",
+                "value": "6% vs 18% (plants)",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "1.5°C vs 2.0°C of warming"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T08:37:49.252Z",
+    "label": "The 1.5°C Threshold",
+    "category": "science",
+    "articleCount": 1
   }
 }
