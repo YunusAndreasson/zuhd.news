@@ -1,5 +1,7 @@
 {
   "version": 1,
+  "noNewExperimentsUntil": "2026-05-31",
+  "noNewExperimentsReason": "Commit 848de07e (2026-05-28) flipped selector+tune to opus-4-8 and made editor effort medium→low permanent. Baseline the new model lineup for ~3 days before introducing a tunable variable, so the next experiment's measurement isn't confounded by the model change. Drop this field once 2026-05-31 passes; do not auto-extend.",
   "activeExperiments": [],
   "activeExperiment": null,
   "history": [

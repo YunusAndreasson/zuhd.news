@@ -1,28 +1,27 @@
 {
-  "date": "2026-05-27",
+  "date": "2026-05-28",
   "metrics": {
-    "articles": { "value": 32, "detail": "5 cycles scheduled, only 3 completed; 32 published" },
-    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 11, "economy": 7, "science": 7, "tech": 7 },
-    "multiSource": { "value": 10, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 12, "AS": 10, "EU": 4, "AF": 3, "ME": 2, "GL": 1 } },
-    "sciTech": { "ratio": 44, "target": 25, "met": true },
-    "topSourceShare": { "source": "BBC", "pct": 13, "target": 20, "met": true },
-    "uniqueSources": 39,
+    "articles": { "value": 59, "detail": "6 cycles, avg 10/cycle (12+12+13+13 across logged cycles)" },
+    "freshness": { "median": 1.3, "p90": 1.5, "max": 1.5, "target": 1.0, "met": false },
+    "categories": { "politics": 19, "economy": 15, "science": 14, "tech": 11 },
+    "multiSource": { "value": 13, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 24, "ME": 12, "EU": 12, "AF": 6, "AS": 4, "OC": 1 } },
+    "sciTech": { "ratio": 42, "target": 25, "met": true },
+    "topSourceShare": { "source": "Daily Maverick", "pct": 10, "target": 20, "met": true },
+    "uniqueSources": 52,
     "duplicates": 0,
-    "avgCycleDuration": 1295
+    "avgCycleDuration": 2040
   },
-  "experiment": "Skipped — all editorial metrics within targets and there is no active experiment to evaluate. The one queued experiment (numerical-density) targets write-prompt.md, which is outside the daily-tuning parameter scope.",
-  "weakestArea": "No editorial metric missed target; the weakest point is operational, not tunable. Only 3 of 5 scheduled cycles completed today and avgCycleDuration rose to 1295s (vs ~1033s typical), with the editor stage averaging 754s — back near pre-cache levels. Throughput fell to 32 articles (51 yesterday). No tunable parameter addresses cycle completion or stage wall-time.",
+  "experiment": "Skipped. No active experiments. New experiments paused until 2026-05-31 to let the opus-4-8 selector/tune lineup (committed today, 848de07e) baseline before a new variable is introduced.",
+  "weakestArea": "Freshness is the only off-target metric: median 1.3 days vs the ≤1.0 target (p90 1.5, max 1.5). The reading is noisy — only 7 articles carried measurable lag and yesterday's median was 0 — so it's a soft miss rather than a clear regression. The standalone cap (currently 22, the proven freshness lever, kept twice) is the natural fix, but acting today would confound with the same-day selector model flip; deferred until after the baselining gate.",
   "watching": [
-    "Editor stage averaged 754s today, back near pre-cache levels after the May-17 --exclude-dynamic-system-prompt-sections change had cut it to ~300s — confirm prompt-cache reuse is still firing in the cycle logs.",
-    "Two of five cycles did not complete today; if the pattern persists it will depress daily throughput regardless of per-cycle quality.",
-    "Multi-source rate remains structurally capped near ~22% by feed supply (~9 multi-source stories/cycle) per the reverted May-09 floor experiment — future gains require upstream feed work, not selector floors."
+    "Freshness median across the next 2-3 days under the opus-4-8 selector — if it holds above 1.0 once the model baselines, trim the standalone cap 22->20.",
+    "Editor stage stability after the permanent medium->low effort flip and opus-4-8 selector/tune change landed today (848de07e).",
+    "OC region coverage at 1 article — Oceania remains the thinnest region; not a target miss but a recurring gap."
   ],
   "coverageGaps": [
-    "Middle East light today at 2 articles and Africa at 3, well below the Americas (12) and Asia (10).",
-    "Oceania had zero coverage today (no OC region articles).",
-    "Science sourcing leaned on BBC and Hindustan Times alongside Nature/Phys.org/STAT — thinner specialist-outlet spread than usual."
+    "Asia (AS) at 4 articles is the second-thinnest region today despite being a high-news-density area; Americas (AM) dominates at 24/59 (41%).",
+    "Oceania represented by a single article."
   ],
-  "context": "Partial-day data: only 3 of 5 cycles completed, so daily totals are lower than a full day but per-cycle quality is healthy. No active experiments are running and there is no noNewExperimentsUntil gate. The queued numerical-density experiment is unblocked (title-echo evaluated 2026-05-08) but edits write-prompt.md, which is out of scope for daily tuning — its promotion is an operator/reflect-stage decision, not a parameter tune."
+  "context": "All diversity, multi-source, sci-tech, source-concentration, and duplicate targets are met comfortably (sci+tech 42%, multi-source 13, top source 10%, 0 duplicates). The pipeline is healthy. The single change worth noting is today's commit 848de07e flipping selector+tune to opus-4-8 and making editor effort low permanent — a model lineup change that warrants a short no-new-experiments window so the next experiment's signal isn't confounded."
 }
