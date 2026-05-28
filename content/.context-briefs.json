@@ -252892,5 +252892,1731 @@
     "label": "The Currency Squeeze on Tech Exporters",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-05-28-carnival-data-breach-6-million": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SINGLE ACCOUNT PROBLEM",
+        "body": "Most large breaches don't start with code exploits — they start with one stolen login. Phishing, infostealer malware, or credentials bought on dark-web markets give an attacker the same access a legitimate employee has, which is why multi-factor authentication and least-privilege access have become the baseline defense.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *initial access* — and a thriving market of **initial access brokers** sells working corporate logins for a few hundred to a few thousand dollars per company."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CRUISE LINES ARE A TARGET",
+        "body": "Travel companies sit on an unusually rich data pile: passport numbers, dates of birth, home addresses, payment cards, and often health disclosures from boarding forms. Unlike a retailer that holds only a card number, a cruise operator holds a full identity kit — enough to open accounts, file tax returns, or apply for credit in someone else's name.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Cruise/airline",
+                "value": "full ID kit",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Hospital",
+                "value": "ID + health",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Bank",
+                "value": "ID + finance",
+                "tone": "neutral"
+              },
+              {
+                "label": "Retailer",
+                "value": "card + email",
+                "tone": "favorable"
+              },
+              {
+                "label": "Streaming",
+                "value": "email + card",
+                "tone": "favorable"
+              }
+            ],
+            "label": "what different industries hold on you"
+          }
+        ]
+      },
+      {
+        "heading": "DWELL TIME",
+        "body": "The gap between intrusion and detection is called dwell time. Industry medians have fallen from over 200 days a decade ago to roughly 10 days today, driven by endpoint detection tools and mandatory logging — but a month-long dwell, as in Carnival's case, remains common when the attacker uses a valid employee account that looks like normal activity."
+      },
+      {
+        "heading": "THE DISCLOSURE CLOCK",
+        "body": "There is no single US federal breach-notification law. Instead, all 50 states have their own statutes, most requiring notice within 30–60 days of discovery. The SEC added a four-business-day rule in 2023 for material breaches at public companies — which is why disclosures now often arrive in two waves: a terse SEC filing first, customer letters weeks later.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many US federal laws set a single deadline for notifying breach victims?",
+            "options": [
+              "One — HIPAA covers everything",
+              "One — the SEC's 4-day rule",
+              "Zero — it's a patchwork of state laws",
+              "Three — HIPAA, GLBA, and the SEC rule combined"
+            ],
+            "correct": 2,
+            "explanation": "There is no general federal breach-notification statute. HIPAA covers health data, GLBA covers finance, and the SEC rule covers public-company materiality — but consumer notification is governed by 50 state laws."
+          }
+        ]
+      },
+      {
+        "heading": "WHY OLD DATA STILL HURTS",
+        "body": "Passports are valid for 10 years, home addresses change slowly, and dates of birth never change at all. A breach that exposes records from a cruise taken in 2019 is just as useful to a fraudster in 2026 — which is why data-minimization rules (delete what you no longer need) have become a regulatory focus in the EU's GDPR and California's CPRA."
+      }
+    ],
+    "generatedAt": "2026-05-28T17:40:17.889Z",
+    "label": "Credential Theft & Breach Disclosure",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-28-cia-officer-40-million-gold-bars-fbi": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY GOLD",
+        "body": "Intelligence services have used physical gold for covert operations since WWII because it carries no serial chain, clears no bank, and holds value across any regime. A bar in a safe in Kabul spends the same as a bar in Caracas.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The CIA's predecessor, the **OSS**, parachuted gold sovereigns to partisans in occupied Europe — the same logic that makes gold useful to a station chief today made it useful to *Wild Bill* Donovan in 1944."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLACK BUDGET",
+        "body": "The US intelligence community's classified budget exceeds $100bn annually, split across 18 agencies. The CIA's share — roughly a quarter — is appropriated in lump sums whose line items are visible only to a small group of cleared legislators on the House and Senate intelligence committees.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4584.13,
+              4551.29,
+              4619.17,
+              4603.98,
+              4597.48,
+              4606.7,
+              4515.48,
+              4580.98,
+              4684.25,
+              4695.85,
+              4706.72,
+              4711.53,
+              4692.03,
+              4753.28,
+              4711.77,
+              4685.25,
+              4650.57,
+              4540.65,
+              4535.45,
+              4535.69,
+              4575.14,
+              4491.98,
+              4536.19,
+              4525.24,
+              4494.01,
+              4522,
+              4563.72,
+              4547.87,
+              4516.99,
+              4441.32,
+              4491.26
+            ],
+            "periods": [
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 28"
+            ],
+            "label": "Gold (PAX Gold)",
+            "unit": "$/oz",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE INSPECTOR GENERAL",
+        "body": "Every US intelligence agency has a statutory Inspector General created after the Church Committee revelations of the 1970s. The CIA IG, established in 1989, reports to both the Director and Congress — a dual-reporting structure designed so that the agency cannot bury its own findings.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1947",
+                "label": "CIA established by National Security Act"
+              },
+              {
+                "year": "1975",
+                "label": "Church Committee hearings",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1980",
+                "label": "Intelligence Oversight Act — Gang of Eight briefings"
+              },
+              {
+                "year": "1989",
+                "label": "Statutory CIA Inspector General created"
+              },
+              {
+                "year": "2004",
+                "label": "DNI created, IC restructured post-9/11"
+              }
+            ],
+            "label": "how CIA oversight was built"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE FBI",
+        "body": "The CIA is barred by its 1947 charter from domestic law enforcement. Any criminal case against a CIA officer for acts on US soil routes to the FBI — the same jurisdictional line that forced the Aldrich Ames and Robert Hanssen counterintelligence cases into Bureau hands.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Aldrich Ames",
+                "role": "CIA counterintelligence officer",
+                "years": "arrested 1994",
+                "cc": "US"
+              },
+              {
+                "name": "Harold Nicholson",
+                "role": "CIA station chief",
+                "years": "arrested 1996",
+                "cc": "US"
+              },
+              {
+                "name": "Kendall Myers",
+                "role": "State/CIA analyst, Cuba spy",
+                "years": "arrested 2009",
+                "cc": "US"
+              },
+              {
+                "name": "Jerry Chun Shing Lee",
+                "role": "CIA case officer",
+                "years": "arrested 2018",
+                "cc": "US"
+              }
+            ],
+            "label": "CIA officers prosecuted by the FBI"
+          }
+        ]
+      },
+      {
+        "heading": "THE EASTERN DISTRICT",
+        "body": "Alexandria, Virginia hosts the Eastern District federal court — the so-called 'rocket docket' — which handles nearly every national-security prosecution because CIA headquarters sits in nearby Langley. The court's judges hold the clearances needed for classified evidence procedures under the Classified Information Procedures Act."
+      },
+      {
+        "heading": "QUICK CHECK",
+        "body": "Active reading: which structural fact makes this a Bureau case rather than an internal Agency matter?",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the FBI — not the CIA — investigate a CIA officer accused of stealing from the agency?",
+            "options": [
+              "The FBI has more forensic accountants",
+              "The CIA's 1947 charter bars it from domestic law enforcement",
+              "Congress requires inter-agency investigations",
+              "The gold was found outside Virginia"
+            ],
+            "correct": 1,
+            "explanation": "The National Security Act of 1947 confined the CIA to foreign intelligence; domestic criminal jurisdiction over its officers belongs to the FBI."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · PAXG (gold-backed) · as of 2026-05-28"
+    ],
+    "generatedAt": "2026-05-28T17:40:43.898Z",
+    "label": "CIA Oversight & Gold as a Covert Asset",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-28-dadu-pakistan-51-5c-temperature-record": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SURVIVAL CEILING",
+        "body": "Human physiology has a hard upper bound: a wet-bulb temperature of 35C. Above it, sweat no longer evaporates, core temperature rises, and a healthy adult in shade dies within hours. Dry-bulb 51.5C with even modest humidity puts Sindh's canal belt within striking distance of that ceiling.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The metric that matters is **wet-bulb**, not the thermometer on the wall. A dry 50C in Riyadh is survivable; a humid 45C in Jacobabad is not."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DADU AND JACOBABAD",
+        "body": "The Indus plain traps heat against the Sulaiman range while the canal irrigation system pumps moisture into the air. Dry interior Balochistan can hit higher dry-bulb readings, but Sindh's irrigated districts are where heat and humidity converge into the deadliest combination on Earth.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IN",
+              "AF",
+              "IR"
+            ],
+            "label": "the Indus heat corridor",
+            "markers": [
+              {
+                "lat": 26.7319,
+                "lng": 67.7757,
+                "label": "Dadu"
+              },
+              {
+                "lat": 28.2769,
+                "lng": 68.4514,
+                "label": "Jacobabad"
+              },
+              {
+                "lat": 31.4504,
+                "lng": 73.135,
+                "label": "Faisalabad"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE GRID DEATH SPIRAL",
+        "body": "At 51C, air-conditioning load surges precisely when transmission losses peak — copper resistance rises with temperature, transformers derate, and thermal generation efficiency falls. Pakistan's grid responds with load-shedding, which cuts the water pumps that keep cities hydrated. Heat kills via the second-order failure, not the first.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377,
+              278.485848,
+              278.494701,
+              278.137253,
+              277.408487,
+              278.412506,
+              278.512908,
+              278.575
+            ],
+            "periods": [
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "EL NIÑO AND THE MONSOON",
+        "body": "El Niño years weaken the South Asian monsoon by shifting the Walker circulation eastward over the Pacific. Sindh and southern Punjab — already the hottest part of the subcontinent — lose the cooling cloud cover and rainfall that normally caps the May-June heat spike. The 2022 floods were a La Niña signature; this season's drought is its mirror."
+      },
+      {
+        "heading": "THE HISTORICAL CEILING",
+        "body": "Only a handful of places on Earth have ever recorded above 51C in modern instruments: Death Valley, the Lut Desert in Iran, Mitribah in Kuwait, and a cluster in the Indus Plain. Jacobabad crossed the wet-bulb survival threshold briefly in 2015 — one of only two stations globally, alongside Ras al Khaimah, to have done so.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What wet-bulb temperature marks the theoretical limit of human survival in shade?",
+            "options": [
+              "28C",
+              "31C",
+              "35C",
+              "40C"
+            ],
+            "correct": 2,
+            "explanation": "Above 35C wet-bulb, sweat cannot evaporate fast enough to shed metabolic heat, and core temperature climbs until organ failure — even for a healthy adult resting in shade."
+          }
+        ]
+      },
+      {
+        "heading": "THE QURANIC FRAME",
+        "body": "The Quran repeatedly invokes heat as a sign and a trial — the fire of Jahannam, the shade of the righteous, the wells that sustained the early community in the Hijaz. For the millions of laborers in Sindh's fields and brick kilns, the theological language of endurance under heat is not metaphor; it is daily physiology."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-28"
+    ],
+    "generatedAt": "2026-05-28T17:41:10.073Z",
+    "label": "Sindh & the Wet-Bulb Limit",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-28-defi-tvl-20-billion-drop-stress-test": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT TVL ACTUALLY MEASURES",
+        "body": "Total value locked counts the dollar value of crypto assets deposited as collateral inside smart contracts. It is a balance-sheet snapshot, not a user count or a revenue figure — a protocol with ten whales can show higher TVL than one with a million retail users.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "TVL conflates two things: **price** (the dollar value of the underlying tokens) and **flow** (whether users are adding or withdrawing). A 20% ETH drawdown can shrink TVL without a single withdrawal."
+          }
+        ]
+      },
+      {
+        "heading": "PERMISSIONED VS PERMISSIONLESS",
+        "body": "Open DeFi protocols let anyone deposit or borrow with a wallet address — no KYC, no whitelist. Permissioned tokenization platforms — BlackRock's BUIDL, JPMorgan's Onyx, Franklin Templeton's BENJI — run on private or gated chains where every participant is identity-verified. Same plumbing, opposite trust model.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Open DeFi",
+                "value": "wallet = identity",
+                "tone": "neutral"
+              },
+              {
+                "label": "Permissioned",
+                "value": "KYC required",
+                "tone": "neutral"
+              }
+            ],
+            "label": "two models for on-chain finance"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT TOKENIZATION ACTUALLY IS",
+        "body": "A tokenized Treasury is a claim on a real T-bill held by a custodian, represented as a blockchain token. The yield comes from the underlying bond, not from a liquidity pool. Settlement is instant and 24/7 — the feature institutions actually want, separate from any crypto-native yield."
+      },
+      {
+        "heading": "THE COLLATERAL MIGRATION",
+        "body": "Treasuries paying ~5% beat most DeFi lending yields net of smart-contract risk. When a hedge fund can hold tokenized T-bills with the same settlement convenience as USDC, the marginal dollar leaves Aave and Compound for BUIDL. The $20B exit is that arbitrage closing.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              2288.04,
+              2253.46,
+              2255.98,
+              2294.66,
+              2316.33,
+              2324.13,
+              2346,
+              2361.09,
+              2350.48,
+              2291.18,
+              2306.83,
+              2326.46,
+              2368.84,
+              2339.6,
+              2274.64,
+              2257.62,
+              2281.5,
+              2223.59,
+              2179.88,
+              2128,
+              2128.49,
+              2111.75,
+              2127.29,
+              2131.69,
+              2064.38,
+              2115.71,
+              2098.14,
+              2111.21,
+              2070.83,
+              2022.51,
+              2015.39
+            ],
+            "periods": [
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 28"
+            ],
+            "label": "Ethereum",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE 2008 ECHO",
+        "body": "When money market funds 'broke the buck' in September 2008, regulators discovered shadow banking had grown larger than the regulated banking system without anyone tracking it. Tokenized funds are reopening the same question — at what point does on-chain dollar liquidity become systemic enough to require a backstop, and who provides it?",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does 'total value locked' in a DeFi protocol actually measure?",
+            "options": [
+              "The number of users with deposits",
+              "The dollar value of collateral inside smart contracts",
+              "Annual revenue generated by the protocol",
+              "Trading volume over the past 30 days"
+            ],
+            "correct": 1,
+            "explanation": "TVL is a snapshot of collateral value — it moves with token prices as much as with user flows, which is why it can drop sharply without any withdrawals."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-28"
+    ],
+    "generatedAt": "2026-05-28T17:41:33.848Z",
+    "label": "DeFi vs Tokenization",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-28-ethereum-blockchain-lottery-developer-funding": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FREE-RIDER PROBLEM",
+        "body": "Ethereum's core protocol is open-source infrastructure — anyone can build on it, no one is required to pay for it. The developers who maintain consensus clients, cryptography libraries, and upgrade specifications produce a classic public good: non-excludable, non-rivalrous, and chronically underfunded relative to the value they create.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call this the **free-rider problem**: when benefits cannot be withheld from non-payers, rational actors wait for someone else to pay. Public goods are the textbook case where markets fail and require either taxation, philanthropy, or clever workarounds."
+          }
+        ]
+      },
+      {
+        "heading": "PROTOCOL GUILD",
+        "body": "Protocol Guild is a collective of ~180 core Ethereum contributors that receives donations and distributes them by time-weighted membership — longer-tenured contributors get larger shares. It functions as a pseudo-payroll for people who would otherwise have no employer, since the Ethereum Foundation funds only a fraction of the work."
+      },
+      {
+        "heading": "THE CHARITY LOTTERY PRECEDENT",
+        "body": "The UK's Postcode Lottery, Spain's ONCE, and the original 18th-century British State Lottery all used the same trick: gambling demand is inelastic, so siphoning a fixed percentage to a cause produces stable funding that taxation cannot. The UK Postcode Lottery has raised over £1.4bn for charities since 2005.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UK Postcode Lottery",
+                "value": "£1.4bn raised",
+                "cc": "GB"
+              },
+              {
+                "label": "Spain's ONCE",
+                "value": "~€2bn/yr",
+                "cc": "ES"
+              },
+              {
+                "label": "US state lotteries",
+                "value": "~$30bn/yr",
+                "cc": "US"
+              },
+              {
+                "label": "Megapot → Ethereum",
+                "value": "new, small"
+              }
+            ],
+            "label": "gambling-funded public goods"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SMART CONTRACTS CHANGE THE OVERHEAD",
+        "body": "Traditional charity lotteries spend 10-30% on administration: licensing, accounting, distribution. A smart contract executes the payout split automatically with no trustee, no board, no annual report. The marginal cost of routing the next dollar is effectively zero — which is why crypto keeps reinventing financial primitives with this cost structure."
+      },
+      {
+        "heading": "THE REGULATORY SHADOW",
+        "body": "Online gambling is illegal or heavily restricted in most US states and many countries. Megapot operates as a smart contract on Ethereum, which has no jurisdiction — but the developers, users, and fiat on-ramps do. The same question that haunts DeFi lending haunts on-chain lotteries: calling it a 'protocol' instead of a 'casino' may not survive contact with regulators.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of revenue do US state lotteries typically return as prizes (vs. keep for the state and operations)?",
+            "options": [
+              "About 50%",
+              "About 65%",
+              "About 80%",
+              "About 95%"
+            ],
+            "correct": 1,
+            "explanation": "US state lotteries return roughly 60-65% as prizes; the rest funds state programs (often education) and administration. Casinos return 90%+ — which is why lotteries are sometimes called a tax on people bad at math."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T17:41:59.721Z",
+    "label": "Public Goods Funding in Crypto",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-28-fertitta-buys-caesars-5-7-billion": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEVERAGED BUYOUT PLAYBOOK",
+        "body": "In a leveraged buyout, the acquirer puts up a small slice of equity and loads the target itself with debt to fund the purchase. The acquired company then services the debt out of its own cash flow. The model dates to the 1980s — KKR's $25B RJR Nabisco deal in 1989 was the template.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The buyer's equity check is small; the *target* carries the debt. If cash flow holds, equity holders capture outsized returns. If it doesn't, the company — not the buyer — goes bankrupt."
+          }
+        ]
+      },
+      {
+        "heading": "THE CAESARS PRECEDENT",
+        "body": "Apollo and TPG took Caesars private in a $27.8B LBO in 2008, just as the financial crisis hit. The company drowned in $25B of debt, filed Chapter 11 in 2015, and spent four years in one of the most contentious bankruptcies in US history before re-emerging public in 2017.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2008",
+                "label": "Apollo/TPG take Caesars private at $27.8B",
+                "emphasis": "start"
+              },
+              {
+                "year": "2015",
+                "label": "Chapter 11 filing",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017",
+                "label": "Re-emerges public"
+              },
+              {
+                "year": "2020",
+                "label": "Eldorado merger"
+              },
+              {
+                "year": "2026",
+                "label": "Fertitta deal"
+              }
+            ],
+            "label": "Caesars' debt cycle"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CASINOS ATTRACT LEVERAGE",
+        "body": "Gaming generates steady, cash-heavy revenue with high operating margins and physical real estate as collateral. Lenders treat licensed casino floors like utility assets — predictable enough to borrow against, regulated enough to deter new competition.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are casino operators historically attractive LBO targets?",
+            "options": [
+              "Predictable cash flow and hard-asset collateral",
+              "Low regulatory barriers to new entrants",
+              "Government-guaranteed revenue floors",
+              "Tax-exempt status for gaming income"
+            ],
+            "correct": 0,
+            "explanation": "Steady cash plus the regulatory moat around gaming licenses lets lenders extend more debt against the assets than they would to most retail businesses."
+          }
+        ]
+      },
+      {
+        "heading": "THE FERTITTA EMPIRE",
+        "body": "Tilman Fertitta built Landry's into a private restaurant and hospitality conglomerate covering Bubba Gump, Morton's, Rainforest Cafe, and the Golden Nugget casinos. He also owns the NBA's Houston Rockets. His holdings are private — no shareholders, no quarterly earnings calls — which lets him move on debt-heavy deals public CEOs cannot.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Tilman Fertitta",
+                "role": "Chairman & CEO, Fertitta Entertainment",
+                "years": "1986–",
+                "cc": "US"
+              }
+            ],
+            "label": "the Fertitta empire"
+          }
+        ]
+      },
+      {
+        "heading": "THE STRIP CONSOLIDATION",
+        "body": "Las Vegas Strip ownership has collapsed into three operators — MGM, Caesars, and Wynn control most major properties. Adding Fertitta's Golden Nugget portfolio to Caesars would create the largest US gaming operator by property count, intensifying the duopoly with MGM.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Caesars",
+                "value": "$11bn",
+                "cc": "US",
+                "weight": 11
+              },
+              {
+                "label": "MGM Resorts",
+                "value": "$17bn",
+                "cc": "US",
+                "weight": 17
+              },
+              {
+                "label": "Wynn Resorts",
+                "value": "$7bn",
+                "cc": "US",
+                "weight": 7
+              },
+              {
+                "label": "Fertitta (Golden Nugget)",
+                "value": "~$4bn",
+                "cc": "US",
+                "weight": 4
+              }
+            ],
+            "label": "US gaming operators by approximate revenue"
+          }
+        ]
+      },
+      {
+        "heading": "THE GO-SHOP WINDOW",
+        "body": "The July 11 solicitation period is a 'go-shop' clause — a standard provision in friendly M&A that lets the target's board entertain higher bids for a fixed window after signing. It exists to satisfy directors' fiduciary duty to shareholders; rival bids rarely materialize but the clause forecloses lawsuits that the board sold too cheap."
+      }
+    ],
+    "generatedAt": "2026-05-28T17:42:30.856Z",
+    "label": "Casino LBOs & House Debt",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-28-flock-cameras-trash-bags-surveillance-exit": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT FLOCK ACTUALLY IS",
+        "body": "Flock Safety sells solar-powered cameras that read every passing license plate, time-stamp it, and upload the record to a national cloud searchable by any subscribing agency. The product is not the camera — it is the federated database of billions of vehicle movements that grows each time a new town signs on.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **ALPR** — *automated license plate reader*. A single camera captures roughly **30,000 plates per day**; the network aggregates across **5,000+ jurisdictions**."
+          }
+        ]
+      },
+      {
+        "heading": "THE FEDERATION TRAP",
+        "body": "When a city joins Flock, the default setting shares its data with every other Flock customer — including federal agencies that never signed a contract with that city. A municipal council that approved cameras for stolen-vehicle alerts discovers later its data flowed to ICE, the DEA, or out-of-state sheriffs investigating abortions or gender-affirming care.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't a city simply unplug a Flock camera it no longer wants?",
+            "options": [
+              "The cameras are owned by Flock, not the city, and contracts forbid removal before term",
+              "Federal preemption protects surveillance infrastructure",
+              "The cameras require a court order to disable",
+              "Removing them violates the Fourth Amendment"
+            ],
+            "correct": 0,
+            "explanation": "Flock retains ownership of the hardware; municipal contracts typically run 2–5 years with no early-termination clause, so cities can cover lenses but not pull poles."
+          }
+        ]
+      },
+      {
+        "heading": "THE THIRD-PARTY DOCTRINE",
+        "body": "US v. Miller (1976) and Smith v. Maryland (1979) established that information voluntarily handed to a third party — a bank, a phone company — loses Fourth Amendment protection. License plate data captured by a private vendor on a public street sits squarely inside this doctrine, which is why ICE can query Flock's database without a warrant.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1967",
+                "label": "Katz: reasonable expectation of privacy"
+              },
+              {
+                "year": "1976",
+                "label": "US v. Miller: bank records"
+              },
+              {
+                "year": "1979",
+                "label": "Smith v. Maryland: pen registers",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2012",
+                "label": "US v. Jones: GPS tracking limited"
+              },
+              {
+                "year": "2018",
+                "label": "Carpenter: cell-site records need warrant"
+              },
+              {
+                "year": "2024",
+                "label": "ALPR cases reach circuit courts"
+              }
+            ],
+            "label": "the surveillance-doctrine arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE COINTELPRO PARALLEL",
+        "body": "From 1956 to 1971, the FBI ran a covert surveillance program against civil rights leaders, antiwar activists, and Muslim organizations including the Nation of Islam. The Church Committee's exposure produced the 1978 FISA framework — the last major US legislative response to surveillance overreach. Forty-seven years later, no equivalent framework governs commercial ALPR networks."
+      },
+      {
+        "heading": "WHO ELSE BUYS THE FEED",
+        "body": "Flock is one player in a broader commercial surveillance stack that federal agencies use to route around warrant requirements. ICE alone holds contracts with multiple data brokers whose products were originally sold to municipalities or marketers.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Flock Safety",
+                "value": "ALPR network",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Clearview AI",
+                "value": "face recognition",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Palantir",
+                "value": "case management",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Venntel",
+                "value": "phone location",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "LexisNexis",
+                "value": "identity graph",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "commercial surveillance vendors with federal contracts"
+          }
+        ]
+      },
+      {
+        "heading": "THE EXIT PROBLEM",
+        "body": "Covering a camera with a trash bag is symbolic resistance against an architectural fact: the data already collected sits in Flock's cloud indefinitely, and the contract often grants Flock perpetual license to anonymized derivatives. Exit means lawsuit, not unplug."
+      }
+    ],
+    "generatedAt": "2026-05-28T17:43:02.059Z",
+    "label": "ALPR Networks & the Federation Problem",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-28-icc-duterte-trial-date-philippines": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COURT'S JURISDICTION",
+        "body": "The ICC prosecutes individuals — not states — for genocide, crimes against humanity, war crimes, and aggression. It is a court of last resort: it acts only when national courts are unwilling or unable to prosecute. This is the principle of complementarity, written into Article 17 of the Rome Statute.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine is called *complementarity* — the ICC supplements national justice rather than replacing it. A genuine domestic prosecution, even an imperfect one, ousts the Court's jurisdiction."
+          }
+        ]
+      },
+      {
+        "heading": "WHY WITHDRAWAL DOESN'T ERASE LIABILITY",
+        "body": "Article 127 of the Rome Statute is explicit: withdrawal takes effect a year after notice, and it does not affect investigations or proceedings that began while the state was a member. The Philippines left in 2019, but the drug-war killings happened while it was still bound. The Court kept jurisdiction over that window."
+      },
+      {
+        "heading": "THE DRUG WAR AS POLICY",
+        "body": "Between 2016 and 2022, Philippine police recorded over 6,000 killings in anti-drug operations; human rights groups put the figure closer to 30,000 when vigilante deaths are included. The ICC case rests on the theory that these were not isolated abuses but a coordinated state policy — the legal threshold for crimes against humanity.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What distinguishes crimes against humanity from ordinary murder under international law?",
+            "options": [
+              "The number of victims exceeds 100",
+              "The acts are part of a widespread or systematic attack on a civilian population",
+              "The perpetrator is a head of state",
+              "The victims are foreign nationals"
+            ],
+            "correct": 1,
+            "explanation": "Rome Statute Article 7 defines crimes against humanity by the systematic or widespread nature of the attack on civilians — not by the body count or the rank of the accused."
+          }
+        ]
+      },
+      {
+        "heading": "THE HEAD-OF-STATE PRECEDENT",
+        "body": "Sitting and former heads of state have rarely faced international trial. Milošević died in custody before verdict; Charles Taylor of Liberia was convicted by the Special Court for Sierra Leone in 2012; Hissène Habré of Chad was convicted by a hybrid court in Senegal in 2016. Duterte joins a very short list — and the first from Asia.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Slobodan Milošević",
+                "role": "Serbian/Yugoslav President",
+                "years": "tried 2002–2006",
+                "cc": "RS"
+              },
+              {
+                "name": "Charles Taylor",
+                "role": "Liberian President",
+                "years": "convicted 2012",
+                "cc": "LR"
+              },
+              {
+                "name": "Hissène Habré",
+                "role": "Chadian President",
+                "years": "convicted 2016",
+                "cc": "TD"
+              },
+              {
+                "name": "Laurent Gbagbo",
+                "role": "Ivorian President",
+                "years": "acquitted 2019",
+                "cc": "CI"
+              },
+              {
+                "name": "Rodrigo Duterte",
+                "role": "Philippine President",
+                "years": "trial set 2026",
+                "cc": "PH"
+              }
+            ],
+            "label": "former heads of state tried internationally"
+          }
+        ]
+      },
+      {
+        "heading": "ASIA'S ABSENCE FROM THE COURT",
+        "body": "The ICC has 124 member states, but Asia is its weakest region. China, India, Indonesia, Pakistan, Malaysia, Vietnam, and Myanmar never joined; the Philippines and Burundi are the only states ever to withdraw. The Court's legitimacy in Asia has always been thin — which is why every Southeast Asian foreign ministry is reading the Duterte docket closely.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PH",
+              "ID",
+              "MY",
+              "VN",
+              "TH",
+              "MM",
+              "KH",
+              "JP",
+              "KR"
+            ],
+            "label": "ICC membership in East/Southeast Asia",
+            "caption": "Only Japan, South Korea, Cambodia, and Timor-Leste are full members; most of the region stayed out."
+          }
+        ]
+      },
+      {
+        "heading": "THE ENFORCEMENT GAP",
+        "body": "The ICC has no police force. It depends entirely on member states to arrest and surrender suspects. Putin's 2023 arrest warrant has not been executed; Bashir of Sudan traveled freely through ICC member states for years. Duterte is in custody because the current Philippine government chose to cooperate — a political decision, not a legal inevitability."
+      }
+    ],
+    "generatedAt": "2026-05-28T17:43:32.630Z",
+    "label": "The ICC & Head-of-State Trials",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-28-israel-litani-crossing-zawtar-lebanon": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE LITANI",
+        "body": "The Litani is the only major river that runs entirely inside Lebanon, cutting east-west roughly 30km north of the Israeli border. Its gorge is a natural defensive line — high ground to the south, the Bekaa to the east — which is why every Israeli operation since 1978 has treated it as the geographic objective rather than any political boundary.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL",
+              "SY"
+            ],
+            "label": "the Litani buffer zone",
+            "markers": [
+              {
+                "lat": 33.3667,
+                "lng": 35.4833,
+                "label": "Litani River mouth"
+              },
+              {
+                "lat": 33.3897,
+                "lng": 35.4567,
+                "label": "Zawtar"
+              },
+              {
+                "lat": 33.2719,
+                "lng": 35.2033,
+                "label": "UNIFIL HQ Naqoura"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "RESOLUTION 1701",
+        "body": "After the 2006 war, the UN Security Council demanded that the area between the Blue Line and the Litani be free of any armed personnel other than the Lebanese army and UNIFIL. Hezbollah never withdrew its infrastructure; Israel's stated justification for every subsequent incursion has been 1701 enforcement that the international community would not enforce itself.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which body is Resolution 1701 supposed to deploy south of the Litani alongside the Lebanese army?",
+            "options": [
+              "UNIFIL",
+              "NATO peacekeepers",
+              "Arab League observers",
+              "US Marine Expeditionary Unit"
+            ],
+            "correct": 0,
+            "explanation": "UNIFIL has been deployed in south Lebanon since 1978; Resolution 1701 expanded its mandate after the 2006 war but kept its rules-of-engagement strictly observational."
+          }
+        ]
+      },
+      {
+        "heading": "OPERATION LITANI, 1978",
+        "body": "The river gave its name to Israel's first major ground invasion of Lebanon, launched in March 1978 against PLO bases. Israel withdrew under UN pressure within months but installed a proxy militia — the South Lebanon Army — to hold a buffer zone that lasted until 2000.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1978-03",
+                "label": "Operation Litani"
+              },
+              {
+                "year": "1982-06",
+                "label": "Invasion to Beirut",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2000-05",
+                "label": "Unilateral withdrawal"
+              },
+              {
+                "year": "2006-07",
+                "label": "Second Lebanon War"
+              },
+              {
+                "year": "2024-10",
+                "label": "Ground operation reopened"
+              },
+              {
+                "year": "2026-05",
+                "label": "Zawtar crossing"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1985",
+                "to": "2000",
+                "label": "SLA buffer zone occupation",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Israeli ground operations across the Litani"
+          }
+        ]
+      },
+      {
+        "heading": "HOW HEZBOLLAH WAS BORN",
+        "body": "The 1982 invasion that pushed all the way to Beirut also created the conditions for Hezbollah's founding three years later. Iran's Revolutionary Guard arrived in the Bekaa to train a Shi'a militia that the existing Lebanese factions — Sunni, Maronite, Druze, Amal — had no room for. The southern Shi'a were the human terrain; the IRGC was the catalyst.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Hassan Nasrallah",
+                "role": "Hezbollah Secretary-General",
+                "years": "1992–2024",
+                "cc": "LB"
+              },
+              {
+                "name": "Qassem Soleimani",
+                "role": "IRGC Quds Force commander",
+                "years": "1998–2020",
+                "cc": "IR"
+              },
+              {
+                "name": "Naim Qassem",
+                "role": "Hezbollah Secretary-General",
+                "years": "2024–",
+                "cc": "LB"
+              }
+            ],
+            "label": "the architects of the proxy axis"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEMOGRAPHIC BASE",
+        "body": "Roughly a third of Lebanon's population is Shi'a, concentrated overwhelmingly in the south and the Bekaa — the two regions that border Israel and Syria respectively. Hezbollah is not a foreign implant in the Litani belt; it is the dominant political and social institution of the people who live there, which is what makes any disarmament demand structurally different from a counter-insurgency.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Lebanese state has not held a census since **1932** — under French Mandate — precisely because confessional power-sharing depends on freezing the demographic ratios of that year. Every estimate since is contested."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ISRAEL ESCALATES DURING TALKS",
+        "body": "The US-Iran channel has consistently focused on the nuclear file and Gulf shipping; Israel's northern border has been treated as a separate track to be settled later. Crossing the Litani while talks are live is a familiar Israeli pressure tactic — create facts on the ground that any eventual framework must address, rather than wait for the framework to address them."
+      }
+    ],
+    "generatedAt": "2026-05-28T17:44:11.234Z",
+    "label": "The Litani Line",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-28-mathematical-ai-50-year-conjecture": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO WAS ERDŐS",
+        "body": "Paul Erdős was the most prolific mathematician of the 20th century — over 1,500 papers with more than 500 collaborators. He had no home, no job, and no possessions; he traveled with a suitcase between universities, paid collaborators in problems, and offered cash bounties for proofs of his open conjectures.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Paul Erdős",
+                "role": "itinerant problem-poser",
+                "years": "1913–1996",
+                "cc": "HU"
+              },
+              {
+                "name": "Alfréd Rényi",
+                "role": "random graphs co-founder",
+                "years": "1921–1970",
+                "cc": "HU"
+              },
+              {
+                "name": "Endre Szemerédi",
+                "role": "combinatorics laureate",
+                "years": "1940–",
+                "cc": "HU"
+              },
+              {
+                "name": "Terence Tao",
+                "role": "prolific Erdős collaborator",
+                "years": "1975–",
+                "cc": "AU"
+              }
+            ],
+            "label": "the Hungarian school"
+          }
+        ]
+      },
+      {
+        "heading": "THE SUM-PRODUCT PROBLEM",
+        "body": "Take any finite set of numbers. Form all pairwise sums, then all pairwise products. Erdős conjectured in 1974 that at least one of the two sets must be nearly as large as possible — a set cannot be simultaneously well-structured for addition and for multiplication.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The intuition: *arithmetic progressions* like {1,2,3,4,5} have small sumsets but enormous product sets, while *geometric progressions* like {2,4,8,16,32} are the reverse. No set escapes **both** explosions at once."
+          }
+        ]
+      },
+      {
+        "heading": "THE ERDŐS BOUNTY SYSTEM",
+        "body": "Erdős attached dollar amounts to his open problems — from $25 for warm-ups to $10,000 for the hardest. The bounties outlive him, paid from a trust. They are a status currency in the field: solving an Erdős problem is a citation that travels with a mathematician for life."
+      },
+      {
+        "heading": "WHAT THE AI ACTUALLY DID",
+        "body": "Modern AI does not yet invent proofs whole. What it does well is search a vast space of candidate techniques — combinations of known lemmas, parameter choices, inequality manipulations — far faster than any human. A proof technique surfaced by the model became a tool a human mathematician then wielded on a different problem.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did the OpenAI model contribute to the Erdős proof?",
+            "options": [
+              "A complete formal proof verified in Lean",
+              "A novel proof technique a human then adapted to another problem",
+              "A counterexample disproving the conjecture",
+              "A faster algorithm for computing sumsets"
+            ],
+            "correct": 1,
+            "explanation": "The model produced a technique on one Erdős problem; Bloom recognized it could attack a different one. The credit question turns on whether the tool or the application is the discovery."
+          }
+        ]
+      },
+      {
+        "heading": "THE FOUR-COLOR PRECEDENT",
+        "body": "In 1976 Appel and Haken proved the Four Color Theorem with the aid of a computer checking 1,936 cases. Mathematicians objected for decades that a proof no human could verify by hand was not really a proof. The same epistemological dispute is returning — this time about who, or what, deserves authorship.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1976",
+                "label": "Four Color Theorem (computer-assisted)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1998",
+                "label": "Kepler conjecture (Hales, formalized 2014)"
+              },
+              {
+                "year": "2016",
+                "label": "Boolean Pythagorean triples (200TB proof)"
+              },
+              {
+                "year": "2024",
+                "label": "DeepMind AlphaProof — IMO silver"
+              },
+              {
+                "year": "2026",
+                "label": "Erdős sum-product technique"
+              }
+            ],
+            "label": "machines in mathematics"
+          }
+        ]
+      },
+      {
+        "heading": "THE CREDIT PROBLEM",
+        "body": "Mathematical authorship has always been narrow — the prover gets the theorem's name. AI tools complicate this: the lab that trained the model, the mathematician who prompted it, the human who recognized and adapted the output, and the model itself all have a claim. No journal has yet settled the convention."
+      }
+    ],
+    "generatedAt": "2026-05-28T17:44:39.873Z",
+    "label": "Erdős, Proofs & AI",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-28-somalia-famine-risk-drought-conflict": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IPC SCALE",
+        "body": "Famine is not a synonym for hunger — it is a technical threshold. The Integrated Food Security Phase Classification declares Phase 5 (Famine) only when 20% of households face extreme food gaps, 30% of children are acutely malnourished, and 2 in 10,000 people are dying daily. Somalia 2011 met it; 2017 and 2022 narrowly did not, despite mass death.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of households must face extreme food gaps for the IPC to declare Phase 5 Famine?",
+            "options": [
+              "5%",
+              "20%",
+              "50%"
+            ],
+            "correct": 1,
+            "explanation": "IPC Phase 5 requires ≥20% of households in extreme food gap, ≥30% child acute malnutrition, and ≥2/10,000 daily mortality — all three thresholds."
+          }
+        ]
+      },
+      {
+        "heading": "THE DEYR AND THE GU",
+        "body": "Somalia depends on two rainy seasons — the *Gu* (April–June) and the shorter *Deyr* (October–December). Pastoralists time herd movement and farmers time planting to both. Five consecutive failed seasons means roughly two and a half years without normal pasture regeneration — long enough that herd sizes collapse and recovery requires restocking, not just rain.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2011 famine that killed ~260,000 Somalis followed *four* consecutive failed seasons. The current tally is **five** — and another below-average forecast would make six."
+          }
+        ]
+      },
+      {
+        "heading": "AL-SHABAAB AS A FAMINE MULTIPLIER",
+        "body": "Al-Shabaab controls swaths of southern and central Somalia and taxes the rest. In 2011, the group blocked Western aid agencies from operating in territory it held, turning a drought into a famine concentrated in Bay and Bakool. Access — not food supply globally — is the binding constraint.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SO",
+              "ET",
+              "KE",
+              "DJ",
+              "ER",
+              "YE"
+            ],
+            "label": "Horn of Africa & the Red Sea fuel route",
+            "markers": [
+              {
+                "lat": 2.0469,
+                "lng": 45.3182,
+                "label": "Mogadishu"
+              },
+              {
+                "lat": 3.1167,
+                "lng": 43.65,
+                "label": "Baidoa (Bay)"
+              },
+              {
+                "lat": 4.0167,
+                "lng": 42.7667,
+                "label": "Hudur (Bakool)"
+              },
+              {
+                "lat": 12.7806,
+                "lng": 45.0356,
+                "label": "Aden (fuel route)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE RED SEA PASS-THROUGH",
+        "body": "Somalia imports nearly all its refined fuel through Mogadishu, Berbera, and Bossaso — and almost all of it transits the Bab el-Mandeb. Houthi attacks on Red Sea shipping since late 2023 pushed insurance premiums and freight rates up sharply; landlocked diesel prices in Somalia rose with them, lifting the cost of trucking grain inland from the ports to the drought belt."
+      },
+      {
+        "heading": "THE FUNDING GAP",
+        "body": "The $1.42bn appeal is 20% funded. Donor fatigue is structural: Ukraine, Gaza, Sudan, and DRC compete for the same humanitarian envelope, and Somalia's appeals have been chronically under-funded since the 2017 near-famine. Aid arrives late, after pastoralists have already sold breeding stock — the point at which recovery shifts from months to years.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ukraine",
+                "value": "~65%",
+                "tone": "favorable",
+                "cc": "UA",
+                "weight": 65
+              },
+              {
+                "label": "Syria",
+                "value": "~33%",
+                "tone": "neutral",
+                "cc": "SY",
+                "weight": 33
+              },
+              {
+                "label": "Sudan",
+                "value": "~28%",
+                "tone": "unfavorable",
+                "cc": "SD",
+                "weight": 28
+              },
+              {
+                "label": "Somalia",
+                "value": "~20%",
+                "tone": "unfavorable",
+                "cc": "SO",
+                "weight": 20
+              },
+              {
+                "label": "DRC",
+                "value": "~22%",
+                "tone": "unfavorable",
+                "cc": "CD",
+                "weight": 22
+              },
+              {
+                "label": "Yemen",
+                "value": "~30%",
+                "tone": "neutral",
+                "cc": "YE",
+                "weight": 30
+              }
+            ],
+            "label": "2024 UN humanitarian appeals — % funded"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1992 PRECEDENT",
+        "body": "The 1991–92 Somali famine — triggered by state collapse after Siad Barre's fall, not drought alone — killed an estimated 300,000 and prompted the US-led UNITAF intervention. The lesson Western capitals took from Black Hawk Down was to avoid ground deployment; the lesson aid agencies took was that famine in Somalia is always conflict plus weather, never weather alone."
+      }
+    ],
+    "generatedAt": "2026-05-28T17:45:11.961Z",
+    "label": "Somalia: drought, conflict, fuel",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-28-sudan-burhan-hemedti-eid-rival-visions": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO ARMIES",
+        "body": "Sudan's war is between the Sudanese Armed Forces under Abdel Fattah al-Burhan and the Rapid Support Forces under Mohamed Hamdan Dagalo, known as Hemedti. They were allies in the 2019 ouster of Bashir and the 2021 coup against the civilian transition — until they turned on each other in April 2023.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Abdel Fattah al-Burhan",
+                "role": "SAF commander, de facto head of state",
+                "years": "2019–",
+                "cc": "SD"
+              },
+              {
+                "name": "Mohamed Hamdan Dagalo",
+                "role": "RSF commander (Hemedti)",
+                "years": "2013–",
+                "cc": "SD"
+              }
+            ],
+            "label": "the rival commanders"
+          }
+        ]
+      },
+      {
+        "heading": "THE JANJAWEED LINEAGE",
+        "body": "The RSF grew out of the Janjaweed — Arab tribal militias Khartoum armed in the early 2000s to crush the Darfur insurgency. Bashir formalized them as a paramilitary in 2013 to balance the regular army. The force that now contests the capital was built by the state to be ungovernable by it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Hemedti rose through the *Janjaweed* during the Darfur campaign that the ICC later charged as **genocide** — the same fighters, the same commander, now fielding tanks and drones."
+          }
+        ]
+      },
+      {
+        "heading": "THE GOLD ECONOMY",
+        "body": "Sudan is among Africa's largest gold producers, and the RSF controls the Jebel Amer mines in Darfur. Gold smuggled through the UAE has funded RSF salaries, Wagner-linked logistics, and weapons procurement — making this one of the few civil wars where the rebel force is better-financed than the state.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "darfur",
+                "label": "Darfur mines"
+              },
+              {
+                "id": "rsf",
+                "label": "RSF"
+              },
+              {
+                "id": "uae",
+                "label": "UAE refiners"
+              },
+              {
+                "id": "cash",
+                "label": "USD cash"
+              },
+              {
+                "id": "arms",
+                "label": "Arms & drones"
+              }
+            ],
+            "links": [
+              {
+                "source": "darfur",
+                "target": "rsf",
+                "value": 50,
+                "label": "control"
+              },
+              {
+                "source": "rsf",
+                "target": "uae",
+                "value": 40,
+                "label": "smuggled bullion"
+              },
+              {
+                "source": "uae",
+                "target": "cash",
+                "value": 40
+              },
+              {
+                "source": "cash",
+                "target": "arms",
+                "value": 35,
+                "label": "procurement"
+              },
+              {
+                "source": "arms",
+                "target": "rsf",
+                "value": 35
+              }
+            ],
+            "label": "how RSF gold becomes weapons"
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY OF THE WAR",
+        "body": "RSF holds most of Khartoum, Darfur, and the western corridor; SAF holds Port Sudan on the Red Sea — where the government now operates — plus the north and east. The country has effectively split along an east-west axis, with the Nile as the fault line.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "SS",
+              "TD",
+              "EG",
+              "ET",
+              "ER",
+              "LY"
+            ],
+            "label": "Sudan's split",
+            "markers": [
+              {
+                "lat": 15.5007,
+                "lng": 32.5599,
+                "label": "Khartoum (RSF)"
+              },
+              {
+                "lat": 19.6158,
+                "lng": 37.2164,
+                "label": "Port Sudan (SAF)"
+              },
+              {
+                "lat": 13.6266,
+                "lng": 25.3463,
+                "label": "El Fasher (besieged)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE FOREIGN HANDS",
+        "body": "The UAE backs the RSF through gold and arms; Egypt backs Burhan's SAF as a guarantor of Nile-basin stability; Saudi Arabia and the US have hosted talks in Jeddah; Russia has hedged, courting both sides for a Red Sea naval base. The African Union meeting Burhan is preparing for is the latest of many forums Hemedti has been excluded from — and ignored.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country has been the principal external backer of the RSF through gold and arms flows?",
+            "options": [
+              "Egypt",
+              "United Arab Emirates",
+              "Saudi Arabia",
+              "Russia"
+            ],
+            "correct": 1,
+            "explanation": "UN panels and Western governments have repeatedly named the UAE as the RSF's main external sponsor, channeling gold revenue and weapons via Chad and Libya."
+          }
+        ]
+      },
+      {
+        "heading": "THE DISPLACEMENT SCALE",
+        "body": "More than 12 million people have been displaced since April 2023 — the largest displacement crisis on Earth, surpassing Ukraine and Syria. El Fasher in North Darfur has been under RSF siege for over a year, with famine declared in surrounding camps.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "People displaced by current conflict",
+            "peers": [
+              {
+                "value": 12,
+                "cc": "SD"
+              },
+              {
+                "value": 7.2,
+                "cc": "SY"
+              },
+              {
+                "value": 6.9,
+                "cc": "UA"
+              },
+              {
+                "value": 6.3,
+                "cc": "AF"
+              },
+              {
+                "value": 4.5,
+                "cc": "YE"
+              },
+              {
+                "value": 3.5,
+                "cc": "MM"
+              }
+            ],
+            "subjectCc": "SD",
+            "unit": "millions"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T17:45:44.753Z",
+    "label": "Sudan's Two Generals",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-28-ukraine-sweden-gripen-fighter-deal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BAS 90 DOCTRINE",
+        "body": "Sweden spent the Cold War assuming its airfields would be destroyed in the first hours of a Soviet attack. The answer was Bas 90: a network of reinforced highway strips, hidden fuel caches, and conscript ground crews scattered across the country. Every Swedish fighter since the 1950s has been designed around this constraint.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine's name — ***Bas 90*** — refers to the 90 dispersed wartime bases planned across Swedish territory, each capable of recovering and rearming a fighter within minutes."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE GRIPEN IS DIFFERENT",
+        "body": "Most modern fighters need a 2,400m runway, a climate-controlled hangar, and a team of specialist contractors. The Gripen lands on 800m of road, refuels and rearms with six conscripts in ten minutes, and runs on commercial diesel-grade fuel. It was built backwards from the survival problem.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Gripen C",
+                "value": "6 crew · 800m",
+                "tone": "favorable"
+              },
+              {
+                "label": "F-16",
+                "value": "20+ crew · 2,400m",
+                "tone": "neutral"
+              },
+              {
+                "label": "F-35",
+                "value": "30+ crew · 2,400m",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Rafale",
+                "value": "15+ crew · 2,100m",
+                "tone": "neutral"
+              }
+            ],
+            "label": "turnaround crew & runway"
+          }
+        ]
+      },
+      {
+        "heading": "WHY UKRAINE WANTS THIS SPECIFICALLY",
+        "body": "Russia has spent two years targeting Ukrainian airbases with Iskander and Kinzhal missiles. The F-16s already delivered live under constant threat of being caught on the ground. A fighter designed to operate from stretches of the M-06 highway is not a luxury — it is the only way the air force survives a sustained bombardment campaign."
+      },
+      {
+        "heading": "THE NEUTRALITY ARC",
+        "body": "Sweden stayed formally neutral for 200 years — through both world wars, through the entire Cold War. It applied for NATO membership in May 2022, three months after the Russian invasion of Ukraine. Donating combat aircraft to an active war zone is the sharpest possible break from the posture that defined Swedish foreign policy for eight generations.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1814",
+                "label": "Last Swedish war (vs Norway)",
+                "emphasis": "start"
+              },
+              {
+                "year": "1939",
+                "label": "Neutral through WWII"
+              },
+              {
+                "year": "1949",
+                "label": "Declines NATO founding membership"
+              },
+              {
+                "year": "1995",
+                "label": "Joins EU, retains military non-alignment"
+              },
+              {
+                "year": "2022",
+                "label": "Applies to NATO after Russian invasion",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Becomes NATO's 32nd member"
+              },
+              {
+                "year": "2026",
+                "label": "Donates Gripens to Ukraine"
+              }
+            ],
+            "label": "Sweden's neutrality, broken"
+          }
+        ]
+      },
+      {
+        "heading": "THE EU LOAN MECHANISM",
+        "body": "The €2.5B financing comes via the EU's SAFE instrument — a defence loan facility created in 2025 to let member states buy European-made weapons for Ukraine without each parliament approving a separate bilateral package. It is the first time the EU has financed lethal aid as a bloc rather than as 27 separate decisions."
+      },
+      {
+        "heading": "WHY 2030",
+        "body": "Saab builds roughly one Gripen E per month. Ukraine's 20 jets join an order book that already includes Brazil, Thailand, Colombia, and Sweden's own air force. The delivery date is not a political delay — it is the actual production line speed of a country whose entire aerospace industry employs fewer people than a single American defence contractor's accounting department.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the Gripen need only ~6 ground crew to turn around between sorties?",
+            "options": [
+              "It was designed to operate from dispersed highway bases staffed by conscripts",
+              "Sweden could not afford a professional ground crew corps",
+              "Modern avionics eliminated the need for human inspection",
+              "NATO standardization reduced crew requirements across all fighters"
+            ],
+            "correct": 0,
+            "explanation": "Sweden's Bas 90 doctrine assumed airfields would be destroyed early in war, so the Gripen was engineered to be serviced by short-tour conscripts from forest roadside bases — not by specialist teams at fixed airbases."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T17:46:16.945Z",
+    "label": "Gripen & Dispersed Air Operations",
+    "category": "politics",
+    "articleCount": 1
   }
 }
