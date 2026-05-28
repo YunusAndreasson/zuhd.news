@@ -251351,5 +251351,1546 @@
     "label": "The 1.5°C Threshold",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-05-28-buspatrol-school-bus-anpr-police-access-404media": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT ANPR ACTUALLY IS",
+        "body": "Automated number-plate recognition cameras photograph every passing vehicle, OCR the plate, and log time-and-location to a searchable database. The capture is indiscriminate — every car, not just suspects — which is what makes the aggregated record qualitatively different from a cop reading a plate.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal term of art is **bulk collection**: data gathered first, justified later. A single ANPR read is trivial; a year of reads reveals where you sleep, pray, work, and protest."
+          }
+        ]
+      },
+      {
+        "heading": "THE MOSAIC THEORY",
+        "body": "US courts have increasingly recognized that aggregating individually-innocuous data points produces a qualitatively different intrusion. The 2018 Carpenter ruling held that 127 days of cell-site location required a warrant, even though any single ping did not. ANPR fleets raise the same question at the plate level."
+      },
+      {
+        "heading": "THE THIRD-PARTY DOCTRINE",
+        "body": "Under a 1979 Supreme Court doctrine, data you voluntarily share with a third party — phone company, bank, vendor — loses Fourth Amendment protection. Police can buy or request it without a warrant. This is the legal seam that lets BusPatrol hand records to Axon without a court order."
+      },
+      {
+        "heading": "WHO IS AXON",
+        "body": "Axon (formerly TASER International) is the dominant US vendor of police body cameras, tasers, and the Evidence.com cloud platform that stores the footage. Roughly 17,000 US law-enforcement agencies use its products — making it the closest thing the fragmented US police system has to a single data backbone.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Axon",
+                "value": "~85% body cams",
+                "weight": 85,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Motorola",
+                "value": "~10%",
+                "weight": 10,
+                "tone": "neutral"
+              },
+              {
+                "label": "Other",
+                "value": "~5%",
+                "weight": 5,
+                "tone": "favorable"
+              }
+            ],
+            "label": "US police-tech market share, 2024 est."
+          }
+        ]
+      },
+      {
+        "heading": "THE FUSION CENTER PIPELINE",
+        "body": "Since 2003, the Department of Homeland Security has funded ~80 state and regional fusion centers that ingest license-plate reads, social-media monitoring, and private-vendor feeds. ANPR data sold to a single municipality often ends up queryable by federal agencies through this network."
+      },
+      {
+        "heading": "THE SCHOOL-BUS LOOPHOLE",
+        "body": "Stop-arm cameras were authorized in most US states under child-safety statutes that explicitly limit use to ticketing drivers who pass a stopped bus. Repurposing the same cameras for general ANPR surveillance bypasses the legislative bargain — the cameras were funded and consented to for one purpose, used for another.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the third-party doctrine, what does a private vendor need before sharing its data with police?",
+            "options": [
+              "A warrant signed by a judge",
+              "A subpoena from a grand jury",
+              "Nothing — voluntary sharing is permitted",
+              "Probable cause of a specific crime"
+            ],
+            "correct": 2,
+            "explanation": "The 1979 Smith v. Maryland doctrine holds that data shared with a third party loses Fourth Amendment protection — police can request or buy it without judicial oversight."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T12:27:29.796Z",
+    "label": "ANPR & Surveillance Creep",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-28-central-asia-smog-kazakhstan-kyrgyzstan-uzbekistan-coal-heating": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INHERITED SYSTEM",
+        "body": "Soviet planners built centralized district heating — massive coal-fired combined heat-and-power plants piping hot water through entire cities — across Central Asia from the 1950s onward. The pipes, the plants, and the coal-rail logistics all date to that era. Replacing them is not a fuel swap; it is rebuilding the bones of every city at once.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Russian term is *teplotsentral* — a plant that produces electricity and pumps heated water to apartment blocks through a single closed loop. Efficient at scale, ruinous when the fuel is **brown coal**."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE VALLEYS TRAP IT",
+        "body": "Bishkek, Almaty, and Tashkent sit in basins ringed by the Tien Shan and Pamir ranges. In winter, cold dense air pools at the valley floor while warmer air sits above — a temperature inversion that caps the city like a lid. Every chimney's output stays trapped until the next strong wind, sometimes for weeks.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KZ",
+              "KG",
+              "UZ",
+              "TJ",
+              "TM"
+            ],
+            "label": "Central Asian heating belt",
+            "caption": "Mountain-rimmed capitals where winter inversions trap coal smoke",
+            "markers": [
+              {
+                "lat": 42.8746,
+                "lng": 74.5698,
+                "label": "Bishkek"
+              },
+              {
+                "lat": 43.222,
+                "lng": 76.8512,
+                "label": "Almaty"
+              },
+              {
+                "lat": 41.2995,
+                "lng": 69.2401,
+                "label": "Tashkent"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BROWN COAL PROBLEM",
+        "body": "Kyrgyzstan and northern Kazakhstan burn lignite and sub-bituminous coal — the lowest grades, with high sulfur, ash, and moisture. Per unit of heat delivered, lignite emits roughly twice the particulate matter of hard coal and far more SO2. It is cheap precisely because nobody else wants it."
+      },
+      {
+        "heading": "THE GAS THAT ISN'T THERE",
+        "body": "Turkmenistan sits on the world's fourth-largest gas reserves, yet most of it is contracted to China via the Central Asia-China pipeline. Uzbekistan, once a net gas exporter, now imports Russian gas in winter to meet domestic demand. The pipeline geography that could decarbonize heating instead runs east, not north into the cities that need it.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "tm",
+                "label": "Turkmenistan"
+              },
+              {
+                "id": "uz",
+                "label": "Uzbekistan"
+              },
+              {
+                "id": "kz",
+                "label": "Kazakhstan"
+              },
+              {
+                "id": "ru",
+                "label": "Russia"
+              },
+              {
+                "id": "cn",
+                "label": "China"
+              },
+              {
+                "id": "cities",
+                "label": "CA cities (winter heat)"
+              }
+            ],
+            "links": [
+              {
+                "source": "tm",
+                "target": "cn",
+                "value": 35,
+                "label": "pipeline export"
+              },
+              {
+                "source": "kz",
+                "target": "cn",
+                "value": 10,
+                "label": "transit/export"
+              },
+              {
+                "source": "ru",
+                "target": "uz",
+                "value": 9,
+                "label": "winter imports"
+              },
+              {
+                "source": "ru",
+                "target": "kz",
+                "value": 5,
+                "label": "northern grid"
+              },
+              {
+                "source": "uz",
+                "target": "cities",
+                "value": 6,
+                "label": "residential"
+              },
+              {
+                "source": "tm",
+                "target": "cities",
+                "value": 3,
+                "label": "domestic"
+              }
+            ],
+            "label": "Central Asian gas flows (rough direction, 2024)"
+          }
+        ]
+      },
+      {
+        "heading": "THE PM2.5 BENCHMARK",
+        "body": "The WHO's annual guideline for PM2.5 is 5 micrograms per cubic meter. Bishkek's winter readings routinely exceed 200 — a 40-fold breach. PM2.5 is small enough to cross the lung-blood barrier; the health cost is measured in years of life expectancy, not asthma attacks.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "WHO guideline",
+                "value": "5",
+                "weight": 5,
+                "tone": "favorable"
+              },
+              {
+                "label": "Bishkek",
+                "value": "~95",
+                "cc": "KG",
+                "weight": 95,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Dushanbe",
+                "value": "~46",
+                "cc": "TJ",
+                "weight": 46,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Tashkent",
+                "value": "~42",
+                "cc": "UZ",
+                "weight": 42,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Almaty",
+                "value": "~30",
+                "cc": "KZ",
+                "weight": 30,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "London",
+                "value": "~9",
+                "cc": "GB",
+                "weight": 9,
+                "tone": "neutral"
+              }
+            ],
+            "label": "annual PM2.5, 2024 (μg/m³)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY REFORM STALLS",
+        "body": "Replacing a Soviet CHP plant means securing gas supply contracts, laying new transmission, retrofitting Khrushchev-era apartment blocks with thermostats that don't exist, and raising tariffs on populations that view subsidized heat as a Soviet-era social compact. Each step is politically expensive; none works in isolation.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is coal heat so hard to displace in Central Asian capitals?",
+            "options": [
+              "Coal is cheaper than any alternative fuel",
+              "The plants, pipes, gas supply, and tariff politics must all change together",
+              "Residents prefer coal heat for cultural reasons",
+              "International sanctions block gas imports"
+            ],
+            "correct": 1,
+            "explanation": "Central heating is a system — fuel, plants, distribution, building stock, and tariffs are locked together. Swapping just the fuel doesn't work."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T12:28:10.008Z",
+    "label": "Soviet Coal & Central Asian Smog",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-28-china-tech-tourism-shenzhen-ai-factory-tours": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DELTA",
+        "body": "Shenzhen was a fishing village of 30,000 in 1979 when Deng Xiaoping designated it China's first Special Economic Zone. Forty years later it has 17 million people and produces roughly 90% of the world's consumer electronics within a two-hour drive of its center.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Special Economic Zone declared",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1987",
+                "label": "Huawei founded"
+              },
+              {
+                "year": "1996",
+                "label": "BYD founded"
+              },
+              {
+                "year": "2010",
+                "label": "Foxconn Longhua peaks at 450k workers"
+              },
+              {
+                "year": "2018",
+                "label": "DJI captures 70% of global drone market"
+              },
+              {
+                "year": "2024",
+                "label": "BYD overtakes Tesla in EV sales"
+              }
+            ],
+            "label": "Shenzhen's compression"
+          }
+        ]
+      },
+      {
+        "heading": "THE ECOSYSTEM ADVANTAGE",
+        "body": "The Huaqiangbei electronics market lets a prototyper source any component — capacitors, sensors, custom PCBs — within blocks. What takes six weeks of shipping in California takes an afternoon walk in Shenzhen. This compression of the prototype-to-production loop is the actual moat, not labor cost.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Industry shorthand calls this *yi tiao long* — **one dragon** — the end-to-end supply chain from raw material to finished product running through a single metropolitan region."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT EXPORT CONTROLS ACTUALLY BLOCK",
+        "body": "The October 2022 US chip rules bar export of advanced lithography (ASML EUV), high-end GPUs (Nvidia H100/B200), and the design tools to make them. They do not block visits, photos, or general manufacturing knowledge. The constraint on tech tourists is what they can take home and replicate, not what they can see.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "US",
+              "NL",
+              "JP",
+              "KR",
+              "TW"
+            ],
+            "label": "the chip-control coalition",
+            "caption": "US allies controlling the upstream tools; China the downstream demand"
+          }
+        ]
+      },
+      {
+        "heading": "THE PILGRIMAGE INVERSION",
+        "body": "For four decades, ambitious founders flew to Palo Alto to learn software. The flow reversed because the frontier moved: hardware-AI integration — robots, drones, EVs, embodied models — depends on iteration cycles that require physical proximity to factories.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Foundation models",
+                "value": "Bay Area",
+                "cc": "US"
+              },
+              {
+                "label": "EVs & batteries",
+                "value": "Shenzhen/Hefei",
+                "cc": "CN"
+              },
+              {
+                "label": "Drones",
+                "value": "Shenzhen",
+                "cc": "CN"
+              },
+              {
+                "label": "Lithography",
+                "value": "Veldhoven",
+                "cc": "NL"
+              },
+              {
+                "label": "Advanced fabs",
+                "value": "Hsinchu",
+                "cc": "TW"
+              }
+            ],
+            "label": "where the frontier lives by category"
+          }
+        ]
+      },
+      {
+        "heading": "THE 996 SUBSTRATE",
+        "body": "China's hardware velocity rests on a labor regime — 9am to 9pm, 6 days a week — that Jack Ma once called a 'blessing.' Beijing's Supreme Court ruled 996 illegal in 2021, but enforcement is uneven and the cultural expectation persists across the Shenzhen tech belt.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does '996' refer to in China's tech industry?",
+            "options": [
+              "A government subsidy program for chipmakers",
+              "A work schedule: 9am-9pm, 6 days a week",
+              "The model number of Huawei's flagship phone",
+              "A Shenzhen district zoning code"
+            ],
+            "correct": 1,
+            "explanation": "Coined around 2016 in Chinese tech circles, '996' became shorthand for the always-on culture that powered the hardware boom — and the burnout backlash against it."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T12:28:37.420Z",
+    "label": "Shenzhen & the Hardware Stack",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-28-dahiyeh-eid-al-adha-evacuation-mada-masr-netanyahu": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT DAHIYEH IS",
+        "body": "Dahiyeh is the dense southern suburb of Beirut — roughly a million residents packed into a few square kilometers, predominantly Shia, and the political and logistical heart of Hezbollah's civilian infrastructure. It is not a military base; it is a city neighborhood where the movement's mosques, hospitals, media offices, and leadership residences sit beside ordinary apartment blocks.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL",
+              "SY"
+            ],
+            "label": "the southern corridor",
+            "markers": [
+              {
+                "lat": 33.8547,
+                "lng": 35.5021,
+                "label": "Dahiyeh, south Beirut"
+              },
+              {
+                "lat": 33.2733,
+                "lng": 35.2033,
+                "label": "Bint Jbeil"
+              },
+              {
+                "lat": 33.5631,
+                "lng": 35.3719,
+                "label": "Litani River"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DAHIYEH DOCTRINE",
+        "body": "Named after the suburb itself, the doctrine was articulated by Israeli General Gadi Eisenkot in 2008: in any future war, Israel would apply disproportionate force to civilian areas that host Hezbollah, treating them as military targets. The neighborhood gave the doctrine its name because the 2006 war flattened large parts of it.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "What happened in the Dahiyeh quarter of Beirut in 2006 will happen in every village from which Israel is fired on. We will apply disproportionate force and cause great damage and destruction there.",
+            "speaker": "Gadi Eisenkot, IDF Northern Command",
+            "year": "2008"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2006 PRECEDENT",
+        "body": "Over 34 days in summer 2006, Israeli air strikes destroyed an estimated 250 buildings in Dahiyeh and killed roughly 1,200 Lebanese civilians nationwide. The war ended with Hezbollah's arsenal intact and UN Resolution 1701 deploying peacekeepers south of the Litani — a settlement that satisfied no one and froze rather than resolved the conflict."
+      },
+      {
+        "heading": "NO NORTH TO FLEE TO",
+        "body": "Lebanon has hosted roughly 1.5 million Syrian refugees since 2011 — the highest per-capita refugee burden in the world. Northern towns are already saturated; the Bekaa valley sits in range of Israeli strikes; the Mediterranean closes the western exit. When Dahiyeh evacuates, the country has no interior to absorb the flow.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Lebanon",
+                "value": "~25%",
+                "cc": "LB",
+                "weight": 25,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Jordan",
+                "value": "~10%",
+                "cc": "JO",
+                "weight": 10,
+                "tone": "neutral"
+              },
+              {
+                "label": "Turkey",
+                "value": "~4%",
+                "cc": "TR",
+                "weight": 4,
+                "tone": "neutral"
+              },
+              {
+                "label": "Germany",
+                "value": "~1.5%",
+                "cc": "DE",
+                "weight": 1.5,
+                "tone": "favorable"
+              }
+            ],
+            "label": "refugees as share of host population"
+          }
+        ]
+      },
+      {
+        "heading": "EID AL-ADHA",
+        "body": "Eid al-Adha commemorates Prophet Ibrahim's willingness to sacrifice his son at God's command, and the divine substitution of a ram. It is one of the two highest holy days in Islam — families travel, slaughter animals for distribution to the poor, and gather across generations. An evacuation timed to Eid eve carries a weight beyond the military calculation.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The holiday's Arabic name — *'Eid al-Adha*, the **Festival of the Sacrifice** — marks the close of the Hajj season. The timing of strikes during sacred periods is itself part of the political signal, on both sides."
+          }
+        ]
+      },
+      {
+        "heading": "THE SPOILER LOGIC",
+        "body": "Netanyahu's threat landed hours after US–Iran nuclear talks reportedly neared agreement. Escalation in Lebanon historically functions as a veto on regional deals: a Hezbollah response would force Iran to choose between protecting its proxy and protecting its diplomacy, and the spoiler effect operates whether or not strikes actually occur.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does UN Resolution 1701, which ended the 2006 war, require Hezbollah to do?",
+            "options": [
+              "Disarm completely throughout Lebanon",
+              "Withdraw armed forces north of the Litani River",
+              "Accept Israeli sovereignty over the Shebaa Farms",
+              "Hand over its weapons to UNIFIL"
+            ],
+            "correct": 1,
+            "explanation": "Resolution 1701 required Hezbollah's armed presence south of the Litani to end, with the area policed by the Lebanese army and UNIFIL — never full disarmament, which Hezbollah has always rejected."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T12:29:08.175Z",
+    "label": "Dahiyeh & the Displacement Cycle",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-28-eu-temu-200m-fine-dsa-illegal-products": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DSA ARCHITECTURE",
+        "body": "The Digital Services Act, fully in force since 2024, splits platforms into tiers. The largest — Very Large Online Platforms with 45M+ EU users — face systemic-risk audits, transparency obligations, and direct Commission enforcement. Temu was designated a VLOP in May 2024, six months after launching in Europe.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "VLOPs face fines up to **6% of global annual revenue** — a structure deliberately mirrored from GDPR so that trillion-dollar platforms can't treat penalties as a cost of doing business."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT TEMU ACTUALLY IS",
+        "body": "Temu is the international arm of PDD Holdings, the Chinese parent of Pinduoduo. Its model is direct-from-factory shipping: hundreds of thousands of mainland Chinese sellers list products that ship individually to European consumers, bypassing the warehouse-and-distributor chain that Amazon built.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Amazon",
+                "value": "~181M",
+                "cc": "US",
+                "weight": 181
+              },
+              {
+                "label": "Shein",
+                "value": "~108M",
+                "cc": "CN",
+                "weight": 108
+              },
+              {
+                "label": "Temu",
+                "value": "~92M",
+                "cc": "CN",
+                "weight": 92
+              },
+              {
+                "label": "AliExpress",
+                "value": "~88M",
+                "cc": "CN",
+                "weight": 88
+              }
+            ],
+            "label": "EU monthly active users, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE DE MINIMIS LOOPHOLE",
+        "body": "EU customs waives duties on parcels under €150. Temu's per-order average sits well below that threshold, meaning the vast majority of its shipments enter Europe duty-free and largely unchecked. Brussels estimates 4.6 billion such low-value parcels entered the bloc in 2024 — twice the 2023 figure.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Below what parcel value does the EU currently waive import duties?",
+            "options": [
+              "€22",
+              "€75",
+              "€150",
+              "€500"
+            ],
+            "correct": 2,
+            "explanation": "The €150 de minimis threshold lets the bulk of Temu and Shein shipments enter duty-free. The Commission has proposed scrapping it; member states are debating timing."
+          }
+        ]
+      },
+      {
+        "heading": "THE LIABILITY SHIFT",
+        "body": "For two decades, the EU's e-Commerce Directive treated marketplaces as neutral hosts — liable only after being notified of illegal content. The DSA inverts this for VLOPs: they must proactively assess systemic risks, including dangerous products, and document mitigations. Failure to screen is itself the violation, regardless of whether a specific harm occurred.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2000",
+                "label": "e-Commerce Directive: notice-and-takedown"
+              },
+              {
+                "year": "2022",
+                "label": "DSA adopted"
+              },
+              {
+                "year": "2024-02",
+                "label": "DSA fully in force",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024-05",
+                "label": "Temu designated VLOP"
+              },
+              {
+                "year": "2024-10",
+                "label": "Commission opens Temu probe"
+              },
+              {
+                "year": "2026-05",
+                "label": "€200M fine"
+              }
+            ],
+            "label": "EU platform-liability regime"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THIS ONE MATTERS",
+        "body": "Earlier DSA fines targeted content moderation — X over disinformation, TikTok over minors. This is the first major penalty for product safety on a marketplace, which sets the template for how Brussels will police the Chinese cross-border e-commerce model that the de minimis loophole made possible."
+      }
+    ],
+    "generatedAt": "2026-05-28T12:29:31.484Z",
+    "label": "DSA & Marketplace Liability",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-28-france-glp1-wegovy-mounjaro-reimbursement-first-eu": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT SEMAGLUTIDE ACTUALLY DOES",
+        "body": "Semaglutide mimics GLP-1, a gut hormone released after eating that signals satiety to the brain and prompts insulin release from the pancreas. Native GLP-1 degrades in minutes; Novo Nordisk's molecule resists the enzyme that breaks it down, extending half-life to about a week.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The same molecule is sold as **Ozempic** for type-2 diabetes and **Wegovy** for obesity — identical drug, different dose and label. The split exists so payers can ration access by indication."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICE WALL",
+        "body": "At list prices around €300/month indefinitely, GLP-1 therapy is a lifetime annuity for the manufacturer — patients regain weight when they stop. No public health system in Europe had agreed to absorb that liability at scale until now.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "$1,350",
+                "cc": "US",
+                "tone": "unfavorable",
+                "weight": 1350
+              },
+              {
+                "label": "Germany",
+                "value": "€300",
+                "cc": "DE",
+                "tone": "neutral",
+                "weight": 330
+              },
+              {
+                "label": "France",
+                "value": "€300",
+                "cc": "FR",
+                "tone": "neutral",
+                "weight": 300
+              },
+              {
+                "label": "UK (NHS)",
+                "value": "£175",
+                "cc": "GB",
+                "tone": "favorable",
+                "weight": 200
+              },
+              {
+                "label": "Denmark",
+                "value": "€220",
+                "cc": "DK",
+                "tone": "favorable",
+                "weight": 240
+              }
+            ],
+            "label": "monthly Wegovy list price (approx, 2025)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY FRANCE FIRST",
+        "body": "France's Sécurité sociale negotiates a single national price through the CEPS committee, then reimburses through Assurance Maladie. Once a drug clears that gate, coverage is automatic and universal — there is no insurer-by-insurer fight as in Germany or the US. The same architecture that delivered cheap statins and PCSK9 inhibitors now delivers GLP-1s."
+      },
+      {
+        "heading": "THE NOVO NORDISK ECONOMY",
+        "body": "Novo Nordisk's market cap briefly exceeded the entire annual GDP of Denmark in 2024 — a single company larger than the country that hosts it. Danish government revenue is now materially exposed to whether Wegovy demand holds up against Eli Lilly's tirzepatide and the wave of oral GLP-1s coming off patent late this decade.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of Denmark's GDP growth in 2023 came from Novo Nordisk alone?",
+            "options": [
+              "About 10%",
+              "About a third",
+              "Essentially all of it",
+              "Less than 5%"
+            ],
+            "correct": 2,
+            "explanation": "Without Novo Nordisk, Denmark's 2023 economy would have been roughly flat — the country's national accounts are now a derivative of one drug class."
+          }
+        ]
+      },
+      {
+        "heading": "THE MUSCLE-LOSS TAX",
+        "body": "Adults lose 3–8% of muscle mass per decade after 30. A patient who loses 15 kg on semaglutide may lose 3 kg of lean mass they cannot easily rebuild — a fall-risk and frailty cost that public payers will eventually carry on the other side of the ledger, in hip fractures and care-home admissions a decade later."
+      },
+      {
+        "heading": "THE EU PRICING CASCADE",
+        "body": "European pharmaceutical pricing runs on external reference pricing: most member states peg their negotiated rate to a basket of peer countries. Once France sets a public reimbursement price, it enters everyone else's reference basket — Novo Nordisk's leverage in Berlin, Rome, and Madrid weakens with each new signatory."
+      }
+    ],
+    "generatedAt": "2026-05-28T12:29:58.629Z",
+    "label": "GLP-1s & Public Reimbursement",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-28-hezbollah-houthis-two-decade-project-newlines": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO THE HOUTHIS ARE",
+        "body": "The Houthis are Zaydi Shia from Yemen's northern highlands, a community that ruled north Yemen for a thousand years until 1962. Zaydism is doctrinally closer to Sunni Islam than to the Twelver Shiism dominant in Iran and Lebanon — the Iran-Houthi alignment is political and tactical, not theological.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The movement's formal name is *Ansar Allah* — 'Supporters of God.' 'Houthi' is the surname of the founding family from Saada province."
+          }
+        ]
+      },
+      {
+        "heading": "THE FORWARD-DEFENSE DOCTRINE",
+        "body": "Iran's IRGC projects power through proxy relationships rather than conventional deployment, a model sometimes called 'forward defense.' Hezbollah is the prototype and the trainer — Iraqi militias, Syrian formations, and the Houthis are downstream of the Lebanese template Tehran built after 1982."
+      },
+      {
+        "heading": "THE AXIS GEOGRAPHY",
+        "body": "The article describes a Damascus dinner in 2007 because Damascus was then the operational hub of the network — the rear base for Hezbollah, a transit point for Iranian materiel, and a meeting ground beyond the reach of Gulf intelligence. After 2011 the hub shifted; the relationships predated it.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "IQ",
+              "SY",
+              "LB",
+              "YE",
+              "SA"
+            ],
+            "label": "the axis of resistance",
+            "markers": [
+              {
+                "lat": 33.5138,
+                "lng": 36.2765,
+                "label": "Damascus"
+              },
+              {
+                "lat": 33.8547,
+                "lng": 35.8623,
+                "label": "Hezbollah HQ (Beqaa)"
+              },
+              {
+                "lat": 15.3694,
+                "lng": 44.191,
+                "label": "Sanaa"
+              },
+              {
+                "lat": 16.9402,
+                "lng": 42.9533,
+                "label": "Saada"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE RED SEA MATTERS",
+        "body": "Roughly 12% of global trade and 30% of container traffic transits Bab el-Mandeb, the 30-km strait between Yemen and Djibouti, on the way to Suez. A militia that controls the Yemeni coast controls a chokepoint that Iran itself cannot reach. This is what 19 years of training bought Tehran.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hormuz",
+                "value": "~21 mb/d",
+                "weight": 21,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Malacca",
+                "value": "~17 mb/d",
+                "weight": 17,
+                "tone": "neutral"
+              },
+              {
+                "label": "Bab el-Mandeb",
+                "value": "~9 mb/d",
+                "weight": 9,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Suez/SUMED",
+                "value": "~9 mb/d",
+                "weight": 9,
+                "tone": "neutral"
+              },
+              {
+                "label": "Danish Straits",
+                "value": "~3 mb/d",
+                "weight": 3,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global maritime chokepoints by daily oil flow"
+          }
+        ]
+      },
+      {
+        "heading": "THE LONG ARC",
+        "body": "What looks like a sudden Red Sea crisis is the maturation of a two-decade investment — six wars against the Yemeni state, a 2014 capture of Sanaa, a Saudi-led intervention that failed to dislodge them, and finally the missile and drone campaigns against shipping that began in late 2023.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2004",
+                "label": "First Saada war; Hussein al-Houthi killed"
+              },
+              {
+                "year": "2007",
+                "label": "Damascus dinner: IRGC-Hezbollah-Houthi compact",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011",
+                "label": "Yemeni uprising; Saleh ousted"
+              },
+              {
+                "year": "2014",
+                "label": "Houthis capture Sanaa"
+              },
+              {
+                "year": "2015",
+                "label": "Saudi-led coalition intervenes"
+              },
+              {
+                "year": "2022",
+                "label": "UN-brokered truce"
+              },
+              {
+                "year": "2023",
+                "label": "Red Sea shipping attacks begin"
+              }
+            ],
+            "label": "from Saada to the Red Sea"
+          }
+        ]
+      },
+      {
+        "heading": "THE TRAINING TRANSFER",
+        "body": "Hezbollah's value to Iran was never just fighters — it was the institutional knowledge of how to build a state-within-a-state: media arm, social services, parallel security forces, political wing. The Houthis replicated each component, which is why coalition airstrikes degraded their military but never their governance.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Hezbollah-built institution did the Houthis most directly replicate in Yemen?",
+            "options": [
+              "A satellite TV network (Al-Masirah, modeled on Al-Manar)",
+              "A central bank",
+              "A formal political party recognized by the UN",
+              "A national airline"
+            ],
+            "correct": 0,
+            "explanation": "Al-Masirah, launched in 2012 from Beirut with Hezbollah technical help, mirrors Al-Manar's role: a 24-hour channel that frames the movement's narrative across the Arab world."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T12:30:31.923Z",
+    "label": "Hezbollah & the Houthi Project",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-28-israel-lebanon-tyre-evacuation-orders-airstrikes": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY TYRE",
+        "body": "Tyre is the largest city in south Lebanon and the historical Phoenician port that once rivalled Carthage. In the modern conflict, it is the logistical hub behind the Litani — every road from the border to Beirut runs through it, which is why evacuation orders for Tyre signal something larger than a tactical strike.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL",
+              "SY"
+            ],
+            "label": "south Lebanon's frontier",
+            "markers": [
+              {
+                "lat": 33.2704,
+                "lng": 35.2038,
+                "label": "Tyre"
+              },
+              {
+                "lat": 33.2733,
+                "lng": 35.1939,
+                "label": "Litani River mouth"
+              },
+              {
+                "lat": 33.0922,
+                "lng": 35.1264,
+                "label": "Naqoura (UNIFIL HQ)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LITANI LINE",
+        "body": "South Lebanon — from the Litani River to the Israeli border — has been a buffer zone, occupation zone, and battleground continuously since 1978. Israel occupied it for 18 years (1982–2000). The geography that makes it a buffer also makes it a perpetual frontline."
+      },
+      {
+        "heading": "WHAT 1701 SAID",
+        "body": "UN Resolution 1701, which ended the 2006 war, demanded Hezbollah withdraw north of the Litani and that only the Lebanese Army and UNIFIL deploy south of it. Neither side fully complied. Every escalation since references 1701 — Israel claiming enforcement, Hezbollah claiming the resolution was never binding on a non-state party.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1978",
+                "label": "Israeli invasion; UNIFIL created"
+              },
+              {
+                "year": "1982",
+                "label": "Israeli invasion to Beirut",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2000",
+                "label": "Israeli withdrawal to Blue Line"
+              },
+              {
+                "year": "2006",
+                "label": "33-day war; Resolution 1701"
+              },
+              {
+                "year": "2024-11",
+                "label": "Israel–Hezbollah ceasefire"
+              },
+              {
+                "year": "2026-05",
+                "label": "Tyre evacuation orders"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1982",
+                "to": "2000",
+                "label": "Israeli occupation of south Lebanon",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "the south Lebanon frontier"
+          }
+        ]
+      },
+      {
+        "heading": "THE EVACUATION-ORDER DOCTRINE",
+        "body": "Under Additional Protocol I of the Geneva Conventions, attackers must give 'effective advance warning' of attacks affecting civilians 'unless circumstances do not permit.' Israel cites this clause to argue that mass evacuation orders discharge its legal obligation. Critics — including ICRC commentary — note that warnings do not legalize otherwise unlawful targeting, and that ordering a city to flee is not the same as ensuring it can.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal term of art is *effective* advance warning — meaning the civilian population must have the **time, means, and safe route** to actually evacuate. A 24-hour notice to a city without fuel or open roads fails the test."
+          }
+        ]
+      },
+      {
+        "heading": "BINT JBEIL'S SHADOW",
+        "body": "Bint Jbeil, 20km inland from Tyre, was the fiercest battle of 2006 — Hezbollah held it against Golani Brigade units for days. In Hezbollah's narrative, it is their Stalingrad: proof Israeli ground forces can be fought to a standstill. Any ground operation north of the Blue Line is read in Beirut and Tel Aviv against that memory."
+      },
+      {
+        "heading": "WHY TALKS CONTINUE ANYWAY",
+        "body": "US-mediated maritime and land border talks have run in parallel with active fire since 2022, when Amos Hochstein brokered the Israel–Lebanon maritime boundary during heavy cross-border exchanges. The pattern: Washington keeps the diplomatic channel open precisely because the military channel is hot — leverage flows from the gap between them.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did UN Resolution 1701 (2006) require of Hezbollah?",
+            "options": [
+              "Disarm completely within Lebanon",
+              "Withdraw its forces north of the Litani River",
+              "Hand over its leadership to an international tribunal",
+              "Recognize Israel's pre-1967 borders"
+            ],
+            "correct": 1,
+            "explanation": "1701 required Hezbollah forces north of the Litani and only the Lebanese Army and UNIFIL south of it — a demand neither side fully implemented."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T12:31:01.502Z",
+    "label": "South Lebanon & the 1701 Frontier",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-28-italy-messina-denaro-mafia-asset-seizure-laundering": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LAW THAT CHANGED EVERYTHING",
+        "body": "Italy's 1982 Rognoni-La Torre law made mafia membership itself a crime and — crucially — allowed the state to seize assets disproportionate to declared income. Pio La Torre, the Communist deputy who drafted it, was assassinated by Cosa Nostra months before it passed. Parliament enacted it within weeks of his killing.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal innovation is **reversed burden of proof**: prosecutors do not have to trace each euro to a specific crime. The suspect must explain how a butcher or bricklayer accumulated tens of millions in real estate."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SICILY, WHY THEN",
+        "body": "Cosa Nostra reached its zenith in the early 1980s through the Pizza Connection — heroin refined in Sicilian labs and distributed through pizzerias across the US northeast. The cash flooding back built a real-estate and construction empire across Palermo that Italian law had no tools to touch until La Torre's reform."
+      },
+      {
+        "heading": "THE MAXI TRIAL",
+        "body": "Between 1986 and 1992, magistrates Giovanni Falcone and Paolo Borsellino prosecuted 475 mafiosi in a purpose-built bunker courtroom in Palermo. 360 were convicted. Cosa Nostra responded by murdering both judges in 1992 — bombings that triggered the political crisis ending Italy's First Republic.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1982",
+                "label": "La Torre assassinated; asset-seizure law passes",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1986",
+                "label": "Maxi Trial opens in Palermo bunker"
+              },
+              {
+                "year": "1992",
+                "label": "Falcone and Borsellino murdered"
+              },
+              {
+                "year": "1993",
+                "label": "Boss of bosses Riina captured after 23 years"
+              },
+              {
+                "year": "2006",
+                "label": "Provenzano captured after 43 years"
+              },
+              {
+                "year": "2023",
+                "label": "Messina Denaro arrested after 30 years"
+              }
+            ],
+            "label": "the anti-mafia arc"
+          }
+        ]
+      },
+      {
+        "heading": "MESSINA DENARO",
+        "body": "Matteo Messina Denaro succeeded Riina and Provenzano as Cosa Nostra's last great capo. He spent 30 years as a fugitive while continuing to run the organization — eventually arrested in January 2023 at a Palermo clinic where he was being treated for cancer under a false name. He died in custody eight months later. Today's seizure targets the financial infrastructure he built while underground."
+      },
+      {
+        "heading": "WHERE THE MONEY GOES",
+        "body": "Confiscated mafia assets in Italy are not auctioned — they are transferred to a state agency (ANBSC) that reassigns them to municipalities, cooperatives, and NGOs. Former Cosa Nostra villas now house anti-mafia museums, refugee centers, and youth associations. The symbolism is deliberate: the territory the mafia controlled becomes the territory of the state.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What happens to most assets seized from the Italian mafia under the 1982 law?",
+            "options": [
+              "Auctioned to private buyers, proceeds to treasury",
+              "Held in trust pending appeals, then returned if conviction overturned",
+              "Reassigned to municipalities, cooperatives, and NGOs for social use",
+              "Destroyed or demolished to prevent re-acquisition"
+            ],
+            "correct": 2,
+            "explanation": "The reassignment is deliberate: turning a boss's villa into a school or refugee center reclaims the territory symbolically, not just legally."
+          }
+        ]
+      },
+      {
+        "heading": "THE LAUNDERING GEOGRAPHY",
+        "body": "Italian prosecutors estimate Cosa Nostra and its mainland counterparts — 'Ndrangheta in Calabria, Camorra in Naples — wash proceeds through construction, hospitality, and renewable-energy subsidies across the EU. The Calabrian 'Ndrangheta in particular has become the dominant European cocaine wholesaler, with documented investments from Frankfurt to Toronto.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IT",
+              "DE",
+              "CH",
+              "NL",
+              "ES",
+              "MT"
+            ],
+            "label": "documented Italian-mafia laundering jurisdictions",
+            "caption": "EU free movement of capital makes tracing slow even when crimes are obvious"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T12:31:32.576Z",
+    "label": "Italy's Anti-Mafia Asset Regime",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-28-singapore-china-land-sea-corridor-malacca-hedge": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MALACCA DILEMMA",
+        "body": "Roughly 80% of China's crude oil imports transit the Strait of Malacca, a 2.8km-wide chokepoint at its narrowest. Hu Jintao named the vulnerability in 2003; every Chinese infrastructure project since — from Gwadar to Kyaukpyu to this corridor — has been a partial answer to it.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SG",
+              "MY",
+              "ID",
+              "CN",
+              "VN",
+              "TH"
+            ],
+            "label": "the corridor and the chokepoint",
+            "markers": [
+              {
+                "lat": 1.2655,
+                "lng": 103.8201,
+                "label": "Singapore port"
+              },
+              {
+                "lat": 2.5,
+                "lng": 101.3,
+                "label": "Strait of Malacca"
+              },
+              {
+                "lat": 22.817,
+                "lng": 108.3669,
+                "label": "Nanning (corridor terminus)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE CORRIDOR ACTUALLY IS",
+        "body": "The New International Land-Sea Trade Corridor (ILSTC), launched in 2017, runs from Chongqing south by rail through Guangxi to the Beibu Gulf ports, then by sea to Singapore and onward. It compresses the Chongqing-to-Singapore journey from roughly 21 days via the Yangtze and Shanghai to about 7 days overland.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "It is sometimes called the **Southern Transport Corridor** — the inland-China counterpart to the maritime *Belt and Road*, designed to give landlocked western provinces a sea outlet that does not require crossing the entire country first."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SINGAPORE",
+        "body": "Singapore handles roughly a fifth of global container transhipment and a third of seaborne crude. It is the only ASEAN node whose port capacity, financial plumbing, and bunkering infrastructure can absorb a Chinese-routed flow at scale without becoming a bottleneck itself.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Container throughput, 2024",
+            "peers": [
+              {
+                "value": 51.5,
+                "label": "Shanghai"
+              },
+              {
+                "value": 41.1,
+                "label": "Singapore"
+              },
+              {
+                "value": 39.3,
+                "label": "Ningbo"
+              },
+              {
+                "value": 33.4,
+                "label": "Shenzhen"
+              },
+              {
+                "value": 25.4,
+                "label": "Guangzhou"
+              },
+              {
+                "value": 23.4,
+                "label": "Busan"
+              },
+              {
+                "value": 13.8,
+                "label": "Rotterdam"
+              }
+            ],
+            "subjectLabel": "Singapore",
+            "unit": "mn TEU"
+          }
+        ]
+      },
+      {
+        "heading": "THE HEDGE",
+        "body": "Singapore's foreign policy doctrine, articulated since Lee Kuan Yew, treats non-alignment as survival strategy: be indispensable to every major power, beholden to none. Hosting the US Navy's logistics command at Changi and co-designing China's trade corridor are not contradictions — they are the doctrine."
+      },
+      {
+        "heading": "ASEAN'S FORCED CHOICE",
+        "body": "Washington's Indo-Pacific Economic Framework and Beijing's BRI corridors increasingly demand exclusivity in practice if not in writing. Vietnam, the Philippines, and Indonesia are tilting visibly toward the US; Cambodia and Laos toward China. Singapore's middle path is the one most ASEAN states say they want and few can sustain.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of China's crude oil imports passes through the Strait of Malacca?",
+            "options": [
+              "About 30%",
+              "About 50%",
+              "About 80%",
+              "Nearly all"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 80% — the concentration that made 'the Malacca dilemma' a foundational concept in Chinese strategic planning since 2003."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T12:32:00.050Z",
+    "label": "The Malacca Hedge",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-28-stalkerware-millions-installs-partner-phones-whittaker-404": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT STALKERWARE ACTUALLY IS",
+        "body": "Stalkerware is consumer spyware sold openly — apps that hide their icon after install and forward GPS, messages, call logs, photos, and microphone audio to a web dashboard. The buyer is almost always someone with physical access to the target's phone: a spouse, parent, or ex-partner.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry's own marketing euphemism is **'parental monitoring'** or **'employee monitoring'** — legal use cases that cover for a customer base researchers consistently find is dominated by intimate-partner surveillance."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ANDROID, NOT iOS",
+        "body": "iOS forbids sideloading outside the App Store and sandboxes every app from reading another app's data. Android permits sideloaded APKs and, with one toggle in settings, grants Accessibility Services — an API designed for disabled users that lets an app read the screen and inject input system-wide. Stalkerware lives almost entirely on Android because the platform's openness is the exploit.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Android",
+                "value": "sideload + a11y API",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "iOS",
+                "value": "App Store only",
+                "tone": "favorable"
+              }
+            ],
+            "label": "why the install base is asymmetric"
+          }
+        ]
+      },
+      {
+        "heading": "THE BREACH PATTERN",
+        "body": "Stalkerware vendors have been breached at least 25 separate times since 2017 — mSpy, Spyhide, pcTattletale, Cocospy, Spyzie, and others. The same operational sloppiness that lets the app hide on a victim's phone — hardcoded credentials, unauthenticated S3 buckets, no encryption at rest — exposes every harvested message and photo to anyone who finds the server. Victims surveilled by an abuser become victims again to the open internet.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Who is typically exposed when a stalkerware company is breached?",
+            "options": [
+              "The paying customers only",
+              "The surveillance targets, whose intercepted data leaks publicly",
+              "The company's employees",
+              "Law enforcement investigators"
+            ],
+            "correct": 1,
+            "explanation": "Breaches dump the intercepted content — messages, photos, location history of the people being spied on — not just customer lists. The victim is harmed twice."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL VACUUM",
+        "body": "Federal US law (the Wiretap Act, CFAA) arguably covers stalkerware but is rarely enforced against vendors — prosecutors target individual stalkers instead. The FTC has used consumer-protection authority to shut down a handful of US-based operators (Retina-X in 2019, SpyFone in 2021, Support King in 2021), but most vendors operate from jurisdictions — Cyprus, the UAE, Vietnam — where no equivalent enforcement exists."
+      },
+      {
+        "heading": "THE GOOGLE PLAY LOOPHOLE",
+        "body": "Google bans stalkerware from the Play Store but the policy only governs the store, not the OS. A vendor's website hosts the APK; the abuser disables Play Protect for thirty seconds, sideloads, and grants Accessibility. Google's own Play Protect now flags many known stalkerware signatures — but signature detection loses to a vendor that ships a fresh build every week."
+      },
+      {
+        "heading": "THE NSO COUSIN",
+        "body": "Commercial stalkerware ($30-100/month, anyone can buy) sits at the bottom of a spyware market whose top end is Pegasus-class tooling ($millions per license, sold only to governments). The technical capability gap is enormous; the harm profile is not. Both rely on the same fundamental fact: a phone is the most intimate surveillance device ever mass-produced, and its owner usually cannot tell when it has been turned against them.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shared lineage is why researchers like the **Citizen Lab** and the **Coalition Against Stalkerware** treat consumer spyware and state-grade spyware as one ecosystem — different customers, same business model."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T12:32:35.997Z",
+    "label": "Stalkerware & Mobile Sideloading",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-28-undersea-volcanoes-iceland-explosive-eruption-quanta": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OLD ASSUMPTION",
+        "body": "For decades, geologists assumed water pressure suppressed explosive eruptions below a few hundred meters. The weight of the ocean column was thought to hold expanding gases inside the magma, forcing eruptions to ooze as pillow lavas rather than fragment.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The textbook term for this was **passive effusion** — magma extruding like toothpaste, quenching on contact with seawater into glassy *pillow basalts* that pave most of the deep ocean floor."
+          }
+        ]
+      },
+      {
+        "heading": "THE MECHANISM",
+        "body": "When hot magma contacts water, the water flashes to steam at roughly 1,700 times its liquid volume. If the magma is volatile-rich and the contact is turbulent enough, this phase change shatters the magma into fine ash — a process called magma-water interaction, or phreatomagmatic fragmentation."
+      },
+      {
+        "heading": "THE DEPTH THRESHOLD",
+        "body": "The critical pressure for water to flash into supercritical steam sits around 22 MPa — roughly 2,200 meters of seawater. Above that depth, explosive fragmentation is thermodynamically possible. The new finding is that even shallow submarine vents can fragment violently when gas content is high enough to overcome local pressure."
+      },
+      {
+        "heading": "WHY ICELAND",
+        "body": "Iceland sits astride the Mid-Atlantic Ridge AND a mantle plume — the only place on Earth where a hotspot pierces a spreading center at sea level. Its submarine volcanoes are unusually gas-rich because plume magmas carry more dissolved CO2 and water than typical mid-ocean ridge basalts.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IS",
+              "GL",
+              "NO",
+              "FO",
+              "GB"
+            ],
+            "label": "North Atlantic volcanic arc",
+            "markers": [
+              {
+                "lat": 63.3,
+                "lng": -20.6,
+                "label": "Surtsey (1963)"
+              },
+              {
+                "lat": 64,
+                "lng": -17.3,
+                "label": "Grimsvotn"
+              },
+              {
+                "lat": 63.43,
+                "lng": -19.06,
+                "label": "Eyjafjallajokull"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 1963 PRECEDENT",
+        "body": "Surtsey erupted off Iceland's south coast for three and a half years, building a new island from the seabed. Its early phase — violent steam-blast explosions throwing ash 9km high — gave the world the term Surtseyan eruption. The new research suggests Surtseyan dynamics extend deeper than previously believed."
+      },
+      {
+        "heading": "THE CLIMATE LEVER",
+        "body": "Hunga Tonga in 2022 injected 150 million tonnes of water vapor into the stratosphere — the largest such injection ever measured — and measurably warmed the planet for two years. Submarine eruptions deliver water vapor directly to high altitude in ways that subaerial volcanoes cannot.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did the 2022 Hunga Tonga submarine eruption do that distinguished it from typical large volcanic events?",
+            "options": [
+              "Cooled the planet via sulfate aerosols, like Pinatubo",
+              "Warmed the planet by injecting stratospheric water vapor",
+              "Released enough CO2 to register on Mauna Loa records",
+              "Triggered a measurable shift in Earth's rotation"
+            ],
+            "correct": 1,
+            "explanation": "Most large eruptions cool the climate via sulfate aerosols. Hunga Tonga was unusual because seawater vaporization delivered ~150 Mt of H2O directly to the stratosphere, a potent greenhouse gas at altitude."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-28T12:33:03.602Z",
+    "label": "Submarine Volcanism",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-28-wix-1000-jobs-shekel-peak-ai-israel": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MISMATCH",
+        "body": "Israeli tech firms sell to global customers in dollars but pay engineers in Tel Aviv in shekels. When the shekel strengthens, every dollar of revenue buys fewer shekels of payroll — margins compress even if the business is otherwise healthy.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **operational FX exposure** — a structural mismatch between revenue and cost currencies that hedging can soften but never eliminate."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE SHEKEL IS STRONG",
+        "body": "Israel runs a current account surplus driven almost entirely by tech-sector service exports. The same dollars flowing in to pay Israeli engineers bid the shekel up — a small-economy version of the Dutch disease, where one booming export sector strangles every other tradable industry."
+      },
+      {
+        "heading": "THE DUTCH DISEASE PRECEDENT",
+        "body": "Named after the Netherlands' 1960s gas boom: a natural-resource windfall lifted the guilder, hollowed out Dutch manufacturing, and left the country dependent on a single commodity. Tech-sector booms in Israel, Ireland, and Switzerland have produced the same pattern — currency strength that punishes any exporter outside the booming sector.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the original 'Dutch disease' in the 1960s Netherlands?",
+            "options": [
+              "A natural gas export boom that strengthened the guilder",
+              "A tulip speculation bubble",
+              "A pharmaceutical export surge",
+              "A shipbuilding labor shortage"
+            ],
+            "correct": 0,
+            "explanation": "The Groningen gas discovery (1959) flooded the Netherlands with export revenue, lifted the guilder, and made other Dutch exports uncompetitive — the original template."
+          }
+        ]
+      },
+      {
+        "heading": "THE TECH-SECTOR SHARE",
+        "body": "High-tech accounts for roughly 20% of Israeli GDP and over half of total exports — a concentration without parallel in any other developed economy. When this single sector's dollar inflows move the currency, every other Israeli exporter pays the price.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              45.065837,
+              45.183781,
+              45.1469,
+              45.167301,
+              45.142499,
+              45.190601,
+              45.216799,
+              45.231614,
+              45.233899,
+              45.364747,
+              45.347503,
+              45.347503,
+              45.380101,
+              45.395703,
+              45.413499,
+              45.429402,
+              45.5443,
+              45.495196,
+              45.522506,
+              45.579503,
+              45.58333,
+              45.588899,
+              45.6156,
+              45.717002,
+              45.698502,
+              45.698502,
+              45.734502,
+              45.902799,
+              45.8997,
+              45.903799
+            ],
+            "periods": [
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28"
+            ],
+            "label": "Turkish lira",
+            "unit": "TRY / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHAT WIX ACTUALLY DOES",
+        "body": "Wix sells website-building software to small businesses globally on a subscription basis. Its R&D headcount is concentrated in Israel; its customer base is overwhelmingly North American and European. The 30% FX move means a US customer paying the same $16/month subscription now funds roughly 30% less Israeli engineering time."
+      },
+      {
+        "heading": "THE AI ACCELERANT",
+        "body": "AI coding tools are independently shrinking the engineering headcount that any given product needs. The currency squeeze gives Israeli CEOs a politically defensible reason to do what they were already planning — cite the shekel publicly, ship the AI productivity gains quietly."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-28"
+    ],
+    "generatedAt": "2026-05-28T12:33:25.475Z",
+    "label": "The Currency Squeeze on Tech Exporters",
+    "category": "economy",
+    "articleCount": 1
   }
 }

@@ -2,13 +2,248 @@
   "version": 1,
   "stories": [
     {
+      "id": "israel-lebanon-tyre-evacuation-orders-airstrikes",
+      "label": "Eyewitness footage captures Israeli airstrike in southern Lebanon",
+      "firstSeen": "2026-05-28T12:06:37.685Z",
+      "lastCovered": "2026-05-28T12:06:37.685Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-28-israel-lebanon-tyre-evacuation-orders-airstrikes"
+      ],
+      "eventUri": "eng-11691639",
+      "summary": "At least 16 killed and 58 wounded as Israel widens its Lebanon assault, with mass displacement orders issued for southern cities. Lead with the named place (Tyre) and the displacement orders: the Israeli campaign in Lebanon has moved from targeted strikes to ordered evacuation of whole districts, the same pattern that preceded ground operations in Gaza. Mechanism to teach — evacuation orders are the legal scaffolding for civilian removal, and once a town is 'warned' the next-day bombing is treated as compliant with the laws of war. Multi-sourced QA/US/GB; the sentiment divergence between Al Jazeera and the Guardian is itself the story of how Lebanese lives are framed. Continues the Iran-war arc but pivots the front onto Lebanon's civilians — distinct from yesterday's US-airbase/Bandar Abbas angle.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Lebanon",
+        "http://en.wikipedia.org/wiki/Israel_Defense_Forces",
+        "http://en.wikipedia.org/wiki/Hezbollah",
+        "http://en.wikipedia.org/wiki/Tyre,_Lebanon",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Southern_Lebanon",
+        "http://en.wikipedia.org/wiki/Ceasefire"
+      ]
+    },
+    {
+      "id": "dahiyeh-eid-al-adha-evacuation-mada-masr-netanyahu",
+      "label": "Residents pack up to leave Dahiyeh before Eid al-Adha as Netanyahu threatens to 'intensify strikes'",
+      "firstSeen": "2026-05-28T12:06:37.685Z",
+      "lastCovered": "2026-05-28T12:06:37.685Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-28-dahiyeh-eid-al-adha-evacuation-mada-masr-netanyahu"
+      ],
+      "eventUri": null,
+      "summary": "Mada Masr's Cairo desk reports from Beirut's southern suburbs as families pack to leave Dahiyeh before Eid al-Adha, listening to news of a US-Iran deal that never came in time. Lead with Rima Ismail's family waiting through the night for a ceasefire while Netanyahu's cabinet decided to 'intensify' instead. Mechanism: 'ceasefire diplomacy' as performed in Washington is being overtaken in real time by Israeli escalation in Lebanon, so the door closes on civilians before it opens at the negotiating table. The reader cares because this is the Arab regional voice — not Western wires — narrating the Eid that Lebanese Shia families spent under bombardment.",
+      "conceptUris": []
+    },
+    {
+      "id": "hezbollah-houthis-two-decade-project-newlines",
+      "label": "Inside Hezbollah's Two-Decade Project To Shape the Houthis",
+      "firstSeen": "2026-05-28T12:06:37.685Z",
+      "lastCovered": "2026-05-28T12:06:37.685Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-28-hezbollah-houthis-two-decade-project-newlines"
+      ],
+      "eventUri": null,
+      "summary": "A 2007 dinner outside Damascus is where Hezbollah and Iranian operatives first sat down to discuss Yemen — and the next 19 years turned a marginal northern movement into Yemen's most powerful actor through training, media, mediation and political-network weaving. Lead with the dinner and the date: this is original reporting that shows the Houthis are not an Iranian proxy in the simple sense but a Hezbollah-built project. Mechanism to teach — soft infrastructure (media training, mediation, organisational design) shapes a militia more durably than weapons transfers, which is why the Houthis survived Saudi bombing and now police the Red Sea. Reader takeaway: understanding the Houthis as a Hezbollah product reframes every analysis of the Bab al-Mandab and the broader axis.",
+      "conceptUris": []
+    },
+    {
+      "id": "italy-messina-denaro-mafia-asset-seizure-laundering",
+      "label": "Italy seized late mafia boss Messina Denaro's assets worth $232M",
+      "firstSeen": "2026-05-28T12:06:37.685Z",
+      "lastCovered": "2026-05-28T12:06:37.685Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-28-italy-messina-denaro-mafia-asset-seizure-laundering"
+      ],
+      "eventUri": "ita-909666",
+      "summary": "Italian finance police seized €200 million ($232m) in assets and companies linked to laundering of drug proceeds tied to the late Cosa Nostra boss Matteo Messina Denaro, two and a half years after his arrest. Lead with the number and the dead man: the seizure shows that mafia wealth survives the boss, sitting in legitimate-looking companies until the Guardia di Finanza traces the laundering chain. Mechanism to teach — Italy's asset-confiscation regime, built around Article 12-sexies, lets the state pursue laundered wealth without a criminal conviction tied to each euro, the legal template that EU and UN sanctions desks now copy. Accountability angle: a state holding a mafia balance sheet to account decades after the crimes.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Matteo_Messina_Denaro",
+        "http://en.wikipedia.org/wiki/Palermo",
+        "http://en.wikipedia.org/wiki/Euro",
+        "http://en.wikipedia.org/wiki/Illegal_drug_trade",
+        "http://en.wikipedia.org/wiki/Guardia_di_Finanza",
+        "http://en.wikipedia.org/wiki/Messina",
+        "http://en.wikipedia.org/wiki/Sicilian_Mafia",
+        "http://it.wikipedia.org/wiki/Direzione_distrettuale_antimafia"
+      ]
+    },
+    {
+      "id": "eu-temu-200m-fine-dsa-illegal-products",
+      "label": "EU fines Temu €200m over sale of illegal products",
+      "firstSeen": "2026-05-28T12:06:37.685Z",
+      "lastCovered": "2026-05-28T12:06:37.685Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-28-eu-temu-200m-fine-dsa-illegal-products"
+      ],
+      "eventUri": "eng-11692264",
+      "summary": "Brussels fined Temu €200 million for failing to police illegal products on its platform — dangerous baby toys, defective chargers — the first major Digital Services Act penalty against a Chinese e-commerce giant. Lead with what Temu was selling and to whom: the fine is about EU consumers being exposed to product-safety violations at scale, not a generic trade fight. Mechanism to teach — the DSA shifts the legal burden onto platforms to 'diligently identify' systemic risk, so Temu's defence ('we are a marketplace, not a seller') no longer absolves it. Reader takeaway: the EU has built a regulatory tool the US lacks, and it is being aimed first at the cheapest cross-border supply chain on the planet. Multi-sourced IE/GB/IN/SG/MY — strong Asian outlets carry it.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/European_Commission",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Euro",
+        "http://en.wikipedia.org/wiki/European_Union",
+        "http://en.wikipedia.org/wiki/Consumer",
+        "http://en.wikipedia.org/wiki/Brussels",
+        "http://en.wikipedia.org/wiki/E-commerce",
+        "http://en.wikipedia.org/wiki/Europe"
+      ]
+    },
+    {
+      "id": "wix-1000-jobs-shekel-peak-ai-israel",
+      "label": "Israeli website creator Wix.com cuts 1,000 jobs, citing strong shekel and AI",
+      "firstSeen": "2026-05-28T12:06:37.685Z",
+      "lastCovered": "2026-05-28T12:06:37.685Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-28-wix-1000-jobs-shekel-peak-ai-israel"
+      ],
+      "eventUri": "eng-11692361",
+      "summary": "Wix is cutting 1,000 jobs — most in Israel — blaming a 30% shekel appreciation against the dollar and AI productivity gains. Lead with the currency math: revenue dollar-denominated, costs shekel-denominated, and the shekel at a 33-year high crushes the gross margin before the first line of code is written. Mechanism to teach — Israel's wartime current-account surplus and capital inflows pushed the shekel to a structural peak, which now hollows out the country's signature export sector. Accountability frame: 'AI replaces workers' is the convenient public story, but the underlying driver is the macro consequence of two wars that Israeli policy chose. Reader takeaway: hard currency is the hidden ledger on which the Iran-war bill is being paid in Tel Aviv office buildings.",
+      "conceptUris": []
+    },
+    {
+      "id": "singapore-china-land-sea-corridor-malacca-hedge",
+      "label": "The Strategic Corridor Turning Singapore Into China's Indispensable Partner",
+      "firstSeen": "2026-05-28T12:06:37.685Z",
+      "lastCovered": "2026-05-28T12:06:37.685Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-28-singapore-china-land-sea-corridor-malacca-hedge"
+      ],
+      "eventUri": null,
+      "summary": "Beijing's New International Land-Sea Trade Corridor — a Chongqing-to-Singapore freight artery — was co-designed by Singapore and is now its main hedge against Malacca-Strait chokepoint risk. Lead with the design partnership: a non-aligned city-state helped Beijing architect the alternative to the seaways the US Navy patrols. Mechanism to teach — the corridor blends Chinese rail through Laos and Vietnam with Singapore's port and finance stack, so the value created is captured by both ends and locks Singapore in as China's indispensable trade partner. Reader takeaway: ASEAN's most strategically careful state has quietly chosen to be downstream of Chinese logistics, and that choice rewrites assumptions about Southeast Asian neutrality.",
+      "conceptUris": []
+    },
+    {
+      "id": "undersea-volcanoes-iceland-explosive-eruption-quanta",
+      "label": "When Quiet Undersea Volcanoes Turn Disruptive",
+      "firstSeen": "2026-05-28T12:06:37.685Z",
+      "lastCovered": "2026-05-28T12:06:37.685Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-28-undersea-volcanoes-iceland-explosive-eruption-quanta"
+      ],
+      "eventUri": null,
+      "summary": "The mid-ocean ridges — Earth's longest volcanic system, hidden under the sea — were assumed to erupt only quietly. New seafloor evidence off Iceland shows shallow submarine eruptions can be violently disruptive. Lead with the textbook assumption being overturned: pressure was supposed to muffle these volcanoes, and now it doesn't. Mechanism to teach — at shallow depths magma-water interaction generates explosive fragmentation rather than effusive lava flow, which redraws the tsunami and aerosol-climate risk maps for north Atlantic communities. Reader takeaway: the largest volcanic system on the planet is louder than the science assumed, and Iceland sits on the front of that rewrite.",
+      "conceptUris": []
+    },
+    {
+      "id": "france-glp1-wegovy-mounjaro-reimbursement-first-eu",
+      "label": "France becomes first EU country to reimburse anti-obesity drugs, minister says",
+      "firstSeen": "2026-05-28T12:06:37.685Z",
+      "lastCovered": "2026-05-28T12:06:37.685Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-28-france-glp1-wegovy-mounjaro-reimbursement-first-eu"
+      ],
+      "eventUri": "fra-1309304",
+      "summary": "France will reimburse Wegovy and Mounjaro through its public health system — the first EU member to put GLP-1 weight-loss drugs on the state ticket — at an estimated €100m/year. Lead with the policy choice: a national insurer has decided obesity is a chronic disease the state should treat at scale, not a lifestyle problem patients should pay for. Mechanism to teach — public reimbursement collapses the price barrier that has kept GLP-1s a US-style elite drug, and the moment a major EU health system does it, the rest of Europe's pricing negotiations with Novo Nordisk and Eli Lilly shift. Reader takeaway: this is the start of the GLP-1 era being class-democratised in Europe, and the same negotiation will land in middle-income countries next.",
+      "conceptUris": []
+    },
+    {
+      "id": "central-asia-smog-kazakhstan-kyrgyzstan-uzbekistan-coal-heating",
+      "label": "Central Asia takes on smog",
+      "firstSeen": "2026-05-28T12:06:37.685Z",
+      "lastCovered": "2026-05-28T12:06:37.685Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-28-central-asia-smog-kazakhstan-kyrgyzstan-uzbekistan-coal-heating"
+      ],
+      "eventUri": null,
+      "summary": "IQAir routinely designates the capitals of Kazakhstan, Kyrgyzstan and Uzbekistan as 'very unhealthy' or 'hazardous' — and now the three governments are starting to act. Lead with the rankings and the populations breathing them: millions of Central Asians live under air quality the WHO classifies as immediately dangerous, and the coal-fired district-heating systems built for Soviet winters are the dominant source. Mechanism to teach — smog policy in Central Asia is inseparable from energy policy, because the same coal that warms the apartments in -25°C December produces the haze in March, and replacing it requires the gas and grid investments these states have postponed. Reader takeaway: Central Asia's pollution is a Soviet-era infrastructure problem now arriving at the budget table of three OIC states.",
+      "conceptUris": []
+    },
+    {
+      "id": "buspatrol-school-bus-anpr-police-access-404media",
+      "label": "'BusPatrol' Put AI Cameras in Tens of Thousands of School Buses. Now They Want to Give Cops Access",
+      "firstSeen": "2026-05-28T12:06:37.685Z",
+      "lastCovered": "2026-05-28T12:06:37.685Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-28-buspatrol-school-bus-anpr-police-access-404media"
+      ],
+      "eventUri": null,
+      "summary": "BusPatrol — a company that installed AI license-plate cameras on tens of thousands of US school buses to ticket cars passing stopped buses — now wants to give law enforcement access to the full data stream of every plate the buses see. Lead with the mission creep: cameras sold to communities as a child-safety measure are being repurposed into a mobile police-surveillance fleet without a new vote or law. Mechanism to teach — surveillance infrastructure expands not through legislation but through 'optional access' contracts between vendors and police, so the legal status of the data changes after the cameras are already on the streets. Accountability frame: the affected party (parents, neighbourhoods) was never asked. 404 Media owns this beat.",
+      "conceptUris": []
+    },
+    {
+      "id": "stalkerware-millions-installs-partner-phones-whittaker-404",
+      "label": "Millions of People Are Installing Malware on Their Partners' Phones (with Zack Whittaker)",
+      "firstSeen": "2026-05-28T12:06:37.685Z",
+      "lastCovered": "2026-05-28T12:06:37.685Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-28-stalkerware-millions-installs-partner-phones-whittaker-404"
+      ],
+      "eventUri": null,
+      "summary": "Stalkerware — consumer spyware sold to install secretly on a partner's phone — is now a millions-of-installs industry, repeatedly breached and repeatedly resurrected under new branding. Lead with the scale: this is not a fringe abuse, it is a market with a customer base, and the customers are mostly domestic abusers. Mechanism to teach — Android's sideloading model and weak signing requirements are the technical surface that makes stalkerware possible, and US state attorneys general have started using consumer-protection statutes rather than wiretap laws because the latter were written before phones became continuous-recording devices. Reader takeaway: the technology stack treats this market as a normal commercial software vertical, and most jurisdictions still do not.",
+      "conceptUris": []
+    },
+    {
+      "id": "china-tech-tourism-shenzhen-ai-factory-tours",
+      "label": "China's tech rise is creating a new kind of tourism",
+      "firstSeen": "2026-05-28T12:06:37.685Z",
+      "lastCovered": "2026-05-28T12:06:37.685Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-28-china-tech-tourism-shenzhen-ai-factory-tours"
+      ],
+      "eventUri": null,
+      "summary": "Foreign founders, engineers and investors are now flying to Shenzhen and Hangzhou the way an earlier generation flew to Silicon Valley — booking factory tours of BYD and CATL and demo days at Chinese AI labs in search of the next breakthrough. Lead with the inversion: the world's tech-tourist itinerary has flipped, and the people writing the cheques are buying plane tickets east, not west. Mechanism to teach — visitor flows track where capability is concentrating; for the first time since the 1990s the centre of gravity for hardware-AI fusion has measurably moved out of California. Reader takeaway: 'AI sovereignty' in 2026 is being shopped for in Mandarin.",
+      "conceptUris": []
+    },
+    {
       "id": "iran-strikes-us-airbase-kuwait-bandar-abbas-retaliation",
       "label": "Iran carries out strike on US airbase  --  IRGC",
       "firstSeen": "2026-05-28T08:06:08.290Z",
       "lastCovered": "2026-05-28T08:06:08.290Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-28-iran-strikes-us-airbase-kuwait-bandar-abbas-retaliation"
@@ -33,7 +268,7 @@
       "lastCovered": "2026-05-28T08:06:08.290Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-27-mada-masr-us-iran-deal-no-longer-matters-regional"
@@ -49,7 +284,7 @@
       "lastCovered": "2026-05-28T08:06:08.290Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-27-russia-kyrgyz-colonialism-textbook-history-pressure"
@@ -65,7 +300,7 @@
       "lastCovered": "2026-05-28T08:06:08.290Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-28-iea-mideast-war-energy-security-largest-crisis-coal"
@@ -90,7 +325,7 @@
       "lastCovered": "2026-05-28T08:06:08.290Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-28-india-us-trade-talks-resume-interim-deal-tariffs-security"
@@ -115,7 +350,7 @@
       "lastCovered": "2026-05-28T08:06:08.290Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-27-rcep-2027-general-review-trade-bloc-asia-fragmentation"
@@ -131,7 +366,7 @@
       "lastCovered": "2026-05-28T08:06:08.290Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-28-wmo-record-temperatures-2026-2030-new-baseline"
@@ -156,7 +391,7 @@
       "lastCovered": "2026-05-28T08:06:08.290Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-28-kenya-gilgil-girls-boarding-school-fire-16-dead"
@@ -181,7 +416,7 @@
       "lastCovered": "2026-05-28T08:06:08.290Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-27-china-hydrogen-industry-future-electrolyser-dominance"
@@ -197,7 +432,7 @@
       "lastCovered": "2026-05-28T08:06:08.290Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-28-nature-women-healthtech-wearables-male-algorithm-bias"
@@ -213,7 +448,7 @@
       "lastCovered": "2026-05-28T08:06:08.290Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-27-romania-oregon-hack-extradition-cyber-prosecution"
@@ -229,7 +464,7 @@
       "lastCovered": "2026-05-28T04:05:10.827Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-28-israel-gaza-hamas-leadership-decapitation-strikes"
@@ -245,7 +480,7 @@
       "lastCovered": "2026-05-28T04:05:10.827Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-27-gaza-dark-eid-al-adha-siege-economy"
@@ -261,7 +496,7 @@
       "lastCovered": "2026-05-28T04:05:10.827Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-27-google-engineer-polymarket-insider-trading-search"
@@ -277,7 +512,7 @@
       "lastCovered": "2026-05-28T04:05:10.827Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-28-california-100-percent-tax-january-6-fund-newsom"
@@ -293,7 +528,7 @@
       "lastCovered": "2026-05-28T04:05:10.827Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-27-syria-railways-reconstruction-gulf-trade-corridor"
@@ -309,7 +544,7 @@
       "lastCovered": "2026-05-28T04:05:10.827Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-27-iran-war-nebraska-farmers-fertilizer-prices"
@@ -325,7 +560,7 @@
       "lastCovered": "2026-05-28T04:05:10.827Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-28-australia-3m-pfas-forever-chemicals-lawsuit"
@@ -341,7 +576,7 @@
       "lastCovered": "2026-05-28T04:05:10.827Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-28-deep-learning-wildfire-forecast-underserved-regions"
@@ -357,7 +592,7 @@
       "lastCovered": "2026-05-28T04:05:10.827Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-27-iran-internet-restored-after-90-day-shutdown"
@@ -373,7 +608,7 @@
       "lastCovered": "2026-05-28T04:05:10.827Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-27-pope-leo-xiv-ai-wealth-universal-distribution"
@@ -389,7 +624,7 @@
       "lastCovered": "2026-05-28T04:05:10.827Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-27-standard-chartered-ai-compliance-fraud-replacement"
@@ -405,7 +640,7 @@
       "lastCovered": "2026-05-27T22:09:15.500Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-27-trump-threatens-oman-strait-of-hormuz-mediator"
@@ -430,7 +665,7 @@
       "lastCovered": "2026-05-27T22:09:15.500Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-27-trump-gaza-board-of-peace-fund-empty-zero-deposited"
@@ -455,7 +690,7 @@
       "lastCovered": "2026-05-27T22:09:15.500Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-27-ghanaians-evacuated-south-africa-xenophobia"
@@ -480,7 +715,7 @@
       "lastCovered": "2026-05-27T22:09:15.500Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-27-spain-civil-guard-psoe-headquarters-cerdan-graft-probe"
@@ -505,7 +740,7 @@
       "lastCovered": "2026-05-27T22:09:15.500Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-27-nvidia-150b-taiwan-ai-epicenter-trump-hub-backfire"
@@ -530,7 +765,7 @@
       "lastCovered": "2026-05-27T22:09:15.500Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-27-fifa-world-cup-ticket-pricing-subpoena-ny-attorney-general"
@@ -555,7 +790,7 @@
       "lastCovered": "2026-05-27T22:09:15.500Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-27-brazil-br319-amazon-highway-deforestation-lula"
@@ -580,7 +815,7 @@
       "lastCovered": "2026-05-27T22:09:15.500Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-27-ssd-side-channel-browser-fingerprinting-tracking"
@@ -596,7 +831,7 @@
       "lastCovered": "2026-05-27T22:09:15.500Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-27-character-ai-enshittification-ads-guardrails-backlash"
@@ -612,7 +847,7 @@
       "lastCovered": "2026-05-27T22:09:15.500Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-27-ai-superhuman-hacking-defi-smart-contract-exploits"
@@ -628,7 +863,7 @@
       "lastCovered": "2026-05-27T22:09:15.500Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-27-stem-cell-heart-patch-failure-regeneration-nejm"
@@ -644,7 +879,7 @@
       "lastCovered": "2026-05-27T22:09:15.500Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-27-lossless-energy-transfer-gold-nanorod-vibration-limit"
@@ -660,7 +895,7 @@
       "lastCovered": "2026-05-27T22:09:15.500Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-27-esbl-carriage-amr-northern-nigeria-tertiary-hospital"
@@ -676,7 +911,7 @@
       "lastCovered": "2026-05-27T12:08:17.065Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-27-bellingcat-myanmar-rakhine-lost-villages-osint"
@@ -692,7 +927,7 @@
       "lastCovered": "2026-05-27T12:08:17.065Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-27-us-strike-drug-boat-pacific-extrajudicial-killing"
@@ -717,7 +952,7 @@
       "lastCovered": "2026-05-27T12:08:17.065Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-27-hungary-reverses-icc-exit-magyar-netanyahu"
@@ -742,7 +977,7 @@
       "lastCovered": "2026-05-27T12:08:17.065Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-27-india-supreme-court-eci-sir-electoral-rolls"
@@ -767,7 +1002,7 @@
       "lastCovered": "2026-05-27T12:08:17.065Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-uk-energy-price-cap-221-iran-war-gas"
@@ -792,7 +1027,7 @@
       "lastCovered": "2026-05-27T12:08:17.065Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-27-byju-raveendran-jailed-singapore-contempt-edtech"
@@ -817,7 +1052,7 @@
       "lastCovered": "2026-05-27T12:08:17.065Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-27-hong-kong-overtakes-switzerland-offshore-wealth-hub"
@@ -842,7 +1077,7 @@
       "lastCovered": "2026-05-27T12:08:17.065Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-27-synthetic-controls-hurricane-urban-bee-biodiversity"
@@ -858,7 +1093,7 @@
       "lastCovered": "2026-05-27T12:08:17.065Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-27-indian-it-ai-deployment-gap-outsourcing"
@@ -874,7 +1109,7 @@
       "lastCovered": "2026-05-27T12:08:17.065Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-27-us-anti-tech-extremism-surveillance-ai-backlash"
@@ -890,7 +1125,7 @@
       "lastCovered": "2026-05-27T12:08:17.065Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-27-tuvalu-digital-nation-sovereignty-sea-level-rise"
@@ -906,7 +1141,7 @@
       "lastCovered": "2026-05-27T12:08:17.065Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-27-imaging-quantum-chemistry-in-action-with-quantum-attomicrosc"
@@ -922,7 +1157,7 @@
       "lastCovered": "2026-05-27T04:08:35.694Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-27-sk-hynix-1-trillion-ai-memory-hbm-monopoly"
@@ -947,7 +1182,7 @@
       "lastCovered": "2026-05-27T04:08:35.694Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-27-imf-pakistan-eff-105-conditions-sovereignty"
@@ -963,7 +1198,7 @@
       "lastCovered": "2026-05-27T04:08:35.694Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-modi-nordic-india-arctic-minerals-russia"
@@ -979,7 +1214,7 @@
       "lastCovered": "2026-05-27T04:08:35.694Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-27-akwa-ibom-market-fire-no-diesel-state-capacity"
@@ -995,7 +1230,7 @@
       "lastCovered": "2026-05-27T04:08:35.694Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-27-bangladesh-measles-children-deaths-vaccination-gap"
@@ -1011,7 +1246,7 @@
       "lastCovered": "2026-05-27T04:08:35.694Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-27-uganda-ebola-suspected-bengaluru-airport-surveillance"
@@ -1027,7 +1262,7 @@
       "lastCovered": "2026-05-27T04:08:35.694Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-smex-breadnet-2025-mena-digital-rights-outcomes"
@@ -1043,7 +1278,7 @@
       "lastCovered": "2026-05-27T04:08:35.694Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-27-pentagon-spacex-starlink-lucas-drone-dependency"
@@ -1059,7 +1294,7 @@
       "lastCovered": "2026-05-27T04:08:35.694Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-27-former-president-biden-sues-doj-over-release-of-interview-au"
@@ -1084,251 +1319,13 @@
       "lastCovered": "2026-05-27T04:08:35.694Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-27-situationer-continuation-of-urumqi-process-raises-hopes-for"
       ],
       "eventUri": null,
       "summary": "[Auto-backfill for politics floor] * Beijing's envoy already laying groundwork to continue Islamabad-Kabul mediation efforts\n\n* Pakistani circles 'fed up' by failure of bilateral efforts, pin their hopes on Chinese shepherding the process\n\nCHINA'S diplomatic mediation between Pak­istan and Taliban-ruled Afghanistan is keeping hopes a",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-says-new-us-strikes-violate-ceasefire",
-      "label": "Iran says new US strikes violate ceasefire",
-      "firstSeen": "2026-05-26T22:08:08.392Z",
-      "lastCovered": "2026-05-26T22:08:08.392Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-iran-says-new-us-strikes-violate-ceasefire"
-      ],
-      "eventUri": "spa-4209129",
-      "summary": "Hours after the Doha track resumed, US CENTCOM ran what it called 'defensive' strikes in southern Iran; Tehran says the truce is already broken and BBC/News18/CNA/Punch carry the same framing with sentimentDivergence 0.24. Lead with the timing collision: Rubio says a deal is 'a few days' away while the kinetic side is still firing, which is precisely the failure mode SMEX and Drop Site have been documenting — a 'ceasefire' that only stops the parts both sides agree to count. Mechanism: 'defensive strikes' is the doctrinal loophole that lets Washington keep shooting and still call it peace, and the political cost is paid by Lebanese and Iranian civilians outside the deal's perimeter. Iran arc continuation from [[iran-mq9-drone-downed-persian-gulf-irgc-ceasefire]] and [[khamenei-no-going-back-us-bases-middle-east-realignment]] — third Iran-arc slot, do not stack further this cycle.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Missile",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/United_States_Central_Command",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Washington,_D.C.",
-        "http://en.wikipedia.org/wiki/Tehran"
-      ]
-    },
-    {
-      "id": "us-and-armenia-sign-partnership-agreement-ahead-of-armenian",
-      "label": "US and Armenia sign partnership agreement ahead of Armenian election",
-      "firstSeen": "2026-05-26T22:08:08.392Z",
-      "lastCovered": "2026-05-26T22:08:08.392Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-us-and-armenia-sign-partnership-agreement-ahead-of-armenian"
-      ],
-      "eventUri": "eng-11682954",
-      "summary": "Rubio and Mirzoyan signed a strategic-partnership agreement weeks before Armenia votes — multi-sourced from AM, US, SG, IN and TR (Anadolu). Lead with the timing: Washington is putting its name on Pashinyan's re-election platform after Yerevan's pivot away from the CSTO, and Turkey's state wire is reporting it without alarm — which is itself the story, given Ankara and Yerevan's century of frozen diplomacy. Mechanism: 'strategic partnership' is the same template Washington just used with India on rare earths; the Caucasus version trades a sanctions-circumvention chokepoint between Iran and Russia for US security backing. Reader takeaway: the post-Karabakh realignment is being locked in with a US signature, and Iran is reading every line of it.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Armenia",
-        "http://en.wikipedia.org/wiki/Marco_Rubio",
-        "http://en.wikipedia.org/wiki/Yerevan",
-        "http://en.wikipedia.org/wiki/United_States_Secretary_of_State",
-        "http://en.wikipedia.org/wiki/Ararat_Mirzoyan",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Ministry_for_Europe_and_Foreign_Affairs_(France)",
-        "http://en.wikipedia.org/wiki/United_States"
-      ]
-    },
-    {
-      "id": "czech-ammo-coalition-for-ukraine-loses-support",
-      "label": "Czech 'ammo coalition' for Ukraine loses support",
-      "firstSeen": "2026-05-26T22:08:08.392Z",
-      "lastCovered": "2026-05-26T22:08:08.392Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-czech-ammo-coalition-for-ukraine-loses-support"
-      ],
-      "eventUri": "rus-2071482",
-      "summary": "President Petr Pavel says half the participants — 18 down to 9 countries — have walked away from Prague's Ukraine-ammunition initiative since Babis took office in December 2025, and even RT carries the story straight. Lead with the number: a coalition that was the EU's flagship workaround when Hungary blocked direct aid has been gutted in six months by a single change of government. Mechanism worth teaching: 'coalitions of the willing' depend on whichever election cycle is most recent, and that's a structural weakness Brussels has no answer to. Reader takeaway: the same week US planners briefed NATO they would cut crisis commitments to Europe, Europe's own ad-hoc Ukraine logistics is collapsing — and Moscow is the audience that benefits from both stories landing on the same day.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Czech_Republic",
-        "http://en.wikipedia.org/wiki/President_of_the_Czech_Republic",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Financial_Times",
-        "http://en.wikipedia.org/wiki/NATO",
-        "http://en.wikipedia.org/wiki/Ammunition",
-        "http://en.wikipedia.org/wiki/Andrej_Babiš",
-        "http://en.wikipedia.org/wiki/Germany"
-      ]
-    },
-    {
-      "id": "mali-banned-russian-submunitions-bellingcat-cluster-bomblets",
-      "label": "Banned Russian Submunitions Found After Mali's Military Announces Airstrikes",
-      "firstSeen": "2026-05-26T22:08:08.392Z",
-      "lastCovered": "2026-05-26T22:08:08.392Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-mali-banned-russian-submunitions-bellingcat-cluster-bomblets"
-      ],
-      "eventUri": null,
-      "summary": "Bellingcat + Jeune Afrique OSINT investigation: unexploded Russian-made cluster bomblets and impact damage documented in a northern Mali village, despite Mali being a state party to the Convention on Cluster Munitions. Lead with the treaty violation by name and the named village: this is the second documented use of banned submunitions by the Bamako–Africa Corps partnership, and the first where the geolocated craters appear in Bellingcat's frames. Mechanism worth teaching: Russia exports the weapons class Western states agreed to stop using, and a Sahelian junta is choosing them precisely because the political cost is paid by villagers no UN body will name. Mali is OIC; feed offered no Malian or regional Sahel outlet — note feed-side gap. Accountability arc, separate from Sudan-RSF-UAE [[sudan-rsf-uae-colombian-mercenaries-hrw-report]] but same supply-chain-of-violence template.",
-      "conceptUris": []
-    },
-    {
-      "id": "wall-street-records-iran-strikes-ceasefire-trade-brent-hormuz",
-      "label": "Peace deal hopes boost Wall Street stocks despite latest US strikes",
-      "firstSeen": "2026-05-26T22:08:08.392Z",
-      "lastCovered": "2026-05-26T22:08:08.392Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-wall-street-records-iran-strikes-ceasefire-trade-brent-hormuz"
-      ],
-      "eventUri": "eng-11684905",
-      "summary": "S&P 500 and Nasdaq closed at fresh records the same day US CENTCOM hit Iran and Brent jumped on Hormuz fears — the market is pricing the strikes as a near-term deal catalyst, not an escalation. Lead with the disconnect: equity desks are betting that the next round of strikes shortens the ceasefire negotiation, while oil desks are betting it lengthens it, and both bets are running simultaneously in the same Bloomberg terminal. Mechanism worth teaching: 'risk-on' is now an Iran-war trade, with the Strait of Hormuz functioning as a put option on the broader index — the implied volatility is paid by Global South economies that don't get to hedge. Reader takeaway: the markets that determine US pension performance are now openly priced against the ceasefire holding for the shortest commercially convenient interval.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Brent_Crude",
-        "http://en.wikipedia.org/wiki/West_Texas_Intermediate",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Futures_contract",
-        "http://en.wikipedia.org/wiki/United_States_Armed_Forces",
-        "http://en.wikipedia.org/wiki/Price_of_oil"
-      ]
-    },
-    {
-      "id": "nippon-dynawave-longview-pulp-mill-explosion-osha-backlog",
-      "label": "Fatalities Reported in Washington State Packaging Facility Explosion",
-      "firstSeen": "2026-05-26T22:08:08.392Z",
-      "lastCovered": "2026-05-26T22:08:08.392Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-nippon-dynawave-longview-pulp-mill-explosion-osha-backlog"
-      ],
-      "eventUri": "eng-11686993",
-      "summary": "Nippon Dynawave Packaging's Longview, Washington pulp-and-packaging mill exploded Tuesday morning with fatalities and multiple critical injuries — the second mass-casualty US industrial accident in a working-age industry in six months. Lead with what the facility actually is: pulp mill chemistry runs on hydrogen sulfide, chlorine dioxide and recovery boilers operating just below their explosive limit, and the regulatory deference to operators on the West Coast packaging side is documented. Mechanism worth teaching: 'packaging' sounds benign but the upstream pulping is one of the most dangerous chemical environments outside refining, and federal inspection backlogs at OSHA are running at multi-year highs. Reader takeaway: the workplace-safety regression isn't only a Sahel-mercenary or Kazakh-oil story — it lands the same day in Longview.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Washington_(state)",
-        "http://en.wikipedia.org/wiki/Longview,_Washington",
-        "http://en.wikipedia.org/wiki/Paper_mill",
-        "http://en.wikipedia.org/wiki/Fire_department",
-        "http://en.wikipedia.org/wiki/Packaging_and_labeling",
-        "http://en.wikipedia.org/wiki/Dangerous_goods",
-        "http://en.wikipedia.org/wiki/Firefighter"
-      ]
-    },
-    {
-      "id": "pakistan-wapda-security-force-cpec-dasu-chinese-workers",
-      "label": "Govt plans Wapda security force for water projects",
-      "firstSeen": "2026-05-26T22:08:08.392Z",
-      "lastCovered": "2026-05-26T22:08:08.392Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-pakistan-wapda-security-force-cpec-dasu-chinese-workers"
-      ],
-      "eventUri": "eng-11684791",
-      "summary": "Pakistan is creating a dedicated paramilitary 'Wapda Security Force' to protect dams, hydropower plants, and Chinese workers at Dasu and other CPEC-linked sites, following repeated attacks on Chinese engineers. Lead with the institutional choice: water infrastructure has been promoted out of civilian policing and into a standing armed force, with the bill already sent to parliament. Mechanism worth teaching: when a state can no longer guarantee Chinese contractor safety through ordinary means, the contract terms shift — Beijing is increasingly underwriting Pakistani fiscal stress in exchange for sovereign militarisation of CPEC perimeters. Reader takeaway: the cost of CPEC is no longer just the loan book; it is the bureaucratic architecture of a parallel armed force whose mandate is set in Beijing's risk department. Pakistan is OIC; Dawn provides the regional voice.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Water_%26_Power_Development_Authority",
-        "http://en.wikipedia.org/wiki/Dasu",
-        "http://en.wikipedia.org/wiki/Parliament",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/China%E2%80%93Pakistan_Economic_Corridor"
-      ]
-    },
-    {
-      "id": "earth-oxygen-atmosphere-mantle-subduction-tectonics",
-      "label": "Want an oxygen-rich atmosphere? Stuff oxygen's friends in the mantle.",
-      "firstSeen": "2026-05-26T22:08:08.392Z",
-      "lastCovered": "2026-05-26T22:08:08.392Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-earth-oxygen-atmosphere-mantle-subduction-tectonics"
-      ],
-      "eventUri": null,
-      "summary": "A new model argues Earth's oxygen-rich atmosphere required not just photosynthesis but a tectonically active mantle willing to swallow reductant minerals — taking oxygen-hungry rocks out of circulation long enough for free O2 to accumulate. Lead with the inversion of the standard schoolbook story: photosynthesis alone isn't enough; the answer is that subduction has to hide the iron and sulfide chemistry that would otherwise eat the oxygen. Mechanism worth teaching: planetary habitability is a geophysics problem as much as a biology one, and the implications for exoplanet detection are direct — a stagnant-lid world like Venus can host life chemistry but cannot store its atmospheric exhaust. Reader takeaway: the question 'why does Earth have breathable air' has a new answer this week, and it's a tectonic answer.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Photosynthesis",
-        "http://en.wikipedia.org/wiki/Mantle_(geology)",
-        "http://en.wikipedia.org/wiki/Subduction",
-        "http://en.wikipedia.org/wiki/Rock_(geology)",
-        "http://en.wikipedia.org/wiki/Oxygen"
-      ]
-    },
-    {
-      "id": "furtivovirus-giant-virus-evolution-tree-of-life",
-      "label": "Discovery of furtivovirus advances understanding of giant virus evolution",
-      "firstSeen": "2026-05-26T22:08:08.392Z",
-      "lastCovered": "2026-05-26T22:08:08.392Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-furtivovirus-giant-virus-evolution-tree-of-life"
-      ],
-      "eventUri": null,
-      "summary": "A newly described giant virus — 'furtivovirus' — sits awkwardly on the edge of the classical tree of life, with a genome large enough to look cellular but no cellular machinery of its own. Lead with what the name acknowledges: it hides in plain sight, between virus and proto-cell, and challenges the cleanest line biology has drawn. Mechanism worth teaching: giant viruses keep getting weirder — they encode their own metabolic enzymes, in some cases translation factors — and each new isolate forces the question of whether 'life' has one origin or several. Reader takeaway: the next major revision of the tree of life is unlikely to be a tweak; it will be a redrawn topology, and furtivovirus is one of the branches forcing the change.",
-      "conceptUris": []
-    },
-    {
-      "id": "starlette-fastapi-asgi-vulnerability-ai-agents-mcp-credentials",
-      "label": "Millions of AI agents imperiled by critical vulnerability in open source package",
-      "firstSeen": "2026-05-26T22:08:08.392Z",
-      "lastCovered": "2026-05-26T22:08:08.392Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-starlette-fastapi-asgi-vulnerability-ai-agents-mcp-credentials"
-      ],
-      "eventUri": null,
-      "summary": "A critical vulnerability in Starlette/FastAPI's ASGI handling — used as the HTTP backbone for millions of AI agents and MCP servers — lets attackers walk in and steal credentials, tool tokens, and downstream third-party access. Lead with the dependency surface: the same week the [[agentic-divide-ai-agent-inequality-global-south-productivity]] story landed, the agent stack the global North relies on turns out to be one Python web framework deep. Mechanism worth teaching: agent supply chains are concentrated on a handful of HTTP servers, and a single misparsed header propagates to every downstream tool the agent can call — the blast radius is whatever the agent's OAuth scopes added up to. Reader takeaway: 'AI agents' are not yet a security category in their own right — they inherit the bugs of 2018-era Python web servers, and the credential exposure is qualitatively worse because the agents hold delegated keys.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/FastAPI",
-        "http://en.wikipedia.org/wiki/Open-source_software",
-        "http://en.wikipedia.org/wiki/Server_(computing)",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Asynchronous_Server_Gateway_Interface"
-      ]
-    },
-    {
-      "id": "wireless-sensor-network-charger-placement-graph-coloring-aquila",
-      "label": "Charger placement optimization in wireless sensor networks using hybrid graph coloring and Enhanced Aquila Optimization",
-      "firstSeen": "2026-05-26T22:08:08.392Z",
-      "lastCovered": "2026-05-26T22:08:08.392Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-wireless-sensor-network-charger-placement-graph-coloring-aquila"
-      ],
-      "eventUri": null,
-      "summary": "A two-stage optimization framework — hybrid graph coloring + an Enhanced Aquila metaheuristic — determines both the number and location of wireless chargers in sensor networks, the layer that decides how long an IoT deployment can actually survive on harvested energy. Lead with the deployment problem: as wireless sensor networks scale from a few hundred nodes to tens of thousands (smart-grid, water-quality, AMR monitoring), charger placement is the bottleneck most operators have been solving with rules of thumb. Mechanism worth teaching: graph coloring gives the lower bound on chargers needed; the bio-inspired Aquila search then tunes positions, an order of magnitude cheaper to compute than the integer-programming formulation. Reader takeaway: this is the unglamorous algorithmic infrastructure that decides whether the world's environmental-monitoring networks can run for a decade without rip-and-replace — and the answer is now substantially better.",
       "conceptUris": []
     }
   ]
