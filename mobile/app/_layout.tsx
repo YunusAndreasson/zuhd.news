@@ -1,4 +1,5 @@
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { useFonts } from 'expo-font';
 import * as Notifications from 'expo-notifications';
 import { Slot } from 'expo-router';
@@ -23,6 +24,7 @@ import {
   setBriefing as setPendingBriefing,
   set as setPendingSlug,
 } from '../lib/pending-notification';
+import { PERSIST_MAX_AGE_MS, persister, queryClient } from '../lib/query-client';
 import { getPreferences, savePreferences } from '../lib/storage';
 
 configureReanimatedLogger({ level: ReanimatedLogLevel.warn, strict: false });
@@ -166,11 +168,16 @@ export default function RootLayout() {
     <GestureHandlerRootView style={styles.root}>
       <ErrorBoundary>
         <Suspense fallback={<View style={styles.root} />}>
-          <ThemeProvider fontsAvailable={fontsLoaded}>
-            <BottomSheetModalProvider>
-              <ThemedShell />
-            </BottomSheetModalProvider>
-          </ThemeProvider>
+          <PersistQueryClientProvider
+            client={queryClient}
+            persistOptions={{ persister, maxAge: PERSIST_MAX_AGE_MS }}
+          >
+            <ThemeProvider fontsAvailable={fontsLoaded}>
+              <BottomSheetModalProvider>
+                <ThemedShell />
+              </BottomSheetModalProvider>
+            </ThemeProvider>
+          </PersistQueryClientProvider>
         </Suspense>
       </ErrorBoundary>
     </GestureHandlerRootView>

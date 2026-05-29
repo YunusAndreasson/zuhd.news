@@ -9,7 +9,6 @@ import { useFetchJson } from './useFetchJson';
  *  list empty — the globe simply skips the chokepoint layer. */
 export function useChokepoints(): { chokepoints: Chokepoint[]; ready: boolean } {
   const { data, ready } = useFetchJson(`${API_BASE}/api/chokepoints.json`, isChokepointSnapshot, {
-    cacheFilename: 'zuhd-chokepoints.json',
     refreshOnResume: true,
   });
   return { chokepoints: data?.chokepoints ?? [], ready };

@@ -1,4 +1,6 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { act, renderHook } from '@testing-library/react';
+import { createElement, type ReactNode } from 'react';
 
 // Deferred promise helper for controlling async timing
 function deferred<T>() {
@@ -19,6 +21,21 @@ jest.mock('../lib/fetch', () => ({
 // Must import AFTER jest.mock
 import { fetchWithTimeout } from '../lib/fetch';
 import { useContextBrief } from '../hooks/useContextBrief';
+
+// Fresh QueryClient per test — isolates the TanStack Query cache between
+// runs so prior brief responses don't leak. retry: false so a single mock
+// rejection surfaces immediately instead of triggering the default 3 retries.
+function createWrapper() {
+  const client = new QueryClient({
+    // staleTime: Infinity matches the production behavior — cached briefs
+    // stay fresh, so a second fetchBrief(sameId) is a cache hit, not a refetch.
+    // retry: false so a single mock rejection surfaces immediately instead
+    // of triggering the default 3 retries.
+    defaultOptions: { queries: { retry: false, staleTime: Infinity } },
+  });
+  return ({ children }: { children: ReactNode }) =>
+    createElement(QueryClientProvider, { client }, children);
+}
 
 const mockFetch = fetchWithTimeout as jest.MockedFunction<typeof fetchWithTimeout>;
 
@@ -52,7 +69,7 @@ describe('useContextBrief', () => {
     const briefData = makeBrief(id);
     mockFetch.mockResolvedValueOnce(mockResponse(briefData));
 
-    const { result } = renderHook(() => useContextBrief());
+    const { result } = renderHook(() => useContextBrief(), { wrapper: createWrapper() });
 
     await act(async () => {
       result.current.fetchBrief(id);
@@ -68,7 +85,7 @@ describe('useContextBrief', () => {
     const briefData = makeBrief(id);
     mockFetch.mockResolvedValueOnce(mockResponse(briefData));
 
-    const { result } = renderHook(() => useContextBrief());
+    const { result } = renderHook(() => useContextBrief(), { wrapper: createWrapper() });
 
     // First call — fetches
     await act(async () => {
@@ -89,7 +106,7 @@ describe('useContextBrief', () => {
     const id = uniqueId('error');
     mockFetch.mockRejectedValueOnce(new Error('network'));
 
-    const { result } = renderHook(() => useContextBrief());
+    const { result } = renderHook(() => useContextBrief(), { wrapper: createWrapper() });
 
     await act(async () => {
       result.current.fetchBrief(id);
@@ -109,7 +126,7 @@ describe('useContextBrief', () => {
       .mockReturnValueOnce(deferA.promise) // A: slow
       .mockResolvedValueOnce(mockResponse(briefB)); // B: fast
 
-    const { result } = renderHook(() => useContextBrief());
+    const { result } = renderHook(() => useContextBrief(), { wrapper: createWrapper() });
 
     // Start A
     act(() => {
@@ -141,7 +158,7 @@ describe('useContextBrief', () => {
     const deferB = deferred<Response>();
     mockFetch.mockReturnValueOnce(deferA.promise).mockReturnValueOnce(deferB.promise);
 
-    const { result } = renderHook(() => useContextBrief());
+    const { result } = renderHook(() => useContextBrief(), { wrapper: createWrapper() });
 
     act(() => {
       result.current.fetchBrief(idA);

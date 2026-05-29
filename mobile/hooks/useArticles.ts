@@ -1,14 +1,12 @@
 import type { Article, Category, FeedResponse } from '@shared/types';
-import { startTransition, useCallback, useEffect, useEffectEvent, useRef, useState } from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useCallback, useEffect, useEffectEvent, useMemo, useRef, useState } from 'react';
 import { API_BASE, STALE_THRESHOLD } from '../constants/theme';
 import { flushBookmarks } from '../lib/bookmark-store';
 import { fetchJson } from '../lib/fetchJson';
-import { createJsonCache } from '../lib/json-cache';
 import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
 import { isFeedResponse, isMetaResponse } from '../lib/validate';
 import { useAppResume } from './useAppResume';
-
-const feedCache = createJsonCache<FeedResponse>('zuhd-feed.json', isFeedResponse);
 
 type GroupedArticles = Record<Category, Article[]>;
 
@@ -38,16 +36,44 @@ interface ArticlesState {
   injectArticle: (article: Article, category: Category) => void;
 }
 
+const FEED_QUERY_KEY = ['feed'] as const;
+
+function slugSet(feed: FeedResponse): Set<string> {
+  const all: string[] = [];
+  for (const list of Object.values(feed.categories)) {
+    for (const a of list) all.push(a.slug);
+  }
+  return new Set(all);
+}
+
 export function useArticles(): ArticlesState {
-  const [grouped, setGrouped] = useState<GroupedArticles>(emptyGrouped);
-  const [briefing, setBriefing] = useState<BriefingInfo | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const queryClient = useQueryClient();
   const [lastSeenAt, setLastSeenAt] = useState(0);
   const prevSlugsRef = useRef<Set<string>>(new Set());
-  const [generated, setGenerated] = useState<string | null>(null);
   const lastGeneratedRef = useRef<string | null>(null);
   const refreshingRef = useRef(false);
+  const seedDoneRef = useRef(false);
+
+  // useQuery handles cache hydration from the persister + the initial network
+  // fetch. The query key is stable; refresh()/retry() drive refetches.
+  const query = useQuery({
+    queryKey: FEED_QUERY_KEY,
+    queryFn: ({ signal }) =>
+      fetchJson(`${API_BASE}/api/feed.json`, isFeedResponse, {
+        timeoutMs: 10000,
+        signal,
+      }),
+  });
+
+  // Seed prevSlugsRef + lastGeneratedRef on first data arrival (either from
+  // persister hydration or network). Counting first-load slugs as "added"
+  // would inflate the first post-boot refresh.
+  useEffect(() => {
+    if (!query.data || seedDoneRef.current) return;
+    seedDoneRef.current = true;
+    prevSlugsRef.current = slugSet(query.data);
+    lastGeneratedRef.current = query.data.generated;
+  }, [query.data]);
 
   // Load lastSeenAt from storage on mount
   useEffect(() => {
@@ -61,40 +87,23 @@ export function useArticles(): ArticlesState {
   const lastTickAtRef = useRef(0);
   const TICK_GRANULARITY_MS = 60_000;
 
-  const applyFeed = useEffectEvent((data: FeedResponse, seedSlugs = false): number => {
-    lastGeneratedRef.current = data.generated;
-    const newGrouped: GroupedArticles = { ...emptyGrouped, ...data.categories };
-    const allSlugs = Object.values(newGrouped)
-      .flat()
-      .map((a) => a.slug);
-    const newSlugs = new Set(allSlugs);
-    // On initial cache load, every slug is "already known" — counting them as
-    // new would inflate the first post-boot refresh's addedCount.
-    const addedCount = seedSlugs
-      ? 0
-      : [...newSlugs].filter((s) => !prevSlugsRef.current.has(s)).length;
+  const refetchAndDiff = useEffectEvent(async (): Promise<number> => {
+    const fresh = await queryClient.fetchQuery({
+      queryKey: FEED_QUERY_KEY,
+      queryFn: ({ signal }) =>
+        fetchJson(`${API_BASE}/api/feed.json`, isFeedResponse, {
+          timeoutMs: 10000,
+          cache: 'no-store',
+          signal,
+        }),
+      // Force the network request — refresh() bypasses staleTime.
+      staleTime: 0,
+    });
+    const newSlugs = slugSet(fresh);
+    const added = [...newSlugs].filter((s) => !prevSlugsRef.current.has(s)).length;
     prevSlugsRef.current = newSlugs;
-
-    startTransition(() => {
-      setGenerated(data.generated);
-      setBriefing(data.briefing);
-      setGrouped(newGrouped);
-      setError(null);
-    });
-
-    return addedCount;
-  });
-
-  const fetchFeed = useEffectEvent(async (): Promise<number> => {
-    const raw = await fetchJson(`${API_BASE}/api/feed.json`, isFeedResponse, {
-      timeoutMs: 10000,
-      cache: 'no-store',
-    });
-    const addedCount = applyFeed(raw);
-    try {
-      feedCache.write(raw);
-    } catch {}
-    return addedCount;
+    lastGeneratedRef.current = fresh.generated;
+    return added;
   });
 
   const hasNewContent = useEffectEvent(async (): Promise<boolean> => {
@@ -109,40 +118,9 @@ export function useArticles(): ArticlesState {
     }
   });
 
-  // Cache-first initial load
-  useEffect(() => {
-    (async () => {
-      // Try disk cache first
-      const cached = await feedCache.read();
-      if (cached) {
-        applyFeed(cached, true);
-        setLoading(false);
-        // Silent background check for fresher content. applyFeed updates
-        // grouped data in place; the FlatList reconciles by slug without
-        // remounting, so the user keeps their scroll position.
-        try {
-          const changed = await hasNewContent();
-          if (changed) await fetchFeed();
-        } catch {
-          // cached data is fine; no UI surface for background refresh errors
-        }
-        return;
-      }
-      // No cache — network fetch (first launch)
-      try {
-        await fetchFeed();
-      } catch (e: unknown) {
-        setError(e instanceof Error ? e.message : 'Unknown error');
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps — applyFeed/fetchFeed/hasNewContent are stable useEffectEvent refs
-
   // Foreground resume: refresh if away > 5 min. Tick is bumped only when
   // a real minute has elapsed since the last bump, so quick app-switches
-  // don't force a full re-render of every visible cell. Feed updates
-  // apply silently — no FlatList remount, no scroll reset.
+  // don't force a full re-render of every visible cell.
   const handleResume = useEffectEvent(async () => {
     const now = Date.now();
     if (now - lastTickAtRef.current >= TICK_GRANULARITY_MS) {
@@ -153,7 +131,7 @@ export function useArticles(): ArticlesState {
       refreshingRef.current = true;
       try {
         const changed = await hasNewContent();
-        if (changed) await fetchFeed();
+        if (changed) await refetchAndDiff();
       } catch {
         // silent — existing content is fine
       } finally {
@@ -175,44 +153,52 @@ export function useArticles(): ArticlesState {
     try {
       const changed = await hasNewContent();
       if (!changed) return 0;
-      return await fetchFeed();
+      return await refetchAndDiff();
     } finally {
       refreshingRef.current = false;
     }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps — fetchFeed/hasNewContent are stable useEffectEvent refs
+  }, []); // refetchAndDiff/hasNewContent are stable useEffectEvent refs
 
   const retry = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      await fetchFeed();
-    } catch (e: unknown) {
-      setError(e instanceof Error ? e.message : 'Unknown error');
-    } finally {
-      setLoading(false);
-    }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps — fetchFeed is a stable useEffectEvent ref
+    await query.refetch();
+  }, [query.refetch]);
 
-  /** Inject an article into a category if it's not already present (e.g. bookmarked article that rotated out of the feed). */
-  const injectArticle = useCallback((article: Article, category: Category) => {
-    setGrouped((prev) => {
-      const list = prev[category] ?? [];
-      if (list.some((a) => a.slug === article.slug)) return prev;
-      prevSlugsRef.current.add(article.slug);
-      return { ...prev, [category]: [article, ...list] };
-    });
-  }, []);
+  /** Inject an article into a category if it's not already present (e.g.
+   *  bookmarked article that rotated out of the feed). */
+  const injectArticle = useCallback(
+    (article: Article, category: Category) => {
+      queryClient.setQueryData<FeedResponse>(FEED_QUERY_KEY, (prev) => {
+        if (!prev) return prev;
+        const list = prev.categories[category] ?? [];
+        if (list.some((a) => a.slug === article.slug)) return prev;
+        prevSlugsRef.current.add(article.slug);
+        return {
+          ...prev,
+          categories: { ...prev.categories, [category]: [article, ...list] },
+        };
+      });
+    },
+    [queryClient],
+  );
+
+  const grouped = useMemo<GroupedArticles>(() => {
+    if (!query.data) return emptyGrouped;
+    return { ...emptyGrouped, ...query.data.categories };
+  }, [query.data]);
 
   return {
     grouped,
-    briefing,
-    loading,
-    error,
+    briefing: query.data?.briefing ?? null,
+    // Surface loading only on the very first attempt — cache hydration from
+    // the persister presents data instantly, so loading flips false as soon
+    // as there's *anything* to render.
+    loading: query.isPending && !query.data,
+    error: query.error ? (query.error.message ?? 'Unknown error') : null,
     lastSeenAt,
     refresh,
     retry,
     tick,
-    generated,
+    generated: query.data?.generated ?? null,
     injectArticle,
   };
 }

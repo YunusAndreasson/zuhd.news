@@ -1,5 +1,6 @@
+import { BlurView } from 'expo-blur';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { type LayoutChangeEvent, StyleSheet, View } from 'react-native';
+import { type LayoutChangeEvent, Platform, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   FadeIn,
@@ -208,7 +209,7 @@ export const BriefingBar = memo(function BriefingBar({
       style={[styles.wrapper, { paddingBottom: Math.max(insets.bottom, SPACING.sm) }]}
       pointerEvents="box-none"
     >
-      <View style={[styles.bar, { backgroundColor: colors.pillBg }]} onLayout={onBarLayout}>
+      <BarBackground onLayout={onBarLayout} tintColor={colors.pillBg}>
         {/* Tooltip lives outside the clipping inner so it can float ABOVE
             the bar without being chopped by the inner's overflow:hidden. */}
         <Animated.View
@@ -297,8 +298,36 @@ export const BriefingBar = memo(function BriefingBar({
             </View>
           </GestureDetector>
         </View>
-      </View>
+      </BarBackground>
     </Animated.View>
+  );
+});
+
+/** iOS uses a frosted-glass background so the chrome floats over the article
+ *  reader; Android falls back to a solid `pillBg` fill because Android's
+ *  BlurView implementation is uneven across vendors. Both wrap the bar's
+ *  rounded-rect with the same border radius and clip overflow so the inner
+ *  edge-to-edge progress strip follows the corner curve. */
+const BarBackground = memo(function BarBackground({
+  children,
+  onLayout,
+  tintColor,
+}: {
+  children: React.ReactNode;
+  onLayout: (e: LayoutChangeEvent) => void;
+  tintColor: string;
+}) {
+  if (Platform.OS === 'ios') {
+    return (
+      <BlurView intensity={60} tint="systemThinMaterial" style={styles.bar} onLayout={onLayout}>
+        {children}
+      </BlurView>
+    );
+  }
+  return (
+    <View style={[styles.bar, { backgroundColor: tintColor }]} onLayout={onLayout}>
+      {children}
+    </View>
   );
 });
 

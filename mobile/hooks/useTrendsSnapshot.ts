@@ -15,7 +15,6 @@ export function useTrendsSnapshot(): {
   ready: boolean;
 } {
   const { data, ready } = useFetchJson(`${API_BASE}/api/trends.json`, isTrendsSnapshot, {
-    cacheFilename: 'zuhd-trends.json',
     refreshOnResume: true,
   });
   const indicators = data?.indicators ?? [];

@@ -1,5 +1,6 @@
 import type { ContextBrief } from '@shared/types';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
+import { useCallback, useRef, useState } from 'react';
 import { API_BASE } from '../constants/theme';
 import { fetchJson } from '../lib/fetchJson';
 import { isContextBrief, parseArticleBlocks } from '../lib/validate';
@@ -25,9 +26,6 @@ function normalizeBrief(raw: ContextBrief): ContextBrief {
   };
 }
 
-const cache = new Map<string, ContextBrief>();
-const MAX_CACHE = 50;
-
 interface ContextBriefState {
   brief: ContextBrief | null;
   loading: boolean;
@@ -37,61 +35,69 @@ interface ContextBriefState {
   reset: () => void;
 }
 
+/** Imperative loader for /api/context/{threadId}.json. Uses TanStack Query's
+ *  cache for dedup + offline persistence, but exposes a tap-driven API
+ *  (`fetchBrief(threadId)`) so the context sheet can open before data
+ *  arrives. Multiple rapid taps cancel the in-flight request and bind to
+ *  the latest threadId, never overwriting later state with an older
+ *  response. */
 export function useContextBrief(): ContextBriefState {
+  const queryClient = useQueryClient();
   const [brief, setBrief] = useState<ContextBrief | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const inflightRef = useRef<AbortController | null>(null);
   const lastThreadIdRef = useRef<string | null>(null);
 
-  useEffect(() => () => inflightRef.current?.abort(), []);
+  const fetchBrief = useCallback(
+    async (threadId: string) => {
+      lastThreadIdRef.current = threadId;
 
-  const fetchBrief = useCallback(async (threadId: string) => {
-    // Cancel any in-flight request — its response must not overwrite this one
-    inflightRef.current?.abort();
-    lastThreadIdRef.current = threadId;
-
-    const cached = cache.get(threadId);
-    if (cached) {
-      setBrief(cached);
-      setLoading(false);
-      setError(false);
-      return;
-    }
-
-    const controller = new AbortController();
-    inflightRef.current = controller;
-    setBrief(null);
-    setLoading(true);
-    setError(false);
-
-    try {
-      const raw = await fetchJson(`${API_BASE}/api/context/${threadId}.json`, isContextBrief, {
-        signal: controller.signal,
-      });
-      const normalized = normalizeBrief(raw);
-      if (cache.size >= MAX_CACHE) {
-        const oldest = cache.keys().next().value;
-        if (oldest !== undefined) cache.delete(oldest);
-      }
-      cache.set(threadId, normalized);
-      if (!controller.signal.aborted) {
-        setBrief(normalized);
+      // Cache-first short-circuit: if TanStack Query already has fresh data
+      // for this thread, surface it synchronously without round-tripping
+      // through fetchQuery (which always returns a Promise and forces a
+      // microtask hop where setBrief(null) would briefly clear the UI).
+      const cached = queryClient.getQueryData<ContextBrief>(['context-brief', threadId]);
+      if (cached) {
+        setBrief(normalizeBrief(cached));
         setLoading(false);
+        setError(false);
+        return;
       }
-    } catch {
-      if (!controller.signal.aborted) {
+
+      setBrief(null);
+      setLoading(true);
+      setError(false);
+
+      try {
+        const raw = await queryClient.fetchQuery({
+          queryKey: ['context-brief', threadId],
+          queryFn: ({ signal }) =>
+            fetchJson(`${API_BASE}/api/context/${threadId}.json`, isContextBrief, { signal }),
+          // Cache-first within session: a brief that arrived once stays. The
+          // pipeline regenerates briefs only when their thread rotates, so
+          // staleness within a session is rare; cross-session staleness is
+          // handled by the persister's maxAge.
+          staleTime: Infinity,
+        });
+        // Only apply if a newer fetchBrief call hasn't superseded us.
+        if (lastThreadIdRef.current !== threadId) return;
+        setBrief(normalizeBrief(raw));
+        setLoading(false);
+      } catch {
+        if (lastThreadIdRef.current !== threadId) return;
         setLoading(false);
         setError(true);
       }
-    }
-  }, []);
+    },
+    [queryClient],
+  );
 
   const retry = useCallback(async () => {
     if (lastThreadIdRef.current) await fetchBrief(lastThreadIdRef.current);
   }, [fetchBrief]);
 
   const reset = useCallback(() => {
+    lastThreadIdRef.current = null;
     setBrief(null);
     setError(false);
     setLoading(false);

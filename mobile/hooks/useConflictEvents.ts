@@ -33,7 +33,6 @@ function filterToLastDay(events: ConflictEvent[]): ConflictEvent[] {
  *  per snapshot reference change, not per render. */
 export function useConflictEvents(): { events: ConflictEvent[]; ready: boolean } {
   const { data, ready } = useFetchJson(`${API_BASE}/api/conflict.json`, isConflictSnapshot, {
-    cacheFilename: 'zuhd-conflict.json',
     refreshOnResume: true,
   });
   return useMemo(

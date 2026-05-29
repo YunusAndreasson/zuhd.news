@@ -1,12 +1,13 @@
 import type { HeatmapPoint } from '@shared/types';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useEffect, useRef } from 'react';
 import { API_BASE, STALE_THRESHOLD } from '../constants/theme';
 import { fetchJson } from '../lib/fetchJson';
-import { createJsonCache } from '../lib/json-cache';
-import { type HeatmapResponse, isHeatmapResponse } from '../lib/validate';
+import { isHeatmapResponse } from '../lib/validate';
 import { useAppResume } from './useAppResume';
 
-const heatmapCache = createJsonCache<HeatmapResponse>('zuhd-heatmap.json', isHeatmapResponse);
+const EMPTY_POINTS: HeatmapPoint[] = [];
+const HEATMAP_QUERY_KEY = ['heatmap'] as const;
 
 interface HeatmapResult {
   points: HeatmapPoint[];
@@ -14,66 +15,40 @@ interface HeatmapResult {
   ready: boolean;
 }
 
+/** Fetches `/api/heatmap.json` with TanStack Query persistence. Refetches
+ *  silently when the feed's `generated` timestamp rotates (so the heatmap
+ *  matches whatever's on screen). Graceful degrade: any failure leaves the
+ *  layer empty. */
 export function useHeatmap(feedGenerated: string | null): HeatmapResult {
-  const [points, setPoints] = useState<HeatmapPoint[]>([]);
-  const [ready, setReady] = useState(false);
-  const lastGenRef = useRef<string | null>(null);
-  const inflightRef = useRef<AbortController | null>(null);
-
-  const fetchHeatmap = useCallback(async () => {
-    // Cancel any in-flight request so a slow response can't overwrite a fresher one
-    inflightRef.current?.abort();
-    const controller = new AbortController();
-    inflightRef.current = controller;
-    try {
-      const raw = await fetchJson(`${API_BASE}/api/heatmap.json`, isHeatmapResponse, {
+  const queryClient = useQueryClient();
+  const query = useQuery({
+    queryKey: HEATMAP_QUERY_KEY,
+    queryFn: ({ signal }) =>
+      fetchJson(`${API_BASE}/api/heatmap.json`, isHeatmapResponse, {
         timeoutMs: 8000,
-        cache: 'no-store',
-        signal: controller.signal,
-      });
-      if (controller.signal.aborted) return;
-      lastGenRef.current = raw.generated;
-      setPoints(raw.points);
-      try {
-        heatmapCache.write(raw);
-      } catch {}
-    } catch {}
-  }, []);
+        signal,
+      }),
+  });
 
-  useEffect(() => () => inflightRef.current?.abort(), []);
-
-  // Cache-first initial load
-  const didInitialFetch = useRef(false);
-  useEffect(() => {
-    if (didInitialFetch.current) return;
-    didInitialFetch.current = true;
-    (async () => {
-      const cached = await heatmapCache.read();
-      if (cached) {
-        lastGenRef.current = cached.generated;
-        setPoints(cached.points);
-        setReady(true);
-        // Background refresh — don't await, don't gate splash on it
-        fetchHeatmap();
-        return;
-      }
-      await fetchHeatmap();
-      setReady(true);
-    })();
-  }, [fetchHeatmap]);
-
-  // Refetch when feed rotates — only after the initial fetch has settled so
-  // we don't race the cache-load path.
+  // Refetch when feed rotates — `generated` tagged on the snapshot lets us
+  // skip refetching when the snapshot is still aligned with the current feed.
+  const lastInvalidatedRef = useRef<string | null>(null);
   useEffect(() => {
     if (!feedGenerated) return;
-    if (!lastGenRef.current) return;
-    if (feedGenerated !== lastGenRef.current) {
-      fetchHeatmap();
-    }
-  }, [feedGenerated, fetchHeatmap]);
+    const dataGenerated = query.data?.generated ?? null;
+    if (!dataGenerated) return;
+    if (dataGenerated === feedGenerated) return;
+    if (lastInvalidatedRef.current === feedGenerated) return;
+    lastInvalidatedRef.current = feedGenerated;
+    queryClient.invalidateQueries({ queryKey: HEATMAP_QUERY_KEY });
+  }, [feedGenerated, query.data?.generated, queryClient]);
 
-  // Foreground resume
-  useAppResume(fetchHeatmap, STALE_THRESHOLD);
+  useAppResume(() => {
+    queryClient.invalidateQueries({ queryKey: HEATMAP_QUERY_KEY });
+  }, STALE_THRESHOLD);
 
-  return { points, ready };
+  return {
+    points: query.data?.points ?? EMPTY_POINTS,
+    ready: query.isFetched,
+  };
 }

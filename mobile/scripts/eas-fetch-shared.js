@@ -30,7 +30,9 @@ if (fs.existsSync(targetDir)) {
 }
 
 if (!process.env.EAS_BUILD) {
-  console.error('[eas-fetch-shared] not on EAS Build and mobile/shared/ missing — refusing to fetch');
+  console.error(
+    '[eas-fetch-shared] not on EAS Build and mobile/shared/ missing — refusing to fetch',
+  );
   console.error('  (locally, metro.config falls back to ../shared/ so no action needed)');
   process.exit(1);
 }

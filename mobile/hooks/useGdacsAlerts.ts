@@ -19,7 +19,6 @@ export function useGdacsAlerts(): {
   ready: boolean;
 } {
   const { data, ready } = useFetchJson(`${API_BASE}/api/gdacs.json`, isGdacsSnapshot, {
-    cacheFilename: 'zuhd-gdacs.json',
     refreshOnResume: true,
   });
   return useMemo(

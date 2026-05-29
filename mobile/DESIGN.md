@@ -6,7 +6,7 @@ See root `foundation.md` for the philosophy. This document is the operational re
 
 ## Voice
 
-One typeface family. Whitespace is designed. Color carries meaning only — every non-monochrome element must justify its hue. No shadows, no gradients except the `ArticlePage` globe-fade backdrop, no decorative icons. Restraint is the brand.
+One typeface family. Whitespace is designed. Color carries meaning only — every non-monochrome element must justify its hue. No shadows, no gradients except the `ArticlePage` globe-fade backdrop and the `BriefingBar`'s iOS-only frosted glass (see §Native chrome carve-outs), no decorative icons. Restraint is the brand.
 
 ## Tokens — `constants/theme.ts`
 
@@ -116,9 +116,16 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 - Setting `fontSize` or `lineHeight` in a component — use a variant, or add one.
 - A second font family. The app ships Source Sans 3 only.
 - Decorative icons just to pad a label. Use words.
-- Shadows, gradients, box-shadows (except the `ArticlePage` globe-fade backdrop gradient).
-- Raw `@expo/vector-icons` imports outside `Icon.tsx`.
+- Shadows, gradients, box-shadows (except the `ArticlePage` globe-fade backdrop gradient and the `BriefingBar` iOS frosted-glass — see §Native chrome carve-outs).
+- Raw `@expo/vector-icons` or `expo-symbols` imports outside `Icon.tsx`.
 - Introducing a styling library (NativeWind, Unistyles, Tamagui, Restyle). Vanilla StyleSheet + theme hooks is the decision — documented, don't re-litigate.
+
+## Native chrome carve-outs
+
+The "no native chrome" rule has two specific, intentional carve-outs:
+
+- **Icons on iOS resolve to SF Symbols.** `components/primitives/Icon.tsx` switches on `Platform.OS`: iOS renders the matching SF Symbol via `expo-symbols` (sharper optical sizing, automatic tinting, system feel); Android renders Ionicons. The public `<Icon name="..." size="sm|md|lg" tone="..." />` API stays unified — call sites pass an Ionicons name and the mapping table in `Icon.tsx` resolves to SF Symbol on iOS. An Ionicons name not in the mapping table silently falls back to Ionicons on both platforms — no missing-glyph placeholder.
+- **BriefingBar uses iOS frosted glass.** The floating audio chrome over the article reader uses `BlurView` (`tint="systemThinMaterial"`) on iOS so the bar reads as a native floating surface. Android keeps a solid `pillBg` fill because Android's BlurView implementations are uneven. This is the only sheet-or-bar surface allowed to blur — editorial sheets stay typography-first.
 
 ## Accessibility checklist
 
