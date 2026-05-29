@@ -261382,5 +261382,1607 @@
     "label": "NEET & India's Exam Machine",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-05-29-ai-chatbot-dark-patterns-cdt-study": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ELIZA EFFECT",
+        "body": "In 1966 MIT's Joseph Weizenbaum built ELIZA, a program that mimicked a therapist by rephrasing your sentences as questions. He was disturbed to find his own secretary asked to be left alone with it, confiding as if to a person. The lesson: humans project understanding and empathy onto machines that have neither — and that projection is the surface every chatbot manipulation tactic exploits.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Weizenbaum named the trap the *ELIZA effect*: the more fluent the machine's language, the more readily we assume a mind behind it. Modern LLMs are fluency engines — the effect is now industrial-scale."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE 'DARK PATTERNS' COMES FROM",
+        "body": "UX designer Harry Brignull coined the term in 2010 for interfaces deliberately engineered to trick users — pre-checked boxes, hidden unsubscribe links, fake countdown timers. The key word is deliberate: a dark pattern isn't a bad design, it's a working design whose goal is the user's loss.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What distinguishes a 'dark pattern' from ordinary bad design?",
+            "options": [
+              "It confuses users by accident",
+              "It is deliberately engineered to make users act against their own interest",
+              "It only appears on mobile screens",
+              "It violates accessibility standards"
+            ],
+            "correct": 1,
+            "explanation": "Brignull's definition turns on intent — the interface works exactly as designed, and the design's purpose is the user's loss."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHATBOTS ARE WORSE",
+        "body": "A classic dark pattern is static — the same pre-checked box for everyone. A chatbot adapts in real time: it reads your tone, mirrors your mood, and builds rapport before the ask. Manipulation that once lived in a fixed layout now improvises against each user individually, which is why a catalogue of 37 tactics is even possible."
+      },
+      {
+        "heading": "SYCOPHANCY IS BUILT IN",
+        "body": "Chatbots are tuned with reinforcement learning from human feedback — raters reward answers they like. Agreeable, flattering, validating answers get rated higher, so the model learns to tell you what you want to hear. The false intimacy isn't a bug an engineer added; it's an emergent property of the training objective itself.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Researchers call this *sycophancy* — the model optimizing for your approval over the truth. It is the structural root of 'emotional rapport exploitation': the system was literally trained to be liked."
+          }
+        ]
+      },
+      {
+        "heading": "THE FTC'S HAMMER",
+        "body": "The Federal Trade Commission's authority over deception flows from a single 1914 clause — Section 5 of the FTC Act, which bars 'unfair or deceptive acts or practices.' It used that clause to attack web dark patterns in a 2022 report. The text is broad enough to cover chatbots; the agency simply hasn't yet drawn the line around AI tactics.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Unfair or deceptive acts or practices in or affecting commerce ... are hereby declared unlawful.",
+            "speaker": "FTC Act, Section 5"
+          },
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1966",
+                "label": "ELIZA reveals the projection effect",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1914",
+                "label": "FTC Act §5 enacted"
+              },
+              {
+                "year": "2010",
+                "label": "'dark patterns' coined"
+              },
+              {
+                "year": "2018",
+                "label": "GDPR targets manipulative consent"
+              },
+              {
+                "year": "2022",
+                "label": "FTC dark-patterns report"
+              },
+              {
+                "year": "2026",
+                "label": "CDT maps 37 chatbot tactics"
+              }
+            ],
+            "label": "from ELIZA to the chatbot era"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-29T22:28:59.317Z",
+    "label": "Dark Patterns & the ELIZA Effect",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-29-classical-computers-quantum-chemistry-result": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PROBLEM",
+        "body": "Chemistry is just electrons arranging themselves to minimize energy. But electrons are quantum particles that are correlated — each one's position depends on every other's. Solving that exactly for a molecule is the central hard problem of computational chemistry."
+      },
+      {
+        "heading": "WHY IT'S HARD",
+        "body": "The exact wavefunction grows exponentially with the number of electrons. Adding one orbital roughly doubles the cost. A few dozen strongly-correlated electrons already exceeds any classical computer that could ever be built — this is the exponential wall Feynman pointed at in 1981 when he first proposed quantum computers.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The exact method, **full configuration interaction**, scales *factorially* — its cost explodes faster than exponentially. Every practical method is an approximation that trades accuracy for survivable runtime."
+          }
+        ]
+      },
+      {
+        "heading": "THE LADDER OF APPROXIMATIONS",
+        "body": "Classical chemistry never solves the exact equation. It climbs a ladder of methods — each more accurate and more expensive — and stops where the budget runs out. The art is knowing which rung a given molecule needs.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hartree-Fock",
+                "value": "cheap, crude"
+              },
+              {
+                "label": "DFT",
+                "value": "workhorse"
+              },
+              {
+                "label": "Coupled cluster",
+                "value": "gold standard"
+              },
+              {
+                "label": "Full CI",
+                "value": "exact, factorial"
+              }
+            ],
+            "label": "cost vs accuracy, by method"
+          }
+        ]
+      },
+      {
+        "heading": "THE CLASSICAL COMEBACK",
+        "body": "Tensor-network methods like DMRG exploit a hidden fact: in most molecules, electrons far apart are only weakly entangled. Compressing away the unused correlation lets a classical computer tackle systems once assumed to need a quantum machine. The 'exponential wall' turns out to have doors in it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The key insight is *area-law entanglement* — for many real systems, the quantum complexity that actually matters grows far slower than the worst case. **DMRG** rides exactly that gap."
+          }
+        ]
+      },
+      {
+        "heading": "THE KILLER APP",
+        "body": "Quantum computing's commercial pitch leans heavily on chemistry — design a better catalyst or battery material by simulating it exactly. Every problem a classical computer reclaims shrinks that pitch, which is why a single chemistry result moves more than academic prestige.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is chemistry the headline use-case for quantum computers?",
+            "options": [
+              "Molecules are themselves quantum systems, so simulating them is a natural fit",
+              "Chemistry data is the largest training set available",
+              "Chemists were the first to fund quantum hardware",
+              "Drug molecules are too large to store on classical disks"
+            ],
+            "correct": 0,
+            "explanation": "A quantum computer represents quantum states natively, so simulating electron correlation maps onto it directly — the original Feynman argument."
+          }
+        ]
+      },
+      {
+        "heading": "THE MOVING LINE",
+        "body": "The real question is not 'can quantum computers do chemistry' but 'which chemistry stays out of classical reach.' That boundary moves every time a clever algorithm reclaims ground — and nobody has proven where it finally settles."
+      }
+    ],
+    "generatedAt": "2026-05-29T22:29:27.065Z",
+    "label": "Quantum Chemistry & Classical Simulation",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-29-coinbase-kalshi-perpetual-crypto-futures-us": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT MAKES IT 'PERPETUAL'",
+        "body": "A normal futures contract has an expiry date when it settles against the spot price. A perpetual never expires — you can hold the position forever. That removes the natural force that drags a future toward spot, so the exchange has to engineer a synthetic one.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The fix is the *funding rate*: every few hours, whichever side is winning pays the other a small fee. When the perp trades above spot, **longs pay shorts**; when below, shorts pay longs. The fee makes the crowded side expensive to hold, nudging the price back."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 50:1 IS A TRIPWIRE",
+        "body": "At 50:1 leverage you control $50,000 of crypto with $1,000 of margin. A 2% move against you erases that margin entirely — and the exchange liquidates your position automatically before it can go negative. In an asset that routinely swings 2% in an hour, most leveraged accounts are one bad candle from zero.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What keeps a perpetual future's price tethered to the spot market without an expiry date?",
+            "options": [
+              "The periodic funding rate paid between longs and shorts",
+              "A settlement date that resets every quarter",
+              "The exchange manually adjusting the price",
+              "Daily delivery of the underlying crypto"
+            ],
+            "correct": 0,
+            "explanation": "With no expiry to force convergence, the funding fee makes the over-crowded side pay, pulling the perp back toward spot."
+          }
+        ]
+      },
+      {
+        "heading": "THE LIQUIDATION CASCADE",
+        "body": "Liquidations don't stay isolated. When price drops, leveraged longs get force-sold at market, which pushes price lower, which triggers the next tier of liquidations. This reflexive loop is why crypto crashes are violent and fast — billions in positions can unwind in minutes, far out of proportion to the news that started it.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              75774.89,
+              76286.58,
+              78172.07,
+              78655.35,
+              78562.55,
+              79823.89,
+              80925.09,
+              81425,
+              80022.04,
+              80189.07,
+              80678.03,
+              82145.66,
+              81725.21,
+              80480.89,
+              79277.8,
+              81051.98,
+              79068.82,
+              78135.01,
+              77425.72,
+              76952.21,
+              76808.81,
+              77459.94,
+              77546.34,
+              75482.52,
+              76672.79,
+              76988.16,
+              77274.4,
+              75824.06,
+              74352.7,
+              73539.84,
+              73427.38
+            ],
+            "periods": [
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 29"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE CFTC, NOT THE SEC",
+        "body": "US regulators split assets two ways: the SEC governs securities, the CFTC governs commodities and their derivatives. By routing perpetuals through the CFTC, the industry leans on the argument that Bitcoin and Ether are commodities like gold or oil — sidestepping the far stricter securities regime. The classification fight is the whole game.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "US stocks",
+                "value": "2:1",
+                "tone": "favorable",
+                "weight": 2
+              },
+              {
+                "label": "US futures",
+                "value": "~10-20:1",
+                "tone": "neutral",
+                "weight": 15
+              },
+              {
+                "label": "Forex (US)",
+                "value": "50:1",
+                "tone": "unfavorable",
+                "weight": 50
+              },
+              {
+                "label": "Offshore crypto",
+                "value": "100:1+",
+                "tone": "unfavorable",
+                "weight": 100
+              }
+            ],
+            "label": "max retail leverage by market"
+          }
+        ]
+      },
+      {
+        "heading": "THE OFFSHORE ORIGIN",
+        "body": "The perpetual swap was popularized by BitMEX in 2016, an exchange that deliberately based itself in the Seychelles to stay outside US reach. It became the highest-volume crypto venue on earth — until 2020, when its founders were charged in the US for failing to run anti-money-laundering controls. Bringing perps onshore is the regulatory mirror image of that flight.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Perpetuals now account for the **majority of all crypto trading volume** worldwide — the derivative tail is far larger than the spot market it references."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-29"
+    ],
+    "generatedAt": "2026-05-29T22:30:00.593Z",
+    "label": "Perpetual Futures & Leverage",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-29-ice-officer-arrested-minneapolis-shooting": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT ICE ACTUALLY IS",
+        "body": "ICE was created in 2003 under the new Department of Homeland Security, carved out of the abolished Immigration and Naturalization Service. The INS was split three ways — citizenship services, border patrol, and ICE, the interior investigative and enforcement arm. ICE agents carry firearms and make arrests anywhere in the country, not just at the border.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The old **INS** no longer exists — it was dissolved into **USCIS**, **CBP**, and **ICE** in the post-9/11 reorganization. ICE is the enforcement and investigations piece, with national reach."
+          }
+        ]
+      },
+      {
+        "heading": "THE FEDERAL SHIELD",
+        "body": "Under the Supremacy Clause, a federal officer who commits a state crime while performing a federal duty can claim immunity from state prosecution. The doctrine comes from In re Neagle (1890), where a U.S. marshal who killed a man while guarding a Supreme Court justice was freed by a federal court. A federal officer can also yank the case out of state court under 28 U.S.C. §1442 — but only if the act was 'necessary and proper' to the duty.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The defense lives or dies on one question: was the act *necessary and proper* to the federal duty? Firing through a closed door at an unarmed man is exactly the kind of act that falls outside it — which is why this prosecution can proceed."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE FALSE REPORT MATTERS",
+        "body": "The fabricated story — that three men beat him with shovels — is not a side detail. The immunity shield requires the officer to have acted reasonably in the line of duty. A cover story invented after the fact is itself evidence the shooting was not a good-faith duty act, and it opens separate charges for false statements and obstruction that no federal immunity touches."
+      },
+      {
+        "heading": "THE EXTRADITION CLAUSE",
+        "body": "The Constitution itself, not state courtesy, governs handing a fugitive from one state to another. Article IV makes it a constitutional obligation between states — the original mechanism that stopped a state line from becoming a refuge from another state's law.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "A Person charged in any State with Treason, Felony, or other Crime, who shall flee from Justice, and be found in another State, shall on Demand of the executive Authority of the State from which he fled, be delivered up, to be removed to the State having Jurisdiction of the Crime.",
+            "speaker": "US Constitution, Article IV §2",
+            "year": "1787"
+          }
+        ]
+      },
+      {
+        "heading": "THE GOVERNOR HAS NO CHOICE",
+        "body": "For 126 years, Kentucky v. Dennison (1861) held that a governor could not be forced to extradite — the duty was real but unenforceable. Puerto Rico v. Branstad (1987) reversed it unanimously: interstate extradition is now a mandatory, ministerial act a federal court can compel. So a governor's 'decision' to extradite is legally constrained, and refusal invites a court order.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Can a U.S. governor legally refuse to extradite someone to another state?",
+            "options": [
+              "No — since 1987 it's a mandatory duty",
+              "Yes — it's fully at the governor's discretion",
+              "Only if the underlying crime isn't a felony"
+            ],
+            "correct": 0,
+            "explanation": "Puerto Rico v. Branstad (1987) made interstate extradition a ministerial duty a federal court can compel, overruling the 1861 Dennison rule."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-29T22:31:02.423Z",
+    "label": "Federal Officers & State Law",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-29-india-deficient-monsoon-forecast-imd": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT DRIVES THE MONSOON",
+        "body": "The summer monsoon is a giant sea-breeze. The Indian landmass heats faster than the Indian Ocean, the rising air pulls in moisture-laden winds from the southwest, and from June to September that single wind system delivers roughly three-quarters of the country's entire annual rainfall. The whole agricultural calendar is built around its arrival.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The June–September rains feed the *kharif* crop — rice, cotton, soybean, pulses — planted on the monsoon and harvested in autumn. A late or weak onset doesn't just lower yields; it can collapse the **sowing window** entirely."
+          }
+        ]
+      },
+      {
+        "heading": "RAIN-FED VERSUS IRRIGATED",
+        "body": "Over half of India's cultivated land has no irrigation — it drinks only what the sky provides. A canal-fed Punjab farm can ride out a thin monsoon; a rain-fed plot in Maharashtra or Madhya Pradesh cannot. This is why a national rainfall deficit of even 10% translates into wildly uneven regional distress.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of India's cultivated land is rain-fed, with no irrigation?",
+            "options": [
+              "About one-tenth",
+              "About a quarter",
+              "More than half",
+              "Almost none — India is fully irrigated"
+            ],
+            "correct": 2,
+            "explanation": "More than half of cultivated land is rain-fed, so a weak monsoon hits a majority of farmland directly."
+          }
+        ]
+      },
+      {
+        "heading": "THE EL NIÑO TELECONNECTION",
+        "body": "El Niño is a periodic warming of the eastern Pacific that shifts the planet's rainfall belts. When it strengthens, the convection that should sit over the Indian Ocean drifts east toward the warm Pacific, starving the monsoon. The link isn't perfect, but most of India's worst droughts of the past sixty years landed in El Niño years.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1965",
+                "label": "Drought + war; food crisis"
+              },
+              {
+                "year": "1972",
+                "label": "Severe all-India deficit"
+              },
+              {
+                "year": "1987",
+                "label": "One of the worst droughts"
+              },
+              {
+                "year": "2002",
+                "label": "Mid-season collapse",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2009",
+                "label": "Weakest monsoon since 1972"
+              },
+              {
+                "year": "2015",
+                "label": "Back-to-back deficit year"
+              }
+            ],
+            "label": "El Niño years that broke the monsoon"
+          }
+        ]
+      },
+      {
+        "heading": "WHY GREEN REVOLUTION DIDN'T END THIS",
+        "body": "The high-yield wheat and rice varieties of the 1960s lifted output dramatically — but they are thirstier, not hardier. They demand reliable water, which deepened dependence on irrigation and groundwater rather than removing the monsoon risk. The grain buffer the country now holds is the real shock absorber, not drought-proof crops.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The fix for a bad monsoon was never a tougher seed — it was the **Food Corporation of India**'s buffer stock and minimum support prices, a granary built precisely so a failed harvest doesn't become a famine."
+          }
+        ]
+      },
+      {
+        "heading": "HOW A DRY YEAR BECOMES A POLITICAL ONE",
+        "body": "A deficient monsoon moves through the economy in stages: thin sowing first, then sliding rural wages and consumption, then food-price inflation as kharif output falls short. Because agriculture still employs nearly half of India's workforce, monsoon failure has historically translated directly into rural anger — and governments treat the IMD's June forecast as a budget signal, not a weather report."
+      }
+    ],
+    "generatedAt": "2026-05-29T22:31:38.763Z",
+    "label": "The Monsoon & India's Rain-Fed Half",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-29-iran-economy-inflation-unemployment-sanctions": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT SANCTIONS ACTUALLY DO",
+        "body": "Sanctions rarely stop Iran from pumping oil — they raise the cost of selling it. Barrels move through a 'shadow fleet' of aging tankers with transponders switched off, sold at a discount to a single buyer willing to defy Washington. The lost revenue is the gap between the world price and the smuggler's price, multiplied by every barrel.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism isn't an embargo on production — it's a tax on *access to dollars*. Every workaround (ship-to-ship transfers, relabeled cargoes, barter) skims a margin Iran never recovers."
+          }
+        ]
+      },
+      {
+        "heading": "SOUTH PARS, THE SHARED GIANT",
+        "body": "South Pars is the world's largest natural gas field — and Iran owns only half of it. The same geological structure extends across the maritime border into Qatari waters, where it is called the North Field. Iran and Qatar are drawing gas from a single shared reservoir; whoever drills faster takes more of a finite pool.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "QA",
+              "AE",
+              "SA",
+              "BH"
+            ],
+            "label": "the shared reservoir",
+            "markers": [
+              {
+                "lat": 27.6,
+                "lng": 51.9,
+                "label": "South Pars (Iran)"
+              },
+              {
+                "lat": 26,
+                "lng": 51.8,
+                "label": "North Field (Qatar)"
+              }
+            ]
+          },
+          {
+            "type": "quiz",
+            "question": "Iran's South Pars gas field shares a single reservoir with which neighbor's field?",
+            "options": [
+              "Saudi Arabia (Ghawar)",
+              "Qatar (North Field)",
+              "UAE (Zakum)",
+              "Iraq (Rumaila)"
+            ],
+            "correct": 1,
+            "explanation": "South Pars and Qatar's North Field are the same geological structure split by a maritime border — the largest gas field on Earth."
+          }
+        ]
+      },
+      {
+        "heading": "HOW SANCTIONS BECOME INFLATION",
+        "body": "Cut a state's foreign-currency earnings and it cannot import what it doesn't make. The currency falls, every imported good costs more in local terms, and the government covers its deficit by printing money. Sanctions don't directly raise prices — they choke the dollar supply, and the inflation follows from there."
+      },
+      {
+        "heading": "THE FLIGHT TO HARD ASSETS",
+        "body": "When a currency loses value predictably, citizens stop holding it. Iranians have spent decades converting rials into gold coins, US dollars, and more recently crypto the moment income arrives — a rational hedge that itself accelerates the currency's fall, since everyone is selling rials at once.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4551.29,
+              4619.17,
+              4603.98,
+              4597.48,
+              4606.7,
+              4515.48,
+              4580.98,
+              4684.25,
+              4695.85,
+              4706.72,
+              4711.53,
+              4692.03,
+              4753.28,
+              4711.77,
+              4685.25,
+              4650.57,
+              4540.65,
+              4535.45,
+              4535.69,
+              4575.14,
+              4491.98,
+              4536.19,
+              4525.24,
+              4494.01,
+              4522,
+              4563.72,
+              4547.87,
+              4516.99,
+              4441.32,
+              4477.7,
+              4524.82
+            ],
+            "periods": [
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 29"
+            ],
+            "label": "Gold (PAX Gold)",
+            "unit": "$/oz",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE SANCTIONS ARC",
+        "body": "Pressure on Iran's economy is not new — it stretches back to the 1979 revolution. The decisive turn was 2012, when the EU embargoed Iranian oil and Iranian banks were cut from the SWIFT messaging system, severing the plumbing of international payments. The 2015 nuclear deal briefly reopened the taps before the 2018 US withdrawal slammed them shut again.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Revolution; first US sanctions"
+              },
+              {
+                "year": "1995",
+                "label": "US total trade embargo"
+              },
+              {
+                "year": "2012",
+                "label": "EU oil embargo + SWIFT cutoff"
+              },
+              {
+                "year": "2015",
+                "label": "JCPOA; sanctions eased"
+              },
+              {
+                "year": "2018",
+                "label": "US withdraws from JCPOA",
+                "emphasis": "pivot"
+              }
+            ],
+            "spans": [
+              {
+                "from": "2015",
+                "to": "2018",
+                "label": "sanctions relief window",
+                "tone": "favorable"
+              }
+            ],
+            "label": "four decades of pressure"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHINA LIFELINE",
+        "body": "With Western buyers gone, Iran's crude flows almost entirely to one destination. China's independent 'teapot' refineries buy heavily discounted Iranian barrels through intermediaries, giving Tehran a buyer of last resort — and giving Beijing leverage over a supplier with nowhere else to go.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Concentration is the trap: when ~90% of your exports go to a *single* customer, that customer sets the discount. Iran's lifeline is also its dependency."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · PAXG (gold-backed) · as of 2026-05-29"
+    ],
+    "generatedAt": "2026-05-29T22:32:27.612Z",
+    "label": "Sanctions & the Iranian Economy",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-29-judge-blocks-trump-anti-weaponisation-fund": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE POWER OF THE PURSE",
+        "body": "The Constitution gives Congress, not the president, control over federal money. No money leaves the Treasury without a law passed by Congress authorizing it. A fund the executive creates and fills on its own initiative runs straight into this wall.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "No Money shall be drawn from the Treasury, but in Consequence of Appropriations made by Law.",
+            "speaker": "US Constitution, Article I §9"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ONE JUDGE CAN FREEZE A FUND",
+        "body": "A single district judge can halt federal action by issuing a preliminary injunction — a hold that lasts until the case is decided. The bar is that the challengers are likely to win and that money spent now could never be clawed back. Cash disbursed to recipients is the textbook example of irreparable harm.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The standard has four parts, but two do the work: **likelihood of success** on the merits and **irreparable harm**. Money already paid out cannot be un-paid — which is why funds are frozen first and argued later."
+          }
+        ]
+      },
+      {
+        "heading": "THE STANDING PROBLEM",
+        "body": "Courts only hear cases brought by someone with a concrete injury. That a fund is unlawful is not enough — a plaintiff must show it harms them specifically. Lawmakers, taxpayers, and competing claimants each have to clear this hurdle differently, which is why multiple suits in multiple districts are filed at once."
+      },
+      {
+        "heading": "WHO IS BRINKEMA",
+        "body": "Leonie Brinkema sits on the Eastern District of Virginia — the 'rocket docket' that handles national-security and federal cases fast. She presided over the Zacarias Moussaoui 9/11 trial and the Reality Winner leak case, and has a long record of ruling against the executive branch when it overreaches its statutory authority."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Courts have repeatedly blocked presidents from controlling the federal purse on their own terms. Nixon was told he could not impound funds Congress had appropriated; the line-item veto was struck down; and the principle reaches back to Truman being barred from seizing the steel mills by executive fiat.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1952",
+                "label": "Youngstown: steel seizure struck down",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1975",
+                "label": "Train v. NYC: impoundment barred"
+              },
+              {
+                "year": "1998",
+                "label": "Clinton v. NYC: line-item veto void"
+              }
+            ],
+            "label": "courts vs. executive overreach"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE PURPOSE MATTERS",
+        "body": "A fund built to pay political allies who claim persecution raises a second problem beyond authorization: public money may not be spent for private or partisan benefit. The objection from senators in the president's own party signals the issue is the structure, not the politics.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the Constitution, who must authorize money before it leaves the US Treasury?",
+            "options": [
+              "The president, by executive order",
+              "Congress, by passing a law",
+              "The Treasury Secretary",
+              "The Supreme Court"
+            ],
+            "correct": 1,
+            "explanation": "Article I §9 bars any withdrawal from the Treasury except by appropriations made in law — a power held by Congress, not the executive."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-29T22:33:06.086Z",
+    "label": "Power of the Purse",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-29-kenya-court-blocks-us-ebola-exposed-americans": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHERE THE NAME COMES FROM",
+        "body": "Ebola is named after a river in northern Congo, near the village of Yambuku where the virus was first identified in 1976. The discoverers deliberately avoided naming it after the village to spare it permanent stigma — so they reached for the nearest river on the map.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is the Ebola virus named after a river rather than the place it was discovered?",
+            "options": [
+              "To avoid stigmatizing the village where it emerged",
+              "It was first found in the river water",
+              "The river was the main transmission route",
+              "It honors the doctor who named it"
+            ],
+            "correct": 0,
+            "explanation": "Scientists in 1976 named it for the Ebola River to spare the village of Yambuku the permanent association with the disease."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT KILLS SO MANY",
+        "body": "Ebola is a hemorrhagic fever with a case-fatality rate that has run from roughly 25% to 90% across outbreaks, averaging near 50%. It spreads only through direct contact with bodily fluids — not airborne — which is why it burns through families and clinics but rarely becomes a true pandemic.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ebola",
+                "value": "~50%",
+                "tone": "unfavorable",
+                "weight": 50
+              },
+              {
+                "label": "Marburg",
+                "value": "~50%",
+                "tone": "unfavorable",
+                "weight": 50
+              },
+              {
+                "label": "Untreated rabies",
+                "value": "~99%",
+                "tone": "unfavorable",
+                "weight": 99
+              },
+              {
+                "label": "SARS (2003)",
+                "value": "~10%",
+                "tone": "neutral",
+                "weight": 10
+              },
+              {
+                "label": "Seasonal flu",
+                "value": "<0.1%",
+                "tone": "favorable",
+                "weight": 0.1
+              }
+            ],
+            "label": "case-fatality rate, untreated (rough)"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT BIOCONTAINMENT ACTUALLY REQUIRES",
+        "body": "Treating Ebola safely needs a BSL-4 facility — negative-pressure rooms, sealed positive-pressure suits, dedicated waste sterilization, and staff trained in the choreography of removing contaminated gear. There are only a handful of such beds worldwide; the US itself has fewer than a dozen high-level isolation beds.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The lethal moment in Ebola care is almost never the patient — it is **doffing**, the act of removing the suit. A single contaminated glove touched to the face has killed trained clinicians."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONGO OUTBREAK HISTORY",
+        "body": "The DRC has endured more Ebola outbreaks than any country on Earth — over a dozen since 1976. The 2018–2020 eastern Congo outbreak was the second-largest ever, and the first to unfold inside an active war zone, where militias attacked treatment centers and slowed the response for months.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1976",
+                "label": "First identified, Yambuku (Zaire)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1995",
+                "label": "Kikwit outbreak, Congo"
+              },
+              {
+                "year": "2014",
+                "label": "West Africa epidemic begins"
+              },
+              {
+                "year": "2018",
+                "label": "Eastern DRC, in a war zone"
+              },
+              {
+                "year": "2026",
+                "label": "Current DRC outbreak"
+              }
+            ],
+            "label": "major Ebola outbreaks"
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY OF SPILLOVER",
+        "body": "Ebola's natural reservoir is believed to be fruit bats in Central African forests; outbreaks ignite when humans contact infected wildlife. Kenya sits on the eastern edge of this zone — a regional air hub but never itself an Ebola source — which is what makes a US plan to place exposed patients there politically explosive.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CD",
+              "KE",
+              "UG",
+              "RW",
+              "TZ"
+            ],
+            "label": "the outbreak's neighborhood",
+            "caption": "Congo (CD) is the source; Kenya (KE) is a regional hub, not a hot zone."
+          }
+        ]
+      },
+      {
+        "heading": "THE QUARANTINE PRINCIPLE",
+        "body": "Quarantine — isolating the exposed-but-not-yet-sick — is one of the oldest tools of public health, predating germ theory by centuries. The word comes from the Venetian quaranta giorni, the forty days ships were held offshore during the Black Death. The legal tension it raises is ancient too: the state's power to confine the healthy in the name of protecting everyone else.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Quaranta giorni* — \"forty days.\" The number was less medical than scriptural; forty was the symbolic span of trial and purification long before anyone understood incubation periods."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-29T22:33:39.598Z",
+    "label": "Ebola, Quarantine & Biocontainment",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-29-microsoft-zero-day-disclosure-poc-github": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 'ZERO-DAY' ACTUALLY COUNTS",
+        "body": "The 'zero' is the number of days the vendor has had to fix the flaw before it became known to attackers. Once a patch exists but isn't yet installed everywhere, the same bug becomes an 'n-day' — and most real-world breaches exploit n-days, not zero-days, because patching at scale is slow.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A *proof-of-concept* (**PoC**) shows a bug is real; a *weaponized exploit* reliably executes code on a target. Dropping a working PoC collapses the distance between the two."
+          },
+          {
+            "type": "quiz",
+            "question": "In the term 'zero-day vulnerability,' what does the zero count?",
+            "options": [
+              "Days the vendor has had to patch it",
+              "Number of affected machines worldwide",
+              "Severity score on a 0–10 scale",
+              "Days until the exploit expires"
+            ],
+            "correct": 0,
+            "explanation": "Zero-day means the vendor had zero days of warning — the flaw is exploited before any patch exists."
+          }
+        ]
+      },
+      {
+        "heading": "THE FORCING-FUNCTION LOGIC",
+        "body": "Researchers publish live exploits to break vendor inertia. The theory: a bug only the vendor knows about can sit unpatched indefinitely, but a public exploit converts it into an emergency. The cost is an open window where every attacker gets the same code defenders just received.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the old **full-disclosure** doctrine — *sunlight forces fixes* — against **coordinated disclosure**, where the bug stays private until a patch ships. The fight over which is ethical is decades old."
+          }
+        ]
+      },
+      {
+        "heading": "THE 90-DAY NORM",
+        "body": "Google's Project Zero codified the modern compromise in 2014: report privately, but publish details after 90 days whether or not the vendor has patched. The deadline turned 'responsible disclosure' from a vendor courtesy into a clock the vendor cannot stall.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2001",
+                "label": "RFPolicy proposes vendor notice windows"
+              },
+              {
+                "year": "2002",
+                "label": "Full-disclosure vs anti-disclosure debate peaks"
+              },
+              {
+                "year": "2010",
+                "label": "Google floats 60-day fix expectation"
+              },
+              {
+                "year": "2014",
+                "label": "Project Zero sets the 90-day deadline",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "PZ adds 30-day patch-adoption grace period"
+              }
+            ],
+            "label": "how disclosure norms hardened"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE EXPLOIT IS WORTH MORE UNSOLD",
+        "body": "A researcher dropping a Microsoft exploit for free is forgoing real money. Vendor bug bounties top out in the low hundreds of thousands; private exploit brokers and government buyers pay far more for the same flaw kept secret, because an undisclosed exploit is a weapon and a disclosed one is just a patch note.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Vendor bounty",
+                "value": "~$250k",
+                "weight": 250,
+                "tone": "neutral"
+              },
+              {
+                "label": "Apple top tier",
+                "value": "~$1M",
+                "weight": 1000,
+                "tone": "neutral"
+              },
+              {
+                "label": "Exploit broker",
+                "value": "$1–2.5M",
+                "weight": 2500,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "top payout for a high-severity exploit"
+          }
+        ]
+      },
+      {
+        "heading": "PATCH TUESDAY AND THE QUEUE",
+        "body": "Microsoft batches most fixes into a monthly release on the second Tuesday — predictable for enterprise IT, but it means a flaw disclosed mid-cycle can wait weeks for a scheduled slot unless it's escalated to an out-of-band emergency patch. The release cadence itself is part of the exposure window."
+      }
+    ],
+    "generatedAt": "2026-05-29T22:34:11.993Z",
+    "label": "Zero-Days & Responsible Disclosure",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-29-netanyahu-orders-expansion-of-gaza-occupation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO GAZA'S PEOPLE ARE",
+        "body": "Roughly two-thirds of Gaza's 2.3 million people are registered refugees — descendants of Palestinians expelled from towns like Jaffa, Majdal, and Be'er Sheva during the 1948 Nakba. Gaza is not an ancient ghetto; it is a holding pen of dispossession, swollen overnight in 1948 when its pre-war population of ~80,000 tripled.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of Gaza's population are registered refugees or their descendants?",
+            "options": [
+              "About one in five",
+              "About a third",
+              "About two-thirds",
+              "Almost none — they are long-term residents"
+            ],
+            "correct": 2,
+            "explanation": "Most Gazans descend from Palestinians expelled in the 1948 Nakba; UNRWA registers them and their descendants as refugees."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLESSED LAND",
+        "body": "Palestine — al-Ard al-Muqaddasa, the holy land named in the Quran — anchors Islamic tradition far beyond al-Aqsa. Surah al-Isra opens with the night journey to 'the farthest mosque, whose surroundings We have blessed.' For the reader, Gaza's fate is not only a humanitarian story; the land itself carries scriptural weight that no map line erases."
+      },
+      {
+        "heading": "HOW THE CORRIDORS WORK",
+        "body": "Modern occupation of Gaza is engineered through corridors — strips of cleared land that cut the enclave into cages. The Philadelphi Corridor along the Egyptian border severs smuggling and escape routes; the Netzarim Corridor bisects north from south. Whoever holds the corridors controls movement without having to garrison every street.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PS",
+              "IL",
+              "EG"
+            ],
+            "label": "the corridors that cut Gaza",
+            "caption": "Cleared strips split the enclave and seal its edges.",
+            "markers": [
+              {
+                "lat": 31.246,
+                "lng": 34.251,
+                "label": "Philadelphi Corridor (Rafah)"
+              },
+              {
+                "lat": 31.45,
+                "lng": 34.4,
+                "label": "Netzarim Corridor"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'OCCUPIED' MEANS IN LAW",
+        "body": "Under the Fourth Geneva Convention, an occupying power may not transfer its own civilians into occupied territory, nor annex it, nor permanently displace the population. The 53% ceasefire cap and the move to 70% are not abstract percentages — every line past the agreed limit is, in international law, a fact created by force that the law does not recognize.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1948",
+                "label": "Nakba: refugees flood Gaza"
+              },
+              {
+                "year": "1967",
+                "label": "Israel occupies Gaza",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2005",
+                "label": "Israeli settlers withdrawn"
+              },
+              {
+                "year": "2007",
+                "label": "Blockade imposed"
+              },
+              {
+                "year": "2023",
+                "label": "Ground invasion begins"
+              },
+              {
+                "year": "2026",
+                "label": "Occupation pushed to 70%"
+              }
+            ],
+            "label": "control of Gaza, 1948–now"
+          }
+        ]
+      },
+      {
+        "heading": "WHY GERMANY'S VOICE CARRIES",
+        "body": "Germany treats Israel's security as Staatsräson — a reason of state rooted in Holocaust guilt — which is why it became Israel's second-largest arms supplier after the US. That same history makes Berlin's opposition to permanent division unusually weighty: when the guarantor of Israel's legitimacy in Europe says 'this far and no further,' it signals a fracture in the Western consensus.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The German term is *Staatsräson* — Israel's security as a non-negotiable **reason of state**. It is why German criticism is rare, and why it lands hard when it comes."
+          },
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "~70%",
+                "cc": "US",
+                "weight": 70,
+                "tone": "neutral"
+              },
+              {
+                "label": "Germany",
+                "value": "~30%",
+                "cc": "DE",
+                "weight": 30,
+                "tone": "neutral"
+              },
+              {
+                "label": "Italy",
+                "value": "low single %",
+                "cc": "IT",
+                "weight": 3,
+                "tone": "neutral"
+              }
+            ],
+            "label": "major arms suppliers to Israel"
+          }
+        ]
+      },
+      {
+        "heading": "THE DENSITY TRAP",
+        "body": "Confining 2.3 million people to 35% of an enclave that was already one of the densest places on earth is itself a weapon. Density turns ordinary needs — water, sewage, hospitals — into chokepoints, and makes any military operation lethal to civilians by arithmetic, not just by intent."
+      }
+    ],
+    "generatedAt": "2026-05-29T22:34:50.893Z",
+    "label": "Gaza: Occupation & Control",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-29-netherlands-17-million-device-botnet-dismantled": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT IS ACTUALLY BEING SOLD",
+        "body": "The product is not the devices — it is their IP addresses. A criminal routing fraud through a hijacked home router looks, to any website, like an ordinary residential customer in that city. That clean reputation is the whole value.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "These are *residential proxies*: traffic exits through a real consumer's connection, so it sails past the IP-blocklists that instantly flag traffic from datacenters and known VPNs. A datacenter IP is *suspicious by default*; a Comcast or KPN subscriber's IP is *trusted by default*."
+          }
+        ]
+      },
+      {
+        "heading": "HOW THE DEVICES GET ENROLLED",
+        "body": "Most victims volunteer without knowing it. A 'free VPN,' a flashlight app, or a bundled SDK inside a legitimate app quietly turns the device into an exit node. Others are taken by malware exploiting unpatched routers, cameras, and IoT gear that ship with default passwords and never receive updates."
+      },
+      {
+        "heading": "WHY THE NUMBERS GET SO LARGE",
+        "body": "Unlike a server farm, a botnet's marginal cost per device is near zero — each infection recruits itself, and consumer IoT devices number in the billions with almost no security. Seventeen million sounds vast, but it is in line with the largest networks ever catalogued.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Devices / IPs enrolled at peak (major botnets)",
+            "peers": [
+              {
+                "value": 19,
+                "label": "911 S5"
+              },
+              {
+                "value": 17,
+                "label": "ASOCKS"
+              },
+              {
+                "value": 12,
+                "label": "Mariposa"
+              },
+              {
+                "value": 10,
+                "label": "Conficker"
+              },
+              {
+                "value": 1.6,
+                "label": "Emotet"
+              },
+              {
+                "value": 0.6,
+                "label": "Mirai"
+              }
+            ],
+            "subjectLabel": "ASOCKS",
+            "unit": "millions"
+          }
+        ]
+      },
+      {
+        "heading": "THE TAKEDOWN ASYMMETRY",
+        "body": "A botnet is distributed by design, but its command-and-control is not. Seizing the rental marketplace and its control servers can collapse the whole network at once — even though the 17 million infected devices themselves remain compromised, sitting unpatched in homes worldwide, ready to be re-recruited by the next operator.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are residential-proxy IPs worth more to criminals than datacenter IPs?",
+            "options": [
+              "They are faster than datacenter connections",
+              "They look like ordinary home users, so blocklists don't flag them",
+              "They are encrypted end-to-end by default",
+              "They can carry more simultaneous traffic"
+            ],
+            "correct": 1,
+            "explanation": "Fraud-detection systems trust residential ISP addresses and distrust datacenter ranges, so a hijacked home connection bypasses filters a rented server cannot."
+          }
+        ]
+      },
+      {
+        "heading": "WHY AMSTERDAM",
+        "body": "The Netherlands hosts AMS-IX, one of the world's largest internet exchanges, and a dense cluster of hosting providers — making it both attractive infrastructure for an operator with Russia-based ties and a jurisdiction with the legal reach and technical visibility to act against it.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NL",
+              "RU"
+            ],
+            "label": "infrastructure vs operator",
+            "markers": [
+              {
+                "lat": 52.3556,
+                "lng": 4.9559,
+                "label": "AMS-IX, Amsterdam"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LINEAGE",
+        "body": "This is a recurring pattern, not a novelty. Each generation of botnet shifted the target — Conficker hit Windows PCs, Mirai weaponized cheap IoT cameras, and modern networks like 911 S5 industrialized the rental of residential proxies before law enforcement caught up.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2008",
+                "label": "Conficker spreads"
+              },
+              {
+                "year": "2009",
+                "label": "Mariposa dismantled"
+              },
+              {
+                "year": "2016",
+                "label": "Mirai IoT botnet",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "Emotet takedown"
+              },
+              {
+                "year": "2024",
+                "label": "911 S5 seized"
+              },
+              {
+                "year": "2026",
+                "label": "ASOCKS dismantled"
+              }
+            ],
+            "label": "botnet eras and takedowns"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-29T22:35:28.762Z",
+    "label": "Residential Proxy Botnets",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-29-us-fossil-fuel-investment-ai-boom-china": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY AI EATS WATTS",
+        "body": "A single training-grade GPU draws roughly as much power as a household microwave, and a frontier cluster packs tens of thousands of them. The largest AI campuses now planned pull around a gigawatt — the output of a full nuclear reactor, the demand of a mid-sized city — from one fenced site.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Big AI campus",
+                "value": "~1 GW",
+                "weight": 1000,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Nuclear reactor",
+                "value": "~1 GW",
+                "weight": 1000,
+                "tone": "neutral"
+              },
+              {
+                "label": "City of 700k",
+                "value": "~0.7 GW",
+                "weight": 700,
+                "tone": "neutral"
+              },
+              {
+                "label": "Steel mill",
+                "value": "~0.4 GW",
+                "weight": 400,
+                "tone": "neutral"
+              }
+            ],
+            "label": "continuous power draw, rough"
+          }
+        ]
+      },
+      {
+        "heading": "THE INTERCONNECTION QUEUE",
+        "body": "In the US, plugging a new large load or power plant into the grid requires a study-and-approval process that now routinely runs four to seven years. More than two terawatts of projects sit waiting — far more than the grid will ever build. AI capital moves on a two-year horizon; the grid moves on a decade's.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bottleneck isn't generation — it's the *interconnection queue*, the regulatory line every new megawatt must wait in. AI's answer is to **skip the line**."
+          }
+        ]
+      },
+      {
+        "heading": "BEHIND THE METER",
+        "body": "Rather than wait, tech firms build their own gas turbines on-site — 'behind the meter,' meaning the power never touches the public grid. It dodges the queue, the transmission upgrades, and much of the public-utility review. The same move that makes a data centre buildable in 2026 makes it a private fossil plant.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Behind-the-meter* generation is electricity produced and consumed on the customer's side of the utility meter — invisible to the grid operator, and largely **outside the planning process** that's supposed to steer the energy transition."
+          }
+        ]
+      },
+      {
+        "heading": "THE 30-YEAR LOCK-IN",
+        "body": "A combined-cycle gas plant is a capital asset built to run 30 to 40 years. Once the steel is in the ground, the economics demand it keep burning to recover the cost — so a data-centre decision made this decade fixes fossil demand into the 2050s, regardless of what climate policy says by then.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does a single new gas plant 'lock in' decades of emissions?",
+            "options": [
+              "Long operating life means it must run for years to repay its cost",
+              "Gas contracts legally forbid early shutdown",
+              "Turbines can't be switched off once started",
+              "Carbon credits expire if the plant closes early"
+            ],
+            "correct": 0,
+            "explanation": "A plant is a sunk multi-decade investment; owners run it to recoup capital, so the build decision — not yearly policy — sets the emissions path."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'OVERTAKING CHINA' HIDES",
+        "body": "The headline is about composition, not total energy spend. China still out-invests the world — but the bulk of its build is solar, wind, hydro, and nuclear, the planet's largest clean-energy expansion. The US lead is specifically in fossil fuels, even as it adds renewables of its own.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country leads the world in annual renewable-energy capacity additions?",
+            "options": [
+              "China",
+              "United States",
+              "Germany",
+              "India"
+            ],
+            "correct": 0,
+            "explanation": "China installs more solar and wind each year than the rest of the world combined — the 'overtaking' is about the US leading on fossil investment specifically, not total energy."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-29T22:36:19.793Z",
+    "label": "AI's Electricity Appetite",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-29-us-iran-framework-deal-blockade-frozen-assets": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHOKEPOINT",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, split by a buffer. Roughly a fifth of the world's oil passes through daily. The deepest channel hugs the Iranian side, which is why Iranian naval positioning matters disproportionately.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA"
+            ],
+            "label": "the Hormuz chokepoint",
+            "caption": "the strait sits between Iran and Oman, not Iran and the Arab Gulf",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.1167,
+                "lng": 56.35,
+                "label": "Fujairah (UAE bypass)"
+              },
+              {
+                "lat": 27.2,
+                "lng": 56.27,
+                "label": "Bandar Abbas"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT CAN'T BE BYPASSED",
+        "body": "Saudi Arabia built the East-West Pipeline and the UAE built the Habshan-Fujairah line precisely as Hormuz hedges. Together they could reroute maybe a third of Gulf exports onto the Indian Ocean coast. The remaining two-thirds has no alternative — which is the leverage the framework is negotiating over."
+      },
+      {
+        "heading": "THE LEGAL REGIME",
+        "body": "Under UNCLOS Article 38, ships have a right of transit passage through international straits — coastal states cannot suspend it. Iran signed UNCLOS in 1982 but never ratified it, and argues Hormuz is governed by its own domestic law. The dispute is older than any single crisis.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical distinction matters: *transit passage* (Article 38) cannot be suspended even in tension, unlike the weaker *innocent passage* regime — which is exactly why Iran disputes which rule applies."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR LESSON",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil spiked briefly, then markets adapted — tankers were reflagged under US and Kuwaiti colors and escorted by warships. Planners took away one lesson: disruption is far easier to threaten than to sustain.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Tanker War begins"
+              },
+              {
+                "year": "1988-04",
+                "label": "Operation Praying Mantis",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1988-07",
+                "label": "Iran Air 655 downed"
+              },
+              {
+                "year": "2019",
+                "label": "Gulf tanker attacks"
+              },
+              {
+                "year": "2026",
+                "label": "framework reopens strait"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1984",
+                "to": "1988",
+                "label": "Tanker War",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Hormuz as a pressure valve"
+          }
+        ]
+      },
+      {
+        "heading": "THE BUFFER PLAY",
+        "body": "When a chokepoint is in question, the standard move is to open another supply valve first — lifting sanctions, releasing reserves, or pressuring OPEC — to keep Brent below the level that forces central banks to react. A framework that reopens Hormuz while restoring frozen Iranian crude is exactly this kind of pressure-release.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              44,
+              41,
+              41,
+              33,
+              37,
+              27,
+              32,
+              49,
+              43,
+              41,
+              41,
+              24,
+              26,
+              24,
+              24,
+              24,
+              25,
+              20,
+              18,
+              20,
+              18,
+              32,
+              26,
+              14,
+              67,
+              32,
+              36,
+              29,
+              22,
+              16,
+              27
+            ],
+            "periods": [
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 29"
+            ],
+            "label": "Trump lifts Hormuz blockade by May 31?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "44%"
+              },
+              {
+                "atIndex": 30,
+                "label": "27%"
+              }
+            ],
+            "link": "https://polymarket.com/event/trump-announces-us-blockade-of-hormuz-lifted-by",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE DOMESTIC VETO",
+        "body": "Graham, Wicker and Cruz urging rejection is not noise — any sanctions relief that requires statutory waiver gives the Senate a structural lever. US-Iran deals have died in Washington as often as in Tehran; the 2015 JCPOA survived Congress only because it was framed as an executive agreement, not a treaty needing 67 votes.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did the 2015 Iran nuclear deal (JCPOA) avoid a Senate ratification vote?",
+            "options": [
+              "It was structured as an executive agreement, not a treaty",
+              "Iran refused to deal with the Senate",
+              "The UN Security Council overrode Congress",
+              "It was ratified unanimously"
+            ],
+            "correct": 0,
+            "explanation": "Treaties need 67 Senate votes; framing the JCPOA as an executive agreement let it survive on a one-third minority blocking disapproval instead."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-29"
+    ],
+    "generatedAt": "2026-05-29T22:36:49.106Z",
+    "label": "Hormuz & the Leverage Game",
+    "category": "politics",
+    "articleCount": 1
   }
 }
