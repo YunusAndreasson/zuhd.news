@@ -258667,5 +258667,1306 @@
     "label": "FTO Designation & Brazil's Prison Syndicates",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-27-ai-enabled-fraud-banking-compliance-accountability": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FALSE-POSITIVE FLOOD",
+        "body": "Bank anti-money-laundering systems are tuned to miss nothing, so they flag almost everything: industry estimates put false-positive rates above 90%. Each alert is cleared by a human analyst. The CEO's 'lower-value human capital' jab describes the tens of thousands of people paid to dismiss alarms a rule generated and a machine could close.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of alerts from bank transaction-monitoring systems turn out to be false positives?",
+            "options": [
+              "About 5%",
+              "About 25%",
+              "About 50%",
+              "Over 90%"
+            ],
+            "correct": 3,
+            "explanation": "Rules are set to over-flag rather than risk a missed launderer, so the vast majority of alerts are noise cleared by human reviewers."
+          }
+        ]
+      },
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "A defender has to catch every laundering route; an attacker needs one that works. Generative models hand the attacker scale — synthetic identities, deepfake KYC selfies, and personalized scam scripts produced for pennies — while the bank's detection still runs on rules written for a slower era. Automation favors the side that only needs to win once."
+      },
+      {
+        "heading": "WHY 'COMPLIANCE' MEANS PAPERWORK, NOT OUTCOMES",
+        "body": "Under the US Bank Secrecy Act and its global imitators, a bank discharges its duty by filing a Suspicious Activity Report — not by stopping the crime. This breeds 'defensive filing': flood regulators with reports so that, whatever happens, the box was ticked. AI that auto-generates compliant-looking SARs satisfies the letter of the rule while the fraud sails through.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The key term is the **SAR** (Suspicious Activity Report). Banks practice *defensive filing* — over-reporting to transfer liability, not to catch criminals."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT MISSING IT COSTS",
+        "body": "AML failures are punished with landmark fines, which is why banks over-invest in process. BNP Paribas paid nearly $9bn in 2014 for sanctions breaches; Standard Chartered itself has been fined repeatedly. The penalties dwarf the cost of any single compliance team, which is exactly why the work was never automated away before now.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Major AML / sanctions penalties",
+            "peers": [
+              {
+                "value": 8.9,
+                "label": "BNP Paribas"
+              },
+              {
+                "value": 1.9,
+                "label": "HSBC"
+              },
+              {
+                "value": 1.1,
+                "label": "Standard Chartered"
+              },
+              {
+                "value": 0.9,
+                "label": "ING"
+              },
+              {
+                "value": 2,
+                "label": "Danske Bank"
+              },
+              {
+                "value": 0.6,
+                "label": "Deutsche Bank"
+              }
+            ],
+            "subjectLabel": "Standard Chartered",
+            "unit": "$bn"
+          }
+        ]
+      },
+      {
+        "heading": "THE UNRESOLVED QUESTION",
+        "body": "When an AI compliance system clears an AI-generated fraud, no legal regime yet says who is accountable — the bank that deployed the model, the vendor that built it, or no one. Liability law assumes a negligent human in the loop. Remove the human from both attack and defense, and the chain of responsibility has a missing link the courts have not yet filled."
+      }
+    ],
+    "generatedAt": "2026-05-29T08:43:23.127Z",
+    "label": "AML, AI & the Liability Gap",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-28-china-carbon-intensity-metric-emissions-rains": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE METRIC MEASURES",
+        "body": "Carbon intensity is emissions divided by GDP — tonnes of CO2 per dollar of output. It can fall every single year while the total tonnage in the atmosphere keeps climbing, because the denominator is growing too.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction is *relative* decoupling (emissions grow slower than GDP) versus *absolute* decoupling (emissions actually fall). An intensity target only ever promises the first."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT LETS EMISSIONS RISE",
+        "body": "If the economy grows 5% and intensity improves 4%, total emissions still rise about 1%. The metric rewards efficiency gains even as the physical volume of carbon released increases — which is why a country can claim climate progress and burn more coal in the same year."
+      },
+      {
+        "heading": "THE COPENHAGEN CHOICE",
+        "body": "China first pledged an intensity target — not an absolute cap — at the 2009 Copenhagen summit, and carried that framing into its Paris commitments. The 2020 'dual carbon' pledge added dates: peak emissions before 2030, neutrality by 2060.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2009",
+                "label": "Copenhagen: intensity target adopted",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2015",
+                "label": "Paris NDC reaffirms intensity"
+              },
+              {
+                "year": "2020",
+                "label": "Peak by 2030, neutral by 2060"
+              },
+              {
+                "year": "2021",
+                "label": "National emissions trading launches"
+              }
+            ],
+            "label": "China's climate pledges"
+          }
+        ]
+      },
+      {
+        "heading": "THE OTHER MODEL",
+        "body": "The EU does the opposite: its Emissions Trading System sets an absolute cap on tonnage and shrinks it yearly. A capped system guarantees the volume falls; an intensity system only guarantees the ratio falls. The June overcapacity dispute is partly this clash of accounting philosophies.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 31,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "United States",
+                "value": 13,
+                "tone": "neutral"
+              },
+              {
+                "label": "India",
+                "value": 8,
+                "tone": "neutral"
+              },
+              {
+                "label": "EU",
+                "value": 6,
+                "tone": "favorable"
+              },
+              {
+                "label": "Russia",
+                "value": 5,
+                "tone": "neutral"
+              },
+              {
+                "label": "Japan",
+                "value": 3,
+                "tone": "neutral"
+              },
+              {
+                "label": "Rest of world",
+                "value": 34,
+                "tone": "favorable"
+              }
+            ],
+            "label": "share of global CO2 emissions (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TEST THAT MATTERS",
+        "body": "The real question is not whether intensity falls — it almost always does as economies modernize — but whether absolute emissions peak and then decline. Britain, Germany, and the US have achieved absolute decoupling; the open question is when China's curve bends down.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "A country's carbon intensity drops 4% while GDP grows 5%. What happens to its total emissions?",
+            "options": [
+              "They fall by about 1%",
+              "They rise by about 1%",
+              "They stay exactly flat",
+              "They fall by 4%"
+            ],
+            "correct": 1,
+            "explanation": "Growth (5%) outpaces the intensity improvement (4%), so absolute emissions still climb roughly 1% — the gap intensity targets allow."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-29T08:43:53.558Z",
+    "label": "Carbon Intensity vs Absolute Emissions",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-28-samsung-hbm4e-ai-memory-lead-nvidia": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MEMORY WALL",
+        "body": "An AI accelerator's GPU cores can compute far faster than memory can feed them data. The chip spends most cycles waiting for weights to arrive, not multiplying. This gap — not raw FLOPS — is the binding constraint, and it is what HBM exists to close.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the binding bottleneck in modern AI accelerators?",
+            "options": [
+              "Raw compute (number of GPU cores)",
+              "Memory bandwidth — feeding data to the cores fast enough",
+              "Electricity cost of the data center",
+              "The price of the silicon wafer"
+            ],
+            "correct": 1,
+            "explanation": "Cores idle waiting for data; bandwidth into and out of memory is what caps real-world throughput, which is why HBM commands a premium."
+          }
+        ]
+      },
+      {
+        "heading": "HOW HBM WORKS",
+        "body": "High Bandwidth Memory stacks DRAM dies vertically and wires them together with through-silicon vias — copper columns drilled straight through the chips. Twelve layers in a single stack sit millimeters from the GPU, trading the long, slow trip to ordinary memory for a short, massively parallel one.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The vertical wiring is the trick: **through-silicon vias** (TSVs) replace thousands of slow edge pins with short vertical channels, multiplying bandwidth without growing the chip's footprint."
+          }
+        ]
+      },
+      {
+        "heading": "THE OLIGOPOLY",
+        "body": "Only three firms on earth can make HBM at scale: SK Hynix, Samsung, and Micron. Two of the three are South Korean, which is why Seoul effectively controls the supply of the scarcest input in the AI buildout.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "SK Hynix",
+                "value": "~50%",
+                "cc": "KR",
+                "weight": 50
+              },
+              {
+                "label": "Samsung",
+                "value": "~40%",
+                "cc": "KR",
+                "weight": 40
+              },
+              {
+                "label": "Micron",
+                "value": "~10%",
+                "cc": "US",
+                "weight": 10
+              }
+            ],
+            "label": "HBM market share, 2024 est."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HBM WINS THE WAFER",
+        "body": "An HBM stack uses several times the wafer area of commodity DRAM for the same gigabyte, but its margins run 5–10× higher. Every wafer a fab assigns to HBM is a wafer not making the DDR5 that phones, laptops, and cars depend on — which is how an AI memory boom quietly raises the price of consumer memory.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the same dynamic that has gutted commodity supply before: fabs chase margin, so an HBM order doesn't just sell a chip — it *removes* capacity from everything cheaper."
+          }
+        ]
+      },
+      {
+        "heading": "QUALIFICATION IS THE REAL GATE",
+        "body": "Shipping samples is not a contract. Nvidia runs each new HBM through months of qualification — thermal cycling, yield validation, power-integrity testing — before it converts to mass-production orders. A supplier can lead on the spec sheet and still lose the order if its stacks fail to qualify, which is why Samsung's sample shipment is a starting line, not a finish."
+      }
+    ],
+    "generatedAt": "2026-05-29T08:44:23.758Z",
+    "label": "HBM & the AI Memory Wall",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-29-aspirin-macular-degeneration-causal-genetic-study": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONFOUNDER PROBLEM",
+        "body": "People who take aspirin daily tend to be older, sicker, and under medical supervision — exactly the people prone to macular degeneration anyway. For decades, every observational link between aspirin and the retina drowned in this kind of confounding: you can never measure all the reasons a person ended up on the drug."
+      },
+      {
+        "heading": "THE GENETIC INSTRUMENT",
+        "body": "Mendelian randomization sidesteps the problem with a loophole: your genes are dealt at conception, effectively at random. If a genetic variant mimics aspirin's effect on the body, and people carrying it also get more macular degeneration, no lifestyle confounder can explain it — your alleles didn't choose your habits. The technique was named in 1986 but only became powerful once genome-wide studies supplied thousands of variants to use as instruments.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can Mendelian randomization claim causation where observational studies can't?",
+            "options": [
+              "It uses far larger sample sizes",
+              "Genes are assigned at conception, before any confounder can act",
+              "It runs an actual randomized drug trial",
+              "It corrects for confounders statistically after the fact"
+            ],
+            "correct": 1,
+            "explanation": "Because alleles are fixed at conception and unrelated to later lifestyle, a gene-outcome link can't be explained by confounders the way a behavior-outcome link can."
+          }
+        ]
+      },
+      {
+        "heading": "FULLY MEDIATED",
+        "body": "The striking finding isn't just that aspirin raises the risk — it's that the entire effect runs through lipids. Aspirin's association with lower LDL cholesterol accounts for all of the retinal risk; strip out the lipid change and no direct aspirin-to-retina pathway survives. The drug is a passenger, not the driver.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "asa",
+                "label": "Aspirin"
+              },
+              {
+                "id": "ldl",
+                "label": "Lower LDL"
+              },
+              {
+                "id": "amd",
+                "label": "AMD risk"
+              }
+            ],
+            "links": [
+              {
+                "source": "asa",
+                "target": "ldl",
+                "value": 100,
+                "label": "lipid effect"
+              },
+              {
+                "source": "ldl",
+                "target": "amd",
+                "value": 100,
+                "label": "full mediation"
+              }
+            ],
+            "label": "where the risk flows"
+          }
+        ]
+      },
+      {
+        "heading": "HOW ASPIRIN WORKS",
+        "body": "Aspirin irreversibly blocks the COX enzymes, shutting down the prostaglandins behind pain, fever, and clotting. That same chemistry quietly nudges lipid metabolism — the side door through which, this study argues, the retinal risk enters.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Aspirin's *irreversible* block of **COX-1** is why a single low dose thins the blood for a platelet's entire ~10-day life — platelets can't make new enzyme."
+          }
+        ]
+      },
+      {
+        "heading": "DRY VERSUS WET",
+        "body": "Macular degeneration comes in two forms. The dry form, by far the more common, is a slow thinning and accumulation of debris (drusen) under the retina. The wet form, where leaky new blood vessels grow, is rarer but causes most of the sudden, severe vision loss. The study's open question is whether aspirin touches the wet form at all.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Dry",
+                "value": "~85% of cases",
+                "tone": "neutral",
+                "weight": 85
+              },
+              {
+                "label": "Wet",
+                "value": "~15% of cases",
+                "tone": "unfavorable",
+                "weight": 15
+              }
+            ],
+            "label": "the two forms of AMD"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT IT CAN'T TELL YOU",
+        "body": "Mendelian randomization measures the effect of a lifetime of slightly altered biology, not the effect of starting or stopping a pill. So it cannot say whether quitting aspirin reverses the risk — a small genetic nudge from birth and a deliberate mid-life intervention are not the same experiment."
+      }
+    ],
+    "generatedAt": "2026-05-29T08:45:20.399Z",
+    "label": "Mendelian Randomization & AMD",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-29-esa-scout-earth-observation-missions-budget": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MISSION CLASS",
+        "body": "Scout is ESA's smallest science class, capped near €35m per mission and meant to fly within three years. The cap is the point: a hard ceiling forces engineers to design to cost rather than design to ambition, which is what keeps the schedule short."
+      },
+      {
+        "heading": "THE FLAGSHIP TRAP",
+        "body": "Big space missions overrun because requirements ratchet up during a decade of development, each addition justified on its own but compounding into billions. Once a flagship is too expensive to cancel, every delay is cheaper to absorb than to fight — so delays accumulate.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Scout",
+                "value": "~€35m",
+                "weight": 35,
+                "tone": "favorable"
+              },
+              {
+                "label": "Earth Explorer",
+                "value": "~€400m",
+                "weight": 400,
+                "tone": "neutral"
+              },
+              {
+                "label": "Sentinel flagship",
+                "value": "~€1bn+",
+                "weight": 1100,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "ESA Earth-observation mission budgets"
+          }
+        ]
+      },
+      {
+        "heading": "WHY EARTH OBSERVATION GOT CHEAP",
+        "body": "Cheap small missions only became possible once commercial off-the-shelf electronics, miniaturized sensors, and rideshare launch slots collapsed the cost of getting a working instrument into orbit. A capability that once required a bus-sized satellite now fits on a platform a startup could build.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pivot is from *design-to-requirement* — build whatever the science demands, then find the money — to **design-to-cost**: fix the budget first, then take the best science that fits inside it."
+          }
+        ]
+      },
+      {
+        "heading": "WHO BUILDS WHAT",
+        "body": "ESA contracts are governed by geographical return — the principle that each member state wins industrial work roughly proportional to the money it pays in. This is why the Industrial Policy Committee, not the scientists, signs off: the committee balances the contracts across countries before anything is built.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine is called ***juste retour*** (\"fair return\"). It is what makes ESA politically stable across 22 members — and what makes its procurement slower and pricier than a single-government agency like NASA."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRADEOFF",
+        "body": "Small-fast missions trade redundancy for speed. A flagship carries backup systems and years of testing so it cannot fail; a Scout accepts that a cheap mission can be lost and simply flown again. The risk model, not the technology, is what changes.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does ESA's Industrial Policy Committee — not its scientists — approve mission contracts?",
+            "options": [
+              "To balance industrial work across member states by their contributions",
+              "Because scientists lack security clearance for launch data",
+              "To negotiate the launch price with rocket providers",
+              "Because EU law requires civilian oversight of all spacecraft"
+            ],
+            "correct": 0,
+            "explanation": "Under 'juste retour', each member state's firms win work proportional to what it pays in — so contracts are a political balancing act, not just a technical one."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-29T08:45:55.893Z",
+    "label": "ESA's Scout Missions & 'Faster, Cheaper'",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-29-islamic-state-sahel-province-northwest-nigeria": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NORTHWEST WAS A CRIME ECONOMY, NOT A CALIPHATE",
+        "body": "For a decade the Zamfara-Sokoto-Katsina belt was ruled by bandit militias whose business was cattle rustling, village taxation, and mass kidnap-for-ransom — a profit machine with no flag and no creed. They burned schools to extract ransom, not to impose doctrine. An Islamic State claim in this zone is a category shift: from armed crime to armed ideology.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The northwest banditry is a *for-profit* insurgency — SBM Intelligence put northern ransom payments above **$18M** in a single half-year, almost all of it paid quietly by families. Ideology was never the point; the gun paid for itself."
+          }
+        ]
+      },
+      {
+        "heading": "NIGERIA ALREADY HAD TWO JIHADS — IN DIFFERENT CORNERS",
+        "body": "The northeast around Lake Chad belongs to ISWAP (Islamic State West Africa Province), grown out of Boko Haram. The Sahel Province (ISSP) operates far to the northwest, in the Mali-Niger-Burkina tri-border. Sokoto sits between them — turf neither franchise had touched. A claim here means the Sahel insurgency has reached down across the Niger border into Nigeria itself.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "NE",
+              "ML",
+              "BF",
+              "TD"
+            ],
+            "label": "the two theaters and the gap between them",
+            "markers": [
+              {
+                "lat": 13.06,
+                "lng": 5.24,
+                "label": "Sokoto (the new claim)"
+              },
+              {
+                "lat": 13,
+                "lng": 14,
+                "label": "Lake Chad (ISWAP)"
+              },
+              {
+                "lat": 14.5,
+                "lng": 1.5,
+                "label": "Liptako-Gourma (ISSP)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LINEAGE OF NIGERIAN JIHAD",
+        "body": "Boko Haram rose in Maiduguri in 2009, pledged to ISIS in 2015, then fractured: in 2016 the Islamic State disowned Abubakar Shekau and installed a rival faction as ISWAP, precisely because Shekau slaughtered Muslim civilians. That split is the through-line — every escalation since has been about which group can claim the mantle of legitimate jihad.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2009",
+                "label": "Boko Haram uprising, Maiduguri",
+                "emphasis": "start"
+              },
+              {
+                "year": "2015",
+                "label": "Boko Haram pledges to ISIS"
+              },
+              {
+                "year": "2016",
+                "label": "ISWAP splits from Shekau",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "Shekau killed by ISWAP"
+              },
+              {
+                "year": "2026",
+                "label": "ISSP claims first northwest attack",
+                "emphasis": "end"
+              }
+            ],
+            "label": "from Maiduguri to the northwest"
+          }
+        ]
+      },
+      {
+        "heading": "THE CLAIM CAME BEFORE THE CONFIRMATION",
+        "body": "Islamic State runs a weekly Arabic newsletter that catalogs and claims attacks across its provinces — a propaganda ledger published before any government acknowledges the dead. Claiming a debut in new territory is itself the strategy: it signals expansion to followers and rivals, whether or not the operation matched the boast. This is why the military's silence and the claim's confidence can coexist.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Al-Naba* — \"the news\" — is IS's weekly bulletin and the closest thing the group has to an official record. A claim there is a marketing act as much as a military one: the **franchise** advertises reach to recruit, even where its footprint is thin."
+          }
+        ]
+      },
+      {
+        "heading": "HOW A BANDIT BECOMES A JIHADIST",
+        "body": "The boundary the article calls disputed is real and porous: jihadist groups recruit by offering bandits ideology, weapons, and a transnational brand, while bandits offer local knowledge and manpower. Nigeria has seen this before — Ansaru, an al-Qaeda-aligned splinter, embedded in the northwest years ago. Armed criminality is the raw material that ideological movements refine.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did Islamic State replace Abubakar Shekau with a rival faction (ISWAP) in 2016?",
+            "options": [
+              "He indiscriminately killed Muslim civilians",
+              "He refused to pledge allegiance to ISIS",
+              "He wanted to merge with al-Qaeda",
+              "He lost all his territory to the army"
+            ],
+            "correct": 0,
+            "explanation": "IS distanced itself from Shekau's mass killing of Muslims, installing ISWAP as the faction that would target the state and spare civilians — a split over legitimacy, not strategy alone."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-29T08:47:04.268Z",
+    "label": "Jihad & Banditry in Northern Nigeria",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-29-karnataka-congress-shivakumar-siddaramaiah-swap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ROTATION GAMBIT",
+        "body": "Rotational chief-minister deals — split a five-year term down the middle — are a recurring fix when a party wins but can't choose between two rival claimants. They are private, unwritten, and legally unenforceable: nothing in India's constitution obliges a sitting CM with a majority to step down halfway. The man holding the chair almost always wants to keep it, which is why these pacts are famous for breaking, not honoring.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Siddaramaiah",
+                "role": "Outgoing chief minister",
+                "cc": "IN"
+              },
+              {
+                "name": "D.K. Shivakumar",
+                "role": "Deputy CM, state party chief",
+                "cc": "IN"
+              }
+            ],
+            "label": "the two claimants"
+          }
+        ]
+      },
+      {
+        "heading": "THE HIGH COMMAND",
+        "body": "Congress is run on a 'high command' model: state chief ministers serve at the pleasure of the central leadership in Delhi, which arbitrates succession, brokers deals, and can summon a sitting CM to resign. A swap like this is never purely local — it is ratified, and often engineered, from the party's national headquarters."
+      },
+      {
+        "heading": "THE CASTE ARITHMETIC",
+        "body": "The rivalry maps onto Karnataka's two power blocs. Siddaramaiah, a Kuruba, built his career on a coalition of minorities, backward classes, and Dalits; Shivakumar belongs to the Vokkaligas, the dominant landowning community of southern Karnataka. The leadership question is also a question of which social base the party tilts toward.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Siddaramaiah's vote bank is known by the acronym **AHINDA** — a Kannada compression of *minorities, backward classes, and Dalits*. Shivakumar's strength is the **Vokkaliga** belt around the old Mysore region. The two rarely overlap."
+          }
+        ]
+      },
+      {
+        "heading": "WHY KARNATAKA IS THE PRIZE",
+        "body": "This is not just any state. Bengaluru, its capital, is the center of India's software industry and accounts for the single largest slice of the country's IT exports — making Karnataka's treasury and its chief minister's patronage among the most valuable in Indian politics.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Karnataka",
+                "value": "~40%",
+                "weight": 40,
+                "tone": "favorable",
+                "cc": "IN"
+              },
+              {
+                "label": "Maharashtra",
+                "value": "~18%",
+                "weight": 18,
+                "tone": "neutral",
+                "cc": "IN"
+              },
+              {
+                "label": "Telangana",
+                "value": "~15%",
+                "weight": 15,
+                "tone": "neutral",
+                "cc": "IN"
+              },
+              {
+                "label": "Tamil Nadu",
+                "value": "~10%",
+                "weight": 10,
+                "tone": "neutral",
+                "cc": "IN"
+              }
+            ],
+            "label": "share of India's software exports (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE NUMBERS GAME",
+        "body": "Whoever leads must hold a majority of the 224-seat assembly together, and India's 1985 anti-defection law strips a legislator of their seat for crossing the floor. That makes blocs of loyal MLAs the real currency of a leadership fight — which is why such standoffs sometimes end with rival camps sequestered in resorts to prevent poaching.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Bengaluru's dominance means Karnataka accounts for roughly what share of India's software exports?",
+            "options": [
+              "About 10%",
+              "About 25%",
+              "About 40%",
+              "Over 60%"
+            ],
+            "correct": 2,
+            "explanation": "Karnataka, led by Bengaluru, contributes roughly two-fifths of India's IT/software exports — the largest of any state."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-29T08:47:47.287Z",
+    "label": "Karnataka & the Rotation Pact",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-29-kazakhstan-north-aral-sea-recovery-water": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WORLD'S FASTEST-DYING LAKE",
+        "body": "The Aral was the fourth-largest lake on Earth in 1960. Soviet planners knew diverting its rivers would shrink it — Moscow's own ministries called the lake's death an acceptable price for cotton. This was not an accident; it was a deliberate engineering trade.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1960",
+                "label": "Fourth-largest lake on Earth"
+              },
+              {
+                "year": "1960",
+                "label": "River diversion for cotton begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1987",
+                "label": "Lake splits into north and south"
+              },
+              {
+                "year": "2005",
+                "label": "Kok-Aral Dam completed"
+              },
+              {
+                "year": "2026",
+                "label": "North Aral largely refilled"
+              }
+            ],
+            "label": "the drying"
+          }
+        ]
+      },
+      {
+        "heading": "TWO RIVERS, TWO FATES",
+        "body": "The Aral was fed by two great Central Asian rivers: the Syr Darya from the north and the Amu Darya from the south. The Kok-Aral Dam works by trapping the entire Syr Darya in the smaller northern basin — which is why Kazakhstan's half recovered while Uzbekistan's, starved of the still-diverted Amu Darya, did not.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KZ",
+              "UZ"
+            ],
+            "label": "the divided sea",
+            "caption": "Syr Darya feeds the north; Amu Darya the dried south",
+            "markers": [
+              {
+                "lat": 46.05,
+                "lng": 60.75,
+                "label": "Kok-Aral Dam"
+              },
+              {
+                "lat": 46.78,
+                "lng": 61.66,
+                "label": "Aralsk (former port)"
+              },
+              {
+                "lat": 43.77,
+                "lng": 59.02,
+                "label": "Muynak (Uzbek ghost port)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHITE GOLD",
+        "body": "The water went to cotton — Soviet planners called it 'white gold' and pushed Uzbekistan into monoculture. Uzbekistan is still among the world's largest cotton producers, which is precisely why the Amu Darya cannot simply be returned to the lake: the crop that emptied the sea is now the economy that depends on it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Cotton is brutally thirsty — roughly **2,700 litres** of water for a single t-shirt's worth of fibre. Forcing it onto the arid steppe meant draining an inland sea to grow it."
+          }
+        ]
+      },
+      {
+        "heading": "THE POISON DESERT",
+        "body": "The exposed seabed became a new desert — the Aralkum — coated in salt and decades of accumulated pesticide and fertilizer runoff. Winds lift this toxic dust and scatter it across the region, where infant mortality, respiratory disease, and certain cancers rank among the highest in the former Soviet world.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The new desert has a name: the *Aralkum*. It is the only desert on Earth whose dust is laced with industrial agricultural chemicals — including residues of DDT banned decades ago."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A SMALLER TARGET WORKED",
+        "body": "Restoration succeeded by abandoning the goal of refilling the whole lake. By damming off and concentrating one river's flow into one northern basin, Kazakhstan raised the water level fast enough to outpace evaporation — a lesson that a partial, achievable fix can beat an impossible total one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did the North Aral Sea recover while the southern half stayed desert?",
+            "options": [
+              "Rainfall increased over Kazakhstan",
+              "A dam trapped the Syr Darya's flow in the smaller northern basin",
+              "Uzbekistan stopped growing cotton",
+              "The southern seabed was permanently salted"
+            ],
+            "correct": 1,
+            "explanation": "The Kok-Aral Dam concentrated the Syr Darya into the small northern basin, raising its level faster than evaporation could remove it."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-29T08:48:20.289Z",
+    "label": "The Aral Sea & Soviet Cotton",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-29-okx-ventures-coinone-korea-crypto-stake": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 20% LINE",
+        "body": "OKX stopped at 19.6% deliberately. Under Korean financial law, crossing roughly 20% of an exchange's shares can classify a buyer as a controlling party, triggering a fit-and-proper review of the acquirer itself. Staying just under buys market access without inviting regulators to audit OKX's own history.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is *threshold arbitrage* — the deal is structured around a regulatory tripwire at **20%**, not around what economic stake OKX actually wants. The same logic governs takeover-disclosure rules in most markets."
+          }
+        ]
+      },
+      {
+        "heading": "THE REAL-NAME MOAT",
+        "body": "Since 2018, Korean crypto exchanges may only let users trade with won if those users hold a real-name bank account at a partner bank that verifies identity. Banks are cautious about which exchanges they'll service, so the binding constraint on a Korean exchange isn't technology — it's whether a domestic bank will issue it real-name accounts. That moat is what a foreign player is really paying to get behind.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does a Korean exchange most need before it can offer won trading to retail users?",
+            "options": [
+              "A real-name banking partnership with a domestic bank",
+              "A listing on the Kospi stock exchange",
+              "A minimum Bitcoin reserve held in cold storage",
+              "Approval from the central bank's monetary committee"
+            ],
+            "correct": 0,
+            "explanation": "The 2018 real-name rule routes all won deposits through verified bank accounts, so a bank partnership is the gatekeeper to the retail market."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BUY IN, NOT BUILD",
+        "body": "A foreign exchange cannot simply open a Seoul branch and start serving Korean users — licensing, real-name banking, and local-entity rules effectively wall out outsiders. The practical route in is an equity stake in an already-licensed incumbent. OKX, which has been pushed out of or fined in several Western jurisdictions, gains a compliant Korean foothold without building one from scratch."
+      },
+      {
+        "heading": "THE KIMCHI PREMIUM",
+        "body": "Korea's market is so insulated by capital controls and the closed won-banking rail that Bitcoin has historically traded at a persistent markup there — the 'kimchi premium,' which spiked above 50% during the 2017-18 mania. The gap exists because arbitrageurs can't freely move won out to buy cheaper coins abroad and sell them back in. A closed market is exactly what makes a stake in it valuable."
+      },
+      {
+        "heading": "WHO RUNS KOREAN CRYPTO",
+        "body": "Coinone is a second-tier player. The Korean market is overwhelmingly concentrated in Upbit, with Bithumb a distant second — together they handle the vast majority of won-denominated volume, leaving Coinone and Korbit fighting over the remainder.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Upbit",
+                "value": "~70%",
+                "weight": 70,
+                "tone": "neutral"
+              },
+              {
+                "label": "Bithumb",
+                "value": "~20%",
+                "weight": 20,
+                "tone": "neutral"
+              },
+              {
+                "label": "Coinone",
+                "value": "~5%",
+                "weight": 5,
+                "tone": "favorable"
+              },
+              {
+                "label": "Korbit",
+                "value": "~2%",
+                "weight": 2,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Korean won-market share (approx.)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-29T08:48:54.234Z",
+    "label": "Korea's Walled-Garden Crypto Market",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-29-romania-russia-drone-nato-apartment-escalation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "ARTICLE 4, NOT ARTICLE 5",
+        "body": "The treaty most people know is Article 5 — an attack on one is an attack on all. But it requires an 'armed attack' and unanimous agreement on the response, a bar no ally wants to test over a drone. Romania's actual lever is Article 4: any member may demand formal consultations when it feels threatened. It triggers a meeting, not a war.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which NATO treaty article lets a member demand formal alliance consultations without invoking collective defense?",
+            "options": [
+              "Article 4",
+              "Article 5",
+              "Article 3",
+              "UN Charter Article 51"
+            ],
+            "correct": 0,
+            "explanation": "Article 4 obliges allies to consult when one feels its security threatened; Article 5 is the collective-defense clause requiring an armed attack."
+          }
+        ]
+      },
+      {
+        "heading": "THE SHAHED IN RUSSIAN PAINT",
+        "body": "The Geran-2 is not a Russian design. It is the Iranian Shahed-136, transferred after 2022 and now license-produced inside Russia at the Alabuga plant in Tatarstan. A delta-wing flying bomb with a moped engine and a roughly 50kg warhead, it loiters at low altitude and crashes into its target — cheap, slow, and built to be expended in waves.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **Geran-2** (Russian for *geranium*) is the rebranded Iranian **Shahed-136** — a one-way attack drone costing perhaps **$20–50k** apiece, designed to be fired in saturating swarms rather than aimed with precision."
+          }
+        ]
+      },
+      {
+        "heading": "THE COST ASYMMETRY",
+        "body": "The reason these drones are a strategic weapon is arithmetic. A defender who downs a $30,000 drone with a million-dollar surface-to-air missile wins the engagement and loses the war of attrition. Russia builds them by the thousand precisely to drain Western interceptor stockpiles that take months to replace.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Geran-2 drone",
+                "value": "~$30k",
+                "tone": "favorable",
+                "weight": 30
+              },
+              {
+                "label": "IRIS-T missile",
+                "value": "~$400k",
+                "tone": "neutral",
+                "weight": 400
+              },
+              {
+                "label": "Patriot PAC-3",
+                "value": "~$4m",
+                "tone": "unfavorable",
+                "weight": 4000
+              }
+            ],
+            "label": "one engagement, two price tags"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THEY DRIFT INTO ROMANIA",
+        "body": "Galați sits on the Danube directly across from the Ukrainian river ports of Izmail and Reni, which Russia bombs to choke Ukraine's grain exports. Drones that overshoot, are jammed, or are knocked off course by air defense have only a few kilometers of water to cross before they are over Romanian — and therefore NATO — soil. The incursions are a geographic byproduct of the strike campaign next door.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RO",
+              "UA",
+              "MD",
+              "BG"
+            ],
+            "label": "the Danube frontier",
+            "caption": "Russian strikes on Ukraine's Danube ports spill across a few km of river into NATO airspace",
+            "markers": [
+              {
+                "lat": 45.435,
+                "lng": 28.008,
+                "label": "Galați (struck)"
+              },
+              {
+                "lat": 45.351,
+                "lng": 28.836,
+                "label": "Izmail port (UA)"
+              },
+              {
+                "lat": 45.457,
+                "lng": 28.283,
+                "label": "Reni port (UA)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'RECKLESS,' NOT 'DELIBERATE'",
+        "body": "NATO's choice of words is a policy, not a description. Calling a strike 'reckless' rather than 'deliberate' preserves the off-ramp: a deliberate attack on an ally would pressure the alliance toward an Article 5 reckoning it has no appetite for. Ambiguity lets both sides avoid the rungs of the escalation ladder neither wants to climb. The deniability is a feature Moscow exploits and Brussels quietly accepts."
+      },
+      {
+        "heading": "THE PRZEWODÓW TEMPLATE",
+        "body": "This script was written in November 2022, when a missile killed two people in Przewodów, Poland. Within hours it looked like a Russian strike on NATO territory — then evidence pointed to a stray Ukrainian air-defense round. NATO seized the ambiguity to de-escalate, and that response became the template: investigate slowly, condemn loudly, retaliate never.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2022-11",
+                "label": "Przewodów, Poland — missile kills two",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-09",
+                "label": "Shahed debris found in Romania's Danube delta"
+              },
+              {
+                "year": "2024",
+                "label": "Repeated Romanian airspace violations"
+              },
+              {
+                "year": "2026-05",
+                "label": "Galați strike — first NATO civilian injuries"
+              }
+            ],
+            "label": "NATO's eastern edge under fire"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-29T08:49:51.660Z",
+    "label": "NATO's Article 4 & the Drift War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-29-russia-drone-turkish-cargo-ship-odesa-black-sea": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO GUARDS THE GATE",
+        "body": "The Black Sea has one exit: the Turkish Straits. Under the 1936 Montreux Convention, Turkey controls passage through the Bosphorus and Dardanelles and can close them to warships in wartime — which it did in 2022, barring Russian naval reinforcement from the Mediterranean. This legal chokehold is why Ankara, not Brussels or Washington, brokered the grain deal.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU",
+              "TR",
+              "RO",
+              "BG",
+              "GE"
+            ],
+            "label": "the enclosed sea and its only exit",
+            "markers": [
+              {
+                "lat": 46.48,
+                "lng": 30.73,
+                "label": "Odesa port"
+              },
+              {
+                "lat": 41.02,
+                "lng": 29,
+                "label": "Bosphorus"
+              },
+              {
+                "lat": 40.2,
+                "lng": 26.4,
+                "label": "Dardanelles"
+              }
+            ]
+          },
+          {
+            "type": "prose",
+            "text": "Montreux lets Turkey shut the straits to belligerent warships but **not** to commercial traffic — the legal seam that kept grain moving while Russia's Black Sea Fleet stayed bottled up."
+          }
+        ]
+      },
+      {
+        "heading": "THE CORRIDOR THAT FED CONTINENTS",
+        "body": "Before 2022, Ukraine and Russia together supplied roughly a third of the world's wheat exports. The Black Sea Grain Initiative, signed in Istanbul in July 2022, let inspected vessels run a humanitarian corridor out of Odesa. Russia walked away in July 2023; what moves now does so without that guarantee — which is what makes a single drone strike a market event.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2022-02",
+                "label": "Russia invades; ports blockaded",
+                "emphasis": "start"
+              },
+              {
+                "year": "2022-07",
+                "label": "Grain Initiative signed in Istanbul",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-07",
+                "label": "Russia exits the deal",
+                "emphasis": "end"
+              }
+            ],
+            "label": "the corridor's short life"
+          }
+        ]
+      },
+      {
+        "heading": "WHO GOES HUNGRY UPSTREAM",
+        "body": "Black Sea grain doesn't feed rich economies — it feeds wheat-import-dependent states with thin reserves, where bread is a political commodity. Egypt is the world's largest wheat importer; Lebanon's silos held weeks of supply even before the 2020 port blast. A corridor strike registers as a price tremor in Cairo and Beirut, not in Chicago.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Egypt",
+                "value": "~60%",
+                "cc": "EG",
+                "tone": "unfavorable",
+                "weight": 60
+              },
+              {
+                "label": "Lebanon",
+                "value": "~80%",
+                "cc": "LB",
+                "tone": "unfavorable",
+                "weight": 80
+              },
+              {
+                "label": "Bangladesh",
+                "value": "~half",
+                "cc": "BD",
+                "tone": "neutral",
+                "weight": 50
+              },
+              {
+                "label": "Indonesia",
+                "value": "~all",
+                "cc": "ID",
+                "tone": "unfavorable",
+                "weight": 95
+              }
+            ],
+            "label": "wheat import dependence (share consumed that is imported)"
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "It is not the drones that close a shipping lane — it is the war-risk premium. Once Lloyd's underwriters reprice a route as a conflict zone, the per-voyage surcharge can swamp the cargo's margin, and owners reroute or refuse regardless of how many vessels actually get hit. A single burning freighter resets the premium for every ship behind it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The corridor's real toll booth sits in London: a **war-risk premium** quoted as a percentage of hull value per voyage. Spike it and commercial shipping stops itself — no blockade required."
+          }
+        ]
+      },
+      {
+        "heading": "THE STRAITS, ACROSS HISTORY",
+        "body": "Whoever holds the Bosphorus holds Russia's warm-water access. Tsarist Russia fought repeated wars for it; the 1853–56 Crimean War was, at root, about keeping Russia out of the straits. Montreux froze that contest into a treaty — and handed the referee's whistle permanently to Turkey.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which treaty gives Turkey legal authority over warship passage into the Black Sea?",
+            "options": [
+              "The Montreux Convention (1936)",
+              "The Treaty of Lausanne (1923)",
+              "The Treaty of Sèvres (1920)",
+              "The Sykes-Picot Agreement (1916)"
+            ],
+            "correct": 0,
+            "explanation": "Montreux returned full control of the straits to Turkey and lets it restrict warship transit, especially in wartime."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-29T08:50:33.193Z",
+    "label": "The Black Sea Grain Corridor",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-29-spacex-ipo-1-8-trillion-ai-infrastructure-pivot": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MULTIPLE",
+        "body": "A $1.8tn valuation against $18.7bn of 2025 revenue is roughly 96 times sales. Mature profitable giants trade in the single digits to low tens; a number this high is not pricing today's rockets and Starlink subscriptions — it is pricing a story about the future.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "SpaceX (target)",
+                "value": "~96x",
+                "tone": "unfavorable",
+                "weight": 96
+              },
+              {
+                "label": "Nvidia",
+                "value": "~28x",
+                "tone": "neutral",
+                "weight": 28
+              },
+              {
+                "label": "Tesla",
+                "value": "~10x",
+                "tone": "neutral",
+                "weight": 10
+              },
+              {
+                "label": "Saudi Aramco",
+                "value": "~7x",
+                "tone": "favorable",
+                "weight": 7
+              },
+              {
+                "label": "S&P median",
+                "value": "~3x",
+                "tone": "favorable",
+                "weight": 3
+              }
+            ],
+            "label": "price-to-sales multiple (approx)"
+          },
+          {
+            "type": "quiz",
+            "question": "Roughly how many times its 2025 revenue is SpaceX's $1.8tn IPO floor?",
+            "options": [
+              "About 10x",
+              "About 30x",
+              "About 96x",
+              "About 300x"
+            ],
+            "correct": 2,
+            "explanation": "$1.8tn divided by $18.7bn revenue is ~96x — far above the single-digit multiples mature firms command."
+          }
+        ]
+      },
+      {
+        "heading": "THE TAM REFRAME",
+        "body": "The number only works if you change the question SpaceX answers. Priced as a launch-and-broadband company, it is worth a few hundred billion; priced as 'AI infrastructure' addressing a $28.5tn services market, almost any multiple looks cheap. The pivot is a valuation tool as much as a strategy.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The lever is the *total addressable market*. Anchor a story to a **$28.5tn** TAM and a 96x sales multiple reads as a rounding error — which is exactly why founders reach for the biggest credible market they can name."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRIVATE GIANT",
+        "body": "SpaceX is already the most valuable private company on earth, ahead of the AI labs and the Chinese platform giants. Staying private this long is itself unusual — most firms this size went public a decade ago to raise capital.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Largest private-company valuations (approx)",
+            "peers": [
+              {
+                "value": 400,
+                "label": "SpaceX"
+              },
+              {
+                "value": 500,
+                "label": "OpenAI"
+              },
+              {
+                "value": 300,
+                "label": "ByteDance"
+              },
+              {
+                "value": 90,
+                "label": "Stripe"
+              },
+              {
+                "value": 60,
+                "label": "Databricks"
+              },
+              {
+                "value": 60,
+                "label": "Anthropic"
+              }
+            ],
+            "subjectLabel": "SpaceX",
+            "unit": "$bn"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY CONTROLS IT",
+        "body": "Concentrated ownership means the float sold to the public carries little say. Founders typically retain supervoting shares so that selling a minority economic stake never threatens voting control — the structure Musk has used at every company he runs.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Elon Musk",
+                "role": "Founder, CEO, controlling shareholder",
+                "years": "2002–",
+                "cc": "US"
+              },
+              {
+                "name": "Gwynne Shotwell",
+                "role": "President and COO",
+                "years": "2008–",
+                "cc": "US"
+              }
+            ],
+            "label": "the two who run it"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT GOING PUBLIC EXPOSES",
+        "body": "Private companies choose what to disclose; an S-1 filing ends that. SpaceX would have to publish audited GAAP financials, every related-party deal with xAI and Tesla, and executive pay. Consolidation rules can also force a subsidiary's losses onto the parent — an accounting structure, not the rocket business, can turn an operating profit into a reported net loss."
+      },
+      {
+        "heading": "WHY IT STAYED PRIVATE",
+        "body": "SpaceX never needed an IPO for cash — recurring tender offers let employees and early backers sell shares while the company set the price and stayed off public markets. Going public now trades that control for the one thing tenders can't deliver: a deep, liquid market to fund capital at AI-infrastructure scale."
+      }
+    ],
+    "generatedAt": "2026-05-29T08:51:23.590Z",
+    "label": "Valuing SpaceX & the AI Reframe",
+    "category": "economy",
+    "articleCount": 1
   }
 }
