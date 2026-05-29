@@ -1,27 +1,27 @@
 {
-  "date": "2026-05-28",
+  "date": "2026-05-29",
   "metrics": {
-    "articles": { "value": 59, "detail": "6 cycles, avg 10/cycle (12+12+13+13 across logged cycles)" },
-    "freshness": { "median": 1.3, "p90": 1.5, "max": 1.5, "target": 1.0, "met": false },
-    "categories": { "politics": 19, "economy": 15, "science": 14, "tech": 11 },
-    "multiSource": { "value": 13, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 24, "ME": 12, "EU": 12, "AF": 6, "AS": 4, "OC": 1 } },
+    "articles": { "value": 31, "detail": "5 cycles, 4 completed, avg 7/cycle" },
+    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
+    "categories": { "politics": 9, "economy": 9, "science": 7, "tech": 6 },
+    "multiSource": { "value": 7, "target": 4, "met": true },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 10, "EU": 7, "ME": 6, "AS": 5, "AF": 3 } },
     "sciTech": { "ratio": 42, "target": 25, "met": true },
-    "topSourceShare": { "source": "Daily Maverick", "pct": 10, "target": 20, "met": true },
-    "uniqueSources": 52,
+    "topSourceShare": { "source": "CoinDesk / NDTV", "pct": 10, "target": 20, "met": true },
+    "uniqueSources": 35,
     "duplicates": 0,
-    "avgCycleDuration": 2040
+    "avgCycleDuration": 1722
   },
-  "experiment": "Skipped. No active experiments. New experiments paused until 2026-05-31 to let the opus-4-8 selector/tune lineup (committed today, 848de07e) baseline before a new variable is introduced.",
-  "weakestArea": "Freshness is the only off-target metric: median 1.3 days vs the ≤1.0 target (p90 1.5, max 1.5). The reading is noisy — only 7 articles carried measurable lag and yesterday's median was 0 — so it's a soft miss rather than a clear regression. The standalone cap (currently 22, the proven freshness lever, kept twice) is the natural fix, but acting today would confound with the same-day selector model flip; deferred until after the baselining gate.",
+  "experiment": "Skipped. No active experiments pending evaluation, and the noNewExperimentsUntil gate (2026-05-31) blocks new variables while the opus-4-8 selector/tune lineup baselines. Gate drops after 2026-05-31.",
+  "weakestArea": "Regional spread is the softest metric: 5 regions vs 6 yesterday, with Oceania entirely absent and Africa at just 3 articles, against an Americas-heavy skew (10/31). It still clears the >=4 target. Freshness reads a clean median of 0 but on only one measurable article (count=1), so today's freshness figure is low-confidence rather than a strong signal.",
   "watching": [
-    "Freshness median across the next 2-3 days under the opus-4-8 selector — if it holds above 1.0 once the model baselines, trim the standalone cap 22->20.",
-    "Editor stage stability after the permanent medium->low effort flip and opus-4-8 selector/tune change landed today (848de07e).",
-    "OC region coverage at 1 article — Oceania remains the thinnest region; not a target miss but a recurring gap."
+    "Throughput at 31 articles over 5 cycles (one incomplete, avg 7/cycle) vs 64 yesterday — confirm the 5th cycle completed and whether the lighter day is feed thinness or a cycle failure.",
+    "Freshness across the next 2-3 days under the opus-4-8 selector once the sample size recovers; today's median rests on a single article.",
+    "CoinDesk supplied 3 of today's articles — within share limits but the largest single-source contributor; track if crypto concentration persists."
   ],
   "coverageGaps": [
-    "Asia (AS) at 4 articles is the second-thinnest region today despite being a high-news-density area; Americas (AM) dominates at 24/59 (41%).",
-    "Oceania represented by a single article."
+    "Oceania had zero coverage today (uniqueRegions fell from 6 to 5).",
+    "Africa underweight at 3 articles despite regional outlets in the feed (Premium Times, Daily Maverick)."
   ],
-  "context": "All diversity, multi-source, sci-tech, source-concentration, and duplicate targets are met comfortably (sci+tech 42%, multi-source 13, top source 10%, 0 duplicates). The pipeline is healthy. The single change worth noting is today's commit 848de07e flipping selector+tune to opus-4-8 and making editor effort low permanent — a model lineup change that warrants a short no-new-experiments window so the next experiment's signal isn't confounded."
+  "context": "All four core goals — freshness, diversity, multi-source, educational value — are met today, so no intervention is warranted. The pause gate remains in effect through 2026-05-31 to let commit 848de07e (opus-4-8 selector/tune, permanent editor effort low) baseline before a tunable variable is introduced. Standing lesson holds: the selector multi-source floor lever is tapped (~22% ceiling from feed supply), so the next sourcing experiment after the gate lifts should target upstream feed clustering rather than select-prompt floors."
 }
