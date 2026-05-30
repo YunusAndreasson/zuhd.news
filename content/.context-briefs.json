@@ -262984,5 +262984,1558 @@
     "label": "Hormuz & the Leverage Game",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-28-drc-ebola-outbreak-community-health-surveillance": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY EARLY IS EVERYTHING",
+        "body": "Ebola spreads through chains of contacts, and each missed case seeds the next ring. Catch a patient before they infect their household and the cluster dies in a single ring; catch them at the hospital stage and you are already tracing hundreds of people across multiple villages.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does detecting an Ebola case one week earlier matter so much?",
+            "options": [
+              "The virus mutates to a deadlier strain over time",
+              "Untraced contacts compound, so each delay multiplies the people to trace",
+              "Vaccines only work in the first week of an outbreak",
+              "Hospitals charge more for late admissions"
+            ],
+            "correct": 1,
+            "explanation": "Contacts grow geometrically — a case found at the household stage has a handful of contacts; one found at the hospital stage already has hundreds."
+          }
+        ]
+      },
+      {
+        "heading": "HOW IT ACTUALLY SPREADS",
+        "body": "Ebola is a filovirus that passes through direct contact with blood, vomit, or other bodily fluids — not through the air. The deadliest amplification point has historically been funerals: traditional washing of the body, when viral load peaks at death, turns a single corpse into a super-spreader event.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The natural reservoir is the **fruit bat**; humans are a dead-end host. This is why outbreaks erupt suddenly from forest contact, then chain person-to-person — and why **safe burials** are as much a public-health tool as any drug."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE VIRUS WAS BORN",
+        "body": "Ebola is named for the Ebola River in northern DRC (then Zaire), near the village of Yambuku where the 1976 outbreak was first identified. The country has since logged more Ebola outbreaks than anywhere on Earth — the virus is effectively endemic to its forests.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1976",
+                "label": "Yambuku — virus first identified",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1995",
+                "label": "Kikwit outbreak"
+              },
+              {
+                "year": "2007",
+                "label": "Kasai-Occidental"
+              },
+              {
+                "year": "2014",
+                "label": "Équateur (separate from W. Africa)"
+              },
+              {
+                "year": "2018",
+                "label": "Nord-Kivu / Ituri begins"
+              },
+              {
+                "year": "2020",
+                "label": "Kivu outbreak declared over"
+              }
+            ],
+            "label": "DRC's recurring outbreaks"
+          }
+        ]
+      },
+      {
+        "heading": "THE SCALE IT CAN REACH",
+        "body": "Most flares stay small — a few hundred cases — precisely because they are caught early. But when surveillance fails and the virus reaches a city or a war zone, the toll jumps an order of magnitude. DRC's 2018–20 Kivu outbreak became the second largest ever, fought amid an active insurgency.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Deaths in major Ebola outbreaks",
+            "peers": [
+              {
+                "value": 11325,
+                "label": "W. Africa '14–16"
+              },
+              {
+                "value": 2287,
+                "label": "DRC Kivu '18–20"
+              },
+              {
+                "value": 280,
+                "label": "DRC Yambuku '76"
+              },
+              {
+                "value": 250,
+                "label": "DRC Kikwit '95"
+              },
+              {
+                "value": 224,
+                "label": "Uganda Gulu '00"
+              },
+              {
+                "value": 187,
+                "label": "DRC '07"
+              }
+            ],
+            "subjectLabel": "DRC Kivu '18–20",
+            "unit": "deaths"
+          }
+        ]
+      },
+      {
+        "heading": "THE FUNDING BLIND SPOT",
+        "body": "Donor money concentrates on the visible end of the response — treatment centers, ambulances, lab capacity — because that is where outbreaks are seen and counted. The community health worker who would spot the index case in a remote village is the cheapest layer to fund and the first one cut, which is the structural gap the analyst named.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CD",
+              "UG",
+              "RW",
+              "BI",
+              "SS",
+              "CG"
+            ],
+            "label": "DRC and its outbreak-exposed neighbors",
+            "caption": "A missed case near a porous border becomes a regional outbreak"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T04:21:07.872Z",
+    "label": "Ebola Surveillance & Contact Math",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-29-bpc-157-peptide-evidence-drug-regulation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT BPC-157 ACTUALLY IS",
+        "body": "BPC-157 is a synthetic 15-amino-acid fragment said to derive from a protein found in human gastric juice. It has never completed a single registered human trial — its entire reputation rests on rat and cell-culture studies showing accelerated tendon and gut healing.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The name is marketing as much as chemistry: **BPC** stands for *Body Protection Compound*, a label coined by the lab that first synthesized it — not a claim any regulator has ever verified."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ANIMAL DATA ISN'T PROOF",
+        "body": "A compound that heals a rat tendon routinely fails in humans — different dosing, metabolism, and disease scale. The graveyard of drug development is full of molecules that cured mice. This is precisely the gap clinical trials exist to close, and it is the gap BPC-157 has never been tested across.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Enter Phase 1",
+                "value": "100%",
+                "weight": 100,
+                "tone": "neutral"
+              },
+              {
+                "label": "Reach Phase 2",
+                "value": "~63%",
+                "weight": 63,
+                "tone": "neutral"
+              },
+              {
+                "label": "Reach Phase 3",
+                "value": "~30%",
+                "weight": 30,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "FDA approved",
+                "value": "~10%",
+                "weight": 10,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Share of drugs entering Phase 1 that survive to each stage"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE LAW DEMANDS EFFICACY",
+        "body": "The US didn't always require proof that a drug works. Two disasters built the modern standard: the 1937 sulfanilamide elixir that poisoned over 100 people forced safety testing in 1938, and the thalidomide birth-defect crisis pushed Congress to demand proof of efficacy — not just safety — in 1962.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1938",
+                "label": "FDCA: drugs must prove safety",
+                "emphasis": "start"
+              },
+              {
+                "year": "1962",
+                "label": "Kefauver-Harris: must prove efficacy",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1987",
+                "label": "Expanded access for the dying"
+              },
+              {
+                "year": "2018",
+                "label": "Federal Right to Try Act"
+              }
+            ],
+            "label": "how the burden of proof was built"
+          }
+        ]
+      },
+      {
+        "heading": "THE GREY-MARKET LOOPHOLE",
+        "body": "BPC-157 is sold widely by labeling vials 'for research use only, not for human consumption.' That phrase is a legal fiction: it lets sellers ship an unapproved drug while disclaiming the use everyone knows it's bought for. Compounding pharmacies operate in a parallel grey zone the FDA only intermittently polices."
+      },
+      {
+        "heading": "WHY ANECDOTES OUTRUN DATA",
+        "body": "Most injuries heal on their own, so anyone who takes a substance during recovery will credit the substance. Add the placebo effect and the fact that the cured talk louder than the unhelped, and you get a flood of testimonials that feels like evidence but contains none. This is the exact signal a randomized trial is designed to filter out.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do single-arm patient testimonials systematically overstate a treatment's benefit?",
+            "options": [
+              "They omit the people it didn't help and credit normal healing to the drug",
+              "Patients are paid to give positive reviews",
+              "The drug works but only in small doses",
+              "Testimonials are illegal and therefore rare"
+            ],
+            "correct": 0,
+            "explanation": "Without a control group, natural recovery, placebo response, and survivorship bias all masquerade as drug efficacy."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T04:21:50.085Z",
+    "label": "Peptides & the Burden of Proof",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-29-brazil-pcc-red-command-terrorist-designation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "BORN IN A MASSACRE",
+        "body": "The First Capital Command (PCC) was founded in 1993 inside a São Paulo prison, in direct response to the Carandiru massacre the year before — when military police killed 111 inmates while suppressing a riot. The group's founding charter framed it as protection against state violence; it grew into the dominant force in Brazil's prison system and cocaine trade.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Red Command forms at Ilha Grande"
+              },
+              {
+                "year": "1992",
+                "label": "Carandiru massacre: 111 killed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1993",
+                "label": "PCC founded in São Paulo prison"
+              },
+              {
+                "year": "2006",
+                "label": "PCC paralyzes São Paulo in coordinated attacks"
+              },
+              {
+                "year": "2026",
+                "label": "US designates both as terrorist orgs"
+              }
+            ],
+            "label": "from cellblock to syndicate"
+          }
+        ]
+      },
+      {
+        "heading": "THE DICTATORSHIP'S ACCIDENT",
+        "body": "Red Command (Comando Vermelho) emerged earlier, in the late 1970s, when Brazil's military junta jailed leftist guerrillas alongside common criminals at the Ilha Grande prison. The political prisoners brought cell-structure discipline, collective decision-making, and solidarity codes; the bank robbers brought the criminal trade. The state created its own most organized enemy by housing them together.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pattern repeats across the hemisphere: prisons are where atomized criminals become **organizations**. The *PCC* and *Comando Vermelho* are not gangs that ended up in prison — they are institutions that were *built* in prison."
+          }
+        ]
+      },
+      {
+        "heading": "CARTEL OR TERRORIST",
+        "body": "The legal distinction analysts are invoking is real: terrorism is violence in pursuit of a political or ideological goal, while these groups pursue profit. A foreign terrorist organization designation was designed for ideological insurgents, not drug traffickers. Critics warn that stretching it to profit-driven crime blurs a line that US law has kept sharp since the statute's creation in 1996.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What event triggered the founding of the PCC?",
+            "options": [
+              "The 1992 Carandiru prison massacre",
+              "The 1964 military coup",
+              "Rio's favela pacification program",
+              "A World Cup-related crackdown"
+            ],
+            "correct": 0,
+            "explanation": "111 inmates were killed by police suppressing a Carandiru riot in 1992; the PCC formed the next year framing itself as inmate self-defense."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE LABEL ACTUALLY DOES",
+        "body": "A terrorist designation does more than rename the threat. It triggers the US 'material support' statute, which criminalizes anyone — including banks, lawyers, and businesses — who knowingly provides money, services, or assets to the group. It lets Treasury freeze any holdings touching the US financial system and bars members from entering the country. The teeth are financial, not military."
+      },
+      {
+        "heading": "THE COCAINE CORRIDOR",
+        "body": "The PCC's power rests on geography: it controls the smuggling routes from Bolivia and Paraguay — where coca is grown and processed — into Brazil's ports for export to Europe and West Africa. The Paraguay border town of Pedro Juan Caballero is a key node. This is why the syndicate became transnational; it sits astride the supply line, not just the street trade.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BR",
+              "PY",
+              "BO",
+              "PE",
+              "CO"
+            ],
+            "label": "the South American cocaine route",
+            "markers": [
+              {
+                "lat": -23.5505,
+                "lng": -46.6333,
+                "label": "São Paulo (PCC base)"
+              },
+              {
+                "lat": -22.9068,
+                "lng": -43.1729,
+                "label": "Rio (Red Command base)"
+              },
+              {
+                "lat": -22.5472,
+                "lng": -55.7344,
+                "label": "Pedro Juan Caballero"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY BANKS ARE THE CHOKEPOINT",
+        "body": "Drug revenue is worthless until it is laundered into the legitimate banking system, and the US dollar clearing network is the world's plumbing — most large cross-border transfers touch a US correspondent bank at some point. That is the leverage the designation seeks: not to seize the cocaine, but to make the profits untouchable by threatening any institution that handles them."
+      }
+    ],
+    "generatedAt": "2026-05-30T04:22:38.509Z",
+    "label": "Brazil's Prison-Born Syndicates",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-29-brazil-peru-railway-china-trade-amazon-cost": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CENTURY-OLD DREAM",
+        "body": "A rail line linking South America's Atlantic and Pacific coasts has been proposed since the 1800s and revived by every generation since. The geography that kills it is constant: the Andes wall the continent off from its own Pacific shore, and the Amazon basin swallows roads. China is the first partner with both the capital and the strategic reason to try anyway."
+      },
+      {
+        "heading": "WHAT ACTUALLY MOVES",
+        "body": "The corridor exists for two commodities. Brazil ships China soybeans to feed its pigs and iron ore to make its steel; together they dominate the trade. Both are bulk, low-value-per-tonne cargo where shaving 10 days of ocean transit is the difference between a profitable cargo and a marginal one.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Soybeans",
+                "value": 40,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Iron ore",
+                "value": 25,
+                "tone": "neutral"
+              },
+              {
+                "label": "Crude oil",
+                "value": 18,
+                "tone": "favorable"
+              },
+              {
+                "label": "Beef",
+                "value": 6,
+                "tone": "favorable"
+              },
+              {
+                "label": "Pulp & cellulose",
+                "value": 5,
+                "tone": "favorable"
+              },
+              {
+                "label": "Other",
+                "value": 6,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Brazil exports to China, by value"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE PACIFIC SHORTCUT",
+        "body": "Today a soybean cargo from central Brazil sails east out of Santos, down around the continent or through the Panama Canal, then west across the Pacific. A Peruvian Pacific port lets it skip that entire detour. The saved days compound across thousands of sailings a year into real freight-cost advantage against US and Argentine rivals."
+      },
+      {
+        "heading": "THE CHANCAY ENDPOINT",
+        "body": "The route's Pacific terminus is Chancay, a deepwater megaport north of Lima that China's COSCO built and majority-owns, opened in 2024. Peru was left out of the rail feasibility agreement even though its coastline is the whole point — a reminder that in Belt-and-Road logistics, the host of the asset is not always at the table when the corridor is designed.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BR",
+              "PE",
+              "BO"
+            ],
+            "label": "the bioceanic route",
+            "caption": "Atlantic origin to a China-built Pacific port",
+            "markers": [
+              {
+                "lat": -11.5703,
+                "lng": -77.2719,
+                "label": "Chancay megaport"
+              },
+              {
+                "lat": -23.9608,
+                "lng": -46.3336,
+                "label": "Santos (Atlantic)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SOY SUPERPOWER",
+        "body": "Brazil overtook the United States as the world's top soybean exporter in the 2010s, and China buys the majority of what it ships. This single buyer-seller relationship is why a railway across two of the planet's harshest terrains can pencil out at all.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Soybean exports",
+            "peers": [
+              {
+                "value": 100,
+                "cc": "BR"
+              },
+              {
+                "value": 50,
+                "cc": "US"
+              },
+              {
+                "value": 6,
+                "cc": "PY"
+              },
+              {
+                "value": 5,
+                "cc": "CA"
+              },
+              {
+                "value": 5,
+                "cc": "AR"
+              },
+              {
+                "value": 2,
+                "cc": "UY"
+              }
+            ],
+            "subjectCc": "BR",
+            "unit": "mn tonnes"
+          },
+          {
+            "type": "prose",
+            "text": "Argentina grows nearly as much soy as it exports raw — it *crushes* most of its crop into meal and oil at home, which is why a top grower barely registers as a top **bean** exporter."
+          }
+        ]
+      },
+      {
+        "heading": "THE LINE'S REAL PRICE",
+        "body": "The route crosses more than 100 conservation areas and Indigenous territories. In the Amazon, a rail line is never just a rail line — it becomes a spine for roads, settlement, and clearance along its length. The ecological cost is not the construction footprint; it is everything the corridor invites afterward.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Pacific port is the railway's intended endpoint?",
+            "options": [
+              "Chancay, Peru",
+              "Callao, Peru",
+              "Valparaíso, Chile",
+              "Guayaquil, Ecuador"
+            ],
+            "correct": 0,
+            "explanation": "Chancay is the COSCO-built deepwater megaport north of Lima, opened in 2024 — the reason the corridor terminates in Peru."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T04:23:16.763Z",
+    "label": "The Bioceanic Corridor",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-29-iran-south-pars-gas-complex-rebuild-strikes": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LARGEST GAS FIELD ON EARTH",
+        "body": "South Pars is not a purely Iranian asset. It is the southern lobe of a single geological structure that Qatar calls the North Dome — together the largest non-associated gas field ever found, holding roughly a fifth of the world's proven gas. A maritime border drawn in 1969 split one reservoir between two states.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "QA"
+            ],
+            "label": "one field, two countries",
+            "caption": "The border splits a single reservoir between Iran and Qatar.",
+            "markers": [
+              {
+                "lat": 27.4728,
+                "lng": 52.6075,
+                "label": "Assaluyeh / South Pars"
+              },
+              {
+                "lat": 25.9,
+                "lng": 51.55,
+                "label": "Ras Laffan / North Dome"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE RULE OF CAPTURE",
+        "body": "Gas is a fluid; it flows toward whichever well draws hardest. In a shared reservoir, the country that extracts faster physically pulls gas across the border from under its neighbor. There is no way to fence a pool of gas, so the field became a slow-motion race rather than a negotiated split.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Petroleum law calls this the *rule of capture*: the gas belongs to whoever lifts it to the surface first. For Iran and Qatar it turned geology into a **drilling sprint** neither could afford to lose."
+          }
+        ]
+      },
+      {
+        "heading": "WHY QATAR WON THE RACE",
+        "body": "Qatar partnered with ExxonMobil, Shell, and TotalEnergies in the 1990s, building the world's largest LNG export complex at Ras Laffan. Iran, cut off from Western capital and technology by sanctions, developed its half in fits and starts — and reached peak output a full decade later. The same gas, two completely different fates.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country shares the South Pars / North Dome gas field with Iran?",
+            "options": [
+              "Qatar",
+              "Saudi Arabia",
+              "United Arab Emirates",
+              "Oman"
+            ],
+            "correct": 0,
+            "explanation": "Qatar's North Dome and Iran's South Pars are two halves of one reservoir; Qatar turned its share into the world's top LNG export business."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE UTILITIES ARE THE TARGET",
+        "body": "South Pars gas is 'sour' — laced with toxic hydrogen sulfide that must be stripped out before the gas is usable. That processing runs on continuous power, water for cooling, and oxygen for sulfur-recovery units. Knock out those utilities and the gas stays in the ground untouched; you don't have to hit the wells to halt the field.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phases at Assaluyeh are essentially giant chemical plants that **sweeten** raw sour gas. Without power, water, and oxygen the *sulfur-recovery units* stop — and unprocessed sour gas is unsellable and lethal."
+          }
+        ]
+      },
+      {
+        "heading": "THE RESERVES PARADOX",
+        "body": "Iran sits on the world's second-largest gas reserves yet suffers winter shortages severe enough to shut factories and dim cities. Most domestic gas is sold at deeply subsidized prices and a large share is reinjected into aging oil fields to maintain pressure, leaving little buffer when supply drops. Abundance underground does not mean warmth at the meter.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Proven natural gas reserves",
+            "peers": [
+              {
+                "value": 37,
+                "cc": "RU"
+              },
+              {
+                "value": 34,
+                "cc": "IR"
+              },
+              {
+                "value": 24,
+                "cc": "QA"
+              },
+              {
+                "value": 13,
+                "cc": "TM"
+              },
+              {
+                "value": 13,
+                "cc": "US"
+              },
+              {
+                "value": 9,
+                "cc": "SA"
+              },
+              {
+                "value": 8,
+                "cc": "AE"
+              }
+            ],
+            "subjectCc": "IR",
+            "unit": "tcm"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T04:23:55.602Z",
+    "label": "South Pars & the Shared Reservoir",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-29-pentagon-spacex-4b-orbital-aircraft-tracking": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DOPPLER TRICK",
+        "body": "Air- and ground-moving-target radar doesn't 'see' aircraft — it filters them out of everything that isn't moving. The radar measures the tiny frequency shift a moving object imprints on the returning pulse and discards everything at zero shift as stationary clutter. An object's velocity, not its shape, is what makes it visible.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How does a moving-target-indication radar pick an aircraft out of the background?",
+            "options": [
+              "The Doppler frequency shift of its motion",
+              "Its infrared heat signature",
+              "Its transponder broadcast",
+              "The size of its radar cross-section"
+            ],
+            "correct": 0,
+            "explanation": "MTI radar exploits Doppler shift — a moving target returns a frequency-shifted echo, letting the processor reject stationary ground clutter."
+          }
+        ]
+      },
+      {
+        "heading": "THE CURVATURE CEILING",
+        "body": "Radar travels in straight lines, so a radar plane can only see as far as the Earth's curve allows from its altitude — a few hundred kilometers. That is the whole reason AWACS-type aircraft fly high and orbit constantly: every kilometer of altitude buys range. A satellite in low orbit sits hundreds of kilometers up, turning a regional horizon into a continental one.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "E-8 JSTARS",
+                "value": "~12 km",
+                "weight": 12,
+                "tone": "neutral"
+              },
+              {
+                "label": "E-3 Sentry",
+                "value": "~9 km",
+                "weight": 9,
+                "tone": "neutral"
+              },
+              {
+                "label": "E-7 Wedgetail",
+                "value": "~12 km",
+                "weight": 12,
+                "tone": "neutral"
+              },
+              {
+                "label": "SB-AMTI sat",
+                "value": "~500+ km",
+                "weight": 500,
+                "tone": "favorable"
+              }
+            ],
+            "label": "operating altitude — radar horizon scales with it"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ORBIT IS THE HARD VERSION",
+        "body": "The catch: a low-orbit satellite is itself racing along at about 7.5 km/s, so to its radar the entire ground appears to be moving. Everything carries a Doppler shift. Separating a 250 m/s jet from a whole planet of apparent motion is a brutal signal-processing problem — which is why doing this from space took decades longer than doing it from a plane.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the difference between **GMTI** (ground movers — slow vehicles) and **AMTI** (air movers — fast aircraft). AMTI from orbit is the harder of the two: the targets are faster but the platform's own *7.5 km/s* self-motion swamps the signal."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONSTELLATION MATH",
+        "body": "One low-orbit satellite sweeps over a target and is gone in minutes — useless for tracking a flying aircraft continuously. Persistent coverage requires a constellation: dozens of satellites spaced so that as one leaves the horizon, another arrives. This is the same logic that makes SpaceX's Starlink the natural builder — the hard-won skill is mass-producing and launching satellites by the hundred, not the radar itself."
+      },
+      {
+        "heading": "THE LINEAGE",
+        "body": "Space-based AMTI is the latest step in a fifty-year line of flying radar pickets. The E-3 Sentry defined airborne early warning in the Cold War; the E-8 JSTARS proved ground-moving-target tracking over Iraq in 1991; the E-7 Wedgetail is the modern airframe meant to succeed them.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1977",
+                "label": "E-3 Sentry (AWACS) enters service",
+                "emphasis": "start"
+              },
+              {
+                "year": "1991",
+                "label": "E-8 JSTARS debuts in Gulf War"
+              },
+              {
+                "year": "2009",
+                "label": "E-7 Wedgetail fielded (Australia)"
+              },
+              {
+                "year": "2028",
+                "label": "SB-AMTI first capability targeted",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "the flying-radar lineage"
+          }
+        ]
+      },
+      {
+        "heading": "THE E-7 FIGHT",
+        "body": "Replacing radar planes with satellites isn't only a technical bet — it's a budget and jobs fight. Congress previously blocked an attempt to cancel the E-7 program the new constellation would make redundant, because aircraft programs anchor contractors, bases, and crews that a software-and-satellite system does not. The technology may be ready before the political economy is."
+      }
+    ],
+    "generatedAt": "2026-05-30T04:24:53.134Z",
+    "label": "Moving-Target Radar from Orbit",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-29-pope-ai-encyclical-who-shapes-ai-ethics": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NAME IS A THESIS",
+        "body": "A pope's regnal name announces his program. Leo XIV reaches back to Leo XIII, whose 1891 encyclical Rerum Novarum confronted the upheaval of the Industrial Revolution — labor, capital, the machine. Choosing 'Leo' frames AI as this century's industrial rupture before a word of doctrine is read.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Rerum Novarum* — \"of new things\" — became the founding text of **Catholic social teaching**. A pope invoking it is claiming AI is a comparable break in history."
+          },
+          {
+            "type": "quiz",
+            "question": "Which pope's encyclical was the Church's landmark response to the Industrial Revolution?",
+            "options": [
+              "Leo XIII (Rerum Novarum)",
+              "Pius IX (Syllabus of Errors)",
+              "Francis (Laudato Si')",
+              "John XXIII (Pacem in Terris)"
+            ],
+            "correct": 0,
+            "explanation": "Leo XIII's 1891 Rerum Novarum addressed industrial labor and capital — the precedent Leo XIV's chosen name deliberately echoes."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT AN ENCYCLICAL ACTUALLY CARRIES",
+        "body": "An encyclical is the most authoritative form of ordinary papal teaching, short of a rare ex cathedra definition spoken under claimed infallibility. It takes its title from its opening Latin words and is addressed to the world's bishops — and, since John XXIII in 1963, to 'all people of good will,' believer or not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shift from addressing *bishops* to addressing *all people of good will* is what lets a pope speak into global policy — the document is built to be read outside the Church."
+          }
+        ]
+      },
+      {
+        "heading": "A CENTURY OF MACHINE DOCTRINE",
+        "body": "The Church has issued a teaching document at every major rupture in the modern economy — industrialization, the Depression, decolonization, the ecological crisis. AI is being slotted into a 130-year lineage of responding to technological and economic shocks.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1891",
+                "label": "Rerum Novarum — industrial labor",
+                "emphasis": "start"
+              },
+              {
+                "year": "1931",
+                "label": "Quadragesimo Anno — the Depression"
+              },
+              {
+                "year": "1963",
+                "label": "Pacem in Terris — nuclear age"
+              },
+              {
+                "year": "1967",
+                "label": "Populorum Progressio — development"
+              },
+              {
+                "year": "2015",
+                "label": "Laudato Si' — ecology"
+              },
+              {
+                "year": "2026",
+                "label": "Magnifica Humanitas — AI",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "social encyclicals"
+          }
+        ]
+      },
+      {
+        "heading": "WHO HOLDS THE PEN",
+        "body": "AI governance forums orbit the places that own the compute and the capital. Private AI investment clusters in a handful of states, and the rule-writing tables — OECD, the safety summits, the standards bodies — are stocked from that same short list. The Global South is largely absent because the money is.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "~$67bn",
+                "cc": "US",
+                "weight": 67
+              },
+              {
+                "label": "China",
+                "value": "~$8bn",
+                "cc": "CN",
+                "weight": 8
+              },
+              {
+                "label": "UK",
+                "value": "~$4bn",
+                "cc": "GB",
+                "weight": 4
+              },
+              {
+                "label": "Israel",
+                "value": "~$3bn",
+                "cc": "IL",
+                "weight": 3
+              },
+              {
+                "label": "Germany",
+                "value": "~$2bn",
+                "cc": "DE",
+                "weight": 2
+              },
+              {
+                "label": "India",
+                "value": "~$1.5bn",
+                "cc": "IN",
+                "weight": 1.5
+              }
+            ],
+            "label": "private AI investment, 2024 est."
+          }
+        ]
+      },
+      {
+        "heading": "THE FRAMEWORK ALREADY EXISTS",
+        "body": "Islamic ethics is not short of tools for this. The maqasid al-sharia — the higher objectives jurists derive from revelation, classically the preservation of religion, life, intellect, lineage, and property — work as a ready test for any new technology: does it serve these ends or erode them. Scholars have applied the same frame to Islamic finance and biomedicine for decades.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The point the article makes is structural: a **maqasid**-based AI ethics could exist, but billions of people sit outside the forums where the binding frameworks get written."
+          }
+        ]
+      },
+      {
+        "heading": "THE ROME CALL PRECEDENT",
+        "body": "The Vatican has staged this before. Its 2020 Rome Call for AI Ethics was later co-signed by Jewish and Muslim representatives, including the Abu Dhabi Forum for Peace. But even that interfaith table was assembled by Rome — an invitation extended, not a framework co-authored. The convening power, and the pen, stayed in one place."
+      }
+    ],
+    "generatedAt": "2026-05-30T04:26:04.758Z",
+    "label": "Encyclicals & Who Writes AI's Rules",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-29-sudan-rsf-drones-north-darfur-markets-blue-nile": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO ARMIES",
+        "body": "Sudan's war is between two generals who once partnered to seize power. The SAF (regular army) under Burhan and the RSF (paramilitary) under Hemedti jointly crushed the 2019 democracy movement, then turned their shared military infrastructure against each other in April 2023 when a power-sharing deal collapsed.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Abdel Fattah al-Burhan",
+                "role": "SAF army chief, head of state",
+                "years": "2019–",
+                "cc": "SD"
+              },
+              {
+                "name": "Hemedti (Dagalo)",
+                "role": "RSF paramilitary commander",
+                "years": "2013–",
+                "cc": "SD"
+              }
+            ],
+            "label": "the two commanders"
+          }
+        ]
+      },
+      {
+        "heading": "THE JANJAWEED ROOTS",
+        "body": "The RSF evolved from the Janjaweed militias that carried out the Darfur genocide from 2003. Bashir armed Arab militias to fight non-Arab rebels, formalized them as the RSF in 2013, and let Hemedti — a former camel trader — rise to the second most powerful man in Sudan, with troops loyal to him personally, not the state.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2003",
+                "label": "Janjaweed begin Darfur genocide",
+                "emphasis": "start"
+              },
+              {
+                "year": "2013",
+                "label": "RSF formally established"
+              },
+              {
+                "year": "2019",
+                "label": "Bashir ousted; democracy movement crushed"
+              },
+              {
+                "year": "2023",
+                "label": "RSF turns on the army",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "from militia to paramilitary state"
+          },
+          {
+            "type": "prose",
+            "text": "*Janjaweed* — roughly \"devils on horseback\" — were Arab militias the state armed against Darfur's non-Arab farming communities. Today's RSF drones are the same project, mechanized."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE ZAGHAWA",
+        "body": "The Zaghawa are a non-Arab ethnic group straddling the Sudan–Chad border, long aligned with Darfur's rebel movements and the army. Striking their Eid markets is not random terror — it severs the trade and supply lines feeding the last army-held pockets of Darfur.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "TD",
+              "SS",
+              "ET",
+              "ER"
+            ],
+            "label": "Sudan's two fronts",
+            "caption": "Darfur in the west, the Blue Nile front in the southeast",
+            "markers": [
+              {
+                "lat": 13.627,
+                "lng": 25.349,
+                "label": "El Fasher"
+              },
+              {
+                "lat": 10.55,
+                "lng": 34.28,
+                "label": "Kurmuk"
+              },
+              {
+                "lat": 15.5,
+                "lng": 32.56,
+                "label": "Khartoum"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "EL FASHER, THE LAST HOLDOUT",
+        "body": "El Fasher is the only Darfur state capital the army still holds. Whoever controls it controls Darfur's administrative spine, so the RSF has besieged it for over a year — strangling markets and supply routes rather than storming fortified positions directly.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the RSF strike civilian markets instead of army positions directly?",
+            "options": [
+              "To cut the supply and trade lines feeding besieged army-held areas",
+              "Because its drones cannot reach military targets",
+              "To force a UN no-fly zone over Darfur"
+            ],
+            "correct": 0,
+            "explanation": "Siege warfare targets the logistics — food, fuel, trade — that sustain a defending force, not just its soldiers."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLUE NILE PIVOT",
+        "body": "While the RSF presses Darfur in the far west, the army is advancing on Kurmuk on the Blue Nile near the Ethiopian border — over 1,000 km away. Sudan's war is fought on two distant fronts at once, which is why neither side can convert a local win into a decisive one."
+      }
+    ],
+    "generatedAt": "2026-05-30T04:26:38.073Z",
+    "label": "Sudan's War: Darfur & the Two Generals",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-30-ecuador-ai-regulation-surveillance-governance": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ECU-911 PRECEDENT",
+        "body": "Ecuador is not new to surveillance bought ahead of law. Starting around 2011 it built ECU-911, a nationwide network of thousands of cameras supplied by Chinese state firms CEIEC and Huawei, originally pitched as emergency response. Reporting later found feeds also reached the domestic intelligence agency. The infrastructure arrived first; the oversight never caught up.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country's state firms supplied Ecuador's nationwide ECU-911 camera surveillance network?",
+            "options": [
+              "United States",
+              "China",
+              "Israel",
+              "Russia"
+            ],
+            "correct": 1,
+            "explanation": "ECU-911 was built with Chinese state contractors CEIEC and Huawei — part of a broader export of 'Safe City' surveillance systems across the Global South."
+          }
+        ]
+      },
+      {
+        "heading": "THE PACING PROBLEM",
+        "body": "Technology moves faster than the institutions meant to govern it — a gap the political scientist David Collingridge formalized in 1980. Early on, a technology is easy to control but its harms are unknown; by the time the harms are clear, it is entrenched and hard to control. Surveillance AI sits exactly in that trap.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bind has a name: the **Collingridge dilemma**. Regulate too early and you're guessing at harms; regulate too late and the system is already load-bearing."
+          }
+        ]
+      },
+      {
+        "heading": "WHY FRAGMENTATION FAVORS VENDORS",
+        "body": "When ministries, parliament, and regulators each procure separately with no coordinating body, no single authority sets technical standards — so the vendor's defaults become the de facto rules. Retention periods, access logs, facial-match thresholds: whoever writes the configuration writes the policy. A divided state outsources its rulemaking to its suppliers."
+      },
+      {
+        "heading": "THREE WAYS TO GOVERN AI",
+        "body": "The world has converged on a few templates. The EU's 2024 AI Act tiers systems by risk and bans the worst uses outright. China pairs heavy deployment with a state algorithm registry. The US relies on sector-by-sector rules with no omnibus law. Ecuador, with thin institutional capacity, has so far landed on none of them.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "EU",
+                "value": "Risk-tiered law",
+                "cc": "EU",
+                "tone": "favorable"
+              },
+              {
+                "label": "China",
+                "value": "State registry",
+                "cc": "CN",
+                "tone": "neutral"
+              },
+              {
+                "label": "US",
+                "value": "Sectoral",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "Ecuador",
+                "value": "None yet",
+                "cc": "EC",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "AI governance models"
+          }
+        ]
+      },
+      {
+        "heading": "A REGIONAL PATTERN",
+        "body": "Ecuador is one node in a wider build-out of Chinese 'Safe City' surveillance across Latin America — comparable systems were sold to Venezuela, Bolivia, and Argentina. The pitch is always public safety and traffic management; the same cameras, plate readers, and facial recognition serve internal-security ends once installed.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "EC",
+              "VE",
+              "BO",
+              "AR"
+            ],
+            "label": "Chinese surveillance systems in Latin America",
+            "caption": "Sold as 'Safe City' public-safety platforms"
+          }
+        ]
+      },
+      {
+        "heading": "WHO IS WATCHED FIRST",
+        "body": "Surveillance systems deployed before a rights framework default to the priorities of whoever holds the controls — typically protesters, migrants, and political opponents, not the abstract criminal the system was sold to catch. The order of operations matters: a camera installed before a privacy law is a camera with no rules, only operators."
+      }
+    ],
+    "generatedAt": "2026-05-30T04:27:17.043Z",
+    "label": "Governing AI Before the Rules Exist",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-30-ghana-anti-lgbtq-bill-criminalises-promotion": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE VICTORIAN IMPORT",
+        "body": "The laws African governments now defend as protecting 'traditional values' were written in London. Ghana's existing sodomy statute descends from a British colonial criminal code; the template was India's Section 377 of 1860, exported across the empire. More than half the world's countries that still criminalise same-sex conduct inherited the law from Britain, not from precolonial custom.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phrase in these statutes — *carnal knowledge against the order of nature* — is lifted near-verbatim from Victorian English law. The 'African values' framing inverts the actual history: the prohibition is the **colonial** artifact, not the resistance to it."
+          },
+          {
+            "type": "quiz",
+            "question": "Where did most of Africa's laws criminalising homosexuality originate?",
+            "options": [
+              "Precolonial customary law",
+              "British colonial penal codes",
+              "Post-independence nationalist legislatures",
+              "Islamic legal tradition"
+            ],
+            "correct": 1,
+            "explanation": "The bulk descend from 19th-century British codes, with India's 1860 Section 377 as the model exported across the empire."
+          }
+        ]
+      },
+      {
+        "heading": "FROM ACTS TO ADVOCACY",
+        "body": "The structural innovation in Ghana's bill is that it criminalises speech and association — promotion, advocacy, funding, public support — not just conduct. This is a categorical shift: older laws punished what people did in private; this punishes what people say in public and who they organise with.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Criminalising **promotion** rather than acts is what makes the law 'sweeping': it reaches journalists, NGOs, landlords, and allies, not only the people it nominally targets. The chilling effect is the mechanism, not a side effect."
+          }
+        ]
+      },
+      {
+        "heading": "THE RUSSIAN TEMPLATE",
+        "body": "Banning 'promotion' rather than acts is borrowed from Russia's 2013 gay-propaganda law, which criminalised the public depiction of LGBTQ relationships as 'normal'. That model — police the message, not the bedroom — travelled to Uganda's 2023 Anti-Homosexuality Act and now to West Africa. The legal architecture is increasingly shared across borders."
+      },
+      {
+        "heading": "THE REGIONAL LADDER",
+        "body": "Sub-Saharan legislatures watch each other. Nigeria's 2014 law made supporting or joining a gay organisation a crime with up to 10 years. Uganda's 2023 act went furthest, attaching the death penalty to 'aggravated homosexuality'. Ghana's bill slots into this escalating sequence — which is why other parliaments treat it as a template to copy.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GH",
+              "NG",
+              "UG",
+              "KE"
+            ],
+            "label": "the advocacy-criminalisation wave",
+            "caption": "Laws targeting support and association, not only conduct"
+          },
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Nigeria '14",
+                "value": "10 yr: support",
+                "tone": "unfavorable",
+                "cc": "NG"
+              },
+              {
+                "label": "Uganda '23",
+                "value": "death penalty",
+                "tone": "unfavorable",
+                "cc": "UG"
+              },
+              {
+                "label": "Ghana '26",
+                "value": "speech + assoc.",
+                "tone": "unfavorable",
+                "cc": "GH"
+              }
+            ],
+            "label": "what recent African laws criminalise"
+          }
+        ]
+      },
+      {
+        "heading": "THE FOREIGN HAND",
+        "body": "These campaigns are not purely homegrown. US conservative Christian organisations have spent years funding and advising African anti-LGBTQ movements — drafting model legislation, hosting conferences, and bankrolling local advocates. The 'Western liberalism versus African tradition' framing obscures that both sides of the fight are partly Western-financed."
+      },
+      {
+        "heading": "THE ASSENT QUESTION",
+        "body": "Passing parliament is not the final step. In Ghana the president must sign a bill for it to become law, and can decline or refer it to the Supreme Court on constitutional grounds. The gap between parliamentary passage and presidential assent is where a bill's enforceability — and its legal challenges — actually get decided."
+      }
+    ],
+    "generatedAt": "2026-05-30T04:27:57.788Z",
+    "label": "Criminalising Advocacy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-30-iran-disputes-trump-ceasefire-framework-claim": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "DECLARED VERSUS NEGOTIATED",
+        "body": "A ceasefire is two different things at once: a political announcement and a legal instrument. A leader can declare one into the microphone, but it binds nobody until there is an agreed text both sides have initialed. The gap between the announcement and the signature is exactly where this dispute lives."
+      },
+      {
+        "heading": "WHY THE PAPER MATTERS",
+        "body": "Without a signed memorandum of understanding, there is no agreed definition of what was promised, no verification schedule, and no penalty for breaking it. The document is not bureaucracy — it is the only thing that converts a claim into an obligation either side can be held to.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Diplomats distinguish a *political commitment* (a verbal understanding, deniable) from a signed **MOU** (an agreed text with defined terms). Iran's point is precise: the **uranium** file has no agreed text, so there is nothing to break — and nothing to honor."
+          }
+        ]
+      },
+      {
+        "heading": "THE URANIUM CRUX",
+        "body": "Every Iran negotiation reduces to one number: how long Tehran would need to produce enough weapons-grade material for a single bomb — the 'breakout time.' Removing or diluting Iran's enriched stockpile is the only step that lengthens that clock. It is the hardest file precisely because it is the only one that matters militarily.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how enriched does uranium need to be to count as 'weapons-grade'?",
+            "options": [
+              "About 20% U-235",
+              "About 60% U-235",
+              "About 90% U-235",
+              "It must be 100% pure"
+            ],
+            "correct": 2,
+            "explanation": "Weapons-grade is ~90% U-235; the leap from Iran's 60% stockpile to 90% is small, which is why the enriched-uranium pile, not the centrifuges alone, drives breakout time."
+          }
+        ]
+      },
+      {
+        "heading": "THE JCPOA PRECEDENT",
+        "body": "The 2015 nuclear deal capped Iran's enrichment at 3.67% and stretched breakout time to roughly a year. The US withdrew in 2018; Iran began exceeding the limits in 2019 and pushed enrichment to 60%, collapsing breakout to a matter of weeks. Every talk since negotiates back toward a ceiling that already existed once.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2015",
+                "label": "JCPOA signed in Vienna"
+              },
+              {
+                "year": "2016",
+                "label": "Sanctions relief begins"
+              },
+              {
+                "year": "2018",
+                "label": "US withdraws from deal",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Iran exceeds enrichment limits"
+              },
+              {
+                "year": "2021",
+                "label": "60% enrichment announced"
+              },
+              {
+                "year": "2026",
+                "label": "Disputed ceasefire framework"
+              }
+            ],
+            "label": "the nuclear file's arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE NEGOTIATORS",
+        "body": "The asymmetry is structural: an Iranian president and foreign minister can negotiate, but only the Supreme Leader sets red lines on the nuclear file. A US announcement aimed at the president may simply not reach the actor who actually decides.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Donald Trump",
+                "role": "US President",
+                "years": "2025–",
+                "cc": "US"
+              },
+              {
+                "name": "Masoud Pezeshkian",
+                "role": "Iranian President",
+                "years": "2024–",
+                "cc": "IR"
+              },
+              {
+                "name": "Abbas Araghchi",
+                "role": "Iranian Foreign Minister",
+                "years": "2024–",
+                "cc": "IR"
+              },
+              {
+                "name": "Ali Khamenei",
+                "role": "Supreme Leader, final say",
+                "years": "1989–",
+                "cc": "IR"
+              }
+            ],
+            "label": "who actually decides"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ANNOUNCE WHAT ISN'T SIGNED",
+        "body": "Declaring a deal done is itself a negotiating move — it anchors expectations, claims credit, and pressures the other side to either confirm or look like the spoiler. Iran's flat denial is the counter-move: refuse the anchor before it sets. Prediction markets price exactly this gap between announcement and signature.",
+        "blocks": [
+          {
+            "type": "trend",
+            "series": [
+              {
+                "values": [
+                  80,
+                  39,
+                  48,
+                  38,
+                  25,
+                  32,
+                  24,
+                  21
+                ],
+                "label": "US-Iran ceasefire extension by May 31?",
+                "highlight": "last"
+              },
+              {
+                "values": [
+                  20,
+                  17,
+                  28,
+                  19,
+                  12,
+                  15,
+                  7,
+                  7
+                ],
+                "label": "US-Iran nuclear deal by May 31?",
+                "highlight": "last"
+              }
+            ],
+            "label": "Ceasefire extension vs nuclear deal odds",
+            "source": 0,
+            "unit": "%",
+            "periods": [
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 30"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-30"
+    ],
+    "generatedAt": "2026-05-30T04:28:46.263Z",
+    "label": "Anatomy of a Ceasefire Claim",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-30-measuring-economic-black-holes-north-korea-data": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NIGHTLIGHTS PROXY",
+        "body": "Economists discovered that the brightness of a country at night, captured by weather satellites, tracks its economic output closely — more light means more electricity, more factories, more activity. For states that publish no honest data, luminosity becomes a GDP estimate that the government cannot fake from orbit.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The workhorse instrument is NASA's **VIIRS** sensor (and earlier **DMSP-OLS**), which captures a global *nightlights* mosaic every night — economists regress logged luminosity against known GDP to calibrate the model, then apply it to the blackouts."
+          }
+        ]
+      },
+      {
+        "heading": "THE KOREAN CONTRAST",
+        "body": "The most famous nightlights image on Earth is the Korean Peninsula: the South a blaze of coastal cities, the North almost entirely black except for a single dim cluster at Pyongyang. The border between a rich and a collapsed economy is visible from space as a line of light meeting darkness.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KP",
+              "KR",
+              "CN"
+            ],
+            "label": "the lit and the dark",
+            "markers": [
+              {
+                "lat": 39.0392,
+                "lng": 125.7625,
+                "label": "Pyongyang"
+              },
+              {
+                "lat": 37.5665,
+                "lng": 126.978,
+                "label": "Seoul"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE NORTH GOES DARK",
+        "body": "North Korea's darkness is part deliberate, part decay: an aging Soviet-era grid, chronic fuel shortages, and rationing that cuts power to most of the country so the capital and military can keep the lights on. The darkness is itself the data — a measure of how little electricity the economy can generate.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "South Korea",
+                "value": "~10,500",
+                "cc": "KR",
+                "weight": 10500,
+                "tone": "favorable"
+              },
+              {
+                "label": "China",
+                "value": "~5,900",
+                "cc": "CN",
+                "weight": 5900,
+                "tone": "neutral"
+              },
+              {
+                "label": "North Korea",
+                "value": "~700",
+                "cc": "KP",
+                "weight": 700,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "electricity use per capita (kWh/yr, est.)"
+          }
+        ]
+      },
+      {
+        "heading": "MIRROR STATISTICS",
+        "body": "When a country hides its trade, you read its partners' books instead. Pyongyang reports nothing, but Beijing's customs service records every ton of coal and barrel of oil crossing the Yalu — so North Korea's external economy is reconstructed almost entirely from Chinese, Russian, and South Korean import-export ledgers.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technique is called *mirror statistics*: country A's exports to B should equal B's reported imports from A. The **gap** between the two — and trade that appears in a partner's books but never in the target's — is where smuggling and sanctions evasion show up."
+          }
+        ]
+      },
+      {
+        "heading": "THE CIA'S SOVIET BLUNDER",
+        "body": "Estimating a closed economy from the outside is treacherous. Through the Cold War the CIA's analysts consistently overstated the size and growth of the Soviet economy, missing how hollow it had become until it suddenly collapsed — a warning that proxy data flatters regimes that look orderly from a distance.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did US intelligence famously get wrong about the Soviet economy?",
+            "options": [
+              "It overestimated the economy's size and health for years",
+              "It underestimated Soviet industrial output throughout",
+              "It predicted the 1991 collapse a decade early",
+              "It refused to make any estimates at all"
+            ],
+            "correct": 0,
+            "explanation": "CIA models leaned on official Soviet output figures and missed the rot, overstating GDP right up to the collapse."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T04:29:23.326Z",
+    "label": "Measuring Opaque Economies",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-30-pakistan-kohistan-glof-glacial-flood-heatwave": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DAM IS MADE OF RUBBLE",
+        "body": "A glacier bulldozes rock and debris into ridges called moraines. When the ice retreats, meltwater pools behind these loose-rubble walls. A moraine dam is not bedrock — it is gravel and ice holding back a lake, and it can fail in minutes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The failure mode is *not* slow erosion. A wave overtops the moraine, cuts a channel, and the channel widens catastrophically — a **moraine-dam breach** can drain a lake in under an hour, sending a wall of water and boulders down-valley."
+          }
+        ]
+      },
+      {
+        "heading": "THE KARAKORAM ANOMALY",
+        "body": "While glaciers worldwide retreat, many Karakoram glaciers have held steady or even advanced for decades — a rare exception scientists call the Karakoram Anomaly. Stable glaciers still spawn meltwater lakes, and surging glaciers can dam side-valleys abruptly, creating new lakes that no one has mapped.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is unusual about Karakoram glaciers compared to the global trend?",
+            "options": [
+              "They have remained stable or advanced while most glaciers retreat",
+              "They are the fastest-retreating glaciers on Earth",
+              "They contain no meltwater lakes",
+              "They are entirely below the snow line"
+            ],
+            "correct": 0,
+            "explanation": "The 'Karakoram Anomaly' describes glaciers that resisted the global retreat for decades — but stable and surging ice still produce hazardous lakes."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HEAT IS THE TRIGGER",
+        "body": "A sudden heatwave melts the winter snowpack far faster than the slow summer norm. The extra meltwater raises lake levels and saturates the moraine, weakening it from inside just as the water load peaks. Heat is both the fuel and the fuse."
+      },
+      {
+        "heading": "THE MONITORING GAP",
+        "body": "The Karakoram holds thousands of glacial lakes, the overwhelming majority with no sensors, no gauges, and no warning system. A burst is often detected only when the water reaches the first village downstream — which is why minutes, not hours, define the warning window.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IN",
+              "CN",
+              "AF",
+              "TJ"
+            ],
+            "label": "the Karakoram & the wider HKH range",
+            "caption": "thousands of glacial lakes straddle these borders, mostly unmonitored"
+          }
+        ]
+      },
+      {
+        "heading": "THE HIGHWAY IN THE PATH",
+        "body": "The Karakoram Highway — the only paved artery linking northern Pakistan to China — runs along the valley floors that GLOFs scour. A single outburst can sever the road, isolate entire districts, and cut the overland trade corridor in one stroke.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Population exposed to glacial-lake outburst floods",
+            "peers": [
+              {
+                "value": 3,
+                "cc": "IN"
+              },
+              {
+                "value": 2.1,
+                "cc": "PK"
+              },
+              {
+                "value": 1,
+                "cc": "CN"
+              },
+              {
+                "value": 0.9,
+                "cc": "PE"
+              },
+              {
+                "value": 0.4,
+                "cc": "NP"
+              },
+              {
+                "value": 0.1,
+                "cc": "BT"
+              }
+            ],
+            "subjectCc": "PK",
+            "unit": "millions"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T04:30:00.896Z",
+    "label": "Glacial Lake Outburst Floods",
+    "category": "science",
+    "articleCount": 1
   }
 }
