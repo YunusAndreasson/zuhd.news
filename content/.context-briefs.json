@@ -264537,5 +264537,1555 @@
     "label": "Glacial Lake Outburst Floods",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-05-28-china-tech-tourism-factories-ai-startups-frontier-shift": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FISHING VILLAGE",
+        "body": "Shenzhen was a town of around 30,000 people in 1979. Deng Xiaoping designated it China's first Special Economic Zone in 1980 — a walled-off experiment in capitalism beside Hong Kong. Today it holds over 17 million people and more hardware manufacturing density than anywhere on Earth.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1980",
+                "label": "Shenzhen named first Special Economic Zone",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2001",
+                "label": "China joins the WTO"
+              },
+              {
+                "year": "2010",
+                "label": "China overtakes US in factory output"
+              },
+              {
+                "year": "2015",
+                "label": "'Made in China 2025' launched"
+              },
+              {
+                "year": "2025",
+                "label": "DeepSeek shocks AI labs"
+              }
+            ],
+            "label": "from SEZ to frontier"
+          }
+        ]
+      },
+      {
+        "heading": "THE ONE-HOUR SUPPLY CHAIN",
+        "body": "What makes Shenzhen unrepeatable is density: a founder can source a chip, a custom enclosure, a battery, and a contract assembler within an hour's drive. Huaqiangbei's electronics markets stock components by the floor. A prototype that takes weeks in California can be iterated overnight here — this compression of the build cycle is the thing pilgrims fly to see.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "HK"
+            ],
+            "label": "the hardware delta",
+            "markers": [
+              {
+                "lat": 22.5431,
+                "lng": 114.0579,
+                "label": "Shenzhen"
+              },
+              {
+                "lat": 22.547,
+                "lng": 114.085,
+                "label": "Huaqiangbei market"
+              },
+              {
+                "lat": 22.3193,
+                "lng": 114.1694,
+                "label": "Hong Kong"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHINA, NOT THE WEST",
+        "body": "China makes roughly a third of the world's manufactured goods — more than the next several economies combined. This isn't cheap labor anymore; coastal wages have risen for years. It is the depth of the supplier network, the tooling, and the engineers who can take a design from sketch to production line.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 31
+              },
+              {
+                "label": "United States",
+                "value": 16
+              },
+              {
+                "label": "Japan",
+                "value": 7
+              },
+              {
+                "label": "Germany",
+                "value": 5
+              },
+              {
+                "label": "India",
+                "value": 3
+              },
+              {
+                "label": "South Korea",
+                "value": 3
+              },
+              {
+                "label": "Italy",
+                "value": 2
+              }
+            ],
+            "label": "share of global manufacturing output (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE SEA TURTLES",
+        "body": "China spent the 2000s sending students abroad and the 2010s pulling them home. Returnees are called haigui — a pun on 'sea turtle,' the creature that returns to its birthplace to breed. Many of China's AI and hardware founders trained at Western universities or firms before bringing the expertise back.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The brain drain reversed into a **brain gain**: *haigui* (海归) returnees seeded the labs and startups that visitors now tour."
+          }
+        ]
+      },
+      {
+        "heading": "THE OPEN-WEIGHT TURN",
+        "body": "The 2025 jolt was less about any single product than a posture: Chinese labs released capable models with open weights, letting anyone download and run them. That undercut the assumption that frontier AI would stay locked behind a few American APIs — and gave builders a concrete reason to study what China was shipping.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was Shenzhen before it became China's tech capital?",
+            "options": [
+              "A fishing town of about 30,000 people",
+              "A Qing-dynasty imperial city",
+              "A British colonial port like Hong Kong",
+              "A Soviet-built industrial center"
+            ],
+            "correct": 0,
+            "explanation": "Shenzhen was a small fishing town until Deng designated it China's first Special Economic Zone in 1980."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T08:22:07.510Z",
+    "label": "Shenzhen & the Manufacturing Frontier",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-28-uc-faculty-demand-sat-return-stem-math-deficits": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EUGENIC ORIGIN",
+        "body": "The SAT descends directly from the Army Alpha intelligence tests of WWI. Carl Brigham, who designed the first SAT in 1926, had argued in 1923 that the tests proved the racial superiority of 'Nordic' stock. He publicly recanted that work in 1930 — but the test he built outlived his retraction and became the gatekeeper of American higher education.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The original instrument measured what its makers called *innate intelligence*. The modern College Board insists the SAT measures *learned readiness* — the same exam, a hundred years of reframing what the number means."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT IT ACTUALLY PREDICTS",
+        "body": "The defense of the SAT is narrow and specific: it predicts first-year college grades, and it adds predictive power on top of high-school GPA — most strongly in quantitative fields. The correlation is far from perfect, but in math-heavy majors a test score catches readiness gaps that a transcript hides."
+      },
+      {
+        "heading": "TEST-OPTIONAL VS TEST-BLIND",
+        "body": "These are not the same policy. Test-optional lets applicants submit a score if it helps them. Test-blind refuses to look at scores at all, even when offered. The University of California did not go test-optional in 2020 — it went fully test-blind, discarding a data point its own faculty task force had found useful.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A UC faculty panel reported in 2020 that the SAT *predicted outcomes better for disadvantaged students*, not worse — because it could surface talent buried under a weak high school. The regents went **test-blind** anyway, settling a lawsuit rather than litigating the data."
+          }
+        ]
+      },
+      {
+        "heading": "THE GRADE-INFLATION TRAP",
+        "body": "As high-school GPAs drift upward and compress toward the ceiling, the transcript loses its power to discriminate between students. When nearly everyone arrives with an A average, a standardized exam becomes the only instrument that still varies — which is precisely why a test's signal grows more valuable as grades inflate, not less."
+      },
+      {
+        "heading": "THE REVERSAL",
+        "body": "After the pandemic test-optional wave, the most selective US universities quietly reversed course. MIT reinstated its requirement first, citing the same finding UC's faculty now cite: without a score, they could not identify which students were ready for a calculus-paced curriculum.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1926",
+                "label": "First SAT administered"
+              },
+              {
+                "year": "2020",
+                "label": "COVID test-optional wave; UC goes test-blind",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "MIT reinstates requirement"
+              },
+              {
+                "year": "2024",
+                "label": "Dartmouth, Yale, Brown, Harvard reinstate"
+              }
+            ],
+            "label": "test-optional and its retreat"
+          },
+          {
+            "type": "quiz",
+            "question": "Which was the first highly selective US university to reinstate a standardized-test requirement after the COVID test-optional wave?",
+            "options": [
+              "Harvard",
+              "MIT",
+              "University of California",
+              "Yale"
+            ],
+            "correct": 1,
+            "explanation": "MIT reinstated in 2022, arguing scores helped it identify students prepared for its quantitative core — Ivy reinstatements followed in 2024."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CALCULUS IS THE CHOKEPOINT",
+        "body": "First-semester calculus is the canonical STEM weed-out course, and the thing it actually tests is algebra fluency — manipulating expressions fast enough that the calculus on top doesn't overload working memory. A student who is still slow with fractions and exponents fails calculus not because the new ideas are hard, but because the old ones were never automatic."
+      }
+    ],
+    "generatedAt": "2026-05-30T08:22:51.996Z",
+    "label": "Standardized Testing & STEM Readiness",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-30-bitcoin-quantum-risk-signing-infrastructure-migration": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WALLET KEYS VS THE WIRE",
+        "body": "The famous quantum threat to Bitcoin is to wallet signatures — but a wallet's public key is only exposed the moment you spend, and a coin can be moved to a fresh address before that window opens. The traffic flowing between exchanges is different: it rides ordinary internet transport encryption, and that is being recorded in bulk right now.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Bitcoin signatures use **ECDSA**; the links between exchanges use **TLS** key exchange. The investor's point is that the *transport layer*, not the blockchain, is the soft target."
+          }
+        ]
+      },
+      {
+        "heading": "HARVEST NOW, DECRYPT LATER",
+        "body": "Intelligence agencies are assumed to be recording encrypted traffic today and storing it until a quantum computer can break it. Any secret with a shelf life longer than the years until that machine arrives is already compromised — the encryption just hasn't failed yet."
+      },
+      {
+        "heading": "THE ALGORITHM",
+        "body": "Shor's algorithm (1994) factors large numbers exponentially faster than any classical method. RSA, Diffie-Hellman, and elliptic-curve cryptography all rest on factoring or discrete logs being hard. Shor turns those problems from intractable to trivial — given a large enough quantum computer."
+      },
+      {
+        "heading": "WHAT QUANTUM ACTUALLY BREAKS",
+        "body": "The threat is uneven. Public-key crypto — the part that does key exchange and signatures — collapses under Shor. Symmetric ciphers and hashes only lose half their effective strength to Grover's algorithm, which a longer key restores. AES-256 and SHA-256 survive; RSA and ECDSA do not.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "RSA-2048",
+                "value": "broken",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "ECDSA",
+                "value": "broken",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "AES-256",
+                "value": "halved, safe",
+                "tone": "favorable"
+              },
+              {
+                "label": "SHA-256",
+                "value": "halved, safe",
+                "tone": "favorable"
+              }
+            ],
+            "label": "quantum exposure by primitive"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BITCOIN CAN'T JUST PATCH",
+        "body": "Swapping Bitcoin's signature scheme means changing consensus rules every node enforces — a coordinated hard fork across a leaderless network that has historically taken years to agree on far smaller changes. Ethereum's roadmap and account-abstraction design let it graft on new schemes more readily, which is why it moved first.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Per the article, what is the more exposed quantum target in Bitcoin's ecosystem today?",
+            "options": [
+              "Wallet private keys sitting in cold storage",
+              "Encrypted wire traffic moving between exchanges",
+              "The SHA-256 mining algorithm",
+              "The 21-million supply cap"
+            ],
+            "correct": 1,
+            "explanation": "Transport encryption between exchanges can be recorded now and decrypted later; unspent wallet keys stay hidden until a coin actually moves."
+          }
+        ]
+      },
+      {
+        "heading": "THE STANDARDS ARE ALREADY HERE",
+        "body": "The migration path is not theoretical. NIST ran an open competition for a decade and published its first post-quantum standards in 2024 — lattice-based schemes meant to replace RSA and ECC. The bottleneck is no longer the math; it is getting infrastructure operators to adopt it.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1994",
+                "label": "Shor's algorithm published",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2016",
+                "label": "NIST opens PQC competition"
+              },
+              {
+                "year": "2022",
+                "label": "Finalist algorithms selected"
+              },
+              {
+                "year": "2024",
+                "label": "First NIST PQC standards published"
+              }
+            ],
+            "label": "the post-quantum migration arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T08:23:28.789Z",
+    "label": "Quantum Risk & Crypto Infrastructure",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-30-colombia-election-trump-realignment-political-violence": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 1989-90 PRECEDENT",
+        "body": "This is not the first Colombian campaign run under the gun. In the 1989-90 cycle, three presidential candidates were assassinated in less than a year — Luis Carlos Galán, Bernardo Jaramillo, and Carlos Pizarro — as Pablo Escobar's Medellín cartel waged open war on the state. Galán's murder, broadcast at a rally, reshaped Colombian politics for a generation.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1948",
+                "label": "Gaitán assassinated → Bogotazo",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1989",
+                "label": "Galán assassinated"
+              },
+              {
+                "year": "1990",
+                "label": "Jaramillo & Pizarro killed"
+              },
+              {
+                "year": "2016",
+                "label": "FARC peace accord"
+              },
+              {
+                "year": "2022",
+                "label": "Petro: first leftist president"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1948",
+                "to": "1958",
+                "label": "La Violencia",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "violence and the ballot"
+          }
+        ]
+      },
+      {
+        "heading": "LA VIOLENCIA",
+        "body": "The pattern traces to 1948, when the assassination of populist Jorge Gaitán triggered the Bogotazo riots and a decade-long partisan bloodletting that killed an estimated 200,000 Colombians. The Liberal-Conservative war ended only with a power-sharing pact, but it seeded the rural armed groups that became the FARC.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*La Violencia* didn't end the rivalry — it institutionalized it. The **Frente Nacional** pact (1958) simply alternated the presidency between the two parties, locking everyone else out and pushing dissent toward armed insurgency."
+          }
+        ]
+      },
+      {
+        "heading": "THE PEACE THAT DIDN'T END THE WAR",
+        "body": "The 2016 accord disarmed the FARC's main body, but dissident factions, the ELN guerrilla, and narco-trafficking organizations filled the vacuum in coca-growing borderlands. Much of today's electoral violence is local — candidates and organizers killed in rural municipalities where these groups, not the state, hold the monopoly on force.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CO",
+              "VE",
+              "EC",
+              "PA",
+              "PE",
+              "BR"
+            ],
+            "label": "the contested borderlands",
+            "caption": "armed groups concentrate along porous frontier zones"
+          }
+        ]
+      },
+      {
+        "heading": "WHY A RUNOFF",
+        "body": "Colombia uses a two-round system: win an outright majority on the first ballot or face the runner-up in a second round. The 50% threshold, written into the 1991 constitution, was designed to give the winner broad legitimacy in a fragmented party landscape — but it also means the decisive campaign month comes after the field narrows, often raising the stakes and the danger.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did Colombia's 1991 constitution adopt a two-round presidential system?",
+            "options": [
+              "To give the winner a majority mandate in a fragmented field",
+              "To reduce the cost of holding elections",
+              "To guarantee the incumbent party a second term",
+              "To comply with a US aid condition"
+            ],
+            "correct": 0,
+            "explanation": "A majority threshold confers broader legitimacy than a plurality win when many parties split the first-round vote."
+          }
+        ]
+      },
+      {
+        "heading": "THE US ANCHOR",
+        "body": "Colombia has been Washington's closest security partner in South America for two decades. Plan Colombia, launched in 2000, channeled roughly $10 billion in mostly military and counter-narcotics aid, making Bogotá the largest recipient of US assistance in the hemisphere. That dependence is exactly why candidates' opposing visions on US ties carry real consequence.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Plan Colombia made the country a **\"major non-NATO ally\"** — a designation shared by only a handful of states, and one that ties counter-narcotics funding, military training, and trade access into a single strategic relationship."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T08:24:04.684Z",
+    "label": "Colombia's Cycle of Electoral Violence",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-30-eid-el-kabir-kwara-communities-abandon-eid-grounds-bandits": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE GROUND, NOT THE MOSQUE",
+        "body": "Eid prayer is one of the few rituals the Prophet performed in an open prayer-field, the musalla, rather than inside the mosque — narrated in Sahih al-Bukhari. Even women and children were brought out. Abandoning the Eid ground is not a minor logistical change; it is the loss of a deliberately public, communal act.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The open field is called the *musalla* — literally a place of prayer set apart from the mosque. Holding Eid there signals that the whole community, not just regular worshippers, is gathered in one visible place."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT EID AL-ADHA MARKS",
+        "body": "Eid al-Adha — Eid el-Kabir in West Africa — commemorates Ibrahim's willingness to sacrifice his son at God's command, and the ram sent in his place. It falls at the climax of Hajj, binding pilgrims in Makkah and Muslims worldwide into a single act of sacrifice on the same day."
+      },
+      {
+        "heading": "BANDITRY IS NOT BOKO HARAM",
+        "body": "Nigeria's 'bandits' are armed criminal gangs concentrated in the northwest and Middle Belt, driven by money — cattle rustling and mass kidnap-for-ransom — not ideology. They are distinct from Boko Haram's jihadist insurgency in the northeast, though both exploit the same ungoverned forests and porous borders.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "BJ",
+              "NE",
+              "CM",
+              "TD"
+            ],
+            "label": "the cross-border banditry corridor",
+            "caption": "Gangs shelter in forest reserves and slip across porous frontiers."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE STATE STAYS SILENT",
+        "body": "Nigeria runs a single, federally controlled police force commanded from Abuja. A state governor is called the 'chief security officer' of his state but cannot deploy or direct those officers — which is why a community can be terrorized while the state government issues no order.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The governor's title — **chief security officer** — is largely ceremonial: he funds and pleads, but operational command over police sits with the federal government, not the state."
+          },
+          {
+            "type": "quiz",
+            "question": "Who actually commands the police a Nigerian state governor depends on for security?",
+            "options": [
+              "The state government",
+              "The federal government in Abuja",
+              "Elected local councils",
+              "Traditional rulers (emirs)"
+            ],
+            "correct": 1,
+            "explanation": "Nigeria has one centralized national police force; governors lack their own state police, leaving them responsible for security they cannot command."
+          }
+        ]
+      },
+      {
+        "heading": "THE RANSOM ECONOMY",
+        "body": "Mass abduction works as a business: gangs seize villagers cheaply, then extract payments families and communities scrape together over weeks. Each successful ransom funds more weapons and recruits, so kidnapping compounds — and schools, markets and prayer grounds become preferred targets precisely because crowds are easy to take."
+      }
+    ],
+    "generatedAt": "2026-05-30T08:25:10.387Z",
+    "label": "Eid Grounds & Nigerian Banditry",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-30-europe-gas-prices-rise-third-middle-east-crisis": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GREAT REWIRING",
+        "body": "Before 2022, roughly 40% of EU gas arrived by pipeline from Russia — physical infrastructure that locked buyer to seller. After the Ukraine invasion cut those flows, Europe replaced them with seaborne LNG from many suppliers. The grid is now resilient against any single supplier but exposed to the entire global market at once.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "no",
+                "label": "Norway (pipe)"
+              },
+              {
+                "id": "us",
+                "label": "US LNG"
+              },
+              {
+                "id": "qa",
+                "label": "Qatar LNG"
+              },
+              {
+                "id": "dz",
+                "label": "Algeria"
+              },
+              {
+                "id": "ru",
+                "label": "Russia (residual)"
+              },
+              {
+                "id": "eu",
+                "label": "EU demand"
+              }
+            ],
+            "links": [
+              {
+                "source": "no",
+                "target": "eu",
+                "value": 90,
+                "label": "pipeline"
+              },
+              {
+                "source": "us",
+                "target": "eu",
+                "value": 60,
+                "label": "LNG"
+              },
+              {
+                "source": "qa",
+                "target": "eu",
+                "value": 20,
+                "label": "LNG"
+              },
+              {
+                "source": "dz",
+                "target": "eu",
+                "value": 30,
+                "label": "pipeline"
+              },
+              {
+                "source": "ru",
+                "target": "eu",
+                "value": 25,
+                "label": "residual"
+              }
+            ],
+            "label": "EU gas supply by source (bcm/yr, approx)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY A GULF CLOSURE MOVES DUTCH GAS",
+        "body": "LNG is fungible — a cargo loaded in Qatar can sail to Rotterdam, Tokyo, or Shanghai depending on who bids highest. When Hormuz closes, the Asian buyers who lose Qatari supply outbid Europe for Atlantic cargoes. Europe's benchmark price rises even though no European molecule was touched, because it competes globally at the margin.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Europe's hub price, the Dutch **TTF**, became the de-facto global LNG benchmark after 2022 — when it moves, it is pricing *the marginal cargo*, the last shipload the world fights over, not the average."
+          }
+        ]
+      },
+      {
+        "heading": "PIPELINE VS. SPOT",
+        "body": "Pipeline gas typically moved under decade-long contracts indexed to oil, smoothing price shocks. Spot LNG re-prices every day against live global demand. By swapping one for the other, Europe traded supply security for price volatility — the bill now arrives faster and swings harder.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Russian pipe",
+                "value": "10-25yr oil-linked",
+                "tone": "favorable"
+              },
+              {
+                "label": "Spot LNG",
+                "value": "daily, global",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "two ways to buy gas"
+          }
+        ]
+      },
+      {
+        "heading": "THE FILL MANDATE",
+        "body": "After 2022, the EU made winter storage a legal obligation: tanks must reach 90% capacity by November 1. The rule prevents a repeat of the panic-buying spiral, but it also forces utilities to buy through summer regardless of price — turning the whole bloc into a guaranteed buyer that the market can lean on.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What storage level must EU gas reserves reach by November 1 under the post-2022 rule?",
+            "options": [
+              "50%",
+              "75%",
+              "90%",
+              "100%"
+            ],
+            "correct": 2,
+            "explanation": "The 90% fill target, set in 2022, forces summer buying so the bloc enters winter with a buffer against supply shocks."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2022 PRECEDENT",
+        "body": "When Russian flows collapsed in 2022, TTF spiked roughly ten-fold to record highs before the scramble for LNG terminals and a mild winter pulled it back. The episode proved Europe could survive without Russian gas — but only by paying world-market prices and importing every future Gulf or Pacific disruption directly into its energy bills.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2021-09",
+                "label": "Prices climb on tight storage"
+              },
+              {
+                "year": "2022-02",
+                "label": "Russia invades Ukraine"
+              },
+              {
+                "year": "2022-08",
+                "label": "TTF hits record high",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-09",
+                "label": "Nord Stream pipelines sabotaged"
+              },
+              {
+                "year": "2023",
+                "label": "90% storage mandate in force"
+              }
+            ],
+            "label": "Europe's gas shock"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T08:25:50.218Z",
+    "label": "Europe's LNG Pivot & Gas Pricing",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-30-hegseth-unveils-1-5-trillion-defence-push-cites-iran-nuclear": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE VENUE",
+        "body": "The Shangri-La Dialogue is not a government summit — it is run by the International Institute for Strategic Studies, a London think tank, and named after the Singapore hotel that hosts it. That deniability is the point: defense ministers and spies who cannot meet officially meet here, on neutral ground, since 2002.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Because it is convened by a private institute rather than a bloc, the **Shangri-La Dialogue** lets adversaries — Chinese and US delegations, for instance — share a room without conferring diplomatic recognition on anything said there."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE 2% CAME FROM",
+        "body": "The famous NATO spending target was an informal guideline for years, but it only became a hard pledge at the 2014 Wales summit — months after Russia annexed Crimea. The number was political, not analytical: a round figure allies could be shamed for missing, not a calculated requirement.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1949",
+                "label": "NATO founded"
+              },
+              {
+                "year": "2006",
+                "label": "informal 2% guideline"
+              },
+              {
+                "year": "2014",
+                "label": "Wales pledge after Crimea",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "Vilnius: 2% becomes a floor"
+              },
+              {
+                "year": "2025",
+                "label": "push toward 3.5%"
+              }
+            ],
+            "label": "the burden-sharing target"
+          }
+        ]
+      },
+      {
+        "heading": "AN OLD AMERICAN GRIEVANCE",
+        "body": "Pressing allies to pay more is not a Trump-era invention. In the 1960s and 70s, Senator Mike Mansfield repeatedly tried to force US troops out of Europe unless allies contributed more. Every president since Eisenhower has complained that Washington subsidizes the defense of rich friends.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The structural problem economists call the *free-rider* problem: collective defense is a shared good, so each ally is tempted to under-spend and let the largest member — the **US** — cover the gap."
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY SPENDS",
+        "body": "A 3.5%-of-GDP demand would put nearly every ally above where the US itself sits. The frontline states closest to Russia already spend the most as a share of their economy; the largest economies of Western Europe have historically lagged.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Poland",
+                "value": "~4.1%",
+                "cc": "PL",
+                "tone": "favorable",
+                "weight": 4.1
+              },
+              {
+                "label": "United States",
+                "value": "~3.4%",
+                "cc": "US",
+                "tone": "neutral",
+                "weight": 3.4
+              },
+              {
+                "label": "Greece",
+                "value": "~3.0%",
+                "cc": "GR",
+                "tone": "favorable",
+                "weight": 3
+              },
+              {
+                "label": "UK",
+                "value": "~2.3%",
+                "cc": "GB",
+                "tone": "neutral",
+                "weight": 2.3
+              },
+              {
+                "label": "Germany",
+                "value": "~2.0%",
+                "cc": "DE",
+                "tone": "neutral",
+                "weight": 2
+              },
+              {
+                "label": "Japan",
+                "value": "~1.6%",
+                "cc": "JP",
+                "tone": "unfavorable",
+                "weight": 1.6
+              }
+            ],
+            "label": "defense spending, % of GDP (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE SCALE OF THE US BUDGET",
+        "body": "The headline $1.5 trillion is a multi-year rearmament figure, but even annual US defense spending dwarfs every rival. America spends more than the next several militaries combined — a gap that is the real reason allies free-ride and the real leverage behind the demand.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Annual military spending",
+            "peers": [
+              {
+                "value": 880,
+                "cc": "US"
+              },
+              {
+                "value": 290,
+                "cc": "CN"
+              },
+              {
+                "value": 110,
+                "cc": "RU"
+              },
+              {
+                "value": 83,
+                "cc": "IN"
+              },
+              {
+                "value": 75,
+                "cc": "SA"
+              },
+              {
+                "value": 75,
+                "cc": "GB"
+              },
+              {
+                "value": 67,
+                "cc": "DE"
+              },
+              {
+                "value": 50,
+                "cc": "JP"
+              }
+            ],
+            "subjectCc": "US",
+            "unit": "$bn"
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO-FRONT LOGIC",
+        "body": "Naming China and Iran as 'twin threats' revives an old planning nightmare: a military sized to win one major war at a time cannot fight two simultaneously without going broke. Pentagon strategy documents have swung for decades between a 'two-war' standard and a cheaper 'one-and-a-half-war' posture.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What event turned NATO's 2% spending guideline into a formal pledge?",
+            "options": [
+              "Russia's annexation of Crimea in 2014",
+              "The September 11 attacks in 2001",
+              "The US withdrawal from Afghanistan in 2021",
+              "China's military buildup in the 2010s"
+            ],
+            "correct": 0,
+            "explanation": "The 2014 Wales summit hardened the target months after Russia seized Crimea — the threat that gave the number political force."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T08:26:33.672Z",
+    "label": "Burden-Sharing & the 2% Debate",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-30-iran-africa-economic-conference-sanctions-trade-pivot": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY SANCTIONS PUSH SOUTH",
+        "body": "Western sanctions don't just block trade with the West — they block the dollar clearing system that nearly all global trade runs through. So a sanctioned state's only open markets are those willing to transact outside that system: other sanctioned or non-aligned economies, most of them in the Global South.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The constraint isn't a lack of buyers — it's the **plumbing**. Roughly 80% of world trade is invoiced in dollars, and dollar payments ultimately clear through US correspondent banks that sanctions reach."
+          }
+        ]
+      },
+      {
+        "heading": "THE PAYMENT PROBLEM",
+        "body": "Cut off from dollar settlement, Iran reverts to pre-modern tools: barter (oil for goods), local-currency swaps, and physical gold as a neutral store of value that leaves no bank trail. These workarounds function but carry a tax — every deal needs an intermediary willing to take the risk, and that margin is the real cost of sanctions.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How do heavily sanctioned states most commonly settle cross-border trade when cut off from dollar clearing?",
+            "options": [
+              "Barter, local-currency swaps, and physical gold",
+              "Personal checks routed through embassies",
+              "A dedicated SWIFT replacement everyone accepts",
+              "Credit cards issued by neutral countries"
+            ],
+            "correct": 0,
+            "explanation": "Without dollar access, settlement falls back to goods-for-goods barter, bilateral local-currency arrangements, and gold — which carries no issuer and leaves no bank trail."
+          },
+          {
+            "type": "trend",
+            "values": [
+              4619.17,
+              4603.98,
+              4597.48,
+              4606.7,
+              4515.48,
+              4580.98,
+              4684.25,
+              4695.85,
+              4706.72,
+              4711.53,
+              4692.03,
+              4753.28,
+              4711.77,
+              4685.25,
+              4650.57,
+              4540.65,
+              4535.45,
+              4535.69,
+              4575.14,
+              4491.98,
+              4536.19,
+              4525.24,
+              4494.01,
+              4522,
+              4563.72,
+              4547.87,
+              4516.99,
+              4441.32,
+              4477.7,
+              4529.52,
+              4524.82
+            ],
+            "periods": [
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 30"
+            ],
+            "label": "Gold (PAX Gold)",
+            "unit": "$/oz",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE NON-ALIGNED ROOTS",
+        "body": "South-South trade isn't an Iranian invention; it's the economic arm of a 70-year-old political project. The 1955 Bandung Conference gathered newly decolonized Asian and African states to build ties that bypassed both Cold War blocs. Iran's post-1979 'neither East nor West' doctrine slots directly into that lineage.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1955",
+                "label": "Bandung Conference"
+              },
+              {
+                "year": "1961",
+                "label": "Non-Aligned Movement founded"
+              },
+              {
+                "year": "1979",
+                "label": "Iran's 'neither East nor West'",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2010",
+                "label": "Ahmadinejad's Africa outreach"
+              }
+            ],
+            "label": "the non-aligned arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE SCALE REALITY",
+        "body": "For all the summitry, Iran is a marginal player in Africa. Its total trade with the continent runs in the low single-digit billions — a rounding error next to China, which has anchored African infrastructure for two decades. The pivot is about diplomatic optionality, not displacing the incumbents.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~$280bn",
+                "cc": "CN",
+                "weight": 280,
+                "tone": "neutral"
+              },
+              {
+                "label": "India",
+                "value": "~$90bn",
+                "cc": "IN",
+                "weight": 90,
+                "tone": "neutral"
+              },
+              {
+                "label": "Turkey",
+                "value": "~$40bn",
+                "cc": "TR",
+                "weight": 40,
+                "tone": "neutral"
+              },
+              {
+                "label": "Iran",
+                "value": "~$1.5bn",
+                "cc": "IR",
+                "weight": 1.5,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "annual trade with Africa (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT IRAN ACTUALLY OFFERS",
+        "body": "Decades of sanctions forced Iran to build an indigenous industrial base — refineries, dams, power plants, auto assembly, and drones. That self-reliance is now an export pitch: mid-tier engineering and technical services priced below Western or Chinese rivals, sold to states that can't or won't pay premium prices.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Sanctions produced a paradox economists call *import substitution by necessity* — the embargo became an unintended industrial policy, and the resulting know-how is what Iran now markets across the Global South."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "Iran's African partners cluster among states with their own friction with the West or a tradition of non-alignment — South Africa, Sudan, Algeria, Zimbabwe, Nigeria, Senegal, Tanzania. The map is less about proximity than about diplomatic alignment.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "ZA",
+              "NG",
+              "SN",
+              "SD",
+              "TZ",
+              "ZW",
+              "DZ"
+            ],
+            "label": "Iran's African partner network"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · PAXG (gold-backed) · as of 2026-05-30"
+    ],
+    "generatedAt": "2026-05-30T08:27:20.558Z",
+    "label": "Sanctions & South-South Trade",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-30-microfluidics-detect-hidden-antibiotic-resistance-sepsis": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BULK PROBLEM",
+        "body": "Standard antibiotic sensitivity testing grows the whole sample in a drug and asks one question: did the population, on average, stop growing? If 999,999 cells in a million die and one survives, the test reads 'susceptible' — because it measures the crowd, not the outlier.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can a standard susceptibility test call an infection 'treatable' when resistant cells are present?",
+            "options": [
+              "It measures average growth of the whole population, so a rare survivor is invisible",
+              "It only tests for one antibiotic at a time",
+              "It cannot detect bacteria in blood, only in urine",
+              "It requires the patient to already be on antibiotics"
+            ],
+            "correct": 0,
+            "explanation": "Bulk testing reports the population average; a subpopulation as rare as 1 in a million leaves no detectable signal in the crowd's growth curve."
+          }
+        ]
+      },
+      {
+        "heading": "HETERORESISTANCE",
+        "body": "When most cells in a single infection are susceptible but a tiny fraction are resistant, the population is called heteroresistant. It is not a mixed infection — these are genetically near-identical cells where a few have flipped on a resistance mechanism, often reversibly.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The key distinction: a *resistant* infection fails the test outright, but a *heteroresistant* one passes — the lethal minority is masked by the susceptible majority until the antibiotic clears the field for it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE RARE CELLS WIN",
+        "body": "Antibiotic exposure is a selection pressure, not a guarantee. The drug wipes out the susceptible majority and removes the competition; the few survivors then have the whole bloodstream to themselves and repopulate it within days as a fully resistant infection. The treatment manufactures the relapse."
+      },
+      {
+        "heading": "WHY MICROFLUIDICS",
+        "body": "Microfluidic chips trap individual bacteria in thousands of chambers smaller than a human hair and watch each one respond to the drug under a microscope. Instead of asking 'did the population grow,' the method asks 'did any single cell survive' — which is the only question that catches a 1-in-a-million survivor."
+      },
+      {
+        "heading": "WHY SPEED IS THE WHOLE GAME",
+        "body": "Conventional blood culture plus sensitivity testing takes two to three days, so doctors start broad-spectrum antibiotics blind and narrow later. In septic shock, every hour of the wrong drug measurably raises the death rate — which is why a 12-30 hour answer is a clinical leap even before it catches hidden resistance.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Blood culture + AST",
+                "value": "48–72 hrs",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Rapid PCR panel",
+                "value": "~6 hrs",
+                "tone": "neutral"
+              },
+              {
+                "label": "Microfluidic test",
+                "value": "12–30 hrs",
+                "tone": "favorable"
+              }
+            ],
+            "label": "time to a usable resistance answer"
+          }
+        ]
+      },
+      {
+        "heading": "THE STAKES",
+        "body": "Drug-resistant infections are associated with roughly five million deaths a year, more than HIV and malaria combined. A handful of common pathogens drive most of that toll — the same bacteria that cause the bloodstream infections this method targets.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "E. coli",
+                "value": 950
+              },
+              {
+                "label": "S. aureus",
+                "value": 870
+              },
+              {
+                "label": "K. pneumoniae",
+                "value": 790
+              },
+              {
+                "label": "S. pneumoniae",
+                "value": 670
+              },
+              {
+                "label": "M. tuberculosis",
+                "value": 370
+              },
+              {
+                "label": "P. aeruginosa",
+                "value": 560
+              },
+              {
+                "label": "A. baumannii",
+                "value": 420
+              }
+            ],
+            "label": "deaths associated with resistance, by pathogen (approx.)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T08:27:56.609Z",
+    "label": "Heteroresistance & Single-Cell Testing",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-30-president-of-myanmar-s-military-backed-government-visits-ind": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WEDGE STATE",
+        "body": "Myanmar is the land bridge between India and China — the only country that borders both and touches the Bay of Bengal. Whoever has influence in Naypyidaw shortens their reach into the other's backyard, which is why neither giant will let the junta become the other's client.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MM",
+              "IN",
+              "CN",
+              "BD",
+              "TH"
+            ],
+            "label": "the land bridge",
+            "caption": "Myanmar borders both India and China and fronts the Bay of Bengal",
+            "markers": [
+              {
+                "lat": 25.7,
+                "lng": 98.3,
+                "label": "Kachin rare-earth belt"
+              },
+              {
+                "lat": 20.15,
+                "lng": 92.9,
+                "label": "Sittwe port (Kaladan)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TATMADAW",
+        "body": "Myanmar's military is not just an army but a parallel state — it runs banks, breweries, jade mines and telecoms through two conglomerates. This economic autonomy is why sanctions rarely bite the generals: they don't depend on the budget they seized.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The army calls itself the *Tatmadaw*. Its holding companies — **MEHL** and **MEC** — touch nearly every profitable sector, so cutting off foreign aid starves civilians long before it starves the officer corps."
+          }
+        ]
+      },
+      {
+        "heading": "THE COUP HABIT",
+        "body": "The 2021 coup was not an aberration but the third act of a pattern. The army has seized power whenever civilian politics threatened its primacy — 1962, 1988, and again in 2021, each time citing 'disorder' and promising elections it then postponed for years.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1948",
+                "label": "Independence from Britain"
+              },
+              {
+                "year": "1962",
+                "label": "Ne Win coup",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1988",
+                "label": "8888 uprising crushed"
+              },
+              {
+                "year": "2011",
+                "label": "Quasi-civilian transition"
+              },
+              {
+                "year": "2015",
+                "label": "NLD wins election"
+              },
+              {
+                "year": "2021",
+                "label": "Min Aung Hlaing coup"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1962",
+                "to": "2011",
+                "label": "Direct military rule",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "six decades of military rule"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE RARE EARTHS",
+        "body": "Myanmar's Kachin hills hold the world's richest deposits of heavy rare earths — the dysprosium and terbium that keep EV motors and wind turbines magnetized at high temperature. Almost all of it is dug up unrefined and trucked across the border, making Myanmar the feedstock for China's near-monopoly on processing.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 60,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "USA",
+                "value": 12,
+                "tone": "neutral"
+              },
+              {
+                "label": "Myanmar",
+                "value": 11,
+                "tone": "favorable"
+              },
+              {
+                "label": "Australia",
+                "value": 6,
+                "tone": "neutral"
+              },
+              {
+                "label": "Other",
+                "value": 10,
+                "tone": "neutral"
+              }
+            ],
+            "label": "global rare-earth mine output, approx. share"
+          },
+          {
+            "type": "quiz",
+            "question": "What makes Myanmar's rare earths strategically prized over the larger deposits elsewhere?",
+            "options": [
+              "They are 'heavy' rare earths used in high-temperature magnets",
+              "They are the cheapest light rare earths on earth",
+              "They are already refined to magnet-grade purity",
+              "They are the only source of lithium in Asia"
+            ],
+            "correct": 0,
+            "explanation": "Heavy rare earths like dysprosium and terbium are scarce and essential to EV and defense magnets; Myanmar's Kachin mines are among the few rich sources."
+          }
+        ]
+      },
+      {
+        "heading": "INDIA'S CALCULUS",
+        "body": "New Delhi's 'Act East' policy needs Myanmar for two prizes: a land route to Southeast Asia that bypasses the narrow Siliguri corridor, and access to minerals it currently buys from China. The Kaladan project — linking Kolkata to India's landlocked northeast via Sittwe port — runs straight through junta territory.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Min Aung Hlaing",
+                "role": "Junta chief, coup leader",
+                "years": "2021–",
+                "cc": "MM"
+              },
+              {
+                "name": "Narendra Modi",
+                "role": "Indian Prime Minister",
+                "years": "2014–",
+                "cc": "IN"
+              },
+              {
+                "name": "Aung San Suu Kyi",
+                "role": "Ousted civilian leader, jailed",
+                "years": "2015–2021",
+                "cc": "MM"
+              }
+            ],
+            "label": "the principals"
+          }
+        ]
+      },
+      {
+        "heading": "THE WAR-CRIMES SHADOW",
+        "body": "Min Aung Hlaing personally commanded the 2017 operations that drove some 700,000 Rohingya into Bangladesh — the conduct now before the International Court of Justice in a genocide case brought by The Gambia. Hosting him is, for activists, the rehabilitation of a man under an ICC arrest-warrant request."
+      }
+    ],
+    "generatedAt": "2026-05-30T08:28:37.707Z",
+    "label": "Myanmar's Junta & the Rare-Earth Corridor",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-30-spatial-planning-urban-heat-air-pollution-subtropical-cities": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY CITIES RUN HOT",
+        "body": "Concrete, asphalt and brick absorb solar radiation by day and release it slowly after dark. This is why the urban heat island is strongest at night, not noon — the surrounding countryside cools off while the city is still bleeding back the day's stored heat. The gap between city and country can reach 5–10°C.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When is a city's urban heat island effect typically strongest?",
+            "options": [
+              "Midday, at peak sun",
+              "Late at night",
+              "Early morning",
+              "During rainfall"
+            ],
+            "correct": 1,
+            "explanation": "Dense materials store daytime heat and re-radiate it after dark, so the city–country temperature gap peaks at night."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SMOG RIDES WITH HEAT",
+        "body": "Heat and pollution share a master switch: vertical air movement. On a still, hot day a layer of warm air can sit atop cooler surface air — a temperature inversion — capping the city like a lid. Heat can't rise out and pollutants can't disperse up, so both concentrate at street level together.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A **temperature inversion** flips the normal rule that air cools with altitude. The warm cap acts as a ceiling — the same mechanism behind Delhi's winter smog and the deadly 1952 *London Smog*."
+          }
+        ]
+      },
+      {
+        "heading": "THE MONSOON AS A FAN",
+        "body": "Humid subtropical cities don't rely only on turbulence to clear their air — they get seasonal prevailing winds. The planning insight is that wind is directional: green space and water placed upwind cool and scrub the air before it reaches the dense core, while the same trees placed downwind do almost nothing for heat or smog."
+      },
+      {
+        "heading": "THE DENSITY GOLDILOCKS",
+        "body": "Sprawl forces long car trips and paves vast surfaces; extreme density carves deep 'street canyons' where tall buildings on narrow roads trap heat and exhaust at the bottom. Medium-density blocks are the compromise — compact enough to limit driving, open enough to let the monsoon wind actually flow through to ground level."
+      },
+      {
+        "heading": "THE ZONE",
+        "body": "The humid subtropical climate (Köppen Cfa/Cwa) wraps the globe at roughly 25–35° latitude — the Indo-Gangetic plain, eastern China, the US Southeast, and parts of West Africa. It is home to some of the planet's fastest-growing megacities, which is why a flushing-by-design framework matters far beyond any single country.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IN",
+              "BD",
+              "CN",
+              "JP"
+            ],
+            "label": "humid subtropical megacity belt (Asian arc)",
+            "caption": "The zone also spans West Africa and the US Southeast.",
+            "markers": [
+              {
+                "lat": 28.6139,
+                "lng": 77.209,
+                "label": "Delhi"
+              },
+              {
+                "lat": 23.8103,
+                "lng": 90.4125,
+                "label": "Dhaka"
+              },
+              {
+                "lat": 23.1291,
+                "lng": 113.2644,
+                "label": "Guangzhou"
+              },
+              {
+                "lat": 31.2304,
+                "lng": 121.4737,
+                "label": "Shanghai"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T08:29:14.359Z",
+    "label": "Urban Heat & Ventilation",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-30-ukrainian-drones-strike-taganrog-port-oil-depot-russia": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY OIL, NOT TROOPS",
+        "body": "Russia's federal budget draws roughly a third to a half of its revenue from oil and gas in a typical year. Hitting an export terminal does not stop a battalion today, but it drains the account that pays for tomorrow's. Ukraine's deep-strike campaign is an attack on the treasury, not the front line.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine has a name on both sides of the war: **deep strike** — using long-range drones to reach the *economic* rear, the refineries and export nodes hundreds of kilometers from any trench."
+          },
+          {
+            "type": "quiz",
+            "question": "Roughly what share of Russia's federal budget revenue comes from oil and gas?",
+            "options": [
+              "About 5%",
+              "About a third to a half",
+              "About 80%"
+            ],
+            "correct": 1,
+            "explanation": "Oil-and-gas receipts have swung between roughly a third and a half of federal revenue, which is why export terminals are strategic targets, not just symbolic ones."
+          }
+        ]
+      },
+      {
+        "heading": "THE DRONE ASYMMETRY",
+        "body": "A long-range strike drone costs tens of thousands of dollars; the storage tank, pumping station, or tanker it ignites is worth tens of millions, and the air-defense missile fired to stop it can cost more than the drone itself. The arithmetic favors the attacker every time, which is why a poorer military can bleed a richer one's infrastructure."
+      },
+      {
+        "heading": "WHERE THE OIL ACTUALLY LEAVES",
+        "body": "Russia exports crude through a handful of chokepoint terminals. The Black Sea and Azov ports — Novorossiysk, Tuapse, Taganrog — are the ones within drone range of Ukraine; the Baltic and Pacific terminals sit far safer. Concentrated infrastructure means a small number of successful strikes carries outsized weight.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Primorsk",
+                "value": "~1.3",
+                "cc": "RU",
+                "weight": 1.3,
+                "tone": "neutral"
+              },
+              {
+                "label": "Kozmino",
+                "value": "~0.8",
+                "cc": "RU",
+                "weight": 0.8,
+                "tone": "neutral"
+              },
+              {
+                "label": "Novorossiysk",
+                "value": "~0.6",
+                "cc": "RU",
+                "weight": 0.6,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Ust-Luga",
+                "value": "~0.6",
+                "cc": "RU",
+                "weight": 0.6,
+                "tone": "neutral"
+              }
+            ],
+            "label": "major Russian crude export terminals (approx, mn bbl/day)"
+          }
+        ]
+      },
+      {
+        "heading": "THE AZOV CHOKE",
+        "body": "Taganrog sits at the northeast corner of the Sea of Azov — a shallow, semi-enclosed basin connected to the Black Sea only through the narrow Kerch Strait. Tankers loading there are easy to reach and slow to reroute, since every cargo must thread the same single exit.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "UA"
+            ],
+            "label": "Russia's southern export ports",
+            "caption": "the Azov basin drains to the Black Sea through one strait",
+            "markers": [
+              {
+                "lat": 47.2362,
+                "lng": 38.8969,
+                "label": "Taganrog"
+              },
+              {
+                "lat": 44.7235,
+                "lng": 37.7686,
+                "label": "Novorossiysk"
+              },
+              {
+                "lat": 44.1058,
+                "lng": 39.0796,
+                "label": "Tuapse"
+              },
+              {
+                "lat": 45.35,
+                "lng": 36.63,
+                "label": "Kerch Strait"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICE-CAP BACKDROP",
+        "body": "Since 2022 the G7 has tried to choke this same revenue financially: a $60-per-barrel cap on Russian crude, enforced through Western shipping and insurance. Russia answered with a 'shadow fleet' of aging, opaquely-insured tankers — which is part of why a single burning tanker at a port like Taganrog matters more than it once would have.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The workaround is the *shadow fleet*: hundreds of older tankers with hidden ownership and non-Western insurance, built to move oil **outside** the price-cap's reach."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T08:29:58.216Z",
+    "label": "Striking the War's Cash Engine",
+    "category": "economy",
+    "articleCount": 1
   }
 }
