@@ -267559,5 +267559,1453 @@
     "label": "Crypto Treasury Vehicles",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-05-30-20-ships-have-passed-through-strait-of-hormuz-irgc-navy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "IRAN HAS TWO NAVIES",
+        "body": "The claim came from the IRGC Navy, not Iran's regular navy (the Artesh). Since a 2007 division of labor, the regular navy patrols the open ocean while the Revolutionary Guard owns the Gulf and the strait — operating swarms of fast attack boats, mines, and shore-based anti-ship missiles. The force that controls Hormuz answers to the Supreme Leader, not the defense ministry.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The split is doctrinal: the *Artesh* fights conventionally, the **IRGC Navy** fights asymmetrically — cheap, numerous small craft designed to swarm a single warship rather than duel it."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOMETRY OF THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the usable shipping lanes are only about 3 km each — inbound and outbound, separated by a buffer. The deepest channel hugs the Iranian side, which is why Iranian positioning matters disproportionately and why a handful of mines or small boats in the right spot can choke the lane.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE"
+            ],
+            "label": "the strait and the Iranian shore",
+            "caption": "shipping lanes run along the deep Iranian-side channel",
+            "markers": [
+              {
+                "lat": 26.57,
+                "lng": 56.25,
+                "label": "Strait narrows"
+              },
+              {
+                "lat": 27.18,
+                "lng": 56.27,
+                "label": "Bandar Abbas (IRGC base)"
+              },
+              {
+                "lat": 26.86,
+                "lng": 56.36,
+                "label": "Larak Island"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL CLAIM IRAN IS MAKING",
+        "body": "Demanding that ships 'coordinate' with its navy contradicts the law of the sea. Under UNCLOS, Hormuz is an international strait where all ships enjoy a right of transit passage that coastal states cannot suspend or condition. Iran signed UNCLOS in 1982 but never ratified it, and has long argued the strait is governed by its domestic law — the legal basis for exactly this kind of claim.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "all ships and aircraft enjoy the right of transit passage, which shall not be impeded",
+            "speaker": "UNCLOS, Article 38"
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR TAUGHT THE LESSON",
+        "body": "This is not new. From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil spiked briefly, but markets adapted: tankers were reflagged under US and Kuwaiti flags and escorted by warships, and the US fought Iran directly in Operation Praying Mantis. The takeaway for planners: disruption is far easier to threaten than to sustain.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Tanker War begins",
+                "emphasis": "start"
+              },
+              {
+                "year": "1987",
+                "label": "US reflags Kuwaiti tankers"
+              },
+              {
+                "year": "1988-04",
+                "label": "Operation Praying Mantis",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1988-07",
+                "label": "Tanker War ends"
+              },
+              {
+                "year": "2019",
+                "label": "Tanker seizures & limpet mines"
+              }
+            ],
+            "label": "Iran and the strait"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT CAN'T JUST BE BYPASSED",
+        "body": "Saudi Arabia and the UAE built pipelines specifically to route oil around Hormuz, but together they can carry only a fraction of the Gulf's exports. The rest has no alternative — which is the entire source of Iran's leverage.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hormuz flow",
+                "value": "~20m bbl/d",
+                "tone": "unfavorable",
+                "weight": 20
+              },
+              {
+                "label": "Saudi E-W line",
+                "value": "~5m bbl/d",
+                "tone": "favorable",
+                "weight": 5
+              },
+              {
+                "label": "UAE Fujairah",
+                "value": "~1.8m bbl/d",
+                "tone": "favorable",
+                "weight": 1.8
+              }
+            ],
+            "label": "Hormuz bypass capacity vs the flow through it"
+          }
+        ]
+      },
+      {
+        "heading": "THE SCALE AMONG CHOKEPOINTS",
+        "body": "Hormuz is not the world's busiest maritime chokepoint by ship count — Malacca moves more — but it is the one with no real detour for the crude it carries, which is why it dominates oil-security thinking.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Oil & products through chokepoint",
+            "peers": [
+              {
+                "value": 23,
+                "label": "Malacca"
+              },
+              {
+                "value": 20,
+                "label": "Hormuz"
+              },
+              {
+                "value": 9,
+                "label": "Suez/SUMED"
+              },
+              {
+                "value": 6,
+                "label": "Bab el-Mandeb"
+              },
+              {
+                "value": 3,
+                "label": "Danish Straits"
+              },
+              {
+                "value": 1.5,
+                "label": "Panama Canal"
+              }
+            ],
+            "subjectLabel": "Hormuz",
+            "unit": "m bbl/d"
+          },
+          {
+            "type": "quiz",
+            "question": "Roughly what share of global oil supply transits the Strait of Hormuz?",
+            "options": [
+              "About 5%",
+              "About 20%",
+              "About 40%",
+              "About 60%"
+            ],
+            "correct": 1,
+            "explanation": "Around a fifth of the world's oil — roughly 20m barrels a day — passes through Hormuz, with no full-capacity bypass route."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T17:36:06.263Z",
+    "label": "The Hormuz Chokepoint & Iran's Two Navies",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-30-8-militants-killed-on-second-day-of-security-operation-in-kp": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LINE THAT ISN'T A BORDER",
+        "body": "The Durand Line — drawn by a British colonial officer in 1893 to mark the edge of British India — splits the Pashtun homeland down the middle. Afghanistan has never formally recognized it. That single fact underwrites the entire cross-border sanctuary problem: militants cross a frontier Kabul considers illegitimate to begin with.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF"
+            ],
+            "label": "the Durand Line frontier",
+            "markers": [
+              {
+                "lat": 33.65,
+                "lng": 71.5,
+                "label": "Darra Adam Khel"
+              },
+              {
+                "lat": 34.0151,
+                "lng": 71.5805,
+                "label": "Peshawar"
+              },
+              {
+                "lat": 34.0479,
+                "lng": 71.0889,
+                "label": "Khyber Pass"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE GUN BAZAAR",
+        "body": "Darra Adam Khel was, for over a century, the most famous illegal arms market on earth — a single bazaar town where craftsmen hand-machined working copies of any firearm, from Lee-Enfields to AK-47s, without licenses or serial numbers. The gunsmithing economy is exactly why the area became a militant logistics hub.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The town's artisans could reverse-engineer a weapon from a single sample — a *Kalashnikov* clone in days, indistinguishable to the untrained eye but stamped with no traceable origin."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE TTP ACTUALLY IS",
+        "body": "The Tehrik-i-Taliban Pakistan formed in 2007 as an umbrella of tribal-belt militant factions — distinct from the Afghan Taliban, with a different target: the Pakistani state itself. The Tariq Gidar Group, blamed for Saturday's killings, is the faction behind the 2014 Peshawar school massacre that killed over 130 children.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2007",
+                "label": "TTP formed as factional umbrella",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2009",
+                "label": "Army offensive in South Waziristan"
+              },
+              {
+                "year": "2014",
+                "label": "Peshawar school massacre"
+              },
+              {
+                "year": "2018",
+                "label": "FATA merged into KP province"
+              },
+              {
+                "year": "2021",
+                "label": "Afghan Taliban retake Kabul"
+              },
+              {
+                "year": "2022",
+                "label": "TTP ends ceasefire; attacks surge"
+              }
+            ],
+            "label": "the TTP arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE MERGER THAT ERASED A SYSTEM",
+        "body": "Until 2018, the tribal belt was the Federally Administered Tribal Areas — governed not by Pakistani courts but by the colonial-era Frontier Crimes Regulation, which allowed collective punishment of entire tribes. The merger into Khyber Pakhtunkhwa province dissolved that century-old legal exception, but state writ over the terrain is still being contested gun by gun.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What legal status did Pakistan's tribal areas (FATA) hold until 2018?",
+            "options": [
+              "A semi-autonomous zone under colonial-era regulations, outside the normal court system",
+              "A fully self-governing independent statelet",
+              "An ordinary province like Punjab or Sindh"
+            ],
+            "correct": 0,
+            "explanation": "FATA was governed by the British-drafted Frontier Crimes Regulation until its 2018 merger into Khyber Pakhtunkhwa province."
+          }
+        ]
+      },
+      {
+        "heading": "WHY KABUL IS THE ADDRESS",
+        "body": "Since the Afghan Taliban retook Kabul in 2021, Islamabad has repeatedly accused them of sheltering TTP fighters across the Durand Line — the same way Pakistan once gave the Afghan Taliban sanctuary during the US war. The irony is structural: the patron-and-proxy logic that built the Afghan Taliban now runs in reverse against Pakistan."
+      }
+    ],
+    "generatedAt": "2026-05-30T17:36:36.838Z",
+    "label": "The TTP & Pakistan's Tribal Frontier",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-30-estonia-installs-first-drone-detection-systems-on-border-wit": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EXPOSED FLANK",
+        "body": "Estonia shares roughly 300km of land border with Russia and sits less than 200km from St. Petersburg. The three Baltic states are NATO's most geographically exposed members — a thin strip wedged between Russia proper and the Russian exclave of Kaliningrad, connected to the rest of the alliance only by the narrow Suwałki Gap between Belarus and Kaliningrad.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "EE",
+              "LV",
+              "LT",
+              "RU",
+              "BY",
+              "PL"
+            ],
+            "label": "NATO's eastern edge",
+            "caption": "The Baltics connect to the alliance only via the Suwałki Gap"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SMALL DRONES ARE HARD TO SEE",
+        "body": "A consumer-sized drone has a tiny radar cross-section, flies low under radar horizons, and is often made of plastic and foam that reflect little. Traditional air-defense radar built to track jets and missiles can miss them entirely — which is why dedicated detection needs layered sensors rather than a single big radar.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Modern counter-drone arrays fuse four signatures: **radar** for motion, **RF scanners** for the control link, **acoustic** mics for rotor noise, and **electro-optical/infrared** cameras for visual confirmation. No single sensor is reliable alone — the *fusion* is the system."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRIPWIRE LOGIC",
+        "body": "NATO's Article 5 treats an attack on one member as an attack on all, but it never auto-triggers — it requires a political decision. Hardening the border is partly about evidence: permanent sensors generate the verifiable record of incursions that any Article 5 consultation would need, turning ambiguous 'incidents' into documented violations.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does NATO's Article 5 actually require when a member is attacked?",
+            "options": [
+              "Automatic military response by all members",
+              "A collective decision; each member chooses its own response",
+              "Approval from the UN Security Council first"
+            ],
+            "correct": 1,
+            "explanation": "Article 5 commits members to assist, but each decides what action — including non-military — it deems necessary."
+          }
+        ]
+      },
+      {
+        "heading": "OCCUPIED, THEN RESTORED",
+        "body": "Estonia is not a young state nervously eyeing a neighbor — it is a restored one. Independent in 1918, it was annexed by Stalin under the secret Molotov-Ribbentrop Pact in 1940, endured five decades of Soviet rule, and restored independence in 1991. Its NATO accession in 2004 was the explicit insurance policy against a third occupation.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1918",
+                "label": "Independence declared",
+                "emphasis": "start"
+              },
+              {
+                "year": "1940",
+                "label": "Soviet annexation",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1991",
+                "label": "Independence restored"
+              },
+              {
+                "year": "2004",
+                "label": "Joins NATO and EU",
+                "emphasis": "end"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1940",
+                "to": "1991",
+                "label": "Soviet occupation",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Estonia's century"
+          }
+        ]
+      },
+      {
+        "heading": "THE COST ASYMMETRY",
+        "body": "The core problem of drone defense is economic, not technical. A reconnaissance drone can cost a few hundred dollars; the missile traditionally fired to down it can cost a million or more. Sensors that simply detect, classify, and track incursions are cheap by comparison — which is why detection, not interception, is the first thing a border buys."
+      }
+    ],
+    "generatedAt": "2026-05-30T17:37:06.899Z",
+    "label": "The Baltic Drone Frontier",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-30-highly-plausible-aliens-on-europa-are-earthlings-descendants": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANISM",
+        "body": "Lithopanspermia is the idea that life rides between worlds inside rock. A large asteroid strike ejects surface debris fast enough to escape a planet's gravity; microbes sheltered deep inside a fragment survive the vacuum, radiation, and cold of transit, then thaw on arrival. It is hitchhiking on a scale of millions of years.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The variant in this study is subtler: not rock but *dust*. Trillions of micron-scale **Earth grains**, lofted by impacts and pushed outward by sunlight, drift the Jupiter system over geologic time."
+          }
+        ]
+      },
+      {
+        "heading": "WHY EARTH MICROBES ENDURE",
+        "body": "The candidate stowaways aren't ordinary germs. Deinococcus radiodurans shrugs off radiation doses thousands of times lethal to humans; tardigrades survive open-space vacuum, as ESA's 2007 FOTON-M3 experiment confirmed by exposing them on orbit and reviving them. Dormant spores can stay viable for millions of years, which is exactly the timescale interplanetary drift requires.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which organism survived direct exposure to open-space vacuum and radiation on an orbital mission?",
+            "options": [
+              "Tardigrades (water bears)",
+              "Jellyfish",
+              "Houseflies"
+            ],
+            "correct": 0,
+            "explanation": "ESA's 2007 FOTON-M3 mission exposed live tardigrades to space; many survived and reproduced after return."
+          }
+        ]
+      },
+      {
+        "heading": "WHY EUROPA, NOT MARS",
+        "body": "Europa hides a salty liquid ocean beneath a cracked ice shell — and it likely holds more water than all of Earth's oceans combined. Tidal flexing from Jupiter keeps that ocean warm. Among the solar system's ocean worlds it is the prime target precisely because it pairs liquid water with a possible energy source.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ganymede",
+                "value": "~25× Earth",
+                "weight": 25
+              },
+              {
+                "label": "Callisto",
+                "value": "~10× Earth",
+                "weight": 10
+              },
+              {
+                "label": "Europa",
+                "value": "~2× Earth",
+                "weight": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Titan",
+                "value": "~10× Earth",
+                "weight": 10
+              },
+              {
+                "label": "Enceladus",
+                "value": "small",
+                "weight": 1
+              }
+            ],
+            "label": "subsurface-ocean worlds (est. liquid water)"
+          }
+        ]
+      },
+      {
+        "heading": "PLANETARY PROTECTION",
+        "body": "This is why agencies obsess over forward contamination. Under COSPAR's planetary-protection rules, missions to bodies that might harbor life are sterilized and trajectories controlled. NASA deliberately crashed the Galileo probe into Jupiter in 2003 — destroying a working spacecraft — specifically so it could never drift down and seed Europa with hitchhiking Earth bacteria.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did NASA deliberately destroy the still-functioning Galileo probe in Jupiter's atmosphere in 2003?",
+            "options": [
+              "To avoid contaminating Europa with Earth microbes",
+              "It ran out of fuel mid-orbit",
+              "To photograph Jupiter's cloud tops up close"
+            ],
+            "correct": 0,
+            "explanation": "Planetary-protection rules required ensuring Galileo could never crash into and biologically contaminate Europa's ocean."
+          }
+        ]
+      },
+      {
+        "heading": "THE DETECTION TRAP",
+        "body": "Here is the cruel twist for upcoming missions. If a probe finds microbial life on Europa, distinguishing a true second genesis from transplanted Earth descendants may be near-impossible — shared ancestry would mean shared biochemistry. The most exciting result, finding life, could turn out to be a mirror rather than a discovery."
+      }
+    ],
+    "generatedAt": "2026-05-30T17:37:42.312Z",
+    "label": "Panspermia & Planetary Protection",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-30-nnpc-posts-n4-97-trillion-revenue-n481-bn-profit-as-oil-outp": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARADOX",
+        "body": "Nigeria is one of the world's top crude exporters yet imports almost all of its gasoline. The article's 54% retail availability figure is the visible end of that contradiction: the country sells oil abroad and buys back the refined product it cannot make at home.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Nigeria, a major crude exporter, import most of its gasoline?",
+            "options": [
+              "Its state refineries ran for years at a fraction of capacity",
+              "Its crude is too heavy to refine into gasoline",
+              "OPEC rules forbid members from refining domestically"
+            ],
+            "correct": 0,
+            "explanation": "Nigeria's four state refineries operated near zero for much of the 2010s, forcing the country to export crude and import refined fuel."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE REFINERIES FAILED",
+        "body": "The four state refineries — built in the 1960s–80s — became a byword for rent extraction. Billions were spent on serial 'turnaround maintenance' contracts while throughput stayed near zero, because importing fuel created more lucrative subsidy and forex arbitrage than refining ever did.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The disruptor is private: Aliko Dangote's **$20bn Lagos refinery**, designed for 650,000 barrels a day, is the bet that could finally end Nigeria's import dependence — if the crude supply and pricing politics let it run at scale."
+          }
+        ]
+      },
+      {
+        "heading": "THE SUBSIDY THAT BROKE THE BUDGET",
+        "body": "For decades Lagos held pump prices below import cost via a fuel subsidy that swallowed a large share of government revenue. Tinubu scrapped it on his first day in 2023 and floated the naira; the currency lost more than half its value, and the chart below shows the resulting slide.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              1374.69,
+              1375.98,
+              1375.98,
+              1375.65,
+              1370.93,
+              1365.9,
+              1360.53,
+              1361.67,
+              1356.19465,
+              1356.19465,
+              1357.96,
+              1363.47,
+              1370.1,
+              1370.5,
+              1370.6,
+              1370.49,
+              1372.988035,
+              1372.74,
+              1371.26,
+              1372.34,
+              1371.25,
+              1370.05,
+              1372.25,
+              1372.25,
+              1367.13,
+              1370.94,
+              1372.84,
+              1373.66,
+              1369.78,
+              1371.7
+            ],
+            "periods": [
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30"
+            ],
+            "label": "Nigerian naira",
+            "unit": "NGN / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE QUOTA NIGERIA CAN'T FILL",
+        "body": "Nigeria chronically pumps below its OPEC quota — not by choice but because oil theft, pipeline sabotage, and underinvestment cap output. The 1.68m bpd 'record' in the article is high only against recent lows; it sits far beneath the country's 2.5m bpd capacity of the 2000s.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "OPEC crude output",
+            "peers": [
+              {
+                "value": 9,
+                "cc": "SA"
+              },
+              {
+                "value": 4.2,
+                "cc": "IQ"
+              },
+              {
+                "value": 2.9,
+                "cc": "AE"
+              },
+              {
+                "value": 1.5,
+                "cc": "NG"
+              },
+              {
+                "value": 1.2,
+                "cc": "LY"
+              },
+              {
+                "value": 1.1,
+                "cc": "AO"
+              },
+              {
+                "value": 1,
+                "cc": "DZ"
+              }
+            ],
+            "subjectCc": "NG",
+            "unit": "m bpd"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE OIL LEAKS",
+        "body": "The crude flows from the Niger Delta, and so does the loss. Industrial-scale 'bunkering' — tapping pipelines and barging stolen crude offshore — drains a meaningful share of production before it reaches export terminals, which is why declared output and theft track together.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG"
+            ],
+            "label": "Nigeria's oil geography",
+            "caption": "Crude is pumped in the Delta; fuel is consumed in Lagos and the capital.",
+            "markers": [
+              {
+                "lat": 4.8156,
+                "lng": 7.0498,
+                "label": "Port Harcourt refinery"
+              },
+              {
+                "lat": 6.4541,
+                "lng": 3.3947,
+                "label": "Lagos / Dangote refinery"
+              },
+              {
+                "lat": 9.0765,
+                "lng": 7.3986,
+                "label": "Abuja (gas pipeline target)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE ONE-CROP ECONOMY",
+        "body": "Oil is a small slice of Nigeria's GDP but the overwhelming bulk of its export earnings and a dominant share of federal revenue. This is the classic resource trap: when one commodity funds the state, every other sector is starved of investment and the currency lives and dies on the oil price.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Export earnings",
+                "value": "~85%",
+                "tone": "unfavorable",
+                "weight": 85
+              },
+              {
+                "label": "Govt revenue",
+                "value": "~50%",
+                "tone": "unfavorable",
+                "weight": 50
+              },
+              {
+                "label": "Share of GDP",
+                "value": "~8%",
+                "tone": "neutral",
+                "weight": 8
+              }
+            ],
+            "label": "Oil's grip on Nigeria"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-30"
+    ],
+    "generatedAt": "2026-05-30T17:38:24.771Z",
+    "label": "Nigeria's Oil Paradox",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-30-quantum-light-gives-a-20-fold-boost-to-ultrafast-laser-proce": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FLOOR YOU CAN'T LOWER",
+        "body": "Even a perfect laser is grainy. Photons arrive at random, like rain on a roof, and that randomness sets a noise floor called shot noise. Signal-to-noise improves only as the square root of photon count — to halve the noise you must quadruple the light.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the **shot-noise limit** (or *standard quantum limit*): the precision wall every classical measurement hits, set not by the instrument but by the discreteness of light itself."
+          }
+        ]
+      },
+      {
+        "heading": "WHY YOU CAN'T JUST TURN IT UP",
+        "body": "The brute-force fix is more photons — crank the intensity until the signal drowns out the noise. But nonlinear signals grow with the square of intensity, and so does the damage: a bright enough pulse cooks the protein, bleaches the dye, or ionizes the cell you were trying to watch."
+      },
+      {
+        "heading": "THE HEISENBERG LOOPHOLE",
+        "body": "Heisenberg fixes the product of two uncertainties — amplitude and phase — but not how it's divided. Squeezed light pushes the noise out of the variable you measure and into the one you ignore. You beat shot noise in your channel for free, paying in a quantity that doesn't matter to the experiment.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How does squeezed light get below the shot-noise limit?",
+            "options": [
+              "It adds more photons to the beam",
+              "It moves quantum noise into an unmeasured variable",
+              "It cools the laser to near absolute zero",
+              "It eliminates quantum uncertainty entirely"
+            ],
+            "correct": 1,
+            "explanation": "Heisenberg fixes the product of amplitude and phase noise, so squeezing one below shot noise must inflate the other — you hide the noise where you aren't looking."
+          }
+        ]
+      },
+      {
+        "heading": "WHY INTENSITY DRIVES THE SIGNAL",
+        "body": "Ordinary optics is linear: double the light, double the response. Nonlinear effects — two photons absorbed at once, frequencies summing or mixing — scale with intensity squared or higher. They only switch on at brightness levels that conventional spectroscopy can't reach without harm, which is exactly the regime squeezing rescues."
+      },
+      {
+        "heading": "AN OLD IDEA, NEWLY USEFUL",
+        "body": "Squeezed light isn't new physics. Carlton Caves proposed it in 1981 to beat the noise limit in interferometers; Bell Labs generated it experimentally in 1985. Its first headline payoff came in gravitational-wave detection, where LIGO injected squeezed vacuum to sharpen its reach. Biology is the latest frontier for a forty-year-old trick.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1981",
+                "label": "Caves proposes squeezing for interferometry",
+                "emphasis": "start"
+              },
+              {
+                "year": "1985",
+                "label": "First experimental squeezed light (Bell Labs)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "LIGO runs with squeezed vacuum"
+              },
+              {
+                "year": "2026",
+                "label": "20× boost in ultrafast bio-spectroscopy"
+              }
+            ],
+            "label": "squeezed light, idea to instrument"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T17:39:03.677Z",
+    "label": "Squeezed Light & the Shot-Noise Limit",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-30-rulers-have-become-killers-mamata-fumes-over-attack-on-abhis": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DYNASTY",
+        "body": "Trinamool is built around Mamata Banerjee and her nephew Abhishek — the man who was pelted. He runs the party's organizational machine as its all-India general secretary, the heir-apparent in a party with no real second tier. An attack on him is read in Bengal as an attack on the succession itself.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Mamata Banerjee",
+                "role": "West Bengal Chief Minister",
+                "years": "2011–",
+                "cc": "IN"
+              },
+              {
+                "name": "Abhishek Banerjee",
+                "role": "TMC all-India gen. secretary",
+                "years": "2021–",
+                "cc": "IN"
+              }
+            ],
+            "label": "the Banerjee operation"
+          }
+        ]
+      },
+      {
+        "heading": "34 YEARS RED, THEN GREEN",
+        "body": "Bengal was governed by the Communist Party (Marxist) for 34 straight years — 1977 to 2011 — the longest democratically elected communist government in history. Mamata's Trinamool broke that streak and has held the state ever since. The BJP, despite surging, has never won Bengal.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1977",
+                "label": "Left Front takes power",
+                "emphasis": "start"
+              },
+              {
+                "year": "2011",
+                "label": "Mamata ends 34-year Left rule",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "BJP wins 18 of 42 Lok Sabha seats"
+              },
+              {
+                "year": "2021",
+                "label": "TMC wins third term"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1977",
+                "to": "2011",
+                "label": "Left Front (CPI-M)",
+                "tone": "neutral"
+              },
+              {
+                "from": "2011",
+                "to": "2026",
+                "label": "Trinamool",
+                "tone": "favorable"
+              }
+            ],
+            "label": "who has ruled Bengal"
+          }
+        ]
+      },
+      {
+        "heading": "VIOLENCE AS A FIXTURE",
+        "body": "Electoral violence in Bengal is not an aberration; it is a continuity that survived every change of regime. The Left's cadre control of villages, the Nandigram and Singur land battles, and the bloody 2018 panchayat polls — where dozens died — all run on the same logic: control the booth, control the result.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The recurring flashpoint is the *panchayat* — the village council. Whoever holds the panchayat controls local patronage and the polling-booth machinery, which is why rural Bengal, not Kolkata, is where the body count rises."
+          }
+        ]
+      },
+      {
+        "heading": "WHY EACH SIDE NEEDS ITS STORY",
+        "body": "Trinamool calling the attack a BJP 'plot' and the BJP calling it spontaneous 'public anger' is not just spin — it is the whole campaign in miniature. TMC needs to frame the BJP as an outside disruptor; the BJP needs to frame the state as seething against an entrenched incumbent.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which party has governed West Bengal continuously since 2011?",
+            "options": [
+              "Communist Party (CPI-M)",
+              "Bharatiya Janata Party",
+              "Trinamool Congress",
+              "Indian National Congress"
+            ],
+            "correct": 2,
+            "explanation": "Mamata Banerjee's Trinamool ended 34 years of Left Front rule in 2011 and has held the state through three terms; the BJP has never won Bengal."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T17:39:30.037Z",
+    "label": "West Bengal's Political Machine",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-30-uav-strike-on-zaporozhye-npp-is-first-ever-targeted-attack-o": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TURBINE HALL ISN'T THE REACTOR",
+        "body": "The turbine hall houses the steam turbines and generators — the part that makes electricity. It sits outside the reinforced containment dome that encloses the reactor core. That structural separation is why a wall could be breached while primary equipment survived: the dangerous radioactive material is meters of steel and concrete away from where the drone hit.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which part of a nuclear plant holds the radioactive core?",
+            "options": [
+              "The turbine hall",
+              "The containment dome",
+              "The cooling towers",
+              "The switchyard"
+            ],
+            "correct": 1,
+            "explanation": "The core sits inside the containment dome; the turbine hall only handles the steam that spins generators, carrying no reactor fuel."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A SHUT-DOWN REACTOR STILL NEEDS COOLING",
+        "body": "Even after fission stops, the fuel keeps generating heat from radioactive decay — initially several percent of full power, tapering over months. Lose cooling and that residual heat can melt the fuel anyway. Fukushima's reactors were already shut down when the tsunami hit; they melted down on decay heat alone.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is **decay heat**, and it is why \"the reactors are in **cold shutdown**\" is reassuring but not safe — cold shutdown still depends on pumps, power, and water that combat can sever."
+          }
+        ]
+      },
+      {
+        "heading": "THE WATER PROBLEM",
+        "body": "Zaporizhzhia drew its cooling water from the Kakhovka reservoir on the Dnieper. When the Kakhovka dam was destroyed in June 2023, the reservoir drained below the plant's intake, forcing reliance on a cooling pond and wells. A nuclear plant's deepest vulnerability is rarely the reactor itself — it is the unglamorous chain of water and electricity that keeps the core cool.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU"
+            ],
+            "label": "the plant and its lost water source",
+            "markers": [
+              {
+                "lat": 47.5119,
+                "lng": 34.5856,
+                "label": "Zaporizhzhia NPP"
+              },
+              {
+                "lat": 46.7783,
+                "lng": 33.3717,
+                "label": "Kakhovka dam (destroyed 2023)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE FIRST PLANT SEIZED IN COMBAT",
+        "body": "Russian forces captured Zaporizhzhia in March 2022 — the first time an operating nuclear plant has been taken and held during active warfare. The world's nuclear safety regime was built around accidents and human error, not artillery and drones near a running reactor. There is no precedent and no playbook.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "First reactor comes online"
+              },
+              {
+                "year": "1986",
+                "label": "Chernobyl disaster, 500km north"
+              },
+              {
+                "year": "2022-03",
+                "label": "Russian forces seize the plant",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-06",
+                "label": "Kakhovka dam destroyed"
+              },
+              {
+                "year": "2026-05",
+                "label": "Drone strikes turbine hall"
+              }
+            ],
+            "label": "a plant in a war zone"
+          }
+        ]
+      },
+      {
+        "heading": "EUROPE'S LARGEST",
+        "body": "With six reactors and roughly 5.7 gigawatts of capacity, Zaporizhzhia is the largest nuclear plant in Europe and among the largest on earth. Scale is part of the danger: six cores and their spent-fuel pools mean six times the inventory of radioactive material that must stay cooled and contained.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Nuclear plant capacity (selected)",
+            "peers": [
+              {
+                "value": 7.9,
+                "label": "Kashiwazaki (JP)"
+              },
+              {
+                "value": 6.2,
+                "label": "Bruce (CA)"
+              },
+              {
+                "value": 5.7,
+                "label": "Zaporizhzhia"
+              },
+              {
+                "value": 6.2,
+                "label": "Hanul (KR)"
+              },
+              {
+                "value": 5.5,
+                "label": "Gravelines (FR)"
+              },
+              {
+                "value": 5.3,
+                "label": "Paluel (FR)"
+              }
+            ],
+            "subjectLabel": "Zaporizhzhia",
+            "unit": "GW"
+          }
+        ]
+      },
+      {
+        "heading": "THE SEVEN PILLARS",
+        "body": "Early in the war the IAEA's director general laid out seven indispensable pillars of nuclear safety — physical integrity, working safety systems, off-site power, reliable cooling, undisrupted supply chains, radiation monitoring, and staff free to make decisions without coercion. At Zaporizhzhia nearly every one has been compromised at some point, which is why the agency warns the real risk is not one strike but the slow erosion of all seven at once."
+      }
+    ],
+    "generatedAt": "2026-05-30T17:40:10.837Z",
+    "label": "Anatomy of a Nuclear Plant Under Fire",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-30-u-s-and-cuban-military-officials-meet-outside-of-guant-namo": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PERPETUAL LEASE",
+        "body": "The US has occupied Guantánamo Bay since 1903 under a lease that has no end date and can only be modified by mutual consent. Cuba cannot evict the tenant, and the tenant never has to leave — a structure designed precisely so that no future Cuban government could undo it.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1903",
+                "label": "Platt Amendment lease signed"
+              },
+              {
+                "year": "1959",
+                "label": "Cuban Revolution",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1960",
+                "label": "US trade embargo begins"
+              },
+              {
+                "year": "1962",
+                "label": "Cuban Missile Crisis"
+              },
+              {
+                "year": "1991",
+                "label": "Soviet collapse → Special Period"
+              },
+              {
+                "year": "1996",
+                "label": "Helms-Burton codifies embargo"
+              },
+              {
+                "year": "2015",
+                "label": "Brief Obama-era thaw"
+              }
+            ],
+            "label": "how the standoff was built"
+          }
+        ]
+      },
+      {
+        "heading": "THE UNCASHED RENT",
+        "body": "Washington still mails an annual rent check — a few thousand dollars set by a 1934 treaty. Since 1959, Havana has refused to cash all but one of them (an early accounting error), because cashing the checks would imply consent to an occupation it calls illegal.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Cuba refuse to cash the US rent checks for Guantánamo?",
+            "options": [
+              "The amount is too small to bother with",
+              "Cashing them would legally acknowledge the lease as valid",
+              "US sanctions block Cuban banks from processing them",
+              "The checks are made out to a defunct government"
+            ],
+            "correct": 1,
+            "explanation": "Accepting payment would constitute consent — so Havana lets the checks pile up uncashed to keep its claim that the occupation is illegitimate."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A PRESIDENT CAN'T JUST LIFT IT",
+        "body": "The embargo began as executive orders, but the 1996 Helms-Burton Act wrote it into statute. That means no president can end it alone — Congress must repeal the law and certify that Havana has met democratization conditions first.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 1992 *Cuban Democracy Act* and 1996 **Helms-Burton Act** turned a reversible foreign-policy tool into a near-permanent legal regime — the reason every thaw since has been fragile and easily reversed."
+          }
+        ]
+      },
+      {
+        "heading": "CUBA'S OIL HAS ALWAYS COME FROM A PATRON",
+        "body": "Cuba produces little crude of its own and has leaned on a single subsidizing patron for decades — the USSR until 1991, then Venezuela under the PetroCaribe arrangement. When the Soviet supply vanished, the economy contracted by a third in the 'Special Period.' Venezuela's own collapse has now reopened that same vulnerability.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CU",
+              "US",
+              "VE"
+            ],
+            "label": "the oil lifeline",
+            "markers": [
+              {
+                "lat": 19.9061,
+                "lng": -75.0989,
+                "label": "Guantánamo Bay"
+              },
+              {
+                "lat": 23.1136,
+                "lng": -82.3666,
+                "label": "Havana"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT SOUTHCOM IS",
+        "body": "US Southern Command is the geographic combatant command responsible for Central America, South America, and the Caribbean. It has no permanent war to fight; its work is largely counter-narcotics, disaster response, and managing the optics of US power in a hemisphere wary of intervention — which is why a meeting at a fenceline counts as news."
+      }
+    ],
+    "generatedAt": "2026-05-30T17:40:49.239Z",
+    "label": "Guantánamo & the US-Cuba Standoff",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-30-u-s-says-it-seized-about-1-billion-in-iranian-crypto-as-pres": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW YOU SEIZE A WALLET",
+        "body": "Crypto is bearer property: whoever holds the private key controls the funds, and no government can confiscate what it cannot unlock. A $1bn seizure means Treasury obtained the keys — through an informant, a hacked exchange, a seized server — or pressured the issuer to freeze the coins in place.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Most dollar-pegged stablecoins are centrally controlled. **Tether** (USDT) can blacklist any address on command, and has frozen billions at law-enforcement request — so a sanctioned wallet full of USDT is not really *bearer* money at all."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSPARENCY PARADOX",
+        "body": "Every blockchain transaction is public and permanent. Pseudonymous addresses give privacy, but the transaction graph — who sent what to whom — is visible to everyone forever. This makes crypto simultaneously the easiest financial system to use anonymously and the easiest to trace forensically once one address is identified.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is a public blockchain often worse than a bank for hiding sanctioned money?",
+            "options": [
+              "Transactions are anonymous but permanently traceable once one address is de-anonymized",
+              "Banks never report suspicious activity to regulators",
+              "Blockchains delete old transactions after a year",
+              "Crypto cannot be converted to dollars"
+            ],
+            "correct": 0,
+            "explanation": "The ledger is permanent and public, so one identified address unravels the whole transaction graph backward and forward."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IRAN REACHED FOR CRYPTO",
+        "body": "Sanctions cut Iran out of SWIFT and froze its access to correspondent banking, so oil revenue and procurement payments needed a rail outside the dollar system. Crypto, gold, and barter through friendly intermediaries became the workaround — moving value to Dubai, Ankara, Beijing, and Moscow without touching a US-clearing bank.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "AE",
+              "TR",
+              "RU",
+              "CN"
+            ],
+            "label": "Iran's sanctions-evasion corridors"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRIVACY-COIN ARMS RACE",
+        "body": "Bitcoin's traceability pushed sanctioned actors toward privacy coins like Monero, which hide sender, receiver, and amount cryptographically rather than just behind a pseudonym. Forensic firms cannot follow Monero the way they follow Bitcoin, which is why exchanges in regulated markets increasingly delist it.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              379.51,
+              379.15,
+              383.29,
+              391.73,
+              405.8,
+              411.56,
+              415.82,
+              399.74,
+              400.91,
+              410.2,
+              410.61,
+              415.65,
+              411.18,
+              397.52,
+              395.66,
+              381.61,
+              388.52,
+              388.69,
+              383.37,
+              399.05,
+              404.4,
+              391.88,
+              381.31,
+              387.09,
+              392.13,
+              385.86,
+              379.72,
+              392.44,
+              354.29,
+              396.63,
+              372.76
+            ],
+            "periods": [
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 30"
+            ],
+            "label": "Monero",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "HOW 200% INFLATION HAPPENS",
+        "body": "Sanctions collapse the currency by choking export earnings; a weaker currency makes imports dearer; the state prints money to pay soldiers and subsidize bread, which weakens the currency further. Each turn of the loop compounds. Unpaid troops and food vouchers are the late-stage symptoms of a state monetizing its deficit.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Iran",
+                "value": "~200%",
+                "cc": "IR",
+                "tone": "unfavorable",
+                "weight": 200
+              },
+              {
+                "label": "Venezuela",
+                "value": "~190%",
+                "cc": "VE",
+                "tone": "unfavorable",
+                "weight": 190
+              },
+              {
+                "label": "Argentina",
+                "value": "~110%",
+                "cc": "AR",
+                "tone": "unfavorable",
+                "weight": 110
+              },
+              {
+                "label": "Turkey",
+                "value": "~40%",
+                "cc": "TR",
+                "tone": "neutral",
+                "weight": 40
+              },
+              {
+                "label": "USA",
+                "value": "~3%",
+                "cc": "US",
+                "tone": "favorable",
+                "weight": 3
+              }
+            ],
+            "label": "annual inflation, sanctioned / crisis economies (approx)"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEVERAGE QUESTION",
+        "body": "Maximum-pressure campaigns assume economic pain forces concessions, but the historical record is mixed: sanctions reliably impoverish a population while rarely toppling the regime imposing the hardship. Tehran negotiating on nuclear terms while absorbing a $1bn seizure is the familiar standoff — pressure as a bargaining chip, not a knockout blow."
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-30"
+    ],
+    "generatedAt": "2026-05-30T17:41:26.751Z",
+    "label": "Crypto Sanctions & the Seizure Mechanism",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-30-wall-street-s-trillion-dollar-dilemma-why-ai-powered-hackers": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "An attacker scanning a protocol needs to find one flaw, once. The defender has to be right about every line, forever — on a fixed budget, against an adversary that probes 24/7 for free. Automation tilts this further: a bot can fuzz thousands of contracts continuously while a human audit team reviews one codebase for a few weeks.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the oldest law of security: the defender must close *every* door, the attacker needs *one* left open. AI doesn't change the law — it just lets the attacker knock on every door at once."
+          }
+        ]
+      },
+      {
+        "heading": "CODE IS LAW",
+        "body": "A deployed smart contract is immutable — its bytecode cannot be edited once it is on-chain. There is no patch, no hotfix, no taking the server down. If a bug is found, the only defenses are to drain the funds yourself before the attacker does, or to have built an upgrade-proxy in advance. This is why a flaw discovered in production is often catastrophic rather than embarrassing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't a DeFi protocol simply patch a smart-contract bug once it's discovered?",
+            "options": [
+              "Patching requires a majority vote of token holders",
+              "Deployed contract code is immutable and can't be edited on-chain",
+              "Blockchains only allow updates during scheduled maintenance windows",
+              "Regulators must approve any change to live financial code"
+            ],
+            "correct": 1,
+            "explanation": "Once bytecode is deployed it is permanent; teams must redeploy a new contract and migrate funds, which itself opens a window for attack."
+          }
+        ]
+      },
+      {
+        "heading": "THE FLASH LOAN WEAPON",
+        "body": "DeFi lets anyone borrow millions with zero collateral — as long as the loan is borrowed and repaid in the same transaction. This 'flash loan' was designed for arbitrage, but it hands attackers temporary capital large enough to distort a protocol's price oracles or governance votes, execute the exploit, and repay the loan, all atomically. The attacker risks almost nothing of their own.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A flash loan collapses the barrier that protects traditional finance: you no longer need to *be* rich to *act* rich for one block. **Capital requirement: zero. Window: one transaction.**"
+          }
+        ]
+      },
+      {
+        "heading": "THE BIGGEST HEIST EVER",
+        "body": "The $1.46bn Bybit breach is the largest crypto theft on record — bigger than the Ronin, Poly Network, and Mt. Gox losses that defined earlier eras. Unlike a bank robbery, the loot is pseudonymous and instantly portable, which is why the value stolen per incident has climbed even as the number of platforms hardens.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Largest crypto thefts",
+            "peers": [
+              {
+                "value": 1460,
+                "label": "Bybit"
+              },
+              {
+                "value": 625,
+                "label": "Ronin"
+              },
+              {
+                "value": 610,
+                "label": "Poly Network"
+              },
+              {
+                "value": 570,
+                "label": "BNB Bridge"
+              },
+              {
+                "value": 470,
+                "label": "Mt. Gox"
+              },
+              {
+                "value": 326,
+                "label": "Wormhole"
+              }
+            ],
+            "subjectLabel": "Bybit",
+            "unit": "$m"
+          }
+        ]
+      },
+      {
+        "heading": "WHO STEALS, AND WHY",
+        "body": "A large share of major crypto theft traces to North Korea's Lazarus Group. UN sanctions cut the regime off from the banking system, so stolen crypto has become a core funding stream — the UN Panel of Experts estimated cyber operations funded roughly 40% of the weapons program as of 2023. Stolen coins are washed through mixers and OTC brokers before converting to hard currency.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "theft",
+                "label": "Stolen crypto"
+              },
+              {
+                "id": "mixer",
+                "label": "Mixers / bridges"
+              },
+              {
+                "id": "otc",
+                "label": "OTC brokers"
+              },
+              {
+                "id": "regime",
+                "label": "Sanctioned state"
+              }
+            ],
+            "links": [
+              {
+                "source": "theft",
+                "target": "mixer",
+                "value": 100,
+                "label": "obfuscate trail"
+              },
+              {
+                "source": "mixer",
+                "target": "otc",
+                "value": 85,
+                "label": "swap to liquid coins"
+              },
+              {
+                "source": "otc",
+                "target": "regime",
+                "value": 70,
+                "label": "cash out"
+              }
+            ],
+            "label": "how stolen crypto is laundered"
+          }
+        ]
+      },
+      {
+        "heading": "THE AUDIT ILLUSION",
+        "body": "A security audit certifies a snapshot — the code as it was on the day it was reviewed. But DeFi protocols are composable: they plug into other protocols' price feeds, lending pools, and tokens. A contract that was safe in isolation can be broken by a change in a dependency it never controlled. The audit checkmark reassures users far more than it should."
+      }
+    ],
+    "generatedAt": "2026-05-30T17:42:21.869Z",
+    "label": "DeFi Exploits & the Attacker's Edge",
+    "category": "tech",
+    "articleCount": 1
   }
 }
