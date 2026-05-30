@@ -266087,5 +266087,1477 @@
     "label": "Striking the War's Cash Engine",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-05-28-claude-opus-4-8": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY GENERATION IS MEMORY-BOUND",
+        "body": "Producing each token requires streaming the model's entire set of weights out of GPU memory. The bottleneck is rarely arithmetic — modern GPUs can do the math far faster than they can read the numbers. This is why 'cheaper inference' almost never means a smaller model; it means moving those weights fewer times per token served.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the primary bottleneck when an LLM generates text token by token?",
+            "options": [
+              "Memory bandwidth — reading the weights out of memory",
+              "Raw arithmetic throughput (FLOPs)",
+              "Network latency between the user and the datacenter",
+              "Disk read speed on the server"
+            ],
+            "correct": 0,
+            "explanation": "Each token requires reading all the model's weights from memory; GPUs finish the math long before the memory finishes feeding them."
+          }
+        ]
+      },
+      {
+        "heading": "THE LATENCY–THROUGHPUT TRADEOFF",
+        "body": "A serving system can answer one request blazingly fast, or pack many requests together and answer all of them cheaply — but not both at once. 'Fast mode' buys low latency by reserving capacity; the cheaper tiers batch your request with strangers' and make you wait. Cutting fast-mode cost means the same speed now sits closer to the batched price.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Batch / async",
+                "value": "~50% off",
+                "tone": "favorable"
+              },
+              {
+                "label": "Standard",
+                "value": "baseline",
+                "tone": "neutral"
+              },
+              {
+                "label": "Priority / fast",
+                "value": "premium",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "typical LLM serving tiers"
+          }
+        ]
+      },
+      {
+        "heading": "HOW COST FALLS WITHOUT A SMALLER MODEL",
+        "body": "The standard trick is speculative decoding: a tiny, fast model drafts several tokens ahead, and the large model verifies the whole batch in a single pass instead of generating one token at a time. The answers are identical to the big model alone — you have simply turned a slow sequential process into a fast parallel check.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**Speculative decoding** lets a cheap *draft* model guess ahead while the expensive model only *checks* — same output, far fewer slow sequential steps."
+          }
+        ]
+      },
+      {
+        "heading": "WHY AGENTS BURN TOKENS",
+        "body": "A single answer reads the prompt once. An agent doing a multi-step task re-reads its growing history at every step — tool results, prior reasoning, the original instructions — so a long task can consume tokens many times over before it finishes. 'Dynamic workflow support' for large agentic tasks is mostly about managing that ballooning context so the cost and quality don't collapse halfway through.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Attention cost grows with the *square* of context length — double the history and you roughly **quadruple** the work for that step. Long agent runs feel the bite first."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CLICKING IS HARDER THAN CHATTING",
+        "body": "Computer-use benchmarks score whether a model can drive a real graphical interface — find the button, click the right pixel, recover when a menu opens unexpectedly. It is far harder than text Q&A because the screen is only semi-structured: layouts shift, dialogs interrupt, and one wrong click derails every step that follows. A high score reflects reliability under exactly those interruptions, not raw knowledge."
+      }
+    ],
+    "generatedAt": "2026-05-30T12:27:31.758Z",
+    "label": "The Economics of LLM Inference",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-28-isar-aerospace-signs-agreement-to-launch-from-future-canadia": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MAIDEN-FLIGHT GRAVEYARD",
+        "body": "Going 0-for-3 is not a death sentence in orbital rocketry — it is closer to the norm. New liquid-fuel launchers routinely fail their first attempts; the engineering only converges after real flight data exposes what ground tests cannot. SpaceX nearly went bankrupt failing its first three Falcon 1 flights before reaching orbit on the fourth in 2008.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ariane 1",
+                "value": "1st flight",
+                "weight": 1,
+                "tone": "favorable"
+              },
+              {
+                "label": "Electron",
+                "value": "2nd flight",
+                "weight": 2,
+                "tone": "neutral"
+              },
+              {
+                "label": "Firefly Alpha",
+                "value": "2nd flight",
+                "weight": 2,
+                "tone": "neutral"
+              },
+              {
+                "label": "Falcon 1",
+                "value": "4th flight",
+                "weight": 4,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Astra",
+                "value": "~5th flight",
+                "weight": 5,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "flights to first orbital success"
+          }
+        ]
+      },
+      {
+        "heading": "WHY LATITUDE IS DESTINY",
+        "body": "A launch site's latitude is its most fixed asset. Sites near the equator borrow the Earth's spin — about 1,670 km/h of free eastward velocity — which is why Kourou and Cape Canaveral sit where they do. High-latitude pads like Andøya in Norway and Nova Scotia get almost none of that boost, but they buy a clean line to polar and sun-synchronous orbits, where Earth-observation and reconnaissance satellites live.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NO",
+              "CA",
+              "GF"
+            ],
+            "label": "the latitude tradeoff",
+            "caption": "high-latitude pads trade rotation boost for polar access",
+            "markers": [
+              {
+                "lat": 69.29,
+                "lng": 16.02,
+                "label": "Andøya, Norway"
+              },
+              {
+                "lat": 45.32,
+                "lng": -61,
+                "label": "Nova Scotia spaceport"
+              },
+              {
+                "lat": 5.16,
+                "lng": -52.68,
+                "label": "Kourou (equatorial)"
+              }
+            ]
+          },
+          {
+            "type": "prose",
+            "text": "Equatorial sites favor *geostationary* orbits; high-latitude sites favor *polar* and **sun-synchronous** orbits — the workhorse paths for imaging satellites."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BUY GEOGRAPHY EARLY",
+        "body": "A rocket startup with no proven rocket booking a second country looks premature — until you realize spaceports are the slow part. Environmental permits, range-safety corridors over open ocean, and host-government agreements take years to secure. Locking in launch geography before a market shakeout is cheaper than fighting for it after, when survivors compete for the same scarce, certified pads.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do most major spaceports sit close to the equator?",
+            "options": [
+              "Earth's rotation adds free eastward velocity at the equator",
+              "The atmosphere is thinner near the equator",
+              "Satellites orbit closer to the equator",
+              "Warmer weather reduces fuel freezing"
+            ],
+            "correct": 0,
+            "explanation": "The equator spins fastest (~1,670 km/h), giving eastward launches a velocity head start a rocket would otherwise burn fuel to gain."
+          }
+        ]
+      },
+      {
+        "heading": "EUROPE'S ACCESS GAP",
+        "body": "Isar exists because Europe briefly lost the ability to launch itself. Russia pulled its Soyuz rockets from Kourou after the 2022 invasion of Ukraine, Ariane 5 retired in 2023, and Ariane 6 arrived years late. For a stretch, Europe had no sovereign path to orbit — the opening that German startups like Isar and Rocket Factory Augsburg were built to fill.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2022",
+                "label": "Russia withdraws Soyuz from Kourou",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-07",
+                "label": "Ariane 5 retires"
+              },
+              {
+                "year": "2024-07",
+                "label": "Ariane 6 maiden flight"
+              },
+              {
+                "year": "2025",
+                "label": "Isar Spectrum's failed debut"
+              }
+            ],
+            "label": "Europe's launch gap"
+          }
+        ]
+      },
+      {
+        "heading": "THE SMALLSAT SHAKEOUT",
+        "body": "Dozens of small-launch startups raised money chasing the same promise: cheap, dedicated rides for the satellite boom. But demand has consolidated around a handful of providers, and SpaceX's rideshare missions undercut everyone on price. Most of the contenders will not survive — which is exactly why the survivors are racing to nail down hardware, customers, and launch sites now."
+      }
+    ],
+    "generatedAt": "2026-05-30T12:28:33.568Z",
+    "label": "Small Launch & Spaceport Geography",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-29-critical-minerals-the-west-is-learning-the-wrong-lesson-from": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE REAL CHOKEPOINT IS REFINING",
+        "body": "The West frets about who digs ore out of the ground, but the binding constraint is who processes it. China refines the dominant share of nearly every critical mineral — and a mine in Australia or Congo still ships its concentrate to China to become usable metal.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Rare earths",
+                "value": "~90%",
+                "tone": "unfavorable",
+                "weight": 90
+              },
+              {
+                "label": "Graphite",
+                "value": "~90%",
+                "tone": "unfavorable",
+                "weight": 90
+              },
+              {
+                "label": "Cobalt",
+                "value": "~75%",
+                "tone": "unfavorable",
+                "weight": 75
+              },
+              {
+                "label": "Lithium",
+                "value": "~65%",
+                "tone": "unfavorable",
+                "weight": 65
+              },
+              {
+                "label": "Nickel",
+                "value": "~35%",
+                "tone": "neutral",
+                "weight": 35
+              }
+            ],
+            "label": "China's share of global refining (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "SOCIAL LICENSE TO OPERATE",
+        "body": "A mine can hold every legal permit and still be shut by the community around it through blockades, lawsuits, and protests. Industry calls the missing ingredient the social license to operate — informal, unwritten community acceptance that no government can grant.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The term *social license to operate* emerged from the Canadian mining sector in the late 1990s after permitted projects were repeatedly halted by local opposition. It is **consent, not compliance** — and it can be revoked overnight."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GOVERNANCE BEATS GEOLOGY",
+        "body": "The largest deposits are useless if the project can't stay open for the 20–40 years a mine needs to repay its capital. Permitting delays, expropriation, and community revolt are the real risks — which is why a poorer deposit in a stable, consenting jurisdiction often beats a richer one in a hostile one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where does China hold its largest lead in the critical-minerals supply chain?",
+            "options": [
+              "Owning the most mines",
+              "Refining and processing the ore",
+              "Holding the largest reserves in the ground",
+              "Manufacturing the mining equipment"
+            ],
+            "correct": 1,
+            "explanation": "China's dominance is overwhelmingly in midstream refining — even ore mined elsewhere is shipped to China to be processed into usable metal."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY OF SUPPLY",
+        "body": "Extraction and processing are split across the planet: cobalt comes mostly from the Congo's Copperbelt, nickel increasingly from Indonesia, lithium from Australia's hard-rock mines — and the concentrate from all three converges on Chinese refineries.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CD",
+              "ZM",
+              "ID",
+              "AU",
+              "CN"
+            ],
+            "label": "mine to refinery",
+            "markers": [
+              {
+                "lat": -10.72,
+                "lng": 25.5,
+                "label": "DRC cobalt belt"
+              },
+              {
+                "lat": -3.55,
+                "lng": 122.51,
+                "label": "Sulawesi nickel"
+              },
+              {
+                "lat": -30.79,
+                "lng": 121.47,
+                "label": "Greenbushes lithium"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE RESOURCE CURSE",
+        "body": "Mineral wealth concentrated in the state's hands tends to fund repression rather than development — Congo's cobalt has coincided with decades of conflict, not prosperity. China's bet is that buying community-level consent, not just central-government deals, is what keeps mines producing through that instability."
+      }
+    ],
+    "generatedAt": "2026-05-30T12:29:09.276Z",
+    "label": "Critical Minerals & Social License",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-30-16-feared-dead-in-suspected-bandits-reprisal-attack-on-katsi": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "NOT JIHADISTS",
+        "body": "Northwest Nigeria's bandits are not Boko Haram or ISWAP. They are armed criminal gangs — many rooted in Fulani herder communities — driven by cattle rustling, kidnapping, and land disputes, not ideology. Conflating them with the jihadist insurgency in the northeast misreads both the cause and the cure."
+      },
+      {
+        "heading": "THE GOVERNANCE VACUUM",
+        "body": "Katsina, Zamfara, and Sokoto are vast rural states where the federal police presence is thin and the army covers territory the size of a small country. Where the state cannot project force, gangs become the de-facto authority — taxing villages, levying 'protection,' and controlling movement.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "NE",
+              "TD",
+              "BJ"
+            ],
+            "label": "Nigeria's northwest banditry belt",
+            "markers": [
+              {
+                "lat": 12.9908,
+                "lng": 7.6018,
+                "label": "Katsina"
+              },
+              {
+                "lat": 12.1228,
+                "lng": 6.2236,
+                "label": "Zamfara"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE REPRISAL TRAP",
+        "body": "When villagers kill bandits, retaliation is near-certain and disproportionate — two dead bandits answered by sixteen dead villagers. The asymmetry is deliberate: collective punishment deters future resistance and keeps communities paying rather than fighting.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Many villages raise *yan sa kai* — local vigilante self-defense groups. They fill the policing gap, but without firepower they often invite exactly the reprisals seen here."
+          }
+        ]
+      },
+      {
+        "heading": "THE RANSOM INDUSTRY",
+        "body": "Mass kidnapping in the northwest is a mature business with specialised roles — scouts, raiders, negotiators, financiers — each taking a cut. Most families pay quietly, so recorded ransom totals are a fraction of the real cash flow sustaining the gangs.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "fam",
+                "label": "Families"
+              },
+              {
+                "id": "neg",
+                "label": "Negotiators"
+              },
+              {
+                "id": "raid",
+                "label": "Raiders"
+              },
+              {
+                "id": "fin",
+                "label": "Financiers"
+              },
+              {
+                "id": "arms",
+                "label": "Arms / fuel"
+              }
+            ],
+            "links": [
+              {
+                "source": "fam",
+                "target": "neg",
+                "value": 100,
+                "label": "ransom"
+              },
+              {
+                "source": "neg",
+                "target": "raid",
+                "value": 55
+              },
+              {
+                "source": "neg",
+                "target": "fin",
+                "value": 30
+              },
+              {
+                "source": "raid",
+                "target": "arms",
+                "value": 35
+              }
+            ],
+            "label": "how a kidnapping operation pays out"
+          }
+        ]
+      },
+      {
+        "heading": "THE NAIRA SQUEEZE",
+        "body": "Banditry feeds on rural poverty, and that poverty deepened as the naira lost most of its value after the 2023 float and fuel-subsidy removal. A collapsing currency raises the price of food, fertiliser, and fuel — pushing more young men toward gangs as the only paying employer.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              1374.69,
+              1375.98,
+              1375.98,
+              1375.65,
+              1370.93,
+              1365.9,
+              1360.53,
+              1361.67,
+              1356.19465,
+              1356.19465,
+              1357.96,
+              1363.47,
+              1370.1,
+              1370.5,
+              1370.6,
+              1370.49,
+              1372.988035,
+              1372.74,
+              1371.26,
+              1372.34,
+              1371.25,
+              1370.05,
+              1372.25,
+              1372.25,
+              1367.13,
+              1370.94,
+              1372.84,
+              1373.66,
+              1369.78,
+              1371.7
+            ],
+            "periods": [
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30"
+            ],
+            "label": "Nigerian naira",
+            "unit": "NGN / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHO IS MOST EXPOSED",
+        "body": "The victims are overwhelmingly subsistence farmers in remote villages with no road access, no cell coverage, and no nearby police post. Their isolation is precisely what makes them targets: raids can happen mid-prayer in daylight with no chance of a rapid response.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What primarily drives Nigeria's northwest 'bandits,' unlike the northeast insurgency?",
+            "options": [
+              "Jihadist ideology and a caliphate project",
+              "Criminal profit — rustling, kidnapping, land disputes",
+              "Separatist demands for an independent state",
+              "Foreign-state sponsorship"
+            ],
+            "correct": 1,
+            "explanation": "Northwest banditry is economically motivated organised crime, distinct from Boko Haram/ISWAP's ideological insurgency in the northeast."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-30"
+    ],
+    "generatedAt": "2026-05-30T12:29:50.564Z",
+    "label": "Nigeria's Bandit Economy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-30-at-least-22-refugees-returning-from-pakistan-killed-after-tr": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EXPULSION CYCLE",
+        "body": "Afghans have crossed this border in both directions for over four decades — fleeing the Soviets in 1979, the civil war of the 1990s, and the Taliban's first emirate, then returning and fleeing again. Pakistan's 2023 crackdown is the latest reversal of a tide that has never settled.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Soviet invasion sparks mass exodus",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1996",
+                "label": "Taliban's first emirate"
+              },
+              {
+                "year": "2001",
+                "label": "US invasion, partial returns"
+              },
+              {
+                "year": "2021",
+                "label": "Taliban retake Kabul"
+              },
+              {
+                "year": "2023",
+                "label": "Pakistan deportation drive begins"
+              }
+            ],
+            "label": "four decades of displacement"
+          }
+        ]
+      },
+      {
+        "heading": "THE ENFORCEMENT MECHANISM",
+        "body": "Pakistan's drive does not deport people by court order; it uses documentation raids. Police demand proof of registration, and Afghans who cannot produce a valid card — including many born in Pakistan — are detained and pushed to the border, regardless of how long they have lived there.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal category that strips protection is the **undocumented** Afghan — possibly 1.5 million people with no card, distinct from the ~1.3 million UNHCR-registered refugees who hold *Proof of Registration*."
+          }
+        ]
+      },
+      {
+        "heading": "THE LINE THAT ISN'T A BORDER",
+        "body": "The frontier returnees cross — the Durand Line — was drawn by British India in 1893, slicing straight through Pashtun tribal lands. No Afghan government has ever formally recognized it, which is why families, smuggling, and militancy have always moved across it as if it were not there.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AF",
+              "PK"
+            ],
+            "label": "the Kabul road from the frontier",
+            "markers": [
+              {
+                "lat": 34.0966,
+                "lng": 71.0758,
+                "label": "Torkham crossing"
+              },
+              {
+                "lat": 34.6601,
+                "lng": 70.2003,
+                "label": "Laghman (crash site)"
+              },
+              {
+                "lat": 34.5553,
+                "lng": 69.2075,
+                "label": "Kabul"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE DIASPORA LIVES",
+        "body": "Afghanistan produced one of the largest refugee populations on earth, and two neighbors carry almost all of it. Iran hosts slightly more than Pakistan, and the two together dwarf every Western country that resettled Afghans after 2021.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Iran",
+                "value": "~3.8M",
+                "cc": "IR",
+                "weight": 38
+              },
+              {
+                "label": "Pakistan",
+                "value": "~2.8M",
+                "cc": "PK",
+                "weight": 28
+              },
+              {
+                "label": "Germany",
+                "value": "~0.4M",
+                "cc": "DE",
+                "weight": 4
+              },
+              {
+                "label": "Turkey",
+                "value": "~0.3M",
+                "cc": "TR",
+                "weight": 3
+              }
+            ],
+            "label": "Afghan refugees by host country (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE ABSORPTION GAP",
+        "body": "A returnee is not a homecoming; it is an arrival into an economy that cannot absorb them. Afghanistan's GDP contracted sharply after 2021 aid cutoffs, and hundreds of thousands of returnees compete for jobs and shelter that did not exist for the people already there.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country hosts the largest Afghan refugee population?",
+            "options": [
+              "Pakistan",
+              "Iran",
+              "Germany",
+              "Turkey"
+            ],
+            "correct": 1,
+            "explanation": "Iran hosts roughly 3.8 million Afghans — marginally more than Pakistan and far more than any Western state."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T12:30:23.418Z",
+    "label": "Afghan Returns & the Durand Line",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-30-axial-encoding-unlocks-up-to-eightfold-faster-3d-microscopy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE REAL CEILING IS LIGHT",
+        "body": "The intuition that microscopy is limited by camera speed is wrong for living cells. The binding constraint is the photon budget: a fluorescent molecule emits only a finite number of photons before it bleaches, and the cell itself is damaged by the very light used to see it. You cannot simply illuminate harder to go faster.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What fundamentally caps how fast you can image a living cell in 3D?",
+            "options": [
+              "The frame rate of the camera",
+              "The light the sample can tolerate before damage",
+              "The magnification of the objective lens",
+              "The speed of the computer processing the data"
+            ],
+            "correct": 1,
+            "explanation": "Fluorophores bleach and live cells suffer phototoxicity, so the total light dose — not hardware speed — sets the limit."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 3D MULTIPLIES THE DOSE",
+        "body": "A 2D image exposes the sample once. To build a 3D stack you must image plane after plane along the depth axis, and each plane re-illuminates the whole sample. Imaging deeper or more finely means more total light hitting cells that are already near their tolerance — the cost of the third dimension is paid in photons.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The depth direction is the *axial* axis (the z-axis). Resolving it well demands many closely-spaced slices — which is exactly why **phototoxicity** and **photobleaching** scale with how much 3D detail you want."
+          }
+        ]
+      },
+      {
+        "heading": "PHOTOTOXICITY VS PHOTOBLEACHING",
+        "body": "Two distinct failures lurk in every fluorescence experiment. Photobleaching destroys the dye — the signal fades and the image goes dark. Phototoxicity destroys the cell — light generates reactive oxygen species that alter or kill the very biology you are trying to watch undisturbed. A method can be gentle on dyes and still cook the cell, or vice versa."
+      },
+      {
+        "heading": "THE ENCODING TRICK",
+        "body": "Instead of scanning one plane at a time, axial encoding multiplexes depth information into a single acquisition — the depth is recovered computationally rather than by re-illuminating slice by slice. Spreading the same photons across more of the volume at once is how you buy speed and light tolerance together, with no new optics bolted onto the microscope."
+      },
+      {
+        "heading": "THE LINEAGE",
+        "body": "Each leap in microscopy has chased the same prize: more information per photon. Marvin Minsky patented the confocal principle in 1957 to reject out-of-focus blur. Two-photon excitation (1990) confined damage to the focal point. Light-sheet imaging (2004) illuminated only the plane in view, slashing phototoxicity for embryos. Beating the diffraction limit won the 2014 Nobel.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1957",
+                "label": "Minsky patents the confocal microscope"
+              },
+              {
+                "year": "1990",
+                "label": "Two-photon microscopy (Denk)"
+              },
+              {
+                "year": "2004",
+                "label": "Light-sheet imaging cuts phototoxicity",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2014",
+                "label": "Super-resolution wins the Nobel"
+              }
+            ],
+            "label": "buying more signal per photon"
+          },
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Marvin Minsky",
+                "role": "Confocal principle",
+                "years": "1957",
+                "cc": "US"
+              },
+              {
+                "name": "Winfried Denk",
+                "role": "Two-photon excitation",
+                "years": "1990",
+                "cc": "DE"
+              },
+              {
+                "name": "Eric Betzig",
+                "role": "Super-resolution Nobel",
+                "years": "2014",
+                "cc": "US"
+              },
+              {
+                "name": "Stefan Hell",
+                "role": "Super-resolution Nobel",
+                "years": "2014",
+                "cc": "DE"
+              }
+            ],
+            "label": "who reshaped the photon budget"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T12:31:06.094Z",
+    "label": "The Photon Budget in Live-Cell Imaging",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-30-cryowriter-a-robotic-solution-for-improved-cryo-em-grid-prep": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RESOLUTION REVOLUTION",
+        "body": "Cryo-EM sat at the margins of structural biology for decades — nicknamed 'blob-ology' because it resolved only fuzzy shapes. Then direct electron detectors arrived around 2013 and resolution leapt to near-atomic; the field's founders won the 2017 Nobel in Chemistry. The bottleneck moved from the microscope to the sample.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Dubochet vitrifies water"
+              },
+              {
+                "year": "2013",
+                "label": "direct electron detectors",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017",
+                "label": "Nobel Prize in Chemistry"
+              }
+            ],
+            "label": "from blobs to atoms"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE FREEZING IS THE WHOLE TRICK",
+        "body": "Water normally freezes into crystals that shred delicate proteins and scatter electrons. Cryo-EM flash-cools the sample so fast — thousands of degrees per second — that water solidifies into a glass-like state with no crystal structure at all, trapping the molecule mid-motion.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "That glassy state is *vitreous ice* — the same physics as obsidian or hard candy. The molecule is frozen so fast it never 'knows' it was cooled."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BLOTTING IS THE BOTTLENECK",
+        "body": "To image molecules you need an ice layer only tens of nanometers thick — thinner than the sample, thicker than nothing. The traditional method is to press filter paper against the grid by hand to wick away excess liquid, then plunge it into liquid ethane. The thickness depends on humidity, paper batch, and the operator's touch, so two grids from the same sample rarely match."
+      },
+      {
+        "heading": "THE PREFERRED-ORIENTATION TRAP",
+        "body": "In that ultra-thin film, most of the protein population drifts to the air-water interface and sticks there in the same pose. A 3D reconstruction needs views from every angle; if the molecule only ever presents one face, the resulting map is stretched and smeared along the missing directions.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do molecules in a cryo-EM grid tend to adopt the same 'preferred orientation'?",
+            "options": [
+              "They adsorb to the air-water interface of the thin film",
+              "The microscope's magnetic lens aligns them",
+              "Gravity settles them onto the grid",
+              "The electron beam rotates them into place"
+            ],
+            "correct": 0,
+            "explanation": "The vast surface area of a nanometers-thin film pulls most molecules to the air-water boundary, where they stick in one repeated pose."
+          }
+        ]
+      },
+      {
+        "heading": "WHY NOT JUST USE CRYSTALS",
+        "body": "For a century, atomic protein structures meant X-ray crystallography — but many of the most important molecules (membrane proteins, flexible complexes) refuse to crystallize. Cryo-EM's advantage is that it images molecules frozen in solution, individually, with no crystal required, which is why grid quality became the new rate-limiting step.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "X-ray cryst.",
+                "value": "needs crystal"
+              },
+              {
+                "label": "NMR",
+                "value": "small only"
+              },
+              {
+                "label": "Cryo-EM",
+                "value": "no crystal"
+              }
+            ],
+            "label": "structural biology methods"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T12:31:45.187Z",
+    "label": "Cryo-EM & the Grid-Prep Bottleneck",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-30-deep-learning-based-histomorphological-phenotyping-and-progn": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EYEBALL BOTTLENECK",
+        "body": "Cancer diagnosis still rests on a human squinting at stained tissue through a microscope and matching patterns by eye. For lung cancer subtyping, two trained pathologists looking at the same slide disagree a meaningful fraction of the time — and that first call is the foundation every treatment decision is built on."
+      },
+      {
+        "heading": "WHAT THE STAIN ACTUALLY SHOWS",
+        "body": "The standard slide is H&E — hematoxylin stains cell nuclei blue-purple, eosin stains cytoplasm pink. It has been pathology's workhorse since the 1800s. It reveals tissue architecture and cell shape, but not molecular identity — so two cancers driven by different biology can present nearly identical pink-and-purple landscapes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The dyes are unchanged in 130 years: *hematoxylin* for nuclei, *eosin* for everything else. The slide is the same; only the **reader** is being upgraded."
+          }
+        ]
+      },
+      {
+        "heading": "HOW THE MODEL SEES MORE",
+        "body": "A digitized slide is a gigapixel image — billions of pixels. Deep learning chops it into thousands of small tiles, extracts texture features from each, and aggregates them to a single slide-level prediction. Crucially, it isn't limited to the features humans have named; it can lock onto subvisual texture that correlates with outcome but has no word for it."
+      },
+      {
+        "heading": "DIAGNOSIS VERSUS PROGNOSIS",
+        "body": "Diagnosis names the disease; prognosis predicts its course. The striking claim here is prognostic — separating patients likely to be cured from those likely to die, from slides that look the same to an expert. A 100% versus 39.5% five-year survival split is the kind of gap that, if real, should change who gets aggressive chemoradiotherapy and who doesn't.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Five-year survival figures like '100% vs 39.5%' are read off which standard tool?",
+            "options": [
+              "A Kaplan-Meier survival curve",
+              "A genome-wide association plot",
+              "An H&E staining intensity scale",
+              "A radiology contrast scan"
+            ],
+            "correct": 0,
+            "explanation": "Kaplan-Meier curves track the fraction of a cohort still alive over time and are the standard way survival differences between groups are reported."
+          }
+        ]
+      },
+      {
+        "heading": "THE VALIDATION CHASM",
+        "body": "Sorting a past cohort by survival is not the same as improving anyone's odds. The history of medical AI is littered with models that scored beautifully on retrospective data, then failed prospectively because they learned a shortcut — keying on the scanner brand, the hospital's staining batch, or a stray ink mark rather than the biology. Pre-publication results are a hypothesis, not a clinical tool.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2016",
+                "label": "CAMELYON challenge: AI matches pathologists on nodes"
+              },
+              {
+                "year": "2017",
+                "label": "First FDA clearance for whole-slide primary diagnosis",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "Attention/MIL models predict outcome from slides"
+              }
+            ],
+            "label": "computational pathology milestones"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T12:32:28.782Z",
+    "label": "Computational Pathology & Prognosis",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-30-fiscal-monetary-policy-agility-needed-in-fy27-finance-minist": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO INFLATIONS",
+        "body": "India publishes two inflation numbers that can move in opposite directions. Wholesale prices (WPI) track what producers and traders pay at the factory gate; retail prices (CPI) track what households pay at the shop. When wholesale runs hot but retail stays cool, it signals cost pressure building in the pipeline that hasn't yet reached the consumer.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "WPI is heavily weighted toward **fuel, metals, and manufactured goods**; CPI is nearly **half food and beverages**. That different basket is why the two indices can read **8.3%** and **3.48%** in the same month."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE RBI ACTUALLY TARGETS",
+        "body": "Since 2016, the Reserve Bank operates under a formal mandate: keep CPI inflation at 4%, within a 2-6% band. It does not target wholesale inflation at all. So an 8.3% WPI print is a warning light, not a trigger — the rate decision turns on whether that pressure leaks into the retail basket the law actually measures.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which inflation measure is the RBI legally bound to keep near 4%?",
+            "options": [
+              "Wholesale price index (WPI)",
+              "Consumer price index (CPI)",
+              "GDP deflator",
+              "Core manufacturing index"
+            ],
+            "correct": 1,
+            "explanation": "India's flexible inflation-targeting framework (2016) pins the RBI to CPI at 4% ±2% — wholesale prices inform the outlook but aren't the mandate."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE MONSOON IS A MONETARY VARIABLE",
+        "body": "Food and beverages make up close to half of India's CPI basket — a far larger share than in any advanced economy. Because most cropland is rain-fed, a weak or late monsoon raises food prices directly, which can push headline CPI past the band no matter what interest rates do. In India, the rain gauge is a central-bank input.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India",
+                "value": "~46%",
+                "cc": "IN",
+                "weight": 46,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "China",
+                "value": "~20%",
+                "cc": "CN",
+                "weight": 20,
+                "tone": "neutral"
+              },
+              {
+                "label": "USA",
+                "value": "~13%",
+                "cc": "US",
+                "weight": 13,
+                "tone": "favorable"
+              },
+              {
+                "label": "Germany",
+                "value": "~10%",
+                "cc": "DE",
+                "weight": 10,
+                "tone": "favorable"
+              }
+            ],
+            "label": "food share of the CPI basket"
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ PASSTHROUGH",
+        "body": "India imports more than 80% of its crude oil, much of it through the Strait of Hormuz. A disruption there hits twice: the dollar price of oil rises, and a wider import bill pressures the rupee — so each barrel costs even more in local currency. That double hit feeds fuel and transport costs straight into the inflation the RBI is watching.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "IR",
+              "OM",
+              "AE",
+              "SA"
+            ],
+            "label": "India's oil supply line",
+            "caption": "Most Gulf crude bound for India transits this 33km-wide channel",
+            "markers": [
+              {
+                "lat": 26.566,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          },
+          {
+            "type": "trend",
+            "values": [
+              94.951559,
+              94.89165,
+              94.910513,
+              94.951346,
+              95.361112,
+              95.029174,
+              94.729612,
+              94.62293,
+              94.425498,
+              94.425498,
+              94.8754,
+              95.576514,
+              95.55195,
+              95.719988,
+              95.829548,
+              96.003,
+              96.027,
+              96.13634,
+              96.389098,
+              96.875003,
+              96.376027,
+              96.243053,
+              95.719748,
+              95.700477,
+              95.415433,
+              95.341057,
+              95.70115,
+              96.383018,
+              95.600602,
+              95.01655
+            ],
+            "periods": [
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY THEY WAIT FOR 'SECOND-ROUND EFFECTS'",
+        "body": "A one-off price spike — a bad harvest, an oil shock — fades on its own as conditions normalize. The danger is when it becomes self-sustaining: firms raise prices expecting costs to keep rising, workers demand higher wages to match, and the spike embeds into expectations. Central banks tolerate the first round but tighten hard against the second, because once expectations un-anchor they are far costlier to bring back."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-30"
+    ],
+    "generatedAt": "2026-05-30T12:33:01.781Z",
+    "label": "India's Inflation Gauges & the RBI",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-30-gaza-death-toll-nears-73-000-since-oct-07-2023-ministry": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW THE COUNT WORKS",
+        "body": "The Gaza health ministry counts only bodies that reach hospitals or morgues, logged by name and ID number. It is a count of the confirmed dead, not an estimate — which is why the true toll runs higher than the published number, not lower. Independent studies in The Lancet have argued the indirect death toll, including disease, hunger, and untreated injury, exceeds the direct count by a wide margin.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The figure is a *floor*, not a ceiling. Every body still under rubble or on a sealed road is, by design, **not yet counted**."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BODIES STAY BURIED",
+        "body": "Modern bombs collapse multi-story buildings into compacted pancakes of concrete and rebar. Recovering a body requires heavy machinery — cranes, excavators, fuel — most of which is barred from entering Gaza or destroyed. Without equipment, the missing become a backlog measured in months, which is why only a handful of bodies reach hospitals in any 48-hour window.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PS",
+              "IL",
+              "EG"
+            ],
+            "label": "Gaza and its sealed borders",
+            "markers": [
+              {
+                "lat": 31.5017,
+                "lng": 34.4668,
+                "label": "Gaza City"
+              },
+              {
+                "lat": 31.2156,
+                "lng": 34.2425,
+                "label": "Rafah crossing"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A CEASEFIRE ACTUALLY IS",
+        "body": "A ceasefire is a pause in declared offensive operations, not a stop to all killing. Strikes continue under labels like 'enforcement,' 'buffer-zone violations,' or response-fire, and each side polices the line by its own rules. This is why a death toll keeps climbing during what is officially a truce — the word names an intention, not an enforced state."
+      },
+      {
+        "heading": "THE DENSITY TRAP",
+        "body": "Gaza packs roughly 2.3 million people into 365 square kilometers — among the densest inhabited places on Earth. In a strip that size there is no rear, no front, and nowhere to evacuate to that is meaningfully safer; a single strike in a refugee-camp block can produce casualties on the scale of a small town.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Gaza Strip",
+                "value": "~6,300",
+                "cc": "PS",
+                "tone": "unfavorable",
+                "weight": 6300
+              },
+              {
+                "label": "Hong Kong",
+                "value": "~6,800",
+                "cc": "HK",
+                "weight": 6800
+              },
+              {
+                "label": "London",
+                "value": "~5,700",
+                "cc": "GB",
+                "weight": 5700
+              },
+              {
+                "label": "Egypt",
+                "value": "~100",
+                "cc": "EG",
+                "weight": 100
+              }
+            ],
+            "label": "population density (people / km²)"
+          }
+        ]
+      },
+      {
+        "heading": "THE NAKBA CONTINUES",
+        "body": "In 1948, Zionist militias expelled over 750,000 Palestinians from their homes in what Palestinians call the Nakba — the catastrophe. Many fled to Gaza, which is why the strip is overwhelmingly a refugee population. The families counted in today's toll are largely descendants of those 1948 refugees, displaced again within the same strip of land their grandparents fled to.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1948",
+                "label": "Nakba: 750,000+ expelled",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1967",
+                "label": "Israel occupies Gaza"
+              },
+              {
+                "year": "2005",
+                "label": "Israeli settlers withdraw"
+              },
+              {
+                "year": "2007",
+                "label": "Blockade imposed"
+              },
+              {
+                "year": "2023",
+                "label": "War begins"
+              }
+            ],
+            "label": "displacement within the same land"
+          }
+        ]
+      },
+      {
+        "heading": "THE BLESSED LAND",
+        "body": "Palestine — al-Ard al-Muqaddasa, the holy land referenced in the Quran in Surah al-Ma'idah — holds a sanctity in Islamic tradition that is scriptural, not merely political. This is why coverage of Gaza mobilizes across the Muslim world in a way few other conflicts do; for the reader's framework, the land itself, not only its people, is the subject.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is the Gaza death toll widely treated as an undercount rather than an overcount?",
+            "options": [
+              "It counts only named, body-confirmed deaths, excluding those still under rubble",
+              "It double-counts injuries as deaths",
+              "It includes natural deaths from old age",
+              "It estimates from satellite imagery"
+            ],
+            "correct": 0,
+            "explanation": "The ministry logs only bodies that physically reach hospitals or morgues, so the missing and unrecovered are not yet in the figure."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T12:33:30.229Z",
+    "label": "Counting the Dead in Gaza",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-30-munich-airport-operations-fully-suspended-after-uav-detected": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "A consumer quadcopter costs a few hundred dollars and weighs under two kilograms. The decision it forces — close both runways at one of Europe's busiest hubs — strands tens of thousands of passengers and costs millions per hour. No weapon in aviation offers a cheaper way to inflict that much disruption, which is exactly why a single unconfirmed sighting is treated as decisive.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The governing logic is *cost asymmetry*: the airport cannot verify the threat is absent fast enough to justify the risk, so the **precautionary closure** is always the rational call — even when, as on Saturday, the search finds nothing."
+          }
+        ]
+      },
+      {
+        "heading": "WHY NOBODY CAN FIND IT",
+        "body": "Air traffic radar is tuned to track large, fast, metal aircraft at altitude — it deliberately filters out small, slow, low-flying objects as clutter. A plastic-bodied drone hovering at 100 meters has almost no radar signature, doesn't transmit a transponder code, and against a city skyline is nearly invisible to a helicopter crew. So a runway can be closed for an object that may have already flown home — or never existed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do conventional airport radars struggle to detect small drones?",
+            "options": [
+              "Drones fly too high for radar coverage",
+              "Radars filter out small, slow, low objects as clutter",
+              "Drones jam radar frequencies by default"
+            ],
+            "correct": 1,
+            "explanation": "ATC radar is optimized for large aircraft and treats small slow low-altitude returns as noise, so a drone's faint signature is filtered away."
+          }
+        ]
+      },
+      {
+        "heading": "WHY YOU CAN'T JUST SHOOT IT DOWN",
+        "body": "Over a populated area, a bullet that misses comes down somewhere; a jammer can knock out a drone but also disrupts navigation and phone signals across a wide radius; a downed drone falling onto a runway or a road is itself a hazard. Most countermeasures that work over a battlefield are illegal or unsafe over a metro airport, which is why authorities default to the slowest, safest tool — waiting and watching."
+      },
+      {
+        "heading": "THE GATWICK PRECEDENT",
+        "body": "In December 2018, drone sightings shut London Gatwick for roughly 36 hours during the Christmas peak, grounding around a thousand flights and disrupting some 140,000 passengers. Despite a massive police operation, no drone was ever recovered or photographed, and officials at one point openly questioned whether any drone had existed at all. It set the template for the phantom-sighting era: the disruption is real even when the object is not.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2018-12",
+                "label": "Gatwick shut ~36h, no drone found",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Heathrow, Dubai, Frankfurt scares"
+              },
+              {
+                "year": "2024-10",
+                "label": "Munich closes twice in one day"
+              },
+              {
+                "year": "2026-05",
+                "label": "Munich runways shut again"
+              }
+            ],
+            "label": "the phantom-drone era"
+          }
+        ]
+      },
+      {
+        "heading": "THE VERIFICATION TRAP",
+        "body": "An airport faces an impossible proof problem: it can never confirm that no drone is present, only that it hasn't found one yet. That asymmetry makes every credible-sounding report actionable, and it hands enormous leverage to anyone — prankster, protester, or hostile actor — willing to simply phone in a sighting. The threat doesn't need to fly; it only needs to be plausible.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "DE",
+              "AT",
+              "CH",
+              "FR",
+              "CZ"
+            ],
+            "label": "Munich Airport, in the heart of Europe's air corridor",
+            "caption": "MUC handles the connecting traffic for southern Germany and the Alps",
+            "markers": [
+              {
+                "lat": 48.3538,
+                "lng": 11.7861,
+                "label": "Munich Airport"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T12:34:06.910Z",
+    "label": "Drones & Airport Closures",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-30-ripple-said-to-lead-1-billion-xrp-treasury-raise": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MICROSTRATEGY PLAYBOOK",
+        "body": "The model being copied here was invented in 2020, when a sleepy software firm started converting its cash reserves into bitcoin and let its stock become a leveraged proxy for the coin. The company stopped being valued on its software and started trading as a wrapper around its crypto pile.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The trick is the **NAV premium**: if the stock trades above the value of the crypto it holds, the firm issues new shares, buys more crypto, and raises crypto-per-share — a *reflexive* flywheel that only spins while the premium holds."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A SPAC, NOT AN IPO",
+        "body": "A special-purpose acquisition company is a pre-funded shell with cash and a stock listing but no business. It exists to acquire or become one, fast — skipping the disclosure grind of a traditional IPO. Bolting a crypto treasury onto a ready-made listed shell is the quickest route to a publicly traded coin-holding vehicle."
+      },
+      {
+        "heading": "THE PIONEER",
+        "body": "Almost every crypto treasury vehicle since 2020 traces to one template. The question is who wrote it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which company pioneered holding cryptocurrency as a primary corporate treasury reserve?",
+            "options": [
+              "MicroStrategy",
+              "Tesla",
+              "Coinbase",
+              "PayPal"
+            ],
+            "correct": 0,
+            "explanation": "MicroStrategy began converting its cash to bitcoin in 2020 under Michael Saylor, creating the leveraged-proxy template others now copy."
+          }
+        ]
+      },
+      {
+        "heading": "THE ESCROW THAT CONTROLS XRP",
+        "body": "Unlike bitcoin, XRP was not mined — all 100 billion units existed at launch, and Ripple held the majority. In 2017 it locked 55 billion in time-released escrow, freeing up to 1 billion a month. That makes Ripple both issuer and dominant holder, so 'contributing its own holdings' means the issuer is seeding a fund to buy the coin it controls the supply of."
+      },
+      {
+        "heading": "THE SECURITY QUESTION",
+        "body": "Whether XRP is an unregistered security shadowed it for years. The SEC sued Ripple in 2020; in 2023 a judge ruled that XRP sold on public exchanges was not a security, while institutional sales were — a split decision that let XRP keep trading but never fully cleared the cloud.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2012",
+                "label": "Ripple founded, XRP ledger launches",
+                "emphasis": "start"
+              },
+              {
+                "year": "2017",
+                "label": "55bn XRP locked in escrow"
+              },
+              {
+                "year": "2020-12",
+                "label": "SEC sues Ripple"
+              },
+              {
+                "year": "2023-07",
+                "label": "Court: exchange sales not securities",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2025",
+                "label": "Litigation winds down"
+              }
+            ],
+            "label": "XRP and the SEC"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY HOLDS THE COINS",
+        "body": "The crypto-treasury world is overwhelmingly a bitcoin world — a single firm holds more than all its public-company peers combined. An XRP vehicle is a bet that the appetite which built that pile extends to a non-bitcoin coin.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Strategy",
+                "value": "~600k BTC",
+                "cc": "US",
+                "weight": 600
+              },
+              {
+                "label": "Marathon",
+                "value": "~45k BTC",
+                "cc": "US",
+                "weight": 45
+              },
+              {
+                "label": "Riot",
+                "value": "~18k BTC",
+                "cc": "US",
+                "weight": 18
+              },
+              {
+                "label": "Metaplanet",
+                "value": "~15k BTC",
+                "cc": "JP",
+                "weight": 15
+              },
+              {
+                "label": "Tesla",
+                "value": "~11k BTC",
+                "cc": "US",
+                "weight": 11
+              }
+            ],
+            "label": "public companies by bitcoin held"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-30T12:35:11.063Z",
+    "label": "Crypto Treasury Vehicles",
+    "category": "economy",
+    "articleCount": 1
   }
 }
