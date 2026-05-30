@@ -1,27 +1,28 @@
 {
-  "date": "2026-05-29",
+  "date": "2026-05-30",
   "metrics": {
-    "articles": { "value": 31, "detail": "5 cycles, 4 completed, avg 7/cycle" },
+    "articles": { "value": 42, "detail": "5 cycles all completed, avg 10/cycle (selector 316s, writer 688s, editor 383s)" },
     "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 9, "economy": 9, "science": 7, "tech": 6 },
-    "multiSource": { "value": 7, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 10, "EU": 7, "ME": 6, "AS": 5, "AF": 3 } },
-    "sciTech": { "ratio": 42, "target": 25, "met": true },
-    "topSourceShare": { "source": "CoinDesk / NDTV", "pct": 10, "target": 20, "met": true },
-    "uniqueSources": 35,
+    "categories": { "politics": 17, "economy": 10, "science": 9, "tech": 6 },
+    "multiSource": { "value": 11, "target": 4, "met": true },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "EU": 15, "AM": 10, "ME": 8, "AS": 5, "AF": 4, "OC": 0 } },
+    "sciTech": { "ratio": 36, "target": 25, "met": true },
+    "topSourceShare": { "source": "CoinDesk", "pct": 12, "target": 20, "met": true },
+    "uniqueSources": 40,
     "duplicates": 0,
-    "avgCycleDuration": 1722
+    "avgCycleDuration": 1660
   },
-  "experiment": "Skipped. No active experiments pending evaluation, and the noNewExperimentsUntil gate (2026-05-31) blocks new variables while the opus-4-8 selector/tune lineup baselines. Gate drops after 2026-05-31.",
-  "weakestArea": "Regional spread is the softest metric: 5 regions vs 6 yesterday, with Oceania entirely absent and Africa at just 3 articles, against an Americas-heavy skew (10/31). It still clears the >=4 target. Freshness reads a clean median of 0 but on only one measurable article (count=1), so today's freshness figure is low-confidence rather than a strong signal.",
+  "experiment": "Skipped. No active experiments pending evaluation, and the noNewExperimentsUntil gate (2026-05-31) still blocks new variables while the 2026-05-28 opus-4-8 selector/tune + low-effort-editor lineup baselines. All metrics are within targets. Gate drops after 2026-05-31 — do not auto-extend.",
+  "weakestArea": "Regional spread is the thinnest margin: 5 regions vs the >=4 target, but Oceania was entirely absent and Africa was light at 4. EU dominated at 15/42 (36% of output) with the Americas at 10, so the geographic distribution leans heavily Euro-Atlantic even though the headline region count clears its floor.",
   "watching": [
-    "Throughput at 31 articles over 5 cycles (one incomplete, avg 7/cycle) vs 64 yesterday — confirm the 5th cycle completed and whether the lighter day is feed thinness or a cycle failure.",
-    "Freshness across the next 2-3 days under the opus-4-8 selector once the sample size recovers; today's median rests on a single article.",
-    "CoinDesk supplied 3 of today's articles — within share limits but the largest single-source contributor; track if crypto concentration persists."
+    "Editor held at 383s avg with all 5 cycles completing and zero timeouts under the new low-effort/opus-4-8 lineup — confirm this stays stable through tomorrow so the post-2026-05-28 baseline is clean before any new experiment.",
+    "Tech is the lowest category at 6 (floor 3/cycle, met) and leaned on CoinDesk for 5 of the day's crypto/markets coverage — watch that tech breadth doesn't narrow to crypto.",
+    "Multi-source count is healthy at 11, but history shows this rides on feed supply (~9/cycle) not selector floors; track whether it holds without intervention."
   ],
   "coverageGaps": [
-    "Oceania had zero coverage today (uniqueRegions fell from 6 to 5).",
-    "Africa underweight at 3 articles despite regional outlets in the feed (Premium Times, Daily Maverick)."
+    "Oceania had zero coverage today and only one article yesterday — recurring blind spot.",
+    "Africa thin at 4/42 despite curated African outlets (Premium Times x3, Daily Maverick) in the feed.",
+    "Tech specialist coverage concentrated in crypto/markets (CoinDesk x5) rather than spread across research/security/AI outlets."
   ],
-  "context": "All four core goals — freshness, diversity, multi-source, educational value — are met today, so no intervention is warranted. The pause gate remains in effect through 2026-05-31 to let commit 848de07e (opus-4-8 selector/tune, permanent editor effort low) baseline before a tunable variable is introduced. Standing lesson holds: the selector multi-source floor lever is tapped (~22% ceiling from feed supply), so the next sourcing experiment after the gate lifts should target upstream feed clustering rather than select-prompt floors."
+  "context": "Healthy, unremarkable day: 42 articles across 5 fully completed cycles (up from 31 yesterday), all five quality goals met, zero duplicates, top source under 12%. The operative constraint today is procedural, not metric-driven — the self-imposed experiment pause (set after the 2026-05-28 flip to opus-4-8 for selector/tune plus permanent low-effort editor) runs through 2026-05-31, so no tunable variable is introduced until tomorrow. Standing sourcing lesson holds: multi-source rate is capped upstream by feed clustering supply (~22% ceiling), so the next sourcing experiment should target Event Registry / regional-outlet inclusion rather than selector floors."
 }
