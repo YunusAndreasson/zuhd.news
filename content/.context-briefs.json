@@ -272060,5 +272060,1265 @@
     "label": "Flash Loans & Atomicity",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-05-29-behind-the-blog-being-new-and-some-numbers": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW THE IMAGE IS MADE",
+        "body": "Modern deepfakes don't 'paste' a face — diffusion models learn the statistical structure of images from billions of examples, then generate a new one from a text prompt or a single source photo. A school yearbook headshot is enough raw material. The same open-weight models that power legitimate art tools also power the 'nudify' apps built on top of them.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The threat scaled because the models went *open-weight*: once a capable image model is downloaded, no company can revoke it. The abuse moved from skilled forgers to any teenager with a **nudify app** and a class photo."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL GAP",
+        "body": "US child-protection law was written around photographs of real abuse. AI-generated imagery scrambled that framework: in Ashcroft v. Free Speech Coalition (2002), the Supreme Court struck down a ban on purely 'virtual' child imagery as overbroad under the First Amendment — no real child, no crime, the reasoning went. That logic collapses when the synthetic image depicts an identifiable real student, but the statutes took two decades to catch up.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2002",
+                "label": "Ashcroft strikes down 'virtual' ban"
+              },
+              {
+                "year": "2003",
+                "label": "PROTECT Act narrows the rule"
+              },
+              {
+                "year": "2017",
+                "label": "'deepfake' enters use"
+              },
+              {
+                "year": "2023",
+                "label": "'nudify' apps proliferate"
+              },
+              {
+                "year": "2025",
+                "label": "TAKE IT DOWN Act signed",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "law chasing the technology"
+          }
+        ]
+      },
+      {
+        "heading": "WHY REMOVAL IS HARDER THAN CREATION",
+        "body": "Generating the image takes seconds and one device. Removing it requires identifying every platform it landed on, proving the depicted person is a minor, and compelling each host to act — across servers that may sit outside US jurisdiction. The asymmetry is the whole problem: harm propagates at the speed of a share button; redress moves at the speed of legal process."
+      },
+      {
+        "heading": "THE 48-HOUR RULE",
+        "body": "The federal TAKE IT DOWN Act, signed in 2025, criminalized publishing non-consensual intimate imagery — explicitly including AI-generated deepfakes — and ordered platforms to remove flagged material within 48 hours of a valid request. It is the first federal standard, but it governs platforms, not schools: how a district disciplines a student creator or supports a victim remains unwritten.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did the 2025 TAKE IT DOWN Act primarily require of online platforms?",
+            "options": [
+              "Remove flagged non-consensual intimate images within 48 hours",
+              "Verify the age of every user before upload",
+              "Ban all AI image-generation tools",
+              "Report deepfakes to the school district directly"
+            ],
+            "correct": 0,
+            "explanation": "The law set a 48-hour takedown window for non-consensual intimate imagery, including AI deepfakes — the first such federal mandate."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SCHOOLS ARE WRITING POLICY BLIND",
+        "body": "Districts discover the harm through the victim, not a warning system — the first sign is a distressed student, not a flagged file. With no federal template for how to investigate, discipline, or counsel, each district improvises its own rules, meaning a student's protection now depends heavily on which zip code they live in."
+      }
+    ],
+    "generatedAt": "2026-05-31T08:40:10.672Z",
+    "label": "Deepfakes, CSAM & the Law",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-29-climate-debriefed-europe-heat-india-deaths-nigeria-solar": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WET-BULB CEILING",
+        "body": "Survival depends not on the thermometer but on the wet-bulb temperature — what a wet cloth reads, combining heat and humidity. Above roughly 35°C wet-bulb, sweat no longer evaporates and a healthy person in the shade dies in hours. Dry 47°C heat is survivable; humid 35°C is not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The killer is the *combination*. At **35°C wet-bulb** the body can no longer shed metabolic heat by any means — no fan, no shade, no water helps. Humid coastal heatwaves cross this line at far lower air temperatures than dry inland ones."
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY DIES",
+        "body": "Heat mortality clusters among outdoor laborers, the elderly, and those without cooling. In India roughly half the workforce is in agriculture or construction — outdoors, during peak heat, with no practical option to stop working. The death toll is a labor statistic as much as a weather one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Above what wet-bulb temperature can a healthy human no longer cool down, even at rest in shade?",
+            "options": [
+              "28°C wet-bulb",
+              "35°C wet-bulb",
+              "42°C wet-bulb",
+              "50°C wet-bulb"
+            ],
+            "correct": 1,
+            "explanation": "At ~35°C wet-bulb the body cannot shed heat by sweating; core temperature rises until organ failure, regardless of water or shade."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE GRID FAILS WHEN IT'S HOTTEST",
+        "body": "Heat creates a vicious loop: every air conditioner switches on at once, demand spikes to records, and the same heat derates transmission lines and thermal plants — wires sag and sag-limit current, turbines lose efficiency in hot air. Supply falls exactly as demand peaks, forcing the cuts that then strip cooling from the most vulnerable."
+      },
+      {
+        "heading": "THE NIGHT THAT KILLS",
+        "body": "A heatwave's lethality is driven less by the afternoon peak than by the overnight low. When nighttime temperatures stay above ~30°C, the body never gets its recovery window, and core temperature ratchets up across consecutive days. A 3-day event kills far more than three separate hot days."
+      },
+      {
+        "heading": "THE DECCAN EXPOSURE",
+        "body": "Andhra Pradesh and Telangana sit on the Deccan plateau, where pre-monsoon May heat builds with little coastal relief. Hyderabad and the Telugu belt have been the epicenter of India's deadliest recent heatwaves — the 2015 event killed over 2,000 here before the monsoon broke it.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN"
+            ],
+            "label": "the Deccan heat belt",
+            "caption": "Pre-monsoon May heat peaks across the inland plateau",
+            "markers": [
+              {
+                "lat": 17.385,
+                "lng": 78.4867,
+                "label": "Hyderabad"
+              },
+              {
+                "lat": 16.5062,
+                "lng": 80.648,
+                "label": "Vijayawada"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DEADLIEST HEAT EVENTS",
+        "body": "Heatwaves are the most lethal weather disaster, yet the least visible — deaths are dispersed, indoors, and slow. The 2003 European heatwave killed tens of thousands before governments grasped the scale, which is why heat-death counts are almost always revised sharply upward after the fact.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Europe 2003",
+                "value": "~70,000",
+                "weight": 70000,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Russia 2010",
+                "value": "~55,000",
+                "weight": 55000,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India 2015",
+                "value": "~2,500",
+                "weight": 2500,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Pakistan 2015",
+                "value": "~1,200",
+                "weight": 1200,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "estimated heatwave deaths"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T08:40:47.173Z",
+    "label": "Heat, the Grid, and the Human Limit",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-29-dead-economy-theory-tech-labor-stagnation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ARITHMETIC",
+        "body": "Valuations are bets on a future cash flow. The only market large enough to justify trillions in AI value is the global wage bill — roughly $60 trillion paid to human workers every year. Software markets, advertising, even all of cloud computing are an order of magnitude too small. This is why the thesis collapses to a single claim: the payoff has to come from labor itself.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Global labor",
+                "value": "~$60tn/yr",
+                "weight": 60,
+                "tone": "favorable"
+              },
+              {
+                "label": "Advertising",
+                "value": "~$1tn/yr",
+                "weight": 1,
+                "tone": "neutral"
+              },
+              {
+                "label": "Cloud compute",
+                "value": "~$0.7tn/yr",
+                "weight": 0.7,
+                "tone": "neutral"
+              },
+              {
+                "label": "Enterprise SaaS",
+                "value": "~$0.4tn/yr",
+                "weight": 0.4,
+                "tone": "neutral"
+              }
+            ],
+            "label": "addressable markets, annual ($tn)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SOFTWARE BETS RUN SO HOT",
+        "body": "Software has near-zero marginal cost: the hundredth-million user costs almost nothing to serve. Investors price that as winner-take-all — the leader captures a whole market, so a credible shot at dominance is worth a fortune today. AI inverts this. Each query burns real compute, so the marginal cost is not zero, which is part of why the firms stay unprofitable even as revenue climbs."
+      },
+      {
+        "heading": "TASKS, NOT JOBS",
+        "body": "Economists model work as bundles of tasks, not monolithic jobs. Automation historically replaced specific tasks — a bank teller's cash-counting — while creating demand for others, so total employment held. The displacement thesis only pays off if AI swallows enough tasks across enough jobs that the bundles themselves disappear, not just shrink.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction is everything: ATMs *increased* teller headcount for two decades by making branches cheaper to open. Automation that hits **tasks** can grow employment; automation that dissolves whole **task bundles** is what the trillion-dollar valuations require."
+          }
+        ]
+      },
+      {
+        "heading": "THE CAPEX TREADMILL",
+        "body": "The spending is front-loaded and perishable. Hyperscalers are pouring tens of billions a year into data centers and GPUs that depreciate in roughly three to five years — obsolete before they're paid off. That clock is why the displacement has to be both large and fast: slow adoption means the hardware ages out before the labor savings arrive.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Microsoft",
+                "value": "~$80bn",
+                "weight": 80,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Amazon",
+                "value": "~$75bn",
+                "weight": 75,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Alphabet",
+                "value": "~$50bn",
+                "weight": 50,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Meta",
+                "value": "~$40bn",
+                "weight": 40,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "annual AI-era capex, est. ($bn)"
+          }
+        ]
+      },
+      {
+        "heading": "THE JEVONS TRAP",
+        "body": "When steam engines got more efficient, Britain burned more coal, not less — cheaper energy expanded its uses faster than efficiency cut them. The optimistic counter-thesis says AI does the same to cognitive work: as thinking gets cheap, demand for it explodes and human labor moves up the stack. The bet and its rebuttal are the same mechanism, read in opposite directions.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Labor's share of global economic output — wages as a fraction of all income — sits closest to which figure?",
+            "options": [
+              "About 30%",
+              "About 50–60%",
+              "About 80%"
+            ],
+            "correct": 1,
+            "explanation": "Labor takes a little over half of global output; the rest accrues to capital — which is exactly why replacing labor is the only prize big enough to move the valuations."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T08:41:28.745Z",
+    "label": "The Economics of the AI Bet",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-29-trump-declares-lifting-naval-blockade-iran": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE WORD MATTERS",
+        "body": "A blockade is not a metaphor in international law — it is an act of war. The 1909 Declaration of London codified that a lawful blockade must be formally declared, publicly notified, and effectively enforced against all flags. Calling an operation a 'blockade' rather than 'inspections' or 'interdiction' is itself a legal claim that a state of armed conflict exists.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal trigger is *effectiveness*: a blockade that ships can routinely slip through is considered void under customary law. This is why declaring one **lifted** — or **imposed** — is a statement about belligerent rights, not just traffic."
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY CLOSES A STRAIT",
+        "body": "Mines and warships rarely sink enough ships to halt commerce — what halts it is the price of insurance. The moment Lloyd's of London raises war-risk premiums on a route, commercial tankers reroute regardless of how many vessels are physically threatened. The financial chokepoint tightens before the military one does, and it reopens only when underwriters decide the risk has passed — not when a leader posts that it has.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A single war-risk listing can add **hundreds of thousands of dollars** to one voyage. That is why 115 diverted ships is the real signal — the market repriced the lane no matter what either capital announced."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOMETRY OF THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the usable shipping lanes are only about 3 km each — two inbound, two outbound, with a buffer between. Roughly a fifth of the world's oil moves through this slot, and the deepest channel hugs the Iranian coast, which is why Iran's positioning matters far more than its share of the shoreline would suggest.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA"
+            ],
+            "label": "the Hormuz chokepoint",
+            "markers": [
+              {
+                "lat": 26.57,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 27.18,
+                "lng": 56.27,
+                "label": "Bandar Abbas"
+              },
+              {
+                "lat": 29.23,
+                "lng": 50.32,
+                "label": "Kharg Island terminal"
+              }
+            ]
+          },
+          {
+            "type": "quiz",
+            "question": "Roughly what share of the world's oil consumption passes through the Strait of Hormuz?",
+            "options": [
+              "About 5%",
+              "About 21%",
+              "About 45%",
+              "About 70%"
+            ],
+            "correct": 1,
+            "explanation": "Around 21 million barrels a day — close to a fifth of global consumption — transit Hormuz, with no full-capacity overland alternative."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT CAN'T JUST BE BYPASSED",
+        "body": "After earlier Gulf scares, Saudi Arabia and the UAE built pipelines specifically to dodge Hormuz. Together they can reroute only a fraction of Gulf exports — the rest has no alternative path to open water. Iran's own bypass ambition, the Goreh-Jask line to the Gulf of Oman, stayed largely stranded by sanctions and funding gaps.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi E-W line",
+                "value": "~5m bbl/d",
+                "cc": "SA",
+                "weight": 5
+              },
+              {
+                "label": "UAE Fujairah",
+                "value": "~1.5m bbl/d",
+                "cc": "AE",
+                "weight": 1.5
+              },
+              {
+                "label": "Iran Jask",
+                "value": "~0.3m bbl/d",
+                "cc": "IR",
+                "weight": 0.3,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Hormuz-bypass pipeline capacity"
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil spiked briefly, then markets adapted: Kuwaiti tankers were reflagged under the US flag and escorted by warships in Operation Earnest Will. The lesson planners drew was that disruption is far easier to threaten than to sustain — and that announcements rarely match conditions on the water.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Iraq opens attacks on Kharg shuttle tankers",
+                "emphasis": "start"
+              },
+              {
+                "year": "1987",
+                "label": "US reflags Kuwaiti tankers; Earnest Will",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1988-04",
+                "label": "USS Roberts mined; Praying Mantis"
+              },
+              {
+                "year": "1988-08",
+                "label": "Iran-Iraq ceasefire",
+                "emphasis": "end"
+              }
+            ],
+            "label": "the Tanker War"
+          }
+        ]
+      },
+      {
+        "heading": "THE RIGHT IRAN DISPUTES",
+        "body": "Under the Law of the Sea, ships hold a right of 'transit passage' through international straits that coastal states cannot suspend. Iran signed the convention in 1982 but never ratified it, and has long argued Hormuz is governed by its own domestic law — leaving the strait's legal status permanently contested, exactly as it is now.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "In straits... all ships and aircraft enjoy the right of transit passage, which shall not be impeded.",
+            "speaker": "UNCLOS, Article 38",
+            "year": "1982"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T08:42:08.942Z",
+    "label": "Naval Blockade & the Hormuz Chokepoint",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-30-fata-morgana-cornwall-sea-mirage-explained": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INVERSION",
+        "body": "Normally air cools with altitude. A Fata Morgana needs the opposite — a layer of warm air sitting on top of cold air near the surface, which over the sea means warm spring air over cold water. Light travels slightly slower in cold dense air, so rays passing through the boundary bend downward toward the cold layer."
+      },
+      {
+        "heading": "WHY IT STACKS",
+        "body": "The bending isn't uniform — the temperature gradient acts like a curved lens, so different parts of a distant object are bent by different amounts. The result is several alternating upright and inverted images stacked on top of each other. That vertical smearing is what turns a far-off ship's hull into towers, castles, or a hovering bear.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The effect is a **superior mirage** — the false image appears *above* the real object, the opposite of the shimmering puddle you see on a hot road."
+          }
+        ]
+      },
+      {
+        "heading": "SUPERIOR VS INFERIOR",
+        "body": "The everyday mirage — water on a desert highway, a wet shimmer on hot tarmac — is an inferior mirage, caused by hot air near a baking surface bending light upward. A Fata Morgana is its rarer cousin: it needs cold ground or sea with warm air above, which is why coasts and polar regions produce it and deserts don't.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "A Fata Morgana is which kind of mirage?",
+            "options": [
+              "A superior mirage — the false image sits above the real object",
+              "An inferior mirage — like the shimmering 'water' on a hot road",
+              "A rainbow effect caused by water droplets in fog"
+            ],
+            "correct": 0,
+            "explanation": "It forms when warm air sits over a cold surface, bending light so the distorted image appears above the object — the inverse of a hot-road mirage."
+          }
+        ]
+      },
+      {
+        "heading": "THE NAME",
+        "body": "Fata Morgana is Italian for Morgan le Fay, the sorceress of Arthurian legend. Sicilian sailors in the Strait of Messina blamed her for the fairy castles that seemed to float above the water and lure ships toward the rocks — so the optical illusion took the enchantress's name.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IT"
+            ],
+            "label": "where the name was born",
+            "caption": "Sicilian sailors named the mirage for Morgan le Fay",
+            "markers": [
+              {
+                "lat": 38.193,
+                "lng": 15.554,
+                "label": "Strait of Messina"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PHANTOM LANDS",
+        "body": "Fata Morganas have invented entire coastlines. In 1906 the explorer Robert Peary reported a vast Arctic landmass he named Crocker Land; a full expedition went to find it in 1913 and reached only empty sea. The mirage had stacked the horizon into mountains that were never there — one of several phantom islands that lingered on charts for decades."
+      }
+    ],
+    "generatedAt": "2026-05-31T08:42:55.007Z",
+    "label": "Fata Morgana & Atmospheric Optics",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-31-india-sc-pocso-minor-trafficking-ruling": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STRICT-LIABILITY LOGIC",
+        "body": "POCSO treats everyone under 18 as a child, and a child's consent carries no legal weight. The prosecution never has to prove the act was unwanted — being a minor is the offence's core fact, not a circumstance to argue over.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the **statutory rape** principle: below the age of consent, *agreement is legally impossible*. It collapses the hardest part of any trafficking case — proving coercion — into a single date of birth."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 18 IS UNUSUAL",
+        "body": "India sets its age of consent at 18, among the highest in the world. Most legal systems draw the line at 14 to 16. The high bar is exactly what makes POCSO such a powerful tool: a far wider band of victims falls inside automatic protection.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Age of consent",
+            "peers": [
+              {
+                "value": 18,
+                "cc": "IN"
+              },
+              {
+                "value": 16,
+                "cc": "US"
+              },
+              {
+                "value": 16,
+                "cc": "GB"
+              },
+              {
+                "value": 16,
+                "cc": "JP"
+              },
+              {
+                "value": 15,
+                "cc": "FR"
+              },
+              {
+                "value": 14,
+                "cc": "DE"
+              }
+            ],
+            "subjectCc": "IN",
+            "unit": "years"
+          }
+        ]
+      },
+      {
+        "heading": "THE GAP THE COURT CLOSED",
+        "body": "Trafficking statutes require proving exploitation, movement, or coercion — slow, evidence-heavy work that lets prosecutions collapse. By ruling POCSO applies whenever the victim is a minor, the Court let prosecutors reach for the harsher law without first winning the harder argument.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does charging a child-trafficking case under POCSO favor the prosecution over trafficking law alone?",
+            "options": [
+              "POCSO carries no statute of limitations",
+              "POCSO removes the need to prove the victim did not consent",
+              "POCSO cases skip the trial stage entirely",
+              "POCSO applies only to organized crime networks"
+            ],
+            "correct": 1,
+            "explanation": "Because the victim's minority makes consent legally irrelevant, the prosecution sidesteps the coercion element that trafficking statutes demand."
+          }
+        ]
+      },
+      {
+        "heading": "HOW THE LAW HARDENED",
+        "body": "POCSO did not arrive fully armed. It was enacted in 2012, the age of consent was lifted from 16 to 18 in the post-Nirbhaya reforms of 2013, and the death penalty for aggravated assault was added in 2019. This ruling is the next turn of that ratchet.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2012",
+                "label": "POCSO enacted"
+              },
+              {
+                "year": "2013",
+                "label": "Age of consent raised 16 → 18"
+              },
+              {
+                "year": "2019",
+                "label": "Death penalty for aggravated assault"
+              },
+              {
+                "year": "2026",
+                "label": "Extended to trafficking victims",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "the tightening of POCSO"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ENFORCEMENT IS THE WEAK LINK",
+        "body": "India's Constitution makes 'police' and 'public order' State List subjects. Parliament can write the criminal law, but investigation, special courts, and the rehabilitation directives the bench just issued all fall to state governments — which is why a strong judgment can still die in implementation."
+      }
+    ],
+    "generatedAt": "2026-05-31T08:43:44.568Z",
+    "label": "POCSO & the Consent Question",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-31-irgc-shoots-down-us-mq-1-drone-in-iranian-waters": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 12-MILE LINE",
+        "body": "Sovereignty over the sea stops 12 nautical miles from the coast — and the airspace above that band is fully national, with none of the 'transit passage' rights ships enjoy in straits. There is no innocent-passage exception for aircraft. So every drone incident becomes a factual fight over a single coordinate: was the aircraft inside the line or just outside it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Iran and the US almost never agree on the geometry. The classic move: Tehran says *inside* Iranian airspace, Washington says over **international waters** — the same dispute, incident after incident."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2019 RHYME",
+        "body": "This is not new. In June 2019 the IRGC shot down a US RQ-4 Global Hawk near the Strait of Hormuz — a $130m aircraft. Iran said it crossed the line; the US said it was over international waters. Trump ordered a retaliatory strike and then aborted it minutes before launch. The pattern — shootdown, dueling coordinates, near-strike, de-escalation — is the template this story sits inside.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which US drone did Iran shoot down in June 2019, triggering an aborted US retaliatory strike?",
+            "options": [
+              "MQ-1 Predator",
+              "MQ-9 Reaper",
+              "RQ-4 Global Hawk",
+              "RQ-170 Sentinel"
+            ],
+            "correct": 2,
+            "explanation": "The RQ-4 Global Hawk is a high-altitude surveillance drone; Iran had earlier captured an RQ-170 in 2011, a separate incident."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DRONES GET SHOT FIRST",
+        "body": "A drone has no pilot to capture, no body to repatriate, no funeral to televise. That removes the single biggest brake on escalation — the human cost of losing the aircraft. So both sides treat drones as the safe rung on the escalation ladder: a state can down one to signal resolve without forcing the other side into a face-saving war, the way the 2019 Global Hawk loss did not."
+      },
+      {
+        "heading": "WHAT THE IRGC ACTUALLY IS",
+        "body": "Iran runs two parallel militaries. The regular army (Artesh) defends borders; the Islamic Revolutionary Guard Corps is a separate force created after the 1979 revolution to defend the revolution itself, answering directly to the Supreme Leader rather than the elected government. The IRGC controls the ballistic missiles, the navy that operates in the Gulf, and the air-defense units — which is why it, not the army, announces these shootdowns.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The IRGC's naval arm — not the Artesh navy — patrols the Gulf with small fast-attack boats and shore-based missiles. The US designated the entire corps a *Foreign Terrorist Organization* in 2019, the first time a branch of a sovereign state's armed forces was so listed."
+          }
+        ]
+      },
+      {
+        "heading": "THE NEIGHBORHOOD",
+        "body": "Iran's coastline runs the entire northern edge of the Gulf and the Strait of Hormuz, and the deepest shipping channel hugs the Iranian side. That geography means routine US surveillance flights pass close to Iranian airspace by necessity — the chokepoint and the disputed line are the same stretch of water.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "QA"
+            ],
+            "label": "the disputed approaches",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LONGER LEDGER",
+        "body": "Aerial incidents in this water cut both ways and run back decades. In 1988 the USS Vincennes shot down Iran Air Flight 655 — a civilian airliner — killing all 290 aboard, an event Iran cites as proof of US recklessness. The 2011 capture of a US RQ-170 and the 2019 Global Hawk shootdown built Iran's case that it can contest the airspace. Each incident is read through every prior one.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1988-07",
+                "label": "USS Vincennes downs Iran Air 655",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011-12",
+                "label": "Iran captures US RQ-170"
+              },
+              {
+                "year": "2019-06",
+                "label": "IRGC downs RQ-4 Global Hawk"
+              },
+              {
+                "year": "2026",
+                "label": "Predator claim"
+              }
+            ],
+            "label": "US–Iran incidents over the Gulf"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T08:44:27.091Z",
+    "label": "Drones, Airspace & the Iran Tripwire",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-31-israel-captures-beaufort-castle-lebanon-deepest-incursion": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FORTRESS ON THE CLIFF",
+        "body": "Beaufort is a 12th-century Crusader castle perched on a sheer escarpment above the Litani River. It was built to command the road between the coast and Damascus — the same logic that makes it valuable today: from its walls you can see deep into northern Galilee and across the Litani valley. Geography fixed its importance eight centuries before the modern border existed.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL"
+            ],
+            "label": "southern Lebanon, above the Litani",
+            "markers": [
+              {
+                "lat": 33.3289,
+                "lng": 35.5378,
+                "label": "Beaufort Castle"
+              },
+              {
+                "lat": 33.3839,
+                "lng": 35.4839,
+                "label": "Nabatiyeh"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY HIGH GROUND STILL WINS",
+        "body": "Beaufort sits roughly 700m up on a ridge with near-vertical drops on three sides. In artillery and rocket warfare that elevation is an observation post: a spotter on the height can correct fire onto targets in Israel or call strikes on movement in the valley below. Capturing the hill is less about the stones than about denying the other side its eyes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why the castle was the single bloodiest objective of Israel's 1982 invasion — the *Beaufort assault* became a national legend precisely because the **observation advantage** was worth the casualties."
+          }
+        ]
+      },
+      {
+        "heading": "THE SECURITY ZONE",
+        "body": "After invading in 1982, Israel held a strip of southern Lebanon it called a 'security zone,' policed with a proxy militia, the South Lebanon Army. Beaufort was one of its anchor positions. The zone was meant to keep rockets out of Galilee; instead it became an 18-year attritional war that birthed Hezbollah as a guerrilla force.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1139",
+                "label": "Crusaders fortify the cliff"
+              },
+              {
+                "year": "1982",
+                "label": "Israel storms the castle"
+              },
+              {
+                "year": "2000",
+                "label": "Israel withdraws from Lebanon",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2006",
+                "label": "33-day war with Hezbollah"
+              },
+              {
+                "year": "2026",
+                "label": "IDF re-seizes Beaufort"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1982",
+                "to": "2000",
+                "label": "Israeli security zone",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Beaufort changes hands"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 2000 IS THE BENCHMARK",
+        "body": "In May 2000 Israel pulled out of Lebanon unilaterally, and Hezbollah claimed it as the first time an Arab force had driven Israel from occupied territory without a treaty. That withdrawal is the reference line: 'deepest incursion since 2000' means Israel has now pushed past the point it spent 18 years failing to hold.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What made Israel's 2000 withdrawal from southern Lebanon historically significant?",
+            "options": [
+              "It was the first Arab-Israeli peace treaty",
+              "It was the first time Israel left occupied land without a negotiated agreement",
+              "It returned the Golan Heights to Syria",
+              "It was ordered by the UN Security Council"
+            ],
+            "correct": 1,
+            "explanation": "Hezbollah cast the unilateral pullout as proof Israel could be forced out by armed resistance alone — a narrative that shaped the region for two decades."
+          }
+        ]
+      },
+      {
+        "heading": "THE LITANI AS A BORDER THAT ISN'T",
+        "body": "The Litani River, not the official frontier, has been the real military objective in every round. UN Resolution 1701, which ended the 2006 war, demanded Hezbollah pull its forces north of the Litani and put UNIFIL peacekeepers in the gap. That line was never enforced — which is why fighting keeps returning to the same few hills above the river."
+      },
+      {
+        "heading": "THE CEASEFIRE PROBLEM",
+        "body": "A ceasefire brokered weeks earlier is being defied while US-mediated talks are scheduled. This is the recurring pattern in Lebanon: agreements set a line on paper, but with no force willing to police it and both sides reading the terms differently, the truce becomes a pause to reposition rather than a stop."
+      }
+    ],
+    "generatedAt": "2026-05-31T08:45:06.754Z",
+    "label": "Beaufort Castle & the Litani Line",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-31-japan-rejects-new-militarism-label-as-hypocritical": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 1% CEILING",
+        "body": "From 1976 to 2022, Japan informally capped defense spending at 1% of GDP — a self-imposed brake meant to reassure neighbors scarred by imperial Japan. The 2022 National Security Strategy doubled the target to 2%, which on absolute terms vaults Japan toward the world's third-largest military budget by 2027, behind only the US and China.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1947",
+                "label": "Article 9 constitution",
+                "emphasis": "start"
+              },
+              {
+                "year": "1954",
+                "label": "Self-Defense Forces created"
+              },
+              {
+                "year": "1976",
+                "label": "1% GDP cap adopted"
+              },
+              {
+                "year": "2015",
+                "label": "Collective self-defense reinterpreted"
+              },
+              {
+                "year": "2022",
+                "label": "Target doubled to 2% GDP",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "Japan's military posture"
+          }
+        ]
+      },
+      {
+        "heading": "ARTICLE 9",
+        "body": "Japan's 1947 constitution, drafted under US occupation, contains the most radical anti-war clause ever written into national law. Article 9 renounces war as a sovereign right and forbids maintaining 'war potential.' No other major power has anything comparable — which is precisely why every defense increase becomes a constitutional argument, not just a budget line.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The workaround has held for 70 years: Japan calls its military the **Self-Defense Forces** and reads Article 9 to permit *defensive* capability. Each hardware generation is justified as 'exclusively defensive' — until the next one arrives and the line quietly moves."
+          }
+        ]
+      },
+      {
+        "heading": "THE SHANGRI-LA STAGE",
+        "body": "The Shangri-La Dialogue is Asia's premier security summit, hosted annually in Singapore since 2002 — a rare venue where rival defense chiefs share a stage. China's defense minister skipping it for a second straight year is itself the message: Beijing declines the forum's premise that disputes should be aired in open, US-convened multilateral settings.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Shinjirō Koizumi",
+                "role": "Japan defense minister",
+                "years": "2025–",
+                "cc": "JP"
+              },
+              {
+                "name": "Dong Jun",
+                "role": "China defense minister",
+                "years": "2023–",
+                "cc": "CN"
+              }
+            ],
+            "label": "the principals — and the no-show"
+          }
+        ]
+      },
+      {
+        "heading": "THE HYPOCRISY CHARGE",
+        "body": "Japan's rebuttal rests on a hard asymmetry: it fields no nuclear weapons, no strategic bombers, and no aircraft carriers in the offensive sense, while China has built the world's largest navy by hull count and is rapidly expanding its warhead stockpile. A country pivoting from 1% to 2% of GDP calling out a near-peer nuclear power has a numerical case to make.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Defense spending (absolute, approx.)",
+            "peers": [
+              {
+                "value": 880,
+                "cc": "US"
+              },
+              {
+                "value": 235,
+                "cc": "CN"
+              },
+              {
+                "value": 140,
+                "cc": "RU"
+              },
+              {
+                "value": 85,
+                "cc": "IN"
+              },
+              {
+                "value": 75,
+                "cc": "SA"
+              },
+              {
+                "value": 70,
+                "cc": "GB"
+              },
+              {
+                "value": 67,
+                "cc": "DE"
+              },
+              {
+                "value": 60,
+                "cc": "JP"
+              }
+            ],
+            "subjectCc": "JP",
+            "unit": "$bn"
+          }
+        ]
+      },
+      {
+        "heading": "WHY GEOGRAPHY FORCES THE CHOICE",
+        "body": "Japan sits at the northern hinge of the 'first island chain' — the arc from the Japanese archipelago through Taiwan to the Philippines that pens China's navy inside the near seas. Tokyo's southwestern islands lie within sight of waters Beijing wants open, which is why a constitutional debate about pacifism keeps colliding with the map.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "JP",
+              "CN",
+              "TW",
+              "KR",
+              "PH"
+            ],
+            "label": "the first island chain",
+            "caption": "Japan anchors the chain's northern end, facing China's near seas"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T08:45:46.616Z",
+    "label": "Japan's Defense Pivot & Article 9",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-31-over-160-road-accidents-reported-in-rawalpindi-during-eid": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY SPEED IS THE KILLER",
+        "body": "Police blamed speeding, and the physics is unforgiving: a vehicle's kinetic energy rises with the square of its speed. Going 60 instead of 40 km/h doesn't add half again as much force on impact — it more than doubles it. This is why a small increase in average speed produces a large jump in fatal outcomes, not injuries.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The rule of thumb traffic engineers use: a **10% rise in mean speed** yields roughly a **20% rise in injury crashes** and a **40% rise in fatal ones**. Energy, not recklessness, does the dying."
+          }
+        ]
+      },
+      {
+        "heading": "WHY EID PRODUCES A SPIKE",
+        "body": "Eid compresses a nation's travel into 72 hours. Cities empty as families return to villages and crowd toward resorts; vehicles run overloaded, drivers run tired, and roads built for ordinary flow carry holiday volume. The accident curve tracks the calendar, not the weather — every major Muslim holiday shows the same signature."
+      },
+      {
+        "heading": "THE MURREE FUNNEL",
+        "body": "75,000 vehicles pushed into the Murree hill resort over three days — a town whose single mountain road was never sized for that load. Murree has a deadly precedent: in January 2022 a blizzard trapped tourists in a gridlock so total that roughly two dozen people died of cold inside their own cars, unable to move.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK"
+            ],
+            "label": "the Rawalpindi–Murree corridor",
+            "caption": "A single hill road absorbs the holiday surge.",
+            "markers": [
+              {
+                "lat": 33.5651,
+                "lng": 73.0169,
+                "label": "Rawalpindi"
+              },
+              {
+                "lat": 33.907,
+                "lng": 73.3943,
+                "label": "Murree resort"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE GOLDEN HOUR",
+        "body": "84 of the injured were critical — and for trauma, the first hour after impact decides most of who lives. Punjab built Rescue 1122 in 2004 precisely to compress that window: a dispatch-and-ambulance service modeled on Western emergency systems, in a country where, before it, road victims often waited for a passing car to carry them to a hospital."
+      },
+      {
+        "heading": "A DEVELOPMENT INDICATOR IN DISGUISE",
+        "body": "Road death is not random misfortune; it tracks income. Low- and middle-income countries hold around 60% of the world's vehicles but suffer some 90% of its road deaths — the gap is enforcement, vehicle standards, road engineering, and trauma care, all of which money buys.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Low- and middle-income countries hold ~60% of the world's vehicles. What share of global road deaths do they bear?",
+            "options": [
+              "About 30%",
+              "About 60%",
+              "About 90%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 90% of road fatalities occur in poorer countries — the result of weaker enforcement, older vehicles, and slower trauma care, not more driving."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T08:46:24.454Z",
+    "label": "Road Death & the Holiday Surge",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-31-oyo-abduction-makinde-families-amotekun-killed": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BUSINESS MODEL",
+        "body": "Most Nigerian mass abductions are not jihad — they are commerce. Armed groups the government calls 'bandits' raid for ransom, treating captives as inventory. The economics are brutal: one raid can net more than years of subsistence farming, and a weak state rarely recovers either the money or the prisoners.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: **Boko Haram** and **ISWAP** kidnap for ideology and leverage in the northeast; the *bandits* of the northwest and middle belt kidnap for cash. Conflating them lets each escape the response designed for the other."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SCHOOLS",
+        "body": "Schools concentrate dozens of low-resistance captives in one undefended building, often in rural districts hours from any armed response. The 2014 Chibok raid proved the model: 276 girls taken at once turned a local crime into a global event, and every group since has understood the leverage a classroom provides.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which 2014 mass abduction made Nigerian school raids a global story and spawned the #BringBackOurGirls campaign?",
+            "options": [
+              "The Chibok schoolgirls",
+              "The Dapchi schoolgirls",
+              "The Kankara schoolboys",
+              "The Kagara students"
+            ],
+            "correct": 0,
+            "explanation": "276 girls were taken from Chibok in Borno State in April 2014; many remained missing for years, and the raid became the template for later abductions."
+          }
+        ]
+      },
+      {
+        "heading": "THE ARC OF MASS RAIDS",
+        "body": "School kidnapping is not new or isolated — it is a recurring tactic that spread from the jihadist northeast into the bandit-controlled northwest, and now reaches south into Oyo. Each successful raid lowers the threshold for the next.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2014",
+                "label": "Chibok: 276 girls taken",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018",
+                "label": "Dapchi: 110 girls"
+              },
+              {
+                "year": "2020",
+                "label": "Kankara: 300+ boys"
+              },
+              {
+                "year": "2021",
+                "label": "Jangebe: 279 girls"
+              },
+              {
+                "year": "2024",
+                "label": "Kuriga: 280+ pupils"
+              }
+            ],
+            "label": "major Nigerian school abductions"
+          }
+        ]
+      },
+      {
+        "heading": "THE POLICING GAP",
+        "body": "Nigeria's constitution centralizes policing in one federal force — states are barred from running their own. The result is a single command structure stretched across a country of 200+ million, leaving vast rural districts effectively unpatrolled. Amotekun is the workaround.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "NE",
+              "TD",
+              "CM"
+            ],
+            "label": "the conflict belt",
+            "caption": "Boko Haram in the northeast; banditry sweeping south into Oyo",
+            "markers": [
+              {
+                "lat": 8.1196,
+                "lng": 4.2667,
+                "label": "Oriire, Oyo (May 2026)"
+              },
+              {
+                "lat": 11.0844,
+                "lng": 12.8472,
+                "label": "Chibok (2014)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT AMOTEKUN IS",
+        "body": "Faced with the federal policing vacuum, six southwestern Yoruba states launched their own security outfit in 2020. Nearly 200 of its operatives have died in six years — a measure of how much of the state's core security function it has quietly absorbed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Amotekun* means **'leopard'** in Yoruba. It was created as a security 'corps,' not a police force — a deliberate legal fiction to sidestep the constitutional ban on state police while putting armed men on the ground."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE FORESTS",
+        "body": "Captives vanish into forest reserves precisely because these are spaces the state never fully governed — no roads, no cell coverage, no permanent security presence. Negotiation, not rescue, becomes the default because sending troops into terrain the kidnappers know intimately risks killing the hostages."
+      }
+    ],
+    "generatedAt": "2026-05-31T08:46:57.763Z",
+    "label": "Nigeria's Kidnap Economy & Regional Policing",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-31-russian-oil-japan-amid-middle-east-disruption": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE EXCEPTION EXISTS",
+        "body": "When the G7 banned Russian crude in 2022, Japan carved out Sakhalin — because Japanese trading houses own equity in the project itself. Mitsui and Mitsubishi together hold roughly a fifth of Sakhalin-2; banning its output would have meant abandoning assets they paid for, and handing the gap to Chinese buyers.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Gazprom",
+                "value": 50,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Shell (exited)",
+                "value": 27.5,
+                "tone": "neutral"
+              },
+              {
+                "label": "Mitsui",
+                "value": 12.5,
+                "tone": "favorable"
+              },
+              {
+                "label": "Mitsubishi",
+                "value": 10,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Sakhalin-2 ownership (original stakes)"
+          }
+        ]
+      },
+      {
+        "heading": "TWO LIFELINES, ONE FRAGILE",
+        "body": "Japan has almost no domestic oil and imports nearly all of it. Around 90% comes from the Gulf and transits the Strait of Hormuz — a single chokepoint. Sakhalin, sailing the other direction from Russia's Far East, is the rare barrel that never touches the strait.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "JP",
+              "RU",
+              "SA",
+              "AE",
+              "QA",
+              "IR"
+            ],
+            "label": "Japan's crude comes from two directions",
+            "markers": [
+              {
+                "lat": 46.62,
+                "lng": 143.41,
+                "label": "Sakhalin-2 (Prigorodnoye)"
+              },
+              {
+                "lat": 26.57,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICE CAP, NOT THE BAN",
+        "body": "The G7 mechanism is subtler than an embargo: Western insurers and shippers may handle Russian crude only if it sold below a set price (initially $60/barrel). Because Lloyd's-aligned insurers cover most of the world's tanker fleet, the cap reaches far beyond G7 borders — control the insurance, control the trade."
+      },
+      {
+        "heading": "CRUDE IS NOT ONE THING",
+        "body": "Refineries are tuned to specific crude grades by density and sulphur. Sakhalin Blend is a light, low-sulphur crude that slots into the same units built for Gulf light grades — which is why Japan can substitute it quickly. A heavier, sourer barrel would need different processing and couldn't simply backfill the same slot.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry sorts crude on two axes: *API gravity* (light vs heavy) and *sulphur* (**sweet** under ~0.5%, **sour** above). A refinery configured for sweet light crude can't cheaply digest sour heavy crude — the barrels are not interchangeable."
+          }
+        ]
+      },
+      {
+        "heading": "THE 90-DAY FLOOR",
+        "body": "As an IEA member, Japan is treaty-bound to hold at least 90 days of net imports in reserve — a rule born from the 1973 Arab oil embargo, which hit import-dependent Japan harder than almost any other economy. Counting commercial plus state stockpiles, Japan actually sits far above the floor, which is what lets Tokyo treat a Hormuz scare as a sourcing decision rather than an emergency.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of Japan's crude oil imports comes from the Middle East, via the Strait of Hormuz?",
+            "options": [
+              "About 30%",
+              "About 50%",
+              "About 90%"
+            ],
+            "correct": 2,
+            "explanation": "Around 90% of Japan's crude transits Hormuz, making the strait its single largest energy vulnerability."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T08:47:41.281Z",
+    "label": "Japan's Sakhalin Exception",
+    "category": "economy",
+    "articleCount": 1
   }
 }
