@@ -274281,5 +274281,1634 @@
     "label": "Nicotine & the Tobacco Endgame",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-29-iran-south-pars-gas-complex-rebuild": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "ONE FIELD, TWO NAMES",
+        "body": "South Pars is not Iran's field — it is Iran's half of the single largest natural gas reservoir on Earth, straddling the maritime border with Qatar. Qatar calls its side the North Field. The geology does not recognize the line on the map; the gas sits in one continuous dome under the Persian Gulf.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "QA"
+            ],
+            "label": "the shared dome",
+            "caption": "One reservoir under the Gulf, split by a maritime border",
+            "markers": [
+              {
+                "lat": 27.47,
+                "lng": 52.61,
+                "label": "Assaluyeh (Iran)"
+              },
+              {
+                "lat": 25.91,
+                "lng": 51.55,
+                "label": "Ras Laffan (Qatar)"
+              },
+              {
+                "lat": 26.6,
+                "lng": 52,
+                "label": "South Pars / North Field"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DRAINAGE RACE",
+        "body": "A shared reservoir creates the rule of capture: gas flows toward whichever side pumps hardest. Qatar held a development moratorium for years while Iran drilled phase after phase, but Qatar's vastly larger LNG offtake meant it still extracted far more from the common pool. The border is legal fiction; the only real claim is what you pull out first."
+      },
+      {
+        "heading": "SAME ROCK, OPPOSITE FATES",
+        "body": "Qatar turned its half into the foundation of the world's largest LNG export industry and one of the highest per-capita incomes on Earth. Iran, locked out of LNG liquefaction technology by decades of sanctions, burns most of its share domestically and exports almost none. Identical geology, divergent outcomes — the variable was access to capital and technology, not gas.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Qatar",
+                "value": "~106bcm LNG",
+                "cc": "QA",
+                "tone": "favorable",
+                "weight": 106
+              },
+              {
+                "label": "Iran",
+                "value": "~0 LNG",
+                "cc": "IR",
+                "tone": "unfavorable",
+                "weight": 2
+              }
+            ],
+            "label": "what each side does with the same gas"
+          },
+          {
+            "type": "quiz",
+            "question": "South Pars is one half of a single shared field. What did the country on the other half build from its share?",
+            "options": [
+              "The world's largest LNG export industry",
+              "The world's largest oil refinery",
+              "A nuclear enrichment complex",
+              "The Gulf's biggest desalination grid"
+            ],
+            "correct": 0,
+            "explanation": "Qatar's North Field side underwrote its rise to the top of global LNG exports, while sanctioned Iran exports almost none of its share."
+          }
+        ]
+      },
+      {
+        "heading": "THE SOUR GAS PROBLEM",
+        "body": "South Pars gas is sour — laced with hydrogen sulfide, a lethal and corrosive contaminant that must be stripped out before the gas can enter a pipeline. That scrubbing happens onshore at Assaluyeh in sprawling sweetening trains that depend on steady power, water, and compression. The gas is useless until it is processed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The raw stream is *sour gas* — heavy with **hydrogen sulfide (H₂S)**, toxic at trace concentrations. Everything at **Assaluyeh** exists to remove it before the gas reaches Iran's grid."
+          }
+        ]
+      },
+      {
+        "heading": "WHY UTILITIES ARE THE TARGET",
+        "body": "The March strikes hit utility systems, not the wells or the dome itself. That is the efficient blow: a gas complex is only as live as its electricity, steam, cooling water, and compressors. Knock out the utilities and the processing trains go dark even though the reservoir below is untouched — which is why repairs restore supply faster than rebuilding wells would, but still take the field offline in the meantime."
+      }
+    ],
+    "generatedAt": "2026-05-31T17:33:37.855Z",
+    "label": "South Pars & the Shared Giant",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-29-mcp-model-context-protocol-standard-debate": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT MCP STANDARDIZED",
+        "body": "Before MCP, every AI app wired up every external tool with bespoke glue code. The protocol, released by Anthropic in late 2024, defines one schema format a model can speak to any compliant server — the often-repeated framing is a USB-C port for AI tools.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The win is the *N×M* collapse: instead of building a custom connector for every app-tool pair, each tool exposes **one** MCP server that every app can read."
+          }
+        ]
+      },
+      {
+        "heading": "THE ZERO-SUM BUDGET",
+        "body": "A context window is a fixed token allowance the model reads before every response. Every token spent describing available tools is a token unavailable for the user's actual code or question — so schema overhead isn't free, it directly shrinks working memory.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "GPT-4 (2023)",
+                "value": "~8k",
+                "weight": 8
+              },
+              {
+                "label": "Llama 3",
+                "value": "~128k",
+                "weight": 128
+              },
+              {
+                "label": "Claude",
+                "value": "~200k",
+                "weight": 200
+              },
+              {
+                "label": "Gemini 1.5",
+                "value": "~1M",
+                "weight": 1000
+              }
+            ],
+            "label": "context windows, approx tokens"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SCHEMAS BALLOON",
+        "body": "Each tool ships not just a name but a full JSON Schema: every parameter, type, enum, and description. Four servers each exposing a dozen tools front-loads thousands of tokens before the model has done anything — which is how one stack reached 10.5% of the window on plumbing alone.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The cost scales with the **full catalog**, not with what you actually use — a server you query once still pays its entire *JSON Schema* tax on every single turn."
+          }
+        ]
+      },
+      {
+        "heading": "THE FIX: LOAD ON DEMAND",
+        "body": "Deferred loading keeps only tool names in context and fetches the full schema the moment a tool is actually invoked. The 85% cut comes from not paying for descriptions of tools a given task never touches.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is **lazy loading** — a pattern as old as computing. Demand paging, dynamic linking, and JavaScript *tree-shaking* all rest on the same axiom: don't load what you might not use."
+          }
+        ]
+      },
+      {
+        "heading": "THE UNRESOLVED TRADEOFF",
+        "body": "Deferring schemas saves tokens but adds a round-trip and a reliability question: a model that can't see a tool's full description up front may pick the wrong tool or call it wrong. The debate is whether the latency and error cost is worth the context it buys back.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Before standard protocols, connecting M AI apps to N tools required roughly how many bespoke integrations?",
+            "options": [
+              "M + N",
+              "M × N",
+              "N squared",
+              "Just N"
+            ],
+            "correct": 1,
+            "explanation": "Every app needed custom glue for every tool — M×N connectors. A shared protocol collapses it to M+N: each side implements the standard once."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T17:34:19.171Z",
+    "label": "Model Context Protocol & the Context Budget",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-30-anthropic-most-valuable-ai-startup-valuation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A VALUATION ACTUALLY IS",
+        "body": "A near-$1 trillion valuation is not cash in the bank. It is the post-money figure: take the price investors paid per share in the new round and multiply by all shares outstanding. One investor paying a high price for a small slice sets the value of the entire company on paper.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "A $65bn round values Anthropic near $1tn. What does that number represent?",
+            "options": [
+              "Cash the company holds",
+              "Latest share price × total shares (post-money)",
+              "Total revenue earned to date",
+              "The price to acquire the whole firm"
+            ],
+            "correct": 1,
+            "explanation": "Post-money valuation extrapolates the newest round's per-share price across every share — a paper figure, not cash or revenue."
+          }
+        ]
+      },
+      {
+        "heading": "THE REVENUE MULTIPLE",
+        "body": "Anthropic reports revenue growing from $10bn to $47bn — yet a ~$1tn valuation still prices it at roughly 20x sales. Mature software firms trade closer to 5–10x; the premium is a bet that the curve keeps bending upward, not a verdict on today's books.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Anthropic",
+                "value": "~20x",
+                "tone": "unfavorable",
+                "weight": 20
+              },
+              {
+                "label": "Nvidia",
+                "value": "~25x",
+                "tone": "unfavorable",
+                "weight": 25
+              },
+              {
+                "label": "Microsoft",
+                "value": "~13x",
+                "tone": "neutral",
+                "weight": 13
+              },
+              {
+                "label": "Apple",
+                "value": "~8x",
+                "tone": "favorable",
+                "weight": 8
+              },
+              {
+                "label": "Alphabet",
+                "value": "~7x",
+                "tone": "favorable",
+                "weight": 7
+              }
+            ],
+            "label": "valuation vs revenue (rough)"
+          }
+        ]
+      },
+      {
+        "heading": "ARR IS NOT REVENUE",
+        "body": "AI-lab figures are usually quoted as annualized run-rate: take the latest month and multiply by twelve. It captures momentum but assumes the most recent month repeats all year — a flattering convention when growth is steep and a misleading one if it stalls.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Watch the wording: *annualized run-rate* (last month × 12) flatters a fast-growing lab far more than *trailing revenue* (the last twelve months actually booked)."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE ROUND BUYS",
+        "body": "Venture money arrives as preferred shares carrying liquidation preferences — investors get paid back first, often at a multiple, before common shareholders see anything in a sale. A headline valuation can rise even as the economics for founders and early employees quietly tighten.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Most valuable private companies",
+            "peers": [
+              {
+                "value": 950,
+                "label": "Anthropic"
+              },
+              {
+                "value": 850,
+                "label": "OpenAI"
+              },
+              {
+                "value": 400,
+                "label": "SpaceX"
+              },
+              {
+                "value": 300,
+                "label": "ByteDance"
+              },
+              {
+                "value": 90,
+                "label": "Stripe"
+              },
+              {
+                "value": 60,
+                "label": "Databricks"
+              }
+            ],
+            "subjectLabel": "Anthropic",
+            "unit": "$bn"
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPUTE TREADMILL",
+        "body": "Frontier labs spend most of what they raise on training and serving models — chips, data centers, electricity. Revenue at $47bn can coexist with heavy losses because each model generation costs more to train than the last, so the funding is fuel, not profit.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              24350,
+              24838,
+              24876,
+              29186,
+              31637,
+              47289,
+              31769,
+              37675,
+              26522,
+              28305,
+              31715,
+              29993,
+              34849,
+              33593,
+              26509,
+              24498,
+              24488,
+              35427,
+              28314,
+              28721,
+              28453,
+              30016,
+              29342,
+              27232,
+              28702,
+              27941,
+              31664,
+              32974,
+              33158,
+              32711
+            ],
+            "periods": [
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30"
+            ],
+            "label": "Artificial intelligence — Wikipedia views",
+            "unit": "views/day",
+            "highlight": "max",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY WEIGH AN IPO NOW",
+        "body": "Going public is fundamentally a liquidity event: it lets early investors and employees finally sell shares they have held for years. The pressure to IPO rises with each private round, because every new investor eventually wants an exit the private market cannot easily provide.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "An IPO is less about *raising money* — these labs raise billions privately — and more about creating a public market where early shares can finally be **sold**."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Wikipedia pageviews · as of 2026-05-30"
+    ],
+    "generatedAt": "2026-05-31T17:34:53.466Z",
+    "label": "Startup Valuations & the AI Money Machine",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-30-domain-expertise-ai-moat-debate": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ESSENCE AND THE ACCIDENT",
+        "body": "Fred Brooks split software's difficulty in two in 1986: accidental complexity (the labor of expressing a design in a language a machine accepts) and essential complexity (deciding what the system should actually do). Decades of tools attacked the accidental. AI is the largest attack yet — but it leaves the essence untouched. Knowing what to build was always the hard part, and it still is.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Brooks called this the search for a *silver bullet* — and his thesis was that **none exists**, because the irreducible work is conceptual, not clerical."
+          }
+        ]
+      },
+      {
+        "heading": "THE SPECIFICATION TRAP",
+        "body": "There is an old result hiding inside the 'just describe what you want' promise: a description of a program precise and complete enough to be unambiguous IS a program. You cannot escape programming by specifying — past a certain point, the specification becomes the code in a different syntax. AI moves where the syntax lives; it does not remove the need to be exact."
+      },
+      {
+        "heading": "THE ORACLE PROBLEM",
+        "body": "In testing theory, an 'oracle' is whatever tells you the answer is correct. Generated code is cheap to produce and expensive to trust — and you cannot verify an output unless you already know what right looks like. In domains where only an expert can supply that judgment, the expert becomes the binding constraint. That is the article's core claim, and it is an old one in disguise."
+      },
+      {
+        "heading": "WHY DOMAIN KNOWLEDGE RESISTS ENCODING",
+        "body": "The counter-argument — that expertise can simply be baked into training data — runs into tacit knowledge: the large share of what experts know that they cannot fully articulate. A surgeon, a tax lawyer, a refinery engineer all act on judgment they could never write down completely. What can't be stated can't be cleanly encoded, only approximated.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "We can know more than we can tell.",
+            "speaker": "Michael Polanyi, The Tacit Dimension",
+            "year": "1966"
+          }
+        ]
+      },
+      {
+        "heading": "THE RECURRING PROPHECY",
+        "body": "Every generation announced the end of the programmer. COBOL (1959) was designed with English-like syntax so managers could read code without programmers. Then came 4GLs, CASE tools, visual programming, offshore outsourcing, and no-code platforms. Each automated some accidental complexity — and each was followed by MORE demand for developers, not less. The Jevons paradox: when a resource gets cheaper to use, total consumption rises.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1959",
+                "label": "COBOL — 'managers can read it'"
+              },
+              {
+                "year": "1974",
+                "label": "4GLs — declarative queries"
+              },
+              {
+                "year": "1985",
+                "label": "CASE tools — diagrams to code"
+              },
+              {
+                "year": "1995",
+                "label": "offshore outsourcing boom"
+              },
+              {
+                "year": "2014",
+                "label": "no-code / low-code platforms"
+              },
+              {
+                "year": "2022",
+                "label": "LLM code generation",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "each wave that was going to end programming"
+          },
+          {
+            "type": "quiz",
+            "question": "Which language was deliberately designed so that non-programmers like managers could read the code?",
+            "options": [
+              "COBOL",
+              "Fortran",
+              "Lisp",
+              "C"
+            ],
+            "correct": 0,
+            "explanation": "COBOL's verbose English-like syntax (1959) aimed to let managers audit programs directly — yet demand for specialist programmers only grew."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T17:35:48.938Z",
+    "label": "The Software Moat Debate",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-31-ai-catalyst-transfer-green-hydrogen": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COLOR CODE",
+        "body": "Hydrogen is colorless; the colors describe how it was made. Most hydrogen today is grey — stripped from natural gas, emitting CO2. Blue adds carbon capture. Green splits water with renewable electricity and emits nothing. The molecule is identical; only the supply chain differs.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Roughly **95%** of today's hydrogen is *grey*, made by steam-reforming methane. \"Green\" means the electricity driving the split is renewable — which is why its cost tracks the price of clean power, not the gas market."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A CATALYST ACTUALLY DOES",
+        "body": "A catalyst is not consumed in the reaction — it lowers the activation energy so the split happens faster and at lower voltage. In an electrolyzer this is the difference between a device that sips electricity and one that wastes it as heat. The catalyst sets the efficiency ceiling."
+      },
+      {
+        "heading": "THE IRIDIUM BOTTLENECK",
+        "body": "The best-performing electrolyzers (PEM type) need iridium to survive the corrosive, acidic, oxygen-rich anode. Iridium is one of the rarest elements in the Earth's crust — annual production is measured in single-digit tonnes. Scaling electrolysis to climate-relevant size could demand more iridium than the world mines in years.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Silver",
+                "value": "~25,000t",
+                "weight": 25000
+              },
+              {
+                "label": "Gold",
+                "value": "~3,000t",
+                "weight": 3000
+              },
+              {
+                "label": "Platinum",
+                "value": "~190t",
+                "weight": 190
+              },
+              {
+                "label": "Iridium",
+                "value": "~8t",
+                "weight": 8,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "annual mine production (rarity)"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE IT COMES FROM",
+        "body": "Iridium is a byproduct of platinum-group mining, and that supply is geographically concentrated to a degree few critical minerals match. A single country's mines dominate global output, which turns a chemistry problem into a geopolitical one.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Platinum-group metal supply share",
+            "peers": [
+              {
+                "value": 72,
+                "cc": "ZA"
+              },
+              {
+                "value": 11,
+                "cc": "RU"
+              },
+              {
+                "value": 8,
+                "cc": "ZW"
+              },
+              {
+                "value": 4,
+                "cc": "CA"
+              },
+              {
+                "value": 3,
+                "cc": "US"
+              }
+            ],
+            "subjectCc": "ZA",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "THE SEARCH SPACE",
+        "body": "A catalyst can mix several elements in varying ratios and crystal structures. The number of candidate materials runs into the billions — far more than any lab could synthesize and test. Discovery has always been a search through a space too large to brute-force.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which scarce metal is the main bottleneck for high-performance (PEM) water electrolyzers?",
+            "options": [
+              "Lithium",
+              "Cobalt",
+              "Iridium",
+              "Neodymium"
+            ],
+            "correct": 2,
+            "explanation": "Iridium is among the rarest crustal elements and is the only material that reliably survives the PEM anode's acidic, oxidizing conditions."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSFER PROBLEM",
+        "body": "The deeper barrier was that what a model learned about one chemical family told it almost nothing about another — each material class was its own island of knowledge. Crossing that barrier, so insight from one chemistry guides the search in a wholly different one, is what makes this method generalize beyond hydrogen."
+      }
+    ],
+    "generatedAt": "2026-05-31T17:36:35.755Z",
+    "label": "Catalysts & Green Hydrogen",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-31-daraxonrasib-pancreatic-cancer-kras-trial": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE UNDRUGGABLE GENE",
+        "body": "KRAS was identified as a human cancer driver in 1982 — one of the very first oncogenes found. Then it defied drugs for nearly four decades. The protein's surface is smooth and globular, with no deep pocket for a small molecule to grab, so it became the textbook example of an 'undruggable' target.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1982",
+                "label": "KRAS found as human oncogene",
+                "emphasis": "start"
+              },
+              {
+                "year": "2013",
+                "label": "Shokat lab finds a hidden pocket"
+              },
+              {
+                "year": "2021",
+                "label": "First KRAS drug approved",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026",
+                "label": "Pan-RAS pill enters trials"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1982",
+                "to": "2021",
+                "label": "the 'undruggable' decades",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "the 40-year siege on KRAS"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT MATTERS LIKE A SWITCH",
+        "body": "KRAS is a molecular on/off switch for cell growth, toggling between a GDP-bound 'off' state and a GTP-bound 'on' state. The common cancer mutations jam it permanently in the 'on' position, so the cell keeps receiving a grow signal that never stops — no external trigger required.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The breakthrough mutations sit at codon 12. **G12C** swaps in a cysteine that a drug can chemically latch onto — but pancreatic tumors are mostly **G12D** and **G12R**, which offer no such handle. That is why the first KRAS drugs barely touched pancreatic cancer."
+          }
+        ]
+      },
+      {
+        "heading": "NOT ALL KRAS CANCERS ARE EQUAL",
+        "body": "KRAS drives different cancers at very different rates, and the specific variant differs too. The G12C mutation that the first approved inhibitors targeted is common in lung cancer but rare in the pancreas — which is exactly why pancreatic patients were left behind by the 2021 generation of drugs.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Pancreatic",
+                "value": "~90%",
+                "tone": "unfavorable",
+                "weight": 90
+              },
+              {
+                "label": "Colorectal",
+                "value": "~40%",
+                "tone": "neutral",
+                "weight": 40
+              },
+              {
+                "label": "Lung (adeno)",
+                "value": "~30%",
+                "tone": "neutral",
+                "weight": 30
+              }
+            ],
+            "label": "share of tumors driven by KRAS"
+          }
+        ]
+      },
+      {
+        "heading": "THE PANCREATIC VARIANT MIX",
+        "body": "Within pancreatic tumors, the mutation isn't one thing — it's a spread dominated by G12D and G12V, with G12R appearing far more often here than in any other cancer. A drug that only hits one variant treats a slice of patients; a 'pan-RAS' approach aims at the whole distribution at once.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "G12D",
+                "value": 40,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "G12V",
+                "value": 30,
+                "tone": "neutral"
+              },
+              {
+                "label": "G12R",
+                "value": 16,
+                "tone": "favorable"
+              },
+              {
+                "label": "Other",
+                "value": 14,
+                "tone": "favorable"
+              }
+            ],
+            "label": "KRAS variants in pancreatic cancer (approx. share)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'DOUBLED' IS STILL GRIM",
+        "body": "Pancreatic cancer has the worst survival of any major cancer — roughly a 13% five-year survival rate, because it is usually found late and resists chemotherapy. Doubling median survival is a genuine breakthrough against this baseline, but it moves patients from months to more months, not yet to years.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did the first approved KRAS inhibitors do little for pancreatic cancer?",
+            "options": [
+              "Pancreatic tumors rarely carry any KRAS mutation",
+              "They targeted G12C, which is rare in the pancreas",
+              "The pancreas blocks all oral drugs",
+              "KRAS only drives lung cancer"
+            ],
+            "correct": 1,
+            "explanation": "The 2021 drugs were built for the G12C variant common in lung cancer; pancreatic tumors are mostly G12D and G12R, which those drugs can't grip."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T17:37:10.121Z",
+    "label": "KRAS: the undruggable target",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-31-eu-russia-oil-price-cap-freeze-iran-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "The cap is not enforced at the wellhead — it is enforced at the insurance desk. The G7 and EU underwrite the overwhelming majority of the world's tanker insurance and maritime services, so the rule is simply: Western ships, insurers, and brokers may only touch Russian crude sold at or below the cap. Control the paperwork, control the trade.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Roughly **90%** of the world's ship-protection cover is written through the London-based **International Group of P&I Clubs** — which is why a price ceiling set in Brussels reaches a tanker loading in the Baltic."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SIXTY, NOT ZERO",
+        "body": "The cap was deliberately designed as a ceiling, not an embargo. Set it too low and Russia halts exports, global supply tightens, and prices spike — punishing the buyers, not Moscow. The $60 line was pitched above Russia's production cost but below the market, the idea being to keep the oil flowing while shaving the Kremlin's per-barrel margin.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did the G7 set the Russian oil cap at $60 rather than near zero?",
+            "options": [
+              "To keep Russian oil flowing and avoid a global price spike",
+              "To inflict maximum pain regardless of supply effects",
+              "Because $60 is Russia's exact break-even cost",
+              "To match OPEC's official price target"
+            ],
+            "correct": 0,
+            "explanation": "A near-zero cap would have pushed Russia to cut exports, tightening global supply and raising prices for the cap's own backers."
+          }
+        ]
+      },
+      {
+        "heading": "THE URALS DISCOUNT",
+        "body": "Russia's flagship grade, Urals, does not trade at the world price. Since 2022 it has sold at a steep discount to Brent because the pool of buyers who will handle sanctioned crude is small and demands a premium for the risk. The cap targets Urals specifically — which is why a jump in the global benchmark can drag the discounted Russian grade up past the $60 line.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Brent",
+                "value": "~$75",
+                "tone": "neutral"
+              },
+              {
+                "label": "WTI",
+                "value": "~$71",
+                "tone": "neutral"
+              },
+              {
+                "label": "Urals",
+                "value": "~$60",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "crude benchmarks — the Urals gap"
+          }
+        ]
+      },
+      {
+        "heading": "THE SHADOW FLEET",
+        "body": "To sell above the cap, Russia assembled a fleet of aging tankers with murky ownership and non-Western insurance — vessels that never touch a London broker and so are not bound by the ceiling. The cap's bite depends on how much oil it can keep inside the Western-serviced system versus how much slips into this parallel fleet.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Estimates put the **shadow fleet** at hundreds of tankers — old, often uninsured to Western standards, and a growing environmental as well as sanctions concern in chokepoints like the **Danish Straits**."
+          }
+        ]
+      },
+      {
+        "heading": "THE REVENUE SQUEEZE",
+        "body": "The cap's whole purpose is to drain hydrocarbon revenue, which funds the bulk of the Russian state budget. When oil money tightens, the pressure shows up in the ruble — the cleanest public read on how hard sanctions are actually biting at any given moment.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              74.972582,
+              74.972579,
+              74.935527,
+              75.000725,
+              75.496791,
+              74.745903,
+              74.572447,
+              74.240011,
+              74.240011,
+              74.481524,
+              73.600006,
+              73.827197,
+              74.177267,
+              72.949018,
+              72.7606,
+              72.760611,
+              72.790641,
+              72.776561,
+              71.198733,
+              71.250362,
+              71.195086,
+              71.79052,
+              71.79052,
+              71.003832,
+              71.451534,
+              71.98823,
+              70.902444,
+              70.850944,
+              71.146834,
+              71.146834
+            ],
+            "periods": [
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31"
+            ],
+            "label": "Russian ruble",
+            "unit": "RUB / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE SANCTIONS ARC",
+        "body": "The cap was the second act, not the first. The EU banned seaborne Russian crude outright in mid-2022; the price cap followed in December as a softer instrument once a full embargo threatened to spike prices worldwide. The semi-annual revision now in question is a routine valve built into that machinery.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2022-06",
+                "label": "EU bans seaborne Russian crude",
+                "emphasis": "start"
+              },
+              {
+                "year": "2022-12",
+                "label": "G7 price cap set at $60",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-02",
+                "label": "Cap extended to refined products"
+              },
+              {
+                "year": "2026-07",
+                "label": "Semi-annual revision due"
+              }
+            ],
+            "label": "the oil-sanctions machinery"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-31"
+    ],
+    "generatedAt": "2026-05-31T17:38:01.432Z",
+    "label": "The Russian Oil Price Cap",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-31-india-cbse-exam-portal-security-flaw-teen": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FLAW BEHIND THE FLAW",
+        "body": "The classic way 'millions of records' leak is rarely a sophisticated hack. It is usually an insecure direct object reference: the URL ends in ?id=10421, you change it to 10422, and the server hands you a stranger's file because it never checked whether you were allowed to see it. No password cracked, no firewall breached — just a counter you can increment.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is called an **IDOR** — *insecure direct object reference*. It sits at the top of the OWASP risk list precisely because it requires zero tooling: a teenager with a browser address bar can find one."
+          }
+        ]
+      },
+      {
+        "heading": "WHY OUTSOURCING IS THE WEAK LINK",
+        "body": "A government board's security is only as strong as the cheapest vendor it subcontracts to. On-screen marking, payment gateways, and document portals are routinely handed to private firms whose contracts specify uptime and price but rarely specify penetration testing. Security becomes nobody's billable line item.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What flaw most commonly exposes 'millions of records' on a government web portal?",
+            "options": [
+              "A cracked encryption algorithm",
+              "Guessable URLs with no access check (IDOR)",
+              "A physical theft of servers",
+              "A brute-forced administrator password"
+            ],
+            "correct": 1,
+            "explanation": "Most mass exposures are access-control failures — the data was never gated — not broken cryptography or stolen hardware."
+          }
+        ]
+      },
+      {
+        "heading": "THE WHISTLEBLOWER'S TRAP",
+        "body": "A researcher who reports a flaw responsibly can still be prosecuted. India's IT Act criminalizes 'unauthorized access' broadly, with no statutory safe harbor for good-faith security research — so the person who warns you about the open door can be charged for having tried the handle. This is why many flaws go unreported until a bad actor finds them first.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "Protected",
+                "tone": "favorable",
+                "cc": "US"
+              },
+              {
+                "label": "Netherlands",
+                "value": "Protected",
+                "tone": "favorable",
+                "cc": "NL"
+              },
+              {
+                "label": "Singapore",
+                "value": "Conditional",
+                "tone": "neutral",
+                "cc": "SG"
+              },
+              {
+                "label": "India",
+                "value": "None",
+                "tone": "unfavorable",
+                "cc": "IN"
+              }
+            ],
+            "label": "Legal protection for good-faith researchers"
+          }
+        ]
+      },
+      {
+        "heading": "THE PATTERN, NOT THE INCIDENT",
+        "body": "India digitized identity and services faster than almost any state on earth, but the legal and security scaffolding lagged. The data-protection regime arrived decades after the systems it was meant to govern — and after the largest exposures had already happened.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2000",
+                "label": "IT Act — broad 'unauthorized access' offence"
+              },
+              {
+                "year": "2009",
+                "label": "Aadhaar / UIDAI biometric ID launched",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2015",
+                "label": "Supreme Court strikes down IT Act §66A"
+              },
+              {
+                "year": "2018",
+                "label": "Aadhaar database exposure reports"
+              },
+              {
+                "year": "2023",
+                "label": "DPDP Act passed — no researcher safe harbor"
+              }
+            ],
+            "label": "India's data governance arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE CONTRACT IS THE STORY",
+        "body": "The opposition is demanding a court inquiry into how the marking contract was awarded — not just the breach itself. That instinct is sound: in outsourced public IT, the security failure is usually downstream of the procurement failure. When a contract is awarded on price or proximity rather than capability, the audit trail of how it was won predicts how it will fail."
+      }
+    ],
+    "generatedAt": "2026-05-31T17:39:00.348Z",
+    "label": "Web Security & Data Exposure",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-31-india-heat-cities-migrant-workers-vulnerability": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PHYSIOLOGICAL CEILING",
+        "body": "The human body sheds heat by sweating, but sweat only cools if it can evaporate. Above a wet-bulb temperature of about 35°C — heat plus humidity combined — evaporation stops and core temperature climbs no matter how fit, hydrated, or shaded you are. A few hours at that threshold is fatal. The 47.6°C dry-bulb reading in the headline is survivable in dry air; the danger is when humidity rides alongside it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The metric that kills is not the thermometer reading but the **wet-bulb temperature** — air temperature measured by a thermometer wrapped in a wet cloth, capturing how much cooling evaporation can still deliver. Beyond **~35°C wet-bulb**, a healthy human in the shade dies within hours."
+          },
+          {
+            "type": "quiz",
+            "question": "Why can a humid 38°C kill an outdoor worker faster than a dry 47°C?",
+            "options": [
+              "Humid air carries more heat energy per breath",
+              "High humidity stops sweat from evaporating, so the body can't cool",
+              "The sun is stronger in humid climates",
+              "Dry heat triggers more sweating, which protects the body"
+            ],
+            "correct": 1,
+            "explanation": "Sweat only cools by evaporating; saturated air blocks evaporation, so the body retains heat even at a lower thermometer reading."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CITIES COOK",
+        "body": "Concrete and asphalt absorb solar radiation by day and release it slowly at night, while glass and steel re-radiate it sideways into streets. The result is the urban heat island: a dense city can run 5–8°C hotter than its rural surroundings, and crucially it stays hot after dark — denying the body the nighttime recovery that prevents heat stroke from accumulating day over day.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The cruelest part is the *night*: rural land cools after sunset, but a city's stored heat keeps temperatures elevated, erasing the recovery window. Consecutive hot nights, not single hot days, are what drive heat-death curves upward."
+          }
+        ]
+      },
+      {
+        "heading": "THE SOUTH ASIAN HEAT BELT",
+        "body": "The Indo-Gangetic plain is one of the planet's most dangerous heat zones — flat, densely populated, and increasingly humid as pre-monsoon moisture builds. Jacobabad in Pakistan has already crossed the survivability threshold in recent years, and the same air mass that bakes it sweeps across northern India.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "PK",
+              "BD",
+              "NP"
+            ],
+            "label": "the Indo-Gangetic heat zone",
+            "caption": "Flat, humid, densely populated — among Earth's deadliest heat terrain",
+            "markers": [
+              {
+                "lat": 28.6139,
+                "lng": 77.209,
+                "label": "New Delhi"
+              },
+              {
+                "lat": 28.2814,
+                "lng": 68.4419,
+                "label": "Jacobabad"
+              },
+              {
+                "lat": 21.1458,
+                "lng": 79.0882,
+                "label": "Nagpur"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LARGEST MIGRATION ON EARTH",
+        "body": "India's internal migration is the biggest human movement of its kind anywhere — hundreds of millions who leave villages for construction sites, brick kilns, and informal urban labor. Because they are documented in their home districts, not their workplaces, they fall through nearly every welfare and protection scheme designed around fixed residence.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India",
+                "value": "~450mn",
+                "cc": "IN",
+                "weight": 450,
+                "tone": "neutral"
+              },
+              {
+                "label": "China",
+                "value": "~290mn",
+                "cc": "CN",
+                "weight": 290,
+                "tone": "neutral"
+              },
+              {
+                "label": "Indonesia",
+                "value": "~30mn",
+                "cc": "ID",
+                "weight": 30,
+                "tone": "neutral"
+              }
+            ],
+            "label": "internal migrants, approx. scale"
+          }
+        ]
+      },
+      {
+        "heading": "THE INFORMAL TRAP",
+        "body": "Roughly 90% of India's workforce is informal — no contract, no fixed employer, paid by the day. A formal worker can demand shade, water breaks, or a paused shift; an informal one who stops working simply isn't paid. Heat protection costs the worker income directly, which is why behavioral advice ('avoid midday sun') fails for the people most exposed."
+      },
+      {
+        "heading": "THE GOVERNANCE GAP",
+        "body": "India pioneered Heat Action Plans after a 2010 Ahmedabad heatwave killed over a thousand — early-warning systems, cooling centers, hospital readiness. But these plans are built around fixed residents. The Nature study's finding — fewer than 5 of 94 policies address both heat and migrant status — captures a structural blind spot: the people who move are the people the system can't see.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2010 **Ahmedabad Heat Action Plan** became the template copied across South Asia — yet a decade on, its successors still assume a worker has a *home address the warning can reach*. Migrants don't."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T17:39:47.975Z",
+    "label": "Heat, Cities & the Migrant Body",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-31-lebanon-israeli-strikes-death-toll-tyre": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PERPETUAL FRONTLINE",
+        "body": "The strip from the Litani River to the border has been buffer zone, occupation zone, and battleground continuously since 1978. The same geography that makes it a buffer — high ground overlooking northern Israel, a Shia-majority population, broken terrain — makes it a permanent frontline. Ceasefires pause the fighting here; they have never ended it.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL"
+            ],
+            "label": "the Litani–border strip",
+            "caption": "From the Litani to the line: ~30km of contested ground",
+            "markers": [
+              {
+                "lat": 33.2705,
+                "lng": 35.2038,
+                "label": "Tyre"
+              },
+              {
+                "lat": 33.3631,
+                "lng": 35.2419,
+                "label": "Litani river mouth"
+              },
+              {
+                "lat": 33.1192,
+                "lng": 35.5775,
+                "label": "Bint Jbeil"
+              },
+              {
+                "lat": 33.09,
+                "lng": 35.1014,
+                "label": "Rosh Hanikra border"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT RESOLUTION 1701 PROMISED",
+        "body": "The UN resolution that ended the 2006 war was meant to make the zone south of the Litani a weapons-free space, policed by the Lebanese army and a reinforced UNIFIL. It never fully held: Hezbollah kept its positions, Israel kept its overflights, and both treated the line as a posture to be tested rather than a border to be respected.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "1701's core demand was that the area south of the **Litani** hold *no armed personnel, assets, or weapons* other than the Lebanese state's and **UNIFIL's** — a condition neither side ever let fully take effect."
+          }
+        ]
+      },
+      {
+        "heading": "TYRE, THE ANCIENT PORT",
+        "body": "Tyre is one of the oldest continuously inhabited cities on earth — a Phoenician maritime power that Alexander besieged for seven months in 332 BC by building a causeway to its island. Today it is the largest city in the war zone and a Shia population center, which is why its casualty counts carry political weight far beyond the numbers."
+      },
+      {
+        "heading": "THE 2006 PRECEDENT",
+        "body": "Bint Jbeil, a few kilometers from Tyre, was the fiercest battle of the 2006 war. Israel sent elite Golani units to take the town; Hezbollah held it through days of close urban combat and Israel withdrew without holding it. In Hezbollah's narrative this is their Stalingrad — proof that Israeli ground forces can be fought to a standstill on this terrain.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did UN Resolution 1701, ending the 2006 war, require for south Lebanon?",
+            "options": [
+              "A demilitarized zone south of the Litani, policed by the Lebanese army and UNIFIL",
+              "Permanent Israeli occupation up to the Litani",
+              "A Hezbollah-administered autonomous zone",
+              "Joint Israeli–Lebanese patrols of the border"
+            ],
+            "correct": 0,
+            "explanation": "1701 envisioned a weapons-free strip under Lebanese state and UNIFIL control — a condition that was never fully enforced."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CEASEFIRES LEAK HERE",
+        "body": "A ceasefire holds only when both sides believe the framework delivers more than continued fighting. In south Lebanon, each side reads the other's restraint as weakness and each violation as a probe. Without a deadline either party is willing to enforce, the line erodes by attrition — strikes continue, the toll climbs, and the 'ceasefire' becomes a name for a slower war.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1978",
+                "label": "First Israeli invasion; UNIFIL deployed"
+              },
+              {
+                "year": "1982",
+                "label": "Israel invades to Beirut",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2000",
+                "label": "Israel withdraws after 18 years"
+              },
+              {
+                "year": "2006",
+                "label": "34-day war; Resolution 1701"
+              },
+              {
+                "year": "2024",
+                "label": "Renewed full-scale war"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1982",
+                "to": "2000",
+                "label": "Israeli occupation of the south",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "south Lebanon's contested decades"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T17:40:18.088Z",
+    "label": "South Lebanon & the Ceasefire Line",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-31-myanmar-shan-state-village-explosives-blast": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT GELIGNITE IS",
+        "body": "Gelignite is a nitroglycerin explosive Alfred Nobel patented in 1875 as a safer, putty-like successor to dynamite. It is the workhorse of quarrying and mining because it can be packed into drill holes — but it degrades with age and temperature, sweating raw nitroglycerin that makes a stockpile dangerously sensitive to shock.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Old gelignite *exudes* nitroglycerin as it ages — the leaked droplets are far more shock-sensitive than the stick itself. A warehouse of decaying stock near a population center is the worst-case storage scenario."
+          }
+        ]
+      },
+      {
+        "heading": "WHY REBELS HOLD EXPLOSIVES",
+        "body": "Shan State's armed groups fund themselves partly through mining — jade, tin, rare earths, and gemstones — which runs on industrial blasting agents. Controlling a quarry means stockpiling the explosives that work it, so munitions and commercial mining stock blur into the same supply.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MM",
+              "CN",
+              "TH",
+              "LA"
+            ],
+            "label": "Shan State & its borders",
+            "caption": "Namkham sits in northern Shan, ~3 km from China's Yunnan frontier",
+            "markers": [
+              {
+                "lat": 23.83,
+                "lng": 97.68,
+                "label": "Namkham"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHO THE TA'ANG ARE",
+        "body": "The Ta'ang (also called Palaung) are a highland ethnic minority of northern Shan State. Their armed wing, the Ta'ang National Liberation Army, is one of dozens of ethnic armed organizations that have fought Myanmar's central state since independence in 1948 — the world's longest-running civil war.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "TNLA",
+                "role": "Ta'ang armed wing, N. Shan",
+                "cc": "MM"
+              },
+              {
+                "name": "MNDAA",
+                "role": "Kokang army, China border",
+                "cc": "MM"
+              },
+              {
+                "name": "Arakan Army",
+                "role": "Rakhine ethnic force, west",
+                "cc": "MM"
+              }
+            ],
+            "label": "the Three Brotherhood Alliance"
+          }
+        ]
+      },
+      {
+        "heading": "OPERATION 1027",
+        "body": "In October 2023 the TNLA, MNDAA, and Arakan Army launched a coordinated offensive named for its start date — Oct 27 — that overran dozens of junta posts across northern Shan. It was the most serious military setback the army had suffered since seizing power in the 2021 coup, and it redrew control along the China border.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1948",
+                "label": "Independence; ethnic wars begin"
+              },
+              {
+                "year": "2015",
+                "label": "Nationwide ceasefire (partial)"
+              },
+              {
+                "year": "2021-02",
+                "label": "Military coup",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-10",
+                "label": "Operation 1027 offensive"
+              }
+            ],
+            "label": "Myanmar's recent arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHINA SITS AT THE TABLE",
+        "body": "The blast hit a village 3 km from Yunnan. Beijing's pipelines, rare-earth imports, and trade corridors all run through this exact ground, which is why China — not the UN or ASEAN — repeatedly brokers and breaks the ceasefires between the junta and the border groups. Proximity gives Beijing leverage no other outside power has.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "The TNLA belongs to which coalition behind the 2023 Operation 1027 offensive?",
+            "options": [
+              "The Three Brotherhood Alliance",
+              "The Tatmadaw",
+              "ASEAN"
+            ],
+            "correct": 0,
+            "explanation": "The Three Brotherhood Alliance unites the TNLA, MNDAA, and Arakan Army; the Tatmadaw is the junta army they fight."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T17:40:52.042Z",
+    "label": "Shan State & the Ethnic Armed Groups",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-31-pakistan-sindh-irsa-water-share-dispute": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY GEOGRAPHY DECIDES THE FIGHT",
+        "body": "In every river system the upstream user holds physical leverage — water must be released before it can reach the tail. Punjab sits at the head of Pakistan's canal network; Sindh sits at the tail. The Indus descends through a ladder of barrages, and whoever controls the upper gates shapes a shortage before the water ever moves south.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK"
+            ],
+            "label": "the Indus barrage ladder, head to tail",
+            "caption": "Punjab's intakes lie upstream of Sindh's at Guddu, Sukkur, Kotri",
+            "markers": [
+              {
+                "lat": 34.09,
+                "lng": 72.69,
+                "label": "Tarbela Dam"
+              },
+              {
+                "lat": 32.43,
+                "lng": 71.38,
+                "label": "Chashma Barrage"
+              },
+              {
+                "lat": 30.51,
+                "lng": 70.85,
+                "label": "Taunsa Barrage"
+              },
+              {
+                "lat": 28.42,
+                "lng": 69.72,
+                "label": "Guddu Barrage"
+              },
+              {
+                "lat": 27.69,
+                "lng": 68.85,
+                "label": "Sukkur Barrage"
+              },
+              {
+                "lat": 25.44,
+                "lng": 68.31,
+                "label": "Kotri Barrage"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 1991 ACCORD",
+        "body": "Pakistan's provinces don't share the Indus by goodwill — they share it by a fixed formula. The 1991 Water Apportionment Accord split the basin into province-by-province allocations and created IRSA to police them. Two giants dominate the table; the real contest is always Punjab versus Sindh.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Punjab",
+                "value": "55.9 MAF",
+                "weight": 55.9
+              },
+              {
+                "label": "Sindh",
+                "value": "48.8 MAF",
+                "weight": 48.8
+              },
+              {
+                "label": "KP",
+                "value": "5.8 MAF",
+                "weight": 5.8
+              },
+              {
+                "label": "Balochistan",
+                "value": "3.9 MAF",
+                "weight": 3.9
+              }
+            ],
+            "label": "1991 Accord allocation (million acre-feet)"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'EQUALISING' ACTUALLY MEANS",
+        "body": "When the river runs short, IRSA can spread the pain two ways: cut every province by the same percentage, or honour historical canal withdrawals first. 'Equalising' shortages means the same percentage cut for all — which Sindh objects to, because the baseline those percentages are measured against is itself disputed. The argument is never about the water alone; it is about which number you start from.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The accord's *three-tier formula* — fixed shares, historical use, and balance-of-river — was never fully operationalised, so each shortage reopens the question of **which rule governs the cut**."
+          }
+        ]
+      },
+      {
+        "heading": "THE WATER THAT 'WASTES' INTO THE SEA",
+        "body": "The accord deliberately reserves a flow to pass the last barrage at Kotri and reach the ocean. It looks like waste, but it isn't: without that freshwater pressure, the Arabian Sea pushes inland. Decades of upstream diversion have let seawater intrude tens of kilometres into the Indus delta, salting farmland and collapsing the mangrove fishery that once anchored southern Sindh.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the accord reserve water to flow past the final barrage into the sea?",
+            "options": [
+              "To hold back seawater intruding into the Indus delta",
+              "To generate downstream hydropower",
+              "To meet treaty obligations with India",
+              "To maintain a shipping channel to Karachi"
+            ],
+            "correct": 0,
+            "explanation": "Freshwater flow below Kotri counters tidal seawater intrusion; without it, salt destroys delta farmland and fisheries."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRUST PROBLEM",
+        "body": "Why does this dispute recur every dry season? Because there is no agreed measurement. IRSA installed a telemetry system to gauge flows automatically at each barrage, but it never worked reliably — so allocations rest on manual readings that each province accuses the other of fudging. With no neutral fact about how much water actually passed a gate, every shortage becomes a political negotiation rather than an engineering calculation."
+      }
+    ],
+    "generatedAt": "2026-05-31T17:42:11.075Z",
+    "label": "The Indus & Pakistan's Water Accord",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-31-ukrainian-drones-control-airspace-over-russian-logistic-rout": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "ARMIES RUN ON SUPPLY, NOT VALOR",
+        "body": "A division in combat consumes hundreds of tons of fuel, shells, food, and water every day, all of it trucked forward from rail depots. Interdiction — striking those depots and routes rather than the troops themselves — is the cheapest way to break an offensive, because a gun without shells is scrap and a tank without diesel is a pillbox.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine has a name: *interdiction* — attacking the enemy's logistics in the rear so the front withers from starvation rather than from frontal assault. It is why air forces have always prized **rail junctions and fuel dumps** over front-line trenches."
+          }
+        ]
+      },
+      {
+        "heading": "THE COST ASYMMETRY",
+        "body": "The drone economy inverts the old math of war. A long-range strike drone costs a few tens of thousands of dollars; the ammunition depot or fuel train it destroys is worth orders of magnitude more, and the air-defense missile fired to stop it often costs more than the drone itself.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "FPV drone",
+                "value": "~$500",
+                "tone": "favorable",
+                "weight": 0.5
+              },
+              {
+                "label": "Long-range UAV",
+                "value": "~$50k",
+                "tone": "favorable",
+                "weight": 50
+              },
+              {
+                "label": "SAM interceptor",
+                "value": "~$500k+",
+                "tone": "unfavorable",
+                "weight": 500
+              },
+              {
+                "label": "Ammo depot",
+                "value": "millions",
+                "tone": "unfavorable",
+                "weight": 5000
+              }
+            ],
+            "label": "cost to attack vs cost to defend"
+          }
+        ]
+      },
+      {
+        "heading": "OPERATIONAL DEPTH",
+        "body": "A strike 205 km behind the line is not a tactical poke — it reaches the rear echelon where supplies are marshaled before the final truck run forward. Holding that depth under threat forces an army to disperse depots, move them farther back, and lengthen its own supply lines, which slows every offensive whether or not a single depot is actually hit.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU"
+            ],
+            "label": "occupied Luhansk Oblast",
+            "caption": "Drones reached supply routes deep inside occupied territory",
+            "markers": [
+              {
+                "lat": 48.574,
+                "lng": 39.3078,
+                "label": "Luhansk city"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DONBAS BACKSTORY",
+        "body": "Luhansk did not become a war zone in 2022. Russian-backed separatists declared a 'People's Republic' there in 2014, and the line of contact barely moved for eight years until the full-scale invasion. The 'occupied oblast' the drones now strike is the product of a conflict over a decade old.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2014",
+                "label": "Luhansk separatist republic declared",
+                "emphasis": "start"
+              },
+              {
+                "year": "2015",
+                "label": "Minsk II ceasefire signed"
+              },
+              {
+                "year": "2022-02",
+                "label": "Full-scale invasion",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-09",
+                "label": "Russia annexes Luhansk"
+              },
+              {
+                "year": "2026-04",
+                "label": "Russia claims full occupation"
+              }
+            ],
+            "label": "the Donbas arc"
+          }
+        ]
+      },
+      {
+        "heading": "CONTROL IS NOT PRESENCE",
+        "body": "A flag on a map claims a province; controlling it means the rear is safe enough to stockpile fuel and shells without losing them. When deep-strike drones range freely over the supply routes, the territory is held on paper but contested in practice — which is exactly why a drone operation can 'challenge' a declaration of full occupation.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do militaries prioritize striking supply depots over front-line troops?",
+            "options": [
+              "Depots are easier to find than troops",
+              "A unit without fuel and ammunition cannot fight, at far lower cost than killing it",
+              "International law forbids targeting front-line soldiers",
+              "Depots are always undefended"
+            ],
+            "correct": 1,
+            "explanation": "Interdiction breaks combat power cheaply: starve the supply and the guns, tanks, and trucks at the front become useless without a shot fired at them."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T17:42:53.199Z",
+    "label": "Drones & Deep-Strike Interdiction",
+    "category": "politics",
+    "articleCount": 1
   }
 }
