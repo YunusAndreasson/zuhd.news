@@ -1,112 +1,5 @@
 [
   {
-    "timestamp": "2026-05-06T12:51:36.865Z",
-    "candidateCount": 12,
-    "candidates": [
-      {
-        "slug": "2026-05-06-iran-araghchi-china-wang-yi-beijing-war-diplomacy",
-        "title": "Iran Tests Beijing Backing",
-        "category": "politics",
-        "eventCoverage": 282,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-06-vijay-tvk-tamil-nadu-government-congress-dravidian-collapse",
-        "title": "TVK Cracks Tamil Nadu Duopoly",
-        "category": "politics",
-        "eventCoverage": 138,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-06-bmw-q1-profit-plunge-china-tariffs-german-auto",
-        "title": "BMW Margins Compress on China",
-        "category": "economy",
-        "eventCoverage": 71,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-06-lufthansa-refueling-stops-hormuz-siege-jet-fuel",
-        "title": "Lufthansa Plans Mid-Route Refueling",
-        "category": "economy",
-        "eventCoverage": 54,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-05-pakistan-sez-investment-jobs-cpec-fdi-shortfall",
-        "title": "CPEC SEZs Miss Jobs Target",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-04-saudi-sah-sukuk-may-yield-islamic-finance-retail",
-        "title": "Saudi Opens Halal Savings Tranche",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-06-johannesburg-brixton-reservoir-water-leaks-infrastructure",
-        "title": "Joburg Water Backlog Dwarfs Fix",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-06-quantum-computing-cosmic-ray-error-superconducting-qubit",
-        "title": "Cosmic Rays Disrupt Quantum Chips",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-06-chinese-ev-software-standard-us-ban-global-isolation",
-        "title": "US Self-Exiles from EV Standard",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-04-eu-battery-regulation-removable-smartphone-2027",
-        "title": "EU Mandates Replaceable Phone Batteries",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-06-smex-link-trackers-utm-attribution-privacy",
-        "title": "URL Parameters Expose Your Origins",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-06-iran-war-gulf-migration-indian-workers-remittances",
-        "title": "Iran War Drains Gulf Workforce",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-05-06-iran-araghchi-china-wang-yi-beijing-war-diplomacy",
-      "title": "Iran Tests Beijing Backing",
-      "category": "politics",
-      "body": "China buys 90% of [Iran](country:IR)'s energy exports. Treasury Secretary Scott",
-      "eventCoverage": 282,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Iran's Araghchi meets China's Wang Yi in Beijing days before Trump-Xi summit",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 19
-    }
-  },
-  {
     "timestamp": "2026-05-06T17:51:08.295Z",
     "candidateCount": 13,
     "candidates": [
@@ -9984,6 +9877,92 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Asia health groups call for immediate vape bans on World No Tobacco Day",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 24
+    }
+  },
+  {
+    "timestamp": "2026-05-31T17:44:28.172Z",
+    "candidateCount": 9,
+    "candidates": [
+      {
+        "slug": "2026-05-31-lebanon-israeli-strikes-death-toll-tyre",
+        "title": "Israel Strikes Lebanon Despite Ceasefire",
+        "category": "politics",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-31-pakistan-sindh-irsa-water-share-dispute",
+        "title": "Pakistan Cuts Sindh Water Share",
+        "category": "economy",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-31-india-heat-cities-migrant-workers-vulnerability",
+        "title": "India Heat Exposes Migrant Workers",
+        "category": "science",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-31-ai-catalyst-transfer-green-hydrogen",
+        "title": "AI Finds Green Hydrogen Route",
+        "category": "science",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-30-anthropic-most-valuable-ai-startup-valuation",
+        "title": "Anthropic Tops OpenAI in Valuation",
+        "category": "tech",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-30-domain-expertise-ai-moat-debate",
+        "title": "Domain Expertise Outlasts AI Code",
+        "category": "tech",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-31-india-cbse-exam-portal-security-flaw-teen",
+        "title": "Teen Exposes India Exam Portal",
+        "category": "politics",
+        "eventCoverage": 58,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-31-myanmar-shan-state-village-explosives-blast",
+        "title": "Myanmar Blast Kills 46",
+        "category": "politics",
+        "eventCoverage": 51,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-31-ukrainian-drones-control-airspace-over-russian-logistic-rout",
+        "title": "Ukraine Drones Reach Luhansk Depths",
+        "category": "politics",
+        "eventCoverage": 46,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-05-31-lebanon-israeli-strikes-death-toll-tyre",
+      "title": "Israel Strikes Lebanon Despite Ceasefire",
+      "category": "politics",
+      "body": "Lebanon's health ministry counts 3,412 killed since April's",
+      "eventCoverage": 268,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Israel strikes kill 41 in Lebanon despite ceasefire in place",
     "response": {
       "pushed": 1,
       "skipped": 0,
