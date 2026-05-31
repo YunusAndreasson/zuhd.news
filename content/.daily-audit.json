@@ -1,28 +1,28 @@
 {
-  "date": "2026-05-30",
+  "date": "2026-05-31",
   "metrics": {
-    "articles": { "value": 42, "detail": "5 cycles all completed, avg 10/cycle (selector 316s, writer 688s, editor 383s)" },
+    "articles": { "value": 39, "detail": "5 cycles all completed, ~8/cycle (selector 262s, writer 1133s, editor 444s)" },
     "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 17, "economy": 10, "science": 9, "tech": 6 },
-    "multiSource": { "value": 11, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "EU": 15, "AM": 10, "ME": 8, "AS": 5, "AF": 4, "OC": 0 } },
-    "sciTech": { "ratio": 36, "target": 25, "met": true },
-    "topSourceShare": { "source": "CoinDesk", "pct": 12, "target": 20, "met": true },
-    "uniqueSources": 40,
+    "categories": { "politics": 17, "economy": 10, "science": 8, "tech": 4 },
+    "multiSource": { "value": 10, "target": 4, "met": true },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 10, "AS": 9, "EU": 8, "ME": 8, "AF": 4, "OC": 0 } },
+    "sciTech": { "ratio": 31, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 15, "target": 20, "met": true },
+    "uniqueSources": 33,
     "duplicates": 0,
-    "avgCycleDuration": 1660
+    "avgCycleDuration": 1941
   },
-  "experiment": "Skipped. No active experiments pending evaluation, and the noNewExperimentsUntil gate (2026-05-31) still blocks new variables while the 2026-05-28 opus-4-8 selector/tune + low-effort-editor lineup baselines. All metrics are within targets. Gate drops after 2026-05-31 — do not auto-extend.",
-  "weakestArea": "Regional spread is the thinnest margin: 5 regions vs the >=4 target, but Oceania was entirely absent and Africa was light at 4. EU dominated at 15/42 (36% of output) with the Americas at 10, so the geographic distribution leans heavily Euro-Atlantic even though the headline region count clears its floor.",
+  "experiment": "Skipped. No active experiments pending evaluation, and the noNewExperimentsUntil gate (2026-05-31) still blocks new variables today while the 2026-05-28 opus-4-8 selector/tune + low-effort-editor lineup baselines. All metrics within targets. Gate lifts next cycle once 2026-05-31 passes — kept in place today, not auto-extended.",
+  "weakestArea": "Tech is the thinnest metric: 4 articles, exactly on the floor of 4 and down from 9 yesterday. That halving pulled the sci-tech ratio from 36% to 31% — still clear of the 25% target but the smallest margin of any goal. Throughput also softened to 39 vs 42 yesterday; with 5/5 cycles completed and 0 duplicates this reads as a lighter Saturday specialist feed rather than a pipeline fault. Writer stage ran slow (1133s avg vs 688s yesterday), the main driver of the higher 1941s cycle duration.",
   "watching": [
-    "Editor held at 383s avg with all 5 cycles completing and zero timeouts under the new low-effort/opus-4-8 lineup — confirm this stays stable through tomorrow so the post-2026-05-28 baseline is clean before any new experiment.",
-    "Tech is the lowest category at 6 (floor 3/cycle, met) and leaned on CoinDesk for 5 of the day's crypto/markets coverage — watch that tech breadth doesn't narrow to crypto.",
-    "Multi-source count is healthy at 11, but history shows this rides on feed supply (~9/cycle) not selector floors; track whether it holds without intervention."
+    "Tech volume at the floor (4), two-thirds below yesterday's 9 — confirm it recovers on a weekday feed before treating as a trend rather than weekend thinness.",
+    "Writer stage averaged 1133s, up sharply from ~688s yesterday — watch whether this is a one-day spike or drift under the new opus-4-8/low-effort lineup before the gate lifts.",
+    "Ukraine/Russia coverage is heavy in the source mix (TASS x4, Euromaidan Press, Ukrainska Pravda, Kyiv Independent) — track that it stays balanced across perspectives."
   ],
   "coverageGaps": [
-    "Oceania had zero coverage today and only one article yesterday — recurring blind spot.",
-    "Africa thin at 4/42 despite curated African outlets (Premium Times x3, Daily Maverick) in the feed.",
-    "Tech specialist coverage concentrated in crypto/markets (CoinDesk x5) rather than spread across research/security/AI outlets."
+    "Oceania had zero coverage today — recurring blind spot, absent again after only one article in recent days.",
+    "Africa thin at 4/39, concentrated in Nigeria/South Africa outlets (Premium Times, Daily Maverick) despite curated African sources in the feed.",
+    "Tech sources skew to finance/crypto (Forbes, Yahoo! Finance, CoinDesk) over research/security/AI outlets, narrowing the educational depth of the tech slice."
   ],
-  "context": "Healthy, unremarkable day: 42 articles across 5 fully completed cycles (up from 31 yesterday), all five quality goals met, zero duplicates, top source under 12%. The operative constraint today is procedural, not metric-driven — the self-imposed experiment pause (set after the 2026-05-28 flip to opus-4-8 for selector/tune plus permanent low-effort editor) runs through 2026-05-31, so no tunable variable is introduced until tomorrow. Standing sourcing lesson holds: multi-source rate is capped upstream by feed clustering supply (~22% ceiling), so the next sourcing experiment should target Event Registry / regional-outlet inclusion rather than selector floors."
+  "context": "Quiet, healthy day: 39 articles across 5 fully completed cycles, all five quality goals met, zero duplicates, top source (Dawn) at 15%. The operative constraint is procedural, not metric-driven — the self-imposed experiment pause set after the 2026-05-28 flip to opus-4-8 (selector/tune) plus permanent low-effort editor runs through 2026-05-31; today is its final day, so no tunable variable is introduced. The gate lifts next cycle and a new experiment may be proposed then if metrics warrant. Standing sourcing lesson holds: multi-source rate is capped upstream by feed clustering supply (~22% ceiling), so any next sourcing experiment should target Event Registry / regional-outlet inclusion rather than selector floors. Note the queued numerical-density experiment touches scripts/write-prompt.md, which is out of scope for daily tuning and cannot be activated by this stage."
 }
