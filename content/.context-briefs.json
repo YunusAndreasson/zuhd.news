@@ -275910,5 +275910,1460 @@
     "label": "Drones & Deep-Strike Interdiction",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-29-mcp-is-dead": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONTEXT TAX",
+        "body": "A tool definition isn't called on demand — its full schema sits in the context window on every single turn, whether the model uses it or not. Connect four servers and you pay for all four descriptions, names, and parameter specs on every message, before the user has typed a word.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Tool definitions",
+                "value": 21,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Conversation history",
+                "value": 60,
+                "tone": "neutral"
+              },
+              {
+                "label": "System prompt",
+                "value": 8,
+                "tone": "favorable"
+              },
+              {
+                "label": "Response space",
+                "value": 39,
+                "tone": "favorable"
+              }
+            ],
+            "label": "what fills a context window (illustrative)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT COMPOUNDS",
+        "body": "Context bloat isn't just storage — transformer attention compares every token against every other token, so cost scales with the square of the length. Doubling the context roughly quadruples the work the model does on each generated token. Idle tool schemas are taxed on every word of every reply.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the **quadratic attention** problem: an N-token context costs on the order of **N²** compute. It's why a 21,000-token tool preamble is expensive even when no tool is ever called."
+          },
+          {
+            "type": "quiz",
+            "question": "Why does a bloated context window slow down every response, not just consume memory?",
+            "options": [
+              "Attention compares every token to every other, so compute grows with the square of length",
+              "The model re-reads the entire context aloud before answering",
+              "Longer contexts force the model to use a slower CPU fallback"
+            ],
+            "correct": 0,
+            "explanation": "Self-attention is O(N²): each new token attends to all prior tokens, so doubling context length roughly quadruples per-token compute."
+          }
+        ]
+      },
+      {
+        "heading": "THE FIX: DEFER THE LOAD",
+        "body": "Deferred loading flips the default: instead of injecting every tool schema upfront, the model is shown only a short index of tool names and fetches the full definition the moment it actually needs one. The heavy specs leave the context until they earn their place — the same idea as lazy-loading images that scroll into view.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The reported **85%** context cut comes not from better tools but from *not loading what you don't use yet* — a scheduling change, not a capability one."
+          }
+        ]
+      },
+      {
+        "heading": "THE WINDOW IS FINITE",
+        "body": "Every model has a hard context ceiling, and tools, system prompt, history, and the answer all compete for the same fixed pool. Burning 16.5% of a 128k window on idle schemas means that much less room for the document, the code, or the conversation the user actually came for.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "GPT-4o",
+                "value": "128k",
+                "weight": 128000
+              },
+              {
+                "label": "Claude",
+                "value": "200k",
+                "weight": 200000
+              },
+              {
+                "label": "Gemini 1.5 Pro",
+                "value": "2M",
+                "weight": 2000000
+              }
+            ],
+            "label": "context window ceilings (tokens)"
+          }
+        ]
+      },
+      {
+        "heading": "THE PROTOCOL TRADEOFF",
+        "body": "MCP's pitch is interoperability — one standard socket so any model can talk to any tool, the 'USB-C for AI' framing. But standards always tax the common case to serve the general one: the same critique sank SOAP's verbose XML envelopes in favor of leaner REST. A protocol that wins on connectivity can still lose on the overhead it imposes per call.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "It's the recurring systems tradeoff: **generality** (any tool, any model) bought with **overhead** (schema weight on every turn). The winner is usually whoever shrinks the tax without giving up the socket."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T22:44:19.899Z",
+    "label": "Context Windows & the Tool Tax",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-30-who-is-talking-about-artificial-intelligence-in-ecuador": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY LAW ALWAYS LAGS",
+        "body": "Regulation is reactive by design: legislators must observe a harm before they can name it, draft a rule, and pass it. Technology deploys on engineering timelines measured in months; law moves on parliamentary timelines measured in years. The gap is structural, not a failure of any one government — it is the same lag that left social media, gene editing, and ride-hailing unregulated during their fastest growth."
+      },
+      {
+        "heading": "THE BRUSSELS EFFECT",
+        "body": "Most countries do not write AI rules from scratch — they import them. The EU's GDPR became the de-facto global privacy template because multinationals found it cheaper to apply one standard everywhere than to maintain separate ones. The EU AI Act (2024), the world's first comprehensive AI law, is now exporting the same way. Ecuador's eventual rulebook will likely be a localized echo of Brussels, not an original draft.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pattern has a name: the **Brussels Effect** — the EU exports regulation through market size alone, without treaties or pressure, because compliance scales cheaper than fragmentation."
+          }
+        ]
+      },
+      {
+        "heading": "THE COORDINATION PROBLEM",
+        "body": "When ministries, regulators, and academia advance on separate timelines with no coordinating authority, the result is not no policy — it is contradictory policy. One agency may procure facial-recognition cameras while another drafts a privacy code that would ban them. The absence of a single owner is itself the governance failure the forum is trying to fix."
+      },
+      {
+        "heading": "SURVEILLANCE FIRST, RULES LATER",
+        "body": "Across Latin America the sequence is consistent: states acquire surveillance capability — Chinese-built 'safe city' camera networks, biometric ID systems, predictive policing tools — before any legal framework governs their use. Ecuador's own ECU-911 emergency network, built with Chinese technology, is a surveillance backbone that predates any AI law that would constrain it. Capability outruns law, and the law inherits a fait accompli.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "EC",
+              "CO",
+              "PE",
+              "BR",
+              "VE"
+            ],
+            "label": "the Andean surveillance belt"
+          }
+        ]
+      },
+      {
+        "heading": "THE THREE REGULATORY MODELS",
+        "body": "The world has converged on three rival approaches. The EU regulates by risk tier — banning some uses outright, auditing others. The US relies on sectoral rules and litigation after the fact. China governs AI as an instrument of state control, mandating alignment with social stability. A latecomer like Ecuador must effectively pick a parent model, and that choice shapes everything downstream.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "EU",
+                "value": "risk-tiered",
+                "cc": "EU",
+                "tone": "favorable"
+              },
+              {
+                "label": "United States",
+                "value": "sectoral",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "China",
+                "value": "state-led",
+                "cc": "CN",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "three approaches to AI rules"
+          }
+        ]
+      },
+      {
+        "heading": "WHO WRITES THE RULES",
+        "body": "A 60-stakeholder forum sounds inclusive, but multi-stakeholder bodies without binding authority tend to produce consensus documents rather than enforceable law. The reader should know which institution can actually compel compliance.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What most often determines whether an AI 'governance forum' produces real rules?",
+            "options": [
+              "Whether it has binding legal authority to enforce outcomes",
+              "The number of stakeholders who attend",
+              "Whether academics are included",
+              "How many proposals it generates"
+            ],
+            "correct": 0,
+            "explanation": "Without an enforcement mandate, forums generate recommendations; only a body with statutory power can turn them into binding rules."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T22:44:48.421Z",
+    "label": "AI Governance & the Rulebook Gap",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-31-dangote-retains-africa-s-most-admired-brand-title-for-eighth": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INDIGENOUS DEFICIT",
+        "body": "Brand Africa surveys consumers across the continent for the brands they most admire — and African-owned names take only about 15% of the top 100. On a continent of 1.4 billion people, the brands Africans love most are overwhelmingly foreign.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The survey separates *admiration* from ownership: a brand can feel African — built around local marketing — while its profits flow abroad. **Indigenous** means African-owned, and that is the share stuck near **15%**."
+          }
+        ]
+      },
+      {
+        "heading": "WHY FOREIGN BRANDS WIN",
+        "body": "The pattern traces to a colonial trade structure that never fully unwound: African economies were built to export raw commodities — cocoa, oil, copper — and import finished goods. Branding is the final, highest-margin step of manufacturing, and that step was historically located outside the continent.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Nike",
+                "value": "USA",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Adidas",
+                "value": "Germany",
+                "cc": "DE",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Samsung",
+                "value": "S. Korea",
+                "cc": "KR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "MTN",
+                "value": "S. Africa",
+                "cc": "ZA",
+                "tone": "favorable"
+              },
+              {
+                "label": "Dangote",
+                "value": "Nigeria",
+                "cc": "NG",
+                "tone": "favorable"
+              }
+            ],
+            "label": "Brand Africa most-admired — top names by origin"
+          }
+        ]
+      },
+      {
+        "heading": "THE VERTICAL EMPIRE",
+        "body": "Dangote's model is integration, not diversification: cement needs limestone and energy, fertiliser needs gas, and a refinery supplies the fuel that moves all of it. Each business feeds the next, so the group captures margins competitors must buy on the open market.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Cement is the foundation — Dangote is Africa's largest producer — but the *crown* is the **Lekki refinery**: a single 650,000-barrel-a-day train, the largest of its kind in the world."
+          }
+        ]
+      },
+      {
+        "heading": "THE REFINERY PARADOX",
+        "body": "Nigeria is Africa's largest crude oil producer, yet for decades it imported almost all of its refined petrol — pumping crude out and buying fuel back at a premium because its state refineries barely functioned. Dangote's plant exists to close that gap.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG"
+            ],
+            "label": "Lagos's Lekki Free Zone",
+            "markers": [
+              {
+                "lat": 6.4281,
+                "lng": 3.6772,
+                "label": "Dangote refinery, Lekki"
+              }
+            ]
+          },
+          {
+            "type": "quiz",
+            "question": "Before the Dangote refinery, why did oil-rich Nigeria import most of its petrol?",
+            "options": [
+              "It had no crude oil reserves of its own",
+              "Its state-owned refineries had collapsed to near-zero output",
+              "OPEC rules banned it from refining domestically",
+              "Refined fuel was cheaper to import than crude to export"
+            ],
+            "correct": 1,
+            "explanation": "Nigeria exported crude but its four state refineries ran far below capacity for years, forcing it to re-import refined product."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A BRAND IS WORTH",
+        "body": "A brand is an economic moat: it lets a firm charge more than a generic rival for the same physical product, and that premium compounds into pricing power, easier financing, and resilience in downturns. The 15% deficit is therefore a measure of where the continent's pricing power sits — mostly offshore."
+      }
+    ],
+    "generatedAt": "2026-05-31T22:45:44.027Z",
+    "label": "Brand Africa & the Indigenous Deficit",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-31-death-toll-from-us-strikes-on-alleged-drug-traffickers-boats": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "POLICING VERSUS WAR",
+        "body": "Two legal regimes govern killing. Law enforcement may use lethal force only against an imminent threat, must attempt arrest, and owes suspects a trial. Armed conflict lets a state kill enemy combatants on sight. For decades, drug interdiction lived entirely on the first side of that line — the Coast Guard boards a vessel, seizes the cargo, and arrests the crew for prosecution. A strike that kills the crew treats them as combatants, not suspects.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The crucial legal phrase is *hostis humani generis* — \"enemy of all mankind,\" historically applied to pirates, who could be attacked anywhere. Reclassifying traffickers under a war framework is what makes killing-without-trial arguable at all."
+          }
+        ]
+      },
+      {
+        "heading": "THE TERRORIST DESIGNATION",
+        "body": "The pivot that converts a smuggler into a target is the Foreign Terrorist Organization label. Once a cartel is designated, the government can argue trafficking is not crime but armed attack, and reach for the war powers Congress passed after 9/11 rather than the criminal code.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "An **FTO** designation was built for groups like al-Qaeda; applying it to drug networks imports the entire post-9/11 lethal-targeting toolkit into a domain that was law enforcement the day before."
+          }
+        ]
+      },
+      {
+        "heading": "THE TARGETED-KILLING PRECEDENT",
+        "body": "The legal machinery here was not invented for boats. It was built incrementally — a 2001 authorization to use force, then a 2011 drone strike that killed a US citizen in Yemen without trial, each step widening who could be killed, where, and on whose say-so.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2001",
+                "label": "AUMF passed after 9/11",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011",
+                "label": "al-Awlaki killed by drone, no trial"
+              },
+              {
+                "year": "2020",
+                "label": "Cartels floated as terror targets"
+              },
+              {
+                "year": "2025",
+                "label": "Cartels designated FTOs"
+              },
+              {
+                "year": "2026",
+                "label": "Boat strikes scale up"
+              }
+            ],
+            "label": "the widening of lethal authority"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE OPEN SEA",
+        "body": "The strikes happen on the water for a reason. The Posse Comitatus Act bars the US military from domestic policing, and a strike on land would need host-nation consent. International waters are the one arena where neither constraint bites — no foreign sovereign to ask, no domestic-policing bar to clear.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CO",
+              "VE",
+              "EC",
+              "PE",
+              "PA"
+            ],
+            "label": "the interdiction zone",
+            "caption": "strikes reported in Caribbean and eastern Pacific waters"
+          }
+        ]
+      },
+      {
+        "heading": "THE SUPPLY GEOGRAPHY",
+        "body": "Nearly all the world's cocaine originates in just three Andean countries, with Colombia far ahead. The maritime routes the strikes target are the seaward end of that funnel — the Pacific run from Colombia's Nariño coast and the Caribbean run toward Central America.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Colombia",
+                "value": 61,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Peru",
+                "value": 26,
+                "tone": "neutral"
+              },
+              {
+                "label": "Bolivia",
+                "value": 13,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global cocaine production by origin (approx. share)"
+          }
+        ]
+      },
+      {
+        "heading": "THE OVERSIGHT GAP",
+        "body": "A criminal prosecution produces a public record — charges, evidence, a verdict that can be appealed. A strike produces a body and a press release. With no charges filed and no hearings held, there is no forum in which the government's claim that a given boat carried traffickers is ever tested.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Historically, what happened when US forces intercepted a suspected drug vessel at sea?",
+            "options": [
+              "The vessel was boarded, cargo seized, and crew arrested for trial",
+              "The vessel was sunk on sight",
+              "The crew was killed and the boat impounded",
+              "The vessel was escorted to international court"
+            ],
+            "correct": 0,
+            "explanation": "Maritime drug interdiction was a law-enforcement operation — the Coast Guard boarded, seized, and arrested for prosecution; lethal strikes are the new departure."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T22:46:31.865Z",
+    "label": "Lethal Force & the Drug War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-31-economic-model-and-us-relations-at-stake-in-colombian-electi": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THERE'S A RUNOFF",
+        "body": "Colombia elects its president by absolute majority. If no candidate clears 50% in the first round, the top two meet three weeks later. The system forces a left-right showdown that the first round, with its splintered field, only previews.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What triggers a second-round runoff in Colombia's presidential election?",
+            "options": [
+              "No candidate wins an absolute majority in round one",
+              "The top two candidates finish within 5 points",
+              "Congress fails to certify a winner"
+            ],
+            "correct": 0,
+            "explanation": "A candidate must clear 50%+1; otherwise the top two advance to a runoff, which is why a fragmented field almost guarantees a second round."
+          }
+        ]
+      },
+      {
+        "heading": "THE PETRO BREAK",
+        "body": "Gustavo Petro, elected in 2022, was Colombia's first leftist president — a former M-19 guerrilla in a country governed by conservative and centrist elites since its founding. Cepeda's candidacy is an attempt to make that break permanent rather than a one-term anomaly.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Gustavo Petro",
+                "role": "Incumbent leftist president",
+                "years": "2022–2026",
+                "cc": "CO"
+              },
+              {
+                "name": "Iván Cepeda",
+                "role": "Left, Petro continuity",
+                "cc": "CO"
+              },
+              {
+                "name": "Abelardo de la Espriella",
+                "role": "Right, US-aligned security",
+                "cc": "CO"
+              },
+              {
+                "name": "Álvaro Uribe",
+                "role": "Hardline ex-president, right's patron",
+                "years": "2002–2010",
+                "cc": "CO"
+              }
+            ],
+            "label": "the contest's poles"
+          }
+        ]
+      },
+      {
+        "heading": "PLAN COLOMBIA",
+        "body": "From 2000, Washington poured roughly $10bn into Colombia — military aid, aerial coca spraying, counterinsurgency. It made Colombia the closest US security partner in Latin America. De la Espriella's pledge to resume fumigation is a promise to restore that alignment; Petro's drug policy quietly buried it.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2000",
+                "label": "Plan Colombia begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2015",
+                "label": "Glyphosate spraying suspended"
+              },
+              {
+                "year": "2016",
+                "label": "FARC peace accord"
+              },
+              {
+                "year": "2022",
+                "label": "Petro elected"
+              },
+              {
+                "year": "2026",
+                "label": "Axis on the ballot"
+              }
+            ],
+            "label": "the security arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE FUMIGATION FIGHT",
+        "body": "Colombia suspended aerial glyphosate spraying in 2015 after its health agency flagged the herbicide as a probable carcinogen and the Constitutional Court demanded safeguards. Restarting it isn't just a policy switch — it's a legal battle, which is why the promise signals a whole governing posture.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The herbicide is *glyphosate* — the active ingredient in Roundup. Its 2015 suspension was driven by a WHO cancer classification, making the spray plane a courtroom question as much as a coca one."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE WORLD WATCHES COCA",
+        "body": "Colombia grows the majority of the world's cocaine, far ahead of Peru and Bolivia. Whoever governs in Bogotá sets the supply policy for a global market — which is why a domestic vote becomes a US foreign-policy concern.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Colombia",
+                "value": 62,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Peru",
+                "value": 24,
+                "tone": "neutral"
+              },
+              {
+                "label": "Bolivia",
+                "value": 14,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global cocaine production share (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE URIBE SHADOW",
+        "body": "Colombia's right has organized around Álvaro Uribe for two decades — his hardline 'democratic security' doctrine defined an era. The right's splintering in this race reflects life after Uribe: no single heir commands the coalition he once held together.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CO",
+              "VE",
+              "EC",
+              "PA",
+              "BR",
+              "PE"
+            ],
+            "label": "Colombia and its neighbors",
+            "caption": "Border instability shapes the security debate as much as Washington does."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T22:47:03.919Z",
+    "label": "Colombia's Left-Right Axis",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-31-enterprise-ai-s-next-frontier-is-not-more-workflows-it-s-exe": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY AUTONOMY IS HARD",
+        "body": "An agent that is 99% reliable on a single step is not 99% reliable on a task. Reliability multiplies across steps, so a 50-step workflow at 99% per step succeeds only about 60% of the time. The longer the chain, the steeper the cliff — which is why demos impress and production disappoints.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The math is unforgiving: **0.99⁵⁰ ≈ 0.61**. To hit **99%** reliability over 50 steps, each step must clear **99.98%** — a different engineering problem entirely."
+          },
+          {
+            "type": "quiz",
+            "question": "An AI agent that is 99% reliable per step is roughly how reliable across a 50-step task?",
+            "options": [
+              "~99%",
+              "~90%",
+              "~60%",
+              "~80%"
+            ],
+            "correct": 2,
+            "explanation": "Per-step reliability compounds multiplicatively: 0.99^50 ≈ 0.61, so errors accumulate far faster than intuition suggests."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A CHIPMAKER IS THE TELL",
+        "body": "Marvell builds none of the AI models in the headlines — it makes the custom silicon and optical interconnects that wire datacenter accelerators together. When a networking-chip CEO forecasts demand, it is the 'picks and shovels' signal: infrastructure capex is committed years before the applications that justify it pay off.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Nvidia",
+                "value": "~$115bn",
+                "weight": 115,
+                "cc": "US"
+              },
+              {
+                "label": "Broadcom",
+                "value": "~$30bn",
+                "weight": 30,
+                "cc": "US"
+              },
+              {
+                "label": "AMD",
+                "value": "~$5bn",
+                "weight": 5,
+                "cc": "US"
+              },
+              {
+                "label": "Marvell",
+                "value": "~$2.5bn",
+                "weight": 2.5,
+                "cc": "US"
+              }
+            ],
+            "label": "AI datacenter revenue run-rate (rough)"
+          }
+        ]
+      },
+      {
+        "heading": "THE VERIFICATION PROBLEM",
+        "body": "The bottleneck is not getting an agent to act — it is knowing whether the action was correct without a human checking each step. For many real tasks, verifying the answer is nearly as hard as producing it, so 'autonomous' systems quietly require a human in the loop, which erases most of the promised savings."
+      },
+      {
+        "heading": "THE GHOST OF EXPERT SYSTEMS",
+        "body": "This is not the first wave of autonomous-reasoning hype. 1980s expert systems promised to encode professional judgment into software; they sold for billions, then collapsed into the second AI winter because they were brittle at every edge case the rules did not anticipate. Each cycle since has overpromised autonomy and underdelivered reliability.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1956",
+                "label": "Dartmouth workshop coins 'AI'",
+                "emphasis": "start"
+              },
+              {
+                "year": "1974",
+                "label": "First AI winter"
+              },
+              {
+                "year": "1984",
+                "label": "Expert-systems boom"
+              },
+              {
+                "year": "1987",
+                "label": "Second AI winter"
+              },
+              {
+                "year": "2012",
+                "label": "Deep learning breakthrough"
+              },
+              {
+                "year": "2022",
+                "label": "LLMs go mainstream",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "AI's hype-and-winter cycles"
+          }
+        ]
+      },
+      {
+        "heading": "THE EXECUTION GAP",
+        "body": "Tracking returns is not the same as earning them. That 72% of enterprise leaders now measure AI ROI signals seriousness, but measurement tends to precede payoff — the same pattern seen with ERP in the 1990s and cloud migration in the 2010s, where benefits trailed spending by years while organizations rebuilt processes around the tool."
+      }
+    ],
+    "generatedAt": "2026-05-31T22:47:48.369Z",
+    "label": "Agentic AI & the Reliability Wall",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-31-how-the-house-financial-services-committee-is-taking-on-toke": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TURF WAR",
+        "body": "The Clarity Act is fundamentally a jurisdiction bill: does a tokenised asset answer to the SEC (securities) or the CFTC (commodities)? The stakes are lopsided — the CFTC is a fraction of the SEC's size, so handing it crypto means handing a vast new market to a far smaller cop.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "SEC",
+                "value": "~4,800 staff",
+                "cc": "US",
+                "weight": 4800,
+                "tone": "neutral"
+              },
+              {
+                "label": "CFTC",
+                "value": "~700 staff",
+                "cc": "US",
+                "weight": 700,
+                "tone": "neutral"
+              }
+            ],
+            "label": "the two regulators, by headcount"
+          }
+        ]
+      },
+      {
+        "heading": "THE HOWEY TEST",
+        "body": "Whether something is a 'security' in the US has turned on one 1946 Supreme Court case about Florida orange groves. SEC v. Howey set a four-part test — money invested in a common enterprise with profit expected from others' efforts — that still decides whether a token falls under the SEC's reach.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The case wasn't about stocks at all — it was about selling rows of orange trees plus a service contract to tend them. The Court held the *package*, not the fruit, was an **investment contract**, and that logic now governs tokens."
+          },
+          {
+            "type": "quiz",
+            "question": "Which test determines whether an asset counts as a 'security' under US law?",
+            "options": [
+              "The Howey test",
+              "The Volcker rule",
+              "The Glass-Steagall test",
+              "The Chevron doctrine"
+            ],
+            "correct": 0,
+            "explanation": "SEC v. Howey (1946) set the four-prong investment-contract test still used to classify tokens today."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT TOKENISING ACTUALLY CHANGES",
+        "body": "Putting an equity or treasury 'on-chain' doesn't change the asset — it changes the plumbing of ownership. Today a stock trade settles two days after you click buy; the promise of tokenisation is settlement in seconds, with payment and delivery happening in the same instant.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The current standard is **T+2** — trade date plus two days. Tokenised markets aim for **atomic settlement**: the asset and the cash swap simultaneously, so neither side can default mid-transaction."
+          }
+        ]
+      },
+      {
+        "heading": "THE PAPERWORK PRECEDENT",
+        "body": "America already lived through one settlement revolution. In the late 1960s, Wall Street volume buried back offices in physical stock certificates — the 'paperwork crisis' forced exchanges to close on Wednesdays just to catch up. The fix was to stop moving paper: the DTCC was created to hold certificates centrally and settle by ledger entry. Tokenisation is the next step in that same 50-year arc.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1946",
+                "label": "Howey test defines 'security'"
+              },
+              {
+                "year": "1968",
+                "label": "Paperwork crisis chokes Wall St",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1973",
+                "label": "DTC founded to end paper certificates"
+              },
+              {
+                "year": "2009",
+                "label": "Bitcoin: first blockchain ledger"
+              },
+              {
+                "year": "2024",
+                "label": "Treasuries tokenised on-chain"
+              },
+              {
+                "year": "2026",
+                "label": "Clarity Act rulemaking begins"
+              }
+            ],
+            "label": "from paper to tokens"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE LABEL IS THE WHOLE GAME",
+        "body": "Classification isn't bureaucratic trivia — it dictates disclosure rules, who can trade, custody requirements, and enforcement powers. The same token treated as a commodity faces light-touch CFTC oversight; treated as a security, it inherits the full registration burden built for IPOs. The 12-month rulemaking is a fight over which rulebook a trillion-dollar market inherits."
+      }
+    ],
+    "generatedAt": "2026-05-31T22:48:31.919Z",
+    "label": "Tokenization & the SEC–CFTC Line",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-31-italy-turns-to-tall-ship-to-simulate-stresses-of-long-durati": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT AN ANALOG MISSION IS",
+        "body": "You cannot send researchers to Mars to study what the trip does to them, so space agencies build the trip on Earth — sealed habitats, polar stations, submarines, now a sail-training ship. The hardware is irrelevant; the goal is to reproduce the human stressors: confinement, isolation, monotony, and a crew that cannot walk away from each other."
+      },
+      {
+        "heading": "THE LINEAGE",
+        "body": "ICE-Blue joins a decades-long tradition. The benchmark is Mars500 — six men locked in a Moscow mock-spacecraft for 520 days in 2010-11, the full duration of a round trip. Antarctica's Concordia station and Hawaii's HI-SEAS habitat run the same experiment in real isolation.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Biosphere 2",
+                "value": "~730 days",
+                "weight": 730
+              },
+              {
+                "label": "Mars500",
+                "value": "520 days",
+                "weight": 520
+              },
+              {
+                "label": "HI-SEAS",
+                "value": "365 days",
+                "weight": 365
+              },
+              {
+                "label": "Concordia",
+                "value": "~260 days",
+                "weight": 260
+              },
+              {
+                "label": "ICE-Blue",
+                "value": "107 days",
+                "weight": 107,
+                "tone": "favorable"
+              }
+            ],
+            "label": "isolation analogs by mission length"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE NUMBER MATTERS",
+        "body": "A minimum-energy transfer to Mars takes roughly seven to nine months one way, dictated by orbital mechanics — you launch only in the ~26-month window when the planets align. 107 days is a partial analog of the outbound leg, long enough to surface the psychological breakdowns that short missions never reach."
+      },
+      {
+        "heading": "THE SLEEP TRAP",
+        "body": "On a spacecraft there is no sunrise to anchor the body clock, and crews drift into fragmented, shortened sleep within weeks. A Mars surface day — a 'sol' — runs 24 hours 39 minutes, just long enough that the human circadian system cannot lock onto it, the same mismatch that wrecks the sleep of the rover-operations teams on Earth.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A Martian day is a **sol**, 39 minutes longer than ours. That tiny surplus compounds: it shifts your schedule about *40 minutes later each day*, the same jet-lag-without-end that ground crews running Mars rovers report after a few weeks."
+          }
+        ]
+      },
+      {
+        "heading": "THE THIRD-QUARTER PHENOMENON",
+        "body": "Isolation researchers find morale does not decline steadily — it sags hardest after the midpoint, once the novelty is gone but the end is not yet in sight. This 'third-quarter phenomenon' shows up in Antarctic winter-overs and submarine patrols alike, which is why the back half of a confinement study yields the most useful data.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is sending astronauts to Mars constrained to roughly one launch window every 26 months?",
+            "options": [
+              "Rockets need that long to refuel and refit",
+              "Earth and Mars only align favorably for a low-energy transfer that often",
+              "Solar radiation peaks on a 26-month cycle",
+              "Crews need 26 months of training between flights"
+            ],
+            "correct": 1,
+            "explanation": "Orbital mechanics: the cheapest Earth-to-Mars trajectory only exists when the two planets reach the right relative position, which recurs about every 26 months."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE SHIP CAN'T FAKE",
+        "body": "The sea reproduces confinement and crew dynamics, but not microgravity — and that is where the body actually fails. In freefall, bone demineralizes at roughly 1-2% per month, fluids shift toward the head and reshape the eye, and muscles atrophy without load. The ICE-Blue samples test the mind; the Axiom-3 astronaut samples it's compared against carry the physiology a ship can never simulate."
+      }
+    ],
+    "generatedAt": "2026-05-31T22:49:14.707Z",
+    "label": "Analog Missions",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-31-nicaraguan-indigenous-leader-dies-after-three-years-in-priso": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "TWO NICARAGUAS",
+        "body": "Nicaragua's Caribbean coast was never really Spanish. For two centuries it was a British protectorate — the Mosquito Kingdom — Anglican, English-speaking, and self-governing, while Spanish Catholic Nicaragua ruled the Pacific side. Managua only absorbed the coast by force in 1894, an event the coast still calls 'the Reincorporation,' not the unification.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NI",
+              "HN"
+            ],
+            "label": "the Miskito Coast",
+            "caption": "Indigenous autonomous regions on Nicaragua's Caribbean edge",
+            "markers": [
+              {
+                "lat": 14.0333,
+                "lng": -83.39,
+                "label": "Bilwi (Puerto Cabezas)"
+              },
+              {
+                "lat": 12.0144,
+                "lng": -83.7642,
+                "label": "Bluefields"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHO THE MISKITO ARE",
+        "body": "The Miskito are an indigenous people of the Caribbean lowlands, distinct in language, religion, and history from the Spanish-speaking Pacific majority. Through centuries of contact with British traders and escaped slaves, their identity fused indigenous, African, and English strands — which is why their politics has always been about autonomy, not assimilation.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Rivera co-founded *YATAMA* — Yapti Tasba Masraka Nanih Aslatakanka, 'the children of Mother Earth' — the Miskito political movement that fought first the Sandinistas, then ran as an opposition party."
+          }
+        ]
+      },
+      {
+        "heading": "RED CHRISTMAS",
+        "body": "When the Sandinistas took power in 1979, they treated coastal autonomy as counter-revolution. In 1981-82 the army forcibly relocated thousands of Miskito inland and burned villages — an episode the Miskito call Navidad Roja, 'Red Christmas.' Rivera took up arms then; the regime that jailed him in 2023 was the same one he first resisted four decades earlier.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1860",
+                "label": "Treaty of Managua: British 'reserve'"
+              },
+              {
+                "year": "1894",
+                "label": "Forced 'Reincorporation'"
+              },
+              {
+                "year": "1981",
+                "label": "Red Christmas relocations",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1987",
+                "label": "Autonomy statute for the coast"
+              },
+              {
+                "year": "2023",
+                "label": "Rivera detained"
+              },
+              {
+                "year": "2026",
+                "label": "Rivera dies in custody",
+                "emphasis": "end"
+              }
+            ],
+            "label": "coast vs. Managua"
+          }
+        ]
+      },
+      {
+        "heading": "THE FAMILY STATE",
+        "body": "Ortega returned to power in 2007 and never left. Power is now openly dynastic: his wife Rosario Murillo, long the regime's spokesperson and vice president, was elevated to co-president — making Nicaragua one of the few states with a formal husband-and-wife executive.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Daniel Ortega",
+                "role": "President since return",
+                "years": "2007–",
+                "cc": "NI"
+              },
+              {
+                "name": "Rosario Murillo",
+                "role": "Co-president, wife",
+                "years": "2017–",
+                "cc": "NI"
+              },
+              {
+                "name": "Brooklyn Rivera",
+                "role": "Miskito YATAMA leader",
+                "years": "1980s–2026",
+                "cc": "NI"
+              }
+            ],
+            "label": "the Ortega-Murillo state"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'DISAPPEARANCE' IS A LEGAL TERM",
+        "body": "Enforced disappearance is not loose language. Under international law it means state agents detain a person and then refuse to acknowledge the detention or reveal their whereabouts — placing the victim outside all legal protection. It is classed as a crime against humanity precisely because withholding information about the prisoner is itself the weapon. Refusing to return a body to the family extends that crime past death.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What made Nicaragua's Caribbean coast historically distinct from the rest of the country?",
+            "options": [
+              "It was a British protectorate, not Spanish-ruled",
+              "It was never inhabited until the 20th century",
+              "It was a Portuguese colony like Brazil"
+            ],
+            "correct": 0,
+            "explanation": "The Mosquito Coast was a British protectorate — Anglican and English-speaking — until Nicaragua annexed it by force in 1894."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T22:49:51.959Z",
+    "label": "The Miskito Coast & Ortega's Nicaragua",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-31-punjab-approves-deployment-of-6-000-police-personnel-in-gb-f": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TERRITORY THAT ISN'T A PROVINCE",
+        "body": "Gilgit-Baltistan is administered by Pakistan but has never been made a constitutional province. It is not named in the constitution, its residents do not vote for the National Assembly, and it has no Supreme Court representation — a population of roughly two million in permanent legal suspension.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IN",
+              "CN",
+              "AF"
+            ],
+            "label": "Gilgit-Baltistan at the junction",
+            "caption": "Borders China, the Afghan Wakhan, and Indian-administered Kashmir",
+            "markers": [
+              {
+                "lat": 35.92,
+                "lng": 74.31,
+                "label": "Gilgit"
+              },
+              {
+                "lat": 35.3,
+                "lng": 75.63,
+                "label": "Skardu"
+              },
+              {
+                "lat": 36.85,
+                "lng": 75.43,
+                "label": "Khunjerab Pass"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY KASHMIR FREEZES ITS STATUS",
+        "body": "Pakistan refuses to formally annex Gilgit-Baltistan because doing so would contradict its own position that the entire Kashmir dispute must be settled by a UN-mandated plebiscite. To absorb GB as a province would concede that borders can be redrawn unilaterally — the exact argument Pakistan makes against India. So the territory stays in limbo to protect a diplomatic claim."
+      },
+      {
+        "heading": "THE 1949 HANDOVER",
+        "body": "Under the Karachi Agreement of 1949, the Azad Kashmir government ceded administration of the region — then called the Northern Areas — directly to Pakistan's federal government. That single agreement, signed by parties with no GB representatives present, is why the region has been governed from Islamabad rather than locally ever since.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1947",
+                "label": "Gilgit Agency joins Pakistan"
+              },
+              {
+                "year": "1949",
+                "label": "Karachi Agreement — control to centre",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2009",
+                "label": "Self-Governance Order: elected assembly"
+              },
+              {
+                "year": "2018",
+                "label": "GB Order expands federal powers"
+              },
+              {
+                "year": "2020",
+                "label": "Provisional province proposed"
+              }
+            ],
+            "label": "from handover to half-province"
+          }
+        ]
+      },
+      {
+        "heading": "ELECTIONS MANAGED FROM ISLAMABAD",
+        "body": "The 2009 order created an elected Gilgit-Baltistan Assembly, but real authority sits with federal appointees and the centre retains power over key portfolios. Because the territory lacks constitutional protection, the safeguards a province takes for granted — judicial review, an entrenched election commission — are weaker here, which is precisely what makes pre-poll rigging allegations harder to adjudicate.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The deployment of **6,000 Punjab police** — an out-of-territory force from Pakistan's largest province — into a region with no provincial police autonomy is itself the story: GB cannot insulate its own vote."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE CENTRE CARES SO MUCH",
+        "body": "Gilgit-Baltistan is the only land link between Pakistan and China. The Karakoram Highway and the China-Pakistan Economic Corridor both run through it, and it borders China's Xinjiang directly. A territory this strategically valuable is one Islamabad has every incentive to control tightly — and little incentive to fully empower.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why has Pakistan never made Gilgit-Baltistan a full constitutional province?",
+            "options": [
+              "Its population is too small to qualify",
+              "Doing so would undercut Pakistan's UN-plebiscite position on Kashmir",
+              "The region voted against provincial status",
+              "China objects to any change in its legal status"
+            ],
+            "correct": 1,
+            "explanation": "Formal annexation would contradict Pakistan's stance that all of Kashmir's fate must be decided by plebiscite — so GB is left in limbo."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T22:50:29.314Z",
+    "label": "Gilgit-Baltistan's Constitutional Limbo",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-31-u-s-military-is-quietly-guiding-ships-through-the-strait-of": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the usable shipping lanes are only about 3 km in each direction, separated by a buffer. Roughly a fifth of the world's oil — around 20 million barrels a day — funnels through that thread. There is no wider stretch to spread the traffic out.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA"
+            ],
+            "label": "the Hormuz chokepoint",
+            "caption": "shipping lanes hug the Omani side; Iran's coast runs the northern edge",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.1228,
+                "lng": 56.3344,
+                "label": "Fujairah terminal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "The strait sits between Iran and Oman, not Iran and any Arab Gulf state. Iran's coastline runs along the entire northern edge, and the deepest channel hugs the Iranian side — which is why Iranian naval positioning matters out of all proportion to its fleet's size.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "The Strait of Hormuz shipping lanes pass between Iran and which country?",
+            "options": [
+              "Saudi Arabia",
+              "Oman",
+              "United Arab Emirates",
+              "Qatar"
+            ],
+            "correct": 1,
+            "explanation": "The lanes run through Omani territorial waters on the southern side, with Iran on the north — not any Arab Gulf state."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE NAVY ESCORTS",
+        "body": "Convoying merchant ships under a flag's protection is an old answer to an old problem. In 1987 the US reflagged Kuwaiti tankers as American and escorted them through the same strait during the Iran-Iraq Tanker War — Operation Earnest Will. Coordinating 70 crossings today is a quieter version of the same move: a state navy lending its flag to commercial hulls.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Iran-Iraq tanker attacks begin"
+              },
+              {
+                "year": "1987",
+                "label": "US reflags Kuwaiti tankers",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1988",
+                "label": "Operation Praying Mantis"
+              },
+              {
+                "year": "1988-08",
+                "label": "Iran-Iraq ceasefire"
+              }
+            ],
+            "label": "the Tanker War precedent"
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "What actually closes a sea lane is rarely the threat itself — it is the price of insuring against it. When Lloyd's war-risk premiums spike, commercial vessels reroute or refuse to sail regardless of how many ships are still getting through. A US escort matters partly because it can hold those premiums down.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The binding constraint is financial, not physical: a *war-risk surcharge* of even **0.5% of hull value** per voyage can erase a tanker's margin and freeze traffic before a single shot is fired."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT CAN'T BE BYPASSED",
+        "body": "Saudi Arabia's East-West pipeline and the UAE's Habshan-Fujairah line were built partly as Hormuz hedges, but together they can reroute only a fraction of Gulf exports. Most barrels have no alternative path to open water.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hormuz",
+                "value": "~20M bbl/d",
+                "tone": "neutral",
+                "weight": 20
+              },
+              {
+                "label": "Saudi E-W line",
+                "value": "~5M bbl/d",
+                "tone": "favorable",
+                "weight": 5
+              },
+              {
+                "label": "Habshan-Fujairah",
+                "value": "~1.5M bbl/d",
+                "tone": "favorable",
+                "weight": 1.5
+              }
+            ],
+            "label": "bypass capacity vs. Hormuz flow"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL REGIME",
+        "body": "Under UNCLOS Article 38, ships have a right of 'transit passage' through international straits — coastal states cannot suspend it or impose conditions. Iran signed the convention in 1982 but never ratified it, and argues Hormuz is governed by its own domestic law. That gap is the legal hinge every standoff turns on."
+      }
+    ],
+    "generatedAt": "2026-05-31T22:51:03.850Z",
+    "label": "Hormuz & the Naval Escort",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-31-what-biodegradable-packaging-really-means-and-three-key-ques": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WORD MEANS NOTHING ALONE",
+        "body": "Everything biodegrades eventually — a steel beam, a glass bottle, given enough centuries. \"Biodegradable\" without a stated timeframe and environment is technically true and practically empty. That is precisely why marketers love it: no regulator can call it a lie."
+      },
+      {
+        "heading": "THREE WORDS THAT ARE NOT SYNONYMS",
+        "body": "Bio-based means made from plants, not that it breaks down. Biodegradable means microbes can consume it, but says nothing about speed or conditions. Compostable is the only one with a legal bar — it must fully break down within a set time under defined composting conditions. A cup can be bio-based and still last for decades.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The poster child is **PLA** (polylactic acid), made from corn starch. It is bio-based *and* compostable — but only in an **industrial composter** running near **58°C**. In your garden bin or the ocean, it behaves like ordinary plastic."
+          }
+        ]
+      },
+      {
+        "heading": "THE TEMPERATURE TRAP",
+        "body": "Industrial composting holds material at roughly 55–60°C for weeks — hot enough for the microbial activity that cracks these polymers apart. Landfills are anaerobic and cool; oceans are cold and salty. The lab certificate that says \"compostable\" was earned in an oven the discarded item will almost never see.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Industrial composter",
+                "value": "weeks",
+                "tone": "favorable"
+              },
+              {
+                "label": "Home compost bin",
+                "value": "years+",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Landfill",
+                "value": "decades",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Ocean",
+                "value": "≈ inert",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "where a PLA cup actually ends up"
+          }
+        ]
+      },
+      {
+        "heading": "DEGRADES INTO WHAT",
+        "body": "The first of the three questions is the one labels never answer. Some plastics don't mineralize into CO2 and water — they just fragment into microplastics, which are arguably worse than the intact item because they enter food chains and water supplies invisibly."
+      },
+      {
+        "heading": "THE OXO-PLASTIC CAUTIONARY TALE",
+        "body": "\"Oxo-degradable\" plastics were sold for years as a green fix: metal additives made them crumble in sunlight. They crumbled into microplastics. The EU banned them outright in 2021 under the Single-Use Plastics Directive — a rare case of a green claim being legislated off the shelf.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2017",
+                "label": "EU science review finds microplastic risk"
+              },
+              {
+                "year": "2021",
+                "label": "EU bans oxo-degradable plastics",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "from green claim to ban"
+          }
+        ]
+      },
+      {
+        "heading": "THE CERTIFICATION YOU CAN TRUST",
+        "body": "Reputable compostable goods carry a standard mark — EN 13432 in Europe or ASTM D6400 in the US — which requires ~90% breakdown within a set period under industrial conditions, with no toxic residue. The absence of such a mark beside a \"biodegradable\" claim is itself the tell.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "A label says \"100% biodegradable\" with no other detail. What does that guarantee?",
+            "options": [
+              "It will break down in your home compost",
+              "It will break down in the ocean if littered",
+              "Almost nothing — no timeframe or conditions are specified",
+              "It is made entirely from plants"
+            ],
+            "correct": 2,
+            "explanation": "Without a stated environment and timeframe, \"biodegradable\" is unverifiable — which is why certified marks like EN 13432 specify both."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T22:51:31.773Z",
+    "label": "What \"Biodegradable\" Hides",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-31-world-health-organization-hails-recovery-of-five-ebola-patie": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY \"UNTREATABLE\"",
+        "body": "Every approved Ebola countermeasure — the Ervebo vaccine, the Inmazeb and Ebanga antibody drugs — was built against one species: Zaire ebolavirus. They target that virus's surface glycoprotein, and Bundibugyo's is different enough that none is licensed to work against it. The strain isn't untreatable because it's deadlier; it's untreatable because the toolkit was built for a different relative.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The vaccines and drugs lock onto the viral **glycoprotein** — the spike on the virus surface. Across Ebola species that protein diverges by *30–40%*, enough that a Zaire-tuned antibody simply doesn't grip Bundibugyo."
+          }
+        ]
+      },
+      {
+        "heading": "ONE NAME, SIX VIRUSES",
+        "body": "\"Ebola\" is a genus, not a single virus. Its species differ sharply in lethality — Zaire has killed up to nine in ten of the infected, while Reston, found in monkeys, has never made a human sick. Bundibugyo sits in the middle, which is part of why five patients could pull through on supportive care alone.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Zaire",
+                "value": "up to ~90%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Sudan",
+                "value": "~50%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Bundibugyo",
+                "value": "~25–40%",
+                "tone": "neutral"
+              },
+              {
+                "label": "Reston",
+                "value": "0% (humans)",
+                "tone": "favorable"
+              }
+            ],
+            "label": "case fatality by Ebola species"
+          }
+        ]
+      },
+      {
+        "heading": "NAMED FOR A UGANDAN DISTRICT",
+        "body": "Bundibugyo was first identified in 2007 in Bundibugyo District, western Uganda, on the same border the strain is now crossing back into. The virus's named home and its current spillover sit barely a hundred kilometres apart, across the Rwenzori range — which is why Uganda's case count moves in lockstep with DRC's.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CD",
+              "UG"
+            ],
+            "label": "the Bundibugyo border arc",
+            "markers": [
+              {
+                "lat": 1.5667,
+                "lng": 30.25,
+                "label": "Bunia, Ituri (current)"
+              },
+              {
+                "lat": 0.7117,
+                "lng": 30.0639,
+                "label": "Bundibugyo (1st seen, 2007)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "HOW PEOPLE RECOVER WITHOUT A DRUG",
+        "body": "Ebola kills mainly through fluid loss and shock, not the virus directly. Aggressive supportive care — intravenous fluids, electrolyte correction, treating secondary infections — buys time for the patient's own antibodies to clear the virus. Where that care exists, survival roughly doubles, which is what \"five recovered\" actually measures."
+      },
+      {
+        "heading": "WHY IT KEEPS STARTING HERE",
+        "body": "Ebola was first identified in 1976 near the Ebola River in what is now DRC, and the country has had more outbreaks than anywhere on Earth. The reservoir is thought to be fruit bats; spillover happens at the forest edge through bushmeat and bat contact. Dense rainforest, hunting economies, and weak rural health systems make the Congo Basin the virus's recurring launchpad.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Approved Ebola vaccines and antibody drugs protect against which species?",
+            "options": [
+              "All Ebola species equally",
+              "Only Zaire ebolavirus",
+              "Bundibugyo and Sudan",
+              "Whichever is most common locally"
+            ],
+            "correct": 1,
+            "explanation": "Licensed vaccines and antibody therapies target Zaire ebolavirus's glycoprotein, leaving strains like Bundibugyo without an approved countermeasure."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T22:52:16.284Z",
+    "label": "Ebola's Many Strains",
+    "category": "science",
+    "articleCount": 1
   }
 }

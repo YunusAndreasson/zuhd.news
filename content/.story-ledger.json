@@ -2,13 +2,258 @@
   "version": 1,
   "stories": [
     {
+      "id": "lebanon-israeli-strikes-death-toll-tyre",
+      "label": "Death toll from Israeli attacks on Lebanon exceeds 3,400 — health ministry",
+      "firstSeen": "2026-05-31T17:06:16.765Z",
+      "lastCovered": "2026-05-31T22:09:04.153Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-05-31-lebanon-israeli-strikes-death-toll-tyre",
+        "2026-05-31-death-toll-from-us-strikes-on-alleged-drug-traffickers-boats"
+      ],
+      "eventUri": null,
+      "summary": "Lebanon's health ministry says 41 more people were killed and 140 wounded in a single day of Israeli airstrikes on the south — including heavy bombardment of Tyre (Sur) — pushing the toll past 3,400 despite a ceasefire nominally in force since 17 April. The story is the continuation of the killing itself: a ceasefire that exists on paper while the strikes and the body count go on. Lead with the day's named dead and the ministry's cumulative figure; attribute strictly (figures via Lebanon's health ministry, relayed by TASS/Mehr — both state outlets, note the absence of independent confirmation). OIC-region story; Mehr (IR) is the regional voice. Zulm with named actor (Israeli military) and named victims.",
+      "conceptUris": []
+    },
+    {
+      "id": "economic-model-and-us-relations-at-stake-in-colombian-electi",
+      "label": "Economic Model and US Relations at Stake in Colombian Election",
+      "firstSeen": "2026-05-31T22:09:04.153Z",
+      "lastCovered": "2026-05-31T22:09:04.153Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-31-economic-model-and-us-relations-at-stake-in-colombian-electi"
+      ],
+      "eventUri": "spa-4215514",
+      "summary": "Colombians vote in a first round that pits the continuation of Petro's reformist left against a hard-right promising Bukele-style security and a 'Plan Colombia 2.0' aligned with Washington. Lead on what is structurally at stake: whether Colombia re-enters the US orbit (aerial coca fumigation, anti-narcotics militarisation, distancing from China's Belt and Road) or holds an autonomous path — against a backdrop of 565 acts of political violence since 2025 and a likely June 21 runoff. Latin America as agent, not setting; name the three visions (Cepeda, De la Espriella, Valencia) and the violence that frames the race.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Colombia",
+        "http://en.wikipedia.org/wiki/Gustavo_Petro",
+        "http://en.wikipedia.org/wiki/Left-wing_politics",
+        "http://en.wikipedia.org/wiki/President_(government_title)",
+        "http://en.wikipedia.org/wiki/Valencia",
+        "http://en.wikipedia.org/wiki/Álvaro_Uribe",
+        "http://en.wikipedia.org/wiki/Two-round_system",
+        "http://en.wikipedia.org/wiki/Lawyer"
+      ]
+    },
+    {
+      "id": "nicaraguan-indigenous-leader-dies-after-three-years-in-priso",
+      "label": "Nicaraguan indigenous leader dies after three years in prison",
+      "firstSeen": "2026-05-31T22:09:04.153Z",
+      "lastCovered": "2026-05-31T22:09:04.153Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-31-nicaraguan-indigenous-leader-dies-after-three-years-in-priso"
+      ],
+      "eventUri": "eng-11697872",
+      "summary": "Brooklyn Rivera, a 73-year-old Miskito indigenous leader and former lawmaker, has died in Nicaraguan state custody after three years detained; the Ortega-Murillo government blames a bacterial infection after COVID-19. The story is the death itself — a named victim and named power (the Ortega-Murillo state) — and what custodial deaths of opposition and indigenous figures reveal about the steady criminalisation of dissent in Nicaragua. Dignity and accountability frame; lead on who he was, how long he was held, and the rights advocates' challenge to the official cause of death.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Nicaragua",
+        "http://en.wikipedia.org/wiki/Brooklyn",
+        "http://en.wikipedia.org/wiki/Rivera",
+        "http://en.wikipedia.org/wiki/Daniel_Ortega",
+        "http://en.wikipedia.org/wiki/Miskito_people",
+        "http://es.wikipedia.org/wiki/Indígena",
+        "http://en.wikipedia.org/wiki/Indigenous_peoples_of_the_Americas",
+        "http://en.wikipedia.org/wiki/Rosario_Murillo"
+      ]
+    },
+    {
+      "id": "punjab-approves-deployment-of-6-000-police-personnel-in-gb-f",
+      "label": "Punjab approves deployment of 6,000 police personnel in GB for election duty",
+      "firstSeen": "2026-05-31T22:09:04.153Z",
+      "lastCovered": "2026-05-31T22:09:04.153Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-31-punjab-approves-deployment-of-6-000-police-personnel-in-gb-f"
+      ],
+      "eventUri": "eng-11699098",
+      "summary": "Punjab is sending 6,000 of its police into Gilgit-Baltistan ahead of the June 7 election as PTI renews allegations of pre-poll rigging. The mechanism to lead with: deploying one region's police force into another's vote is itself a contested act of electoral control, and GB — a disputed territory without full constitutional status — has long had its politics managed from the centre. Affects GB voters' confidence in the ballot; OIC-region story carried by its own regional outlet (Dawn). Lead on the deployment scale and the rigging allegations, not the logistics.",
+      "conceptUris": []
+    },
+    {
+      "id": "u-s-military-is-quietly-guiding-ships-through-the-strait-of",
+      "label": "U.S. Military Is Quietly Guiding Ships Through the Strait of Hormuz",
+      "firstSeen": "2026-05-31T22:09:04.153Z",
+      "lastCovered": "2026-05-31T22:09:04.153Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-31-u-s-military-is-quietly-guiding-ships-through-the-strait-of"
+      ],
+      "eventUri": "eng-11701154",
+      "summary": "US Central Command has quietly escorted around 70 commercial ships through the Strait of Hormuz in three weeks as the Iran war keeps the chokepoint under threat. The mechanism to teach: roughly a fifth of the world's oil passes through Hormuz, and the fact that civilian tankers now need military coordination to transit shows how a regional war has militarised global energy logistics — privatised trade routes underwritten by US naval power. Lead on the 70-ships figure and what the chokepoint's fragility means for oil prices and Gulf-dependent importers. Connects to the energy-disruption arc.",
+      "conceptUris": []
+    },
+    {
+      "id": "how-the-house-financial-services-committee-is-taking-on-toke",
+      "label": "How the House Financial Services Committee is taking on tokenization: State of Crypto",
+      "firstSeen": "2026-05-31T22:09:04.153Z",
+      "lastCovered": "2026-05-31T22:09:04.153Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-31-how-the-house-financial-services-committee-is-taking-on-toke"
+      ],
+      "eventUri": null,
+      "summary": "House Financial Services chair French Hill says he expects the Clarity Act — the market-structure bill that would define how tokenised securities are regulated — to win bipartisan support. The mechanism to highlight: tokenisation moves real-world assets (treasuries, equities) onto blockchains, and who writes the rulebook decides whether that reshapes who can access and clear securities. Lead on the policy stakes and the named players (Hill, Maxine Waters), not the price action; frame it as a fight over the regulatory architecture for the next phase of finance.",
+      "conceptUris": []
+    },
+    {
+      "id": "dangote-retains-africa-s-most-admired-brand-title-for-eighth",
+      "label": "Dangote retains Africa's most admired brand title for eighth year",
+      "firstSeen": "2026-05-31T22:09:04.153Z",
+      "lastCovered": "2026-05-31T22:09:04.153Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-31-dangote-retains-africa-s-most-admired-brand-title-for-eighth"
+      ],
+      "eventUri": null,
+      "summary": "Dangote Industries tops Brand Africa's rankings for an eighth straight year — but the real story is the concentration it signals: a single Nigerian conglomerate (cement, sugar, and the continent's largest oil refinery) dominating African industrial brand-power ahead of MTN and Vodacom. The angle for the reader: what one family-owned group's eight-year reign reveals about the thinness of pan-African corporate competition and the gravitational pull of the Dangote refinery on West African fuel markets. Africa as economic actor; treat the ranking as a window into market structure, not a press-release win.",
+      "conceptUris": []
+    },
+    {
+      "id": "enterprise-ai-s-next-frontier-is-not-more-workflows-it-s-exe",
+      "label": "Enterprise AI's Next Frontier Is Not More Workflows. It's Execution.",
+      "firstSeen": "2026-05-31T22:09:04.153Z",
+      "lastCovered": "2026-05-31T22:09:04.153Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-31-enterprise-ai-s-next-frontier-is-not-more-workflows-it-s-exe"
+      ],
+      "eventUri": "eng-11699723",
+      "summary": "The enterprise-AI pitch is shifting from 'what's our AI strategy' to whether models can actually execute work, not just map workflows — with Marvell and others betting agentic systems take over more of the doing. The angle for the technically literate reader: separate the genuine capability claim (autonomous task execution) from the marketing, and ask what 'execution' requires that current agents still lack (reliability, oversight, accountability for errors). Frame critically as a contested industry thesis, weighing the agentic-AI hype against where it actually breaks. Multi-source (Forbes, Yahoo Finance).",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Chief_executive_officer",
+        "http://en.wikipedia.org/wiki/Workflow",
+        "http://en.wikipedia.org/wiki/South_Korea",
+        "http://en.wikipedia.org/wiki/Ethics",
+        "http://en.wikipedia.org/wiki/OpenAI",
+        "http://en.wikipedia.org/wiki/Productivity",
+        "http://en.wikipedia.org/wiki/Google"
+      ]
+    },
+    {
+      "id": "who-is-talking-about-artificial-intelligence-in-ecuador",
+      "label": "Who is talking about artificial intelligence in Ecuador?",
+      "firstSeen": "2026-05-31T22:09:04.153Z",
+      "lastCovered": "2026-05-31T22:09:04.153Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-30-who-is-talking-about-artificial-intelligence-in-ecuador"
+      ],
+      "eventUri": null,
+      "summary": "Ecuador is debating how to regulate AI amid institutional gaps and tensions between innovation, surveillance, education and inclusion. The angle for the reader: most AI-governance coverage centres Washington and Brussels — this is the Global South writing its own rules, where the live fear is AI-enabled state surveillance landing in a country without strong data-rights institutions. Lead on who is actually at the table (and who isn't) and why a small state's AI debate matters as a template for the rest of the developing world. Pairs with the broader 'who shapes AI ethics' thread.",
+      "conceptUris": []
+    },
+    {
+      "id": "mcp-is-dead",
+      "label": "MCP is dead?",
+      "firstSeen": "2026-05-31T22:09:04.153Z",
+      "lastCovered": "2026-05-31T22:09:04.153Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-29-mcp-is-dead"
+      ],
+      "eventUri": null,
+      "summary": "A still-trending engineering post (393 points) argues the Model Context Protocol — the standard meant to let any AI model call any tool — is already losing relevance. Advance the debate beyond the obituary headline: explain plainly what MCP standardises, why a young protocol draws 'is it dead' doubts so fast (fragmentation, vendor lock-in, competing approaches), and what the live alternatives are. Frame as a genuine developer argument with a case for and against, not a verdict — the reader builds with these tools and wants the engineering substance.",
+      "conceptUris": []
+    },
+    {
+      "id": "world-health-organization-hails-recovery-of-five-ebola-patie",
+      "label": "World Health Organization hails recovery of five Ebola patients",
+      "firstSeen": "2026-05-31T22:09:04.153Z",
+      "lastCovered": "2026-05-31T22:09:04.153Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-31-world-health-organization-hails-recovery-of-five-ebola-patie"
+      ],
+      "eventUri": "eng-11700331",
+      "summary": "The WHO reports five people have recovered from a rare Ebola strain — one with no approved vaccine or treatment — during the current outbreak in the DRC's Ituri Province. Teach the mechanism: why this strain falls outside the vaccine/therapeutic toolkit built for the more common Zaire ebolavirus, what 'supportive care' recovery actually means, and why outbreak containment in eastern DRC is as much a logistics-and-conflict problem as a medical one. Lead on the recoveries and the treatment gap; Global South health story, regional/Qatari outlet present.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Ebola",
+        "http://en.wikipedia.org/wiki/World_Health_Organization",
+        "http://en.wikipedia.org/wiki/Democratic_Republic_of_the_Congo",
+        "http://en.wikipedia.org/wiki/Bunia",
+        "http://en.wikipedia.org/wiki/Tedros_Adhanom",
+        "http://en.wikipedia.org/wiki/Vaccine",
+        "http://en.wikipedia.org/wiki/Ituri_Province",
+        "http://en.wikipedia.org/wiki/Uganda"
+      ]
+    },
+    {
+      "id": "what-biodegradable-packaging-really-means-and-three-key-ques",
+      "label": "What 'biodegradable' packaging really means—and three key questions to ask about it",
+      "firstSeen": "2026-05-31T22:09:04.153Z",
+      "lastCovered": "2026-05-31T22:09:04.153Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-31-what-biodegradable-packaging-really-means-and-three-key-ques"
+      ],
+      "eventUri": null,
+      "summary": "'Biodegradable' on a coffee cup or food container is one of the most trusted — and least precise — words in packaging. Teach the science the label hides: biodegradation depends on specific conditions (temperature, microbes, industrial composting) that a landfill or the ocean rarely provides, so many 'biodegradable' items never actually break down. Give the reader the three diagnostic questions (degrades into what, under what conditions, over what timeframe) so they can read past the marketing. A genuinely useful explainer that arms readers against greenwashing.",
+      "conceptUris": []
+    },
+    {
+      "id": "italy-turns-to-tall-ship-to-simulate-stresses-of-long-durati",
+      "label": "Italy Turns to Tall Ship to Simulate Stresses of Long-Duration Spaceflight",
+      "firstSeen": "2026-05-31T22:09:04.153Z",
+      "lastCovered": "2026-05-31T22:09:04.153Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-31-italy-turns-to-tall-ship-to-simulate-stresses-of-long-durati"
+      ],
+      "eventUri": null,
+      "summary": "The Italian Space Agency is using a Navy tall ship and naval cadets to study how the body and mind handle long-duration spaceflight stresses, under its ICE-Blue initiative. The angle for the reader: a sailing vessel is a cheap, high-fidelity analogue for space — prolonged confinement, isolation, sleep disruption and team dynamics on a long voyage mirror what a Mars-class mission demands. Lead on why an earthbound ship is a serious research platform for human spaceflight, and what physiological/psychological data ASI is actually collecting. A concrete, instructive niche science note.",
+      "conceptUris": []
+    },
+    {
       "id": "myanmar-shan-state-village-explosives-blast",
       "label": "Blast kills dozens in village in rebel-held region of Myanmar",
       "firstSeen": "2026-05-31T17:06:16.765Z",
       "lastCovered": "2026-05-31T17:06:16.765Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-31-myanmar-shan-state-village-explosives-blast"
@@ -32,7 +277,7 @@
       "lastCovered": "2026-05-31T17:06:16.765Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-31-india-cbse-exam-portal-security-flaw-teen"
@@ -48,29 +293,13 @@
       ]
     },
     {
-      "id": "lebanon-israeli-strikes-death-toll-tyre",
-      "label": "Death toll from Israeli attacks on Lebanon exceeds 3,400 — health ministry",
-      "firstSeen": "2026-05-31T17:06:16.765Z",
-      "lastCovered": "2026-05-31T17:06:16.765Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-31-lebanon-israeli-strikes-death-toll-tyre"
-      ],
-      "eventUri": null,
-      "summary": "Lebanon's health ministry says 41 more people were killed and 140 wounded in a single day of Israeli airstrikes on the south — including heavy bombardment of Tyre (Sur) — pushing the toll past 3,400 despite a ceasefire nominally in force since 17 April. The story is the continuation of the killing itself: a ceasefire that exists on paper while the strikes and the body count go on. Lead with the day's named dead and the ministry's cumulative figure; attribute strictly (figures via Lebanon's health ministry, relayed by TASS/Mehr — both state outlets, note the absence of independent confirmation). OIC-region story; Mehr (IR) is the regional voice. Zulm with named actor (Israeli military) and named victims.",
-      "conceptUris": []
-    },
-    {
       "id": "iran-south-pars-gas-complex-rebuild",
       "label": "Iranians Return to South Pars Gas Complex to Repair and Rebuild",
       "firstSeen": "2026-05-31T17:06:16.765Z",
       "lastCovered": "2026-05-31T17:06:16.765Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-29-iran-south-pars-gas-complex-rebuild"
@@ -86,7 +315,7 @@
       "lastCovered": "2026-05-31T17:06:16.765Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-31-eu-russia-oil-price-cap-freeze-iran-war"
@@ -109,7 +338,7 @@
       "lastCovered": "2026-05-31T17:06:16.765Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-31-pakistan-sindh-irsa-water-share-dispute"
@@ -125,7 +354,7 @@
       "lastCovered": "2026-05-31T17:06:16.765Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-31-daraxonrasib-pancreatic-cancer-kras-trial"
@@ -148,7 +377,7 @@
       "lastCovered": "2026-05-31T17:06:16.765Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-31-india-heat-cities-migrant-workers-vulnerability"
@@ -164,7 +393,7 @@
       "lastCovered": "2026-05-31T17:06:16.765Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-31-ai-catalyst-transfer-green-hydrogen"
@@ -180,7 +409,7 @@
       "lastCovered": "2026-05-31T17:06:16.765Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-30-anthropic-most-valuable-ai-startup-valuation"
@@ -196,7 +425,7 @@
       "lastCovered": "2026-05-31T17:06:16.765Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-30-domain-expertise-ai-moat-debate"
@@ -212,7 +441,7 @@
       "lastCovered": "2026-05-31T17:06:16.765Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-29-mcp-model-context-protocol-standard-debate"
@@ -228,7 +457,7 @@
       "lastCovered": "2026-05-31T17:06:16.765Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-31-ukrainian-drones-control-airspace-over-russian-logistic-rout"
@@ -253,7 +482,7 @@
       "lastCovered": "2026-05-31T12:07:27.053Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-31-ukraine-iris-t-launcher-germany-air-defense-arithmetic"
@@ -278,7 +507,7 @@
       "lastCovered": "2026-05-31T12:07:27.053Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-31-world-no-tobacco-day-vape-ban-global-south"
@@ -303,7 +532,7 @@
       "lastCovered": "2026-05-31T12:07:27.053Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-29-sudan-rsf-drones-darfur-eid-markets-blue-nile"
@@ -319,7 +548,7 @@
       "lastCovered": "2026-05-31T12:07:27.053Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-29-brazil-pcc-red-command-terrorist-designation"
@@ -335,7 +564,7 @@
       "lastCovered": "2026-05-31T12:07:27.053Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-29-brazil-peru-railway-china-trade-amazon-cost"
@@ -351,7 +580,7 @@
       "lastCovered": "2026-05-31T12:07:27.053Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-31-ukraine-saratov-refinery-strike-fuel-war"
@@ -375,7 +604,7 @@
       "lastCovered": "2026-05-31T12:07:27.053Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-31-meteor-airburst-massachusetts-300-tonnes-tnt"
@@ -399,7 +628,7 @@
       "lastCovered": "2026-05-31T12:07:27.053Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-31-godzilla-el-nino-southern-africa-drought-forecast"
@@ -415,7 +644,7 @@
       "lastCovered": "2026-05-31T12:07:27.053Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-29-pentagon-spacex-orbital-aircraft-tracking-4b"
@@ -431,7 +660,7 @@
       "lastCovered": "2026-05-31T12:07:27.053Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-29-pope-ai-encyclical-who-shapes-ai-ethics"
@@ -447,7 +676,7 @@
       "lastCovered": "2026-05-31T12:07:27.053Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-31-global-disruptions-in-energy-markets"
@@ -463,7 +692,7 @@
       "lastCovered": "2026-05-31T08:08:50.538Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-31-japan-rejects-new-militarism-label-as-hypocritical"
@@ -488,7 +717,7 @@
       "lastCovered": "2026-05-31T08:08:50.538Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-31-irgc-shoots-down-us-mq-1-drone-in-iranian-waters"
@@ -513,7 +742,7 @@
       "lastCovered": "2026-05-31T08:08:50.538Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-31-israel-captures-beaufort-castle-lebanon-deepest-incursion"
@@ -529,7 +758,7 @@
       "lastCovered": "2026-05-31T08:08:50.538Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-31-oyo-abduction-makinde-families-amotekun-killed"
@@ -545,7 +774,7 @@
       "lastCovered": "2026-05-31T08:08:50.538Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-31-india-sc-pocso-minor-trafficking-ruling"
@@ -561,7 +790,7 @@
       "lastCovered": "2026-05-31T08:08:50.538Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-29-trump-declares-lifting-naval-blockade-iran"
@@ -577,7 +806,7 @@
       "lastCovered": "2026-05-31T08:08:50.538Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-31-russian-oil-japan-amid-middle-east-disruption"
@@ -593,7 +822,7 @@
       "lastCovered": "2026-05-31T08:08:50.538Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-30-fata-morgana-cornwall-sea-mirage-explained"
@@ -609,7 +838,7 @@
       "lastCovered": "2026-05-31T08:08:50.538Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-29-climate-debriefed-europe-heat-india-deaths-nigeria-solar"
@@ -625,7 +854,7 @@
       "lastCovered": "2026-05-31T08:08:50.538Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-29-dead-economy-theory-tech-labor-stagnation"
@@ -641,7 +870,7 @@
       "lastCovered": "2026-05-31T08:08:50.538Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-31-over-160-road-accidents-reported-in-rawalpindi-during-eid"
@@ -657,7 +886,7 @@
       "lastCovered": "2026-05-31T08:08:50.538Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-29-behind-the-blog-being-new-and-some-numbers"
@@ -673,7 +902,7 @@
       "lastCovered": "2026-05-31T04:06:05.855Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-29-us-israel-ndaa-section-224-military-integration"
@@ -689,7 +918,7 @@
       "lastCovered": "2026-05-31T04:06:05.855Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-31-aipac-super-pac-network-connie-chan-san-francisco"
@@ -705,7 +934,7 @@
       "lastCovered": "2026-05-31T04:06:05.855Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-31-aukus-australia-secondhand-virginia-submarines"
@@ -721,7 +950,7 @@
       "lastCovered": "2026-05-31T04:06:05.855Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-30-makinde-apm-presidential-candidate-nigeria-2027"
@@ -737,7 +966,7 @@
       "lastCovered": "2026-05-31T04:06:05.855Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-29-quad-indian-ocean-surveillance-initiative"
@@ -753,7 +982,7 @@
       "lastCovered": "2026-05-31T04:06:05.855Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-31-india-revises-fuel-export-duties-june"
@@ -776,7 +1005,7 @@
       "lastCovered": "2026-05-31T04:06:05.855Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-31-streeting-national-insurance-north-sea-drilling"
@@ -792,7 +1021,7 @@
       "lastCovered": "2026-05-31T04:06:05.855Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-30-iraqi-kurdish-delegation-tehran-cooperation"
@@ -808,7 +1037,7 @@
       "lastCovered": "2026-05-31T04:06:05.855Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-31-abelisaurid-theropod-teeth-spain-europe"
@@ -824,7 +1053,7 @@
       "lastCovered": "2026-05-31T04:06:05.855Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-29-blue-moon-2026-second-full-moon-micromoon"
@@ -847,7 +1076,7 @@
       "lastCovered": "2026-05-31T04:06:05.855Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-31-xrp-ledger-design-blocks-flash-loan-attacks"
@@ -863,7 +1092,7 @@
       "lastCovered": "2026-05-31T04:06:05.855Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-31-momentum-space-imaging-nitride-gan-heterostructures"
@@ -879,7 +1108,7 @@
       "lastCovered": "2026-05-31T04:06:05.855Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-31-lunar-soil-oxygen-extraction-moon-base-isru"
@@ -895,7 +1124,7 @@
       "lastCovered": "2026-05-30T22:06:29.028Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-30-us-says-it-struck-ship-trying-to-breach-blockade-and-reach-i"
@@ -920,7 +1149,7 @@
       "lastCovered": "2026-05-30T22:06:29.028Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-30-rubio-says-trump-envoy-barrack-to-step-down-from-syria-post"
@@ -945,7 +1174,7 @@
       "lastCovered": "2026-05-30T22:06:29.028Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-30-eu-s-top-diplomat-kallas-to-visit-islamabad-on-june-1-for-st"
@@ -961,7 +1190,7 @@
       "lastCovered": "2026-05-30T22:06:29.028Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-30-trump-administration-appears-to-downplay-impact-of-green-car"
@@ -977,7 +1206,7 @@
       "lastCovered": "2026-05-30T22:06:29.028Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-30-vitol-awarded-namibia-fuel-supply-deal-from-july-to-septembe"
@@ -1002,7 +1231,7 @@
       "lastCovered": "2026-05-30T22:06:29.028Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-30-bulgaria-facing-eu-punishment-months-after-joining-eurozone"
@@ -1027,7 +1256,7 @@
       "lastCovered": "2026-05-30T22:06:29.028Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-30-world-ms-day-is-today-may-30th-midwest-radio"
@@ -1052,7 +1281,7 @@
       "lastCovered": "2026-05-30T22:06:29.028Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-30-nanofiber-implant-delivers-three-drugs-doubles-survival-in-g"
@@ -1068,7 +1297,7 @@
       "lastCovered": "2026-05-30T22:06:29.028Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-29-the-philippines-is-failing-to-include-indigenous-people-in-c"
@@ -1084,7 +1313,7 @@
       "lastCovered": "2026-05-30T22:06:29.028Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-29-gta-6-developers-unionize"
@@ -1100,7 +1329,7 @@
       "lastCovered": "2026-05-30T22:06:29.028Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-30-sec-sues-texas-man-over-12-3-million-alleged-crypto-scheme-b"
@@ -1116,7 +1345,7 @@
       "lastCovered": "2026-05-30T22:06:29.028Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-30-aukus-nations-to-boost-advanced-undersea-drone-tech-us"
@@ -1141,7 +1370,7 @@
       "lastCovered": "2026-05-30T22:06:29.028Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-30-drone-hits-nuclear-facility-as-kyiv-moscow-trade-strikes"
@@ -1158,241 +1387,6 @@
         "http://en.wikipedia.org/wiki/Armavir,_Russia",
         "http://en.wikipedia.org/wiki/Krasnodar"
       ]
-    },
-    {
-      "id": "estonia-installs-first-drone-detection-systems-on-border-wit",
-      "label": "Estonia installs first drone detection systems on border with Russia",
-      "firstSeen": "2026-05-30T17:12:38.688Z",
-      "lastCovered": "2026-05-30T17:12:38.688Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-30-estonia-installs-first-drone-detection-systems-on-border-wit"
-      ],
-      "eventUri": "rus-2073367",
-      "summary": "Estonia has deployed its first stationary anti-drone detection arrays along three sections of its Russian border. The structural why for the strategic reader: NATO's eastern flank is hardening into a permanent sensor wall as cheap drone incursions become the default form of gray-zone pressure — the same logic that shut Munich's runways. Lead with the shift from ad-hoc response to fixed infrastructure: states are now building the detection layer into the border itself. Multi-source (UA + Estonian ERR reporting).",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Estonia",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Latvia",
-        "http://en.wikipedia.org/wiki/Ministry_of_home_affairs",
-        "http://en.wikipedia.org/wiki/Europe",
-        "http://ru.wikipedia.org/wiki/Лухамаа_(нулк)",
-        "http://en.wikipedia.org/wiki/Police_Department_of_Russia"
-      ]
-    },
-    {
-      "id": "u-s-and-cuban-military-officials-meet-outside-of-guant-namo",
-      "label": "U.S. and Cuban Military Officials Meet Outside of Guantánamo Base",
-      "firstSeen": "2026-05-30T17:12:38.688Z",
-      "lastCovered": "2026-05-30T17:12:38.688Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-30-u-s-and-cuban-military-officials-meet-outside-of-guant-namo"
-      ],
-      "eventUri": "spa-4214403",
-      "summary": "A senior U.S. officer met Cuban counterparts at the Guantánamo perimeter — the highest-level military engagement since the Trump administration began ratcheting up pressure on Havana. Lead with the contradiction: open military contact even as Washington tightens the screws. The structural why for the strategic reader: these fence-line meetings are the quiet de-confliction channel that keeps a pressure campaign from tipping into accident, and their existence reveals more about U.S.-Cuba policy than the public rhetoric. Latin America as actor.",
-      "conceptUris": []
-    },
-    {
-      "id": "8-militants-killed-on-second-day-of-security-operation-in-kp",
-      "label": "8 militants killed on second day of security operation in KP's Darra Adamkhel: security sources",
-      "firstSeen": "2026-05-30T17:12:38.688Z",
-      "lastCovered": "2026-05-30T17:12:38.688Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-30-8-militants-killed-on-second-day-of-security-operation-in-kp"
-      ],
-      "eventUri": null,
-      "summary": "Eight militants — including two Afghan nationals tied to a TTP affiliate — were killed on day two of a Pakistani operation in Khyber Pakhtunkhwa's Darra Adamkhel. Lead with the cross-border thread: Afghan fighters inside a banned Pakistani group, the exact fault line straining Islamabad-Kabul relations. The structural why for the reader: KP has become the front line of a resurgent TTP insurgency, and naming the Afghan link shows why Pakistan's deportation drive and border tensions keep escalating. Regionally sourced (Dawn, PK).",
-      "conceptUris": []
-    },
-    {
-      "id": "rulers-have-become-killers-mamata-fumes-over-attack-on-abhis",
-      "label": "'Rulers have become killers': Mamata fumes over attack on Abhishek Banerjee; BJP hits back",
-      "firstSeen": "2026-05-30T17:12:38.688Z",
-      "lastCovered": "2026-05-30T17:12:38.688Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-30-rulers-have-become-killers-mamata-fumes-over-attack-on-abhis"
-      ],
-      "eventUri": "eng-11698736",
-      "summary": "An attack on TMC MP Abhishek Banerjee in Sonarpur has detonated a fight over whether it was a 'pre-planned conspiracy' (TMC) or spontaneous 'public anger' (BJP). Lead with the contested framing itself: ahead of West Bengal's elections, both sides are racing to define a single incident of political violence. The structural why for the reader: in India's most combustible electoral state, the narrative around violence is the weapon, and the dispute previews how the campaign will be fought. Multi-source (IN).",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Abhishek_Banerjee_(politician)",
-        "http://en.wikipedia.org/wiki/Trinamool_Congress",
-        "http://en.wikipedia.org/wiki/Bharatiya_Janata_Party",
-        "http://en.wikipedia.org/wiki/Member_of_parliament",
-        "http://en.wikipedia.org/wiki/Rajpur_Sonarpur",
-        "http://en.wikipedia.org/wiki/West_Bengal",
-        "http://en.wikipedia.org/wiki/Mamata_Banerjee",
-        "http://en.wikipedia.org/wiki/Bengal"
-      ]
-    },
-    {
-      "id": "nnpc-posts-n4-97-trillion-revenue-n481-bn-profit-as-oil-outp",
-      "label": "NNPC posts N4.97 trillion revenue, N481 bn profit as oil output rises in April",
-      "firstSeen": "2026-05-30T17:12:38.688Z",
-      "lastCovered": "2026-05-30T17:12:38.688Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-30-nnpc-posts-n4-97-trillion-revenue-n481-bn-profit-as-oil-outp"
-      ],
-      "eventUri": null,
-      "summary": "Nigeria's state oil firm NNPC reported N4.97tn revenue and N481bn profit as crude-and-condensate output rose to 1.68m bpd in April. Lead with the gap between corporate profit and national hardship: the same month NNPC books record naira revenue, ordinary Nigerians face stubborn food inflation. The structural why for the reader: NNPC's monthly report is one of the few windows into who captures Nigeria's oil rents, and rising output plus fat margins raises the accountability question of where the money goes. Africa, OIC; regionally sourced (Premium Times, NG).",
-      "conceptUris": []
-    },
-    {
-      "id": "u-s-says-it-seized-about-1-billion-in-iranian-crypto-as-pres",
-      "label": "U.S. says it seized about $1 billion in Iranian crypto as pressure campaign expands",
-      "firstSeen": "2026-05-30T17:12:38.688Z",
-      "lastCovered": "2026-05-30T17:12:38.688Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-30-u-s-says-it-seized-about-1-billion-in-iranian-crypto-as-pres"
-      ],
-      "eventUri": "eng-11697488",
-      "summary": "Treasury Secretary Bessent says the U.S. seized roughly $1bn in Iran-linked cryptocurrency, tying it to an economy he describes as suffering 200%+ inflation and unpaid soldiers. Lead with the mechanism: sanctions enforcement has moved on-chain, and Washington is now confiscating digital assets as a pressure lever even as a framework deal is discussed. The structural why for the crypto-literate reader: crypto was sold as censorship-resistant, yet states are demonstrating they can locate and seize it at scale — the sanctions cost-side of the Iran standoff, paid by Iranians.",
-      "conceptUris": []
-    },
-    {
-      "id": "20-ships-have-passed-through-strait-of-hormuz-irgc-navy",
-      "label": "20 ships have passed through Strait of Hormuz: IRGC Navy",
-      "firstSeen": "2026-05-30T17:12:38.688Z",
-      "lastCovered": "2026-05-30T17:12:38.688Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-30-20-ships-have-passed-through-strait-of-hormuz-irgc-navy"
-      ],
-      "eventUri": null,
-      "summary": "Iran's IRGC Navy says 20 vessels transited the Strait of Hormuz in 24 hours 'in coordination' with the force — a signal that the chokepoint is reopening to traffic under Iranian supervision. Lead with what the framing reveals: by stressing 'coordination', Tehran is asserting that passage through the world's most important oil chokepoint now runs on its terms. The structural why for the macro reader: roughly a fifth of global oil moves through Hormuz, so even a de-escalation announcement that emphasises Iranian control prices into energy markets. OIC; regionally sourced (Mehr, IR).",
-      "conceptUris": []
-    },
-    {
-      "id": "uav-strike-on-zaporozhye-npp-is-first-ever-targeted-attack-o",
-      "label": "UAV strike on Zaporozhye NPP is first-ever targeted attack on NPP equipment -- Rosatom CEO",
-      "firstSeen": "2026-05-30T17:12:38.688Z",
-      "lastCovered": "2026-05-30T17:12:38.688Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-30-uav-strike-on-zaporozhye-npp-is-first-ever-targeted-attack-o"
-      ],
-      "eventUri": "rus-2073499",
-      "summary": "A drone struck the turbine building of Unit 6 at the Russian-held Zaporizhzhia plant; Rosatom calls it the first-ever targeted strike on a nuclear plant's equipment. Lead with the threshold crossed, not the blame trade: a reactor complex's machinery has now been deliberately hit, and that is a new line in the nuclear-safety era. The structural why for the reader: explain why turbine-hall damage matters for cooling and grid links, and why the IAEA has warned for years that fighting around Zaporizhzhia risks an accident no one controls. Multi-source (TASS + Reuters); attribution disputed — both sides quoted.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Rosatom",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Nuclear_power_plant",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Zaporizhia_Nuclear_Power_Plant",
-        "http://en.wikipedia.org/wiki/Armed_Forces_of_Ukraine",
-        "http://ru.wikipedia.org/wiki/Энергоблок",
-        "http://en.wikipedia.org/wiki/Russia"
-      ]
-    },
-    {
-      "id": "quantum-light-gives-a-20-fold-boost-to-ultrafast-laser-proce",
-      "label": "Quantum light gives a 20-fold boost to ultrafast laser processes",
-      "firstSeen": "2026-05-30T17:12:38.688Z",
-      "lastCovered": "2026-05-30T17:12:38.688Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-30-quantum-light-gives-a-20-fold-boost-to-ultrafast-laser-proce"
-      ],
-      "eventUri": null,
-      "summary": "Researchers used quantum (squeezed) light to boost nonlinear laser-matter interactions roughly 20-fold without the higher intensities that would destroy the sample. Lead with the constraint it breaks: in nonlinear optics, stronger lasers mean more signal but also more damage, and quantum light buys the signal without the destruction. The structural why for the technically literate reader: this is a route to gentler ultrafast spectroscopy and imaging of fragile materials and biological samples, where the trade-off between signal and survival has been the hard ceiling. Physics — fills the science-beyond-health gap.",
-      "conceptUris": []
-    },
-    {
-      "id": "polymerase-inhibitor-drug-synergy-and-mutational-signatures",
-      "label": "Polymerase-inhibitor drug synergy and mutational signatures in epithelial cell models of RSVA and hPIV3 infection",
-      "firstSeen": "2026-05-30T17:12:38.688Z",
-      "lastCovered": "2026-05-30T17:12:38.688Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-30-polymerase-inhibitor-drug-synergy-and-mutational-signatures"
-      ],
-      "eventUri": null,
-      "summary": "A study in epithelial-cell models finds that pairing polymerase-inhibitor antivirals produces synergy against RSV-A and human parainfluenza type 3 — and maps the mutational signatures each drug leaves behind. Lead with the combination logic: these respiratory viruses carry a huge global burden, especially in children and the elderly, and single drugs invite resistance. The structural why for the reader: tracking the mutational fingerprints shows not just that the combo works but how resistance would emerge, which is what makes a regimen durable. Early-access manuscript — read as preliminary.",
-      "conceptUris": []
-    },
-    {
-      "id": "the-benchmarking-and-application-of-tag-degraders-in-vivo-to",
-      "label": "The benchmarking and application of tag-degraders in vivo to validate therapeutic targets",
-      "firstSeen": "2026-05-30T17:12:38.688Z",
-      "lastCovered": "2026-05-30T17:12:38.688Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-30-the-benchmarking-and-application-of-tag-degraders-in-vivo-to"
-      ],
-      "eventUri": null,
-      "summary": "Scientists benchmark 'tag-degraders' — engineered tools that destroy a tagged protein on command inside a living animal — as a way to confirm whether a protein is actually a worthwhile drug target before costly development. Lead with the failure it attacks: most drug programs collapse because the target was wrong, validated only in dishes. The structural why for the technically literate reader: moving target-validation into the living organism is infrastructure tooling that could cut the industry's highest failure rate — the unglamorous engineering that decides which drugs ever get tried. Open access.",
-      "conceptUris": []
-    },
-    {
-      "id": "wall-street-s-trillion-dollar-dilemma-why-ai-powered-hackers",
-      "label": "Wall Street's trillion-dollar dilemma: Why AI-powered hackers are keeping big banks off the blockchain",
-      "firstSeen": "2026-05-30T17:12:38.688Z",
-      "lastCovered": "2026-05-30T17:12:38.688Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-30-wall-street-s-trillion-dollar-dilemma-why-ai-powered-hackers"
-      ],
-      "eventUri": null,
-      "summary": "Near-daily DeFi exploits — a $1.46bn Bybit hack, nine-figure drains from Drift and Kelp — are cited as the main reason banks won't move trillions onto public blockchains. Lead with the asymmetry: well-funded, increasingly AI-assisted attackers outspend constrained defenders, and the losses are now structural, not freak events. The structural why for the hacker-literate reader: tokenization's promise collides with the reality that smart-contract attack surfaces are exploited faster than they're patched, so security — not regulation — is the real gate on institutional adoption.",
-      "conceptUris": []
-    },
-    {
-      "id": "highly-plausible-aliens-on-europa-are-earthlings-descendants",
-      "label": "'Highly Plausible' Aliens on Europa Are Earthlings' Descendants, Study Says",
-      "firstSeen": "2026-05-30T17:12:38.688Z",
-      "lastCovered": "2026-05-30T17:12:38.688Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-30-highly-plausible-aliens-on-europa-are-earthlings-descendants"
-      ],
-      "eventUri": null,
-      "summary": "A new study argues Earth bacteria, carried on dust grains flung into space, could arrive intact and alive on Jupiter's moon Europa — meaning any life found there might descend from us. Lead with the inversion of the alien-life question: the contamination risk runs both ways, and 'discovering life' on Europa could mean discovering ourselves. The structural why for the reader: this reframes planetary-protection protocols for upcoming Europa missions — if our own microbes can ride to other worlds, detecting genuine alien life gets much harder. A niche science exposé (404 Media).",
-      "conceptUris": []
     }
   ]
 }
