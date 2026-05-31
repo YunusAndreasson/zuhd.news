@@ -270452,5 +270452,1613 @@
     "label": "Multiple Sclerosis & Myelin",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-05-29-blue-moon-2026-second-full-moon-micromoon": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY SOME YEARS GET 13",
+        "body": "The full-moon cycle runs 29.5 days, so twelve of them take only 354 days — eleven short of a solar year. Those days accumulate, and roughly every 2.7 years they pile up into a thirteenth full moon. The 'extra' moon is the blue moon.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 29.5-day interval is the *synodic month* — full moon to full moon. It is longer than the **sidereal month** (27.3 days, one orbit against the stars) because the Earth has moved along its own orbit, so the Moon must travel a little farther to line up with the Sun again."
+          }
+        ]
+      },
+      {
+        "heading": "THE NAME IS A MISTAKE",
+        "body": "Nothing turns blue. The modern definition — second full moon in a calendar month — comes from a 1946 Sky & Telescope article that misread the Maine Farmers' Almanac, whose 'blue moon' was actually the third of four full moons in a single season. The error stuck and became the popular meaning.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does 'blue moon' most commonly mean today?",
+            "options": [
+              "A full moon that looks blue-tinted",
+              "The second full moon in a calendar month",
+              "The third of four full moons in one season"
+            ],
+            "correct": 1,
+            "explanation": "The 'second in a month' meaning came from a 1946 misreading; the 'third of four in a season' version was the original almanac usage."
+          }
+        ]
+      },
+      {
+        "heading": "THE ORBIT IS AN ELLIPSE",
+        "body": "The Moon's orbit is not a circle — its eccentricity of about 0.055 swings it from roughly 363,000 km at perigee to 406,000 km at apogee. A full moon at apogee is a micromoon; the same phase at perigee is the 'supermoon' headlines love.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Perigee",
+                "value": "363,000km",
+                "weight": 363,
+                "tone": "favorable"
+              },
+              {
+                "label": "Mean",
+                "value": "384,000km",
+                "weight": 384,
+                "tone": "neutral"
+              },
+              {
+                "label": "Apogee",
+                "value": "406,000km",
+                "weight": 406,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Earth–Moon distance across the orbit"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 6% SMALLER MEANS 10% DIMMER",
+        "body": "Apparent brightness tracks apparent area, not diameter. A disk 6% smaller across loses about 12% of its face — so the micromoon is roughly a tenth dimmer than an average full moon, and noticeably fainter than a perigee supermoon, which can be 30% brighter."
+      },
+      {
+        "heading": "THE OCCULTATION",
+        "body": "When the Moon glides in front of a star, astronomers call it an occultation. Because the Moon has no atmosphere, the star vanishes instantly rather than fading — a sharpness that let astronomers measure stellar diameters and refine the Moon's position long before radar.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Antares is a red supergiant — *Anti-Ares*, the 'rival of Mars,' named for its ruddy color. The Moon shifts about **half a degree** an hour against the background sky, roughly its own width, which is why an occultation's exact timing depends sharply on where you stand on Earth."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T04:22:31.397Z",
+    "label": "Blue Moons & the Elliptical Orbit",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-29-quad-indian-ocean-surveillance-initiative": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "BORN FROM A TSUNAMI",
+        "body": "The Quad's origin is humanitarian, not military. The four navies first coordinated to deliver relief after the 2004 Indian Ocean tsunami; the 'Tsunami Core Group' became the template. Formalized by Japan's Abe in 2007, it collapsed within a year when Australia walked away under Kevin Rudd to avoid antagonizing China — then was revived a decade later as the China question hardened.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2004",
+                "label": "Tsunami Core Group forms"
+              },
+              {
+                "year": "2007",
+                "label": "First Quad (Abe)",
+                "emphasis": "start"
+              },
+              {
+                "year": "2008",
+                "label": "Australia withdraws",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017",
+                "label": "Quad revived"
+              },
+              {
+                "year": "2021",
+                "label": "First leaders' summit"
+              }
+            ],
+            "label": "the Quad's stop-start arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'MARITIME DOMAIN AWARENESS' MEANS",
+        "body": "Every large ship broadcasts its identity and position over AIS, a public transponder signal. The intelligence value is not the ships that broadcast — it is the ones that switch the transponder off. Pooling radar, satellite, and AIS feeds lets the network spot a vessel that has 'gone dark' mid-voyage, the classic signature of sanctions evasion, illegal fishing, or a warship that doesn't want to be tracked.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **maritime domain awareness (MDA)**. A ship that disables its transponder is *going dark* — and a dark ship in a busy lane is itself the signal."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THIS OCEAN",
+        "body": "The Indian Ocean is the artery between the Gulf's oil and Asia's factories. Crude leaving Hormuz, goods leaving Bab el-Mandeb and Suez, and everything bound for China and Japan all funnel through the same narrow gates — Hormuz, Bab el-Mandeb, and Malacca. Surveillance of this water is surveillance of the global energy supply chain.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "OM",
+              "YE",
+              "LK",
+              "ID",
+              "SG",
+              "AU"
+            ],
+            "label": "the energy artery and its gates",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 12.5833,
+                "lng": 43.3333,
+                "label": "Bab el-Mandeb"
+              },
+              {
+                "lat": 1.4333,
+                "lng": 102.9,
+                "label": "Strait of Malacca"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHO IS MOST EXPOSED",
+        "body": "The four members are not equally dependent on this water. India imports roughly 87% of its crude, two-thirds of it through Hormuz, with no overland alternative. China has Russian and Central Asian pipelines; Japan runs diversified long-haul LNG; the US is a net exporter. India has the strait — which is why the surveillance net matters most to New Delhi.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India",
+                "value": "~two-thirds",
+                "cc": "IN",
+                "tone": "unfavorable",
+                "weight": 65
+              },
+              {
+                "label": "Japan",
+                "value": "diversified",
+                "cc": "JP",
+                "tone": "neutral",
+                "weight": 40
+              },
+              {
+                "label": "China",
+                "value": "pipeline buffer",
+                "cc": "CN",
+                "tone": "neutral",
+                "weight": 30
+              },
+              {
+                "label": "USA",
+                "value": "net exporter",
+                "cc": "US",
+                "tone": "favorable",
+                "weight": 5
+              }
+            ],
+            "label": "crude routed through the Indian Ocean / Hormuz"
+          }
+        ]
+      },
+      {
+        "heading": "THE UNNAMED TARGET",
+        "body": "No communiqué names China, but the architecture answers China's expansion into the Indian Ocean — port stakes from Gwadar to Hambantota and a navy that now sends submarines and survey ships into the basin. Watching the water is the cheapest way to contest a presence you cannot evict.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did the original Quad collapse in 2008, a year after its first meeting?",
+            "options": [
+              "The US lost interest after a change of administration",
+              "Australia withdrew to avoid antagonizing China",
+              "India refused to join a military bloc",
+              "Japan's Abe left office and the idea lapsed"
+            ],
+            "correct": 1,
+            "explanation": "Canberra pulled out under PM Kevin Rudd, wary of provoking its largest trading partner — the grouping only revived in 2017 as attitudes toward Beijing hardened."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T04:23:09.478Z",
+    "label": "The Quad & Indian Ocean Surveillance",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-29-us-israel-ndaa-section-224-military-integration": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "AUTHORIZE VERSUS APPROPRIATE",
+        "body": "Congress funds the military in two separate steps: the NDAA authorizes programs (says they may exist and at what ceiling), and a separate appropriations bill actually hands over the money. A program written permanently into the NDAA survives even years when the appropriators fight — the legal scaffolding is already standing."
+      },
+      {
+        "heading": "WHY 'PERMANENT' IS THE WHOLE STORY",
+        "body": "Foreign Military Financing for Israel has run on a fixed-term Memorandum of Understanding renegotiated each decade. Folding the R&D, cyber, and AI programs into permanent statute removes them from that recurring negotiation — Congress loses the periodic vote that was its main point of leverage over the terms.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The aid mechanism is **Foreign Military Financing (FMF)** — US grants that must be spent largely on US-made weapons. The terms are set by a 10-year **MOU**, not an annual law, which is exactly what Section 224 would change."
+          }
+        ]
+      },
+      {
+        "heading": "THE TEN-YEAR HANDSHAKE",
+        "body": "The current framework is the 2016 MOU signed under Obama: $38bn over ten years (2019–2028), the largest such pledge in US history. Each MOU since the 1979 Camp David Accords has ratcheted the number up — and each was a moment when conditions could, in theory, be attached.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Camp David — aid formalized",
+                "emphasis": "start"
+              },
+              {
+                "year": "1999",
+                "label": "Clinton-era MOU"
+              },
+              {
+                "year": "2007",
+                "label": "Bush MOU: $30bn / 10yr"
+              },
+              {
+                "year": "2016",
+                "label": "Obama MOU: $38bn / 10yr",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2028",
+                "label": "current MOU expires",
+                "emphasis": "end"
+              }
+            ],
+            "label": "the aid framework, decade by decade"
+          }
+        ]
+      },
+      {
+        "heading": "THE CO-DEVELOPMENT LAYER",
+        "body": "Beyond grants, the US and Israel jointly fund missile-defense systems — Iron Dome for short-range rockets, David's Sling for mid-range, and the Arrow series for ballistic threats. These shared R&D lines, not the cash transfers, are what Section 224 would lock into permanent programs."
+      },
+      {
+        "heading": "THE TOP OF THE TABLE",
+        "body": "Israel is the largest cumulative recipient of US foreign aid since World War II, and the single biggest annual FMF beneficiary. Egypt has been a distant second since Camp David tied the two together; everyone else is an order of magnitude smaller.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Israel",
+                "value": "~$3.8bn",
+                "cc": "IL",
+                "weight": 3.8,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Egypt",
+                "value": "~$1.3bn",
+                "cc": "EG",
+                "weight": 1.3,
+                "tone": "neutral"
+              },
+              {
+                "label": "Jordan",
+                "value": "~$425m",
+                "cc": "JO",
+                "weight": 0.425,
+                "tone": "neutral"
+              },
+              {
+                "label": "Iraq",
+                "value": "~$250m",
+                "cc": "IQ",
+                "weight": 0.25,
+                "tone": "neutral"
+              }
+            ],
+            "label": "annual US Foreign Military Financing (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "TEST YOURSELF",
+        "body": "The structural fact worth keeping: which country has received the most total US aid in the postwar era.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country is the largest cumulative recipient of US foreign aid since World War II?",
+            "options": [
+              "Egypt",
+              "Israel",
+              "Afghanistan",
+              "South Korea"
+            ],
+            "correct": 1,
+            "explanation": "Israel tops the postwar total, the bulk of it military financing; Egypt is second, a legacy of the 1979 Camp David framework that linked the two."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T04:23:45.255Z",
+    "label": "The NDAA & US-Israel Military Aid",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-30-iraqi-kurdish-delegation-tehran-cooperation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LARGEST STATELESS NATION",
+        "body": "Some 30–40 million Kurds are split across Iran, Iraq, Turkey, and Syria — the largest people on earth without a state of their own. No Kurdish republic survived the 20th century, so every Kurdish movement operates as a guest, a proxy, or an insurgent inside someone else's borders.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TR",
+              "IR",
+              "IQ",
+              "SY"
+            ],
+            "label": "Kurdistan across four states",
+            "caption": "Kurds are a majority in no country but a restive minority in four",
+            "values": [
+              {
+                "cc": "TR",
+                "value": 15
+              },
+              {
+                "cc": "IR",
+                "value": 9
+              },
+              {
+                "cc": "IQ",
+                "value": 6
+              },
+              {
+                "cc": "SY",
+                "value": 2
+              }
+            ],
+            "valueLabel": "KURDISH POP. (MN, EST.)"
+          }
+        ]
+      },
+      {
+        "heading": "PROMISED, THEN ERASED",
+        "body": "The 1920 Treaty of Sèvres, carving up the defeated Ottoman Empire, explicitly provided for a Kurdish state. Three years later the Treaty of Lausanne replaced it, recognized the new Turkish republic, and deleted Kurdistan from the map entirely. The Kurds are the clearest case of a people stranded by the borders European powers drew across the Muslim world after 1918.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1920",
+                "label": "Sèvres promises a Kurdish state",
+                "emphasis": "start"
+              },
+              {
+                "year": "1923",
+                "label": "Lausanne erases it",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1946",
+                "label": "Republic of Mahabad — falls in months"
+              },
+              {
+                "year": "1975",
+                "label": "Algiers Agreement abandons Iraqi Kurds"
+              },
+              {
+                "year": "1991",
+                "label": "No-fly zone shields Iraqi Kurdistan"
+              },
+              {
+                "year": "2017",
+                "label": "KRG independence referendum"
+              },
+              {
+                "year": "2023",
+                "label": "Iran–Iraq border security pact"
+              }
+            ],
+            "label": "a century without a state"
+          }
+        ]
+      },
+      {
+        "heading": "THE MOUNTAINS ARE OUR ONLY FRIENDS",
+        "body": "Iranian Kurdish opposition groups have sheltered in the mountains of Iraqi Kurdistan for decades, beyond Tehran's reach but within shelling range. Iran brands them terrorists; after the 2022 Mahsa Amini protests it struck their bases directly with ballistic missiles and drones.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The main groups are the **KDPI** (Kurdistan Democratic Party of Iran), **Komala** (its leftist rival), and **PJAK** (the armed Iranian affiliate of the PKK network). Kurds call Iran's Kurdish region *Rojhelat* — \"the east.\""
+          }
+        ]
+      },
+      {
+        "heading": "THE ALGIERS PRECEDENT",
+        "body": "In 1975 the Shah of Iran abruptly cut off arms to Iraq's Kurdish rebels in exchange for a favorable Shatt al-Arab border deal with Saddam. The Kurdish revolt collapsed within weeks. The lesson the Kurds learned — that great powers trade them away the moment a border bargain is on the table — is exactly the bargain now being struck over their heads again.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "The short-lived Republic of Mahabad (1946) — the only modern Kurdish state — collapsed when which backer pulled out?",
+            "options": [
+              "The Soviet Union",
+              "Britain",
+              "The United States",
+              "Turkey"
+            ],
+            "correct": 0,
+            "explanation": "Soviet troops withdrew from northern Iran under US and British pressure, leaving the Soviet-backed republic defenseless; it fell within a year."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE 2023 PACT REQUIRES",
+        "body": "The bilateral security agreement obliges Baghdad and Erbil to disarm Iranian-designated Kurdish groups, pull them from the border zone, and relocate their members to camps in the interior. It is enforcement of that pact — not a new demand — that al-Araji's delegation is in Tehran to negotiate.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              15543,
+              13942,
+              14990,
+              17082,
+              16533,
+              17849,
+              14501,
+              16826,
+              13029,
+              13793,
+              15301,
+              15058,
+              13215,
+              11788,
+              11679,
+              10889,
+              11408,
+              13300,
+              12956,
+              12289,
+              12159,
+              11550,
+              12373,
+              13959,
+              13961,
+              17965,
+              15038,
+              15444,
+              14643,
+              11626
+            ],
+            "periods": [
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30"
+            ],
+            "label": "Iran — Wikipedia views",
+            "unit": "views/day",
+            "highlight": "max",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY ERBIL IS CORNERED",
+        "body": "The Kurdistan Regional Government has run its own parliament, security forces, and oil exports since the 1991 no-fly zone gave it de facto autonomy. But it depends on Baghdad for its budget share and on Iran as a neighbor that has shown it will fire missiles across the border. Erbil cannot fully comply without betraying fellow Kurds, and cannot refuse without inviting retaliation."
+      }
+    ],
+    "sources": [
+      "Wikipedia pageviews · as of 2026-05-30"
+    ],
+    "generatedAt": "2026-05-31T04:24:46.783Z",
+    "label": "The Kurds Between States",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-30-makinde-apm-presidential-candidate-nigeria-2027": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DUOPOLY",
+        "body": "Since the Fourth Republic began in 1999, only two parties have held Aso Rock: the PDP for sixteen years, then the APC since 2015. Every other party has been a vehicle for one election cycle. Challenging that lock from a minor party like the Allied People's Movement is the structural mountain, not the campaign trail.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Nigeria's two giants are the **PDP** (People's Democratic Party) and the **APC** (All Progressives Congress) — itself a 2013 merger built specifically to break the PDP's run. Minor parties rarely survive the cycle that births them."
+          }
+        ]
+      },
+      {
+        "heading": "THE SPREAD RULE",
+        "body": "Nigeria's constitution makes a regional base useless on its own. To win outright a candidate needs the most votes AND at least 25% in two-thirds of the 36 states plus the Federal Capital Territory. The rule was designed after the civil war to force a national, not ethnic, coalition.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "To win Nigeria's presidency outright, a candidate must lead the vote and clear what bar?",
+            "options": [
+              "A simple majority of total votes nationwide",
+              "25% in two-thirds of the 36 states plus the FCT",
+              "A win in all six geopolitical zones",
+              "50% in the candidate's home region"
+            ],
+            "correct": 1,
+            "explanation": "The geographic-spread requirement forces broad coalitions — a candidate can lead the count yet still be denied for failing the 25% threshold across enough states."
+          }
+        ]
+      },
+      {
+        "heading": "ZONING",
+        "body": "An unwritten convention rotates the presidency between the mostly-Muslim north and the mostly-Christian south every eight years. Makinde is a southerner challenging a sitting southern president, which cuts against the expectation that 2027 'belongs' to the north — a fault line that shapes who his real rivals are.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The convention is called **zoning** — power rotation by region. It is enforced by party elders, not law, which is exactly why it breaks down in contested cycles."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2023 CRACK",
+        "body": "The duopoly's grip slipped in 2023, when Labour's Peter Obi turned youth anger into a third bloc and won Lagos. No party cleared 40%. That result is the precedent every insurgent candidate now cites — proof the two-party wall can be dented, if not yet breached.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Tinubu (APC)",
+                "value": "~37%",
+                "cc": "NG",
+                "weight": 37,
+                "tone": "neutral"
+              },
+              {
+                "label": "Atiku (PDP)",
+                "value": "~29%",
+                "cc": "NG",
+                "weight": 29,
+                "tone": "neutral"
+              },
+              {
+                "label": "Obi (Labour)",
+                "value": "~25%",
+                "cc": "NG",
+                "weight": 25,
+                "tone": "favorable"
+              },
+              {
+                "label": "Kwankwaso (NNPP)",
+                "value": "~6%",
+                "cc": "NG",
+                "weight": 6,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Nigeria 2023 presidential vote"
+          }
+        ]
+      },
+      {
+        "heading": "THE OIL COMPANY HE WANTS TO REFORM",
+        "body": "The state oil firm Makinde targets was overhauled in 2021: the Petroleum Industry Act turned the old NNPC into NNPC Limited, a commercial company meant to publish accounts and pay dividends. Critics say it simply rebranded an opaque institution — which is why 'reform' remains a live campaign promise five years on.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2021 *Petroleum Industry Act* converted the corporation into **NNPC Ltd** — on paper a normal company, in practice still the conduit for fuel-subsidy spending and the swap deals that obscure how much oil revenue actually reaches the treasury."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'STATE POLICE' IS RADICAL HERE",
+        "body": "Nigeria runs a single federal police force; the constitution bars states from creating their own. Makinde's 'security decentralisation' means amending that — a long-blocked idea that southern governors have already half-built through regional outfits like Amotekun, a vigilante corps operating in the legal grey zone.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG"
+            ],
+            "label": "the southwest power base",
+            "markers": [
+              {
+                "lat": 7.3775,
+                "lng": 3.947,
+                "label": "Ibadan (Makinde base)"
+              },
+              {
+                "lat": 9.0765,
+                "lng": 7.3986,
+                "label": "Abuja (INEC)"
+              },
+              {
+                "lat": 6.5244,
+                "lng": 3.3792,
+                "label": "Lagos"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T04:25:33.116Z",
+    "label": "Nigeria's Two-Party Lock",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-31-abelisaurid-theropod-teeth-spain-europe": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SOUTHERN PREDATORS",
+        "body": "Abelisaurids were the apex predators of Gondwana — the southern supercontinent — while tyrannosaurs filled the same role up north. They had deep, short snouts and arms so reduced that Carnotaurus's forelimbs make a T. rex's look generous. Finding their signature in Spain puts a Gondwanan lineage on the wrong continent.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Algora teeth matched *majungasaurines* — a branch best known from **Madagascar**, half a world away across the Cretaceous oceans."
+          }
+        ]
+      },
+      {
+        "heading": "WHY TEETH ARE ENOUGH",
+        "body": "A theropod tooth is a diagnostic fingerprint. The size of the serrations (denticles), how densely they pack along the edge, the curvature and cross-section — these vary by lineage in ways cladistic analysis can score. Forty teeth give enough repeated features to assign a family without a single bone of skeleton."
+      },
+      {
+        "heading": "THE LAURASIA–GONDWANA SPLIT",
+        "body": "By the Late Cretaceous, Pangaea had broken into a northern landmass (Laurasia) and a southern one (Gondwana), each evolving its own predator guild in isolation. Abelisaurids belong wholly to the south. Their genera read like a map of the fragmenting supercontinent.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Madagascar",
+                "value": "Majungasaurus",
+                "cc": "MG"
+              },
+              {
+                "label": "Argentina",
+                "value": "Carnotaurus",
+                "cc": "AR"
+              },
+              {
+                "label": "India",
+                "value": "Rajasaurus",
+                "cc": "IN"
+              },
+              {
+                "label": "Niger",
+                "value": "Rugops",
+                "cc": "NE"
+              }
+            ],
+            "label": "abelisaurids across Gondwana"
+          }
+        ]
+      },
+      {
+        "heading": "THE TETHYAN PUZZLE",
+        "body": "A Gondwanan family in Iberia means something carried it north across the Tethys — the seaway that separated Africa from Europe. In the Cenomanian, Europe was a scatter of islands, and Iberia sat as a near-island between the two worlds. The question the find leaves open is which transient land bridges along the Tethyan margin let the lineage cross.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ES",
+              "PT",
+              "FR",
+              "IT",
+              "MA",
+              "DZ"
+            ],
+            "label": "the Tethyan margin",
+            "caption": "Iberia sat between Gondwanan Africa and island Europe"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'CENOMANIAN' MEANS",
+        "body": "The Cenomanian is the opening stage of the Late Cretaceous, roughly 100 to 94 million years ago — a greenhouse world with sea levels among the highest in Earth's history. Those flooded continents are exactly why European fossil sites of this age are rare and why each new predator changes the biogeographic map.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Abelisaurids were the dominant large predators of which Cretaceous landmass?",
+            "options": [
+              "Gondwana — the southern continents",
+              "Laurasia — the northern continents",
+              "North America specifically",
+              "They were globally uniform"
+            ],
+            "correct": 0,
+            "explanation": "Tyrannosaurs ruled the Laurasian north; abelisaurids ruled the Gondwanan south — which is why a Spanish specimen is a surprise."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T04:26:23.734Z",
+    "label": "Abelisaurids & Cretaceous Biogeography",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-31-aipac-super-pac-network-connie-chan-san-francisco": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COORDINATION FICTION",
+        "body": "A candidate can truthfully pledge to take no AIPAC money and still have hundreds of thousands spent on her race. The pledge governs direct contributions to her campaign; super PAC spending is legally 'independent' — she cannot accept it, refuse it, or control it. The wall between the two is the entire legal architecture that makes this possible.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The magic word is *independent expenditure* — spending that supports or opposes a candidate but is barred from being **coordinated** with their campaign. Coordination is illegal; everything that stays on the other side of that line is unlimited."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THIS CAME FROM",
+        "body": "Super PACs did not exist before 2010. The Supreme Court's Citizens United ruling held that independent political spending is protected speech that cannot be capped, and a follow-on appeals decision (SpeechNow.org) created the vehicle: a PAC that can raise and spend unlimited sums as long as it does not give directly to candidates.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did the 2010 Citizens United ruling change about US campaign finance?",
+            "options": [
+              "It abolished all limits on direct donations to candidates",
+              "It removed caps on independent political spending by outside groups",
+              "It required all political donors to be disclosed within 24 hours",
+              "It legalized foreign donations to US campaigns"
+            ],
+            "correct": 1,
+            "explanation": "Direct-to-candidate limits still exist; Citizens United lifted limits only on independent spending, which created the super PAC."
+          }
+        ]
+      },
+      {
+        "heading": "THE POP-UP PAC",
+        "body": "FEC reporting runs on fixed calendar windows, not real time. A committee registered just after a deadline can spend immediately but is not required to name its donors until the next filing date. Time the registration right, and the donor list surfaces only after voters have already cast their ballots.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2026-05-01",
+                "label": "Pop-up fund registered"
+              },
+              {
+                "year": "2026-06-02",
+                "label": "California primary vote",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026-06-20",
+                "label": "Donor identities disclosed"
+              }
+            ],
+            "spans": [
+              {
+                "from": "2026-05-01",
+                "to": "2026-06-20",
+                "label": "Spending visible, donors hidden",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "the 18-day dark window"
+          }
+        ]
+      },
+      {
+        "heading": "WHY $475K IS THE WHOLE POINT",
+        "body": "No single person can give a candidate more than a few thousand dollars per election. The same person can give a super PAC any amount they like. That gap is why outside money dwarfs the campaign it surrounds — one super PAC check can outweigh a thousand legal direct donations.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "To the candidate",
+                "value": "~$3,300",
+                "tone": "neutral"
+              },
+              {
+                "label": "To a super PAC",
+                "value": "unlimited",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "what one donor can legally give"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PRIMARIES, NOT GENERALS",
+        "body": "Outside money concentrates in low-turnout primaries for a simple reason: the marginal vote is cheap. A congressional primary may be decided by a few thousand voters, so a single wave of late ads can move a race that the same sum would barely dent in a general election. The earlier and quieter the spending, the higher its leverage.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "AIPAC's super PAC vehicle, the **United Democracy Project**, was built in 2021 precisely for this — it spends almost entirely in *primaries*, where a contested intra-party seat is most sensitive to a late, well-funded push."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T04:27:19.994Z",
+    "label": "Super PACs & Disclosure Timing",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-31-aukus-australia-secondhand-virginia-submarines": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PRODUCTION MATH",
+        "body": "A nuclear submarine takes roughly seven years to build and cannot be surged like rifles or shells — the bottleneck is a handful of specialized welders, foundries, and reactor-grade components, not money. The US needs to roughly double its 1.1-per-year Virginia output just to backfill its own fleet and supply Australia, which is why Canberra is now buying used hulls instead of waiting on new ones.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The US Navy's own target is **2.0+ Virginia-class boats per year** before it can spare any for export — a rate American yards have not hit since the Cold War."
+          }
+        ]
+      },
+      {
+        "heading": "WHY NUCLEAR AT ALL",
+        "body": "A diesel-electric boat (an SSK) must rise near the surface every few days to run its engines and recharge batteries — the most dangerous moment for any submarine. A nuclear boat (an SSN) makes its own power, stays submerged for months, and crosses oceans at 30 knots. For a continent the size of Australia facing the Pacific, range and stealth are the whole point.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction is **SSK** (diesel, must *snorkel*) versus **SSN** (nuclear, effectively unlimited submerged endurance) — capped only by food and crew."
+          }
+        ]
+      },
+      {
+        "heading": "THE EXCLUSIVE CLUB",
+        "body": "Only six navies have ever operated nuclear-powered attack submarines. Australia would be the seventh — and the first nation to field them without also building nuclear weapons, a line only the AUKUS arrangement bridges.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "~50",
+                "cc": "US",
+                "weight": 50
+              },
+              {
+                "label": "Russia",
+                "value": "~16",
+                "cc": "RU",
+                "weight": 16
+              },
+              {
+                "label": "China",
+                "value": "~9",
+                "cc": "CN",
+                "weight": 9
+              },
+              {
+                "label": "UK",
+                "value": "7",
+                "cc": "GB",
+                "weight": 7
+              },
+              {
+                "label": "France",
+                "value": "6",
+                "cc": "FR",
+                "weight": 6
+              },
+              {
+                "label": "India",
+                "value": "~2",
+                "cc": "IN",
+                "weight": 2
+              }
+            ],
+            "label": "nuclear-attack-sub (SSN) operators"
+          }
+        ]
+      },
+      {
+        "heading": "THE NON-PROLIFERATION LOOPHOLE",
+        "body": "Naval reactors run on highly enriched uranium — often weapons-grade. The Nuclear Non-Proliferation Treaty contains a quiet exemption: material used for naval propulsion can be removed from IAEA inspection. Australia will be the first non-nuclear-weapon state to invoke it, which is why critics warn AUKUS sets a precedent Iran or others could one day cite.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many countries operated nuclear-powered submarines before Australia's planned entry?",
+            "options": [
+              "Three",
+              "Six",
+              "Nine",
+              "Twelve"
+            ],
+            "correct": 1,
+            "explanation": "The US, Russia, China, UK, France and India — Australia would be the seventh, and the first without nuclear weapons of its own."
+          }
+        ]
+      },
+      {
+        "heading": "THE CAPABILITY GAP",
+        "body": "Australia's six Collins-class boats entered service in the 1990s and were meant to retire before now. Stretching them another decade means running aging diesel hulls against an environment they were never designed for — the gap between an obsolete fleet and a sovereign one is the actual risk AUKUS is trying to manage.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2021",
+                "label": "AUKUS announced",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "\"optimal pathway\" set out"
+              },
+              {
+                "year": "2027",
+                "label": "US/UK subs rotate through Perth"
+              },
+              {
+                "year": "2032",
+                "label": "first Virginia-class to Australia"
+              },
+              {
+                "year": "2042",
+                "label": "first sovereign SSN-AUKUS"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1996",
+                "to": "2042",
+                "label": "Collins-class in service (extended)",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "the AUKUS submarine arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE STRATEGIC LOGIC",
+        "body": "AUKUS exists to put long-range, hard-to-find submarines in the waters between China and the open Pacific. A submarine's value is psychological as much as physical — an adversary that cannot locate your boats must assume they are everywhere, which constrains its options before a shot is ever fired."
+      }
+    ],
+    "generatedAt": "2026-05-31T04:28:06.275Z",
+    "label": "AUKUS & the Submarine Gap",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-31-india-revises-fuel-export-duties-june": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY TAX YOUR OWN EXPORTS",
+        "body": "India introduced fuel export duties in July 2022, weeks after the Ukraine war sent crude soaring. Refiners were earning more selling diesel abroad than feeding the home market, so New Delhi taxed the export gap directly — a tariff that rises when overseas margins fatten and falls when they thin.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Diesel",
+                "value": "₹13.5",
+                "tone": "unfavorable",
+                "weight": 13.5
+              },
+              {
+                "label": "Jet fuel",
+                "value": "₹9.5",
+                "tone": "neutral",
+                "weight": 9.5
+              },
+              {
+                "label": "Petrol",
+                "value": "₹1.5",
+                "tone": "favorable",
+                "weight": 1.5
+              }
+            ],
+            "label": "this fortnight's export duty (₹/litre)"
+          }
+        ]
+      },
+      {
+        "heading": "THE REFINING GIANT",
+        "body": "India is one of the world's largest exporters of refined products, anchored by Reliance's Jamnagar complex in Gujarat — the single biggest refinery on earth. It was built to export, not to serve the local market, which is exactly why a domestic-supply tax has to claw back its overseas pull.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Largest single-site refineries by capacity",
+            "peers": [
+              {
+                "value": 1240,
+                "label": "Jamnagar (IN)"
+              },
+              {
+                "value": 940,
+                "label": "Paraguaná (VE)"
+              },
+              {
+                "value": 840,
+                "label": "Ulsan (KR)"
+              },
+              {
+                "value": 840,
+                "label": "Ruwais (AE)"
+              },
+              {
+                "value": 605,
+                "label": "Jurong (SG)"
+              },
+              {
+                "value": 600,
+                "label": "Port Arthur (US)"
+              }
+            ],
+            "subjectLabel": "Jamnagar (IN)",
+            "unit": "kbd"
+          }
+        ]
+      },
+      {
+        "heading": "THE CRACK SPREAD",
+        "body": "Refiners don't earn the oil price — they earn the gap between what crude costs and what diesel, petrol and jet sell for. That margin is the crack spread, and the export duty is essentially the state confiscating a slice of it when it widens.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The duty tracks the *Singapore* benchmark crack: when the **crack spread** blows out, the levy climbs with it; when refining margins collapse, the rate can fall to **zero**."
+          }
+        ]
+      },
+      {
+        "heading": "THE RUSSIAN ARBITRAGE",
+        "body": "Since 2022 India has bought deeply discounted Russian crude, refined it at home, and sold the resulting diesel and jet fuel into the very European market that sanctioned Moscow. The export duty captures part of that arbitrage for the treasury rather than leaving it all with refiners.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "ru",
+                "label": "Russian crude"
+              },
+              {
+                "id": "gulf",
+                "label": "Gulf crude"
+              },
+              {
+                "id": "ref",
+                "label": "Indian refineries"
+              },
+              {
+                "id": "dom",
+                "label": "Domestic market"
+              },
+              {
+                "id": "eu",
+                "label": "Europe exports"
+              },
+              {
+                "id": "other",
+                "label": "Other exports"
+              }
+            ],
+            "links": [
+              {
+                "source": "ru",
+                "target": "ref",
+                "value": 38,
+                "label": "discounted"
+              },
+              {
+                "source": "gulf",
+                "target": "ref",
+                "value": 45
+              },
+              {
+                "source": "ref",
+                "target": "dom",
+                "value": 55
+              },
+              {
+                "source": "ref",
+                "target": "eu",
+                "value": 15
+              },
+              {
+                "source": "ref",
+                "target": "other",
+                "value": 13
+              }
+            ],
+            "label": "crude in, products out (illustrative shares)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY FORTNIGHTLY",
+        "body": "The rate resets every two weeks against international crude benchmarks. The cadence is deliberate: monthly would let margins balloon untaxed for too long, while daily resets would make refiners' planning impossible. The fortnight splits the difference between capture and predictability.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which fuel carries India's highest per-litre export duty this fortnight?",
+            "options": [
+              "Petrol",
+              "Diesel",
+              "Jet fuel"
+            ],
+            "correct": 1,
+            "explanation": "Diesel is India's most-exported and most-strategic fuel, so it draws the steepest export levy — far above petrol's token rate."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T04:28:50.061Z",
+    "label": "India's Fuel Export Tax",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-31-lunar-soil-oxygen-extraction-moon-base-isru": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TYRANNY OF THE ROCKET EQUATION",
+        "body": "Tsiolkovsky's 1903 equation dictates that propellant mass grows exponentially with the velocity you need. Lifting a kilogram of oxygen out of Earth's gravity well to refuel on the Moon can cost tens of kilograms of propellant burned just getting there. Making it on-site sidesteps the math entirely — this is why the race is about oxygen, not flags."
+      },
+      {
+        "heading": "WHY OXYGEN, NOT FUEL",
+        "body": "Rocket propellant is mostly oxidizer by weight, not fuel — engines need several times more oxygen than they burn hydrogen or methane. So the heaviest single thing you must haul off-planet for a return trip is oxygen. Manufacture that locally and you cut the launch-from-Earth mass dramatically, even before touching the fuel.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hydrolox",
+                "value": "~86%",
+                "weight": 86,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Methalox",
+                "value": "~78%",
+                "weight": 78,
+                "tone": "neutral"
+              },
+              {
+                "label": "Kerolox",
+                "value": "~73%",
+                "weight": 73,
+                "tone": "favorable"
+              }
+            ],
+            "label": "oxygen's share of propellant mass"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE OXYGEN HIDES",
+        "body": "There is no air on the Moon, but there is oxygen everywhere — locked chemically into the rock. Lunar regolith is roughly 43% oxygen by mass, bound inside metal oxides like ilmenite and silicates. The element is abundant; the problem is that prying it loose from those bonds takes energy.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The prime target is **ilmenite** (iron-titanium oxide, FeTiO₃): heat it with hydrogen and it releases water vapor, which is then split into breathable oxygen and recyclable hydrogen."
+          },
+          {
+            "type": "quiz",
+            "question": "Roughly how much of lunar regolith is oxygen, by mass?",
+            "options": [
+              "About 8%",
+              "About 20%",
+              "About 43%",
+              "About 70%"
+            ],
+            "correct": 2,
+            "explanation": "Nearly half of Moon dust is oxygen by mass — but it is bound inside metal oxides, not floating free as gas."
+          }
+        ]
+      },
+      {
+        "heading": "THE EXTRACTION PROBLEM",
+        "body": "Two leading methods compete: hydrogen reduction of ilmenite, which is gentler but only touches one mineral, and molten regolith electrolysis, which melts the soil above 1,600°C and electrically splits out oxygen plus metal alloys as a bonus. Both are power-hungry, and a lunar night lasts two Earth weeks with no sunlight — which is why the real bottleneck is energy, not chemistry."
+      },
+      {
+        "heading": "THE MARS PRECEDENT",
+        "body": "The logic was already proven off-world: NASA's MOXIE device on the Perseverance rover made breathable oxygen from Mars's CO₂ atmosphere in 2021 — the first time humans manufactured a usable resource on another planet. The Moon has no atmosphere to draw from, so it forces the harder version of the same problem: extracting oxygen from solid rock.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1903",
+                "label": "Tsiolkovsky's rocket equation",
+                "emphasis": "start"
+              },
+              {
+                "year": "1969",
+                "label": "Apollo returns regolith samples"
+              },
+              {
+                "year": "2009",
+                "label": "LCROSS confirms polar ice"
+              },
+              {
+                "year": "2021",
+                "label": "MOXIE makes O₂ on Mars",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "the road to off-world oxygen"
+          }
+        ]
+      },
+      {
+        "heading": "THE WATER SHORTCUT",
+        "body": "There is a second oxygen source: water ice trapped in permanently shadowed polar craters, where the Sun has never warmed the floor in billions of years. NASA's LCROSS mission slammed a spacecraft into one in 2009 and detected water in the plume. Ice is far easier to split than rock — which is exactly why both the US and China are racing for the lunar south pole, not the equator."
+      }
+    ],
+    "generatedAt": "2026-05-31T04:29:41.407Z",
+    "label": "Lunar Oxygen & In-Situ Resources",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-31-momentum-space-imaging-nitride-gan-heterostructures": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRICK: A GAS THAT NEEDS NO DOPING",
+        "body": "Silicon transistors conduct because you deliberately add impurities to supply electrons. Gallium nitride does something stranger: stack a thin layer of aluminum gallium nitride on GaN and a sheet of mobile electrons appears at the junction on its own — a two-dimensional electron gas, conducting without a single dopant atom added.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The conducting sheet is called a *2DEG* — a **two-dimensional electron gas**. It is only a few atoms thick but carries the current in every GaN fast-charger and 5G amplifier."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE ELECTRONS COME FROM",
+        "body": "GaN crystals are polar — the gallium and nitrogen atoms sit in layers that leave the crystal electrically lopsided. Straining a second nitride layer on top adds a piezoelectric kick. The combined polarization field pulls electrons to the interface. The current carrier is built by crystal geometry, not chemistry."
+      },
+      {
+        "heading": "WHY IT BEATS SILICON",
+        "body": "GaN's bandgap is roughly three times silicon's, so it tolerates far higher electric fields before breaking down. That means devices that are smaller, switch faster, and waste less energy as heat — which is why a GaN charger is a fraction the size of the old silicon brick.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Silicon",
+                "value": "1.1 eV",
+                "weight": 1.1,
+                "tone": "neutral"
+              },
+              {
+                "label": "GaAs",
+                "value": "1.4 eV",
+                "weight": 1.4,
+                "tone": "neutral"
+              },
+              {
+                "label": "SiC",
+                "value": "3.3 eV",
+                "weight": 3.3,
+                "tone": "favorable"
+              },
+              {
+                "label": "GaN",
+                "value": "3.4 eV",
+                "weight": 3.4,
+                "tone": "favorable"
+              }
+            ],
+            "label": "semiconductor bandgap (eV)"
+          }
+        ]
+      },
+      {
+        "heading": "THE SURFACE IS THE WEAK POINT",
+        "body": "The electron sheet sits just a few nanometers below the surface — close enough that whatever clings to that surface matters. Stray molecules create electronic states that trap the gas's electrons and pin the energy levels, draining the conducting layer. This is the failure the research probes: chemistry at the very top can switch the buried current off."
+      },
+      {
+        "heading": "HOW YOU SEE A BURIED ELECTRON SHEET",
+        "body": "Momentum-space imaging — a form of photoemission spectroscopy — fires light at the material and measures the energy and direction of ejected electrons. Plotting energy against momentum draws the actual electron bands, letting researchers watch the 2DEG fill or empty as surface molecules are added or removed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technique is *ARPES* — **angle-resolved photoemission spectroscopy**. It doesn't infer the electron layer from current; it images the band structure directly."
+          },
+          {
+            "type": "quiz",
+            "question": "What creates the conducting electron layer in a GaN/AlGaN transistor?",
+            "options": [
+              "Added impurity atoms (doping), as in silicon",
+              "Polarization fields at the layer interface",
+              "An external magnetic field",
+              "Heating the crystal above a threshold"
+            ],
+            "correct": 1,
+            "explanation": "The 2DEG forms from spontaneous and piezoelectric polarization at the heterojunction — no doping required, which is what makes GaN distinctive."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T04:30:15.981Z",
+    "label": "Gallium Nitride & the 2D Electron Gas",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-31-streeting-national-insurance-north-sea-drilling": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY 'BRENT' IS THE WORLD'S PRICE",
+        "body": "Brent is a depleted Shell field in the North Sea, named after the Brent goose. It barely produces oil anymore, yet its price became the reference for most internationally traded crude — because North Sea oil was the first major supply to trade freely outside OPEC's control in the 1970s.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Shell named its 1970s North Sea fields after birds — *Brent*, *Cormorant*, *Auk*. The goose outlived the field: the benchmark prices roughly **two-thirds** of the world's crude even as the actual Brent reservoir runs dry."
+          }
+        ]
+      },
+      {
+        "heading": "A FIELD IN DECLINE",
+        "body": "UK North Sea oil output peaked around 1999 and has fallen by more than two-thirds since. New licences for fields like Rosebank don't reverse the trend — they slow the decline of a basin that is geologically past its prime and increasingly expensive to drill.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1969",
+                "label": "Forties field discovered"
+              },
+              {
+                "year": "1975",
+                "label": "First North Sea oil ashore"
+              },
+              {
+                "year": "1999",
+                "label": "Production peaks",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Labour manifesto: no new licences"
+              }
+            ],
+            "label": "UK North Sea oil"
+          }
+        ]
+      },
+      {
+        "heading": "THE FIELDS ON THE DESK",
+        "body": "Rosebank sits in deep Atlantic water northwest of Shetland — Britain's largest undeveloped field. Jackdaw is a high-pressure gas field in the central North Sea. Both were approved, then thrown back into legal limbo by a 2024 Supreme Court ruling that downstream emissions must be assessed before drilling.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB",
+              "NO"
+            ],
+            "label": "the two applications",
+            "markers": [
+              {
+                "lat": 61,
+                "lng": -3.9,
+                "label": "Rosebank"
+              },
+              {
+                "lat": 57.07,
+                "lng": 1.06,
+                "label": "Jackdaw"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT NATIONAL INSURANCE ACTUALLY IS",
+        "body": "National Insurance is a payroll tax separate from income tax, paid by both employees and employers. It was sold in 1911 as a contributory fund for pensions and sickness, but in practice flows into general revenue — the 'fund' is an accounting fiction. Because it falls only on wages, not on rents, dividends, or capital, it taxes work harder than wealth.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A £3,000-per-hire grant is the mirror image of NI: the tax raises the cost of employing someone, the subsidy lowers it. Governments reach for hiring subsidies precisely because their own *payroll levy* discourages the hiring they then pay to encourage."
+          }
+        ]
+      },
+      {
+        "heading": "THE MANDATE PROBLEM",
+        "body": "Labour's 2024 manifesto pledged no new North Sea exploration licences — a signature climate commitment. A serving cabinet minister now backing new drilling is not a minor revision; it cuts against a written promise the party campaigned on, which is why the intervention reads as a signal about where power inside the government is shifting.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Wes Streeting",
+                "role": "Health Secretary, backs drilling",
+                "cc": "GB"
+              },
+              {
+                "name": "Ed Miliband",
+                "role": "Energy Secretary, rules on fields",
+                "cc": "GB"
+              }
+            ],
+            "label": "the split in cabinet"
+          }
+        ]
+      },
+      {
+        "heading": "WHY OIL TAX REVENUE IS A TRAP",
+        "body": "North Sea petroleum once funded a meaningful slice of the Treasury, but the receipts swing wildly with crude prices and decline as fields deplete. Treating it as a stable revenue base is the classic resource-state error — Britain spent the 1980s windfall on current spending rather than a sovereign fund, the path Norway took with the same oil next door.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of internationally traded crude oil is priced off the Brent benchmark?",
+            "options": [
+              "About 10%",
+              "About a third",
+              "About two-thirds",
+              "Nearly all of it"
+            ],
+            "correct": 2,
+            "explanation": "Brent prices roughly two-thirds of the world's traded crude, despite the field itself being nearly depleted."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T04:30:54.364Z",
+    "label": "North Sea Oil & National Insurance",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-31-xrp-ledger-design-blocks-flash-loan-attacks": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ATOMICITY TRICK",
+        "body": "A flash loan needs no collateral because of one property of blockchain transactions: they are atomic — every step inside a single transaction either all succeeds or all reverts. If the borrower fails to repay by the last step, the entire transaction unwinds as if the loan never happened. The lender literally cannot lose the principal.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why a flash loan can be *uncollateralized* yet *risk-free to the lender* — a combination that is impossible in ordinary finance. Repayment isn't enforced by trust or law; it's enforced by the transaction reverting."
+          }
+        ]
+      },
+      {
+        "heading": "THE ATTACK PATTERN",
+        "body": "Borrow millions with zero capital, dump it into a thin trading pool to distort the price, exploit a second protocol that reads that distorted price, then repay the loan and keep the difference. Because no capital is at risk, the attacker can attempt manipulations that would otherwise require a war chest — flash loans democratized market manipulation."
+      },
+      {
+        "heading": "THE ORACLE IS THE TARGET",
+        "body": "Most flash-loan exploits don't break cryptography — they fool a price feed. DeFi protocols often read asset prices straight from on-chain pools, and a large enough trade moves that price within the same block. The standard defense is to average prices over time so a single-block spike can't move the reported value.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The fix is a **TWAP** — a *time-weighted average price*. Because a flash loan lives and dies inside one block, a price averaged over many blocks is immune to it."
+          }
+        ]
+      },
+      {
+        "heading": "THE BIGGEST HITS",
+        "body": "Flash-loan exploits have drained nine figures from protocols. The largest wasn't a price hack at all — Beanstalk's attacker borrowed enough to buy a voting supermajority and passed a malicious governance proposal that drained the treasury, all in one transaction.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Beanstalk",
+                "value": "~$182M",
+                "tone": "unfavorable",
+                "weight": 182
+              },
+              {
+                "label": "Cream Finance",
+                "value": "~$130M",
+                "tone": "unfavorable",
+                "weight": 130
+              },
+              {
+                "label": "Harvest Fin.",
+                "value": "~$24M",
+                "tone": "unfavorable",
+                "weight": 24
+              },
+              {
+                "label": "bZx",
+                "value": "~$1M",
+                "tone": "unfavorable",
+                "weight": 1
+              }
+            ],
+            "label": "major flash-loan exploits (approx. loss)"
+          }
+        ]
+      },
+      {
+        "heading": "ETHEREUM'S MONEY LEGOS",
+        "body": "Flash loans exist only because Ethereum contracts can freely call other contracts inside one transaction — composability that developers nicknamed 'money legos.' The same property that lets you snap protocols together is what lets an attacker chain borrow, manipulate, and repay into a single atomic move.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes an uncollateralized flash loan safe for the lender?",
+            "options": [
+              "The whole transaction reverts if the loan isn't repaid",
+              "Borrowers post identity verification (KYC)",
+              "An insurance fund covers defaults",
+              "The loan is overcollateralized in advance"
+            ],
+            "correct": 0,
+            "explanation": "Atomicity means an unpaid loan never settles — the transaction undoes itself, so the principal can't be lost."
+          }
+        ]
+      },
+      {
+        "heading": "THE XRPL TRADEOFF",
+        "body": "The XRP Ledger was never a general-purpose smart-contract platform like Ethereum; it uses fixed transaction types rather than a Turing-complete virtual machine. Forbidding intra-transaction calls kills flash loans by design — but it also forecloses the open composability that made Ethereum DeFi explode. Security bought by giving up flexibility.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2020-02",
+                "label": "bZx — first flash-loan attack",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020-10",
+                "label": "Harvest Finance drained"
+              },
+              {
+                "year": "2021",
+                "label": "TWAP oracles widely adopted"
+              },
+              {
+                "year": "2022-04",
+                "label": "Beanstalk governance hack"
+              },
+              {
+                "year": "2026",
+                "label": "XRPL amendment bans intra-tx calls",
+                "emphasis": "end"
+              }
+            ],
+            "label": "flash-loan exploits and the defenses that followed"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T04:31:44.652Z",
+    "label": "Flash Loans & Atomicity",
+    "category": "tech",
+    "articleCount": 1
   }
 }
