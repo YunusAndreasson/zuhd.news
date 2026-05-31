@@ -1,98 +1,5 @@
 [
   {
-    "timestamp": "2026-05-06T08:59:30.723Z",
-    "candidateCount": 12,
-    "candidates": [
-      {
-        "slug": "2026-05-06-nigeria-us-ditwg-defence-cooperation-insecurity-worsens",
-        "title": "Nigeria US Troops, Rising Attacks",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-04-trump-border-wall-borderlands-tohono-oodham-construction",
-        "title": "US Wall Cuts Tribal Corridors",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-05-iran-uae-attacks-ceasefire-ten-strikes-us-forces",
-        "title": "Iran Strikes UAE Mid-Ceasefire",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-06-uganda-urban-refugees-makindye-economy-kampala",
-        "title": "Kampala Refugees Drive Urban Economy",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-06-pakistan-karachi-hyderabad-education-board-chairmen-resign",
-        "title": "Sindh Exam Probe Forces Resignations",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-06-pakistan-solar-rooftop-revolution-grid-defection",
-        "title": "Pakistan's Grid Revolt Goes Solar",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-06-equity-perpetual-futures-crypto-tradfi-convergence",
-        "title": "Equity Perps Set to Dwarf Crypto",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-05-nepal-fuel-prices-south-asia-iran-war-pump",
-        "title": "Nepal Fuel Hits Region Record",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-06-large-dna-fragment-assembly-microbe-cell-factories",
-        "title": "DNA Assembly Unlocks Cell Factories",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-06-appalachia-black-lung-silica-dust-rule-coal-miners",
-        "title": "Black Lung Surges, Rule Stalls",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-06-south-africa-stitch-bnpl-shopify-woocommerce-fintech",
-        "title": "Stitch Embeds BNPL Without Cards",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-05-ai-human-autonomy-design-governance-refusal-rights",
-        "title": "AI Governance Misses Refusal Rights",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": null,
-    "skipReason": "all 12 candidates below coverage threshold 1",
-    "sent": false
-  },
-  {
     "timestamp": "2026-05-06T12:51:36.865Z",
     "candidateCount": 12,
     "candidates": [
@@ -9977,6 +9884,106 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "IDF seizes Beaufort Castle in southern Lebanon, deepest incursion since 2000",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 24
+    }
+  },
+  {
+    "timestamp": "2026-05-31T12:42:01.243Z",
+    "candidateCount": 11,
+    "candidates": [
+      {
+        "slug": "2026-05-31-world-no-tobacco-day-vape-ban-global-south",
+        "title": "Asia Groups Demand Vape Bans",
+        "category": "politics",
+        "eventCoverage": 277,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-31-meteor-airburst-massachusetts-300-tonnes-tnt",
+        "title": "Meteor Shakes Northeast US",
+        "category": "science",
+        "eventCoverage": 136,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-31-ukraine-iris-t-launcher-germany-air-defense-arithmetic",
+        "title": "Germany Delivers One Launcher",
+        "category": "politics",
+        "eventCoverage": 68,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-31-ukraine-saratov-refinery-strike-fuel-war",
+        "title": "Ukraine Strikes Rosneft Fuel Plant",
+        "category": "economy",
+        "eventCoverage": 63,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-29-sudan-rsf-drones-darfur-eid-markets-blue-nile",
+        "title": "RSF Drones Hit Eid Markets",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-29-brazil-pcc-red-command-terrorist-designation",
+        "title": "US Brands Brazil Gangs Terrorists",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-29-brazil-peru-railway-china-trade-amazon-cost",
+        "title": "Brazil-Peru Rail Slices Amazon",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-31-godzilla-el-nino-southern-africa-drought-forecast",
+        "title": "Monster El Niño Looms",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-29-pentagon-spacex-orbital-aircraft-tracking-4b",
+        "title": "SpaceX Wins Pentagon Orbit Deal",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-29-pope-ai-encyclical-who-shapes-ai-ethics",
+        "title": "Pope Issues AI Ethics Doctrine",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-31-global-disruptions-in-energy-markets",
+        "title": "Pakistan Oil Bill Tops $20bn",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-05-31-world-no-tobacco-day-vape-ban-global-south",
+      "title": "Asia Groups Demand Vape Bans",
+      "category": "politics",
+      "body": "[Philippines](country:PH) sold 90 billion cigarettes in 2024, the Southeast",
+      "eventCoverage": 277,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Asia health groups call for immediate vape bans on World No Tobacco Day",
     "response": {
       "pushed": 1,
       "skipped": 0,
