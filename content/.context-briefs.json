@@ -273320,5 +273320,966 @@
     "label": "Japan's Sakhalin Exception",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-05-29-pentagon-spacex-orbital-aircraft-tracking-4b": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RADAR HORIZON",
+        "body": "Radar travels in straight lines, but the Earth curves away beneath it. A radar on a ship or hilltop simply cannot see a low-flying aircraft hiding behind the bulge of the planet — the target is below the horizon. This single geometric fact is why air defense has always had a blind spot at low altitude.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What chiefly limits how far a ground or ship radar can detect a low-flying aircraft?",
+            "options": [
+              "The curvature of the Earth blocking line of sight",
+              "Radio interference from the atmosphere",
+              "The radar running out of transmitter power",
+              "Clouds and weather absorbing the signal"
+            ],
+            "correct": 0,
+            "explanation": "Radar is line-of-sight; a low target slips below the horizon created by Earth's curve, which is why early-warning radars are flown high or placed in orbit."
+          }
+        ]
+      },
+      {
+        "heading": "WHY YOU FLY THE RADAR",
+        "body": "The fix for the horizon problem is altitude: lift the radar and you push the visible edge of the world outward. An AWACS jet orbiting at ~9km can see threats hundreds of kilometers further than the same radar on the ground. The rotating dome on top isn't the antenna's home by accident — it's a radar raised as high as a manned aircraft can hold it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The dish lives inside the **rotodome** — the 9-metre rotating disc atop the E-3 Sentry. Going to orbit replaces one expensive flying radar with a *constellation*: many cheap satellites that never have to land, refuel, or sleep."
+          }
+        ]
+      },
+      {
+        "heading": "THE MOVING-TARGET PROBLEM",
+        "body": "Spotting an aircraft from orbit is far harder than spotting a ship or a building. The plane is small, fast, and seen against the cluttered radar return of the ground beneath it. Separating a moving aircraft from that background requires measuring the tiny Doppler shift of its motion — the technique called airborne moving target indication, and it demands enormous antenna size and power from space.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The discipline is **AMTI** — airborne moving target indication. Its cousin **GMTI** (ground moving target indication) tracks vehicles; both work by filtering out everything that *isn't* moving at the target's velocity."
+          }
+        ]
+      },
+      {
+        "heading": "THE PROLIFERATION BET",
+        "body": "For decades the US bought a handful of 'exquisite' satellites — extraordinarily capable, extraordinarily expensive, and catastrophic to lose. The new doctrine, embodied by SpaceX's Starshield work, is the opposite: hundreds of cheap satellites in low orbit, so coverage is persistent and no single shootdown matters. Quantity becomes its own kind of survivability.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shift is from a few **exquisite** assets to a *proliferated* low-Earth-orbit mesh — the same logic that makes Starlink hard to jam: there is always another satellite overhead."
+          }
+        ]
+      },
+      {
+        "heading": "WHO ELSE FLIES THE MISSION",
+        "body": "Airborne early warning is a small, elite club of platforms — each a radar bolted to a large airframe, each a high-value target. Moving the mission to orbit, if it works, would make this entire generation of aircraft optional. Congress's reversal of the E-7 cancellation shows the fight isn't settled: the jets are a known quantity, the constellation is a promise.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "E-3 Sentry",
+                "value": "US, 1977",
+                "cc": "US"
+              },
+              {
+                "label": "E-7 Wedgetail",
+                "value": "Australia, 2009",
+                "cc": "AU"
+              },
+              {
+                "label": "A-50 Mainstay",
+                "value": "Russia, 1984",
+                "cc": "RU"
+              },
+              {
+                "label": "KJ-2000",
+                "value": "China, 2007",
+                "cc": "CN"
+              }
+            ],
+            "label": "early-warning aircraft & operators"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T12:35:38.155Z",
+    "label": "Airborne Early Warning Goes Orbital",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-29-sudan-rsf-drones-darfur-eid-markets-blue-nile": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHERE THE RSF CAME FROM",
+        "body": "The Rapid Support Forces are the Janjaweed rebranded. The mounted Arab militias Khartoum unleashed to crush Darfur's insurgency in 2003 — the campaign the US later called genocide — were formalized into a paramilitary force by Bashir in 2013, given a payroll, and turned into a praetorian guard he hoped would coup-proof his rule. It outgrew him.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2003",
+                "label": "Janjaweed crush Darfur revolt",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2013",
+                "label": "Bashir formalizes the RSF"
+              },
+              {
+                "year": "2019",
+                "label": "RSF helps oust Bashir"
+              },
+              {
+                "year": "2021",
+                "label": "RSF + army seize power in coup"
+              },
+              {
+                "year": "2023",
+                "label": "the two generals turn on each other"
+              }
+            ],
+            "label": "from militia to army"
+          }
+        ]
+      },
+      {
+        "heading": "A WAR BETWEEN TWO GENERALS",
+        "body": "This is not a government fighting rebels. It is two men who jointly ran the country splitting it apart — Burhan's regular army against Hemedti's RSF — over who would absorb whom during a promised transition to civilian rule. The 2021 coup partners became the 2023 combatants.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Abdel Fattah al-Burhan",
+                "role": "Army chief, head of state",
+                "years": "2019–",
+                "cc": "SD"
+              },
+              {
+                "name": "Mohamed 'Hemedti' Dagalo",
+                "role": "RSF commander",
+                "years": "2013–",
+                "cc": "SD"
+              }
+            ],
+            "label": "the two commanders"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DRONES, WHY NOW",
+        "body": "A paramilitary that began on camelback now strikes markets from the sky. Both sides import drones — the army leans on Iranian Mohajer and Turkish Bayraktar designs, the RSF on smaller commercial and Gulf-supplied systems. The appeal is the same asymmetry that defines every drone war: a strike that costs thousands, against a target that cannot shoot back.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Sudan has become a proving ground where *Iranian*, *Turkish*, and *Emirati*-linked drone systems are flown against each other — a single battlefield testing three of the world's drone-export programs at once."
+          }
+        ]
+      },
+      {
+        "heading": "THE GOLD THAT PAYS FOR IT",
+        "body": "The RSF does not depend on a treasury — it controls Darfur's gold. Bullion flows out through smuggling routes toward refineries in the Gulf, and the proceeds buy fuel, vehicles, and weapons. This is why the RSF can fight a state army without holding a capital: its war chest is in the ground it already controls.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "mines",
+                "label": "Darfur gold mines"
+              },
+              {
+                "id": "rsf",
+                "label": "RSF networks"
+              },
+              {
+                "id": "gulf",
+                "label": "Gulf refiners/markets"
+              },
+              {
+                "id": "arms",
+                "label": "Fuel, vehicles, arms"
+              }
+            ],
+            "links": [
+              {
+                "source": "mines",
+                "target": "rsf",
+                "value": 100,
+                "label": "raw gold"
+              },
+              {
+                "source": "rsf",
+                "target": "gulf",
+                "value": 90,
+                "label": "exported bullion"
+              },
+              {
+                "source": "gulf",
+                "target": "arms",
+                "value": 80,
+                "label": "revenue → matériel"
+              },
+              {
+                "source": "arms",
+                "target": "rsf",
+                "value": 80,
+                "label": "rearmament"
+              }
+            ],
+            "label": "how the RSF funds itself"
+          }
+        ]
+      },
+      {
+        "heading": "TWO FRONTS, ONE COUNTRY",
+        "body": "The fighting spans the width of Sudan. In the far west, the RSF besieges el-Fasher, the last army-held city in Darfur. Far to the southeast, on the Blue Nile near the Ethiopian border, the army pushes toward RSF-held Kurmuk. A single war is being fought 1,000 km apart.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "TD",
+              "SS",
+              "ET",
+              "EG"
+            ],
+            "label": "a war the width of Sudan",
+            "markers": [
+              {
+                "lat": 13.63,
+                "lng": 25.35,
+                "label": "el-Fasher (Darfur siege)"
+              },
+              {
+                "lat": 10.55,
+                "lng": 34.28,
+                "label": "Kurmuk (Blue Nile front)"
+              },
+              {
+                "lat": 15.5,
+                "lng": 32.56,
+                "label": "Khartoum"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE WORLD'S LARGEST DISPLACEMENT",
+        "body": "Sudan's war has uprooted more people than any other conflict on Earth — well over 10 million driven from home, dwarfing the headline crises that get more coverage. Famine has been declared in displacement camps, and the markets struck during Eid are where the trapped still try to buy food.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What event spawned the militias that later became the RSF?",
+            "options": [
+              "The Darfur counter-insurgency of 2003",
+              "South Sudan's independence in 2011",
+              "The 2019 revolution against Bashir"
+            ],
+            "correct": 0,
+            "explanation": "The Janjaweed raised to crush Darfur's 2003 revolt were formalized into the RSF a decade later."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T12:36:26.249Z",
+    "label": "Sudan's War & the RSF",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-31-global-disruptions-in-energy-markets": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE STRAIT IS THE LEVER",
+        "body": "Roughly a fifth of the world's oil — and most of the crude bound for Asia — funnels through a channel about 33 km wide at its narrowest, with shipping lanes only a few kilometres across. No alternative pipeline route comes close to the volume, so a credible threat to Hormuz reprices oil globally before a single tanker is actually stopped.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "QA",
+              "SA"
+            ],
+            "label": "the Hormuz chokepoint",
+            "caption": "Most Gulf crude exits through one 33 km gate.",
+            "markers": [
+              {
+                "lat": 26.57,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.18,
+                "lng": 56.36,
+                "label": "Fujairah (bypass terminal)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PASS-THROUGH MECHANIC",
+        "body": "Pakistan imports the overwhelming majority of its oil and pays for it in dollars. A rising crude price and a weakening rupee multiply against each other — the same barrels cost more in dollars and each dollar costs more in rupees — which is why the import bill can balloon faster than the oil price alone suggests.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377,
+              278.485848,
+              278.494701,
+              278.137253,
+              277.408487,
+              278.412506,
+              278.512908,
+              278.575,
+              277.445439,
+              278.55,
+              278.55
+            ],
+            "periods": [
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHO LEANS ON THIS GATE",
+        "body": "The economies most exposed to a Hormuz shock are Asian crude buyers, not the West. The share of each country's imported oil that passes the strait shows where a price spike lands hardest — and why a Gulf crisis is, first and foremost, an Asian inflation story.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Japan",
+                "value": "~90%",
+                "cc": "JP",
+                "weight": 90,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "South Korea",
+                "value": "~70%",
+                "cc": "KR",
+                "weight": 70,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": "~45%",
+                "cc": "IN",
+                "weight": 45,
+                "tone": "neutral"
+              },
+              {
+                "label": "China",
+                "value": "~45%",
+                "cc": "CN",
+                "weight": 45,
+                "tone": "neutral"
+              }
+            ],
+            "label": "share of crude imports via Hormuz"
+          }
+        ]
+      },
+      {
+        "heading": "THE STAGFLATION THRESHOLD",
+        "body": "Oil-driven inflation is tolerated by policymakers up to a point. Sustained crude above roughly $95-100 historically forces tightening even into a weak economy — the trap where prices and unemployment rise together. For an importer already running thin reserves, that threshold arrives as a balance-of-payments emergency, not just a CPI print.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The danger is *stagflation*: a supply shock lifts prices **and** chokes growth at once, so the usual central-bank tools — cut rates for growth, raise them for inflation — point in opposite directions."
+          }
+        ]
+      },
+      {
+        "heading": "THE IMF TRIPWIRE",
+        "body": "Pakistan runs its economy inside an IMF program that pins fixed reserve and fiscal targets. An oil shock blows through those targets on two fronts at once — the current-account deficit widens as the import bill rises, and any fuel subsidy to shield consumers breaches the deficit ceiling. The program turns a price spike into a sovereign-solvency question.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does an oil-price spike threaten Pakistan's IMF program specifically?",
+            "options": [
+              "It widens the current-account deficit and pressures the fiscal deficit at the same time",
+              "The IMF directly buys Pakistan's oil",
+              "Oil prices are an explicit IMF performance target",
+              "It forces Pakistan to leave the dollar system"
+            ],
+            "correct": 0,
+            "explanation": "Higher import costs blow out the external balance while fuel subsidies to cushion consumers breach the fiscal ceiling — two targets broken by one shock."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-31"
+    ],
+    "generatedAt": "2026-05-31T12:37:07.393Z",
+    "label": "Oil Chokepoints & the Import Bill",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-31-godzilla-el-nino-southern-africa-drought-forecast": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT EL NIÑO ACTUALLY IS",
+        "body": "In normal years, trade winds pile warm water in the western Pacific near Indonesia. El Niño is the collapse of those winds — warm water sloshes back east toward South America, dragging the planet's rainfall engine with it. The deep convection that normally drenches Southeast Asia and southern Africa shifts thousands of kilometers offshore.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The full cycle is **ENSO** — El Niño Southern Oscillation. Its mirror phase, **La Niña**, does the opposite and usually brings *good* rains to southern Africa. The two trade off every few years; there is no neutral 'normal' for long."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SOUTHERN AFRICA DRIES OUT",
+        "body": "Southern Africa gets nearly all its rain in a single summer window, November to March, fed by moisture drawn down from the warm western Pacific via the Walker circulation. When El Niño shoves that circulation east, the descending dry arm parks over the subcontinent. One failed wet season is the entire year — there is no second harvest to recover with.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ZW",
+              "ZM",
+              "MW",
+              "MZ",
+              "ZA",
+              "BW",
+              "NA"
+            ],
+            "label": "the summer-rainfall belt",
+            "caption": "one wet season a year, Nov–Mar; El Niño breaks it"
+          }
+        ]
+      },
+      {
+        "heading": "THE MONOCULTURE TRAP",
+        "body": "Maize is not native to Africa — it arrived from the Americas via Portuguese traders and only became the staple in the colonial era, displacing drought-hardy sorghum and millet. Maize yields more in a good year but collapses in a dry one. Southern Africa rebuilt its food system around the crop least suited to its rainfall risk.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Zimbabwe",
+                "value": "−60%",
+                "cc": "ZW",
+                "weight": 60,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Zambia",
+                "value": "−50%",
+                "cc": "ZM",
+                "weight": 50,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "2023–24 El Niño maize loss"
+          }
+        ]
+      },
+      {
+        "heading": "THE IRISH RHYME",
+        "body": "Ireland in the 1840s grew one potato variety on a third of its tillage; when the blight hit, there was nothing else to eat and a million died. The lesson was never the disease — it was the dependence on a single crop. A maize-mono southern Africa facing a Godzilla El Niño sits on the same structural fault: low diversity meets a correlated shock."
+      },
+      {
+        "heading": "WHY 2027, NOT 2026",
+        "body": "The ocean is slow. A monster El Niño dumps an enormous quantity of stored heat into the atmosphere, but the warming peaks months after the event matures — which is why the WMO flags the year *after* onset as the record candidate. The 2015–16 Godzilla event made 2016 the hottest year on record at the time, with the spike trailing the El Niño's own peak.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1982",
+                "label": "1982–83 strong event"
+              },
+              {
+                "year": "1997",
+                "label": "1997–98 'super' El Niño"
+              },
+              {
+                "year": "2015",
+                "label": "2015–16 'Godzilla'",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "2023–24 event"
+              },
+              {
+                "year": "2026",
+                "label": "WMO forecast"
+              }
+            ],
+            "label": "the strong El Niños"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT ELSE FAILS WITH THE RAIN",
+        "body": "The same dry season that kills the maize empties the reservoirs. Southern Africa's grid leans heavily on the Kariba Dam, and the 2019 drought cut its output by half and blacked out a region. A Godzilla El Niño is therefore a triple shock at once — failed food, failed water, failed power — and the three feed each other.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the WMO expect 2027, not the El Niño year itself, to set the temperature record?",
+            "options": [
+              "The ocean releases its stored heat with a months-long lag",
+              "El Niño cools the planet in its first year",
+              "Satellites can only confirm records a year late"
+            ],
+            "correct": 0,
+            "explanation": "A strong El Niño dumps ocean heat into the atmosphere, but the global temperature spike peaks several months after the event matures."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T12:37:44.480Z",
+    "label": "El Niño & the Maize Belt",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-31-meteor-airburst-massachusetts-300-tonnes-tnt": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY IT EXPLODES IN MIDAIR",
+        "body": "A meteoroid doesn't burn up so much as get crushed. As it plunges into thicker air, the pressure on its leading face climbs until it exceeds the rock's own strength — the body fractures, the fragments expose more surface, and the whole thing dumps its energy in a fraction of a second. That sudden release is the airburst.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The crushing force is *ram pressure* — it scales with air density times velocity squared. A stony meteoroid typically fails at roughly **10 megapascals**, which at cosmic speeds is reached tens of kilometers up. That's why most objects never reach the ground."
+          }
+        ]
+      },
+      {
+        "heading": "THE VELOCITY-SQUARED RULE",
+        "body": "Kinetic energy is one-half mass times velocity squared, so speed matters far more than size. A meteoroid entering at 33 km/s carries four times the energy of one entering at half that speed with the same mass. This is why a body the size of a small car can release the energy of hundreds of tonnes of TNT.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "If two identical meteoroids enter the atmosphere but one moves twice as fast, how much more energy does it carry?",
+            "options": [
+              "Twice as much",
+              "Four times as much",
+              "Eight times as much"
+            ],
+            "correct": 1,
+            "explanation": "Kinetic energy scales with velocity squared, so doubling speed quadruples the energy released."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MEASURE IT IN TNT",
+        "body": "Scientists convert an airburst's kinetic energy into 'TNT equivalent' because there's no everyday yardstick for a rock moving at 33 km/s. It also lets a 300-tonne event sit on the same scale as the giants — and the giants are very far up that scale.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Massachusetts",
+                "value": "~300 t",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "Hiroshima bomb",
+                "value": "~15 kt",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Chelyabinsk '13",
+                "value": "~500 kt",
+                "cc": "RU",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Tunguska 1908",
+                "value": "~15 Mt",
+                "cc": "RU",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "airburst energy, TNT equivalent"
+          }
+        ]
+      },
+      {
+        "heading": "SHOWER OR SPORADIC",
+        "body": "NASA noted this fireball belonged to no active meteor shower — meaning it was a sporadic, a lone object on its own orbit rather than debris from a known comet stream. Showers are predictable; sporadics arrive unannounced, and they make up the majority of fireballs large enough to be felt.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Showers like the *Perseids* are Earth plowing through a comet's debris trail on a fixed calendar date. A *sporadic* has no parent stream on the schedule — which is exactly why the truly dangerous objects are the ones nobody saw coming."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENTS",
+        "body": "Airbursts of consequence are rare but not unheard of. The 1908 Tunguska event flattened 2,000 square kilometers of Siberian forest with no crater — the first hint that an object could devastate the ground without ever touching it. Chelyabinsk in 2013, injuring 1,500 mostly from shattered glass, was the wake-up call that built modern planetary-defense monitoring.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1908",
+                "label": "Tunguska flattens Siberian forest"
+              },
+              {
+                "year": "1972",
+                "label": "Great Daylight Fireball skips off atmosphere"
+              },
+              {
+                "year": "2013",
+                "label": "Chelyabinsk injures ~1,500",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026",
+                "label": "Massachusetts airburst"
+              }
+            ],
+            "label": "notable airbursts"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T12:38:25.777Z",
+    "label": "Meteor Airbursts",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-31-ukraine-iris-t-launcher-germany-air-defense-arithmetic": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COST ASYMMETRY",
+        "body": "A Russian Shahed-type drone costs an estimated $20,000-50,000. The interceptor fired to kill it — an IRIS-T or NASAMS missile — runs $400,000 to over $1 million. Launching 2,300 drones is not about what they hit; it is about draining the defender's far more expensive magazine. The attacker wins even when every drone is shot down.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Gepard burst",
+                "value": "~$4k",
+                "weight": 4,
+                "tone": "favorable"
+              },
+              {
+                "label": "IRIS-T SLM",
+                "value": "~$430k",
+                "weight": 430,
+                "tone": "neutral"
+              },
+              {
+                "label": "NASAMS (AMRAAM)",
+                "value": "~$1m",
+                "weight": 1000,
+                "tone": "neutral"
+              },
+              {
+                "label": "Patriot PAC-3",
+                "value": "~$4m",
+                "weight": 4000,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "cost per engagement (rough)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ONE LAUNCHER IS A HEADLINE",
+        "body": "An IRIS-T SLM battery is a system, not a single truck: a radar, a command unit, and several launcher vehicles each holding eight ready missiles. One launcher adds eight tubes to a country defending hundreds of kilometers of sky. The arithmetic of the headline is that the gift is a rounding error against a 2,300-drone night."
+      },
+      {
+        "heading": "THE BINDING CONSTRAINT IS THE MAGAZINE",
+        "body": "Against saturation, the limit is rarely radar or launchers — it is how many interceptors you have and how fast you can reload. Once the ready missiles are spent, the launcher is an empty rack until a resupply convoy arrives. This is why Kyiv reports launchers 'sitting half-empty': the steel exists, the missiles don't.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Against a drone swarm, what usually exhausts first for the defender?",
+            "options": [
+              "Radar coverage",
+              "Launcher vehicles",
+              "The interceptor stockpile",
+              "Trained crews"
+            ],
+            "correct": 2,
+            "explanation": "Radars and launchers can keep cycling; it's the supply of expensive interceptor missiles that runs dry under saturation."
+          }
+        ]
+      },
+      {
+        "heading": "THE SHAHED ECONOMY",
+        "body": "Russia's main long-range drone is an Iranian design, the Shahed-136, license-built domestically as the Geran-2. A delta-wing of plywood and cheap composites with a moped-class engine, it is built on automotive-style production lines for tens of thousands of dollars. Iran sold not just drones but the factory — turning a one-off weapon into an assembly line.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Iranian **Shahed-136**, mass-produced in Russia as the **Geran-2**, is essentially a flying lawnmower with a warhead — and that crudeness is the point: cheap enough to launch by the hundred."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DEFENSE MUST BE LAYERED",
+        "body": "No single system answers every threat. Cheap drones are best met by gun systems like the Gepard; cruise missiles by medium-range IRIS-T and NASAMS; ballistic missiles only by Patriot. A swarm of slow drones is often a lure to force the defender to burn scarce Patriot rounds, opening the door for the missiles that follow."
+      },
+      {
+        "heading": "THE SUPPLY GEOGRAPHY",
+        "body": "Ukraine's air defense is an aggregation of donors: German IRIS-T, American Patriot and NASAMS, and newer pledges like Swedish Gripen fighters. Each system carries its own ammunition line, so a generous-sounding pledge can still leave a specific magazine empty if the matching interceptors aren't flowing.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "DE",
+              "SE",
+              "UA",
+              "RU"
+            ],
+            "label": "donors and the front",
+            "caption": "Western kit converges on Ukraine; the threat comes from the east"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T12:39:05.073Z",
+    "label": "Air Defense Arithmetic",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-31-ukraine-saratov-refinery-strike-fuel-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY REFINERIES, NOT OILFIELDS",
+        "body": "Russia is drowning in crude — it is the world's third-largest producer. What it cannot easily make is the finished diesel and jet fuel an army actually burns. Striking a refinery attacks the conversion step, the narrow point between an ocean of crude and a tank's fuel pump.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The binding constraint is not the *barrel* — it is the **crude distillation unit (CDU)**, the towering column that splits crude into usable fractions. Hit the CDU and the crude behind it becomes worthless."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE DAMAGE STICKS",
+        "body": "A distillation column is a bespoke piece of heavy industry — years to build, and many of Russia's were fitted with Western catalytic and control systems now under sanctions. Spare parts that once arrived from Germany or Italy must now be improvised or smuggled, so a fire in the 'control units' can idle a plant for months, not days."
+      },
+      {
+        "heading": "THE PLOIEȘTI LESSON",
+        "body": "Strategic planners have targeted enemy fuel since WWII. The Allied bombing of Romania's Ploiești refineries and Germany's synthetic-fuel plants in 1944 did what years of front-line fighting could not — the Luftwaffe ran short of aviation fuel and the Wehrmacht's tanks stalled. Oil, not factories, proved the decisive bottleneck of the war.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1943-08",
+                "label": "Ploiești raid (Tidal Wave)"
+              },
+              {
+                "year": "1944-05",
+                "label": "Oil Campaign hits synthetic-fuel plants",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1944-09",
+                "label": "Luftwaffe grounded by fuel shortage"
+              },
+              {
+                "year": "2022",
+                "label": "Ukraine begins deep refinery strikes"
+              }
+            ],
+            "label": "oil as a strategic target"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEPTH OF THE STRIKE",
+        "body": "Saratov sits roughly 600 km from the front, on the Volga deep inside Russia. Reaching it means long-range one-way drones flying low for hours past air defenses — a capability Ukraine built specifically to move the war from the trench line to Russia's industrial interior.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU"
+            ],
+            "label": "from the front to the Volga",
+            "caption": "Deep-strike drones reach ~600 km behind the front line.",
+            "markers": [
+              {
+                "lat": 51.53,
+                "lng": 46.03,
+                "label": "Saratov refinery"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE FRONTLINE FUEL MATH",
+        "body": "A modern mechanized army is a fuel-conversion machine: tanks, trucks, and generators all run on diesel, and a single armored division can burn hundreds of thousands of liters a day. Degrade the refining base and the shortage shows up not as empty gas stations but as offensives that cannot move.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does hitting a refinery hurt Russia's war effort more than hitting an oilfield?",
+            "options": [
+              "Russia has abundant crude but limited capacity to refine it into military fuel",
+              "Russia imports nearly all of its crude oil",
+              "Oilfields are easier to defend than refineries",
+              "Refineries store the army's ammunition"
+            ],
+            "correct": 0,
+            "explanation": "Russia produces far more crude than it can refine; the distillation step is the scarce link, so destroying it strands the crude behind it."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-31T12:39:51.519Z",
+    "label": "Refineries as the Real Chokepoint",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-31-world-no-tobacco-day-vape-ban-global-south": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY NICOTINE HOLDS",
+        "body": "Nicotine binds receptors in the brain's reward circuit and triggers dopamine release within ten seconds of a puff — faster than almost any other drug. The brain responds by growing more receptors, so the same dose feels weaker over time and quitting feels like deprivation. This is not weak willpower; it is engineered pharmacology.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The cigarette is a near-perfect delivery device: inhaled nicotine reaches the brain *faster than an intravenous injection*. The product was optimized for addiction long before anyone optimized it for taste."
+          }
+        ]
+      },
+      {
+        "heading": "THE 'HARM REDUCTION' PLAY",
+        "body": "Tobacco companies sell vapes as a way out of smoking in rich countries while expanding cigarette sales in poorer ones. The two strategies are not contradictory — they are the same company hedging: capture quitters with one product, keep smokers with the other. The phrase 'harm reduction' borrows the language of public health to protect a business model."
+      },
+      {
+        "heading": "THE GREAT MIGRATION",
+        "body": "As smoking rates fell in North America and Europe, the industry shifted its growth to Asia, which now consumes most of the world's cigarettes. Indonesia and the Philippines are among the densest markets on Earth, with weak enforcement and young populations.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Indonesia",
+                "value": "~300bn",
+                "cc": "ID",
+                "weight": 300,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Philippines",
+                "value": "~90bn",
+                "cc": "PH",
+                "weight": 90,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Vietnam",
+                "value": "~85bn",
+                "cc": "VN",
+                "weight": 85,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Thailand",
+                "value": "~40bn",
+                "cc": "TH",
+                "weight": 40,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Southeast Asian cigarette markets (annual, approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TREATY NOBODY ENFORCES",
+        "body": "The WHO Framework Convention on Tobacco Control (2003) was the first treaty negotiated under the World Health Organization — covering taxes, advertising bans, and health warnings. Over 180 countries ratified it, yet vapes arrived after it was written, leaving a regulatory gap each government must close on its own.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country consumes the most cigarettes in the world?",
+            "options": [
+              "United States",
+              "China",
+              "India",
+              "Indonesia"
+            ],
+            "correct": 1,
+            "explanation": "China smokes roughly a third of the world's cigarettes — more than the next several countries combined — and its tobacco monopoly is state-owned."
+          }
+        ]
+      },
+      {
+        "heading": "THE UNFUNDED-LAW PATTERN",
+        "body": "Pakistan and other South Asian states routinely pass public-health mandates without allocating the budget to enforce them. A ban on paper signals intent; without inspectors, customs capacity, and prosecution, it signals capability the state does not have. Health groups demand the law precisely because they know writing it is the easy part."
+      }
+    ],
+    "generatedAt": "2026-05-31T12:40:30.263Z",
+    "label": "Nicotine & the Tobacco Endgame",
+    "category": "politics",
+    "articleCount": 1
   }
 }
