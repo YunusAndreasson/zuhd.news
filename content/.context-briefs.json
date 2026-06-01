@@ -280566,5 +280566,1595 @@
     "label": "Smart Contract Immutability",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-06-01-arbitrators-reject-rwanda-134m-claim-uk-asylum-deal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COURT THAT ISN'T A COURT",
+        "body": "The Permanent Court of Arbitration in The Hague has no permanent judges and hears no appeals. Born of the 1899 Hague Peace Conference, it is a registry that assembles a fresh panel for each dispute — states pick arbitrators, agree the rules, and accept the ruling as final. It predates the UN, the League of Nations, and almost every body that now governs international law.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "It is the oldest standing institution for inter-state dispute resolution in the world — older than the *International Court of Justice* by half a century, and unlike the ICJ it can also arbitrate between a state and a private party."
+          }
+        ]
+      },
+      {
+        "heading": "PAY FOR CAPACITY, NOT ARRIVALS",
+        "body": "The deal's core was a fixed-fee structure: Britain paid Rwanda to stand up reception centres, vet caseworkers, and hold beds open — regardless of whether anyone was ever flown there. That is why Rwanda could bill £100m for migrants who never arrived. The UK was buying readiness, and readiness was delivered even though the planes never were."
+      },
+      {
+        "heading": "THE BILL VS THE BENEFIT",
+        "body": "Britain committed hundreds of millions of pounds to the scheme across two governments. The number of asylum seekers actually relocated to Rwanda under it was effectively nil — a handful left voluntarily, and not one was forcibly removed before the policy was scrapped.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many asylum seekers were forcibly relocated to Rwanda under the UK scheme before it was cancelled?",
+            "options": [
+              "Zero",
+              "About 300",
+              "Roughly 4,000",
+              "Over 10,000"
+            ],
+            "correct": 0,
+            "explanation": "Courts grounded every flight; the UK paid for capacity but never forcibly removed a single person under the scheme."
+          }
+        ]
+      },
+      {
+        "heading": "THE OFFSHORE PLAYBOOK",
+        "body": "Outsourcing asylum is not a British invention. Australia ran offshore processing on Nauru and Manus Island from 2012, detaining thousands. Israel quietly paid Rwanda and Uganda to take deportees in the 2010s. Britain's version was the most expensive and the least used — it paid the most and moved the fewest.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Australia",
+                "value": "~4,000",
+                "weight": 4000,
+                "cc": "AU"
+              },
+              {
+                "label": "Israel deal",
+                "value": "~4,000",
+                "weight": 4000,
+                "cc": "IL"
+              },
+              {
+                "label": "UK–Rwanda",
+                "value": "~0",
+                "weight": 4,
+                "cc": "GB",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "people actually processed offshore"
+          }
+        ]
+      },
+      {
+        "heading": "THE SCHEME'S ARC",
+        "body": "Announced with fanfare, grounded within weeks, ruled unlawful, re-legislated, then abandoned. The policy ran four years and four prime ministers without removing anyone — and ended where it began: in a Hague tribunal arguing over money.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2022-04",
+                "label": "Scheme announced",
+                "emphasis": "start"
+              },
+              {
+                "year": "2022-06",
+                "label": "First flight grounded by ECtHR"
+              },
+              {
+                "year": "2023-11",
+                "label": "UK Supreme Court: unlawful",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024-04",
+                "label": "Safety of Rwanda Act passed"
+              },
+              {
+                "year": "2024-07",
+                "label": "Starmer scraps scheme"
+              },
+              {
+                "year": "2026",
+                "label": "PCA dismisses Rwanda's claim",
+                "emphasis": "end"
+              }
+            ],
+            "label": "the Rwanda scheme"
+          },
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Priti Patel",
+                "role": "Home Secretary, signed deal",
+                "years": "2019–2022",
+                "cc": "GB"
+              },
+              {
+                "name": "Rishi Sunak",
+                "role": "PM, legislated to save it",
+                "years": "2022–2024",
+                "cc": "GB"
+              },
+              {
+                "name": "Keir Starmer",
+                "role": "PM, cancelled it",
+                "years": "2024–",
+                "cc": "GB"
+              },
+              {
+                "name": "Paul Kagame",
+                "role": "Rwandan President",
+                "years": "2000–",
+                "cc": "RW"
+              }
+            ],
+            "label": "four PMs, one policy"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE COURTS ACTUALLY KILLED",
+        "body": "The UK Supreme Court did not strike the scheme down on cost or politics — it struck it on the principle of non-refoulement: a state may not send refugees to a place where they risk being returned onward to danger. Judges found a real risk Rwanda would deport people back to the countries they fled. That principle, not the price tag, is what made every flight illegal.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Non-refoulement* is the bedrock of the 1951 Refugee Convention — the one obligation a signatory cannot bargain away, no matter how it labels the destination 'safe'."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-01T12:23:58.091Z",
+    "label": "Offshore Asylum & Arbitration",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-01-china-first-invasive-brain-computer-interface-approval": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BREAK IS IN THE WIRE, NOT THE ENGINE",
+        "body": "In most spinal-cord paralysis the motor cortex is undamaged — it still fires the command to move a hand. What fails is the cord that carries the signal down to the muscle. A brain-computer interface reads the intent at its source and routes it around the broken cord to a computer, a cursor, or a robotic limb.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In spinal-cord paralysis, what does a brain-computer interface actually bypass?",
+            "options": [
+              "The severed spinal cord",
+              "The motor cortex",
+              "The skeletal muscles",
+              "The retina"
+            ],
+            "correct": 0,
+            "explanation": "The cortex still generates the movement command; the implant captures it and skips the damaged cord that can no longer relay it."
+          }
+        ]
+      },
+      {
+        "heading": "THE DEPTH TRADEOFF",
+        "body": "Every BCI design sits somewhere on one axis: the closer the electrode gets to individual neurons, the richer the signal — and the more dangerous the surgery. Scalp electrodes are safe but blurry; electrodes threaded into the cortex are sharp but invasive. There is no free lunch on this axis, only where you choose to stand.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Scalp EEG",
+                "value": "blurry/safe",
+                "tone": "neutral"
+              },
+              {
+                "label": "Epidural (NEO)",
+                "value": "mid/safe",
+                "tone": "favorable"
+              },
+              {
+                "label": "Intracortical",
+                "value": "sharp/risky",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "reading the brain: signal vs risk"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE OUTER MEMBRANE MATTERS",
+        "body": "China's NEO places its sensors on the dura mater — the tough outer membrane wrapping the brain — instead of piercing the cortex itself. That is the entire safety story: no penetration means no severed blood vessels, which is why the regulator could clear it on an expedited track. The cost is a coarser signal, picked up through a layer of tissue.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The *dura mater* (Latin for **\"tough mother\"**) is the brain's armored outer wrapping. Resting electrodes on it rather than under it is the difference between a safe read and a bleed."
+          }
+        ]
+      },
+      {
+        "heading": "THE SCAR PROBLEM",
+        "body": "The deepest implants face a quiet failure mode: the brain treats a penetrating electrode as a wound and walls it off in scar tissue, so the signal that was crystal-clear at implantation degrades over months and years. Surface designs that never break the cortex sidestep this — trading peak performance for durability.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The culprit is the **glial scar** — support cells encasing the electrode until the neurons it was listening to fall silent. Longevity, not bandwidth, is the hardest unsolved problem in the field."
+          }
+        ]
+      },
+      {
+        "heading": "THE BANDWIDTH CEILING",
+        "body": "How many independent things a paralyzed user can control — a 2D cursor, a full robotic arm, fluent speech — scales with how many distinct neurons the implant can hear. Surface electrodes sample populations of cells averaged together; cortical threads can isolate single neurons. The richer the channel, the more degrees of freedom, which is the case for accepting surgical risk at all."
+      },
+      {
+        "heading": "A FIELD HALF A CENTURY OLD",
+        "body": "The science is not new — researchers conditioned a monkey to control a meter with single cortical neurons in 1969, and a paralyzed man moved a cursor with a cortical implant in 2004. What changed in 2026 is regulatory: a commercial approval, not another trial, in a country that wrote brain implants into its national five-year plan.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1969",
+                "label": "Monkey controls meter via single neurons",
+                "emphasis": "start"
+              },
+              {
+                "year": "2004",
+                "label": "BrainGate: paralyzed man moves cursor"
+              },
+              {
+                "year": "2024",
+                "label": "Neuralink implants first human"
+              },
+              {
+                "year": "2026",
+                "label": "China clears first commercial BCI",
+                "emphasis": "end"
+              }
+            ],
+            "label": "from lab to clinic"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-01T12:24:48.306Z",
+    "label": "Brain-Computer Interfaces",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-01-colombia-runoff-de-la-espriella-cepeda-petro": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 50% THRESHOLD",
+        "body": "Colombia's 1991 constitution replaced single-round plurality with a two-round runoff: if no candidate clears half the vote, the top two face off three weeks later. The design forces the winner to assemble a majority coalition rather than govern with a 40% plurality — which is exactly why first-round leads routinely evaporate as the eliminated bloc's voters consolidate behind the rival."
+      },
+      {
+        "heading": "THE FAULT LINE",
+        "body": "Colombian elections split along an old geography: the Andean highlands around Bogotá and the coffee belt lean conservative, while the Pacific coast and Amazon — poorer, more Afro-Colombian and Indigenous, hit hardest by the armed conflict — vote left. The same map that decides elections traces where the state has historically been present versus absent.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CO"
+            ],
+            "label": "highlands vs the coasts",
+            "caption": "conservative interior; left-leaning Pacific and Amazon periphery",
+            "markers": [
+              {
+                "lat": 4.711,
+                "lng": -74.072,
+                "label": "Bogotá (highlands)"
+              },
+              {
+                "lat": 3.884,
+                "lng": -77.031,
+                "label": "Buenaventura (Pacific)"
+              },
+              {
+                "lat": -4.215,
+                "lng": -69.941,
+                "label": "Leticia (Amazon)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "A GUERRILLA IN THE PALACE",
+        "body": "The stakes turn on Gustavo Petro, who in 2022 became Colombia's first leftist president. As a young man he belonged to M-19, the urban guerrilla movement that seized the Palace of Justice in 1985; he was jailed, then entered electoral politics after the group demobilized. His security-vs-peace agenda is what Sunday's vote either extends or reverses.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Gustavo Petro",
+                "role": "Incumbent leftist president",
+                "years": "2022–2026",
+                "cc": "CO"
+              },
+              {
+                "name": "Álvaro Uribe",
+                "role": "Architect of hardline security",
+                "years": "2002–2010",
+                "cc": "CO"
+              }
+            ],
+            "label": "the poles of the debate"
+          }
+        ]
+      },
+      {
+        "heading": "THE PEACE NOBODY FINISHED",
+        "body": "The 2016 Havana accord ended a half-century war with the FARC and won President Santos a Nobel Peace Prize — but Colombians narrowly rejected it in a referendum, dissident factions never disarmed, and the cocaine economy outlived the guerrilla that ran it. Every election since is a referendum on whether to deepen the peace process or abandon it.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1964",
+                "label": "FARC founded"
+              },
+              {
+                "year": "1985",
+                "label": "M-19 seizes Palace of Justice"
+              },
+              {
+                "year": "2016",
+                "label": "Havana peace accord signed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017",
+                "label": "FARC disarms; dissidents remain"
+              },
+              {
+                "year": "2022",
+                "label": "Petro elected, first leftist president"
+              }
+            ],
+            "label": "the conflict and its unfinished peace"
+          }
+        ]
+      },
+      {
+        "heading": "MANO DURA",
+        "body": "The right's banner is mano dura — the iron-fist doctrine of military pressure, eradication, and crackdown over negotiation. It traces to Uribe's US-backed Democratic Security policy of the 2000s, which battered the FARC but coincided with the 'false positives' scandal, in which the army killed civilians and dressed them as guerrillas to inflate body counts.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Mano dura* (\"hard hand\") promises security through force; *paz total* (\"total peace\"), Petro's framing, promises it through negotiation with every armed group at once. The runoff is a choice between those two theories of order."
+          }
+        ]
+      },
+      {
+        "heading": "ONE TERM, NO RETURN",
+        "body": "Petro himself is not on the ballot — and cannot be. Uribe amended the constitution in 2004 to allow one reelection, but a 2015 reform abolished it entirely. Colombian presidents now serve a single four-year term with no path back, making each election a hard reset rather than a verdict on the incumbent.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why isn't incumbent president Gustavo Petro on the runoff ballot?",
+            "options": [
+              "Colombia bars presidents from any second term, ever",
+              "He's term-limited now but could run again in a later cycle",
+              "He was eliminated in the first round",
+              "He withdrew to endorse Cepeda"
+            ],
+            "correct": 0,
+            "explanation": "A 2015 reform abolished presidential reelection outright — one four-year term, no return, unlike the US two-term model."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-01T12:25:48.523Z",
+    "label": "Colombia's Runoff",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-01-gate-all-around-carbon-nanotube-fet-sub-10nm": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PROBLEM",
+        "body": "A transistor is a switch: the gate's electric field pinches the channel shut to stop current. Below roughly 10nm the channel is so short that electrons tunnel and slip past even when the gate says 'off.' This off-state leakage burns power continuously and is why a modern chip can warm a room.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The villain is *short-channel effect*: when source and drain sit a few atoms apart, the drain's field reaches across and pulls current through regardless of the gate. Leakage current rises **exponentially**, not linearly, as the channel shrinks."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONSTRAINT",
+        "body": "Control of the channel depends on how much of it the gate can surround. A flat planar gate touches only the top, so the deeper silicon escapes its influence. Every advance in transistor design for the last fifteen years has been a fight to wrap more of the channel in the gate's field."
+      },
+      {
+        "heading": "THE GEOMETRY ESCALATION",
+        "body": "The fix has been steadily increasing the number of channel faces the gate controls. Planar transistors gate one side; FinFETs stand the channel up as a fin and gate three; gate-all-around wraps the channel completely. A carbon-nanotube channel is a cylinder, so 'all-around' means a full 360° sheath of gate.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Planar",
+                "value": "1 side",
+                "weight": 1,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "FinFET",
+                "value": "3 sides",
+                "weight": 3,
+                "tone": "neutral"
+              },
+              {
+                "label": "Gate-all-around",
+                "value": "all sides",
+                "weight": 4,
+                "tone": "favorable"
+              }
+            ],
+            "label": "channel faces under gate control"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE TIMING",
+        "body": "Intel introduced the FinFET (Tri-Gate) at 22nm in 2011, buying a decade of scaling. Samsung shipped the first gate-all-around 'nanosheet' node in 2022; TSMC and Intel followed mid-decade. Each transition arrived exactly when the previous geometry ran out of electrostatic control — not on a fixed schedule.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1960",
+                "label": "First planar MOSFET",
+                "emphasis": "start"
+              },
+              {
+                "year": "2011",
+                "label": "Intel FinFET at 22nm",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "Samsung gate-all-around 3nm"
+              },
+              {
+                "year": "2025",
+                "label": "TSMC/Intel GAA nodes"
+              }
+            ],
+            "label": "the gate wraps tighter"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CARBON NANOTUBES",
+        "body": "A carbon nanotube is a single rolled sheet of graphene about 1nm across — already thinner and more uniform than anything etched from silicon. Electrons travel through it ballistically, scattering far less, so it switches faster and leaks less at dimensions where silicon's crystal structure breaks down."
+      },
+      {
+        "heading": "THE HIGH-K TRICK",
+        "body": "As gates shrank, the insulating layer between gate and channel got so thin that electrons tunneled straight through it. High-k dielectrics — materials like hafnium oxide that hold a stronger field per nanometer — let engineers keep a physically thicker, leak-proof insulator while preserving the gate's grip on the channel.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does a gate-all-around design leak less than a planar transistor?",
+            "options": [
+              "The gate surrounds the channel on every side, so its field controls the whole channel",
+              "It uses a thicker layer of silicon to block electrons",
+              "It runs at a higher voltage to force the switch shut",
+              "It physically widens the channel to slow electrons down"
+            ],
+            "correct": 0,
+            "explanation": "Wrapping the channel completely maximizes electrostatic control, suppressing the leakage paths a top-only planar gate cannot reach."
+          }
+        ]
+      },
+      {
+        "heading": "SIMULATION VS SILICON",
+        "body": "These results are simulation-only, and that gap is the hard part. Carbon nanotubes are notoriously difficult to manufacture: aligning billions of them, removing metallic ones that short the circuit, and placing them with sub-nanometer precision are unsolved at production scale. The physics has been promising for two decades; the fabrication is the threshold."
+      }
+    ],
+    "generatedAt": "2026-06-01T12:26:25.627Z",
+    "label": "Transistor Leakage & Gate Geometry",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-01-india-oman-cepa-in-force-duty-free-trade": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY IT'S A 'CEPA', NOT AN 'FTA'",
+        "body": "India brands its modern trade deals as Comprehensive Economic Partnership Agreements because they reach past goods tariffs into services, investment rules, and the movement of professionals. A plain free-trade agreement only zeroes out duties on physical products; the 127 services sub-sectors and professional-mobility chapters are where the real negotiating fights happen.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The hardest chapter is almost always **Mode 4** — the right of one country's professionals (engineers, nurses, IT workers) to take temporary jobs in the other. Rich economies guard it fiercely; for India, with its labour surplus, it is the prize."
+          }
+        ]
+      },
+      {
+        "heading": "WHY OMAN, WHY BILATERAL",
+        "body": "India and the six-nation GCC have tried to negotiate a single bloc-wide trade deal since 2004, and it has stalled repeatedly. Rather than wait, India has gone country-by-country — the UAE deal landed in 2022, and Oman is the next piece. Each bilateral pact is a workaround for a regional deal that never closes."
+      },
+      {
+        "heading": "THE GULF GATEWAY",
+        "body": "Oman sits on the southern jaw of the Strait of Hormuz, facing India directly across the Arabian Sea. Its port at Duqm lies outside Hormuz on the open Indian Ocean — a deliberate hedge against any closure of the strait — and India has invested in it as a refuelling and logistics node halfway to East Africa.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "OM",
+              "IN",
+              "AE",
+              "SA",
+              "IR",
+              "PK",
+              "YE"
+            ],
+            "label": "the Arabian Sea corridor",
+            "markers": [
+              {
+                "lat": 23.588,
+                "lng": 58.408,
+                "label": "Muscat"
+              },
+              {
+                "lat": 19.667,
+                "lng": 57.704,
+                "label": "Duqm port"
+              },
+              {
+                "lat": 24.34,
+                "lng": 56.71,
+                "label": "Sohar port"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DIASPORA ENGINE",
+        "body": "Trade between India and the Gulf rides on people, not just cargo. Roughly nine million Indians work across the GCC, and the remittances they send home are one of India's largest sources of foreign exchange — which is why professional-mobility clauses matter as much to Delhi as tariff lines do.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UAE",
+                "value": "~3.5m",
+                "cc": "AE",
+                "weight": 3.5
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~2.6m",
+                "cc": "SA",
+                "weight": 2.6
+              },
+              {
+                "label": "Kuwait",
+                "value": "~1m",
+                "cc": "KW",
+                "weight": 1
+              },
+              {
+                "label": "Qatar",
+                "value": "~0.8m",
+                "cc": "QA",
+                "weight": 0.8
+              },
+              {
+                "label": "Oman",
+                "value": "~0.7m",
+                "cc": "OM",
+                "weight": 0.7
+              },
+              {
+                "label": "Bahrain",
+                "value": "~0.3m",
+                "cc": "BH",
+                "weight": 0.3
+              }
+            ],
+            "label": "Indian nationals in the GCC (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE MONSOON-TRADE ROOTS",
+        "body": "India and Oman are not new partners — they are among the oldest. For two millennia the monsoon winds carried dhows between the Malabar coast and the Omani shore on a predictable annual cycle, moving frankincense, dates, and textiles. Omani merchants and rulers held territory and influence across the western Indian Ocean for centuries.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which present-day Pakistani port was an overseas possession of Oman until Pakistan bought it in 1958?",
+            "options": [
+              "Karachi",
+              "Gwadar",
+              "Bandar Abbas",
+              "Chabahar"
+            ],
+            "correct": 1,
+            "explanation": "Gwadar was under Omani sovereignty for ~175 years until Pakistan purchased it for roughly $3m in 1958 — a relic of Oman's old Indian Ocean reach."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 99% IS SMALLER THAN IT SOUNDS",
+        "body": "Headline coverage figures like '99% of exports' count tariff lines or trade value, not the same thing. A deal can free 99% of product categories while a handful of excluded lines — often the most sensitive — still carry most of the protected trade. The number signals ambition; the carve-outs are where the real winners and losers sit."
+      }
+    ],
+    "generatedAt": "2026-06-01T12:27:17.109Z",
+    "label": "India-Oman CEPA & the Gulf Gateway",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-01-india-uae-g42-cerebras-ai-sovereignty-cloud": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "OWN VERSUS RENT",
+        "body": "Almost all frontier AI today runs on rented compute — you pay a hyperscaler by the GPU-hour and never touch the silicon. Sovereign compute inverts this: the state buys and houses the chips, so the data, the models, and the off-switch stay inside its borders. The tradeoff is capital — you pay billions up front instead of a metered bill, and you own the depreciation when the hardware ages out in three years."
+      },
+      {
+        "heading": "WHY THE HYPERSCALERS WON'T SELL",
+        "body": "The cloud business model is the opposite of selling hardware: lock workloads into a platform and bill the margin forever. Selling a government its own chips cannibalizes that recurring revenue and surrenders the lock-in. That is the structural reason none of the three matched the offer — not technical inability.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "AWS",
+                "value": "~31%",
+                "weight": 31
+              },
+              {
+                "label": "Azure",
+                "value": "~24%",
+                "weight": 24
+              },
+              {
+                "label": "Google",
+                "value": "~11%",
+                "weight": 11
+              },
+              {
+                "label": "All others",
+                "value": "~34%",
+                "weight": 34
+              }
+            ],
+            "label": "global cloud infrastructure share, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE WAFER-SCALE BET",
+        "body": "A normal chip is cut from a silicon wafer into hundreds of dies. Cerebras keeps the entire wafer as a single chip — its processor is the size of a dinner plate, with nearly a million cores and trillions of transistors. The payoff is that an AI model lives on one slab of silicon instead of being split across thousands of GPUs wired together, which is where most of the latency and complexity normally hides.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Nvidia's bet is the opposite: thousands of small GPUs lashed together with *InfiniBand*. Cerebras bets that **one wafer beats a thousand cables** — fewer interconnects, fewer failure points."
+          }
+        ]
+      },
+      {
+        "heading": "THE CAST",
+        "body": "The deal binds an Emirati state-aligned AI conglomerate to a contrarian American chipmaker, with India as the host. G42 sits at the center of Abu Dhabi's AI strategy and is chaired by the UAE's national security adviser; Cerebras is the wafer-scale challenger to Nvidia's dominance.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Tahnoon bin Zayed",
+                "role": "G42 chairman, UAE NSA",
+                "cc": "AE"
+              },
+              {
+                "name": "Peng Xiao",
+                "role": "G42 chief executive",
+                "cc": "AE"
+              },
+              {
+                "name": "Andrew Feldman",
+                "role": "Cerebras co-founder, CEO",
+                "cc": "US"
+              }
+            ],
+            "label": "who's at the table"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEASH",
+        "body": "Sovereign or not, the most advanced AI chips are US-designed and fall under American export controls. In 2024 G42 had to publicly divest from Chinese hardware and tilt toward US partners — taking a $1.5bn Microsoft investment — as the price of continued access to American silicon. Owning the chips is not the same as being free of the country that licenses them.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AE",
+              "IN"
+            ],
+            "label": "where the compute lands"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SOVEREIGNTY NOW",
+        "body": "Compute has become a strategic resource the way oil refineries once were — whoever controls it sets the terms for everyone downstream. States are racing to nationalize a slice of it because a model trained on foreign servers can be throttled, audited, or cut off in a dispute.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the core promise of 'sovereign AI' compute over renting from a hyperscaler?",
+            "options": [
+              "The chips are faster than commercial GPUs",
+              "Data, models, and control stay inside national borders",
+              "It is cheaper than paying by the GPU-hour",
+              "It removes the need for US-designed hardware"
+            ],
+            "correct": 1,
+            "explanation": "Sovereignty is about jurisdiction and control, not speed or cost — and the chips are still US-designed, which keeps export controls in play."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-01T12:27:51.686Z",
+    "label": "Sovereign AI & Wafer-Scale Compute",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-01-india-vietnam-brahmos-missile-deal-south-china-sea": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NAME",
+        "body": "BrahMos is a portmanteau of two rivers — the Brahmaputra of India and the Moskva of Russia — marking it as a joint venture between the two states' defense establishments, launched in 1998. The name itself encodes the geopolitics: an Indian weapon built on Soviet-lineage missile technology.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The joint venture pairs India's **DRDO** with Russia's **NPO Mashinostroyeniya** — the missile is essentially a derivative of the Russian *P-800 Oniks*, re-engineered and re-badged for Indian production and export."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SUPERSONIC MATTERS",
+        "body": "Most anti-ship cruise missiles — the US Tomahawk, the Harpoon — fly subsonic, around Mach 0.7. BrahMos cruises near Mach 3. That speed roughly triples the warhead's kinetic energy and collapses a defender's reaction window from minutes to seconds, which is the entire point of buying it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "BrahMos",
+                "value": "~Mach 3.0",
+                "weight": 3,
+                "tone": "favorable",
+                "cc": "IN"
+              },
+              {
+                "label": "Kalibr",
+                "value": "~Mach 0.8",
+                "weight": 0.8,
+                "tone": "neutral",
+                "cc": "RU"
+              },
+              {
+                "label": "Tomahawk",
+                "value": "~Mach 0.7",
+                "weight": 0.74,
+                "tone": "neutral",
+                "cc": "US"
+              },
+              {
+                "label": "Harpoon",
+                "value": "~Mach 0.7",
+                "weight": 0.71,
+                "tone": "neutral",
+                "cc": "US"
+              }
+            ],
+            "label": "anti-ship cruise missile speed"
+          }
+        ]
+      },
+      {
+        "heading": "THE A2/AD LOGIC",
+        "body": "A coastal battery of mobile cruise missiles is far cheaper than the warships it threatens. A smaller state can't match China's navy hull-for-hull, but it can make a slice of contested water too dangerous to enter. This is anti-access/area-denial — deterrence by cost imposition, not by parity.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine inverts the usual naval logic: the weaker side doesn't try to *win* the sea, it tries to make the stronger side's ships **too expensive to risk** — a few million-dollar missiles holding a billion-dollar fleet at arm's length."
+          }
+        ]
+      },
+      {
+        "heading": "THE NINE-DASH LINE",
+        "body": "China claims roughly 90% of the South China Sea via a U-shaped line first drawn on a Republic-of-China map in 1947. The claim overlaps the exclusive economic zones of Vietnam, the Philippines, Indonesia, Malaysia and Brunei — which is why all three BrahMos buyers sit on the same fault line.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "VN",
+              "PH",
+              "ID",
+              "CN",
+              "MY"
+            ],
+            "label": "the contested sea",
+            "caption": "China's claim overlaps five neighbors' maritime zones",
+            "markers": [
+              {
+                "lat": 16.5,
+                "lng": 112,
+                "label": "Paracel Islands"
+              },
+              {
+                "lat": 10,
+                "lng": 114,
+                "label": "Spratly Islands"
+              },
+              {
+                "lat": 15.15,
+                "lng": 117.76,
+                "label": "Scarborough Shoal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 2016 RULING",
+        "body": "An arbitral tribunal at The Hague, ruling on a Philippine case under the UN Law of the Sea, found China's nine-dash line had no legal basis. Beijing rejected the ruling and built and militarized artificial islands anyway — establishing that in this sea, facts on the water outrank verdicts on paper."
+      },
+      {
+        "heading": "INDIA'S EXPORT PIVOT",
+        "body": "For decades India was the world's single largest arms importer, dependent on Soviet and later Russian hardware. BrahMos sales to Southeast Asia mark a reversal: India is now using a co-developed weapon to project influence into China's near seas, turning a buyer into a supplier.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Before recent export deals, what was India's standing in the global arms trade?",
+            "options": [
+              "The world's largest arms importer",
+              "The world's largest arms exporter",
+              "Self-sufficient, neither importing nor exporting"
+            ],
+            "correct": 0,
+            "explanation": "India has long topped the list of weapons importers; BrahMos exports mark its shift toward becoming a supplier."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-01T12:28:32.151Z",
+    "label": "BrahMos & the South China Sea",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-01-nanoengineered-room-temperature-hydrogen-storage": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INVERSION",
+        "body": "Hydrogen holds more energy per kilogram than any chemical fuel — nearly three times gasoline. But it is the lightest element in existence, so per liter it holds almost nothing. The entire storage problem is this inversion: brilliant by weight, hopeless by volume.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hydrogen",
+                "value": "~120",
+                "weight": 120,
+                "tone": "favorable"
+              },
+              {
+                "label": "Diesel",
+                "value": "~45",
+                "weight": 45,
+                "tone": "neutral"
+              },
+              {
+                "label": "Gasoline",
+                "value": "~44",
+                "weight": 44,
+                "tone": "neutral"
+              },
+              {
+                "label": "Li-ion cell",
+                "value": "~0.5",
+                "weight": 0.5,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "energy by weight (MJ/kg)"
+          },
+          {
+            "type": "prose",
+            "text": "Flip the axis and the ranking inverts: a liter of gasoline carries roughly **3,000×** the energy of a liter of hydrogen gas at room pressure. Storage engineering exists entirely to claw back that volumetric gap."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT ESCAPES",
+        "body": "A hydrogen molecule is the smallest thing chemistry makes — small enough to squeeze through metal lattices that hold every other gas. It seeps through tank walls, and worse, dissolves into steel and makes it brittle, cracking pipelines and vessels that were never designed to leak from the inside out."
+      },
+      {
+        "heading": "THE COLD-AND-CRUSH TAX",
+        "body": "Today's two options are both brute force. Compress hydrogen to 700 times atmospheric pressure, which needs thick carbon-fiber vessels and burns ~10% of the fuel's energy to do. Or chill it to minus 253°C as a liquid, which loses a third of the energy and boils off in storage. Both are too heavy and finicky for cars, drones, or homes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Liquefaction must reach **−253°C**, just 20 degrees above absolute zero — colder than the surface of Pluto. The energy spent getting there is energy you never get back."
+          }
+        ]
+      },
+      {
+        "heading": "HOW THE MATERIAL HOLDS IT",
+        "body": "The new approach skips both. Nanoengineered solids — metal hydrides and metal-organic frameworks riddled with molecular-scale pores — bind hydrogen onto enormous internal surface areas, packing it densely without high pressure or deep cold. A single gram of such a framework can have the internal surface area of a football field.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is storing hydrogen, not making it, the harder engineering problem?",
+            "options": [
+              "Hydrogen is rare and expensive to source",
+              "Per liter it holds almost no energy unless crushed or frozen",
+              "It cannot be produced without fossil fuels",
+              "It reacts violently with all known metals"
+            ],
+            "correct": 1,
+            "explanation": "Hydrogen is energy-dense by weight but extremely sparse by volume, so usable storage demands either 700-bar pressure, cryogenic cold, or a material that adsorbs it."
+          }
+        ]
+      },
+      {
+        "heading": "THE BATTERY QUESTION",
+        "body": "Solving storage does not settle the economics. A lithium battery returns about 90% of the electricity put into it; the hydrogen round-trip — electrolysis, storage, then a fuel cell back to power — loses well over half. Hydrogen wins only where batteries fail: long-haul shipping, aviation, steelmaking, and seasonal grid storage where weight or duration breaks the battery case."
+      }
+    ],
+    "generatedAt": "2026-06-01T12:29:03.679Z",
+    "label": "Hydrogen Storage Physics",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-01-oil-price-surge-iran-hormuz-lebanon-escalation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A WAR PREMIUM IS",
+        "body": "Oil prices embed a probability, not just a supply-demand balance. When traders price a small chance of a large disruption — a closed strait, a struck terminal — they bid the barrel up today even though nothing has actually stopped flowing. The premium is insurance against a tail risk, and it evaporates the moment de-escalation looks credible. That is why US-Iran talks alone knocked the price down before this surge reversed it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is *forward-looking*: the barrel that costs more today is the same barrel — only the **expected value of future supply** has changed."
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ BOTTLENECK",
+        "body": "Roughly a fifth of the world's oil — about 21 million barrels a day — passes through a strait 33 km wide at its narrowest, between Iran and Oman. The actual shipping lanes are just 3 km each way. The deepest channel hugs the Iranian coast, which is why Iranian naval positioning matters far out of proportion to Iran's own exports.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "KW"
+            ],
+            "label": "the Gulf's only exit",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.15,
+                "lng": 56.35,
+                "label": "Khasab, Oman"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT CAN'T BE BYPASSED",
+        "body": "Saudi Arabia's East-West Pipeline and the UAE's Habshan-Fujairah line were built precisely as Hormuz hedges, but together they can reroute only about a third of Gulf exports. The rest has no alternative path to open water. This is the structural reason a threat to the strait moves the global price even when not a single tanker has been touched.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of globally traded oil passes through the Strait of Hormuz?",
+            "options": [
+              "About 5%",
+              "About 20%",
+              "About 45%",
+              "About 70%"
+            ],
+            "correct": 1,
+            "explanation": "Around 21 million barrels a day — close to a fifth of global consumption — transit Hormuz, with no full alternative route for most of it."
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "It is rarely the mines or missiles that close a lane — it is Lloyd's of London. When war-risk premiums on hull and cargo spike, commercial shipping reroutes regardless of how dangerous the water actually is. The financial chokepoint tightens faster than the physical one, and it was exactly this dynamic that nearly emptied the Gulf during the 1987-88 Tanker War.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A single underwriting decision in London can do what a navy cannot: make the route **uninsurable**, and therefore uncommercial, overnight."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEBANON FRONT",
+        "body": "Israel and Hezbollah have fought repeatedly across the Litani-to-border zone, most destructively in the 34-day war of 2006, which the UN tried to freeze with Resolution 1701 and a buffer south of the Litani River. Each ceasefire since has been a pause, not a settlement — which is why an advance into southern Lebanon during a six-week truce reads to markets as escalation, not aberration.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1982",
+                "label": "Israel invades, siege of Beirut"
+              },
+              {
+                "year": "2000",
+                "label": "Israel withdraws to Blue Line"
+              },
+              {
+                "year": "2006",
+                "label": "34-day war with Hezbollah",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Cross-border war reignites"
+              }
+            ],
+            "label": "Israel–Lebanon flashpoints"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE TWO FRONTS COMPOUND",
+        "body": "A single regional flashpoint is a manageable risk; two open simultaneously without ceasefire talks multiply the priced-in probability of a Hormuz disruption. Traders are not pricing Lebanon's oil — Lebanon has none — but the chance that a Levant war pulls Iran and the US into direct exchange near the strait. War premia compound because risks intersect, not because they add.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hormuz",
+                "value": "~21M bbl",
+                "weight": 21,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Malacca",
+                "value": "~16M bbl",
+                "weight": 16,
+                "tone": "neutral"
+              },
+              {
+                "label": "Suez/SUMED",
+                "value": "~9M bbl",
+                "weight": 9,
+                "tone": "neutral"
+              },
+              {
+                "label": "Bab-el-Mandeb",
+                "value": "~6M bbl",
+                "weight": 6,
+                "tone": "neutral"
+              }
+            ],
+            "label": "world oil chokepoints, daily flow"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-01T12:29:42.203Z",
+    "label": "Oil's War Premium",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-01-openai-model-disproves-erdos-unit-distance-conjecture": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE QUESTION",
+        "body": "The unit-distance problem, posed by Erdős in 1946, asks something deceptively simple: scatter n points on a flat plane, and how many pairs can sit at exactly the same distance from each other? The answer governs how 'rigid' or 'repetitive' point configurations can be — a foundational question in combinatorial geometry."
+      },
+      {
+        "heading": "THE GAP NOBODY CAN CLOSE",
+        "body": "Eighty years on, the bounds remain embarrassingly far apart. The best proven ceiling grows like n to the four-thirds power; the best floor grows only slightly faster than n itself. Closing that gap — or even narrowing it — is one of the famous open problems Erdős attached cash prizes to.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The upper bound, **O(n⁴ᐟ³)**, comes from the *Szemerédi–Trotter theorem* on point-line incidences; the lower bound is barely above **n**. A result can be true and still resist proof for generations."
+          }
+        ]
+      },
+      {
+        "heading": "WHO WAS ERDŐS",
+        "body": "Paul Erdős published roughly 1,500 papers with 500+ collaborators — more than any mathematician in history. Homeless by choice, he travelled between universities living out of a suitcase, and posed conjectures so prolifically that 'Erdős number' (your collaborative distance from him) became a mathematician's badge of honor."
+      },
+      {
+        "heading": "WHY THE MACHINE WINS HERE",
+        "body": "Extremal problems like this one reward brute systematic search over astronomically large configuration spaces — exactly where human intuition runs out and machines do not tire. The AI introduced no new mathematics; it searched a space too vast for a person to exhaust, then humans verified the construction by hand."
+      },
+      {
+        "heading": "WHY DISPROVING IS EASIER THAN PROVING",
+        "body": "There is a deep asymmetry here. To prove a conjecture you must show it holds in every possible case — infinitely many. To disprove it you need just one configuration where it fails. This is why search-driven machines are better at demolition than construction.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "To disprove a mathematical conjecture, what is the minimum required?",
+            "options": [
+              "A single counterexample",
+              "Proof that it fails in every case",
+              "An exhaustive computer search of all cases",
+              "Consensus among leading mathematicians"
+            ],
+            "correct": 0,
+            "explanation": "Proving needs every case verified; one configuration where the claim fails is enough to disprove it."
+          }
+        ]
+      },
+      {
+        "heading": "THE LINEAGE OF MACHINE PROOF",
+        "body": "This is the latest chapter in a fifty-year argument about what counts as a proof a human can actually check. The 1976 Four Color Theorem was the first major result no person could verify by hand — and mathematicians fought bitterly over whether that made it real.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1976",
+                "label": "Four Color Theorem (Appel & Haken)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1998",
+                "label": "Kepler conjecture (Hales)"
+              },
+              {
+                "year": "2014",
+                "label": "Kepler proof formally verified"
+              },
+              {
+                "year": "2016",
+                "label": "Boolean Pythagorean triples (200TB proof)"
+              },
+              {
+                "year": "2026",
+                "label": "AI disproves Erdős conjecture",
+                "emphasis": "end"
+              }
+            ],
+            "label": "computers in mathematics"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-01T12:30:38.649Z",
+    "label": "Erdős & Machine-Assisted Proof",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-01-pakistan-malnutrition-survey-budget-failure-generation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE DAMAGE IS PERMANENT",
+        "body": "Chronic malnutrition before age 5 causes stunting — not just reduced height, but reduced brain development that no later feeding can reverse. The 2018 cohort the survey measured are teenagers now; whatever cognitive ceiling was set then is fixed. A missed nutrition budget is not a deferred cost; it is a closed window.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The clinical terms separate two failures: *stunting* is **low height-for-age** (chronic, irreversible), while *wasting* is **low weight-for-height** (acute, treatable if caught fast). The survey found both — wasting above the WHO **15% emergency threshold**."
+          }
+        ]
+      },
+      {
+        "heading": "STUNTING VS WASTING",
+        "body": "The two measures answer different questions. Stunting is the long, slow verdict on years of inadequate diet; wasting is the acute alarm of recent starvation. A country can cut wasting with emergency feeding and still carry a stunted generation for decades.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In child malnutrition, what does 'stunting' specifically measure?",
+            "options": [
+              "Low height-for-age — chronic, lifelong",
+              "Low weight-for-height — acute, treatable",
+              "Below-average birth weight",
+              "Vitamin deficiency in school-age children"
+            ],
+            "correct": 0,
+            "explanation": "Stunting is height-for-age and reflects years of chronic deprivation; wasting (weight-for-height) is the acute, reversible measure."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE PAKISTAN SITS",
+        "body": "At roughly 40% stunting, Pakistan is among the worst in South Asia — worse than India and Bangladesh, which have driven their rates down over the same decade. This is not regional fate; neighbors with comparable poverty have made measurable progress while Pakistan's needle has barely moved.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Child stunting prevalence (under-5)",
+            "peers": [
+              {
+                "value": 38,
+                "cc": "AF"
+              },
+              {
+                "value": 40,
+                "cc": "PK"
+              },
+              {
+                "value": 35,
+                "cc": "IN"
+              },
+              {
+                "value": 28,
+                "cc": "BD"
+              },
+              {
+                "value": 30,
+                "cc": "NP"
+              },
+              {
+                "value": 17,
+                "cc": "LK"
+              }
+            ],
+            "subjectCc": "PK",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE MONEY ISN'T THERE",
+        "body": "An Rs17.1 trillion budget sounds vast, but debt servicing now consumes the largest single slice — more than defense, more than development. Each rupee of depreciation makes dollar-denominated debt costlier to service, squeezing the discretionary development schedule where a nutrition line would have to live.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377,
+              278.485848,
+              278.494701,
+              278.137253,
+              277.408487,
+              278.412506,
+              278.512908,
+              278.575,
+              277.445439,
+              278.55,
+              278.55,
+              278.494021
+            ],
+            "periods": [
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPOUND COST",
+        "body": "Stunting is an economic decision disguised as a health statistic. A stunted child becomes a less productive adult; the World Bank estimates such deficits cost lower-income economies several percent of GDP annually. Skipping the nutrition line today reduces the size of the workforce — and the tax base — Pakistan will have in 2045.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The cruelty of the math: the cohort the 2026 budget fails to feed will be entering the labor force in the **2040s** — exactly when the debt being serviced today comes due to the next generation."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-01"
+    ],
+    "generatedAt": "2026-06-01T12:31:13.732Z",
+    "label": "Stunting & the Budget",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-01-pentagon-right-to-repair-defense-contractor-markups": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LAST SUPPER",
+        "body": "In 1993, Deputy Defense Secretary William Perry hosted defense CEOs at a Pentagon dinner and told them post-Cold-War budgets could not sustain dozens of primes — merge or die. Within five years the industry collapsed into a handful of giants, and the government blessed every merger.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1993",
+                "label": "Perry's 'Last Supper' dinner",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1994",
+                "label": "Northrop buys Grumman"
+              },
+              {
+                "year": "1995",
+                "label": "Lockheed + Martin Marietta"
+              },
+              {
+                "year": "1997",
+                "label": "Boeing + McDonnell Douglas"
+              },
+              {
+                "year": "1997",
+                "label": "Raytheon + Hughes"
+              },
+              {
+                "year": "2020",
+                "label": "Raytheon + United Technologies"
+              }
+            ],
+            "label": "the consolidation wave"
+          },
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Les Aspin",
+                "role": "Defense Secretary",
+                "years": "1993–1994",
+                "cc": "US"
+              },
+              {
+                "name": "William Perry",
+                "role": "Deputy, then Defense Secretary",
+                "years": "1993–1997",
+                "cc": "US"
+              },
+              {
+                "name": "Norman Augustine",
+                "role": "Martin Marietta CEO",
+                "years": "1987–1995",
+                "cc": "US"
+              }
+            ],
+            "label": "the cast at the dinner"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE KNOB COSTS $47,000",
+        "body": "The markup is not the part — it is the monopoly on the part. When one contractor holds the only approved drawing for a component, the Pentagon cannot competitively bid the work; it pays whatever the sole supplier names, plus the overhead of a custom production run for a single buyer.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is the **sole-source** contract: no second supplier can be qualified without the original **technical data package** — and the contractor owns that package, not the government."
+          }
+        ]
+      },
+      {
+        "heading": "THE 70% RULE",
+        "body": "Buying a weapon is the cheap part. Across a program's life, operations and sustainment — fuel, spares, repairs, upgrades — routinely consume far more than the original purchase. Whoever controls sustainment controls the larger share of the money, for decades.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of a major weapons program's lifetime cost goes to operations and sustainment rather than the initial purchase?",
+            "options": [
+              "About 10%",
+              "About 30%",
+              "Up to 70%",
+              "Over 95%"
+            ],
+            "correct": 2,
+            "explanation": "Sustainment — maintenance, spares, fuel, upgrades — can reach 70% of lifetime cost, which is why repair rights are where the real money sits."
+          }
+        ]
+      },
+      {
+        "heading": "THE DATA RIGHTS GAP",
+        "body": "The Pentagon buys the hardware but often not the rights to its design data. Without those rights it cannot publish repair manuals, 3D-print a spare, or let a depot fix the gear — every fault routes back to the manufacturer at the manufacturer's price."
+      },
+      {
+        "heading": "THE FIVE THAT REMAIN",
+        "body": "Consolidation left a near-oligopoly. The surviving primes are each large enough that letting one fail is itself a national-security risk — which blunts the government's leverage in every pricing dispute that follows.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Lockheed Martin",
+                "value": "~$70bn",
+                "cc": "US",
+                "weight": 70
+              },
+              {
+                "label": "RTX (Raytheon)",
+                "value": "~$80bn",
+                "cc": "US",
+                "weight": 80
+              },
+              {
+                "label": "Boeing",
+                "value": "~$78bn",
+                "cc": "US",
+                "weight": 78
+              },
+              {
+                "label": "General Dynamics",
+                "value": "~$45bn",
+                "cc": "US",
+                "weight": 45
+              },
+              {
+                "label": "Northrop Grumman",
+                "value": "~$40bn",
+                "cc": "US",
+                "weight": 40
+              }
+            ],
+            "label": "the surviving primes (approx. annual revenue)"
+          }
+        ]
+      },
+      {
+        "heading": "THE JOHN DEERE PARALLEL",
+        "body": "The fight mirrors the civilian one. Farmers who bought tractors found they could not legally repair them — software locks routed every fix through the dealer. Right-to-repair laws emerged to break that lock; the Pentagon, the world's largest equipment buyer, has yet to win the same protection for itself."
+      }
+    ],
+    "generatedAt": "2026-06-01T12:31:59.557Z",
+    "label": "Defense Sustainment & Repair Rights",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-01-uk-bars-uygur-piker-israel-criticism-border": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE POWER",
+        "body": "Excluding a foreigner from Britain is not a court decision — it is a personal power of the Home Secretary, exercised when a person's presence is judged 'not conducive to the public good.' The phrase traces to the Immigration Act 1971 and sits in the Immigration Rules; it requires no crime, no trial, and no evidence shown to the person.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The operative phrase is **'non-conducive to the public good'** — a standard so broad it has covered convicted criminals, foreign preachers, and pundits alike. It is an administrative judgment, not a finding of guilt."
+          }
+        ]
+      },
+      {
+        "heading": "THE UNACCEPTABLE-BEHAVIOUR LIST",
+        "body": "After the 7/7 London bombings in 2005, the government published a list of 'unacceptable behaviours' — fomenting, justifying, or glorifying violence, or fostering hatred — that could trigger exclusion or deportation. It was designed for radical preachers, but the criteria are written broadly enough to reach any non-citizen whose speech the state dislikes.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1971",
+                "label": "Immigration Act: 'public good' test"
+              },
+              {
+                "year": "2005",
+                "label": "'Unacceptable behaviour' list after 7/7",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2009",
+                "label": "Geert Wilders excluded (later overturned)"
+              },
+              {
+                "year": "2013",
+                "label": "Geller & Spencer barred from rally"
+              },
+              {
+                "year": "2025",
+                "label": "ETA scheme fully rolled out"
+              }
+            ],
+            "label": "Britain's exclusion powers in use"
+          }
+        ]
+      },
+      {
+        "heading": "THE DIGITAL BORDER",
+        "body": "Both men say their authorisation was cancelled before they ever boarded. That is now possible because Britain requires visa-exempt visitors — including Americans — to obtain an Electronic Travel Authorisation in advance. The border check happens at a server, not a passport desk, and the same system can quietly revoke clearance.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **ETA** (Electronic Travel Authorisation), rolled out to most nationalities through 2025, turns entry into a pre-screened permission. Cancelling it keeps the traveller out without the spectacle of a turn-around at Heathrow."
+          }
+        ]
+      },
+      {
+        "heading": "NO CHARGE, NO APPEAL",
+        "body": "A person excluded while still outside the UK has effectively no right of appeal — the in-country appeal rights that protect residents do not extend to someone who never arrived. The only recourse is judicial review, which tests the decision's lawfulness, not whether the Home Secretary was right.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Cenk Uygur",
+                "role": "The Young Turks founder",
+                "cc": "US"
+              },
+              {
+                "name": "Hasan Piker",
+                "role": "Political streamer, commentator",
+                "cc": "US"
+              }
+            ],
+            "label": "the two barred commentators"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT IT ECHOES",
+        "body": "Britain has used this power on the right and the left, on Islamists and on Islamophobes. Dutch MP Geert Wilders was turned away in 2009; American bloggers Pamela Geller and Robert Spencer were barred in 2013; radio host Michael Savage was named on a published exclusion list. The common thread is speech, not conduct on British soil.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What legal standard must Britain meet to bar a foreigner under this power?",
+            "options": [
+              "A criminal conviction in any country",
+              "Only that their presence is 'not conducive to the public good'",
+              "A court order from a British judge",
+              "Proof of a planned crime in the UK"
+            ],
+            "correct": 1,
+            "explanation": "The 'public good' test is an administrative judgment by the Home Secretary — no conviction, court order, or specific planned offence is required."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-01T12:32:42.861Z",
+    "label": "Exclusion & the 'Public Good' Power",
+    "category": "politics",
+    "articleCount": 1
   }
 }
