@@ -1,28 +1,26 @@
 {
-  "date": "2026-05-31",
+  "date": "2026-06-01",
   "metrics": {
-    "articles": { "value": 39, "detail": "5 cycles all completed, ~8/cycle (selector 262s, writer 1133s, editor 444s)" },
-    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 17, "economy": 10, "science": 8, "tech": 4 },
-    "multiSource": { "value": 10, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 10, "AS": 9, "EU": 8, "ME": 8, "AF": 4, "OC": 0 } },
-    "sciTech": { "ratio": 31, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 15, "target": 20, "met": true },
-    "uniqueSources": 33,
+    "articles": { "value": 59, "detail": "5 cycles all completed, avg ~12/cycle (avgPublished 10/cycle reported)" },
+    "freshness": { "median": 0, "p90": 1.5, "max": 1.5, "target": 1.0, "met": true },
+    "categories": { "politics": 20, "economy": 14, "science": 12, "tech": 13 },
+    "multiSource": { "value": 12, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 16, "AS": 14, "EU": 13, "ME": 10, "AF": 4, "OC": 2 } },
+    "sciTech": { "ratio": 42, "target": 25, "met": true },
+    "topSourceShare": { "source": "Nature", "pct": 14, "target": 20, "met": true },
+    "uniqueSources": 54,
     "duplicates": 0,
-    "avgCycleDuration": 1941
+    "avgCycleDuration": 1855
   },
-  "experiment": "Skipped. No active experiments pending evaluation, and the noNewExperimentsUntil gate (2026-05-31) still blocks new variables today while the 2026-05-28 opus-4-8 selector/tune + low-effort-editor lineup baselines. All metrics within targets. Gate lifts next cycle once 2026-05-31 passes — kept in place today, not auto-extended.",
-  "weakestArea": "Tech is the thinnest metric: 4 articles, exactly on the floor of 4 and down from 9 yesterday. That halving pulled the sci-tech ratio from 36% to 31% — still clear of the 25% target but the smallest margin of any goal. Throughput also softened to 39 vs 42 yesterday; with 5/5 cycles completed and 0 duplicates this reads as a lighter Saturday specialist feed rather than a pipeline fault. Writer stage ran slow (1133s avg vs 688s yesterday), the main driver of the higher 1941s cycle duration.",
+  "experiment": "Skipped — all four goal areas (freshness, diversity, multi-source, educational value) are within targets. The noNewExperimentsUntil 2026-05-31 gate has now passed and was dropped from .experiments.json; the field was not auto-extended.",
+  "weakestArea": "No goal metric is failing. The furthest-from-target signal is regional balance within the (met) diversity goal: Oceania (2) and Africa (4) trail the Americas (16), Asia (14), and Europe (13) by a wide margin, so the 6-region count masks heavy concentration in three regions. This is a long-standing structural pattern, not a regression.",
   "watching": [
-    "Tech volume at the floor (4), two-thirds below yesterday's 9 — confirm it recovers on a weekday feed before treating as a trend rather than weekend thinness.",
-    "Writer stage averaged 1133s, up sharply from ~688s yesterday — watch whether this is a one-day spike or drift under the new opus-4-8/low-effort lineup before the gate lifts.",
-    "Ukraine/Russia coverage is heavy in the source mix (TASS x4, Euromaidan Press, Ukrainska Pravda, Kyiv Independent) — track that it stays balanced across perspectives."
+    "Writer-stage time is sustained-high: 944s today after 1133s on 2026-05-31, vs the historical ~150s norm. Selector (228s) and editor (469s) are in normal range, so the elevated avgCycleDuration (1855s vs ~1033s norm) is entirely the writer. Two consecutive days makes this a trend, not a blip — likely tied to the 2026-05-28 opus-4-8 lineup flip; worth an operator look since it is not addressable via tunable parameters.",
+    "Multi-source supply is strong today (12 published) — above the ~9/cycle feed ceiling noted in the reverted 2026-05-09 floor experiment; watch whether it holds or reverts to the ~22% structural rate."
   ],
   "coverageGaps": [
-    "Oceania had zero coverage today — recurring blind spot, absent again after only one article in recent days.",
-    "Africa thin at 4/39, concentrated in Nigeria/South Africa outlets (Premium Times, Daily Maverick) despite curated African sources in the feed.",
-    "Tech sources skew to finance/crypto (Forbes, Yahoo! Finance, CoinDesk) over research/security/AI outlets, narrowing the educational depth of the tech slice."
+    "Oceania coverage thin (2 articles) — consistent with the region's smaller hard-news footprint but the lightest of the six.",
+    "Africa at 4 articles remains the second-lightest region despite curated African outlets (Premium Times, Daily Maverick, news24) appearing in the source mix."
   ],
-  "context": "Quiet, healthy day: 39 articles across 5 fully completed cycles, all five quality goals met, zero duplicates, top source (Dawn) at 15%. The operative constraint is procedural, not metric-driven — the self-imposed experiment pause set after the 2026-05-28 flip to opus-4-8 (selector/tune) plus permanent low-effort editor runs through 2026-05-31; today is its final day, so no tunable variable is introduced. The gate lifts next cycle and a new experiment may be proposed then if metrics warrant. Standing sourcing lesson holds: multi-source rate is capped upstream by feed clustering supply (~22% ceiling), so any next sourcing experiment should target Event Registry / regional-outlet inclusion rather than selector floors. Note the queued numerical-density experiment touches scripts/write-prompt.md, which is out of scope for daily tuning and cannot be activated by this stage."
+  "context": "No new experiment was introduced because metrics are healthy and the model-lineup baseline gate only just expired. History flags that the selector multi-source floor lever is tapped out (2026-05-09 experiment reverted; published multi-source rate is feed-capped near ~22%), so future sourcing-cluster work should target the upstream feed rather than selector floors. The write-prompt.md numerical-density experiment remains queued but is out of scope for daily tuning (prompt file, not a tunable parameter). The sustained writer-stage slowdown (944s/1133s over two days) is the one operational anomaly to surface to the operator."
 }
