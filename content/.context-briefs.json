@@ -282156,5 +282156,1284 @@
     "label": "Exclusion & the 'Public Good' Power",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-31-cloudflare-turnstile-webgl-fingerprinting-privacy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A CAPTCHA ACTUALLY MEASURES",
+        "body": "Modern CAPTCHAs stopped testing whether you can read distorted text years ago — that battle was lost when models out-read humans. What they test now is whether your browser behaves like a real one: timing, mouse entropy, JavaScript execution quirks, and hardware signals collected silently in the background."
+      },
+      {
+        "heading": "WHY WEBGL IS THE TELL",
+        "body": "When a browser renders 3D graphics, the exact pixels produced depend on your GPU model, driver version, and OS. Ask a thousand machines to draw the same hidden triangle and the tiny rounding differences sort them into distinguishable groups. WebGL turns invisible hardware into a near-unique signature without asking permission."
+      },
+      {
+        "heading": "ENTROPY IS THE CURRENCY",
+        "body": "Fingerprinting doesn't need one magic identifier — it stacks many weak signals until the combination is unique. Screen size narrows you to thousands of people; add fonts, timezone, GPU, and audio-stack quirks, and the intersection often shrinks to one.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The unit is **bits of entropy**: each independent signal that splits the population in half adds one bit. Around **33 bits** is enough to single out any one person on Earth — and a rich WebGL fingerprint alone can carry a dozen."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRIVACY PARADOX",
+        "body": "Turning on fingerprint resistance feels like hiding, but it does the opposite. The vast majority of users run stock browsers, so the handful who block WebGL or spoof their hardware form a tiny, conspicuous minority — easy to flag precisely because they tried not to be seen.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can enabling strong fingerprint resistance make a browser easier to single out?",
+            "options": [
+              "It shrinks the anonymity set — so few users do it that resisters stand apart",
+              "It permanently disables all cookies, which servers log",
+              "It broadcasts the user's real IP address to trackers",
+              "It forces the browser to reveal its serial number"
+            ],
+            "correct": 0,
+            "explanation": "Anonymity depends on blending into a crowd; rare configurations are themselves a distinguishing signal — the resister becomes the outlier."
+          }
+        ]
+      },
+      {
+        "heading": "A 25-YEAR ARMS RACE",
+        "body": "Each CAPTCHA generation solved the last one's failure and created the next. Text puzzles fell to OCR; image grids fell to vision models; the response was to stop testing the human and start profiling the device — which is where the privacy cost lands.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2000",
+                "label": "Term 'CAPTCHA' coined at CMU"
+              },
+              {
+                "year": "2007",
+                "label": "reCAPTCHA digitizes books"
+              },
+              {
+                "year": "2014",
+                "label": "Google 'No CAPTCHA' checkbox",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "Cloudflare Turnstile launches"
+              }
+            ],
+            "label": "from puzzles to profiling"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHOKEPOINT PROBLEM",
+        "body": "Cloudflare sits in front of a large share of the web as a reverse proxy, so a single bot-detection rule it ships becomes a de-facto gate for millions of sites at once. When that gate quietly requires WebGL, browsers built for privacy — hardened Firefox, WebKitGTK — get locked out of the open web by default, not by any site's choice."
+      }
+    ],
+    "generatedAt": "2026-06-01T17:26:32.778Z",
+    "label": "Browser Fingerprinting & the CAPTCHA Arms Race",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-01-anthropic-confidential-ipo-filing-ai-valuation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 'CONFIDENTIAL' MEANS",
+        "body": "Since the 2012 JOBS Act, a company under $1.235bn in revenue can submit a Draft Registration Statement to the SEC privately, negotiate disclosures with regulators for months, and only reveal the document publicly about two weeks before its roadshow. The filing isn't secret from the SEC — it's secret from competitors and the press until the company chooses to surface it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is a **DRS** — *Draft Registration Statement*. Facebook, Uber, and almost every large tech debut since used it to test the waters without committing to a price or a date."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE NUMBERS WERE HIDDEN",
+        "body": "AI labs guard two figures above all: revenue and compute cost. The gap between them — what it costs to run a model versus what customers pay — is the sector's central unanswered question. A public filing forces those unit economics into the open, which is precisely why the industry has resisted listing for as long as private capital let it."
+      },
+      {
+        "heading": "THE STAY-PRIVATE ERA",
+        "body": "The number of US publicly listed companies roughly halved between the mid-1990s and today — from around 8,000 to near 4,000. The reason is structural: private capital became so abundant that a company can raise tens of billions without ever facing a public shareholder, sidestepping quarterly earnings pressure and disclosure entirely.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How has the count of US publicly listed companies changed since the mid-1990s?",
+            "options": [
+              "Roughly doubled",
+              "Roughly halved",
+              "Stayed flat",
+              "Grew tenfold"
+            ],
+            "correct": 1,
+            "explanation": "Listed-company count fell from ~8,000 to ~4,000 as deep private markets let firms grow huge without going public."
+          }
+        ]
+      },
+      {
+        "heading": "THE VALUATION LADDER",
+        "body": "A near-trillion-dollar private valuation would place Anthropic at the very top of the world's unlisted companies — above SpaceX and the other giants that have stayed private precisely because they could.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Private company valuation (approx.)",
+            "peers": [
+              {
+                "value": 965,
+                "label": "Anthropic"
+              },
+              {
+                "value": 500,
+                "label": "OpenAI"
+              },
+              {
+                "value": 350,
+                "label": "SpaceX"
+              },
+              {
+                "value": 300,
+                "label": "ByteDance"
+              },
+              {
+                "value": 90,
+                "label": "Stripe"
+              },
+              {
+                "value": 60,
+                "label": "Databricks"
+              }
+            ],
+            "subjectLabel": "Anthropic",
+            "unit": "$bn"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT $965 BILLION ACTUALLY IS",
+        "body": "A round valuation is not a market price. It is the price of the newest share multiplied by every share outstanding — a number set by a handful of negotiating investors, not by an open market of buyers and sellers. An IPO is the first time that figure gets tested against the broad public's willingness to pay.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The private figure is a *post-money* valuation; the public market sets an *enterprise value*. The two often diverge sharply — the IPO is where a paper number meets a clearing price."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SPACEX NEVER FOLLOWED",
+        "body": "The largest private companies stay private for control. Going public means dual-class share fights, activist investors, and quarterly scrutiny of long-horizon bets. SpaceX has raised billions for two decades without listing, proving that for a founder-led firm with reliable private funding, an IPO is a choice — not a necessity."
+      }
+    ],
+    "generatedAt": "2026-06-01T17:27:20.049Z",
+    "label": "Confidential IPOs & AI Valuations",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-01-cities-urban-rainfall-effect-smaller-than-thought": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY A CITY RUNS HOT",
+        "body": "Concrete and asphalt store solar heat and release it slowly after dusk; pavement sheds rain before it can evaporate and cool the surface; engines, air conditioners, and bodies add waste heat. The result is a dome of warm air that can sit several degrees above the surrounding countryside, sharpest on calm, clear nights.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The effect has a name — the *urban heat island* — and it is strongest not at noon but **at night**, when rural land has cooled and the city is still bleeding the day's stored heat."
+          }
+        ]
+      },
+      {
+        "heading": "THREE WAYS A CITY MAKES RAIN",
+        "body": "The warm dome forces air to rise (convection), the building canopy roughens the wind and forces it upward (mechanical lift), and urban aerosols seed the cloud droplets. Each mechanism is real but small; the hard part is separating their combined nudge from the natural noise of where a storm would have rained anyway."
+      },
+      {
+        "heading": "THE DOWNWIND SIGNATURE",
+        "body": "Urban-enhanced rain rarely falls on the city itself — it falls 20 to 60 kilometers downwind, where the lifted, seeded air finally condenses. The classic METROMEX field campaign over St. Louis in the early 1970s measured roughly 5 to 25 percent more rainfall in the downwind plume, the result that anchored decades of later estimates.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1971",
+                "label": "METROMEX launches over St. Louis",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1975",
+                "label": "5–25% downwind enhancement reported"
+              },
+              {
+                "year": "1997",
+                "label": "TRMM satellite measures rain globally"
+              },
+              {
+                "year": "2002",
+                "label": "Satellites confirm downwind urban signal"
+              }
+            ],
+            "label": "measuring the urban rain effect"
+          }
+        ]
+      },
+      {
+        "heading": "THE AEROSOL PARADOX",
+        "body": "Aerosols cut both ways. A modest load of particles gives water vapor more surfaces to condense on and can invigorate a storm; too many particles split the moisture into droplets too small to fall, which suppresses rain instead. Which effect dominates depends on the storm, so the same pollution can add rain in one city and cut it in another.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The particles that matter are *cloud condensation nuclei* — and the count, not just the amount of pollution, flips the outcome between **wetter** and **drier**."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE MODELS OVERSHOT",
+        "body": "Attribution is the trap: rainfall is so variable in space and time that a real urban signal of a few percent is easily confused with random scatter. Models that pinned a large fraction of local extreme rain on the city were extrapolating from a few well-studied cases and a clean natural baseline that never actually exists."
+      },
+      {
+        "heading": "WHAT FLOOD PLANNERS ACTUALLY BUY",
+        "body": "Drainage and flood defenses are sized to a 'design storm' — a rainfall intensity with a chosen return period, like the 1-in-100-year event. If you overstate how much a city amplifies rain, you inflate that design storm, and the city pours concrete for floods that the physics never justified.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where does a city's extra rainfall typically fall?",
+            "options": [
+              "Directly over the dense urban core",
+              "20–60 km downwind of the city",
+              "Upwind, before air reaches the city",
+              "Spread evenly across the metro area"
+            ],
+            "correct": 1,
+            "explanation": "Lifted, aerosol-seeded air needs time and distance to condense, so the enhanced rain lands in a plume downwind of the city, not over it."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-01T17:28:15.589Z",
+    "label": "Urban Heat Islands & Rainfall",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-01-lebanese-flee-beirut-israel-attack-orders-ceasefire": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DAHIEH DOCTRINE",
+        "body": "The word Dahieh is now an Israeli military term of art, not just a Beirut neighbourhood. After the 2006 war, general Gadi Eisenkot articulated a policy: in any area from which Hezbollah fires, apply disproportionate force and treat the whole district as a military target. The doctrine is named after the very suburb being emptied now.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The principle is deterrence through *destruction of the civilian environment* — Eisenkot called Dahieh \"a military base.\" It is why an evacuation order can cover **40km** at once rather than a single building."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SOUTHERN BEIRUT",
+        "body": "Dahieh is the dense Shia southern suburb where Hezbollah keeps its political headquarters, financial institutions, and command nodes — embedded inside an ordinary residential city. Its other stronghold is the south, below the Litani River, within rocket range of northern Israel. The two zones are why an Israeli campaign always splits between the capital and the border.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL",
+              "SY"
+            ],
+            "label": "Hezbollah's two fronts",
+            "caption": "The capital HQ and the southern rocket belt below the Litani.",
+            "markers": [
+              {
+                "lat": 33.8547,
+                "lng": 35.5009,
+                "label": "Dahieh (S. Beirut)"
+              },
+              {
+                "lat": 33.2705,
+                "lng": 35.2033,
+                "label": "Litani River line"
+              },
+              {
+                "lat": 33.1206,
+                "lng": 35.4361,
+                "label": "Bint Jbeil"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LITANI LINE",
+        "body": "UN Security Council Resolution 1701, which ended the 2006 war, demanded Hezbollah withdraw north of the Litani River and that the zone south of it hold only the Lebanese army and UN peacekeepers. That line was never enforced. The 40km combat zone Israel just declared is roughly the same buffer 1701 promised — claimed now by force rather than treaty."
+      },
+      {
+        "heading": "THE 2006 PRECEDENT",
+        "body": "Bint Jbeil was the fiercest battle of the 2006 war: Israel sent its elite Golani Brigade to take the town, Hezbollah held it in close urban combat for days, and Israel withdrew without holding it. In Hezbollah's narrative it is their Stalingrad — proof that Israeli ground forces can be fought to a standstill, which shapes how both sides game a new ground push.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1982",
+                "label": "Israel invades, siege of Beirut"
+              },
+              {
+                "year": "1982",
+                "label": "Hezbollah founded"
+              },
+              {
+                "year": "2000",
+                "label": "Israel withdraws from south"
+              },
+              {
+                "year": "2006",
+                "label": "34-day war; Bint Jbeil",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Nasrallah killed in Dahieh"
+              },
+              {
+                "year": "2025-04",
+                "label": "Ceasefire (unobserved)"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1982",
+                "to": "2000",
+                "label": "S. Lebanon occupation",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Lebanon–Israel arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE STATE THAT ISN'T",
+        "body": "Lebanon's currency lost more than 98% of its value after the 2019 banking collapse, gutting the army, the power grid, and public salaries. As the state hollowed out, Hezbollah's parallel network — its own welfare arms, clinics, and financing — became the functioning authority in much of the country. Washington's demand that Beirut make Hezbollah stop firing assumes a state strong enough to give that order.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              89550,
+              89550,
+              89432.68024,
+              89537.3852,
+              89526.788262,
+              89549.674385,
+              89318.69055,
+              89318.69055,
+              89364.95244,
+              89708.074869,
+              89566.197135,
+              89716.997863,
+              89576.831791,
+              89741.204119,
+              89725.774869,
+              89690.619895,
+              89550.663635,
+              89550,
+              89501.859951,
+              89565.531408,
+              89550,
+              89484.200014,
+              89307.73746,
+              89566.466635,
+              89582.669635,
+              89718.027869,
+              89549.128416,
+              89550,
+              89550,
+              89420.17784
+            ],
+            "periods": [
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1"
+            ],
+            "label": "Lebanese pound",
+            "unit": "LBP / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHO SITS AT THE TABLE",
+        "body": "The Tuesday talks are US-hosted and indirect: Lebanon and Israel do not formally recognise each other, so the mechanism inherited from 2006 runs through intermediaries. The real veto-holders are not all in the room — Hezbollah's military leadership and its Iranian backers set what Beirut can actually deliver.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Benjamin Netanyahu",
+                "role": "Israeli Prime Minister",
+                "years": "2022–",
+                "cc": "IL"
+              },
+              {
+                "name": "Naim Qassem",
+                "role": "Hezbollah Secretary-General",
+                "years": "2024–",
+                "cc": "LB"
+              },
+              {
+                "name": "Joseph Aoun",
+                "role": "Lebanese President",
+                "years": "2025–",
+                "cc": "LB"
+              }
+            ],
+            "label": "the principals"
+          }
+        ]
+      },
+      {
+        "heading": "WHY A 'CEASEFIRE' HOLDS NOTHING",
+        "body": "A ceasefire without a monitoring force with the authority to disarm is a pause, not a settlement. The April truce had no enforcement mechanism either side trusted — so each treats the other's continued presence as the violation, and the agreement decays back into fighting.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which river marks the line Hezbollah was meant to withdraw behind under UN Resolution 1701?",
+            "options": [
+              "The Litani",
+              "The Jordan",
+              "The Orontes",
+              "The Euphrates"
+            ],
+            "correct": 0,
+            "explanation": "Resolution 1701 (2006) required Hezbollah to pull north of the Litani, leaving only the Lebanese army and UN peacekeepers south of it — a line never enforced."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-01"
+    ],
+    "generatedAt": "2026-06-01T17:28:59.127Z",
+    "label": "Dahieh & the Hezbollah Frontier",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-01-microsoft-security-researchers-legal-action-disclosure": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LAW THAT MAKES RESEARCH RISKY",
+        "body": "The 1986 Computer Fraud and Abuse Act criminalizes accessing a computer 'without authorization' — language written before a security industry existed. Probing a system to find a flaw can technically satisfy that definition, which is why a vendor's terms of service, not just the code, can become a legal weapon against the person reporting the bug.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2021 Supreme Court case *Van Buren v. United States* narrowed the CFAA's 'exceeds authorized access' clause — but only for people who already had legitimate access. The danger to outside researchers probing systems they were never invited into was left largely intact."
+          }
+        ]
+      },
+      {
+        "heading": "FULL DISCLOSURE VS. COORDINATED DISCLOSURE",
+        "body": "For decades the field split between 'full disclosure' — publish the flaw immediately to force a fix and warn users — and quietly telling the vendor first. The industry settled on a middle path: tell the vendor, give them a deadline, then publish whether or not they patched. The deadline is the leverage; without it, vendors sit on bugs indefinitely.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1986",
+                "label": "CFAA signed into law"
+              },
+              {
+                "year": "2001",
+                "label": "'Full Disclosure' mailing list founded"
+              },
+              {
+                "year": "2010",
+                "label": "Google pushes 'responsible disclosure' rebrand"
+              },
+              {
+                "year": "2014",
+                "label": "Project Zero: 90-day deadline",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "Van Buren narrows CFAA"
+              }
+            ],
+            "label": "how disclosure norms hardened"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A SAFE HARBOR ACTUALLY IS",
+        "body": "A safe harbor is a binding written promise that a company will not pursue legal action against researchers who follow its disclosure rules. A press statement saying 'we won't sue' is not one — it carries no contractual force and can be reversed silently. The distinction is the entire story: goodwill is not a policy.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The gold standard is the *DOJ's 2022 policy* declining to charge good-faith security research under the CFAA, plus a vendor's own **safe-harbor clause** baked into its bug-bounty terms. A blog post is neither."
+          }
+        ]
+      },
+      {
+        "heading": "THE GRAY MARKET ALTERNATIVE",
+        "body": "A researcher who fears legal threats has a quiet exit: sell the bug instead of reporting it. Exploit brokers and government buyers pay far more than any vendor bounty, and they ask no permission. Every threat against a researcher pushes the marginal discovery away from the patch pipeline and toward the people who want the flaw to stay unpatched.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Exploit broker",
+                "value": "up to ~$2.5M",
+                "tone": "unfavorable",
+                "weight": 2500
+              },
+              {
+                "label": "Apple bounty",
+                "value": "up to ~$1M",
+                "tone": "neutral",
+                "weight": 1000
+              },
+              {
+                "label": "Typical vendor",
+                "value": "$5k–$50k",
+                "tone": "favorable",
+                "weight": 50
+              }
+            ],
+            "label": "what a top-tier mobile exploit pays"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE THREAT ALONE DOES DAMAGE",
+        "body": "Even a legal threat that never reaches court achieves its purpose. The cost of defending a lawsuit dwarfs any bounty, so the rational researcher simply stops looking — or stops reporting. The chilling effect is the deterrent; the company rarely needs to actually sue to make independent scrutiny disappear.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did the 2021 Van Buren ruling change about the CFAA?",
+            "options": [
+              "It legalized all security research",
+              "It narrowed what counts as 'exceeding authorized access'",
+              "It created a federal bug-bounty program",
+              "It repealed the CFAA entirely"
+            ],
+            "correct": 1,
+            "explanation": "Van Buren held that misusing access you legitimately have isn't a CFAA violation — but it left untouched the risk for researchers probing systems they were never authorized to touch."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-01T17:29:40.219Z",
+    "label": "Vulnerability Disclosure",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-01-nvidia-rtx-spark-soc-windows-ai-pc-computex": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO INSTRUCTION SETS",
+        "body": "Every chip speaks one of two languages. x86 (Intel and AMD) is the dense CISC dialect that has run Windows PCs since 1981. ARM is the lean RISC dialect that powers nearly every phone. Software compiled for one does not run natively on the other — which is the whole reason a 'Windows laptop' was, for forty years, synonymous with x86.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "x86 is **licensed to almost nobody** — only Intel and AMD can make the chips. ARM is *licensed to everyone*: Apple, Qualcomm, Nvidia, and Amazon all ship ARM designs. The business model, not just the engineering, is what's shifting."
+          }
+        ]
+      },
+      {
+        "heading": "THE EMULATION TAX",
+        "body": "An ARM Windows machine still has to run decades of x86 software. It does so through a translation layer — Microsoft's Prism, the spiritual cousin of Apple's Rosetta 2 — that converts x86 instructions to ARM on the fly. Translation is never free: emulated apps run slower and drain more battery than native ones, which is why ARM Windows lived or died on how many apps shipped native.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't an ARM-based Windows laptop simply run existing x86 programs at full speed?",
+            "options": [
+              "x86 software must be translated to ARM instructions on the fly",
+              "ARM chips are physically slower than x86 chips",
+              "Windows refuses to launch x86 files for licensing reasons",
+              "x86 apps require an internet connection to recompile"
+            ],
+            "correct": 0,
+            "explanation": "A translation layer (Microsoft's Prism) converts x86 instructions to ARM at runtime, and that overhead is the 'emulation tax' native ARM apps avoid."
+          }
+        ]
+      },
+      {
+        "heading": "WHY QUALCOMM HAD A MONOPOLY",
+        "body": "ARM-on-Windows wasn't open — Microsoft tied the platform to Qualcomm under an exclusivity arrangement that reportedly ran for years. Earlier attempts kept failing: Windows RT in 2012 couldn't run legacy apps at all and died within two years. Only with the 2024 Snapdragon X and Copilot+ branding did ARM Windows get real traction. Spark ending that exclusivity is the actual news beneath the headline.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2012",
+                "label": "Windows RT — no x86 apps, fails",
+                "emphasis": "start"
+              },
+              {
+                "year": "2019",
+                "label": "Surface Pro X on Snapdragon"
+              },
+              {
+                "year": "2024",
+                "label": "Snapdragon X + Copilot+ PCs"
+              },
+              {
+                "year": "2026",
+                "label": "Nvidia Spark ends exclusivity",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "Windows on ARM"
+          }
+        ]
+      },
+      {
+        "heading": "THE SYSTEM-ON-CHIP BET",
+        "body": "A traditional PC bolts a CPU, a separate GPU, and discrete memory together on a motherboard. An SoC fuses them onto one die sharing a single pool of unified memory, so data doesn't have to be copied across a slow bus to reach the GPU. Apple's M-series proved this layout could beat discrete designs on performance-per-watt — and it's exactly the architecture Nvidia, the discrete-GPU king, is now adopting."
+      },
+      {
+        "heading": "WHAT A 'PETAFLOP OF AI' MEANS",
+        "body": "AI accelerators are rated in low-precision math — INT8 or FP4 operations, not the full-precision FLOPS a scientific workload needs. Nvidia's 'petaflop' is roughly 1,000 TOPS of this lightweight compute, drawn mostly from the GPU rather than a small dedicated NPU. The number dwarfs the ~40 TOPS Microsoft set as the floor for a Copilot+ PC — though the metric flatters anyone marketing it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Copilot+ floor",
+                "value": "~40 TOPS",
+                "weight": 40,
+                "tone": "neutral"
+              },
+              {
+                "label": "Apple M4",
+                "value": "~38 TOPS",
+                "weight": 38,
+                "tone": "neutral"
+              },
+              {
+                "label": "Snapdragon X",
+                "value": "~45 TOPS",
+                "weight": 45,
+                "tone": "neutral"
+              },
+              {
+                "label": "Nvidia Spark",
+                "value": "~1000 TOPS",
+                "weight": 1000,
+                "tone": "favorable"
+              }
+            ],
+            "label": "on-device AI compute (approx TOPS)"
+          }
+        ]
+      },
+      {
+        "heading": "NVIDIA HAS BEEN HERE BEFORE",
+        "body": "This isn't Nvidia's first run at the PC. Its Tegra ARM SoCs powered tablets and the original Surface RT in the early 2010s before retreating to cars and the Nintendo Switch. What changed is the prize: with AI inference now the selling point of a laptop, the company that already dominates AI silicon has the strongest hand of anyone entering the room."
+      }
+    ],
+    "generatedAt": "2026-06-01T17:30:35.553Z",
+    "label": "ARM, x86 & the Windows PC",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-01-oecd-chip-subsidies-us-china-semiconductor-support": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE THREE LAYERS",
+        "body": "A chip passes through three distinct industries: design (writing the circuit blueprint), fabrication (printing transistors onto silicon), and packaging (wiring the finished die into a usable part). Subsidies target different layers in different countries — and the layer a government funds reveals what it lacks."
+      },
+      {
+        "heading": "WHY FABS NEED THE MONEY",
+        "body": "A leading-edge fab costs $20–30 billion and takes 3–5 years to build, demanding chemicals at six-nines purity and clean rooms a thousand times cleaner than an operating theater. No private firm carries that capital risk alone, which is exactly why the state steps in — the subsidy substitutes for a market that won't finance the gamble.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The economics hinge on the **fab** — the fabrication plant — not the chip design. Anyone can design a chip in software; fewer than **five companies on Earth** can print one at the leading edge."
+          }
+        ]
+      },
+      {
+        "heading": "SHARE VS DOLLARS",
+        "body": "The OECD's split finding is structural, not contradictory: China subsidizes a higher share of each firm's revenue because its firms are smaller and need proportionally more help to survive, while US firms are so large that even a modest support rate adds up to the biggest absolute check. Percentage measures dependence; dollars measure scale."
+      },
+      {
+        "heading": "THE COMPETING PACKAGES",
+        "body": "The subsidy race is a handful of national programs, each a direct response to the others. The US CHIPS Act and China's 'Big Fund' anchor the two poles, with Europe, Japan, and Korea racing to keep a domestic foothold.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China Big Fund",
+                "value": "~$100bn+",
+                "cc": "CN",
+                "weight": 100
+              },
+              {
+                "label": "United States",
+                "value": "$52bn",
+                "cc": "US",
+                "weight": 52
+              },
+              {
+                "label": "EU Chips Act",
+                "value": "~$47bn",
+                "cc": "EU",
+                "weight": 47
+              },
+              {
+                "label": "Japan",
+                "value": "~$25bn",
+                "cc": "JP",
+                "weight": 25
+              },
+              {
+                "label": "South Korea",
+                "value": "tax-led",
+                "cc": "KR",
+                "weight": 20
+              }
+            ],
+            "label": "headline chip-support packages"
+          }
+        ]
+      },
+      {
+        "heading": "THE ECOSYSTEM PROBLEM",
+        "body": "Money buys a building, not a cluster. A fab is useless without hundreds of specialized suppliers within truck distance — photoresist makers, etch-gas providers, mask shops, wafer polishers. Taiwan grew this web organically over 40 years around Hsinchu; subsidies can rent the talent but cannot fast-forward the ecosystem.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "TW",
+              "KR",
+              "JP"
+            ],
+            "label": "the East Asian chip cluster",
+            "caption": "decades of co-located suppliers, not just fabs, anchor the region"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE EDGE ACTUALLY LIVES",
+        "body": "Subsidies chase a capability concentrated in one place: the overwhelming majority of the world's most advanced logic chips are fabricated in Taiwan. That single-point dependence — not the size of any subsidy — is what makes every government's program a strategic necessity rather than industrial policy.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where is the large majority of the world's leading-edge logic chips fabricated today?",
+            "options": [
+              "United States",
+              "China",
+              "Taiwan",
+              "Germany"
+            ],
+            "correct": 2,
+            "explanation": "Taiwan, chiefly via TSMC, fabricates the bulk of cutting-edge logic — the concentration that every subsidy program is trying to dilute."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-01T17:31:12.467Z",
+    "label": "Chip Subsidies & the Fab Economy",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-01-philippines-duterte-impeachment-trial-2028-marcos": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE TRIAL IS THE PRIZE",
+        "body": "Philippine impeachment carries a penalty beyond removal: conviction permanently disqualifies the official from any future public office. For a sitting vice-president eyeing the presidency, the trial is not about the current job — it is about whether the 2028 ballot will even have her name on it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many of the Senate's 24 members must vote to convict in a Philippine impeachment?",
+            "options": [
+              "A simple majority (13)",
+              "Two-thirds (16)",
+              "Three-quarters (18)",
+              "All 24, unanimously"
+            ],
+            "correct": 1,
+            "explanation": "The 1987 Constitution requires a two-thirds vote of all senators — 16 of 24 — making conviction far harder than the House majority that impeaches."
+          }
+        ]
+      },
+      {
+        "heading": "TWO CHAMBERS, TWO ROLES",
+        "body": "The House of Representatives impeaches by majority — the equivalent of an indictment — but the Senate alone tries the case and votes to convict. Because the threshold is two-thirds, a faction needs the chamber's middle, not just its own bloc; a handful of unaligned senators can decide whether disqualification lands."
+      },
+      {
+        "heading": "THE UNITEAM THAT BROKE",
+        "body": "Marcos and Duterte ran together in 2022 as the 'UniTeam' — a marriage of the two most powerful political dynasties in the country, north (Marcos, Ilocos) and south (Duterte, Mindanao). The alliance was always transactional; within two years it had curdled into open rivalry, and the impeachment is its formal rupture.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Ferdinand Marcos Jr.",
+                "role": "President",
+                "years": "2022–",
+                "cc": "PH"
+              },
+              {
+                "name": "Sara Duterte",
+                "role": "Vice-President",
+                "years": "2022–",
+                "cc": "PH"
+              },
+              {
+                "name": "Rodrigo Duterte",
+                "role": "Former president",
+                "years": "2016–2022",
+                "cc": "PH"
+              }
+            ],
+            "label": "the UniTeam, then and now"
+          },
+          {
+            "type": "prose",
+            "text": "In the Philippines the president and vice-president are elected *separately* — a split ticket is normal, so the VP is often a rival-in-waiting rather than a running mate, exactly the **UniTeam** fault line now on trial."
+          }
+        ]
+      },
+      {
+        "heading": "THE SINGLE TERM",
+        "body": "A Philippine president serves one six-year term with no re-election — a post-Marcos safeguard against an entrenched executive. That hard stop turns every midterm into a succession contest: Marcos cannot run again in 2028, so the fight is over who inherits the machine, and disqualifying the front-runner is the cleanest way to shape it."
+      },
+      {
+        "heading": "THE MARCOS RETURN",
+        "body": "The family now prosecuting the trial was itself driven from the palace. Ferdinand Marcos Sr. ruled for two decades, declared martial law in 1972, and was toppled by the 1986 People Power revolt that sent the clan into Hawaiian exile. His son's 2022 victory was the completion of a 36-year rehabilitation — which is why control of the disqualification machinery now matters so much to keeping it.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1965",
+                "label": "Marcos Sr. elected president"
+              },
+              {
+                "year": "1972",
+                "label": "Martial law declared"
+              },
+              {
+                "year": "1986",
+                "label": "EDSA People Power; clan exiled",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2016",
+                "label": "Rodrigo Duterte elected"
+              },
+              {
+                "year": "2022",
+                "label": "Marcos Jr. + Sara Duterte win"
+              },
+              {
+                "year": "2024",
+                "label": "UniTeam alliance collapses"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1972",
+                "to": "1986",
+                "label": "Marcos martial-law era",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "the Marcos arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-01T17:31:47.894Z",
+    "label": "Philippine Impeachment & the Dynasty War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-01-south-africa-xenophobia-ghana-travel-warning-nigeria": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "GHANA MUST GO, IN REVERSE",
+        "body": "In 1983 Nigeria expelled up to two million West Africans, most of them Ghanaians, almost overnight. The cheap checkered plaid bags they packed into are still called 'Ghana Must Go' bags across the region. Forty years later it is Ghana evacuating its citizens from a richer African neighbor — the same script, the roles swapped.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "The 'Ghana Must Go' bag — the checkered plaid carryall sold across Africa — got its name from which event?",
+            "options": [
+              "Nigeria's 1983 mass expulsion of Ghanaians and other West Africans",
+              "Ghana's independence migration in 1957",
+              "The 2008 South African xenophobia attacks",
+              "A Ghanaian airline's branded luggage"
+            ],
+            "correct": 0,
+            "explanation": "When Nigeria expelled up to 2 million migrants in 1983, the bags they fled with became a regional shorthand for sudden mass repatriation."
+          }
+        ]
+      },
+      {
+        "heading": "AFROPHOBIA, NOT XENOPHOBIA",
+        "body": "South Africa's anti-foreigner violence overwhelmingly targets other Black Africans — Zimbabweans, Mozambicans, Nigerians — not European or Asian migrants, who are rarely attacked. Scholars call it afrophobia rather than xenophobia for this reason.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The slur shouted in the attacks is *makwerekwere* — a mocking imitation of 'unintelligible' foreign African languages. The target is never the wealthy expatriate; it is the poor migrant competing for the same informal-sector job."
+          }
+        ]
+      },
+      {
+        "heading": "THE RECURRING CYCLE",
+        "body": "These are not the first attacks. South Africa has seen a roughly recurring wave of anti-migrant violence since the end of apartheid, each spike followed by official condemnation and then a return to the same conditions.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2008",
+                "label": "Nationwide attacks, ~62 killed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2015",
+                "label": "Durban & Johannesburg attacks"
+              },
+              {
+                "year": "2019",
+                "label": "Johannesburg looting of foreign shops"
+              },
+              {
+                "year": "2022",
+                "label": "Operation Dudula vigilante drives"
+              }
+            ],
+            "label": "waves of anti-migrant violence"
+          }
+        ]
+      },
+      {
+        "heading": "THE STRUCTURAL DRIVER",
+        "body": "South Africa runs one of the world's highest unemployment rates — above 30%, and far higher among young Black men. Migrants who own spaza shops or take informal jobs become the visible scapegoat for a jobs crisis whose real causes are structural, and politicians find blaming them cheaper than fixing them."
+      },
+      {
+        "heading": "WHO ACTUALLY MIGRATES THERE",
+        "body": "South Africa hosts the largest migrant population on the continent, but most come from its immediate neighbors, not from Ghana or Nigeria. The flashpoint communities are overwhelmingly Zimbabwean and Mozambican — economies that collapsed or stagnated while South Africa's stayed the region's largest.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Zimbabwe",
+                "value": "~1m+",
+                "cc": "ZW",
+                "weight": 100
+              },
+              {
+                "label": "Mozambique",
+                "value": "~700k",
+                "cc": "MZ",
+                "weight": 65
+              },
+              {
+                "label": "Lesotho",
+                "value": "~350k",
+                "cc": "LS",
+                "weight": 35
+              },
+              {
+                "label": "Malawi",
+                "value": "~200k",
+                "cc": "MW",
+                "weight": 20
+              },
+              {
+                "label": "Nigeria",
+                "value": "~50k",
+                "cc": "NG",
+                "weight": 6
+              }
+            ],
+            "label": "foreign-born in South Africa, by origin (approx.)"
+          },
+          {
+            "type": "locations",
+            "codes": [
+              "ZA",
+              "ZW",
+              "MZ",
+              "LS",
+              "MW",
+              "NG",
+              "GH"
+            ],
+            "label": "where the people move",
+            "caption": "Most migrants come from SA's neighbors; the repatriating states are West African."
+          }
+        ]
+      },
+      {
+        "heading": "OPERATION DUDULA",
+        "body": "The vigilante movement behind much of the recent violence calls itself Operation Dudula — 'dudula' is Zulu for 'to push back' or 'drive out.' It began as community patrols policing migrant traders and hardened into an organized anti-immigration force, blurring the line between civilian movement and street militia."
+      }
+    ],
+    "generatedAt": "2026-06-01T17:32:28.654Z",
+    "label": "Afrophobia & the Repatriation Reversal",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-01-sterile-soil-metabolism-first-origin-of-life": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHICKEN AND THE EGG",
+        "body": "Genes carry the instructions to build proteins, but you need proteins (enzymes) to copy genes in the first place. Each requires the other. This circularity is the central puzzle of origin-of-life research — and the whole field splits over which side of the loop came first."
+      },
+      {
+        "heading": "THE TWO CAMPS",
+        "body": "Replicator-first says a self-copying molecule came first and metabolism followed — the RNA-world view, where RNA both stored information and catalyzed reactions. Metabolism-first says self-sustaining chemical cycles ran on rocks and minerals long before any molecule could copy itself, and heredity was bolted on later.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The metabolism-first case rests on *autocatalysis* — a reaction network whose own products catalyze the next round, so the cycle perpetuates itself with no genes, no enzymes, and no cell membrane required."
+          }
+        ]
+      },
+      {
+        "heading": "WHY STERILITY IS THE WHOLE POINT",
+        "body": "Gamma radiation kills every living cell and shreds any intact DNA in the soil. If chemistry keeps cycling for years afterward, no surviving microbe can be doing it — the reactions must be abiotic. Sterilization is what separates 'chemistry that mimics life' from 'life we failed to kill.'",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the team sterilize the soil with gamma radiation before running the experiment?",
+            "options": [
+              "To rule out that living microbes are driving the chemistry",
+              "To speed up the chemical reactions",
+              "To add energy the reactions need to start",
+              "To remove water from the sample"
+            ],
+            "correct": 0,
+            "explanation": "Gamma sterilization kills all cells and degrades DNA, so any continuing carbon cycling must be non-living, abiotic chemistry."
+          }
+        ]
+      },
+      {
+        "heading": "THE IRON-SULFUR PRECEDENT",
+        "body": "The idea that mineral surfaces — not warm ponds — hosted the first chemistry comes from Günter Wächtershäuser, who argued in 1988 that reactions on iron-sulfide rock at deep-sea vents could run a primitive carbon-fixing cycle. Sterile soil running self-sustaining cycles is a modern echo of that 'surface metabolism' claim.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Alexander Oparin",
+                "role": "Proposed the primordial soup",
+                "years": "1924",
+                "cc": "RU"
+              },
+              {
+                "name": "Stanley Miller",
+                "role": "Synthesized amino acids in a flask",
+                "years": "1953",
+                "cc": "US"
+              },
+              {
+                "name": "Walter Gilbert",
+                "role": "Coined 'RNA world'",
+                "years": "1986",
+                "cc": "US"
+              },
+              {
+                "name": "Günter Wächtershäuser",
+                "role": "Iron-sulfur world theory",
+                "years": "1988",
+                "cc": "DE"
+              }
+            ],
+            "label": "who built the competing theories"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT MILLER-UREY ACTUALLY SHOWED",
+        "body": "The famous 1953 experiment sparked a flask of simulated early-atmosphere gases and produced amino acids — life's building blocks. But it produced parts, not a process. A pile of bricks is not a self-repairing wall. Metabolism-first asks the harder question: where did the running cycle come from, not just the ingredients?",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1924",
+                "label": "Oparin: primordial soup",
+                "emphasis": "start"
+              },
+              {
+                "year": "1953",
+                "label": "Miller-Urey makes amino acids",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1986",
+                "label": "'RNA world' named"
+              },
+              {
+                "year": "1988",
+                "label": "Iron-sulfur world proposed"
+              }
+            ],
+            "label": "the origin-of-life debate"
+          }
+        ]
+      },
+      {
+        "heading": "THE GAP THAT REMAINS",
+        "body": "Self-sustaining chemistry is not yet life. Without heredity, a cycle cannot mutate, vary, or be selected — it just runs until conditions change. The unsolved leap is from a cycle that merely persists to one that copies itself with errors, which is the moment Darwinian evolution can take over. That bridge is exactly what the experiment has not yet crossed."
+      }
+    ],
+    "generatedAt": "2026-06-01T17:33:12.198Z",
+    "label": "Metabolism-First Origins",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-01-wise-belgium-money-laundering-investigation-fintech-aml": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE KYC OBLIGATION",
+        "body": "Every regulated financial firm in the EU must verify who its customers are and where their money comes from — Know Your Customer and Customer Due Diligence. The duty is not to catch every crime but to maintain a system that flags the unusual. Regulators prosecute the broken system, not the individual transaction.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal failure is almost never \"you moved dirty money\" — it's that the firm couldn't *prove* it checked. **CDD** gaps, not the laundering itself, are what €500M across 30 countries signals to a prosecutor."
+          }
+        ]
+      },
+      {
+        "heading": "THE THREE STAGES",
+        "body": "Laundering follows a textbook arc: placement (getting cash into the financial system), layering (moving it through many accounts and borders to break the trail), and integration (returning it as clean, spendable wealth). A cross-border fintech is most exposed at the layering stage — fast, multi-country transfers are exactly the tool launderers want.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In money laundering, which stage involves moving funds through many accounts and countries to obscure their origin?",
+            "options": [
+              "Placement",
+              "Layering",
+              "Integration",
+              "Settlement"
+            ],
+            "correct": 1,
+            "explanation": "Layering is the obfuscation stage — rapid cross-border transfers break the audit trail before funds are integrated as clean wealth."
+          }
+        ]
+      },
+      {
+        "heading": "WHY FINTECHS ARE EXPOSED",
+        "body": "A traditional bank onboards customers slowly, in person, with a paper trail. A fintech's entire value proposition is the opposite: open an account in minutes, send money to dozens of countries by morning. That speed is the product — and it is also the vulnerability. Diligence that takes days collides with onboarding that takes seconds."
+      },
+      {
+        "heading": "THE EU REGIME",
+        "body": "Brussels has tightened anti-laundering law in waves of directives since 2015, but enforcement stayed fragmented across 27 national regulators — letting firms shop for the weakest one. The 2024 reform created AMLA, a single EU anti-money-laundering authority seated in Frankfurt, to supervise the largest cross-border firms directly.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2015",
+                "label": "4th AML Directive",
+                "emphasis": "start"
+              },
+              {
+                "year": "2018",
+                "label": "5th AMLD — crypto, beneficial owners"
+              },
+              {
+                "year": "2021",
+                "label": "6th AMLD — criminal liability"
+              },
+              {
+                "year": "2024",
+                "label": "AMLA created, seated in Frankfurt",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2028",
+                "label": "AMLA direct supervision begins"
+              }
+            ],
+            "label": "EU anti-laundering law"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT FAILURE COSTS",
+        "body": "AML lapses have produced some of the largest fines in European banking history. The penalties scale not with the bank's size but with how systemic the control failure was — and they often arrive years after the conduct, once a probe concludes.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Danske Bank",
+                "value": "~$2bn",
+                "cc": "DK",
+                "weight": 2000,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "ING",
+                "value": "€775M",
+                "cc": "NL",
+                "weight": 775,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "ABN Amro",
+                "value": "€480M",
+                "cc": "NL",
+                "weight": 480,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Swedbank",
+                "value": "~€350M",
+                "cc": "SE",
+                "weight": 350,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "selected European AML penalties"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-01T17:33:54.338Z",
+    "label": "KYC & Money Laundering",
+    "category": "economy",
+    "articleCount": 1
   }
 }
