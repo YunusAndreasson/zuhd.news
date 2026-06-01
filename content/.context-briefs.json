@@ -277365,5 +277365,1601 @@
     "label": "Ebola's Many Strains",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-05-31-coinbase-india-inr-rails-crypto-market": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GATEKEEPER",
+        "body": "India's instant payments — UPI and IMPS — don't run through the central bank. They run through the NPCI, a non-profit owned by a consortium of banks. It is not formally a regulator, but its refusal to confirm that Coinbase could use UPI in 2022 was enough to freeze the rails. Access to a private network, not a law, was the chokepoint.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**NPCI** clears over 10 billion **UPI** transactions a month — the largest real-time retail payments system on Earth. A nod from it is worth more than a banking licence."
+          }
+        ]
+      },
+      {
+        "heading": "THE SHADOW BAN",
+        "body": "India's crypto fight is older than this block. In 2018 the RBI ordered banks to stop servicing crypto businesses — no formal ban, just cut off the banking pipes. The Supreme Court struck it down in 2020 as a disproportionate restriction on a legitimate trade. Regulators then switched tactics from prohibition to taxation.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2018",
+                "label": "RBI bars banks from crypto"
+              },
+              {
+                "year": "2020-03",
+                "label": "Supreme Court strikes it down",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "30% tax + 1% TDS; Coinbase IMPS blocked"
+              },
+              {
+                "year": "2026",
+                "label": "Direct rupee rails open"
+              }
+            ],
+            "label": "from ban to rails"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1% BLEED",
+        "body": "The real weapon wasn't prohibition. In 2022 India imposed a flat 30% tax on crypto gains and — more crippling — a 1% tax deducted at source on every single trade. A high-frequency trader churning capital loses 1% each round trip regardless of profit. Domestic exchange volume collapsed as traders fled to offshore platforms within months."
+      },
+      {
+        "heading": "WHY INDIA RANKS FIRST",
+        "body": "Chainalysis ranks India first in adoption because its index weights grassroots retail usage — small transactions, peer-to-peer trade, savings — not raw dollar volume. By that measure a populous country with broad, decentralized usage outranks wealthy markets where a few institutions move billions. Adoption is a headcount, not a balance sheet.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "NG",
+              "ID",
+              "VN",
+              "PH"
+            ],
+            "label": "where grassroots crypto adoption is highest"
+          },
+          {
+            "type": "quiz",
+            "question": "Why does India top the global crypto adoption index despite smaller transaction sizes?",
+            "options": [
+              "The index weights grassroots retail usage over dollar volume",
+              "India has the most crypto exchanges by count",
+              "The rupee is pegged to Bitcoin",
+              "India holds the largest national Bitcoin reserve"
+            ],
+            "correct": 0,
+            "explanation": "Chainalysis weights population-adjusted, peer-to-peer and retail activity — so broad small-scale usage outranks a few large institutional flows."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT PERPETUALS ARE",
+        "body": "Perpetual futures — the dominant crypto derivative — are contracts that never expire, unlike traditional futures with a settlement date. To keep their price tethered to spot, exchanges charge a funding rate: when the contract trades above spot, longs pay shorts every few hours, and vice versa. It's a self-correcting leash invented for crypto's 24/7 markets.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The *funding rate* is the whole trick: a periodic payment between traders that pulls the perpetual back toward spot without ever forcing settlement. BitMEX pioneered it in **2016**."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-01T04:26:41.295Z",
+    "label": "India's Crypto Rails",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-31-dk-shivakumar-karnataka-cm-congress-power-share": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ROTATION TRAP",
+        "body": "Power-sharing pacts where two leaders agree to split a term rarely survive contact with office. The leader who holds the chair first accumulates patronage, controls the police and the treasury, and discovers reasons the handover must wait. The 2.5-year swap is a ceasefire, not a settlement."
+      },
+      {
+        "heading": "WHY KARNATAKA IS THE PRIZE",
+        "body": "Karnataka is one of India's largest state economies, anchored by Bengaluru. Control of the state means control of its budget, land allocations, and contracts — which is why neither faction would yield. Among Indian states it sits near the top of the output table."
+      },
+      {
+        "heading": "BENGALURU, THE ENGINE",
+        "body": "Bengaluru is India's software capital — the single largest source of the country's IT-services exports, home to the campuses of Infosys, Wipro, and the Indian arms of nearly every global tech firm. The city's tax base and global visibility make the chief ministership a national-tier post, not a regional one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Indian state contributes the largest share of the country's IT-services exports?",
+            "options": [
+              "Maharashtra",
+              "Karnataka",
+              "Telangana",
+              "Tamil Nadu"
+            ],
+            "correct": 1,
+            "explanation": "Bengaluru alone accounts for the bulk of India's software exports, putting Karnataka ahead of Hyderabad's Telangana and Mumbai's Maharashtra."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A CHIEF MINISTER ACTUALLY CONTROLS",
+        "body": "Under India's federal scheme, states hold their own list of subjects — police, land, agriculture, public health, local industry. The chief minister is the real executive over all of these; the centrally-appointed Governor is largely ceremonial. This is why a state CM commands more day-to-day power than the post's modest title suggests.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "India's constitution divides authority into a *Union List*, a *State List*, and a *Concurrent List* — policing and land sit squarely on the **State List**, which is the chief minister's domain."
+          }
+        ]
+      },
+      {
+        "heading": "THE HIGH COMMAND",
+        "body": "Congress is run on a 'high command' model — final say on state leadership rests with the central party leadership in Delhi, not the state legislators. The Karnataka deadlock was resolved not by a vote but by a brokered arrangement handed down from above, the party's defining decision-making habit since the Indira Gandhi era."
+      },
+      {
+        "heading": "THE CAST",
+        "body": "The two men splitting the term came up through different bases — Siddaramaiah as a mass-backed welfare politician, Shivakumar as the party's organizational fixer and fundraiser. Cabinet posts, including a role for Siddaramaiah's son, are the currency of the handover.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Siddaramaiah",
+                "role": "outgoing chief minister",
+                "years": "2023–2026",
+                "cc": "IN"
+              },
+              {
+                "name": "DK Shivakumar",
+                "role": "incoming CM, state party chief",
+                "cc": "IN"
+              },
+              {
+                "name": "Yathindra Siddaramaiah",
+                "role": "MLA, CM's son",
+                "cc": "IN"
+              }
+            ],
+            "label": "the power-share"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-01T04:27:30.281Z",
+    "label": "Karnataka & the Rotation Deal",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-31-united-767-bluetooth-name-security-alert": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FREE-TEXT FIELD",
+        "body": "A Bluetooth device name is not a credential — it is an arbitrary string the owner types in, broadcast in the clear inside the advertising packets every device emits so others can discover it. Nothing checks it, signs it, or ties it to a real identity. 'BOMB' is as valid a name as 'AirPods'.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The name rides in the **advertising packet** — the same beacon that lets your phone *find* a speaker before any pairing or password. Discovery happens before authentication, by design."
+          }
+        ]
+      },
+      {
+        "heading": "WHY YOU CAN'T TRACE IT",
+        "body": "Broadcast discovery is one-way and anonymous: a name appears in range but reveals no sender, no seat, no account. On a 250-seat cabin there is no protocol-level way to learn which passenger set it, so crew cannot quietly resolve the source — only react to the whole aircraft."
+      },
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "Aviation security runs on a deliberately lopsided cost function: a missed real threat is catastrophic and irreversible, a false alarm is merely expensive. Once a credible-looking bomb signal exists and cannot be ruled out, the precautionary rule forces the costly action every time — the prank wins because the downside of ignoring it is unbounded.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the **precautionary principle** colliding with a near-zero **base rate**: almost every such alert is a hoax, yet the one that isn't dominates the math, so the rational response stays 'land the plane'."
+          }
+        ]
+      },
+      {
+        "heading": "THE SAME BUG, EVERYWHERE",
+        "body": "This isn't a Bluetooth flaw — it's a property of every short-range discovery protocol that lets a stranger broadcast a self-chosen label to nearby devices. The same unauthenticated free-text field has triggered scares across multiple technologies.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Bluetooth",
+                "value": "device name"
+              },
+              {
+                "label": "AirDrop",
+                "value": "device + preview"
+              },
+              {
+                "label": "Wi-Fi",
+                "value": "network SSID"
+              },
+              {
+                "label": "AirTag",
+                "value": "found-item note"
+              }
+            ],
+            "label": "names anyone in range can set"
+          }
+        ]
+      },
+      {
+        "heading": "THE HOAX IS A FELONY",
+        "body": "A bomb joke is not legally a joke. Under US law a false threat against an aircraft is a federal crime carrying years of prison regardless of intent, and the airline can separately sue to recover the cost of the diversion — fuel dumped to reach landing weight, crew hours, rebooking, and the aircraft out of rotation.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't crew simply ignore an anonymous Bluetooth name reading 'BOMB'?",
+            "options": [
+              "The name can carry malware that infects the avionics",
+              "There's no way to identify who set it or rule out a real threat",
+              "Bluetooth must be disabled for the autopilot to function",
+              "FAA rules ban all Bluetooth devices in flight"
+            ],
+            "correct": 1,
+            "explanation": "Broadcast names reveal no sender, so the threat can't be located or dismissed — and the cost of being wrong is total, forcing the precautionary response."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-01T04:28:21.448Z",
+    "label": "Bluetooth Names & Threat Asymmetry",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-01-china-coast-guard-east-of-taiwan-japan-philippines": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY COAST GUARD, NOT NAVY",
+        "body": "A warship in disputed water is an act of war; a white-hulled coast guard cutter is 'law enforcement.' By sending the Coast Guard, Beijing asserts that the water is its own jurisdiction to police — a sovereignty claim dressed as routine patrol, and far harder for a rival to fire on.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the **gray zone**: coercion calibrated to stay below the threshold of armed conflict, where the other side has no clean military response."
+          }
+        ]
+      },
+      {
+        "heading": "THE WORLD'S LARGEST COAST GUARD",
+        "body": "China's Coast Guard is not a customs service — it is a paramilitary fleet larger by tonnage than most navies, including cutters that dwarf anything its neighbors float. Its flagship, the 'Monster,' displaces more than a guided-missile destroyer.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~12,000t",
+                "cc": "CN",
+                "weight": 12000,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Japan",
+                "value": "~6,500t",
+                "cc": "JP",
+                "weight": 6500,
+                "tone": "neutral"
+              },
+              {
+                "label": "USA",
+                "value": "~4,500t",
+                "cc": "US",
+                "weight": 4500,
+                "tone": "neutral"
+              },
+              {
+                "label": "Philippines",
+                "value": "~2,200t",
+                "cc": "PH",
+                "weight": 2200,
+                "tone": "favorable"
+              }
+            ],
+            "label": "largest coast-guard cutter, by displacement"
+          }
+        ]
+      },
+      {
+        "heading": "THE FIRST ISLAND CHAIN",
+        "body": "Cold War planners drew a line of US-aligned territory — Japan, the Ryukyus, Taiwan, the Philippines — that walls China's navy into its near seas. Patrolling EAST of Taiwan is the point: it puts Chinese hulls on the Pacific side of that wall, signaling the chain no longer contains them.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "TW",
+              "JP",
+              "PH"
+            ],
+            "label": "the first island chain",
+            "caption": "the arc that walls China's fleet into its near seas"
+          }
+        ]
+      },
+      {
+        "heading": "THE CABBAGE STRATEGY",
+        "body": "China layers its presence like leaves of a cabbage: fishing-boat 'maritime militia' on the inside, Coast Guard around them, navy held over the horizon. Each layer lets the next deny involvement, so a contested reef gets wrapped without a single shot fired.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is China patrolling EAST of Taiwan more provocative than patrolling the Taiwan Strait?",
+            "options": [
+              "It is the Pacific side, beyond the first island chain meant to contain China",
+              "The water there is too deep for coast guard ships",
+              "It is internationally recognized Japanese territory",
+              "Taiwan has no forces on its eastern coast"
+            ],
+            "correct": 0,
+            "explanation": "Taiwan's east coast faces the open Pacific; Chinese hulls there mean the island-chain containment line has been crossed."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MANILA AND TOKYO ARE TALKING",
+        "body": "Japan and the Philippines sit at the chain's northern and southern anchors, and both face Chinese coast-guard pressure — Japan around the Senkakus, the Philippines at Second Thomas Shoal. Their 2024 Reciprocal Access Agreement lets each station forces on the other's soil, knitting the two ends of the wall together.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2024 **RAA** was Japan's first such pact with an Asian nation — a quiet admission that the island chain only holds if its anchors coordinate."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-01T04:28:58.292Z",
+    "label": "Gray-Zone Coercion & the First Island Chain",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-01-ethiopia-election-abiy-landslide-tigray-excluded": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ARCHITECTURE",
+        "body": "Ethiopia is not a normal federation. Its 1995 constitution divides the country into ethnically-defined regions, each with a constitutional right to secede. The state was deliberately built around ethnicity rather than against it — a design unique among major nations.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The model is called **ethnic federalism**. Article 39 of the constitution grants every \"nation, nationality and people\" the *right to self-determination, including secession* — a clause no other large state writes into its founding law."
+          }
+        ]
+      },
+      {
+        "heading": "WHO BUILT IT",
+        "body": "The Tigrayans — barely 6% of the population — ran Ethiopia from 1991 to 2018 through the TPLF, the guerrilla front that toppled the Derg. Abiy Ahmed's rise ended Tigrayan dominance, and the 2020 war was, structurally, the former rulers fighting their own displacement.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Meles Zenawi",
+                "role": "TPLF leader, PM",
+                "years": "1995–2012",
+                "cc": "ET"
+              },
+              {
+                "name": "Abiy Ahmed",
+                "role": "Oromo PM, Nobel laureate",
+                "years": "2018–",
+                "cc": "ET"
+              },
+              {
+                "name": "Debretsion Gebremichael",
+                "role": "TPLF chairman",
+                "years": "2018–",
+                "cc": "ET"
+              }
+            ],
+            "label": "the power transition"
+          }
+        ]
+      },
+      {
+        "heading": "THE PROSPERITY PARTY",
+        "body": "Abiy dissolved the old ruling coalition in 2019 and merged its ethnic parties into a single pan-Ethiopian Prosperity Party. The TPLF refused to join — that refusal, not the election timing, was the spark that set the 2020 war in motion.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What triggered the breach between Abiy and the TPLF in 2019?",
+            "options": [
+              "The TPLF refused to merge into the new Prosperity Party",
+              "Abiy banned the Tigrinya language",
+              "A disputed border with Eritrea",
+              "The TPLF declared independence"
+            ],
+            "correct": 0,
+            "explanation": "The TPLF rejected dissolving its ethnic party into Abiy's unitary Prosperity Party, then held its own regional vote in defiance of Addis Ababa."
+          }
+        ]
+      },
+      {
+        "heading": "THE WAR'S TOLL",
+        "body": "The 2020–22 conflict killed an estimated 600,000 people — by some counts deadlier than the entire war in Ukraine over the same window — driven as much by famine and a blockade of Tigray as by combat.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2018",
+                "label": "Abiy becomes PM, frees prisoners"
+              },
+              {
+                "year": "2019",
+                "label": "Nobel Peace Prize; Prosperity Party formed"
+              },
+              {
+                "year": "2020-11",
+                "label": "War begins in Tigray",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-11",
+                "label": "Pretoria peace agreement",
+                "emphasis": "end"
+              }
+            ],
+            "spans": [
+              {
+                "from": "2020-11",
+                "to": "2022-11",
+                "label": "Tigray war & blockade",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "from Nobel to war"
+          }
+        ]
+      },
+      {
+        "heading": "THE LANDLOCKED PROBLEM",
+        "body": "Ethiopia lost its coastline when Eritrea seceded in 1993, leaving Africa's second-most populous country dependent on Djibouti for nearly all trade. Abiy's hunger for a port reshapes every regional alliance — and Eritrea, a 2020 war ally, is now a rival again.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ET",
+              "ER",
+              "DJ",
+              "SO",
+              "SD"
+            ],
+            "label": "the landlocked giant and its outlets",
+            "markers": [
+              {
+                "lat": 11.5722,
+                "lng": 43.1456,
+                "label": "Djibouti port"
+              },
+              {
+                "lat": 15.601,
+                "lng": 39.45,
+                "label": "Massawa, Eritrea"
+              },
+              {
+                "lat": 9.03,
+                "lng": 38.74,
+                "label": "Addis Ababa"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-01T04:29:28.286Z",
+    "label": "Ethiopia's Ethnic Federalism & Tigray",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-01-india-lpg-price-hike-hormuz-oil-disruption": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO-TIER PRICE",
+        "body": "India runs LPG on a split system: domestic household cylinders are subsidized and politically untouchable, while commercial cylinders — used by restaurants, tea stalls, small industry — track the market. When global costs rise, the state lets the commercial price move and shields the household one. The Rs 42 hike landed entirely on businesses.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The household 14.2 kg cylinder and the commercial 19 kg cylinder hold the *same fuel* — only the customer class and the subsidy differ."
+          }
+        ]
+      },
+      {
+        "heading": "WHY INDIA IS EXPOSED",
+        "body": "India consumes more LPG for cooking than any country except China, and imports more than half of it — overwhelmingly from Gulf producers whose cargoes transit the Strait of Hormuz. There is no overland substitute; the molecules arrive by sea tanker or not at all.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "SA",
+              "AE",
+              "QA",
+              "IR",
+              "OM"
+            ],
+            "label": "India's LPG lifeline",
+            "markers": [
+              {
+                "lat": 26.57,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHO SUPPLIES THE GAS",
+        "body": "The bulk of India's imported LPG comes from a handful of Gulf states — Saudi Arabia, the UAE, and Qatar lead, with growing US cargoes arriving on longer voyages. Saudi Arabia alone has historically been the single largest source, which is why one kingdom's pricing decisions ripple straight into an Indian kitchen.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "largest",
+                "cc": "SA",
+                "weight": 40,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "UAE",
+                "value": "major",
+                "cc": "AE",
+                "weight": 25,
+                "tone": "neutral"
+              },
+              {
+                "label": "Qatar",
+                "value": "major",
+                "cc": "QA",
+                "weight": 20,
+                "tone": "neutral"
+              },
+              {
+                "label": "USA",
+                "value": "rising",
+                "cc": "US",
+                "weight": 15,
+                "tone": "favorable"
+              }
+            ],
+            "label": "India's main LPG sources"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT ACTUALLY SETS THE PRICE",
+        "body": "India's LPG cost is benchmarked to the Saudi Contract Price (CP) — a monthly figure Saudi Aramco publishes for propane and butane. Indian oil marketing companies import on this benchmark, so the domestic shelf price is downstream of a number set in Dhahran, not Delhi.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What benchmark primarily sets the price of imported LPG in India?",
+            "options": [
+              "Brent crude futures",
+              "The Saudi Aramco Contract Price (CP)",
+              "India's domestic gas auction",
+              "The US Henry Hub gas price"
+            ],
+            "correct": 1,
+            "explanation": "LPG (propane/butane) is priced off Aramco's monthly CP, not crude oil — so its moves can diverge sharply from headline oil prices."
+          }
+        ]
+      },
+      {
+        "heading": "THE RUPEE MULTIPLIER",
+        "body": "Imported LPG is paid for in dollars, so the rupee's exchange rate is a second, hidden price lever. A weaker rupee raises the import bill even when the dollar-denominated Saudi benchmark is flat — meaning Indian consumers can pay more for gas without global prices moving at all.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              94.910513,
+              94.951346,
+              95.361112,
+              95.029174,
+              94.729612,
+              94.62293,
+              94.425498,
+              94.425498,
+              94.8754,
+              95.576514,
+              95.55195,
+              95.719988,
+              95.829548,
+              96.003,
+              96.027,
+              96.13634,
+              96.389098,
+              96.875003,
+              96.376027,
+              96.243053,
+              95.719748,
+              95.700477,
+              95.415433,
+              95.341057,
+              95.70115,
+              96.383018,
+              95.600602,
+              95.01655,
+              95.06455,
+              94.831403
+            ],
+            "periods": [
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY HOUSEHOLDS ARE SPARED",
+        "body": "The household subsidy is electoral infrastructure. The Ujjwala scheme put cooking-gas connections into tens of millions of poor and rural homes, turning the domestic cylinder into a symbol of welfare delivery. Raising its price carries a political cost no government absorbs lightly — so commercial users take the hit first.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**Pradhan Mantri Ujjwala Yojana** (launched 2016) made the subsidized cylinder a flagship welfare promise — which is precisely why its price is the *last* one a government will touch."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-01"
+    ],
+    "generatedAt": "2026-06-01T04:30:03.351Z",
+    "label": "LPG & India's Import Dependence",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-01-is-returnee-renounces-group-melbourne-court": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DECLARED-AREA TRAP",
+        "body": "Australia's 2014 foreign-incursion laws made it an offence to even enter a declared zone — al-Raqqa province among them — without a legitimate reason. Prosecutors don't have to prove you fired a weapon; presence plus intent to join is the crime. This is why the case turns on when and why she left, not on any battlefield act.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal device is the *declared area offence*: the burden flips toward the traveller, who must show a lawful purpose like aid work or family. It was written precisely to convict returnees whose violent acts can never be evidenced from a collapsed warzone."
+          }
+        ]
+      },
+      {
+        "heading": "WHY COURTS DISTRUST LATE RENUNCIATION",
+        "body": "The prosecution's argument is structural: thousands fled only after the caliphate physically collapsed, when staying was no longer an option. Disavowal under those conditions is hard to distinguish from defeat. Courts weight the timing of departure heavily — leaving at the height of IS power reads as conscience; leaving at Baghuz reads as the tide turning."
+      },
+      {
+        "heading": "THE CALIPHATE'S ARC",
+        "body": "IS was not a permanent fact of the region. It declared a 'caliphate' in mid-2014, held territory the size of Britain for three years, then was ground down city by city until its last sliver fell in eastern Syria in 2019. The window in which the defendant is charged — 2013 to 2014 — is the rise, when joining meant betting on expansion.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2013",
+                "label": "ISIS splits from al-Qaeda in Syria"
+              },
+              {
+                "year": "2014-06",
+                "label": "Caliphate declared in Mosul",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017",
+                "label": "Mosul and Raqqa retaken"
+              },
+              {
+                "year": "2019-03",
+                "label": "Last territory falls at Baghuz",
+                "emphasis": "end"
+              }
+            ],
+            "spans": [
+              {
+                "from": "2014-06",
+                "to": "2019-03",
+                "label": "territorial caliphate",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "rise and territorial defeat"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT JIHAD ACTUALLY REQUIRES",
+        "body": "IS appropriated the word jihad to brand mass violence, but classical Sunni jurisprudence hedges armed jihad with strict conditions: it must be called by legitimate authority, spare non-combatants, and forbids the takfir — declaring other Muslims apostate — that IS used to justify killing Muslims who opposed it. In 2014 over a hundred scholars publicly rejected al-Baghdadi's claim on exactly these grounds.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine IS relied on was *takfir* — excommunicating fellow Muslims to make their blood lawful. Mainstream scholarship treats unrestricted takfir as one of the gravest deviations, which is why the overwhelming majority of IS's victims were themselves Muslims."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE SOURCE OF FIGHTERS WAS",
+        "body": "Some 40,000 foreigners from over 100 countries travelled to join IS. The largest contingents came not from the West but from the Arab world and the former Soviet space; Western recruits like Australia's roughly 230 were a small fraction of the flow.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Tunisia",
+                "value": "~6,000",
+                "cc": "TN",
+                "weight": 6000
+              },
+              {
+                "label": "Russia",
+                "value": "~3,400",
+                "cc": "RU",
+                "weight": 3400
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~3,200",
+                "cc": "SA",
+                "weight": 3200
+              },
+              {
+                "label": "Jordan",
+                "value": "~3,000",
+                "cc": "JO",
+                "weight": 3000
+              },
+              {
+                "label": "France",
+                "value": "~1,900",
+                "cc": "FR",
+                "weight": 1900
+              },
+              {
+                "label": "Australia",
+                "value": "~230",
+                "cc": "AU",
+                "weight": 230
+              }
+            ],
+            "label": "est. foreign fighters by origin"
+          }
+        ]
+      },
+      {
+        "heading": "THE CITIZENSHIP WEAPON",
+        "body": "Many states prefer that returnees never reach a courtroom. Australia, the UK and others passed laws to strip dual nationals of citizenship for terrorism, leaving thousands of women and children stranded in camps like al-Hawl in northeast Syria. Prosecution at home is the alternative to that limbo — and the harder, more accountable path.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SY",
+              "IQ",
+              "AU"
+            ],
+            "label": "from the warzone to the dock",
+            "markers": [
+              {
+                "lat": 36.39,
+                "lng": 41.2,
+                "label": "al-Hawl camp"
+              },
+              {
+                "lat": 34.45,
+                "lng": 40.88,
+                "label": "Baghuz (last stand)"
+              }
+            ]
+          },
+          {
+            "type": "quiz",
+            "question": "When did IS lose the last of its territorial 'caliphate'?",
+            "options": [
+              "2017, with the fall of Mosul",
+              "2019, at Baghuz in eastern Syria",
+              "2021, after the US withdrawal"
+            ],
+            "correct": 1,
+            "explanation": "Mosul and Raqqa fell in 2017, but the final pocket held until the battle of Baghuz in March 2019."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-01T04:30:53.605Z",
+    "label": "Prosecuting IS Returnees",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-01-karachi-teen-rabies-death-vaccine-failure": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 100% RULE",
+        "body": "Once rabies symptoms appear, it is effectively always fatal — among the highest case-fatality rates of any disease known to medicine. Fewer than a handful of unvaccinated survivors have ever been documented. The entire fight is to immunize the patient before the virus reaches the brain."
+      },
+      {
+        "heading": "THE RACE UP THE NERVE",
+        "body": "Rabies does not travel in the blood, where antibodies patrol. It creeps along nerve fibers toward the spinal cord and brain at roughly a few millimeters per day, hidden from the immune system. That slow, silent journey is exactly why a vaccine given after the bite can still win — if it starts in time.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Because the virus is *neurotropic* and bypasses the bloodstream, the incubation window is long — typically **1–3 months**, sometimes years — which is what makes post-exposure vaccination possible at all."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A FULL COURSE STILL FAILS",
+        "body": "Proper post-exposure prophylaxis is two things, not one: the vaccine, which takes 7–14 days to build the patient's own antibodies, AND rabies immunoglobulin injected into the wound on day one for immediate protection during that gap. Skipping the immunoglobulin — common where it is scarce or unaffordable — leaves a deadly window even when every vaccine dose is given.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is rabies immunoglobulin given alongside the first vaccine dose?",
+            "options": [
+              "It provides instant antibodies while the vaccine takes ~2 weeks to work",
+              "It replaces the need for later vaccine doses",
+              "It treats the bite wound infection",
+              "It works only after symptoms appear"
+            ],
+            "correct": 0,
+            "explanation": "The vaccine needs ~7–14 days to generate immunity; immunoglobulin supplies borrowed antibodies to cover that vulnerable gap."
+          }
+        ]
+      },
+      {
+        "heading": "THE COLD-CHAIN PROBLEM",
+        "body": "Rabies vaccine loses potency if it strays outside 2–8°C. In public-sector systems with patchy refrigeration and unreliable power, a vial can be administered on schedule yet be biologically inert — a 'full course' that immunizes no one. Breakthrough deaths often trace back to the fridge, not the regimen."
+      },
+      {
+        "heading": "A CHILD'S DISEASE",
+        "body": "Rabies kills roughly 59,000 people a year, almost all from dog bites, and overwhelmingly in Asia and Africa. About 40% of victims are children under 15 — short stature means more bites to the face and hands, closer to the brain, and a poorer chance for slow prophylaxis to catch up. India and Pakistan together carry a vast share of the global toll.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "India",
+                "value": 20,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Rest of Asia",
+                "value": 15,
+                "tone": "neutral"
+              },
+              {
+                "label": "Sub-Saharan Africa",
+                "value": 21,
+                "tone": "neutral"
+              },
+              {
+                "label": "Rest of world",
+                "value": 3,
+                "tone": "favorable"
+              }
+            ],
+            "label": "annual rabies deaths by region (~59,000 total)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-01T04:31:25.367Z",
+    "label": "Rabies & Post-Exposure Prophylaxis",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-01-kuwait-missile-drone-attack-us-strikes-iran-radar-sites": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY RADAR GOES FIRST",
+        "body": "The opening move of almost every air campaign is to blind the enemy's air defenses. Radar sites are the eyes of a surface-to-air missile network; destroy them and the missiles below fire blind. This is why US Central Command hit radar, not airfields or cities, first — it is the doorway, not the destination.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mission has a name and a heritage: **SEAD** (Suppression of Enemy Air Defenses), flown since Vietnam by crews nicknamed *Wild Weasels* whose motto was the unprintable line about being the first ones in."
+          }
+        ]
+      },
+      {
+        "heading": "HOW A RADAR SITE WORKS",
+        "body": "Radar fires electromagnetic pulses and times the reflections off metal aircraft. But the act of transmitting is also a beacon: every sweep broadcasts the site's exact location. Anti-radiation missiles home in on that emission, so an air-defense radar that switches on to find attackers reveals itself to be killed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is leaving an air-defense radar switched on dangerous in wartime?",
+            "options": [
+              "Its own transmissions reveal its location to anti-radiation missiles",
+              "Radar overheats and fails within minutes of use",
+              "Enemy aircraft can copy the radar's signal",
+              "It drains the missile battery's power supply"
+            ],
+            "correct": 0,
+            "explanation": "Anti-radiation missiles ride the radar's own emissions to the source, so radar operators must choose between seeing and surviving."
+          }
+        ]
+      },
+      {
+        "heading": "THE COST ASYMMETRY",
+        "body": "A reconnaissance drone can cost more than a fighter jet, while the missile that downs it costs a fraction as much — and the drone carries no pilot to lose. This inverts the old calculus of escalation: a state can destroy a high-value asset and kill no one, leaving the other side to decide whether a machine is worth a war.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In 2019 Iran shot down a US surveillance drone near the Strait of Hormuz. Which type?",
+            "options": [
+              "RQ-4 Global Hawk",
+              "MQ-9 Reaper",
+              "RQ-170 Sentinel",
+              "MQ-1 Predator"
+            ],
+            "correct": 0,
+            "explanation": "The RQ-4 Global Hawk lost in 2019 was an unmanned high-altitude aircraft worth over $100M — destroyed with no loss of life, which is why the US held back on retaliating."
+          }
+        ]
+      },
+      {
+        "heading": "WHY KUWAIT IS A TRIPWIRE",
+        "body": "Kuwait has hosted US forces continuously since the 1991 liberation from Iraq, and today holds some of the largest American ground installations in the region. A small state cannot defend itself against its giant neighbors alone — so it leases its territory as a forward base, which makes it the first place to take fire when the US strikes."
+      },
+      {
+        "heading": "THE BASE MAP",
+        "body": "The US presence in the Gulf is not one base but a lattice: ground logistics in Kuwait, the Fifth Fleet's home port in Bahrain, the air-operations hub in Qatar. Iranian missile and drone range covers all of them from the far shore of the Gulf.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KW",
+              "IR",
+              "IQ",
+              "BH",
+              "QA",
+              "SA"
+            ],
+            "label": "the US lattice across the Gulf",
+            "caption": "Iranian fire crosses the Gulf's narrow width in minutes",
+            "markers": [
+              {
+                "lat": 28.86,
+                "lng": 48.16,
+                "label": "Camp Arifjan, Kuwait"
+              },
+              {
+                "lat": 29.35,
+                "lng": 47.52,
+                "label": "Ali Al Salem Air Base"
+              },
+              {
+                "lat": 26.21,
+                "lng": 50.61,
+                "label": "5th Fleet, Bahrain"
+              },
+              {
+                "lat": 25.12,
+                "lng": 51.32,
+                "label": "Al Udeid, Qatar"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE FOOTPRINT",
+        "body": "American troops are spread deliberately across several Gulf monarchies, so no single host can hold US strategy hostage and no single Iranian strike can decapitate the presence. Kuwait, Qatar, and Bahrain carry the heaviest share.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Kuwait",
+                "value": "~13k",
+                "cc": "KW",
+                "weight": 13
+              },
+              {
+                "label": "Qatar",
+                "value": "~10k",
+                "cc": "QA",
+                "weight": 10
+              },
+              {
+                "label": "Bahrain",
+                "value": "~9k",
+                "cc": "BH",
+                "weight": 9
+              },
+              {
+                "label": "UAE",
+                "value": "~5k",
+                "cc": "AE",
+                "weight": 5
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~3k",
+                "cc": "SA",
+                "weight": 3
+              }
+            ],
+            "label": "US military personnel in the Gulf (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR LESSON",
+        "body": "From 1984 to 1988 Iran and Iraq attacked over 400 ships in the Gulf, and Iran mined the shipping lanes. The US responded by reflagging Kuwaiti tankers under the American flag and escorting them — the largest naval convoy since World War II. The lesson planners carried forward: disruption in the Gulf is far easier to threaten than to sustain."
+      }
+    ],
+    "generatedAt": "2026-06-01T04:32:19.750Z",
+    "label": "Radar, Drones & the Gulf Tripwire",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-01-nazarbayev-biopolymer-hydrogel-seed-coating": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GERMINATION WINDOW",
+        "body": "A seed's most vulnerable moment is the few days after imbibition: once it starts to swell and crack its coat, drying out is fatal. In dryland soils a single missed rain during that window kills the seedling before it ever reaches light. Coatings exist to buffer exactly those days.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is the period right after a seed absorbs water the riskiest for dryland crops?",
+            "options": [
+              "Once germination starts, drying out kills the seedling irreversibly",
+              "Seeds are most attractive to insects when dry",
+              "Roots grow too fast and exhaust the soil",
+              "Sunlight damages the exposed embryo"
+            ],
+            "correct": 0,
+            "explanation": "After imbibition the seed commits to germinating; if soil moisture vanishes before roots establish, the seedling desiccates and dies."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A HYDROGEL DOES",
+        "body": "A superabsorbent hydrogel is a cross-linked polymer network that can soak up hundreds of times its own weight in water, then release it slowly as the surrounding soil dries. Coating a seed in one creates a tiny private reservoir around the embryo — a micro-environment that stays moist longer than the bulk soil.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The workhorse synthetic is **polyacrylamide (PAM)** — the same family of polymer used in diapers and as a soil conditioner. It absorbs water brilliantly but does not meaningfully break down."
+          }
+        ]
+      },
+      {
+        "heading": "THE MICROPLASTIC PROBLEM",
+        "body": "Synthetic hydrogels don't biodegrade — they fragment. Each wet-dry cycle embrittles the polymer, shedding micro- and nano-scale plastic particles that accumulate in soil, alter its water-holding behavior, and enter the food chain. In arid soils, where microbial activity is low, these fragments persist for years.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the core trade the paper targets: synthetics win on *performance* but lose on *persistence* — the very dryness that makes the coating useful also stops the plastic from ever rotting away."
+          }
+        ]
+      },
+      {
+        "heading": "THE BIOPOLYMER TOOLKIT",
+        "body": "Natural alternatives come from familiar feedstocks: alginate from seaweed, chitosan from crustacean shells, cellulose and starch from plants. They gel and hold water through the same physical mechanism, but soil microbes recognize them as food and break them into CO2 and biomass — leaving no plastic residue.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Alginate",
+                "value": "seaweed"
+              },
+              {
+                "label": "Chitosan",
+                "value": "shell waste"
+              },
+              {
+                "label": "Starch",
+                "value": "crops"
+              },
+              {
+                "label": "Cellulose",
+                "value": "plant fiber"
+              }
+            ],
+            "label": "common biopolymer feedstocks"
+          }
+        ]
+      },
+      {
+        "heading": "WHY KAZAKHSTAN ASKS THIS",
+        "body": "Kazakhstan is the world's largest landlocked country and one of the largest wheat exporters, yet most of its cropland sits on arid and semi-arid steppe where rainfall is scarce and erratic. Central Asia as a whole is drying — which makes moisture-retention at the seed scale a national agricultural question, not a lab curiosity.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KZ",
+              "UZ",
+              "TM",
+              "KG",
+              "TJ"
+            ],
+            "label": "the Central Asian dryland belt"
+          }
+        ]
+      },
+      {
+        "heading": "THE LAB-TO-FIELD GAP",
+        "body": "Matching synthetic performance in a controlled germination tray is the easy half. Field trials at scale introduce variables a petri dish hides: wildly variable soil microbiota, freeze-thaw, coating cost per hectare, and seed-drill machinery that can shear a brittle coat. 'Worked in Scientific Reports' and 'works on a Kazakh wheat field' are years apart."
+      }
+    ],
+    "generatedAt": "2026-06-01T04:32:50.958Z",
+    "label": "Seed Coatings & Soil Hydrogels",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-01-pakistan-us-cotton-imports-textile-tariffs": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARADOX",
+        "body": "Pakistan is one of the world's largest cotton growers, yet its mills are now the top buyer of American cotton. A country that exports finished textiles is importing the raw fiber it sits on — because the bottleneck is no longer the field, it is the factory's power bill.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Cotton production (selected growers)",
+            "peers": [
+              {
+                "value": 25,
+                "cc": "IN"
+              },
+              {
+                "value": 24,
+                "cc": "CN"
+              },
+              {
+                "value": 14,
+                "cc": "US"
+              },
+              {
+                "value": 12,
+                "cc": "BR"
+              },
+              {
+                "value": 5,
+                "cc": "PK"
+              },
+              {
+                "value": 3,
+                "cc": "UZ"
+              },
+              {
+                "value": 3,
+                "cc": "TR"
+              }
+            ],
+            "subjectCc": "PK",
+            "unit": "mn bales"
+          }
+        ]
+      },
+      {
+        "heading": "WHY TEXTILES ARE THE ECONOMY",
+        "body": "Textiles are not one industry among many in Pakistan — they are roughly 60% of all exports and employ a huge share of the industrial workforce. When mills falter, the country's dollar earnings and its factory jobs falter together, which is why industry bodies can credibly invoke 'national crisis' language over a tariff.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Pakistan",
+                "value": "~60%",
+                "cc": "PK",
+                "weight": 60,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Bangladesh",
+                "value": "~85%",
+                "cc": "BD",
+                "weight": 85,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Turkey",
+                "value": "~15%",
+                "cc": "TR",
+                "weight": 15,
+                "tone": "neutral"
+              },
+              {
+                "label": "India",
+                "value": "~10%",
+                "cc": "IN",
+                "weight": 10,
+                "tone": "favorable"
+              }
+            ],
+            "label": "textiles as share of national goods exports"
+          }
+        ]
+      },
+      {
+        "heading": "THE ENERGY TARIFF MECHANISM",
+        "body": "Pakistani industry pays some of the highest power prices in the region, inflated by 'capacity payments' owed to idle plants and by cross-subsidies that load the bill onto factories to keep household rates low. A spinning mill is electricity-intensive, so a power premium translates almost directly into uncompetitive yarn.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Pakistan",
+                "value": "~15¢",
+                "cc": "PK",
+                "weight": 15,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": "~9¢",
+                "cc": "IN",
+                "weight": 9,
+                "tone": "neutral"
+              },
+              {
+                "label": "Bangladesh",
+                "value": "~8¢",
+                "cc": "BD",
+                "weight": 8,
+                "tone": "favorable"
+              },
+              {
+                "label": "Vietnam",
+                "value": "~7¢",
+                "cc": "VN",
+                "weight": 7,
+                "tone": "favorable"
+              }
+            ],
+            "label": "industrial electricity (approx, US¢/kWh)"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A GINNING FACTORY DOES",
+        "body": "Ginning is the first step after harvest: machines pull the cotton fiber off its seed, producing the baled 'lint' that mills spin into yarn. When 500 gins shut or idle, it signals the break is at the very start of the chain — the raw crop is no longer reliably converted into mill-ready bales at home.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "cotton",
+                "label": "Raw cotton"
+              },
+              {
+                "id": "gin",
+                "label": "Ginning"
+              },
+              {
+                "id": "spin",
+                "label": "Spinning (yarn)"
+              },
+              {
+                "id": "weave",
+                "label": "Weaving (fabric)"
+              },
+              {
+                "id": "garment",
+                "label": "Garments"
+              },
+              {
+                "id": "export",
+                "label": "Export"
+              }
+            ],
+            "links": [
+              {
+                "source": "cotton",
+                "target": "gin",
+                "value": 100,
+                "label": "seed cotton"
+              },
+              {
+                "source": "gin",
+                "target": "spin",
+                "value": 90,
+                "label": "lint bales"
+              },
+              {
+                "source": "spin",
+                "target": "weave",
+                "value": 80,
+                "label": "yarn"
+              },
+              {
+                "source": "weave",
+                "target": "garment",
+                "value": 70,
+                "label": "fabric"
+              },
+              {
+                "source": "garment",
+                "target": "export",
+                "value": 65,
+                "label": "finished goods"
+              }
+            ],
+            "label": "cotton-to-export value chain"
+          }
+        ]
+      },
+      {
+        "heading": "THE RUPEE TWIST",
+        "body": "Imported cotton is priced in dollars, and a weak rupee should make foreign fiber more expensive — yet mills still buy American. That is the measure of how far domestic costs have slipped: even with a depreciating currency working against imports, local cotton plus local power loses the math.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377,
+              278.485848,
+              278.494701,
+              278.137253,
+              277.408487,
+              278.412506,
+              278.512908,
+              278.575,
+              277.445439,
+              278.55,
+              278.55,
+              278.494021
+            ],
+            "periods": [
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE CIRCULAR-DEBT BACKDROP",
+        "body": "The energy tariff is not arbitrary cruelty — it is the visible edge of Pakistan's power-sector 'circular debt,' where unpaid bills cascade between distributors, generators, and fuel suppliers until the state plugs the gap by raising tariffs. Industry is repeatedly the payer of last resort.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The hidden subsidy runs backwards: factories overpay so households underpay. Economists call this **cross-subsidy**, and in Pakistan it is layered on top of **capacity payments** — money owed to power plants *whether or not they generate a single unit*."
+          }
+        ]
+      },
+      {
+        "heading": "TEST YOURSELF",
+        "body": "The story's core irony is structural, not accidental.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are Pakistani mills importing US cotton despite Pakistan being a major cotton grower?",
+            "options": [
+              "A drought wiped out the domestic crop",
+              "High energy tariffs make local cotton and yarn uncompetitive",
+              "The US banned Pakistani cotton exports",
+              "US cotton is genetically superior and cannot be grown locally"
+            ],
+            "correct": 1,
+            "explanation": "The constraint is downstream cost — power tariffs and financing — not the crop itself, which is why the fix mills demand is energy and interest-rate relief."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-01"
+    ],
+    "generatedAt": "2026-06-01T04:33:36.351Z",
+    "label": "Cotton, Energy & Pakistan's Textile Squeeze",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-01-rnn-predict-depression-students-longitudinal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY A SEQUENCE MODEL",
+        "body": "A standard classifier sees one snapshot and asks 'is this person depressed now?' A recurrent neural network reads a student's measurements year after year as an ordered sequence, carrying a hidden state forward, so it can ask the harder question: 'where is this trajectory heading?' The prediction lives in the change over time, not any single survey."
+      },
+      {
+        "heading": "THE MEMORY PROBLEM",
+        "body": "Plain RNNs forget. As they process a long sequence, the error signal shrinks at each step until early events vanish — the vanishing-gradient problem. The fix is gating: small learned valves decide what to keep and what to discard, letting the network remember a trauma from year one while reading year four.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The standard gated cells are the **LSTM** (long short-term memory, 1997) and the simpler **GRU** (2014). Both add a *forget gate* — the single trick that lets the network hold a signal across dozens of time steps instead of losing it after a handful."
+          },
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1986",
+                "label": "Backprop popularized; early RNNs"
+              },
+              {
+                "year": "1997",
+                "label": "LSTM solves vanishing gradients",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2014",
+                "label": "GRU simplifies the cell"
+              },
+              {
+                "year": "2017",
+                "label": "Transformers begin to displace RNNs"
+              }
+            ],
+            "label": "the architecture lineage"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT OUTRANKED THE SCREEN",
+        "body": "The striking finding is not the model but its inputs: family conflict and trauma predicted onset better than the validated psychiatric screening questionnaires. Standard screens measure current symptoms; the environmental history measures the upstream cause. The model learned to weight the wound over the symptom."
+      },
+      {
+        "heading": "THE ACCURACY TRAP",
+        "body": "0.952 accuracy sounds decisive, but depression onset is a rare event. If only ~10% of students develop it, a model that predicts 'no one ever' is already 90% accurate while catching zero cases. The number that matters for a screening tool is how many true cases it catches versus how many false alarms it raises — sensitivity and precision, not raw accuracy.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "A model labels everyone 'not depressed.' If 8% of students actually develop depression, what is its accuracy?",
+            "options": [
+              "About 50%",
+              "About 92%",
+              "0% — it caught no cases",
+              "Undefined"
+            ],
+            "correct": 1,
+            "explanation": "It is right on the 92% who stay well, so accuracy is 92% — yet it is useless, which is why imbalanced problems are judged on recall and precision."
+          }
+        ]
+      },
+      {
+        "heading": "THE SURVEILLANCE EDGE",
+        "body": "A model that flags future depression from a child's home life is a prediction about a person who has not yet shown symptoms — and in a school setting, the flag can become a label that follows them. The same machinery that could route a struggling student to help can also build a permanent psychological dossier. The technique is neutral; the governance around who sees the score is not."
+      }
+    ],
+    "generatedAt": "2026-06-01T04:34:06.356Z",
+    "label": "RNNs & Predicting Depression",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-01-self-supervised-depth-bronchoscopic-navigation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PROBLEM",
+        "body": "The human airway branches like an upside-down tree — the trachea splits into two bronchi, then into lobar, segmental, and dozens of sub-segmental branches. A bronchoscope camera deep inside this maze sees only pink tunnels that all look alike, with no external landmark to anchor position.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bronchial tree splits roughly **23 generations** deep before reaching the alveoli — a navigator can take a wrong turn at any fork and the view downstream looks identical."
+          }
+        ]
+      },
+      {
+        "heading": "WHY TRACKING DRIFTS",
+        "body": "Without depth, a single camera can't tell whether the scene is small-and-close or large-and-far — the image is identical. Pose estimators integrate frame-to-frame motion, so each tiny error accumulates. Over a long path the estimated position slowly walks away from the truth. This compounding error is called drift."
+      },
+      {
+        "heading": "THE MONOCULAR DEPTH TRICK",
+        "body": "A single 2D image is geometrically ambiguous: infinitely many 3D scenes project to the same pixels. The brain resolves this with learned priors — known object sizes, shading, perspective. Monocular depth networks learn the same priors statistically, predicting how far each pixel is from cues alone.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This ambiguity is the *scale problem*: from one camera you can recover the **shape** of a scene but not its absolute **size** — a dollhouse and a real house look the same to one lens."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SELF-SUPERVISED",
+        "body": "Labeling true per-pixel depth inside a real human lung is nearly impossible — there's no ground-truth ruler in there. Self-supervised methods sidestep labels entirely: the network predicts depth and motion, reconstructs the next frame from the previous one, and is trained simply to make that prediction match reality.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do bronchoscopy depth models train without labeled depth data?",
+            "options": [
+              "Labeled depth speeds training up too much",
+              "There's no way to measure true depth inside a living airway",
+              "Regulators forbid labeled medical data",
+              "Labels would make the model overfit"
+            ],
+            "correct": 1,
+            "explanation": "No ruler exists inside a breathing lung, so the network supervises itself by reconstructing one frame from another instead of using ground-truth depth."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PHANTOMS FIRST",
+        "body": "A phantom is a physical airway replica — silicone or 3D-printed bronchial trees — where the true geometry is known exactly. It lets engineers measure error in millimeters against ground truth before any patient is involved. A 36% cut in translation error is meaningful precisely because the phantom's real shape is measurable."
+      },
+      {
+        "heading": "THE HYBRID APPROACH",
+        "body": "Hybrid navigation fuses the camera's visual estimate with other signals — pre-operative CT maps of the patient's airways and electromagnetic position sensors. Vision alone drifts; sensors alone lack fine detail near the target. Combining them lets each correct the other's blind spots."
+      }
+    ],
+    "generatedAt": "2026-06-01T04:34:31.405Z",
+    "label": "Depth Estimation & Endoscope Navigation",
+    "category": "tech",
+    "articleCount": 1
   }
 }
