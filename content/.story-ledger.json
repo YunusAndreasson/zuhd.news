@@ -2,13 +2,246 @@
   "version": 1,
   "stories": [
     {
+      "id": "trump-netanyahu-call-lebanon-rift",
+      "label": "\"You're fucking crazy\": Trump fumes at Netanyahu in call on Lebanon",
+      "firstSeen": "2026-06-01T22:05:20.848Z",
+      "lastCovered": "2026-06-01T22:05:20.848Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-01-trump-netanyahu-call-lebanon-rift"
+      ],
+      "eventUri": "eng-11703159",
+      "summary": "Behind-the-scenes account of Trump berating Netanyahu over threats to bomb Beirut, reportedly invoking the political cover he gave Netanyahu at home. The development is not the displacement (covered earlier) but the open US-Israel rift: a patron telling its client that flattening Dahieh would isolate Israel. Lead on the named officials and the leverage Trump claims; treat the strained call as the mechanism slowing a wider Lebanon war, and carry the Lebanese/regional ceasefire context (Berri signalling Hezbollah readiness) as backdrop. OIC-region story carried by Al Jazeera (QA) and TRT World (TR) alongside Western and Russian wires.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Lebanon",
+        "http://en.wikipedia.org/wiki/Hezbollah",
+        "http://en.wikipedia.org/wiki/Benjamin_Netanyahu",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Ceasefire",
+        "http://en.wikipedia.org/wiki/Beirut",
+        "http://en.wikipedia.org/wiki/Donald_Trump"
+      ]
+    },
+    {
+      "id": "florida-sues-openai-altman-chatgpt-liability",
+      "label": "Florida sues OpenAI and Sam Altman in first-of-its-kind lawsuit over violent incidents",
+      "firstSeen": "2026-06-01T22:05:20.848Z",
+      "lastCovered": "2026-06-01T22:05:20.848Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-01-florida-sues-openai-altman-chatgpt-liability"
+      ],
+      "eventUri": "eng-11703337",
+      "summary": "Florida's attorney general sues OpenAI and Sam Altman personally, alleging ChatGPT was linked to violent incidents and that the firm 'looked the other way' on safety to win the AI race. The precedent to lead with: a US state trying to attach product-liability and consumer-protection law to a chatbot's outputs, and naming the CEO. Explain the legal theory and why holding an LLM 'accountable for every bad outcome' is contested; this is the opening test of who is liable when generative AI is implicated in harm.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/OpenAI",
+        "http://en.wikipedia.org/wiki/Florida",
+        "http://en.wikipedia.org/wiki/Sam_Altman",
+        "http://en.wikipedia.org/wiki/ChatGPT",
+        "http://en.wikipedia.org/wiki/Chief_executive_officer",
+        "http://en.wikipedia.org/wiki/Lawsuit",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Florida_Attorney_General"
+      ]
+    },
+    {
+      "id": "tina-peters-released-trump-pressure-election",
+      "label": "Former election clerk Tina Peters released after Trump pressure campaign",
+      "firstSeen": "2026-06-01T22:05:20.848Z",
+      "lastCovered": "2026-06-01T22:05:20.848Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-01-tina-peters-released-trump-pressure-election"
+      ],
+      "eventUri": "eng-11701068",
+      "summary": "Tina Peters, convicted of letting election machines be tampered with, walks free after a sustained pressure campaign by President Trump. The accountability angle: the executive using its weight to spring a convicted election-fraud actor reframes the case from local crime to a rule-of-law precedent. Lead on who intervened, how the release came about, and Colorado's secretary of state's objection; frame it as the normalisation of pardoning allies who attacked election integrity.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Colorado",
+        "http://en.wikipedia.org/wiki/Jared_Polis",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Tina_Peters_(politician)",
+        "http://en.wikipedia.org/wiki/Democratic_Party_(United_States)",
+        "http://en.wikipedia.org/wiki/Mesa_County,_Colorado",
+        "http://en.wikipedia.org/wiki/Pardon"
+      ]
+    },
+    {
+      "id": "us-terror-designation-pcc-brazil-economy",
+      "label": "US Terrorism Designations Will Hit the PCC's Money—and Everyone Else's",
+      "firstSeen": "2026-06-01T22:05:20.848Z",
+      "lastCovered": "2026-06-01T22:05:20.848Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-01-us-terror-designation-pcc-brazil-economy"
+      ],
+      "eventUri": null,
+      "summary": "The US designating Brazil's PCC and Red Command as foreign terrorist organisations could squeeze legitimate businesses across Latin America's largest economy more than the gangs it targets. The mechanism to teach: terrorism designations weaponise the US financial system — banks de-risk entire sectors to avoid secondary sanctions, so compliance costs land on ordinary firms while criminal cash routes around them. Lead on who actually bears the cost; a rare investigative read on how sanctions tools misfire in practice.",
+      "conceptUris": []
+    },
+    {
+      "id": "saic-galicia-ev-plant-eu-tariffs",
+      "label": "China's SAIC plans to build first EU car plant in Spain's Galicia",
+      "firstSeen": "2026-06-01T22:05:20.848Z",
+      "lastCovered": "2026-06-01T22:05:20.848Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-01-saic-galicia-ev-plant-eu-tariffs"
+      ],
+      "eventUri": "spa-4215857",
+      "summary": "Chinese state automaker SAIC will build its first EU production plant in Galicia, a ~$232m project. The structural why: building inside the bloc is how Chinese carmakers neutralise EU tariffs on imported EVs — localising assembly to convert a trade barrier into an investment welcome. Lead on the tariff-circumvention logic and what Galicia gains (jobs) versus what European rivals lose (a protected home market); China as industrial actor reshaping Europe's auto base, not a passive target of policy.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Galicia_(Spain)",
+        "http://en.wikipedia.org/wiki/Europe",
+        "http://en.wikipedia.org/wiki/SAIC_Motor",
+        "http://en.wikipedia.org/wiki/Ferrol,_Spain",
+        "http://en.wikipedia.org/wiki/Spain",
+        "http://en.wikipedia.org/wiki/Electric_vehicle"
+      ]
+    },
+    {
+      "id": "caesars-mgm-takeover-prediction-markets",
+      "label": "Vegas Tourism Hit, Online Rivals Put Caesars and MGM in Play",
+      "firstSeen": "2026-06-01T22:05:20.848Z",
+      "lastCovered": "2026-06-01T22:05:20.848Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-01-caesars-mgm-takeover-prediction-markets"
+      ],
+      "eventUri": "eng-11702945",
+      "summary": "Falling Las Vegas visitor numbers and the rise of prediction-market betting have put Caesars and MGM into takeover play. The structural shift to lead with: prediction markets and online wagering are draining the economics of the physical casino, the way streaming hollowed out cinemas — the house's edge migrates from the floor to an app. Explain why declining footfall plus a new betting substitute makes storied operators acquisition targets; a clean case study in a business model being disintermediated.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/MGM_Resorts_International",
+        "http://en.wikipedia.org/wiki/Barry_Diller",
+        "http://en.wikipedia.org/wiki/Casino",
+        "http://en.wikipedia.org/wiki/IAC_(company)",
+        "http://en.wikipedia.org/wiki/Shareholder",
+        "http://en.wikipedia.org/wiki/Equity_(finance)"
+      ]
+    },
+    {
+      "id": "cross-river-nigeria-services-out-migration",
+      "label": "Nearly 9 in 10 Cross River residents consider leaving state amid worsening services — Report",
+      "firstSeen": "2026-06-01T22:05:20.848Z",
+      "lastCovered": "2026-06-01T22:05:20.848Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-01-cross-river-nigeria-services-out-migration"
+      ],
+      "eventUri": null,
+      "summary": "An SBM Intelligence study finds nearly nine in ten Cross River residents are considering leaving the state as electricity, healthcare and living costs deteriorate — what the firm warns could become a 'demographic haemorrhage.' The mechanism: sub-national service-delivery failure as an economic push factor driving internal migration in Nigeria. Lead on the number and the named drivers; treat it as a measurable case of how governance collapse, not opportunity, depopulates a region — an African story told through an African outlet's own data.",
+      "conceptUris": []
+    },
+    {
+      "id": "india-air-pollution-health-inequality-pm25",
+      "label": "Poor people face the heaviest health toll from dirty air",
+      "firstSeen": "2026-06-01T22:05:20.848Z",
+      "lastCovered": "2026-06-01T22:05:20.848Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-01-india-air-pollution-health-inequality-pm25"
+      ],
+      "eventUri": null,
+      "summary": "A new study finds India's PM2.5 health burden falls disproportionately on poorer, less-educated and socially disadvantaged groups, widening existing health inequalities. The mechanism to teach: identical air pollution produces unequal harm because exposure, underlying health and access to care are all stratified by class and caste. Lead on the disparity finding, not the pollution level itself; frame it as evidence that air-quality policy is also distributional policy — relevant to every high-PM2.5 megacity across the Global South.",
+      "conceptUris": []
+    },
+    {
+      "id": "rna-segment-editing-hku-gene-therapy",
+      "label": "RNA 'cut-and-patch' tool repairs faulty messages without altering DNA",
+      "firstSeen": "2026-06-01T22:05:20.848Z",
+      "lastCovered": "2026-06-01T22:05:20.848Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-01-rna-segment-editing-hku-gene-therapy"
+      ],
+      "eventUri": null,
+      "summary": "A University of Hong Kong team built RNA Segment Editing (RSE), which excises and replaces faulty stretches of RNA in living cells without permanently changing DNA. The mechanism to teach: editing the transient message rather than the genome offers reversible, lower-risk correction — a different safety profile from CRISPR-style DNA edits, with potential for neurodegenerative disease. Lead on the cut-and-patch concept and why 'don't touch the DNA' matters; an Asian lab advancing a distinct branch of gene therapy.",
+      "conceptUris": []
+    },
+    {
+      "id": "meta-ai-chatbot-instagram-account-takeover",
+      "label": "Hackers Simply Asked Meta AI to Give Them Access to High-Profile Instagram Accounts. It Worked",
+      "firstSeen": "2026-06-01T22:05:20.848Z",
+      "lastCovered": "2026-06-01T22:05:20.848Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-01-meta-ai-chatbot-instagram-account-takeover"
+      ],
+      "eventUri": null,
+      "summary": "Hackers took over notable Instagram accounts by simply asking Meta's AI support chatbot to change the linked email — masking their location with a VPN. The mechanism for a technical reader: offloading account-recovery support to an LLM removed the human friction and policy checks that previously gated high-risk actions, turning a help bot into a social-engineering oracle. Lead on how trivial the exploit was and what it reveals about putting generative AI in privileged support workflows. Use 404 Media's original reporting.",
+      "conceptUris": []
+    },
+    {
+      "id": "ice-paragon-spyware-foia-redactions",
+      "label": "We Sued ICE to Get Its Spyware Contract. The Agency Is Redacting Essentially Everything",
+      "firstSeen": "2026-06-01T22:05:20.848Z",
+      "lastCovered": "2026-06-01T22:05:20.848Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-01-ice-paragon-spyware-foia-redactions"
+      ],
+      "eventUri": null,
+      "summary": "404 Media sued ICE for records on its contract with Paragon — spyware that can remotely break into phones and read encrypted messages — and the agency returned near-total redactions. The accountability angle: a US immigration enforcement body buying mercenary phone-hacking tools and then using FOIA exemptions to wall off any oversight of how they're used. Lead on what Paragon's tool does and what the blanket redactions hide; an original transparency fight over the surveillance state's commercial supply chain.",
+      "conceptUris": []
+    },
+    {
+      "id": "nist-nvd-backlog-inspector-general",
+      "label": "Inspector general finds NIST mistakes have made vulnerability database ineffective",
+      "firstSeen": "2026-06-01T22:05:20.848Z",
+      "lastCovered": "2026-06-01T22:05:20.848Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-01-nist-nvd-backlog-inspector-general"
+      ],
+      "eventUri": null,
+      "summary": "An inspector-general report finds NIST's National Vulnerability Database backlog ballooned from 13,000 unprocessed flaws in early 2024 to over 27,000 by end-2025, 'undermining the NVD's utility and public trust.' The structural why: nearly all defensive security tooling — scanners, patch prioritisation, compliance — depends on the NVD's enrichment data, so a quietly broken public database degrades everyone's security at once. Lead on the two backlog numbers and what the NVD actually feeds; a single point of failure in global cyberdefence.",
+      "conceptUris": []
+    },
+    {
       "id": "lebanese-flee-beirut-israel-attack-orders-ceasefire",
       "label": "Lebanese flee their homes as Israel orders attacks on Beirut",
       "firstSeen": "2026-06-01T17:05:55.509Z",
       "lastCovered": "2026-06-01T17:05:55.509Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-01-lebanese-flee-beirut-israel-attack-orders-ceasefire"
@@ -33,7 +266,7 @@
       "lastCovered": "2026-06-01T17:05:55.509Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-01-south-africa-xenophobia-ghana-travel-warning-nigeria"
@@ -49,7 +282,7 @@
       "lastCovered": "2026-06-01T17:05:55.509Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-01-philippines-duterte-impeachment-trial-2028-marcos"
@@ -65,7 +298,7 @@
       "lastCovered": "2026-06-01T17:05:55.509Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-01-wise-belgium-money-laundering-investigation-fintech-aml"
@@ -90,7 +323,7 @@
       "lastCovered": "2026-06-01T17:05:55.509Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-01-oecd-chip-subsidies-us-china-semiconductor-support"
@@ -115,7 +348,7 @@
       "lastCovered": "2026-06-01T17:05:55.509Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-01-sterile-soil-metabolism-first-origin-of-life"
@@ -131,7 +364,7 @@
       "lastCovered": "2026-06-01T17:05:55.509Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-01-cities-urban-rainfall-effect-smaller-than-thought"
@@ -147,7 +380,7 @@
       "lastCovered": "2026-06-01T17:05:55.509Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-01-microsoft-security-researchers-legal-action-disclosure"
@@ -163,7 +396,7 @@
       "lastCovered": "2026-06-01T17:05:55.509Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-31-cloudflare-turnstile-webgl-fingerprinting-privacy"
@@ -179,7 +412,7 @@
       "lastCovered": "2026-06-01T17:05:55.509Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-06-01-nvidia-windows-pc-superchip-ai-agents",
@@ -205,7 +438,7 @@
       "lastCovered": "2026-06-01T12:06:05.710Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-01-arbitrators-reject-rwanda-134m-claim-uk-asylum-deal"
@@ -230,7 +463,7 @@
       "lastCovered": "2026-06-01T12:06:05.710Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-01-colombia-runoff-de-la-espriella-cepeda-petro"
@@ -246,7 +479,7 @@
       "lastCovered": "2026-06-01T12:06:05.710Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-01-india-vietnam-brahmos-missile-deal-south-china-sea"
@@ -262,7 +495,7 @@
       "lastCovered": "2026-06-01T12:06:05.710Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-01-pakistan-malnutrition-survey-budget-failure-generation"
@@ -278,7 +511,7 @@
       "lastCovered": "2026-06-01T12:06:05.710Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-01-uk-bars-uygur-piker-israel-criticism-border"
@@ -294,7 +527,7 @@
       "lastCovered": "2026-06-01T12:06:05.710Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-01-india-oman-cepa-in-force-duty-free-trade"
@@ -319,7 +552,7 @@
       "lastCovered": "2026-06-01T12:06:05.710Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-01-pentagon-right-to-repair-defense-contractor-markups"
@@ -335,7 +568,7 @@
       "lastCovered": "2026-06-01T12:06:05.710Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-01-oil-price-surge-iran-hormuz-lebanon-escalation"
@@ -351,7 +584,7 @@
       "lastCovered": "2026-06-01T12:06:05.710Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-01-nanoengineered-room-temperature-hydrogen-storage"
@@ -367,7 +600,7 @@
       "lastCovered": "2026-06-01T12:06:05.710Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-01-gate-all-around-carbon-nanotube-fet-sub-10nm"
@@ -383,7 +616,7 @@
       "lastCovered": "2026-06-01T12:06:05.710Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-01-openai-model-disproves-erdos-unit-distance-conjecture"
@@ -399,7 +632,7 @@
       "lastCovered": "2026-06-01T12:06:05.710Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-01-india-uae-g42-cerebras-ai-sovereignty-cloud"
@@ -415,7 +648,7 @@
       "lastCovered": "2026-06-01T12:06:05.710Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-01-china-first-invasive-brain-computer-interface-approval"
@@ -431,7 +664,7 @@
       "lastCovered": "2026-06-01T08:05:24.831Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-01-us-strikes-iran-goruk-qeshm-island"
@@ -456,7 +689,7 @@
       "lastCovered": "2026-06-01T08:05:24.831Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-01-france-intercepts-russia-shadow-fleet-tanker"
@@ -481,7 +714,7 @@
       "lastCovered": "2026-06-01T08:05:24.831Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-01-armenia-election-russia-interference-western-pivot"
@@ -506,7 +739,7 @@
       "lastCovered": "2026-06-01T08:05:24.831Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-01-akwa-ibom-eno-discards-science-park-project"
@@ -522,7 +755,7 @@
       "lastCovered": "2026-06-01T08:05:24.831Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-01-hanwha-aerospace-daejeon-propellant-explosion"
@@ -547,7 +780,7 @@
       "lastCovered": "2026-06-01T08:05:24.831Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-01-asia-factory-pmi-iran-war-stockpiling"
@@ -572,7 +805,7 @@
       "lastCovered": "2026-06-01T08:05:24.831Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-01-citi-tokenized-securities-5-5-trillion-forecast"
@@ -588,7 +821,7 @@
       "lastCovered": "2026-06-01T08:05:24.831Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-01-arctic-sea-ice-geoengineering-thickening-trials"
@@ -604,7 +837,7 @@
       "lastCovered": "2026-06-01T08:05:24.831Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-01-tuberculosis-urine-vesicle-non-invasive-diagnostic"
@@ -620,7 +853,7 @@
       "lastCovered": "2026-06-01T08:05:24.831Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-01-tp53-aml-resistance-t-cell-engagers-secretome"
@@ -636,7 +869,7 @@
       "lastCovered": "2026-06-01T08:05:24.831Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-01-whitehat-unlocks-2016-ethereum-ico-contract-funds"
@@ -652,7 +885,7 @@
       "lastCovered": "2026-06-01T08:05:24.831Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-01-monte-carlo-pinns-fractional-differential-memory"
@@ -668,7 +901,7 @@
       "lastCovered": "2026-06-01T04:06:26.781Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-01-kuwait-missile-drone-attack-us-strikes-iran-radar-sites"
@@ -684,7 +917,7 @@
       "lastCovered": "2026-06-01T04:06:26.781Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-01-ethiopia-election-abiy-landslide-tigray-excluded"
@@ -700,7 +933,7 @@
       "lastCovered": "2026-06-01T04:06:26.781Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-31-dk-shivakumar-karnataka-cm-congress-power-share"
@@ -725,7 +958,7 @@
       "lastCovered": "2026-06-01T04:06:26.781Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-01-china-coast-guard-east-of-taiwan-japan-philippines"
@@ -741,7 +974,7 @@
       "lastCovered": "2026-06-01T04:06:26.781Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-01-is-returnee-renounces-group-melbourne-court"
@@ -757,7 +990,7 @@
       "lastCovered": "2026-06-01T04:06:26.781Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-31-coinbase-india-inr-rails-crypto-market"
@@ -773,7 +1006,7 @@
       "lastCovered": "2026-06-01T04:06:26.781Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-01-india-lpg-price-hike-hormuz-oil-disruption"
@@ -798,7 +1031,7 @@
       "lastCovered": "2026-06-01T04:06:26.781Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-01-pakistan-us-cotton-imports-textile-tariffs"
@@ -823,7 +1056,7 @@
       "lastCovered": "2026-06-01T04:06:26.781Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-01-karachi-teen-rabies-death-vaccine-failure"
@@ -839,7 +1072,7 @@
       "lastCovered": "2026-06-01T04:06:26.781Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-01-nazarbayev-biopolymer-hydrogel-seed-coating"
@@ -855,7 +1088,7 @@
       "lastCovered": "2026-06-01T04:06:26.781Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-31-united-767-bluetooth-name-security-alert"
@@ -871,7 +1104,7 @@
       "lastCovered": "2026-06-01T04:06:26.781Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-01-rnn-predict-depression-students-longitudinal"
@@ -887,7 +1120,7 @@
       "lastCovered": "2026-06-01T04:06:26.781Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-01-self-supervised-depth-bronchoscopic-navigation"
@@ -897,13 +1130,37 @@
       "conceptUris": []
     },
     {
+      "id": "daraxonrasib-pancreatic-cancer-kras-trial",
+      "label": "'Landmark' pancreatic cancer drug keeps patients alive for twice as long",
+      "firstSeen": "2026-05-31T17:06:16.765Z",
+      "lastCovered": "2026-06-01T22:05:20.848Z",
+      "coverageCount": 2,
+      "category": "science",
+      "importance": 1,
+      "arc": "developing",
+      "articles": [
+        "2026-05-31-daraxonrasib-pancreatic-cancer-kras-trial",
+        "2026-06-01-daraxonrasib-ras-undruggable-cancer-trial"
+      ],
+      "eventUri": "eng-11700381",
+      "summary": "A Phase 3 trial of daraxonrasib, a daily pill four decades in the making, roughly doubled survival and progression-free time in advanced pancreatic cancer versus standard chemo. Teach the mechanism plainly: pancreatic cancer is overwhelmingly driven by KRAS mutations that were long considered 'undruggable,' and this is a small-molecule that finally targets them — why that matters for one of medicine's most lethal cancers. Lead with the doubled survival figure and what 'twice as long' realistically means (months, not cure), then the KRAS story. Multi-source incl. a US, UK, Indian and Israeli outlet.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Pancreatic_cancer",
+        "http://en.wikipedia.org/wiki/Chemotherapy",
+        "http://en.wikipedia.org/wiki/Cancer",
+        "http://en.wikipedia.org/wiki/American_Society_of_Clinical_Oncology",
+        "http://en.wikipedia.org/wiki/Mutation",
+        "http://en.wikipedia.org/wiki/Oncology"
+      ]
+    },
+    {
       "id": "anthropic-most-valuable-ai-startup-valuation",
       "label": "Anthropic surpasses OpenAI to become most valuable AI startup",
       "firstSeen": "2026-05-31T17:06:16.765Z",
       "lastCovered": "2026-06-01T17:05:55.509Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-05-30-anthropic-most-valuable-ai-startup-valuation",
@@ -929,7 +1186,7 @@
       "lastCovered": "2026-05-31T22:09:04.153Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-05-31-lebanon-israeli-strikes-death-toll-tyre",
@@ -946,7 +1203,7 @@
       "lastCovered": "2026-05-31T22:09:04.153Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-31-economic-model-and-us-relations-at-stake-in-colombian-electi"
@@ -971,7 +1228,7 @@
       "lastCovered": "2026-05-31T22:09:04.153Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-31-nicaraguan-indigenous-leader-dies-after-three-years-in-priso"
@@ -996,7 +1253,7 @@
       "lastCovered": "2026-05-31T22:09:04.153Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-31-punjab-approves-deployment-of-6-000-police-personnel-in-gb-f"
@@ -1012,7 +1269,7 @@
       "lastCovered": "2026-05-31T22:09:04.153Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-31-u-s-military-is-quietly-guiding-ships-through-the-strait-of"
@@ -1028,7 +1285,7 @@
       "lastCovered": "2026-05-31T22:09:04.153Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-31-how-the-house-financial-services-committee-is-taking-on-toke"
@@ -1044,7 +1301,7 @@
       "lastCovered": "2026-05-31T22:09:04.153Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-31-dangote-retains-africa-s-most-admired-brand-title-for-eighth"
@@ -1060,7 +1317,7 @@
       "lastCovered": "2026-05-31T22:09:04.153Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-31-enterprise-ai-s-next-frontier-is-not-more-workflows-it-s-exe"
@@ -1085,7 +1342,7 @@
       "lastCovered": "2026-05-31T22:09:04.153Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-30-who-is-talking-about-artificial-intelligence-in-ecuador"
@@ -1101,7 +1358,7 @@
       "lastCovered": "2026-05-31T22:09:04.153Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-29-mcp-is-dead"
@@ -1117,7 +1374,7 @@
       "lastCovered": "2026-05-31T22:09:04.153Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-31-world-health-organization-hails-recovery-of-five-ebola-patie"
@@ -1142,7 +1399,7 @@
       "lastCovered": "2026-05-31T22:09:04.153Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-31-what-biodegradable-packaging-really-means-and-three-key-ques"
@@ -1158,7 +1415,7 @@
       "lastCovered": "2026-05-31T22:09:04.153Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-31-italy-turns-to-tall-ship-to-simulate-stresses-of-long-durati"
@@ -1166,219 +1423,6 @@
       "eventUri": null,
       "summary": "The Italian Space Agency is using a Navy tall ship and naval cadets to study how the body and mind handle long-duration spaceflight stresses, under its ICE-Blue initiative. The angle for the reader: a sailing vessel is a cheap, high-fidelity analogue for space — prolonged confinement, isolation, sleep disruption and team dynamics on a long voyage mirror what a Mars-class mission demands. Lead on why an earthbound ship is a serious research platform for human spaceflight, and what physiological/psychological data ASI is actually collecting. A concrete, instructive niche science note.",
       "conceptUris": []
-    },
-    {
-      "id": "myanmar-shan-state-village-explosives-blast",
-      "label": "Blast kills dozens in village in rebel-held region of Myanmar",
-      "firstSeen": "2026-05-31T17:06:16.765Z",
-      "lastCovered": "2026-05-31T17:06:16.765Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-31-myanmar-shan-state-village-explosives-blast"
-      ],
-      "eventUri": "eng-11700626",
-      "summary": "An explosion at a mining-explosives store in Kaung Tat, a Ta'ang National Liberation Army-controlled village in Shan State, killed at least 55 and wounded dozens. Lead with the human toll and the setting: a civilian village inside Myanmar's fractured insurgent-held north, where the war economy of mining and munitions sits next to where people live. Name the TNLA-controlled territory and the proximity to the China border; flag that the cause (accidental store blast vs strike) is still contested across sources. Global South consequence story Western wires barely sustain.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Myanmar",
-        "http://en.wikipedia.org/wiki/Mining",
-        "http://en.wikipedia.org/wiki/Ta'ang_National_Liberation_Army",
-        "http://en.wikipedia.org/wiki/Namhkam,_Shan_State",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Explosion",
-        "http://en.wikipedia.org/wiki/Shan_State"
-      ]
-    },
-    {
-      "id": "india-cbse-exam-portal-security-flaw-teen",
-      "label": "Indian Exam Board Fixes Cybersecurity Flaws Found by Teen",
-      "firstSeen": "2026-05-31T17:06:16.765Z",
-      "lastCovered": "2026-05-31T17:06:16.765Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-31-india-cbse-exam-portal-security-flaw-teen"
-      ],
-      "eventUri": "eng-11700136",
-      "summary": "India's Central Board of Secondary Education patched flaws in its grading portal after a teenager surfaced them — and the opposition is demanding a court-led inquiry into how the contract to run the portal was awarded. The mechanism to lead with: a white-hat minor exposes that the exam results of millions ran on an externally-operated system with basic holes, turning a security bug into an accountability question about state outsourcing and oversight. Affected: students whose records sat exposed; powerful party named is the body that awarded the contract.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Central_Board_of_Secondary_Education",
-        "http://en.wikipedia.org/wiki/Computer_security",
-        "http://en.wikipedia.org/wiki/Vulnerability_(computing)",
-        "http://en.wikipedia.org/wiki/White_hat_(computer_security)",
-        "http://en.wikipedia.org/wiki/New_Delhi"
-      ]
-    },
-    {
-      "id": "iran-south-pars-gas-complex-rebuild",
-      "label": "Iranians Return to South Pars Gas Complex to Repair and Rebuild",
-      "firstSeen": "2026-05-31T17:06:16.765Z",
-      "lastCovered": "2026-05-31T17:06:16.765Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-29-iran-south-pars-gas-complex-rebuild"
-      ],
-      "eventUri": null,
-      "summary": "Drop Site reports from inside Iran's South Pars gas complex, where engineers estimate US-Israeli strikes in March knocked out about 12% of capacity and are now repairing it. The angle for the reader: ground-level reconstruction is the war's real aftermath — what actually got hit, how fast a sanctioned state can rebuild critical energy infrastructure, and what 12% of the world's largest gas field offline means for Iran's economy and exports. Original on-the-ground reporting no wire carries; OIC-region story. Lead on the concrete damage figure and the rebuild, not the diplomacy.",
-      "conceptUris": []
-    },
-    {
-      "id": "eu-russia-oil-price-cap-freeze-iran-war",
-      "label": "EU mulls changing Russian oil price cap — Bloomberg",
-      "firstSeen": "2026-05-31T17:06:16.765Z",
-      "lastCovered": "2026-05-31T17:06:16.765Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-31-eu-russia-oil-price-cap-freeze-iran-war"
-      ],
-      "eventUri": "rus-2073711",
-      "summary": "The EU is weighing a temporary freeze of its $60 cap on Russian oil because the US-Israeli war on Iran has sent energy prices and supply risk soaring. The mechanism to lead with: the price cap was built to squeeze Moscow's war revenue, but a Gulf supply shock forces Brussels to choose between punishing Russia and keeping European energy affordable — one war loosening the sanctions architecture of another. Attribute the freeze plan to Bloomberg's reporting (primary link is RT relaying it — note the chain and cross-check before publishing); foreground who benefits if the cap lifts (Russian exporters) and who is exposed (European consumers).",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/European_Union",
-        "http://en.wikipedia.org/wiki/Bloomberg_L.P.",
-        "http://en.wikipedia.org/wiki/United_States_dollar",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Russia"
-      ]
-    },
-    {
-      "id": "pakistan-sindh-irsa-water-share-dispute",
-      "label": "Sharjeel Memon criticises Irsa's 'unjust reduction' of Sindh's water share",
-      "firstSeen": "2026-05-31T17:06:16.765Z",
-      "lastCovered": "2026-05-31T17:06:16.765Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-31-pakistan-sindh-irsa-water-share-dispute"
-      ],
-      "eventUri": null,
-      "summary": "Sindh's senior minister says the Indus River System Authority is unjustly cutting the province's water allocation, with a 22% shortage persisting, and is pressing the federal centre to intervene. The mechanism to lead with: water as a distributive conflict between Pakistani provinces — how the IRSA allocation formula decides which farmers and cities go short, and why downstream Sindh perennially fears upstream Punjab. Affects Sindh's agriculture and drinking-water supply; OIC-region story carried by its own regional outlet (Dawn). Resource scarcity as a structural, recurring fight, not a one-day complaint.",
-      "conceptUris": []
-    },
-    {
-      "id": "daraxonrasib-pancreatic-cancer-kras-trial",
-      "label": "'Landmark' pancreatic cancer drug keeps patients alive for twice as long",
-      "firstSeen": "2026-05-31T17:06:16.765Z",
-      "lastCovered": "2026-05-31T17:06:16.765Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-31-daraxonrasib-pancreatic-cancer-kras-trial"
-      ],
-      "eventUri": "eng-11700381",
-      "summary": "A Phase 3 trial of daraxonrasib, a daily pill four decades in the making, roughly doubled survival and progression-free time in advanced pancreatic cancer versus standard chemo. Teach the mechanism plainly: pancreatic cancer is overwhelmingly driven by KRAS mutations that were long considered 'undruggable,' and this is a small-molecule that finally targets them — why that matters for one of medicine's most lethal cancers. Lead with the doubled survival figure and what 'twice as long' realistically means (months, not cure), then the KRAS story. Multi-source incl. a US, UK, Indian and Israeli outlet.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Pancreatic_cancer",
-        "http://en.wikipedia.org/wiki/Chemotherapy",
-        "http://en.wikipedia.org/wiki/Cancer",
-        "http://en.wikipedia.org/wiki/American_Society_of_Clinical_Oncology",
-        "http://en.wikipedia.org/wiki/Mutation",
-        "http://en.wikipedia.org/wiki/Oncology"
-      ]
-    },
-    {
-      "id": "india-heat-cities-migrant-workers-vulnerability",
-      "label": "India's climate-vulnerable cities are failing their migrant workers",
-      "firstSeen": "2026-05-31T17:06:16.765Z",
-      "lastCovered": "2026-05-31T17:06:16.765Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-31-india-heat-cities-migrant-workers-vulnerability"
-      ],
-      "eventUri": null,
-      "summary": "With May temperatures topping 47.6°C in Banda and 44°C in Delhi, Nature argues India's cities are structurally unprepared to protect the construction workers, street vendors and delivery riders who labour outdoors in the heat. The mechanism to teach: heat vulnerability is built into urban design and informal-labour conditions — who has shade, water, rest and cooling is a policy choice, not a weather event. Lead with the temperatures and the worker categories exposed; the structural why is that the people least responsible for emissions absorb the most heat. Global South climate burden the audit flagged as thin.",
-      "conceptUris": []
-    },
-    {
-      "id": "ai-catalyst-transfer-green-hydrogen",
-      "label": "AI crosses catalyst boundaries to uncover new route for green hydrogen",
-      "firstSeen": "2026-05-31T17:06:16.765Z",
-      "lastCovered": "2026-05-31T17:06:16.765Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-31-ai-catalyst-transfer-green-hydrogen"
-      ],
-      "eventUri": null,
-      "summary": "Researchers used machine learning to transfer catalyst knowledge across chemically distinct material families — a barrier that has long confined catalyst discovery to one family at a time — and surfaced a new route for green-hydrogen production. The angle for the technically literate reader: the real advance is methodological, an AI that generalises across chemistry rather than a single new material, and why that compounds for clean-energy R&D. Lead with what green hydrogen needs (cheap, abundant catalysts) and how cross-family transfer changes the search space. Keep it concrete about what was actually found versus predicted.",
-      "conceptUris": []
-    },
-    {
-      "id": "domain-expertise-ai-moat-debate",
-      "label": "Domain expertise has always been the real moat",
-      "firstSeen": "2026-05-31T17:06:16.765Z",
-      "lastCovered": "2026-05-31T17:06:16.765Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-30-domain-expertise-ai-moat-debate"
-      ],
-      "eventUri": null,
-      "summary": "A widely-read essay (764 points on Hacker News) argues that as AI commoditises code, the durable competitive advantage is deep domain expertise — knowing the problem better than the model does. The mechanism to examine: if generating software is cheap, value migrates to those who can specify the right problem and judge the output, reshaping which skills and roles hold leverage. Frame critically as a contested thesis the reader's own field is wrestling with — weigh the evidence and the counter-case (that domain knowledge can itself be encoded) rather than presenting it as settled.",
-      "conceptUris": []
-    },
-    {
-      "id": "mcp-model-context-protocol-standard-debate",
-      "label": "MCP is dead?",
-      "firstSeen": "2026-05-31T17:06:16.765Z",
-      "lastCovered": "2026-05-31T17:06:16.765Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-29-mcp-model-context-protocol-standard-debate"
-      ],
-      "eventUri": null,
-      "summary": "An engineering post (392 points on Hacker News) questions whether the Model Context Protocol — the emerging standard for connecting AI models to tools and data — is already losing relevance. The angle for the developer reader: what MCP was meant to solve (a common interface so any model can call any tool), why a young standard faces 'is it dead' doubts so quickly, and what the alternatives are. Frame as a live debate about standardisation in the AI-tooling stack; lead with what MCP does in plain terms before the obituary question, and present the case both for and against.",
-      "conceptUris": []
-    },
-    {
-      "id": "ukrainian-drones-control-airspace-over-russian-logistic-rout",
-      "label": "Ukrainian drones control airspace over Russian logistic routes in occupied Luhansk Oblast, 3rd Army Corps says",
-      "firstSeen": "2026-05-31T17:06:16.765Z",
-      "lastCovered": "2026-05-31T17:06:16.765Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-31-ukrainian-drones-control-airspace-over-russian-logistic-rout"
-      ],
-      "eventUri": "ukr-350551",
-      "summary": "[Auto-backfill for economy floor] Ukrainian drones have gained control over key Russian military supply routes in occupied parts of Luhansk Oblast, the Third Army Corps said on May 31 on Facebook.\n\n\"Luhansk Oblast is now under the control of drones from the Third Army Corps!\" the statement read.\n\nThe development comes after pro-Russ",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Luhansk_Oblast",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Izvaryne",
-        "http://en.wikipedia.org/wiki/Battalion",
-        "http://en.wikipedia.org/wiki/Luhansk",
-        "http://en.wikipedia.org/wiki/Alchevsk",
-        "http://en.wikipedia.org/wiki/Brianka",
-        "http://en.wikipedia.org/wiki/Starobilsk"
-      ]
     }
   ]
 }
