@@ -287515,5 +287515,1478 @@
     "label": "Cash Transfers & Welfare Targeting",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-06-01-microsoft-builds-macbook-pro-rival-with-nvidia-powered-surfa": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ARM GAMBLE",
+        "body": "Windows was built for x86 (Intel/AMD) for forty years. Putting it on an Arm chip means most existing apps must run through a translation layer that converts x86 instructions on the fly — fast for new native apps, a tax on old ones. Microsoft has tried and abandoned Windows-on-Arm twice before; the bet is that efficiency finally beats the compatibility cost.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The make-or-break feature is **x86 emulation** — the *Prism* translator. Native Arm apps fly; a legacy x86 app pays a 10–30% speed penalty, which is why earlier Arm laptops felt slow despite efficient silicon."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT UNIFIED MEMORY MEANS",
+        "body": "In a traditional PC, the CPU has system RAM and the GPU has its own separate video memory; data is copied back and forth across the PCIe bus. Unified memory puts both on one shared pool, so the GPU reads the same bytes the CPU wrote with no copy. Apple's M-series made this the premium-laptop template; this is Windows adopting the same architecture."
+      },
+      {
+        "heading": "WHY NVIDIA INSIDE IS THE STORY",
+        "body": "NVIDIA's empire was built on discrete GPUs bolted onto x86 machines. An NVIDIA graphics processor designed into an Arm-based Windows laptop with shared memory is a different animal — it signals NVIDIA pushing past data centers and gaming cards into the heart of the consumer PC, the one market Intel and AMD still owned."
+      },
+      {
+        "heading": "WHY 128GB IS THE POINT",
+        "body": "Memory capacity, not raw speed, is what lets a laptop run a large AI model entirely on-device. A model's weights must fit in memory to run; 128GB of unified memory is enough to hold a compressed mid-to-large language model locally, with no cloud round-trip and no data leaving the machine.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "7B model",
+                "value": "~4GB",
+                "weight": 4,
+                "tone": "favorable"
+              },
+              {
+                "label": "70B model",
+                "value": "~40GB",
+                "weight": 40,
+                "tone": "favorable"
+              },
+              {
+                "label": "120B model",
+                "value": "~70GB",
+                "weight": 70,
+                "tone": "neutral"
+              },
+              {
+                "label": "400B+ model",
+                "value": "~230GB",
+                "weight": 230,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "memory to run an LLM locally (4-bit)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE MEMORY COSTS SO MUCH",
+        "body": "Microsoft blames global memory supply constraints for the price. The same DRAM and high-bandwidth memory that laptops need is being bought in bulk by AI data centers, where the markups are far higher. When hyperscalers outbid consumer devices for the same chips, premium laptops inherit the shortage.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is memory the constraint driving up this laptop's price?",
+            "options": [
+              "A factory fire cut global DRAM output",
+              "AI data centers are buying up the same memory chips",
+              "Arm chips physically require more memory than x86",
+              "Tariffs on Taiwanese semiconductors"
+            ],
+            "correct": 1,
+            "explanation": "AI capex has hyperscalers bidding for the same DRAM and high-bandwidth memory, so consumer devices pay shortage prices."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T12:21:35.165Z",
+    "label": "Windows on Arm & Unified Memory",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-02-cambodia-launches-un-backed-process-to-settle-maritime-dispu": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OVERLAPPING CLAIMS AREA",
+        "body": "The contested 26,000 sq km zone exists because Cambodia drew its maritime boundary in 1972 and Thailand drew a conflicting one in 1973 — each running its line off a different reading of the small Thai island of Koh Kut. The two lines cross, and the wedge between them is the disputed seabed.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TH",
+              "KH",
+              "VN"
+            ],
+            "label": "the Gulf of Thailand wedge",
+            "caption": "Both countries anchor their conflicting lines to this island",
+            "markers": [
+              {
+                "lat": 11.65,
+                "lng": 102.58,
+                "label": "Koh Kut"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "HOW ONE STATE FORCES THE OTHER",
+        "body": "Under UNCLOS, a state can compel the other into a conciliation process even if the other refuses — the rare 'compulsory' track for boundary disputes. The other side must appoint conciliators within a fixed window, and a refusal to participate does not stop the commission from forming and proceeding.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The key word is *compulsory*: most international dispute mechanisms require both parties' **consent**. UNCLOS Annex V conciliation is the unusual one that does not — which is precisely why Cambodia is using it rather than the arbitration Bangkok has rejected."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT MAY CHANGE NOTHING",
+        "body": "Conciliation is not arbitration. The commission issues a report with recommendations — but the report is not binding. Its real power is political: it puts a neutral, documented finding on the table that the resisting party must then explain away publicly.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "UNCLOS compulsory conciliation had only been used once before for a maritime boundary. Between which two states?",
+            "options": [
+              "Timor-Leste and Australia",
+              "Greece and Turkey",
+              "Guyana and Venezuela",
+              "Philippines and China"
+            ],
+            "correct": 0,
+            "explanation": "Timor-Leste forced Australia into Annex V conciliation in 2016, yielding a 2018 boundary treaty — the only prior precedent for the mechanism Cambodia now invokes."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE GAS NEVER FLOWED",
+        "body": "The two sides signed a 2001 memorandum to jointly develop the zone rather than fight over the line — the standard workaround for offshore disputes. It collapsed amid domestic politics, was scrapped in 2009, and revived and stalled repeatedly since. Decades of estimated reserves have sat untapped because no one will drill into contested seabed.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1972",
+                "label": "Cambodia draws its line",
+                "emphasis": "start"
+              },
+              {
+                "year": "1973",
+                "label": "Thailand draws a conflicting line"
+              },
+              {
+                "year": "2001",
+                "label": "Joint-development MOU signed"
+              },
+              {
+                "year": "2009",
+                "label": "Thailand scraps the MOU"
+              },
+              {
+                "year": "2026",
+                "label": "Cambodia forces UNCLOS process",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "the boundary that never settled"
+          }
+        ]
+      },
+      {
+        "heading": "EQUIDISTANCE VS EQUITY",
+        "body": "Maritime boundaries turn on one unresolved tension in the law: should the line sit equidistant between the two coasts, or be adjusted for fairness when geography is lopsided? A single small island like Koh Kut can swing a line hundreds of kilometers depending on whether it counts as a full coastline — which is exactly what the two sides dispute."
+      }
+    ],
+    "generatedAt": "2026-06-02T12:22:15.015Z",
+    "label": "UNCLOS & the Gulf of Thailand Dispute",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-02-elevating-universal-interatomic-potentials-with-large-scale": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OLD TRADEOFF",
+        "body": "Simulating materials has always forced a choice. Quantum methods like density functional theory are accurate but scale roughly as the cube of the atom count — a few hundred atoms is a supercomputer job. Classical force fields run millions of atoms but encode chemistry as hand-tuned springs. ML potentials exist to break that tradeoff: DFT-level accuracy at near-classical speed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The expensive method is *density functional theory* (**DFT**) — it solves an approximation of the electronic structure. Its cost scaling, ~**O(N³)** in the number of electrons, is the wall every shortcut is trying to climb over."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE MODEL ACTUALLY LEARNS",
+        "body": "Every property of a material falls out of one function: a map from atomic positions to total energy, the potential energy surface. The forces that move atoms are just its gradient. An interatomic potential is a cheap stand-in for that surface, and its quality is entirely a question of how faithfully it reproduces the shape — not just the depths, but the slopes."
+      },
+      {
+        "heading": "WHY STABLE-ONLY TRAINING FAILS",
+        "body": "Train a model only on relaxed, equilibrium crystals and it learns the bottom of the energy valley beautifully — and nothing about the walls. But materials break, deform, and fail at defects and under strain, which are exactly the off-equilibrium configurations the model never saw. The model interpolates where it was taught and hallucinates everywhere else.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do interatomic potentials trained only on stable crystals break down under strain?",
+            "options": [
+              "Strained atoms are off-equilibrium configs absent from the training data",
+              "Strain changes the chemical elements involved",
+              "DFT cannot compute strained structures at all",
+              "The crystals melt before the model runs"
+            ],
+            "correct": 0,
+            "explanation": "Equilibrium-only data teaches the valley floor; strain and defects live on the slopes the model never sampled."
+          }
+        ]
+      },
+      {
+        "heading": "THE FIX: DELIBERATE DISTORTION",
+        "body": "The cure is to compute quantum energies for structures pushed off equilibrium — rattled atoms, compressed cells, inserted vacancies — so the model sees the surface's curvature, not just its minimum. Coverage of the hard regions, not raw dataset size, is what makes a potential generalise."
+      },
+      {
+        "heading": "THE REAL BOTTLENECK IS THE DATA",
+        "body": "Each training example is one DFT calculation costing CPU-hours; a model needs millions. The architecture is cheap to share, but the labelled quantum data is the capital-intensive part — which is why an open, large-scale off-equilibrium dataset is the actual news here, not a new network design.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1924",
+                "label": "Lennard-Jones potential",
+                "emphasis": "start"
+              },
+              {
+                "year": "1984",
+                "label": "Embedded-atom method (metals)"
+              },
+              {
+                "year": "2007",
+                "label": "Neural-network potentials (Behler–Parrinello)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020",
+                "label": "Equivariant graph networks"
+              },
+              {
+                "year": "2024",
+                "label": "Large open off-equilibrium datasets"
+              }
+            ],
+            "label": "interatomic potentials, a century of approximation"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T12:22:48.902Z",
+    "label": "Machine-Learned Interatomic Potentials",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-02-euro-zone-inflation-jump-reinforces-case-for-june-rate-hike": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HEADLINE VERSUS CORE",
+        "body": "Energy and food prices swing violently and are set on world markets a central bank cannot touch. So policymakers watch core inflation — the rate stripped of energy and food — to judge whether price pressure has spread into the broader economy. A 10.9% energy jump lifts the headline number without yet proving the underlying trend has moved.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The eurozone's official gauge is *HICP* — the Harmonised Index of Consumer Prices, built so inflation can be compared identically across 20 member states. The number the ECB truly reacts to is **core HICP**, not the headline."
+          }
+        ]
+      },
+      {
+        "heading": "THE SINGLE MANDATE",
+        "body": "The ECB was designed in the image of Germany's Bundesbank, whose founders remembered Weimar hyperinflation. Its primary objective is price stability — full stop. Unlike the US Fed, it has no co-equal employment mandate, which is why it can keep hiking into a slowing economy when an energy shock pushes prices up.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The primary objective of the European System of Central Banks shall be to maintain price stability.",
+            "speaker": "Treaty on the Functioning of the EU, Article 127",
+            "year": "1992"
+          }
+        ]
+      },
+      {
+        "heading": "WHY FRANCE FEELS IT LESS",
+        "body": "An energy shock is not uniform across the eurozone. Countries that import most of their energy — Italy, Germany — pass the price straight through to consumers. France, which generates roughly 70% of its electricity from nuclear, is structurally insulated, so the same Brent move shows up as very different national inflation rates.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Italy",
+                "value": "~75%",
+                "cc": "IT",
+                "weight": 75,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Germany",
+                "value": "~64%",
+                "cc": "DE",
+                "weight": 64,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Spain",
+                "value": "~60%",
+                "cc": "ES",
+                "weight": 60,
+                "tone": "neutral"
+              },
+              {
+                "label": "France",
+                "value": "~44%",
+                "cc": "FR",
+                "weight": 44,
+                "tone": "favorable"
+              }
+            ],
+            "label": "net energy import dependency (% of energy imported)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSMISSION LAG",
+        "body": "A rate hike does not bite immediately. Higher rates work through mortgages, business loans, and investment decisions over roughly 12 to 18 months. This is the central banker's dilemma: today's hike fights inflation that will exist a year from now, using data describing the past. Markets pricing 2-3 more hikes are betting the energy shock will still be feeding through by autumn.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the ECB raise rates even when an energy spike is the main cause of inflation?",
+            "options": [
+              "Higher rates directly lower oil and gas prices",
+              "To stop the shock seeping into wages and other prices (second-round effects)",
+              "Its mandate requires matching the US Federal Reserve",
+              "To weaken the euro and boost exports"
+            ],
+            "correct": 1,
+            "explanation": "The ECB cannot move energy markets, but it can prevent a one-off shock from becoming entrenched as workers and firms bid up wages and prices in anticipation."
+          }
+        ]
+      },
+      {
+        "heading": "THE EXCHANGE-RATE CHANNEL",
+        "body": "Hiking rates is also a currency tool. Higher returns on euro assets draw capital in and tend to lift the euro, which makes dollar-priced oil and gas cheaper in euro terms — a partial, automatic offset to the imported energy shock. A weaker euro would do the opposite, amplifying the very inflation the ECB is fighting.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              0.851959,
+              0.855884,
+              0.853399,
+              0.851144,
+              0.85156,
+              0.848284,
+              0.848284,
+              0.850576,
+              0.850597,
+              0.852186,
+              0.853764,
+              0.859724,
+              0.8604,
+              0.860067,
+              0.860446,
+              0.859008,
+              0.8619,
+              0.860661,
+              0.861183,
+              0.861438,
+              0.861772,
+              0.859308,
+              0.859402,
+              0.859206,
+              0.863029,
+              0.859318,
+              0.857449,
+              0.857387,
+              0.858819,
+              0.859535
+            ],
+            "periods": [
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2"
+            ],
+            "label": "Euro",
+            "unit": "EUR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-02"
+    ],
+    "generatedAt": "2026-06-02T12:23:30.717Z",
+    "label": "Energy Shocks & the ECB",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-02-evs-are-getting-more-affordable-worldwide-except-in-the-u-s": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BATTERY IS THE CAR",
+        "body": "An EV is mostly a battery with wheels: the pack is roughly a third of the vehicle's cost, more than engine, transmission, and exhaust combined in a gasoline car. This is why EV pricing tracks one number almost nobody outside the industry watches — dollars per kilowatt-hour of cells.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The metric that decides everything is **$/kWh** at the pack level. Cross roughly **$100/kWh** and an EV reaches sticker parity with a comparable gasoline car — *without* subsidies."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEARNING CURVE",
+        "body": "Battery prices don't fall with time — they fall with cumulative volume. Every doubling of total batteries ever made has cut pack prices by a fixed percentage, a pattern (Wright's law) first observed in 1930s aircraft manufacturing. The collapse has been brutal and predictable.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "2010",
+                "value": "~$1,200/kWh",
+                "weight": 1200,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "2015",
+                "value": "~$380/kWh",
+                "weight": 380,
+                "tone": "neutral"
+              },
+              {
+                "label": "2020",
+                "value": "~$140/kWh",
+                "weight": 140,
+                "tone": "favorable"
+              },
+              {
+                "label": "2024",
+                "value": "~$115/kWh",
+                "weight": 115,
+                "tone": "favorable"
+              }
+            ],
+            "label": "lithium-ion pack price, global avg"
+          }
+        ]
+      },
+      {
+        "heading": "CHINA OWNS THE STACK",
+        "body": "China's price advantage isn't cheap labor — it's owning every link of the chain. It refines most of the world's lithium, cobalt, and graphite, and builds the overwhelming majority of finished cells. A company like BYD mines, refines, makes cells, and assembles the car, capturing margin a Western automaker has to pay suppliers for.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 76,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "United States",
+                "value": 7,
+                "tone": "neutral"
+              },
+              {
+                "label": "Poland",
+                "value": 4,
+                "tone": "favorable"
+              },
+              {
+                "label": "Hungary",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "South Korea",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Germany",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Japan",
+                "value": 2,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global battery cell mfg capacity (share)"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHEMISTRY THAT CHANGED THE MATH",
+        "body": "The cheap models flooding global markets run on a chemistry the West largely abandoned a decade ago. It uses no cobalt and no nickel — the two most expensive, supply-constrained battery metals — trading energy density for cost and longevity. China bet on it early and now dominates it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The chemistry is **LFP** (lithium iron phosphate): cheaper, longer-lived, and far harder to set on fire than the *NMC* (nickel-manganese-cobalt) cells Western makers chased for range."
+          }
+        ]
+      },
+      {
+        "heading": "THE TARIFF WALL",
+        "body": "A market doesn't get the global price drop if it blocks the cars that caused it. After Chinese EVs landed at prices Western factories can't match, importers raised walls — but at very different heights, which is why the price gap is now a US story, not a Western one.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "100%",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Canada",
+                "value": "100%",
+                "cc": "CA",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "EU",
+                "value": "up to ~45%",
+                "cc": "EU",
+                "tone": "neutral"
+              },
+              {
+                "label": "Brazil",
+                "value": "~35% (rising)",
+                "cc": "BR",
+                "tone": "neutral"
+              }
+            ],
+            "label": "tariff on Chinese-made EVs (2024–25)"
+          }
+        ]
+      },
+      {
+        "heading": "THE MILESTONE",
+        "body": "One in four cars sold worldwide is now electric — but the count is wildly uneven. Two markets, China and Europe, account for the bulk of it; in much of the world the affordable models simply aren't on sale.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which company sells the most fully-electric vehicles worldwide?",
+            "options": [
+              "Tesla",
+              "BYD",
+              "Volkswagen",
+              "Toyota"
+            ],
+            "correct": 1,
+            "explanation": "China's BYD overtook Tesla in quarterly battery-EV sales in late 2023 and leads on total new-energy vehicles by a wide margin."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T12:24:13.738Z",
+    "label": "Why EVs Got Cheap (and Where They Didn't)",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-02-harnessing-solar-energy-for-autotrophic-e-coli-growth-nature": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DIVIDE THIS CROSSES",
+        "body": "Life splits into autotrophs, which build their bodies from inorganic carbon like CO2, and heterotrophs, which eat carbon already fixed by something else. E. coli is a heterotroph — a sugar eater. Flipping it to autotrophy means rewiring the deepest layer of its metabolism, the part that decides where every carbon atom comes from.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What defines an autotroph?",
+            "options": [
+              "It builds biomass from inorganic carbon like CO2",
+              "It survives without oxygen",
+              "It reproduces without a host cell",
+              "It grows only in sunlight"
+            ],
+            "correct": 0,
+            "explanation": "Autotrophs fix inorganic carbon themselves; heterotrophs like normal E. coli must consume carbon already fixed by another organism."
+          }
+        ]
+      },
+      {
+        "heading": "WHY FORMATE",
+        "body": "Formate is the simplest organic carbon carrier — one carbon atom, fully water-soluble, and easy to make electrochemically by zapping CO2 with renewable electricity. It lets you ship solar energy into a cell as a dissolved molecule instead of trying to capture photons inside the bug itself. This is the heart of the so-called C1 (single-carbon) economy.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**Formate** (HCOO⁻) is the salt of formic acid — the same compound an ant injects when it bites. As a feedstock it is essentially *liquid CO2 plus electrons*, and the cell oxidizes it back to CO2 to harvest both."
+          }
+        ]
+      },
+      {
+        "heading": "HOW THE REWIRE HAPPENED",
+        "body": "The researchers did not design every mutation by hand. They used adaptive laboratory evolution: starve the bacteria of sugar, force them to rely on formate, and let natural selection run across hundreds of generations. The strains that randomly stumbled onto better formate metabolism outgrew the rest, and the genome did the optimization a human engineer couldn't."
+      },
+      {
+        "heading": "THE EFFICIENCY ARGUMENT",
+        "body": "Natural photosynthesis is surprisingly wasteful — most crops convert under 1% of incoming sunlight into biomass. A solar panel converts roughly a fifth of sunlight to electricity, and that electricity can drive CO2-to-formate conversion far more efficiently than a leaf. Routing solar energy through panels and formate, rather than chlorophyll, is a bet that the electrochemical path beats the evolved one.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Typical crops",
+                "value": "~0.5%",
+                "weight": 0.5,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Sugarcane",
+                "value": "~2-3%",
+                "weight": 2.5,
+                "tone": "neutral"
+              },
+              {
+                "label": "Microalgae",
+                "value": "~3-5%",
+                "weight": 4,
+                "tone": "neutral"
+              },
+              {
+                "label": "Solar PV",
+                "value": "~20%",
+                "weight": 20,
+                "tone": "favorable"
+              }
+            ],
+            "label": "solar-to-biomass / energy efficiency (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "This builds on a landmark 2019 result in which a team rebuilt E. coli to fix CO2 directly, proving a sugar-eating bacterium could be turned into a carbon-fixer at all. The new work swaps the energy source: instead of feeding chemical energy, it closes the loop with simulated sunlight — moving the field from 'can it be done' toward 'can it run on the sun.'"
+      }
+    ],
+    "generatedAt": "2026-06-02T12:24:47.920Z",
+    "label": "Synthetic Autotrophy & the C1 Economy",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-02-india-us-close-to-signing-first-phase-of-trade-deal-indian-m": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE TEXT WAITS ON A COURT",
+        "body": "Trump's across-the-board tariffs were imposed under the International Emergency Economic Powers Act — a 1977 law written for sanctioning enemies and freezing assets, never before used to set tariffs. Lower courts ruled the use exceeded the statute; the deal cannot be finalized until the Supreme Court settles whether the tariffs are even lawful, because the whole bargain is priced around them.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Tariff power belongs to *Congress* under Article I. Presidents borrow it through delegated statutes — **Section 232** (national security), **Section 301** (unfair trade), and now **IEEPA** (emergency). The court fight is over how far that last borrowed power stretches."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT USTR ACTUALLY IS",
+        "body": "The Office of the US Trade Representative is a small Cabinet-rank agency inside the White House — a few hundred staff — that negotiates every US trade agreement. It exists because Congress, burned by the 1930 Smoot-Hawley tariff disaster, deliberately moved trade-deal authority out of the protectionist legislature and into a single executive negotiator answerable to the president."
+      },
+      {
+        "heading": "WHY INDIA IS THE HARDEST ROOM",
+        "body": "India has walked away from more trade deals than it has signed — it quit the 15-nation RCEP bloc in 2019 at the last minute. The immovable object is agriculture: more than 40% of Indians still work the land, and no government survives opening dairy or grain to subsidized American farm exports. This is why deals with India come in 'tranches' — the easy goods first, the sacred sectors never.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which sector is the perennial dealbreaker in India's trade negotiations with the West?",
+            "options": [
+              "Pharmaceuticals",
+              "Information technology",
+              "Dairy and agriculture",
+              "Automobiles"
+            ],
+            "correct": 2,
+            "explanation": "With hundreds of millions of smallholder farmers, opening dairy and grain to subsidized imports is political suicide — India has killed multiple deals over it."
+          }
+        ]
+      },
+      {
+        "heading": "THE $500 BILLION GAP",
+        "body": "Two-way India–US trade runs around $130 billion a year. Doubling it to $500 billion by 2030 would vault the US past China as India's top partner — but India barely cracks the top ten of America's own trading partners, dwarfed by neighbors Mexico and Canada. The ambition is real; the starting base is small.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "US two-way goods trade by partner, 2024",
+            "peers": [
+              {
+                "value": 840,
+                "cc": "MX"
+              },
+              {
+                "value": 780,
+                "cc": "CA"
+              },
+              {
+                "value": 580,
+                "cc": "CN"
+              },
+              {
+                "value": 250,
+                "cc": "DE"
+              },
+              {
+                "value": 230,
+                "cc": "JP"
+              },
+              {
+                "value": 200,
+                "cc": "KR"
+              },
+              {
+                "value": 130,
+                "cc": "IN"
+              },
+              {
+                "value": 140,
+                "cc": "VN"
+              }
+            ],
+            "subjectCc": "IN",
+            "unit": "$bn"
+          }
+        ]
+      },
+      {
+        "heading": "THE LONG THAW",
+        "body": "These two democracies were estranged for most of the Cold War — India led the Non-Aligned Movement and bought Soviet arms; Washington tilted toward Pakistan. The pivot came with the 2005 civil-nuclear deal, which ended India's atomic isolation. Trade friction never fully cleared: the US stripped India of preferential GSP tariff access in 2019, and the relationship has run hot and cold ever since.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1998",
+                "label": "US sanctions India over nuclear tests"
+              },
+              {
+                "year": "2005",
+                "label": "Civil nuclear deal",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "US ends India's GSP trade benefits"
+              },
+              {
+                "year": "2025",
+                "label": "IEEPA tariffs hit Indian goods"
+              },
+              {
+                "year": "2026",
+                "label": "First trade tranche near signing"
+              }
+            ],
+            "label": "from estrangement to alignment"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T12:25:24.400Z",
+    "label": "India–US Trade & the Tariff Question",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-02-israeli-forces-still-continue-killing-palestinians-in-gaza": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW THE COUNT WORKS",
+        "body": "Gaza's health ministry counts the dead the way hospitals everywhere do: named individuals with ID numbers, recorded as bodies arrive at morgues. Independent reviews — including by the UN and, in past wars, by Israeli intelligence itself — have repeatedly found the ministry's totals broadly accurate, not inflated. The methodology is bureaucratic, not propagandistic.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The figure tracks *confirmed, identified* bodies. It systematically **undercounts** — the missing under rubble and those never brought to a hospital are excluded until recovered, which is why the toll keeps rising after the shooting slows."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BODIES STAY BURIED",
+        "body": "Recovering the dead from collapsed concrete requires heavy excavators, fuel, and cutting equipment — exactly the goods a blockade restricts. With cranes and bulldozers scarce, families dig by hand. This is why 781 bodies surfaced only after the truce: the killing and the counting run on different clocks."
+      },
+      {
+        "heading": "WHO GAZANS ARE",
+        "body": "Most of Gaza's population are not native to the strip. They are refugees, and the children and grandchildren of refugees, expelled from towns in what is now southern Israel during the Nakba — the 1948 catastrophe in which roughly 750,000 Palestinians were driven from their homes. Gaza is, in large part, a refugee camp that became a territory.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1948",
+                "label": "Nakba — mass expulsion",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1967",
+                "label": "Israeli occupation begins"
+              },
+              {
+                "year": "2005",
+                "label": "Israeli settlers withdraw"
+              },
+              {
+                "year": "2007",
+                "label": "Land/sea/air blockade"
+              },
+              {
+                "year": "2023",
+                "label": "War begins"
+              },
+              {
+                "year": "2025",
+                "label": "Ceasefire takes effect"
+              }
+            ],
+            "spans": [
+              {
+                "from": "2007",
+                "to": "2026",
+                "label": "Blockade in force",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "the long dispossession"
+          },
+          {
+            "type": "quiz",
+            "question": "Roughly what share of Gaza's population are registered refugees or their descendants?",
+            "options": [
+              "About 25%",
+              "About half",
+              "About 70%",
+              "Under 10%"
+            ],
+            "correct": 2,
+            "explanation": "UNRWA registers roughly 1.7 million of Gaza's ~2.2 million people as refugees — most trace their origin to towns inside present-day Israel."
+          }
+        ]
+      },
+      {
+        "heading": "THE STRIP",
+        "body": "Gaza packs over two million people into 365 square kilometers — a coastal sliver 41 km long and as little as 6 km wide. That density means there is no rear area and no front line; an airstrike anywhere lands among civilians by geometry alone.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PS",
+              "IL",
+              "EG",
+              "JO"
+            ],
+            "label": "the Gaza Strip",
+            "caption": "41 km long, 6–12 km wide, over 2 million people",
+            "markers": [
+              {
+                "lat": 31.5017,
+                "lng": 34.4668,
+                "label": "Gaza City"
+              },
+              {
+                "lat": 31.3469,
+                "lng": 34.3036,
+                "label": "Khan Younis"
+              },
+              {
+                "lat": 31.2968,
+                "lng": 34.2435,
+                "label": "Rafah crossing"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A CEASEFIRE IS NOT",
+        "body": "A ceasefire is a pause in fire, not a peace. It carries no mechanism to resolve the conflict's causes and holds only as long as both sides observe it. Sporadic killing during a ceasefire is not a paradox — it is the normal failure mode of an agreement that stops shooting without settling anything.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters legally: a **ceasefire** (or *truce*) is a military arrangement; an **armistice** ends active hostilities; only a *peace treaty* settles the underlying dispute. Gaza has had many of the first and none of the last."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLESSED LAND",
+        "body": "In Islamic tradition, Palestine is not merely territory. Surah al-Isra describes the land around al-Aqsa as the land God blessed for the worlds, and a hadith in Sahih Muslim speaks of a community in al-Sham — Greater Syria, including Palestine — that endures. This is why the strip's fate resonates far beyond its 365 square kilometers."
+      }
+    ],
+    "generatedAt": "2026-06-02T12:26:17.923Z",
+    "label": "Counting Gaza's Dead",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-02-mozambique-says-5-citizens-killed-in-xenophobic-attacks-in-s": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MINE-LABOR FOUNDATION",
+        "body": "Mozambicans have crossed into South Africa for over a century — the gold mines of the Witwatersrand were built on recruited migrant labor from across southern Africa. A colonial-era body (WNLA/TEBA) signed up workers from Mozambique, Lesotho, and Malawi, and at times Mozambicans were a majority of the foreign mine workforce. The migration the violence targets is older than apartheid.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ZA",
+              "MZ",
+              "LS",
+              "ZW",
+              "MW",
+              "SZ"
+            ],
+            "label": "the labor-sending region",
+            "caption": "Decades of recruited migration into South Africa's mines and farms"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2008 WATERSHED",
+        "body": "May 2008 saw the first nationwide explosion of anti-foreigner violence: over 60 people killed, tens of thousands displaced, starting in Johannesburg's Alexandra township. It set a recurring pattern — flare-ups in 2015 (Durban), 2019 (Gauteng), and the 2022 vigilante 'Operation Dudula' movement. Each wave follows the same script: economic anxiety channeled at the nearest visible outsider.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2008",
+                "label": "First nationwide wave (~60 killed)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2015",
+                "label": "Durban & Johannesburg attacks"
+              },
+              {
+                "year": "2019",
+                "label": "Gauteng anti-migrant violence"
+              },
+              {
+                "year": "2022",
+                "label": "Operation Dudula vigilante drive"
+              },
+              {
+                "year": "2026",
+                "label": "Western Cape attacks"
+              }
+            ],
+            "label": "recurring waves"
+          }
+        ]
+      },
+      {
+        "heading": "THE WORD",
+        "body": "South African crowds use a derogatory term for African foreigners — implying they speak unintelligible, 'babbling' languages. The targets are almost never white or Asian immigrants; the violence falls on poor Black African migrants from neighboring states, which is why scholars call it 'Afrophobia' rather than generic xenophobia.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The slur is *amakwerekwere* — onomatopoeia for 'incomprehensible speech.' The cruelty is precise: it targets the **poorest** migrants from the **nearest** countries, never wealthy or Western foreigners."
+          }
+        ]
+      },
+      {
+        "heading": "THE STRUCTURAL DRIVER",
+        "body": "South Africa carries one of the highest unemployment rates of any major economy — roughly a third of the labor force, and over half among youth. When formal jobs are this scarce, migrants competing in the informal economy become the lightning rod, even though they are a small fraction of the workforce.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Unemployment rate (selected economies)",
+            "peers": [
+              {
+                "value": 32,
+                "cc": "ZA"
+              },
+              {
+                "value": 5,
+                "cc": "NG"
+              },
+              {
+                "value": 8,
+                "cc": "BR"
+              },
+              {
+                "value": 8,
+                "cc": "IN"
+              },
+              {
+                "value": 7,
+                "cc": "EG"
+              },
+              {
+                "value": 9,
+                "cc": "TR"
+              },
+              {
+                "value": 3,
+                "cc": "MX"
+              }
+            ],
+            "subjectCc": "ZA",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "THE REPATRIATION REFLEX",
+        "body": "Maputo's response — sheltering trapped citizens and busing them home — mirrors 2008 and 2015, when thousands of Mozambicans and Zimbabweans fled across the border. Repatriation relieves the immediate danger but resets nothing: the wages back home are lower, so the migrants, or their replacements, return within months.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the main reason migrant labor keeps flowing into South Africa despite repeated xenophobic violence?",
+            "options": [
+              "South Africa has the largest economy and highest wages in the region",
+              "Open borders with no visa requirements",
+              "Active recruitment campaigns by the SA government",
+              "Religious or ethnic ties across the border"
+            ],
+            "correct": 0,
+            "explanation": "South Africa's wages dwarf those in Mozambique, Zimbabwe, and Lesotho, so economic pull outlasts each wave of violence."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T12:26:55.958Z",
+    "label": "South Africa's Xenophobia",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-02-philippine-senator-estrada-surrenders-after-anti-graft-court": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT PLUNDER MEANS HERE",
+        "body": "Plunder is a specific Philippine crime, not a synonym for corruption. The 1991 anti-plunder law sets a threshold: a public official who amasses at least ₱50 million in ill-gotten wealth through a pattern of criminal acts. Crossing that line converts ordinary graft into a non-bailable offense once a court finds the evidence strong.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The law (*Republic Act 7080*) requires a **pattern** — a single bribe is graft; a *series* of overt acts totaling ₱50M is **plunder**. The pattern requirement is what makes the cases sprawl across years of evidence."
+          }
+        ]
+      },
+      {
+        "heading": "THE COURT ITSELF",
+        "body": "The Sandiganbayan is a dedicated anti-graft court, created in 1973 under Ferdinand Marcos Sr.'s martial-law constitution. It tries only cases against public officials, sitting in divisions of three justices rather than juries — the Philippines has no jury system, so guilt is decided by judges alone."
+      },
+      {
+        "heading": "THE FATHER'S PRECEDENT",
+        "body": "Jinggoy's father, Joseph 'Erap' Estrada, was a film star who became president, was ousted in the 2001 'EDSA II' uprising, and in 2007 became the first Philippine president ever convicted of plunder. Six weeks later his successor Gloria Arroyo pardoned him. He went on to be elected mayor of Manila.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What happened to Joseph Estrada after his 2007 plunder conviction?",
+            "options": [
+              "He was pardoned within weeks and later elected mayor of Manila",
+              "He served a full life sentence",
+              "He fled into exile abroad",
+              "The conviction was overturned on appeal"
+            ],
+            "correct": 0,
+            "explanation": "Arroyo pardoned him six weeks after sentencing; he returned to electoral politics, showing how rarely conviction ends a Philippine political career."
+          }
+        ]
+      },
+      {
+        "heading": "THE PORK BARREL ROOT",
+        "body": "The charges trace to the 2013 'pork barrel scam,' in which lawmakers' discretionary development funds (the PDAF) were funneled through fake NGOs run by businesswoman Janet Napoles and kicked back as cash. Several senators, Jinggoy among them, were accused of pocketing tens of millions. The Supreme Court struck down the PDAF as unconstitutional that same year."
+      },
+      {
+        "heading": "THE DYNASTIES IN PLAY",
+        "body": "Estrada's 'it's political, not legal' defense leans on a real feature of Philippine politics: power runs through a handful of families. The Marcos and Duterte clans, allies in 2022 and rivals by 2025, both wield prosecutorial machinery — which is why a graft case is read as a move in a dynastic chessboard.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Ferdinand Marcos Jr.",
+                "role": "President",
+                "years": "2022–",
+                "cc": "PH"
+              },
+              {
+                "name": "Sara Duterte",
+                "role": "Vice President",
+                "years": "2022–",
+                "cc": "PH"
+              },
+              {
+                "name": "Rodrigo Duterte",
+                "role": "Former President",
+                "years": "2016–2022",
+                "cc": "PH"
+              },
+              {
+                "name": "Jinggoy Estrada",
+                "role": "Senator, ex-president's son",
+                "years": "2004–",
+                "cc": "PH"
+              }
+            ],
+            "label": "the ruling clans"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T12:27:23.482Z",
+    "label": "Plunder & the Sandiganbayan",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-02-protests-over-us-ebola-site-in-kenya-kill-two-court-keeps-bl": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY CONTAIN, DON'T FLY HOME",
+        "body": "Moving a live filovirus case across borders is the high-risk option, not the safe one. A single Ebola patient must be flown in a sealed aeromedical isolation pod — the US built only a handful — and every crew member and airport touched becomes a potential exposure. The doctrine since 2014 is to isolate where the exposure happened and move the patient only if treatment demands it."
+      },
+      {
+        "heading": "NOT AIRBORNE",
+        "body": "Ebola does not travel through the air like measles or flu. It spreads only through direct contact with the blood, vomit, or other fluids of a symptomatic person — which is precisely why a physical quarantine works. You cannot catch it from someone who has no symptoms yet, and you cannot catch it across a room.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How does Ebola pass between people?",
+            "options": [
+              "Airborne respiratory droplets, like flu",
+              "Direct contact with an infected person's bodily fluids",
+              "Mosquito bites, like malaria",
+              "Contaminated drinking water"
+            ],
+            "correct": 1,
+            "explanation": "Ebola requires direct contact with the fluids of someone already showing symptoms — the reason isolation, not air filtration, is the control measure."
+          }
+        ]
+      },
+      {
+        "heading": "THE 21-DAY WINDOW",
+        "body": "Ebola's incubation period runs from 2 to 21 days. That ceiling is the entire logic of the quarantine: hold an exposed person for 21 days, and if no fever appears, they were never infected. The number sets the length of every Ebola containment protocol on earth.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technique is a *cordon sanitaire* — a guarded perimeter sealing the exposed from the healthy. It dates to the **1821** French line against yellow fever and was used, brutally, around West African villages in 2014."
+          }
+        ]
+      },
+      {
+        "heading": "A VIRUS WITH A KNOWN BIRTHDAY",
+        "body": "Ebola was first identified in 1976 in Yambuku, then-Zaire, and named for the nearby Ebola River. For nearly forty years it produced small, terrifying, self-limiting rural outbreaks. The 2014 West African epidemic — over 11,000 dead — was the first time it reached cities and crossed oceans, which is what permanently changed how the world handles a single suspected case.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1976",
+                "label": "Yambuku — first identified",
+                "emphasis": "start"
+              },
+              {
+                "year": "1995",
+                "label": "Kikwit, Zaire"
+              },
+              {
+                "year": "2014",
+                "label": "West Africa epidemic — 11,000+ dead",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018",
+                "label": "DRC Kivu outbreak"
+              },
+              {
+                "year": "2022",
+                "label": "Uganda (Sudan strain)"
+              }
+            ],
+            "label": "Ebola's outbreak arc"
+          }
+        ]
+      },
+      {
+        "heading": "NANYUKI, A GARRISON TOWN",
+        "body": "Nanyuki sits at the foot of Mount Kenya and has hosted foreign soldiers for generations — the British Army Training Unit Kenya (BATUK) drills there permanently, and US forces use Kenyan facilities under AFRICOM. Kenya is one of Washington's closest security partners in the region; the deadly 2020 al-Shabaab assault on Camp Simba at Manda Bay showed how exposed that footprint can be.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KE",
+              "SO",
+              "UG",
+              "ET",
+              "TZ"
+            ],
+            "label": "Kenya's foreign-military footprint",
+            "markers": [
+              {
+                "lat": 0.0167,
+                "lng": 37.0731,
+                "label": "Nanyuki / BATUK"
+              },
+              {
+                "lat": -2.2522,
+                "lng": 40.9636,
+                "label": "Camp Simba, Manda Bay"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY A JUDGE CAN HALT IT",
+        "body": "Kenya's 2010 constitution gives any citizen standing to sue over a public-interest grievance, and its High Court has built a habit of forcing the executive to disclose secret deals — here, ordering the facility agreements published within seven days. A security arrangement struck quietly between two governments is not beyond the reach of a Kenyan courtroom."
+      }
+    ],
+    "generatedAt": "2026-06-02T12:30:52.933Z",
+    "label": "Ebola, Quarantine & Kenya's Courts",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-02-ripple-s-rlusd-stablecoin-expands-to-turkey-through-three-lo": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY DOLLAR TOKENS, NOT DOLLARS",
+        "body": "Turks have wanted dollars for decades, but physical cash and bank dollar accounts invite capital controls and withdrawal limits. A dollar-pegged token sits in a self-custody wallet the state cannot freeze with a midnight decree — the appeal is not yield, it is exit.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              45.190601,
+              45.216799,
+              45.231614,
+              45.233899,
+              45.364747,
+              45.347503,
+              45.347503,
+              45.380101,
+              45.395703,
+              45.413499,
+              45.429402,
+              45.5443,
+              45.495196,
+              45.522506,
+              45.579503,
+              45.58333,
+              45.588899,
+              45.6156,
+              45.717002,
+              45.698502,
+              45.698502,
+              45.734502,
+              45.902799,
+              45.8997,
+              45.903799,
+              45.896899,
+              45.853301,
+              45.853301,
+              45.911598,
+              45.936604
+            ],
+            "periods": [
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2"
+            ],
+            "label": "Turkish lira",
+            "unit": "TRY / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE MECHANISM",
+        "body": "RLUSD is a fiat-backed stablecoin: the issuer holds US Treasuries and cash, mints one token per dollar deposited, and burns the token on redemption. The peg holds not by algorithm but by the reserve being there and auditable — the same model as Circle's USDC.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The dollar peg survives on *proof of reserves*, not code. The 2022 collapse of **TerraUSD** — an *algorithmic* stablecoin with no real dollars behind it — wiped out ~$40bn and is why fiat-backed tokens now dominate."
+          }
+        ]
+      },
+      {
+        "heading": "WHY TURKEY RANKS SO HIGH",
+        "body": "Chainalysis consistently places Turkey among the world's top crypto markets by raw volume — not because of speculation but because households use stablecoins as everyday savings. When annual inflation ran above 60-80%, holding lira for a month was a guaranteed loss; a dollar token was the rational current account.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Turkey rank among the world's largest crypto markets?",
+            "options": [
+              "Tech-sector speculation on new tokens",
+              "Households use stablecoins to escape lira inflation",
+              "State-mandated crypto reserves",
+              "Tax exemptions for crypto trading"
+            ],
+            "correct": 1,
+            "explanation": "Turkish demand is driven by inflation hedging — dollar-pegged stablecoins function as everyday savings, not speculation."
+          }
+        ]
+      },
+      {
+        "heading": "THE VALIDATOR PLAY",
+        "body": "Hosting an XRP Ledger validator at Istanbul Technical University is infrastructure diplomacy: validators are the nodes that confirm transactions and vote on protocol changes. Funding one inside a national university embeds the network in local academic and regulatory credibility, not just in traders' wallets."
+      },
+      {
+        "heading": "THE REGULATOR'S DILEMMA",
+        "body": "When millions hold dollar-pegged tokens to preserve value, it looks exactly like an unregulated bank deposit — and it quietly dollarizes the economy from below, weakening the central bank's grip on the lira. Every emerging-market government faces the same trade: ban it and lose the tax base offshore, or license it and concede monetary control."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-02"
+    ],
+    "generatedAt": "2026-06-02T12:31:16.175Z",
+    "label": "Stablecoins & the Lira Hedge",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-02-stellantis-will-build-2-million-cars-on-new-stla-one-platfor": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A PLATFORM ACTUALLY IS",
+        "body": "A platform is the shared underbody — floor pan, suspension mounts, axle geometry, wiring and electrical architecture — that many distinct models bolt onto. The expensive engineering is done once and spread across millions of cars; only the visible sheet metal and interior change between models. Two cars that look nothing alike often sit on the same bones.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term for this is *badge engineering* when taken to its extreme — a Peugeot, an Opel, and a Fiat that are mechanically the same car wearing three different grilles."
+          }
+        ]
+      },
+      {
+        "heading": "THE MERGER THAT MADE STELLANTIS",
+        "body": "Stellantis was formed in 2021 by merging France's PSA Group (Peugeot, Citroën, Opel) with Fiat Chrysler. The result was 14 brands inheriting a tangle of incompatible platforms — the merger's whole promise was to collapse that patchwork into a handful of shared architectures. STLA One is that promise made concrete.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Carlos Tavares",
+                "role": "Founding Stellantis CEO",
+                "years": "2021–2024",
+                "cc": "PT"
+              },
+              {
+                "name": "Antonio Filosa",
+                "role": "Stellantis CEO",
+                "years": "2025–",
+                "cc": "IT"
+              },
+              {
+                "name": "John Elkann",
+                "role": "Chairman, Agnelli heir",
+                "years": "2021–",
+                "cc": "IT"
+              }
+            ],
+            "label": "who shaped the platform bet"
+          },
+          {
+            "type": "quiz",
+            "question": "Which two companies merged in 2021 to create Stellantis?",
+            "options": [
+              "PSA Group and Fiat Chrysler",
+              "Renault and Nissan",
+              "Volkswagen and Porsche",
+              "Ford and General Motors"
+            ],
+            "correct": 0,
+            "explanation": "PSA (Peugeot-Citroën) and Fiat Chrysler combined into a 14-brand group, the world's fourth-largest automaker by volume."
+          }
+        ]
+      },
+      {
+        "heading": "THE VOLKSWAGEN BLUEPRINT",
+        "body": "Volkswagen pioneered modern platform sharing with its MQB architecture in 2012. The same underpinnings carry the VW Golf, Audi A3, Škoda Octavia, and Seat León — tens of millions of cars across four brands and several price tiers. The lesson Stellantis is copying: scale on the platform, differentiate on the badge."
+      },
+      {
+        "heading": "WHY 2 MILLION IS THE TARGET",
+        "body": "Platform engineering is almost pure fixed cost — design, crash certification, tooling — paid before the first car sells. Divide that cost by a few hundred thousand units and each car carries a heavy burden; divide it by 2 million and the per-car share shrinks toward irrelevance. Volume isn't a vanity metric here; it is the entire economic argument for consolidation."
+      },
+      {
+        "heading": "THE CHINESE COST GAP",
+        "body": "The benchmark Stellantis is chasing is set in China, where firms like BYD make their own batteries, motors, and chips in-house. That vertical integration plus enormous domestic scale lets a Chinese entry EV sell for roughly a third of a comparable European model's price. A 20% platform saving narrows that gap — it does not close it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "BYD Seagull",
+                "value": "~$10k",
+                "cc": "CN",
+                "weight": 10,
+                "tone": "favorable"
+              },
+              {
+                "label": "Dacia Spring",
+                "value": "~$20k",
+                "cc": "RO",
+                "weight": 20,
+                "tone": "neutral"
+              },
+              {
+                "label": "Peugeot e-208",
+                "value": "~$30k",
+                "cc": "FR",
+                "weight": 30,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "entry EV price, by origin"
+          },
+          {
+            "type": "prose",
+            "text": "BYD began as a *battery* company, not a carmaker — which is why it builds its own **LFP Blade** cells while Western rivals buy packs from suppliers at a markup."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T12:32:12.799Z",
+    "label": "Auto Platforms & the Cost War",
+    "category": "economy",
+    "articleCount": 1
   }
 }
