@@ -1,26 +1,27 @@
 {
-  "date": "2026-06-01",
+  "date": "2026-06-02",
   "metrics": {
-    "articles": { "value": 59, "detail": "5 cycles all completed, avg ~12/cycle (avgPublished 10/cycle reported)" },
-    "freshness": { "median": 0, "p90": 1.5, "max": 1.5, "target": 1.0, "met": true },
-    "categories": { "politics": 20, "economy": 14, "science": 12, "tech": 13 },
-    "multiSource": { "value": 12, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 16, "AS": 14, "EU": 13, "ME": 10, "AF": 4, "OC": 2 } },
-    "sciTech": { "ratio": 42, "target": 25, "met": true },
-    "topSourceShare": { "source": "Nature", "pct": 14, "target": 20, "met": true },
-    "uniqueSources": 54,
+    "articles": { "value": 46, "detail": "5 cycles completed, avg 9/cycle" },
+    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
+    "categories": { "politics": 19, "economy": 11, "science": 8, "tech": 8 },
+    "multiSource": { "value": 8, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 17, "EU": 9, "ME": 8, "AS": 6, "AF": 5, "OC": 1 } },
+    "sciTech": { "ratio": 35, "target": 25, "met": true },
+    "topSourceShare": { "source": "Phys.org / CoinDesk", "pct": 9, "target": 20, "met": true },
+    "uniqueSources": 41,
     "duplicates": 0,
-    "avgCycleDuration": 1855
+    "avgCycleDuration": 1654
   },
-  "experiment": "Skipped — all four goal areas (freshness, diversity, multi-source, educational value) are within targets. The noNewExperimentsUntil 2026-05-31 gate has now passed and was dropped from .experiments.json; the field was not auto-extended.",
-  "weakestArea": "No goal metric is failing. The furthest-from-target signal is regional balance within the (met) diversity goal: Oceania (2) and Africa (4) trail the Americas (16), Asia (14), and Europe (13) by a wide margin, so the 6-region count masks heavy concentration in three regions. This is a long-standing structural pattern, not a regression.",
+  "experiment": "Skipped — all goal metrics within targets and no active experiment to evaluate. The only queued item (2026-05-08-numerical-density) edits scripts/write-prompt.md, which is out of scope for daily parameter tuning.",
+  "weakestArea": "Sci-tech ratio fell to 35% from yesterday's 44% (still comfortably above the 25% floor) as the day skewed political: politics took 19 of 46 slots (41%) while science and tech held at 8 each. The mix is healthy but politics-heavy, and science/tech absolute counts sit at the lower end of a normal day, driven by 46 total articles vs yesterday's 68.",
   "watching": [
-    "Writer-stage time is sustained-high: 944s today after 1133s on 2026-05-31, vs the historical ~150s norm. Selector (228s) and editor (469s) are in normal range, so the elevated avgCycleDuration (1855s vs ~1033s norm) is entirely the writer. Two consecutive days makes this a trend, not a blip — likely tied to the 2026-05-28 opus-4-8 lineup flip; worth an operator look since it is not addressable via tunable parameters.",
-    "Multi-source supply is strong today (12 published) — above the ~9/cycle feed ceiling noted in the reverted 2026-05-09 floor experiment; watch whether it holds or reverts to the ~22% structural rate."
+    "Total throughput dropped to 46 today from 68 yesterday despite both being 5-cycle days — avg writer-stage time was high (832s); confirm it is feed thinness rather than a writer slowdown trimming output.",
+    "Sudan/Darfur coverage (Radio Dabanga, Premium Times Nigeria) is recurring — track whether the thread sustains multi-source corroboration.",
+    "Crypto/markets cluster is prominent today (CoinDesk 4, Yahoo! Finance, Goodreturns) — watch it does not crowd genuine economy hard-news."
   ],
   "coverageGaps": [
-    "Oceania coverage thin (2 articles) — consistent with the region's smaller hard-news footprint but the lightest of the six.",
-    "Africa at 4 articles remains the second-lightest region despite curated African outlets (Premium Times, Daily Maverick, news24) appearing in the source mix."
+    "Oceania sits at 1 article (OC) — chronically thin region with no dedicated lever; flag if it stays at 0-1 for multiple consecutive days.",
+    "Latin America proper is underrepresented within the large AM bucket (17), which is dominated by US/North America stories."
   ],
-  "context": "No new experiment was introduced because metrics are healthy and the model-lineup baseline gate only just expired. History flags that the selector multi-source floor lever is tapped out (2026-05-09 experiment reverted; published multi-source rate is feed-capped near ~22%), so future sourcing-cluster work should target the upstream feed rather than selector floors. The write-prompt.md numerical-density experiment remains queued but is out of scope for daily tuning (prompt file, not a tunable parameter). The sustained writer-stage slowdown (944s/1133s over two days) is the one operational anomaly to surface to the operator."
+  "context": "All four goal clusters (freshness, diversity, multi-source, educational) met their targets today. No experiment is active and the prior three (editor-effort void, multi-source-floor-3 reverted, OIC carry-through kept-confounded) all closed by 2026-05-26. The standing lesson from the reverted 2026-05-09 floor experiment holds: the feed's ~9 multi-source stories/cycle caps published multi-source rate near ~22%, so future sourcing gains must come from the upstream feed (Event Registry clustering), not selector floors — but no such change is proposed today since metrics are healthy."
 }
