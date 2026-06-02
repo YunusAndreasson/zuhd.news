@@ -290297,5 +290297,1310 @@
     "label": "Section 232 & Tariff Carve-Outs",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-06-02-22-killed-russian-strike-kyiv-peace-talk-leverage": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SATURATION LOGIC",
+        "body": "A 600-drone, 73-missile barrage is not aimed at hitting 673 targets. It is aimed at exhausting the defender's interceptors. Air defense can only track and engage so many objects at once; flood the radar picture and a few weapons always leak through to the city behind it.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU"
+            ],
+            "label": "the strike geography",
+            "markers": [
+              {
+                "lat": 50.4501,
+                "lng": 30.5234,
+                "label": "Kyiv"
+              },
+              {
+                "lat": 49.9935,
+                "lng": 36.2304,
+                "label": "Kharkiv"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHO PAYS MORE TO DEFEND",
+        "body": "The economics run against the defender. A Shahed-type attack drone costs tens of thousands of dollars; the Patriot interceptor fired to kill it costs millions. Russia can lose the exchange on every shot and still win the budget war — which is the entire point of sending cheap drones first.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Shahed drone",
+                "value": "~$50k",
+                "tone": "favorable",
+                "weight": 50
+              },
+              {
+                "label": "Cruise missile",
+                "value": "~$1m",
+                "tone": "neutral",
+                "weight": 1000
+              },
+              {
+                "label": "Iskander (ballistic)",
+                "value": "~$3m",
+                "tone": "unfavorable",
+                "weight": 3000
+              },
+              {
+                "label": "Patriot PAC-3",
+                "value": "~$4m",
+                "tone": "unfavorable",
+                "weight": 4000
+              }
+            ],
+            "label": "cost per munition (rough)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PATRIOT, SPECIFICALLY",
+        "body": "Zelensky asked for Patriots and not just any air defense because the Patriot PAC-3 is the only Western system Ukraine fields that reliably intercepts ballistic missiles. Most short-range systems can knock down slow drones and cruise missiles, but a ballistic warhead re-enters at several kilometers per second — a different physics problem entirely.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Russia's hypersonic *Kinzhal* — an air-launched ballistic missile — was long advertised as un-interceptable. Ukrainian crews first shot one down with a **Patriot** in May 2023, which is why every Patriot battery is now a strategic asset, not just a battlefield one."
+          }
+        ]
+      },
+      {
+        "heading": "THE DECOY ECONOMY",
+        "body": "The drones in a barrage are often the cheap layer of a two-tier attack: send dozens of slow, loud Shaheds to make the defenders light up their radars and spend interceptors, then send the ballistic missiles into the gap. Some Russian drones now carry no warhead at all — they exist only to be shot at."
+      },
+      {
+        "heading": "THE ATTRITION INVERSION",
+        "body": "Losing more ground than you gain while attacking 37% more is the signature of a stalled offensive: the assaulting force is feeding men and vehicles into prepared defenses faster than it can convert them into territory. The same arithmetic broke the great offensives of the First World War, where attackers routinely paid more to take a trench than defenders paid to hold it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did Zelensky single out Patriot systems rather than ask for more air defense generally?",
+            "options": [
+              "It is the only system Ukraine fields that reliably downs ballistic missiles",
+              "It is the cheapest interceptor available",
+              "It is the only system that can hit drones",
+              "It can strike targets inside Russia"
+            ],
+            "correct": 0,
+            "explanation": "Short-range systems handle drones and cruise missiles; the Patriot PAC-3 is the one Western system Ukraine operates that can engage fast ballistic warheads."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T22:26:47.564Z",
+    "label": "Air Defense & the Saturation Math",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-02-brazil-green-steel-cbam-chinese-imports": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT CBAM ACTUALLY DOES",
+        "body": "The EU's Carbon Border Adjustment Mechanism makes importers pay the same carbon price European producers pay under the EU emissions trading scheme. It is not a tariff on steel — it is a tariff on the carbon embedded in the steel, designed to stop 'carbon leakage,' where production simply moves to countries with no climate rules."
+      },
+      {
+        "heading": "WHY STEEL IS THE HARDEST CASE",
+        "body": "Blast-furnace steelmaking uses coking coal not just for heat but as a chemical reducing agent — carbon strips oxygen from iron ore, and the leftover carbon leaves as CO2. There is no way to make coal-route steel without emitting CO2; the chemistry itself produces it. That is why steel accounts for roughly 7-8% of global emissions and why it can't be cleaned up by efficiency alone.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The fix is to swap the reducing agent: **green hydrogen** strips the oxygen instead of carbon, and the exhaust is water vapor, not CO2. The process is called **H-DRI** — hydrogen direct reduced iron."
+          }
+        ]
+      },
+      {
+        "heading": "THE EMISSIONS GAP",
+        "body": "The carbon intensity of steel varies enormously by route. CBAM turns that gap into a price difference at the EU border — and that is the entire economic case behind Brazil's $18bn green-hydrogen pipeline.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Coal blast furnace",
+                "value": "~1.9t",
+                "tone": "unfavorable",
+                "weight": 1.9
+              },
+              {
+                "label": "Gas DRI",
+                "value": "~1.1t",
+                "tone": "neutral",
+                "weight": 1.1
+              },
+              {
+                "label": "Scrap (EAF)",
+                "value": "~0.4t",
+                "tone": "favorable",
+                "weight": 0.4
+              },
+              {
+                "label": "Hydrogen DRI",
+                "value": "~0.05t",
+                "tone": "favorable",
+                "weight": 0.05
+              }
+            ],
+            "label": "CO2 per tonne of crude steel, by route"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHINA IS THE BACKDROP",
+        "body": "China produces more steel than the rest of the world combined — over a billion tonnes a year, almost all of it coal-route. When Chinese domestic demand softens, that surplus floods export markets, which is exactly the 25.9% import surge Brazil is reacting to.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 1000
+              },
+              {
+                "label": "India",
+                "value": 145
+              },
+              {
+                "label": "Japan",
+                "value": 85
+              },
+              {
+                "label": "USA",
+                "value": 80
+              },
+              {
+                "label": "Russia",
+                "value": 70
+              },
+              {
+                "label": "South Korea",
+                "value": 65
+              },
+              {
+                "label": "Brazil",
+                "value": 32
+              }
+            ],
+            "label": "crude steel production, 2024 (mn tonnes)"
+          }
+        ]
+      },
+      {
+        "heading": "TWO DIFFERENT WEAPONS",
+        "body": "Brazil is caught between two trade tools that work in opposite directions. Anti-dumping duties (effective early 2026) tax Chinese steel for being sold below cost. CBAM, at the EU end, taxes Brazil's own steel for being too dirty. One protects the domestic market; the other threatens the export market — and only green hydrogen answers both at once."
+      },
+      {
+        "heading": "THE CARBON PRICE THAT MATTERS",
+        "body": "CBAM is only as sharp as the EU carbon price it mirrors. EU allowances have traded in the €60-100 per tonne range — meaning a coal-route tonne of steel could carry well over €100 in border charges, while an H-DRI tonne carries almost nothing. The wider that price climbs, the more a $18bn green pipeline pays for itself.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is steel uniquely hard to decarbonize compared to electricity?",
+            "options": [
+              "Steel mills use far more electricity than power plants",
+              "Coal is a chemical reactant in ironmaking, not just a fuel",
+              "Steel cannot be recycled",
+              "There is no demand for low-carbon steel"
+            ],
+            "correct": 1,
+            "explanation": "In blast furnaces carbon chemically reduces iron ore, so CO2 is a byproduct of the reaction itself — you can't just switch to clean power."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T22:27:23.711Z",
+    "label": "Green Steel & the Carbon Border Tariff",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-02-henry-nowak-bodycam-uk-policing-trust": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANISM",
+        "body": "Holding someone prone and handcuffed compresses the chest and abdomen so the diaphragm cannot pull air in. Death can follow in minutes, often silently. The clinical name is positional or restraint asphyxia — and the victim saying 'I can't breathe' is the warning sign, not evidence that they are fine because they can still speak.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Officers are trained that *if they can talk, they can breathe* — but **positional asphyxia** kills precisely while the airway is still partly open. Speech needs only a trickle of air; survival needs full chest expansion the restraint prevents."
+          }
+        ]
+      },
+      {
+        "heading": "THE FIRST-CALLER BIAS",
+        "body": "Police triage a chaotic scene by who reports first and who appears calm. The person who dials in and frames themselves as the victim seizes the narrative; the genuinely distressed party reads as the aggressor. A calculated false report can therefore invert who gets arrested — the structural vulnerability behind 'he said he was the one being abused.'"
+      },
+      {
+        "heading": "THE WATCHDOG",
+        "body": "Britain's Independent Office for Police Conduct investigates deaths after police contact, but it cannot charge anyone. It gathers evidence and refers files to the Crown Prosecution Service, which decides on prosecution. The vast majority of custody-death investigations end with no officer charged — the watchdog's power is to document, not to punish."
+      },
+      {
+        "heading": "THE 28-DAY WINDOW",
+        "body": "Under the Unduly Lenient Sentence scheme (Criminal Justice Act 1988), anyone — not just the prosecution — can ask the Attorney General to refer a sentence to the Court of Appeal as too soft. The catch is a hard 28-day deadline from sentencing; miss it and the sentence stands. The court can only increase a sentence, never reduce it, under this route.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How long does the UK Attorney General have to refer an 'unduly lenient' sentence to the Court of Appeal?",
+            "options": [
+              "7 days",
+              "28 days",
+              "6 months",
+              "No fixed limit"
+            ],
+            "correct": 1,
+            "explanation": "The Criminal Justice Act 1988 sets a strict 28-day window from the date of sentencing; once it lapses the sentence is final."
+          }
+        ]
+      },
+      {
+        "heading": "THE PATTERN",
+        "body": "Restraint and custody deaths recur in Britain across decades, often with the same features: a man face-down, officers convinced he is resisting, and inquests that take years to reach a verdict. Each case prompts new guidance; the next case repeats the failure. The recurrence is the point — these are systemic, not isolated.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1969",
+                "label": "David Oluwale dies, Leeds",
+                "emphasis": "start"
+              },
+              {
+                "year": "1998",
+                "label": "Christopher Alder, Hull station floor"
+              },
+              {
+                "year": "2008",
+                "label": "Sean Rigg, Brixton restraint death",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017",
+                "label": "Rashan Charles, Edson Da Costa"
+              }
+            ],
+            "label": "UK custody deaths that forced reviews"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T22:28:15.979Z",
+    "label": "Restraint Deaths & Police Accountability",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-02-israel-ain-arab-southern-lebanon-forced-displacement": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LITANI LINE",
+        "body": "South Lebanon's fate is set by a river. The Litani runs roughly parallel to the border about 30km north, and every plan for the region since 1978 — the UN's Resolution 425, then 1701 — has tried to make the strip between river and frontier a zone empty of armed groups. The geography that makes it a natural buffer also makes it a permanent frontline.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL",
+              "SY"
+            ],
+            "label": "the Litani buffer strip",
+            "caption": "the strip between the Litani and the border",
+            "markers": [
+              {
+                "lat": 33.2705,
+                "lng": 35.2032,
+                "label": "Litani river mouth"
+              },
+              {
+                "lat": 33.1206,
+                "lng": 35.4289,
+                "label": "Bint Jbeil"
+              },
+              {
+                "lat": 33.0939,
+                "lng": 35.1255,
+                "label": "Naqoura (UNIFIL HQ)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 1701 PROMISED",
+        "body": "After the 2006 war, UN Resolution 1701 declared the area south of the Litani free of any weapons except those of the Lebanese state and UNIFIL peacekeepers. It was a demilitarization deal, not a border treaty — which is why a 'yellow line' drawn unilaterally by one army has no standing in it. The resolution assumed both sides would withdraw; instead the line became something to be redrawn after each round.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "1701 created a buffer policed by *UNIFIL* — a force present since **1978** with a mandate to observe, not to fight. Its blue-painted barrels mark the *Blue Line*, the UN's withdrawal reference, which is **not** an agreed international border."
+          }
+        ]
+      },
+      {
+        "heading": "EIGHTEEN YEARS OF OCCUPATION",
+        "body": "This is not new terrain for displacement. Israel occupied a 'security zone' across south Lebanon from 1982 to 2000 — eighteen years — administered through a proxy militia, the South Lebanon Army. When Israel withdrew in 2000 the SLA collapsed in days and thousands of its members fled across the border. The current 'yellow line' echoes the logic of that zone: a self-declared margin held inside another state's territory.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1978",
+                "label": "Israel invades; UNIFIL deployed"
+              },
+              {
+                "year": "1982",
+                "label": "Full invasion; siege of Beirut",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2000",
+                "label": "Israeli withdrawal; SLA collapses"
+              },
+              {
+                "year": "2006",
+                "label": "33-day war; Resolution 1701"
+              },
+              {
+                "year": "2024",
+                "label": "Renewed ground operations"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1982",
+                "to": "2000",
+                "label": "Israeli 'security zone' occupation",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "south Lebanon's frontline century"
+          }
+        ]
+      },
+      {
+        "heading": "HOW A VILLAGE IS EMPTIED",
+        "body": "Forced displacement at gunpoint with a two-hour deadline is not collateral; it is a method. Under the Fourth Geneva Convention an occupying power may evacuate civilians only for their own safety or imperative military necessity, and must allow return once fighting ends. A permanent expulsion with 'no return date' is precisely what the Convention's Article 49 was written after World War II to prohibit."
+      },
+      {
+        "heading": "THE SCALE",
+        "body": "Over 1.2 million displaced is not a border incident — it is roughly a fifth of Lebanon's entire population uprooted in three months, layered onto a country already hosting the world's highest per-capita refugee load from Syria. Lebanon absorbs displacement the way few states ever have, and each wave compounds the last.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Resolution 1701 says the area south of the Litani should hold weapons belonging only to whom?",
+            "options": [
+              "The Lebanese state and UNIFIL peacekeepers",
+              "Any party that signed the ceasefire",
+              "Israel, as the withdrawing force",
+              "No armed actor at all, including the UN"
+            ],
+            "correct": 0,
+            "explanation": "1701 reserves arms in the zone to the Lebanese Armed Forces and UNIFIL — not to non-state militias, and not to a foreign army drawing its own line."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T22:28:44.761Z",
+    "label": "South Lebanon & the Buffer Zone",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-02-kazakhstan-russia-rosatom-nuclear-financing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BUILD-OWN-OPERATE BUNDLE",
+        "body": "Rosatom rarely just sells a reactor. It lends the construction money, builds the plant, supplies the enriched fuel for decades, and often takes an equity stake. A single transaction becomes a sixty-year relationship the host country cannot easily exit.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The model is called **build-own-operate** (BOO). Russia used it for Turkey's Akkuyu plant — Rosatom owns the reactor outright and sells the electricity back. The customer never holds the asset, only the power bill."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE LOAN IS THE LEVERAGE",
+        "body": "Nuclear economics are front-loaded: capital, not fuel, is 70-80% of a plant's lifetime cost. Whoever finances the construction holds the whip hand for the plant's entire life. Financing 85% of a $16.4bn project means Moscow owns the leverage, not just the concrete."
+      },
+      {
+        "heading": "THE URANIUM IRONY",
+        "body": "Kazakhstan mines more uranium than any nation on earth — around 40% of global supply — yet has never operated a single power reactor. It digs and exports the fuel while importing the reactor, the financing, and the enrichment.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Kazakhstan",
+                "value": 40,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Canada",
+                "value": 15,
+                "tone": "neutral"
+              },
+              {
+                "label": "Namibia",
+                "value": 11,
+                "tone": "neutral"
+              },
+              {
+                "label": "Australia",
+                "value": 9,
+                "tone": "neutral"
+              },
+              {
+                "label": "Uzbekistan",
+                "value": 7,
+                "tone": "neutral"
+              },
+              {
+                "label": "Russia",
+                "value": 5,
+                "tone": "neutral"
+              },
+              {
+                "label": "Niger",
+                "value": 4,
+                "tone": "neutral"
+              }
+            ],
+            "label": "world uranium production share (approx.)"
+          },
+          {
+            "type": "quiz",
+            "question": "Which country mines the most uranium in the world?",
+            "options": [
+              "Kazakhstan",
+              "Australia",
+              "Canada",
+              "Russia"
+            ],
+            "correct": 0,
+            "explanation": "Kazakhstan supplies roughly 40% of mined uranium — yet has no power reactor of its own, exporting raw fuel while importing reactor technology."
+          }
+        ]
+      },
+      {
+        "heading": "ROSATOM'S EXPORT EMPIRE",
+        "body": "Russia builds more reactors abroad than any other state — by the mid-2020s Rosatom held the bulk of the world's foreign reactor orders, from Turkey's Akkuyu to Egypt's El Dabaa to Bangladesh's Rooppur. Nuclear export is a geopolitical tool, not just an engineering contract.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Russia",
+                "value": "~20",
+                "cc": "RU",
+                "weight": 20,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "China",
+                "value": "~5",
+                "cc": "CN",
+                "weight": 5
+              },
+              {
+                "label": "South Korea",
+                "value": "~3",
+                "cc": "KR",
+                "weight": 3
+              },
+              {
+                "label": "France",
+                "value": "~2",
+                "cc": "FR",
+                "weight": 2
+              },
+              {
+                "label": "USA",
+                "value": "~2",
+                "cc": "US",
+                "weight": 2
+              }
+            ],
+            "label": "reactors under construction abroad (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE SEMIPALATINSK SHADOW",
+        "body": "The Soviet Union detonated 456 nuclear weapons at the Semipalatinsk test site in northeast Kazakhstan, exposing roughly 1.5 million people to fallout. The Nevada-Semipalatinsk protest movement forced its closure in 1991 — public wariness of anything nuclear in Kazakhstan is rooted in this history, not abstract risk.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1949",
+                "label": "First Soviet test at Semipalatinsk",
+                "emphasis": "start"
+              },
+              {
+                "year": "1953",
+                "label": "First Soviet thermonuclear test"
+              },
+              {
+                "year": "1989",
+                "label": "Nevada-Semipalatinsk movement"
+              },
+              {
+                "year": "1991",
+                "label": "Test site closed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1995",
+                "label": "Last warheads removed from Kazakhstan"
+              }
+            ],
+            "label": "Kazakhstan's Soviet nuclear legacy"
+          }
+        ]
+      },
+      {
+        "heading": "THE FUEL LOCK-IN",
+        "body": "Russian-designed reactors run on Russian-designed fuel assemblies. Switching suppliers takes years of re-engineering and licensing — Ukraine spent over a decade qualifying Westinghouse fuel for its Soviet reactors. Financing plus fuel design means the dependency outlives any single government in Astana.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Rosatom's export reactor is the **VVER** — a pressurized-water design whose fuel geometry differs from Western assemblies. The reactor and its fuel are a matched pair, and Russia makes both."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T22:29:42.974Z",
+    "label": "Rosatom's Vendor-Financing Model",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-02-madlanga-hawks-cocaine-theft-south-africa": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO THE HAWKS ARE",
+        "body": "The Hawks are South Africa's elite priority-crimes unit, created in 2009 to handle organized crime, corruption and serious commercial offences. They replaced the Scorpions — and the manner of that replacement is the backstory to almost every scandal that has dogged the unit since.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Officially the **Directorate for Priority Crime Investigation (DPCI)**, the Hawks sit *inside* the South African Police Service — unlike the Scorpions, who sat in the independent prosecuting authority and could not be leaned on by police command."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE SCORPIONS DIED",
+        "body": "The Scorpions investigated senior ANC figures, including Jacob Zuma. Months after Zuma won control of the party at Polokwane in 2007, parliament voted to disband the unit and fold its work into a police-controlled body. The lesson encoded in the Hawks' DNA: an anti-corruption unit that bites the ruling party gets dissolved.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1999",
+                "label": "Scorpions (DSO) founded"
+              },
+              {
+                "year": "2007",
+                "label": "Zuma wins ANC at Polokwane"
+              },
+              {
+                "year": "2009",
+                "label": "Scorpions disbanded, Hawks created",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011",
+                "label": "ConCourt: Hawks too weak, must be independent"
+              },
+              {
+                "year": "2018",
+                "label": "Zondo state-capture commission opens"
+              }
+            ],
+            "label": "from Scorpions to Hawks"
+          }
+        ]
+      },
+      {
+        "heading": "THE COMMISSION HABIT",
+        "body": "A judicial commission of inquiry is South Africa's default response to a crisis of trust in the state: a sitting or retired judge given subpoena power to compel testimony in public, but no power to convict. The Zondo Commission on state capture ran for years and produced thousands of pages; the Madlanga Commission follows the same template — evidence in the open, prosecutions, if any, much later."
+      },
+      {
+        "heading": "DURBAN, THE GATEWAY",
+        "body": "KwaZulu-Natal's port of Durban is the busiest container terminal in sub-Saharan Africa, which makes it the region's primary cocaine transshipment point. Product moves from South America across the South Atlantic, lands on the southern African coast, then splits toward Europe and the local market. Whoever controls the seized-evidence chain controls a commodity worth more than the officers' salaries for a lifetime.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BR",
+              "AO",
+              "NA",
+              "ZA",
+              "MZ"
+            ],
+            "label": "the South Atlantic cocaine route",
+            "caption": "South American product crosses the Atlantic, lands on the southern coast",
+            "markers": [
+              {
+                "lat": -29.87,
+                "lng": 31.03,
+                "label": "Durban port"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE EVIDENCE-LOCKER PROBLEM",
+        "body": "Seized narcotics are among the hardest things for any state to secure: they are compact, untraceable, and worth a fortune, held by the very people empowered to destroy them. Chain-of-custody fraud — swapping real cocaine for flour before the court-ordered burn, or stealing it outright from the store — is a global pattern, not a uniquely South African one. The temptation is structural."
+      },
+      {
+        "heading": "WHAT A POLYGRAPH ACTUALLY PROVES",
+        "body": "Police integrity units lean on polygraphs to vet officers, but the machine cannot read deception. It tracks autonomic arousal — sweat, heart rate, breathing, blood pressure — and cannot tell guilt apart from the fear of being falsely accused. A failed test is an investigative lead, not evidence a court will accept.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does a polygraph actually measure?",
+            "options": [
+              "Deception, directly",
+              "Autonomic arousal — sweat, heart rate, breathing, blood pressure",
+              "Brain activity associated with lying",
+              "Voice stress patterns"
+            ],
+            "correct": 1,
+            "explanation": "It records bodily signs of arousal, which anxiety, anger or fear of false accusation trigger just as readily as guilt — so it cannot isolate deception."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T22:30:33.268Z",
+    "label": "The Hawks & South Africa's Drug Gateway",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-02-microsoft-scout-ai-addiction-internal-docs": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE METRIC IS ATTENTION",
+        "body": "A free product's customer is not the user — it is whoever buys the user's time. The economist Herbert Simon saw this in 1971: when information becomes abundant, the scarce resource is the attention it consumes. Every engagement-optimized system is, structurally, a machine for harvesting that scarcity.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "A wealth of information creates a poverty of attention.",
+            "speaker": "Herbert Simon",
+            "year": "1971"
+          }
+        ]
+      },
+      {
+        "heading": "THE SLOT-MACHINE LOOP",
+        "body": "The most habit-forming reward schedule is not a reliable reward — it is an unpredictable one. B.F. Skinner found that pigeons rewarded on a variable schedule pecked far longer, and resisted quitting far harder, than those rewarded every time. The refresh, the notification, the 'maybe something good is waiting' is a slot machine in software.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism has a name: **variable-ratio reinforcement**. *Intermittent*, unpredictable payoff is what makes a behavior compulsive — certainty is what makes it boring."
+          },
+          {
+            "type": "quiz",
+            "question": "Which reinforcement schedule produces the most persistent, hardest-to-extinguish behavior?",
+            "options": [
+              "Continuous — a reward every single time",
+              "Fixed-interval — a reward every 60 seconds",
+              "Variable-ratio — a reward after an unpredictable number of tries",
+              "Fixed-ratio — a reward every 10th try"
+            ],
+            "correct": 2,
+            "explanation": "Unpredictable payoffs keep the behavior going long after rewards stop — the principle behind slot machines and pull-to-refresh."
+          }
+        ]
+      },
+      {
+        "heading": "THE HOOK",
+        "body": "Product designers turned the psychology into a recipe: a trigger prompts an action, the action delivers a variable reward, and the user makes a small investment (a post, a streak, a saved preference) that loads the next trigger. Run the loop enough times and the external trigger becomes internal — boredom itself starts reaching for the app."
+      },
+      {
+        "heading": "THE INTELLECTUAL LINEAGE",
+        "body": "'Addictive by design' is not an accident of software; it is a half-century of behavioral science deliberately applied. The same names recur from the laboratory to the boardroom to the backlash.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "B.F. Skinner",
+                "role": "Behaviorist, operant conditioning",
+                "years": "1930s–1970s",
+                "cc": "US"
+              },
+              {
+                "name": "Herbert Simon",
+                "role": "Coined the attention economy",
+                "years": "1971",
+                "cc": "US"
+              },
+              {
+                "name": "Nir Eyal",
+                "role": "Author of 'Hooked'",
+                "years": "2014",
+                "cc": "US"
+              },
+              {
+                "name": "Tristan Harris",
+                "role": "Ex-Google design ethicist",
+                "years": "2013–present",
+                "cc": "US"
+              }
+            ],
+            "label": "from the lab to the product"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'AGENTIC' CHANGES",
+        "body": "Earlier products competed for your attention by showing you things. An always-on agent that acts on your behalf raises the stakes: it can initiate, not just display. The dependency it builds is not 'I keep checking this' but 'I can no longer do this without it' — a deeper hook than any feed, because it targets capability rather than curiosity."
+      }
+    ],
+    "generatedAt": "2026-06-02T22:31:10.733Z",
+    "label": "The Engineering of Addiction",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-02-ofac-nobitex-iran-crypto-sanctions": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A SANCTION ACTUALLY IS",
+        "body": "OFAC does not arrest anyone or seize anything abroad. It adds a name to the Specially Designated Nationals list — and that listing makes it a crime for any US person or dollar-clearing bank to transact with that name. Enforcement is outsourced to every bank that wants to keep its access to the US financial system.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The lever is the **SDN list** run by the *Office of Foreign Assets Control* — a unit of the Treasury, not the military. Its power is entirely derivative of the dollar's role as the world's clearing currency."
+          }
+        ]
+      },
+      {
+        "heading": "THE DOLLAR CHOKEPOINT",
+        "body": "Roughly half of all cross-border payments and most oil trade settle in dollars, and every dollar transaction ultimately clears through a US correspondent bank. Cut an entity off from that clearing layer and it cannot touch dollars anywhere on Earth — even between two non-American banks. This is why a Treasury memo can do what a navy cannot."
+      },
+      {
+        "heading": "WHY CRYPTO, NOT BANKS",
+        "body": "Iran has been off SWIFT since 2012, so ordinary Iranians can't wire money abroad through the banking system. Crypto exchanges like Nobitex became the workaround: convert rials to a dollar-pegged stablecoin, move it to a foreign wallet, cash out. Blacklisting the exchanges is an attempt to close the one rail that bypassed the bank cutoff.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Hostage crisis; first asset freeze",
+                "emphasis": "start"
+              },
+              {
+                "year": "1995",
+                "label": "Total US trade embargo"
+              },
+              {
+                "year": "2012",
+                "label": "Cut off from SWIFT",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2015",
+                "label": "JCPOA sanctions relief"
+              },
+              {
+                "year": "2018",
+                "label": "US withdrawal, 'maximum pressure'"
+              },
+              {
+                "year": "2026",
+                "label": "Crypto exchanges blacklisted",
+                "emphasis": "end"
+              }
+            ],
+            "label": "the escalation arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE TRACEABILITY PARADOX",
+        "body": "Crypto is the opposite of anonymous. A public blockchain is a permanent, world-readable ledger of every transaction ever made. Once analysts tie one wallet to a known exchange, they can follow the funds backward and forward for years — which is exactly how Treasury can claim to have seized $1bn in Iranian crypto.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can authorities trace and seize crypto from sanctioned exchanges more easily than cash?",
+            "options": [
+              "Every transaction is recorded on a permanent public ledger",
+              "Crypto wallets require government ID to open",
+              "Banks report all crypto trades to Treasury",
+              "Bitcoin transactions can be reversed by the network"
+            ],
+            "correct": 0,
+            "explanation": "Public blockchains are transparent by design; once a wallet is linked to a real entity, its entire transaction history is exposed forever."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRIVACY-COIN ESCAPE HATCH",
+        "body": "Because mainstream chains are so traceable, sanctioned actors migrate toward privacy coins like Monero, which cryptographically hide sender, receiver, and amount. The state-vs-evasion contest never ends — it just moves to whichever rail is currently least legible to investigators.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "After the 2022 sanctioning of the mixer *Tornado Cash*, demand shifted toward protocol-level privacy — coins like **Monero** where opacity is built into the chain itself, not bolted on afterward."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T22:31:55.741Z",
+    "label": "OFAC, the Dollar & Crypto Rails",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-02-ring-familiar-faces-biometric-lawsuit": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STATUTE BEHIND THE SUIT",
+        "body": "Almost every US facial-recognition class action runs through one law: Illinois's Biometric Information Privacy Act, passed in 2008. Its rare feature is a private right of action — individuals can sue directly, with statutory damages of $1,000 per negligent violation and $5,000 per reckless one, no proof of financial harm required.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**BIPA** is the only US biometric law with a private right of action. That single clause — not the scanning itself — is why these suits are filed in **Illinois** and why the damages reach into the billions at class scale."
+          }
+        ]
+      },
+      {
+        "heading": "WHY EXACTLY THREE STATES",
+        "body": "Ring carved out three states because only three have meaningful biometric statutes: Illinois, Texas, and Washington. But they are not equal — Texas and Washington let only the state attorney general enforce, while Illinois lets any individual sue. The carve-out is really about avoiding Illinois.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Illinois",
+                "value": "private suits",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Texas",
+                "value": "AG only",
+                "tone": "neutral"
+              },
+              {
+                "label": "Washington",
+                "value": "AG only",
+                "tone": "neutral"
+              }
+            ],
+            "label": "the three state biometric laws"
+          }
+        ]
+      },
+      {
+        "heading": "WHY A FACE IS NOT A PASSWORD",
+        "body": "A leaked password can be reset in seconds. A faceprint cannot — your biometric template is derived from a body you carry for life. This permanence is the entire rationale for treating biometric data as a special legal category: a breach is not a temporary exposure, it is forever.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do biometric-privacy laws treat a faceprint differently from a password?",
+            "options": [
+              "Faceprints are more expensive to store",
+              "A compromised faceprint can never be changed",
+              "Passwords are not personal data",
+              "Faceprints are encrypted by default"
+            ],
+            "correct": 1,
+            "explanation": "You can reset a password after a breach; you cannot reset your face, so an exposed biometric template is a permanent liability."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'SCANNING A FACE' ACTUALLY MEANS",
+        "body": "The system does not store a photo. It converts the geometry of a face — distances between landmarks — into a numerical vector called a faceprint or embedding, then matches new faces against that gallery. Under BIPA, generating that vector without consent is itself the violation, regardless of whether anyone is ever identified."
+      },
+      {
+        "heading": "THE BYSTANDER PROBLEM",
+        "body": "A doorbell owner may agree to the terms, but the passers-by, delivery workers, and neighbors the camera scans never did. 'Familiar Faces' builds templates of people who have no relationship with Amazon at all — the consent gap the lawsuit targets is precisely these non-customers caught in frame."
+      },
+      {
+        "heading": "THE PRECEDENTS THAT MADE THIS EXPENSIVE",
+        "body": "Two Illinois Supreme Court rulings turned BIPA from a dormant statute into a billion-dollar risk: Rosenbach (2019) held that no actual injury is needed to sue, and Cothron v. White Castle (2023) held that each separate scan is a fresh violation — so damages multiply by every capture, not every person.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2008",
+                "label": "BIPA enacted in Illinois",
+                "emphasis": "start"
+              },
+              {
+                "year": "2019",
+                "label": "Rosenbach: no injury needed to sue",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "Facebook $650M settlement"
+              },
+              {
+                "year": "2023",
+                "label": "White Castle: per-scan damages"
+              }
+            ],
+            "label": "how BIPA grew teeth"
+          },
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Facebook",
+                "value": "$650M",
+                "tone": "unfavorable",
+                "weight": 650
+              },
+              {
+                "label": "Google",
+                "value": "$100M",
+                "tone": "unfavorable",
+                "weight": 100
+              },
+              {
+                "label": "TikTok",
+                "value": "$92M",
+                "tone": "unfavorable",
+                "weight": 92
+              },
+              {
+                "label": "Snapchat",
+                "value": "$35M",
+                "tone": "unfavorable",
+                "weight": 35
+              }
+            ],
+            "label": "major BIPA settlements"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T22:32:33.099Z",
+    "label": "Biometric Privacy Law",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-02-small-magellanic-cloud-tidal-disruption-vista": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NEIGHBORS",
+        "body": "The Small and Large Magellanic Clouds are dwarf galaxies orbiting the Milky Way, visible to the naked eye only from the southern hemisphere. The SMC holds a few hundred million stars — the Milky Way holds hundreds of billions. It is a minnow circling a whale.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Milky Way",
+                "value": "~60bn M☉",
+                "weight": 60000,
+                "tone": "neutral"
+              },
+              {
+                "label": "LMC",
+                "value": "~1.5bn M☉",
+                "weight": 1500,
+                "tone": "neutral"
+              },
+              {
+                "label": "SMC",
+                "value": "~0.5bn M☉",
+                "weight": 500,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "stellar mass, roughly"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A TIDE ACTUALLY IS",
+        "body": "Tidal disruption is the same physics that raises ocean tides, scaled up. A large body pulls harder on the near side of a smaller one than the far side; that difference in pull stretches the smaller body along the line between them. Push it far enough and the object is torn apart — the cosmic equivalent of being drawn and quartered.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The threshold where a body's own gravity loses to the tidal stretch is the **Roche limit**. Inside it, moons shatter into rings and galaxies unspool into streams."
+          }
+        ]
+      },
+      {
+        "heading": "WHO IS DOING THE TEARING",
+        "body": "The surprise is that the chief culprit is not the Milky Way but the SMC's own larger companion, the LMC. The two clouds are gravitationally bound to each other and likely fell into the Milky Way's orbit together, and the bigger dwarf is shredding the smaller one as they plunge inward.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which galaxy is primarily pulling the Small Magellanic Cloud apart?",
+            "options": [
+              "The Milky Way",
+              "The Large Magellanic Cloud",
+              "The Andromeda Galaxy"
+            ],
+            "correct": 1,
+            "explanation": "The SMC and LMC are a bound pair; the larger LMC's tidal pull is the dominant force shredding its smaller companion."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRAIL OF EVIDENCE",
+        "body": "Disruption leaves a wake. The Magellanic Stream — a vast ribbon of hydrogen gas stripped from the clouds — arcs more than halfway across the southern sky. Astronomers have known the stream existed for decades; what is new is catching the disruption in the act, star by star."
+      },
+      {
+        "heading": "HOW YOU MEASURE A GALAXY MOVING",
+        "body": "Stars do not appear to move on human timescales, so VISTA stared at the same patch of sky for a decade and measured proper motion — the tiny sideways drift of millions of individual stars across the years. When those drift vectors point in coherent, divergent directions rather than orbiting tidily, you are watching a structure come undone.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technique is *proper motion* — angular drift across the sky — distinct from *radial velocity*, the motion toward or away from us that Doppler shift reveals. Together they give a star's full 3-D path."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE MODELS HAD TO CHANGE",
+        "body": "Treating the SMC as a stable, settled object made its stars useful as a fixed yardstick for measuring distances and dark matter. If the whole galaxy is mid-collapse, every measurement that assumed equilibrium inherits an error — which is why a survey of stellar motions forces a rewrite of the structural models, not just a footnote."
+      }
+    ],
+    "generatedAt": "2026-06-02T22:33:04.851Z",
+    "label": "Tidal Disruption of a Dwarf Galaxy",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-02-trump-s-ai-e-i-o-could-let-feds-pick-winners-and-losers": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INSTRUMENT",
+        "body": "An executive order is not law — it directs the agencies the president already controls. It needs no Congress, takes effect on signature, and the next president can erase it with a stroke. That fragility is why an EO-based framework binds firms through incentive, not statute.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What gives a US executive order its legal force?",
+            "options": [
+              "A two-thirds vote in Congress",
+              "The president's existing authority over the executive branch",
+              "Ratification by the Supreme Court",
+              "Approval by a majority of state governors"
+            ],
+            "correct": 1,
+            "explanation": "An EO only directs powers the president already holds; it cannot create new law, and a successor can revoke it instantly."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'FRONTIER' MEANS",
+        "body": "There is no agreed scientific line for a 'frontier' model. The closest proxy regulators have used is raw training compute — Biden's 2023 AI order drew its reporting trigger at models trained on more than 10^26 floating-point operations. A framework that sets no such threshold leaves the government free to decide case by case who qualifies.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Biden-era cutoff of **10^26 FLOPs** captured essentially zero existing models when written — it was a line drawn *ahead* of the frontier, not around it. Remove the number and 'frontier' becomes whatever the regulator says it is."
+          }
+        ]
+      },
+      {
+        "heading": "WHY EARLY ACCESS IS LEVERAGE",
+        "body": "Whoever the state previews and procures gains a stamp of trust money can't buy — and the rivals left outside lose it. Channeling government access to a chosen few is the classic mechanism of regulatory capture: the regulated industry shapes the rules to entrench incumbents and raise the wall against new entrants."
+      },
+      {
+        "heading": "THE KINGMAKER RISK",
+        "body": "A 'trusted partners' clause with no published criteria concentrates discretion in the White House. The US frontier field is already a handful of well-capitalized labs; an opaque selection process can quietly decide which of them the federal government blesses.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Sam Altman",
+                "role": "OpenAI CEO",
+                "cc": "US"
+              },
+              {
+                "name": "Dario Amodei",
+                "role": "Anthropic CEO",
+                "cc": "US"
+              },
+              {
+                "name": "Demis Hassabis",
+                "role": "Google DeepMind CEO",
+                "cc": "GB"
+              },
+              {
+                "name": "Elon Musk",
+                "role": "xAI founder",
+                "cc": "US"
+              },
+              {
+                "name": "Mark Zuckerberg",
+                "role": "Meta CEO",
+                "cc": "US"
+              }
+            ],
+            "label": "the US frontier field"
+          }
+        ]
+      },
+      {
+        "heading": "THE PROCUREMENT PRECEDENT",
+        "body": "Government as first customer has built whole industries before. The Pentagon's contracts seeded Silicon Valley; ARPA funded the network that became the internet; the Air Force was the early buyer that drove down the cost of integrated circuits in the 1960s. The state picking technological winners is not new — the novelty is doing it through preview access rather than open contracts."
+      },
+      {
+        "heading": "THE STAKES IN THE TAPE",
+        "body": "AI capital spending now drives the valuations of the largest US tech firms, so a federal thumb on the scale of who counts as 'frontier' is also a thumb on enormous market value. The same handful of hyperscalers funding the largest models dominate the index.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              25093.68,
+              25020.41,
+              24643.01,
+              24967.25,
+              24956.47,
+              24965.01,
+              24533.58,
+              24380.73,
+              24655.34,
+              24780.42,
+              24425.09,
+              24355.28,
+              23898.15,
+              24188.59,
+              24002.45,
+              24162.98,
+              23586.99,
+              23132.77,
+              22953.38,
+              23740.19,
+              24019.99,
+              24045.53,
+              24192.17,
+              24202.37,
+              24903.17,
+              25082.09,
+              25116.34,
+              25383.72,
+              25842,
+              26204.58,
+              26333,
+              26672.43,
+              26590.34,
+              26479.47,
+              26937.27,
+              26782.62,
+              27303.67,
+              27305.68,
+              27029.01,
+              27186.99,
+              27452.12,
+              27710.36,
+              27651.82,
+              28015.06,
+              28599.17,
+              28563.95,
+              29234.99,
+              29320.66,
+              29064.8,
+              29366.94,
+              29580.3,
+              29125.2,
+              28994.37,
+              28818.84,
+              29297.7,
+              29357.27,
+              29481.64,
+              30001.32,
+              29973.57,
+              30223.89,
+              30333.18,
+              30513.86
+            ],
+            "periods": [
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "Jun 1"
+            ],
+            "label": "NASDAQ-100",
+            "unit": "index",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · NASDAQ · as of 2026-06-01"
+    ],
+    "generatedAt": "2026-06-02T22:33:54.494Z",
+    "label": "Executive Power & Frontier AI",
+    "category": "tech",
+    "articleCount": 1
   }
 }
