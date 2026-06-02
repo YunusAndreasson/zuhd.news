@@ -285015,5 +285015,1074 @@
     "label": "Terror Designation & Bank Liability",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-01-amazon-internal-ai-leaderboard-cheating-benchmark-gaming": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "GOODHART'S LAW",
+        "body": "When a measure becomes a target, it stops being a good measure. A metric works only while people aren't optimizing for it directly; once careers ride on the number, effort flows to the number rather than the thing it was supposed to proxy.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Charles Goodhart, a Bank of England economist, made the point about *monetary aggregates* in 1975: the moment the central bank targeted a money-supply measure, the relationship it relied on broke. The popular one-line version was actually sharpened later by anthropologist **Marilyn Strathern**."
+          }
+        ]
+      },
+      {
+        "heading": "THE COBRA EFFECT",
+        "body": "Colonial Delhi offered a bounty per dead cobra to cut the snake population. People bred cobras to collect the bounty. When officials scrapped the scheme, the breeders released their now-worthless snakes — leaving more cobras than before the program began.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did Delhi's cobra bounty end up increasing the cobra population?",
+            "options": [
+              "People bred cobras to claim the bounty, then released them when it ended",
+              "The bounty was too small to motivate hunters",
+              "Cobras migrated in from neighboring regions",
+              "Officials miscounted the original population"
+            ],
+            "correct": 0,
+            "explanation": "Rewarding the proxy (dead snakes) created an industry in producing the very thing it meant to reduce — the textbook perverse incentive."
+          }
+        ]
+      },
+      {
+        "heading": "CAMPBELL'S LAW",
+        "body": "The social-science twin of Goodhart: the more a quantitative indicator is used for high-stakes decisions, the more it gets corrupted and the more it distorts the process it monitors. It's why standardized-test targets reliably produce teaching-to-the-test and outright cheating scandals."
+      },
+      {
+        "heading": "THE THINKERS",
+        "body": "The same insight was discovered independently across three disciplines within a single decade — economics, psychology, and anthropology — which is itself a sign of how fundamental it is.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Charles Goodhart",
+                "role": "Bank of England economist",
+                "years": "1975",
+                "cc": "GB"
+              },
+              {
+                "name": "Donald Campbell",
+                "role": "Social psychologist",
+                "years": "1976",
+                "cc": "US"
+              },
+              {
+                "name": "Marilyn Strathern",
+                "role": "Anthropologist, popular phrasing",
+                "years": "1997",
+                "cc": "GB"
+              }
+            ],
+            "label": "who formalized the idea"
+          }
+        ]
+      },
+      {
+        "heading": "THE SOVIET NAIL FACTORY",
+        "body": "A planning parable: when a Soviet nail factory was judged by quantity, it made millions of tiny useless nails; when judged by weight, it made a few enormous useless ones. Any single scalar target invites the worker to satisfy the number while abandoning the purpose."
+      },
+      {
+        "heading": "WHY 'AI ADOPTION' IS THE PERFECT TRAP",
+        "body": "Productivity from a tool is hard to measure, so organizations substitute an easy proxy — prompt counts, queries logged, dashboard rankings. The proxy is gameable in seconds with a script, while the real outcome it stands for stays invisible. Mandating tool use by metric guarantees you measure compliance theater, not value."
+      }
+    ],
+    "generatedAt": "2026-06-02T04:26:18.685Z",
+    "label": "Goodhart's Law & Metric Gaming",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-01-congress-trump-class-battleship-ndaa-certification": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE BATTLESHIP DIED",
+        "body": "The big-gun capital ship was already obsolete by 1942 — Pearl Harbor and the sinking of the Prince of Wales proved aircraft outranged any naval gun. The US last built battleships in the 1940s, mothballed them, briefly recommissioned the Iowa class in the 1980s for cruise missiles, then retired them for good by 1992. Reviving the type means betting that a new weapon can restore a range advantage carriers took away 80 years ago."
+      },
+      {
+        "heading": "THE ZUMWALT GHOST",
+        "body": "The analyst warning is precise. The USS Zumwalt was designed around an Advanced Gun System whose guided rounds ended up costing roughly $800,000–$1,000,000 each — so the Navy bought the guns but never bought ammunition for them. The planned class of 32 ships was cut to 3, leaving billion-dollar hulls carrying guns that cannot fire affordably.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "The Navy planned 32 Zumwalt-class destroyers. How many were actually built?",
+            "options": [
+              "3",
+              "12",
+              "24",
+              "All 32"
+            ],
+            "correct": 0,
+            "explanation": "Cost overruns cut the program from 32 ships to 3, and the signature gun system was left without affordable ammunition."
+          }
+        ]
+      },
+      {
+        "heading": "WHY RAILGUNS AREN'T READY",
+        "body": "A railgun fires a slug with electromagnetic force at up to Mach 6, with no propellant. The physics works; the engineering doesn't yet. Each shot draws tens of megawatts and the rails erode under the current, so barrels wear out after relatively few firings. The Navy spent over a decade and hundreds of millions on its program before quietly cancelling it in 2021 — which is exactly why Congress now wants proof before paying.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Two failure modes kill the railgun: **barrel erosion** (the plasma between the rails ablates the metal each shot) and **pulsed power** (storing and releasing ~25 *megawatts* in milliseconds). Neither is solved at sea."
+          }
+        ]
+      },
+      {
+        "heading": "THE HYPERSONIC CATCH",
+        "body": "A hypersonic weapon flying above Mach 5 builds a plasma sheath of superheated air around itself. That sheath both melts conventional materials and blocks radio signals — so the weapon is hardest to steer at exactly the moment it needs precise guidance. 'Sufficiently mature' is doing heavy lifting in the bill: no nation has fielded a hypersonic that reliably hits a moving ship."
+      },
+      {
+        "heading": "THE POWER OF THE PURSE",
+        "body": "Congress isn't cancelling the ships — it's using a certification gate, the sharpest tool in its constitutional kit. By barring obligation of funds until the Navy proves the weapons work, the legislature forces the executive to clear a technical bar before spending. It is the same mechanism used to leash F-35 production and aircraft-carrier procurement when costs ran ahead of capability.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The Congress shall have Power... To provide and maintain a Navy.",
+            "speaker": "US Constitution, Article I §8",
+            "year": "1787"
+          }
+        ]
+      },
+      {
+        "heading": "CARRIER MONEY FOR A GUN SHIP",
+        "body": "At $43.5bn for the first three, each Trump-class hull costs more than a Ford-class supercarrier — and a carrier projects power across a thousand miles via its air wing, while a gun-and-missile ship reaches only as far as its unproven weapons. That is the value question buried under the certification fight.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Trump-class",
+                "value": "~$14.5bn",
+                "tone": "unfavorable",
+                "cc": "US",
+                "weight": 14.5
+              },
+              {
+                "label": "Ford carrier",
+                "value": "~$13bn",
+                "tone": "neutral",
+                "cc": "US",
+                "weight": 13
+              },
+              {
+                "label": "Zumwalt",
+                "value": "~$8bn",
+                "tone": "unfavorable",
+                "cc": "US",
+                "weight": 8
+              },
+              {
+                "label": "Virginia sub",
+                "value": "~$3.5bn",
+                "tone": "neutral",
+                "cc": "US",
+                "weight": 3.5
+              },
+              {
+                "label": "Burke destroyer",
+                "value": "~$2bn",
+                "tone": "favorable",
+                "cc": "US",
+                "weight": 2
+              }
+            ],
+            "label": "US warship cost per ship (rough, incl. R&D)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T04:27:05.716Z",
+    "label": "Battleships & the Procurement Leash",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-01-pld-space-guiana-launch-facility-european-sovereignty": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EQUATORIAL ADVANTAGE",
+        "body": "Kourou sits at 5°N — closer to the equator than any other major spaceport. Earth's surface spins fastest there, so a rocket launching eastward starts with roughly 460 m/s of free velocity it would otherwise burn fuel to reach. That free boost is why France put Europe's spaceport in South America rather than in Europe.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Earth's rotational boost at launch site",
+            "peers": [
+              {
+                "value": 463,
+                "cc": "GF"
+              },
+              {
+                "value": 451,
+                "cc": "IN"
+              },
+              {
+                "value": 409,
+                "cc": "US"
+              },
+              {
+                "value": 361,
+                "cc": "NZ"
+              },
+              {
+                "value": 325,
+                "cc": "KZ"
+              },
+              {
+                "value": 212,
+                "cc": "RU"
+              }
+            ],
+            "subjectCc": "GF",
+            "unit": "m/s"
+          }
+        ]
+      },
+      {
+        "heading": "THE LAUNCH GAP",
+        "body": "For two years Europe could not reliably reach orbit on its own. Russia pulled its Soyuz rockets from Kourou after the 2022 invasion of Ukraine; the Vega C was grounded by a failure; the workhorse Ariane 5 retired; and its successor Ariane 6 slipped years behind schedule. European satellites ended up riding on SpaceX — the exact dependency the program existed to avoid.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Ariane 1 first flight",
+                "emphasis": "start"
+              },
+              {
+                "year": "2022-03",
+                "label": "Russia withdraws Soyuz from Kourou",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-12",
+                "label": "Vega C grounded after failure"
+              },
+              {
+                "year": "2023-07",
+                "label": "Ariane 5 retires"
+              },
+              {
+                "year": "2024-07",
+                "label": "Ariane 6 maiden flight"
+              }
+            ],
+            "label": "Europe's access-to-space crunch"
+          },
+          {
+            "type": "prose",
+            "text": "The gap turned launch from an engineering problem into a *sovereignty* one — Brussels now talks about access to orbit the way it talks about energy and chips."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DEDICATED SMALL LAUNCH STRUGGLES",
+        "body": "A small satellite can hitch a cheap ride as secondary cargo on a big rocket — but it goes only where the primary payload is headed, on the primary's schedule. A dedicated small launcher like MIURA 5 sells control of orbit and timing, and charges far more per kilogram for it. The whole business model lives or dies on how much that control is worth.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Falcon 9 dedicated",
+                "value": "~$3k/kg",
+                "weight": 3
+              },
+              {
+                "label": "Falcon 9 rideshare",
+                "value": "~$6k/kg",
+                "weight": 6
+              },
+              {
+                "label": "Small dedicated",
+                "value": "~$25k/kg",
+                "weight": 25
+              }
+            ],
+            "label": "rough cost to orbit, $ per kg to LEO"
+          }
+        ]
+      },
+      {
+        "heading": "THE REUSABILITY PENALTY",
+        "body": "Recovering and reflying a booster is what makes SpaceX cheap, but the trick scales badly downward. The propellant and hardware reserved for a controlled landing eat a fixed slice of performance — and on a small rocket whose payload margin is already thin, that slice can swallow most of the cargo.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "It is the **square-cube problem** of rocketry: shrink the vehicle and the landing reserve doesn't shrink with it, so reuse buys far less on a small launcher than on a giant one."
+          }
+        ]
+      },
+      {
+        "heading": "THE SOVEREIGNTY STAKES",
+        "body": "Spain backing a national launch firm is part of a wider European push: a continent that cannot put its own military, navigation, and reconnaissance satellites in orbit on its own rockets is strategically exposed, no matter how good its satellites are. The launcher, not the payload, is the chokepoint.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do rockets launch closer to the equator whenever possible?",
+            "options": [
+              "Earth's rotation gives a bigger eastward velocity boost",
+              "The atmosphere is thinner near the equator",
+              "Equatorial weather is more predictable",
+              "It is physically closer to orbit"
+            ],
+            "correct": 0,
+            "explanation": "Earth's surface moves ~460 m/s eastward at the equator — free velocity a rocket would otherwise spend fuel to gain."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T04:28:26.608Z",
+    "label": "Europe's Launch Gap & Equatorial Spaceports",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-01-russian-dazzle-paint-counter-ai-drone-machine-vision": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT DAZZLE ACTUALLY DID",
+        "body": "British marine painter Norman Wilkinson proposed dazzle in 1917 not to hide ships — a ship at sea cannot be hidden — but to wreck the geometry a U-boat needed. High-contrast stripes and false bow-waves distorted a periscope gunner's estimate of a ship's range, heading, and speed, so the torpedo was aimed where the ship wasn't.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was WWI dazzle camouflage designed to do?",
+            "options": [
+              "Make ships invisible against the horizon",
+              "Distort a U-boat's estimate of range, speed, and heading",
+              "Blend ships into coastal terrain",
+              "Reduce a ship's thermal signature"
+            ],
+            "correct": 1,
+            "explanation": "Dazzle never concealed the ship — it corrupted the manual range-and-bearing calculation a submarine needed to aim a slow torpedo at a moving target."
+          }
+        ]
+      },
+      {
+        "heading": "HOW THE DRONE SEES",
+        "body": "An autonomous seeker doesn't 'see' a truck — it runs a convolutional neural network that scores patches of pixels for learned features (edges, corners, treads, cab shapes) and emits a labeled bounding box with a confidence number. The kill decision hangs on whether that score clears a threshold.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The classifier is a statistical pattern-matcher, not an eye. It has no concept of *truck* — only that certain arrangements of contrast and texture historically correlated with the label **truck** in its training data."
+          }
+        ]
+      },
+      {
+        "heading": "THE ADVERSARIAL PATCH",
+        "body": "In 2014 researchers found that imperceptible pixel tweaks could flip a classifier's answer with high confidence — adversarial examples. By 2017 the attack went physical: a printed sticker, the 'adversarial patch,' could make a vision system read a banana as a toaster. Russia's painted geometry is the battlefield version of the same exploit.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1917",
+                "label": "Wilkinson's dazzle camouflage"
+              },
+              {
+                "year": "2012",
+                "label": "Deep-learning vision (AlexNet)"
+              },
+              {
+                "year": "2014",
+                "label": "Adversarial examples discovered",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017",
+                "label": "Physical adversarial patch"
+              },
+              {
+                "year": "2024",
+                "label": "FPV drone classifiers in combat"
+              }
+            ],
+            "label": "fooling the eye, then the machine"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE TRICK TRANSFERS",
+        "body": "Dazzle worked on humans by injecting false edges into depth and motion perception; it works on a CNN for the structurally identical reason. The network's early layers are edge-and-texture detectors, so painting strong spurious contours floods those layers with features that overwhelm the genuine vehicle outline — and the bounding box never forms."
+      },
+      {
+        "heading": "THE RETRAINING TREADMILL",
+        "body": "The defense is cheap and known: add dazzle-painted trucks to the training set and the classifier relearns them within one update cycle. That is why the article hedges — a static paint scheme buys weeks at most before the seeker is retrained, making this an arms race of data, not a permanent shield.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "UA"
+            ],
+            "label": "where the test is running",
+            "markers": [
+              {
+                "lat": 47.8388,
+                "lng": 35.1396,
+                "label": "Zaporizhzhia front"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T04:29:07.087Z",
+    "label": "Dazzle Paint vs. Machine Vision",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-01-syria-halfaya-idlib-new-ruling-elite-qardaha": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE QARDAHA MACHINE",
+        "body": "Qardaha is a small Alawite village in the mountains above Latakia — and the ancestral home of the Assad family. For five decades the regime ran on a logic of village and sect: officer corps, intelligence directorates, and Republican Guard were stacked with men from these coastal hills who knew the family could not survive their defection.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SY",
+              "TR",
+              "LB"
+            ],
+            "label": "where Syria's power moved",
+            "caption": "from the Alawite coast to the rebel interior",
+            "markers": [
+              {
+                "lat": 35.4583,
+                "lng": 36.0586,
+                "label": "Qardaha (Assad seat)"
+              },
+              {
+                "lat": 35.9306,
+                "lng": 36.6339,
+                "label": "Idlib"
+              },
+              {
+                "lat": 35.2667,
+                "lng": 36.6667,
+                "label": "Halfaya"
+              },
+              {
+                "lat": 33.5138,
+                "lng": 36.2765,
+                "label": "Damascus"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHO THE ALAWITES ARE",
+        "body": "The Alawites are a heterodox Shia offshoot, roughly a tenth of Syria's population, long marginalized and poor. The French Mandate flipped that: colonial recruiters filled the Troupes Spéciales with rural minorities to police the Sunni majority, seeding a minority-dominated army that the Baath and then Hafez al-Assad inherited and perfected."
+      },
+      {
+        "heading": "THE IDLIB CRUCIBLE",
+        "body": "Idlib was the last province standing — the territory into which the regime bused fighters from every reconquered town under surrender deals. By 2024 it was a de-facto statelet running its own ministries, courts, and tax collection. The men now filling Damascus's cabinet did not arrive as amateurs; they had spent years administering a province.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Bashar al-Assad",
+                "role": "Deposed president, fled to Russia",
+                "years": "2000–2024",
+                "cc": "SY"
+              },
+              {
+                "name": "Hafez al-Assad",
+                "role": "Founder of the Qardaha order",
+                "years": "1971–2000",
+                "cc": "SY"
+              },
+              {
+                "name": "Ahmad al-Sharaa",
+                "role": "Idlib-based rebel leader turned ruler",
+                "years": "2025–",
+                "cc": "SY"
+              }
+            ],
+            "label": "from insurgents to ministers"
+          }
+        ]
+      },
+      {
+        "heading": "ASABIYYA, THE OLD ENGINE",
+        "body": "Six centuries ago the Tunisian historian Ibn Khaldun named the force the article describes: asabiyya, the group solidarity that lets a cohesive band from the hard periphery overrun a soft, divided center — then decays into the same patronage it replaced. Halfaya displacing Qardaha is the cycle's newest turn, not an escape from it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Ibn Khaldun argued in the *Muqaddimah* that dynasties rarely outlast **three generations**: the founders win on solidarity, the heirs spend it, the third squanders it. The Assad line fell in its third."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLESSED LAND",
+        "body": "Syria is al-Sham in Islamic tradition — Greater Syria, the heartland of prophecy and classical scholarship. A hadith in Sahih al-Bukhari describes the people of al-Sham as being under divine protection, and Ibn Kathir placed the region at the center of end-times events. For the Muslim reader, a contest over who rules Damascus carries weight that the bureaucratic word 'cabinet' cannot hold.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did Syria's army end up dominated by the Alawite minority?",
+            "options": [
+              "Alawites were the wealthiest landowning class",
+              "French colonial recruiters favored rural minorities to police the Sunni majority",
+              "Ottoman law reserved officer ranks for Alawites",
+              "Alawites formed the demographic majority of Syria"
+            ],
+            "correct": 1,
+            "explanation": "The French Mandate's Troupes Spéciales drew heavily on poor rural minorities, a structure the Baath and Hafez al-Assad later inherited."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T04:29:45.455Z",
+    "label": "Syria's Sectarian Geography of Power",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-02-bitcoin-etf-3-billion-outflow-institutional-adoption": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WRAPPER",
+        "body": "A spot Bitcoin ETF holds actual coins in custody and issues shares that trade on a normal exchange. The point is plumbing: a pension fund that legally cannot hold a crypto wallet can hold an ETF share in the same brokerage account as its stocks. The wrapper, not the asset, is the innovation.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The US spot ETFs launched in **Jan 2024** after a decade of SEC rejections, unlocked only when a court ruled the prior denials *arbitrary*. **BlackRock's IBIT** became the fastest fund in history to cross $50bn in assets."
+          }
+        ]
+      },
+      {
+        "heading": "CREATION AND REDEMPTION",
+        "body": "ETF shares are minted and burned by authorized participants — big trading firms that swap a basket of the underlying for new shares, or hand shares back for the underlying. This arbitrage is what keeps the ETF price glued to spot Bitcoin. A '$3bn outflow' is this machine running in reverse, not a verdict on Bitcoin.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "investor",
+                "label": "Investor"
+              },
+              {
+                "id": "ap",
+                "label": "Auth. participant"
+              },
+              {
+                "id": "fund",
+                "label": "ETF / custodian"
+              },
+              {
+                "id": "market",
+                "label": "Spot market"
+              }
+            ],
+            "links": [
+              {
+                "source": "investor",
+                "target": "ap",
+                "value": 30,
+                "label": "sells shares"
+              },
+              {
+                "source": "ap",
+                "target": "fund",
+                "value": 30,
+                "label": "returns shares"
+              },
+              {
+                "source": "fund",
+                "target": "ap",
+                "value": 30,
+                "label": "releases BTC"
+              },
+              {
+                "source": "ap",
+                "target": "market",
+                "value": 30,
+                "label": "sells BTC"
+              }
+            ],
+            "label": "how an ETF redemption flows"
+          }
+        ]
+      },
+      {
+        "heading": "FLOW IS NOT CONVICTION",
+        "body": "Inside a portfolio, Bitcoin is just another line that gets trimmed when a manager needs cash or rebalances back to a target weight. When stocks rally and Bitcoin stays flat, a fixed 5% Bitcoin sleeve mechanically becomes overweight and gets sold — selling that says nothing about belief, only arithmetic.",
+        "blocks": [
+          {
+            "type": "trend",
+            "series": [
+              {
+                "values": [
+                  78562.55,
+                  79823.89,
+                  80925.09,
+                  81425,
+                  80022.04,
+                  80189.07,
+                  80678.03,
+                  82145.66,
+                  81725.21,
+                  80480.89,
+                  79277.8,
+                  81051.98,
+                  79068.82,
+                  78135.01,
+                  77425.72,
+                  76952.21,
+                  76808.81,
+                  77459.94,
+                  77546.34,
+                  75482.52,
+                  76672.79,
+                  76988.16,
+                  77274.4,
+                  75824.06,
+                  74352.7,
+                  73539.84,
+                  73382.72,
+                  73751.07,
+                  73593.37,
+                  71360.33,
+                  70761.45
+                ],
+                "label": "Bitcoin",
+                "highlight": "last"
+              },
+              {
+                "values": [
+                  7126.06,
+                  7109.14,
+                  7064.01,
+                  7137.9,
+                  7108.4,
+                  7165.08,
+                  7173.91,
+                  7138.8,
+                  7135.95,
+                  7209.01,
+                  7230.12,
+                  7200.75,
+                  7259.22,
+                  7365.12,
+                  7337.11,
+                  7398.93,
+                  7412.84,
+                  7400.96,
+                  7444.25,
+                  7501.24,
+                  7408.5,
+                  7403.05,
+                  7353.61,
+                  7432.97,
+                  7445.72,
+                  7473.47,
+                  7519.12,
+                  7520.36,
+                  7563.63,
+                  7580.06,
+                  7599.96
+                ],
+                "label": "S&P 500",
+                "highlight": "last"
+              }
+            ],
+            "label": "Bitcoin vs S&P 500",
+            "source": 0,
+            "unit": "$",
+            "periods": [
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 2"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DIGITAL-GOLD THESIS",
+        "body": "The institutional pitch frames Bitcoin as a scarce reserve asset alongside gold — fixed supply, no counterparty, a hedge against debased currency. The tell is correlation: when Bitcoin trades like a risk asset that sells off in panics rather than a safe haven that rallies, the gold analogy is under strain.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Gold",
+                "value": "~$22tn",
+                "tone": "favorable"
+              },
+              {
+                "label": "Bitcoin",
+                "value": "~$1.4tn",
+                "tone": "neutral"
+              },
+              {
+                "label": "Silver",
+                "value": "~$1.6tn",
+                "tone": "neutral"
+              }
+            ],
+            "label": "scarce-asset scorecard"
+          }
+        ]
+      },
+      {
+        "heading": "WHY WALL STREET WANTS IN",
+        "body": "An ETF earns the sponsor a recurring fee on every dollar held, forever, with the operational risk pushed onto a custodian. For Goldman and BlackRock the appeal is not a Bitcoin price call — it is owning the toll booth between trillions of conservative capital and an asset class those clients increasingly ask about.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does a $3bn ETF outflow not necessarily signal investors losing faith in Bitcoin?",
+            "options": [
+              "ETFs cannot actually sell their Bitcoin",
+              "Outflows often reflect rebalancing or raising cash, not a view on Bitcoin",
+              "The outflow is paid by the sponsor, not from holdings",
+              "ETF prices are fixed and ignore flows"
+            ],
+            "correct": 1,
+            "explanation": "Inside a portfolio, an allocation gets trimmed for liquidity or to hit a target weight — mechanical selling that carries no signal about conviction."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-06-02",
+      "FRED · S&P · as of 2026-06-01"
+    ],
+    "generatedAt": "2026-06-02T04:30:10.529Z",
+    "label": "Spot Bitcoin ETFs & Flow Mechanics",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-02-carbon-neutral-plastics-bacteria-methanol-carboncare": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "PLASTICS ARE FOSSIL FUELS",
+        "body": "About 8-10% of global oil never becomes fuel — it becomes plastic. The feedstock is naphtha, a light fraction of crude that sits between gasoline and kerosene. Decarbonizing the factory's energy does nothing about this: the carbon atoms in the product itself come from oil.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why the project targets the *feedstock*, not the furnace. A solar-powered cracker still turns **petroleum** into plastic; the carbon is baked into the molecule, not the power bill."
+          }
+        ]
+      },
+      {
+        "heading": "THE CRACKING STEP",
+        "body": "Naphtha enters a steam cracker at 850°C and shatters in under a second into ethylene, propylene, and a few other small molecules. These monomers then polymerize into the everyday plastics. Nearly everything synthetic traces back to this one thermal process — which is exactly what the bacteria are meant to bypass.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Polyethylene",
+                "value": 36
+              },
+              {
+                "label": "Polypropylene",
+                "value": 21
+              },
+              {
+                "label": "PVC",
+                "value": 12
+              },
+              {
+                "label": "PET",
+                "value": 10
+              },
+              {
+                "label": "Polystyrene",
+                "value": 6
+              },
+              {
+                "label": "Other",
+                "value": 15
+              }
+            ],
+            "label": "global plastics by polymer type (approx. share)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY METHANOL",
+        "body": "Methanol is the simplest liquid carbon carrier — a single carbon atom with a hydroxyl group. It can be synthesized from captured CO2 and green hydrogen, which is what makes the route potentially carbon-neutral: the carbon in the final plastic was pulled from the air, not the ground.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bacteria are *methylotrophs* — microbes that live on **one-carbon (C1)** compounds like methanol. Engineering them to excrete industrial monomers turns a cell into a tiny, ambient-temperature cracker."
+          }
+        ]
+      },
+      {
+        "heading": "THE YIELD WALL",
+        "body": "A steam cracker converts naphtha to monomers near-instantly and at enormous scale. A fermenting microbe works in dilute water, slowly, and spends much of its input feeding itself rather than making product. Closing that gap — titer, rate, yield — is why 'engineered bacteria' announcements rarely become commodity-scale plants.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of global oil production ends up as plastic and petrochemicals rather than fuel?",
+            "options": [
+              "Under 1%",
+              "About 8-10%",
+              "Around 30%",
+              "More than half"
+            ],
+            "correct": 1,
+            "explanation": "Some 8-10% of oil becomes feedstock for plastics and chemicals — which is why replacing the feedstock, not just the energy, matters for decarbonization."
+          }
+        ]
+      },
+      {
+        "heading": "THE DROP-IN TEST",
+        "body": "The strategic prize is a 'drop-in' molecule — ethylene or propylene chemically identical to the petroleum version, so it flows into existing polymer plants unchanged. A bio-route that produces a slightly different molecule would require rebuilding the entire downstream industry, which no announcement has ever justified."
+      }
+    ],
+    "generatedAt": "2026-06-02T04:30:50.178Z",
+    "label": "Bio-Made Petrochemicals",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-02-pakistan-lhc-missing-girls-marriages-police-report": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL DEVICE",
+        "body": "A marriage certificate produced after the fact is the single most effective way to collapse a kidnapping case in Pakistani courts. Once a nikahnama appears and the girl — often after weeks in the abductor's custody — states she married willingly, the abduction is reclassified as elopement and the charges fall away. The document does the work the testimony cannot.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The *nikahnama* is the Islamic marriage contract. Its evidentiary weight in court is why \"she was married\" and \"she was recovered\" can describe the same girl."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 16 CAN BE LEGAL HERE",
+        "body": "Pakistan has no single marriage age. The federal Child Marriage Restraint Act of 1929 set the floor for girls at 16, and most provinces never raised it. Only Sindh moved to 18, in 2013; Islamabad followed in 2025. In Punjab — where this case sits — a 16-year-old's marriage clears the legal bar, which is precisely what lets a contested abduction be presented as a lawful union.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Sindh",
+                "value": "18",
+                "tone": "favorable"
+              },
+              {
+                "label": "Islamabad",
+                "value": "18",
+                "tone": "favorable"
+              },
+              {
+                "label": "Punjab",
+                "value": "16",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Khyber Pakhtunkhwa",
+                "value": "16",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Balochistan",
+                "value": "16",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "minimum marriage age for girls, by jurisdiction"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE HIGH COURT",
+        "body": "These cases reach the Lahore High Court because families file habeas corpus petitions — a constitutional writ under Article 199 demanding the state produce a person held without lawful cause. It is the same instrument used against unlawful detention by the state, repurposed here to force police to locate a daughter. The court can order a body produced; it cannot order the truth about how she got there."
+      },
+      {
+        "heading": "THE CONVERSION PATTERN",
+        "body": "A documented subset of these cases involves Hindu and Christian girls, where abduction, conversion to Islam, and marriage are presented together as a package. Courts have historically been reluctant to unwind a stated conversion, so the religious change becomes a second lock on the first — undoing the marriage would mean second-guessing a profession of faith, which judges avoid.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is a forced marriage hard for a court to reverse once a conversion is attached to it?",
+            "options": [
+              "Conversion erases the original criminal complaint automatically",
+              "Judges are reluctant to second-guess a stated profession of faith",
+              "Federal law bars courts from hearing marriage cases",
+              "The police lose jurisdiction after a conversion"
+            ],
+            "correct": 1,
+            "explanation": "Courts treat a stated conversion as a matter of conscience they won't probe, so it shields the marriage that follows it from scrutiny."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'RECOVERED' ELIDES",
+        "body": "A recovery statistic counts whether the girl was located, not whether she was free when she spoke. A statement given in the presence of, or under threat from, the abductor's family carries no real test of consent — yet it is enough to close the file. This is why '80% married' functions as an exoneration of police rather than an account of what happened to the other thousand who remain untraced."
+      }
+    ],
+    "generatedAt": "2026-06-02T04:31:30.358Z",
+    "label": "Abduction, Marriage & the Recovery System",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-02-russia-overnight-strikes-ukraine-civilian-deaths": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY BALLISTIC MISSILES ARE HARD TO STOP",
+        "body": "A ballistic missile arcs into space and falls back faster than 3 km per second. The defender has seconds to detect, track, and place an interceptor in its path. Cruise missiles and drones fly low and slow and can be shot down with guns; ballistics demand systems like Patriot that cost more per interceptor than the missile they kill."
+      },
+      {
+        "heading": "THE SATURATION TACTIC",
+        "body": "Russia pairs dozens of cheap Iranian-designed drones with a handful of expensive ballistic and cruise missiles in a single night. The drones force defenders to expend interceptors and saturate radar; the missiles slip through the gaps. The point is arithmetic — overwhelm a finite magazine of interceptors.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The drones are Iranian *Shahed-136* designs, built in Russia under the name *Geran-2* — a delta-wing kamikaze drone that loiters then dives into its target."
+          }
+        ]
+      },
+      {
+        "heading": "THE COST ASYMMETRY",
+        "body": "A Shahed-class drone costs tens of thousands of dollars; a Patriot interceptor costs millions. Even a perfect defense loses the economic exchange. This is why Ukraine downs drones with guns and electronic warfare where it can, and reserves scarce interceptors for the ballistics.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Shahed drone",
+                "value": "~$30k",
+                "tone": "favorable",
+                "weight": 30
+              },
+              {
+                "label": "Cruise missile",
+                "value": "~$1m",
+                "tone": "neutral",
+                "weight": 1000
+              },
+              {
+                "label": "Patriot interceptor",
+                "value": "~$4m",
+                "tone": "unfavorable",
+                "weight": 4000
+              }
+            ],
+            "label": "rough cost per unit"
+          }
+        ]
+      },
+      {
+        "heading": "THE THREE CITIES",
+        "body": "Kyiv, Dnipro and Kharkiv form a line running east toward the front. Kharkiv sits barely 30 km from the Russian border — its residents hear artillery; Kyiv, deep in the interior, is reachable only by missiles and long-range drones. Striking all three in one night signals reach, not territorial gain.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU"
+            ],
+            "label": "the targeted cities",
+            "markers": [
+              {
+                "lat": 50.45,
+                "lng": 30.52,
+                "label": "Kyiv"
+              },
+              {
+                "lat": 48.46,
+                "lng": 35.04,
+                "label": "Dnipro"
+              },
+              {
+                "lat": 49.99,
+                "lng": 36.23,
+                "label": "Kharkiv"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LONGER ARC",
+        "body": "The war did not begin in 2022. Russia annexed Crimea and ignited the Donbas in 2014; the full-scale invasion eight years later was an escalation of a conflict already running. Strikes on apartment blocks and power grids have been a feature, not an aberration, of every winter since.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2014",
+                "label": "Crimea annexed, Donbas war begins"
+              },
+              {
+                "year": "2022-02",
+                "label": "Full-scale invasion",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-10",
+                "label": "Mass strikes on power grid begin"
+              },
+              {
+                "year": "2026",
+                "label": "Strikes on cities continue"
+              }
+            ],
+            "label": "the war's arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE BLOCK COLLAPSED",
+        "body": "A modern apartment tower is held up by a handful of load-bearing columns and shear walls. A missile that destroys the supports on one floor can trigger progressive collapse — the floors above pancake down under their own weight, which is why rescue from a 'pancaked' building is so slow and the trapped count so high.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are ballistic missiles so much harder to intercept than drones?",
+            "options": [
+              "They fly far faster — kilometers per second on terminal descent",
+              "They are invisible to radar",
+              "They are larger and carry more fuel"
+            ],
+            "correct": 0,
+            "explanation": "Ballistic missiles re-enter at several km/s, leaving defenders only seconds to react — unlike slow, low-flying drones."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T04:32:03.553Z",
+    "label": "Air Defense & the Saturation Salvo",
+    "category": "politics",
+    "articleCount": 1
   }
 }
