@@ -1,98 +1,5 @@
 [
   {
-    "timestamp": "2026-05-09T17:39:14.970Z",
-    "candidateCount": 10,
-    "candidates": [
-      {
-        "slug": "2026-05-09-doj-denaturalization-12-citizenship-stripping-push",
-        "title": "US Expands Citizenship Revocation",
-        "category": "politics",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-09-pakistan-marka-i-haq-china-defence-procurement",
-        "title": "Pakistan Arms Pivot to China",
-        "category": "economy",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-09-emerging-market-crypto-banking-substitution-binance",
-        "title": "Stablecoins Replace Banks in South",
-        "category": "economy",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-09-pollinator-radar-species-identification-conservation",
-        "title": "Radar Tells Bee Species Apart",
-        "category": "science",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-08-extreme-heat-summer-elections-democracy-redesign",
-        "title": "Heat Kills India's Poll Workers",
-        "category": "science",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-09-ai-agent-crypto-wallets-delegated-spending-architecture",
-        "title": "Crypto Wallets Rebuilt for AI",
-        "category": "tech",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-09-india-ed-raids-punjab-minister-arora-opposition-pattern",
-        "title": "India Agency Arrests Punjab Minister",
-        "category": "politics",
-        "eventCoverage": 153,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-09-erdogan-turkiye-iran-iraq-de-escalation-barzani",
-        "title": "Turkey Warns Against US-Iran Spread",
-        "category": "politics",
-        "eventCoverage": 75,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-09-uk-warship-hormuz-shipping-protection-iran-war",
-        "title": "UK Warship Heads to Hormuz",
-        "category": "economy",
-        "eventCoverage": 68,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-09-nigeria-ndc-zones-2027-ticket-peter-obi-south",
-        "title": "Nigeria NDC Zones Ticket South",
-        "category": "politics",
-        "eventCoverage": 26,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-05-09-doj-denaturalization-12-citizenship-stripping-push",
-      "title": "US Expands Citizenship Revocation",
-      "category": "politics",
-      "body": "Historic norm: 11 per year; Thursday alone brought 12. Federal law requires",
-      "eventCoverage": 268,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "DOJ files 12 citizenship revocation cases in single day, expanding denaturalization push",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 20
-    }
-  },
-  {
     "timestamp": "2026-05-10T08:26:37.378Z",
     "candidateCount": 8,
     "candidates": [
@@ -9963,6 +9870,106 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Euro zone inflation rises to 3.2%, reinforcing case for ECB rate hike",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 24
+    }
+  },
+  {
+    "timestamp": "2026-06-02T17:38:52.354Z",
+    "candidateCount": 11,
+    "candidates": [
+      {
+        "slug": "2026-06-02-trump-names-bill-pulte-acting-director-national-intelligence",
+        "title": "Pulte Takes US Intelligence Command",
+        "category": "politics",
+        "eventCoverage": 296,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-02-trump-steel-aluminum-copper-tariff-carveouts-farm-equipment",
+        "title": "Trump Carves Farms Out of Metal Tariffs",
+        "category": "economy",
+        "eventCoverage": 86,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-02-rubio-signals-iran-nuclear-talks-congress-scrutiny-war",
+        "title": "Iran Halts Talks; Rubio Claims Progress",
+        "category": "politics",
+        "eventCoverage": 76,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-02-andrew-left-securities-fraud-conviction-short-seller",
+        "title": "Short-Seller Left Convicted of Fraud",
+        "category": "economy",
+        "eventCoverage": 43,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-02-drone-attacks-darfur-kordofan-sudan-civilian-deaths",
+        "title": "Drones Kill 52 Across Sudan",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-02-al-abbasi-family-assad-tadamon-massacre-missing",
+        "title": "Syria Certifies 6 Disappeared Children Dead",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-02-newlimit-435-million-longevity-clinical-trial",
+        "title": "NewLimit Raises $435M for Human Trial",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-02-antibiotic-resistance-australian-horses-pseudomonas",
+        "title": "Horses Develop Antibiotic-Resistant Bug",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-02-mexico-sustainable-fracking-energy-sovereignty",
+        "title": "Mexico Studies Fracking for Energy Sovereignty",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-02-palantir-super-api-irs-contract-data-access",
+        "title": "Palantir Builds IRS Tax-Data Gateway",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-02-china-reusable-falcon-9-lookalike-rocket-roster",
+        "title": "China Fields Multiple Reusable Rockets",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-06-02-trump-names-bill-pulte-acting-director-national-intelligence",
+      "title": "Pulte Takes US Intelligence Command",
+      "category": "politics",
+      "body": "Housing chief Pulte now controls all US",
+      "eventCoverage": 296,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Trump names housing chief Pulte acting Director of National Intelligence",
     "response": {
       "pushed": 1,
       "skipped": 0,
