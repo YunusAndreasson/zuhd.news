@@ -286084,5 +286084,1436 @@
     "label": "Air Defense & the Saturation Salvo",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-01-is-the-u-s-flying-mq-1-predator-drones-again": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "TWO AIRFRAMES, ONE LINEAGE",
+        "body": "The MQ-1 Predator was retired by the US Air Force in 2018; the MQ-9 Reaper is its larger, faster successor — same General Atomics family, but the Reaper carries far more ordnance and flies higher. The Pentagon's refusal to name the airframe is itself the story: a downed Predator would imply mothballed aircraft are back in the air.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "MQ-1 Predator",
+                "value": "~$4M, retired '18",
+                "tone": "neutral"
+              },
+              {
+                "label": "MQ-9 Reaper",
+                "value": "~$30M, active",
+                "tone": "favorable"
+              }
+            ],
+            "label": "Predator vs Reaper"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DRONES ARE EXPENDABLE",
+        "body": "The defining feature of an armed drone is the absence of a person inside it. Losing one costs money and intelligence, never a pilot or a hostage. This is why commanders will fly a drone into contested airspace they would never risk a manned jet in — the political cost of a shoot-down is an order of magnitude lower.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The math drives the doctrine: a manned aircraft loss risks a *captured aviator* and a national crisis; a drone loss is a line item. That asymmetry is why the **MQ-9** has become the workhorse of contested-airspace surveillance."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2011 CAPTURE",
+        "body": "Iran's most famous drone catch came in 2011, when it brought down a stealthy RQ-170 Sentinel — the type that had surveilled Abbottabad before the bin Laden raid — reportedly near-intact. Tehran claimed it spoofed the GPS signal to trick the aircraft into landing; the US said it malfunctioned. Either way, Iran reverse-engineered copies and built a domestic drone industry partly from the wreckage.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How did Iran reportedly bring down the US RQ-170 stealth drone in 2011?",
+            "options": [
+              "Surface-to-air missile",
+              "GPS spoofing to force a landing",
+              "Fighter-jet interception",
+              "Cyberattack on the home base"
+            ],
+            "correct": 1,
+            "explanation": "Iran claimed it fed the drone false GPS coordinates, tricking it into landing on Iranian soil largely intact."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONTROL LINK IS THE WEAK POINT",
+        "body": "A drone over the Gulf is flown from thousands of miles away via satellite relay, with a second-long latency. That datalink is the vulnerability: jam it, spoof it, or sever it and the aircraft loses its operator. Most drone losses are not dramatic missile kills but degraded links, navigation deception, or short-range air defense catching a slow, predictable airframe."
+      },
+      {
+        "heading": "THE ATTRITION PROBLEM",
+        "body": "Since 2023, Iran-backed forces — especially Yemen's Houthis — have downed dozens of MQ-9 Reapers, each costing tens of millions of dollars. At that loss rate the arithmetic strains: the US is spending a manned-fighter's price tag every few weeks on aircraft a militia can knock down with comparatively cheap air defense.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011",
+                "label": "RQ-170 captured",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "RQ-4 Global Hawk shot down over Gulf"
+              },
+              {
+                "year": "2023",
+                "label": "Houthi Reaper losses begin"
+              },
+              {
+                "year": "2026",
+                "label": "MQ-1/MQ-9 downed over Gulf"
+              }
+            ],
+            "label": "drones & Iran"
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "The drone went down over the Gulf, where Iran's coastline runs the entire northern shore and the shipping lanes funnel through the Strait of Hormuz. Surveillance orbits here sit within range of Iranian air defenses along that coast — there is no way to watch the strait without flying close to Iranian territory.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "QA",
+              "SA"
+            ],
+            "label": "the Gulf & Hormuz",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 27.1833,
+                "lng": 56.2778,
+                "label": "Bandar Abbas"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T08:30:37.408Z",
+    "label": "Predators, Reapers & Drone Attrition",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-01-pm-shehbaz-assures-businessmen-industrialists-of-measures-to": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GROWTH NUMBER COMES FIRST",
+        "body": "A budget's growth projection is not a forecast — it is a load-bearing assumption. Higher projected GDP makes the deficit and debt ratios look smaller and lets the government book more expected tax revenue. Pakistan's actual FY-to-date growth has repeatedly undershot the budget-day figure, which is why the 4.1% target is read as ambition, not estimate."
+      },
+      {
+        "heading": "THE DEVELOPMENT BUDGET IS THE SHOCK ABSORBER",
+        "body": "The Public Sector Development Programme (PSDP) funds roads, dams, and power projects — but it is also the one line a finance ministry can slash mid-year when revenue disappoints, because debt service and salaries cannot be touched. The headline Rs3.5tn is an opening bid; actual releases routinely come in far lower.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **PSDP** is discretionary in a budget where almost nothing else is — so it absorbs the gap between what's promised and what's collected. A big development number on budget day tells you the government's *intentions*, not its *capacity*."
+          }
+        ]
+      },
+      {
+        "heading": "THE IMF IS IN THE ROOM",
+        "body": "Pakistan has entered IMF programs more than two dozen times since 1958 — among the most of any country. A budget produced under a live program is effectively co-authored: revenue targets, subsidy cuts, and tax measures are negotiated with Washington before they reach parliament. The 'consultation with industrialists' happens inside that fixed envelope."
+      },
+      {
+        "heading": "THE TAX BASE PROBLEM",
+        "body": "Pakistan collects under 10% of GDP in tax — among the lowest ratios in the world for an economy its size. Agriculture, retail, and real estate are largely outside the net, so the burden falls on a narrow band of formal industry and salaried workers. Every budget that 'courts industry' is courting the people already paying.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Tax revenue as share of GDP",
+            "peers": [
+              {
+                "value": 9,
+                "cc": "PK"
+              },
+              {
+                "value": 8,
+                "cc": "BD"
+              },
+              {
+                "value": 12,
+                "cc": "ID"
+              },
+              {
+                "value": 14,
+                "cc": "EG"
+              },
+              {
+                "value": 17,
+                "cc": "IN"
+              },
+              {
+                "value": 21,
+                "cc": "TR"
+              }
+            ],
+            "subjectCc": "PK",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A SHADOW BUDGET SIGNALS",
+        "body": "When a business federation publishes a parallel 'shadow budget,' it is not just lobbying — it is a public bet that the official numbers won't hold. The practice mirrors the opposition shadow budgets of Westminster systems: an alternative set of assumptions that becomes the yardstick the real budget is judged against once the revenue shortfalls arrive.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of its GDP does Pakistan collect in tax — a number central to every IMF negotiation?",
+            "options": [
+              "About 9%",
+              "About 18%",
+              "About 27%",
+              "About 35%"
+            ],
+            "correct": 0,
+            "explanation": "At under 10% of GDP, Pakistan's tax take is among the world's lowest, which is why revenue measures dominate every budget."
+          }
+        ]
+      },
+      {
+        "heading": "THE RUPEE CONSTRAINT",
+        "body": "Pakistan borrows in both rupees and dollars. Rupee debt can be inflated away — at the cost of domestic purchasing power — but dollar debt cannot. A weakening rupee makes each dollar of external debt more expensive to service, so currency stability is itself a budget line. Industry's import costs move with the same exchange rate.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377,
+              278.485848,
+              278.494701,
+              278.137253,
+              277.408487,
+              278.412506,
+              278.512908,
+              278.575,
+              277.445439,
+              278.55,
+              278.55,
+              278.494021,
+              278.3
+            ],
+            "periods": [
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-02"
+    ],
+    "generatedAt": "2026-06-02T08:31:17.747Z",
+    "label": "Pakistan's Budget Math",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-01-u-s-iran-ceasefire-on-the-brink-after-tit-for-tat-attacks-up": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GATE OF TEARS",
+        "body": "Bab al-Mandeb means 'Gate of Tears' in Arabic — named for the wrecks on its currents. It is barely 30km wide where Arabia almost touches Africa, splitting into two channels around the volcanic island of Perim. Everything moving between the Mediterranean and the Indian Ocean threads this needle.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "YE",
+              "DJ",
+              "ER",
+              "SA",
+              "SO"
+            ],
+            "label": "the Red Sea's southern gate",
+            "markers": [
+              {
+                "lat": 12.58,
+                "lng": 43.33,
+                "label": "Bab al-Mandeb"
+              },
+              {
+                "lat": 12.66,
+                "lng": 43.41,
+                "label": "Perim Island"
+              },
+              {
+                "lat": 12.78,
+                "lng": 45.04,
+                "label": "Aden"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY CLOSING A STRAIT WORKS",
+        "body": "You rarely need to sink a ship. Once war-risk insurance premiums spike, commercial vessels reroute on their own. The alternative to Bab al-Mandeb is around the Cape of Good Hope — roughly 10 extra days and thousands of tons of fuel per voyage. The financial chokepoint shuts before the physical one does.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A closed Bab al-Mandeb doesn't just block the strait — it strands the **Suez Canal** behind it. Egypt's single largest hard-currency earner depends on traffic that must first survive the Red Sea's southern gate."
+          }
+        ]
+      },
+      {
+        "heading": "THE FOUR GATES",
+        "body": "Global maritime trade hangs on a handful of narrows. Bab al-Mandeb is not the biggest by oil volume, but it is the one that feeds Suez — which is why a threat here ripples straight into European energy and grain markets.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hormuz",
+                "value": "~20",
+                "weight": 20,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Malacca",
+                "value": "~16",
+                "weight": 16,
+                "tone": "neutral"
+              },
+              {
+                "label": "Bab al-Mandeb",
+                "value": "~6–7",
+                "weight": 6.5,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Suez/SUMED",
+                "value": "~5–9",
+                "weight": 7,
+                "tone": "neutral"
+              },
+              {
+                "label": "Bosphorus",
+                "value": "~3",
+                "weight": 3,
+                "tone": "neutral"
+              }
+            ],
+            "label": "daily oil transit by chokepoint (approx, mn bbl/day)"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY HOLDS THE GATE",
+        "body": "Iran has no coastline on the Red Sea. The Yemeni side of Bab al-Mandeb is held by the Houthis — Ansar Allah — a Zaydi Shia movement aligned with Tehran but not commanded by it. When Iran 'threatens' the strait, it is leveraging a proxy on someone else's shore, which is exactly what makes the threat hard to deter.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Iran threatens Bab al-Mandeb despite a basic geographic fact. Which?",
+            "options": [
+              "Iran has no Red Sea coastline at all",
+              "Iran's navy is barred from the strait by treaty",
+              "Bab al-Mandeb is too shallow for warships"
+            ],
+            "correct": 0,
+            "explanation": "Iran borders the Persian Gulf and Gulf of Oman, not the Red Sea — its reach at Bab al-Mandeb runs entirely through the Houthis on Yemen's coast."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DOHA AND ISLAMABAD",
+        "body": "Qatar hosts the largest US air base in the region (Al Udeid) while keeping open channels to Iran and Islamist movements — the dual positioning that makes Doha a trusted go-between. Pakistan, Sunni and nuclear-armed but sharing a long border with Iran, is one of the few states that can talk to Tehran without being read as taking a side.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Qatar",
+                "role": "Gulf escrow & back-channel host",
+                "cc": "QA"
+              },
+              {
+                "name": "Pakistan",
+                "role": "Sunni neighbor of Iran",
+                "cc": "PK"
+              }
+            ],
+            "label": "the mediators"
+          }
+        ]
+      },
+      {
+        "heading": "THE LAND OF AL-SHAM",
+        "body": "Lebanon sits inside al-Sham — the Levant, or Greater Syria — a region carrying heavy weight in Islamic tradition. Several authenticated hadith, including narrations in Sahih Muslim, describe al-Sham as a gathering ground for end-times events. For many readers, conflict deepening on this specific soil registers as more than a border dispute."
+      }
+    ],
+    "generatedAt": "2026-06-02T08:32:02.924Z",
+    "label": "Bab al-Mandeb & the Red Sea Chokepoint",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-02-application-and-performance-of-bentonite-leonardite-mixture": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PROBLEM",
+        "body": "In a closed fish tank, nitrogen has nowhere to go. Fish excrete ammonia through their gills and uneaten feed rots into more of it. Without dilution or removal, levels climb until the same gills that excrete ammonia can no longer offload it — the fish effectively suffocate on their own waste."
+      },
+      {
+        "heading": "THE pH TRAP",
+        "body": "Ammonia exists in two forms in water: un-ionized NH3, which crosses gill membranes and is acutely toxic, and the ammonium ion NH4+, which is far less harmful. The balance is not fixed — as water warms or grows more alkaline, the equilibrium tips toward the toxic NH3 form. A reading that is safe at dawn can be lethal by mid-afternoon.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which form of dissolved ammonia is acutely toxic to fish, and when does its share rise?",
+            "options": [
+              "Un-ionized NH3 — its share rises as pH and temperature climb",
+              "Ammonium NH4+ — its share rises as water cools",
+              "Both forms are equally toxic at all temperatures",
+              "Nitrate NO3- — the end product of the cycle"
+            ],
+            "correct": 0,
+            "explanation": "NH3 crosses gill membranes freely; higher pH and temperature shift the chemical equilibrium toward this toxic form."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CLAY WORKS",
+        "body": "Bentonite is mostly montmorillonite — a clay built from stacked silicate sheets carrying a permanent negative surface charge. That charge electrostatically grabs positively charged ammonium ions out of the water, a property measured as cation-exchange capacity. The same mechanism is why bentonite is used to line landfills and seal wells.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The active mineral is **montmorillonite**, and the property doing the work is its **cation-exchange capacity** — the same negative-charge chemistry that makes the clay swell and seal when wet."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT LEONARDITE ADDS",
+        "body": "Leonardite is a soft, heavily oxidized form of lignite coal, prized as a concentrated source of humic and fulvic acids. Those organic molecules carry their own binding sites and buffer the water chemistry, complementing the clay's mineral surface rather than duplicating it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Leonardite is essentially weathered brown coal mined for its **humic acids** — the same compounds sold as soil conditioners — not for its energy content."
+          }
+        ]
+      },
+      {
+        "heading": "THE FILTRATION GAP",
+        "body": "Industrial farms manage ammonia with biofilters — tanks of media where nitrifying bacteria convert ammonia to nitrite and then to far less toxic nitrate. These systems are effective but capital-intensive and slow to establish. A bag of mineral that adsorbs ammonia directly is the difference between a method a smallholder can afford and one only an industrial operation can."
+      },
+      {
+        "heading": "THE SCALE",
+        "body": "This is not a niche fix. Aquaculture now supplies more than half the fish humans eat, and the bulk of it happens in Asia among producers operating on thin margins. A low-cost ammonia control method moves the economics for exactly the operators who dominate global output.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 58,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": 8,
+                "tone": "neutral"
+              },
+              {
+                "label": "Indonesia",
+                "value": 7,
+                "tone": "neutral"
+              },
+              {
+                "label": "Vietnam",
+                "value": 5,
+                "tone": "favorable"
+              },
+              {
+                "label": "Bangladesh",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Egypt",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Rest of world",
+                "value": 17,
+                "tone": "neutral"
+              }
+            ],
+            "label": "world aquaculture output, share by country (approx.)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T08:32:44.757Z",
+    "label": "Ammonia & Clay Adsorption in Aquaculture",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-02-biodiversity-offsetting-shows-promise-in-pollinator-conserva": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MITIGATION HIERARCHY",
+        "body": "Offsetting is the last rung of a four-step ladder planners are supposed to climb in order: avoid the damage, minimize it, restore on-site, and only then offset elsewhere. The controversy is that developers routinely jump straight to the bottom rung, treating a payment or a created field as a license to bulldoze.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The principle that governs the whole scheme is *no net loss* — the idea that habitat destroyed in one place can be made whole by habitat created in another, so the national ledger nets to zero."
+          }
+        ]
+      },
+      {
+        "heading": "THE TIME-LAG TRAP",
+        "body": "A bulldozed meadow is gone today; its replacement reaches ecological maturity decades later, if ever. During that gap the species the habitat supported have nowhere to go. This is why what counts as 'replaceable' depends entirely on how long the clock runs — and some habitats never finish.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ancient woodland",
+                "value": "centuries+",
+                "tone": "unfavorable",
+                "weight": 250
+              },
+              {
+                "label": "Chalk grassland",
+                "value": "~100 yrs",
+                "tone": "unfavorable",
+                "weight": 100
+              },
+              {
+                "label": "Hay meadow",
+                "value": "~25 yrs",
+                "tone": "neutral",
+                "weight": 25
+              },
+              {
+                "label": "Reedbed wetland",
+                "value": "~8 yrs",
+                "tone": "favorable",
+                "weight": 8
+              }
+            ],
+            "label": "rough time to recreate to equivalence"
+          }
+        ]
+      },
+      {
+        "heading": "WHY GRASSLAND IS THE EASY CASE",
+        "body": "Created grassland succeeds because grass communities assemble fast and seed mixes are cheap. That is exactly why a positive grassland result does not vindicate offsetting in general — it is the lowest-difficulty habitat. The same study run on ancient woodland or peat bog would almost certainly fail, because those systems took millennia to build."
+      },
+      {
+        "heading": "IT'S NOT THE HONEYBEES",
+        "body": "Most wild pollination is done by solitary bees, hoverflies, and other wild insects — not managed honeybees, which are essentially livestock. Many wild bees are specialists tied to particular plants and nesting conditions, so a field that looks flowery to a human can still be empty of the species that matter.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which group does most of the pollination of wild plants and many crops?",
+            "options": [
+              "Managed honeybees in hives",
+              "Wild solitary bees and other insects",
+              "Wind and self-pollination",
+              "Butterflies"
+            ],
+            "correct": 1,
+            "explanation": "Honeybees are a managed monoculture; the bulk of pollination comes from diverse wild bees and flies, which specialist-rich offset land must actually attract."
+          }
+        ]
+      },
+      {
+        "heading": "THE ENFORCEMENT GAP",
+        "body": "Offsetting lives or dies on two unglamorous conditions: additionality — the new habitat must be land that would not have been protected anyway — and long-term monitoring. The Dutch researchers' warning is the whole game: a created field only counts if a planning authority keeps checking that it stays good habitat for the decades the species need, and enforcement budgets rarely outlast the construction phase.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The recurring failure mode is paper habitat: an offset is logged as *delivered* the day it is sown, while the field that was supposed to mature into a meadow quietly reverts to scrub once no one is watching."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T08:33:22.453Z",
+    "label": "Biodiversity Offsetting",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-02-gunmen-attack-convoy-of-soludo-s-chief-of-staff-kill-police": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 'UNKNOWN GUNMEN'",
+        "body": "Southeast Nigeria has a distinct vocabulary for its violence: attacks that go unclaimed are attributed to 'unknown gunmen.' Since 2021 the phrase has covered everything from separatist enforcement to kidnapping gangs to political assassination — the label itself signals a state that cannot reliably name who is shooting.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The term *unknown gunmen* (often shortened to **UGM** in local press) is doing real work — it marks the collapse of attribution, not a single organized group. Police rarely confirm a culprit, which is why no claim followed this convoy ambush."
+          }
+        ]
+      },
+      {
+        "heading": "THE BIAFRA ROOT",
+        "body": "The southeast is the Igbo heartland and the territory that seceded as Biafra in 1967, triggering a civil war that killed over a million people, many by starvation. That unresolved grievance feeds today's separatist current — the Indigenous People of Biafra (IPOB) and its armed Eastern Security Network revived the cause from 2012 onward.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1967",
+                "label": "Biafra declares independence",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1970",
+                "label": "Biafra surrenders, war ends"
+              },
+              {
+                "year": "2012",
+                "label": "IPOB founded by Nnamdi Kanu"
+              },
+              {
+                "year": "2020-12",
+                "label": "Eastern Security Network formed"
+              },
+              {
+                "year": "2021",
+                "label": "Kanu re-arrested; 'sit-at-home' begins"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1967",
+                "to": "1970",
+                "label": "Nigerian civil war",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "from secession to today's insecurity"
+          }
+        ]
+      },
+      {
+        "heading": "THE SIT-AT-HOME ORDER",
+        "body": "Since 2021, IPOB-aligned factions have enforced a weekly 'sit-at-home' across the southeast — shops shut, roads empty, transport halts. What began as a protest tactic demanding Kanu's release became self-perpetuating coercion: enforcers attack those who defy it, so the order holds even when IPOB's leadership disowns it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the southeast's recurring 'sit-at-home' originally meant to demand?",
+            "options": [
+              "The release of detained IPOB leader Nnamdi Kanu",
+              "Lower fuel prices nationwide",
+              "A new state for the Niger Delta",
+              "Withdrawal of the army from Lagos"
+            ],
+            "correct": 0,
+            "explanation": "The weekly shutdown began as pressure to free Nnamdi Kanu, then persisted through violent enforcement long after."
+          }
+        ]
+      },
+      {
+        "heading": "WHO GOVERNS ANAMBRA",
+        "body": "Anambra's governor, Charles Soludo, is no ordinary state politician — he ran Nigeria's central bank during its most consequential reform. The chief-of-staff whose convoy was hit is the most senior aide in that government, which makes the target political, not random.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Charles Soludo",
+                "role": "Anambra governor, ex-CBN chief",
+                "years": "2022–",
+                "cc": "NG"
+              },
+              {
+                "name": "Nnamdi Kanu",
+                "role": "IPOB founder, in detention",
+                "years": "2012–",
+                "cc": "NG"
+              }
+            ],
+            "label": "the figures behind the story"
+          }
+        ]
+      },
+      {
+        "heading": "THE BANK CONSOLIDATION",
+        "body": "As central bank governor from 2004, Soludo forced Nigeria's banks to raise minimum capital roughly thirteenfold, collapsing 89 banks into 25 stronger ones almost overnight. It remains one of Africa's boldest financial reforms — and it is why his name carries national weight beyond Anambra.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2004 mandate lifted minimum bank capital from **₦2bn** to **₦25bn**, a *consolidation* that wiped out most of the sector by count while concentrating deposits in survivors that could lend at national scale."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE IT HAPPENED",
+        "body": "Orumba South is a rural local government area south of Awka, the state capital — bush-lined roads and farmland that make convoy ambushes hard to police and easy to vanish from. The wider southeast cluster of states shares this terrain and the same security strain.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG"
+            ],
+            "label": "Nigeria's southeast",
+            "caption": "Awka, the capital, and the rural Orumba South ambush belt",
+            "markers": [
+              {
+                "lat": 6.21,
+                "lng": 7.07,
+                "label": "Awka (capital)"
+              },
+              {
+                "lat": 5.95,
+                "lng": 7.15,
+                "label": "Orumba South"
+              },
+              {
+                "lat": 6.45,
+                "lng": 7.51,
+                "label": "Enugu"
+              },
+              {
+                "lat": 5.48,
+                "lng": 7.03,
+                "label": "Owerri"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T08:34:07.833Z",
+    "label": "Nigeria's Southeast & the 'Unknown Gunmen'",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-02-iran-still-studying-draft-deal-no-reply-sent-yet": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY 'VERIFIABLE' IS THE WHOLE FIGHT",
+        "body": "In arms-control, an agreement is only as good as its inspection regime. Iran's demand for verifiable terms means it wants the other side's obligations — sanctions relief, in this case — to be physically observable and reversible, not just promised on paper. The word does the negotiating that the signatures can't."
+      },
+      {
+        "heading": "THE COMMITMENT THAT BROKE",
+        "body": "Iran's reference to broken US commitments points at one event: the 2015 nuclear deal (JCPOA), which the IAEA repeatedly certified Iran was honoring, only for Washington to withdraw unilaterally in 2018 and reimpose sanctions. That withdrawal is why Tehran now treats any US text as reversible by the next administration.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Embassy seizure, ties severed"
+              },
+              {
+                "year": "1981",
+                "label": "Algiers Accords free hostages"
+              },
+              {
+                "year": "2015",
+                "label": "JCPOA nuclear deal signed"
+              },
+              {
+                "year": "2018",
+                "label": "US withdraws from JCPOA",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020",
+                "label": "Soleimani killed in Baghdad"
+              }
+            ],
+            "label": "US–Iran agreements & ruptures"
+          }
+        ]
+      },
+      {
+        "heading": "MOU IS NOT A TREATY",
+        "body": "A memorandum of understanding records intent; it is not ratified by a legislature and carries no binding force under domestic law. This is precisely why it is faster to sign and easier to abandon — and why a party burned once insists on verification mechanisms rather than the document's wording alone.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "An *MOU* signals political will but binds no one; a ratified *treaty* survives a change of government. The JCPOA was neither — it was an **executive agreement**, which is exactly how one president could unwind another's signature."
+          }
+        ]
+      },
+      {
+        "heading": "THE REVERSIBILITY TRAP",
+        "body": "Iran's other condition — that terms be reversible — is the mirror image of distrust. Each side fears giving up something permanent (enrichment capacity, a weapons program) in exchange for something the other can snap back (sanctions). The negotiation is really about sequencing: who moves first, and who can undo their move."
+      },
+      {
+        "heading": "WHY DOHA, NOT WASHINGTON",
+        "body": "Direct US–Iran talks have been impossible since 1980, so deals run through intermediaries — Oman, Qatar, Switzerland as protecting power. The absence of an embassy is not a formality; it means every message is relayed, every term re-translated, and no leader can be seen shaking the other's hand."
+      },
+      {
+        "heading": "THE MARKET'S BET",
+        "body": "Prediction markets price the odds of a near-term US–Iran nuclear agreement in real time, and the number stays well below even — a quantified read on exactly the skepticism Tehran is voicing.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              26,
+              30,
+              25,
+              30,
+              38,
+              30,
+              40,
+              34,
+              30,
+              28,
+              28,
+              27,
+              25,
+              26,
+              24,
+              21,
+              34,
+              26,
+              31,
+              27,
+              20,
+              37,
+              36,
+              43,
+              49,
+              35,
+              44,
+              46,
+              37,
+              40,
+              34,
+              34
+            ],
+            "periods": [
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 2"
+            ],
+            "label": "US-Iran nuclear deal by June 30?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "26%"
+              },
+              {
+                "atIndex": 31,
+                "label": "34%"
+              }
+            ],
+            "link": "https://polymarket.com/event/us-iran-nuclear-deal-by-june-30",
+            "source": 0
+          },
+          {
+            "type": "quiz",
+            "question": "What did the IAEA conclude about Iran's compliance before the 2018 US withdrawal from the JCPOA?",
+            "options": [
+              "Iran was repeatedly certified as compliant",
+              "Iran was found in serious violation",
+              "The IAEA never inspected Iranian sites",
+              "Inspections were suspended throughout"
+            ],
+            "correct": 0,
+            "explanation": "The IAEA verified Iran's compliance in successive reports; the US withdrew despite those findings, which is the core of Tehran's trust grievance."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-06-02"
+    ],
+    "generatedAt": "2026-06-02T08:34:36.656Z",
+    "label": "Verification & the Trust Deficit",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-02-mt-gox-moves-10-422-bitcoin-worth-739-million-to-a-new-walle": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE NAME MEANS",
+        "body": "Mt. Gox began life in 2007 as a site to trade Magic: The Gathering cards online. The acronym stands for Magic The Gathering Online eXchange. It was repurposed into a Bitcoin exchange in 2010 — and by 2013 it handled roughly 70% of all Bitcoin transactions on Earth.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**Mt. Gox** = **M**agic: **T**he **G**athering **O**nline e**X**change — the most consequential exchange in crypto history was named after a fantasy card game."
+          },
+          {
+            "type": "quiz",
+            "question": "At its 2013 peak, roughly what share of global Bitcoin trades passed through Mt. Gox?",
+            "options": [
+              "About 10%",
+              "About 35%",
+              "About 70%",
+              "About 95%"
+            ],
+            "correct": 2,
+            "explanation": "Mt. Gox processed around 70% of all Bitcoin trades at its height — a single point of failure for the entire market."
+          }
+        ]
+      },
+      {
+        "heading": "HOW IT COLLAPSED",
+        "body": "In February 2014 Mt. Gox froze withdrawals and filed for bankruptcy, revealing 850,000 bitcoin were gone — about 7% of all bitcoin then in existence. The theft was not a single hack but a slow bleed: coins drained from its hot wallets over years while the books still showed them present.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2010",
+                "label": "Launched as a Bitcoin exchange"
+              },
+              {
+                "year": "2014-02",
+                "label": "Collapse: 850k BTC missing",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2014",
+                "label": "~200k BTC recovered in old wallet"
+              },
+              {
+                "year": "2018",
+                "label": "Shifts to civil rehabilitation"
+              },
+              {
+                "year": "2021",
+                "label": "Repayment plan approved"
+              },
+              {
+                "year": "2024",
+                "label": "First creditor payouts begin"
+              },
+              {
+                "year": "2026-10",
+                "label": "Final repayment deadline"
+              }
+            ],
+            "label": "the twelve-year saga"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CREDITORS WON THE LOTTERY",
+        "body": "The trustee repays in bitcoin, not its 2014 cash value. Creditors who lost coins worth around $500 each now receive coins worth roughly $70,000 each. The bankruptcy that ruined them became, for those who held their claims, one of the largest accidental fortunes in finance.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              78562.55,
+              79823.89,
+              80925.09,
+              81425,
+              80022.04,
+              80189.07,
+              80678.03,
+              82145.66,
+              81725.21,
+              80480.89,
+              79277.8,
+              81051.98,
+              79068.82,
+              78135.01,
+              77425.72,
+              76952.21,
+              76808.81,
+              77459.94,
+              77546.34,
+              75482.52,
+              76672.79,
+              76988.16,
+              77274.4,
+              75824.06,
+              74352.7,
+              73539.84,
+              73382.72,
+              73751.07,
+              73593.37,
+              71360.33,
+              69940.03
+            ],
+            "periods": [
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 2"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY A WALLET MOVE SPOOKS THE MARKET",
+        "body": "The trustee still holds 34,504 bitcoin for 19,500 creditors. Markets watch every transfer because newly-repaid creditors who bought at $500 have a 140x gain to crystallize — the fear is a wave of selling. This is the overhang: known future supply that weighs on price before a single coin is sold.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "This transfer",
+                "value": "10,422 BTC",
+                "weight": 10422,
+                "tone": "neutral"
+              },
+              {
+                "label": "Still in trust",
+                "value": "34,504 BTC",
+                "weight": 34504,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Mined per day",
+                "value": "~450 BTC",
+                "weight": 450,
+                "tone": "favorable"
+              }
+            ],
+            "label": "the supply overhang in context"
+          }
+        ]
+      },
+      {
+        "heading": "THE CUSTODY LESSON",
+        "body": "Mt. Gox is why the phrase 'not your keys, not your coins' became crypto gospel. An exchange that holds your bitcoin holds the private keys; you own only a database entry — an IOU. When the exchange fails, you join a creditor queue, exactly as 19,500 people have for twelve years."
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-06-02"
+    ],
+    "generatedAt": "2026-06-02T08:35:09.576Z",
+    "label": "Mt. Gox & the Creditor Overhang",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-02-the-serpent-in-the-code-what-allegations-of-ai-usage-in-the": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE DETECTORS ACTUALLY MEASURE",
+        "body": "AI-text detectors don't read for meaning. They score two statistical traits: perplexity (how 'surprised' a language model is by each next word) and burstiness (how much sentence length and complexity vary). Human writing tends to be high-perplexity and bursty; model output tends to be smooth and predictable. The detector is guessing how machine-like your word choices are, nothing more.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The two knobs are **perplexity** — low means predictable, machine-like word choices — and **burstiness** — low means uniform, even sentences. A polished, careful human writer scores low on both, which is exactly the profile a detector reads as *artificial*."
+          }
+        ]
+      },
+      {
+        "heading": "WHO GETS FALSELY FLAGGED",
+        "body": "Because detectors equate 'predictable, simple, evenly-structured' with 'machine,' they systematically misfire on writers who learned English formally or write in a measured register. A 2023 Stanford study found GPT detectors flagged the majority of essays by non-native English speakers as AI-generated while almost never misclassifying native-speaker samples. The tool punishes the very fluency it can't distinguish from a model's.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Native English",
+                "value": "~0%",
+                "tone": "favorable",
+                "weight": 3
+              },
+              {
+                "label": "Non-native English",
+                "value": "~60%",
+                "tone": "unfavorable",
+                "weight": 60
+              }
+            ],
+            "label": "GPT-detector false-positive rate (Stanford, 2023)"
+          }
+        ]
+      },
+      {
+        "heading": "THE EM-DASH PANIC",
+        "body": "Specific stylistic tics — the em-dash, words like 'delve,' 'tapestry,' 'underscore,' 'multifaceted' — became folk signatures of AI authorship after models overused them. But these are ordinary tools of formal and Caribbean literary English long before chatbots. Treating them as evidence convicts a writing tradition, not a cheater.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The em-dash is the clearest case: a punctuation mark taught in every style guide and beloved by essayists for two centuries is now read as a *machine fingerprint* — because the model happened to like it too."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE ACCUSATION IS UNFALSIFIABLE",
+        "body": "There is no test that proves a human wrote something. Detectors output a probability, never a certainty, and they cannot be audited against ground truth because nobody can re-run the act of writing. The accused is left trying to prove a negative — that they did NOT use a tool — which is logically impossible. The burden quietly inverts from accuser to author.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do AI-text detectors disproportionately flag non-native English writers?",
+            "options": [
+              "Non-native writers use more slang and errors",
+              "Their writing is more predictable and uniform, which detectors read as machine-like",
+              "Detectors are trained only on native-speaker text",
+              "Non-native writers use translation software"
+            ],
+            "correct": 1,
+            "explanation": "Detectors equate low perplexity and low burstiness with AI — and carefully-learned, formal English scores exactly that way, regardless of who wrote it."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A COMMONWEALTH PRIZE IS",
+        "body": "The Commonwealth Foundation's writing prizes were built to surface voices from the 56 member states — many of them small Caribbean, African, and Pacific nations rarely reached by London or New York publishing. The whole point is to reward writers outside the metropolitan mainstream, which makes an AI-suspicion flag driven by 'non-standard' fluency cut against the prize's founding purpose."
+      }
+    ],
+    "generatedAt": "2026-06-02T08:35:49.565Z",
+    "label": "Detecting Machine-Written Prose",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-02-us-weighs-expanding-nuclear-deployments-across-nato-s-easter": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT SHARING ACTUALLY IS",
+        "body": "The US forward-deploys B61 gravity bombs at a handful of allied air bases. The host country provides the pilots and aircraft, but the warheads stay under American custody, locked by electronic arming codes the host cannot override. It is a deterrent the ally carries but cannot fire alone.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the *dual-key* principle: the host flies the **B61**, but Washington holds the **permissive action links** — the codes that arm it. Possession without control."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE BOMBS SIT TODAY",
+        "body": "The existing arrangement clusters at a small set of Western European bases — Kleine Brogel, Büchel, Aviano, Volkel, and Incirlik. Poland and the Baltics are asking to push that line hundreds of kilometers east, toward Russia's border.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BE",
+              "DE",
+              "IT",
+              "NL",
+              "TR",
+              "PL",
+              "LT",
+              "LV",
+              "EE"
+            ],
+            "label": "existing hosts vs. the eastern applicants",
+            "markers": [
+              {
+                "lat": 51.16,
+                "lng": 5.47,
+                "label": "Kleine Brogel"
+              },
+              {
+                "lat": 50.17,
+                "lng": 7.06,
+                "label": "Büchel"
+              },
+              {
+                "lat": 46.03,
+                "lng": 12.6,
+                "label": "Aviano"
+              },
+              {
+                "lat": 51.65,
+                "lng": 5.7,
+                "label": "Volkel"
+              },
+              {
+                "lat": 37,
+                "lng": 35.42,
+                "label": "Incirlik"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE NPT LOOPHOLE",
+        "body": "The Non-Proliferation Treaty forbids transferring nuclear weapons to non-nuclear states. NATO sharing predates the 1968 treaty and was deliberately grandfathered in — the US argues no transfer of control occurs until war breaks out, at which point the treaty no longer applies. Critics have never accepted the logic, but it has held for fifty years."
+      },
+      {
+        "heading": "WHY FORWARD BASING MATTERS",
+        "body": "A bomb based in Poland is minutes closer to Russian targets than one in Germany. Forward deployment shrinks warning time and signals resolve, but it also moves the warheads into easier striking range — making them a target in the first hours of any war, not a sanctuary behind the lines."
+      },
+      {
+        "heading": "THE MIRROR MOVE",
+        "body": "Russia did this first in reverse. After the INF Treaty collapsed in 2019, Moscow deployed tactical nuclear weapons to Belarus in 2023 — its own forward-basing on NATO's doorstep. Each side now frames its escalation as a response to the other's.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1954",
+                "label": "First US nukes reach Europe"
+              },
+              {
+                "year": "1968",
+                "label": "NPT signed; sharing grandfathered"
+              },
+              {
+                "year": "1987",
+                "label": "INF Treaty bans the missiles"
+              },
+              {
+                "year": "2019",
+                "label": "INF Treaty collapses",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "Russia bases nukes in Belarus"
+              }
+            ],
+            "label": "the forward-basing cycle"
+          }
+        ]
+      },
+      {
+        "heading": "THE CONTROL QUESTION",
+        "body": "The entire arrangement rests on who can actually arm the weapon — a distinction lost in most coverage but central to how the deterrent works.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under NATO nuclear sharing, who controls arming the B61 bombs stored on allied soil?",
+            "options": [
+              "The host nation's prime minister",
+              "The US retains custody via arming codes",
+              "A unanimous vote of the NATO council",
+              "The base's senior NATO commander"
+            ],
+            "correct": 1,
+            "explanation": "The US keeps physical custody and the permissive action link codes; the host only provides delivery aircraft and pilots."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-02T08:36:32.136Z",
+    "label": "NATO Nuclear Sharing",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-02-won-t-scrap-ladki-bahin-scheme-benefits-to-continue-for-1-7": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PRE-ELECTION GIFT",
+        "body": "Ladki Bahin launched months before Maharashtra's November 2024 election, paying women a flat monthly stipend. The ruling Mahayuti coalition swept the polls; rolls that swell before a vote routinely thin after it, once the political return has been collected.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Devendra Fadnavis",
+                "role": "Maharashtra Chief Minister",
+                "years": "2024–",
+                "cc": "IN"
+              },
+              {
+                "name": "Ajit Pawar",
+                "role": "Deputy CM, holds Finance",
+                "years": "2024–",
+                "cc": "IN"
+              },
+              {
+                "name": "Eknath Shinde",
+                "role": "Deputy CM",
+                "years": "2024–",
+                "cc": "IN"
+              }
+            ],
+            "label": "who runs the scheme"
+          }
+        ]
+      },
+      {
+        "heading": "THE TEMPLATE",
+        "body": "Maharashtra copied Madhya Pradesh's Ladli Behna, the cash transfer credited with the BJP's surprise 2023 win there. Once one state proved a flat women's stipend moves votes, nearly every major state launched a near-identical scheme — a fiscal arms race fought in monthly installments.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Karnataka",
+                "value": "~Rs2,000/mo",
+                "cc": "IN"
+              },
+              {
+                "label": "Maharashtra",
+                "value": "~Rs1,500/mo",
+                "cc": "IN"
+              },
+              {
+                "label": "Madhya Pradesh",
+                "value": "~Rs1,250/mo",
+                "cc": "IN"
+              },
+              {
+                "label": "West Bengal",
+                "value": "~Rs1,000/mo",
+                "cc": "IN"
+              },
+              {
+                "label": "Tamil Nadu",
+                "value": "~Rs1,000/mo",
+                "cc": "IN"
+              }
+            ],
+            "label": "women's cash-transfer schemes by state"
+          },
+          {
+            "type": "quiz",
+            "question": "Which state's cash-transfer scheme was the template Maharashtra copied?",
+            "options": [
+              "Madhya Pradesh",
+              "Karnataka",
+              "West Bengal",
+              "Tamil Nadu"
+            ],
+            "correct": 0,
+            "explanation": "Madhya Pradesh's Ladli Behna, credited with the BJP's 2023 win there, set the pattern every state then chased."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE ROLLS BLOAT",
+        "body": "Self-enrollment schemes attract everyone who might qualify, plus many who don't. India's answer is the Aadhaar biometric ID linked to Direct Benefit Transfer, which lets the state deduplicate accounts and cross-check income — exactly the audit that found enrolled men and ineligible incomes here.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**DBT** (Direct Benefit Transfer) routes money straight to an **Aadhaar**-linked bank account, cutting out the middlemen who skimmed older subsidy chains — but the same database also makes a post-election purge a one-click exercise."
+          }
+        ]
+      },
+      {
+        "heading": "THE TARGETING TRADEOFF",
+        "body": "Every welfare filter faces two errors at once: an inclusion error pays people who shouldn't get it, an exclusion error denies people who should. Tightening one almost always worsens the other — and with no reinstatement process, a wrongly-cut eligible woman has no door to knock on.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "An *inclusion error* wastes money on the undeserving; an *exclusion error* abandons the deserving. Anti-fraud drives loudly attack the first and quietly create the second."
+          }
+        ]
+      },
+      {
+        "heading": "WHO PAYS",
+        "body": "A flat stipend to millions of women is one of the largest single lines in a state budget, and unlike capital spending it cannot be deferred without political cost. The 29% cut is the cheapest lever available — trimming the roll, not the rate, so no remaining recipient feels the squeeze."
+      }
+    ],
+    "generatedAt": "2026-06-02T08:37:11.210Z",
+    "label": "Cash Transfers & Welfare Targeting",
+    "category": "economy",
+    "articleCount": 1
   }
 }
