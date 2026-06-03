@@ -1,27 +1,27 @@
 {
-  "date": "2026-06-02",
+  "date": "2026-06-03",
   "metrics": {
-    "articles": { "value": 46, "detail": "5 cycles completed, avg 9/cycle" },
+    "articles": { "value": 47, "detail": "5 cycles completed, avg 9/cycle" },
     "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 19, "economy": 11, "science": 8, "tech": 8 },
-    "multiSource": { "value": 8, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 17, "EU": 9, "ME": 8, "AS": 6, "AF": 5, "OC": 1 } },
-    "sciTech": { "ratio": 35, "target": 25, "met": true },
-    "topSourceShare": { "source": "Phys.org / CoinDesk", "pct": 9, "target": 20, "met": true },
-    "uniqueSources": 41,
+    "categories": { "politics": 18, "economy": 12, "science": 8, "tech": 9 },
+    "multiSource": { "value": 13, "target": 4, "met": true },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 22, "ME": 8, "AS": 7, "EU": 6, "AF": 4 } },
+    "sciTech": { "ratio": 36, "target": 25, "met": true },
+    "topSourceShare": { "source": "The Times of India", "pct": 9, "target": 20, "met": true },
+    "uniqueSources": 47,
     "duplicates": 0,
-    "avgCycleDuration": 1654
+    "avgCycleDuration": 1514
   },
-  "experiment": "Skipped — all goal metrics within targets and no active experiment to evaluate. The only queued item (2026-05-08-numerical-density) edits scripts/write-prompt.md, which is out of scope for daily parameter tuning.",
-  "weakestArea": "Sci-tech ratio fell to 35% from yesterday's 44% (still comfortably above the 25% floor) as the day skewed political: politics took 19 of 46 slots (41%) while science and tech held at 8 each. The mix is healthy but politics-heavy, and science/tech absolute counts sit at the lower end of a normal day, driven by 46 total articles vs yesterday's 68.",
+  "experiment": "Skipped — all goal metrics within targets, no active experiment to evaluate, and no pause gate set.",
+  "weakestArea": "Region count (5) is the metric nearest its target (4) and the only one without comfortable headroom. The real concern is distribution, not breadth: the Americas (AM) took 22 of 47 slots (47%) while Africa fell to 4 and Oceania to zero. The mix is healthy on every numeric goal but visibly Americas-tilted.",
   "watching": [
-    "Total throughput dropped to 46 today from 68 yesterday despite both being 5-cycle days — avg writer-stage time was high (832s); confirm it is feed thinness rather than a writer slowdown trimming output.",
-    "Sudan/Darfur coverage (Radio Dabanga, Premium Times Nigeria) is recurring — track whether the thread sustains multi-source corroboration.",
-    "Crypto/markets cluster is prominent today (CoinDesk 4, Yahoo! Finance, Goodreturns) — watch it does not crowd genuine economy hard-news."
+    "Multi-source count jumped to 13 today from 8 yesterday — confirm this reflects genuinely richer feed clustering rather than a one-cycle spike before reading anything into it.",
+    "Iran/Middle East thread drew 8 articles (second-largest region); track whether it sustains multi-source corroboration.",
+    "Americas concentration (47% of output) — watch whether it persists across cycles or is a single-day skew."
   ],
   "coverageGaps": [
-    "Oceania sits at 1 article (OC) — chronically thin region with no dedicated lever; flag if it stays at 0-1 for multiple consecutive days.",
-    "Latin America proper is underrepresented within the large AM bucket (17), which is dominated by US/North America stories."
+    "Oceania (OC) had zero coverage today and only 1 yesterday — chronically thin with no dedicated lever.",
+    "Latin America is underrepresented within the large AM bucket (22), which is dominated by US/North America stories; Africa also slipped to 4."
   ],
-  "context": "All four goal clusters (freshness, diversity, multi-source, educational) met their targets today. No experiment is active and the prior three (editor-effort void, multi-source-floor-3 reverted, OIC carry-through kept-confounded) all closed by 2026-05-26. The standing lesson from the reverted 2026-05-09 floor experiment holds: the feed's ~9 multi-source stories/cycle caps published multi-source rate near ~22%, so future sourcing gains must come from the upstream feed (Event Registry clustering), not selector floors — but no such change is proposed today since metrics are healthy."
+  "context": "All four goal clusters (freshness, diversity, multi-source, educational) met their targets: freshness median 0 days, 13 multi-source articles, sci+tech at 36% across 6 distinct quality science sources, and top-source share at just 9% (Times of India). No experiment is active and no noNewExperimentsUntil gate is set, so a new experiment is permitted — but with every metric comfortably inside target the prudent move is to hold and keep baselining rather than introduce a confounding variable. The one soft spot, Americas-tilted regional distribution, is a content-mix property of the feed, not a failure of any tunable parameter, so no parameter change is warranted today."
 }
