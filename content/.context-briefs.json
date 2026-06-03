@@ -294256,5 +294256,1030 @@
     "label": "Section 301 & the Tariff Toolbox",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-06-03-bean-immune-receptor-caterpillar-defense": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CRY FOR HELP",
+        "body": "A plant is rooted — it can neither flee a predator nor swat one. So many evolved indirect defense: when attacked, they release airborne chemicals that summon the attacker's own enemies. Ecologists named this the 'cry for help' in the late 1980s, and it reframed plants as active participants in food webs rather than passive salad."
+      },
+      {
+        "heading": "THE SELF-FINGERPRINT",
+        "body": "The alarm signal is not a caterpillar molecule. Inceptin is a fragment of the bean's own chloroplast ATP synthase, sheared apart in the caterpillar's gut and dribbled back onto the leaf in its saliva. The plant detects its own digested protein and reads it as proof that something is chewing it — a self-derived danger signal, not a foreign one.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Inceptin is a textbook *herbivore-associated molecular pattern* (**HAMP**) — the plant-defense analogue of the **PAMPs** the immune system uses to detect microbes. Same logic, different kingdom: a conserved molecular signature that betrays the intruder."
+          },
+          {
+            "type": "quiz",
+            "question": "What is inceptin, the molecule that triggers the bean's defense, actually made of?",
+            "options": [
+              "A digestive enzyme from the caterpillar's saliva",
+              "A fragment of the plant's own chloroplast protein",
+              "A pheromone secreted by the predatory wasp",
+              "A toxin produced by gut bacteria in the caterpillar"
+            ],
+            "correct": 1,
+            "explanation": "Inceptin is a peptide cut from the plant's own chloroplast ATP synthase as the caterpillar digests the leaf — so the plant recognizes its own broken protein as the alarm."
+          }
+        ]
+      },
+      {
+        "heading": "THE RECEPTOR",
+        "body": "Inceptin is sensed by INR, a cell-surface receptor protein found only in certain legumes. It was cloned in 2020, which is why beans and cowpeas mount this response while maize, rice, and tomato cannot — they simply lack the detector. That single missing gene is exactly what engineers now want to transplant into staple crops.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1988",
+                "label": "'Cry for help' concept proposed"
+              },
+              {
+                "year": "2006",
+                "label": "Inceptin identified in caterpillar saliva"
+              },
+              {
+                "year": "2020",
+                "label": "INR receptor gene cloned",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026",
+                "label": "Engineering into commercial crops"
+              }
+            ],
+            "label": "from concept to engineering target"
+          }
+        ]
+      },
+      {
+        "heading": "THE BODYGUARDS",
+        "body": "The summoned wasps are parasitoids: they inject eggs into the living caterpillar, and the larvae devour it from the inside out. The plant never kills the pest itself — it outsources the execution to a third party that needs no payment beyond the host."
+      },
+      {
+        "heading": "THE SPECIFICITY PROBLEM",
+        "body": "Releasing the volatile bouquet is metabolically expensive, so a plant must distinguish a hungry caterpillar from hail, wind, or a torn leaf. Elicitors like inceptin are the password — present in herbivore saliva, absent from mere mechanical damage — which lets the plant spend its defense only when there is a real mouth to deter."
+      }
+    ],
+    "generatedAt": "2026-06-03T12:22:28.686Z",
+    "label": "Plant Immunity & the Cry for Help",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-03-delhi-malviya-nagar-hotel-fire": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHIMNEY EFFECT",
+        "body": "Hot gas rises. A sealed building with a single stairwell becomes a vertical flue: the stairwell draws superheated smoke upward faster than a person can climb down it, filling upper floors in minutes. This is why the same fire that is survivable on the ground floor is lethal three floors up.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Fire engineers call this the *stack effect* — the taller and more sealed the shaft, the stronger the draw. Sealed windows remove the one thing that breaks it: **cross-ventilation** that lets smoke escape sideways instead of climbing."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT ACTUALLY KILLS",
+        "body": "Most fire deaths are not burns. Smoke inhalation and carbon monoxide kill first — CO binds to hemoglobin 200 times more readily than oxygen, so victims lose consciousness before flames reach them. In a sealed structure, the lethal atmosphere arrives long before the fire does.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What kills the majority of victims in enclosed building fires?",
+            "options": [
+              "Direct burns from flames",
+              "Smoke inhalation and carbon monoxide",
+              "Structural collapse",
+              "Heat exhaustion"
+            ],
+            "correct": 1,
+            "explanation": "Toxic gas and oxygen depletion incapacitate victims well before flames reach them — which is why a fire two floors below can still be fatal."
+          }
+        ]
+      },
+      {
+        "heading": "THE SECOND-EXIT RULE",
+        "body": "Modern fire codes worldwide require a second, independent means of escape — a protected stairwell or external fire escape — precisely so one blocked path does not trap everyone. A single staircase that doubles as the smoke flue violates the oldest principle in building safety: never let the only way out be the way the fire travels."
+      },
+      {
+        "heading": "THE LICENCE GAP",
+        "body": "A 25-room operation running on a 6-room licence is not an oversight; it is the business model. Informal expansion lets an operator skip the sprinklers, alarms, and second staircase that a 25-room permit would require. Enforcement is complaint-driven and rare, so the gap between the paper licence and the physical building is where the risk accumulates."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Almost every fire-safety law on the books was written in blood after a specific disaster. The Triangle Shirtwaist fire (1911) — workers trapped behind locked doors — forced exit and egress codes across the industrialized world. The pattern repeats: a deadly fire exposes a loophole, the law closes it, and a new building type finds a fresh way to evade it.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1911",
+                "label": "Triangle Shirtwaist — locked exits",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1942",
+                "label": "Cocoanut Grove — overcrowding, single door"
+              },
+              {
+                "year": "1990",
+                "label": "Happy Land club — one exit, 87 dead"
+              },
+              {
+                "year": "2017",
+                "label": "Grenfell Tower — flammable cladding"
+              },
+              {
+                "year": "2021",
+                "label": "Mumbai high-rise fires spur audits"
+              }
+            ],
+            "label": "fires that rewrote the codes"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-03T12:23:00.865Z",
+    "label": "Fire Dynamics & Building Safety",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-03-fairshake-crypto-pac-primary-sweep": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A SUPER PAC ACTUALLY IS",
+        "body": "A super PAC can raise and spend unlimited money to support or oppose candidates — but legally it cannot give money directly to a campaign or coordinate with it. The wall between 'independent expenditure' and 'donation' is the entire legal fiction that makes the system work.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction is **independent expenditure** (unlimited, uncoordinated) versus a **direct contribution** (capped at a few thousand dollars). Fairshake lives entirely on the first side of that line."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL ORIGIN",
+        "body": "Super PACs did not exist before 2010. Two court rulings that year — Citizens United at the Supreme Court and SpeechNow at the appeals level — together held that independent political spending is protected speech and cannot be capped. The unlimited-money vehicle is barely fifteen years old.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2002",
+                "label": "McCain-Feingold caps soft money"
+              },
+              {
+                "year": "2010-01",
+                "label": "Citizens United",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2010-03",
+                "label": "SpeechNow.org enables super PACs"
+              },
+              {
+                "year": "2024",
+                "label": "Fairshake spends record sums"
+              }
+            ],
+            "label": "how unlimited money got legal"
+          }
+        ]
+      },
+      {
+        "heading": "THE SINGLE-ISSUE PLAY",
+        "body": "Fairshake's ads rarely mention crypto. It picks a target who is hostile to the industry and floods their race with messaging on unrelated issues — housing, healthcare, character. Voters never learn the spending is about digital assets. This is what makes a single-issue PAC efficient: the issue stays invisible."
+      },
+      {
+        "heading": "WHY PRIMARIES, NOT NOVEMBER",
+        "body": "Primary turnout is a fraction of a general election's, and the races are cheap. A few million dollars that would vanish in a general can be decisive in a low-turnout primary — which is why a war chest aimed at primaries punches far above its size.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do PACs get more influence per dollar in primaries than in general elections?",
+            "options": [
+              "Primaries have far lower turnout, so each vote swung is cheaper",
+              "Spending limits are higher in primaries",
+              "TV ad rates are discounted before November",
+              "Donations to primaries are tax-deductible"
+            ],
+            "correct": 0,
+            "explanation": "Low primary turnout means a given sum of advertising moves a larger share of the actual electorate."
+          }
+        ]
+      },
+      {
+        "heading": "WHO PAYS",
+        "body": "Fairshake is bankrolled by a handful of crypto firms, not millions of small donors. A few corporate treasuries — exchanges, a stablecoin issuer, a venture fund — supply the bulk of the money, which is what lets the PAC concentrate it on chosen races.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Coinbase",
+                "value": "~$45m",
+                "weight": 45
+              },
+              {
+                "label": "Ripple",
+                "value": "~$48m",
+                "weight": 48
+              },
+              {
+                "label": "a16z",
+                "value": "~$44m",
+                "weight": 44
+              }
+            ],
+            "label": "Fairshake's core backers (approx, 2024 cycle)"
+          }
+        ]
+      },
+      {
+        "heading": "THE BIPARTISAN HEDGE",
+        "body": "By funding both Republicans and Democrats, the industry keeps crypto regulation from hardening into a party-line issue. If neither party can claim crypto as its own, neither can run against it cleanly — and whoever controls Congress, the coalition survives."
+      }
+    ],
+    "generatedAt": "2026-06-03T12:23:39.436Z",
+    "label": "Super PACs & the Crypto Lobby",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-03-iran-orphan-care-transformed-by-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE QURANIC WEIGHT",
+        "body": "Few social duties carry as much scriptural force in Islam as the care of orphans — the Quran returns to them again and again, pairing their protection with warnings against devouring their property. The Prophet Muhammad was himself orphaned young, a fact Surah ad-Duha addresses directly, which is why orphan care sits near the center of Muslim conscience rather than at its margins.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Prophet's promise — that the one who cares for an orphan will be near him in Paradise *like two fingers held together* — is among the most cited hadith on the subject in the Sunni tradition."
+          }
+        ]
+      },
+      {
+        "heading": "KAFALA, NOT ADOPTION",
+        "body": "Islamic law does not recognize adoption in the Western sense — the transfer of lineage that makes a child legally the offspring of new parents. It instead uses kafala: sponsorship and guardianship that gives the child a home, support, and care while preserving their original name and biological parentage.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**Kafala** (Arabic) and **sarparasti** (Persian, the term Iranian courts use) both mean *guardianship*, not the lineage-changing *tabanni* the Quran set aside."
+          }
+        ]
+      },
+      {
+        "heading": "WHY LINEAGE IS PRESERVED",
+        "body": "The rule is not arbitrary. Keeping a child's biological name fixed protects inheritance shares, preserves the marriage-eligibility rules that hinge on blood relation, and guards a child's right to know their origin. Surah al-Ahzab established the principle when it instructed that adopted children be called by their real fathers' names — the verse that ended the pre-Islamic practice of full adoption."
+      },
+      {
+        "heading": "IRAN'S GUARDIANSHIP BUREAUCRACY",
+        "body": "Iran built a formal, court-supervised guardianship system — refined by a 2013 law — that vets applicants, prioritizes childless couples, and imposes waiting periods and follow-up inspections. It is deliberately slow because each placement is a judicial decision about a child's lifelong welfare, not an administrative transfer.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under Islamic law, what distinguishes kafala from Western-style adoption?",
+            "options": [
+              "The child keeps their original lineage and name",
+              "Only male children are eligible",
+              "The arrangement must be temporary",
+              "It requires the biological parents' consent"
+            ],
+            "correct": 0,
+            "explanation": "Kafala grants full care and custody but preserves the child's biological parentage and name — inheritance and marriage rules depend on it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY WAR BREAKS THE PROCESS",
+        "body": "A guardianship regime built around months of vetting cannot operate at the speed an emergency demands. When an orphanage is struck and infants must move within days, the careful judicial framework collides with triage — and the open question becomes whether placements made under bombardment, with courts barely functioning, will ever be made permanent or quietly unwound once the danger passes."
+      }
+    ],
+    "generatedAt": "2026-06-03T12:24:09.039Z",
+    "label": "Orphan Care in Islamic Law",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-03-israel-somaliland-recognition-red-sea": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STATE THAT WORKS BUT DOESN'T EXIST",
+        "body": "Somaliland declared independence in 1991 as the rest of Somalia collapsed into warlordism. Since then it has run its own currency, held competitive multiparty elections, and policed its borders — the most functional polity in the Horn — yet not one UN member recognized it until now.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1884",
+                "label": "British Somaliland protectorate"
+              },
+              {
+                "year": "1960",
+                "label": "Independence, then union with Italian Somaliland",
+                "emphasis": "start"
+              },
+              {
+                "year": "1991",
+                "label": "Re-declares independence as Somalia collapses",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Ethiopia port MoU triggers regional crisis"
+              }
+            ],
+            "label": "from protectorate to limbo"
+          }
+        ]
+      },
+      {
+        "heading": "THE COLONIAL SEAM",
+        "body": "Somaliland's case rests on a fact most maps hide: it was a separate British protectorate that was independent for five days in 1960 before voluntarily merging with the former Italian colony to the south. It argues it is not seceding — it is dissolving a failed union.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal hinge is *uti possidetis* — the doctrine that colonial borders become national ones at independence. Somaliland's claim is that it had its *own* colonial border before the 1960 merger."
+          }
+        ]
+      },
+      {
+        "heading": "THE RECOGNITION DEFICIT",
+        "body": "The African Union's founding charter elevates the inviolability of inherited colonial borders above functional statehood — fear that one breakaway legitimizes a hundred. So Somaliland sits in a club of long-lived unrecognized states, defined more by who won't acknowledge them than by what they lack.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Years of de-facto statehood with little/no UN recognition",
+            "peers": [
+              {
+                "value": 76,
+                "cc": "TW"
+              },
+              {
+                "value": 52,
+                "cc": "CY"
+              },
+              {
+                "value": 50,
+                "cc": "EH"
+              },
+              {
+                "value": 35,
+                "cc": "SO"
+              },
+              {
+                "value": 18,
+                "cc": "XK"
+              }
+            ],
+            "subjectCc": "SO",
+            "unit": "years"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE COASTLINE IS THE PRIZE",
+        "body": "Somaliland's 500 miles of Gulf of Aden coast face the approaches to the Bab el-Mandeb — the strait through which Europe-Asia trade and Gulf oil funnel toward Suez. Berbera's deepwater port is the only serious harbor between Djibouti and the Somali coast, which is why the UAE leased it in 2017 and why basing rights are the unspoken stake here.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SO",
+              "DJ",
+              "ET",
+              "ER",
+              "YE",
+              "IL"
+            ],
+            "label": "the Bab el-Mandeb approaches",
+            "caption": "Berbera commands the southern approach to the Red Sea funnel",
+            "markers": [
+              {
+                "lat": 10.4396,
+                "lng": 45.0143,
+                "label": "Berbera port"
+              },
+              {
+                "lat": 12.5833,
+                "lng": 43.3333,
+                "label": "Bab el-Mandeb strait"
+              },
+              {
+                "lat": 11.5722,
+                "lng": 43.1456,
+                "label": "Djibouti (US/China bases)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "ISRAEL'S PERIPHERY DOCTRINE",
+        "body": "Ben-Gurion's 1950s strategy was to break Arab encirclement by cultivating non-Arab states on the Arab world's edge — the Shah's Iran, Turkey, and crucially Ethiopia in the Horn. Recognizing Somaliland is that doctrine reactivated: a foothold opposite Yemen and astride the Red Sea route Iran-backed Houthis have spent years contesting.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Israel's Cold War 'alliance of the periphery' courted non-Arab states ringing the Arab world. Which was its key Horn of Africa partner?",
+            "options": [
+              "Ethiopia",
+              "Egypt",
+              "Saudi Arabia",
+              "Sudan"
+            ],
+            "correct": 0,
+            "explanation": "Imperial Ethiopia under Haile Selassie was Israel's main Horn partner — strategic depth against Arab-nationalist Egypt and access to the Red Sea."
+          }
+        ]
+      },
+      {
+        "heading": "THE FIRST-MOVER COST",
+        "body": "Being first to recognize a breakaway state carries diplomatic risk — it invites retaliation from the parent state and its backers, and sets a precedent rivals can cite. That Israel absorbed that cost signals it values a Red Sea foothold more than smooth relations with Mogadishu or the wider Arab League."
+      }
+    ],
+    "generatedAt": "2026-06-03T12:24:53.040Z",
+    "label": "Somaliland & the Recognition Game",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-03-oecd-global-growth-cut-iran-war-recession": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY A STRAIT MOVES THE WORLD",
+        "body": "Roughly a fifth of the world's oil and a quarter of seaborne LNG pass through a channel whose shipping lanes are just 3 km wide each. Hormuz cannot be bypassed: Saudi and UAE pipelines can reroute less than a third of Gulf exports, and the rest has no alternative path to market.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "QA",
+              "SA"
+            ],
+            "label": "the Hormuz chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.205,
+                "lng": 55.27,
+                "label": "Fujairah bypass terminal"
+              },
+              {
+                "lat": 25.93,
+                "lng": 50.61,
+                "label": "Bahrain / Gulf lanes"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE GAS ASYMMETRY",
+        "body": "Oil markets carry spare capacity and strategic reserves; gas does not. LNG cargoes are locked into long contracts and specific terminals, so a supply scare spikes spot prices far harder than oil. That is why Asian gas jumped 81% while the oil-anchored shock was milder — Qatar, the source of much of that LNG, ships nearly all of it through Hormuz.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Asian gas",
+                "value": "+81%",
+                "tone": "unfavorable",
+                "weight": 81
+              },
+              {
+                "label": "European gas",
+                "value": "+43%",
+                "tone": "unfavorable",
+                "weight": 43
+              }
+            ],
+            "label": "energy price move on the disruption"
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSMISSION CHANNEL",
+        "body": "An energy shock becomes a growth cut through one mechanism: higher fuel and gas prices act as a tax on every importer at once, draining household spending and raising producer costs simultaneously. Central banks then face the worst bind — inflation rising while output falls, the textbook definition of stagflation.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call an exogenous price spike that lifts inflation *and* cuts output a **supply shock** — unlike a demand slump, interest-rate cuts can't fix it without feeding the inflation."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1973 TEMPLATE",
+        "body": "The OAPEC oil embargo of 1973-74 quadrupled crude prices and tipped the industrialized world into simultaneous recession and double-digit inflation. It is the reason every forecaster now models a Gulf disruption as a downside scenario — the linkage between a Middle East supply shock and a global slowdown was established fifty years ago.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1973",
+                "label": "OAPEC embargo quadruples oil",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1979",
+                "label": "Iranian Revolution; second shock"
+              },
+              {
+                "year": "1990",
+                "label": "Gulf War price spike"
+              },
+              {
+                "year": "2008",
+                "label": "Oil at $147, then crash"
+              },
+              {
+                "year": "2022",
+                "label": "Ukraine war gas shock"
+              }
+            ],
+            "label": "oil shocks & global slowdowns"
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR LESSON",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 ships in the Gulf, yet oil flows largely continued — tankers were reflagged and escorted by warships. Planners drew a durable lesson: disruption is far easier to threaten than to sustain, which is why markets price the risk premium more than the closure.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Hormuz have no full substitute route for Gulf oil exports?",
+            "options": [
+              "Existing bypass pipelines can carry less than a third of the flow",
+              "International law forbids alternative pipelines",
+              "The Gulf states refuse to build any bypass capacity",
+              "Tankers are physically too large for other routes"
+            ],
+            "correct": 0,
+            "explanation": "The Saudi East-West and UAE Fujairah pipelines together reroute under a third of Hormuz volume; the remainder has no alternative path."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-03T12:25:18.846Z",
+    "label": "Oil Shocks & Global Growth",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-03-sa-arms-exports-us-arms-control-act": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LAW WITH TEETH",
+        "body": "South Africa's National Conventional Arms Control Act (2002) doesn't just license weapons — it forces the government committee to weigh each permit against the buyer's human-rights record and whether the arms could be used to breach international humanitarian law. The lawsuit argues a permit to the US is unlawful precisely because of where US arms end up.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The decision sits with the **NCACC** — a cabinet committee, not the arms maker. The Act makes the export a *political* choice reviewable in court, not a commercial one."
+          }
+        ]
+      },
+      {
+        "heading": "THE EMBARGOED BECAME THE EXPORTER",
+        "body": "The reason South Africa even has an arms industry to litigate over is apartheid. UN Security Council Resolution 418 (1977) made South Africa the first member state hit by a mandatory arms embargo. Cut off, Pretoria built Armscor and Denel to manufacture domestically — turning isolation into a permanent export sector that outlived the regime that created it.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1977",
+                "label": "UN mandatory arms embargo (Res. 418)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1968",
+                "label": "Armscor founded"
+              },
+              {
+                "year": "1989",
+                "label": "nuclear program wound down"
+              },
+              {
+                "year": "1994",
+                "label": "democratic transition"
+              },
+              {
+                "year": "2002",
+                "label": "Arms Control Act passed"
+              },
+              {
+                "year": "2023",
+                "label": "South Africa files ICJ case"
+              }
+            ],
+            "label": "from embargo to exporter"
+          }
+        ]
+      },
+      {
+        "heading": "THE ONLY STATE TO DISARM ITSELF",
+        "body": "Apartheid South Africa secretly built six nuclear weapons in the 1980s, then dismantled all of them before handing power to a democratic government — the only country ever to build a nuclear arsenal and voluntarily give it up. The same arms establishment now under legal scrutiny was once a clandestine bomb program.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country is the only one to have built nuclear weapons and then voluntarily dismantled them?",
+            "options": [
+              "Ukraine",
+              "South Africa",
+              "Libya",
+              "Kazakhstan"
+            ],
+            "correct": 1,
+            "explanation": "Ukraine and Kazakhstan inherited Soviet warheads; South Africa is the only state that built its own arsenal and then destroyed it."
+          }
+        ]
+      },
+      {
+        "heading": "THE END-USE PROBLEM",
+        "body": "Arms control law everywhere runs on the end-use certificate — a buyer's promise that weapons won't be transferred onward or misused. The legal gap the case exploits is that a permit to one country becomes effectively a permit to its allies once the materiel moves. Once arms leave the seller's jurisdiction, the paperwork is the only leash."
+      },
+      {
+        "heading": "WHY THE TIMING IS THE POINT",
+        "body": "South Africa is the state that brought the Gaza genocide case to the International Court of Justice. A court ordering Pretoria to keep arming a backer of the very campaign it is prosecuting in The Hague would be a contradiction the plaintiffs are forcing into the open — domestic arms law and international litigation pointed at the same conflict."
+      }
+    ],
+    "generatedAt": "2026-06-03T12:26:01.502Z",
+    "label": "Arms Export Control & South Africa",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-03-st-petersburg-drone-strike-spief-forum": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FORUM AS STAGE",
+        "body": "The St Petersburg International Economic Forum is Russia's annual showcase — billed as its own Davos — where the Kremlin parades investment deals and the appearance of business-as-usual to a global audience. Striking it during the opening is an attack on a narrative, not a refinery: the target is the image of normalcy itself.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**SPIEF** has run since 1997 and is hosted personally under Putin's patronage; a delegate hall under black smoke is the one picture the event exists to prevent."
+          }
+        ]
+      },
+      {
+        "heading": "THE DEEP-STRIKE ECONOMY",
+        "body": "A long-range strike drone costs tens of thousands of dollars and can fly 1,000 km on a lawnmower-class engine; the interceptor missiles and radar nets needed to stop it cost orders of magnitude more. This cost asymmetry is why deep strikes scale — the attacker spends pennies to force the defender to gold-plate the entire interior."
+      },
+      {
+        "heading": "KRONSTADT",
+        "body": "Kronstadt is a fortress island in the Gulf of Finland that Peter the Great built in 1704 to guard the sea approach to his new capital; it remains the Baltic Fleet's forward base. For three centuries every navy menacing St Petersburg has had to pass it — which is exactly why a hit there lands as symbolism, not just a military dent.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "The 1921 Kronstadt rebellion was an armed uprising against whom?",
+            "options": [
+              "The Bolshevik government",
+              "Tsar Nicholas II",
+              "A German naval siege",
+              "Napoleon's fleet"
+            ],
+            "correct": 0,
+            "explanation": "Kronstadt's sailors, once Bolshevik shock troops, revolted against Lenin's government in 1921 and were crushed by the Red Army — a founding trauma of Soviet rule."
+          }
+        ]
+      },
+      {
+        "heading": "THE BALTIC OIL GATE",
+        "body": "Most of Russia's western crude does not leave from the Black Sea — it leaves through two ports a short drive from St Petersburg: Primorsk and Ust-Luga, on the same Gulf of Finland that Kronstadt guards. Together they load well over two million barrels a day, making this stretch of coast one of the most important energy nodes in the world.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "FI",
+              "EE"
+            ],
+            "label": "Russia's Baltic export cluster",
+            "caption": "Two terminals on the Gulf of Finland carry most of Russia's western crude",
+            "markers": [
+              {
+                "lat": 59.93,
+                "lng": 30.34,
+                "label": "St Petersburg"
+              },
+              {
+                "lat": 59.99,
+                "lng": 29.77,
+                "label": "Kronstadt naval base"
+              },
+              {
+                "lat": 60.36,
+                "lng": 28.61,
+                "label": "Primorsk oil terminal"
+              },
+              {
+                "lat": 59.67,
+                "lng": 28.28,
+                "label": "Ust-Luga terminal"
+              }
+            ]
+          },
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Baltic ports",
+                "value": "~2.7M b/d",
+                "weight": 2.7
+              },
+              {
+                "label": "Black Sea",
+                "value": "~1.5M b/d",
+                "weight": 1.5
+              },
+              {
+                "label": "Pacific (ESPO)",
+                "value": "~1.0M b/d",
+                "weight": 1
+              },
+              {
+                "label": "Druzhba pipe",
+                "value": "~0.5M b/d",
+                "weight": 0.5
+              }
+            ],
+            "label": "Russia's crude export routes (approx. b/d)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ST PETERSBURG",
+        "body": "Putin was born in Leningrad and rose through its city administration; St Petersburg is his political home turf and Russia's imperial capital for two centuries. Reaching it with drones erases the psychological geography that placed the war on a distant southern frontier — the heartland is no longer untouchable."
+      }
+    ],
+    "generatedAt": "2026-06-03T12:27:26.738Z",
+    "label": "St Petersburg, the Baltic Oil Gate & Kronstadt",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-03-uk-seventh-carbon-budget-865bn": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL MACHINERY",
+        "body": "The UK's 2008 Climate Change Act was the world's first law to make emissions cuts legally binding. It created five-year 'carbon budgets' — hard caps on total emissions that Parliament must approve and the government is legally obligated to meet, set on advice from an independent expert body.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1990",
+                "label": "emissions baseline year"
+              },
+              {
+                "year": "2008",
+                "label": "Climate Change Act passed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "net zero written into law"
+              },
+              {
+                "year": "2050",
+                "label": "net zero deadline",
+                "emphasis": "end"
+              }
+            ],
+            "label": "the UK climate-law arc"
+          },
+          {
+            "type": "prose",
+            "text": "The advisory body is the **Climate Change Committee (CCC)** — statutory, independent of government, and the source of the budget numbers ministers must then defend in Parliament."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A BUDGET, NOT A TARGET",
+        "body": "An annual target lets a government miss this year and promise to catch up next year. A carbon budget caps cumulative emissions over five years — what matters to the atmosphere is total CO2 released, not the rate in any single year. Each budget is fixed roughly 12 years in advance, so policy can't be quietly loosened when it gets inconvenient."
+      },
+      {
+        "heading": "THE IMPORT DIVIDEND",
+        "body": "Nearly £445bn of the projected benefit comes from buying less imported fossil fuel. The UK was a net energy exporter while North Sea oil and gas flowed; output peaked around 1999 and the country became a net energy importer in the mid-2000s. Decarbonising is now also an energy-security play — every electrified home is one less exposed to a gas price set in global markets."
+      },
+      {
+        "heading": "FIRST MOVER ON NET ZERO",
+        "body": "In June 2019 the UK amended the Act to require net zero by 2050, becoming the first G7 economy to put that goal into binding law. Most major economies followed with 2050 pledges, but the legally enforceable form — courts can be asked to compel a delivery plan — remains unusual.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UK",
+                "value": "2050",
+                "cc": "GB",
+                "weight": 2050,
+                "tone": "favorable"
+              },
+              {
+                "label": "EU",
+                "value": "2050",
+                "cc": "EU",
+                "weight": 2050,
+                "tone": "favorable"
+              },
+              {
+                "label": "USA",
+                "value": "2050",
+                "cc": "US",
+                "weight": 2050,
+                "tone": "neutral"
+              },
+              {
+                "label": "China",
+                "value": "2060",
+                "cc": "CN",
+                "weight": 2060,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": "2070",
+                "cc": "IN",
+                "weight": 2070,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "net zero target year, major economies"
+          },
+          {
+            "type": "quiz",
+            "question": "Which was the first G7 economy to write a net zero target into binding law?",
+            "options": [
+              "Germany",
+              "France",
+              "United Kingdom",
+              "Japan"
+            ],
+            "correct": 2,
+            "explanation": "The UK amended its Climate Change Act in June 2019, months ahead of France's energy-climate law later that year."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE NUMBERS LOOK SO GOOD",
+        "body": "A cost-benefit verdict over 25 years hinges on the discount rate — how much future pounds are worth today. Decarbonisation costs land upfront (grids, heat pumps, retrofits) while benefits arrive later (avoided imports, cleaner air, dodged climate damage). A low discount rate makes those distant gains count for more, which is how £880bn spent can return £1,620bn on paper."
+      }
+    ],
+    "generatedAt": "2026-06-03T12:28:06.740Z",
+    "label": "Carbon Budgets & Net Zero",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-03-us-cyber-force-11-billion-commission": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "ORGANIZE vs EMPLOY",
+        "body": "The US military splits two jobs by law: the services (Army, Navy, Air Force) recruit, train, and equip people; the combatant commands borrow those people to fight. The whole case for a Cyber Force is that the first job — building the talent pipeline — currently has no owner."
+      },
+      {
+        "heading": "WHAT CYBER COMMAND CAN'T DO",
+        "body": "Cyber Command is a combatant command. It can employ cyber forces in operations, but it cannot recruit or train its own — it depends on the Army, Navy, Air Force and Marines to each hand over teams trained to their own standards. The commission's complaint is that this produces uneven, under-resourced units.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The proposed branch would be a **Title 10** service — the legal authority to *organize, train, and equip* — not another *operational* command stacked on top of Cyber Command."
+          }
+        ]
+      },
+      {
+        "heading": "THE DUAL-HAT",
+        "body": "Since 2010, one four-star officer has run both Cyber Command and the NSA — the 'dual-hat' arrangement. It lets the offensive military arm tap the spy agency's tools and access instantly, and it is the single most contested feature of how America does cyber.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Keith Alexander",
+                "role": "First NSA/CYBERCOM dual-hat",
+                "years": "2010–2014",
+                "cc": "US"
+              },
+              {
+                "name": "Paul Nakasone",
+                "role": "NSA/CYBERCOM, defended the dual-hat",
+                "years": "2018–2024",
+                "cc": "US"
+              }
+            ],
+            "label": "the dual-hat commanders"
+          }
+        ]
+      },
+      {
+        "heading": "BRANCHES ARE RARELY BORN",
+        "body": "The US has stood up a genuinely new military department only twice in modern history. The Air Force broke off from the Army in 1947 after airpower proved it needed its own institutional voice; the Space Force split from the Air Force in 2019 on the same argument. A Cyber Force would be the next link in that chain.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1775",
+                "label": "Army & Navy founded"
+              },
+              {
+                "year": "1798",
+                "label": "Marine Corps"
+              },
+              {
+                "year": "1947",
+                "label": "Air Force splits from Army",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Space Force"
+              },
+              {
+                "year": "2026",
+                "label": "Cyber Force (proposed)"
+              }
+            ],
+            "label": "the US armed services"
+          }
+        ]
+      },
+      {
+        "heading": "THE SMALLEST SERVICE",
+        "body": "At roughly 11,000 people, a Cyber Force would be tiny — comparable to the Space Force and a rounding error beside the Army. New branches are not big; they are concentrated. The point is institutional standing, not headcount.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Army",
+                "value": "~450k",
+                "weight": 450,
+                "cc": "US"
+              },
+              {
+                "label": "Navy",
+                "value": "~340k",
+                "weight": 340,
+                "cc": "US"
+              },
+              {
+                "label": "Air Force",
+                "value": "~325k",
+                "weight": 325,
+                "cc": "US"
+              },
+              {
+                "label": "Marines",
+                "value": "~170k",
+                "weight": 170,
+                "cc": "US"
+              },
+              {
+                "label": "Space Force",
+                "value": "~9k",
+                "weight": 9,
+                "cc": "US"
+              },
+              {
+                "label": "Cyber (prop.)",
+                "value": "~11k",
+                "weight": 11,
+                "cc": "US"
+              }
+            ],
+            "label": "active personnel by service (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TALENT TRAP",
+        "body": "The hardest constraint isn't money or doctrine — it's people. A skilled operator can earn far more in the private sector than on a military pay scale, so the proposal leans heavily on the National Guard, where reservists keep civilian tech jobs and serve part-time.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the most recently established US military branch before the proposed Cyber Force?",
+            "options": [
+              "Air Force",
+              "Space Force",
+              "Marine Corps",
+              "Coast Guard"
+            ],
+            "correct": 1,
+            "explanation": "The Space Force was created in 2019, splitting from the Air Force — the first new branch in 72 years."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-03T12:28:44.497Z",
+    "label": "How a Military Branch Is Born",
+    "category": "tech",
+    "articleCount": 1
   }
 }
