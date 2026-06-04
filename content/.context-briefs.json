@@ -298335,5 +298335,892 @@
     "label": "Labor Migration & Remittance States",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-02-the-last-traces-of-a-family-the-assad-regime-marked-for-dest": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO RANIA AL-ABBASI WAS",
+        "body": "She was a Syrian dentist and a national chess champion. Security forces arrested her, her husband, and all six of her children in March 2013 — not for any act, but as a family. Detaining relatives, including children, was a deliberate tool to punish and pressure dissidents.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why were Rania al-Abbasi's six children detained alongside her in 2013?",
+            "options": [
+              "They were combatants",
+              "Family detention was used as a pressure and punishment tactic",
+              "They were caught at a protest"
+            ],
+            "correct": 1,
+            "explanation": "Assad's security branches routinely seized entire families to coerce or punish suspected dissidents — children included."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT TADAMON WAS",
+        "body": "Tadamon is a district of southern Damascus. In 2013, regime intelligence officers led blindfolded civilians one by one to the edge of a pit, shot them, and burned the bodies. The killings stayed hidden until 2022, when researchers matched a smuggled regime video to the exact street.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SY"
+            ],
+            "label": "southern Damascus",
+            "caption": "the massacre site and the regime's largest detention prison",
+            "markers": [
+              {
+                "lat": 33.4936,
+                "lng": 36.3232,
+                "label": "Tadamon massacre site"
+              },
+              {
+                "lat": 33.7016,
+                "lng": 36.5103,
+                "label": "Sednaya prison"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DISAPPEARANCE MACHINE",
+        "body": "Detainees vanished into a network of intelligence branches — Air Force Intelligence, Military Branch 215, Sednaya prison — where torture and execution were systematic. The point was not interrogation alone; it was erasure. Families often learned nothing for a decade.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In 2014 a defector codenamed **Caesar** smuggled out roughly **55,000 photographs** documenting some 11,000 corpses from regime detention — the single largest forensic record of the disappearances."
+          }
+        ]
+      },
+      {
+        "heading": "WHY NO REMAINS",
+        "body": "Bodies were dumped in mass graves, dissolved, or burned, and the bureaucracy that recorded deaths used coded language — 'cardiac arrest' for execution. Without bodies, confirmation now rests on footage, defector files, and document trails rather than graves.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011",
+                "label": "Uprising begins",
+                "emphasis": "start"
+              },
+              {
+                "year": "2013-03",
+                "label": "al-Abbasi family detained"
+              },
+              {
+                "year": "2013",
+                "label": "Tadamon killings"
+              },
+              {
+                "year": "2014",
+                "label": "Caesar photos smuggled out"
+              },
+              {
+                "year": "2022",
+                "label": "Tadamon video identified"
+              },
+              {
+                "year": "2024-12",
+                "label": "Assad regime falls",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2025",
+                "label": "Missing-persons commission formed"
+              }
+            ],
+            "label": "from arrest to confirmation"
+          }
+        ]
+      },
+      {
+        "heading": "WHY JUSTICE IS HARD",
+        "body": "Transitional justice after mass atrocity faces a recurring problem: the perpetrators are often still present, sometimes still armed, and integral to the state's functioning. Naming the dead is the easy part; prosecuting officials who remain free inside the country is the political battle that breaks most post-conflict states."
+      },
+      {
+        "heading": "DAMASCUS, AL-SHAM",
+        "body": "Damascus sits at the heart of al-Sham — Greater Syria — which Islamic tradition holds in particular regard; a hadith in Sahih al-Bukhari describes the people of al-Sham as under divine protection. That the blessed land became the setting for industrial-scale disappearance is part of why the reckoning carries weight far beyond Syria's borders."
+      }
+    ],
+    "generatedAt": "2026-06-04T04:25:23.067Z",
+    "label": "The Tadamon Massacre & Syria's Disappeared",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-03-analysis-china-s-co2-climbs-2-in-early-2026-due-to-wasted-wi": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARADOX",
+        "body": "More renewables on the grid does not automatically mean less coal. If the wires can't move the power when it's generated, operators leave wind and solar idle and burn coal to meet demand on time. Capacity built is not the same as electricity delivered."
+      },
+      {
+        "heading": "WHY COAL WINS THE TIE",
+        "body": "Coal plants are dispatchable — operators decide when they run. Wind and solar are variable — the weather decides. When supply outruns what the grid can absorb, the cheapest thing to switch off is the source you don't pay fuel for, so the renewable gets curtailed and the coal keeps burning.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **curtailment**: deliberately disconnecting renewable generation the grid can't carry. China's solar *utilization rate* had been near 97% — meaning roughly **1 in 30** solar kilowatt-hours was already thrown away before this year's slip."
+          }
+        ]
+      },
+      {
+        "heading": "WHY TRANSMISSION IS THE BOTTLENECK",
+        "body": "China's wind and solar are concentrated in the northwest — Xinjiang, Gansu, Inner Mongolia. Its demand sits 2,000–3,000 km southeast in Guangdong, Jiangsu, Zhejiang. Ultra-high-voltage DC lines can bridge that gap, but each takes 3–5 years to build. Generation is being installed faster than the wires to carry it.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN"
+            ],
+            "label": "generation northwest, demand southeast",
+            "caption": "UHV lines must carry power ~2,500 km to reach the load",
+            "markers": [
+              {
+                "lat": 43.83,
+                "lng": 87.62,
+                "label": "Xinjiang (wind/solar)"
+              },
+              {
+                "lat": 40.84,
+                "lng": 111.75,
+                "label": "Inner Mongolia"
+              },
+              {
+                "lat": 23.13,
+                "lng": 113.26,
+                "label": "Guangdong (demand)"
+              },
+              {
+                "lat": 31.3,
+                "lng": 120.58,
+                "label": "Jiangsu (demand)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DUCK CURVE",
+        "body": "Solar floods the grid at midday when demand is moderate, then vanishes at sunset just as demand peaks. Plot net load and it looks like a duck — a deep belly at noon, a steep neck at 6 PM. The steeper the neck, the more fossil plants must ramp up within hours, which many cannot do, so curtailment fills the gap."
+      },
+      {
+        "heading": "THE HYDRO WILDCARD",
+        "body": "Hydropower is China's flexible backstop — it can ramp fast to smooth out solar and wind. A forecast super El Niño threatens to dry out the rivers feeding the dams, removing that buffer exactly when grid integration is still unreformed. Less hydro means more coal at the margin.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did China's power-sector CO2 rise even as it added record renewable capacity?",
+            "options": [
+              "Renewables were curtailed because the grid couldn't absorb them, so coal filled the gap",
+              "China secretly cancelled its solar program",
+              "New coal plants are more polluting per kWh than old ones",
+              "Carbon accounting rules changed"
+            ],
+            "correct": 0,
+            "explanation": "When generation outruns transmission, operators idle wind and solar and keep dispatchable coal running — capacity added ≠ clean power delivered."
+          }
+        ]
+      },
+      {
+        "heading": "THE 30-60 PLEDGE",
+        "body": "Xi Jinping told the UN in 2020 that China would peak CO2 before 2030 and reach carbon neutrality by 2060. The '30-60' framing now governs every Chinese energy plan — which is why a rising emissions quarter, driven by wasted clean power rather than rising demand, lands as a structural warning rather than noise."
+      }
+    ],
+    "generatedAt": "2026-06-04T04:25:47.184Z",
+    "label": "Curtailment & China's Grid",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-03-cinemas-offer-a-platform-for-stories-of-resistance-amid-shri": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WORLD'S BUSIEST FILM INDUSTRY",
+        "body": "By number of titles produced, Nigeria's Nollywood is the most prolific film industry on earth — ahead of India's combined-language output and several times the volume of Hollywood. It got there on shoestring budgets, straight-to-video releases, and a distribution network that bypassed cinemas entirely. That same DIY pipeline is what makes it hard to censor.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Feature films produced per year (approx.)",
+            "peers": [
+              {
+                "value": 2500,
+                "cc": "NG"
+              },
+              {
+                "value": 1800,
+                "cc": "IN"
+              },
+              {
+                "value": 700,
+                "cc": "US"
+              },
+              {
+                "value": 600,
+                "cc": "CN"
+              },
+              {
+                "value": 280,
+                "cc": "JP"
+              },
+              {
+                "value": 90,
+                "cc": "KR"
+              }
+            ],
+            "subjectCc": "NG",
+            "unit": "films/yr"
+          }
+        ]
+      },
+      {
+        "heading": "THE CENSOR'S BOARD",
+        "body": "Nigerian film is gatekept by the National Film and Video Censors Board, a statutory body that classifies, approves, and can ban any film for public exhibition. A documentary that names a sitting official or a massacre can simply be denied a classification certificate — no court, no charge, just an administrative refusal that makes legal screening impossible.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The board's power is *prior restraint* — it decides what may be shown **before** anyone sees it, which is far harder to challenge than punishment after the fact."
+          }
+        ]
+      },
+      {
+        "heading": "THE COLONIAL TEMPLATE",
+        "body": "African film censorship is largely an inherited machine. British colonial Cinematograph Ordinances from the 1930s were written to keep anti-colonial and 'inflammatory' images off African screens; independent governments kept the laws, swapped the targets, and pointed the same apparatus at their own dissidents.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1933",
+                "label": "Colonial Cinematograph laws spread"
+              },
+              {
+                "year": "1960",
+                "label": "Nigerian independence"
+              },
+              {
+                "year": "1993",
+                "label": "Censors Board established",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1992",
+                "label": "Nollywood video boom begins"
+              }
+            ],
+            "label": "the inherited censor"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE FESTIVAL ROUTE WORKS",
+        "body": "A human-rights film festival is a deliberate end-run around the board. Festival and private-club screenings often fall outside 'public exhibition' rules, and a film that travels the international festival circuit becomes harder to disappear — a banned work that has already screened in Lagos, Nairobi, and Berlin can't be un-seen. Distribution, not production, is where the real fight over speech happens.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "GH",
+              "KE",
+              "ZA",
+              "EG"
+            ],
+            "label": "Africa's main film & festival hubs"
+          }
+        ]
+      },
+      {
+        "heading": "THE SHRINKING SPACE",
+        "body": "Watchdogs track 'civic space' — the room citizens have to speak, assemble, and organize — on a five-step ladder from open to closed. Most of the continent's largest media markets, Nigeria among them, sit in the lower 'obstructed' or 'repressed' tiers, where journalists and filmmakers operate legally but under constant threat of arrest, equipment seizure, or licensing pressure.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is denying a film's classification certificate often more effective than banning it outright?",
+            "options": [
+              "It avoids a public court case that could publicize the film",
+              "It carries a longer prison sentence for the director",
+              "It automatically deletes digital copies of the film"
+            ],
+            "correct": 0,
+            "explanation": "An administrative refusal blocks legal screening without a trial — no charge to fight, no ruling to appeal, and no headline-making prosecution."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-04T04:26:28.264Z",
+    "label": "Nollywood, Censorship & Civic Space",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-03-meta-workers-can-opt-out-of-being-tracked-at-work-up-to-30-m": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LINEAGE",
+        "body": "Measuring the worker is not new. Frederick Taylor's 1911 'scientific management' put a stopwatch on every motion of the factory floor, breaking each task into timed fragments to be optimized. The keylogger is the same instinct with a faster clock — and a body of data that now trains the machine meant to replace the worker.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1911",
+                "label": "Taylor's Scientific Management",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1924",
+                "label": "Hawthorne studies of worker output"
+              },
+              {
+                "year": "1980",
+                "label": "Keystroke counts for data-entry pay"
+              },
+              {
+                "year": "2020",
+                "label": "COVID 'tattleware' boom"
+              },
+              {
+                "year": "2026",
+                "label": "Keystrokes as AI training data"
+              }
+            ],
+            "label": "from stopwatch to keylogger"
+          }
+        ]
+      },
+      {
+        "heading": "WHY KEYSTROKES",
+        "body": "Typing is not just what you write — it is how you write it. The rhythm between keystrokes, pause patterns, and error-correction habits form a behavioral biometric distinctive enough to identify an individual without seeing the text. That same signal is exactly what a model needs to learn how humans actually do knowledge work.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The field is called *keystroke dynamics*. Your typing cadence is stable enough that banks already use it as a silent second factor — which means a **keylogger captures identity, not just content**."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONSENT FICTION",
+        "body": "In most US jurisdictions, employees have almost no expectation of privacy on company devices. Consent is presumed the moment you log in, and at-will employment means refusing monitoring is effectively refusing the job. This is why the fight is over a 30-minute pause, not a legal right — the right was signed away in the handbook."
+      },
+      {
+        "heading": "THE TATTLEWARE BOOM",
+        "body": "Remote work in 2020 triggered an explosion in monitoring software — screenshots, mouse-jiggle detection, idle-time alerts — sold to managers anxious about unseen workers. What was framed as productivity measurement quietly became a continuous data-collection pipeline, the raw material now most valuable not for managing people but for training models.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What can typing rhythm alone reveal, even without capturing the words typed?",
+            "options": [
+              "The identity of the individual typist",
+              "Only the language being used",
+              "Nothing without a camera feed",
+              "Just the typing speed in words per minute"
+            ],
+            "correct": 0,
+            "explanation": "Inter-keystroke timing is a behavioral biometric stable enough to fingerprint a specific person — banks use it as a silent authentication factor."
+          }
+        ]
+      },
+      {
+        "heading": "THE PAUSE THAT ISN'T",
+        "body": "A 30-minute pause that resets is a classic dark pattern: it grants the feeling of control while preserving the system. Surveillance defaults back on, the burden of opting out recurs every half hour, and the company never has to answer whether a permanent opt-out exists. The concession costs Meta nothing structural — the data keeps flowing."
+      }
+    ],
+    "generatedAt": "2026-06-04T04:27:03.806Z",
+    "label": "Workplace Surveillance",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-04-cabinet-clears-10-000-cr-fund-to-shield-airlines-offset-jet": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY FUEL DOMINATES AIRLINES",
+        "body": "Jet fuel — aviation turbine fuel, or ATF — is typically the single largest cost line for an airline, running 30-40% of operating expenses. No other industry is so exposed to one input price, which is why a 2.5x spike threatens carriers with thin margins before it reaches passengers.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "ATF is essentially **kerosene** — chemically close to diesel and home heating oil, refined from the same middle-distillate cut of the crude barrel. When that cut tightens, jet fuel and diesel rise *together*."
+          }
+        ]
+      },
+      {
+        "heading": "THE CRACK SPREAD",
+        "body": "Jet fuel price is not just crude — it is crude plus the refiner's margin to convert it, the 'crack spread.' During a West Asia scare, both legs move at once: crude jumps on supply fear, and the crack widens because Gulf refineries sit in the risk zone. That double move is how prices multiply rather than merely rise."
+      },
+      {
+        "heading": "WHY INDIA IS EXPOSED",
+        "body": "India imports over 85% of its crude, and a large share transits the Strait of Hormuz from Gulf suppliers. A conflict premium on Gulf oil passes almost directly into Indian refinery input costs, and a weaker rupee compounds it — every dollar of oil costs more rupees.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "IR",
+              "SA",
+              "AE",
+              "IQ",
+              "OM"
+            ],
+            "label": "India's Gulf crude lifeline",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          },
+          {
+            "type": "trend",
+            "values": [
+              95.029174,
+              94.729612,
+              94.62293,
+              94.425498,
+              94.425498,
+              94.8754,
+              95.576514,
+              95.55195,
+              95.719988,
+              95.829548,
+              96.003,
+              96.027,
+              96.13634,
+              96.389098,
+              96.875003,
+              96.376027,
+              96.243053,
+              95.719748,
+              95.700477,
+              95.415433,
+              95.341057,
+              95.70115,
+              96.383018,
+              95.600602,
+              95.01655,
+              95.06455,
+              94.831403,
+              95.108606,
+              95.573359,
+              95.723896
+            ],
+            "periods": [
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "HOW THE SUBSIDY WORKS",
+        "body": "Rather than cut taxes, the cabinet routes ₹10,000 crore through state oil firms to sell ATF at a fixed price, then recovers the outlay later as global prices fall — a price-smoothing buffer, not a giveaway. The 3-year lock-in to state suppliers is the repayment mechanism: airlines trade supplier choice for price stability."
+      },
+      {
+        "heading": "THE TAX BACKDROP",
+        "body": "ATF, like petrol and diesel, sits outside India's GST system, letting the centre and states stack excise and VAT independently. That structure normally makes Indian jet fuel among the world's most heavily taxed — which is precisely the lever the government can now relax to cushion the shock."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-04"
+    ],
+    "generatedAt": "2026-06-04T04:27:22.753Z",
+    "label": "Jet Fuel & the Airline Cost Stack",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-04-conviction-rate-in-rape-cases-in-sindh-climbs-to-22pc-in-fiv": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HUDOOD SHADOW",
+        "body": "From 1979, Zia-ul-Haq's Hudood Ordinances folded rape into the same law as consensual adultery and required four adult male Muslim witnesses to the act for the harshest proof standard. A woman who reported rape but could not meet that bar risked being charged herself for confessing to extramarital sex. This is the legal substrate every later reform is reacting against.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Hudood Ordinances (zina law)",
+                "emphasis": "start"
+              },
+              {
+                "year": "2006",
+                "label": "Protection of Women Act",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2016",
+                "label": "Anti-rape & DNA amendments"
+              },
+              {
+                "year": "2020",
+                "label": "Anti-Rape Ordinance"
+              },
+              {
+                "year": "2021",
+                "label": "Special GBV courts created"
+              }
+            ],
+            "label": "Pakistan's rape-law arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2006 RESET",
+        "body": "The Protection of Women Act 2006 pulled rape out of the Hudood framework and back into the ordinary Penal Code. It removed the four-witness requirement and let courts convict on medical, forensic, and circumstantial evidence — the same logic any other violent crime uses. The change was statutory, but courtroom habits took far longer to follow.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Before the 2006 reform, what did Pakistan's Hudood law demand as the strongest proof of rape?",
+            "options": [
+              "Four adult male Muslim eyewitnesses to the act",
+              "A confession from the accused",
+              "DNA evidence linking the accused",
+              "Testimony from the victim alone"
+            ],
+            "correct": 0,
+            "explanation": "The tazkiyah-al-shuhood standard required four male Muslim witnesses — a near-impossible bar that effectively criminalised victims who came forward without it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CONVICTIONS STAY LOW",
+        "body": "Even with the law fixed, rape cases collapse on evidence and time. Medical exams arrive late, the discredited 'two-finger' virginity test (banned by Pakistani courts in 2021) shaped a generation of forensic practice, and multi-year trials give space for witnesses to be paid off, intimidated, or pressured into a private settlement that ends the case.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The charge is *zina-bil-jabr* — sex by force. The attrition isn't usually a 'not guilty' verdict on the merits; it's **78% acquittal** driven by hostile witnesses, lost forensics, and compromise out of court."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE GBV COURTS CHANGE",
+        "body": "The 2021 Anti-Rape Act created dedicated special courts and investigation units with a mandate to finish trials in roughly four months, hold them in-camera, and shield survivor identity. Concentrating these cases before trained judges — rather than scattering them across a clogged general docket — is what nudged Sindh's conviction rate from low single digits toward 22%."
+      },
+      {
+        "heading": "THE BACKLOG IS THE VERDICT",
+        "body": "357 cases carried unresolved into 2026, and the report concedes most will not conclude this year. In rape prosecutions, delay is not neutral: every extra year erodes evidence and witness resolve, so a stalled docket functions as a quieter acquittal machine than any single verdict."
+      }
+    ],
+    "generatedAt": "2026-06-04T04:28:10.019Z",
+    "label": "Rape Law & Conviction in Pakistan",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-04-north-korea-s-kim-calls-for-exponential-nuclear-expansion-af": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY FISSILE MATERIAL IS THE LIMIT",
+        "body": "Warhead design is the easy part — the physics has been public since the 1940s and North Korea has tested working devices since 2006. What gates the arsenal is the supply of weapons-grade plutonium or highly enriched uranium, which takes industrial-scale reactors or centrifuge halls years to accumulate. Doubling fissile output is the only way to double the number of bombs.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the real bottleneck on the size of a nuclear arsenal once a state can build a working bomb?",
+            "options": [
+              "Producing fissile material (plutonium or HEU)",
+              "Designing the warhead",
+              "Building delivery missiles",
+              "Conducting nuclear tests"
+            ],
+            "correct": 0,
+            "explanation": "Bomb physics is decades old and public; accumulating enough weapons-grade plutonium or enriched uranium is the slow, industrial constraint."
+          }
+        ]
+      },
+      {
+        "heading": "TWO ROADS TO A BOMB",
+        "body": "There are two routes to fissile material, and North Korea runs both. Plutonium is bred in the Yongbyon reactor and chemically reprocessed from spent fuel — visible, satellite-trackable, easy to count. Highly enriched uranium is spun up in centrifuge halls like Kangson, which fit inside an ordinary-looking building and leave almost no external signature. The uranium path is what makes the 'doubling' so hard to verify.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The danger of the uranium route is detection: a **plutonium** reactor radiates heat a satellite can see, but a **HEU** centrifuge cascade hides inside a warehouse. The IAEA's rule of thumb — a *significant quantity* — is roughly **8 kg** of plutonium or **25 kg** of HEU per weapon."
+          },
+          {
+            "type": "locations",
+            "codes": [
+              "KP",
+              "KR",
+              "CN",
+              "JP"
+            ],
+            "label": "the production sites",
+            "markers": [
+              {
+                "lat": 39.797,
+                "lng": 125.755,
+                "label": "Yongbyon (plutonium)"
+              },
+              {
+                "lat": 38.964,
+                "lng": 125.609,
+                "label": "Kangson (uranium)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DIPLOMATIC ARC",
+        "body": "Every freeze deal has eventually unwound. The 1994 Agreed Framework traded the plutonium program for energy aid, then collapsed in 2002. North Korea quit the Non-Proliferation Treaty in 2003 — the only state ever to do so — and tested its first device in 2006. The 2019 Hanoi summit, where the US wanted full disarmament and Pyongyang wanted partial sanctions relief, ended with no agreement, and expansion has been the program's direction ever since.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1985",
+                "label": "Joins the NPT"
+              },
+              {
+                "year": "1994",
+                "label": "Agreed Framework freeze"
+              },
+              {
+                "year": "2003",
+                "label": "Withdraws from the NPT",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2006",
+                "label": "First nuclear test"
+              },
+              {
+                "year": "2018",
+                "label": "Singapore summit"
+              },
+              {
+                "year": "2019",
+                "label": "Hanoi summit collapses"
+              }
+            ],
+            "label": "freeze, exit, expand"
+          }
+        ]
+      },
+      {
+        "heading": "SMALL ARSENAL, STEEP CURVE",
+        "body": "North Korea's stockpile is tiny next to the established powers, but its growth rate is the highest of any nuclear state. The strategic logic is minimum deterrence inflating toward survivable deterrence — enough warheads to ride out a first strike and still retaliate, which is why Kim frames fissile output as the metric that matters.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Estimated nuclear warheads",
+            "peers": [
+              {
+                "value": 5500,
+                "cc": "RU"
+              },
+              {
+                "value": 5000,
+                "cc": "US"
+              },
+              {
+                "value": 500,
+                "cc": "CN"
+              },
+              {
+                "value": 290,
+                "cc": "FR"
+              },
+              {
+                "value": 225,
+                "cc": "GB"
+              },
+              {
+                "value": 170,
+                "cc": "IN"
+              },
+              {
+                "value": 170,
+                "cc": "PK"
+              },
+              {
+                "value": 90,
+                "cc": "IL"
+              },
+              {
+                "value": 50,
+                "cc": "KP"
+              }
+            ],
+            "subjectCc": "KP",
+            "unit": "warheads"
+          }
+        ]
+      },
+      {
+        "heading": "WHO PAYS FOR IT",
+        "body": "UN sanctions cut North Korea off from the global financial system, so the program runs on improvised hard currency: arms sales, sanctioned coal, and — since 2017 — large-scale cryptocurrency theft. The UN Panel of Experts estimated that DPRK cyber operations funded roughly 40% of the weapons program by 2023, making a hacking unit a load-bearing part of the nuclear supply chain."
+      }
+    ],
+    "generatedAt": "2026-06-04T04:28:53.354Z",
+    "label": "Fissile Material & the Warhead Bottleneck",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-04-protests-in-albania-grow-over-jared-kushner-backed-luxury-re": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PROTECTED PARADOX",
+        "body": "The site sits inside land Albania itself designated as protected. The 2024 laws the prosecutor is examining grant 'strategic investor' status, which lets a project bypass the zoning, environmental, and permitting rules that protection was supposed to guarantee. The protection and the exemption come from the same state.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is a *strategic investment* designation — a fast-track status that overrides ordinary land-use law for projects deemed nationally important. The label converts a protected wetland into a buildable asset by administrative decree, not by rezoning."
+          }
+        ]
+      },
+      {
+        "heading": "THE MONK SEAL",
+        "body": "The Mediterranean monk seal is one of the rarest mammals on Earth — fewer than 700 survive, scattered in a handful of cave-breeding colonies. Unlike most seals it births pups in sea caves along undisturbed coast, which makes coastal construction, not hunting, its primary modern threat.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Global population of critically threatened marine mammals",
+            "peers": [
+              {
+                "value": 10,
+                "label": "Vaquita"
+              },
+              {
+                "value": 370,
+                "label": "N. Atl right whale"
+              },
+              {
+                "value": 700,
+                "label": "Med monk seal"
+              },
+              {
+                "value": 1500,
+                "label": "Hawaiian monk seal"
+              },
+              {
+                "value": 400,
+                "label": "Saimaa ringed seal"
+              },
+              {
+                "value": 1200,
+                "label": "Yangtze finless porpoise"
+              }
+            ],
+            "subjectLabel": "Med monk seal",
+            "unit": "individuals"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE IT IS",
+        "body": "The contested ground is the Vlora bay coast — the Narta lagoon and the waters off Sazan Island, a former military zone at the mouth of the Adriatic. It is the narrows where the Adriatic meets the Ionian, a migratory bottleneck for birds and the kind of quiet coastline monk seals depend on.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AL",
+              "IT",
+              "GR",
+              "ME"
+            ],
+            "label": "the Vlora bay coast",
+            "caption": "Where the Adriatic narrows into the Ionian",
+            "markers": [
+              {
+                "lat": 40.5167,
+                "lng": 19.3833,
+                "label": "Narta lagoon"
+              },
+              {
+                "lat": 40.4789,
+                "lng": 19.2856,
+                "label": "Sazan Island"
+              },
+              {
+                "lat": 40.4686,
+                "lng": 19.4894,
+                "label": "Vlora"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHO IS BEHIND IT",
+        "body": "The capital comes through Affinity Partners, Jared Kushner's private-equity firm — itself seeded largely by Gulf sovereign wealth, principally Saudi Arabia's Public Investment Fund, which committed roughly $2bn shortly after he left the White House. The development is a private deal, but the money is sovereign.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Jared Kushner",
+                "role": "Affinity Partners founder",
+                "years": "2021–",
+                "cc": "US"
+              },
+              {
+                "name": "Edi Rama",
+                "role": "Albanian Prime Minister",
+                "years": "2013–",
+                "cc": "AL"
+              }
+            ],
+            "label": "the principals"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEVELOPMENT MODEL",
+        "body": "Albania has marketed itself as the Mediterranean's last cheap, unbuilt coastline, courting marquee foreign investors to anchor a luxury-tourism economy. The trade is explicit: relax the rules at scale and the capital arrives — a strategy that turns environmental protection into a negotiable cost of doing business.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes the Mediterranean monk seal so vulnerable to coastal construction specifically?",
+            "options": [
+              "It breeds in undisturbed sea caves along the coast",
+              "It can only eat fish from shallow lagoons",
+              "It migrates across the open Atlantic each year",
+              "It is hunted for its fur"
+            ],
+            "correct": 0,
+            "explanation": "Driven from open beaches long ago, the species now pups in remote sea caves — so building on quiet coastline destroys the exact habitat it retreated to."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-04T04:29:37.266Z",
+    "label": "Albania's Coast & Strategic-Investment Law",
+    "category": "politics",
+    "articleCount": 1
   }
 }
