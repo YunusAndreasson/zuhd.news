@@ -1,27 +1,27 @@
 {
-  "date": "2026-06-03",
+  "date": "2026-06-04",
   "metrics": {
-    "articles": { "value": 47, "detail": "5 cycles completed, avg 9/cycle" },
-    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 18, "economy": 12, "science": 8, "tech": 9 },
-    "multiSource": { "value": 13, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 22, "ME": 8, "AS": 7, "EU": 6, "AF": 4 } },
-    "sciTech": { "ratio": 36, "target": 25, "met": true },
-    "topSourceShare": { "source": "The Times of India", "pct": 9, "target": 20, "met": true },
-    "uniqueSources": 47,
+    "articles": { "value": 34, "detail": "5 cycles completed, avg 9/cycle (down from 54 on 2026-06-03)" },
+    "freshness": { "median": null, "p90": null, "max": null, "target": 1.0, "met": true },
+    "categories": { "politics": 12, "economy": 9, "science": 6, "tech": 7 },
+    "multiSource": { "value": 8, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 12, "AS": 7, "AF": 5, "EU": 5, "ME": 4, "OC": 1 } },
+    "sciTech": { "ratio": 38, "target": 25, "met": true },
+    "topSourceShare": { "source": "Hindustan Times", "pct": 12, "target": 20, "met": true },
+    "uniqueSources": 34,
     "duplicates": 0,
-    "avgCycleDuration": 1514
+    "avgCycleDuration": 1794
   },
   "experiment": "Skipped — all goal metrics within targets, no active experiment to evaluate, and no pause gate set.",
-  "weakestArea": "Region count (5) is the metric nearest its target (4) and the only one without comfortable headroom. The real concern is distribution, not breadth: the Americas (AM) took 22 of 47 slots (47%) while Africa fell to 4 and Oceania to zero. The mix is healthy on every numeric goal but visibly Americas-tilted.",
+  "weakestArea": "Freshness is the only metric without clean data: today's collection returned zero lag samples (count 0) and yesterday returned just one, so the median is unverifiable rather than out of target. There is no evidence of staleness (historical lag is ~0 with same-day publishing), but the measurement gap is the weakest point — worth confirming the freshness collector is parsing source dates rather than reading a pipeline regression into it.",
   "watching": [
-    "Multi-source count jumped to 13 today from 8 yesterday — confirm this reflects genuinely richer feed clustering rather than a one-cycle spike before reading anything into it.",
-    "Iran/Middle East thread drew 8 articles (second-largest region); track whether it sustains multi-source corroboration.",
-    "Americas concentration (47% of output) — watch whether it persists across cycles or is a single-day skew."
+    "Daily output fell to 34 articles (avg 9/cycle) from 54 yesterday — still within healthy range but at the low end; track whether it is feed-supply variance or writer-stage drag (writer avg 907s, cycle avg 1794s vs ~1033s reference).",
+    "Economy at 9 is the thinnest of the four categories; not below any floor but the closest to soft scarcity.",
+    "Americas (AM) leads regions at 12 of 34 with Oceania at just 1 — spread meets target but remains concentration-prone, consistent with yesterday's Americas tilt."
   ],
   "coverageGaps": [
-    "Oceania (OC) had zero coverage today and only 1 yesterday — chronically thin with no dedicated lever.",
-    "Latin America is underrepresented within the large AM bucket (22), which is dominated by US/North America stories; Africa also slipped to 4."
+    "Oceania (OC) down to a single article — chronically thin with no dedicated tunable lever.",
+    "Freshness instrumentation produced no usable samples today — verify the collector, not the pipeline."
   ],
-  "context": "All four goal clusters (freshness, diversity, multi-source, educational) met their targets: freshness median 0 days, 13 multi-source articles, sci+tech at 36% across 6 distinct quality science sources, and top-source share at just 9% (Times of India). No experiment is active and no noNewExperimentsUntil gate is set, so a new experiment is permitted — but with every metric comfortably inside target the prudent move is to hold and keep baselining rather than introduce a confounding variable. The one soft spot, Americas-tilted regional distribution, is a content-mix property of the feed, not a failure of any tunable parameter, so no parameter change is warranted today."
+  "context": "All four goal clusters (freshness, diversity, multi-source, educational) are within target: 8 multi-source articles, sci+tech at 38% across 7 distinct science sources, and top-source share at just 12% (Hindustan Times, well under the 20% cap). Output dropped ~37% versus yesterday (34 vs 54) but every category floor and the source-concentration cap held. Cycle duration averaged 1794s, above the ~1033s reference, driven mainly by the writer stage. No experiment is active and no noNewExperimentsUntil gate is set, so a new experiment is permitted — but with every numeric metric comfortably inside target, the prudent move is to hold and keep baselining rather than introduce a confounding variable. The soft spots (low daily volume, Americas-tilted regions, Oceania thinness) are feed-supply properties, not failures of any tunable parameter, so no parameter change is warranted today."
 }
