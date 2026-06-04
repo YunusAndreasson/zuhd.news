@@ -303444,5 +303444,1116 @@
     "label": "Classified Info & the Plea Bargain",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-04-att-verizon-supreme-court-location-data-fines": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWENTY-DOLLAR LINE",
+        "body": "The Seventh Amendment guarantees a jury in civil suits 'at common law' worth more than twenty dollars — a threshold set in 1791 and never raised. The carriers' argument hangs on a single question: is a regulatory fine a 'common law' suit, or something the Constitution never contemplated?",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "In Suits at common law, where the value in controversy shall exceed twenty dollars, the right of trial by jury shall be preserved",
+            "speaker": "US Constitution, Seventh Amendment",
+            "year": "1791"
+          }
+        ]
+      },
+      {
+        "heading": "THE PUBLIC-RIGHTS DOCTRINE",
+        "body": "For a century, courts let agencies impose penalties through their own in-house judges under the 'public rights' theory: when the government enforces a statutory scheme of its own creation, no jury is required. This is the doctrine that built the modern administrative state — the FCC, SEC, and EPA all assess fines without a jury first hearing the case."
+      },
+      {
+        "heading": "THE JARKESY EARTHQUAKE",
+        "body": "In 2024 the Supreme Court ruled in SEC v. Jarkesy that when an agency seeks civil penalties for fraud, the defendant is entitled to a jury — the in-house tribunal was unconstitutional. That decision is exactly what the carriers reached for here: if Jarkesy killed the SEC's process, why not the FCC's?",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Jarkesy turned on a distinction lawyers fight over endlessly: **public rights** (agency can adjudicate) versus claims that resemble *common-law* causes of action like fraud (jury required). Roberts threaded it by saying the right attaches at *collection*, not assessment."
+          }
+        ]
+      },
+      {
+        "heading": "WHY YOUR PHONE IS A BEACON",
+        "body": "A phone must register with the nearest tower to receive calls, so the carrier logs your approximate position continuously — no GPS or app permission needed. That cell-site record is a business byproduct of running a network, which is precisely why it became a sellable asset."
+      },
+      {
+        "heading": "THE LOCATION BOUNTY MARKET",
+        "body": "Carriers didn't sell location to advertisers — they sold it up a chain of 'aggregators' that resold real-time pings to bail bondsmen, debt collectors, and bounty hunters for a few hundred dollars a lookup. Reporters in 2018-19 showed a stranger could track almost any US phone, which triggered the fines now upheld.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2018",
+                "label": "Securus / LocationSmart exposed"
+              },
+              {
+                "year": "2019",
+                "label": "Reporters track a phone for $300"
+              },
+              {
+                "year": "2020",
+                "label": "FCC proposes carrier fines"
+              },
+              {
+                "year": "2024-04",
+                "label": "FCC finalizes location-data fines"
+              },
+              {
+                "year": "2024-06",
+                "label": "SEC v. Jarkesy decided",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026",
+                "label": "Supreme Court upholds fines"
+              }
+            ],
+            "label": "from scandal to ruling"
+          }
+        ]
+      },
+      {
+        "heading": "THE COLLECTION FIX",
+        "body": "Roberts squared the circle: the FCC may assess the fine without a jury, but it cannot seize a dollar on its own. If a carrier refuses to pay, the government must sue in federal court to collect — and there the carrier gets its jury. The right is preserved by being deferred downstream.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "After the FCC imposes a fine, where does the Seventh Amendment jury right attach if the carrier refuses to pay?",
+            "options": [
+              "In the agency's own in-house hearing",
+              "In the federal lawsuit the government must file to collect",
+              "Nowhere — agency fines are final once issued",
+              "Directly at the Supreme Court"
+            ],
+            "correct": 1,
+            "explanation": "The agency can assess a penalty without a jury, but to actually collect it must sue in federal court — and that collection suit is where the jury right kicks in."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-04T22:18:47.277Z",
+    "label": "Agency Fines & the Jury-Trial Right",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-04-dangote-refinery-700000-bpd-capacity": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARADOX",
+        "body": "Nigeria pumped roughly 1.5 million barrels of crude a day yet imported nearly all its petrol for decades. The state's four NNPC refineries — Port Harcourt, Warri, Kaduna — ran at a fraction of capacity for years, often near zero, kept on the books but barely producing. A top-ten oil exporter shipped raw crude out and bought refined fuel back at a premium.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did Nigeria import most of its petrol despite being a major crude exporter?",
+            "options": [
+              "Its crude was too heavy to refine into petrol",
+              "Its state-owned refineries ran far below capacity for years",
+              "OPEC quotas banned it from refining at home",
+              "Domestic demand was too small to justify a refinery"
+            ],
+            "correct": 1,
+            "explanation": "Nigeria's NNPC refineries were chronically dysfunctional, so the country exported crude and imported finished fuel at a markup."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'NAMEPLATE' MEANS",
+        "body": "Nameplate capacity is the design throughput an engineer rates a plant for — the number on the spec sheet. Real plants usually run below it, losing output to maintenance, feedstock quality, and bottlenecks. Beating nameplate, as Dangote claims at 700,000 bpd against a 650,000 design, means debottlenecking: squeezing more flow through the same hardware than the builders promised.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Running *above* nameplate is the opposite of Nigeria's old refineries, which spent years stuck near **zero** — capacity on paper is meaningless without uptime."
+          }
+        ]
+      },
+      {
+        "heading": "THE SINGLE-TRAIN BET",
+        "body": "Dangote built one giant processing line rather than several smaller ones — a single-train refinery. The design wrings out economies of scale but concentrates risk: one trip or fault idles the entire plant. At 650,000 bpd nameplate it is the largest single-train refinery ever built, in a league with the world's biggest multi-unit complexes.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Largest refineries by crude capacity",
+            "peers": [
+              {
+                "value": 1240,
+                "label": "Jamnagar (IN)"
+              },
+              {
+                "value": 955,
+                "label": "Paraguana (VE)"
+              },
+              {
+                "value": 837,
+                "label": "Ruwais (AE)"
+              },
+              {
+                "value": 840,
+                "label": "Ulsan (KR)"
+              },
+              {
+                "value": 700,
+                "label": "Dangote"
+              },
+              {
+                "value": 640,
+                "label": "Port Arthur (US)"
+              },
+              {
+                "value": 605,
+                "label": "Jurong (SG)"
+              }
+            ],
+            "subjectLabel": "Dangote",
+            "unit": "kbpd"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE IT SITS",
+        "body": "The refinery rises on reclaimed swamp in the Lekki Free Trade Zone, east of Lagos and far from the Niger Delta wells where the crude actually comes from. Dangote built his own port, jetties, and the world's largest granite quarry to supply construction — infrastructure the Nigerian state never managed for its own plants.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG"
+            ],
+            "label": "Lekki, east of Lagos",
+            "markers": [
+              {
+                "lat": 6.4281,
+                "lng": 4.0192,
+                "label": "Dangote refinery"
+              },
+              {
+                "lat": 4.7774,
+                "lng": 7.0134,
+                "label": "Niger Delta crude"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SUBSIDY THAT BROKE",
+        "body": "For decades Nigeria capped pump prices and paid the difference — a petrol subsidy that swallowed a tenth of the federal budget at its peak and enriched an import cartel. President Tinubu scrapped it on his first day in May 2023; prices tripled and the naira, floated weeks later, lost most of its value. Domestic refining is the bet that ends the import dependency that made the subsidy ruinous.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              1365.9,
+              1360.53,
+              1361.67,
+              1356.19465,
+              1356.19465,
+              1357.96,
+              1363.47,
+              1370.1,
+              1370.5,
+              1370.6,
+              1370.49,
+              1372.988035,
+              1372.74,
+              1371.26,
+              1372.34,
+              1371.25,
+              1370.05,
+              1372.25,
+              1372.25,
+              1367.13,
+              1370.94,
+              1372.84,
+              1373.66,
+              1369.78,
+              1371.7,
+              1371.7,
+              1371.2,
+              1371.71,
+              1367.86,
+              1367
+            ],
+            "periods": [
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4"
+            ],
+            "label": "Nigerian naira",
+            "unit": "NGN / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-04"
+    ],
+    "generatedAt": "2026-06-04T22:19:30.460Z",
+    "label": "Nigeria's Refining Paradox",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-04-hhs-human-research-protections-office-cuts": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE OFFICE EXISTS",
+        "body": "From 1932 to 1972, the US Public Health Service tracked 400 Black men with syphilis in Tuskegee, Alabama — deliberately withholding penicillin even after it became the standard cure in the 1940s, so researchers could study the disease's full course. When the press exposed it in 1972, the outrage produced the entire federal architecture this office now guards.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which scandal directly triggered US federal human-research law?",
+            "options": [
+              "The Tuskegee syphilis study",
+              "The thalidomide birth defects",
+              "The Stanford prison experiment"
+            ],
+            "correct": 0,
+            "explanation": "Public exposure of Tuskegee in 1972 led directly to the 1974 National Research Act, which created the modern oversight system."
+          }
+        ]
+      },
+      {
+        "heading": "THE NUREMBERG ROOT",
+        "body": "The principle that subjects must consent was codified after WWII, when the Nuremberg trials judged Nazi doctors who experimented on prisoners. The resulting Nuremberg Code (1947) opens with a single non-negotiable line that became the foundation of every later rule.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The voluntary consent of the human subject is absolutely essential.",
+            "speaker": "Nuremberg Code, Principle 1",
+            "year": "1947"
+          }
+        ]
+      },
+      {
+        "heading": "THE THREE PRINCIPLES",
+        "body": "The 1979 Belmont Report distilled research ethics into three rules — respect for persons, beneficence, do-no-net-harm — and justice, meaning the people who bear a study's risks should be the ones who benefit. Tuskegee violated all three: poor Black men carried the risk while the knowledge served others.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The operational machinery is the **Common Rule** (1991) and the **Institutional Review Board** — the *IRB* — a committee that must approve any federally funded study before a single subject is enrolled."
+          }
+        ]
+      },
+      {
+        "heading": "THE LONG ARC",
+        "body": "Each safeguard was written in the wake of an abuse: Nuremberg after the camps, Helsinki to set medical standards, the National Research Act after Tuskegee, Belmont to give it philosophy, the Common Rule to make it binding across agencies.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1947",
+                "label": "Nuremberg Code"
+              },
+              {
+                "year": "1964",
+                "label": "Declaration of Helsinki"
+              },
+              {
+                "year": "1972",
+                "label": "Tuskegee exposed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1974",
+                "label": "National Research Act"
+              },
+              {
+                "year": "1979",
+                "label": "Belmont Report"
+              },
+              {
+                "year": "1991",
+                "label": "Common Rule codified"
+              }
+            ],
+            "label": "how the rules were built"
+          }
+        ]
+      },
+      {
+        "heading": "HOW ENFORCEMENT ACTUALLY WORKS",
+        "body": "The office almost never inspects a lab. Instead each institution signs a Federalwide Assurance promising to police its own IRBs, and the office's leverage is the nuclear option: suspend that assurance and every federal research dollar at the institution freezes. The threat only works if there are enough staff to investigate and credibly pull the trigger."
+      },
+      {
+        "heading": "WHY A SKELETON CREW BREAKS IT",
+        "body": "Self-regulation holds only when violators believe someone might check. Ten people cannot meaningfully audit 13,000 institutions, so the system reverts to pure trust — the precondition that failed at Tuskegee. An overdue visit to a psychiatric institute, where subjects may be too ill to consent freely, is exactly the case the floor of 42 was meant to cover."
+      }
+    ],
+    "generatedAt": "2026-06-04T22:20:01.130Z",
+    "label": "Human Research Protections",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-04-new-copepod-family-deep-sea-greenland": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MOST NUMEROUS ANIMALS ALIVE",
+        "body": "Copepods — millimetre-scale crustaceans — are almost certainly the most abundant multicellular animals on Earth, outnumbering insects. They are the dominant grazers of phytoplankton, the hinge between sunlight at the ocean surface and nearly every fish that humans eat.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "By individual count, copepods are usually ranked as the most abundant what?",
+            "options": [
+              "Multicellular animals on Earth",
+              "Animals in freshwater only",
+              "Microscopic single-celled organisms",
+              "Vertebrates in the deep sea"
+            ],
+            "correct": 0,
+            "explanation": "Copepods are thought to outnumber every other group of multicellular animals, insects included, making them the ocean's numerical foundation."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'FAMILY' IS A BIG CLAIM",
+        "body": "In the Linnaean ladder — kingdom, phylum, class, order, family, genus, species — a family sits far above a species. Naming a new species is routine; naming a new family means the specimens fit no existing branch and force a redraw of the evolutionary tree.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A new *species* is a new leaf; a new *family* is a new **branch**. The deeper the rank, the rarer the discovery — and the larger the gap in the tree it reveals."
+          }
+        ]
+      },
+      {
+        "heading": "THE BIOLOGICAL CARBON PUMP",
+        "body": "Many copepods feed at the surface by night and sink hundreds of metres by day, excreting carbon-rich pellets that fall to the seabed. This daily migration — the largest animal movement on the planet — is a major conveyor moving atmospheric carbon into the deep ocean.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Ecologists call this the **biological carbon pump**: trillions of animals performing *diel vertical migration* every day, ferrying carbon from the sunlit surface to the abyss."
+          }
+        ]
+      },
+      {
+        "heading": "THE IRMINGER BASIN",
+        "body": "The Irminger Basin lies in the North Atlantic between Greenland and Iceland, one of the few places on Earth where surface water cools enough to sink kilometres deep and drive the global overturning circulation. Its deep water is well-studied physically but barely sampled biologically.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GL",
+              "IS"
+            ],
+            "label": "the Irminger Basin",
+            "caption": "North Atlantic, between Greenland and Iceland",
+            "markers": [
+              {
+                "lat": 60,
+                "lng": -38,
+                "label": "Irminger Basin (~2,500m)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE DEEP SEA STAYS UNKNOWN",
+        "body": "Below 2,000m there is no light, near-freezing cold, and crushing pressure, and a single trawl over such terrain costs ship-days and specialised gear. More humans have stood on the Moon than have visited the deep seafloor — which is why a handful of expeditions can still turn up an entire family new to science."
+      }
+    ],
+    "generatedAt": "2026-06-04T22:20:31.455Z",
+    "label": "Copepods & Deep-Sea Taxonomy",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-04-nigeria-constitution-amendment-state-police": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ANOMALY",
+        "body": "Nigeria is one of the very few large federations on earth whose police are entirely national. In nearly every other federal state — the US, India, Germany, Brazil — policing is a subnational job. A federation that centralizes its only coercive force is structurally closer to a unitary state wearing a federal label.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Nigeria",
+                "value": "1 federal force",
+                "cc": "NG",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": "state-run",
+                "cc": "IN",
+                "tone": "favorable"
+              },
+              {
+                "label": "Germany",
+                "value": "16 state forces",
+                "cc": "DE",
+                "tone": "favorable"
+              },
+              {
+                "label": "Brazil",
+                "value": "state police",
+                "cc": "BR",
+                "tone": "favorable"
+              },
+              {
+                "label": "USA",
+                "value": "~18,000 forces",
+                "cc": "US",
+                "tone": "favorable"
+              }
+            ],
+            "label": "who runs the police in big federations"
+          }
+        ]
+      },
+      {
+        "heading": "THE FIRST REPUBLIC GHOST",
+        "body": "Nigeria did have local policing once. Native Authority and regional police forces operated until the 1966 coups, when politicians had weaponized them against rivals — arresting opponents, rigging local votes. The military disbanded them and folded everything into one national force. The centralization that today's reformers want to undo was itself a fix for an earlier abuse.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1960",
+                "label": "Regions run their own police",
+                "emphasis": "start"
+              },
+              {
+                "year": "1966",
+                "label": "Military coups"
+              },
+              {
+                "year": "1968",
+                "label": "Native Authority police abolished",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1979",
+                "label": "Single federal force constitutionalized"
+              },
+              {
+                "year": "1999",
+                "label": "Current constitution keeps one force"
+              },
+              {
+                "year": "2026",
+                "label": "State-police amendment push"
+              }
+            ],
+            "label": "from regional forces to one force and back"
+          }
+        ]
+      },
+      {
+        "heading": "THE AMENDMENT GAUNTLET",
+        "body": "Legalizing state police is not a vote in Abuja alone. Altering Nigeria's constitution needs a two-thirds supermajority in both chambers of the National Assembly and ratification by at least 24 of the 36 state assemblies. The hard part is rarely the center; it is assembling the states.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does amending Nigeria's constitution to allow state police require?",
+            "options": [
+              "Two-thirds of the National Assembly plus two-thirds of state assemblies",
+              "A simple majority in the National Assembly",
+              "A nationwide referendum",
+              "A presidential proclamation"
+            ],
+            "correct": 0,
+            "explanation": "Nigeria amends by supermajority in both federal chambers plus ratification by 24 of 36 state houses — no referendum exists in the process."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GOVERNORS WANT IT",
+        "body": "The case is arithmetic. A single force of roughly 370,000 officers polices 220 million people — about one officer per 600 residents, well below the ratio the UN suggests — and is deployed from Abuja, so a banditry surge in the northwest competes with crises everywhere else for the same manpower.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Roughly **370,000** officers for **220 million** people — and a governor facing kidnappings today cannot order a single one of them. State police is, above all, a fight over *who commands the response*."
+          }
+        ]
+      },
+      {
+        "heading": "THE ACCOUNTABILITY GAP",
+        "body": "The article notes powers and oversight remain undefined — and that is the whole danger. If a governor hires, pays, and fires the officers, the force tends to serve the governor. The 1960s lesson was precisely this: locally controlled police became instruments of the politicians who funded them. Without an independent disciplinary chain, state police risk reviving the patronage militia the centralized model was built to kill."
+      }
+    ],
+    "generatedAt": "2026-06-04T22:21:14.207Z",
+    "label": "Federalism & the Single Police Force",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-04-occ-world-liberty-financial-charter-scrutiny": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A CHARTER ACTUALLY BUYS",
+        "body": "A national bank charter is not prestige — it is plumbing. It makes a firm eligible for a Federal Reserve master account (direct access to the payments rails banks settle on) and lets it operate nationwide under one federal regulator instead of stitching together a money-transmitter license in all 50 states. For a payments business, that preemption is the whole prize.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal magic word is *preemption*: a federally chartered bank answers to the **OCC** alone, and state consumer-finance rules largely fall away. That is exactly why fintechs and crypto firms covet the charter — and why state regulators fight it."
+          }
+        ]
+      },
+      {
+        "heading": "THE DUAL BANKING SYSTEM",
+        "body": "The Office of the Comptroller of the Currency was created in 1863 to fund the Civil War — the government chartered national banks and made them buy Treasury bonds to back their notes. That birthed America's odd 'dual banking system,' where a bank can be chartered by Washington or by a state, and shops the two for the lighter touch.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1863",
+                "label": "National Currency Act creates the OCC",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1913",
+                "label": "Federal Reserve founded"
+              },
+              {
+                "year": "1933",
+                "label": "FDIC + deposit insurance"
+              },
+              {
+                "year": "2025",
+                "label": "GENIUS Act sets stablecoin rules"
+              }
+            ],
+            "label": "how US bank oversight was built"
+          }
+        ]
+      },
+      {
+        "heading": "WHY A STABLECOIN ISSUER WANTS IN",
+        "body": "A stablecoin issuer's business is holding reserves and moving dollars. A bank charter lets it custody those reserves and settle redemptions inside the regulated system rather than through a partner bank that takes a cut and can drop it. But the firm seeking the charter is a minnow next to the incumbents it would join.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Tether (USDT)",
+                "value": "~$150bn",
+                "weight": 150,
+                "tone": "neutral"
+              },
+              {
+                "label": "Circle (USDC)",
+                "value": "~$60bn",
+                "weight": 60,
+                "tone": "neutral"
+              },
+              {
+                "label": "PayPal (PYUSD)",
+                "value": "~$1bn",
+                "weight": 1,
+                "tone": "neutral"
+              },
+              {
+                "label": "WLF (USD1)",
+                "value": "~$2bn",
+                "weight": 2,
+                "tone": "favorable"
+              }
+            ],
+            "label": "stablecoins by circulation (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "HOW 'INDEPENDENT' THE REGULATOR IS",
+        "body": "The Comptroller sits inside the Treasury Department and is appointed by the president to a five-year term. Unlike Fed governors, the office has historically been treated as removable, which is precisely why a regulator insisting he feels 'no White House pressure' is making a claim the structure itself cannot guarantee.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which agency decides whether a firm gets a US national bank charter?",
+            "options": [
+              "The Federal Reserve",
+              "The Office of the Comptroller of the Currency",
+              "The SEC",
+              "The FDIC"
+            ],
+            "correct": 1,
+            "explanation": "The OCC charters and supervises national banks; the Fed and FDIC grant related access but the charter itself is the OCC's call."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONFLICT NOBODY HAS A RULE FOR",
+        "body": "The federal government does not have a settled framework for a sitting president's family firm being chartered and supervised by an agency that reports, through Treasury, to that president. The foreign-investor and Binance links Democrats cite matter because charter reviews probe ownership and control — exactly the part of this firm that is hardest to see through."
+      }
+    ],
+    "generatedAt": "2026-06-04T22:21:51.819Z",
+    "label": "National Bank Charters & the OCC",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-04-palantir-elite-ice-surveillance-lawsuit": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT FUSION ACTUALLY DOES",
+        "body": "Palantir doesn't collect data — it joins it. Its software links records that already exist in separate silos (DMV, utilities, license-plate readers, employment, social media) using shared keys like a name, address, or phone number. The power isn't any single database; it's the graph that emerges when you connect them all.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *entity resolution* — deciding that the \"J. Smith\" in one database and the \"John Smith\" in another are the same person. Get that right at scale and scattered fragments become a single tracked life."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPANY'S ORIGINS",
+        "body": "Palantir was founded in 2003 by a circle that included Peter Thiel, and one of its earliest backers was In-Q-Tel — the CIA's own venture-capital arm. It was built from the start to serve intelligence and law-enforcement clients, not to be a consumer product that later turned toward government.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Peter Thiel",
+                "role": "Co-founder, chairman",
+                "years": "2003–",
+                "cc": "US"
+              },
+              {
+                "name": "Alex Karp",
+                "role": "Co-founder, CEO",
+                "years": "2003–",
+                "cc": "US"
+              },
+              {
+                "name": "Joe Lonsdale",
+                "role": "Co-founder",
+                "years": "2003–2009",
+                "cc": "US"
+              }
+            ],
+            "label": "who built it"
+          },
+          {
+            "type": "quiz",
+            "question": "Which entity was an early investor in Palantir, shaping its founding mission?",
+            "options": [
+              "In-Q-Tel, the CIA's venture-capital arm",
+              "The NSA's procurement office",
+              "A consumer-tech VC fund",
+              "The Department of Homeland Security"
+            ],
+            "correct": 0,
+            "explanation": "In-Q-Tel, the CIA's nonprofit VC arm, was an early backer — Palantir was built for intelligence work from day one."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL GAP",
+        "body": "The reason agencies can pool this data without a warrant is the third-party doctrine, set in Smith v. Maryland (1979): information you voluntarily hand to a third party — a phone company, a bank, a data broker — carries no reasonable expectation of privacy. Buying commercial data sidesteps the Fourth Amendment entirely.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The right of the people to be secure in their persons, houses, papers, and effects, against unreasonable searches and seizures, shall not be violated",
+            "speaker": "US Constitution, Fourth Amendment",
+            "year": "1791"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SCORING NEIGHBORHOODS IS DANGEROUS",
+        "body": "When a system flags whole areas by risk, it creates a feedback loop: enforcement concentrates where the model points, that produces more records there, and the new records confirm the model. The pattern was documented in predictive policing — the algorithm doesn't find crime, it finds where police already looked."
+      },
+      {
+        "heading": "THE FOIA MECHANISM",
+        "body": "The Freedom of Information Act (1966) forces federal agencies to disclose records on request, with narrow exemptions. Litigation like this suit is often the only way to see how a black-box government system works — the agency rarely volunteers the architecture, so a court order does the prying.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "FOIA was signed reluctantly by **Lyndon Johnson** in 1966 and strengthened after **Watergate** in 1974 — the surveillance-state scandals of one era wrote the transparency tools used to investigate the next."
+          }
+        ]
+      },
+      {
+        "heading": "THE LONGER PATTERN",
+        "body": "Mass watchlisting of disfavored groups is not new. From the COINTELPRO files of the 1960s to post-9/11 fusion centers, the recurring story is the same: a tool built to track a narrow threat expands to map ordinary communities once the data and the wiring are in place.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1966",
+                "label": "FOIA enacted"
+              },
+              {
+                "year": "1979",
+                "label": "Smith v. Maryland: third-party doctrine",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2003",
+                "label": "Palantir founded"
+              },
+              {
+                "year": "2004",
+                "label": "ICE created under DHS"
+              },
+              {
+                "year": "2018",
+                "label": "Carpenter v. US limits the doctrine"
+              }
+            ],
+            "label": "from doctrine to database"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-04T22:22:32.394Z",
+    "label": "Data Fusion & the Surveillance State",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-04-senate-blocks-bid-to-bar-trump-1-8bn-ally-fund": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO CONTROLS THE MONEY",
+        "body": "The Constitution's deepest structural check is not the veto or the courts — it is that the executive cannot spend a dollar Congress has not appropriated. The president commands the army but cannot pay it without the House and Senate. This is the original leash on the presidency.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "No Money shall be drawn from the Treasury, but in Consequence of Appropriations made by Law",
+            "speaker": "US Constitution, Article I §9"
+          }
+        ]
+      },
+      {
+        "heading": "THE RIDER",
+        "body": "A controversial provision rarely passes on its own. Instead it is attached to a bill Congress cannot afford to reject — a spending or immigration package — so that voting it down means killing the whole thing. The fund here rode inside a $70bn bill for exactly this reason.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A provision bolted onto unrelated must-pass legislation is a **rider**. Because the host bill is too big to fail, riders routinely become law without ever winning a majority *on their own merits*."
+          }
+        ]
+      },
+      {
+        "heading": "THE LUMP-SUM LOOPHOLE",
+        "body": "Appropriations vary in how tightly they bind. A line-item appropriation dictates exactly where money goes; a lump sum naming only a broad purpose hands the executive latitude to decide who gets paid. The phrase 'at executive discretion' is where the purse strings go slack.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes a 'discretionary' appropriation different from a typical line-item one?",
+            "options": [
+              "It lets the executive decide who and what gets paid within the stated purpose",
+              "It does not require any vote in Congress",
+              "It expires automatically at the end of the fiscal year",
+              "It can only be spent on the military"
+            ],
+            "correct": 0,
+            "explanation": "Lump-sum or discretionary funds name a broad purpose but not specific recipients, transferring the real spending choice to the executive branch."
+          }
+        ]
+      },
+      {
+        "heading": "THE NIXON PRECEDENT",
+        "body": "Purse control has swung between the branches before. Nixon tried to seize the other end of the leash — refusing to spend funds Congress had appropriated. Congress answered with the 1974 Impoundment Control Act, forcing the president to spend what was appropriated. The fight over who decides the destination of public money is two centuries old.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1789",
+                "label": "Article I vests spending in Congress",
+                "emphasis": "start"
+              },
+              {
+                "year": "1974",
+                "label": "Impoundment Control Act curbs Nixon",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1996",
+                "label": "Line Item Veto Act passed"
+              },
+              {
+                "year": "1998",
+                "label": "Supreme Court strikes the line-item veto",
+                "emphasis": "end"
+              }
+            ],
+            "label": "two centuries of the spending fight"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE MARGINS DIVERGED",
+        "body": "Senate amendments need only a simple majority, so a 49-50 loss is a near-miss while a 15-84 rout signals the chamber's settled will. That the bid to bar the fund nearly passed but the move to redirect it collapsed tells you most senators wanted the fund to exist — they just disagreed on stopping it outright versus repurposing the cash."
+      }
+    ],
+    "generatedAt": "2026-06-04T22:23:34.537Z",
+    "label": "The Power of the Purse",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-04-trump-700-million-coal-revival-bid": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "A KOREAN WAR LAW",
+        "body": "The Defense Production Act was passed in 1950 to let President Truman commandeer steel and aluminum for the Korean War. It grants the president sweeping power to direct private industry — prioritize contracts, allocate materials, even fund production — in the name of national defense. Its definition of 'defense' has stretched far beyond shooting wars.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1950",
+                "label": "Passed for Korean War mobilization",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011",
+                "label": "Domestic solar panel funding"
+              },
+              {
+                "year": "2020",
+                "label": "Ventilators & PPE in COVID"
+              },
+              {
+                "year": "2022",
+                "label": "Heat pumps & critical minerals"
+              },
+              {
+                "year": "2026",
+                "label": "Coal revival funding"
+              }
+            ],
+            "label": "what the DPA has been used for"
+          }
+        ]
+      },
+      {
+        "heading": "COAL'S COLLAPSE",
+        "body": "Coal supplied roughly half of US electricity in 2007 and about 17% in 2025. The killer was not primarily regulation — it was the shale gas boom. Hydraulic fracturing flooded the market with cheap natural gas after 2008, and gas plants undercut coal on the one number utilities care about: cost per megawatt-hour.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Natural gas",
+                "value": 43,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Nuclear",
+                "value": 18,
+                "tone": "neutral"
+              },
+              {
+                "label": "Coal",
+                "value": 17,
+                "tone": "neutral"
+              },
+              {
+                "label": "Wind",
+                "value": 10,
+                "tone": "favorable"
+              },
+              {
+                "label": "Solar",
+                "value": 6,
+                "tone": "favorable"
+              },
+              {
+                "label": "Hydro",
+                "value": 6,
+                "tone": "favorable"
+              }
+            ],
+            "label": "US electricity generation mix, 2025 (approx. share)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PLANTS DON'T JUST REOPEN",
+        "body": "A coal plant is not a switch. Once a utility retires one, it stops buying coal contracts, lets boiler crews go, and often demolishes the stacks for the land. Restarting means re-permitting, re-hiring, and competing again against gas that is still cheaper. Money can fund construction, but it cannot repeal the merit order that closed the plant.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Utilities dispatch plants in **merit order** — cheapest first. Coal lost not on politics but on *price per megawatt-hour*; subsidies change the budget line, not the ranking."
+          }
+        ]
+      },
+      {
+        "heading": "THE EXPORT PIVOT",
+        "body": "If Americans won't burn it, sell it abroad. The proposed 12-million-ton California terminal aims at Asia, where India and Southeast Asia still build coal plants. This is why US coal politics increasingly runs through ports, not power lines — the growth market is on the other side of the Pacific.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the main cause of US coal's decline in electricity generation?",
+            "options": [
+              "Cheap natural gas from the shale boom",
+              "Environmental regulation alone",
+              "Solar undercutting it on price",
+              "Falling national electricity demand"
+            ],
+            "correct": 0,
+            "explanation": "Shale gas after 2008 undercut coal on cost per megawatt-hour; regulation accelerated retirements but economics drove them."
+          }
+        ]
+      },
+      {
+        "heading": "THE BASELOAD ARGUMENT",
+        "body": "The strongest case for coal isn't price — it's reliability. Coal plants store weeks of fuel on-site and run regardless of weather, providing 'baseload' power. As grids add intermittent wind and solar, the policy fight is over who pays to keep dispatchable plants on standby for the days the wind dies and the sun sets."
+      }
+    ],
+    "generatedAt": "2026-06-04T22:24:14.474Z",
+    "label": "Coal, the DPA & Baseload Power",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-04-zelensky-open-letter-putin-face-to-face-talks": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGITIMACY GAMBIT",
+        "body": "Zelensky's five-year term formally expired in May 2024, but Ukraine's constitution bars holding elections while martial law is in force. Putin exploits this gap to argue Zelensky lacks the authority to sign any binding deal — a way to reject the negotiating table without rejecting negotiation.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "It is a *procedural* attack, not a substantive one: questioning **who** can sign costs Moscow nothing while it keeps fighting, and forces Kyiv to defend its own legality instead of debating terms."
+          },
+          {
+            "type": "quiz",
+            "question": "Why has Ukraine not held a presidential election since 2024?",
+            "options": [
+              "Its constitution bars elections under martial law",
+              "Zelensky suspended the vote by decree",
+              "Russia occupies the capital",
+              "The term was extended to seven years"
+            ],
+            "correct": 0,
+            "explanation": "Ukrainian law prohibits national elections while martial law is in effect — a provision predating the war, not a Zelensky invention."
+          }
+        ]
+      },
+      {
+        "heading": "WHY TURKEY",
+        "body": "Turkey is the rare state both sides can stomach: a NATO member that never joined Western sanctions on Russia, sells drones to Kyiv yet buys gas and tourism from Moscow. Under the 1936 Montreux Convention it controls warship passage through the Bosphorus — leverage that made it the natural host for the first 2022 talks.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU",
+              "TR"
+            ],
+            "label": "the proposed venue and the two capitals"
+          }
+        ]
+      },
+      {
+        "heading": "THE ISTANBUL NEAR-MISS",
+        "body": "Few remember how close the war came to an early settlement. In March 2022, negotiators in Istanbul drafted a framework — Ukrainian neutrality and force caps in exchange for security guarantees. The discovery of killings in Bucha and Western pressure to keep fighting helped collapse it. Every subsequent round has started from a worse position.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2014-03",
+                "label": "Russia annexes Crimea"
+              },
+              {
+                "year": "2015-02",
+                "label": "Minsk II ceasefire signed"
+              },
+              {
+                "year": "2022-02",
+                "label": "Full-scale invasion",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-03",
+                "label": "Istanbul talks draft framework"
+              },
+              {
+                "year": "2022-07",
+                "label": "Black Sea grain deal"
+              },
+              {
+                "year": "2023-07",
+                "label": "Russia exits grain deal"
+              }
+            ],
+            "label": "the diplomatic arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY LEADERS RARELY MEET",
+        "body": "Summits between principals are the last step of diplomacy, not the first. When heads of state meet face to face, the expectation is a signed outcome — so a leader who agrees to meet without a pre-cooked deal risks being blamed for the failure. Daring an opponent to the table is itself a tactic: it shifts the cost of saying no.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Volodymyr Zelensky",
+                "role": "Ukrainian president",
+                "years": "2019–",
+                "cc": "UA"
+              },
+              {
+                "name": "Vladimir Putin",
+                "role": "Russian president",
+                "years": "2000–",
+                "cc": "RU"
+              },
+              {
+                "name": "Recep Tayyip Erdogan",
+                "role": "Turkish president, proposed host",
+                "years": "2014–",
+                "cc": "TR"
+              }
+            ],
+            "label": "the principals"
+          }
+        ]
+      },
+      {
+        "heading": "THE MINSK PRECEDENT",
+        "body": "Ukraine and Russia have signed ceasefires before. The 2014 and 2015 Minsk agreements froze the Donbas front but were never implemented — both sides used the pause to rearm, and the line of contact became the launch position for 2022. The lesson Kyiv drew: a ceasefire without enforcement is a staging ground, not peace."
+      },
+      {
+        "heading": "THE GULF AS NEUTRAL GROUND",
+        "body": "Ukraine's offer to let Arab states host marks a real shift. Saudi Arabia and the UAE have quietly brokered prisoner exchanges throughout the war, trading on their refusal to pick a side. As Washington's bandwidth turns toward Iran, mid-tier powers with cash and no historical baggage are filling the mediator vacuum the superpowers once monopolized."
+      }
+    ],
+    "generatedAt": "2026-06-04T22:24:51.921Z",
+    "label": "Ukraine–Russia: the talks problem",
+    "category": "politics",
+    "articleCount": 1
   }
 }
