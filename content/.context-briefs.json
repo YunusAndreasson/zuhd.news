@@ -299222,5 +299222,1103 @@
     "label": "Albania's Coast & Strategic-Investment Law",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-02-donald-trump-could-be-the-man-to-save-cuba": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LONGEST EMBARGO",
+        "body": "The US trade embargo on Cuba is the most enduring in modern history — first imposed in 1960 after the revolution nationalized American assets, tightened to near-total in 1962. Helms-Burton (1996) wrote it into statute, meaning no president can lift it alone; only Congress can. Every thaw since has been an executive workaround, and every workaround is reversible by the next executive order.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1960",
+                "label": "Assets nationalized; embargo begins"
+              },
+              {
+                "year": "1962",
+                "label": "Near-total embargo",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1996",
+                "label": "Helms-Burton codifies it"
+              },
+              {
+                "year": "2014",
+                "label": "Obama-era thaw"
+              },
+              {
+                "year": "2017",
+                "label": "Trump reverses thaw"
+              },
+              {
+                "year": "2026",
+                "label": "EO 14404 card cutoff"
+              }
+            ],
+            "label": "the embargo, 1960–2026"
+          }
+        ]
+      },
+      {
+        "heading": "HOW A CARD NETWORK CUTS A COUNTRY",
+        "body": "Visa and Mastercard don't move money themselves — they route messages between banks that settle in dollars through US correspondent accounts. Because that settlement touches the US financial system, OFAC's reach extends to any transaction it clears. To 'cut' Cuba is simply to forbid US banks from clearing it, and the network goes dark without a single wire being seized.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The lever is **correspondent banking**: nearly every cross-border card payment ultimately settles through a US dollar account, which is why **OFAC** can switch off a country it never physically touches."
+          }
+        ]
+      },
+      {
+        "heading": "THE MONROE DOCTRINE",
+        "body": "In 1823 President Monroe declared the Western Hemisphere closed to European meddling. Over two centuries it inverted into a justification for US intervention across Latin America — Guatemala 1954, Dominican Republic 1965, Grenada 1983, Panama 1989. Cuba, 90 miles from Florida, has been the doctrine's most persistent flashpoint since the missile crisis.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CU",
+              "US",
+              "GT",
+              "DO",
+              "PA"
+            ],
+            "label": "the doctrine's reach",
+            "markers": [
+              {
+                "lat": 23.1136,
+                "lng": -82.3666,
+                "label": "Havana"
+              },
+              {
+                "lat": 14.6349,
+                "lng": -90.5069,
+                "label": "Guatemala 1954"
+              },
+              {
+                "lat": 18.4861,
+                "lng": -69.9312,
+                "label": "Santo Domingo 1965"
+              },
+              {
+                "lat": 8.9824,
+                "lng": -79.5199,
+                "label": "Panama 1989"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SANCTIONS-PROOF RAILS",
+        "body": "Russia built Mir and China built UnionPay after watching Western networks weaponize access — Mir specifically after Crimea in 2014. They settle outside the dollar system, which is exactly why Cuba can still run Mir and UnionPay cards while Visa and Mastercard go dark. The catch is reach: a card only works where merchants accept it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Mastercard",
+                "value": "~210 countries",
+                "cc": "US",
+                "weight": 210,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Visa",
+                "value": "~200 countries",
+                "cc": "US",
+                "weight": 200,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "UnionPay",
+                "value": "~180 countries",
+                "cc": "CN",
+                "weight": 180,
+                "tone": "neutral"
+              },
+              {
+                "label": "Mir",
+                "value": "~15 countries",
+                "cc": "RU",
+                "weight": 15,
+                "tone": "favorable"
+              }
+            ],
+            "label": "card network global reach"
+          }
+        ]
+      },
+      {
+        "heading": "THE PATRON PROBLEM",
+        "body": "Cuba has never run on its own resources alone — it ran on a patron's oil. Soviet crude subsidized the island until 1991, whose collapse triggered the famine-grade 'Special Period.' Venezuela became the next patron via PetroCaribe, shipping discounted oil in exchange for Cuban doctors. As Venezuela's own output collapsed, that lifeline thinned — and a tourism crash on top of it leaves no cushion.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What triggered Cuba's 'Special Period' of severe shortages in the early 1990s?",
+            "options": [
+              "The collapse of the Soviet Union and its oil subsidies",
+              "A US naval blockade of Havana harbor",
+              "A hurricane that destroyed the sugar harvest",
+              "The introduction of the US dollar embargo"
+            ],
+            "correct": 0,
+            "explanation": "When the USSR collapsed in 1991, its subsidized oil and trade vanished, plunging Cuba into years of acute scarcity."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-04T08:25:59.772Z",
+    "label": "Cuba & the Embargo Machine",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-03-china-new-submarine-satellite-imagery": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE SAIL IS FOR",
+        "body": "The tower rising from a submarine's back — the sail — houses the periscopes, masts, snorkel and bridge access. It also creates a huge wake of turbulent water and flow noise as the boat moves. Shrinking or eliminating it is a hydrodynamic bet: less drag, less noise, but you lose the high mounting point for sensors and a place to stand when surfaced.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A conventional **sail** is responsible for a large share of a submerged boat's *flow noise* — the rushing-water signature passive sonar listens for. Flatten the sail and you flatten part of that acoustic fingerprint."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ACOUSTICS, NOT OPTICS",
+        "body": "Seawater swallows light and radar within meters but carries sound for hundreds of kilometers. Submarines are therefore hunted almost entirely by ear — passive sonar listening for machinery hum, propeller cavitation and flow noise. Every design choice on a modern boat is ultimately a choice about how quiet it is. Stealth here means silence, not invisibility."
+      },
+      {
+        "heading": "THE X-STERN",
+        "body": "Most submarines steer with a cross-shaped (+) tail: two horizontal planes, two vertical rudders. An X-form stern rotates that by 45 degrees so all four surfaces do double duty for both depth and direction. It is more maneuverable and safer in shallow water — no fin hangs below the keel to strike the seabed — but no single surface maps to a single control, so it demands fly-by-wire computers to mix the inputs.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does an X-form stern require computer-controlled (fly-by-wire) steering?",
+            "options": [
+              "Each fin controls both depth and direction at once, so inputs must be mixed",
+              "X-sterns are made of materials that conduct electricity",
+              "It lets the submarine travel faster than a cross-shaped tail",
+              "Computers are needed only to retract the fins when surfacing"
+            ],
+            "correct": 0,
+            "explanation": "No single X-fin maps to a single command, so a computer must blend all four surfaces to produce pitch and yaw — too fast for a human to coordinate by hand."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT SATELLITES CAN AND CAN'T SEE",
+        "body": "Commercial imaging satellites now revisit the same shipyard every few days at sub-meter resolution, which is how analysts caught the hull at the pier and measured its length against known reference points. But a photo from orbit reads only the outer shell — it cannot resolve the reactor, the propulsor, the sonar coating or whether the boat even works. Hull shape is the most an open-source image can ever give you."
+      },
+      {
+        "heading": "THE FLEET BEHIND THE HULL",
+        "body": "China already operates the world's largest navy by ship count, and its submarine arm has grown faster than any rival's. The headline number hides the gap that matters: most of its hulls are conventionally powered, while the US and Russian fleets are overwhelmingly nuclear, which is the difference between patrolling regionally and patrolling indefinitely anywhere on the globe.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "~66 (all nuclear)",
+                "cc": "US",
+                "weight": 66
+              },
+              {
+                "label": "Russia",
+                "value": "~64",
+                "cc": "RU",
+                "weight": 64
+              },
+              {
+                "label": "China",
+                "value": "~60",
+                "cc": "CN",
+                "weight": 60
+              },
+              {
+                "label": "North Korea",
+                "value": "~35 (diesel)",
+                "cc": "KP",
+                "weight": 35
+              },
+              {
+                "label": "South Korea",
+                "value": "~22",
+                "cc": "KR",
+                "weight": 22
+              }
+            ],
+            "label": "Submarine fleets by hull count (approx.)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-04T08:26:46.759Z",
+    "label": "Submarine Stealth & the Sail",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-03-ukraine-drones-russia-baltic-fleet": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FORTRESS ISLAND",
+        "body": "Kronstadt is a fortified island naval base sitting in the Gulf of Finland, built by Peter the Great in 1704 to guard the sea approach to St. Petersburg. For three centuries it was considered untouchable — the locked front door of the Russian heartland. A strike inside its dry docks is symbolically closer to Moscow's core than almost any other target.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "FI",
+              "EE",
+              "SE",
+              "LV",
+              "LT",
+              "PL"
+            ],
+            "label": "the eastern Baltic",
+            "caption": "Kronstadt guards the sea approach to St. Petersburg",
+            "markers": [
+              {
+                "lat": 59.991,
+                "lng": 29.768,
+                "label": "Kronstadt naval base"
+              },
+              {
+                "lat": 59.939,
+                "lng": 30.314,
+                "label": "St. Petersburg"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SHADOW FLEET",
+        "body": "To dodge the G7 oil price cap, Russia assembled a 'shadow fleet' of aging tankers with opaque ownership, flags of convenience, and no Western insurance. The escorting of these tankers by a Baltic Fleet warship is the tell: Moscow now treats sanctions-evading oil exports as a naval mission, not just a commercial one.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The tankers run dark — transponders off, ownership routed through shell firms in the **UAE** and **Hong Kong**, hulls re-flagged to states like **Gabon** or the **Cook Islands**. Without Western P&I insurance, a spill in the Baltic would have no underwriter to pay for it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE DRY DOCK",
+        "body": "A warship in dry dock is at its most defenseless: drained of water, propped on blocks, partly disassembled for repair, with its air defenses and damage-control crews stood down. The same logistics that keep a fleet fighting — repair yards — are also where a single hit does the most lasting damage."
+      },
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "A naval drone or loitering munition costs in the low tens of thousands of dollars. A corvette like the Boikiy costs hundreds of millions and takes years to replace. This is the same cost logic that made naval mines the weapon of weaker powers since the 1800s — force the enemy to defend everywhere with assets worth a thousand times the threat.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Sea drone",
+                "value": "~$50k",
+                "tone": "favorable",
+                "weight": 0.05
+              },
+              {
+                "label": "Corvette",
+                "value": "~$300mn",
+                "tone": "unfavorable",
+                "weight": 300
+              }
+            ],
+            "label": "cost of attacker vs. target"
+          }
+        ]
+      },
+      {
+        "heading": "THE NATO LAKE",
+        "body": "With Finland (2023) and Sweden (2024) joining NATO, every Baltic coastline except Russia's now belongs to the alliance. Russia's Baltic Fleet — once a Cold War power-projection force — is bottled into two narrow pockets at Kaliningrad and the Gulf of Finland, both within reach of cheap drones launched from the sea.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What changed the Baltic Sea into a near-total NATO waterway by 2024?",
+            "options": [
+              "Finland and Sweden abandoning neutrality to join NATO",
+              "Russia ceding Kaliningrad",
+              "Poland building a new blue-water fleet",
+              "The EU nationalizing the shadow fleet"
+            ],
+            "correct": 0,
+            "explanation": "Finland joined NATO in 2023 and Sweden in 2024, leaving Russia as the only non-NATO state on the Baltic coast."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-04T08:27:22.542Z",
+    "label": "Kronstadt & the Shadow Fleet",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-04-apyx-apxusd-stablecoin-depeg-feature": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A STABLECOIN ACTUALLY IS",
+        "body": "A stablecoin holds nothing magic — it holds reserves and promises one token per dollar of them. The entire question of whether it stays at $1 is the question of what's in the vault and how stable that thing's own price is.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "USDC",
+                "value": "cash+T-bills",
+                "tone": "favorable"
+              },
+              {
+                "label": "USDT",
+                "value": "mixed claims",
+                "tone": "neutral"
+              },
+              {
+                "label": "DAI",
+                "value": "crypto 150%+",
+                "tone": "neutral"
+              },
+              {
+                "label": "apxUSD",
+                "value": "Strategy pfd",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "what backs each token"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PREFERRED STOCK",
+        "body": "Preferred shares pay a fixed dividend and sit above common stock but below debt in a bankruptcy. They trade near par when calm and below par when markets fall — which means a reserve built from them is stable only as long as nobody is scared.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Strategy issued preferred equity to buy Bitcoin *without* diluting common shareholders or taking on hard debt — a third financing lane. The **par value** is a promise, not a floor; the market sets the actual price."
+          }
+        ]
+      },
+      {
+        "heading": "THE REFLEXIVE LOOP",
+        "body": "The chain runs Bitcoin to Strategy's balance sheet to its preferred shares to apxUSD's reserves to the peg. Each link transmits volatility downstream, so a 'stable' coin inherits the most volatile major asset on earth at the far end of the rope.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "btc",
+                "label": "Bitcoin"
+              },
+              {
+                "id": "strat",
+                "label": "Strategy NAV"
+              },
+              {
+                "id": "pfd",
+                "label": "Preferred shares"
+              },
+              {
+                "id": "apx",
+                "label": "apxUSD reserves"
+              },
+              {
+                "id": "morpho",
+                "label": "Morpho loans"
+              }
+            ],
+            "links": [
+              {
+                "source": "btc",
+                "target": "strat",
+                "value": 100,
+                "label": "holdings"
+              },
+              {
+                "source": "strat",
+                "target": "pfd",
+                "value": 40,
+                "label": "claims"
+              },
+              {
+                "source": "pfd",
+                "target": "apx",
+                "value": 40,
+                "label": "reserves"
+              },
+              {
+                "source": "apx",
+                "target": "morpho",
+                "value": 30,
+                "label": "collateral"
+              }
+            ],
+            "label": "where the peg's value comes from"
+          },
+          {
+            "type": "trend",
+            "values": [
+              80925.09,
+              81425,
+              80022.04,
+              80189.07,
+              80678.03,
+              82145.66,
+              81725.21,
+              80480.89,
+              79277.8,
+              81051.98,
+              79068.82,
+              78135.01,
+              77425.72,
+              76952.21,
+              76808.81,
+              77459.94,
+              77546.34,
+              75482.52,
+              76672.79,
+              76988.16,
+              77274.4,
+              75824.06,
+              74352.7,
+              73539.84,
+              73382.72,
+              73751.07,
+              73593.37,
+              71360.33,
+              66649.86,
+              64021.89,
+              63344.62
+            ],
+            "periods": [
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 4"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "DEPEG BY DESIGN VS BY ACCIDENT",
+        "body": "A cash-backed token redeems at $1 on demand, so any dip is an arbitrage opportunity that snaps it back. A floating-NAV token like apxUSD has no such anchor — when reserves are worth 93 cents, the token is honestly worth 93 cents. That's not a bug they fix; it's the design they disclosed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What ultimately determines apxUSD's reserve value?",
+            "options": [
+              "Bitcoin's price",
+              "US Treasury yields",
+              "The Fed funds rate",
+              "Gold reserves"
+            ],
+            "correct": 0,
+            "explanation": "The reserves are Strategy's preferred shares, and Strategy's balance sheet is overwhelmingly Bitcoin — so the peg tracks BTC, not bills."
+          }
+        ]
+      },
+      {
+        "heading": "THE LIQUIDATION CASCADE",
+        "body": "On lending platforms like Morpho, a stablecoin is posted as collateral against loans. If that collateral slips below the value the loan assumed, the protocol force-sells it — and forced selling drives the price lower, triggering the next liquidation. Overcollateralization is the buffer; a sustained sub-par price is what eats through it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the same **reflexive death spiral** mechanism that destroyed *TerraUSD* in 2022: selling to defend a peg becomes the force that breaks it."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-06-04"
+    ],
+    "generatedAt": "2026-06-04T08:28:08.805Z",
+    "label": "Equity-Backed Stablecoins",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-04-ebola-outbreak-congo-uganda-who-response": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "NOT ONE VIRUS BUT SIX",
+        "body": "\"Ebola\" is a genus, not a single pathogen. Six species exist, and they diverge enough that a diagnostic test or vaccine built for one can fail against another. Bundibugyo, discovered in western Uganda in 2007, is one of the youngest known — which is exactly why standard kits stumble on it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Zaire",
+                "value": "~50–90%",
+                "tone": "unfavorable",
+                "weight": 70
+              },
+              {
+                "label": "Sudan",
+                "value": "~40–55%",
+                "tone": "unfavorable",
+                "weight": 48
+              },
+              {
+                "label": "Bundibugyo",
+                "value": "~25–40%",
+                "tone": "neutral",
+                "weight": 32
+              },
+              {
+                "label": "Taï Forest",
+                "value": "~rare",
+                "tone": "favorable",
+                "weight": 10
+              },
+              {
+                "label": "Reston",
+                "value": "0% humans",
+                "tone": "favorable",
+                "weight": 2
+              }
+            ],
+            "label": "Ebola species by case-fatality rate"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE TEST MISSES IT",
+        "body": "Most field PCR kits amplify genetic sequences calibrated to the Zaire and Sudan strains — the ones that cause the biggest outbreaks. Bundibugyo's genome differs enough at those primer sites that the test can read negative on a truly infected patient, letting a chain of transmission run invisibly.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "PCR works by matching short *primers* to a known stretch of viral RNA. A mismatched primer simply doesn't latch — so a **Bundibugyo** sample can return a **false negative** on a kit tuned for **Zaire**."
+          }
+        ]
+      },
+      {
+        "heading": "THE VACCINE GAP",
+        "body": "The licensed Ebola vaccine, rVSV-ZEBOV (Ervebo), protects only against the Zaire species. There is no widely licensed vaccine for Sudan or Bundibugyo strains — which strips responders of ring vaccination, the tool that broke recent Kivu outbreaks.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "The licensed Ebola vaccine (Ervebo) protects against which strain?",
+            "options": [
+              "Only the Zaire strain",
+              "All six Ebola species",
+              "Only the Bundibugyo strain",
+              "Sudan and Bundibugyo"
+            ],
+            "correct": 0,
+            "explanation": "Ervebo targets Zaire ebolavirus only; Sudan and Bundibugyo outbreaks have no licensed vaccine, so responders fall back on tracing and isolation."
+          }
+        ]
+      },
+      {
+        "heading": "THE 90% THRESHOLD",
+        "body": "Ebola's R0 sits around 1.5–2.5 — each case infects one to two more. To force transmission below 1 and end an outbreak, responders must find and monitor the vast majority of every case's contacts before they turn infectious. At 45% tracing, more than half the chains keep burning unseen.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Contact tracing is a race against the *incubation window* — 2 to 21 days. Catch a contact inside it and you can isolate them before symptoms; miss them and they seed a new ring."
+          }
+        ]
+      },
+      {
+        "heading": "THE BAT RESERVOIR",
+        "body": "Ebola doesn't live in humans between outbreaks — it persists in fruit bats across Central Africa's forest belt, spilling into people through bushmeat or contaminated fruit. This is why outbreaks recur in the same Congo Basin geography rather than spreading from a single origin.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CD",
+              "UG",
+              "RW",
+              "SS"
+            ],
+            "label": "the cross-border outbreak zone",
+            "caption": "Bundibugyo strain moving from eastern Congo into western Uganda"
+          }
+        ]
+      },
+      {
+        "heading": "THE OUTBREAK ARC",
+        "body": "Ebola has surfaced repeatedly since its 1976 debut on the Ebola River. The 2014–16 West Africa epidemic — over 11,000 dead — forced the WHO reforms and the vaccine that now exist, but those tools were built for the Zaire strain driving that crisis.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1976",
+                "label": "First identified, Zaire & Sudan",
+                "emphasis": "start"
+              },
+              {
+                "year": "2007",
+                "label": "Bundibugyo strain discovered, Uganda"
+              },
+              {
+                "year": "2014",
+                "label": "West Africa epidemic begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Ervebo vaccine approved"
+              },
+              {
+                "year": "2022",
+                "label": "Sudan-strain outbreak, Uganda"
+              }
+            ],
+            "label": "Ebola's recurrence"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-04T08:28:45.980Z",
+    "label": "Ebola: Strains, Tests & Tracing",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-04-maruti-wagonr-e85-flex-fuel-india-ethanol": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT FLEX-FUEL ACTUALLY MEANS",
+        "body": "A flex-fuel engine isn't a different engine — it's an ordinary one plus a sensor that reads the ethanol fraction in the tank and retunes injection timing and fuel volume on the fly. The hardware cost is trivial; the intelligence is in the software and a few ethanol-resistant seals and fuel lines.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*E85* means up to **85% ethanol, 15% gasoline**. The gasoline isn't optional padding — it keeps the engine startable in cold weather, because pure ethanol won't vaporize enough to ignite below ~13°C."
+          }
+        ]
+      },
+      {
+        "heading": "THE ENERGY-DENSITY TAX",
+        "body": "Ethanol carries roughly a third less energy per liter than gasoline. So a flex-fuel car running E85 burns noticeably more fuel per kilometer — the import substitution is real, but it is not a free swap of one liter for one liter.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does a car get fewer kilometers per liter on E85 than on gasoline?",
+            "options": [
+              "Ethanol contains about a third less energy per liter",
+              "Ethanol burns slower and wastes heat",
+              "The flex-fuel sensor caps engine power",
+              "Ethanol clogs the fuel injectors over time"
+            ],
+            "correct": 0,
+            "explanation": "Ethanol's lower volumetric energy density means more fuel must burn to release the same energy — fuel economy drops 25–30% on E85."
+          }
+        ]
+      },
+      {
+        "heading": "THE BRAZIL PRECEDENT",
+        "body": "India is walking a road Brazil paved fifty years ago. Stung by the 1973 oil shock, Brazil launched Proálcool in 1975 to turn sugarcane into motor fuel; by the 2000s flex-fuel cars dominated new sales and ethanol displaced a large share of the nation's gasoline.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1973",
+                "label": "Oil shock hammers importers",
+                "emphasis": "start"
+              },
+              {
+                "year": "1975",
+                "label": "Proálcool program launched",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1979",
+                "label": "First ethanol-only cars sold"
+              },
+              {
+                "year": "2003",
+                "label": "Flex-fuel cars hit the market"
+              },
+              {
+                "year": "2010",
+                "label": "Flex-fuel dominates new sales"
+              }
+            ],
+            "label": "Brazil's ethanol pivot"
+          }
+        ]
+      },
+      {
+        "heading": "WHO MAKES THE WORLD'S ETHANOL",
+        "body": "Fuel ethanol is overwhelmingly a two-country story: the United States from corn and Brazil from sugarcane together make the vast majority of global supply. India is scaling fast off a much smaller base, mostly from sugarcane molasses and surplus grain.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "United States",
+                "value": 55,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Brazil",
+                "value": 30,
+                "tone": "neutral"
+              },
+              {
+                "label": "EU",
+                "value": 5,
+                "tone": "favorable"
+              },
+              {
+                "label": "China",
+                "value": 4,
+                "tone": "favorable"
+              },
+              {
+                "label": "India",
+                "value": 4,
+                "tone": "favorable"
+              },
+              {
+                "label": "Canada",
+                "value": 2,
+                "tone": "favorable"
+              }
+            ],
+            "label": "fuel ethanol production, approx. share"
+          }
+        ]
+      },
+      {
+        "heading": "THE FOOD-VERSUS-FUEL TENSION",
+        "body": "Every liter of ethanol starts as a crop that could have been eaten — sugarcane, corn, or grain diverted to the fuel tank. For a country that still imports edible oil and runs a vast food-subsidy system, scaling ethanol means deciding how much farmland serves engines instead of stomachs.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "India's lever is its **Ethanol Blended Petrol** program, which pushed nationwide blending toward the **20% (E20)** target years ahead of schedule — but E20 is a blend any car can burn, while **E85 needs a flex-fuel engine** built for it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE PUMP IS THE BOTTLENECK",
+        "body": "A flex-fuel car is useless without flex-fuel at the pump. This is the classic chicken-and-egg of fuel transitions: retailers won't install E85 dispensers until enough cars exist to buy from them, and buyers won't pay for flex capability they can't use. Brazil broke the deadlock with a blending mandate plus tax incentives; India's compounding depends on the same kind of forced coordination."
+      }
+    ],
+    "generatedAt": "2026-06-04T08:29:17.634Z",
+    "label": "Flex-Fuel & Ethanol",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-04-oman-hormuz-iran-war-trump-fees": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE STRAIT IS OMANI WATER",
+        "body": "The headline says Iran flanks Hormuz, but the shipping lanes themselves run through Oman's territorial sea off the Musandam Peninsula, not Iran's. Outbound tankers hug the southern, Omani side; this is why any tolling scheme needs Muscat, not just Tehran.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "OM",
+              "IR",
+              "AE"
+            ],
+            "label": "the Hormuz lanes",
+            "caption": "Shipping lanes pass through Omani, not Iranian, waters",
+            "markers": [
+              {
+                "lat": 26.566,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 26.18,
+                "lng": 56.24,
+                "label": "Khasab (Musandam)"
+              },
+              {
+                "lat": 26.85,
+                "lng": 56.37,
+                "label": "Larak Is. (Iran)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE INNOCENT-PASSAGE RULE",
+        "body": "Under the UN Convention on the Law of the Sea, ships enjoy transit passage through an international strait — coastal states cannot impede it, suspend it, or levy a charge for the mere act of passing. A Hormuz navigation fee would collide directly with this regime.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The key distinction is *transit passage* (free, through international straits) versus *innocent passage* (a weaker right elsewhere). Hormuz is the textbook strait the rule was written for — narrowest point under **24 nautical miles**, so the lanes sit inside someone's territorial sea no matter how they're drawn."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE TOLLS ARE ACTUALLY LEGAL",
+        "body": "Charging for passage is legal at artificial canals a state built and maintains — Suez, Panama — and was once collected at natural straits too. Denmark levied the Sound Dues on every ship entering the Baltic for over 400 years until the maritime powers forced their abolition in 1857.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1429",
+                "label": "Denmark begins Sound Dues"
+              },
+              {
+                "year": "1857",
+                "label": "Sound Dues abolished",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1869",
+                "label": "Suez Canal opens (tolled)"
+              },
+              {
+                "year": "1914",
+                "label": "Panama Canal opens (tolled)"
+              },
+              {
+                "year": "1982",
+                "label": "UNCLOS codifies free transit"
+              }
+            ],
+            "label": "the history of strait & canal tolls"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHOKEPOINT LEAGUE",
+        "body": "Hormuz isn't just one chokepoint among many — it carries more seaborne oil than any other passage on earth, with no overland route that can absorb the volume if it closes. That singularity is what makes a toll threat so explosive.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Crude & products transit",
+            "peers": [
+              {
+                "value": 20,
+                "label": "Hormuz"
+              },
+              {
+                "value": 16,
+                "label": "Malacca"
+              },
+              {
+                "value": 7,
+                "label": "Suez/SUMED"
+              },
+              {
+                "value": 6,
+                "label": "Bab el-Mandeb"
+              },
+              {
+                "value": 3,
+                "label": "Turkish Straits"
+              },
+              {
+                "value": 1,
+                "label": "Panama"
+              }
+            ],
+            "subjectLabel": "Hormuz",
+            "unit": "mb/d"
+          }
+        ]
+      },
+      {
+        "heading": "THE MUSANDAM EXCLAVE",
+        "body": "The Omani tip that commands Hormuz is geographically cut off from the rest of Oman by the UAE — an exclave reachable from the mainland only by sea or by crossing Emirati territory. The country that holds the strait's southern lane doesn't even border it overland.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the Law of the Sea, may a state bordering an international strait charge ships a transit toll?",
+            "options": [
+              "No — transit passage cannot be impeded or charged",
+              "Yes — the coastal state owns the water",
+              "Only for oil tankers above a tonnage limit"
+            ],
+            "correct": 0,
+            "explanation": "UNCLOS guarantees free transit passage through international straits; tolls are legal only at artificial canals like Suez and Panama."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-04T08:30:09.508Z",
+    "label": "Hormuz: Tolls & the Law of the Strait",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-04-polymarket-uma-oracle-whale-resolution": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OPTIMISTIC ORACLE",
+        "body": "Polymarket doesn't decide its own outcomes. It outsources resolution to UMA's oracle, which works on a presumption-of-truth model: someone proposes an answer with a bond, and if nobody disputes it within a window, it simply stands. Only a challenge triggers a full vote — most settlements never reach one."
+      },
+      {
+        "heading": "ONE TOKEN, ONE VOTE",
+        "body": "When a dispute does go to a vote, UMA token holders settle it — and weight scales with how many tokens you hold, not how many people agree with you. A handful of large wallets can outweigh thousands of small bettors. Here the top four No voters carried 25 times the entire Yes side's stake.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Top 4 No wallets",
+                "value": "~25× weight",
+                "tone": "unfavorable",
+                "weight": 25
+              },
+              {
+                "label": "Entire Yes side",
+                "value": "1× weight",
+                "tone": "neutral",
+                "weight": 1
+              }
+            ],
+            "label": "dispute vote weight"
+          }
+        ]
+      },
+      {
+        "heading": "THE SCHELLING POINT",
+        "body": "The design assumes honest convergence: voters are paid for siding with the majority, so the rational move is to vote for the obvious truth everyone else will also pick. It is a coordination game borrowed from game theory — and it holds only as long as the obvious truth is also the profitable one.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Thomas Schelling's insight: when strangers must agree without communicating, they converge on the *focal point* — the answer that's obvious *because* it's obvious. UMA bets that **the truth is the focal point**. Concentrated token holdings let a whale move where that point sits."
+          }
+        ]
+      },
+      {
+        "heading": "THE GOVERNANCE ATTACK",
+        "body": "Because voting power is purchasable, an oracle outcome can in principle be bought: acquire enough tokens to swing the vote, then profit on the market position the resolution decides. The cost of the tokens versus the size of the bet sets whether the attack pays. It is the plutocratic mirror of a 51% attack."
+      },
+      {
+        "heading": "THE ORACLE PROBLEM",
+        "body": "Blockchains are sealed systems — they cannot see whether a company filed a report or who won an election. Importing any real-world fact requires a trusted bridge, and every bridge can be corrupted, gamed, or simply mistaken. This is the oracle problem, and no design has fully solved it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't a smart contract just check a real-world fact like a corporate filing on its own?",
+            "options": [
+              "Filings aren't published as machine-readable data",
+              "A blockchain can't access any data outside itself without a trusted feed",
+              "It would cost too much gas to run the query",
+              "Securities law forbids contracts from reading filings"
+            ],
+            "correct": 1,
+            "explanation": "Chains are deterministic, sealed systems; any off-chain fact must be carried in by an oracle, which becomes the trust bottleneck."
+          }
+        ]
+      },
+      {
+        "heading": "WHEN THE TRUTH IS CONTESTED",
+        "body": "UMA's oracle has drawn fire before when a 'verifiable fact' turned out to be a matter of interpretation — a famous 2025 Polymarket dispute hinged on whether a garment counted as a suit. The risk isn't lying voters; it's that whoever controls the most tokens also controls how an ambiguous question gets read."
+      }
+    ],
+    "generatedAt": "2026-06-04T08:30:47.624Z",
+    "label": "UMA's Optimistic Oracle",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-04-southwest-monsoon-kerala-onset-imd-forecast": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT ACTUALLY DRIVES IT",
+        "body": "The monsoon is not rain on a schedule — it is a planetary-scale sea breeze. The Asian landmass heats faster than the Indian Ocean in summer, the rising hot air pulls moisture-laden winds off the cooler sea, and the Himalayas trap the system so it dumps its water over the subcontinent instead of escaping north."
+      },
+      {
+        "heading": "WHY KERALA IS THE STARTING GUN",
+        "body": "The southwest monsoon makes landfall first at India's southern tip, and the IMD only declares 'onset' when specific thresholds are met — sustained rainfall across a network of Kerala stations, wind depth, and outgoing-longwave-radiation signatures. It is a measured event, not a sighting, which is why a 4-day miss is meaningful.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "LK",
+              "MV"
+            ],
+            "label": "monsoon onset point",
+            "caption": "The system advances northeast from Kerala over ~6 weeks",
+            "markers": [
+              {
+                "lat": 8.5241,
+                "lng": 76.9366,
+                "label": "Thiruvananthapuram"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE EL NIÑO CONNECTION",
+        "body": "El Niño is a warming of the central Pacific that shifts the planet's rising-air zones eastward, away from India. The displaced circulation weakens the monsoon's pull. Roughly half of India's worst drought years coincide with El Niño — the correlation is one of the most robust in seasonal climate science.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The driver is the *Walker circulation* — the east-west loop of air over the tropical Pacific. El Niño **reverses** its normal direction, and India sits on the losing end."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 90% IS NOT 'ALMOST FINE'",
+        "body": "The monsoon delivers around three-quarters of India's entire annual rainfall in four months. Over half the farmland is rain-fed with no irrigation backup, so the kharif crop — rice, cotton, soybean, sugarcane planted with the first rains — lives or dies on this window. A 10% shortfall concentrated in the wrong weeks can mean a failed sowing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of India's annual rainfall arrives during the four-month summer monsoon?",
+            "options": [
+              "About a quarter",
+              "About half",
+              "About three-quarters",
+              "Nearly all of it"
+            ],
+            "correct": 2,
+            "explanation": "The June–September monsoon supplies ~75% of India's yearly rain, which is why a single weak season ripples through food prices and GDP."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE FORECAST IS SO HARD",
+        "body": "The monsoon is a coupled ocean-atmosphere system, mathematically chaotic — small errors in initial conditions explode over weeks. The IMD has issued seasonal forecasts since 1886, originally to anticipate famine after the catastrophic droughts of the 1870s, and even today the operational skill of long-range monsoon prediction remains modest by design of the physics, not failure of the modelers."
+      }
+    ],
+    "generatedAt": "2026-06-04T08:31:19.577Z",
+    "label": "The Southwest Monsoon",
+    "category": "science",
+    "articleCount": 1
   }
 }
