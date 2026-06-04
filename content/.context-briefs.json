@@ -301884,5 +301884,1565 @@
     "label": "Second-Life Batteries & Grid Storage",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-06-02-violence-between-criminal-groups-and-latam-governments-has-r": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HYDRA PROBLEM",
+        "body": "Killing or capturing a cartel boss — the 'kingpin strategy' borrowed from Plan Colombia — rarely ends an organization. It triggers a succession war: lieutenants fight to inherit the network, and the single hierarchy splinters into several smaller, more violent factions. Cut off one head, two grow back.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does the 'kingpin strategy' of killing or capturing cartel leaders typically produce?",
+            "options": [
+              "The cartel collapses and violence falls",
+              "Fragmentation into smaller, more violent factions",
+              "Traffickers switch to legal businesses",
+              "A permanent drop in drug supply"
+            ],
+            "correct": 1,
+            "explanation": "Removing the boss sets off a succession war; the network shatters into rival splinters that fight over territory, raising civilian casualties."
+          }
+        ]
+      },
+      {
+        "heading": "THE BALLOON EFFECT",
+        "body": "Enforcement displaces the drug trade, it doesn't shrink it. Squeeze production or trafficking in one place and it bulges out in another — coca eradication in Peru shifted it to Colombia in the 1990s, then Colombian pressure pushed processing and routes into Mexico. The market reorganizes around the pressure.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Analysts call the geographic version the **balloon effect** and the organizational version the **cockroach effect** — scatter the colony and it nests in more places than before."
+          }
+        ]
+      },
+      {
+        "heading": "THE CALDERÓN PRECEDENT",
+        "body": "Mexico ran this experiment at scale. In 2006 President Felipe Calderón deployed the army against the cartels; over the next decade homicides roughly tripled as the Sinaloa and Gulf organizations fractured into dozens of warring cells. The state won battles against bosses and lost the war on violence.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2000",
+                "label": "Plan Colombia funded"
+              },
+              {
+                "year": "2006",
+                "label": "Calderón deploys army",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2008",
+                "label": "Mérida Initiative"
+              },
+              {
+                "year": "2014",
+                "label": "Ayotzinapa disappearances"
+              },
+              {
+                "year": "2019",
+                "label": "Culiacán: state backs down"
+              }
+            ],
+            "label": "the militarized drug war"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CIVILIANS PAY",
+        "body": "A unified cartel is bad for the state but stable for the street — one group taxes and polices its turf. Fragmentation removes that monopoly: rival splinters contest the same plazas, and the fighting spills onto civilians, extortion victims, and bystanders rather than concentrating between cartel and army.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Mexico",
+                "value": "~25",
+                "cc": "MX",
+                "tone": "unfavorable",
+                "weight": 25
+              },
+              {
+                "label": "Colombia",
+                "value": "~25",
+                "cc": "CO",
+                "tone": "unfavorable",
+                "weight": 25
+              },
+              {
+                "label": "Brazil",
+                "value": "~22",
+                "cc": "BR",
+                "tone": "unfavorable",
+                "weight": 22
+              },
+              {
+                "label": "USA",
+                "value": "~6",
+                "cc": "US",
+                "tone": "neutral",
+                "weight": 6
+              }
+            ],
+            "label": "homicide rate, per 100k (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE BIG THREE STAYED OUT",
+        "body": "Colombia, Mexico, and Brazil host the region's largest criminal networks — and carry the longest memory of US intervention, from Plan Colombia to DEA operations on their soil. Joining a US-led security pact reads at home as ceding sovereignty over internal security, a politically toxic trade in all three capitals.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MX",
+              "CO",
+              "BR",
+              "US"
+            ],
+            "label": "who refused the pact"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-04T17:33:02.985Z",
+    "label": "The Kingpin Strategy & Cartel Fragmentation",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-03-ai-cameras-are-surveilling-the-roads-in-dhaka-bangladesh": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW THE CAMERA READS A PLATE",
+        "body": "The core technology is decades old: a camera grabs a frame, isolates the rectangle of the plate, and runs optical character recognition to turn pixels into a string. That string is matched against the vehicle registry in milliseconds. The novelty in Dhaka is not the reading — it is the automated leap from a match to a prosecution notice with no officer in the loop.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technique is **ANPR** — Automatic Number Plate Recognition — first deployed by British police in **1976**. For most of its life it was a *flagging* tool that handed a human a candidate; the shift is letting the software issue the penalty itself."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRESUMPTION FLIPS",
+        "body": "Ordinary prosecution puts the burden on the state to prove a specific person committed an act. Camera enforcement quietly inverts this: the notice goes to the registered owner of the plate, who must then prove they were not driving or that the reading was wrong. The machine's output is treated as presumptively correct, and contesting it costs the citizen time the system never spends.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When an automated traffic camera flags a vehicle, who is normally held liable for the penalty?",
+            "options": [
+              "The registered owner of the plate, whoever was actually driving",
+              "The driver, identified by facial recognition",
+              "No one until a police officer confirms the offence",
+              "The vehicle manufacturer"
+            ],
+            "correct": 0,
+            "explanation": "Camera regimes attach liability to the registered keeper, shifting the burden onto the owner to prove they were not the driver."
+          }
+        ]
+      },
+      {
+        "heading": "THE REVENUE ENGINE",
+        "body": "Automated enforcement is unique among policing tools because it pays for itself. Each camera generates a stream of fines that can fund more cameras, creating a feedback loop where the system's growth depends on finding violations, not reducing them. Wherever this loop runs without a hard wall between enforcement and the treasury, the incentive bends toward catching more, not toward safer roads.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The tell is whether fine revenue is *ring-fenced* from the operating budget. Where it isn't, the camera stops being a safety device and becomes a **collection terminal** — and the target quietly becomes the citation count, not the crash count."
+          }
+        ]
+      },
+      {
+        "heading": "FUNCTION CREEP",
+        "body": "A plate reader does not just catch the speeding car in front of it — it logs every plate that passes, with a timestamp and location. Stored and joined together, those logs reconstruct where a given vehicle has been over weeks. A network built to issue traffic fines becomes, without any new hardware, a retroactive movement-tracking database for an entire city.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Delhi",
+                "value": "~20",
+                "cc": "IN",
+                "weight": 20,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Singapore",
+                "value": "~18",
+                "cc": "SG",
+                "weight": 18,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "London",
+                "value": "~13",
+                "cc": "GB",
+                "weight": 13,
+                "tone": "neutral"
+              },
+              {
+                "label": "Dhaka",
+                "value": "~2 (rising)",
+                "cc": "BD",
+                "weight": 2,
+                "tone": "favorable"
+              }
+            ],
+            "label": "surveillance cameras per 1,000 residents (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE ARC OF THE WATCHED ROAD",
+        "body": "Dhaka is arriving late at a road others paved. ANPR moved from a police hunch-checker to a billing system to, in some states, a national grid where movement itself is the record. The question the article raises — enforcement with no governing law — is the gap every one of these systems opened first and legislated for, if at all, only afterward.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1976",
+                "label": "UK police field first ANPR",
+                "emphasis": "start"
+              },
+              {
+                "year": "1997",
+                "label": "London 'Ring of Steel' plate readers"
+              },
+              {
+                "year": "2003",
+                "label": "London congestion charge: cameras bill drivers",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2015",
+                "label": "China 'Skynet' camera grid scales nationwide"
+              },
+              {
+                "year": "2026",
+                "label": "Dhaka auto-files 1,000 cases, no statute"
+              }
+            ],
+            "label": "from flagging tool to surveillance grid"
+          }
+        ]
+      },
+      {
+        "heading": "WHY A FRAMEWORK COMES FIRST",
+        "body": "The reason mature systems eventually pass data-protection law is not ceremony — it is to answer the questions automation forces: how long are logs kept, who can query them, how is a wrong reading appealed, and what stops the traffic database from being repurposed for political or police use. Building the cameras before the law means those answers default to whoever controls the servers."
+      }
+    ],
+    "generatedAt": "2026-06-04T17:34:03.213Z",
+    "label": "Algorithmic Traffic Enforcement",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-04-after-11-years-at-mars-nasa-s-maven-spacecraft-went-out-with": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MISSING SHIELD",
+        "body": "Mars once had a global magnetic field, generated by a churning molten core. Roughly four billion years ago that core cooled and the dynamo shut off. With no magnetosphere to deflect the solar wind, the atmosphere was left exposed — the single decision-point that set Mars on the path to becoming a desert.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did Mars lose most of its atmosphere while Earth kept its own?",
+            "options": [
+              "Mars lost its global magnetic field, exposing the air to solar wind",
+              "Mars is farther from the Sun, so its air froze and fell out",
+              "Mars never had a thick atmosphere to begin with",
+              "Mars's volcanoes consumed the atmospheric gases"
+            ],
+            "correct": 0,
+            "explanation": "Once Mars's core cooled and the magnetic dynamo died, nothing deflected the solar wind, which stripped the upper atmosphere away over billions of years."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT SPUTTERING IS",
+        "body": "Solar wind is a stream of charged particles from the Sun. When it hits an unprotected upper atmosphere, ions slam into gas molecules and knock them clean off into space, one collision at a time. MAVEN's core finding was measuring this loss directly and confirming it explains where the air went.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is called **sputtering** — the same physics used industrially to coat lenses and chips, where ion bombardment ejects atoms from a surface. On Mars, the planet's own atmosphere was the surface being eroded."
+          }
+        ]
+      },
+      {
+        "heading": "THREE WAYS A PLANET LOSES WATER",
+        "body": "Water escapes a planet three ways: solar wind strips charged particles from the upper atmosphere (MAVEN's specialty), ultraviolet light splits water so the light hydrogen drifts off to space, and water reacts with rock and gets locked into minerals underground. Mars has done all three — and the books still don't fully balance, which is why the underground reservoir hunt continues."
+      },
+      {
+        "heading": "HOW THIN IS THIN",
+        "body": "Today the Martian surface holds less than one percent of Earth's air pressure — too low for liquid water, which boils away rather than pooling. Geological evidence shows ancient Mars once had pressure closer to Earth's, with rivers and lakes. The loss MAVEN measured is the difference between those two worlds.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Earth",
+                "value": "~1013 mb",
+                "weight": 1013,
+                "tone": "favorable"
+              },
+              {
+                "label": "Ancient Mars",
+                "value": "~1000 mb",
+                "weight": 1000,
+                "tone": "neutral"
+              },
+              {
+                "label": "Mars today",
+                "value": "~6 mb",
+                "weight": 6,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "surface air pressure (millibar)"
+          }
+        ]
+      },
+      {
+        "heading": "THE RELAY BACKBONE",
+        "body": "Rovers on the surface have weak antennas; almost all their data reaches Earth by uplinking to orbiters that relay it home. That makes the orbiter fleet critical infrastructure, and most of it is old — three of the four remaining relays were launched before MAVEN. NASA is now soliciting commercial replacements for the 2030s because the backbone is aging out.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2001",
+                "label": "Mars Odyssey arrives",
+                "emphasis": "start"
+              },
+              {
+                "year": "2003",
+                "label": "Mars Express (ESA)"
+              },
+              {
+                "year": "2006",
+                "label": "Reconnaissance Orbiter"
+              },
+              {
+                "year": "2014",
+                "label": "MAVEN arrives",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2016",
+                "label": "Trace Gas Orbiter (ESA)"
+              }
+            ],
+            "label": "the Mars relay fleet"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-04T17:34:54.223Z",
+    "label": "How Mars Lost Its Air",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-04-anatomy-of-a-scam-how-rajesh-exports-faked-rs-15-lakh-crore": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PASS-THROUGH BUSINESS",
+        "body": "Bullion refining is a high-turnover, razor-margin trade: a refiner's reported revenue is essentially the full value of the gold flowing through its furnaces, while its actual take is a refining fee of a fraction of a percent. This is why a single mid-sized refiner can post revenue rivalling a tech giant's — and why that revenue balloons whenever the gold price climbs.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4580.98,
+              4684.25,
+              4695.85,
+              4706.72,
+              4711.53,
+              4692.03,
+              4753.28,
+              4711.77,
+              4685.25,
+              4650.57,
+              4540.65,
+              4535.45,
+              4535.69,
+              4575.14,
+              4491.98,
+              4536.19,
+              4525.24,
+              4494.01,
+              4522,
+              4563.72,
+              4547.87,
+              4516.99,
+              4441.32,
+              4477.7,
+              4529.52,
+              4516.92,
+              4529.81,
+              4475.04,
+              4462.11,
+              4449.62,
+              4468.46
+            ],
+            "periods": [
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 4"
+            ],
+            "label": "Gold (PAX Gold)",
+            "unit": "$/oz",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "GROSS VS NET",
+        "body": "The accounting question beneath the fraud allegation is whether a company books the metal's entire value as its own revenue or only the margin it earns for processing it. Inflating sales 'by hundreds of times' is the signature of treating principal as revenue.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Accountants call this the *principal vs agent* distinction: a true principal owns the inventory and bears its price risk; an *agent* merely processes another's metal and may book only the **fee**, not the gold's face value."
+          }
+        ]
+      },
+      {
+        "heading": "THE SWISS REFINING HUB",
+        "body": "The Swiss subsidiary at the center of the probe, Valcambi, sits in the Ticino valleys near the Italian border — the global chokepoint for gold. Roughly two-thirds of the world's gold is refined in a handful of Swiss plants before flowing onward to Asian jewelry markets and central-bank vaults.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CH",
+              "IN",
+              "AE",
+              "CN"
+            ],
+            "label": "Swiss hub feeds the Asian bullion market",
+            "markers": [
+              {
+                "lat": 45.846,
+                "lng": 9.005,
+                "label": "Valcambi, Balerna"
+              }
+            ]
+          },
+          {
+            "type": "quiz",
+            "question": "Roughly what share of the world's gold passes through Swiss refineries?",
+            "options": [
+              "~10%",
+              "~35%",
+              "~65%",
+              "~90%"
+            ],
+            "correct": 2,
+            "explanation": "About two-thirds of global gold is refined in Switzerland, concentrated in four plants — Valcambi, PAMP, Argor-Heraeus, and Metalor."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE GOLD GOES",
+        "body": "Newly mined and recycled gold converges on the Swiss refiners, which recast it into bars and onward-sell it to three end markets: jewelry buyers (above all India and China), private and ETF bar hoards, and central banks rebuilding reserves.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "mines",
+                "label": "Mines"
+              },
+              {
+                "id": "scrap",
+                "label": "Recycled scrap"
+              },
+              {
+                "id": "swiss",
+                "label": "Swiss refiners"
+              },
+              {
+                "id": "jewelry",
+                "label": "Jewelry"
+              },
+              {
+                "id": "bars",
+                "label": "Bars & ETFs"
+              },
+              {
+                "id": "cb",
+                "label": "Central banks"
+              }
+            ],
+            "links": [
+              {
+                "source": "mines",
+                "target": "swiss",
+                "value": 3000
+              },
+              {
+                "source": "scrap",
+                "target": "swiss",
+                "value": 1200
+              },
+              {
+                "source": "swiss",
+                "target": "jewelry",
+                "value": 2200
+              },
+              {
+                "source": "swiss",
+                "target": "bars",
+                "value": 1000
+              },
+              {
+                "source": "swiss",
+                "target": "cb",
+                "value": 1000
+              }
+            ],
+            "label": "global gold flow (approx. tonnes/yr)"
+          }
+        ]
+      },
+      {
+        "heading": "THE EX-PARTE ORDER",
+        "body": "India's market regulator can freeze a company's conduct before any trial, on its own initial finding, to prevent ongoing harm to investors. That is what an 'interim' order is — a holding action, not a verdict, issued without first hearing the accused.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**SEBI** wields powers granted after the 1992 Harshad Mehta securities scandal — the crisis that created the regulator. An *ex-parte interim* order trades due-process delay for speed, on the logic that a final ruling could arrive too late to protect the market."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE STATE IS EXPOSED",
+        "body": "Life Insurance Corporation — India's state-owned insurer and its single largest institutional investor — holds a double-digit stake in the company. When a government-controlled fund holds shares in a firm its own regulator is probing, a corporate fraud quietly becomes a public-money problem."
+      }
+    ],
+    "sources": [
+      "CoinGecko · PAXG (gold-backed) · as of 2026-06-04"
+    ],
+    "generatedAt": "2026-06-04T17:36:11.403Z",
+    "label": "Gold Refining & Revenue Fraud",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-04-boeing-787-s-nose-suddenly-drops-at-frankfurt-airport-severa": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FIRST LINE: WEIGHT-ON-WHEELS",
+        "body": "Every airliner carries weight-on-wheels sensors at the gear struts. When the oleo strut is compressed by the aircraft's mass, the logic reads 'on ground' and electrically inhibits gear retraction — among dozens of other ground/flight behaviors. The gear lever physically can't command a retract cycle while these sensors say the wheels are loaded.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The sensor is the **weight-on-wheels** switch, also called the **squat switch** or **WoW**. The same signal that locks out gear retraction also enables thrust reversers, arms the spoilers, and tells the pressurization system it's safe to dump cabin pressure."
+          },
+          {
+            "type": "quiz",
+            "question": "On the ground, what normally prevents an airliner's landing gear from retracting?",
+            "options": [
+              "Weight-on-wheels sensors that inhibit the retract command",
+              "The weight of fuel pinning the gear down",
+              "Tire friction against the tarmac",
+              "The pilot must hold a safety button"
+            ],
+            "correct": 0,
+            "explanation": "Compressed struts trigger weight-on-wheels logic, which electrically locks out retraction — so a ground collapse points to that protection being bypassed or failed."
+          }
+        ]
+      },
+      {
+        "heading": "THE SECOND LINE: THE DOWNLOCK",
+        "body": "Independent of any electronics, each gear leg has a mechanical over-center 'downlock' — a linkage that snaps slightly past straight, so that load actually pushes it tighter rather than folding it. Holding the gear down does not depend on hydraulic pressure; you have to actively unlock the mechanism before it can ever move. A nose gear that drops on its own means this lock was not engaged."
+      },
+      {
+        "heading": "WHY GROUND COLLAPSES HAPPEN",
+        "body": "In-flight gear failures are vanishingly rare; the dangerous moment is on the ramp during maintenance and servicing. When hydraulics are depressurized for work and the safety downlock pins are pulled, the only thing holding the gear is the mechanical lock — and a mis-set lever, a wiring fault, or a maintenance error can let it retract.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "WoW logic",
+                "value": "electrical",
+                "tone": "neutral"
+              },
+              {
+                "label": "Over-center lock",
+                "value": "mechanical",
+                "tone": "neutral"
+              },
+              {
+                "label": "Ground safety pins",
+                "value": "manual",
+                "tone": "neutral"
+              }
+            ],
+            "label": "what holds the gear down — three independent layers"
+          }
+        ]
+      },
+      {
+        "heading": "WHY FUELING IS THE MOMENT",
+        "body": "During fueling and turnaround the aircraft is often on partial or depressurized hydraulics with crew and equipment around the gear. That removes the hydraulic cushion that would normally dampen any uncommanded movement, so a latent fault that would be invisible in flight expresses itself as a sudden drop on the ramp."
+      },
+      {
+        "heading": "THE INFANT-MORTALITY PARADOX",
+        "body": "A six-month-old jet failing feels backwards, but reliability engineers expect it. The 'bathtub curve' predicts a spike of early failures from manufacturing and installation defects — a mis-torqued fitting, a swapped sensor, a wiring pin in the wrong slot — before a long flat reliable middle life. Brand-new is statistically one of the riskier windows, not the safest.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why aircraft go through an intensive *break-in* monitoring period, and why early-life faults are usually **assembly errors**, not worn-out parts — the part never had time to wear."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-04T17:37:06.764Z",
+    "label": "How Landing Gear Stays Down",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-04-buoys-track-ocean-waves-across-14-000-km-from-storms-in-anta": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISPERSION CLOCK",
+        "body": "Ocean waves sort themselves by speed as they leave a storm. In deep water a wave's speed rises with its period — a 20-second swell travels more than three times faster than a 6-second chop. So the longest, smoothest swells outrun the rest and reach a distant shore first, days ahead of the storm's shorter waves. Forecasters read that spread of arrivals like a clock ticking backward to the storm.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "22-second",
+                "value": "~34 m/s",
+                "weight": 34
+              },
+              {
+                "label": "18-second",
+                "value": "~28 m/s",
+                "weight": 28
+              },
+              {
+                "label": "14-second",
+                "value": "~22 m/s",
+                "weight": 22
+              },
+              {
+                "label": "10-second",
+                "value": "~16 m/s",
+                "weight": 16
+              },
+              {
+                "label": "6-second",
+                "value": "~9 m/s",
+                "weight": 9
+              }
+            ],
+            "label": "deep-water wave speed by period"
+          },
+          {
+            "type": "prose",
+            "text": "This sorting is called *dispersion*: a storm radiates a chaotic jumble, but distance combs it into clean, evenly-spaced swell — which is why the surf from a far-off storm arrives orderly while a local storm's sea is a mess."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SWELL SURVIVES",
+        "body": "Once a long wave leaves the wind that made it, it stops growing and barely decays — deep-water waves lose very little energy to friction, so a Southern Ocean swell can cross an entire ocean basin and still raise a beach thousands of kilometers away. Wind chop dies within sight of the storm; long-period swell is the part that travels.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "After a distant storm, which swells reach a far shoreline first?",
+            "options": [
+              "The long-period swells",
+              "The short, choppy waves",
+              "They all arrive together"
+            ],
+            "correct": 0,
+            "explanation": "Deep-water wave speed increases with period, so the longest swells move fastest and arrive first — the wave train fans out by speed across the ocean."
+          }
+        ]
+      },
+      {
+        "heading": "THE GREAT-CIRCLE PATH",
+        "body": "Swell radiates outward along great-circle arcs, the shortest paths on a sphere. The Southern Ocean has an uninterrupted ring of open water where storms spin up enormous fetch, and a great circle from there runs almost straight up the Pacific — giving Antarctic storms a clear, unobstructed shot at Alaska's shore 14,000 km away."
+      },
+      {
+        "heading": "THE MUNK PRECEDENT",
+        "body": "This is not the first time waves were tracked from Antarctica to Alaska. In 1963 Walter Munk and Frank Snodgrass strung pressure sensors across the Pacific and followed swell from Southern Ocean storms all the way north — proving waves carry a readable signature of storms half a world away. The new buoy fleet does at the level of individual waves what Munk did for whole swell trains.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1944",
+                "label": "Sverdrup–Munk swell forecasting for Allied landings"
+              },
+              {
+                "year": "1963",
+                "label": "Munk & Snodgrass track Pacific swell, pole to pole",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026",
+                "label": "Buoy fleet follows individual waves, storm to shore"
+              }
+            ],
+            "label": "tracking waves across an ocean"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT MATTERS",
+        "body": "A coastline can be flooded or its harbors closed by a storm no one there ever saw — the energy arrives from over the horizon. Validating that swells behave predictably across 14,000 km lets hazard models warn a shore about a storm thousands of kilometers offshore, turning a distant gale into a forecast rather than a surprise."
+      }
+    ],
+    "generatedAt": "2026-06-04T17:38:05.725Z",
+    "label": "How Swell Crosses an Ocean",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-04-european-parliament-drops-google-citing-privacy-concerns-pol": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE REAL RISK",
+        "body": "The fear isn't Google's ads — it's American law. The 2018 CLOUD Act lets US authorities compel any US-headquartered company to hand over data it controls, even when that data sits on servers in Europe. For a parliament, that means a US court order could in theory reach lawmakers' search queries no matter where they're stored.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Two US statutes drive European anxiety: the **CLOUD Act** (extraterritorial data access) and **FISA Section 702** (warrantless surveillance of non-Americans). Together they mean US jurisdiction follows the *company*, not the server."
+          }
+        ]
+      },
+      {
+        "heading": "THE SCHREMS PRECEDENT",
+        "body": "This is the latest move in a decade-long legal war. Austrian lawyer Max Schrems twice convinced the EU's top court that US surveillance law is incompatible with European privacy rights — collapsing first the Safe Harbor framework, then Privacy Shield. Each ruling forced thousands of companies to rewire how transatlantic data flows.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2000",
+                "label": "Safe Harbor adopted"
+              },
+              {
+                "year": "2015",
+                "label": "Safe Harbor struck (Schrems I)"
+              },
+              {
+                "year": "2016",
+                "label": "Privacy Shield adopted"
+              },
+              {
+                "year": "2020",
+                "label": "Privacy Shield struck (Schrems II)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "Data Privacy Framework"
+              }
+            ],
+            "label": "EU–US data transfer frameworks"
+          }
+        ]
+      },
+      {
+        "heading": "WHY EUROPE HAS NO GOOGLE",
+        "body": "This isn't the first try. France and Germany launched Quaero, a state-backed search project, in 2005 to build a European rival; after hundreds of millions of euros the partners split and the effort quietly died by 2013. Building a web search engine is one of the most capital-intensive things in software, and Europe has repeatedly failed to fund it at scale."
+      },
+      {
+        "heading": "THE INDEX MIRAGE",
+        "body": "Here's the catch: 'switching away from Google' rarely means escaping Big Tech's plumbing. Crawling and indexing the entire web costs billions, so most privacy-branded engines don't build their own index — they re-sell Microsoft Bing's results with tracking stripped out. Qwant, DuckDuckGo, and Ecosia have all leaned on Bing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Most 'privacy-first' search engines (DuckDuckGo, Ecosia, Qwant) get their core results from whose index?",
+            "options": [
+              "They each crawl the web themselves",
+              "Microsoft Bing",
+              "Google",
+              "A shared European index"
+            ],
+            "correct": 1,
+            "explanation": "Building a full web index costs billions, so most privacy engines syndicate Microsoft Bing and add a privacy layer on top."
+          }
+        ]
+      },
+      {
+        "heading": "THE MARKET REALITY",
+        "body": "The scale of dependence is the whole problem. Google handles roughly nine in ten searches in Europe — a near-monopoly that took two decades and a self-built index to establish. A symbolic default switch by 720 lawmakers is a political signal, not a dent in that share.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Google",
+                "value": "~90%",
+                "weight": 90,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Bing",
+                "value": "~3%",
+                "weight": 3,
+                "tone": "neutral"
+              },
+              {
+                "label": "Yandex",
+                "value": "~2%",
+                "weight": 2,
+                "tone": "neutral"
+              },
+              {
+                "label": "DuckDuckGo",
+                "value": "~1%",
+                "weight": 1,
+                "tone": "favorable"
+              },
+              {
+                "label": "Qwant",
+                "value": "<1%",
+                "weight": 0.5,
+                "tone": "favorable"
+              }
+            ],
+            "label": "search market share in Europe (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT SOVEREIGNTY MEANS HERE",
+        "body": "'Cyber sovereignty' is the doctrine that a state should control the digital infrastructure its institutions run on — the same logic behind the EU's GAIA-X cloud project and its push for home-grown chips. The bet is that strategic autonomy is worth paying a performance and convenience penalty for, because dependence on foreign platforms is a vulnerability that surfaces only in a crisis."
+      }
+    ],
+    "generatedAt": "2026-06-04T17:38:48.280Z",
+    "label": "Digital Sovereignty & Search",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-04-google-employees-internally-share-memes-about-how-its-ai-suc": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT '75% OF CODE' ACTUALLY COUNTS",
+        "body": "The figure almost certainly counts characters or lines accepted from autocomplete, not logic designed by a human. Modern AI assistants suggest the next token as you type; accepting a closing brace, an import line, or a boilerplate getter all register as 'AI-written.' The metric measures keystrokes saved, not problems solved.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The classic warning, widely attributed to early software managers: *measuring programming progress by lines of code is like measuring aircraft-building progress by weight.* More code is usually a **liability**, not an asset."
+          }
+        ]
+      },
+      {
+        "heading": "GOODHART'S LAW",
+        "body": "Economist Charles Goodhart observed in 1975 that when a measure becomes a target, it stops being a good measure. The moment 'percentage of code written by AI' becomes a number the CEO repeats to investors, every team has an incentive to route more typing through the tool — whether or not it improves the product.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**Goodhart's Law** is why \"lines shipped,\" \"commits per week,\" and \"AI adoption rate\" all decay into theater once leadership starts counting them."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE SOFTWARE COST ACTUALLY LIVES",
+        "body": "Writing the first version of a program is the cheap part. Studies of the software lifecycle consistently find that the majority of total cost arrives after release — bug fixes, security patches, adapting to changed requirements, and the slow tax of reading code someone (or something) else wrote. Generating that first version faster barely touches the larger bill.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "After release",
+                "value": "~60%",
+                "tone": "unfavorable",
+                "weight": 60
+              },
+              {
+                "label": "Initial build",
+                "value": "~40%",
+                "tone": "neutral",
+                "weight": 40
+              }
+            ],
+            "label": "where total software cost falls over a system's life"
+          }
+        ]
+      },
+      {
+        "heading": "THE REVIEW BOTTLENECK",
+        "body": "Code a machine generates in seconds still needs a human to read, understand, and vouch for it before it ships. Reading and verifying unfamiliar code is slower and more error-prone than writing your own. Accelerating generation while review stays manual just moves the traffic jam downstream — which is the gap the memes are pointing at.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Across a typical software system's full life, which phase consumes the most total cost?",
+            "options": [
+              "Writing the first version",
+              "Maintenance and changes after release",
+              "Gathering requirements up front",
+              "Final testing before launch"
+            ],
+            "correct": 1,
+            "explanation": "Post-release maintenance — fixes, patches, and adapting to change — typically dominates lifetime cost, so faster initial authoring saves the cheapest slice."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT INVESTORS ARE OWED",
+        "body": "US securities law treats statements that a reasonable investor would rely on as material — and forward-looking productivity claims can cross that line. A specific number like '75% of new code' invites scrutiny of whether the company holds data linking it to quality or output. Disclosing the flattering metric while withholding the quality picture is exactly the asymmetry regulators watch for."
+      }
+    ],
+    "generatedAt": "2026-06-04T17:39:34.557Z",
+    "label": "Measuring Code by the Pound",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-04-india-to-drop-capital-gains-tax-for-foreign-investors-in-gov": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY AN INDEX DECISION MOVES BILLIONS",
+        "body": "Trillions of dollars are managed passively — funds that don't pick bonds, they replicate an index. When an index adds a country, every fund tracking it must buy that country's bonds mechanically, regardless of price or view. Inclusion converts an editorial decision by an index provider into forced, automatic demand."
+      },
+      {
+        "heading": "WHY THE TAX WAS THE BLOCKER",
+        "body": "Index providers demand frictionless settlement. A capital-gains or withholding tax on foreign holders means every fund must compute, withhold, and reclaim tax on each trade — an operational nightmare across thousands of passive accounts. India built a tax-free 'Fully Accessible Route' for select bonds in 2020 precisely so they could qualify; this waiver extends that logic to clear the last hurdle.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is the **Fully Accessible Route (FAR)** — a class of government bonds with no foreign-ownership cap. Index eligibility hinges less on yield than on whether money can get *in and out* without tax or quota friction."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "JPMorgan added India to its benchmark GBI-EM emerging-market bond index in June 2024, phasing in to a 10% cap — the maximum weight, matching China. Bloomberg's own EM index followed in 2025. The Global Aggregate, a far larger developed-and-emerging benchmark, is the bigger prize now under review.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2020",
+                "label": "FAR tax-free bond route created"
+              },
+              {
+                "year": "2024-06",
+                "label": "JPMorgan GBI-EM inclusion",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2025",
+                "label": "Bloomberg EM index added"
+              },
+              {
+                "year": "2026",
+                "label": "Global Aggregate review"
+              }
+            ],
+            "label": "India's index journey"
+          }
+        ]
+      },
+      {
+        "heading": "THE HOT MONEY TRADEOFF",
+        "body": "Passive inflows are mechanical on the way in — and mechanical on the way out. If a country is downgraded or its weight is cut, the same funds sell in lockstep. Index money is fickle by design: it follows rules, not loyalty, so inclusion deepens markets but also imports global risk sentiment directly into local yields."
+      },
+      {
+        "heading": "WHY THE RUPEE REACTS",
+        "body": "Foreign bond buyers must first convert dollars into rupees to purchase, which props the currency up on the way in. But the same channel runs in reverse during stress, and the central bank often sterilizes inflows to stop the rupee overshooting — buying dollars to keep exports competitive while absorbing the surge.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              95.029174,
+              94.729612,
+              94.62293,
+              94.425498,
+              94.425498,
+              94.8754,
+              95.576514,
+              95.55195,
+              95.719988,
+              95.829548,
+              96.003,
+              96.027,
+              96.13634,
+              96.389098,
+              96.875003,
+              96.376027,
+              96.243053,
+              95.719748,
+              95.700477,
+              95.415433,
+              95.341057,
+              95.70115,
+              96.383018,
+              95.600602,
+              95.01655,
+              95.06455,
+              94.831403,
+              95.108606,
+              95.573359,
+              95.723896
+            ],
+            "periods": [
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHO ELSE SITS AT THE CAP",
+        "body": "In the flagship GBI-EM index, a handful of large emerging markets dominate the weighting, each capped near 10%. India joining at the ceiling means it instantly rivals China, Indonesia, and Mexico for the largest slice of passive emerging-market bond money.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What forces index funds to buy a country's bonds the moment it joins a benchmark?",
+            "options": [
+              "Passive funds must replicate the index, buying mechanically regardless of price",
+              "Central banks order domestic banks to purchase the new bonds",
+              "Index providers buy the bonds directly and resell them"
+            ],
+            "correct": 0,
+            "explanation": "Passive funds track an index by construction, so inclusion converts an index-provider decision into automatic, price-insensitive demand."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-04"
+    ],
+    "generatedAt": "2026-06-04T17:40:06.140Z",
+    "label": "Bond Index Inclusion",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-04-lebanon-israel-ceasefire-deal-made-in-hope-rather-than-expec": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BLUE LINE, NOT A BORDER",
+        "body": "Israel and Lebanon have never agreed a mutual border. The 'Blue Line' is a withdrawal line the UN drew in 2000 to certify Israel had left south Lebanon — a line of convenience, not a treaty boundary. Both sides dispute points along it, which is why every clash is also an argument about where the line even is.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL",
+              "SY"
+            ],
+            "label": "the southern front",
+            "caption": "the Blue Line runs along the southern edge of Lebanon",
+            "markers": [
+              {
+                "lat": 33.1206,
+                "lng": 35.4308,
+                "label": "Bint Jbeil"
+              },
+              {
+                "lat": 33.2705,
+                "lng": 35.2036,
+                "label": "Litani River mouth"
+              },
+              {
+                "lat": 33.2333,
+                "lng": 35.5708,
+                "label": "Shebaa Farms"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY HEZBOLLAH WASN'T AT THE TABLE",
+        "body": "Lebanon is a state that does not control its own south. Hezbollah is simultaneously a political party in the Beirut government, a social-welfare network, and the most heavily armed non-state force in the world — better equipped than the Lebanese Army. A ceasefire signed by the Lebanese state binds an army that cannot enforce it on the militia that actually does the fighting.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the core dysfunction: the **Lebanese Armed Forces** answer to Beirut, but **Hezbollah** answers to its own command and to Tehran. A deal with one is not a deal with the other."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1701 FRAMEWORK",
+        "body": "UN Resolution 1701 ended the 2006 war on paper: Hezbollah was to pull north of the Litani River, the Lebanese Army and UNIFIL peacekeepers would fill the gap, and Israel would withdraw. None of it fully happened. Every subsequent ceasefire is just 1701 re-promised — which is why deals here are 'made in hope rather than expectation.'",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1978",
+                "label": "Israel invades south Lebanon (Litani)"
+              },
+              {
+                "year": "1982",
+                "label": "Siege of Beirut; PLO expelled"
+              },
+              {
+                "year": "2000",
+                "label": "Israel withdraws; Blue Line drawn"
+              },
+              {
+                "year": "2006",
+                "label": "34-day war; Resolution 1701",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Full-scale war reignites"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1985",
+                "to": "2000",
+                "label": "Israeli 'security zone' occupation",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "the recurring war"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE STRIKES DON'T STOP",
+        "body": "Israel's doctrine since 2006 treats a ceasefire as a freeze on Hezbollah's actions, not its own. Tel Aviv reserves the right to strike what it calls rebuilding — arms convoys, tunnel works, rocket caches — meaning 'the ceasefire holds' and 'forces remain and strikes continue' are, in Israeli framing, not a contradiction.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did UN Resolution 1701 require Hezbollah to do after the 2006 war?",
+            "options": [
+              "Disarm completely and disband",
+              "Withdraw its forces north of the Litani River",
+              "Hand its rockets to UNIFIL",
+              "Recognize the Blue Line as a border"
+            ],
+            "correct": 1,
+            "explanation": "1701 demanded a Hezbollah pullback north of the Litani with the Lebanese Army and UNIFIL filling the zone — disarmament was never actually achieved."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2006 SHADOW",
+        "body": "Bint Jbeil, in the strike zone, was the fiercest battle of 2006: Hezbollah held the town against Israel's elite Golani Brigade in days of close urban combat, and Israel withdrew without taking it. In Hezbollah's narrative it is proof Israeli ground forces can be fought to a standstill — the memory that makes every new incursion politically costly for Israel and ideologically vital for Hezbollah."
+      }
+    ],
+    "generatedAt": "2026-06-04T17:40:40.865Z",
+    "label": "The Lebanon–Israel Front",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-04-new-research-challenges-official-narrative-on-commercial-cri": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "DELAY IS THE WEAPON",
+        "body": "A complex fraud case does not need to be won at trial — it needs only to be postponed. Witnesses move, retire, or die; investigators are transferred; dockets are lost; memories of who signed what fade. Every postponement shifts the odds toward the defendant, which is why the well-resourced accused fight on procedure, not facts."
+      },
+      {
+        "heading": "THE STALINGRAD DEFENCE",
+        "body": "South African courts have a name for the tactic the wealthy use against prosecutors: litigate every preliminary point — recusals, disclosure, jurisdiction — to bleed time. It survives because the defence's lawyers are paid by the hour while the state's prosecutors are stretched across hundreds of dockets.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **Stalingrad defence** — a phrase South African courts borrowed after Jacob Zuma's legal team used it for years — is *war by attrition*: contest every step, appeal every ruling, and bet the state runs out of time and money before the merits are ever heard."
+          }
+        ]
+      },
+      {
+        "heading": "THE HOLLOWING OF THE NPA",
+        "body": "The prosecution service did not weaken by accident. During the state-capture years, leadership was repeatedly replaced, specialist units were defunded, and skilled prosecutors left for the private sector. A justice system can be disabled without changing a single law — just by starving the institution that enforces them.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2009",
+                "label": "Zuma presidency begins"
+              },
+              {
+                "year": "2016",
+                "label": "'State of Capture' report"
+              },
+              {
+                "year": "2018",
+                "label": "Zuma resigns; Zondo Commission begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "Zondo final report"
+              }
+            ],
+            "label": "state capture & the NPA"
+          }
+        ]
+      },
+      {
+        "heading": "THE REVOLVING DOOR AT THE TOP",
+        "body": "The National Director of Public Prosecutions is meant to be a fixed ten-year term insulating prosecution from politics. In practice, head after head was pushed out — several appointments later declared unlawful by the courts — leaving the office unable to sustain long, complex cases.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Vusi Pikoli",
+                "role": "Suspended over Selebi case",
+                "years": "2005–2009",
+                "cc": "ZA"
+              },
+              {
+                "name": "Menzi Simelane",
+                "role": "Appointment ruled invalid",
+                "years": "2009–2012",
+                "cc": "ZA"
+              },
+              {
+                "name": "Shaun Abrahams",
+                "role": "Appointment ruled invalid",
+                "years": "2015–2018",
+                "cc": "ZA"
+              },
+              {
+                "name": "Shamila Batohi",
+                "role": "Current NDPP",
+                "years": "2019–",
+                "cc": "ZA"
+              }
+            ],
+            "label": "South Africa's chief prosecutors"
+          }
+        ]
+      },
+      {
+        "heading": "WHY FINANCIAL CRIME IS HARD EVERYWHERE",
+        "body": "White-collar prosecution is slow by nature: the evidence is thousands of documents, the harm is diffuse, and proving intent in a wire transfer is harder than proving it in a stabbing. Enron's prosecutions took years; most jurisdictions convict violent criminals at far higher rates than financial ones — the gap is structural, not unique to South Africa.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which body was tasked with investigating 'state capture' in South Africa?",
+            "options": [
+              "The Zondo Commission",
+              "The Truth and Reconciliation Commission",
+              "The Marikana Commission",
+              "The Seriti Commission"
+            ],
+            "correct": 0,
+            "explanation": "The Zondo Commission (2018–2022) probed state capture; the TRC addressed apartheid-era crimes, Marikana the 2012 mine shootings, and Seriti the arms deal."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-04T17:41:37.401Z",
+    "label": "Why White-Collar Cases Collapse",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-04-tracing-digital-links-between-viory-and-ruptly": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WIRE ECONOMY",
+        "body": "Most broadcasters cannot afford bureaus in every country, so they buy raw footage from wholesale video agencies and cut it into their own packages. The audience sees a local anchor; the pictures came from a wire. Whoever supplies the pictures quietly sets the frame for what a story looks like.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The trade calls unedited footage **B-roll**. A *wire agency* sells it by subscription, and a single feed can surface on hundreds of channels the same evening — which is exactly why control of the feed is worth so much."
+          }
+        ]
+      },
+      {
+        "heading": "WHO FUNDS THE WIRE",
+        "body": "The global newsfeed business splits between commercial agencies that answer to clients and state-funded ones that answer to governments. The footage looks identical; the incentive behind which stories get covered does not.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Reuters",
+                "value": "Commercial",
+                "tone": "favorable",
+                "cc": "GB"
+              },
+              {
+                "label": "AP",
+                "value": "Cooperative",
+                "tone": "neutral",
+                "cc": "US"
+              },
+              {
+                "label": "AFP",
+                "value": "Semi-public",
+                "tone": "neutral",
+                "cc": "FR"
+              },
+              {
+                "label": "Ruptly",
+                "value": "Russian state",
+                "tone": "unfavorable",
+                "cc": "RU"
+              },
+              {
+                "label": "Xinhua",
+                "value": "Chinese state",
+                "tone": "unfavorable",
+                "cc": "CN"
+              }
+            ],
+            "label": "major video/wire agencies by funder"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT RUPTLY IS",
+        "body": "Ruptly is a Berlin-registered video agency wholly owned by RT, the Kremlin's international broadcaster. It sells live feeds and raw clips to outlets worldwide — many of which never badge the footage as Russian-sourced. The value of the subsidiary is precisely that its name does not say RT.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "RT rebranded from *Russia Today* in 2009 specifically to soften the state association. Ruptly is the same move one layer deeper: **distance the product from the funder**."
+          }
+        ]
+      },
+      {
+        "heading": "THE CORPORATE TRIANGLE",
+        "body": "The chain runs from Moscow, where RT is funded and directed, through Berlin, where Ruptly operates as the commercial face, to Abu Dhabi, where Viory is registered as an independent-looking distributor. Each jurisdiction adds a layer of separation between the broadcaster and the source.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "DE",
+              "AE"
+            ],
+            "label": "where the chain is registered",
+            "markers": [
+              {
+                "lat": 55.75,
+                "lng": 37.62,
+                "label": "RT (Moscow)"
+              },
+              {
+                "lat": 52.52,
+                "lng": 13.4,
+                "label": "Ruptly (Berlin)"
+              },
+              {
+                "lat": 24.45,
+                "lng": 54.38,
+                "label": "Viory (Abu Dhabi)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "FINGERPRINTING OWNERSHIP",
+        "body": "When two companies deny any link, researchers look past the paperwork to the plumbing: shared server IP addresses, a reused TLS security certificate, overlapping data flows. Corporate structures can be hidden behind shell registrations, but the infrastructure that actually serves the websites is far harder to disguise.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A **TLS certificate** is the cryptographic ID a site presents to prove who it is. Two unrelated firms almost never share one — so a reused certificate is a near-signature of common control."
+          },
+          {
+            "type": "quiz",
+            "question": "What kind of evidence most directly links two firms that deny a connection on paper?",
+            "options": [
+              "Shared server IPs and a reused digital certificate",
+              "Similar logos and website fonts",
+              "Covering the same news stories",
+              "Being registered in the same year"
+            ],
+            "correct": 0,
+            "explanation": "Shared hosting infrastructure and a reused certificate point to common technical control that shell registrations can't hide."
+          }
+        ]
+      },
+      {
+        "heading": "THE ACTIVE MEASURES LINEAGE",
+        "body": "Routing state messaging through deniable intermediaries is an old Soviet craft called dezinformatsiya — active measures. The aim was never one false story but a polluted information environment where audiences could no longer tell sourced reporting from placed material.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1923",
+                "label": "Soviet disinformation office founded",
+                "emphasis": "start"
+              },
+              {
+                "year": "1983",
+                "label": "Operation INFEKTION (AIDS disinfo)"
+              },
+              {
+                "year": "2005",
+                "label": "Russia Today launches"
+              },
+              {
+                "year": "2013",
+                "label": "Ruptly founded in Berlin"
+              },
+              {
+                "year": "2022",
+                "label": "EU bans RT after Ukraine invasion",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "from dezinformatsiya to deniable wires"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-04T17:42:43.000Z",
+    "label": "State Media & Content Laundering",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-04-trump-foe-john-bolton-to-plead-guilty-in-classified-informat": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STATUTE",
+        "body": "Mishandling-classified cases run on the Espionage Act of 1917 — specifically 18 U.S.C. § 793, which criminalizes retaining 'national defense information' a person isn't authorized to keep. Strikingly, the law doesn't require the material to be formally classified, and it doesn't require intent to harm the US. Mere unauthorized retention is the crime.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The same statute reaches everyone from leakers to mishandlers: there is no separate 'careless storage' law. Prosecutors choose whether a diary, an email cache, or a box in a basement becomes an **Espionage Act** count."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 18 BECOMES 1",
+        "body": "Federal prosecutors routinely stack counts — one per document or act — to maximize leverage, then trade most away for a guilty plea. The defendant avoids trial risk and a long sentence; the government banks a near-certain conviction without a courtroom fight over sensitive evidence.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of federal criminal convictions in the US come from guilty pleas rather than trials?",
+            "options": [
+              "About 10%",
+              "About half",
+              "About 90%",
+              "About 70%"
+            ],
+            "correct": 2,
+            "explanation": "Over 90% of federal convictions are guilty pleas — trials are the rare exception, which is why count-stacking and plea deals drive most outcomes."
+          }
+        ]
+      },
+      {
+        "heading": "WHO CLASSIFIES",
+        "body": "Classification flows from the president downward by executive order, not from Congress. The president and a chain of delegated 'original classification authorities' decide what is secret; there is no statute defining the categories. That executive root is why presidents can declassify broadly while subordinates who retain the same material face prosecution.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The levels — *Confidential*, *Secret*, *Top Secret* — trace to **Executive Order 13526**, not an act of Congress. The system is a creature of presidential power, which is the asymmetry at the heart of every one of these cases."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENTS",
+        "body": "Outcomes for mishandling classified material vary wildly by who you are. Senior officials have repeatedly resolved cases with misdemeanors and fines; lower-level leakers have drawn hard prison time. Bolton's fine-no-prison deal sits squarely in the senior-official pattern.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Petraeus",
+                "value": "Probation+$100k",
+                "tone": "favorable",
+                "cc": "US"
+              },
+              {
+                "label": "Sandy Berger",
+                "value": "Probation+fine",
+                "tone": "favorable",
+                "cc": "US"
+              },
+              {
+                "label": "Bolton",
+                "value": "$2.2m fine",
+                "tone": "neutral",
+                "cc": "US"
+              },
+              {
+                "label": "Reality Winner",
+                "value": "5 yrs prison",
+                "tone": "unfavorable",
+                "cc": "US"
+              }
+            ],
+            "label": "classified-handling cases & outcomes"
+          }
+        ]
+      },
+      {
+        "heading": "THE SELECTIVE-PROSECUTION SHADOW",
+        "body": "Because charging is discretionary and the statute is broad, every one of these cases invites the same defense: that prosecution tracks politics, not gravity. When a sitting administration prosecutes a prominent critic, the deal that ends it quietly — a fine, no trial, no public airing of evidence — serves both sides at once."
+      }
+    ],
+    "generatedAt": "2026-06-04T17:43:18.642Z",
+    "label": "Classified Info & the Plea Bargain",
+    "category": "politics",
+    "articleCount": 1
   }
 }
