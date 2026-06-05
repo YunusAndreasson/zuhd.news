@@ -305928,5 +305928,1548 @@
     "label": "China & North Korea",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-03-br-319-amazon-highway-deforestation-risk": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FISHBONE",
+        "body": "Deforestation does not spread randomly — it follows roads. A paved trunk line draws settlers, who cut side tracks perpendicular to it, who cut sub-tracks off those. Seen from orbit the cleared land forms a fishbone, and the spine is always a road.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Studies of the Amazon find the large majority of clearing happens within *~50 km* of a road. The pavement is not a symptom of deforestation — it is the **cause** that precedes it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THIS ROAD",
+        "body": "BR-319 links Manaus to Porto Velho, stitching the still-intact central Amazon to the 'arc of deforestation' along the forest's southern edge where cattle and soy have already eaten in. Paving it opens a block of core forest that distance, not law, has protected until now.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BR",
+              "PE",
+              "BO",
+              "CO",
+              "VE"
+            ],
+            "label": "the BR-319 corridor",
+            "caption": "Pavement would connect intact forest to the cleared arc",
+            "markers": [
+              {
+                "lat": -3.1,
+                "lng": -60.02,
+                "label": "Manaus (north end)"
+              },
+              {
+                "lat": -8.76,
+                "lng": -63.9,
+                "label": "Porto Velho (south end)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE FLYING RIVERS",
+        "body": "The Amazon makes much of its own rain: trees pull water up through their roots and breathe it out as vapor, which forms clouds that drift west and fall again. Roughly half the basin's rainfall is recycled this way. Cut enough forest and the machine that waters the rest begins to stall."
+      },
+      {
+        "heading": "THE TIPPING POINT",
+        "body": "Below a threshold of cleared area — scientists put it near 20-25% — the recycling holds. Past it, the southern and eastern Amazon could flip irreversibly to degraded savanna, releasing decades of stored carbon. Around a fifth is already gone, which is why each new road is argued over as if it were the last.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the primary driver of deforestation in the Amazon?",
+            "options": [
+              "New roads that open the forest to settlement",
+              "Lightning-sparked wildfires",
+              "Selective logging of hardwood for export",
+              "Natural drought killing the canopy"
+            ],
+            "correct": 0,
+            "explanation": "Access roads come first; clearing for cattle and crops then spreads outward from them in the fishbone pattern."
+          }
+        ]
+      },
+      {
+        "heading": "THE RONDONIA PRECEDENT",
+        "body": "This has been run as an experiment before. In the 1980s the World Bank helped pave BR-364 into Rondonia; within two decades the state went from near-intact forest to one of the most deforested in Brazil, its fishbone visible from space. Porto Velho — BR-319's southern anchor — is its capital."
+      },
+      {
+        "heading": "BRAZIL'S SHARE",
+        "body": "The Amazon spans nine countries, but the decision is overwhelmingly Brazil's: it holds roughly three-fifths of the rainforest. What Brasilia chooses to pave or protect sets the trajectory for the whole basin, which is why a $75 million road bill is a planetary-scale lever.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Brazil",
+                "value": 60
+              },
+              {
+                "label": "Peru",
+                "value": 13
+              },
+              {
+                "label": "Colombia",
+                "value": 7
+              },
+              {
+                "label": "Bolivia",
+                "value": 6
+              },
+              {
+                "label": "Venezuela",
+                "value": 6
+              },
+              {
+                "label": "Guyana",
+                "value": 3
+              },
+              {
+                "label": "Suriname",
+                "value": 2
+              },
+              {
+                "label": "Ecuador",
+                "value": 2
+              }
+            ],
+            "label": "share of Amazon rainforest by country"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T08:22:22.108Z",
+    "label": "Roads & the Amazon Tipping Point",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-04-berkeley-cs-failing-grades-ai-math-skills": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GENERATION EFFECT",
+        "body": "A fact you struggle to produce yourself is remembered far better than the same fact handed to you. Decades of memory research show that the effort of retrieval — not the exposure to the answer — is what builds durable knowledge. An AI that supplies the answer removes exactly the friction that does the learning.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Psychologists call the cost of frictionless help the **fluency illusion**: watching a solution feels like understanding it, but recognition is not the same as *recall*. The exam is where the two finally diverge."
+          }
+        ]
+      },
+      {
+        "heading": "DESIRABLE DIFFICULTIES",
+        "body": "Robert Bjork's term for conditions that slow learning down in the moment but strengthen it long-term — spacing practice, interleaving topics, testing yourself before you're ready. Tools that make a task feel easier often make the learning weaker, because comfort and retention pull in opposite directions."
+      },
+      {
+        "heading": "THE DESKILLING PRECEDENT",
+        "body": "Every automation that absorbs a skill eventually atrophies it in the humans who relied on it. Airline pilots who fly mostly on autopilot lose manual-flying proficiency; the FAA now mandates hand-flying practice precisely to counter it. The calculator debate of the 1970s was the same fight one layer down.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1974",
+                "label": "Pocket calculators reach classrooms"
+              },
+              {
+                "year": "2009",
+                "label": "Wolfram Alpha solves shown-work math"
+              },
+              {
+                "year": "2022",
+                "label": "ChatGPT writes the code itself",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "the tool-vs-skill argument, recurring"
+          }
+        ]
+      },
+      {
+        "heading": "AUTOMATION BIAS",
+        "body": "Humans systematically over-trust automated output, accepting a machine's answer even when their own judgment or visible evidence contradicts it. A student who can't yet evaluate whether generated code is correct is in the worst position to catch when it's wrong — and the exam is the first place that gap is graded.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did the gap stay invisible until exams?",
+            "options": [
+              "The course got harder mid-semester",
+              "Homework let AI do the work; barred-AI exams measured the unaided skill",
+              "Instructors changed the grading curve",
+              "Fewer students attended lectures"
+            ],
+            "correct": 1,
+            "explanation": "AI-assisted coursework can mask absent skills; an exam with language models barred removes the prosthetic and tests what was actually learned."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSACTIVE MEMORY SHIFT",
+        "body": "Research on the 'Google effect' found people remember less of the information itself when they expect to look it up later — but remember better where to find it. Offloading isn't new; the danger is offloading a skill you were supposed to internalize, not a fact you can always retrieve.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The healthy version is *transactive memory* — knowing who or what holds the knowledge. The failure mode is mistaking access to an answer for possession of the skill that produces it."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T08:22:56.428Z",
+    "label": "Cognitive Offloading & Learning",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-04-exploration-company-reusable-heavy-lift-rocket": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY REUSE IS THE WHOLE GAME",
+        "body": "The single most expensive part of an orbital launch is the first-stage booster — the engines, tanks, and structure that fall into the ocean after eight minutes of work. SpaceX's insight, proven in 2015, was that a booster flown ten times amortizes that cost across ten missions instead of writing it off on one. Everything in the new launch economy descends from that one accounting fact.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes booster reuse so valuable to launch economics?",
+            "options": [
+              "Fuel is the dominant cost of a launch",
+              "The booster hardware is the dominant cost, and reuse spreads it across many flights",
+              "Reused rockets carry heavier payloads",
+              "Insurance is cheaper for flown boosters"
+            ],
+            "correct": 1,
+            "explanation": "Propellant is a few percent of launch cost; the booster's engines and structure are the expense, so flying it repeatedly is what collapses the per-launch price."
+          }
+        ]
+      },
+      {
+        "heading": "THE TYRANNY OF THE ROCKET EQUATION",
+        "body": "Tsiolkovsky's 1903 equation dictates that to go faster you must carry more fuel, but more fuel makes the rocket heavier, which demands still more fuel. The relationship is exponential, which is why a rocket is roughly 90% propellant by mass and only a few percent payload. Reusability fights this tyranny not by beating physics but by reusing the expensive shell that physics forces you to build.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A rocket that must reach orbit needs about **9.4 km/s** of velocity change, yet the engines can only push so hard — so the math forces a vehicle that is *mostly fuel*, carrying a sliver of cargo."
+          }
+        ]
+      },
+      {
+        "heading": "THE ENGINE IS THE HARD PART",
+        "body": "Anyone can weld a fuel tank; almost no one can build a rocket engine that survives the heat and pressure of combustion, then restarts to land, then flies again. A reusable engine must deep-throttle for landing and endure dozens of thermal cycles. This is why a startup unveils its engine — the Storm — as the headline act, not the airframe.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "SpaceX Raptor",
+                "value": "~230t",
+                "cc": "US",
+                "weight": 230
+              },
+              {
+                "label": "Storm (TEC)",
+                "value": "180t",
+                "cc": "DE",
+                "weight": 180
+              },
+              {
+                "label": "Ariane Vulcain 2",
+                "value": "~135t",
+                "cc": "EU",
+                "weight": 135
+              },
+              {
+                "label": "SpaceX Merlin",
+                "value": "~85t",
+                "cc": "US",
+                "weight": 85
+              }
+            ],
+            "label": "first-stage engine thrust (sea level, approx)"
+          }
+        ]
+      },
+      {
+        "heading": "EUROPE'S LAUNCH GAP",
+        "body": "Europe's flagship, Ariane 6, is fully expendable — every flight throws the hardware away. When Russia pulled its Soyuz rockets after the 2022 invasion of Ukraine, Europe briefly had no independent way to put crews-class payloads up at all. A privately built reusable heavy-lifter is an attempt to close a gap that the continent's state agencies have left open for a decade.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Falcon Heavy",
+                "value": "~64t",
+                "cc": "US",
+                "weight": 64,
+                "tone": "neutral"
+              },
+              {
+                "label": "Falcon 9",
+                "value": "~22t",
+                "cc": "US",
+                "weight": 22,
+                "tone": "neutral"
+              },
+              {
+                "label": "Ariane 6",
+                "value": "~21t",
+                "cc": "EU",
+                "weight": 21,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "heavy-lift payload to low Earth orbit"
+          }
+        ]
+      },
+      {
+        "heading": "WHY NINE ENGINES, NOT ONE",
+        "body": "Clustering nine smaller engines instead of one giant one buys engine-out tolerance: lose a single engine mid-flight and the others can still complete the mission, the way Falcon 9 has done on real launches. Clustering also lets a company mass-produce one engine design instead of qualifying several — the manufacturing logic that turned rockets from artisanal one-offs into production lines."
+      }
+    ],
+    "generatedAt": "2026-06-05T08:23:32.038Z",
+    "label": "Reusable Heavy-Lift Rockets",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-04-ukraine-low-cost-interceptor-missile-test": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COST-EXCHANGE RATIO",
+        "body": "Missile defense's core problem is arithmetic: an interceptor must cost less than the weapon it kills, or the defender bankrupts first. A PAC-3 runs around $5 million; the Shahed drones and cheap ballistic missiles it shoots down cost a tiny fraction of that. Ukraine's sub-$1M interceptor is an attempt to flip a losing equation.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "PAC-3",
+                "value": "$5.3M",
+                "tone": "unfavorable",
+                "weight": 5300
+              },
+              {
+                "label": "SM-2",
+                "value": "$2.1M",
+                "tone": "unfavorable",
+                "weight": 2100
+              },
+              {
+                "label": "Ukraine FP-7.X",
+                "value": "<$1M",
+                "tone": "favorable",
+                "weight": 900
+              },
+              {
+                "label": "Shahed drone",
+                "value": "~$20k",
+                "tone": "neutral",
+                "weight": 20
+              }
+            ],
+            "label": "cost per shot"
+          }
+        ]
+      },
+      {
+        "heading": "THE SATURATION TACTIC",
+        "body": "Russia does not need to defeat air defense — it needs to outspend it. A salvo mixes cheap decoy drones with real missiles so defenders must fire million-dollar interceptors at $20,000 targets, draining magazines and budgets before the actual warheads arrive.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The term is *magazine depth* — not how good an interceptor is, but **how many shots** a battery holds before it goes empty. Saturation attacks target the magazine, not the missile."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BALLISTIC IS THE HARD CASE",
+        "body": "Drones crawl at a few hundred km/h; a ballistic missile re-enters at several kilometers per second. The interceptor needs a fast-burning rocket motor, a precise seeker, and a hit-to-kill closing geometry measured in milliseconds — which is exactly why cheap interceptors have historically been impossible, and why Ukraine's 2027 live-intercept target is ambitious."
+      },
+      {
+        "heading": "THE PATRIOT PEDIGREE",
+        "body": "The Patriot debuted in the 1991 Gulf War firing at Iraqi Scuds over Saudi Arabia and Israel — and post-war analysis found its true intercept rate was far lower than the wartime claims. Every system since has carried the same gap between the press-conference number and the engineering reality, which is why Ukraine insists on a live ballistic intercept before declaring success."
+      },
+      {
+        "heading": "WHY DOMESTIC PRODUCTION IS THE POINT",
+        "body": "Imported interceptors arrive in fixed allotments set by foreign legislatures and stockpiles. A weapon Ukraine builds itself can scale to the volume of incoming strikes rather than the volume Washington or Berlin chooses to ship — turning air defense from a rationed import into a manufacturing problem.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the central economic problem in missile defense?",
+            "options": [
+              "Interceptors fly too slowly to catch missiles",
+              "Each interceptor must cost less than the weapon it destroys",
+              "Radars cannot detect low-flying drones",
+              "Defenders run out of trained crews"
+            ],
+            "correct": 1,
+            "explanation": "If a $5M interceptor kills a $20k drone, the defender loses the cost exchange on every shot and is bankrupted before the attacker."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T08:23:59.386Z",
+    "label": "Missile Defense Economics",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-05-annamalai-quits-bjp-tamil-nadu-split": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WALL BJP CAN'T BREACH",
+        "body": "No national party has governed Tamil Nadu since 1967. The state has been ruled continuously by Dravidian parties — first the DMK, then its breakaway AIADMK — for nearly six decades, the longest single-ideology dominance of any major Indian state. The BJP's pan-Indian Hindutva has never found purchase here.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1916",
+                "label": "Justice Party founded — anti-Brahmin"
+              },
+              {
+                "year": "1925",
+                "label": "Periyar launches Self-Respect Movement"
+              },
+              {
+                "year": "1944",
+                "label": "Dravidar Kazhagam formed"
+              },
+              {
+                "year": "1949",
+                "label": "DMK splits off under Annadurai"
+              },
+              {
+                "year": "1967",
+                "label": "DMK ousts Congress",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1972",
+                "label": "MGR breaks away, forms AIADMK"
+              },
+              {
+                "year": "1965",
+                "label": "Anti-Hindi agitations peak"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1967",
+                "to": "2026",
+                "label": "unbroken Dravidian rule",
+                "tone": "neutral"
+              }
+            ],
+            "label": "the Dravidian century"
+          }
+        ]
+      },
+      {
+        "heading": "WHO PERIYAR WAS",
+        "body": "The Dravidian movement traces to E.V. Ramasamy — \"Periyar\" — whose Self-Respect Movement of the 1920s rejected Brahmin social dominance, caste hierarchy, and the imposition of northern Hindu-Hindi culture on the Tamil south. The ideology is rationalist, anti-caste, and regionalist at its root — the precise inverse of the BJP's program.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Periyar's followers once demanded a sovereign **Dravida Nadu** — a separate Dravidian nation. The secessionist plank was dropped in 1963, but the regional-pride instinct it bred is why *Tamil* identity still trumps *Hindu* identity at the ballot box."
+          }
+        ]
+      },
+      {
+        "heading": "THE HINDI FAULT LINE",
+        "body": "Twice — in 1937 and again in 1965 — Tamil Nadu erupted against attempts to make Hindi a compulsory or official language. The 1965 agitation saw self-immolations and dozens of deaths, and it permanently destroyed Congress in the state. Language, not religion, is the axis of Tamil politics, which is why a Hindi-belt party struggles to translate."
+      },
+      {
+        "heading": "WHY PARTIES KEEP SPLITTING",
+        "body": "Dravidian parties are built around charismatic individuals — Annadurai, Karunanidhi, the film star MGR, Jayalalithaa — not institutions. When a leader feels boxed out, he leaves and founds his own outfit, as MGR did in 1972. Annamalai's exit follows a script the movement has run for half a century; the hard part is that voters reward the incumbents, not the splinters.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When did a national (non-Dravidian) party last govern Tamil Nadu?",
+            "options": [
+              "1967 — Congress, before the DMK won",
+              "1991 — after Rajiv Gandhi's assassination",
+              "2014 — the first Modi wave",
+              "It never has"
+            ],
+            "correct": 0,
+            "explanation": "Congress lost power in 1967 and no national party has formed a Tamil Nadu government since — the DMK and AIADMK have alternated ever since."
+          }
+        ]
+      },
+      {
+        "heading": "THE NUMBERS THAT MATTER",
+        "body": "The BJP's problem is arithmetic. Even at its recent peak, contesting hard under Annamalai, the party polled in the low single digits of the Tamil Nadu vote, while the two Dravidian fronts and their allies absorb the overwhelming majority. A split of its own Tamil leadership shrinks an already marginal base.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "DMK",
+                "value": "~37%",
+                "weight": 37,
+                "tone": "favorable"
+              },
+              {
+                "label": "AIADMK",
+                "value": "~33%",
+                "weight": 33,
+                "tone": "neutral"
+              },
+              {
+                "label": "Congress",
+                "value": "~7%",
+                "weight": 7,
+                "tone": "neutral"
+              },
+              {
+                "label": "BJP",
+                "value": "~3%",
+                "weight": 3,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Tamil Nadu vote share, 2021 state election (approx.)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T08:24:41.127Z",
+    "label": "Dravidian Politics & the BJP Wall",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-05-bitcoin-falls-ai-trade-unwind-etf-outflows": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CORRELATION FLIP",
+        "body": "Bitcoin was sold for a decade as 'digital gold' — an asset uncorrelated with stocks, a hedge against the system. In practice it now trades as a high-beta tech stock, rising and falling with the Nasdaq, only faster in both directions. When the AI trade rolls over, Bitcoin is the leveraged version of the same bet.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The marketing promise was *uncorrelated*; the market reality is **high-beta**. Bitcoin amplifies the same risk-on/risk-off swing that moves the AI names — it is not a hedge against them, it is a turbocharged proxy for them."
+          },
+          {
+            "type": "trend",
+            "series": [
+              {
+                "values": [
+                  81425,
+                  80022.04,
+                  80189.07,
+                  80678.03,
+                  82145.66,
+                  81725.21,
+                  80480.89,
+                  79277.8,
+                  81051.98,
+                  79068.82,
+                  78135.01,
+                  77425.72,
+                  76952.21,
+                  76808.81,
+                  77459.94,
+                  77546.34,
+                  75482.52,
+                  76672.79,
+                  76988.16,
+                  77274.4,
+                  75824.06,
+                  74352.7,
+                  73539.84,
+                  73382.72,
+                  73751.07,
+                  73593.37,
+                  71360.33,
+                  66649.86,
+                  64021.89,
+                  63796.25,
+                  62584.75
+                ],
+                "label": "Bitcoin",
+                "highlight": "last"
+              },
+              {
+                "values": [
+                  26937.27,
+                  26782.62,
+                  27303.67,
+                  27305.68,
+                  27029.01,
+                  27186.99,
+                  27452.12,
+                  27710.36,
+                  27651.82,
+                  28015.06,
+                  28599.17,
+                  28563.95,
+                  29234.99,
+                  29320.66,
+                  29064.8,
+                  29366.94,
+                  29580.3,
+                  29125.2,
+                  28994.37,
+                  28818.84,
+                  29297.7,
+                  29357.27,
+                  29481.64,
+                  30001.32,
+                  29973.57,
+                  30223.89,
+                  30333.18,
+                  30513.86,
+                  30660.6,
+                  30571.24,
+                  30407.81
+                ],
+                "label": "NASDAQ-100",
+                "highlight": "last"
+              }
+            ],
+            "label": "Bitcoin vs NASDAQ-100",
+            "source": 0,
+            "unit": "$",
+            "periods": [
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 5"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'SPOT' ETF MATTERS",
+        "body": "A spot Bitcoin ETF holds actual coins, not futures contracts. So when investors redeem shares, the fund's authorized participants have to sell real Bitcoin into the market to honor the redemption. Thirteen straight days of outflows means thirteen days of forced selling — the flows aren't sentiment, they're mechanical sell pressure.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "investors",
+                "label": "Redeeming investors"
+              },
+              {
+                "id": "ap",
+                "label": "Authorized participant"
+              },
+              {
+                "id": "fund",
+                "label": "ETF (holds BTC)"
+              },
+              {
+                "id": "market",
+                "label": "Spot BTC market"
+              }
+            ],
+            "links": [
+              {
+                "source": "investors",
+                "target": "ap",
+                "value": 4.4,
+                "label": "sell shares"
+              },
+              {
+                "source": "ap",
+                "target": "fund",
+                "value": 4.4,
+                "label": "redeem"
+              },
+              {
+                "source": "fund",
+                "target": "ap",
+                "value": 4.4,
+                "label": "deliver BTC"
+              },
+              {
+                "source": "ap",
+                "target": "market",
+                "value": 4.4,
+                "label": "sell BTC"
+              }
+            ],
+            "label": "how an ETF outflow becomes a spot sale ($bn)"
+          }
+        ]
+      },
+      {
+        "heading": "THE AI CAPEX TRADE",
+        "body": "The 'AI trade' is really a bet on hyperscaler spending — the hundreds of billions Meta, Microsoft, Google, and Amazon are pouring into GPUs and data centers. When a quarter's earnings suggest that capex isn't paying off yet, the whole risk complex — chip stocks, the Nasdaq, and Bitcoin alongside them — reprices the optimism at once."
+      },
+      {
+        "heading": "WHY A JOBS REPORT MOVES CRYPTO",
+        "body": "Bitcoin pays no interest. Its appeal grows when holding cash is a losing proposition and shrinks when safe bonds offer a real return. A hot nonfarm payrolls print tells markets the Fed can keep rates higher for longer, which lifts real yields and raises the opportunity cost of holding a zero-yield asset — so a labor-market number with nothing to do with crypto sets the floor under it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does a strong US jobs report tend to pressure a zero-yield asset like Bitcoin?",
+            "options": [
+              "It signals the Fed can hold rates high, raising real yields and the cost of holding non-yielding assets",
+              "Employed workers sell crypto to buy stocks",
+              "Payroll data directly tracks ETF inflows",
+              "Strong jobs cause immediate inflation that helps Bitcoin"
+            ],
+            "correct": 0,
+            "explanation": "When real yields rise, risk-free bonds pay a real return, so the opportunity cost of holding a coin that pays nothing goes up."
+          }
+        ]
+      },
+      {
+        "heading": "THE $60,000 LEVEL",
+        "body": "Round numbers act as psychological support because they cluster stop-loss and options strikes. A break below a watched level like $60,000 can trigger a cascade of automated selling and liquidations of leveraged positions — which is why traders fixate on a threshold that has no fundamental meaning but enormous behavioral weight."
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-06-05",
+      "FRED · NASDAQ · as of 2026-06-04"
+    ],
+    "generatedAt": "2026-06-05T08:25:26.770Z",
+    "label": "Bitcoin as an AI-Equity Proxy",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-05-londa-2025-africa-digital-rights-report": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE KILL SWITCH",
+        "body": "A government rarely 'turns off' the internet itself. It orders the handful of licensed telecom operators — often two or three in a country — to throttle or null-route traffic. Centralized licensing is the chokepoint: where the state controls who may carry packets, it controls whether they flow at all.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical tool is usually **deep packet inspection** (*DPI*) — gear that reads the metadata of every packet, letting a regime block one app (Twitter, WhatsApp) while leaving the rest of the internet up. A full blackout is blunt; *DPI* is the scalpel."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE TIMING IS NEVER RANDOM",
+        "body": "Shutdowns cluster around elections, protests, and exam season. The pattern is so reliable that monitoring groups treat a sudden national throttle as a leading indicator of contested results or a crackdown about to happen — the outage precedes the news it is meant to suppress."
+      },
+      {
+        "heading": "THE PRICE OF DARKNESS",
+        "body": "Outages are expensive. Banking, mobile money, logistics, and freelancing all stop. Watchdogs use a 'Cost of Shutdown Tool' built on World Bank and Eurostat figures to price each blackout — a week-long national shutdown in a mid-size economy runs into the hundreds of millions of dollars.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Chad",
+                "value": "~470 days",
+                "cc": "TD",
+                "weight": 470,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Cameroon",
+                "value": "~240 days",
+                "cc": "CM",
+                "weight": 240,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Nigeria",
+                "value": "~222 days",
+                "cc": "NG",
+                "weight": 222,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Uganda",
+                "value": "~5 days",
+                "cc": "UG",
+                "weight": 5,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Notable prolonged shutdowns (approx. duration)"
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY OF THE BLACKOUT",
+        "body": "Shutdowns are not evenly spread. They concentrate in states facing insurgency, secession, or fragile transitions — Cameroon's Anglophone regions, Ethiopia's Tigray, Sudan amid its coups. Where a government distrusts a region, it cuts the region's wires first.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CM",
+              "TD",
+              "ET",
+              "UG",
+              "NG",
+              "SD",
+              "ZM"
+            ],
+            "label": "recurrent shutdown states"
+          }
+        ]
+      },
+      {
+        "heading": "LAW AS A WEAPON, NOT A SHIELD",
+        "body": "Many African states do have cyber and data laws — but written to empower the surveillance, not constrain it. Vague 'cybercrime,' 'false news,' and 'national security' clauses give officials legal cover to intercept communications and jail critics, which is why an audit can find laws expanding while protection shrinks."
+      },
+      {
+        "heading": "WHY RIGHTSCON MATTERS",
+        "body": "RightsCon is the largest global gathering of digital-rights defenders; hosting it signals a state wants to be seen as open. Zambia's 2026 cancellation reverses a reformist image it built after 2021 — a tell that monitoring groups read as a turn, which the next audit score will quantify.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country imposed one of the world's longest internet shutdowns, cutting off its Anglophone regions?",
+            "options": [
+              "Cameroon",
+              "Kenya",
+              "Nigeria",
+              "South Africa"
+            ],
+            "correct": 0,
+            "explanation": "Cameroon severed internet to its English-speaking Northwest and Southwest regions for roughly 240 days starting 2017 — among the longest deliberate shutdowns on record."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T08:26:08.970Z",
+    "label": "Internet Shutdowns & the Surveillance State",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-05-manipur-kuki-village-attack-three-killed": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HILL-VALLEY DIVIDE",
+        "body": "Manipur is two countries stacked on one map. The central Imphal valley — barely a tenth of the land — holds the Meitei, a Hindu-majority people who dominate the state government. The surrounding hills hold the Kuki-Zo and Naga, mostly Christian tribal communities. By law, valley-dwellers cannot buy land in the protected hills, and hill tribes hold reserved seats — a legal firewall that the 2023 conflict was a fight to breach.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "MM",
+              "BD"
+            ],
+            "label": "Manipur and the Kuki-Zo borderland",
+            "caption": "Kuki-Zo-Chin peoples span Manipur, Mizoram and Myanmar's Chin State",
+            "markers": [
+              {
+                "lat": 24.817,
+                "lng": 93.938,
+                "label": "Imphal (Meitei valley)"
+              },
+              {
+                "lat": 25.151,
+                "lng": 93.961,
+                "label": "Kangpokpi (Kuki hills)"
+              },
+              {
+                "lat": 24.491,
+                "lng": 94.15,
+                "label": "Myanmar border"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT LIT THE FUSE",
+        "body": "The current war ignited in May 2023 when a court ordered the state to consider granting the Meitei 'Scheduled Tribe' status — which would let them buy land in the hills. Kuki-Zo groups read it as a land grab dressed as affirmative action. A protest march turned into burnings, and within weeks the two communities had ethnically cleansed each other from mixed towns.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Scheduled Tribe* status is India's constitutional category for historically marginalized tribal groups — it unlocks reserved jobs, college seats, and crucially **protected land rights** in the hills. Extending it to the dominant valley group inverts the protection's entire purpose."
+          }
+        ]
+      },
+      {
+        "heading": "THE OLDER WOUND",
+        "body": "The Kuki and Naga have their own buried feud. Between 1992 and 1997, a Naga-Kuki ethnic war over land and 'taxation' rights killed hundreds and displaced thousands across these same hills. Today's attack — Kuki-Zo blaming Naga gunmen — reopens a conflict that predates the Meitei dispute entirely.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1992",
+                "label": "Naga-Kuki ethnic war begins"
+              },
+              {
+                "year": "2008",
+                "label": "Kuki militias sign Suspension of Operations"
+              },
+              {
+                "year": "2023-05",
+                "label": "Meitei-Kuki war erupts",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2025-02",
+                "label": "President's Rule imposed"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1992",
+                "to": "1997",
+                "label": "Naga-Kuki clashes",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Manipur's nested conflicts"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DELHI CAN'T CLOSE IT",
+        "body": "Central paramilitary forces have flooded Manipur for two years without ending the killing. The reason is structural: the state's own police are seen as Meitei-aligned, so each side trusts only its own armed groups. Many Kuki militias sit under a 'Suspension of Operations' truce — armed, cantoned, but not disarmed — which means the gunmen and the ceasefire signatories can be the same men.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What triggered Manipur's 2023 ethnic war between the Meitei and Kuki-Zo?",
+            "options": [
+              "A court push to grant the valley-dwelling Meitei tribal land rights",
+              "A border clash with Myanmar's military",
+              "A dispute over Hindu temple access",
+              "Federal elections in New Delhi"
+            ],
+            "correct": 0,
+            "explanation": "Extending Scheduled Tribe status to the Meitei would have let them buy land in the protected hills, which the Kuki-Zo saw as an existential threat."
+          }
+        ]
+      },
+      {
+        "heading": "THE BORDER THAT ISN'T",
+        "body": "The Kuki-Zo are not confined to India. The same people — called Chin in Myanmar and Mizo in neighboring Mizoram — straddle a colonial-era border drawn through the middle of their homeland. Myanmar's post-2021 civil war pushed thousands of armed Chin kin across into Manipur, which is why New Delhi frames a local land dispute as a national security problem."
+      }
+    ],
+    "generatedAt": "2026-06-05T08:26:45.111Z",
+    "label": "Manipur's Hill-Valley War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-05-oman-mina-al-fahal-oil-terminal-explosion": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "ONE BERTH, A WHOLE COUNTRY",
+        "body": "Mina al-Fahal is Oman's only crude export terminal — every barrel the country sells offshore moves through this single point near Muscat. A nation with no second outlet is uniquely exposed: one damaged manifold halts national export revenue until repairs finish.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "OM",
+              "IR",
+              "AE",
+              "QA"
+            ],
+            "label": "Oman's outlet, the strait, and the exclave",
+            "markers": [
+              {
+                "lat": 23.633,
+                "lng": 58.513,
+                "label": "Mina al-Fahal"
+              },
+              {
+                "lat": 26.566,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.78,
+                "lng": 56.34,
+                "label": "Musandam (Oman)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "OUTSIDE THE STRAIT, NOT INSIDE IT",
+        "body": "Here is the twist most coverage misses: Mina al-Fahal sits on the Gulf of Oman, on the open-ocean side of Hormuz. Oman's own crude never transits the strait — the country exports past it. Yet Oman controls the strait's southern shore through its Musandam exclave, making it the chokepoint's quiet landlord rather than its hostage.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The tip of *Musandam* is an Omani exclave separated from the rest of the country by UAE territory — and it overlooks the deepest shipping lanes of **Hormuz** from the south."
+          }
+        ]
+      },
+      {
+        "heading": "THE WEIGHT OF HORMUZ",
+        "body": "Roughly a fifth of the world's seaborne oil squeezes through Hormuz daily — more than any other maritime chokepoint on earth. That concentration is why a drone report near the strait moves insurance desks in London before it moves any physical barrel.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hormuz",
+                "value": "~20 mbpd",
+                "weight": 20,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Malacca",
+                "value": "~16 mbpd",
+                "weight": 16,
+                "tone": "neutral"
+              },
+              {
+                "label": "Suez/SUMED",
+                "value": "~7 mbpd",
+                "weight": 7,
+                "tone": "neutral"
+              },
+              {
+                "label": "Bab el-Mandeb",
+                "value": "~6 mbpd",
+                "weight": 6,
+                "tone": "neutral"
+              },
+              {
+                "label": "Bosporus",
+                "value": "~3 mbpd",
+                "weight": 3,
+                "tone": "neutral"
+              }
+            ],
+            "label": "world oil chokepoints, daily flow (approx)"
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Mines and drones rarely close a lane by themselves — war-risk premiums do. Once Lloyd's underwriters reprice a voyage, commercial vessels reroute or wait regardless of how real the threat is. The financial chokepoint clamps shut faster, and reopens slower, than the physical one."
+      },
+      {
+        "heading": "THE COST ASYMMETRY",
+        "body": "A one-way attack drone costs a few thousand dollars; the terminal, tanker, and insurance it threatens are worth billions. This is the arithmetic that makes chokepoint harassment attractive to weaker actors — they don't need to sink ships, only to make underwriters nervous."
+      },
+      {
+        "heading": "OMAN'S DELIBERATE NEUTRALITY",
+        "body": "Oman has spent decades as the Gulf's back-channel — hosting quiet US-Iran talks, staying out of the Yemen and Qatar blockades, keeping lines open to all sides. That posture is itself a security policy: a country that everyone needs as a mediator is a country fewer actors want to attack.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which body of water does Oman's main oil terminal at Mina al-Fahal actually export into?",
+            "options": [
+              "The Persian Gulf, via the Strait of Hormuz",
+              "The Gulf of Oman, outside the strait",
+              "The Red Sea, via Bab el-Mandeb"
+            ],
+            "correct": 1,
+            "explanation": "Mina al-Fahal sits past Hormuz on the Gulf of Oman, so Omani crude never transits the strait — though Oman controls its southern shore."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T08:27:28.671Z",
+    "label": "Oman's Oil Outlet & the Hormuz Edge",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-05-rbi-holds-repo-rate-5-25-war-inflation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WRONG TOOL FOR THE JOB",
+        "body": "Interest rates work on demand: raise the cost of borrowing and people buy less. But war-driven fuel inflation is a supply shock — the oil costs more no matter how much Indians spend. Hiking rates into a supply shock just crushes growth without touching the price doing the damage. This is the bind every central bank faces when the inflation comes from outside its borders.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call demand-side inflation *demand-pull* and supply-side inflation *cost-push*. A rate hike fights the first and worsens the second — it can tip an economy into **stagflation**, the rare mix of rising prices and stalling output."
+          }
+        ]
+      },
+      {
+        "heading": "HOW THE REPO RATE BITES",
+        "body": "The repo rate is what banks pay to borrow overnight from the RBI against government securities — a repurchase agreement, sold now and bought back tomorrow at a small premium. That overnight cost is the floor under every other rate in the economy: home loans, business credit, deposit yields all reprice off it. Holding at 5.25% means the RBI is keeping that floor still."
+      },
+      {
+        "heading": "WHY OIL HITS INDIA HARDEST",
+        "body": "India imports over 85% of the crude it burns — one of the highest dependency ratios of any large economy. Every dollar Brent rises, and every rupee the currency weakens, lands directly on the import bill. A Persian Gulf war is therefore an Indian fiscal event, not just a foreign one.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Japan",
+                "value": "~99%",
+                "cc": "JP",
+                "tone": "unfavorable",
+                "weight": 99
+              },
+              {
+                "label": "India",
+                "value": "~85%",
+                "cc": "IN",
+                "tone": "unfavorable",
+                "weight": 85
+              },
+              {
+                "label": "China",
+                "value": "~70%",
+                "cc": "CN",
+                "tone": "neutral",
+                "weight": 70
+              },
+              {
+                "label": "USA",
+                "value": "net exporter",
+                "cc": "US",
+                "tone": "favorable",
+                "weight": 5
+              }
+            ],
+            "label": "crude oil import dependency"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHOKEPOINT BEHIND THE PRICE",
+        "body": "Most of India's crude arrives by tanker through the Strait of Hormuz, the 33km channel between Iran and Oman that carries roughly a fifth of the world's seaborne oil. When the Iran conflict threatens that lane, war-risk insurance premiums spike before a single barrel is lost — and that premium is already in the price India pays.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "IR",
+              "OM",
+              "AE",
+              "SA"
+            ],
+            "label": "India's crude lifeline",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 18.9667,
+                "lng": 72.8333,
+                "label": "Mumbai"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE OTHER VARIABLE: RAIN",
+        "body": "Food and beverages make up nearly half of India's consumer price index — far more than in rich economies, where it is a fifth or less. That is why the RBI named a monsoon failure alongside the oil war as the trigger that could force its hand: a bad harvest spikes food prices the way a Gulf war spikes fuel.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of India's consumer price index is food and beverages?",
+            "options": [
+              "About 15%",
+              "About 25%",
+              "About 45%",
+              "About 65%"
+            ],
+            "correct": 2,
+            "explanation": "Food and beverages carry ~46% weight in India's CPI, so a poor monsoon moves headline inflation almost as forcefully as an oil shock."
+          }
+        ]
+      },
+      {
+        "heading": "THE WEAK-RUPEE AMPLIFIER",
+        "body": "Oil trades in dollars, so a falling rupee raises the local cost of crude even when the global price is flat. A war scare that pushes investors toward dollars weakens the rupee and lifts the import bill at the same time — a double hit the RBI must weigh against the growth cost of any rate move.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              94.729612,
+              94.62293,
+              94.425498,
+              94.425498,
+              94.8754,
+              95.576514,
+              95.55195,
+              95.719988,
+              95.829548,
+              96.003,
+              96.027,
+              96.13634,
+              96.389098,
+              96.875003,
+              96.376027,
+              96.243053,
+              95.719748,
+              95.700477,
+              95.415433,
+              95.341057,
+              95.70115,
+              96.383018,
+              95.600602,
+              95.01655,
+              95.06455,
+              94.831403,
+              95.108606,
+              95.573359,
+              95.723896,
+              95.657516
+            ],
+            "periods": [
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE 1979 GHOST",
+        "body": "The last time a Gulf upheaval set oil on fire — the 1979 Iranian Revolution — the resulting price spike fed a global inflation that took years and brutal interest rates to break. Central bankers carry that memory: act too late on a supply shock and you import a decade of instability; act too hard and you choke a healthy economy.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1973",
+                "label": "OPEC embargo"
+              },
+              {
+                "year": "1979",
+                "label": "Iranian Revolution shock",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1990",
+                "label": "Gulf War spike"
+              },
+              {
+                "year": "2022",
+                "label": "Ukraine war energy shock"
+              }
+            ],
+            "label": "oil shocks that reshaped policy"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-05"
+    ],
+    "generatedAt": "2026-06-05T08:28:09.451Z",
+    "label": "Supply-Shock Inflation & the RBI",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-05-trump-kushner-albania-sazan-resort-protests": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ISLAND WAS A FORTRESS",
+        "body": "Sazan is Albania's largest island, a 5-km² rock guarding the mouth of the Bay of Vlorë. It was a sealed military zone for most of the 20th century — Italian artillery base, then a Soviet submarine station, then an Albanian garrison after Tirana broke with Moscow. Civilians could not set foot on it until the 2010s.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AL",
+              "IT"
+            ],
+            "label": "Sazan and the Strait of Otranto",
+            "caption": "the island sits at the Adriatic's southern gate",
+            "markers": [
+              {
+                "lat": 40.5,
+                "lng": 19.28,
+                "label": "Sazan Island"
+              },
+              {
+                "lat": 40.46,
+                "lng": 19.49,
+                "label": "Vlorë"
+              },
+              {
+                "lat": 40.15,
+                "lng": 18.85,
+                "label": "Strait of Otranto"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE LOCATION IS STRATEGIC",
+        "body": "Sazan overlooks the Strait of Otranto — the 72-km chokepoint where the Adriatic narrows to its exit into the Ionian Sea. Whoever holds the island can watch every ship moving between the Adriatic and the Mediterranean, which is exactly why three different militaries fortified it before any developer ever saw a beach."
+      },
+      {
+        "heading": "THE MONEY BEHIND IT",
+        "body": "Kushner does not develop with his own capital. His fund, Affinity Partners, raised roughly $3 billion after he left the White House — and the largest single backer was Saudi Arabia's Public Investment Fund. The Sazan and Vlorë projects are Gulf sovereign-wealth money routed through an American fund into Albanian conservation land.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Affinity's anchor investor is the **Saudi PIF**, which committed about **$2bn** — over the objections of the fund's own screening panel, which flagged the manager's inexperience."
+          }
+        ]
+      },
+      {
+        "heading": "THE LAW THAT MOVED",
+        "body": "Coastal conservation status is supposed to be the thing a developer cannot buy around. Albania's answer in 2024 was to amend the protection law itself, creating a category that permits five-star development inside areas previously closed to construction. The asset did not change; the legal definition of the asset did.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Jared Kushner",
+                "role": "Affinity Partners founder",
+                "years": "2021–",
+                "cc": "US"
+              },
+              {
+                "name": "Ivanka Trump",
+                "role": "project design partner",
+                "cc": "US"
+              },
+              {
+                "name": "Edi Rama",
+                "role": "Albanian Prime Minister",
+                "years": "2013–",
+                "cc": "AL"
+              }
+            ],
+            "label": "the principals"
+          }
+        ]
+      },
+      {
+        "heading": "THE BALKAN PLAYBOOK",
+        "body": "This is a well-worn pattern on the Adriatic. Montenegro sold Porto Montenegro to Dubai's sovereign investment arm; Egypt's Orascom built the Luštica Bay resort next door. Gulf and foreign capital has been converting the formerly closed socialist coastline into marinas and five-star compounds for two decades — Albania is the last stretch to open."
+      },
+      {
+        "heading": "THE BUNKER STATE",
+        "body": "Albania's coast stayed wild because Enver Hoxha's regime treated the sea as a threat, not an asset. His government built an estimated 170,000 concrete bunkers and declared much of the shoreline a militarized no-go zone. The pristine beaches developers now prize exist precisely because forty years of paranoid isolation kept anyone from building on them.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1944",
+                "label": "Hoxha takes power",
+                "emphasis": "start"
+              },
+              {
+                "year": "1961",
+                "label": "Soviet split — sub base lost"
+              },
+              {
+                "year": "1978",
+                "label": "break with China; total isolation"
+              },
+              {
+                "year": "1991",
+                "label": "communism collapses"
+              },
+              {
+                "year": "2009",
+                "label": "Albania joins NATO"
+              },
+              {
+                "year": "2024",
+                "label": "conservation law amended",
+                "emphasis": "pivot"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1944",
+                "to": "1991",
+                "label": "closed militarized coast",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "from sealed coast to resort land"
+          },
+          {
+            "type": "quiz",
+            "question": "What was Sazan Island used for before the resort plan?",
+            "options": [
+              "A naval base — Soviet, then Albanian",
+              "An Ottoman-era trading port",
+              "A fishing village",
+              "A monastery complex"
+            ],
+            "correct": 0,
+            "explanation": "Sazan was a sealed military island — a Soviet submarine station until the 1961 split, then an Albanian garrison, off-limits to civilians for decades."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T08:29:06.096Z",
+    "label": "Sazan & Albania's Closed Coast",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-05-uss-ford-carrier-fire-worse-than-reported": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY 600 BERTHS IS THE TELL",
+        "body": "A supercarrier is a floating city of roughly 4,500 sailors, and berthing compartments are packed three bunks high in spaces the crew can't enter when smoke- or water-damaged. Losing 600 berths means a large stretch of the ship was made uninhabitable — a far heavier story than 'two minor injuries' implies."
+      },
+      {
+        "heading": "WHY FIRE IS THE CARRIER'S OLDEST FEAR",
+        "body": "A carrier concentrates the three things firefighters most dread in one steel box: jet fuel, live ordnance, and no exit. Heat that would merely burn a building cooks bombs until they detonate, turning one fire into a chain reaction. This is why carrier fires kill in dozens, not ones.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *cook-off* — ordnance heated past its ignition point fires on its own, with no one pulling a trigger. The interval before cook-off is the entire window damage-control teams have to win."
+          }
+        ]
+      },
+      {
+        "heading": "THE FORRESTAL PRECEDENT",
+        "body": "In 1967 a stray Zuni rocket fired across USS Forrestal's flight deck, igniting fuel and setting off a cascade of bomb detonations that killed 134 sailors. A young pilot named John McCain barely escaped his burning aircraft. It remains the US Navy's worst fire-safety disaster since WWII.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1966",
+                "label": "USS Oriskany fire — 44 dead"
+              },
+              {
+                "year": "1967",
+                "label": "USS Forrestal — 134 dead",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1969",
+                "label": "USS Enterprise — 28 dead"
+              },
+              {
+                "year": "2020",
+                "label": "USS Bonhomme Richard burns 4 days"
+              }
+            ],
+            "label": "the carrier-fire era"
+          }
+        ]
+      },
+      {
+        "heading": "WHY EVERY SAILOR IS A FIREFIGHTER",
+        "body": "The Forrestal disaster exposed that most of the trained firefighting team died in the first minute, leaving untrained sailors to improvise. The Navy's response was doctrinal: every sailor now trains in damage control, and the firefighting school is named for Chief Gerald Farrier, who died on Forrestal's deck.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which future US senator narrowly survived the 1967 USS Forrestal fire as a Navy pilot?",
+            "options": [
+              "John McCain",
+              "John Kerry",
+              "Bob Dole",
+              "Daniel Inouye"
+            ],
+            "correct": 0,
+            "explanation": "McCain escaped his A-4 Skyhawk moments before bombs detonated across the deck; he was later shot down over Vietnam and held as a POW."
+          }
+        ]
+      },
+      {
+        "heading": "THE MOST EXPENSIVE WARSHIP EVER",
+        "body": "USS Gerald R. Ford cost around $13 billion — the priciest warship in history — and introduced unproven systems: electromagnetic catapults, new weapons elevators, and a redesigned fire-suppression layout. When first-of-class technology fails, the public statement and the footage often diverge.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ford (US)",
+                "value": "~$13bn",
+                "cc": "US",
+                "weight": 13,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Nimitz (US)",
+                "value": "~$8.5bn",
+                "cc": "US",
+                "weight": 8.5,
+                "tone": "neutral"
+              },
+              {
+                "label": "Queen Eliz. (UK)",
+                "value": "~$4bn",
+                "cc": "GB",
+                "weight": 4,
+                "tone": "favorable"
+              },
+              {
+                "label": "de Gaulle (FR)",
+                "value": "~$4bn",
+                "cc": "FR",
+                "weight": 4,
+                "tone": "favorable"
+              }
+            ],
+            "label": "carrier program cost (lead ship, approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE PATTERN OF THE FIRST STATEMENT",
+        "body": "Navies manage the first 24 hours of any incident for two audiences at once — adversaries watching for weakness, and crews watching for honesty. 'Contained' and 'operational' are deterrence words; they buy time even when the deck below tells a different story. The gap between statement and footage is itself the recurring story."
+      }
+    ],
+    "generatedAt": "2026-06-05T08:29:50.306Z",
+    "label": "Carrier Fires & Damage Control",
+    "category": "politics",
+    "articleCount": 1
   }
 }
