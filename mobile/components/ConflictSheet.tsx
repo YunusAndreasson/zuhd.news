@@ -1,14 +1,10 @@
-import {
-  type BottomSheetBackdropProps,
-  type BottomSheetModal,
-  BottomSheetScrollView,
-} from '@gorhom/bottom-sheet';
+import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { COUNTRY_DATA } from '@shared/countries/country-data';
 import type { ConflictEvent } from '@shared/types';
 import { memo, useCallback, useMemo } from 'react';
-import { Text as RNText, StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, FLAG, SPACING, staggerDelay } from '../constants/theme';
+import { ANIMATION, HIT_SLOP, SPACING, staggerDelay } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import {
@@ -20,60 +16,14 @@ import {
 import { relativeTime } from '../lib/date-format';
 import { useOpenLink } from '../lib/open-link';
 import { displayCountryName } from '../lib/place-names';
+import { FlagChip } from './FlagChip';
 import { Pressable, Text } from './primitives';
-import { SheetLayout } from './SheetLayout';
+import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
-interface ConflictSheetProps {
-  sheetRef: React.RefObject<BottomSheetModal | null>;
+interface ConflictSheetProps extends BaseSheetProps {
   event: ConflictEvent | null;
-  bottomInset: number;
-  renderBackdrop: React.FC<BottomSheetBackdropProps>;
-  onDismiss: () => void;
   /** Tap on the country chip — opens the CountrySheet for that country. */
   onCountryPress?: (countryName: string) => void;
-}
-
-function FlagChip({
-  name,
-  flag,
-  borderColor,
-  onPress,
-}: {
-  name: string;
-  flag: string;
-  borderColor: string;
-  onPress?: (countryName: string) => void;
-}) {
-  const display = displayCountryName(name) ?? name;
-  const handlePress = useCallback(() => onPress?.(name), [name, onPress]);
-  if (!onPress) {
-    return (
-      <View style={[styles.flagChip, { borderColor }]}>
-        <RNText allowFontScaling={false} style={styles.flagGlyph}>
-          {flag}
-        </RNText>
-        <Text variant="labelSm" numberOfLines={1}>
-          {display}
-        </Text>
-      </View>
-    );
-  }
-  return (
-    <Pressable
-      haptic="tick"
-      onPress={handlePress}
-      style={[styles.flagChip, { borderColor }]}
-      accessibilityRole="button"
-      accessibilityLabel={`Open ${display}`}
-    >
-      <RNText allowFontScaling={false} style={styles.flagGlyph}>
-        {flag}
-      </RNText>
-      <Text variant="labelSm" numberOfLines={1}>
-        {display}
-      </Text>
-    </Pressable>
-  );
 }
 
 export const ConflictSheet = memo(function ConflictSheet({
@@ -217,7 +167,7 @@ export const ConflictSheet = memo(function ConflictSheet({
                   onPress={handleSourcePress}
                   accessibilityRole="link"
                   accessibilityLabel="Open the source"
-                  hitSlop={SPACING.sm}
+                  hitSlop={HIT_SLOP}
                 >
                   <Text variant="caption" tone="accent">
                     Source →
@@ -254,19 +204,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: SPACING.sm,
-  },
-  flagChip: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SPACING.xs,
-    paddingVertical: SPACING.xxs,
-    paddingHorizontal: SPACING.sm,
-    borderRadius: 14,
-    borderWidth: StyleSheet.hairlineWidth,
-  },
-  flagGlyph: {
-    fontSize: FLAG.row,
-    lineHeight: FLAG.row * 1.125,
   },
   sourceLine: {
     marginTop: SPACING.xl,

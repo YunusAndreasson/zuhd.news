@@ -1,11 +1,12 @@
 import { getItemAsync, setItemAsync } from 'expo-secure-store';
 import * as StoreReview from 'expo-store-review';
+import { DAY_MS } from './time';
 
 const COUNT_KEY = 'zuhd_review_count';
 const PROMPTED_KEY = 'zuhd_review_prompted';
 
 const ARTICLE_THRESHOLD = 20;
-const COOLDOWN_MS = 90 * 24 * 60 * 60 * 1000; // 90 days
+const COOLDOWN_MS = 90 * DAY_MS; // 90 days
 
 // In-memory cache — loaded once from SecureStore, then served from RAM.
 // Avoids encrypted storage reads on every article snap.

@@ -2,15 +2,19 @@ import { displayNameFromCode } from '@shared/countries/iso';
 import { Canvas, Circle, Line, vec } from '@shopify/react-native-skia';
 import { extent } from 'd3-array';
 import { scaleLinear } from 'd3-scale';
-import { memo, useEffect, useMemo, useState } from 'react';
+import { memo, useMemo, useState } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
-import { useReducedMotion, useSharedValue, withTiming } from 'react-native-reanimated';
-import { ANIMATION, EASING, SPACING } from '../../constants/theme';
+import { SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { ccToFlag } from '../../lib/article-utils';
 import { Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
-import { type BlockVariant, blockContainerStyle } from './shared';
+import {
+  type BlockVariant,
+  blockContainerStyle,
+  blockSharedStyles,
+  formatBlockNumber,
+} from './shared';
 
 const INITIAL_WIDTH_ESTIMATE = Dimensions.get('window').width - SPACING.screenPadding * 2;
 const STRIP_HEIGHT = 64;
@@ -35,11 +39,6 @@ interface RankBlockProps {
   sourceLabel?: string;
 }
 
-function formatVal(n: number, unit?: string): string {
-  const s = Number.isInteger(n) ? n.toLocaleString() : n.toFixed(1);
-  return unit ? `${s}${unit.length === 1 || unit === '%' ? '' : ' '}${unit}` : s;
-}
-
 export const RankBlock = memo(function RankBlock({
   metric,
   unit,
@@ -50,7 +49,6 @@ export const RankBlock = memo(function RankBlock({
   sourceLabel,
 }: RankBlockProps) {
   const { colors } = useTheme();
-  const reduceMotion = useReducedMotion();
   const [width, setWidth] = useState(INITIAL_WIDTH_ESTIMATE);
 
   const cleanPeers = useMemo(
@@ -96,12 +94,6 @@ export const RankBlock = memo(function RankBlock({
     return { scale: s, lo: safeLo, hi: safeHi, rank: r, total: cleanPeers.length };
   }, [cleanPeers, subject, width]);
 
-  const progress = useSharedValue(reduceMotion ? 1 : 0);
-  useEffect(() => {
-    if (reduceMotion) return;
-    progress.value = withTiming(1, { duration: ANIMATION.slow, easing: EASING.out });
-  }, [reduceMotion, progress]);
-
   if (cleanPeers.length === 0) return null;
 
   const axisY = STRIP_HEIGHT * 0.6;
@@ -121,7 +113,7 @@ export const RankBlock = memo(function RankBlock({
 
       <View
         onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
-        style={[styles.stripWrap, { height: STRIP_HEIGHT }]}
+        style={[blockSharedStyles.chartWrap, { height: STRIP_HEIGHT }]}
       >
         {scale && width > 0 ? (
           <Canvas style={{ width, height: STRIP_HEIGHT }}>
@@ -185,10 +177,10 @@ export const RankBlock = memo(function RankBlock({
         {/* Min/max labels positioned beneath the ticks. */}
         <View pointerEvents="none" style={styles.axisLabels}>
           <Text variant="labelXs" tone="secondary" style={styles.axisLabelLeft}>
-            {formatVal(lo, unit)}
+            {formatBlockNumber(lo, unit)}
           </Text>
           <Text variant="labelXs" tone="secondary" style={styles.axisLabelRight}>
-            {formatVal(hi, unit)}
+            {formatBlockNumber(hi, unit)}
           </Text>
         </View>
 
@@ -218,7 +210,7 @@ export const RankBlock = memo(function RankBlock({
                     numberOfLines={1}
                     style={styles.subjectLabelText}
                   >
-                    {`${subject.cc ? `${ccToFlag(subject.cc)} ${displayNameFromCode(subject.cc) ?? subject.cc.toUpperCase()}` : (subject.label ?? '')} · ${formatVal(subject.value, unit)}`}
+                    {`${subject.cc ? `${ccToFlag(subject.cc)} ${displayNameFromCode(subject.cc) ?? subject.cc.toUpperCase()}` : (subject.label ?? '')} · ${formatBlockNumber(subject.value, unit)}`}
                   </Text>
                 </View>
               );
@@ -240,10 +232,6 @@ const styles = StyleSheet.create({
   },
   metric: {
     flex: 1,
-  },
-  stripWrap: {
-    position: 'relative',
-    width: '100%',
   },
   axisLabels: {
     position: 'absolute',

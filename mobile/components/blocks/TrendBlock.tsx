@@ -3,7 +3,7 @@ import { Canvas, Circle, Line, Path, Skia, type SkPath, vec } from '@shopify/rea
 import { extent } from 'd3-array';
 import { scaleLinear, scaleLog, scaleTime } from 'd3-scale';
 import { curveMonotoneX, area as d3Area, line as d3Line } from 'd3-shape';
-import { memo, useEffect, useMemo, useState } from 'react';
+import { memo, useMemo, useState } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
@@ -11,17 +11,22 @@ import {
   type SharedValue,
   useAnimatedReaction,
   useDerivedValue,
-  useReducedMotion,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { ANIMATION, EASING, RADIUS, SPACING } from '../../constants/theme';
+import { SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
-import { formatTickLabel } from '../../lib/date-format';
+import { formatTickLabel, parseFlexibleDate } from '../../lib/date-format';
 import { hapticTick } from '../../lib/haptics';
 import { Pressable, Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
-import { type BlockVariant, blockContainerStyle } from './shared';
+import {
+  type BlockVariant,
+  blockContainerStyle,
+  blockSharedStyles,
+  formatBlockNumber,
+  useChartDrawProgress,
+} from './shared';
 
 const INITIAL_WIDTH_ESTIMATE = Dimensions.get('window').width - SPACING.screenPadding * 2;
 
@@ -65,28 +70,15 @@ function resolveHighlightIndex(values: number[], mode: TrendHighlight | undefine
   }
 }
 
-function formatNumber(n: number, unit?: string): string {
-  const s = Number.isInteger(n) ? n.toLocaleString() : n.toFixed(1);
-  return unit ? `${s}${unit.length === 1 || unit === '%' ? '' : ' '}${unit}` : s;
-}
-
-/** Try to interpret each period string as a date. Returns aligned Date array
- *  if every period parses; otherwise null (caller falls back to index scale).
- *  Accepts ISO ("2026-04-13"), year ("1979"), and year-month ("2026-04"). */
+/** Interpret each period string as a date via the shared year/year-month/ISO
+ *  parser. Returns an aligned Date array if every period parses; otherwise
+ *  null (caller falls back to index scale). */
 function parsePeriodsAsDates(periods: string[] | undefined): Date[] | null {
   if (!periods || periods.length === 0) return null;
   const out: Date[] = [];
   for (const p of periods) {
-    if (/^\d{4}$/.test(p)) {
-      out.push(new Date(`${p}-01-01T00:00:00Z`));
-      continue;
-    }
-    if (/^\d{4}-\d{2}$/.test(p)) {
-      out.push(new Date(`${p}-01T00:00:00Z`));
-      continue;
-    }
-    const d = new Date(p);
-    if (Number.isNaN(d.getTime())) return null;
+    const d = parseFlexibleDate(p);
+    if (!d) return null;
     out.push(d);
   }
   return out;
@@ -315,7 +307,6 @@ export const TrendBlock = memo(function TrendBlock({
   sourceLabel,
 }: TrendBlockProps) {
   const { colors, font } = useTheme();
-  const reduceMotion = useReducedMotion();
   const isContext = variant === 'context';
   const height = isContext ? CHART_HEIGHT.context : CHART_HEIGHT.article;
 
@@ -349,11 +340,7 @@ export const TrendBlock = memo(function TrendBlock({
   const min = flatExtent[0] ?? 0;
   const max = flatExtent[1] ?? 0;
 
-  const progress = useSharedValue(reduceMotion ? 1 : 0);
-  useEffect(() => {
-    if (reduceMotion) return;
-    progress.value = withTiming(1, { duration: ANIMATION.slow, easing: EASING.out });
-  }, [reduceMotion, progress]);
+  const progress = useChartDrawProgress();
 
   const [width, setWidth] = useState(INITIAL_WIDTH_ESTIMATE);
 
@@ -416,11 +403,11 @@ export const TrendBlock = memo(function TrendBlock({
             .map((s) => {
               const sv = s.values[scrubIdxJs];
               if (sv === undefined) return null;
-              return `${s.label}: ${formatNumber(sv, unit)}`;
+              return `${s.label}: ${formatBlockNumber(sv, unit)}`;
             })
             .filter((l): l is string => l !== null)
             .join('\n')
-        : formatNumber(v, unit);
+        : formatBlockNumber(v, unit);
     return {
       idx: scrubIdxJs,
       value: lines,
@@ -483,7 +470,7 @@ export const TrendBlock = memo(function TrendBlock({
   const highlightPeriod = periods?.[defaultHighlightIdx];
   const a11yLabel =
     highlightValue !== undefined
-      ? `${label}, ${formatNumber(highlightValue, unit)}${highlightPeriod ? ` in ${highlightPeriod}` : ''}, range ${formatNumber(min, unit)} to ${formatNumber(max, unit)}`
+      ? `${label}, ${formatBlockNumber(highlightValue, unit)}${highlightPeriod ? ` in ${highlightPeriod}` : ''}, range ${formatBlockNumber(min, unit)} to ${formatBlockNumber(max, unit)}`
       : label;
 
   if (normalizedSeries.length === 0) return null;
@@ -499,7 +486,7 @@ export const TrendBlock = memo(function TrendBlock({
       : null;
 
   const inner = (
-    <View style={blockContainerStyle[isContext ? 'context' : 'article']}>
+    <View style={blockContainerStyle[variant]}>
       <Text variant="labelSm" numberOfLines={2} style={styles.label}>
         {label}
       </Text>
@@ -508,7 +495,7 @@ export const TrendBlock = memo(function TrendBlock({
         <View style={styles.legendRow}>
           {legend.map((l, i) => (
             <View key={`${l.label}-${i}`} style={styles.legendItem}>
-              <View style={[styles.legendSwatch, { backgroundColor: l.color }]} />
+              <View style={[blockSharedStyles.swatch, { backgroundColor: l.color }]} />
               <Text variant="labelXs" tone="secondary" numberOfLines={1}>
                 {l.label}
               </Text>
@@ -520,7 +507,7 @@ export const TrendBlock = memo(function TrendBlock({
       <GestureDetector gesture={pan}>
         <View
           onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
-          style={[styles.chartWrap, { height }]}
+          style={[blockSharedStyles.chartWrap, { height }]}
         >
           {width > 0 ? (
             <>
@@ -585,12 +572,12 @@ export const TrendBlock = memo(function TrendBlock({
 
               <View pointerEvents="none" style={[styles.yAxis, styles.yAxisMax]}>
                 <Text variant="tabular" tone="secondary">
-                  {formatNumber(max, unit)}
+                  {formatBlockNumber(max, unit)}
                 </Text>
               </View>
               <View pointerEvents="none" style={[styles.yAxis, styles.yAxisMin]}>
                 <Text variant="tabular" tone="secondary">
-                  {formatNumber(min, unit)}
+                  {formatBlockNumber(min, unit)}
                 </Text>
               </View>
             </>
@@ -652,6 +639,9 @@ export const TrendBlock = memo(function TrendBlock({
 });
 
 const styles = StyleSheet.create({
+  // Slightly roomier than the shared `blockSharedStyles.label` (xs): the
+  // multi-series legend can sit directly beneath this label, so the extra
+  // breathing room keeps the label from crowding the legend row.
   label: {
     marginBottom: SPACING.sm,
   },
@@ -665,18 +655,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: SPACING.xxs,
-  },
-  // Square swatch matches CompareBlock and TreemapBlock — the legend
-  // grammar reads as one system across charts. Was 10×2 (a line) which
-  // diverged when a Trend and a Compare appeared in the same article.
-  legendSwatch: {
-    width: 10,
-    height: 10,
-    borderRadius: RADIUS.handle,
-  },
-  chartWrap: {
-    position: 'relative',
-    width: '100%',
   },
   yAxis: {
     position: 'absolute',

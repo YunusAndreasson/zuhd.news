@@ -1,35 +1,27 @@
-import {
-  type BottomSheetBackdropProps,
-  type BottomSheetModal,
-  BottomSheetScrollView,
-} from '@gorhom/bottom-sheet';
+import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { COUNTRY_DATA } from '@shared/countries/country-data';
 import type { GdacsAlert, GdacsDetail } from '@shared/types';
 import { memo, useCallback, useMemo } from 'react';
-import { Text as RNText, StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, FLAG, SPACING, staggerDelay } from '../constants/theme';
+import { ANIMATION, HIT_SLOP, SPACING, staggerDelay } from '../constants/theme';
 import { useGdacsDetail } from '../hooks/useGdacsDetail';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import { relativeTime } from '../lib/date-format';
 import { displaySourceName, EVENT_TYPE_EYEBROW, parseSeverityHero } from '../lib/gdacs';
 import { useOpenLink } from '../lib/open-link';
-import { displayCountryName } from '../lib/place-names';
+import { FlagChip } from './FlagChip';
 import { Markdown, Pressable, Text } from './primitives';
-import { SheetLayout } from './SheetLayout';
+import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
-interface DisasterSheetProps {
-  sheetRef: React.RefObject<BottomSheetModal | null>;
+interface DisasterSheetProps extends BaseSheetProps {
   alert: GdacsAlert | null;
   /** Pre-fetched detail map from /api/gdacs.json — keyed
    *  `${eventtype}:${eventid}`. The sheet does a synchronous lookup; missing
    *  keys (non-EQ/TC events, or EQ/TC where the cycle's detail fetch failed)
    *  resolve to null and the population row hides. */
   details: Record<string, GdacsDetail>;
-  bottomInset: number;
-  renderBackdrop: React.FC<BottomSheetBackdropProps>;
-  onDismiss: () => void;
   /** Tap on a country chip — opens the CountrySheet for that country. */
   onCountryPress?: (countryName: string) => void;
 }
@@ -74,49 +66,6 @@ function formatPopulation(n: number | null): string | null {
   if (n < 1_000_000) return `~${Math.round(n / 1_000)}K`;
   if (n < 1_000_000_000) return `~${(n / 1_000_000).toFixed(n < 10_000_000 ? 1 : 0)}M`;
   return `~${(n / 1_000_000_000).toFixed(1)}B`;
-}
-
-function FlagChip({
-  name,
-  flag,
-  borderColor,
-  onPress,
-}: {
-  name: string;
-  flag: string;
-  borderColor: string;
-  onPress?: (countryName: string) => void;
-}) {
-  const display = displayCountryName(name) ?? name;
-  const handlePress = useCallback(() => onPress?.(name), [name, onPress]);
-  if (!onPress) {
-    return (
-      <View style={[styles.flagChip, { borderColor }]}>
-        <RNText allowFontScaling={false} style={styles.flagGlyph}>
-          {flag}
-        </RNText>
-        <Text variant="labelSm" numberOfLines={1}>
-          {display}
-        </Text>
-      </View>
-    );
-  }
-  return (
-    <Pressable
-      haptic="tick"
-      onPress={handlePress}
-      style={[styles.flagChip, { borderColor }]}
-      accessibilityRole="button"
-      accessibilityLabel={`Open ${display}`}
-    >
-      <RNText allowFontScaling={false} style={styles.flagGlyph}>
-        {flag}
-      </RNText>
-      <Text variant="labelSm" numberOfLines={1}>
-        {display}
-      </Text>
-    </Pressable>
-  );
 }
 
 export const DisasterSheet = memo(function DisasterSheet({
@@ -295,7 +244,7 @@ export const DisasterSheet = memo(function DisasterSheet({
                   onPress={handleReportPress}
                   accessibilityRole="link"
                   accessibilityLabel="Open the GDACS event report"
-                  hitSlop={SPACING.sm}
+                  hitSlop={HIT_SLOP}
                   style={styles.reportLink}
                 >
                   <Text variant="caption" tone="accent">
@@ -338,19 +287,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: SPACING.sm,
-  },
-  flagChip: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SPACING.xs,
-    paddingVertical: SPACING.xxs,
-    paddingHorizontal: SPACING.sm,
-    borderRadius: 14,
-    borderWidth: StyleSheet.hairlineWidth,
-  },
-  flagGlyph: {
-    fontSize: FLAG.row,
-    lineHeight: FLAG.row * 1.125,
   },
   description: {
     marginTop: SPACING.lg,

@@ -83,8 +83,8 @@ const styles = StyleSheet.create({
   headline: {
     // Tight to the eyebrow above it (proximity = same idea-unit), generous
     // to the subtitle below to let the number read as the focal element.
-    marginTop: 2,
-    marginBottom: 2,
+    marginTop: SPACING.xxs,
+    marginBottom: SPACING.xxs,
   },
   subtitle: {
     marginBottom: SPACING.md,

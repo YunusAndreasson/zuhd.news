@@ -5,6 +5,7 @@
 // severityText → focal-number reduction, and age-based opacity.
 
 import type { GdacsAlert, GdacsEventType } from '@shared/types';
+import { ageDaysFromIso } from './time';
 
 /** Eyebrow label — the all-caps event-type name that anchors the sheet
  *  before the focal severity number. Replaces the redundant 44px glyph
@@ -117,7 +118,5 @@ function normalizeUnit(u: string): string {
  *  recency family hotspots use. Returns 0 for unparsable timestamps so
  *  borderline data still renders at full opacity. */
 export function alertAgeDays(alert: GdacsAlert, now: number = Date.now()): number {
-  const t = Date.parse(alert.modifiedDate);
-  if (!Number.isFinite(t)) return 0;
-  return Math.max(0, (now - t) / 86_400_000);
+  return ageDaysFromIso(alert.modifiedDate, now);
 }

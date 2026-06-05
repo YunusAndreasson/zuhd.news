@@ -10,12 +10,11 @@
 // The output is already uppercase — pass it straight to a labelXs Text.
 
 import { timeFormat } from 'd3-time-format';
+import { DAY_MS } from './time';
 
 const fmtYear = timeFormat('%Y');
 const fmtMonthYear = timeFormat("%b '%y");
 const fmtMonthDay = timeFormat('%b %-d');
-
-const DAY_MS = 1000 * 60 * 60 * 24;
 
 /**
  * Pick a compact, human-scannable label for a tick date based on the span
@@ -34,6 +33,20 @@ export function formatTickLabel(d: Date, ticks: Date[]): string {
   if (span >= 365 * DAY_MS * 2) return fmtYear(d).toUpperCase();
   if (span >= 60 * DAY_MS) return fmtMonthYear(d).toUpperCase();
   return fmtMonthDay(d).toUpperCase();
+}
+
+/**
+ * Parse a chart period/year string into a UTC Date. Accepts a bare year
+ * ("1979" → Jan 1), a year-month ("2026-04" → the 1st), or anything
+ * `Date` itself parses (e.g. full ISO). Returns null on unparseable input.
+ * Single source of truth for the "year / year-month / ISO" convention shared
+ * by TrendBlock's axis and TimelineBlock's events.
+ */
+export function parseFlexibleDate(s: string): Date | null {
+  if (/^\d{4}$/.test(s)) return new Date(`${s}-01-01T00:00:00Z`);
+  if (/^\d{4}-\d{2}$/.test(s)) return new Date(`${s}-01T00:00:00Z`);
+  const d = new Date(s);
+  return Number.isNaN(d.getTime()) ? null : d;
 }
 
 /**

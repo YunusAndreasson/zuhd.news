@@ -1,5 +1,5 @@
 import { memo, useCallback, useMemo, useRef, useState } from 'react';
-import { type LayoutChangeEvent, Pressable, StyleSheet, View } from 'react-native';
+import { type LayoutChangeEvent, Pressable, StyleSheet, type TextStyle, View } from 'react-native';
 import Animated, { interpolate, type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
@@ -48,7 +48,7 @@ function TabLabel({
   index: number;
   pagerOffset: SharedValue<number>;
   isSelected: boolean;
-  labelStyle: { fontFamily?: string; fontSize: number; letterSpacing: number; color: string };
+  labelStyle: TextStyle;
   onCategoryPress: (index: number) => void;
   onLayout: (e: LayoutChangeEvent) => void;
 }) {
@@ -88,7 +88,7 @@ export const CategoryBar = memo(function CategoryBar({
   onCategoryPress,
   onMenuPress,
 }: CategoryBarProps) {
-  const { colors, font, typography } = useTheme();
+  const { colors, textVariants } = useTheme();
   const insets = useSafeAreaInsets();
   const [tabLayouts, setTabLayouts] = useState<TabLayout[]>([]);
   const layoutsRef = useRef<(TabLayout | null)[]>(new Array(TAB_LABELS.length).fill(null));
@@ -137,12 +137,10 @@ export const CategoryBar = memo(function CategoryBar({
     return { left: tab?.x ?? 0, width: (tab?.width ?? 0) * progress, opacity: 1 };
   });
 
-  const labelStyle = {
-    ...font.smallCaps,
-    fontSize: typography.sizeXs,
-    letterSpacing: typography.trackingCaps,
-    color: colors.text,
-  };
+  // Reuse the `labelXs` variant verbatim (same small-caps font, size, and
+  // caps tracking) rather than re-assembling it by hand; only the color
+  // differs — tabs read at full `text`, not the variant's `textSecondary`.
+  const labelStyle: TextStyle = { ...textVariants.labelXs, color: colors.text };
 
   return (
     <View style={[styles.container, { paddingTop: insets.top, backgroundColor: colors.bg }]}>

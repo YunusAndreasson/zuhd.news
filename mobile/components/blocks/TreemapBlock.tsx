@@ -1,14 +1,19 @@
 import type { BlockTone } from '@shared/types';
 import { Canvas, Rect } from '@shopify/react-native-skia';
 import { type HierarchyRectangularNode, hierarchy, treemap } from 'd3-hierarchy';
-import { memo, useEffect, useMemo, useState } from 'react';
+import { memo, useMemo, useState } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
-import { useReducedMotion, useSharedValue, withTiming } from 'react-native-reanimated';
-import { ANIMATION, EASING, SPACING } from '../../constants/theme';
+import { SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
-import { type BlockVariant, blockContainerStyle } from './shared';
+import {
+  type BlockVariant,
+  blockContainerStyle,
+  blockSharedStyles,
+  blockToneBg,
+  formatBlockNumber,
+} from './shared';
 
 const INITIAL_WIDTH_ESTIMATE = Dimensions.get('window').width - SPACING.screenPadding * 2;
 const CHART_HEIGHT = 220;
@@ -18,8 +23,6 @@ const LABEL_INSET = 4;
 // look like a stylesheet bug. Reader still sees the rectangle's relative
 // size; the legend list below covers names for tiny cells.
 const MIN_CELL_AREA_FOR_LABEL = 1800;
-
-type Colors = ReturnType<typeof useTheme>['colors'];
 
 interface TreemapItem {
   label: string;
@@ -34,25 +37,6 @@ interface TreemapBlockProps {
   sourceLabel?: string;
 }
 
-function toneColor(tone: BlockTone | undefined, colors: Colors): string {
-  // For typed tones, use the tone palette; for untyped, fall back to a
-  // mid-luminance grey (textSecondary) and let the per-cell opacity carry
-  // the value hierarchy. Previously this returned textEmphasis (near-white
-  // in dark, near-black in light), which collapsed contrast against the
-  // emphasis-toned label on top of the cell — large cells became
-  // "white text on white fill" and dropped to ~1.4:1.
-  switch (tone) {
-    case 'favorable':
-      return colors.toneFavorable;
-    case 'unfavorable':
-      return colors.toneUnfavorable;
-    case 'neutral':
-      return colors.toneNeutral;
-    default:
-      return colors.textSecondary;
-  }
-}
-
 export const TreemapBlock = memo(function TreemapBlock({
   items,
   label,
@@ -60,7 +44,6 @@ export const TreemapBlock = memo(function TreemapBlock({
   sourceLabel,
 }: TreemapBlockProps) {
   const { colors } = useTheme();
-  const reduceMotion = useReducedMotion();
   const [width, setWidth] = useState(INITIAL_WIDTH_ESTIMATE);
 
   const layout = useMemo(() => {
@@ -96,23 +79,17 @@ export const TreemapBlock = memo(function TreemapBlock({
     }
   }, [items, width]);
 
-  const progress = useSharedValue(reduceMotion ? 1 : 0);
-  useEffect(() => {
-    if (reduceMotion) return;
-    progress.value = withTiming(1, { duration: ANIMATION.slow, easing: EASING.out });
-  }, [reduceMotion, progress]);
-
   if (!layout) {
     return (
       <View style={blockContainerStyle[variant]}>
         {label ? (
-          <Text variant="labelSm" style={styles.label}>
+          <Text variant="labelSm" style={blockSharedStyles.label}>
             {label}
           </Text>
         ) : null}
         <View
           onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
-          style={[styles.canvasWrap, { height: CHART_HEIGHT }]}
+          style={[blockSharedStyles.chartWrap, { height: CHART_HEIGHT }]}
         />
       </View>
     );
@@ -123,14 +100,14 @@ export const TreemapBlock = memo(function TreemapBlock({
   return (
     <View style={blockContainerStyle[variant]}>
       {label ? (
-        <Text variant="labelSm" style={styles.label}>
+        <Text variant="labelSm" style={blockSharedStyles.label}>
           {label}
         </Text>
       ) : null}
 
       <View
         onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
-        style={[styles.canvasWrap, { height: CHART_HEIGHT }]}
+        style={[blockSharedStyles.chartWrap, { height: CHART_HEIGHT }]}
       >
         {width > 0 ? (
           <>
@@ -144,7 +121,7 @@ export const TreemapBlock = memo(function TreemapBlock({
                     y={c.y0}
                     width={Math.max(1, c.x1 - c.x0)}
                     height={Math.max(1, c.y1 - c.y0)}
-                    color={toneColor(c.item.tone, colors)}
+                    color={blockToneBg(c.item.tone, colors)}
                     opacity={c.item.tone ? 0.85 : 0.18 + 0.6 * intensity}
                   />
                 );
@@ -172,9 +149,7 @@ export const TreemapBlock = memo(function TreemapBlock({
                     {c.item.label}
                   </Text>
                   <Text variant="labelXs" tone="emphasis">
-                    {Number.isInteger(c.item.value)
-                      ? c.item.value.toLocaleString()
-                      : c.item.value.toFixed(1)}
+                    {formatBlockNumber(c.item.value)}
                   </Text>
                 </View>
               );
@@ -200,9 +175,9 @@ export const TreemapBlock = memo(function TreemapBlock({
                 <View key={`detail-${i}`} style={styles.detailRow}>
                   <View
                     style={[
-                      styles.detailSwatch,
+                      blockSharedStyles.swatch,
                       {
-                        backgroundColor: toneColor(c.item.tone, colors),
+                        backgroundColor: blockToneBg(c.item.tone, colors),
                         opacity: swatchOpacity,
                       },
                     ]}
@@ -216,9 +191,7 @@ export const TreemapBlock = memo(function TreemapBlock({
                     {c.item.label}
                   </Text>
                   <Text variant="labelXs" tone="emphasis" style={styles.detailValue}>
-                    {Number.isInteger(c.item.value)
-                      ? c.item.value.toLocaleString()
-                      : c.item.value.toFixed(1)}
+                    {formatBlockNumber(c.item.value)}
                   </Text>
                   <Text variant="labelXs" tone="secondary" style={styles.detailPct}>
                     {`${pct.toFixed(0)}%`}
@@ -236,13 +209,6 @@ export const TreemapBlock = memo(function TreemapBlock({
 });
 
 const styles = StyleSheet.create({
-  label: {
-    marginBottom: SPACING.xs,
-  },
-  canvasWrap: {
-    position: 'relative',
-    width: '100%',
-  },
   cellLabel: {
     position: 'absolute',
   },
@@ -254,11 +220,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: SPACING.sm,
-  },
-  detailSwatch: {
-    width: 10,
-    height: 10,
-    borderRadius: 2,
   },
   detailLabel: {
     flex: 1,

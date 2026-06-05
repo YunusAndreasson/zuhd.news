@@ -1,8 +1,4 @@
-import {
-  type BottomSheetBackdropProps,
-  type BottomSheetModal,
-  BottomSheetScrollView,
-} from '@gorhom/bottom-sheet';
+import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import type { CountryData } from '@shared/countries/country-data';
 import type { ContextBrief, TimelineEntry } from '@shared/types';
 import { memo, useEffect, useMemo, useRef } from 'react';
@@ -16,20 +12,16 @@ import { makeMarkdownStyles } from '../lib/markdown';
 import { useOpenLink } from '../lib/open-link';
 import { renderBlocks } from './blocks';
 import { Markdown, Pressable, Stack, Text } from './primitives';
-import { SheetLayout } from './SheetLayout';
+import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
 const TIMELINE_DOT = 7;
 const TIMELINE_LINE = 1.5;
 
-interface ContextSheetProps {
-  sheetRef: React.RefObject<BottomSheetModal | null>;
+interface ContextSheetProps extends BaseSheetProps {
   brief: ContextBrief | null;
   loading: boolean;
   error: boolean;
   threadLabel?: string;
-  bottomInset: number;
-  renderBackdrop: React.FC<BottomSheetBackdropProps>;
-  onDismiss: () => void;
   onRetry: () => void;
   onCountryPress?: (payload: { countryName: string; data: CountryData | null }) => void;
 }
@@ -168,6 +160,10 @@ export const ContextSheet = memo(function ContextSheet({
       >
         {hasThread && (
           <>
+            {/* font.bold escape hatch: the brief title wants masthead weight
+                (bolder than the semibold `title` variant). Only two call sites
+                bold a title — here and ChokepointSheet's focal count — so a
+                dedicated `titleEmphasis` variant isn't yet justified (<3). */}
             <Text
               selectable
               variant="title"

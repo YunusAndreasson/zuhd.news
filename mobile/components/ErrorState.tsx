@@ -27,6 +27,7 @@ export function ErrorState({ offline, error, onRetry }: ErrorStateProps) {
         </Text>
         <Pressable
           onPress={handleRetry}
+          haptic="none"
           accessibilityRole="button"
           accessibilityLabel="Try again"
           style={[styles.retryPill, { backgroundColor: colors.pillBg }]}

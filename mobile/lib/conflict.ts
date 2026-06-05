@@ -4,6 +4,7 @@
 // the full data layer.
 
 import type { ConflictEvent, ConflictEventFamily, ConflictSubEvent } from '@shared/types';
+import { ageDaysFromIso } from './time';
 
 /** All-caps event-family label that anchors the sheet before the focal
  *  number — matches the EVENT_TYPE_EYEBROW pattern in lib/gdacs.ts so
@@ -55,9 +56,7 @@ export function parseConflictHero(event: ConflictEvent): ConflictHero {
  *  layer naturally tapers; the recencyAlpha clamp in MiniGlobe still
  *  applies a floor so the oldest events stay visible. */
 export function eventAgeDays(event: ConflictEvent, now: number = Date.now()): number {
-  const t = Date.parse(event.eventDate);
-  if (!Number.isFinite(t)) return 0;
-  return Math.max(0, (now - t) / 86_400_000);
+  return ageDaysFromIso(event.eventDate, now);
 }
 
 /** Source display — UCDP rows carry the originating wire/outlet in

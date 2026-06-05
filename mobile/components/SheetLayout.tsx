@@ -8,6 +8,18 @@ import { useTheme } from '../hooks/useTheme';
 import { SheetHandle } from './SheetHandle';
 import { SheetContainer } from './SheetPrimitives';
 
+/** The four wiring props every bottom sheet receives from the HomeScreen
+ *  orchestrator: its modal ref, the safe-area bottom inset for content
+ *  padding, the shared backdrop renderer, and a dismiss callback. Concrete
+ *  sheets extend this with their own payload-specific props so the wiring
+ *  contract is declared once rather than re-typed in every sheet. */
+export interface BaseSheetProps {
+  sheetRef: React.RefObject<BottomSheetModal | null>;
+  bottomInset: number;
+  renderBackdrop: React.FC<BottomSheetBackdropProps>;
+  onDismiss: () => void;
+}
+
 type OmittedModalProps =
   | 'ref'
   | 'enablePanDownToClose'

@@ -1,8 +1,4 @@
-import {
-  type BottomSheetBackdropProps,
-  type BottomSheetModal,
-  BottomSheetScrollView,
-} from '@gorhom/bottom-sheet';
+import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import type { Chokepoint, ConflictEvent, GdacsAlert } from '@shared/types';
 import { Canvas, Circle, Path } from '@shopify/react-native-skia';
 import { memo, useCallback, useMemo } from 'react';
@@ -23,10 +19,9 @@ import {
 } from './globe/disaster-glyphs';
 import type { TapResult } from './globe/MiniGlobe';
 import { Pressable, Text } from './primitives';
-import { SheetLayout } from './SheetLayout';
+import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
-interface DisambiguationSheetProps {
-  sheetRef: React.RefObject<BottomSheetModal | null>;
+interface DisambiguationSheetProps extends BaseSheetProps {
   /** The overlapping candidates surfaced by MiniGlobe.hitTest. Length ≥ 2
    *  whenever the sheet is opened — single hits resolve directly, never
    *  through this chooser. */
@@ -36,9 +31,6 @@ interface DisambiguationSheetProps {
   chokepoints: Chokepoint[];
   alerts: GdacsAlert[];
   conflictEvents: ConflictEvent[];
-  bottomInset: number;
-  renderBackdrop: React.FC<BottomSheetBackdropProps>;
-  onDismiss: () => void;
   /** Fires when a row is tapped. Parent should dismiss this sheet and
    *  re-dispatch the candidate through its existing tap handler. */
   onSelect: (result: TapResult) => void;

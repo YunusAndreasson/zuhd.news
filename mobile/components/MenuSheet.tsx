@@ -1,8 +1,4 @@
-import {
-  type BottomSheetBackdropProps,
-  type BottomSheetModal,
-  BottomSheetScrollView,
-} from '@gorhom/bottom-sheet';
+import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import type { Article, Category } from '@shared/types';
 import Constants from 'expo-constants';
 import * as StoreReview from 'expo-store-review';
@@ -41,7 +37,7 @@ import { SheetAboutPage } from './SheetAboutPage';
 import { SheetBookmarksPage } from './SheetBookmarksPage';
 import { SheetHandle } from './SheetHandle';
 import { type InfoSection, SheetInfoPage } from './SheetInfoPage';
-import { SheetLayout } from './SheetLayout';
+import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 import { SheetSearchPage } from './SheetSearchPage';
 
 const APP_VERSION = Constants.expoConfig?.version ?? '';
@@ -367,11 +363,7 @@ function ActionLink({
   );
 }
 
-interface MenuSheetProps {
-  sheetRef: React.RefObject<BottomSheetModal | null>;
-  bottomInset: number;
-  renderBackdrop: React.FC<BottomSheetBackdropProps>;
-  onDismiss: () => void;
+interface MenuSheetProps extends BaseSheetProps {
   grouped: Record<Category, Article[]>;
   onSelectArticle: (slug: string, category: Category) => void;
   onToast?: (message: string) => void;

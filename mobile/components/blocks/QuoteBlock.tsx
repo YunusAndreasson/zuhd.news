@@ -22,7 +22,6 @@ export const QuoteBlock = memo(function QuoteBlock({
   variant = 'article',
 }: QuoteBlockProps) {
   const { colors } = useTheme();
-  const isContext = variant === 'context';
 
   const attributionParts: string[] = [];
   if (speaker) attributionParts.push(speaker);
@@ -30,7 +29,7 @@ export const QuoteBlock = memo(function QuoteBlock({
   const attribution = attributionParts.join(' \u00b7 ');
 
   return (
-    <View style={blockContainerStyle[isContext ? 'context' : 'article']}>
+    <View style={blockContainerStyle[variant]}>
       <View style={styles.row}>
         <View style={[styles.ruleLeft, { backgroundColor: colors.accent }]} />
         <View style={styles.body}>

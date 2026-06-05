@@ -7,21 +7,17 @@ import { useTheme } from '../../hooks/useTheme';
 import { ccToFlag } from '../../lib/article-utils';
 import { Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
-import { type BlockVariant, blockContainerStyle } from './shared';
+import { type BlockVariant, blockContainerStyle, blockSharedStyles, blockToneBg } from './shared';
 
 type Colors = ReturnType<typeof useTheme>['colors'];
 
 function resolvePillColors(tone: CompareRow['tone'], colors: Colors): { bg: string; fg: string } {
-  switch (tone) {
-    case 'favorable':
-      return { bg: colors.toneFavorable, fg: BLACK };
-    case 'unfavorable':
-      return { bg: colors.toneUnfavorable, fg: BLACK };
-    case 'neutral':
-      return { bg: colors.toneNeutral, fg: BLACK };
-    default:
-      return { bg: colors.pillBg, fg: colors.textEmphasis };
+  // Typed tones reuse the shared block-tone background (on a BLACK glyph for
+  // contrast); untyped pills fall back to the neutral pill surface.
+  if (tone === 'favorable' || tone === 'unfavorable' || tone === 'neutral') {
+    return { bg: blockToneBg(tone, colors), fg: BLACK };
   }
+  return { bg: colors.pillBg, fg: colors.textEmphasis };
 }
 
 interface CompareBlockProps {
@@ -57,7 +53,7 @@ export const CompareBlock = memo(function CompareBlock({
   return (
     <View style={blockContainerStyle[variant]}>
       {label ? (
-        <Text variant="labelSm" style={styles.blockLabel}>
+        <Text variant="labelSm" style={blockSharedStyles.label}>
           {label}
         </Text>
       ) : null}
@@ -65,7 +61,7 @@ export const CompareBlock = memo(function CompareBlock({
         <View style={styles.legendRow}>
           {segmentLegend.map((l, i) => (
             <View key={`legend-${l.label}-${i}`} style={styles.legendItem}>
-              <View style={[styles.legendSwatch, { backgroundColor: l.color }]} />
+              <View style={[blockSharedStyles.swatch, { backgroundColor: l.color }]} />
               <Text variant="labelXs" tone="secondary" numberOfLines={1}>
                 {l.label.toUpperCase()}
               </Text>
@@ -159,9 +155,6 @@ export const CompareBlock = memo(function CompareBlock({
 });
 
 const styles = StyleSheet.create({
-  blockLabel: {
-    marginBottom: SPACING.xs,
-  },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -215,10 +208,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: SPACING.xxs,
-  },
-  legendSwatch: {
-    width: 10,
-    height: 10,
-    borderRadius: 2,
   },
 });

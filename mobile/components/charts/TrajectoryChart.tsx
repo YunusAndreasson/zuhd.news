@@ -248,7 +248,7 @@ export const TrajectoryChart = memo(function TrajectoryChart({
       case 'warn':
         return colors.dome;
       case 'crit':
-        return colors.toneUnfavorable;
+        return colors.toneUnfavorableText;
       default:
         return colors.textSecondary;
     }

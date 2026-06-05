@@ -1,23 +1,18 @@
-import {
-  type BottomSheetBackdropProps,
-  type BottomSheetModal,
-  BottomSheetScrollView,
-} from '@gorhom/bottom-sheet';
+import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import type { Article, Category, Entity, Indicator } from '@shared/types';
 import { memo, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, CATEGORIES, SPACING, staggerDelay } from '../constants/theme';
+import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
-import { ArticleRow } from './ArticleRow';
 import { SourceCaption } from './blocks/SourceCaption';
 import { TrendBlock } from './blocks/TrendBlock';
 import { Text } from './primitives';
-import { SheetLayout } from './SheetLayout';
+import { MAX_RELATED, RelatedStories } from './RelatedStories';
+import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
-interface EntitySheetProps {
-  sheetRef: React.RefObject<BottomSheetModal | null>;
+interface EntitySheetProps extends BaseSheetProps {
   /** The user-tapped entity alongside the resolved indicator from the
    *  catalog. Null collapses the sheet body to nothing — the layout
    *  remains open while dismiss is animating. */
@@ -26,14 +21,9 @@ interface EntitySheetProps {
   /** Full feed for the "related stories" section — articles whose
    *  `entities[]` cite the same indicatorId. */
   articles: Article[];
-  bottomInset: number;
-  renderBackdrop: React.FC<BottomSheetBackdropProps>;
-  onDismiss: () => void;
   /** Asks the parent to scroll the feed to a specific article slug. */
   onArticlePress?: (slug: string, category: Category) => void;
 }
-
-const MAX_RELATED = 3;
 
 /** Format indicator `latest` for the headline readout. Large integers (indices,
  *  view counts) are space-separated; sub-10 floats get a decimal; everything
@@ -81,10 +71,6 @@ function findRelatedArticles(indicator: Indicator, articles: Article[]): Article
     }
   }
   return out;
-}
-
-function resolveCategory(article: Article): Category {
-  return CATEGORIES.find((c) => (article.concepts || []).includes(c)) ?? 'politics';
 }
 
 export const EntitySheet = memo(function EntitySheet({
@@ -152,22 +138,11 @@ export const EntitySheet = memo(function EntitySheet({
             </Animated.View>
 
             {related.length > 0 && onArticlePress && (
-              <Animated.View entering={enter()} style={styles.section}>
-                <Text variant="labelXs" style={styles.relatedHeading}>
-                  related stories
-                </Text>
-                {related.map((a) => (
-                  <ArticleRow
-                    key={a.slug}
-                    slug={a.slug}
-                    title={a.title}
-                    addedAt={a.addedAt}
-                    category={resolveCategory(a)}
-                    location={a.location}
-                    onPress={onArticlePress}
-                  />
-                ))}
-              </Animated.View>
+              <RelatedStories
+                articles={related}
+                onArticlePress={onArticlePress}
+                entering={enter()}
+              />
             )}
 
             <Animated.View entering={enter()} style={styles.section}>
@@ -186,8 +161,5 @@ const styles = StyleSheet.create({
   },
   delta: {
     marginTop: SPACING.xxs,
-  },
-  relatedHeading: {
-    marginBottom: SPACING.xs,
   },
 });

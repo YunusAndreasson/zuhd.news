@@ -1,14 +1,12 @@
-import {
-  type BottomSheetBackdropProps,
-  type BottomSheetModal,
-  BottomSheetScrollView,
-} from '@gorhom/bottom-sheet';
+import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { getMetricValue, getRanking, type MetricKey } from '@shared/countries/country-ranking';
 import type { GdacsAlert } from '@shared/types';
 import { Canvas, Circle, Path } from '@shopify/react-native-skia';
-import { memo, useCallback, useMemo, useState } from 'react';
-import { Text as RNText, StyleSheet, View } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { BackHandler, Text as RNText, StyleSheet, View } from 'react-native';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import Animated, { FadeInDown, runOnJS } from 'react-native-reanimated';
+import { IS_ANDROID } from '../constants/platform';
 import { ANIMATION, FLAG, SPACING, staggerDelay } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
@@ -19,7 +17,7 @@ import { EVENT_TYPE_LABEL, GLYPH_HALF, getGlyphPath } from './globe/disaster-gly
 import type { TapResult } from './globe/MiniGlobe';
 import { Icon, Pressable, Text } from './primitives';
 import { SheetHandle } from './SheetHandle';
-import { SheetLayout } from './SheetLayout';
+import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
 const MORE_METRICS: { key: MetricKey; label: string }[] = [
   { key: 'population', label: 'population' },
@@ -141,20 +139,17 @@ function MoreRow({
   );
 }
 
-interface CountrySheetProps {
-  sheetRef: React.RefObject<BottomSheetModal | null>;
+interface CountrySheetProps extends BaseSheetProps {
   country: TapResult | null;
   /** GDACS alerts whose primary or affected-country list includes this
    *  country. Empty when there are no active disaster alerts touching it. */
   activeAlerts?: GdacsAlert[];
   /** Called when the user taps an alert chip — opens DisasterSheet. */
   onAlertPress?: (alert: GdacsAlert) => void;
-  bottomInset: number;
-  renderBackdrop: React.FC<BottomSheetBackdropProps>;
-  onDismiss: () => void;
 }
 
 const ALERT_CHIP_GLYPH = 28;
+const ALERT_CHIP_DOT_SIZE = 6;
 
 function AlertChip({
   alert,
@@ -229,6 +224,7 @@ export const CountrySheet = memo(function CountrySheet({
 }: CountrySheetProps) {
   const { sheetStyles } = useTheme();
   const [activeRanking, setActiveRanking] = useState<MetricKey | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
   const snapProps = useSheetSnaps(activeRanking !== null);
   const flag = country?.data?.flag;
   const name = displayCountryName(country?.countryName ?? null);
@@ -325,6 +321,40 @@ export const CountrySheet = memo(function CountrySheet({
     onDismiss();
   }, [onDismiss]);
 
+  const handleSheetChange = useCallback((index: number) => {
+    setIsOpen(index >= 0);
+  }, []);
+
+  // Android hardware back: pop the ranking sub-page first, dismiss the sheet
+  // only at the root. Mirrors MenuSheet so every multi-page sheet honors the
+  // back button identically (DESIGN §Sheets).
+  useEffect(() => {
+    if (!IS_ANDROID || !isOpen) return;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (activeRanking !== null) {
+        onBackToCountry();
+        return true;
+      }
+      sheetRef.current?.dismiss();
+      return true;
+    });
+    return () => sub.remove();
+  }, [isOpen, activeRanking, onBackToCountry, sheetRef]);
+
+  // Swipe-from-left pops the ranking sub-page back to the country detail.
+  // Same thresholds as MenuSheet; disabled on the root page so it doesn't
+  // fight the sheet's own pan-down-to-dismiss.
+  const swipeBack = Gesture.Pan()
+    .enabled(activeRanking !== null)
+    .activeOffsetX(20)
+    .failOffsetY([-10, 10])
+    .onEnd(({ translationX, velocityX }) => {
+      'worklet';
+      if (translationX > 80 || velocityX > 800) {
+        runOnJS(onBackToCountry)();
+      }
+    });
+
   return (
     <SheetLayout
       sheetRef={sheetRef}
@@ -332,14 +362,19 @@ export const CountrySheet = memo(function CountrySheet({
       renderBackdrop={renderBackdrop}
       handleComponent={CountryHandle}
       onDismiss={handleDismiss}
+      onChange={handleSheetChange}
     >
       {activeRanking ? (
-        <CountryRankingView
-          metric={activeRanking}
-          currentCountryName={country?.countryName ?? null}
-          bottomInset={bottomInset}
-          onRequestClose={() => sheetRef.current?.dismiss()}
-        />
+        <GestureDetector gesture={swipeBack}>
+          <View style={styles.rankingWrap}>
+            <CountryRankingView
+              metric={activeRanking}
+              currentCountryName={country?.countryName ?? null}
+              bottomInset={bottomInset}
+              onRequestClose={() => sheetRef.current?.dismiss()}
+            />
+          </View>
+        </GestureDetector>
       ) : (
         <BottomSheetScrollView
           contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}
@@ -385,6 +420,11 @@ export const CountrySheet = memo(function CountrySheet({
 });
 
 const styles = StyleSheet.create({
+  // Host view so GestureDetector has a ref-holding child to attach the
+  // swipe-back to; flex:1 lets the ranking list fill the sheet body.
+  rankingWrap: {
+    flex: 1,
+  },
   handleRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -489,8 +529,8 @@ const styles = StyleSheet.create({
     flexShrink: 1,
   },
   alertChipDot: {
-    width: 6,
-    height: 6,
-    borderRadius: 3,
+    width: ALERT_CHIP_DOT_SIZE,
+    height: ALERT_CHIP_DOT_SIZE,
+    borderRadius: ALERT_CHIP_DOT_SIZE / 2,
   },
 });

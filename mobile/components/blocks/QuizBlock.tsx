@@ -14,7 +14,7 @@ import { useTheme } from '../../hooks/useTheme';
 import { hapticNotification } from '../../lib/haptics';
 import { Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
-import { type BlockVariant, blockContainerStyle } from './shared';
+import { type BlockVariant, blockContainerStyle, blockSharedStyles } from './shared';
 
 interface QuizBlockProps {
   question: string;
@@ -35,7 +35,6 @@ export const QuizBlock = memo(function QuizBlock({
   sourceLabel,
 }: QuizBlockProps) {
   const { colors } = useTheme();
-  const isContext = variant === 'context';
   const reduceMotion = useReducedMotion();
 
   const [selected, setSelected] = useState<number | null>(null);
@@ -87,8 +86,8 @@ export const QuizBlock = memo(function QuizBlock({
   };
 
   return (
-    <View style={blockContainerStyle[isContext ? 'context' : 'article']}>
-      <Text variant="labelSm" style={styles.label}>
+    <View style={blockContainerStyle[variant]}>
+      <Text variant="labelSm" style={blockSharedStyles.label}>
         choose one
       </Text>
       <Animated.View style={shakeStyle}>
@@ -162,9 +161,6 @@ export const QuizBlock = memo(function QuizBlock({
 });
 
 const styles = StyleSheet.create({
-  label: {
-    marginBottom: SPACING.xs,
-  },
   question: {
     marginBottom: SPACING.sm,
   },

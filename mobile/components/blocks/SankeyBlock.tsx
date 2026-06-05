@@ -1,13 +1,17 @@
 import { Canvas, Path, Rect, Skia } from '@shopify/react-native-skia';
 import { sankey, sankeyLinkHorizontal } from 'd3-sankey';
-import { memo, useEffect, useMemo, useState } from 'react';
+import { memo, useMemo, useState } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
-import { useReducedMotion, useSharedValue, withTiming } from 'react-native-reanimated';
-import { ANIMATION, EASING, SPACING } from '../../constants/theme';
+import { SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
-import { type BlockVariant, blockContainerStyle } from './shared';
+import {
+  type BlockVariant,
+  blockContainerStyle,
+  blockSharedStyles,
+  useChartDrawProgress,
+} from './shared';
 
 const INITIAL_WIDTH_ESTIMATE = Dimensions.get('window').width - SPACING.screenPadding * 2;
 const CHART_HEIGHT = 200;
@@ -61,7 +65,7 @@ export const SankeyBlock = memo(function SankeyBlock({
   sourceLabel,
 }: SankeyBlockProps) {
   const { colors } = useTheme();
-  const reduceMotion = useReducedMotion();
+  const progress = useChartDrawProgress();
   const [width, setWidth] = useState(INITIAL_WIDTH_ESTIMATE);
 
   // Horizontal room reserved for node labels at each side of the diagram.
@@ -100,12 +104,6 @@ export const SankeyBlock = memo(function SankeyBlock({
     }
   }, [nodes, links, width]);
 
-  const progress = useSharedValue(reduceMotion ? 1 : 0);
-  useEffect(() => {
-    if (reduceMotion) return;
-    progress.value = withTiming(1, { duration: ANIMATION.slow, easing: EASING.out });
-  }, [reduceMotion, progress]);
-
   if (!layout) {
     if (width <= 0) {
       // Layout pass — register the layout listener and bail. Re-renders once
@@ -113,13 +111,13 @@ export const SankeyBlock = memo(function SankeyBlock({
       return (
         <View style={blockContainerStyle[variant]}>
           {label ? (
-            <Text variant="labelSm" style={styles.label}>
+            <Text variant="labelSm" style={blockSharedStyles.label}>
               {label}
             </Text>
           ) : null}
           <View
             onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
-            style={[styles.canvasWrap, { height: CHART_HEIGHT }]}
+            style={[blockSharedStyles.chartWrap, { height: CHART_HEIGHT }]}
           />
         </View>
       );
@@ -137,14 +135,14 @@ export const SankeyBlock = memo(function SankeyBlock({
   return (
     <View style={blockContainerStyle[variant]}>
       {label ? (
-        <Text variant="labelSm" style={styles.label}>
+        <Text variant="labelSm" style={blockSharedStyles.label}>
           {label}
         </Text>
       ) : null}
 
       <View
         onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
-        style={[styles.canvasWrap, { height: CHART_HEIGHT }]}
+        style={[blockSharedStyles.chartWrap, { height: CHART_HEIGHT }]}
       >
         <Canvas style={{ width, height: CHART_HEIGHT }}>
           {/* Links — translucent ribbons, drawn first so nodes overlay them */}
@@ -210,13 +208,6 @@ export const SankeyBlock = memo(function SankeyBlock({
 });
 
 const styles = StyleSheet.create({
-  label: {
-    marginBottom: SPACING.xs,
-  },
-  canvasWrap: {
-    position: 'relative',
-    width: '100%',
-  },
   nodeLabel: {
     position: 'absolute',
   },

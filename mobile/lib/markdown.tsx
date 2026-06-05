@@ -1,6 +1,6 @@
 import type { Entity } from '@shared/types';
 import { Fragment, type ReactNode } from 'react';
-import { Linking, StyleSheet, Text, type TextStyle } from 'react-native';
+import { StyleSheet, Text, type TextStyle } from 'react-native';
 import { ANDROID_TEXT_BASE } from '../constants/platform';
 import {
   type ColorPalette,
@@ -9,6 +9,7 @@ import {
   MAX_FONT_SCALE,
   type Typography,
 } from '../constants/theme';
+import { openExternal } from './open-link';
 
 export type Segment = {
   type: 'text' | 'bold' | 'italic' | 'boldItalic' | 'link' | 'entity';
@@ -22,9 +23,7 @@ export type EntityPressHandler = (entity: Entity) => void;
 
 export type LinkOpener = (url: string) => void;
 
-const defaultOpenLink: LinkOpener = (url) => {
-  Linking.openURL(url).catch(() => {});
-};
+const defaultOpenLink: LinkOpener = openExternal;
 
 export function smartTypography(s: string): string {
   return (

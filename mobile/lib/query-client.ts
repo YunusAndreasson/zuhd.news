@@ -2,9 +2,9 @@ import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persi
 import type { AsyncStorage } from '@tanstack/query-persist-client-core';
 import { QueryClient } from '@tanstack/react-query';
 import { File, Paths } from 'expo-file-system';
+import { DAY_MS } from './time';
 
 const CACHE_FILE = new File(Paths.cache, 'query-cache.json');
-const TWENTY_FOUR_HOURS_MS = 24 * 60 * 60 * 1000;
 
 // AsyncStorage shim over expo-file-system: a single in-memory map mirrored
 // to one JSON file. The persister hands us the whole serialized client as a
@@ -60,7 +60,7 @@ export const queryClient = new QueryClient({
       staleTime: 5 * 60 * 1000,
       // Keep evicted data around for a day so a back/forward navigation
       // still gets an instant render from cache.
-      gcTime: TWENTY_FOUR_HOURS_MS,
+      gcTime: DAY_MS,
       // Match the prior `fetchWithTimeout(5000)` failure mode: retry a few
       // times on transient network errors, then surface the error to UI.
       retry: 2,
@@ -79,4 +79,4 @@ export const persister = createAsyncStoragePersister({
   throttleTime: 1000,
 });
 
-export const PERSIST_MAX_AGE_MS = TWENTY_FOUR_HOURS_MS;
+export const PERSIST_MAX_AGE_MS = DAY_MS;

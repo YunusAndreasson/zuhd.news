@@ -39,7 +39,7 @@ import {
   getSeas,
 } from './locations-geo';
 import { SourceCaption } from './SourceCaption';
-import { type BlockVariant, blockContainerStyle } from './shared';
+import { type BlockVariant, blockContainerStyle, blockSharedStyles } from './shared';
 
 /** Inset the highlighted bounding box from the canvas edges so country
  *  borders aren't flush against the frame. 8% of width feels like a
@@ -300,7 +300,6 @@ export const LocationsBlock = memo(function LocationsBlock({
   valueLabel,
 }: LocationsBlockProps) {
   const { colors, typography } = useTheme();
-  const isContext = variant === 'context';
 
   const [width, setWidth] = useState(INITIAL_WIDTH_ESTIMATE);
   const onLayout = useCallback((e: LayoutChangeEvent) => {
@@ -863,9 +862,12 @@ export const LocationsBlock = memo(function LocationsBlock({
   if (!showMap) return null;
 
   return (
-    <View style={blockContainerStyle[isContext ? 'context' : 'article']}>
+    <View style={blockContainerStyle[variant]}>
       {label ? (
-        <Text variant="labelSm" style={[styles.label, { lineHeight: typography.sizeSm * 1.1 }]}>
+        <Text
+          variant="labelSm"
+          style={[blockSharedStyles.label, { lineHeight: typography.sizeSm * 1.1 }]}
+        >
           {label}
         </Text>
       ) : null}
@@ -1171,9 +1173,6 @@ export const LocationsBlock = memo(function LocationsBlock({
 });
 
 const styles = StyleSheet.create({
-  label: {
-    marginBottom: SPACING.xxs,
-  },
   mapWrap: {
     position: 'relative',
     overflow: 'hidden',
@@ -1223,8 +1222,8 @@ const styles = StyleSheet.create({
   choroGradient: {
     flex: 1,
     flexDirection: 'row',
-    height: 8,
-    borderRadius: 2,
+    height: SPACING.sm,
+    borderRadius: RADIUS.handle,
     overflow: 'hidden',
   },
   choroSwatch: {

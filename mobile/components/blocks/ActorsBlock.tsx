@@ -7,7 +7,7 @@ import { useTheme } from '../../hooks/useTheme';
 import { ccToFlag } from '../../lib/article-utils';
 import { Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
-import { type BlockVariant, blockContainerStyle } from './shared';
+import { type BlockVariant, blockContainerStyle, blockSharedStyles } from './shared';
 
 interface ActorsBlockProps {
   people: Actor[];
@@ -23,13 +23,12 @@ export const ActorsBlock = memo(function ActorsBlock({
   sourceLabel,
 }: ActorsBlockProps) {
   const { colors } = useTheme();
-  const isContext = variant === 'context';
   const reduceMotion = useReducedMotion();
 
   return (
-    <View style={blockContainerStyle[isContext ? 'context' : 'article']}>
+    <View style={blockContainerStyle[variant]}>
       {label ? (
-        <Text variant="labelSm" style={styles.label}>
+        <Text variant="labelSm" style={blockSharedStyles.label}>
           {label}
         </Text>
       ) : null}
@@ -73,9 +72,6 @@ export const ActorsBlock = memo(function ActorsBlock({
 });
 
 const styles = StyleSheet.create({
-  label: {
-    marginBottom: SPACING.xs,
-  },
   row: {
     flexDirection: 'row',
     alignItems: 'center',

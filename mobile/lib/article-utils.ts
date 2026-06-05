@@ -3,6 +3,8 @@
  * No React Native or native module dependencies — safe to test in jsdom.
  */
 
+import { DAY_MS } from './time';
+
 export function formatTimeAgo(addedAt: number): string {
   const diffMs = Date.now() - addedAt;
   const diffMin = Math.floor(diffMs / 60_000);
@@ -41,7 +43,7 @@ export function formatExactTime(addedAt: number): string {
   yesterday.setDate(now.getDate() - 1);
   if (sameDate(then, yesterday)) return `Yesterday, ${time}`;
 
-  const diffDays = (now.getTime() - then.getTime()) / 86_400_000;
+  const diffDays = (now.getTime() - then.getTime()) / DAY_MS;
   if (diffDays < 7) {
     const weekday = then.toLocaleDateString(undefined, { weekday: 'long' });
     return `${weekday}, ${time}`;

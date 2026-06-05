@@ -1,33 +1,23 @@
-import {
-  type BottomSheetBackdropProps,
-  type BottomSheetModal,
-  BottomSheetScrollView,
-} from '@gorhom/bottom-sheet';
+import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import type { Article, Category, Chokepoint, CompareRow, VesselField } from '@shared/types';
 import { memo, useMemo } from 'react';
 import { Text as RNText, StyleSheet } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, CATEGORIES, SPACING, staggerDelay } from '../constants/theme';
+import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
-import { ArticleRow } from './ArticleRow';
 import { CompareBlock } from './blocks/CompareBlock';
 import { SourceCaption } from './blocks/SourceCaption';
 import { TrendBlock } from './blocks/TrendBlock';
 import { Text } from './primitives';
-import { SheetLayout } from './SheetLayout';
+import { MAX_RELATED, RelatedStories } from './RelatedStories';
+import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
-interface ChokepointSheetProps {
-  sheetRef: React.RefObject<BottomSheetModal | null>;
+interface ChokepointSheetProps extends BaseSheetProps {
   chokepoint: Chokepoint | null;
   articles: Article[];
-  bottomInset: number;
-  renderBackdrop: React.FC<BottomSheetBackdropProps>;
-  onDismiss: () => void;
   onArticlePress?: (slug: string, category: Category) => void;
 }
-
-const MAX_RELATED = 3;
 
 const VESSEL_LABELS: { field: VesselField; label: string }[] = [
   { field: 'n_tanker', label: 'Tanker' },
@@ -63,10 +53,6 @@ function findRelatedArticles(chokepoint: Chokepoint, articles: Article[]): Artic
     if (tags.some((tag) => haystack.includes(tag))) out.push(a);
   }
   return out;
-}
-
-function resolveCategory(article: Article): Category {
-  return CATEGORIES.find((c) => (article.concepts || []).includes(c)) ?? 'politics';
 }
 
 export const ChokepointSheet = memo(function ChokepointSheet({
@@ -130,6 +116,10 @@ export const ChokepointSheet = memo(function ChokepointSheet({
         {chokepoint && (
           <>
             <Animated.View entering={enter()}>
+              {/* font.bold escape hatch: the focal throughput number wants
+                  bolder-than-`title` (semibold) weight. Mirrors ContextSheet's
+                  brief title; only these two sites bold a title, so no
+                  dedicated bold-title variant yet (<3 call sites). */}
               <Text selectable variant="title" tone="emphasis" style={font.bold}>
                 {formatCount(current)}{' '}
                 <RNText style={{ ...font.regular, color: colors.textSecondary }}>
@@ -193,22 +183,11 @@ export const ChokepointSheet = memo(function ChokepointSheet({
             )}
 
             {related.length > 0 && onArticlePress && (
-              <Animated.View entering={enter()} style={styles.section}>
-                <Text variant="labelXs" style={styles.relatedHeading}>
-                  related stories
-                </Text>
-                {related.map((a) => (
-                  <ArticleRow
-                    key={a.slug}
-                    slug={a.slug}
-                    title={a.title}
-                    addedAt={a.addedAt}
-                    category={resolveCategory(a)}
-                    location={a.location}
-                    onPress={onArticlePress}
-                  />
-                ))}
-              </Animated.View>
+              <RelatedStories
+                articles={related}
+                onArticlePress={onArticlePress}
+                entering={enter()}
+              />
             )}
 
             <Animated.View entering={enter()} style={styles.section}>
@@ -236,8 +215,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'baseline',
     flexWrap: 'wrap',
-  },
-  relatedHeading: {
-    marginBottom: SPACING.xs,
   },
 });

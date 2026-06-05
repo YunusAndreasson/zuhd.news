@@ -1,8 +1,4 @@
-import {
-  type BottomSheetBackdropProps,
-  type BottomSheetModal,
-  BottomSheetScrollView,
-} from '@gorhom/bottom-sheet';
+import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import type { ArticleSource } from '@shared/types';
 import { memo, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
@@ -11,15 +7,11 @@ import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import { Text } from './primitives';
-import { SheetLayout } from './SheetLayout';
+import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 import { SourceRow } from './SourceRow';
 
-interface SourcesSheetProps {
-  sheetRef: React.RefObject<BottomSheetModal | null>;
+interface SourcesSheetProps extends BaseSheetProps {
   sources: ArticleSource[];
-  bottomInset: number;
-  renderBackdrop: React.FC<BottomSheetBackdropProps>;
-  onDismiss: () => void;
 }
 
 /** Dedicated sheet for the article's sources. Opens from the tappable source

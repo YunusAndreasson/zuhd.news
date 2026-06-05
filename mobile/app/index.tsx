@@ -3,7 +3,7 @@ import {
   type BottomSheetBackdropProps,
   type BottomSheetModal,
 } from '@gorhom/bottom-sheet';
-import { COUNTRY_DATA } from '@shared/countries/country-data';
+import { COUNTRY_DATA, type CountryData } from '@shared/countries/country-data';
 import type {
   Article,
   ArticleSource,
@@ -274,6 +274,18 @@ export default function HomeScreen() {
     setActiveAlert(alert);
     disasterSheetRef.current?.present();
   }, []);
+
+  // Hop into the CountrySheet by country name, synthesizing a minimal
+  // TapResult (no globe location/time). Shared by the disaster/conflict/context
+  // sheets' onCountryPress. `data` defaults to the shared dataset lookup;
+  // ContextSheet passes its already-resolved CountryData.
+  const openCountry = useCallback(
+    (countryName: string, data: CountryData | null = COUNTRY_DATA[countryName] ?? null) => {
+      setCountrySheet({ countryName, location: null, localTime: null, data });
+      countrySheetRef.current?.present();
+    },
+    [],
+  );
 
   const handleEntityPress = useCallback(
     (entity: Entity) => {
@@ -567,20 +579,12 @@ export default function HomeScreen() {
         renderBackdrop={renderBackdrop}
         onDismiss={() => setActiveAlert(null)}
         onCountryPress={(countryName) => {
-          // Hop from disaster → country: dismiss this sheet, populate
-          // the country payload from shared data, present the country
-          // sheet. CountryAlerts memo will re-fire and the strip in
-          // the country sheet will surface the disaster (and any
-          // others affecting the same country).
+          // Hop from disaster → country: dismiss this sheet, then present
+          // the country sheet. CountryAlerts memo will re-fire and the strip
+          // in the country sheet will surface the disaster (and any others
+          // affecting the same country).
           disasterSheetRef.current?.dismiss();
-          const data = COUNTRY_DATA[countryName] ?? null;
-          setCountrySheet({
-            countryName,
-            location: null,
-            localTime: null,
-            data,
-          });
-          countrySheetRef.current?.present();
+          openCountry(countryName);
         }}
       />
 
@@ -592,14 +596,7 @@ export default function HomeScreen() {
         onDismiss={() => setActiveConflict(null)}
         onCountryPress={(countryName) => {
           conflictSheetRef.current?.dismiss();
-          const data = COUNTRY_DATA[countryName] ?? null;
-          setCountrySheet({
-            countryName,
-            location: null,
-            localTime: null,
-            data,
-          });
-          countrySheetRef.current?.present();
+          openCountry(countryName);
         }}
       />
 
@@ -670,15 +667,7 @@ export default function HomeScreen() {
           resetContext();
         }}
         onRetry={retryContext}
-        onCountryPress={({ countryName, data }) => {
-          setCountrySheet({
-            countryName,
-            location: null,
-            localTime: null,
-            data,
-          });
-          countrySheetRef.current?.present();
-        }}
+        onCountryPress={({ countryName, data }) => openCountry(countryName, data)}
       />
     </View>
   );

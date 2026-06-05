@@ -2,19 +2,15 @@ import type { BlockTone } from '@shared/types';
 import { Canvas, Circle, Line, Rect, vec } from '@shopify/react-native-skia';
 import { extent } from 'd3-array';
 import { scaleTime } from 'd3-scale';
-import { memo, useEffect, useMemo, useState } from 'react';
+import { memo, useMemo, useState } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
-import Animated, {
-  FadeIn,
-  useReducedMotion,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
-import { ANIMATION, EASING, RADIUS, SPACING, staggerDelay } from '../../constants/theme';
+import Animated, { FadeIn, useReducedMotion } from 'react-native-reanimated';
+import { ANIMATION, RADIUS, SPACING, staggerDelay } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
+import { parseFlexibleDate } from '../../lib/date-format';
 import { Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
-import { type BlockVariant, blockContainerStyle } from './shared';
+import { type BlockVariant, blockContainerStyle, blockSharedStyles, blockToneBg } from './shared';
 
 const INITIAL_WIDTH_ESTIMATE = Dimensions.get('window').width - SPACING.screenPadding * 2;
 const AXIS_PAD_X = 8;
@@ -30,8 +26,6 @@ const YEAR_LABEL_H = 14;
 const YEAR_LABEL_GAP = 2;
 const AXIS_Y = YEAR_LABEL_H + YEAR_LABEL_GAP + EVENT_TICK_H;
 const CHART_HEIGHT = AXIS_Y + SPAN_HEIGHT / 2 + 6;
-
-type Colors = ReturnType<typeof useTheme>['colors'];
 
 interface TimelineEvent {
   year: string;
@@ -54,26 +48,6 @@ interface TimelineBlockProps {
   sourceLabel?: string;
 }
 
-function parseYear(s: string): Date | null {
-  if (/^\d{4}$/.test(s)) return new Date(`${s}-01-01T00:00:00Z`);
-  if (/^\d{4}-\d{2}$/.test(s)) return new Date(`${s}-01T00:00:00Z`);
-  const d = new Date(s);
-  return Number.isNaN(d.getTime()) ? null : d;
-}
-
-function spanColor(tone: BlockTone | undefined, colors: Colors): string {
-  switch (tone) {
-    case 'favorable':
-      return colors.toneFavorable;
-    case 'unfavorable':
-      return colors.toneUnfavorable;
-    case 'neutral':
-      return colors.toneNeutral;
-    default:
-      return colors.textSecondary;
-  }
-}
-
 export const TimelineBlock = memo(function TimelineBlock({
   events,
   spans,
@@ -87,12 +61,12 @@ export const TimelineBlock = memo(function TimelineBlock({
 
   const parsed = useMemo(() => {
     const eventDates = (events ?? [])
-      .map((e) => ({ ev: e, date: parseYear(e.year) }))
+      .map((e) => ({ ev: e, date: parseFlexibleDate(e.year) }))
       .filter((x): x is { ev: TimelineEvent; date: Date } => x.date !== null);
     const spanDates = (spans ?? [])
       .map((s) => {
-        const from = parseYear(s.from);
-        const to = parseYear(s.to);
+        const from = parseFlexibleDate(s.from);
+        const to = parseFlexibleDate(s.to);
         return from && to && to >= from ? { sp: s, from, to } : null;
       })
       .filter((x): x is { sp: TimelineSpan; from: Date; to: Date } => x !== null);
@@ -138,12 +112,6 @@ export const TimelineBlock = memo(function TimelineBlock({
     return placed;
   }, [parsed.eventDates, scale, width]);
 
-  const progress = useSharedValue(reduceMotion ? 1 : 0);
-  useEffect(() => {
-    if (reduceMotion) return;
-    progress.value = withTiming(1, { duration: ANIMATION.slow, easing: EASING.out });
-  }, [reduceMotion, progress]);
-
   const axisY = AXIS_Y;
 
   if (parsed.eventDates.length === 0 && parsed.spanDates.length === 0) return null;
@@ -151,14 +119,14 @@ export const TimelineBlock = memo(function TimelineBlock({
   return (
     <View style={blockContainerStyle[variant]}>
       {label ? (
-        <Text variant="labelSm" style={styles.label}>
+        <Text variant="labelSm" style={blockSharedStyles.label}>
           {label}
         </Text>
       ) : null}
 
       <View
         onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
-        style={[styles.chartWrap, { height: CHART_HEIGHT }]}
+        style={[blockSharedStyles.chartWrap, { height: CHART_HEIGHT }]}
       >
         {scale && width > 0 ? (
           <>
@@ -182,7 +150,7 @@ export const TimelineBlock = memo(function TimelineBlock({
                     y={axisY - SPAN_HEIGHT / 2}
                     width={Math.max(2, x1 - x0)}
                     height={SPAN_HEIGHT}
-                    color={spanColor(s.sp.tone, colors)}
+                    color={blockToneBg(s.sp.tone, colors)}
                     opacity={0.35}
                   />
                 );
@@ -280,7 +248,7 @@ export const TimelineBlock = memo(function TimelineBlock({
               style={[
                 styles.listSpanMarker,
                 {
-                  backgroundColor: spanColor(s.sp.tone, colors),
+                  backgroundColor: blockToneBg(s.sp.tone, colors),
                 },
               ]}
             />
@@ -300,13 +268,6 @@ export const TimelineBlock = memo(function TimelineBlock({
 });
 
 const styles = StyleSheet.create({
-  label: {
-    marginBottom: SPACING.xs,
-  },
-  chartWrap: {
-    position: 'relative',
-    width: '100%',
-  },
   yearLabel: {
     position: 'absolute',
     height: YEAR_LABEL_H,
