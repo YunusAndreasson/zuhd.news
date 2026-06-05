@@ -5,7 +5,8 @@ import { Canvas, Circle, Path } from '@shopify/react-native-skia';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { BackHandler, Text as RNText, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, { FadeInDown, runOnJS } from 'react-native-reanimated';
+import Animated, { FadeInDown } from 'react-native-reanimated';
+import { scheduleOnRN } from 'react-native-worklets';
 import { IS_ANDROID } from '../constants/platform';
 import { ANIMATION, FLAG, SPACING, staggerDelay } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
@@ -351,7 +352,7 @@ export const CountrySheet = memo(function CountrySheet({
     .onEnd(({ translationX, velocityX }) => {
       'worklet';
       if (translationX > 80 || velocityX > 800) {
-        runOnJS(onBackToCountry)();
+        scheduleOnRN(onBackToCountry);
       }
     });
 

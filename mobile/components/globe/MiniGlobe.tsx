@@ -47,12 +47,12 @@ import {
 import { StyleSheet } from 'react-native';
 import {
   Easing,
-  runOnJS,
   type SharedValue,
   useAnimatedReaction,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { scheduleOnRN } from 'react-native-worklets';
 import { BLACK, WHITE, withAlpha } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { eventAgeDays } from '../../lib/conflict';
@@ -962,7 +962,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   }, [articles]);
 
   // Eager initial state — project synchronously on mount so the Canvas + Skia shaders
-  // are warm before the first swipe (avoids useEffect → reaction → runOnJS lag)
+  // are warm before the first swipe (avoids useEffect → reaction → scheduleOnRN lag)
   const [state, setState] = useState<GlobeState>(() => {
     const firstGeo = articleGeo.find((g) => g != null);
     if (!firstGeo) return EMPTY_GLOBE;
@@ -2005,7 +2005,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   // 16ms overwhelms the JS thread (d3-geo projection + setState can't complete in one frame).
   const lastTimeRef = useSharedValue(0);
   const hasFired = useSharedValue(false);
-  // No-op coalescing — last derived inputs handed to runOnJS. The reaction
+  // No-op coalescing — last derived inputs handed to scheduleOnRN. The reaction
   // tick still fires every 32ms while withTiming animations ease, but if the
   // resulting (lng, lat, frac, oA, oG) round to the same values as last
   // frame, skip the JS hop + d3-geo reproject + setState entirely. Epsilons
@@ -2129,7 +2129,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       lastReactOG.value = oG;
       lastReactSettled.value = settled;
 
-      runOnJS(callReproject)(lng, lat, settled, lo, hi, frac, oA, oG);
+      scheduleOnRN(callReproject, lng, lat, settled, lo, hi, frac, oA, oG);
     },
   );
 
@@ -2188,7 +2188,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     prevOverrideRef.current = zoomClipOverride;
     const onDone = (finished?: boolean) => {
       'worklet';
-      if (finished) runOnJS(finalizeReproject)();
+      if (finished) scheduleOnRN(finalizeReproject);
     };
     const opts = { duration: ZOOM_DURATION, easing: ZOOM_EASING };
     if (zoomClipOverride === null) {

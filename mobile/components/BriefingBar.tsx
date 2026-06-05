@@ -6,7 +6,6 @@ import Animated, {
   FadeIn,
   FadeOut,
   LinearTransition,
-  runOnJS,
   useAnimatedStyle,
   useReducedMotion,
   useSharedValue,
@@ -14,6 +13,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { scheduleOnRN } from 'react-native-worklets';
 import { ANIMATION, OPACITY, RADIUS, SPACING, withAlpha } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { Icon, IconButton, Text } from './primitives';
@@ -36,7 +36,7 @@ function formatTime(seconds: number): string {
 
 /** UI-thread fraction calc shared between pan + tap callbacks. Returns null
  *  when the bar isn't ready. Called from inside other worklets, so avoiding
- *  a runOnJS hop just to compute the new progress fraction. */
+ *  a scheduleOnRN hop just to compute the new progress fraction. */
 function computeScrubFraction(x: number, barWidth: number, duration: number): number | null {
   'worklet';
   if (duration <= 0 || barWidth <= 0) return null;
@@ -104,7 +104,7 @@ export const BriefingBar = memo(function BriefingBar({
   const prevLabelRef = useRef('');
 
   // JS-only side of a scrub: real audio seek + label update. Called via
-  // `runOnJS` from the gesture worklet, but only after the worklet has
+  // `scheduleOnRN` from the gesture worklet, but only after the worklet has
   // already updated `progressSV` for visual feedback — so the bar fill
   // tracks the finger without waiting for the JS-thread round trip.
   const commitSeek = useCallback(
@@ -132,7 +132,7 @@ export const BriefingBar = memo(function BriefingBar({
       const fraction = computeScrubFraction(e.x, barWidthSV.value, durationSV.value);
       if (fraction == null) return;
       progressSV.value = fraction;
-      runOnJS(commitSeek)(fraction * durationSV.value);
+      scheduleOnRN(commitSeek, fraction * durationSV.value);
     })
     .onChange((e) => {
       'worklet';
@@ -140,7 +140,7 @@ export const BriefingBar = memo(function BriefingBar({
       const fraction = computeScrubFraction(e.x, barWidthSV.value, durationSV.value);
       if (fraction == null) return;
       progressSV.value = fraction;
-      runOnJS(commitSeek)(fraction * durationSV.value);
+      scheduleOnRN(commitSeek, fraction * durationSV.value);
     })
     .onFinalize(() => {
       'worklet';
@@ -159,7 +159,7 @@ export const BriefingBar = memo(function BriefingBar({
       const fraction = computeScrubFraction(e.x, barWidthSV.value, durationSV.value);
       if (fraction == null) return;
       progressSV.value = fraction;
-      runOnJS(commitSeek)(fraction * durationSV.value);
+      scheduleOnRN(commitSeek, fraction * durationSV.value);
     });
 
   const scrubGesture = Gesture.Race(panGesture, tapGesture);
@@ -367,8 +367,11 @@ const styles = StyleSheet.create({
   },
   progressTouch: {
     // Vertical hit area above the visible 3px strip. The strip itself is
-    // flush with the bar's bottom edge, so all the touch slack goes above.
-    paddingTop: SPACING.md,
+    // flush with the bar's bottom edge, so all the touch slack goes above —
+    // which also lifts the grabbable zone clear of the system gesture inset
+    // at the screen's bottom edge. `lg` (was `md`) widens the thin target so
+    // drag-to-scrub is easy to catch without clipping the home-indicator zone.
+    paddingTop: SPACING.lg,
   },
   progressTrack: {
     height: PROGRESS_HEIGHT,

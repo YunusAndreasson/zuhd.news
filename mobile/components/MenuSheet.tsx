@@ -14,7 +14,8 @@ import {
   View,
 } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, { FadeInDown, runOnJS, useReducedMotion } from 'react-native-reanimated';
+import Animated, { FadeInDown, useReducedMotion } from 'react-native-reanimated';
+import { scheduleOnRN } from 'react-native-worklets';
 import { IS_ANDROID } from '../constants/platform';
 import {
   ANIMATION,
@@ -444,7 +445,7 @@ export const MenuSheet = memo(function MenuSheet({
     .onEnd(({ translationX, velocityX }) => {
       'worklet';
       if (translationX > 80 || velocityX > 800) {
-        runOnJS(navPop)();
+        scheduleOnRN(navPop);
       }
     });
 

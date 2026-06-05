@@ -169,7 +169,16 @@ export default function HomeScreen() {
     const category = CATEGORIES[catIndex] ?? 'politics';
     const added = toggleBookmark(article, category);
     hapticNotification();
-    toastRef.current?.show(added ? 'Saved to bookmarks' : 'Removed from bookmarks');
+    if (added) {
+      toastRef.current?.show('Saved to bookmarks');
+    } else {
+      // Removal is one swipe/long-press away from being accidental — offer a
+      // one-tap undo (actionable toast lingers 4s) that re-adds the bookmark.
+      toastRef.current?.show('Removed — tap to undo', () => {
+        toggleBookmark(article, category);
+        hapticTick();
+      });
+    }
   }, []);
 
   const handleMenuPress = useCallback(() => {

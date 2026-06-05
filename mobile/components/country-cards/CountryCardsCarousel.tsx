@@ -3,6 +3,7 @@ import {
   type LayoutChangeEvent,
   type NativeScrollEvent,
   type NativeSyntheticEvent,
+  Pressable,
   ScrollView,
   StyleSheet,
   View,
@@ -78,6 +79,23 @@ export const CountryCardsCarousel = memo(function CountryCardsCarousel({
   // Track previous page to fire haptic only on actual change, not on the
   // initial settle from index 0.
   const prevActive = useRef(0);
+  // Programmatic paging target for the dot controls. Horizontal swipe inside
+  // the bottom sheet's vertical scroller is unreliable on Android (the sheet
+  // can claim the pan), so the dots double as tap controls — `scrollTo` works
+  // regardless of which gesture handler owns touches.
+  const scrollRef = useRef<ScrollView>(null);
+  const goToPage = useCallback(
+    (i: number) => {
+      if (pageWidth <= 0) return;
+      scrollRef.current?.scrollTo({ x: i * pageWidth, animated: true });
+      if (i !== prevActive.current) {
+        hapticTick();
+        prevActive.current = i;
+      }
+      setActive(i);
+    },
+    [pageWidth],
+  );
 
   const cards = useMemo(() => {
     if (!data) return [] as { key: SlotKey; node: ReactElement }[];
@@ -113,6 +131,7 @@ export const CountryCardsCarousel = memo(function CountryCardsCarousel({
     >
       {pageWidth > 0 ? (
         <ScrollView
+          ref={scrollRef}
           horizontal
           pagingEnabled
           showsHorizontalScrollIndicator={false}
@@ -138,7 +157,9 @@ export const CountryCardsCarousel = memo(function CountryCardsCarousel({
       ) : (
         <View style={{ height: CARD_HEIGHT }} />
       )}
-      {cards.length > 1 ? <DotIndicator count={cards.length} active={active} /> : null}
+      {cards.length > 1 ? (
+        <DotIndicator count={cards.length} active={active} onSelect={goToPage} />
+      ) : null}
     </View>
   );
 });
@@ -146,12 +167,34 @@ export const CountryCardsCarousel = memo(function CountryCardsCarousel({
 const DOT = 4;
 const DOT_GAP = 6;
 
-function DotIndicator({ count, active }: { count: number; active: number }) {
+function DotIndicator({
+  count,
+  active,
+  onSelect,
+}: {
+  count: number;
+  active: number;
+  onSelect: (i: number) => void;
+}) {
   const { colors } = useTheme();
   return (
     <View style={styles.dotRow}>
       {Array.from({ length: count }).map((_, i) => (
-        <Dot key={i} on={i === active} dim={colors.textSecondary} accent={colors.textEmphasis} />
+        // Each dot is a tap target (4px visual, padded hit area) so the
+        // indicator doubles as paging controls — the primary navigation when
+        // horizontal swipe is swallowed by the enclosing bottom sheet.
+        <Pressable
+          key={i}
+          onPress={() => onSelect(i)}
+          accessibilityRole="button"
+          accessibilityLabel={`View card ${i + 1} of ${count}`}
+          accessibilityState={{ selected: i === active }}
+          // Padding (not hitSlop) supplies the touch area + inter-dot spacing,
+          // so adjacent dots' targets stay distinct rather than overlapping.
+          style={styles.dotHit}
+        >
+          <Dot on={i === active} dim={colors.textSecondary} accent={colors.textEmphasis} />
+        </Pressable>
       ))}
     </View>
   );
@@ -171,15 +214,7 @@ function Dot({ on, dim, accent }: { on: boolean; dim: string; accent: string }) 
     transform: [{ scale: scale.value }],
   }));
 
-  return (
-    <Animated.View
-      style={[
-        styles.dot,
-        { backgroundColor: on ? accent : dim, marginHorizontal: DOT_GAP / 2 },
-        animStyle,
-      ]}
-    />
-  );
+  return <Animated.View style={[styles.dot, { backgroundColor: on ? accent : dim }, animStyle]} />;
 }
 
 const styles = StyleSheet.create({
@@ -208,8 +243,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: SPACING.sm,
-    paddingBottom: SPACING.sm,
+    // Outer row padding trimmed by the per-dot vertical padding below so the
+    // total band height matches the prior SPACING.sm top/bottom.
+    paddingVertical: SPACING.xs,
+  },
+  // Per-dot touch target: horizontal padding restores the inter-dot gap (was
+  // Dot.marginHorizontal) and widens the tap zone; vertical padding gives a
+  // finger-height target without enlarging the visible dot.
+  dotHit: {
+    paddingHorizontal: DOT_GAP / 2 + 1,
+    paddingVertical: SPACING.xs,
   },
   dot: {
     width: DOT,

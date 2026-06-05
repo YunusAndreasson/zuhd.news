@@ -7,13 +7,13 @@ import { memo, useMemo, useState } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
-  runOnJS,
   type SharedValue,
   useAnimatedReaction,
   useDerivedValue,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { scheduleOnRN } from 'react-native-worklets';
 import { SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { formatTickLabel, parseFlexibleDate } from '../../lib/date-format';
@@ -373,8 +373,8 @@ export const TrendBlock = memo(function TrendBlock({
     () => scrubIdx.value,
     (current, prev) => {
       if (current === prev) return;
-      runOnJS(setScrubIdxJs)(current);
-      if (current >= 0 && prev !== null && prev >= 0) runOnJS(hapticTick)();
+      scheduleOnRN(setScrubIdxJs, current);
+      if (current >= 0 && prev !== null && prev >= 0) scheduleOnRN(hapticTick);
     },
   );
 

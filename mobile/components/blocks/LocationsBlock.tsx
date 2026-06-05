@@ -16,13 +16,13 @@ import {
 } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
-  runOnJS,
   type SharedValue,
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { scheduleOnRN } from 'react-native-worklets';
 import { EASING, FLAG, OPACITY, PRESSED_STYLE, RADIUS, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { ccToFlag } from '../../lib/article-utils';
@@ -854,7 +854,7 @@ export const LocationsBlock = memo(function LocationsBlock({
         .onEnd((_e, success) => {
           'worklet';
           if (!success) return;
-          runOnJS(openSelectedCountrySheet)();
+          scheduleOnRN(openSelectedCountrySheet);
         }),
     [openSelectedCountrySheet],
   );

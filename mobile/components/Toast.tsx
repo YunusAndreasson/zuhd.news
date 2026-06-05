@@ -106,6 +106,11 @@ export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> })
       entering={getEntering(pos, reduceMotion)}
       exiting={getExiting(pos, reduceMotion)}
       style={[styles.container, positionStyle]}
+      // `box-none`: the full-width container is only a positioning frame — it
+      // must not intercept touches in its horizontal band (it overlaps the
+      // bottom action-pill row when a bottom toast is visible). Only the inner
+      // pill Pressable should receive taps.
+      pointerEvents="box-none"
       accessibilityLiveRegion="polite"
     >
       <Pressable

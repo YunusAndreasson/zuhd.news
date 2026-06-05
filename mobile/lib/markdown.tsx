@@ -311,6 +311,12 @@ export function renderSegments(
             key={j}
             style={isCountry ? mdStyles.countryLink : mdStyles.link}
             onPress={() => seg.url && openLink(seg.url)}
+            // Label inline links for assistive tech (the entity case already
+            // does). Country mentions open a stats sheet ("button"); plain URLs
+            // open the browser ("link"). Without this, screen-reader users get
+            // an unlabeled run swallowed by the article wrapper.
+            accessibilityRole={isCountry ? 'button' : 'link'}
+            accessibilityLabel={isCountry ? `${seg.text} — tap for country data` : seg.text}
             // @ts-expect-error — `hitSlop` on inline Text with onPress expands the tap target at runtime (RN docs) but isn't surfaced on TextProps
             hitSlop={INLINE_HIT_SLOP}
           >

@@ -29,13 +29,13 @@ import Animated, {
   Extrapolation,
   FadeIn,
   interpolate,
-  runOnJS,
   type SharedValue,
   useAnimatedRef,
   useAnimatedScrollHandler,
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { scheduleOnRN } from 'react-native-worklets';
 import { ANIMATION } from '../constants/theme';
 import { useScrollState } from '../hooks/useScrollState';
 import { useTheme } from '../hooks/useTheme';
@@ -239,10 +239,10 @@ export const ArticleList = memo(function ArticleList({
       const maxScroll = (articleCount - 1) * itemHeight;
       if (event.contentOffset.y > maxScroll + 15 && !overscrollFired.value) {
         overscrollFired.value = true;
-        runOnJS(hapticNotification)();
-        runOnJS(fireEndReached)();
+        scheduleOnRN(hapticNotification);
+        scheduleOnRN(fireEndReached);
         // Reset after bounce-back settles
-        runOnJS(resetOverscroll)();
+        scheduleOnRN(resetOverscroll);
       }
     },
   });

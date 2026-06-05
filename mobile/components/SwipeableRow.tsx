@@ -4,11 +4,11 @@ import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   Extrapolation,
   interpolate,
-  runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
+import { scheduleOnRN } from 'react-native-worklets';
 import { ANIMATION, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { hapticImpact, hapticTick } from '../lib/haptics';
@@ -53,11 +53,11 @@ export const SwipeableRow = memo(function SwipeableRow({
       translateX.value = next;
       if (!ratchetStartFired.value && next <= RATCHET_START) {
         ratchetStartFired.value = true;
-        runOnJS(hapticTick)();
+        scheduleOnRN(hapticTick);
       }
       if (!ratchetThresholdFired.value && next <= SWIPE_THRESHOLD) {
         ratchetThresholdFired.value = true;
-        runOnJS(hapticTick)();
+        scheduleOnRN(hapticTick);
       }
       if (ratchetStartFired.value && next > RATCHET_START) {
         ratchetStartFired.value = false;
@@ -70,7 +70,7 @@ export const SwipeableRow = memo(function SwipeableRow({
       'worklet';
       if (translateX.value < SWIPE_THRESHOLD) {
         translateX.value = withSpring(0, ANIMATION.spring);
-        runOnJS(fireAction)();
+        scheduleOnRN(fireAction);
       } else {
         translateX.value = withSpring(0, ANIMATION.spring);
       }
