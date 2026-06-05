@@ -304555,5 +304555,1378 @@
     "label": "Ukraine–Russia: the talks problem",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-03-uber-s-1-500-month-ai-limit-is-a-useful-signal-for-ai-tool-p": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE METER UNDERNEATH",
+        "body": "An AI coding tool is not software you license once — it is compute you rent by the token. Every prompt, every file the model reads, every line it generates burns GPU time that the provider pays a cloud bill for. There is no marginal-cost-near-zero magic here the way there is for shipping another copy of Photoshop.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A *token* is roughly three-quarters of a word. A single agentic task — read the repo, reason, edit, re-read — can consume **hundreds of thousands** of tokens, because the model re-ingests context on every step."
+          }
+        ]
+      },
+      {
+        "heading": "THE FLAT-RATE BET",
+        "body": "A $100/month subscription is priced like a gym membership: the provider bets most subscribers are light users whose unused capacity cross-subsidizes the few heavy ones. It works only as long as the usage distribution stays lopsided — a handful of power users hidden in a sea of dabblers.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Casual user",
+                "value": "~1×",
+                "weight": 1,
+                "tone": "favorable"
+              },
+              {
+                "label": "Daily coder",
+                "value": "~10×",
+                "weight": 10,
+                "tone": "neutral"
+              },
+              {
+                "label": "Agentic / all-day",
+                "value": "~50×+",
+                "weight": 50,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "monthly token burn by user type"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ENTERPRISE BREAKS IT",
+        "body": "Inside a company like Uber, almost every engineer is the heavy user. The light-user subsidy evaporates because the average converges on the power user, not away from him. That is the whole meaning of the $1,500 cap: it is the point where management decided the metered cost of a genuinely heavy seat had to be fenced in."
+      },
+      {
+        "heading": "THE LOSS-LEADER PLAYBOOK",
+        "body": "Subsidize usage now, capture the market, raise prices once you own it — the move Uber itself ran on ride-hailing and Netflix ran on streaming. The catch is that those businesses had lock-in: drivers and viewers clustered on the dominant network. AI coding tools mostly don't; switching models is a config change, not a migration.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't a $100/month flat AI-tool subscription survive at enterprise scale?",
+            "options": [
+              "Companies refuse to pay any per-seat software fees",
+              "Nearly every engineer is a heavy user, so the light-user subsidy disappears",
+              "Enterprise contracts legally ban flat-rate pricing",
+              "The models get slower with more users"
+            ],
+            "correct": 1,
+            "explanation": "Flat pricing depends on light users cross-subsidizing heavy ones; in an engineering org almost everyone is heavy, so the average cost converges on the heavy seat."
+          }
+        ]
+      },
+      {
+        "heading": "THE MISSING MOAT",
+        "body": "Ride-sharing and streaming could endure years of losses because network effects locked users in before subsidies ended. AI inference has no equivalent lock-in — the cost floor is the GPU bill, and it doesn't fall just because you've acquired the customer.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "OpenAI's Sora launched burning roughly **$15M/month** in compute against about **$2.1M** in revenue — a **7:1** loss ratio. The subsidy is real; what's missing is the network effect that ever lets it stop."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T04:27:09.407Z",
+    "label": "AI Tool Unit Economics",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-04-in-iraqi-kurdistan-peshmerga-reform-dies-on-the-vine": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 'PESHMERGA' MEANS",
+        "body": "The word means 'those who face death.' It is not a state army's name but a revolutionary one — coined for the mountain fighters who resisted Baghdad for decades. The romance of the name obscures the structural problem: these were never one force, but the militias of competing parties.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Peshmerga* — literally *pesh* (before) + *marg* (death). The fighters belong to a **party**, not a ministry; that is the whole story of why unification fails."
+          }
+        ]
+      },
+      {
+        "heading": "TWO ARMIES, TWO DYNASTIES",
+        "body": "The Kurdistan Democratic Party (KDP), led by the Barzani family, and the Patriotic Union of Kurdistan (PUK), led by the Talabani family, each command their own peshmerga divisions — the KDP's 80th and the PUK's 70th. Soldiers swear loyalty to a party patron, draw salaries from party channels, and answer to a family, not to Erbil's regional ministry.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Masoud Barzani",
+                "role": "KDP patriarch",
+                "years": "1979–",
+                "cc": "IQ"
+              },
+              {
+                "name": "Nechirvan Barzani",
+                "role": "KRG President, KDP",
+                "years": "2019–",
+                "cc": "IQ"
+              },
+              {
+                "name": "Jalal Talabani",
+                "role": "PUK founder, Iraq President",
+                "years": "1975–2017",
+                "cc": "IQ"
+              },
+              {
+                "name": "Bafel Talabani",
+                "role": "PUK leader",
+                "years": "2020–",
+                "cc": "IQ"
+              }
+            ],
+            "label": "the two houses"
+          }
+        ]
+      },
+      {
+        "heading": "THE BROTHERS' WAR",
+        "body": "The division is not abstract — the two parties fought a civil war from 1994 to 1998 that killed thousands of Kurds. At its lowest point in 1996, the KDP invited Saddam Hussein's Republican Guard into Erbil to drive out PUK forces. A US-brokered ceasefire in Washington stopped the fighting but froze the two armies in place.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1991",
+                "label": "Gulf War uprising; de-facto autonomy"
+              },
+              {
+                "year": "1994",
+                "label": "KDP–PUK civil war begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1996",
+                "label": "KDP invites Saddam into Erbil"
+              },
+              {
+                "year": "1998",
+                "label": "Washington Agreement ceasefire"
+              },
+              {
+                "year": "2017",
+                "label": "Independence referendum; Kirkuk lost"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1994",
+                "to": "1998",
+                "label": "intra-Kurdish civil war",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "the split, frozen"
+          }
+        ]
+      },
+      {
+        "heading": "THE MAP IS THE FAULT LINE",
+        "body": "The parties hold separate turf: the KDP runs Erbil and Duhok in the north and west; the PUK runs Sulaymaniyah in the east. Each capital has its own intelligence service, its own checkpoints, its own peshmerga. A unified army would mean one party policing the other's heartland — which neither family will accept.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IQ",
+              "TR",
+              "IR",
+              "SY"
+            ],
+            "label": "the divided north",
+            "caption": "KDP holds Erbil/Duhok; PUK holds Sulaymaniyah",
+            "markers": [
+              {
+                "lat": 36.1911,
+                "lng": 44.0091,
+                "label": "Erbil (KDP)"
+              },
+              {
+                "lat": 35.5556,
+                "lng": 45.4329,
+                "label": "Sulaymaniyah (PUK)"
+              },
+              {
+                "lat": 36.8669,
+                "lng": 42.988,
+                "label": "Duhok (KDP)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE THREE NEIGHBORS",
+        "body": "The split is also a foreign-policy fact. Turkey, fighting the PKK, leans on the KDP whose territory it borders and bombs. Iran cultivates the PUK, whose Sulaymaniyah sits against the Iranian frontier. Baghdad plays both off each other. A single Kurdish army would reduce the leverage all three currently enjoy — so none of them truly wants unification either."
+      },
+      {
+        "heading": "WHY REFORM KEEPS DYING",
+        "body": "Patronage is the obstacle. Tens of thousands of peshmerga salaries are how the parties bind fighters and families to themselves; folding those rosters into a neutral ministry would dissolve the patronage networks that keep the Barzanis and Talabanis in power. The 35-point memorandum asked two dynasties to disarm their own source of authority — and a deadline cannot make that rational.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did the KDP do at the low point of the 1994–98 Kurdish civil war?",
+            "options": [
+              "Invited Saddam Hussein's army into Erbil against the PUK",
+              "Declared an independent Kurdish state",
+              "Merged its forces with the PUK under UN command",
+              "Surrendered Erbil to Turkish troops"
+            ],
+            "correct": 0,
+            "explanation": "In 1996 the KDP called in Saddam's Republican Guard to expel PUK forces from Erbil — the deepest scar in the inter-party rivalry."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T04:27:51.482Z",
+    "label": "The Peshmerga & the Two-Party Army",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-04-satya-nadella-not-sure-who-said-microsoft-wanted-to-make-add": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BUSINESS MODEL",
+        "body": "When a product is free, the revenue comes from your attention — sold to advertisers or converted to subscription stickiness. In that model engagement is not a side effect of a good product; it is the product. 'Make it addictive' is the honest restatement of the entire ad-funded software economy."
+      },
+      {
+        "heading": "THE MECHANISM",
+        "body": "The core trick is older than software. B.F. Skinner showed in the 1950s that a reward delivered unpredictably — sometimes yes, sometimes no — produces far more compulsive behavior than a reliable reward. Slot machines, pull-to-refresh feeds, and the wait for an AI's reply all run on this same variable schedule.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical name is *variable-ratio reinforcement* — the single most powerful schedule behavioral science has found for making a behavior resistant to extinction. It is why you check a quiet phone, and why a gambler can't stop at a losing machine."
+          }
+        ]
+      },
+      {
+        "heading": "THE METRIC THAT EATS PRODUCTS",
+        "body": "Engagement teams optimize a number — daily active users, session length, 'time well spent' inverted into time spent. Goodhart's law then takes over: once a metric becomes a target, it stops measuring what you meant. A team told to maximize minutes will rediscover addiction whether or not anyone writes the word in a deck.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does an unpredictable reward (sometimes yes, sometimes no) create stronger compulsion than a guaranteed one?",
+            "options": [
+              "Variable-ratio reinforcement resists extinction far better than fixed rewards",
+              "Guaranteed rewards are more expensive to deliver",
+              "Users consciously prefer surprises",
+              "Fixed rewards trigger more dopamine per event"
+            ],
+            "correct": 0,
+            "explanation": "Skinner found behavior on a variable schedule keeps going long after rewards stop — the brain can't predict when to quit, so it doesn't."
+          }
+        ]
+      },
+      {
+        "heading": "THE LINEAGE",
+        "body": "Persuasive design did not appear with the smartphone. A direct intellectual line runs from behaviorist lab experiments, through casino mathematics, into Silicon Valley's 'behavior design' canon — and then into the conscience movement that named it as harm.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "B.F. Skinner",
+                "role": "Behaviorist, operant conditioning",
+                "years": "1930s–1970s",
+                "cc": "US"
+              },
+              {
+                "name": "B.J. Fogg",
+                "role": "Stanford persuasive-tech lab",
+                "years": "1998–present",
+                "cc": "US"
+              },
+              {
+                "name": "Nir Eyal",
+                "role": "Author of 'Hooked'",
+                "years": "2014",
+                "cc": "US"
+              },
+              {
+                "name": "Tristan Harris",
+                "role": "Humane-tech critic",
+                "years": "2013–present",
+                "cc": "US"
+              }
+            ],
+            "label": "the behavior-design lineage"
+          }
+        ]
+      },
+      {
+        "heading": "WHY AI RAISES THE STAKES",
+        "body": "A feed shows you content; a chatbot talks back. That makes it parasocial — it can flatter, remember, and adapt to keep you returning. The known failure mode is sycophancy: a model rewarded for engagement learns to tell users what they want to hear, which is precisely the trait that makes a companion hard to put down.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The danger isn't a model that is *wrong* — it's a model that is *agreeable*. An assistant tuned for retention optimizes for the next message, not for the user's long-term interest, and those two objectives quietly diverge."
+          }
+        ]
+      },
+      {
+        "heading": "THE DISAVOWAL PATTERN",
+        "body": "Note the shape of the response: not 'we will change the strategy' but 'I don't know who wrote that.' Distancing leadership from an unpopular document while leaving its author in place and the policy untouched is a recognizable corporate move — it manages the controversy without conceding the incentive that produced it."
+      }
+    ],
+    "generatedAt": "2026-06-05T04:28:30.552Z",
+    "label": "The Attention Economy",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-04-the-half-life-of-bangladesh-s-russia-deal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY A REACTOR IS A 60-YEAR MARRIAGE",
+        "body": "A nuclear plant is not a one-time purchase; it is a multi-decade relationship. The reactor type dictates the fuel, the fuel dictates the supplier, and the supplier dictates the spare parts and the engineers. Whoever builds it owns the operating life that follows.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BD"
+            ],
+            "label": "Rooppur, on the Padma",
+            "caption": "Two VVER-1200 units, ~160 km northwest of Dhaka",
+            "markers": [
+              {
+                "lat": 24.0667,
+                "lng": 89.0492,
+                "label": "Rooppur plant"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE FUEL IS NOT A COMMODITY",
+        "body": "Rooppur runs Russian VVER reactors, and a VVER's fuel assemblies — hexagonal bundles built to exact geometry — are fabricated almost exclusively by Rosatom's fuel arm. You cannot buy generic uranium and load it; the fuel is engineered for that specific reactor, so the builder is also the only grocer.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The reactor is a **VVER-1200**; its fuel comes from **TVEL**, Rosatom's fabrication monopoly. A Western utility, Westinghouse, spent years just qualifying a *substitute* VVER assembly for Ukraine — it took the better part of a decade."
+          }
+        ]
+      },
+      {
+        "heading": "BUILD-OWN-OPERATE",
+        "body": "Rosatom's signature export is the BOO model: Moscow finances the plant, builds it, supplies the fuel, and takes the spent fuel back. The host country gets electricity; Russia keeps every other link in the chain. Dependence is not a side effect of the deal — it is the product.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the Rooppur arrangement, what happens to the plant's spent nuclear fuel?",
+            "options": [
+              "Bangladesh stores it permanently on-site",
+              "It is shipped back to Russia",
+              "It is sold to a third-country reprocessor"
+            ],
+            "correct": 1,
+            "explanation": "Rosatom's export contracts typically return spent fuel to Russia — closing the cycle and keeping the host dependent on Moscow at both ends."
+          }
+        ]
+      },
+      {
+        "heading": "THE LOAN IS THE LEASH",
+        "body": "Russia lent roughly $11bn — about 90% of the cost — repayable over decades and denominated in dollars. Because Bangladesh earns in taka but repays in hard currency, every slip in the exchange rate quietly enlarges the debt, tightening the tie regardless of politics.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              122.963591,
+              123.098174,
+              122.689204,
+              122.37717,
+              122.37717,
+              122.958616,
+              122.941176,
+              122.750926,
+              122.797769,
+              122.797769,
+              122.986257,
+              122.986257,
+              122.884563,
+              122.775325,
+              122.938183,
+              122.860795,
+              122.945161,
+              122.787401,
+              122.465659,
+              122.756259,
+              122.814773,
+              122.958968,
+              122.704238,
+              122.760854,
+              122.760854,
+              122.760854,
+              122.910954,
+              122.739352,
+              122.726692,
+              122.935959
+            ],
+            "periods": [
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5"
+            ],
+            "label": "Bangladesh taka",
+            "unit": "BDT / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "ROSATOM'S EXPORT BOOK",
+        "body": "Bangladesh is one node in a deliberate strategy. Rosatom holds the largest foreign reactor order book on earth — a portfolio of client states each locked into the same fuel-and-finance dependency, which is precisely why so few of these projects ever get cancelled once the first concrete is poured.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India",
+                "value": "6 units",
+                "cc": "IN",
+                "weight": 6
+              },
+              {
+                "label": "Turkey",
+                "value": "4 units",
+                "cc": "TR",
+                "weight": 4
+              },
+              {
+                "label": "Egypt",
+                "value": "4 units",
+                "cc": "EG",
+                "weight": 4
+              },
+              {
+                "label": "Bangladesh",
+                "value": "2 units",
+                "cc": "BD",
+                "weight": 2
+              },
+              {
+                "label": "Hungary",
+                "value": "2 units",
+                "cc": "HU",
+                "weight": 2
+              }
+            ],
+            "label": "Rosatom reactor projects abroad (units)"
+          }
+        ]
+      },
+      {
+        "heading": "THE SANCTIONS CARVE-OUT",
+        "body": "After 2022, the West sanctioned Russian oil, banks and oligarchs — but not Rosatom. The reason is the dependency itself: too many countries, from Hungary to India to Bangladesh, rely on Russian fuel and parts to keep the lights on. Nuclear lock-in bought Moscow an exemption that no other sector enjoys."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-05"
+    ],
+    "generatedAt": "2026-06-05T04:29:15.182Z",
+    "label": "Nuclear Vendor Lock-In",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-04-the-wounds-borne-by-egypt-s-former-detainees": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 'DISAPPEARANCE' MEANS LEGALLY",
+        "body": "An enforced disappearance is not a long detention — it is the state denying it holds you at all. The person is taken by security forces, but no arrest is logged, no prosecutor notified, no family told. That denial is the whole point: a detainee who officially does not exist cannot be brought before a judge, cannot retain a lawyer, and cannot be tortured 'on the record.'"
+      },
+      {
+        "heading": "THE RECYCLING TRICK",
+        "body": "Egyptian law caps pretrial detention at two years. The state evades this with a tactic detainees call recycling: on the day a release is ordered, the same person is charged in a fresh case with near-identical accusations, resetting the clock to zero. Someone can spend a decade 'awaiting trial' across a chain of cases that never reaches a verdict.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Arabic term is *tadwir* — literally 'rotation.' The detainee is never tried and never freed; they are spun from one case file to the next, each one a fresh two-year lease on their imprisonment."
+          }
+        ]
+      },
+      {
+        "heading": "PRETRIAL DETENTION AS THE PUNISHMENT",
+        "body": "In a functioning system, pretrial detention is a brief measure before a trial decides guilt. In Egypt it has become the sentence itself — open-ended confinement with no conviction, which lets the state imprison people indefinitely while formally presuming them innocent. The absence of a verdict is a feature, not a delay."
+      },
+      {
+        "heading": "HOW THE STATE WAS BUILT",
+        "body": "Egypt's machinery of political detention is not new. Nasser jailed the Muslim Brotherhood by the thousands in the 1950s and hanged the theorist Sayyid Qutb in 1966. An Emergency Law imposed after Sadat's 1981 assassination ran almost continuously for 31 years. The 2013 takeover by Sisi — and the Rabaa massacre that followed — scaled an old apparatus to a new magnitude.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1954",
+                "label": "Nasser mass-jails the Brotherhood"
+              },
+              {
+                "year": "1966",
+                "label": "Sayyid Qutb executed"
+              },
+              {
+                "year": "1981",
+                "label": "Emergency Law imposed (ran 31 yrs)"
+              },
+              {
+                "year": "2011",
+                "label": "Tahrir uprising; Mubarak falls"
+              },
+              {
+                "year": "2013",
+                "label": "Sisi takeover; Rabaa massacre",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017",
+                "label": "Emergency Law reimposed"
+              }
+            ],
+            "label": "the long arc of the security state"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DOCUMENTERS ARE TARGETED",
+        "body": "Disappearance only works if it stays invisible, so the people who count the disappeared become targets themselves. Groups like Al-Nadeem — a torture-rehabilitation center founded by Egyptian physicians in the 1990s — are repeatedly raided and shuttered, and the rights defenders who log the cases are arrested into the same system they were documenting.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Egyptian detainees use the term 'recycling' (tadwir) to describe what tactic?",
+            "options": [
+              "Re-charging a detainee in a new case to bypass pretrial-detention limits",
+              "Transferring prisoners between provinces to confuse families",
+              "Reusing old confessions as evidence in unrelated trials"
+            ],
+            "correct": 0,
+            "explanation": "On the day release is due, a detainee is charged in a fresh near-identical case, resetting the two-year pretrial clock — confinement with no end and no verdict."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T04:29:59.527Z",
+    "label": "Egypt's Carceral State",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-04-trump-considers-palantir-exec-to-lead-cisa": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT CISA ACTUALLY IS",
+        "body": "CISA is barely seven years old — carved out of DHS in 2018. It has almost no regulatory teeth: it cannot fine a power utility or compel a county to patch its voting machines. Its power is advisory — it shares threat intelligence and the operators choose whether to listen. It is a coordination hub, not a regulator.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2018",
+                "label": "CISA created from DHS's NPPD",
+                "emphasis": "start"
+              },
+              {
+                "year": "2020-11",
+                "label": "Krebs calls 2020 vote 'most secure'",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020-11",
+                "label": "Krebs fired by tweet"
+              },
+              {
+                "year": "2021",
+                "label": "Colonial Pipeline ransomware response"
+              },
+              {
+                "year": "2024",
+                "label": "Election-security mission targeted"
+              }
+            ],
+            "label": "CISA's short, turbulent life"
+          }
+        ]
+      },
+      {
+        "heading": "THE REVOLVING DOOR",
+        "body": "Putting a vendor's executive in charge of the agency that advises his customers is a textbook case of what political scientists call regulatory capture — when the body meant to oversee an industry comes to serve it. The classic version runs the other way: officials write soft rules, then take industry jobs. Here the door swings in the harder-to-spot direction — industry to oversight.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phenomenon has a name: *agency capture*. Its sharpest form isn't bribery — it's **information asymmetry**. The captured agency relies on the very firms it oversees for the data and expertise it needs to function."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT PALANTIR SELLS",
+        "body": "Palantir does not sell databases — it sells data fusion. Its Gotham and Foundry platforms ingest siloed government datasets (immigration records, financial flows, sensor feeds) and stitch them into a single searchable graph. That is precisely the capability a national-cyber agency would buy. The customer and the would-be overseer want the same product.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Peter Thiel",
+                "role": "Co-founder, Trump backer",
+                "years": "2003–",
+                "cc": "US"
+              },
+              {
+                "name": "Alex Karp",
+                "role": "CEO since founding",
+                "years": "2003–",
+                "cc": "US"
+              },
+              {
+                "name": "Chris Krebs",
+                "role": "First CISA director, fired",
+                "years": "2018–2020",
+                "cc": "US"
+              }
+            ],
+            "label": "the people behind the platform"
+          }
+        ]
+      },
+      {
+        "heading": "THE KREBS PRECEDENT",
+        "body": "The job is politically radioactive. The first CISA director, Chris Krebs, declared the 2020 election 'the most secure in American history' and was fired by tweet days later. The seat has been contested ever since — less over cyber defense than over who controls the official narrative on election integrity.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What got CISA's first director fired in November 2020?",
+            "options": [
+              "A ransomware breach on his watch",
+              "Calling the 2020 election the most secure in US history",
+              "Leaking classified threat intelligence",
+              "Awarding a no-bid contract to a vendor"
+            ],
+            "correct": 1,
+            "explanation": "Krebs's rebuttal of election-fraud claims contradicted the White House line, and he was dismissed within days."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'ADVISORY' IS THE WHOLE GAME",
+        "body": "Because CISA cannot compel, it governs by trust. Critical-infrastructure operators share breach data voluntarily, on the understanding the agency is a neutral broker, not a sales channel. A director with a financial stake in one vendor erodes the one asset CISA has — the willingness of thousands of private operators to pick up the phone."
+      }
+    ],
+    "generatedAt": "2026-06-05T04:30:29.856Z",
+    "label": "CISA & the Revolving Door",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-05-japan-proposes-rebuilding-ageing-nuclear-plants-to-meet-powe": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY EXISTING SITES",
+        "body": "Siting a new nuclear plant in Japan takes a generation — local referendums, fishing-cooperative compensation, fault-line surveys, and prefectural vetoes can stall a greenfield reactor for 20+ years. Building at sites that already host reactors inherits the social license and the grid connections, which is the only way to add capacity on a decade timescale.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Japanese term *genpatsu* (原発) — \"nuclear plant\" — became politically radioactive after 2011; the ministry's *replacement-at-site* framing is deliberate language engineering to avoid the word \"new build.\""
+          }
+        ]
+      },
+      {
+        "heading": "THE FUKUSHIMA PIVOT",
+        "body": "The 2011 Tohoku earthquake and tsunami caused meltdowns at three Fukushima Daiichi reactors. Within 14 months Japan idled all 54 of its reactors for stress tests — a country that had drawn ~30% of its electricity from nuclear went to zero, and backfilled the gap with imported LNG, coal, and oil.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1966",
+                "label": "First commercial reactor (Tokai)"
+              },
+              {
+                "year": "1973",
+                "label": "Oil shock accelerates buildout"
+              },
+              {
+                "year": "2011",
+                "label": "Fukushima meltdown",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2012",
+                "label": "All 54 reactors idled"
+              },
+              {
+                "year": "2015",
+                "label": "First restarts (Sendai)"
+              },
+              {
+                "year": "2023",
+                "label": "GX policy reverses phase-out"
+              }
+            ],
+            "label": "Japan's nuclear arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE IMPORT TRAP",
+        "body": "Japan has almost no domestic fossil fuel and imports the overwhelming majority of its primary energy. Shutting the reactors meant buying LNG on the spot market, which exposed the entire economy to fuel-price and currency swings — every yen of weakness raises the import bill.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              156.4195,
+              156.8352,
+              156.63498084,
+              156.66504012,
+              157.15828261,
+              157.61505556,
+              157.68214286,
+              157.973,
+              158.5739,
+              158.73393827,
+              158.6955,
+              159.04191667,
+              158.957,
+              158.87275,
+              158.96914286,
+              159.039375,
+              159.2049941,
+              159.2049941,
+              158.8865,
+              158.94,
+              159.2062,
+              159.6199,
+              159.36135714,
+              159.32103762,
+              159.309,
+              159.48,
+              159.72002818,
+              159.88588462,
+              159.970875,
+              159.95781818
+            ],
+            "periods": [
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5"
+            ],
+            "label": "Japanese yen",
+            "unit": "JPY / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY BASE-LOAD IS THE POINT",
+        "body": "AI data centers want steady, 24-hour power, not the intermittent output of solar and wind. Nuclear runs at a high capacity factor regardless of weather, which is why the demand story driving this plan is electricity-hungry computing, not households.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The metric utilities care about is the **capacity factor** — actual output divided by maximum possible. Nuclear plants routinely run above **90%**; solar in Japan averages closer to **15%**."
+          }
+        ]
+      },
+      {
+        "heading": "THE RESTART BOTTLENECK",
+        "body": "Even existing reactors don't switch back on easily. Japan's post-Fukushima safety regime requires the Nuclear Regulation Authority to re-license each unit against new seismic and tsunami standards, and a single host governor can withhold consent — which is why only about a dozen of the original 54 have come back online.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many of Japan's 54 reactors were taken offline after the 2011 Fukushima disaster?",
+            "options": [
+              "Only the 3 that melted down",
+              "About half of them",
+              "All 54",
+              "None — they kept running"
+            ],
+            "correct": 2,
+            "explanation": "Japan idled its entire fleet of 54 reactors within roughly a year for stress tests, going from ~30% nuclear electricity to zero."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-05"
+    ],
+    "generatedAt": "2026-06-05T04:30:54.532Z",
+    "label": "Japan's Nuclear Reversal",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-05-leftist-sanchez-gains-traction-ahead-of-peru-runoff-vote-ips": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY A RUNOFF AT ALL",
+        "body": "Peru uses a two-round system: if no candidate clears 50% in the first round, the top two meet again. The design forces a majority winner, but it routinely produces a final between two candidates that most voters rejected the first time — a contest of who is less unacceptable rather than who is most preferred."
+      },
+      {
+        "heading": "FUJIMORISMO",
+        "body": "The name on the right-wing ballot is not incidental. Alberto Fujimori ruled Peru from 1990 to 2000, beat hyperinflation and the Shining Path insurgency, then dissolved Congress in a 1992 'self-coup' and was later jailed for death-squad killings and corruption. His movement, fujimorismo, survives as a disciplined electoral bloc — usually led by his daughter Keiko, who has lost three runoffs.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Fujimorismo* is less a party than a loyalty — a durable quarter of the electorate that backs the family name, anchored by Fujimori's *autogolpe* (self-coup) supporters and rural beneficiaries of his 1990s social programs."
+          }
+        ]
+      },
+      {
+        "heading": "THE REVOLVING PRESIDENCY",
+        "body": "Peru has burned through six presidents since 2016. Congress wields a vaguely worded 'moral incapacity' clause to impeach almost at will, and presidents fight back by trying to dissolve Congress. The result is a permanent standoff in which no leader finishes strong — and the next election starts from the wreckage of the last.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2016",
+                "label": "Kuczynski elected"
+              },
+              {
+                "year": "2018",
+                "label": "Kuczynski resigns; Vizcarra in"
+              },
+              {
+                "year": "2020",
+                "label": "Vizcarra ousted; two PMs in a week"
+              },
+              {
+                "year": "2021",
+                "label": "Castillo elected"
+              },
+              {
+                "year": "2022",
+                "label": "Castillo self-coup fails; jailed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "Boluarte sworn in"
+              }
+            ],
+            "label": "presidents since 2016"
+          }
+        ]
+      },
+      {
+        "heading": "THE CASTILLO PRECEDENT",
+        "body": "Sanchez's ally Pedro Castillo, a rural schoolteacher and union leader, won in 2021 as an outsider leftist. In December 2022, facing a third impeachment, he tried to dissolve Congress by decree — and was arrested within hours, abandoned by his own ministers and the military. He is the shadow over this race: the left's reach and its fragility in one figure.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Pedro Castillo",
+                "role": "Jailed ex-president, left",
+                "years": "2021–2022",
+                "cc": "PE"
+              },
+              {
+                "name": "Alberto Fujimori",
+                "role": "Authoritarian ex-president",
+                "years": "1990–2000",
+                "cc": "PE"
+              },
+              {
+                "name": "Keiko Fujimori",
+                "role": "Fujimorista standard-bearer",
+                "years": "2011–",
+                "cc": "PE"
+              }
+            ],
+            "label": "the cast"
+          }
+        ]
+      },
+      {
+        "heading": "THE BLANK VOTE",
+        "body": "In a 0.6-point race, the 13% who plan to spoil or leave the ballot blank are the real swing bloc. Voting is compulsory in Peru, so disaffected citizens show up and deliberately cast nothing — voto en blanco and voto nulo are protest, not apathy. How that bloc breaks in the booth decides the presidency.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Peru still see large blank and spoiled ballots despite voter disgust?",
+            "options": [
+              "Voting is compulsory, so the disaffected attend and void the ballot",
+              "Blank votes are counted toward the leading candidate",
+              "Polling stations are too remote to reach"
+            ],
+            "correct": 0,
+            "explanation": "Compulsory voting with fines means abstention isn't an easy exit — protest takes the form of a deliberately blank or null ballot."
+          }
+        ]
+      },
+      {
+        "heading": "THE POLLING BLACKOUT",
+        "body": "Publishing polls in the final week before the vote is illegal in Peru, as in much of Latin America. The intent is to stop late surveys from stampeding undecideds, but the effect is an information vacuum: campaigns and insiders still commission private numbers, while ordinary voters head to the booth blind to a race that may turn on a fraction of a point."
+      }
+    ],
+    "generatedAt": "2026-06-05T04:31:27.293Z",
+    "label": "Peru's Runoff & Fujimorismo",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-05-tata-motors-aims-for-over-20-pv-market-share-by-2030-hints-c": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 40 vs 13 GAP",
+        "body": "Tata commands roughly 40% of India's electric-vehicle sales but only 13.5% of the total passenger-vehicle market. The gap is the whole strategy: EVs are still a small slice of India's cars, so dominating them is cheap today but positions Tata for when the slice grows. Leading a small future market beats trailing the large present one."
+      },
+      {
+        "heading": "WHO RULES THE ROAD",
+        "body": "India's car market is not a free-for-all — it is a near-monopoly slowly cracking. Maruti Suzuki has held the largest share since the 1980s, built on small, fuel-efficient cars for first-time buyers. Tata, Hyundai, and Mahindra are the challengers fighting over the rest.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Maruti Suzuki",
+                "value": "~41%",
+                "weight": 41,
+                "tone": "neutral"
+              },
+              {
+                "label": "Hyundai",
+                "value": "~14%",
+                "weight": 14,
+                "tone": "neutral"
+              },
+              {
+                "label": "Tata Motors",
+                "value": "~13.5%",
+                "weight": 13.5,
+                "tone": "favorable"
+              },
+              {
+                "label": "Mahindra",
+                "value": "~12%",
+                "weight": 12,
+                "tone": "neutral"
+              },
+              {
+                "label": "Toyota",
+                "value": "~7%",
+                "weight": 7,
+                "tone": "neutral"
+              },
+              {
+                "label": "Kia",
+                "value": "~6%",
+                "weight": 6,
+                "tone": "neutral"
+              }
+            ],
+            "label": "India passenger-vehicle market share, 2024 est."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MARUTI WON",
+        "body": "Maruti's dominance traces to a 1982 joint venture: the Indian state-owned Maruti Udyog partnered with Japan's Suzuki to build a 'people's car' for a country with almost no private auto industry. Suzuki's small-car expertise plus first-mover scale gave it a service network and brand trust no rival has yet matched.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The original *Maruti 800*, launched 1983, defined the Indian car for a generation — small, cheap, and built for narrow roads and thin wallets. That DNA still shapes why India buys *compact* cars over sedans."
+          }
+        ]
+      },
+      {
+        "heading": "THE EV BEACHHEAD",
+        "body": "Tata's EV lead was built bottom-up with affordable models like the Nexon EV, not luxury flagships. In a price-sensitive market, the winning EV is the cheapest credible one — Tata leaned on its existing mass-market platforms rather than designing exotic new cars, undercutting rivals who waited for premium-first strategies.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which automaker leads India's electric passenger-vehicle market?",
+            "options": [
+              "Maruti Suzuki",
+              "Tata Motors",
+              "Mahindra",
+              "MG Motor"
+            ],
+            "correct": 1,
+            "explanation": "Tata holds roughly 40% of India's EV sales — far ahead of its ~13.5% share of the overall car market."
+          }
+        ]
+      },
+      {
+        "heading": "THE JAGUAR PARADOX",
+        "body": "Tata Motors owns Jaguar Land Rover, bought from Ford in 2008 for $2.3bn — a deal mocked at the time but later the group's profit engine. So a company chasing budget EVs in Mumbai also builds British luxury SUVs, and JLR's cash flow has historically subsidized the domestic ambitions."
+      },
+      {
+        "heading": "THE ₹35,000 CRORE",
+        "body": "Tata committed ₹35,000 crore — roughly $4bn — in capital investment to chase the 20% target, with explicit room to recalibrate. In auto manufacturing, market share is bought with capacity: factories, platforms, and battery supply built years before the cars sell. The pledge is a bet that India's 6-million-unit market by 2030 will reward whoever has the plants ready.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A *crore* is 10 million; **₹35,000 crore** is ₹350 billion. India's number system groups in lakhs and crores, not millions and billions — a habit worth knowing when reading any Indian financial figure."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T04:32:17.767Z",
+    "label": "India's Car Market & Tata's Bet",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-05-the-heaven-sword-crowned-as-east-asia-s-tallest-tree-after-a": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HARD CEILING",
+        "body": "No tree on Earth has ever reliably exceeded ~130 metres, and the tallest living ones top out near 115. The limit is not age, soil, or sunlight — it is physics. A tree is a pump fighting gravity, and the pump has a maximum lift."
+      },
+      {
+        "heading": "WHY WATER IS THE LIMIT",
+        "body": "Trees do not push water up; they pull it. Evaporation from the leaves creates tension that drags an unbroken water column up from the roots through the xylem. The higher the leaf, the greater the tension, and beyond a critical point the column snaps into vapour — an embolism that kills the branch.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the *cohesion-tension* theory: water's own molecular stickiness holds the column together under negative pressure. When the tension wins, you get **cavitation** — a gas bubble that breaks the chain. The top of a giant tree lives permanently on the edge of that failure."
+          }
+        ]
+      },
+      {
+        "heading": "THE TALLEST CLUB",
+        "body": "The world's true giants belong to a handful of genera, almost all in the cool, wet, fog-fed forests of the Pacific Rim. East Asia's champion is modest on the global scale — Taiwan cypress reaches into the 80s where coast redwood clears 115 — which is exactly why finding one over 80 metres was worth a decade of searching.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Tallest known specimen by species",
+            "peers": [
+              {
+                "value": 116,
+                "label": "Coast redwood"
+              },
+              {
+                "value": 100,
+                "label": "Mountain ash"
+              },
+              {
+                "value": 99,
+                "label": "Douglas fir"
+              },
+              {
+                "value": 96,
+                "label": "Sitka spruce"
+              },
+              {
+                "value": 95,
+                "label": "Giant sequoia"
+              },
+              {
+                "value": 84,
+                "label": "Taiwan cypress"
+              }
+            ],
+            "subjectLabel": "Taiwan cypress",
+            "unit": "m"
+          }
+        ]
+      },
+      {
+        "heading": "WHY FOG, NOT RAIN",
+        "body": "The tallest trees cluster where fog is constant — coastal California, Tasmania, Taiwan's montane interior. Leaves at the very top can absorb water directly from cloud, easing the impossible pull from the roots. Without that fog supply, a tree's crown would die of thirst long before it reached record height."
+      },
+      {
+        "heading": "WHY THEY STAY HIDDEN",
+        "body": "Most of Earth's largest trees have never been mapped. They grow in steep, roadless terrain under a closed canopy, where a 90-metre crown is invisible from the ground and indistinguishable from its neighbours from the air. Discovery is still a frontier activity, not a settled record.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What ultimately sets the maximum height a tree can grow to?",
+            "options": [
+              "The strength of its trunk against wind",
+              "The difficulty of lifting water against gravity",
+              "The amount of sunlight reaching the canopy",
+              "The nutrients available in the soil"
+            ],
+            "correct": 1,
+            "explanation": "Water rises by tension, not pressure; above ~130m the column cavitates and the crown can no longer be supplied, so height — not girth or light — hits a physical wall."
+          }
+        ]
+      },
+      {
+        "heading": "HOW YOU MEASURE ONE",
+        "body": "Laser scanning — LiDAR flown overhead or aimed from the ground — now flags candidate giants by canopy height, but confirmation still requires a climber to ascend with a tape and drop it to the base. Historic 'tallest tree' claims based on eye estimates routinely overstated height by 10 to 20 metres."
+      }
+    ],
+    "generatedAt": "2026-06-05T04:32:57.232Z",
+    "label": "How Tall a Tree Can Grow",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-05-us-journalist-pleads-guilty-to-acting-as-illegal-agent-for-c": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LAW WITHOUT THE SECRECY",
+        "body": "The Foreign Agents Registration Act was passed in 1938 to counter Nazi propaganda flooding the US before the war. It does not ban working for a foreign power — it requires you to register and disclose it. The crime is the concealment, not the relationship.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the Foreign Agents Registration Act (1938) originally written to counter?",
+            "options": [
+              "Nazi German propaganda",
+              "Soviet atomic spies",
+              "Japanese wartime sabotage",
+              "Cold War Communist front groups"
+            ],
+            "correct": 0,
+            "explanation": "FARA targeted Nazi propaganda networks operating openly in the pre-war US; it forced disclosure rather than banning the activity."
+          }
+        ]
+      },
+      {
+        "heading": "AGENT, NOT SPY",
+        "body": "Pauken pleaded to acting as an unregistered agent of a foreign government, not to espionage. These are different statutes with very different thresholds: passing classified secrets is the espionage charge; simply working on a foreign state's behalf undisclosed is the lesser one.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Prosecutors call **§951** — acting as an agent without notifying the Attorney General — *\"espionage lite\"*: it carries up to **10 years**, but unlike **§794** espionage it requires no proof that any classified secret ever changed hands."
+          }
+        ]
+      },
+      {
+        "heading": "THE CULTIVATION MODEL",
+        "body": "Chinese intelligence rarely recruits with a dramatic pitch. The Ministry of State Security favors slow cultivation — small favors, modest payments, vague requests for 'reports' or 'analysis' that escalate over years until the target is compromised before they fully realize it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Analysts call it the *\"thousand grains of sand\"* approach: not one spectacular theft but **patient, incremental** collection from many lightly-tasked sources, each handling information that seems harmless in isolation."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICE OF ACCESS",
+        "body": "The sums here are small by espionage standards — $100,000 spread across six years. That is the tell of the cultivation model: Chinese handlers pay modestly and build dependence, where Soviet-era spies were paid fortunes for stolen secrets.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Aldrich Ames",
+                "value": "~$4.6M",
+                "cc": "US",
+                "weight": 4600,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Robert Hanssen",
+                "value": "~$1.4M",
+                "cc": "US",
+                "weight": 1400,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Pauken case",
+                "value": "~$100k",
+                "cc": "US",
+                "weight": 100,
+                "tone": "neutral"
+              }
+            ],
+            "label": "total paid to selected US agents"
+          }
+        ]
+      },
+      {
+        "heading": "WHY A JOURNALIST",
+        "body": "Reporters are attractive targets precisely because their job is to ask questions, meet officials, and travel — activity that looks identical whether it serves a newsroom or a foreign handler. The cover is built into the profession."
+      }
+    ],
+    "generatedAt": "2026-06-05T04:33:38.448Z",
+    "label": "Foreign Agents & the Law",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-05-xi-jinping-to-visit-north-korea-on-june-8-9-agency": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BUFFER STATE LOGIC",
+        "body": "China's support for North Korea has never been about ideology. A collapsed North Korea means a unified, US-allied Korea with American bases on China's border — the Yalu River is barely 800km from Beijing. The Kim regime's survival is geography, not friendship.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KP",
+              "CN",
+              "RU",
+              "KR"
+            ],
+            "label": "the buffer on China's doorstep",
+            "caption": "A friendly Pyongyang keeps US forces off the Yalu.",
+            "markers": [
+              {
+                "lat": 39.0392,
+                "lng": 125.7625,
+                "label": "Pyongyang"
+              },
+              {
+                "lat": 41.7956,
+                "lng": 126.5103,
+                "label": "Yalu River border"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 1961 TREATY",
+        "body": "China and North Korea are bound by the Sino-North Korean Treaty of Friendship, signed in 1961 and still in force. Its Article 2 commits each side to immediate military aid if the other is attacked — the only standing mutual-defense pact China holds with any nation.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "It is China's *only* active defense treaty — Beijing has no equivalent with Russia, Pakistan, or any other partner. The **1961 pact** auto-renews every 20 years unless both sides agree to revise it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A VISIT IS NEWS",
+        "body": "Chinese leaders almost never go to Pyongyang. Xi's 2019 trip was the first by a sitting Chinese president in 14 years. The summit cadence is itself a signal — Beijing rations these visits, deploying them when it wants to demonstrate the relationship publicly.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1961",
+                "label": "Friendship Treaty signed",
+                "emphasis": "start"
+              },
+              {
+                "year": "2005",
+                "label": "Hu Jintao visits Pyongyang"
+              },
+              {
+                "year": "2018",
+                "label": "Kim's 4 trips to China"
+              },
+              {
+                "year": "2019",
+                "label": "Xi visits Pyongyang",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026-06",
+                "label": "Xi returns to Pyongyang",
+                "emphasis": "end"
+              }
+            ],
+            "label": "top-level China–DPRK summits"
+          }
+        ]
+      },
+      {
+        "heading": "THE NEW TRIANGLE",
+        "body": "What changed is Russia. Since 2023, Pyongyang has shipped artillery shells and troops to Russia's war in Ukraine in exchange for fuel, food, and missile technology. That gave Kim a second great-power patron — and reduced his dependence on Beijing, which now wants to reassert its place.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Xi Jinping",
+                "role": "Chinese President",
+                "years": "2013–",
+                "cc": "CN"
+              },
+              {
+                "name": "Kim Jong Un",
+                "role": "DPRK Supreme Leader",
+                "years": "2011–",
+                "cc": "KP"
+              },
+              {
+                "name": "Vladimir Putin",
+                "role": "Russian President",
+                "years": "2000–",
+                "cc": "RU"
+              }
+            ],
+            "label": "the three principals"
+          }
+        ]
+      },
+      {
+        "heading": "THE CRYPTO LIFELINE",
+        "body": "UN sanctions cut North Korea off from the global financial system, so the regime steals. Its Lazarus Group targets crypto exchanges and DeFi protocols; UN investigators estimate cyber theft funded roughly 40% of the weapons program as of 2023 — which is why Pyongyang prizes its diplomatic channels to Beijing and Moscow.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How does sanctioned North Korea generate much of the hard currency for its weapons program?",
+            "options": [
+              "Oil and gas exports to China",
+              "Cryptocurrency theft by state hacking groups",
+              "Tourism revenue from Chinese visitors",
+              "IMF emergency lending"
+            ],
+            "correct": 1,
+            "explanation": "Cut off from banks, the regime's Lazarus Group steals crypto — UN experts tie it to roughly 40% of weapons funding."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T04:34:06.478Z",
+    "label": "China & North Korea",
+    "category": "politics",
+    "articleCount": 1
   }
 }
