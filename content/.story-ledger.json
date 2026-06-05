@@ -2,13 +2,248 @@
   "version": 1,
   "stories": [
     {
+      "id": "judge-strikes-down-trump-asylum-visa-bar-39-countries",
+      "label": "Judge strikes down Trump bar on asylum, visa processing for 39 countries",
+      "firstSeen": "2026-06-05T22:05:34.041Z",
+      "lastCovered": "2026-06-05T22:05:34.041Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-05-judge-strikes-down-trump-asylum-visa-bar-39-countries"
+      ],
+      "eventUri": "eng-11718036",
+      "summary": "A federal judge struck down the November 2025 order that froze asylum and visa processing for nationals of 39 countries — many of them Muslim-majority (the affected list is the story). Lead on who was shut out and the mechanism: an executive ban imposed after a single DC shooting, applied collectively to entire nationalities, now ruled unlawful. Teach how courts, not Congress, have become the only brake on immigration by decree — and that the ruling is one appeal away from reversal, so the relief is provisional.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Immigration",
+        "http://en.wikipedia.org/wiki/United_States_Citizenship_and_Immigration_Services",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Right_of_asylum",
+        "http://en.wikipedia.org/wiki/Green_card",
+        "http://en.wikipedia.org/wiki/Presidency_of_Donald_Trump",
+        "http://en.wikipedia.org/wiki/Citizenship"
+      ]
+    },
+    {
+      "id": "france-war-crimes-probe-israel-gaza-flotilla",
+      "label": "France opens 'war crimes' probe into Israel's treatment of Gaza activists",
+      "firstSeen": "2026-06-05T22:05:34.041Z",
+      "lastCovered": "2026-06-05T22:05:34.041Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-05-france-war-crimes-probe-israel-gaza-flotilla"
+      ],
+      "eventUri": "eng-11711661",
+      "summary": "French anti-terror prosecutors opened a preliminary 'torture' and 'war crimes' investigation into Israel's handling of French citizens detained from last month's Gaza-bound aid flotilla. Lead on the accountability shift: a Western government's own justice system, not an NGO, is now formally probing an ally for war crimes against its nationals. Name the actor (Israel) and the mechanism (universal-jurisdiction and citizen-protection law) and teach why a flotilla detention becomes a criminal file in Paris.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/War_crime",
+        "http://en.wikipedia.org/wiki/Torture",
+        "http://en.wikipedia.org/wiki/France",
+        "http://en.wikipedia.org/wiki/Gaza_City",
+        "http://en.wikipedia.org/wiki/Gaza_flotilla_raid",
+        "http://en.wikipedia.org/wiki/Paris",
+        "http://en.wikipedia.org/wiki/Gaza_Strip"
+      ]
+    },
+    {
+      "id": "sudan-rsf-armed-tribes-darfur-tribal-war",
+      "label": "Sudan Nashra: RSF-armed Salamat, Beni Halba locked in deadly 'tribal war'; new RSF violence near Bara kills dozens",
+      "firstSeen": "2026-06-05T22:05:34.041Z",
+      "lastCovered": "2026-06-05T22:05:34.041Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-05-sudan-rsf-armed-tribes-darfur-tribal-war"
+      ],
+      "eventUri": null,
+      "summary": "Mada Masr's Sudan brief: heavy weapons the RSF distributed to allied tribes have turned South Darfur's Salamat and Beni Halba into combatants in a days-long 'tribal war,' while a fresh RSF offensive near Bara kills dozens. Lead on the mechanism, not 'clashes': a paramilitary arming civilian tribes manufactures communal war as a tool of control, and the RSF's new 'Security and Defense Council' formalises a parallel state. Names the actor (RSF) and the victims (Darfuri villages mobilising to defend themselves). Continuation of this war is the development; a rare regional ground report.",
+      "conceptUris": []
+    },
+    {
+      "id": "pew-poll-global-views-israel-36-countries",
+      "label": "Pew poll: Negative views of Israel in 36 countries, led by Muslim-majority states",
+      "firstSeen": "2026-06-05T22:05:34.041Z",
+      "lastCovered": "2026-06-05T22:05:34.041Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-05-pew-poll-global-views-israel-36-countries"
+      ],
+      "eventUri": null,
+      "summary": "A Pew Research survey of 44,000+ people across 36 countries finds a 67% median unfavorable view of Israel — peaking near-universal in Turkey (99%), Pakistan (95%), Malaysia (89%) and Indonesia (86%), and rising sharply even in Italy, Germany and Argentina. Lead on the structural shift: three years of war have collapsed Israel's global standing across left, youth and the Muslim world simultaneously, with sub-Saharan Africa the lone exception. Source is an advocacy outlet, but the underlying data is Pew's verifiable Global Attitudes survey — anchor the piece on the numbers, not the framing. Teach what durable opinion shifts mean for diplomatic cover.",
+      "conceptUris": []
+    },
+    {
+      "id": "usaf-mq9-reaper-losses-iran-houthi-attrition",
+      "label": "USAF Scrambling To Buy What Few MQ-9 Reapers It Can Find After Heavy Combat Losses",
+      "firstSeen": "2026-06-05T22:05:34.041Z",
+      "lastCovered": "2026-06-05T22:05:34.041Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-05-usaf-mq9-reaper-losses-iran-houthi-attrition"
+      ],
+      "eventUri": null,
+      "summary": "The US Air Force is hunting for any out-of-production MQ-9 Reapers it can buy after losing dozens of the drones to Iran and the Houthis. Lead on the attrition story behind the war: the workhorse of US remote warfare is being shot down faster than it can be replaced, and the production line is already closed. Teach what that reveals — cheap air defenses are now erasing the West's drone supremacy, and a war framed as one-sided is quietly costing the US its irreplaceable hardware. A consequence-of-the-Iran-war angle the wires miss.",
+      "conceptUris": []
+    },
+    {
+      "id": "senate-70bn-immigration-enforcement-bill",
+      "label": "Senate passes $70bn immigration enforcement bill: what's included",
+      "firstSeen": "2026-06-05T22:05:34.041Z",
+      "lastCovered": "2026-06-05T22:05:34.041Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-05-senate-70bn-immigration-enforcement-bill"
+      ],
+      "eventUri": "spa-4222326",
+      "summary": "The Senate voted 52-47 at 5 a.m. to pour roughly $70 billion over three years into ICE and Border Patrol. Lead on where the money goes and what it builds: this is the fiscal engine behind mass detention and the facial-recognition expansion already in the pipeline — a deportation apparatus funded at near-wartime scale. Teach the budget mechanism (multi-year appropriations that outlast any single administration) and who profits: private detention and surveillance contractors. Name the power (Republican Senate) and the cost-bearers (undocumented and mixed-status communities).",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Republican_Party_(United_States)",
+        "http://en.wikipedia.org/wiki/United_States_Senate",
+        "http://en.wikipedia.org/wiki/United_States_House_of_Representatives",
+        "http://en.wikipedia.org/wiki/Democratic_Party_(United_States)",
+        "http://en.wikipedia.org/wiki/United_States_dollar",
+        "http://en.wikipedia.org/wiki/United_States_Congress",
+        "http://en.wikipedia.org/wiki/Iran"
+      ]
+    },
+    {
+      "id": "wall-street-selloff-chips-jobs-rate-fears",
+      "label": "Wall Street ends sharply lower as chips slide, jobs data fuels rate hike fears",
+      "firstSeen": "2026-06-05T22:05:34.041Z",
+      "lastCovered": "2026-06-05T22:05:34.041Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-05-wall-street-selloff-chips-jobs-rate-fears"
+      ],
+      "eventUri": "eng-11710710",
+      "summary": "A nine-week winning streak snapped as chip stocks took their worst daily loss of the year, after a hot May jobs report revived fears the Fed could hike rather than cut. Lead on the inversion: good news for workers (strong hiring) is bad news for markets because it keeps rates — and borrowing costs — high, with the Iran-war inflation overhang in the background. Teach the transmission from a jobs print to a Fed pivot to global capital flows, and why an emerging-market reader feels a US rate scare as currency and debt pressure at home. Reported via Dawn for the reader's vantage.",
+      "conceptUris": []
+    },
+    {
+      "id": "anwr-arctic-oil-lease-sale-few-bids",
+      "label": "ANWR Oil Draws Few Bids, Despite Trump's Push for 'Liquid Gold'",
+      "firstSeen": "2026-06-05T22:05:34.041Z",
+      "lastCovered": "2026-06-05T22:05:34.041Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-05-anwr-arctic-oil-lease-sale-few-bids"
+      ],
+      "eventUri": "eng-11716496",
+      "summary": "An auction to drill the Arctic National Wildlife Refuge closed with just nine bids covering about 10% of the offered land. Lead on the market verdict, not the politics: even with a president demanding 'liquid gold,' oil companies declined the lease — the economics of remote Arctic crude and stranded-asset risk now override political will. Teach that capital, not regulation, is what is keeping the refuge undrilled, and why that is a more durable check than any executive order. Names the power (Trump, industry) and the structural why (long-cycle oil economics in a peaking-demand world).",
+      "conceptUris": []
+    },
+    {
+      "id": "pancreatic-cancer-drug-survival-gains",
+      "label": "Breakthrough pancreatic cancer drug shows survival gains that surprise experts",
+      "firstSeen": "2026-06-05T22:05:34.041Z",
+      "lastCovered": "2026-06-05T22:05:34.041Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-05-pancreatic-cancer-drug-survival-gains"
+      ],
+      "eventUri": "eng-11706375",
+      "summary": "A new pancreatic cancer pill nearly doubled survival time in trials — a result that surprised oncologists in one of medicine's most lethal, treatment-resistant cancers. Lead on the magnitude and the mechanism: pancreatic cancer survival has barely moved in decades, so a near-doubling is a genuine inflection, not incremental. Teach why this cancer is so hard to treat (late detection, dense tumor stroma) and what the drug does differently — then temper with the honest caveat that 'doubling' a grim baseline still means months, and access and cost decide who benefits.",
+      "conceptUris": []
+    },
+    {
+      "id": "india-deep-tech-space-startup-partnership",
+      "label": "India's Eye in the Sky: The Rise of a State-Deep Tech Startup Space Partnership",
+      "firstSeen": "2026-06-05T22:05:34.041Z",
+      "lastCovered": "2026-06-05T22:05:34.041Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-05-india-deep-tech-space-startup-partnership"
+      ],
+      "eventUri": null,
+      "summary": "India is fusing its space agency with a wave of deep-tech startups to climb the global space race — earth observation, launch, and satellite firms backed by the state. Lead on the model, not the milestone: a Global South power is deliberately building a sovereign private space sector as strategic and economic infrastructure, the same playbook the US and China used. Teach what 'state–startup partnership' actually means (anchor government contracts, IP, launch access) and why space capability is becoming a marker of which nations set terms rather than take them.",
+      "conceptUris": []
+    },
+    {
+      "id": "bluetooth-speaker-over-the-air-hid-attack",
+      "label": "Highly reviewed speaker can be hacked over the air to infect connected devices",
+      "firstSeen": "2026-06-05T22:05:34.041Z",
+      "lastCovered": "2026-06-05T22:05:34.041Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-05-bluetooth-speaker-over-the-air-hid-attack"
+      ],
+      "eventUri": null,
+      "summary": "Researchers showed a popular Bluetooth speaker can be turned into an attack vector — compromised over the air, it then impersonates a keyboard (HID) to take over connected phones and computers with no user action. Lead on the mechanism a technical reader will grasp instantly: the speaker abuses the trust an OS extends to human-interface devices, so 'just a speaker' becomes remote code execution. Teach why consumer audio gear with firmware is now part of the attack surface, and why supply-chain trust in cheap peripherals is the real exposure.",
+      "conceptUris": []
+    },
+    {
+      "id": "ai-recursive-self-improvement-progress",
+      "label": "When AI Builds Itself: Progress toward recursive self-improvement",
+      "firstSeen": "2026-06-05T22:05:34.041Z",
+      "lastCovered": "2026-06-05T22:05:34.041Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-04-ai-recursive-self-improvement-progress"
+      ],
+      "eventUri": null,
+      "summary": "An Anthropic analysis lays out how far AI systems have moved toward improving themselves — writing the code, running the experiments, and accelerating the next model's development. Lead on the threshold concept the reader needs: 'recursive self-improvement' is the point where AI progress stops being gated by human engineering speed, and the piece argues we are partway there, not at sci-fi takeoff. Teach the concrete mechanisms (AI doing ML research and infrastructure work) and the honest limits, and treat the source as an interested party — a lab describing the capability it is itself building.",
+      "conceptUris": []
+    },
+    {
+      "id": "gabaergic-neurons-in-the-ventrolateral-periaqueductal-gray-m",
+      "label": "GABAergic neurons in the ventrolateral periaqueductal gray mediate fentanyl withdrawal and self-administration in mice - Neuropsychopharmacology",
+      "firstSeen": "2026-06-05T22:05:34.041Z",
+      "lastCovered": "2026-06-05T22:05:34.041Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-05-gabaergic-neurons-in-the-ventrolateral-periaqueductal-gray-m"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for science floor] All experimental procedures were conducted in accordance with the National Institutes of Health Guide for the Care and Use of Laboratory Animals and approved by the Purdue University Animal Care and Use Committee. Male and female mice were used for all experiments. Mice were group-housed in a temper",
+      "conceptUris": []
+    },
+    {
       "id": "us-iran-war-pushing-millions-into-food-crisis-warns-un",
       "label": "US-Iran war pushing millions into food crisis, warns UN",
       "firstSeen": "2026-06-05T17:09:37.882Z",
       "lastCovered": "2026-06-05T17:09:37.882Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-05-us-iran-war-pushing-millions-into-food-crisis-warns-un"
@@ -33,7 +268,7 @@
       "lastCovered": "2026-06-05T17:09:37.882Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-05-insurgents-kill-eight-soldiers-at-borno-military-base"
@@ -49,7 +284,7 @@
       "lastCovered": "2026-06-05T17:09:37.882Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-05-israel-permanent-occupation-lebanon-abu-safiyah-solitary"
@@ -65,7 +300,7 @@
       "lastCovered": "2026-06-05T17:09:37.882Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-05-myanmar-military-russia-yatarnapon-cyber-city"
@@ -81,7 +316,7 @@
       "lastCovered": "2026-06-05T17:09:37.882Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-04-egypt-municipal-bill-constitutional-amendments"
@@ -97,7 +332,7 @@
       "lastCovered": "2026-06-05T17:09:37.882Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-05-sgie-2026-islamic-finance-maturity"
@@ -113,7 +348,7 @@
       "lastCovered": "2026-06-05T17:09:37.882Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-05-tanzania-rosatom-nuclear-energy-talks"
@@ -129,7 +364,7 @@
       "lastCovered": "2026-06-05T17:09:37.882Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-05-eu-tech-sovereignty-chips-cloud-ai-package"
@@ -145,7 +380,7 @@
       "lastCovered": "2026-06-05T17:09:37.882Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-05-iss-air-leak-astronauts-shelter-zvezda"
@@ -170,7 +405,7 @@
       "lastCovered": "2026-06-05T17:09:37.882Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-05-why-china-solar-boom-is-slowing-down"
@@ -186,7 +421,7 @@
       "lastCovered": "2026-06-05T17:09:37.882Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-05-ice-facial-recognition-app-local-police"
@@ -202,7 +437,7 @@
       "lastCovered": "2026-06-05T17:09:37.882Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-05-gps-military-numbers-station-encrypted-keys"
@@ -218,7 +453,7 @@
       "lastCovered": "2026-06-05T17:09:37.882Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-05-silicon-valley-lure-fading-india-tech-talent"
@@ -234,7 +469,7 @@
       "lastCovered": "2026-06-05T12:04:56.428Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-05-naval-drone-explodes-at-romania-s-constanta-port"
@@ -259,7 +494,7 @@
       "lastCovered": "2026-06-05T12:04:56.428Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-05-azerbaijan-drone-strikes-kill-five-nationals-sea-of-azov"
@@ -284,7 +519,7 @@
       "lastCovered": "2026-06-05T12:04:56.428Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-05-wana-tribal-elder-sons-killed-south-waziristan"
@@ -300,7 +535,7 @@
       "lastCovered": "2026-06-05T12:04:56.428Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-05-airtrunk-30-billion-india-data-centers"
@@ -325,7 +560,7 @@
       "lastCovered": "2026-06-05T12:04:56.428Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-05-us-forced-labor-ruling-vietnam-trade-probes"
@@ -341,7 +576,7 @@
       "lastCovered": "2026-06-05T12:04:56.428Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-05-south-africa-antivenom-stockout-nhls"
@@ -357,7 +592,7 @@
       "lastCovered": "2026-06-05T12:04:56.428Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-04-argentina-vaca-muerta-fracking-waste-pollution"
@@ -373,7 +608,7 @@
       "lastCovered": "2026-06-05T12:04:56.428Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-05-antarctic-deep-meltwater-southern-ocean"
@@ -389,7 +624,7 @@
       "lastCovered": "2026-06-05T12:04:56.428Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-05-meta-ai-agent-hijacked-instagram-account-theft"
@@ -405,7 +640,7 @@
       "lastCovered": "2026-06-05T12:04:56.428Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-05-zcash-orchard-pool-vulnerability-hayes-sells"
@@ -421,7 +656,7 @@
       "lastCovered": "2026-06-05T12:04:56.428Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-05-engro-baidu-pakistan-ai-mou-china"
@@ -437,7 +672,7 @@
       "lastCovered": "2026-06-05T08:06:16.997Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-05-rbi-holds-repo-rate-5-25-war-inflation"
@@ -460,7 +695,7 @@
       "lastCovered": "2026-06-05T08:06:16.997Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-05-annamalai-quits-bjp-tamil-nadu-split"
@@ -482,7 +717,7 @@
       "lastCovered": "2026-06-05T08:06:16.997Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-05-uss-ford-carrier-fire-worse-than-reported"
@@ -504,7 +739,7 @@
       "lastCovered": "2026-06-05T08:06:16.997Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-05-manipur-kuki-village-attack-three-killed"
@@ -525,7 +760,7 @@
       "lastCovered": "2026-06-05T08:06:16.997Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-05-bitcoin-falls-ai-trade-unwind-etf-outflows"
@@ -546,7 +781,7 @@
       "lastCovered": "2026-06-05T08:06:16.997Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-05-oman-mina-al-fahal-oil-terminal-explosion"
@@ -567,7 +802,7 @@
       "lastCovered": "2026-06-05T08:06:16.997Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-05-trump-kushner-albania-sazan-resort-protests"
@@ -588,7 +823,7 @@
       "lastCovered": "2026-06-05T08:06:16.997Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-04-exploration-company-reusable-heavy-lift-rocket"
@@ -604,7 +839,7 @@
       "lastCovered": "2026-06-05T08:06:16.997Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-03-br-319-amazon-highway-deforestation-risk"
@@ -620,7 +855,7 @@
       "lastCovered": "2026-06-05T08:06:16.997Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-04-berkeley-cs-failing-grades-ai-math-skills"
@@ -636,7 +871,7 @@
       "lastCovered": "2026-06-05T08:06:16.997Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-04-ukraine-low-cost-interceptor-missile-test"
@@ -652,7 +887,7 @@
       "lastCovered": "2026-06-05T08:06:16.997Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-05-londa-2025-africa-digital-rights-report"
@@ -668,7 +903,7 @@
       "lastCovered": "2026-06-05T12:04:56.428Z",
       "coverageCount": 2,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-06-04-new-copepod-family-deep-sea-greenland",
@@ -685,7 +920,7 @@
       "lastCovered": "2026-06-05T04:08:55.913Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-05-japan-proposes-rebuilding-ageing-nuclear-plants-to-meet-powe"
@@ -701,7 +936,7 @@
       "lastCovered": "2026-06-05T04:08:55.913Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-04-the-half-life-of-bangladesh-s-russia-deal"
@@ -717,7 +952,7 @@
       "lastCovered": "2026-06-05T04:08:55.913Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-05-tata-motors-aims-for-over-20-pv-market-share-by-2030-hints-c"
@@ -733,7 +968,7 @@
       "lastCovered": "2026-06-05T04:08:55.913Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-05-leftist-sanchez-gains-traction-ahead-of-peru-runoff-vote-ips"
@@ -749,7 +984,7 @@
       "lastCovered": "2026-06-05T04:08:55.913Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-04-in-iraqi-kurdistan-peshmerga-reform-dies-on-the-vine"
@@ -765,7 +1000,7 @@
       "lastCovered": "2026-06-05T04:08:55.913Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-05-xi-jinping-to-visit-north-korea-on-june-8-9-agency"
@@ -781,7 +1016,7 @@
       "lastCovered": "2026-06-05T04:08:55.913Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-05-us-journalist-pleads-guilty-to-acting-as-illegal-agent-for-c"
@@ -797,7 +1032,7 @@
       "lastCovered": "2026-06-05T04:08:55.913Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-04-the-wounds-borne-by-egypt-s-former-detainees"
@@ -813,7 +1048,7 @@
       "lastCovered": "2026-06-05T04:08:55.913Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-05-the-heaven-sword-crowned-as-east-asia-s-tallest-tree-after-a"
@@ -829,7 +1064,7 @@
       "lastCovered": "2026-06-05T04:08:55.913Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-05-sars-cov-2-omicron-ba-2-86-and-jn-1-expand-tropism-in-human"
@@ -845,7 +1080,7 @@
       "lastCovered": "2026-06-05T04:08:55.913Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-04-trump-considers-palantir-exec-to-lead-cisa"
@@ -861,7 +1096,7 @@
       "lastCovered": "2026-06-05T04:08:55.913Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-04-satya-nadella-not-sure-who-said-microsoft-wanted-to-make-add"
@@ -877,7 +1112,7 @@
       "lastCovered": "2026-06-05T04:08:55.913Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-03-uber-s-1-500-month-ai-limit-is-a-useful-signal-for-ai-tool-p"
@@ -893,7 +1128,7 @@
       "lastCovered": "2026-06-04T22:04:19.423Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-04-senate-blocks-bid-to-bar-trump-1-8bn-ally-fund"
@@ -915,7 +1150,7 @@
       "lastCovered": "2026-06-04T22:04:19.423Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-04-zelensky-open-letter-putin-face-to-face-talks"
@@ -937,7 +1172,7 @@
       "lastCovered": "2026-06-04T22:04:19.423Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-04-nigeria-constitution-amendment-state-police"
@@ -953,7 +1188,7 @@
       "lastCovered": "2026-06-04T22:04:19.423Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-04-india-press-freedom-ranking-democratic-trajectory"
@@ -969,7 +1204,7 @@
       "lastCovered": "2026-06-04T22:04:19.423Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-04-trump-700-million-coal-revival-bid"
@@ -990,7 +1225,7 @@
       "lastCovered": "2026-06-04T22:04:19.423Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-04-dangote-refinery-700000-bpd-capacity"
@@ -1006,7 +1241,7 @@
       "lastCovered": "2026-06-04T22:04:19.423Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-04-occ-world-liberty-financial-charter-scrutiny"
@@ -1022,7 +1257,7 @@
       "lastCovered": "2026-06-04T22:04:19.423Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-04-hhs-human-research-protections-office-cuts"
@@ -1038,7 +1273,7 @@
       "lastCovered": "2026-06-04T22:04:19.423Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-04-att-verizon-supreme-court-location-data-fines"
@@ -1054,7 +1289,7 @@
       "lastCovered": "2026-06-04T22:04:19.423Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-04-palantir-elite-ice-surveillance-lawsuit"
@@ -1070,7 +1305,7 @@
       "lastCovered": "2026-06-04T22:04:19.423Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-03-china-robot-training-data-scaling-edge"
@@ -1078,267 +1313,6 @@
       "eventUri": null,
       "summary": "China is harvesting cheap, localised robot-training data from homes and factories — mundane tasks like folding shirts — building a scaling edge over a US approach that is research-heavy and outsourced. Lead on the structural advantage: in embodied AI, whoever collects the most real-world physical data wins, and China is industrialising that collection. Teach why training data, not algorithms, is the bottleneck for robotics, and what this means for who builds the machines that will do physical labour.",
       "conceptUris": []
-    },
-    {
-      "id": "lebanon-israel-ceasefire-deal-made-in-hope-rather-than-expec",
-      "label": "Lebanon-Israel ceasefire deal made in 'hope rather than expectation'",
-      "firstSeen": "2026-06-04T17:05:56.062Z",
-      "lastCovered": "2026-06-04T17:05:56.062Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-04-lebanon-israel-ceasefire-deal-made-in-hope-rather-than-expec"
-      ],
-      "eventUri": "eng-11707065",
-      "summary": "A US-brokered deal renews the fragile Lebanon-Israel ceasefire and creates 'pilot' security zones inside Lebanon where Hezbollah operatives would be banned — yet Israel struck in Lebanon the same day the deal was announced. Lead on the gap between the document and the ground: the agreement is contingent on a 'complete cessation' that is already being violated, and the pilot zones formalize an Israeli foothold inside Lebanese territory. Distinct from the ongoing Ain Arab displacement and UNIFIL-casualty threads — this is the diplomatic frame over the same depopulation push. Note who polices the zones and what 'security zone' means for sovereignty. Feed gap: no Lebanese/Arab regional outlet carried this cluster (BBC/Investing.com/RT only).",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Lebanon",
-        "http://en.wikipedia.org/wiki/Hezbollah",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Washington,_D.C.",
-        "http://en.wikipedia.org/wiki/Israel_Defense_Forces"
-      ]
-    },
-    {
-      "id": "trump-foe-john-bolton-to-plead-guilty-in-classified-informat",
-      "label": "Trump foe John Bolton to plead guilty in classified information case",
-      "firstSeen": "2026-06-04T17:05:56.062Z",
-      "lastCovered": "2026-06-04T17:05:56.062Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-04-trump-foe-john-bolton-to-plead-guilty-in-classified-informat"
-      ],
-      "eventUri": "eng-11714215",
-      "summary": "Trump's former national security adviser John Bolton — a prominent administration critic — will plead guilty to a single count of retaining classified information, avoiding prison but facing a $2.25m fine. Lead on the accountability asymmetry: a plea that lets a powerful insider settle a documents case with money, set against the same charge's harsher treatment of others, and what selective prosecution of a presidential antagonist signals about how classified-records law is wielded. Teach the mechanism of the plea deal and what 'retaining' actually means.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/John_Bolton",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Bolton",
-        "http://en.wikipedia.org/wiki/Classified_information",
-        "http://en.wikipedia.org/wiki/National_Security_Advisor_(United_States)",
-        "http://en.wikipedia.org/wiki/National_security",
-        "http://en.wikipedia.org/wiki/CNN",
-        "http://en.wikipedia.org/wiki/Plea_bargain"
-      ]
-    },
-    {
-      "id": "tracing-digital-links-between-viory-and-ruptly",
-      "label": "Tracing Digital Links Between Viory and Ruptly",
-      "firstSeen": "2026-06-04T17:05:56.062Z",
-      "lastCovered": "2026-06-04T17:05:56.062Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-04-tracing-digital-links-between-viory-and-ruptly"
-      ],
-      "eventUri": null,
-      "summary": "Bellingcat's OSINT traces digital fingerprints linking Viory — an Abu Dhabi-registered video-news wire marketing itself on 'verification' and 'trust' — to Ruptly, the agency spun out of Russia's RT. Lead on the laundering mechanism: how state propaganda re-enters the global newsroom supply chain dressed as a neutral, Gulf-based verification service, and why a video wire's provenance matters when outlets worldwide buy its footage. Unique investigative source; teach readers how to read the technical evidence (shared infrastructure) rather than the branding.",
-      "conceptUris": []
-    },
-    {
-      "id": "violence-between-criminal-groups-and-latam-governments-has-r",
-      "label": "Violence Between Criminal Groups and LatAm Governments Has Risen Since Trump: Report",
-      "firstSeen": "2026-06-04T17:05:56.062Z",
-      "lastCovered": "2026-06-04T17:05:56.062Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-02-violence-between-criminal-groups-and-latam-governments-has-r"
-      ],
-      "eventUri": null,
-      "summary": "A new InSight Crime report finds confrontations between security forces and criminal groups across Latin America and the Caribbean have risen as Trump pushes a harder regional security line — and that criminal groups are adapting rather than retreating. Lead on the counterproductive mechanism: militarized pressure scatters and hardens networks instead of dismantling them, and the violence lands on civilians. Corrects the standing Latin America coverage gap with a specialist accountability source; frame regional states and gangs as adapting actors, not passive recipients of US policy.",
-      "conceptUris": []
-    },
-    {
-      "id": "new-research-challenges-official-narrative-on-commercial-cri",
-      "label": "New research challenges official narrative on commercial crime prosecution decline",
-      "firstSeen": "2026-06-04T17:05:56.062Z",
-      "lastCovered": "2026-06-04T17:05:56.062Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-04-new-research-challenges-official-narrative-on-commercial-cri"
-      ],
-      "eventUri": null,
-      "summary": "A University of the Western Cape study finds South Africa's drop in successful commercial-crime prosecutions stems not from fewer crimes but from case withdrawals, repeated postponements and poor case management in the Specialised Commercial Crime Courts. Lead on the accountability gap the data exposes: white-collar prosecution is failing on process, not evidence, and that procedural rot is how the powerful escape — directly relevant to a country still reckoning with state capture. Corrects the standing Africa coverage gap; teach the mechanism behind a collapsing conviction pipeline.",
-      "conceptUris": []
-    },
-    {
-      "id": "anatomy-of-a-scam-how-rajesh-exports-faked-rs-15-lakh-crore",
-      "label": "Anatomy Of A Scam: How Rajesh Exports 'Faked' Rs 15 Lakh Crore Revenue",
-      "firstSeen": "2026-06-04T17:05:56.062Z",
-      "lastCovered": "2026-06-04T17:05:56.062Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-04-anatomy-of-a-scam-how-rajesh-exports-faked-rs-15-lakh-crore"
-      ],
-      "eventUri": "eng-11710643",
-      "summary": "India's market regulator SEBI barred gold giant Rajesh Exports and its promoter after alleging the company misrepresented an almost incomprehensible Rs 15.15 lakh crore (~$180bn) in revenue — with LIC and mutual funds among the exposed holders. Lead on the scale and the mechanism: how a listed firm allegedly inflated revenue by orders of magnitude for years before a single shareholder complaint unraveled it, and what that says about audit and disclosure gaps in one of the world's largest markets. Multi-source Indian cluster; teach how the fraud was structured and who bears the loss.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Rajesh_Exports",
-        "http://en.wikipedia.org/wiki/Securities_and_Exchange_Board_of_India",
-        "http://en.wikipedia.org/wiki/Indian_rupee",
-        "http://en.wikipedia.org/wiki/Crore",
-        "http://en.wikipedia.org/wiki/Rajesh_Mehta",
-        "http://en.wikipedia.org/wiki/Lakh",
-        "http://en.wikipedia.org/wiki/Financial_statement",
-        "http://en.wikipedia.org/wiki/Gold"
-      ]
-    },
-    {
-      "id": "boeing-787-s-nose-suddenly-drops-at-frankfurt-airport-severa",
-      "label": "Boeing 787's Nose Suddenly Drops At Frankfurt Airport, Several Lufthansa Employees Hurt",
-      "firstSeen": "2026-06-04T17:05:56.062Z",
-      "lastCovered": "2026-06-04T17:05:56.062Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-04-boeing-787-s-nose-suddenly-drops-at-frankfurt-airport-severa"
-      ],
-      "eventUri": "deu-2133079",
-      "summary": "A new Lufthansa Boeing 787 Dreamliner's front landing gear collapsed at the gate while being fueled and stocked for a Los Angeles flight, injuring several crew. Lead on the Boeing accountability thread, not the spectacle: a state-of-the-art aircraft failing on the ground feeds an unresolved quality-control story, and a nose-gear collapse during servicing raises questions a viral video can't answer. Teach what is and isn't known (this is a ground incident, not an in-flight failure) and why each Dreamliner fault now carries outsized scrutiny for Boeing.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Lufthansa",
-        "http://en.wikipedia.org/wiki/Boeing_787_Dreamliner",
-        "http://en.wikipedia.org/wiki/Landing_gear",
-        "http://en.wikipedia.org/wiki/Frankfurt_Airport",
-        "http://en.wikipedia.org/wiki/Frankfurt",
-        "http://en.wikipedia.org/wiki/Airplane",
-        "http://en.wikipedia.org/wiki/Germany"
-      ]
-    },
-    {
-      "id": "india-to-drop-capital-gains-tax-for-foreign-investors-in-gov",
-      "label": "India to drop capital gains tax for foreign investors in government bonds, source says",
-      "firstSeen": "2026-06-04T17:05:56.062Z",
-      "lastCovered": "2026-06-04T17:05:56.062Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-04-india-to-drop-capital-gains-tax-for-foreign-investors-in-gov"
-      ],
-      "eventUri": "eng-11712357",
-      "summary": "India plans to scrap capital gains tax on foreign portfolio investment in government securities — a quiet lever to pull more overseas money into its sovereign debt as the benchmark yield eases. Lead on the mechanism and the trade-off: cutting the tax courts foreign inflows and cheaper government borrowing, but deepens reliance on hot, reversible foreign capital to fund the state. Teach why a tax tweak on bonds is really a bet on financing the deficit, and what a sanctioned, oil-importing region's largest economy gains and risks by inviting the flows.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Capital_gains_tax",
-        "http://en.wikipedia.org/wiki/Government_debt",
-        "http://en.wikipedia.org/wiki/Government_bond",
-        "http://en.wikipedia.org/wiki/Bond_(finance)",
-        "http://en.wikipedia.org/wiki/Rupee",
-        "http://en.wikipedia.org/wiki/Government_of_India",
-        "http://en.wikipedia.org/wiki/Income_tax"
-      ]
-    },
-    {
-      "id": "buoys-track-ocean-waves-across-14-000-km-from-storms-in-anta",
-      "label": "Buoys track ocean waves across 14,000 km, from storms in Antarctica to ripples in Alaska",
-      "firstSeen": "2026-06-04T17:05:56.062Z",
-      "lastCovered": "2026-06-04T17:05:56.062Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-04-buoys-track-ocean-waves-across-14-000-km-from-storms-in-anta"
-      ],
-      "eventUri": null,
-      "summary": "Using 300 drifting buoys, researchers traced individual ocean swells generated by Antarctic storms all the way to the shores of Alaska — 14,000 km away — for the first time. Lead on the surprising reach: the planet's oceans are coupled as one continuous system, and a storm at the bottom of the world measurably shapes a far-northern coastline. Teach the mechanism (how wave energy propagates and decays across an ocean basin) and why this matters for forecasting coastal hazards and validating climate-driven storm models.",
-      "conceptUris": []
-    },
-    {
-      "id": "after-11-years-at-mars-nasa-s-maven-spacecraft-went-out-with",
-      "label": "After 11 years at Mars, NASA's MAVEN spacecraft went out with a whisper",
-      "firstSeen": "2026-06-04T17:05:56.062Z",
-      "lastCovered": "2026-06-04T17:05:56.062Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-04-after-11-years-at-mars-nasa-s-maven-spacecraft-went-out-with"
-      ],
-      "eventUri": "eng-11711208",
-      "summary": "NASA's MAVEN orbiter fell silent behind Mars during a routine occultation and never came back, ending an 11-year mission that rewrote how we understand the planet losing its atmosphere. Lead on what MAVEN proved, not just its quiet death: it measured how the solar wind stripped Mars of its air over billions of years — the mechanism that turned a once-wet world into a desert, and a cautionary lesson about planetary habitability. Teach the science the mission cemented before reflecting on the end.",
-      "conceptUris": []
-    },
-    {
-      "id": "ai-cameras-are-surveilling-the-roads-in-dhaka-bangladesh",
-      "label": "AI cameras are surveilling the roads in Dhaka, Bangladesh",
-      "firstSeen": "2026-06-04T17:05:56.062Z",
-      "lastCovered": "2026-06-04T17:05:56.062Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-03-ai-cameras-are-surveilling-the-roads-in-dhaka-bangladesh"
-      ],
-      "eventUri": null,
-      "summary": "Bangladesh's first AI-powered traffic enforcement system filed over 1,000 cases in 10 days in Dhaka — while the fate of the city's vast fleet of unregistered battery-rickshaws, and the working poor who drive them, stays unresolved. Lead on who the automated gaze actually catches: algorithmic enforcement scales fines faster than it scales fairness, and in a megacity it lands hardest on the informal economy. Teach the mechanism (automated detection-to-citation) and the accountability question — surveillance infrastructure arriving before the rules governing it. Global South tech story in an OIC-member state.",
-      "conceptUris": []
-    },
-    {
-      "id": "google-employees-internally-share-memes-about-how-its-ai-suc",
-      "label": "Google Employees Internally Share Memes About How Its AI Sucks",
-      "firstSeen": "2026-06-04T17:05:56.062Z",
-      "lastCovered": "2026-06-04T17:05:56.062Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-04-google-employees-internally-share-memes-about-how-its-ai-suc"
-      ],
-      "eventUri": null,
-      "summary": "Google's CEO says 75% of company code is now AI-generated; the engineers who use that AI are internally circulating memes about how overhyped and bad it is. Lead on the gap between the executive narrative and the practitioner reality: the disconnect between top-line AI-productivity claims and the people doing the work is the story, and it punctures one of the industry's load-bearing statistics. Reader-aligned 404 Media source; teach what '75% AI-generated' actually does and doesn't mean, and why the internal dissent matters for everyone betting on these claims.",
-      "conceptUris": []
-    },
-    {
-      "id": "european-parliament-drops-google-citing-privacy-concerns-pol",
-      "label": "European Parliament drops Google citing privacy concerns",
-      "firstSeen": "2026-06-04T17:05:56.062Z",
-      "lastCovered": "2026-06-04T17:05:56.062Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-04-european-parliament-drops-google-citing-privacy-concerns-pol"
-      ],
-      "eventUri": "fra-1311535",
-      "summary": "The European Parliament is set to replace Google with Qwant — a Franco-German-backed search engine — as the default on its in-house computers, citing privacy and a push to cut digital dependence on US tech. Lead on the digital-sovereignty mechanism: a legislature switching its own default search is a small but concrete act of reducing reliance on American platforms, and a test of whether European alternatives can actually carry institutional load. Teach what 'sovereign search' requires (indexing, infrastructure) and why the symbolism outruns the capability for now. Single Russian-state source relaying Politico's reporting — writer should anchor on the documented Politico detail, not the framing.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Google",
-        "http://en.wikipedia.org/wiki/Qwant",
-        "http://en.wikipedia.org/wiki/European_Parliament",
-        "http://en.wikipedia.org/wiki/Web_search_engine",
-        "http://en.wikipedia.org/wiki/Sovereignty",
-        "http://en.wikipedia.org/wiki/Computer",
-        "http://en.wikipedia.org/wiki/Personal_data",
-        "http://en.wikipedia.org/wiki/Cyber_sovereignty"
-      ]
     }
   ]
 }

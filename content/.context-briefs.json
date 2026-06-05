@@ -309902,5 +309902,1283 @@
     "label": "Feed-in Tariffs & Solar Economics",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-06-04-ai-recursive-self-improvement-progress": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IDEA HAS A NAME",
+        "body": "The notion that a machine could design a smarter machine, which designs a smarter one still, is not new. The statistician I.J. Good — who worked alongside Turing at Bletchley Park — named it the 'intelligence explosion' in 1965, sixty years before the first line of AI-assisted code at Anthropic.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "the first ultraintelligent machine is the last invention that man need ever make, provided that the machine is docile enough to tell us how to keep it under control",
+            "speaker": "I.J. Good, 'Speculations Concerning the First Ultraintelligent Machine'",
+            "year": "1965"
+          }
+        ]
+      },
+      {
+        "heading": "MOORE'S LAW FOR AGENTS",
+        "body": "The benchmark that matters is not how smart a model sounds but how long a task it can finish unaided. That horizon has been doubling roughly every few months — minutes of autonomous work in 2024, hours by 2026. The trend, not any single result, is the story.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The metric is *task horizon* — the length of job a model completes without a human stepping in. A jump from **4 minutes** to **12 hours** is not 180× better answers; it is 180× longer chains of action before something breaks."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE BOTTLENECK GOES",
+        "body": "Early AI was bottlenecked by compute, then by data. As both grow abundant, the binding constraint shifts to research taste — knowing which experiment to run next. Recursive self-improvement is the claim that machines can take over that last judgment, the part everyone assumed was irreducibly human."
+      },
+      {
+        "heading": "SIXTY YEARS OF WARNING",
+        "body": "Every generation restated Good's idea in its own vocabulary. Vernor Vinge called the point past which prediction fails the 'Singularity' in 1993; Nick Bostrom turned the alignment problem into a research field in 2014. The engineering caught up to the philosophy only recently.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1965",
+                "label": "Good names the 'intelligence explosion'",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1993",
+                "label": "Vinge's 'Coming Technological Singularity'"
+              },
+              {
+                "year": "2014",
+                "label": "Bostrom's 'Superintelligence'"
+              },
+              {
+                "year": "2024",
+                "label": "Task-horizon benchmarks: minutes"
+              },
+              {
+                "year": "2026",
+                "label": "Agents delegating hours to agents"
+              }
+            ],
+            "label": "the idea, from speculation to shipping code"
+          }
+        ]
+      },
+      {
+        "heading": "THE DOCILITY CLAUSE",
+        "body": "Good's own sentence carried a caveat most quoters drop: the machine must be 'docile enough to tell us how to keep it under control.' The entire modern alignment field is an argument about whether that clause can be guaranteed before, rather than after, the loop closes on itself.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Who first described a machine designing ever-smarter machines as an 'intelligence explosion'?",
+            "options": [
+              "Alan Turing",
+              "I.J. Good",
+              "Ray Kurzweil",
+              "John von Neumann"
+            ],
+            "correct": 1,
+            "explanation": "I.J. Good coined the term in his 1965 paper; von Neumann had earlier mused on a 'singularity,' but the explosion framing is Good's."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T22:17:56.259Z",
+    "label": "Recursive Self-Improvement",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-05-anwr-arctic-oil-lease-sale-few-bids": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE MAJORS STAYED HOME",
+        "body": "An Arctic oil field takes 10-15 years and tens of billions to bring online, then pays back over 30-40 years. A company sanctioning ANWR today is betting on robust oil demand into the 2060s — and most majors' own internal forecasts no longer support that bet. The risk isn't a future regulation; it's that the barrels never become economic to sell."
+      },
+      {
+        "heading": "THE STRANDED-ASSET CONCEPT",
+        "body": "A stranded asset is capital that loses its value before the end of its expected economic life — a reserve that stays in the ground because the price never justifies extraction, or a pipeline that's obsolete before it's depreciated. For long-lead Arctic projects, the multi-decade payback horizon is exactly what makes the stranding risk acute.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phrase **stranded asset** migrated from balance-sheet accounting into climate finance around 2013 — once analysts noticed that the world's proven fossil reserves were several times larger than any carbon budget would ever let companies burn."
+          }
+        ]
+      },
+      {
+        "heading": "THE BREAKEVEN WALL",
+        "body": "Arctic crude is among the most expensive oil on Earth to produce — remote logistics, permafrost engineering, a months-long ice season. Its breakeven price sits far above Gulf onshore or even US shale, so it is the first supply to become uneconomic whenever the long-term price outlook softens.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi onshore",
+                "value": "~$10",
+                "weight": 10,
+                "tone": "favorable"
+              },
+              {
+                "label": "US shale",
+                "value": "~$48",
+                "weight": 48,
+                "tone": "neutral"
+              },
+              {
+                "label": "Canada oil sands",
+                "value": "~$60",
+                "weight": 60,
+                "tone": "neutral"
+              },
+              {
+                "label": "ANWR Arctic",
+                "value": "~$78",
+                "weight": 78,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "approx. breakeven oil price by basin ($/bbl)"
+          }
+        ]
+      },
+      {
+        "heading": "A LEASE SALE IS NOT A DRILL",
+        "body": "Selling a lease only transfers the right to explore a tract — it commits no one to drilling. Companies routinely buy cheap acreage as an option and let it lapse if appraisal disappoints. So the $3.7 million raised here measures appetite for an option, not a decision to develop; even the few bids may never turn into a single well."
+      },
+      {
+        "heading": "THE CONGRESSIONAL MANDATE",
+        "body": "These auctions happen because a law requires them, not because Interior chose the moment. The 2017 Tax Cuts and Jobs Act ordered lease sales in ANWR's coastal plain and booked the projected revenue as an offset to the tax cuts — which is why mandatory sales keep recurring on a fixed schedule regardless of market conditions.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1960",
+                "label": "Arctic Range established",
+                "emphasis": "start"
+              },
+              {
+                "year": "1980",
+                "label": "ANILCA designates 1002 Area for study"
+              },
+              {
+                "year": "1995",
+                "label": "Drilling bill passed, Clinton vetoes"
+              },
+              {
+                "year": "2017",
+                "label": "Tax law mandates lease sales",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "First sale flops, majors absent"
+              },
+              {
+                "year": "2021",
+                "label": "Biden suspends the leases"
+              }
+            ],
+            "label": "the fight over the 1002 Area"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1002 AREA",
+        "body": "The acreage on offer is the coastal plain known as the '1002 Area' — named for the section of the 1980 ANILCA law that singled out 1.5 million acres for petroleum study while protecting the rest of the refuge. It is the only part of ANWR Congress ever left open to potential drilling, which is why every fight focuses on this one strip.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which law first required oil and gas lease sales in ANWR's coastal plain?",
+            "options": [
+              "The 2017 Tax Cuts and Jobs Act",
+              "ANILCA (1980)",
+              "The Inflation Reduction Act (2022)",
+              "The Energy Policy Act (2005)"
+            ],
+            "correct": 0,
+            "explanation": "The 2017 tax law mandated the sales and counted projected lease revenue as an offset to its tax cuts; ANILCA only set the 1002 Area aside for study."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T22:18:40.848Z",
+    "label": "ANWR & Stranded-Asset Risk",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-05-bluetooth-speaker-over-the-air-hid-attack": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY A KEYBOARD IS TRUSTED BY DEFAULT",
+        "body": "When a device announces itself as a Human Interface Device — a keyboard or mouse — the operating system loads a generic driver and accepts its input with no authentication, no pairing prompt, no permission dialog. There is no concept of a 'malicious keyboard' in the USB or Bluetooth HID spec; whatever it types is treated as the user typing. That implicit trust is the entire attack.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The class is **HID** — Human Interface Device. The OS doesn't ask *who* is typing, only *what* is typed. A soundbar that claims to be a keyboard inherits the same trust as the one on your desk."
+          }
+        ]
+      },
+      {
+        "heading": "THE BADUSB PRECEDENT",
+        "body": "At Black Hat 2014, researchers Karsten Nohl and Jakob Lell showed that the firmware on a USB controller — not the storage, the controller itself — can be reflashed to make any device impersonate a keyboard. They called it BadUSB. The lesson was that you cannot trust a peripheral by inspecting its files, because the threat lives in the silicon's firmware, which antivirus never scans.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2010",
+                "label": "Teensy keystroke-injection demos"
+              },
+              {
+                "year": "2014",
+                "label": "BadUSB disclosed at Black Hat",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017",
+                "label": "USB Rubber Ducky goes mainstream"
+              },
+              {
+                "year": "2018",
+                "label": "O.MG cable hides HID in a charger"
+              },
+              {
+                "year": "2026",
+                "label": "Soundbar as over-the-air HID"
+              }
+            ],
+            "label": "the keystroke-injection lineage"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT UNSIGNED FIRMWARE MEANS",
+        "body": "Signed firmware carries a cryptographic signature the device checks against a baked-in key before it will run new code; reject the signature, reject the update. A device that accepts unsigned firmware has no such gate — anyone who can reach the update channel can replace the device's entire behavior. Here the channel is Bluetooth, so the attacker never has to touch the hardware.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The missing control is **secure boot**: a chain where each stage verifies the next stage's signature before handing off. Skip it, and firmware is just files anyone can overwrite."
+          }
+        ]
+      },
+      {
+        "heading": "THE ALWAYS-ON ATTACK SURFACE",
+        "body": "The radio stays active in sleep mode with no option to disable it, so the device is reachable whenever it has power — not only when someone is listening to music. Security people call this the attack surface: every interface that accepts input from the outside world. A speaker that can never turn its radio off has the widest possible surface for its function.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is a device registering as an HID keyboard especially dangerous?",
+            "options": [
+              "Keyboards transmit data faster than other USB devices",
+              "The OS accepts keystrokes without any authentication or permission prompt",
+              "Keyboards can read the contents of the hard drive directly",
+              "Antivirus software cannot see USB devices at all"
+            ],
+            "correct": 1,
+            "explanation": "HID input is implicitly trusted — the OS treats injected keystrokes as the user typing, so a fake keyboard can run any command the user could."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'WE FOUND NO VULNERABILITY' CAN BE TRUE",
+        "body": "Vendors often deny a flaw because the device is behaving exactly as designed — accepting firmware and presenting as a keyboard are documented features, not bugs. The vulnerability is in the trust model, not a single line of code: a feature that is harmless in isolation becomes a backdoor once an attacker controls the input. This is why design-level security review matters more than patching individual defects."
+      }
+    ],
+    "generatedAt": "2026-06-05T22:19:12.780Z",
+    "label": "HID Injection & the Trusted-Keyboard Problem",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-05-france-war-crimes-probe-israel-gaza-flotilla": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY A FRENCH COURT CAN ACT",
+        "body": "Ordinarily a state's courts only reach crimes on its soil. Two doctrines break that wall here: passive personality — a state may prosecute crimes against its own nationals anywhere — and universal jurisdiction, which lets any state try torture no matter who did it or where, because torture is treated as a crime against all humanity.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "France's hook is the **passive personality principle** — the 30+ victims are French citizens. Torture additionally triggers *universal jurisdiction*, the rarer doctrine reserved for the gravest international crimes."
+          }
+        ]
+      },
+      {
+        "heading": "THE TREATY OBLIGATION",
+        "body": "The 1984 UN Convention Against Torture binds its 170+ parties to a rule called aut dedere aut judicare — extradite or prosecute. A state that finds a suspected torturer on its territory must either hand him over or open its own case; looking away is itself a treaty violation. This is the engine behind torture probes that cross borders.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the UN Convention Against Torture, what must a state do with a torture suspect found on its soil?",
+            "options": [
+              "Extradite the suspect or prosecute domestically",
+              "Refer the matter only to the suspect's home state",
+              "Wait for a UN Security Council resolution",
+              "Take no action unless the victim was its own citizen"
+            ],
+            "correct": 0,
+            "explanation": "The 'aut dedere aut judicare' rule obliges parties to extradite or prosecute — inaction itself breaches the treaty."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL DEFINITION OF TORTURE",
+        "body": "Not all mistreatment is torture in law. The Convention sets a threshold: severe pain or suffering, intentionally inflicted, by or with the consent of an official, for a purpose like coercion, punishment, or intimidation. Stress positions and beatings can clear that bar; the 'purpose' element — not just the pain — is what separates torture from ordinary assault.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "FR",
+              "IL",
+              "TR",
+              "PS"
+            ],
+            "label": "the cast of the case",
+            "caption": "France referred it; Israel is the target; injured activists lie in Turkey"
+          }
+        ]
+      },
+      {
+        "heading": "THE MAVI MARMARA PRECEDENT",
+        "body": "This is not the first flotilla case. In May 2010 Israeli commandos boarded the Mavi Marmara in international waters, killing 10 Turkish activists. A UN inquiry (the Palmer Report) split the difference — calling the blockade lawful but Israel's force excessive — and the episode froze Israeli-Turkish ties for years.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2007",
+                "label": "Israel-Egypt blockade of Gaza begins"
+              },
+              {
+                "year": "2010",
+                "label": "Mavi Marmara raid, 10 killed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011",
+                "label": "UN Palmer Report"
+              },
+              {
+                "year": "2026",
+                "label": "French war-crimes probe opened"
+              }
+            ],
+            "label": "Gaza blockade & the flotillas"
+          }
+        ]
+      },
+      {
+        "heading": "THE INTERNATIONAL-WATERS QUESTION",
+        "body": "A blockading navy may, under the San Remo Manual on naval warfare, stop and search ships bound for the blockaded coast even in international waters — but only if the blockade itself is lawful and the force used is proportionate. The whole legal fight collapses into those two words: lawful, and proportionate."
+      }
+    ],
+    "generatedAt": "2026-06-05T22:19:52.763Z",
+    "label": "Universal Jurisdiction & the Flotilla",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-05-india-deep-tech-space-startup-partnership": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ANCHOR-TENANT MODEL",
+        "body": "The mechanism India is copying has a name: the government becomes the guaranteed first customer, buying enough launches or imagery up front that a startup can raise private capital against the contract. NASA pioneered it in 2006 with COTS — committing to buy cargo flights before SpaceX had flown anything to orbit. The state de-risks the market rather than building the rocket itself.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **anchor tenancy** — a public buyer large enough to make a private venture bankable. SpaceX exists today largely because NASA signed *before* the Falcon 9 had ever flown."
+          }
+        ]
+      },
+      {
+        "heading": "THE FRUGAL-ENGINEERING EDGE",
+        "body": "India's comparative advantage is cost, not scale. Its 2014 Mars orbiter reached Mars on its first attempt for a budget smaller than many Western satellites — a fraction of NASA's comparable mission. That same frugal-engineering culture is what makes Indian earth-observation startups commercially plausible against deeper-pocketed rivals.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "India's 2014 Mangalyaan Mars mission was famously cheap. Roughly what did it cost?",
+            "options": [
+              "About $74 million — less than the film 'Gravity'",
+              "About $700 million",
+              "About $2.5 billion",
+              "About $9 billion"
+            ],
+            "correct": 0,
+            "explanation": "At ~$74M, Mangalyaan cost less than Hollywood's 'Gravity' and made India the first nation to reach Mars orbit on its first try."
+          }
+        ]
+      },
+      {
+        "heading": "THE LAUNCH GAP",
+        "body": "The strategy's unresolved constraint is cadence. China and the US now launch dozens to over a hundred times a year; India's annual orbital launches remain in the single digits. A thriving satellite-startup sector needs rides to orbit — and if domestic rockets can't keep up, the satellites either wait in a queue or fly on a rival's launcher.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Orbital launches per year (recent)",
+            "peers": [
+              {
+                "value": 145,
+                "cc": "US"
+              },
+              {
+                "value": 68,
+                "cc": "CN"
+              },
+              {
+                "value": 17,
+                "cc": "RU"
+              },
+              {
+                "value": 7,
+                "cc": "IN"
+              },
+              {
+                "value": 7,
+                "cc": "JP"
+              },
+              {
+                "value": 3,
+                "cc": "EU"
+              }
+            ],
+            "subjectCc": "IN",
+            "unit": "launches"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE EQUATOR HELPS",
+        "body": "India's main spaceport, Sriharikota, sits at about 13°N — closer to the equator than Cape Canaveral at 28°N. The closer to the equator, the more free velocity a rocket steals from Earth's spin toward geostationary orbits. This geographic dividend is one reason ISRO can launch heavy comsats cheaply despite a smaller budget.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN"
+            ],
+            "label": "India's launch coast",
+            "caption": "Satish Dhawan Space Centre, ~13°N on the Bay of Bengal",
+            "markers": [
+              {
+                "lat": 13.72,
+                "lng": 80.23,
+                "label": "Sriharikota spaceport"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY SOVEREIGNTY IS THE POINT",
+        "body": "Owning the rocket, not just the satellite, is a strategic line. A country that depends on foreign launchers can be denied access in a crisis — export controls, sanctions, or simple scheduling priority. The US and China both treated indigenous launch as non-negotiable; India's bet is that fusing state demand with private speed closes the gap faster than a state monopoly ever could."
+      }
+    ],
+    "generatedAt": "2026-06-05T22:20:31.878Z",
+    "label": "Anchor Procurement & Launch Sovereignty",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-05-judge-strikes-down-trump-asylum-visa-bar-39-countries": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MAGIC WORDS",
+        "body": "\"Arbitrary and capricious\" is not a colorful insult — it is a statutory test from the Administrative Procedure Act of 1946. An agency may change policy, but it must show its reasoning. Freeze cases from 39 countries after a single shooting, with no explained link between the two, and a court can void the action for failing that test alone.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The reviewing court shall hold unlawful and set aside agency action, findings, and conclusions found to be arbitrary, capricious, an abuse of discretion, or otherwise not in accordance with law.",
+            "speaker": "Administrative Procedure Act, 5 U.S.C. §706(2)(A)",
+            "year": "1946"
+          }
+        ]
+      },
+      {
+        "heading": "WHO OWNS ASYLUM",
+        "body": "Asylum is a creature of statute, not executive grace. The Refugee Act of 1980 wrote it into US law, binding the country to the 1951 Refugee Convention. Because Congress set the eligibility rules, an immigration agency cannot impose a categorical nationality bar Congress never authorized — the power to define asylum sits in the legislature.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under US law, who sets the eligibility criteria for asylum?",
+            "options": [
+              "Congress, by statute",
+              "The President, by executive order",
+              "USCIS, by internal policy",
+              "The Supreme Court, by ruling"
+            ],
+            "correct": 0,
+            "explanation": "The Refugee Act of 1980 codified asylum eligibility; agencies administer those rules but cannot rewrite them."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRINCIPLE UNDERNEATH",
+        "body": "The deepest constraint is non-refoulement: a state may not return a person to a country where they face persecution. It is the load-bearing rule of refugee law, which is precisely why a blanket country freeze is legally fragile — it risks sending people back without the individual hearing the law guarantees.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Non-refoulement* — literally \"no pushing back\" — is treated as **jus cogens**, a norm so fundamental that no treaty or executive order can override it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CATEGORICAL BARS BREAK",
+        "body": "Asylum adjudication is individualized by design: each claimant must be assessed on their own well-founded fear of persecution. A rule that freezes everyone from a nationality substitutes a group label for that case-by-case judgment — the structural reason such freezes keep losing in court."
+      },
+      {
+        "heading": "THE TWO-SIDED SWORD",
+        "body": "The same arbitrary-and-capricious standard cuts both ways. Courts upheld the 2018 travel ban because the administration documented a security review, but struck the 2020 attempt to end DACA because the agency skipped the required reasoning. Process, not policy preference, decided both.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1946",
+                "label": "Administrative Procedure Act enacted",
+                "emphasis": "start"
+              },
+              {
+                "year": "1980",
+                "label": "Refugee Act codifies asylum"
+              },
+              {
+                "year": "2018",
+                "label": "Travel ban upheld (Trump v. Hawaii)"
+              },
+              {
+                "year": "2020",
+                "label": "DACA rescission struck as arbitrary",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026",
+                "label": "39-country freeze voided"
+              }
+            ],
+            "label": "the executive vs. the courts"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T22:21:07.155Z",
+    "label": "Asylum Law & the APA",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-05-pew-poll-global-views-israel-36-countries": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY 'MEDIAN', NOT 'AVERAGE'",
+        "body": "Pew reports the 67% figure as a median across 36 countries — the middle country, each weighted equally. It deliberately does not population-weight, so a 1.4-billion-person country counts the same as a small one. This is why the headline number reflects the spread of nations, not the spread of humanity.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Turkey",
+                "value": "99%",
+                "cc": "TR",
+                "tone": "unfavorable",
+                "weight": 99
+              },
+              {
+                "label": "Global median",
+                "value": "67%",
+                "tone": "neutral",
+                "weight": 67
+              }
+            ],
+            "label": "unfavorable toward Israel"
+          }
+        ]
+      },
+      {
+        "heading": "THE MARGIN THAT MATTERS",
+        "body": "A 44,000-sample sounds enormous, but it is split across 36 countries — roughly 1,000–1,500 each. That gives each national figure a margin of error around three to four points, which is why a 10-point single-year move (South Korea) is treated as real signal, not noise.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The reliable comparison in cross-national polling is rarely the *level* — phrasing and translation differ — but the *change over time* within one country, where the method is held constant."
+          }
+        ]
+      },
+      {
+        "heading": "THE MUSLIM-WORLD CONSTANT",
+        "body": "Near-universal unfavorability across Muslim-majority nations is not a reaction to any single event — it predates the current war by decades. The structural anchor is Palestine: the dispossession of 1948 (the Nakba) and the status of al-Aqsa are treated as a shared concern of the ummah, not a foreign affair.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TR",
+              "EG",
+              "JO",
+              "LB",
+              "TN",
+              "PK",
+              "MY",
+              "ID"
+            ],
+            "label": "near-universal unfavorable"
+          },
+          {
+            "type": "prose",
+            "text": "The framing is *ummah* — a single community of belief across borders. An injury to Palestinians is felt as communal, which is why opinion in Jakarta tracks opinion in Amman despite the distance."
+          }
+        ]
+      },
+      {
+        "heading": "THE GENERATIONAL FAULT LINE",
+        "body": "Young Europeans diverging sharply from their elders is a cohort effect, not an age effect — generations carry their formative views forward rather than 'growing out' of them. The older cohort's sympathy was forged by the Holocaust and 1948; the younger cohort's frame was set by smartphone-era footage of occupation and war.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1948",
+                "label": "Israel founded; broad Western sympathy",
+                "emphasis": "start"
+              },
+              {
+                "year": "1967",
+                "label": "Six-Day War; peak Western admiration"
+              },
+              {
+                "year": "1982",
+                "label": "Lebanon war; Sabra-Shatila shifts left opinion",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2008",
+                "label": "Gaza wars begin reshaping youth views"
+              },
+              {
+                "year": "2023",
+                "label": "post-Oct 7 war accelerates the divide"
+              }
+            ],
+            "label": "the arc of Western sympathy"
+          }
+        ]
+      },
+      {
+        "heading": "THE SOUTH KOREA PUZZLE",
+        "body": "A country with no historical stake posting the survey's sharpest jump shows how opinion now travels through media networks, not borders. Where a nation has no domestic narrative on a conflict, viral footage and global news framing fill the vacuum directly — the swing is larger precisely because there is no inherited position anchoring it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Pew use a 36-country median rather than a population-weighted global average?",
+            "options": [
+              "To weight each country equally regardless of size",
+              "Because medians are cheaper to compute",
+              "To give large countries like China more influence",
+              "Because averages are banned in survey research"
+            ],
+            "correct": 0,
+            "explanation": "An unweighted median treats each nation as one data point, so the figure describes the spread of countries, not of people."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T22:22:03.760Z",
+    "label": "Reading a Global Opinion Survey",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-05-senate-70bn-immigration-enforcement-bill": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 52-47 TELL",
+        "body": "The vote count is the whole story. A normal bill needs 60 votes to break a filibuster in the Senate; this one passed with 52 because it moved through budget reconciliation — a special track where spending and tax measures clear on a simple majority, no filibuster possible.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Reconciliation is why a 50-50 Senate can still pass landmark law: it converts the chamber's usual **60-vote** supermajority into a bare **51**. The minority cannot block it — only slow it."
+          }
+        ]
+      },
+      {
+        "heading": "THE BYRD RULE",
+        "body": "Reconciliation's power comes with a leash. The Byrd Rule bars any provision deemed 'extraneous' to the budget — policy that doesn't directly change spending or revenue gets stripped by the parliamentarian. This is why enforcement bills arrive as dollar figures, not as the immigration-law rewrites their sponsors actually want."
+      },
+      {
+        "heading": "THE SCALE",
+        "body": "Spread over three years, $70 billion is roughly $23 billion a year — an amount that nearly doubles ICE's standing budget and rivals what the entire civilian space program spends annually. Enforcement is being funded at the scale of a major federal agency unto itself.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "This bill /yr",
+                "value": "~$23bn",
+                "weight": 23,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "ICE (current)",
+                "value": "~$9bn",
+                "weight": 9
+              },
+              {
+                "label": "FBI",
+                "value": "~$11bn",
+                "weight": 11
+              },
+              {
+                "label": "NASA",
+                "value": "~$25bn",
+                "weight": 25
+              }
+            ],
+            "label": "annual budget, for scale"
+          }
+        ]
+      },
+      {
+        "heading": "THE COST OF REMOVAL",
+        "body": "Deportation is expensive per head. ICE's own estimates put the cost of arresting, detaining, processing, and flying out a single person at roughly $11,000 — detention beds, not flights, are the largest line. Budgets this size buy capacity (beds and agents) far more than they buy tickets.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many votes did this bill need in the Senate to pass via reconciliation?",
+            "options": [
+              "60, to break a filibuster",
+              "A simple majority (51)",
+              "67, a two-thirds supermajority"
+            ],
+            "correct": 1,
+            "explanation": "Reconciliation bypasses the filibuster, so only a simple majority is required — which is why partisan budget laws use it."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Reconciliation was created in 1974 as a wonky tool to make the budget add up. It became the vehicle for nearly every partisan landmark of the modern era — Reagan's cuts, the Bush tax cuts, parts of Obamacare, the 2017 tax law, the 2021 stimulus. A process built for arithmetic became the main highway for one-party legislation.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1974",
+                "label": "Budget Act creates reconciliation",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1981",
+                "label": "Reagan spending cuts"
+              },
+              {
+                "year": "2001",
+                "label": "Bush tax cuts"
+              },
+              {
+                "year": "2010",
+                "label": "ACA fixes passed"
+              },
+              {
+                "year": "2017",
+                "label": "Trump tax cuts"
+              },
+              {
+                "year": "2021",
+                "label": "$1.9tn stimulus"
+              }
+            ],
+            "label": "reconciliation's partisan arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T22:22:51.345Z",
+    "label": "Budget Reconciliation & Enforcement Spending",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-05-sudan-rsf-armed-tribes-darfur-tribal-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO GENERALS",
+        "body": "Sudan's war is between two men who once ruled together. Burhan's regular army (SAF) and Hemedti's paramilitary (RSF) jointly crushed the 2019 democracy movement, then turned on each other in April 2023 when a power-sharing deal collapsed. Both are firing the same military infrastructure they built side by side.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Abdel Fattah al-Burhan",
+                "role": "SAF chief, head of state",
+                "years": "2019–",
+                "cc": "SD"
+              },
+              {
+                "name": "Mohamed Hamdan 'Hemedti'",
+                "role": "RSF commander",
+                "years": "2013–",
+                "cc": "SD"
+              }
+            ],
+            "label": "the rival commands"
+          }
+        ]
+      },
+      {
+        "heading": "THE JANJAWEED ROOTS",
+        "body": "The RSF is not a new force. It grew out of the Janjaweed, the Arab militias the Bashir regime armed in 2003 to crush non-Arab rebels in Darfur — a campaign the US later called genocide. Bashir formalized them as the Rapid Support Forces in 2013. Hemedti, a former Darfuri camel trader, rose from militia commander to the second most powerful man in Sudan.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2003",
+                "label": "Darfur genocide begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2013",
+                "label": "Janjaweed formalized as RSF"
+              },
+              {
+                "year": "2019",
+                "label": "Bashir ousted; protests crushed"
+              },
+              {
+                "year": "2021",
+                "label": "SAF–RSF coup"
+              },
+              {
+                "year": "2023",
+                "label": "SAF–RSF war erupts"
+              },
+              {
+                "year": "2026",
+                "label": "RSF declares parallel govt"
+              }
+            ],
+            "label": "from militia to rival state"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ARM THE TRIBES",
+        "body": "Distributing weapons is the cheapest way to project power across a region the size of France. The RSF hands rifles to allied tribes, who use them to settle old land and water disputes — and in doing so fight the RSF's enemies for free. The cost of the war is outsourced to local rivalries.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is *counterinsurgency by proxy*: the same logic Khartoum used in 2003, when arming Arab herders against settled farmers let the state deny direct responsibility for the killing."
+          }
+        ]
+      },
+      {
+        "heading": "THE LAND BENEATH THE GUNS",
+        "body": "Darfur's conflicts are rooted in a decades-long squeeze between nomadic herders and settled farmers as the Sahara crept south and grazing land shrank. Weapons did not create the rivalries — they turned disputes that elders once mediated into massacres.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "TD",
+              "SS"
+            ],
+            "label": "Darfur & the Kordofan front",
+            "caption": "RSF's western stronghold and its push toward Kordofan",
+            "markers": [
+              {
+                "lat": 12.05,
+                "lng": 24.88,
+                "label": "Nyala"
+              },
+              {
+                "lat": 13.63,
+                "lng": 25.35,
+                "label": "El Fasher"
+              },
+              {
+                "lat": 13.7,
+                "lng": 30.36,
+                "label": "Bara"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PARALLEL STATE",
+        "body": "By forming a rival security council and government, the RSF is doing what fractured states do when neither side can win outright — partition by fact rather than treaty. A country with two governments, two armies, and two central banks is the recipe for a frozen conflict, not a quick end.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What force did Sudan's Rapid Support Forces grow out of?",
+            "options": [
+              "The Janjaweed militias of the Darfur genocide",
+              "The regular Sudanese Armed Forces",
+              "A UN peacekeeping contingent",
+              "South Sudan's rebel army"
+            ],
+            "correct": 0,
+            "explanation": "The RSF was formalized in 2013 from the Arab Janjaweed militias Bashir armed in 2003 to crush Darfur's non-Arab rebels."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T22:23:21.105Z",
+    "label": "The RSF & Darfur's Tribal Wars",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-05-usaf-mq9-reaper-losses-iran-houthi-attrition": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE REAPER WAS BUILT FOR",
+        "body": "The MQ-9 was designed for the war on terror: orbit for 24 hours at 50,000 feet over Afghanistan or Yemen, watch a compound, fire a Hellfire. It assumes the enemy has no air force and no real air defenses — a permissive sky.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The class is called **MALE** — *Medium-Altitude, Long-Endurance*. The defining trait is loiter time, not survivability: a Reaper is essentially a slow turboprop that can stay up all day. Speed, stealth, and maneuver were traded away for endurance."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT DIES AGAINST A REAL ARMY",
+        "body": "A Reaper cruises near 200 mph, carries no stealth shaping, and flies predictable racetrack orbits. A modern surface-to-air system — Iran's Bavar-373 or Russian-supplied S-300 — sees it hundreds of kilometers out and engages at leisure. The aircraft that ruled permissive skies is a target in contested ones.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What kept the Reaper survivable for nearly two decades of combat?",
+            "options": [
+              "Radar-absorbing stealth coating",
+              "The absence of enemy air defenses",
+              "Supersonic dash speed",
+              "Onboard missile jammers"
+            ],
+            "correct": 1,
+            "explanation": "The Reaper has no stealth and no speed; it survived because for 20 years its targets had no air defenses worth the name."
+          }
+        ]
+      },
+      {
+        "heading": "THE COST ASYMMETRY",
+        "body": "An MQ-9 runs around $30 million. The missile that kills it costs a fraction of that, and a one-way attack drone like the Shahed costs less than a used car. Drone warfare inverts the old logic: the cheap weapon now destroys the expensive one.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Global Hawk",
+                "value": "~$130M",
+                "cc": "US",
+                "weight": 130
+              },
+              {
+                "label": "MQ-9 Reaper",
+                "value": "~$30M",
+                "cc": "US",
+                "weight": 30
+              },
+              {
+                "label": "Bayraktar TB2",
+                "value": "~$5M",
+                "cc": "TR",
+                "weight": 5
+              },
+              {
+                "label": "Shahed-136",
+                "value": "~$20k",
+                "cc": "IR",
+                "weight": 0.02
+              }
+            ],
+            "label": "price of a drone, by class"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRODUCTION TRAP",
+        "body": "You cannot surge an aircraft you stopped building. General Atomics wound down the MQ-9 line, leaving a handful of unsold airframes and a successor years away. Attrition outran the supply chain — the fleet has fallen by roughly 40% in two years with no way to replace losses quickly.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the *thin-fleet* problem in miniature: when a platform is built in small numbers over decades, even modest combat losses can't be backfilled — there is no warm production line, only a finite pool of survivors."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "This is not new. Houthi forces began downing American Reapers over Yemen years ago, and in June 2019 Iran shot a $130-million RQ-4 Global Hawk out of the sky over the Strait of Hormuz. The vulnerability of large, slow drones to capable air defenses has been demonstrated repeatedly — the surprise is only in the scale.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "YE",
+              "SA",
+              "OM",
+              "AE"
+            ],
+            "label": "where the Reapers fell",
+            "markers": [
+              {
+                "lat": 26.6,
+                "lng": 56.4,
+                "label": "Hormuz — RQ-4 downed 2019"
+              },
+              {
+                "lat": 15.35,
+                "lng": 44.2,
+                "label": "Yemen — Houthi Reaper kills"
+              }
+            ]
+          },
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2007",
+                "label": "MQ-9 enters USAF service",
+                "emphasis": "start"
+              },
+              {
+                "year": "2017",
+                "label": "Houthis down first Reaper over Yemen"
+              },
+              {
+                "year": "2019-06",
+                "label": "Iran downs RQ-4 over Hormuz",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026",
+                "label": "fleet 135, down from 231",
+                "emphasis": "end"
+              }
+            ],
+            "label": "from permissive to contested skies"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T22:24:16.481Z",
+    "label": "The Reaper & Contested Airspace",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-05-wall-street-selloff-chips-jobs-rate-fears": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY STRONG JOBS HURT STOCKS",
+        "body": "In a rate-cut regime, the market inverts ordinary logic: a hot labor report is bad news. Strong hiring signals the economy doesn't need cheaper money, so the Fed holds or hikes — and equities priced for cuts reprice downward in a single session.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Traders call it the *good-news-is-bad-news* regime: the same 172k print that would cheer Main Street tells Wall Street the **cuts aren't coming**."
+          }
+        ]
+      },
+      {
+        "heading": "WHY TECH FALLS HARDEST",
+        "body": "A stock is the discounted value of its future profits. Tech firms book most of their profits far in the future, so they are long-duration assets — like a 30-year bond. When the discount rate rises, the far-off cash flows lose the most value, which is why the Nasdaq drops harder than the broad market on a rate scare.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do high-growth tech stocks usually fall more than value stocks when interest rates rise?",
+            "options": [
+              "Their profits sit far in the future, so a higher discount rate cuts their present value more",
+              "Tech companies carry more floating-rate debt than other firms",
+              "They are excluded from the S&P 500",
+              "Higher rates directly raise the cost of semiconductors"
+            ],
+            "correct": 0,
+            "explanation": "Long-duration cash flows are the most sensitive to the discount rate — the same math that makes long bonds fall hardest when yields rise."
+          }
+        ]
+      },
+      {
+        "heading": "THE FED'S REACTION FUNCTION",
+        "body": "The Fed has a dual mandate — maximum employment and stable prices. A jobs print double the forecast tells it the labor market is tight, which risks wage-driven inflation. Markets don't react to the number itself but to what it does to the expected path of rates: 172,000 erased the December cut and priced a hike."
+      },
+      {
+        "heading": "THE DOLLAR WRECKING BALL",
+        "body": "Higher US rates pull global capital into Treasuries, lifting the dollar. Emerging markets that borrowed in dollars must now repay with weaker local currencies and refinance at higher cost — a squeeze that has triggered crises from Latin America in 1982 to Asia in 1997, every time the Fed tightened into a strong economy.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4.12,
+              4.15,
+              4.21,
+              4.27,
+              4.28,
+              4.23,
+              4.2,
+              4.26,
+              4.25,
+              4.39,
+              4.34,
+              4.39,
+              4.33,
+              4.42,
+              4.44,
+              4.35,
+              4.3,
+              4.33,
+              4.31,
+              4.35,
+              4.34,
+              4.33,
+              4.29,
+              4.29,
+              4.31,
+              4.3,
+              4.26,
+              4.29,
+              4.32,
+              4.26,
+              4.26,
+              4.3,
+              4.3,
+              4.34,
+              4.31,
+              4.35,
+              4.36,
+              4.42,
+              4.4,
+              4.39,
+              4.45,
+              4.43,
+              4.36,
+              4.41,
+              4.38,
+              4.42,
+              4.46,
+              4.46,
+              4.47,
+              4.59,
+              4.61,
+              4.67,
+              4.57,
+              4.57,
+              4.56,
+              4.5,
+              4.48,
+              4.45,
+              4.45,
+              4.47,
+              4.46,
+              4.49,
+              4.47
+            ],
+            "periods": [
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4"
+            ],
+            "label": "US 10y Treasury",
+            "unit": "%",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE FED PUT",
+        "body": "Since 1987, markets have assumed the Fed would ease whenever stocks fell hard enough — the 'Greenspan put,' later the Bernanke and Powell put. That assumption broke in 2022, when the Fed hiked into a falling market to fight inflation. A strong-jobs selloff stings precisely because the safety net is no longer guaranteed.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1987",
+                "label": "Black Monday — Greenspan eases",
+                "emphasis": "start"
+              },
+              {
+                "year": "2008",
+                "label": "Crisis: rates cut to zero"
+              },
+              {
+                "year": "2020",
+                "label": "COVID: emergency cuts + QE"
+              },
+              {
+                "year": "2022",
+                "label": "Fed hikes into a falling market",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "the Fed put, and its limits"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · Board of Governors · as of 2026-06-04"
+    ],
+    "generatedAt": "2026-06-05T22:24:57.223Z",
+    "label": "When Good News Sinks Stocks",
+    "category": "economy",
+    "articleCount": 1
   }
 }
