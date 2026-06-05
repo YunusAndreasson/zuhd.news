@@ -308717,5 +308717,1190 @@
     "label": "Zero-Knowledge Proofs & the Minting Risk",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-06-04-egypt-municipal-bill-constitutional-amendments": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY A LOCAL-GOVERNMENT BILL",
+        "body": "Egypt has not held local council elections since 2008, and the courts dissolved the existing councils in 2011. A municipal administration law is the kind of dense, technical vehicle that can be opened up to attach larger constitutional questions while drawing little public attention.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Egypt's local councils — the *mahalliyat* — sit beneath 27 governors who are **appointed, not elected**. Control of this patronage layer is control of who delivers permits, contracts, and services across every village in the country."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2019 PRECEDENT",
+        "body": "A 2019 referendum extended presidential terms from four years to six and reset the clock for the sitting president, clearing a path to remain in office until 2030. The same package expanded military oversight of civilian politics. Any new amendment would build on machinery already tested.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1952",
+                "label": "Free Officers depose the monarchy",
+                "emphasis": "start"
+              },
+              {
+                "year": "1971",
+                "label": "Sadat's permanent constitution"
+              },
+              {
+                "year": "2012",
+                "label": "Morsi-era charter"
+              },
+              {
+                "year": "2014",
+                "label": "Post-coup constitution"
+              },
+              {
+                "year": "2019",
+                "label": "Terms extended to 2030",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "Egypt's constitutional rewrites"
+          }
+        ]
+      },
+      {
+        "heading": "HOW THE MECHANISM WORKS",
+        "body": "Amending Egypt's constitution requires a two-thirds vote of parliament followed by a public referendum. With parliament dominated by pro-government blocs and referendums historically passing above 88 percent, the binding constraint is not the vote — it is the political decision to call it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When did Egypt last hold elections for its local municipal councils?",
+            "options": [
+              "2008",
+              "2014 (after the new constitution)",
+              "2019 (with the referendum)",
+              "2024"
+            ],
+            "correct": 0,
+            "explanation": "The last local council vote was 2008; the councils were dissolved by court order in 2011 and have never been re-elected since."
+          }
+        ]
+      },
+      {
+        "heading": "THE OFFICERS' REPUBLIC",
+        "body": "Every Egyptian head of state since the 1952 coup has come from the military. Each rewrote or amended the constitution to fit his tenure — the charter has functioned less as a constraint on power than as a record of who held it.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Gamal Abdel Nasser",
+                "role": "Free Officers leader",
+                "years": "1954–1970",
+                "cc": "EG"
+              },
+              {
+                "name": "Anwar Sadat",
+                "role": "Authored 1971 charter",
+                "years": "1970–1981",
+                "cc": "EG"
+              },
+              {
+                "name": "Hosni Mubarak",
+                "role": "Fell in 2011 uprising",
+                "years": "1981–2011",
+                "cc": "EG"
+              },
+              {
+                "name": "Mohamed Morsi",
+                "role": "Only elected civilian",
+                "years": "2012–2013",
+                "cc": "EG"
+              },
+              {
+                "name": "Abdel Fattah al-Sisi",
+                "role": "Former defence minister",
+                "years": "2014–present",
+                "cc": "EG"
+              }
+            ],
+            "label": "Egypt's presidents since 1952"
+          }
+        ]
+      },
+      {
+        "heading": "THE GLOBAL PLAYBOOK",
+        "body": "Extending a leader's tenure through constitutional change rather than a coup has become the dominant model of the 2010s and 2020s. The referendum or parliamentary vote launders the move with a veneer of legality that an outright seizure of power cannot.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China (Xi)",
+                "value": "limits abolished '18",
+                "cc": "CN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Russia (Putin)",
+                "value": "clock reset '20",
+                "cc": "RU",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Egypt (Sisi)",
+                "value": "extended to '30",
+                "cc": "EG",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Rwanda (Kagame)",
+                "value": "limits eased '15",
+                "cc": "RW",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "term limits altered by constitutional change"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T17:21:11.798Z",
+    "label": "Egypt's Constitution & the Term Question",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-05-gps-military-numbers-station-encrypted-keys": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "GPS WAS NEVER CIVILIAN",
+        "body": "GPS is a US Air Force system that civilians were later allowed to use. Every satellite has always broadcast two signals: an open civilian code and an encrypted military code. The navigation fix is only the visible layer of a system built for war.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The civilian signal is the **C/A code** (coarse/acquisition); the military signal is the encrypted **P(Y) code**, readable only by receivers loaded with the right cryptographic key."
+          }
+        ]
+      },
+      {
+        "heading": "THE REAL PROBLEM IS KEYS, NOT CIPHERS",
+        "body": "Modern encryption is mathematically unbreakable in practice. The hard part is logistics: how do you push fresh keys to tens of thousands of receivers spread across ships, jets, and infantry without a courier reaching each one? This is the key-distribution problem, and it is the weakest link in every cryptosystem."
+      },
+      {
+        "heading": "WHY BROADCAST FROM ORBIT",
+        "body": "A GPS constellation already blankets the entire planet with a one-way signal that every authorized receiver is built to listen for. Embedding key material in that stream solves distribution in one move — no return channel, no per-unit contact, and a deployed receiver that never has to transmit and reveal its position.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is a one-way satellite broadcast ideal for distributing keys to deployed forces?",
+            "options": [
+              "Receivers can stay silent — no reply that would betray their location",
+              "Satellites encrypt faster than ground radio",
+              "It is immune to jamming",
+              "It uses less battery than the navigation fix"
+            ],
+            "correct": 0,
+            "explanation": "A broadcast reaches every receiver at once and needs no acknowledgment, so units never transmit and never give away their position."
+          }
+        ]
+      },
+      {
+        "heading": "HIDING IN PLAIN SIGHT",
+        "body": "3,994 real transmissions buried in 12 million archived signals is camouflage by rarity — the same logic as a Cold War numbers station, where coded broadcasts hid inside ordinary shortwave noise that anyone could hear but no one could read. The strongest covert channel is one whose existence is deniable.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technique is *steganography* — concealing the existence of a message, not just its contents. Encryption hides *what* you said; steganography hides *that* you said anything."
+          }
+        ]
+      },
+      {
+        "heading": "NOT THE ONLY CONSTELLATION",
+        "body": "GPS is one of four global navigation systems, each run by a military or strategic authority and each carrying its own encrypted layer. Satellite positioning is too critical to outsource — so the major powers each built their own, partly to avoid depending on a signal a rival could degrade or switch off.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "BeiDou",
+                "value": "~45 sats",
+                "cc": "CN",
+                "weight": 45
+              },
+              {
+                "label": "GPS",
+                "value": "~31 sats",
+                "cc": "US",
+                "weight": 31
+              },
+              {
+                "label": "Galileo",
+                "value": "~28 sats",
+                "cc": "EU",
+                "weight": 28
+              },
+              {
+                "label": "GLONASS",
+                "value": "~24 sats",
+                "cc": "RU",
+                "weight": 24
+              }
+            ],
+            "label": "global navigation constellations (approx. active satellites)"
+          }
+        ]
+      },
+      {
+        "heading": "THE LONG SWITCH",
+        "body": "The military's grip on GPS loosened slowly and deliberately. The system began as a weapons-targeting aid, was opened to civilians only after a shootdown made the case, and had its deliberate civilian-accuracy degradation switched off in 2000 — even as the encrypted military layers kept expanding underneath.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1978",
+                "label": "First GPS satellite launched",
+                "emphasis": "start"
+              },
+              {
+                "year": "1983",
+                "label": "KAL 007 shootdown; Reagan pledges civilian GPS"
+              },
+              {
+                "year": "1995",
+                "label": "Full operational capability"
+              },
+              {
+                "year": "2000",
+                "label": "Selective Availability switched off"
+              },
+              {
+                "year": "2007",
+                "label": "Encrypted key channel goes live",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "GPS, military to civilian and back"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T17:22:00.557Z",
+    "label": "GPS as a Covert Channel",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-05-ice-facial-recognition-app-local-police": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "IT'S A SCORE, NOT A MATCH",
+        "body": "The system maps a face into a vector of a few hundred numbers encoding distances between landmarks — eye corners, nose bridge, jawline. A 'match' just means two vectors fall within a threshold distance. It is a similarity score, not an identification, and the threshold is a dial someone chooses.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The output is a *probability*, not a name. Lowering the match threshold catches more true suspects but floods the system with **false positives** — and field officers rarely see the confidence number behind the hit."
+          }
+        ]
+      },
+      {
+        "heading": "THE BASE-RATE TRAP",
+        "body": "A system that is 99% accurate sounds reliable. But run one face against 250 million images and even a tiny error rate produces a flood of false matches that can outnumber the true one. The rarer the real target, the more the false positives dominate — this is Bayes' theorem, and it is the single thing courts most often get wrong about forensic probability.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Searching one face against a database of millions, what makes false matches dominate the results?",
+            "options": [
+              "The camera resolution is too low",
+              "The true target is rare, so even a tiny error rate produces many false hits",
+              "The algorithm is biased against the operator",
+              "Databases corrupt over time"
+            ],
+            "correct": 1,
+            "explanation": "With a rare true target, the absolute number of false matches from even a 1% error rate swamps the single correct one — the base-rate fallacy."
+          }
+        ]
+      },
+      {
+        "heading": "THE DEMOGRAPHIC GAP",
+        "body": "NIST's landmark 2019 benchmark tested 189 algorithms across demographics. False-match rates for Black women ran 10 to 100 times higher than for white men in most systems — a gap rooted in skewed training data and in how contrast and lighting interact with melanin during capture. A tool pushed to street-level policing inherits that gap.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "White men",
+                "value": "1× baseline",
+                "tone": "favorable",
+                "weight": 1
+              },
+              {
+                "label": "White women",
+                "value": "~few×",
+                "tone": "neutral",
+                "weight": 5
+              },
+              {
+                "label": "Black men",
+                "value": "~10×",
+                "tone": "unfavorable",
+                "weight": 10
+              },
+              {
+                "label": "Black women",
+                "value": "up to ~100×",
+                "tone": "unfavorable",
+                "weight": 100
+              }
+            ],
+            "label": "relative false-match rate, NIST 2019 (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE CONSTITUTIONAL LINE",
+        "body": "The Fourth Amendment requires a warrant signed by a judge to arrest someone. ICE often acts on administrative warrants signed by ICE officials themselves. A face-scan query needing no court order folds an arrest decision into a database lookup — collapsing the judicial check the warrant requirement was built to impose.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A *judicial* warrant comes from a neutral magistrate; an *administrative* warrant is signed inside the agency. Federal courts have repeatedly held the latter does **not** authorize forcible entry — but the distinction is rarely tested on a sidewalk."
+          }
+        ]
+      },
+      {
+        "heading": "THE RETENTION CLOCK",
+        "body": "A face, unlike a password, cannot be reissued. Storing biometric templates for 15 years means a single enrollment follows a person across jobs, addresses, and political moments for a decade and a half — and every stored database is a future breach target. The harm of a leak compounds precisely because the data is permanent.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1936",
+                "label": "FBI fingerprint files centralized"
+              },
+              {
+                "year": "1993",
+                "label": "Early automated license-plate readers"
+              },
+              {
+                "year": "2011",
+                "label": "FBI launches face-search pilot"
+              },
+              {
+                "year": "2019",
+                "label": "NIST exposes demographic error gap",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026",
+                "label": "Face-scan pushed to local police"
+              }
+            ],
+            "label": "from photographs to a searchable net"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T17:22:33.054Z",
+    "label": "Facial Recognition & Probability",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-05-insurgents-kill-eight-soldiers-at-borno-military-base": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "ONE INSURGENCY, TWO FACTIONS",
+        "body": "Boko Haram and ISWAP are not rivals from different movements — they are the two halves of one organization that split in 2016. When the group pledged allegiance to the Islamic State, ISIS named a new leader, Abu Musab al-Barnawi, over the founding warlord Abubakar Shekau. Shekau refused to step down, and the movement fractured in two.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Mohammed Yusuf",
+                "role": "Founder, killed in custody",
+                "years": "2002–2009",
+                "cc": "NG"
+              },
+              {
+                "name": "Abubakar Shekau",
+                "role": "Boko Haram leader",
+                "years": "2009–2021",
+                "cc": "NG"
+              },
+              {
+                "name": "Abu Musab al-Barnawi",
+                "role": "ISWAP leader, ISIS-appointed",
+                "years": "2016–2021",
+                "cc": "NG"
+              }
+            ],
+            "label": "the men behind the split"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE FACTIONS FIGHT DIFFERENTLY",
+        "body": "The split was strategic, not just personal. Shekau's faction declared all who opposed it — including ordinary Muslims — legitimate targets, embracing mass-casualty attacks on markets and mosques. ISWAP rejected this, choosing instead to tax and govern villages, attack soldiers rather than civilians, and build a shadow state. That is why a raid on an army base, not a town, points toward ISWAP.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Shekau's hallmark was *takfir* — declaring fellow Muslims apostates to justify killing them. ISWAP's break was, in part, a rejection of that doctrine as religiously indefensible."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY THAT FEEDS THE WAR",
+        "body": "The insurgency lives in the Lake Chad Basin, where Nigeria, Niger, Chad and Cameroon meet at a shrinking lake. The lake has lost roughly 90% of its surface area since the 1960s, collapsing the fishing and farming economy and stranding millions with no livelihood. The borders are porous marshland and the army of any one country cannot pursue fighters across them.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "NE",
+              "TD",
+              "CM"
+            ],
+            "label": "the Lake Chad Basin",
+            "caption": "Four states meet at a lake that has lost ~90% of its area",
+            "markers": [
+              {
+                "lat": 11.8333,
+                "lng": 13.15,
+                "label": "Maiduguri"
+              },
+              {
+                "lat": 13,
+                "lng": 14,
+                "label": "Lake Chad"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE NAME IS A MANIFESTO",
+        "body": "\"Boko Haram\" is a nickname meaning, loosely, \"Western education is forbidden\" — boko from a Hausa term for the colonial-era secular school system, haram from the Arabic for forbidden. The group's actual name was Jama'at Ahl al-Sunna li-l-Da'wa wa-l-Jihad. Its founding grievance was the corruption and inequality of the secular Nigerian state, not education as such.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does the nickname \"Boko Haram\" most directly target?",
+            "options": [
+              "Western-style secular education",
+              "Foreign oil companies",
+              "Christian missionaries",
+              "The Nigerian currency"
+            ],
+            "correct": 0,
+            "explanation": "Boko refers to the colonial secular school system; the name frames Western secular schooling as forbidden, though the group's grievance was the broader secular state."
+          }
+        ]
+      },
+      {
+        "heading": "FIFTEEN YEARS, FOUR PHASES",
+        "body": "The movement began as a peaceful preaching sect, turned to armed revolt after police killed its founder in custody in 2009, peaked with the 2014 Chibok schoolgirl abductions, then fractured. Shekau died in 2021 when ISWAP fighters cornered him and he detonated his own vest — the rival faction, not the army, finished him.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2002",
+                "label": "Boko Haram founded as preaching sect",
+                "emphasis": "start"
+              },
+              {
+                "year": "2009",
+                "label": "Yusuf killed in custody; revolt begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2014",
+                "label": "Chibok abductions"
+              },
+              {
+                "year": "2015",
+                "label": "Pledges allegiance to ISIS"
+              },
+              {
+                "year": "2016",
+                "label": "Split into Boko Haram & ISWAP"
+              },
+              {
+                "year": "2021",
+                "label": "Shekau dies cornered by ISWAP"
+              }
+            ],
+            "label": "the arc of the insurgency"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY FIGHTS THEM",
+        "body": "No single army holds this front. The Multinational Joint Task Force pools troops from Nigeria, Niger, Chad, Cameroon and Benin precisely because the fighters move across borders the national armies cannot. The arrangement is fragile: when one country withdraws troops over a political dispute, the gap reopens immediately."
+      }
+    ],
+    "generatedAt": "2026-06-05T17:23:05.729Z",
+    "label": "Boko Haram, ISWAP & the Lake Chad War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-05-israel-permanent-occupation-lebanon-abu-safiyah-solitary": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SEQUENCING TRAP",
+        "body": "The whole dispute is about who moves first. Hezbollah ties its withdrawal to an Israeli pullback; Israel ties its pullback to Hezbollah disarming. Neither side will surrender its leverage before seeing the other's, so a ceasefire that does not specify simultaneous, verifiable steps collapses into the standoff the speaker calls 'booby-trapped.'",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is a textbook *security dilemma*: the move that makes one side safer makes the other less safe, so the rational play for both is to **wait** — and waiting is what keeps the guns warm."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE SPEAKER SPEAKS",
+        "body": "Lebanon's confessional system reserves the parliamentary speakership for a Shia Muslim — by custom Nabih Berri, who has held it since 1992 and leads the Amal movement, Hezbollah's partner. So when Israel-Hezbollah terms are on the table, the speaker is not a neutral referee; he is the political voice of the same community whose militia is being asked to withdraw.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Nabih Berri",
+                "role": "Parliament Speaker (Shia)",
+                "years": "1992–",
+                "cc": "LB"
+              },
+              {
+                "name": "Naim Qassem",
+                "role": "Hezbollah Secretary-General",
+                "years": "2024–",
+                "cc": "LB"
+              }
+            ],
+            "label": "Lebanon's sectarian top three"
+          }
+        ]
+      },
+      {
+        "heading": "THE OCCUPATION THAT BUILT HEZBOLLAH",
+        "body": "Hezbollah did not predate the conflict — it was born from it. Israel invaded in 1982 and occupied a 'security zone' across south Lebanon for eighteen years. Resistance to that occupation is what forged Hezbollah, with Iranian Revolutionary Guard backing, into the force it is today. Israel's eventual 2000 withdrawal was the only time an Arab armed group pushed it off occupied land.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1978",
+                "label": "Israel invades to the Litani"
+              },
+              {
+                "year": "1982",
+                "label": "Full invasion; Hezbollah forms",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2000",
+                "label": "Israel withdraws to Blue Line"
+              },
+              {
+                "year": "2006",
+                "label": "34-day war; Resolution 1701"
+              },
+              {
+                "year": "2024",
+                "label": "War reignites"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1982",
+                "to": "2000",
+                "label": "Israeli occupation of the south",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "south Lebanon, the long arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE BLUE LINE AND 1701",
+        "body": "The reference points everyone invokes are concrete lines. The Blue Line is the UN-drawn boundary Israel withdrew behind in 2000. UN Resolution 1701, which ended the 2006 war, asked Hezbollah to pull its arms north of the Litani River and put UNIFIL peacekeepers in the gap. Every ceasefire since is essentially an argument over whether 1701 is being honored.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL",
+              "SY"
+            ],
+            "label": "the contested south",
+            "caption": "1701 asks Hezbollah arms north of the Litani",
+            "markers": [
+              {
+                "lat": 33.271,
+                "lng": 35.204,
+                "label": "Litani River mouth"
+              },
+              {
+                "lat": 33.09,
+                "lng": 35.575,
+                "label": "Blue Line / border"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "ONE FRONT OF A NETWORK",
+        "body": "Lebanon, Gaza, and Iran move on the same chessboard. Iran's 'axis of resistance' links Hezbollah, Hamas, and other allied factions, which is why a Hamas delegation negotiating in Cairo and a Hezbollah withdrawal in the south are discussed in the same breath. For Tehran, the value of each front is partly that it constrains Israel on the others.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When did Israel withdraw from its 'security zone' in south Lebanon?",
+            "options": [
+              "1982",
+              "2000",
+              "2006",
+              "2024"
+            ],
+            "correct": 1,
+            "explanation": "Israel held the occupation zone from 1982 until pulling back behind the UN Blue Line in 2000; the 2006 war and Resolution 1701 came afterward."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T17:23:40.918Z",
+    "label": "Lebanon, Israel & the Withdrawal Trap",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-05-iss-air-leak-astronauts-shelter-zvezda": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE STATION IS ALWAYS FALLING",
+        "body": "At 400km the ISS still skims the thin upper atmosphere, so drag steadily drops its orbit by roughly 2km a month. Without periodic reboost burns it would re-enter within a year or two. The station is not parked in space — it is perpetually fighting a slow fall.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The reboost thrust comes almost entirely from the *Russian* segment — the Zvezda engines and docked Progress cargo ships. The US side has **no propulsion of its own**, which is the quiet dependency this whole crisis turns on."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT ZVEZDA ACTUALLY IS",
+        "body": "Zvezda ('star') launched in 2000 as the third module and the structural and propulsive backbone of the station — it carries the main engines, life support, and the original crew quarters. The leaking tunnel is the PrK transfer vestibule connecting Zvezda to a docking port, where thermal cycling has fatigued welded aluminum for years.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "NASA",
+                "role": "US segment operator",
+                "years": "1998–2030",
+                "cc": "US"
+              },
+              {
+                "name": "Roscosmos",
+                "role": "Russian segment + propulsion",
+                "years": "1998–2028",
+                "cc": "RU"
+              },
+              {
+                "name": "SpaceX",
+                "role": "deorbit vehicle contractor",
+                "years": "2024–2030",
+                "cc": "US"
+              }
+            ],
+            "label": "who runs the station"
+          }
+        ]
+      },
+      {
+        "heading": "WHY A CRACK IS SO HARD TO FIX",
+        "body": "The hull is a pressure vessel: roughly one atmosphere of air pushing outward against a vacuum. Every orbit the structure heats in sunlight and chills in shadow 16 times a day, flexing the metal. A fatigue crack in welded aluminum doesn't reliably stop when patched — sealant slows the leak but the underlying fracture keeps propagating.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1998",
+                "label": "Zarya, first module, launches",
+                "emphasis": "start"
+              },
+              {
+                "year": "2000",
+                "label": "Zvezda module added"
+              },
+              {
+                "year": "2011",
+                "label": "Space Shuttle retired"
+              },
+              {
+                "year": "2020",
+                "label": "PrK tunnel air leak detected",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2028",
+                "label": "Russian commitment ends"
+              },
+              {
+                "year": "2030",
+                "label": "Planned deorbit"
+              }
+            ],
+            "label": "from launch to splashdown"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEORBIT ENDGAME",
+        "body": "A 420-tonne structure cannot be left to fall randomly — debris would survive re-entry. NASA awarded SpaceX a contract to build a US Deorbit Vehicle that will drag the station into a controlled plunge over Point Nemo, the most remote spot in the ocean and the established graveyard for spent spacecraft.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NZ",
+              "CL",
+              "PF"
+            ],
+            "label": "Point Nemo — the spacecraft cemetery",
+            "caption": "The oceanic pole of inaccessibility, ~2,700km from any land",
+            "markers": [
+              {
+                "lat": -48.876,
+                "lng": -123.393,
+                "label": "Point Nemo"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 2028 GAP",
+        "body": "Russia's commitment runs to 2028 but NASA needs the station flying to 2030. Since Russian engines provide the reboost and the deorbit burn was originally a Russian role, a two-year gap with a degrading hull and uncertain propulsion is the real risk — not any single crack.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where will the ISS be deliberately brought down at the end of its life?",
+            "options": [
+              "Burned up entirely high in the atmosphere",
+              "Point Nemo, the remotest patch of ocean",
+              "Boosted to a permanent graveyard orbit",
+              "The Nevada desert under parachutes"
+            ],
+            "correct": 1,
+            "explanation": "Too massive to fully burn up, the ISS will be steered to splash down at Point Nemo, where surviving debris falls far from any shipping or land."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T17:24:13.967Z",
+    "label": "The ISS & Orbital Decay",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-05-tanzania-rosatom-nuclear-energy-talks": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BUSINESS MODEL",
+        "body": "Rosatom rarely just sells a reactor. Its signature offer is build-own-operate: Russia finances the plant with a state-backed loan, builds it, runs it, and supplies the fuel — the host country buys electricity. The reactor is leverage, not just infrastructure.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The model creates *vendor lock-in* lasting 60+ years — the operating life of the plant. A nation that takes a **BOO** deal outsources its baseload power to its financier."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SMALL REACTORS",
+        "body": "Conventional reactors cost $10-20bn and take a decade — beyond the reach of most African grids, which can't even absorb 1,000+ MW from a single unit. Small modular reactors trade economies of scale for financeability: smaller, factory-built, sized to a grid that small."
+      },
+      {
+        "heading": "URANIUM ISN'T FUEL",
+        "body": "Holding uranium ore means little. Reactor fuel requires mining, conversion to gas, enrichment to raise the U-235 share, and fabrication into rods. Enrichment is the bottleneck — capital-intensive, dual-use, and controlled by a handful of states. This is why a uranium-rich country still imports its fuel.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Tanzania says it has uranium reserves. What does that still NOT give it?",
+            "options": [
+              "Raw material for fuel",
+              "Enrichment capacity to make reactor fuel",
+              "A reason to build reactors",
+              "Mining rights"
+            ],
+            "correct": 1,
+            "explanation": "Enrichment — not ore — is the chokepoint, and it sits in a few states' hands, keeping fuel supply a lever over the buyer."
+          }
+        ]
+      },
+      {
+        "heading": "WHO CONTROLS ENRICHMENT",
+        "body": "Russia, through Rosatom's Tenex arm, holds the largest slice of the world's uranium enrichment capacity — roughly two-fifths. Europe's Urenco is next, with China expanding fast and the US a minor player after decades of underinvestment. A Rosatom reactor usually arrives tethered to Rosatom's fuel.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Russia (Tenex)",
+                "value": 44,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Urenco (EU)",
+                "value": 30,
+                "tone": "neutral"
+              },
+              {
+                "label": "China",
+                "value": 14,
+                "tone": "favorable"
+              },
+              {
+                "label": "USA/Other",
+                "value": 12,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global enrichment capacity share (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "ROSATOM'S AFRICA PLAY",
+        "body": "Egypt's El Dabaa — four Russian reactors under construction, financed by an $25bn Moscow loan — is the template. Behind it sits a web of memoranda across the continent: Nigeria, Ethiopia, Rwanda, Mali, Burkina Faso. Tanzania is the latest entry into a deliberate strategy of energy-and-influence.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "EG",
+              "TZ",
+              "NG",
+              "ET",
+              "RW",
+              "ML",
+              "BF",
+              "ZA"
+            ],
+            "label": "Rosatom's African footprint",
+            "caption": "El Dabaa is the only one under construction; the rest are MOUs",
+            "markers": [
+              {
+                "lat": 31.0383,
+                "lng": 28.4833,
+                "label": "El Dabaa plant, Egypt"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TWELVE-YEAR PATH",
+        "body": "A first reactor is not a near-term thing. The IAEA's Milestones Approach sets three phases — consider, prepare, build — and even a committed newcomer needs 10-15 years from roadmap to grid power, building a regulator and safety culture from scratch along the way.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Samia Suluhu Hassan",
+                "role": "Tanzanian President",
+                "years": "2021–",
+                "cc": "TZ"
+              },
+              {
+                "name": "Alexei Likhachev",
+                "role": "Rosatom director-general",
+                "years": "2016–",
+                "cc": "RU"
+              }
+            ],
+            "label": "across the table at St. Petersburg"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T17:24:53.399Z",
+    "label": "Rosatom & the Nuclear Fuel Chokepoint",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-05-us-iran-war-pushing-millions-into-food-crisis-warns-un": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRANSMISSION",
+        "body": "An oil shock becomes a hunger shock through three channels: diesel for tractors and trucks, bunker fuel for cargo ships, and natural gas for fertilizer. The last is the slow killer — most nitrogen fertilizer is synthesized from gas, so expensive energy means expensive urea, which means thinner application and lower yields a full season later.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Gulf is not just an oil region — it is one of the world's largest exporters of **ammonia** and **urea**, made cheaply from associated gas. A Hormuz scare prices the fertilizer that feeds next year's harvest, not just this month's freight."
+          }
+        ]
+      },
+      {
+        "heading": "THE DOWNSTREAM GEOGRAPHY",
+        "body": "The shock starts at a 33km channel between Iran and Oman and lands thousands of kilometers away. Sri Lanka and Somalia pay it at the dock as higher freight on every imported grain ship; Afghanistan, landlocked, pays it twice — once at a distant port, again on the truck haul inland.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AF",
+              "SO",
+              "LK"
+            ],
+            "label": "from the chokepoint to the importers",
+            "markers": [
+              {
+                "lat": 26.566,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 6.95,
+                "lng": 79.84,
+                "label": "Port of Colombo"
+              },
+              {
+                "lat": 2.04,
+                "lng": 45.34,
+                "label": "Mogadishu port"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THESE COUNTRIES",
+        "body": "Acute hunger tracks import dependency, not poverty alone. A country that grows its own staple can ride out a freight spike; one that buys its calories abroad cannot. These three sit at the wrong end of that spectrum, which is why a price move on the other side of the Indian Ocean reaches their kitchens.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Somalia",
+                "value": "~60%",
+                "cc": "SO",
+                "weight": 60,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Sri Lanka",
+                "value": "~45%",
+                "cc": "LK",
+                "weight": 45,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Afghanistan",
+                "value": "~30%",
+                "cc": "AF",
+                "weight": 30,
+                "tone": "neutral"
+              },
+              {
+                "label": "Egypt",
+                "value": "~60%",
+                "cc": "EG",
+                "weight": 60,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "share of grain supply imported (approx)"
+          }
+        ]
+      },
+      {
+        "heading": "THE FUNDING TRAP",
+        "body": "The World Food Programme receives almost no guaranteed money. It is funded by voluntary donations, year to year, with a budget fixed in dollars. When fuel and freight costs rise mid-year, the agency cannot print more — it buys less food with the same money and simply serves fewer people. That is why the warning is phrased as '1.5 million fewer served,' not 'more money needed.'",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How is the UN World Food Programme funded?",
+            "options": [
+              "Assessed dues paid by every UN member state",
+              "Entirely by voluntary donations",
+              "A levy on global grain trade",
+              "Profits from its own farms and mills"
+            ],
+            "correct": 1,
+            "explanation": "WFP gets no assessed contributions — a fixed voluntary budget against rising costs forces ration cuts rather than fundraising."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'ACUTE HUNGER' MEANS",
+        "body": "The phrase is technical, not rhetorical. Agencies grade food crises on the five-phase IPC scale; 'acute hunger' means a population has crossed into Phase 3 or worse, where households are already selling assets or skipping meals to survive — not chronic poverty, but a sharp, measurable deterioration.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The ladder runs **Phase 3 (Crisis)** → **Phase 4 (Emergency)** → **Phase 5 (Famine)**. 'Famine' is a statistical threshold — deaths and malnutrition past set rates — declared rarely and only after it has already begun."
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL RHYME",
+        "body": "Energy and food prices have moved together — and toppled governments together — for fifty years. The 1973 oil embargo doubled fertilizer costs and helped trigger the mid-1970s food crisis; the 2007-08 spike set off riots in more than 30 countries; the 2010-11 surge preceded the Arab Spring; Sri Lanka's 2022 collapse showed how fast an import-dependent state unravels when it runs out of dollars for fuel and food at once.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1973",
+                "label": "Oil embargo, fertilizer cost doubles",
+                "emphasis": "start"
+              },
+              {
+                "year": "2008",
+                "label": "Food riots in 30+ countries",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011",
+                "label": "Price spike precedes Arab Spring"
+              },
+              {
+                "year": "2022",
+                "label": "Sri Lanka import-dependent collapse"
+              }
+            ],
+            "label": "when fuel and food spike together"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T17:25:57.211Z",
+    "label": "Oil Shocks & Global Hunger",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-05-why-china-solar-boom-is-slowing-down": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A FEED-IN TARIFF DOES",
+        "body": "A feed-in tariff guarantees a solar developer a fixed price for every kilowatt-hour, for 20 years, regardless of what the spot market does. That single guarantee is what turns a power plant into a bankable asset — a lender can model the cash flow and underwrite the loan against it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The term of art is **bankability**: a project is bankable when its revenue is predictable enough that a bank will lend ~70-80% of the cost against future cash flow. Strip out the guaranteed price and the *debt* evaporates — equity alone can't carry a capital-intensive build."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MARKET PRICING BREAKS THE MODEL",
+        "body": "Under a market contract, the developer is exposed to whatever the grid pays hour by hour. Solar's problem is that it all generates at once, at midday, flooding the grid exactly when supply is highest — so the price it earns is lowest precisely when it produces most. Lenders can't model that, so the financing dries up.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call this *price cannibalization* — every new panel pushes the **midday price** it earns toward zero, sometimes **negative**. The more solar you build, the worse the economics of the next panel."
+          }
+        ]
+      },
+      {
+        "heading": "THE GERMAN BLUEPRINT",
+        "body": "China did not invent the feed-in tariff. Germany's 2000 Renewable Energy Sources Act pioneered the guaranteed-price model that drove the first global solar boom — then spent the 2010s painfully unwinding it as costs to ratepayers ballooned. China adopted the same tool in 2011 and is now walking the same exit.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2000",
+                "label": "Germany's EEG launches feed-in tariffs",
+                "emphasis": "start"
+              },
+              {
+                "year": "2011",
+                "label": "China adopts national solar FiT"
+              },
+              {
+                "year": "2018",
+                "label": "China's '531' shock cuts subsidies"
+              },
+              {
+                "year": "2021",
+                "label": "China reaches grid parity"
+              },
+              {
+                "year": "2025-02",
+                "label": "China shifts to market pricing",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "the feed-in tariff cycle"
+          }
+        ]
+      },
+      {
+        "heading": "WHO MAKES THE PANELS",
+        "body": "China doesn't just install the most solar — it manufactures nearly the entire world's supply, from polysilicon through finished modules. This is why a policy change in Beijing ripples through every solar market on Earth: the factories feeding them are almost all Chinese.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~80%",
+                "cc": "CN",
+                "weight": 80,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Rest of Asia",
+                "value": "~12%",
+                "weight": 12,
+                "tone": "neutral"
+              },
+              {
+                "label": "Europe",
+                "value": "~3%",
+                "cc": "EU",
+                "weight": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "USA",
+                "value": "~3%",
+                "cc": "US",
+                "weight": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "India",
+                "value": "~2%",
+                "cc": "IN",
+                "weight": 2,
+                "tone": "favorable"
+              }
+            ],
+            "label": "share of global solar module manufacturing"
+          }
+        ]
+      },
+      {
+        "heading": "THE INTEGRATION WALL",
+        "body": "Building panels was always the easy part. The hard constraint is the grid: transmission lines, storage, and demand that can absorb a flood of midday power. Once a grid's daytime appetite is full, extra solar gets curtailed — switched off and wasted — which is the real ceiling on how fast a country can keep adding capacity.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does adding more solar eventually lower the price each new panel earns?",
+            "options": [
+              "Panels degrade and produce less over time",
+              "All solar generates at midday, flooding the grid when supply is already highest",
+              "Governments tax solar more as it scales",
+              "Sunlight intensity falls as panels crowd together"
+            ],
+            "correct": 1,
+            "explanation": "Solar output peaks simultaneously at midday, so each added panel drives the midday wholesale price down — sometimes to zero or negative."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T17:26:36.747Z",
+    "label": "Feed-in Tariffs & Solar Economics",
+    "category": "science",
+    "articleCount": 1
   }
 }
