@@ -1,27 +1,26 @@
 {
-  "date": "2026-06-04",
+  "date": "2026-06-05",
   "metrics": {
-    "articles": { "value": 34, "detail": "5 cycles completed, avg 9/cycle (down from 54 on 2026-06-03)" },
-    "freshness": { "median": null, "p90": null, "max": null, "target": 1.0, "met": true },
-    "categories": { "politics": 12, "economy": 9, "science": 6, "tech": 7 },
+    "articles": { "value": 43, "detail": "5 cycles, avg 9/cycle" },
+    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
+    "categories": { "politics": 17, "economy": 13, "science": 5, "tech": 8 },
     "multiSource": { "value": 8, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 12, "AS": 7, "AF": 5, "EU": 5, "ME": 4, "OC": 1 } },
-    "sciTech": { "ratio": 38, "target": 25, "met": true },
-    "topSourceShare": { "source": "Hindustan Times", "pct": 12, "target": 20, "met": true },
-    "uniqueSources": 34,
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 13, "AS": 10, "ME": 9, "EU": 6, "AF": 4, "GL": 1 } },
+    "sciTech": { "ratio": 30, "target": 25, "met": true },
+    "topSourceShare": { "source": "Hindustan Times", "pct": 9, "target": 20, "met": true },
+    "uniqueSources": 39,
     "duplicates": 0,
-    "avgCycleDuration": 1794
+    "avgCycleDuration": 1494
   },
-  "experiment": "Skipped — all goal metrics within targets, no active experiment to evaluate, and no pause gate set.",
-  "weakestArea": "Freshness is the only metric without clean data: today's collection returned zero lag samples (count 0) and yesterday returned just one, so the median is unverifiable rather than out of target. There is no evidence of staleness (historical lag is ~0 with same-day publishing), but the measurement gap is the weakest point — worth confirming the freshness collector is parsing source dates rather than reading a pipeline regression into it.",
+  "experiment": "Skipped — all goal metrics within targets, no active experiment to evaluate, and the only queued experiment touches write-prompt.md (out of daily-tuning scope).",
+  "weakestArea": "Science is the metric closest to its floor: 5 articles against a target of exactly 5, down from 9 yesterday. The day-over-day sci-tech ratio fell 46% to 30% as both specialist categories softened (science 9 to 5, tech 12 to 8). Still above the 25% target, but the margin thinned to its narrowest in the two-day window — worth watching if science slips below 5 on a lighter feed day.",
   "watching": [
-    "Daily output fell to 34 articles (avg 9/cycle) from 54 yesterday — still within healthy range but at the low end; track whether it is feed-supply variance or writer-stage drag (writer avg 907s, cycle avg 1794s vs ~1033s reference).",
-    "Economy at 9 is the thinnest of the four categories; not below any floor but the closest to soft scarcity.",
-    "Americas (AM) leads regions at 12 of 34 with Oceania at just 1 — spread meets target but remains concentration-prone, consistent with yesterday's Americas tilt."
+    "Asia/Americas skew: AM (13) and AS (10) account for 53% of regional tags today; EU and AF coverage is thinner and could drop toward the 4-region floor on a quiet news day.",
+    "Indian-outlet density: Hindustan Times (4), The Indian Express (2), TimesNow (2), NDTV, News18 — South Asian outlets cluster near the top of the source list; no single source breaches 20% but the regional concentration is worth tracking."
   ],
   "coverageGaps": [
-    "Oceania (OC) down to a single article — chronically thin with no dedicated tunable lever.",
-    "Freshness instrumentation produced no usable samples today — verify the collector, not the pipeline."
+    "Oceania absent today (OC=0 vs 1 yesterday) — no Pacific or Australia/NZ coverage in this cycle set.",
+    "Science volume sat exactly at floor; no margin if the feed thins, and science sourcing leaned on general outlets (NBC, BBC, TASS) alongside the specialist core (Nature, Phys.org, Carbon Brief)."
   ],
-  "context": "All four goal clusters (freshness, diversity, multi-source, educational) are within target: 8 multi-source articles, sci+tech at 38% across 7 distinct science sources, and top-source share at just 12% (Hindustan Times, well under the 20% cap). Output dropped ~37% versus yesterday (34 vs 54) but every category floor and the source-concentration cap held. Cycle duration averaged 1794s, above the ~1033s reference, driven mainly by the writer stage. No experiment is active and no noNewExperimentsUntil gate is set, so a new experiment is permitted — but with every numeric metric comfortably inside target, the prudent move is to hold and keep baselining rather than introduce a confounding variable. The soft spots (low daily volume, Americas-tilted regions, Oceania thinness) are feed-supply properties, not failures of any tunable parameter, so no parameter change is warranted today."
+  "context": "No active or newly-proposed experiment. The experiment slot has been clear since the 2026-05-18 editor-effort entry closed void on 2026-05-26. Prior sourcing-floor work (2026-05-09) concluded that selector-floor levers are tapped and the feed's ~9 multi-source stories/cycle caps published multi-source rate near 22%; multiSource held at 8 today, consistent with that ceiling. Metrics are healthy across the board, so today is a hold."
 }
