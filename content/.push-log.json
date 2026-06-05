@@ -1,112 +1,5 @@
 [
   {
-    "timestamp": "2026-05-13T12:35:39.982Z",
-    "candidateCount": 12,
-    "candidates": [
-      {
-        "slug": "2026-05-13-turkey-armenia-direct-trade-azerbaijan-tourism-thaw",
-        "title": "Turkey Opens Armenia Trade Lane",
-        "category": "politics",
-        "eventCoverage": 84,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-13-trump-beijing-summit-nvidia-huang-chip-export",
-        "title": "Trump Takes Nvidia to Beijing",
-        "category": "politics",
-        "eventCoverage": 63,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-13-sudan-civil-war-drones-egypt-turkey-iran-uae-75-percent",
-        "title": "State Suppliers Fuel Sudan Drone War",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-13-israel-october-7-tribunal-livestream-prisoner-exchange-ban",
-        "title": "Israel Bars October 7 Swaps",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-13-ebonyi-nwifuru-n20bn-loan-no-assembly-approval-fiscal-law",
-        "title": "Ebonyi Governor Bypasses Loan Law",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-13-pakistan-remittances-33-8bn-iran-war-resilience-fy26",
-        "title": "Pakistan Remittances Defy Gulf War",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-13-brazil-big-tech-platform-liability-lula-trump-legislative-split",
-        "title": "Brazil Probes Google AI Overviews",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-13-cryptography-undecidable-proofs-new-primitive-graduate-student",
-        "title": "Undecidable Math Anchors New Cryptography",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-13-biomolecular-condensates-protein-degradation-fourth-modality",
-        "title": "Condensates Degrade Undruggable Cancer Protein",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-13-uk-ico-government-ai-foi-chatgpt-public-records",
-        "title": "UK Government AI Becomes FOI-Able",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-13-great-ormond-street-paediatric-cardiology-ml-patient-similarity",
-        "title": "Cardiac Model Solves Rare-Case Amnesia",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-13-alzheimers-brain-aging-system-specific-default-mode-limbic-fmri",
-        "title": "Alzheimer's Brain Clocks Diverge",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-05-13-turkey-armenia-direct-trade-azerbaijan-tourism-thaw",
-      "title": "Turkey Opens Armenia Trade Lane",
-      "category": "politics",
-      "body": "[Turkey](country:TR) shut the 311-km [Armenia](country:AM) frontier in 1993",
-      "eventCoverage": 84,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Turkey opens direct customs lane with Armenia for first time since 1993",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 21
-    }
-  },
-  {
     "timestamp": "2026-05-13T22:48:32.450Z",
     "candidateCount": 13,
     "candidates": [
@@ -9891,5 +9784,112 @@
     "selected": null,
     "skipReason": "all 13 candidates below coverage threshold 1",
     "sent": false
+  },
+  {
+    "timestamp": "2026-06-05T08:32:08.516Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-06-05-bitcoin-falls-ai-trade-unwind-etf-outflows",
+        "title": "Bitcoin Tracks AI Equity Slide",
+        "category": "economy",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-05-oman-mina-al-fahal-oil-terminal-explosion",
+        "title": "Blast Hits Oman Oil Terminal",
+        "category": "economy",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-05-trump-kushner-albania-sazan-resort-protests",
+        "title": "Albanians Protest Kushner Resort",
+        "category": "economy",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-04-exploration-company-reusable-heavy-lift-rocket",
+        "title": "Europe Startup Builds Heavy Rocket",
+        "category": "science",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-03-br-319-amazon-highway-deforestation-risk",
+        "title": "Brazil Funds Amazon Highway",
+        "category": "science",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-04-berkeley-cs-failing-grades-ai-math-skills",
+        "title": "AI Use Triples Berkeley Fail Rate",
+        "category": "tech",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-04-ukraine-low-cost-interceptor-missile-test",
+        "title": "Ukraine Tests Cheap Interceptor",
+        "category": "tech",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-05-londa-2025-africa-digital-rights-report",
+        "title": "Africa's Surveillance Outpaces Its Laws",
+        "category": "tech",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-05-rbi-holds-repo-rate-5-25-war-inflation",
+        "title": "War Freezes India's Rate",
+        "category": "economy",
+        "eventCoverage": 217,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-05-annamalai-quits-bjp-tamil-nadu-split",
+        "title": "BJP Loses Top Tamil Face",
+        "category": "politics",
+        "eventCoverage": 118,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-05-uss-ford-carrier-fire-worse-than-reported",
+        "title": "Carrier Fire Worse Than Reported",
+        "category": "politics",
+        "eventCoverage": 25,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-05-manipur-kuki-village-attack-three-killed",
+        "title": "3 Killed in Manipur Village Attack",
+        "category": "politics",
+        "eventCoverage": 24,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-06-05-bitcoin-falls-ai-trade-unwind-etf-outflows",
+      "title": "Bitcoin Tracks AI Equity Slide",
+      "category": "economy",
+      "body": "Bitcoin shed 14.5% in a week as global AI bets",
+      "eventCoverage": 268,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Bitcoin drops 14% in a week as AI trade unwinds",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 24
+    }
   }
 ]
