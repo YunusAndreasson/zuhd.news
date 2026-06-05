@@ -307471,5 +307471,1251 @@
     "label": "Carrier Fires & Damage Control",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-04-1100-new-ocean-species-deep-sea-unprotected": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SCALE OF THE UNKNOWN",
+        "body": "Roughly 240,000 marine species have been formally described in 250 years of effort. Estimates put the true total near 2.2 million — meaning science has named barely a tenth of what lives in the ocean. At current pace, describing the rest would take centuries.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Described",
+                "value": "~240k",
+                "tone": "favorable",
+                "weight": 240
+              },
+              {
+                "label": "Still unknown",
+                "value": "~2.0M",
+                "tone": "unfavorable",
+                "weight": 1960
+              }
+            ],
+            "label": "marine species: named vs unknown"
+          }
+        ]
+      },
+      {
+        "heading": "WHY COUNTING IS SLOW",
+        "body": "Describing one species means collecting a specimen, dissecting it, comparing it against every known relative, and publishing a formal Latin diagnosis in a peer-reviewed journal. It can take years per organism — and the global pool of working taxonomists is shrinking even as the backlog grows.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Biologists call this the *taxonomic impediment*: the bottleneck isn't finding new life, it's the **dwindling number of experts** trained to formally name it."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE MINERS WANT",
+        "body": "Deep-sea mining targets polymetallic nodules — potato-sized lumps of manganese, nickel, cobalt and copper scattered across the abyssal plain. They form by precipitating metals out of seawater so slowly that a single nodule represents millions of years of accretion, which is why the seabed they sit on cannot regrow within human timescales.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How fast do the seabed's polymetallic nodules grow?",
+            "options": [
+              "A few centimeters per year",
+              "About a meter per century",
+              "Millimeters per million years"
+            ],
+            "correct": 2,
+            "explanation": "Nodules accrete metals on the order of millimeters per million years — so a mined field is effectively gone forever on human timescales."
+          }
+        ]
+      },
+      {
+        "heading": "THE CLARION-CLIPPERTON ZONE",
+        "body": "Most exploration contracts cluster in one place: a vast stretch of Pacific seabed between Hawaii and Mexico holding the world's richest nodule reserves. The International Seabed Authority has licensed exploration across an area the size of a continent — much of it never biologically surveyed.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "MX"
+            ],
+            "label": "the Pacific nodule belt",
+            "caption": "Abyssal plain between Hawaii and the Mexican coast",
+            "markers": [
+              {
+                "lat": 12,
+                "lng": -130,
+                "label": "Clarion-Clipperton Zone"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE COMMON HERITAGE",
+        "body": "Under the Law of the Sea, the deep seabed beyond any nation's waters belongs to no one and everyone — the 'common heritage of mankind.' The International Seabed Authority is charged both with developing those minerals and protecting the environment from them, a built-in conflict of mandate.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The Area and its resources are the common heritage of mankind.",
+            "speaker": "UNCLOS, Article 136",
+            "year": "1982"
+          }
+        ]
+      },
+      {
+        "heading": "THE PROTECTION CATCH-22",
+        "body": "A species generally has to be formally described before it can be assessed for any conservation status or treaty protection. Mining permits move on engineering timelines; taxonomy moves on biological ones. An animal that science hasn't named yet cannot, by definition, be listed as endangered — so the unmapped seabed can be cleared before anyone proves what was lost."
+      }
+    ],
+    "generatedAt": "2026-06-05T12:27:32.703Z",
+    "label": "The Unmapped Ocean",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-04-argentina-vaca-muerta-fracking-waste-pollution": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEAD COW",
+        "body": "Vaca Muerta — Spanish for 'dead cow' — is a Jurassic-age marine shale the size of Belgium beneath Patagonia. It holds one of the planet's largest unconventional reserves: by the standard global survey it ranks second in technically recoverable shale gas and fourth in shale oil, which is why Argentina staked its export future on it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~1,100",
+                "cc": "CN",
+                "weight": 1115
+              },
+              {
+                "label": "Argentina",
+                "value": "~800",
+                "cc": "AR",
+                "weight": 802,
+                "tone": "favorable"
+              },
+              {
+                "label": "Algeria",
+                "value": "~700",
+                "cc": "DZ",
+                "weight": 707
+              },
+              {
+                "label": "USA",
+                "value": "~620",
+                "cc": "US",
+                "weight": 623
+              },
+              {
+                "label": "Canada",
+                "value": "~570",
+                "cc": "CA",
+                "weight": 573
+              }
+            ],
+            "label": "technically recoverable shale gas (Tcf)"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT COMES BACK UP",
+        "body": "Fracking pumps millions of liters of water, sand and chemicals down each well to crack the rock. A large fraction returns to the surface — but it returns laden with the formation's own brine: salts many times saltier than seawater, dissolved hydrocarbons, heavy metals, and naturally occurring radioactive material leached from the shale. This 'produced water' is the real waste problem, not the injected fluid.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry distinguishes early *flowback* (the chemical mix returning in the first weeks) from long-lived *produced water* (formation brine that keeps flowing for the well's life). The danger is **NORM** — naturally occurring radioactive material like radium-226, concentrated as the brine evaporates."
+          }
+        ]
+      },
+      {
+        "heading": "THE INJECTION SOLUTION",
+        "body": "Argentina disposes of over 95% of Vaca Muerta's produced water by pumping it back underground into deep disposal wells. This is the global default — it is cheaper than treatment — but it transfers the risk rather than removing it: pressurized fluid can migrate into aquifers, and it lubricates ancient faults.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AR",
+              "CL"
+            ],
+            "label": "the Neuquén basin",
+            "caption": "Vaca Muerta sits along the Andean foothills of Neuquén province",
+            "markers": [
+              {
+                "lat": -38.3508,
+                "lng": -68.7937,
+                "label": "Añelo (fracking hub)"
+              },
+              {
+                "lat": -38.5167,
+                "lng": -69.4167,
+                "label": "Sauzal Bonito (quakes)"
+              },
+              {
+                "lat": -38.9516,
+                "lng": -68.0591,
+                "label": "Neuquén city"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE GROUND SHAKES",
+        "body": "The earthquakes that began rattling the village of Sauzal Bonito after drilling arrived were almost certainly not from the fracturing itself. Induced seismicity is overwhelmingly caused by wastewater injection: forcing fluid into a porous layer raises pore pressure on faults that were already stressed, letting them slip. Oklahoma's earthquake count rose roughly a hundredfold during its injection boom — the precedent Argentina is now repeating.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Earthquakes near shale operations are most often triggered by what?",
+            "options": [
+              "The hydraulic fracturing blasts themselves",
+              "Deep injection of wastewater into disposal wells",
+              "The weight of drilling rigs on the surface",
+              "Vibration from truck and pipeline traffic"
+            ],
+            "correct": 1,
+            "explanation": "Injecting wastewater raises pressure on buried faults until they slip — the fracking stage moves far less fluid and causes far fewer felt quakes."
+          }
+        ]
+      },
+      {
+        "heading": "THE SOLID-WASTE GAP",
+        "body": "Liquid waste at least has a disposal regime; the solid waste — drilling cuttings and sludge caked with the same hydrocarbons and NORM — sits in open piles beside homes with no enforced standard. The regulatory vacuum is structural: extraction generates revenue and royalties on a short timeline, while contamination of soil and groundwater surfaces over decades, long after the political credit for the boom has been banked."
+      }
+    ],
+    "generatedAt": "2026-06-05T12:28:14.800Z",
+    "label": "Fracking Waste & Vaca Muerta",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-05-airtrunk-30-billion-india-data-centers": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BINDING CONSTRAINT ISN'T LAND",
+        "body": "A hyperscale campus is an industrial power consumer first and a computing site second. Land is cheap and abundant in India; firm, round-the-clock electricity at 30-100MW per campus is not. That is why the pledge is conditional on negotiated power concessions, not a signed land deal.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "AirTrunk says its India target hinges mainly on securing what?",
+            "options": [
+              "Power, water, and faster approvals",
+              "Skilled software engineers",
+              "Subsea cable bandwidth",
+              "AI chip import licenses"
+            ],
+            "correct": 0,
+            "explanation": "Data centers are power-and-cooling plants; in India grid access and water are the scarce inputs, not the servers or the land."
+          }
+        ]
+      },
+      {
+        "heading": "THE MEGAWATT GAP",
+        "body": "April's acquisition gave AirTrunk 600MW across three cities. The headline 5GW target is roughly eight times that — an amount of dedicated capacity comparable to a mid-size country's entire grid, which is exactly why it must be negotiated rather than simply bought.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Scaling from **600MW** to **5GW** isn't a real-estate problem — it's a request for power on the order of **several nuclear reactors' worth** of continuous draw."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MUMBAI DOMINATES",
+        "body": "India's data center capacity clusters in Mumbai because that is where most of the country's subsea internet cables make landfall. Capacity follows fiber and proximity to where the data is generated; the other metros split what remains.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Mumbai",
+                "value": 950
+              },
+              {
+                "label": "Chennai",
+                "value": 300
+              },
+              {
+                "label": "Delhi-NCR",
+                "value": 260
+              },
+              {
+                "label": "Bengaluru",
+                "value": 210
+              },
+              {
+                "label": "Hyderabad",
+                "value": 180
+              },
+              {
+                "label": "Pune",
+                "value": 120
+              },
+              {
+                "label": "Kolkata",
+                "value": 60
+              }
+            ],
+            "label": "India data-center capacity by metro (approx. MW)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TAX ASYMMETRY",
+        "body": "Foreign operators arrive into tax holidays, infrastructure subsidies, and expedited clearances under digital-infrastructure policy. Farmers whose land is acquired receive statutory compensation pegged to government valuations that routinely lag the market. The gap between what the state pays to acquire and what it offers to attract is the political flashpoint.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Foreign operator",
+                "value": "tax holiday + subsidy",
+                "tone": "favorable"
+              },
+              {
+                "label": "Displaced farmer",
+                "value": "50-70% below mkt",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "two sides of the same hectare"
+          }
+        ]
+      },
+      {
+        "heading": "THE WATER LINE NOBODY MENTIONS",
+        "body": "Cooling a hyperscale campus can consume millions of liters of water per day, often drawn from the same stressed municipal supply that nearby residents and farms depend on. In water-scarce Indian metros this turns a digital-infrastructure deal into a local resource fight.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The hidden metric is **PUE** (power usage effectiveness) — and its water cousin **WUE**. Most cooling savings come at the cost of *more* water, so an efficient data center is often a *thirstier* one."
+          }
+        ]
+      },
+      {
+        "heading": "WHO IS AIRTRUNK",
+        "body": "AirTrunk is an Asia-Pacific hyperscale developer acquired by Blackstone in 2024 in one of the largest data-center deals on record. The capital behind these pledges is private-equity infrastructure money chasing the AI buildout — patient, leveraged, and dependent on long-term power contracts to pencil out."
+      }
+    ],
+    "generatedAt": "2026-06-05T12:29:19.420Z",
+    "label": "Hyperscale Data Centers in India",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-05-antarctic-deep-meltwater-southern-ocean": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FRESHWATER LID",
+        "body": "Near freezing, temperature barely changes seawater density, so salt does almost all the work. Glacier meltwater is fresh and therefore light — it normally floats as a buoyant cap on the sea surface. Sea-level models are built on that assumption: the fresh layer stays shallow and self-contained.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In polar seas near the freezing point, what mainly controls how dense the water is?",
+            "options": [
+              "Salinity",
+              "Temperature",
+              "Dissolved oxygen",
+              "Depth/pressure"
+            ],
+            "correct": 0,
+            "explanation": "Near 0°C the temperature–density curve flattens, so salt dominates — which is exactly why fresh meltwater is so buoyant and normally stays on top."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DEPTH CHANGES EVERYTHING",
+        "body": "Finding meltwater at depth means something is dragging the fresh signal down and altering salinity where the models assumed it never reaches. That matters because deep salinity, not surface temperature, governs how the Southern Ocean stacks and circulates."
+      },
+      {
+        "heading": "THE GLOBAL ENGINE",
+        "body": "Around Antarctica, the coldest, saltiest water on Earth sinks to the seabed and creeps north along the bottom of every ocean — the densest link in the global overturning circulation. Freshen that water even slightly and it sinks less readily, slowing the engine that ventilates the deep sea.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The sinking water is called **Antarctic Bottom Water** — it fills the abyssal floor of the Atlantic, Indian, and Pacific. A fresher Southern Ocean is the single biggest lever on this *thermohaline* conveyor."
+          }
+        ]
+      },
+      {
+        "heading": "MELTING FROM BELOW",
+        "body": "Most Antarctic ice loss is not surface melt under sun — it is warm Circumpolar Deep Water intruding beneath the floating ice shelves and melting them from underneath. That basal melt is the freshwater source now showing up at depth, and it scales with how much warm water the circulation delivers to the shelf."
+      },
+      {
+        "heading": "WHAT ACTUALLY RAISES THE SEA",
+        "body": "Sea-level rise is not one thing. Roughly two-fifths is simply water expanding as it warms; the rest is ice mass added from Greenland, Antarctica, and mountain glaciers. Changing deep salinity touches both levers at once — the density of the water column and the speed of ice loss — which is why the researchers warn current projections may run low.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Thermal expansion",
+                "value": 40,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Mountain glaciers",
+                "value": 22,
+                "tone": "neutral"
+              },
+              {
+                "label": "Greenland",
+                "value": 22,
+                "tone": "neutral"
+              },
+              {
+                "label": "Antarctica",
+                "value": 12,
+                "tone": "favorable"
+              },
+              {
+                "label": "Land water storage",
+                "value": 4,
+                "tone": "favorable"
+              }
+            ],
+            "label": "sources of recent sea-level rise (approx. share)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T12:29:58.121Z",
+    "label": "Meltwater & the Southern Ocean",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-05-azerbaijan-drone-strikes-kill-five-nationals-sea-of-azov": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SHALLOWEST SEA ON EARTH",
+        "body": "The Sea of Azov averages about 7 metres deep and never exceeds 14 — the shallowest sea in the world. That shallowness means heavy warships can't operate freely, so the fight there is fought with small boats, mines, and cheap drones rather than fleets.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes the Sea of Azov militarily unusual among the world's seas?",
+            "options": [
+              "It is the shallowest sea on Earth, averaging ~7m deep",
+              "It freezes solid every winter",
+              "It has no natural outlet to any ocean",
+              "It is the saltiest body of water in Europe"
+            ],
+            "correct": 0,
+            "explanation": "At 7–14m, it's too shallow for major warships, so Azov combat runs on small craft, mines, and drones."
+          }
+        ]
+      },
+      {
+        "heading": "WHY KERCH IS THE LOCK",
+        "body": "The Azov connects to the Black Sea only through the Kerch Strait, a channel a few kilometres wide. Russia has controlled both banks since annexing Crimea in 2014, and the 2018 Kerch bridge let Moscow throttle traffic at will — turning an entire sea into a Russian-administered lake.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU",
+              "AZ"
+            ],
+            "label": "the Azov basin and its only exit",
+            "caption": "Every ship in or out of the Azov passes the Russian-held Kerch Strait.",
+            "markers": [
+              {
+                "lat": 46.71,
+                "lng": 38.27,
+                "label": "Yeysk (Russian Azov port)"
+              },
+              {
+                "lat": 45.35,
+                "lng": 36.64,
+                "label": "Kerch Strait chokepoint"
+              },
+              {
+                "lat": 47.1,
+                "lng": 37.55,
+                "label": "Mariupol"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE MILITARISED LAKE",
+        "body": "The Azov went from a quiet fishing sea to a front line in a single decade. Each step tightened Russia's grip until the surrounding ports themselves became targets.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2014",
+                "label": "Russia annexes Crimea",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018",
+                "label": "Kerch bridge opens; ship seizures begin"
+              },
+              {
+                "year": "2022",
+                "label": "Siege and fall of Mariupol"
+              },
+              {
+                "year": "2023",
+                "label": "Ukraine sea-drone campaign expands"
+              }
+            ],
+            "spans": [
+              {
+                "from": "2022",
+                "to": "2026",
+                "label": "Azov as active war zone",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "how the Azov closed"
+          }
+        ]
+      },
+      {
+        "heading": "WHY AZERBAIJANIS WERE ABOARD",
+        "body": "Russia's sanctioned oil and grain trade leans on a 'shadow fleet' of ageing freighters with mixed-nationality crews and opaque ownership. Azerbaijan keeps cordial ties with Moscow and its nationals crew Caspian and Black Sea cargo runs — which is how a third country's sailors end up on a belligerent's supply line.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The *shadow fleet* — several hundred tankers and bulk carriers with murky flags and insurance — exists precisely to keep sanctioned cargo moving. Its crews are drawn from wherever labour is cheap and willing, which is why a strike on a Russian freight target kills **Azerbaijani**, not Russian, sailors."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHEAP-DRONE ASYMMETRY",
+        "body": "Ukraine's naval drones cost a few hundred thousand dollars and have already sunk or disabled warships worth hundreds of millions. With no real navy of its own, Kyiv turned the Black and Azov seas into the first theatre where uncrewed boats and aircraft, not ships, decide control of the water.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "It is the naval version of the mine logic: a **$250k** drone forcing a multi-billion-dollar fleet into port reverses centuries of who-can-afford-sea-power."
+          }
+        ]
+      },
+      {
+        "heading": "THE NEUTRAL-FLAG PROBLEM",
+        "body": "International law lets a belligerent target enemy military cargo even when neutral nationals crew the ship — the goods, not the passports, define the target. This is the recurring tragedy of merchant shipping in wartime, from the Lusitania to the 1980s Tanker War, when neutral crews die on cargo a combatant deemed fair game."
+      }
+    ],
+    "generatedAt": "2026-06-05T12:30:35.710Z",
+    "label": "The Sea of Azov & the Kerch Lock",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-05-engro-baidu-pakistan-ai-mou-china": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY ENGRO, NOT A TECH FIRM",
+        "body": "Engro is not a software house — it began as Esso's Pakistan fertilizer arm in the 1960s and grew into one of the country's largest private conglomerates, spanning fertilizer, petrochemicals, energy and telecom towers. When a fertilizer-and-energy group signs the country's marquee AI deal, it signals that Pakistan's digital push is being routed through industrial incumbents with capital and political reach, not startups.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pattern is regional: across the Global South, AI infrastructure tends to land with **diversified conglomerates** — the only players who can finance data centers and survive the multi-year payback — rather than pure software firms."
+          }
+        ]
+      },
+      {
+        "heading": "THE CPEC FOUNDATION",
+        "body": "This deal sits atop a decade of dependence. The China-Pakistan Economic Corridor, launched in 2013, committed tens of billions of dollars — the overwhelming share in power plants and roads, not factories. The relationship was built on concrete and electricity; layering cloud and AI on top is the natural next phase of the same partnership.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Energy / power",
+                "value": 34,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Transport / roads",
+                "value": 11,
+                "tone": "neutral"
+              },
+              {
+                "label": "Industrial zones",
+                "value": 5,
+                "tone": "favorable"
+              },
+              {
+                "label": "Gwadar port",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Fiber / digital",
+                "value": 1,
+                "tone": "favorable"
+              }
+            ],
+            "label": "CPEC committed investment by sector (~$bn, cumulative)"
+          }
+        ]
+      },
+      {
+        "heading": "THE DIGITAL SILK ROAD",
+        "body": "Beijing's overseas strategy has shifted from ports and pipelines to the digital layer — cloud regions, undersea cables, surveillance systems and now AI models. Whoever supplies a country's foundational compute supplies the defaults its developers build on for a generation. Pakistan is one node in a corridor that runs from Central Asia through the Gulf.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "PK",
+              "AE",
+              "KZ",
+              "BD"
+            ],
+            "label": "China's digital footprint across the corridor"
+          }
+        ]
+      },
+      {
+        "heading": "WHOSE STANDARDS WIN",
+        "body": "The detail that matters most is the smallest: training certifications issued by a Chinese ministry. Standards are the real prize in technology diplomacy — a country whose engineers are certified on Baidu's stack will keep buying Baidu's stack. Hardware depreciates; an installed base of trained people and embedded standards compounds for decades.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Baidu's flagship large language model — its answer to GPT — is called what?",
+            "options": [
+              "Ernie (Wenxin Yiyan)",
+              "Qwen",
+              "DeepSeek",
+              "Llama"
+            ],
+            "correct": 0,
+            "explanation": "Ernie is Baidu's model; Qwen is Alibaba's, DeepSeek is a separate Chinese lab, and Llama is Meta's."
+          }
+        ]
+      },
+      {
+        "heading": "THE POWER FLOOR",
+        "body": "AI's binding constraint is not chips but electricity — a single hyperscale cluster draws tens of megawatts continuously. Pakistan's grid is already strained by circular debt and among the most expensive power in the region, which is precisely why an energy conglomerate, and a partner that builds power plants, are the ones at the table. The AI ambition and the electricity problem are the same problem.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Compute follows cheap, reliable power the way aluminum smelters once did. A country that cannot keep the lights on at a *predictable* price cannot host frontier training — it can only rent it from someone who can."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T12:31:48.891Z",
+    "label": "Pakistan's China Tech Stack",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-05-meta-ai-agent-hijacked-instagram-account-theft": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONFUSED DEPUTY",
+        "body": "This is a 1988 security pattern: a privileged program tricked into misusing its authority on behalf of someone who lacks it. The attacker never had account-recovery powers — Meta's agent did, and was talked into exercising them. The AI is the deputy; the confusion is the exploit.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The term *confused deputy* predates AI by decades, but an LLM agent is the most confusable deputy ever built — it takes instructions in the same plain English it reads its data in."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PROMPT INJECTION ISN'T A BUG",
+        "body": "A language model has no architectural boundary between its instructions and the data it processes — both are just text in the same context window. A classic SQL injection is fixed by separating code from data; an LLM has no such separation to enforce. That is why researchers call agents with real privileges exploitable by design, not by accident.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't prompt injection be fully patched the way a SQL-injection bug can?",
+            "options": [
+              "The model can't reliably tell instructions apart from the data it reads",
+              "The attacker needs the victim's password first",
+              "It only affects open-source models",
+              "Encryption hasn't caught up yet"
+            ],
+            "correct": 0,
+            "explanation": "LLMs process commands and content in one undivided context, so there's no boundary to harden — unlike code-vs-data separation in databases."
+          }
+        ]
+      },
+      {
+        "heading": "WHY RECOVERY IS THE SOFT TARGET",
+        "body": "Account recovery exists to let real users back in after they lose a password or device — so by design it lowers the authentication bar, not raises it. Every credential-theft operation aims here, because the front door is hardened and the side door is built to be opened by people who can't prove much."
+      },
+      {
+        "heading": "THE GEOLOCATION FALLACY",
+        "body": "The agent's last defense was matching the requester's location to the owner's. But IP geolocation is trivially spoofed: a commercial VPN endpoint in the right city satisfies the check for a few dollars a month. Network location proves where a packet exits, never who is behind it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "IP location",
+                "value": "VPN defeats it",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "SMS code",
+                "value": "SIM-swap",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Email link",
+                "value": "phishable",
+                "tone": "neutral"
+              },
+              {
+                "label": "Passkey",
+                "value": "device-bound",
+                "tone": "favorable"
+              }
+            ],
+            "label": "identity signals by how easily defeated"
+          }
+        ]
+      },
+      {
+        "heading": "THE CAPABILITY PROBLEM",
+        "body": "Security has a well-worn fix for confused deputies: least privilege — give a process only the powers its task strictly needs. The industry is now wiring broad, standing privileges into chatbots that anyone can address in free-form language. The lesson being relearned is that an agent you can talk to is an agent an attacker can talk to."
+      }
+    ],
+    "generatedAt": "2026-06-05T12:32:27.000Z",
+    "label": "Prompt Injection & AI Agents",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-05-naval-drone-explodes-at-romania-s-constanta-port": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY CONSTANTA",
+        "body": "When Russia walked out of the grain deal in 2023, Ukraine's seaborne exports did not stop — they shifted west. Constanta, Romania's deepwater Black Sea port at the mouth of the Danube, absorbed a surge of Ukrainian grain barged down the river and transshipped onward. The port that was a backwater of EU logistics became the southern lifeline of Ukraine's farm economy.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RO",
+              "UA",
+              "RU",
+              "TR",
+              "BG"
+            ],
+            "label": "the Black Sea corridor",
+            "caption": "Grain barged down the Danube, shipped out past the Bosphorus",
+            "markers": [
+              {
+                "lat": 44.17,
+                "lng": 28.65,
+                "label": "Constanta port"
+              },
+              {
+                "lat": 46.48,
+                "lng": 30.73,
+                "label": "Odesa"
+              },
+              {
+                "lat": 41.02,
+                "lng": 28.97,
+                "label": "Bosphorus"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE WEAPON",
+        "body": "A naval drone is an unmanned speedboat packed with explosives, steered remotely or by GPS waypoints, costing a few hundred thousand dollars. Ukraine pioneered them out of necessity — having almost no navy, it used them to push Russia's Black Sea Fleet out of the western basin entirely. The same asymmetry that worked against warships now works against ports.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Ukraine's *Magura* and *Sea Baby* drones sank or disabled roughly a third of Russia's Black Sea Fleet — a fleet attacked by a country with **no functioning navy** of its own."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT ARTICLE 5 ACTUALLY SAYS",
+        "body": "The collective-defence clause is narrower than its reputation. It commits each member only to take 'such action as it deems necessary' — not automatic war. And it triggers on an 'armed attack,' a threshold deliberately left for members to interpret. A drone of uncertain origin landing on a port berth is exactly the gray zone the clause was never designed to resolve cleanly.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The Parties agree that an armed attack against one or more of them in Europe or North America shall be considered an attack against them all.",
+            "speaker": "North Atlantic Treaty, Article 5",
+            "year": "1949"
+          }
+        ]
+      },
+      {
+        "heading": "INVOKED ONCE IN 75 YEARS",
+        "body": "For all its weight, Article 5 has been formally invoked a single time — by the United States after the September 11 attacks, not by a European member during the Cold War. More often the alliance reaches for Article 4, which merely triggers consultations. Romania's request to 'bolster air defences' is Article 4 territory, not Article 5.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many times has NATO's Article 5 collective-defence clause been formally invoked?",
+            "options": [
+              "Never",
+              "Once — after 9/11",
+              "Three times during the Cold War",
+              "Every year since 2022"
+            ],
+            "correct": 1,
+            "explanation": "Despite the Cold War, Article 5 was invoked only once — by the US after the September 11, 2001 attacks."
+          }
+        ]
+      },
+      {
+        "heading": "THE MONTREUX LOCK",
+        "body": "Even if NATO wanted to surge warships into the Black Sea, a 1936 treaty stops it. The Montreux Convention gives Turkey control of the Bosphorus and Dardanelles and caps how long and how heavily non-littoral navies can deploy in the sea. Ankara invoked it in 2022 to close the straits to belligerent warships — which is why the Black Sea war has been fought with drones and missiles, not fleets.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2022-02",
+                "label": "Russia invades Ukraine",
+                "emphasis": "start"
+              },
+              {
+                "year": "2022-07",
+                "label": "Black Sea Grain Initiative signed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-07",
+                "label": "Russia exits the grain deal"
+              },
+              {
+                "year": "2023-08",
+                "label": "Ukraine opens Danube/Constanta route"
+              },
+              {
+                "year": "2026-06",
+                "label": "Drone strikes reach Constanta"
+              }
+            ],
+            "label": "the grain corridor arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T12:33:04.066Z",
+    "label": "The Black Sea Grain Corridor & Article 5",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-05-south-africa-antivenom-stockout-nhls": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HORSE FACTORY",
+        "body": "Antivenom is still made the way it was in the 1890s: inject a horse with sub-lethal doses of venom, wait months for it to build antibodies, then bleed it and purify the plasma. South Africa's supply comes from a single state producer keeping herds of immunized horses. There is no synthetic shortcut and no way to surge production — the biology sets the clock.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The product is **polyvalent** — one vial raised against a cocktail of venoms (puff adder, cobra, mamba) so a clinician can treat a bite before the snake is even identified."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT KEEPS RUNNING OUT",
+        "body": "Antivenom is a textbook market failure. The people bitten are overwhelmingly poor and rural, the product expires and needs constant refrigeration, and a single producer has no commercial incentive to hold expensive surplus stock. So inventories run lean, and one production hiccup empties the shelves nationwide — which is why researchers are pushing a public-private partnership rather than trusting the existing pipeline."
+      },
+      {
+        "heading": "THE BOOMSLANG EXCEPTION",
+        "body": "Most snakebite is treated with the polyvalent vial, but boomslang gets its own dedicated monovalent antivenom — which is why it's the one product still in stock. Its venom is hemotoxic, destroying the blood's ability to clot over hours or days, and it is chemically too different to fold into the general mix. The herpetologist Karl Schmidt famously died in 1957 documenting his own boomslang envenomation, convinced the small snake couldn't deliver a fatal dose.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does boomslang require its own separate antivenom?",
+            "options": [
+              "Its venom is chemically distinct (hemotoxic) and won't combine with the polyvalent mix",
+              "Boomslang bites are the most common in South Africa",
+              "It is the only venomous snake in the region"
+            ],
+            "correct": 0,
+            "explanation": "Boomslang venom is a slow-acting hemotoxin unlike the neurotoxic elapids covered by the polyvalent vial, so it needs a dedicated monovalent product."
+          }
+        ]
+      },
+      {
+        "heading": "A NEGLECTED DISEASE",
+        "body": "The WHO formally classified snakebite as a neglected tropical disease only in 2017 — decades after it was killing more people than most diseases that get headline funding. Roughly 100,000 people die from snakebite each year and several times that many are left with amputations or permanent disability, the burden falling almost entirely on agricultural workers in the global South.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "India",
+                "value": 58
+              },
+              {
+                "label": "Sub-Saharan Africa",
+                "value": 25
+              },
+              {
+                "label": "Rest of South Asia",
+                "value": 10
+              },
+              {
+                "label": "Southeast Asia",
+                "value": 8
+              }
+            ],
+            "label": "snakebite deaths by region (approx. annual)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TIME WINDOW",
+        "body": "Envenomation is a race against the clock: neurotoxic bites can paralyze breathing within hours, and the antidote only works if it reaches the bloodstream before the venom binds. A rural worker bitten far from a stocked hospital faces the same biology as a clotting or paralysis crisis with no intervention — which is exactly why a stockout is not an inconvenience but a mortality event."
+      }
+    ],
+    "generatedAt": "2026-06-05T12:33:43.749Z",
+    "label": "How Antivenom Is Made",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-05-us-forced-labor-ruling-vietnam-trade-probes": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 1930 WEAPON",
+        "body": "The forced-labor block runs on Section 307 of the Tariff Act of 1930, which bars goods made with forced labor from entering the US. The clause sat nearly dormant for 86 years because of a 'consumptive demand' loophole: imports were allowed if domestic supply couldn't meet demand. The 2016 Trade Facilitation Act deleted that exception — and the dormant statute became a live customs weapon.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The enforcement instrument is the **Withhold Release Order** (WRO): once Customs has *reasonable suspicion*, the goods are detained at the border and the burden flips — the importer must prove the supply chain is clean, not the government prove it dirty."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE BURDEN-FLIP MATTERS",
+        "body": "In a normal trade dispute, the accuser carries the proof. A forced-labor designation inverts that: shipments are presumed tainted until the importer documents every tier of the supply chain. For deep, opaque manufacturing chains — cotton, electronics, footwear — that proof is often impossible to assemble fast enough, so the practical effect is an immediate stop, not a hearing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What happens to goods hit by a US forced-labor Withhold Release Order?",
+            "options": [
+              "A tariff surcharge is added but they still enter",
+              "They are detained at the border until the importer proves the chain is clean",
+              "The exporting government must pay a fine before release",
+              "They are auctioned by Customs to recover lost duty"
+            ],
+            "correct": 1,
+            "explanation": "A WRO detains the shipment and shifts the burden of proof onto the importer — the goods don't move until the supply chain is documented clean."
+          }
+        ]
+      },
+      {
+        "heading": "WHY VIETNAM IS SO EXPOSED",
+        "body": "Vietnam runs one of the largest trade surpluses with the US of any country, and America is by far its single biggest export market — roughly a third of everything it ships. That concentration is the leverage: a country that sells a third of its exports to one customer cannot afford to have that customer set the terms hostile.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "~30%",
+                "cc": "US",
+                "weight": 30,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "China",
+                "value": "~16%",
+                "cc": "CN",
+                "weight": 16,
+                "tone": "neutral"
+              },
+              {
+                "label": "EU",
+                "value": "~13%",
+                "cc": "EU",
+                "weight": 13,
+                "tone": "neutral"
+              },
+              {
+                "label": "ASEAN",
+                "value": "~9%",
+                "cc": "ID",
+                "weight": 9,
+                "tone": "neutral"
+              },
+              {
+                "label": "Japan",
+                "value": "~7%",
+                "cc": "JP",
+                "weight": 7,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Vietnam's top export destinations (approx. share)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSSHIPMENT SUSPICION",
+        "body": "A recurring American concern is that Chinese goods are rerouted through Vietnam — minimally processed or merely relabeled — to dodge tariffs aimed at Beijing. Multiple simultaneous probes let Washington pressure Hanoi to police that back door, turning Vietnam into an enforcement arm against China rather than just a trading partner.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "VN",
+              "CN",
+              "KH",
+              "LA",
+              "TH"
+            ],
+            "label": "the rerouting corridor",
+            "caption": "Goods of Chinese origin can enter Vietnam overland before re-export"
+          }
+        ]
+      },
+      {
+        "heading": "FROM EMBARGO TO PARTNER",
+        "body": "The relationship now being squeezed was built in a single generation. Washington lifted its trade embargo in 1994, normalized relations in 1995, and a bilateral trade pact plus WTO entry opened the floodgates — Vietnam went from pariah to a top-ten US trade partner within two decades. The leverage exists precisely because that integration ran so deep.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1975",
+                "label": "Fall of Saigon; US embargo"
+              },
+              {
+                "year": "1994",
+                "label": "Embargo lifted",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1995",
+                "label": "Diplomatic normalization"
+              },
+              {
+                "year": "2001",
+                "label": "Bilateral Trade Agreement"
+              },
+              {
+                "year": "2007",
+                "label": "Vietnam joins WTO"
+              },
+              {
+                "year": "2023",
+                "label": "Comprehensive Strategic Partnership"
+              }
+            ],
+            "label": "US–Vietnam normalization"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T12:34:23.707Z",
+    "label": "Forced-Labor Bans & Trade Leverage",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-05-wana-tribal-elder-sons-killed-south-waziristan": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A MALIK ACTUALLY IS",
+        "body": "A malik is not a chief in the hereditary sense — he is a broker. The British invented the formal role: a tribal elder whom the colonial state paid stipends and allowances in exchange for keeping his clan quiet and deliverable. Pakistan inherited the machinery wholesale. The malik's power flows from being the one channel through which a distant government and an armed tribe can speak without shooting.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The companion institution is the *jirga* — a council of elders that settles disputes by consensus under *Pashtunwali*, the unwritten tribal code. A malik's authority is only as durable as the jirga that backs him."
+          }
+        ]
+      },
+      {
+        "heading": "WHY WAZIRISTAN, AND WHY THE DURAND LINE",
+        "body": "South Waziristan sits astride the Durand Line — the 1893 border an Englishman drew through Pashtun country, splitting the same tribes between British India (now Pakistan) and Afghanistan. The Wazir and Mehsud clans live on both sides and have never recognized it. That makes the region a sanctuary corridor: fighters cross a line that exists on maps but not in the social geography of the people who live there.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF"
+            ],
+            "label": "Waziristan astride the Durand Line",
+            "caption": "Wazir and Mehsud lands straddle the 1893 border",
+            "markers": [
+              {
+                "lat": 32.3009,
+                "lng": 69.5747,
+                "label": "Wana"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE FRONTIER CRIMES REGULATION",
+        "body": "Until 2018, these districts were not governed by Pakistan's constitution at all. The Frontier Crimes Regulation — another British relic, written in 1901 — let the state impose collective punishment on a whole tribe for one member's offense, with no courts, no appeal, and no vote. Maliks were the load-bearing pillar of that system: the men through whom indirect rule was administered.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1893",
+                "label": "Durand Line drawn"
+              },
+              {
+                "year": "1901",
+                "label": "Frontier Crimes Regulation"
+              },
+              {
+                "year": "2004",
+                "label": "First army operation in S. Waziristan",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2009",
+                "label": "Operation Rah-e-Nijat"
+              },
+              {
+                "year": "2014",
+                "label": "Operation Zarb-e-Azb"
+              },
+              {
+                "year": "2018",
+                "label": "FATA merged into KP province"
+              }
+            ],
+            "label": "governing the frontier"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE MEDIATORS ARE THE TARGET",
+        "body": "Killing a malik is not random violence — it is decapitation strategy. Insurgents who want to rule a valley must first sever the line between the tribe and the state. Every elder who can convene a jirga, broker a ceasefire, or call in the army is a competing authority. The Pakistani Taliban (TTP) assassinated hundreds of maliks in the 2000s for exactly this reason: a tribe with no elders left has no one to negotiate with but the men holding the guns."
+      },
+      {
+        "heading": "THE MERGER THAT REMOVED THE OLD DEAL",
+        "body": "In 2018 the tribal areas were folded into Khyber Pakhtunkhwa province, ending the malik stipend system and the FCR in one stroke. The intent was citizenship and courts; the side effect was that maliks lost their formal state role and their protective allowances just as militancy resurged after 2021. Elders today carry the risk of mediation with far less of the old state backing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Until 2018, how were Pakistan's tribal areas (FATA) primarily governed?",
+            "options": [
+              "By the national constitution and ordinary courts",
+              "By the colonial-era Frontier Crimes Regulation, via appointed maliks",
+              "By an autonomous elected tribal parliament",
+              "Directly by the Afghan government across the Durand Line"
+            ],
+            "correct": 1,
+            "explanation": "The 1901 FCR allowed collective punishment and excluded the courts and constitution; the 2018 merger into KP province ended it."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T12:34:55.354Z",
+    "label": "The Malik System & the Tribal Frontier",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-05-zcash-orchard-pool-vulnerability-hayes-sells": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO PROMISES OF A PROOF",
+        "body": "A zero-knowledge proof makes two separate guarantees. Zero-knowledge: the proof reveals nothing about the secret data. Soundness: you cannot produce a valid proof for a false statement. Privacy coins lean on the first; supply integrity lives entirely in the second. The Orchard flaw was a soundness break, not a privacy leak — the thing that hides your balance is not the thing that stops someone forging coins.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bug let an attacker generate a *valid* proof for a *false* claim — \"I am spending coins I own\" when no such coins exist. That is a **soundness** failure, the most dangerous class of cryptographic bug because the math itself certifies the lie."
+          }
+        ]
+      },
+      {
+        "heading": "WHY YOU CAN'T JUST COUNT",
+        "body": "In a transparent chain like Bitcoin, anyone can sum every output and verify the total supply in seconds. In a shielded pool, balances are encrypted by design — you cannot audit the total by adding it up. So an inflation bug is invisible not by accident but structurally: the same secrecy that protects holders also hides a counterfeiter. The only defense is the soundness of the proof system, which is exactly what failed.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Bitcoin",
+                "value": "Yes — public",
+                "tone": "favorable",
+                "cc": "US"
+              },
+              {
+                "label": "Zcash (shielded)",
+                "value": "No — proof only",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Monero",
+                "value": "No — amts hidden",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "can total supply be independently audited?"
+          }
+        ]
+      },
+      {
+        "heading": "IT HAPPENED BEFORE",
+        "body": "This is the second counterfeiting flaw in Zcash's history. In 2018 a cryptographer found a subtle error in the original proving system (BCTV14) that would have allowed unlimited invisible minting. It was patched silently inside the Sapling upgrade and only disclosed months later, once enough users had migrated — the same playbook of fix-first, announce-after that a stealth supply bug forces.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2016",
+                "label": "Launch — Sprout pool, trusted setup",
+                "emphasis": "start"
+              },
+              {
+                "year": "2018-03",
+                "label": "First counterfeiting flaw found",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018-10",
+                "label": "Sapling — flaw silently patched"
+              },
+              {
+                "year": "2022",
+                "label": "Orchard pool — Halo 2, no trusted setup"
+              },
+              {
+                "year": "2026-06",
+                "label": "Orchard minting flaw patched"
+              }
+            ],
+            "label": "Zcash's cryptographic arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE TOXIC WASTE PROBLEM",
+        "body": "Early Zcash needed a 'trusted setup' — a one-time ceremony generating secret parameters that, if kept, would let the holder mint coins forever. The leftover secret was nicknamed 'toxic waste,' and the 2016 ceremony went to theatrical lengths to destroy it. Orchard's Halo 2 system, shipped in 2022, eliminated the trusted setup entirely. The irony of the current flaw: the pool built to remove one minting risk carried a different one.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Halo 2 removed the *trusted setup* — no more toxic waste, no ceremony to trust. But removing one foundational risk doesn't remove all of them; the **soundness** of the new circuit still has to be proven correct, and a 2022-era bug sat undetected for nearly four years."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE PRICE MOVES ON TRUST, NOT THEFT",
+        "body": "No confirmed counterfeiting needs to have occurred for the market to react. For a privacy coin, the entire value proposition is the credibility of a fixed, verifiable supply. The mere proof that invisible minting was possible — for years, undetected — damages that credibility regardless of whether anyone exploited it. That is what a 42% drop prices in: not a known theft, but a broken guarantee.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "A zero-knowledge proof makes two guarantees. Which one failed in the Zcash Orchard flaw?",
+            "options": [
+              "Soundness — a valid proof could be made for a false statement",
+              "Zero-knowledge — private balances were exposed to the public",
+              "Completeness — honest users could no longer make valid proofs",
+              "Decentralization — a single node gained control of consensus"
+            ],
+            "correct": 0,
+            "explanation": "The bug let false statements pass as proven, allowing invisible minting — a soundness break. Privacy (zero-knowledge) was never compromised."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-05T12:35:45.736Z",
+    "label": "Zero-Knowledge Proofs & the Minting Risk",
+    "category": "tech",
+    "articleCount": 1
   }
 }
