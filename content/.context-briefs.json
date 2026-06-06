@@ -314956,5 +314956,1171 @@
     "label": "Hormuz & the Gulf's US Footprint",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-05-nepra-cuts-pakistan-electricity-rates": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CUT THAT WASN'T",
+        "body": "The headline relief is a quarterly tariff adjustment, but a fuel-cost surcharge claws most of it back the same month. Pakistani bills carry a stack of separate line items — base tariff, quarterly adjustment, fuel-price adjustment, surcharges — so a 'cut' to one line can be erased by a rise in another.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Quarterly cut",
+                "value": "−Rs1.99",
+                "tone": "favorable",
+                "weight": 1.99
+              },
+              {
+                "label": "Fuel surcharge",
+                "value": "+Rs1.19",
+                "tone": "unfavorable",
+                "weight": 1.19
+              },
+              {
+                "label": "Net relief",
+                "value": "−Rs0.80",
+                "tone": "neutral",
+                "weight": 0.8
+              }
+            ],
+            "label": "what the June bill actually moves (Rs/unit)"
+          }
+        ]
+      },
+      {
+        "heading": "CAPACITY PAYMENTS",
+        "body": "The deepest cost in a Pakistani electricity bill is paid whether or not a single unit is generated. Under the 1994 and 2002 power policies, the state signed 'take-or-pay' contracts with independent producers — guaranteeing payment for available capacity even when plants sit idle.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "These are **capacity payments**: a fixed charge for a plant being *available*, separate from the **energy charge** for power actually used. With demand flat and capacity overbuilt, idle plants still bill the grid."
+          }
+        ]
+      },
+      {
+        "heading": "THE DOLLAR-INDEXED TRAP",
+        "body": "Many of those capacity contracts are denominated or indexed in US dollars and tied to imported fuel. Every time the rupee falls, the rupee value of those guaranteed payments climbs — so currency weakness feeds directly into the power bill, independent of any policy decision.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377,
+              278.485848,
+              278.494701,
+              278.137253,
+              277.408487,
+              278.412506,
+              278.512908,
+              278.575,
+              277.445439,
+              278.55,
+              278.55,
+              278.494021,
+              278.3,
+              278.45,
+              278.61849,
+              278.35,
+              278.5
+            ],
+            "periods": [
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE CIRCULAR DEBT LOOP",
+        "body": "Consumer tariffs lag the true cost of supply; distribution companies underpay generators; generators fall behind fuel suppliers; the federal budget eventually absorbs the gap. This unpaid chain — circular debt — has swelled past two trillion rupees and is the IMF's central condition on Pakistan.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "consumers",
+                "label": "Consumers"
+              },
+              {
+                "id": "discos",
+                "label": "DISCOs"
+              },
+              {
+                "id": "gencos",
+                "label": "Generators"
+              },
+              {
+                "id": "fuel",
+                "label": "Fuel/IPPs"
+              },
+              {
+                "id": "budget",
+                "label": "Federal budget"
+              }
+            ],
+            "links": [
+              {
+                "source": "consumers",
+                "target": "discos",
+                "value": 100,
+                "label": "tariff"
+              },
+              {
+                "source": "discos",
+                "target": "gencos",
+                "value": 75,
+                "label": "underpaid"
+              },
+              {
+                "source": "gencos",
+                "target": "fuel",
+                "value": 60,
+                "label": "capacity + fuel"
+              },
+              {
+                "source": "discos",
+                "target": "budget",
+                "value": 25,
+                "label": "shortfall"
+              },
+              {
+                "source": "budget",
+                "target": "discos",
+                "value": 25,
+                "label": "subsidy"
+              }
+            ],
+            "label": "where the shortfall lands"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT NEPRA ACTUALLY DOES",
+        "body": "NEPRA sets the tariff, but it does not pay for it. The regulator calculates a cost-reflective price; the elected government then decides how much of that to pass to voters and how much to absorb. The gap between the two numbers is where the political fight — and the deficit — lives.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does building more power plants worsen Pakistan's electricity bills?",
+            "options": [
+              "More plants burn more imported fuel even when idle",
+              "Take-or-pay contracts bill for idle capacity regardless of use",
+              "NEPRA charges a fee per new plant connected"
+            ],
+            "correct": 1,
+            "explanation": "Capacity payments are owed for a plant being available, so overbuilding against flat demand adds fixed costs with no extra power sold."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-06"
+    ],
+    "generatedAt": "2026-06-06T17:31:34.332Z",
+    "label": "Pakistan's Power Tariff Trap",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-06-banks-digital-dollars-onchain-deposit-drain": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY BANKS ARE SCARED OF STABLECOINS",
+        "body": "A bank deposit is the raw material of lending — banks lend out most of what they hold and keep only a fraction in reserve. A stablecoin issuer does the opposite: it parks 100% of its backing in Treasuries and cash, lending none of it. Every dollar that migrates from a deposit into a stablecoin is a dollar that can no longer fund a mortgage or a business loan. The drain shrinks credit creation itself."
+      },
+      {
+        "heading": "THE KEY DIFFERENCE",
+        "body": "A stablecoin is a bearer claim on an outside issuer's reserve pile. A tokenized deposit is the bank's own deposit liability, wrapped in a token — the money never leaves the banking system, it just moves on a blockchain. Same legal substance, new plumbing. That distinction is the entire strategic point: banks get the rails without losing the funding base.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term for what stablecoins threaten is **disintermediation** — pulling deposits out from between savers and borrowers. Tokenized deposits are the banks' counter-move: keep the customer *onchain* but keep the cash *on balance sheet*."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1970s PRECEDENT",
+        "body": "This has happened before — without a blockchain. Federal Regulation Q capped the interest banks could pay on deposits, so when inflation soared in the 1970s, savers fled into money market funds that paid market rates. Banks bled deposits for a decade until the cap was phased out. Money market funds were the original deposit drain; stablecoins are the digital rerun.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1971",
+                "label": "First money market fund launches"
+              },
+              {
+                "year": "1973",
+                "label": "Reg Q rate caps bite as inflation climbs",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1986",
+                "label": "Reg Q interest caps phased out"
+              },
+              {
+                "year": "2008",
+                "label": "Reserve Primary 'breaks the buck'"
+              }
+            ],
+            "label": "the original deposit drain"
+          }
+        ]
+      },
+      {
+        "heading": "WHO OWNS THE RAILS",
+        "body": "The Clearing House is not a startup — it is owned by the largest US banks themselves and runs RTP, the real-time payments network launched in 2017. By routing tokenized deposits through infrastructure they already control, the incumbents avoid handing the settlement layer to Circle or Tether. The fight is over who owns the pipes corporate cash flows through."
+      },
+      {
+        "heading": "THE STABLECOIN GIANTS",
+        "body": "The incumbents they're chasing are already enormous. Tether's USDT and Circle's USDC together settle trillions in annual volume and hold tens of billions in US Treasuries — enough that the stablecoin sector is now a non-trivial buyer of short-term government debt.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Tether (USDT)",
+                "value": "~$140bn",
+                "weight": 140,
+                "tone": "neutral"
+              },
+              {
+                "label": "Circle (USDC)",
+                "value": "~$60bn",
+                "weight": 60,
+                "tone": "neutral"
+              },
+              {
+                "label": "PayPal (PYUSD)",
+                "value": "~$1bn",
+                "weight": 1,
+                "tone": "neutral"
+              }
+            ],
+            "label": "stablecoins in circulation (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY REGULATORS CARE",
+        "body": "When a stablecoin holds your dollars and promises them back on demand, it looks exactly like a deposit or a money market fund — both heavily regulated since the 1930s. Whether calling it a 'token' should exempt it from banking and reserve rules is the open legal question. Tokenized deposits sidestep it entirely: they are already, unambiguously, bank deposits.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes a tokenized bank deposit different from a stablecoin?",
+            "options": [
+              "It stays a liability of the issuing bank, inside the fractional-reserve system",
+              "It is backed only by gold reserves",
+              "It cannot move on a blockchain",
+              "It pays no interest by law"
+            ],
+            "correct": 0,
+            "explanation": "A tokenized deposit is the bank's own deposit wrapped in a token — so the money keeps funding the bank's loans, unlike a stablecoin's fully-reserved float."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-06T17:32:22.662Z",
+    "label": "Tokenized Deposits & the Deposit Drain",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-06-earth-hemispheric-albedo-symmetry-fading": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT ALBEDO IS",
+        "body": "Albedo is the fraction of sunlight a surface bounces back to space. Fresh snow returns most of what hits it; open ocean swallows nearly all of it. Earth's average sits near 0.30 — about a third reflected, two-thirds absorbed.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Fresh snow",
+                "value": "~0.85",
+                "weight": 85,
+                "tone": "favorable"
+              },
+              {
+                "label": "Thick cloud",
+                "value": "~0.65",
+                "weight": 65,
+                "tone": "favorable"
+              },
+              {
+                "label": "Desert sand",
+                "value": "~0.40",
+                "weight": 40,
+                "tone": "neutral"
+              },
+              {
+                "label": "Earth avg",
+                "value": "~0.30",
+                "weight": 30,
+                "tone": "neutral"
+              },
+              {
+                "label": "Forest",
+                "value": "~0.15",
+                "weight": 15,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Open ocean",
+                "value": "~0.06",
+                "weight": 6,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "albedo by surface (fraction reflected)"
+          }
+        ]
+      },
+      {
+        "heading": "THE KNOWN PUZZLE",
+        "body": "Scientists already knew the northern and southern hemispheres reflect almost exactly the same amount of sunlight — even though the north holds far more bright land and the south is mostly dark ocean. Something compensates. Brighter clouds over the cloudier southern oceans roughly cancel the north's land advantage."
+      },
+      {
+        "heading": "WHY SYMMETRY IS STRANGE",
+        "body": "There is no physical law forcing two hemispheres to match. Continents, ice, and ocean are distributed almost randomly. That reflectivity comes out equal suggests clouds self-organize as a regulator — and the new east-west match is a third coincidence climate models cannot reproduce on their own.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The cloud feedback is the hinge: the *southern ocean* is far stormier and cloudier than the land-heavy north, and those brighter clouds appear to **tune themselves** to offset the surface difference — symmetry maintained by weather, not geography."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE HEAT GOES",
+        "body": "A darkening planet absorbs more energy, but surface air temperature barely registers it. Over 90% of the excess heat is stored in the ocean — which is why a small drop in albedo translates into decades of slow, hidden warming rather than an immediate jump in the thermometer.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where does over 90% of Earth's excess trapped heat accumulate?",
+            "options": [
+              "The ocean",
+              "The lower atmosphere",
+              "Polar ice sheets",
+              "Land and soil"
+            ],
+            "correct": 0,
+            "explanation": "The ocean absorbs more than 90% of the energy imbalance; the atmosphere takes about 1%, with ice and land splitting the rest."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A BROKEN SYMMETRY MATTERS",
+        "body": "Climate models are tuned and tested against a planet that behaves symmetrically. If the hemispheres begin to diverge as both darken, the models lose a constraint they were never explicitly built to track — meaning projections inherit an error nobody has yet measured."
+      }
+    ],
+    "generatedAt": "2026-06-06T17:32:59.679Z",
+    "label": "Albedo & Earth's Reflectivity",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-06-hormuz-disruption-us-oil-majors-windfall": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ONE-PRICE MARKET",
+        "body": "Crude is globally fungible: there is essentially one world price, set at the margin by the most expensive barrel needed to balance supply. A disruption in the Gulf lifts the price of a barrel pumped in West Texas that never went near Hormuz — the producer collects the windfall without bearing the risk.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The benchmark is **Brent**, priced off North Sea cargoes — but a Hormuz scare moves Brent, and Brent moves *every* grade on earth. Distance from the chokepoint is irrelevant to the price; only to the supply risk."
+          }
+        ]
+      },
+      {
+        "heading": "THE SHALE REVERSAL",
+        "body": "In 2006 the US imported roughly 10 million barrels a day. Hydraulic fracturing flipped that: by 2020 America was a net petroleum exporter and is now the world's largest crude producer. Its exports leave from the Gulf of Mexico and the Atlantic coast — physically impossible to choke at Hormuz. A Gulf crisis is therefore pure upside for US producers: higher prices, untouched supply.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Crude + liquids production",
+            "peers": [
+              {
+                "value": 13.2,
+                "cc": "US"
+              },
+              {
+                "value": 9,
+                "cc": "SA"
+              },
+              {
+                "value": 9.5,
+                "cc": "RU"
+              },
+              {
+                "value": 5,
+                "cc": "CA"
+              },
+              {
+                "value": 4.3,
+                "cc": "IQ"
+              },
+              {
+                "value": 4.2,
+                "cc": "CN"
+              },
+              {
+                "value": 4,
+                "cc": "AE"
+              },
+              {
+                "value": 3.4,
+                "cc": "BR"
+              },
+              {
+                "value": 3.2,
+                "cc": "IR"
+              }
+            ],
+            "subjectCc": "US",
+            "unit": "mbd"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE OIL ACTUALLY GOES",
+        "body": "Roughly 80% of crude transiting Hormuz is bound for Asia — China, India, Japan, South Korea. Very little reaches the United States anymore. The countries most exposed to a closure are precisely the manufacturing economies that compete with American exporters, which is what makes the disruption doubly advantageous for Washington.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "hormuz",
+                "label": "Hormuz"
+              },
+              {
+                "id": "china",
+                "label": "China"
+              },
+              {
+                "id": "india",
+                "label": "India"
+              },
+              {
+                "id": "japan",
+                "label": "Japan"
+              },
+              {
+                "id": "skorea",
+                "label": "South Korea"
+              },
+              {
+                "id": "otherasia",
+                "label": "Other Asia"
+              },
+              {
+                "id": "europe",
+                "label": "Europe"
+              },
+              {
+                "id": "americas",
+                "label": "Americas"
+              }
+            ],
+            "links": [
+              {
+                "source": "hormuz",
+                "target": "china",
+                "value": 5.5
+              },
+              {
+                "source": "hormuz",
+                "target": "india",
+                "value": 2.2
+              },
+              {
+                "source": "hormuz",
+                "target": "japan",
+                "value": 2.6
+              },
+              {
+                "source": "hormuz",
+                "target": "skorea",
+                "value": 2
+              },
+              {
+                "source": "hormuz",
+                "target": "otherasia",
+                "value": 3.5
+              },
+              {
+                "source": "hormuz",
+                "target": "europe",
+                "value": 2
+              },
+              {
+                "source": "hormuz",
+                "target": "americas",
+                "value": 1
+              }
+            ],
+            "label": "Hormuz crude by destination (mbd, approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "ROSNEFT'S OWN BACK DOOR",
+        "body": "Sechin's argument flatters his own balance sheet. Rosneft moves most of its crude through Baltic ports, the Black Sea, and a Pacific pipeline to China — none of which touch Hormuz. A Gulf closure that strands Saudi and Iranian barrels would lift the price of Russian oil that flows out unimpeded.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Pacific outlet is the **ESPO** pipeline, terminating at Kozmino on the Sea of Japan — it sends Siberian crude straight to Chinese and East Asian buyers, bypassing the Gulf entirely."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked more than 400 commercial ships in the Gulf. Prices jumped, then markets adapted — tankers were reflagged and escorted by warships, and flows continued. The lesson for planners: disruption is far easier to threaten than to sustain, and the price spike often fades faster than the windfall-takers hope.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "During the 1980s Tanker War, what happened to oil prices after hundreds of ships were hit in the Gulf?",
+            "options": [
+              "They spiked briefly, then markets adapted and flows continued",
+              "They collapsed because demand vanished",
+              "They quadrupled and stayed there for a decade",
+              "They were unaffected — no ships were actually sunk"
+            ],
+            "correct": 0,
+            "explanation": "Reflagging and naval escorts kept oil moving; the spike faded within months, showing disruption is easier to threaten than to sustain."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-06T17:34:06.984Z",
+    "label": "Why a Gulf War Pays Texas",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-06-nta-neet-ug-retest-leak-claims-denial": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FUNNEL",
+        "body": "NEET-UG is the single gateway to every medical seat in India. Roughly 2.3 million students sit it each year for about 110,000 MBBS seats — a contest where one mark separates thousands of ranks. That density of stakes is what makes a leaked paper worth a fortune.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Applicants",
+                "value": "~2.3M",
+                "tone": "neutral",
+                "weight": 2300
+              },
+              {
+                "label": "MBBS seats",
+                "value": "~110k",
+                "tone": "unfavorable",
+                "weight": 110
+              }
+            ],
+            "label": "NEET-UG: applicants vs seats"
+          }
+        ]
+      },
+      {
+        "heading": "THE SINGLE POINT OF FAILURE",
+        "body": "Before 2017 each medical college or state ran its own admissions. The National Testing Agency was created to consolidate them into one nationwide exam. Centralization cut duplication — but it also turned one question paper into a target whose compromise corrupts the entire country's admissions at once.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A teacher's syndicate sold papers for **₹10 lakh** — about **$12,000**, less than a year of a junior doctor's pay, for a seat worth a lifetime of earnings. The *arbitrage* is the whole problem: the price of cheating is trivial against the value of the prize."
+          }
+        ]
+      },
+      {
+        "heading": "THE VYAPAM PRECEDENT",
+        "body": "India's exam-fraud playbook was written in Madhya Pradesh. The Vyapam scam — rigged medical and government-job entrance tests run for years through impersonators and bribed officials — became infamous not just for its scale but because dozens of accused, witnesses, and investigators died under unexplained circumstances before trials concluded.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2013",
+                "label": "Vyapam scam exposed (Madhya Pradesh)"
+              },
+              {
+                "year": "2015",
+                "label": "Mysterious deaths; CBI takes over",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "NEET-UG paper leak; Supreme Court intervenes"
+              },
+              {
+                "year": "2026",
+                "label": "May exam cancelled; June 21 retest"
+              }
+            ],
+            "label": "India's exam-fraud arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE PAPER, NOT THE PERSON",
+        "body": "Indian leak rings have evolved from impersonation and seat-blocking toward stealing the question paper itself, then drilling answers into paying students hours before the exam. It scales: one breach can serve hundreds of buyers across cities, which is why prosecutors chase the printing-and-transport chain, not individual cheaters.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is a leaked NEET paper so much more damaging than an individual cheating?",
+            "options": [
+              "It can be sold to hundreds of candidates at once, distorting the whole national rank list",
+              "It changes the exam's difficulty for everyone",
+              "It forces colleges to add more seats",
+              "It is harder to detect than impersonation"
+            ],
+            "correct": 0,
+            "explanation": "A single stolen paper serves many buyers simultaneously, so one breach corrupts the unified national ranking that decides every seat."
+          }
+        ]
+      },
+      {
+        "heading": "WHY RETESTS DON'T FIX IT",
+        "body": "Cancelling and re-running an exam restores fairness for one cycle but leaves the incentive structure untouched: too many aspirants, too few seats, and a low cost of corruption. Until the seat scarcity or the centralized single-paper design changes, each retest is a patch over a recurring fault, not a cure."
+      }
+    ],
+    "generatedAt": "2026-06-06T17:34:46.448Z",
+    "label": "NEET & India's Exam Economy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-06-pentagon-israel-espionage-threat-critical": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE POLLARD RUPTURE",
+        "body": "The deepest scar in US-Israel intelligence relations is Jonathan Pollard, a US Navy analyst who passed Israel a volume of classified material reportedly stacking room-high between 1984 and 1985. He got life. Israel denied he was a state agent for over a decade, then granted him citizenship — and finally welcomed him to Jerusalem in 2020.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What ultimately happened to Jonathan Pollard, the US analyst who spied for Israel?",
+            "options": [
+              "Executed for treason in the 1990s",
+              "Paroled in 2015, then emigrated to Israel as a citizen",
+              "Exchanged in a spy swap within a year",
+              "Pardoned and reinstated in the US Navy"
+            ],
+            "correct": 1,
+            "explanation": "Pollard served 30 years, was paroled in 2015, and moved to Israel in 2020 — having been granted Israeli citizenship years earlier."
+          }
+        ]
+      },
+      {
+        "heading": "THE ALLY PARADOX",
+        "body": "Counterintelligence does not rank threats by friendship — it ranks them by capability and intent. A capable ally with divergent interests can be a higher collection threat than a hostile state with poor tradecraft, because the ally enjoys access the adversary never gets: shared bases, joint programs, liaison meetings.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine is blunt: there are *friendly governments*, but **there are no friendly intelligence services.** Allied liaison is itself a collection channel — every shared secret is also a sample of what you know and how you know it."
+          }
+        ]
+      },
+      {
+        "heading": "A RECURRING FILE",
+        "body": "This is not a first offense but a pattern the FBI has worked for decades. The USS Liberty strike in 1967, the Pollard case, the Lawrence Franklin / AIPAC leak prosecution in the 2000s, and now planted devices at DIA headquarters — each tested how much friction the 'special relationship' could absorb before going public.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1967",
+                "label": "USS Liberty attacked off Sinai"
+              },
+              {
+                "year": "1985",
+                "label": "Pollard arrested",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2005",
+                "label": "Franklin / AIPAC leak case"
+              },
+              {
+                "year": "2021",
+                "label": "Listening devices at DIA HQ"
+              },
+              {
+                "year": "2026",
+                "label": "Pentagon: 'critical' spy threat"
+              }
+            ],
+            "label": "the espionage file"
+          }
+        ]
+      },
+      {
+        "heading": "THE PEOPLE BEHIND THE CASES",
+        "body": "The damaging breaches were rarely run by professional officers under embassy cover — they ran through US insiders with clearances and ideological or financial motives. That is what makes allied collection so hard to stop: the asset is your own analyst.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Jonathan Pollard",
+                "role": "US Navy intelligence analyst",
+                "years": "1984–1985",
+                "cc": "US"
+              },
+              {
+                "name": "Lawrence Franklin",
+                "role": "Pentagon Iran-desk analyst",
+                "years": "2003–2004",
+                "cc": "US"
+              },
+              {
+                "name": "Ben-Ami Kadish",
+                "role": "US Army engineer",
+                "years": "1979–1985",
+                "cc": "US"
+              }
+            ],
+            "label": "US insiders who passed secrets to Israel"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE TIMING IS THE STORY",
+        "body": "The restriction floated at CENTCOM lands while Washington runs Iran diplomacy. Intelligence shared with a partner can be re-shared, leaked, or used to sabotage a negotiation the partner opposes — so a counterintelligence downgrade is also a way to wall off a peace track from a state with its own agenda on Iran."
+      }
+    ],
+    "generatedAt": "2026-06-06T17:35:25.509Z",
+    "label": "Allied Espionage & US Counterintelligence",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-06-pti-pre-poll-rigging-gilgit-baltistan-polls": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TERRITORY WITH NO PROVINCE",
+        "body": "Gilgit-Baltistan is governed by Pakistan but has never been made a province. It sends no members to the National Assembly and is not named in the constitution. Its assembly was created by executive order, not constitutional amendment — which means Islamabad can rewrite the rules of its elections by decree.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1947",
+                "label": "Gilgit Scouts revolt, join Pakistan"
+              },
+              {
+                "year": "1949",
+                "label": "Karachi Agreement: direct federal rule",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2009",
+                "label": "Self-Governance Order: elected assembly"
+              },
+              {
+                "year": "2018",
+                "label": "GB Order tightens federal control"
+              },
+              {
+                "year": "2020",
+                "label": "'Provisional province' floated, stalls"
+              }
+            ],
+            "label": "from princely state to administrative limbo"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT WAS NEVER INTEGRATED",
+        "body": "Pakistan claims all of the former princely state of Jammu and Kashmir, whose final status is meant to be settled by a UN-mandated plebiscite. Formally absorbing Gilgit-Baltistan as a province would undercut that claim by treating disputed land as settled — so for over seventy years its people have been kept in a deliberate constitutional waiting room."
+      },
+      {
+        "heading": "THE COURT THAT ISN'T THERE",
+        "body": "A province has a High Court whose writ can halt or reverse a federal election order. Gilgit-Baltistan's top court is a creature of the same executive orders that run its politics, with no anchor in the constitution. A rigging complaint there cannot reach the Supreme Court the way a Punjab or Sindh case can — the appeal ladder simply ends short.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *pre-poll rigging* — not stuffing ballots on election day, but shaping the field beforehand: who controls the polling stations, which officials are posted where, whose candidates get harassed. Deploying **11,000 Punjab Police** to run booths is exactly this kind of pre-vote engineering."
+          }
+        ]
+      },
+      {
+        "heading": "THE NUMBERS BEHIND THE CLAIM",
+        "body": "Thirteen thousand outside officers for nine hundred thousand voters is one official for roughly every seventy registered voters — an extraordinary ratio for a territory with no recent record of poll violence. The PTI's argument is that a force that large is not securing an election but staffing it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't Gilgit-Baltistan's residents challenge a federal election decision in a provincial constitutional court?",
+            "options": [
+              "It has no province status, so no constitutionally-anchored High Court",
+              "Pakistan's constitution bars all election appeals",
+              "The region has no courts at all",
+              "Only the army may hear election cases there"
+            ],
+            "correct": 0,
+            "explanation": "Because GB is not a constitutional province, its courts derive from executive orders and lack the appeal route a provincial High Court would provide."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ISLAMABAD HOLDS ON",
+        "body": "Gilgit-Baltistan is the only land bridge between Pakistan and China. The Karakoram Highway and the China-Pakistan Economic Corridor run straight through it, crossing into Xinjiang at the Khunjerab Pass. A territory this strategically valuable is one the center prefers to govern directly, not hand to fully autonomous provincial politics.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "CN",
+              "IN",
+              "AF"
+            ],
+            "label": "the GB corridor",
+            "caption": "GB borders China, India's Kashmir, and Afghanistan's Wakhan",
+            "markers": [
+              {
+                "lat": 35.92,
+                "lng": 74.31,
+                "label": "Gilgit"
+              },
+              {
+                "lat": 36.85,
+                "lng": 75.42,
+                "label": "Khunjerab Pass (China)"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-06T17:36:07.210Z",
+    "label": "Gilgit-Baltistan's Constitutional Limbo",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-06-roll-contact-printing-nanowire-flexible-electronics": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ASSEMBLY PROBLEM",
+        "body": "A nanowire is grown vertically in a forest, but a device needs it lying flat, aligned, and spaced. The hard part of nanowire electronics has never been growing the wires — it is moving them onto a surface without scrambling their direction or crushing them."
+      },
+      {
+        "heading": "WHY LINE CONTACT BEATS A FLAT STAMP",
+        "body": "Conventional transfer presses a flat stamp down everywhere at once, so every wire feels the full peel stress simultaneously and many crack or shift. A roller touches along a single moving line, releasing the wires progressively — the same reason a rolling pin lifts dough more cleanly than a falling slab.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Density here is **14 wires per micrometre** — packing record-tight without the wires merging or snapping during the *peel*, which is the failure mode that has historically capped how dense printed arrays can go."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 4,000 A/W ACTUALLY MEANS",
+        "body": "Responsivity is output current per watt of incoming light. A normal photodiode tops out near 0.5 A/W because, at best, each photon frees one electron. A reading of 4,000 A/W means each absorbed photon is being counted thousands of times — the device has internal gain, not just detection.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "GaN UV diode",
+                "value": "~0.2 A/W",
+                "weight": 0.2,
+                "tone": "neutral"
+              },
+              {
+                "label": "Si photodiode",
+                "value": "~0.5 A/W",
+                "weight": 0.5,
+                "tone": "neutral"
+              },
+              {
+                "label": "ZnO nanowire",
+                "value": "4,000 A/W",
+                "weight": 4000,
+                "tone": "favorable"
+              }
+            ],
+            "label": "photodetector responsivity (A/W)"
+          },
+          {
+            "type": "quiz",
+            "question": "A photodiode frees at most one electron per photon (~0.5 A/W). How does the nanowire array reach 4,000 A/W?",
+            "options": [
+              "Photoconductive gain — one trapped charge lets many carriers recirculate",
+              "It emits extra photons internally",
+              "Superconductivity at room temperature",
+              "Measurement error from the flexible film"
+            ],
+            "correct": 0,
+            "explanation": "In a photoconductor, surface-trapped charge keeps a channel open so many electrons flow per absorbed photon — gain far above unity."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ZINC OXIDE FOR UV",
+        "body": "Zinc oxide has a wide bandgap of about 3.3 eV, which corresponds to a light cutoff around 375 nm — right at the edge of the ultraviolet. That means it ignores visible light and responds only to UV, making it a naturally 'solar-blind-ish' detector with no filter needed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A **3.3 eV** gap is the whole reason ZnO sees UV and not the room lights: only photons energetic enough to jump that gap register, so the material does the optical filtering for free."
+          }
+        ]
+      },
+      {
+        "heading": "THE FATIGUE TEST",
+        "body": "Surviving 5,000 bends at a 10mm radius is the metric that separates a lab curiosity from a wearable. Rigid silicon cracks at the first sharp fold; the engineering challenge in flexible electronics is keeping the conductive paths intact through tens of thousands of mechanical cycles, not just making them bend once."
+      },
+      {
+        "heading": "THE NEUROMORPHIC ENDGAME",
+        "body": "Dense, addressable nanowire grids are the physical substrate neuromorphic engineering wants — crossbar arrays where each junction stores and processes like a synapse, computing where the data sits instead of shuttling it to a separate processor. High-density printing is the manufacturing bottleneck standing between that idea and real hardware."
+      }
+    ],
+    "generatedAt": "2026-06-06T17:36:48.280Z",
+    "label": "Nanowire Transfer Printing",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-06-trump-pardons-buyer-insider-trading": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARDON POWER",
+        "body": "The Constitution gives the president an almost unlimited power to forgive federal crimes — no Senate vote, no court review, no stated reason required. It is the closest thing to a monarchical prerogative the founders kept, and they kept it deliberately, as a check against rigid law.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "he shall have Power to grant Reprieves and Pardons for Offences against the United States, except in Cases of Impeachment",
+            "speaker": "US Constitution, Article II §2"
+          }
+        ]
+      },
+      {
+        "heading": "THE MISAPPROPRIATION THEORY",
+        "body": "Buyer wasn't a Sprint insider — he was a consultant. The law that catches him is the misappropriation theory, blessed by the Supreme Court in United States v. O'Hagan (1997): trading on confidential information you obtained in a position of trust is fraud against the source of that information, even if you owe no duty to the company whose stock you traded.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The older *classical theory* only reached corporate insiders and tippees. **Misappropriation** widened the net to lawyers, consultants, printers — anyone who *steals* information entrusted to them and trades on it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE MERGER MOVED THE STOCK",
+        "body": "Acquirers almost always pay a premium over market price to win shareholder approval, so the target's stock jumps the instant a deal is announced. Knowing a merger is coming is a near-certain bet — which is exactly why advance knowledge of one is the classic insider-trading setup."
+      },
+      {
+        "heading": "WHAT A PARDON CANNOT TOUCH",
+        "body": "A pardon wipes the federal criminal conviction and its penalties — but it stops there. It cannot erase state charges, and it does not undo the SEC's separate civil case: the disgorgement of profits and the fines live in a different legal universe from the criminal sentence.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "A presidential pardon for federal securities fraud erases which of these?",
+            "options": [
+              "The federal criminal conviction and sentence",
+              "SEC civil penalties and disgorgement of profits",
+              "Any related state-level charges",
+              "All of the above"
+            ],
+            "correct": 0,
+            "explanation": "The pardon power reaches only federal crimes — SEC civil penalties and state prosecutions survive it entirely."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Controversial pardons are a bipartisan American tradition. Ford pardoned Nixon before any charge was even filed; Clinton pardoned a fugitive financier on his last day in office. Each provoked a furor, and each survived — because the power has almost no legal limit, only a political one.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Richard Nixon",
+                "role": "pardoned by Ford pre-charge",
+                "years": "1974",
+                "cc": "US"
+              },
+              {
+                "name": "Marc Rich",
+                "role": "fugitive financier, last-day pardon",
+                "years": "2001",
+                "cc": "US"
+              },
+              {
+                "name": "Steve Buyer",
+                "role": "ex-congressman, insider trading",
+                "years": "2026",
+                "cc": "US"
+              }
+            ],
+            "label": "pardons that drew fire"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-06T17:37:30.743Z",
+    "label": "The Pardon Power & Insider Trading",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-06-us-doctor-ebola-bundibugyo-recovery-charite": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "EBOLA IS NOT ONE VIRUS",
+        "body": "Ebola is a genus, not a single pathogen. Six species are recognized; four sicken humans. Bundibugyo was the newest discovered — isolated in 2007 from an outbreak in Uganda's Bundibugyo District, which is how it got its name.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "The Bundibugyo strain of Ebola takes its name from what?",
+            "options": [
+              "A district in Uganda where it was first identified in 2007",
+              "The scientist who first isolated it",
+              "A species of fruit bat that carries it",
+              "A river in the Democratic Republic of the Congo"
+            ],
+            "correct": 0,
+            "explanation": "Ebola species are conventionally named for the place of first detection — Zaire, Sudan, Taï Forest, Reston, and Bundibugyo."
+          }
+        ]
+      },
+      {
+        "heading": "THE FATALITY GAP",
+        "body": "The species differ enormously in lethality. The Zaire strain has killed up to 90% in some outbreaks; Bundibugyo's case fatality has run closer to a third. The strain you catch matters as much as the care you get.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Zaire",
+                "value": "~50–90%",
+                "tone": "unfavorable",
+                "weight": 70
+              },
+              {
+                "label": "Sudan",
+                "value": "~50%",
+                "tone": "unfavorable",
+                "weight": 50
+              },
+              {
+                "label": "Bundibugyo",
+                "value": "~30%",
+                "tone": "neutral",
+                "weight": 30
+              },
+              {
+                "label": "Taï Forest",
+                "value": "~0% (1 case)",
+                "tone": "favorable",
+                "weight": 1
+              }
+            ],
+            "label": "Ebola species, approx. case fatality"
+          }
+        ]
+      },
+      {
+        "heading": "THE REAL DISPARITY",
+        "body": "The article's hard truth is structural: the same Bundibugyo strain is far more survivable for an evacuated patient than for villagers facing it locally. The virus didn't change between Berlin and East Africa — the infrastructure did.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CD",
+              "UG",
+              "DE"
+            ],
+            "label": "from the outbreak zone to Charité",
+            "caption": "Same strain, two outcomes — set by where you are treated.",
+            "markers": [
+              {
+                "lat": 0.7117,
+                "lng": 30.0625,
+                "label": "Bundibugyo, Uganda"
+              },
+              {
+                "lat": 52.5263,
+                "lng": 13.3766,
+                "label": "Charité, Berlin"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT ACTUALLY SAVES LIVES",
+        "body": "There is no single cure for every Ebola species; the antibody therapies approved so far target the Zaire strain. For most patients, survival turns on aggressive supportive care — intravenous fluids, electrolyte correction, and organ support that replace what the hemorrhagic illness drains away.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Ebola kills largely through *fluid and electrolyte collapse* — relentless vomiting and diarrhea, not the cinematic bleeding. A ward that can run **continuous IV rehydration** converts a death sentence into a survivable illness."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHARITÉ",
+        "body": "Treating Ebola safely requires a high-level isolation unit: sealed negative-pressure rooms, dedicated staff in full protective gear, and on-site labs so blood never leaves containment. Only a handful of such beds exist worldwide, almost all in wealthy countries — which is why cross-continent medical evacuations like this one are rare and expensive.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Charité traces its lineage to **1710**, founded as a plague quarantine house outside Berlin's walls. Three centuries on, its mission is unchanged — isolating the contagious from the city behind it."
+          }
+        ]
+      },
+      {
+        "heading": "THE RESERVOIR",
+        "body": "Between outbreaks the virus is thought to hide in fruit bats, which carry filoviruses without falling ill. Human epidemics begin with a single spillover — a hunted animal, a contaminated forest site — then spread person-to-person through bodily fluids, which is why funerals and caregivers drive transmission."
+      }
+    ],
+    "generatedAt": "2026-06-06T17:38:13.415Z",
+    "label": "Bundibugyo Ebola & High-Containment Care",
+    "category": "science",
+    "articleCount": 1
   }
 }
