@@ -316122,5 +316122,1294 @@
     "label": "Bundibugyo Ebola & High-Containment Care",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-06-05-claude-ai-code-quality-rsync-bug-analysis": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PERMUTATION TEST",
+        "body": "Rather than assume bug data follows a bell curve, a permutation test shuffles the labels — 'AI-assisted' versus 'human' — thousands of times and asks how often pure chance produces a gap as large as the one observed. If chance reproduces it often, the gap means nothing. It makes almost no assumptions about the data, which is why it survives the skewed, lumpy distributions that real defect records always have.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A *permutation test* builds its own **null distribution** by reshuffling labels — so it needs no assumption that the data is bell-shaped, which bug counts never are."
+          },
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Permutation",
+                "value": "no assumptions",
+                "tone": "favorable"
+              },
+              {
+                "label": "t-test",
+                "value": "assumes normal",
+                "tone": "neutral"
+              },
+              {
+                "label": "Bootstrap",
+                "value": "resamples data",
+                "tone": "neutral"
+              }
+            ],
+            "label": "ways to test for a difference"
+          }
+        ]
+      },
+      {
+        "heading": "WHY WEIGHT BY SEVERITY",
+        "body": "Counting incidents treats a cosmetic typo and a remote-code-execution hole as one bug each. Weighting by severity lets a single critical defect outweigh dozens of trivial ones — the honest way to ask whether the code is more dangerous, not merely noisier. The choice of weights is itself an editorial decision that can move the result.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why weight bugs by severity instead of just counting incidents?",
+            "options": [
+              "A typo and a security hole shouldn't count the same",
+              "Counting bugs is computationally expensive",
+              "Severity data is easier to collect than raw counts"
+            ],
+            "correct": 0,
+            "explanation": "Raw counts treat trivial and critical defects as equal; severity weighting asks whether the code is more dangerous, not just noisier."
+          }
+        ]
+      },
+      {
+        "heading": "THE ATTRIBUTION VOID",
+        "body": "There is no ground-truth label marking a given bug as AI-caused. Commits blend human edits with AI suggestions, and severity is assigned after the fact by people who already know which commits were AI-assisted. Without an agreed standard for attribution, every study of this kind is provisional by construction — which is exactly what the authors concede.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "There is no **ground-truth label** marking a commit's bug as AI-caused — which is why the authors call the finding *provisional* rather than settled."
+          }
+        ]
+      },
+      {
+        "heading": "ABSENCE OF EVIDENCE",
+        "body": "'No statistical outlier' is not 'AI writes safe code.' A small sample and a null result mean the test failed to detect a difference — which is logically distinct from proving none exists. Underpowered tests fail to reject the null by default, so a clean bill of health can simply mean there wasn't enough data to find anything."
+      },
+      {
+        "heading": "WHY RSYNC IS A FAIR TESTBED",
+        "body": "rsync is roughly 30-year-old security-critical C, synchronizing files over SSH across millions of servers. Its delta-transfer algorithm is genuinely subtle and its historical CVEs — path traversal, buffer overflows — sit at the high-severity end. If AI assistance were quietly introducing danger, a codebase this old, this exposed, and this unforgiving is where the signal would surface first.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "rsync's edge is the **delta-transfer algorithm**: it sends only the *changed* blocks of a file by exchanging rolling checksums — elegant, and historically a rich source of subtle memory bugs."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-06T22:31:42.548Z",
+    "label": "Testing for an AI Bug Signal",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-06-bangladesh-migrant-smuggling-economy-libya-europe": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE DETOUR THROUGH LIBYA",
+        "body": "Bangladesh has no land or sea route to Europe, so the corridor runs the wrong direction first: workers fly to the Gulf on legitimate labor visas, then move overland to Libya, where a collapsed state means no functioning coast guard. Libya is not a destination — it is the only launch point on the southern Mediterranean where smugglers operate with impunity.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BD",
+              "SA",
+              "LY",
+              "IT"
+            ],
+            "label": "Dhaka to Lampedusa, the long way",
+            "markers": [
+              {
+                "lat": 32.8872,
+                "lng": 13.1913,
+                "label": "Tripoli"
+              },
+              {
+                "lat": 35.5,
+                "lng": 12.6,
+                "label": "Lampedusa"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY ENFORCEMENT RAISES THE PRICE",
+        "body": "Border crackdowns rarely shrink smuggling — they consolidate it. Tighter enforcement prices out amateurs, hands the route to organized networks that can bribe and bypass it, and lets survivors charge a scarcity premium. A $12,915 fare is not a market failure; it is the enforcement cost passed to the migrant. This is the same dynamic that turned alcohol Prohibition and the drug war into cartel businesses.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call it the **balloon effect**: squeeze one route and the flow bulges into another, costlier one — the volume bends, the price rises, the trade never stops."
+          }
+        ]
+      },
+      {
+        "heading": "THE REMITTANCE ENGINE",
+        "body": "Bangladesh runs on labor export — remittances are among its largest sources of foreign currency, rivaling the garment trade. A depreciating taka makes a dollar wired home worth more in local terms every year, which is precisely why a family will mortgage land to send one son abroad. The smuggling fare is a leveraged bet on that exchange rate.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              123.098174,
+              122.689204,
+              122.37717,
+              122.37717,
+              122.958616,
+              122.941176,
+              122.750926,
+              122.797769,
+              122.797769,
+              122.986257,
+              122.986257,
+              122.884563,
+              122.775325,
+              122.938183,
+              122.860795,
+              122.945161,
+              122.787401,
+              122.465659,
+              122.756259,
+              122.814773,
+              122.958968,
+              122.704238,
+              122.760854,
+              122.760854,
+              122.760854,
+              122.910954,
+              122.739352,
+              122.726692,
+              122.935959,
+              122.779727
+            ],
+            "periods": [
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6"
+            ],
+            "label": "Bangladesh taka",
+            "unit": "BDT / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHO TOPS THE CROSSINGS",
+        "body": "Bangladesh's third-place ranking for irregular Mediterranean arrivals in 2022 is the surprise on the list — the other top nationalities are from countries bordering the sea or in active conflict. Bangladeshis travel farther, and pay more, than almost anyone on the route.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Bangladesh ranked third for irregular Central Mediterranean arrivals in 2022. What makes that striking?",
+            "options": [
+              "It is thousands of km from the Mediterranean, unlike the other top nationalities",
+              "Bangladesh borders the Mediterranean Sea",
+              "Bangladesh was in active civil war",
+              "Bangladeshis travel only by land"
+            ],
+            "correct": 0,
+            "explanation": "Most top-ranked nationalities are from the Maghreb or conflict zones near the sea; Bangladeshis fly to the Gulf first, then cross, making it the longest paid route on the list."
+          }
+        ]
+      },
+      {
+        "heading": "THE FLOW OF MONEY",
+        "body": "The fare is not one payment — it is harvested in stages by a chain of brokers, each taking a cut as the migrant moves from a Dhaka recruiter to a Gulf handler to a Libyan militia controlling the beach. The $190m corridor is the sum of these tolls, and the most dangerous leg — the boat — is the cheapest to provide.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "migrant",
+                "label": "Migrant family"
+              },
+              {
+                "id": "dhaka",
+                "label": "Dhaka recruiter"
+              },
+              {
+                "id": "gulf",
+                "label": "Gulf handler"
+              },
+              {
+                "id": "libya",
+                "label": "Libyan militia"
+              },
+              {
+                "id": "boat",
+                "label": "Boat operator"
+              }
+            ],
+            "links": [
+              {
+                "source": "migrant",
+                "target": "dhaka",
+                "value": 13,
+                "label": "fare"
+              },
+              {
+                "source": "dhaka",
+                "target": "gulf",
+                "value": 8
+              },
+              {
+                "source": "gulf",
+                "target": "libya",
+                "value": 5
+              },
+              {
+                "source": "libya",
+                "target": "boat",
+                "value": 2
+              }
+            ],
+            "label": "where a crossing fare goes"
+          }
+        ]
+      },
+      {
+        "heading": "LIBYA AS A BLACK HOLE",
+        "body": "Since the 2011 fall of Gaddafi, Libya has had rival governments and no single authority over its coast. The EU's response was to fund and train the Libyan Coast Guard to intercept boats and return migrants to detention centers — outsourcing its border to militias documented for extortion and abuse. The crossing's brutality is partly a product of the deterrence policy meant to stop it."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-06"
+    ],
+    "generatedAt": "2026-06-06T22:32:18.427Z",
+    "label": "The Smuggling Economy",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-06-fallow-deer-ancient-dna-genetic-diversity-loss": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "When a population crashes to a handful of survivors, most of its genetic variation vanishes with the individuals that died. The variation does not come back when numbers recover — new diversity only accumulates by mutation, at a glacial pace. A species can be abundant today and still carry the genetic poverty of an ancient near-extinction.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "A species recovers to millions of individuals after a past population crash. What happens to its genetic diversity?",
+            "options": [
+              "It rebounds with the population size",
+              "It stays low — lost variation only returns via slow mutation",
+              "It increases beyond the original level"
+            ],
+            "correct": 1,
+            "explanation": "Population size and genetic diversity decouple: numbers recover fast, but lost alleles return only through mutation over many thousands of years."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DIVERSITY IS INSURANCE",
+        "body": "Natural selection can only act on variation that already exists. A genetically diverse population holds many versions of each gene, so when the environment shifts, some variant is likely to cope. A uniform population has nothing for selection to favor — it must wait for a lucky new mutation, which usually arrives too late.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical measure is *heterozygosity* — how often an individual carries two different versions of a gene. Low heterozygosity means a population is genetically **monotonous**, and monotony is fragile."
+          }
+        ]
+      },
+      {
+        "heading": "HOW ANCIENT DNA SURVIVES",
+        "body": "DNA shatters into ever-shorter fragments after death; heat and water accelerate the decay. Cool, stable, dry burial is what lets 120,000-year-old sequences survive at all. Researchers reassemble the species' genome from millions of tiny degraded reads, then compare it to living animals to measure what was lost."
+      },
+      {
+        "heading": "THE REFUGIA STORY",
+        "body": "As Ice Age glaciers advanced, warmth-loving fallow deer were squeezed out of northern Europe into pockets of survival in the eastern Mediterranean and Anatolia. Modern European populations descend not from the diverse Ice Age herds but from small groups that humans — Romans, then Normans — later carried back north and west. Today's deer are the genetic remnant of those founders.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TR",
+              "GR",
+              "IT",
+              "DE"
+            ],
+            "label": "glacial refugia and the recolonized range",
+            "caption": "Warm-climate species rode out glaciations in southern refuges, then humans redistributed the survivors"
+          }
+        ]
+      },
+      {
+        "heading": "THE FOUNDER EFFECT",
+        "body": "When a new population starts from a few individuals, it captures only the slice of variation those founders happened to carry. Human translocation of fallow deer — moving dozens of animals to stock a park or island — is a founder event in miniature, stacking bottleneck on bottleneck until the living species holds a fraction of its ancestors' genes."
+      },
+      {
+        "heading": "THE CLIMATE DOUBLE BIND",
+        "body": "The same forces that stripped the diversity — climate swings and human hunting — are intensifying again. A species needs genetic variation most precisely when the climate shifts fastest, and that is exactly the reserve the past 120,000 years spent down. Low diversity is not just a historical scar; it is a constraint on whether the species can adapt to what comes next."
+      }
+    ],
+    "generatedAt": "2026-06-06T22:33:06.929Z",
+    "label": "Genetic Bottlenecks & Lost Diversity",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-06-google-spacex-920m-monthly-compute-deal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BUILD-VS-RENT MATH",
+        "body": "At $920m a month, the contract runs near $11bn a year — roughly the cost of building a large data center campus from scratch. The difference is time: a new campus takes two to three years to power and fill, and Gemini's demand is now. Renting converts a multi-year capital project into a monthly bill you can switch off.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The deal leases **~110,000 GPUs** for **$920m/month** — about **$8,400 per GPU per month**, several times the hardware's own monthly depreciation. You pay that premium for capacity that already exists and is already plugged into power."
+          }
+        ]
+      },
+      {
+        "heading": "THE REAL BOTTLENECK IS POWER",
+        "body": "The scarce resource in AI is not chips — it is electricity and the grid connection to deliver it. A campus of this size draws hundreds of megawatts, and utility interconnection queues in the US now run multiple years. Whoever already holds powered, energized capacity holds the leverage, which is why renting it commands a premium.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What most often limits how fast a hyperscaler can expand AI compute?",
+            "options": [
+              "Supply of GPU chips",
+              "Grid power and interconnection",
+              "Software engineers",
+              "Cooling water"
+            ],
+            "correct": 1,
+            "explanation": "Chips can be bought faster than utilities can deliver hundreds of megawatts; multi-year interconnection queues are the binding constraint."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GOOGLE RENTS NVIDIA AT ALL",
+        "body": "Google designs its own AI accelerators (TPUs) and runs much of Gemini on them. Leasing a third party's GPUs anyway signals that demand has outrun even its in-house silicon — and that many models and tools are still written against Nvidia's CUDA software stack, which TPUs cannot run.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Google's own chips are **TPUs**; the rented fleet is almost certainly **Nvidia GPUs**. The lock-in is software: years of AI code is written for **CUDA**, Nvidia's proprietary stack, which does not run on rival silicon."
+          }
+        ]
+      },
+      {
+        "heading": "THE CAPEX ARMS RACE",
+        "body": "Annual capital spending by the biggest cloud and AI firms has exploded past the budgets of most national governments. An $11bn/year lease is large but sits inside a far larger industry-wide build-out, where the players are racing to lock down compute before rivals do.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Amazon",
+                "value": "~$100bn",
+                "weight": 100,
+                "cc": "US"
+              },
+              {
+                "label": "Microsoft",
+                "value": "~$80bn",
+                "weight": 80,
+                "cc": "US"
+              },
+              {
+                "label": "Google",
+                "value": "~$75bn",
+                "weight": 75,
+                "cc": "US"
+              },
+              {
+                "label": "Meta",
+                "value": "~$65bn",
+                "weight": 65,
+                "cc": "US"
+              }
+            ],
+            "label": "annual capex, big-tech (2025 est.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE EXIT CLAUSE MATTERS",
+        "body": "Either party can walk after December 2026 — barely two months into a contract nominally running to 2029. In a market where accelerator generations turn over roughly yearly, locking in three years of fixed-price hardware is a bet on prices and performance staying put. The break clause is the hedge against being stranded on yesterday's chips.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2026-10",
+                "label": "Contract begins",
+                "emphasis": "start"
+              },
+              {
+                "year": "2026-12",
+                "label": "First exit window",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2029-06",
+                "label": "Nominal end",
+                "emphasis": "end"
+              }
+            ],
+            "label": "the contract's shape"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-06T22:33:52.022Z",
+    "label": "The Economics of AI Compute",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-06-israeli-strikes-kill-lebanese-army-brigadier-general": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ARMY IS NOT HEZBOLLAH",
+        "body": "The Lebanese Armed Forces are the state's official military, distinct from Hezbollah's parallel militia. The LAF is a US-funded, multi-confessional institution Washington has spent over $3bn equipping precisely as a counterweight to Hezbollah. Killing one of its generals strikes the very force Western policy wants to strengthen.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: the **LAF** answers to Beirut's cabinet, while *Hezbollah* answers to its own command and Tehran. The 2024 ceasefire tasks the LAF — not Hezbollah — with deploying south of the Litani."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 1701 ACTUALLY SAYS",
+        "body": "UN Security Council Resolution 1701 ended the 2006 war. It demands a zone free of armed groups other than the LAF and UNIFIL between the Blue Line and the Litani River. Crucially, it never created an enforcement mechanism — it relies on each party choosing to comply.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Resolution 1701 requires the area south of which river to be free of forces other than the LAF and UN peacekeepers?",
+            "options": [
+              "The Litani",
+              "The Orontes",
+              "The Jordan",
+              "The Awali"
+            ],
+            "correct": 0,
+            "explanation": "1701 designates the zone between the Blue Line and the Litani River as off-limits to all armed groups except the Lebanese army and UNIFIL."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLUE LINE",
+        "body": "The strike hit the Khardali-Nabatieh road, just north of the Blue Line — the UN-drawn line of Israeli withdrawal from 2000, which is not a recognized border but a line of separation. UNIFIL patrols it; both sides routinely contest where it actually runs.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL",
+              "SY"
+            ],
+            "label": "the southern theater",
+            "caption": "Strike zone sits north of the Blue Line, inside the 1701 buffer",
+            "markers": [
+              {
+                "lat": 33.3789,
+                "lng": 35.4839,
+                "label": "Nabatieh"
+              },
+              {
+                "lat": 33.3117,
+                "lng": 35.5106,
+                "label": "Khardali crossing"
+              },
+              {
+                "lat": 33.2706,
+                "lng": 35.2039,
+                "label": "Tyre (UNIFIL HQ area)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "A PERPETUAL FRONTLINE",
+        "body": "South Lebanon has been a buffer, occupation zone, and battleground without pause since 1978. The geography that makes it a buffer for Israel makes it a permanent frontline for Lebanon — every demilitarization scheme has eventually collapsed back into conflict.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1978",
+                "label": "First Israeli invasion; UNIFIL created"
+              },
+              {
+                "year": "1982",
+                "label": "Siege of Beirut",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2000",
+                "label": "Israeli withdrawal; Blue Line drawn"
+              },
+              {
+                "year": "2006",
+                "label": "July War; Resolution 1701"
+              },
+              {
+                "year": "2024",
+                "label": "Israel–Hezbollah ceasefire"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1982",
+                "to": "2000",
+                "label": "Israeli occupation of the south",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "south Lebanon's recurring war"
+          }
+        ]
+      },
+      {
+        "heading": "THE ENFORCEMENT GAP",
+        "body": "UNIFIL can observe and report a 1701 violation but cannot compel withdrawal — its mandate is to monitor, not to police a sovereign army. Lebanon, militarily a fraction of Israel's strength and politically fractured, has no instrument to force a pullout. The resolution's weakness is structural, not accidental."
+      }
+    ],
+    "generatedAt": "2026-06-06T22:34:22.466Z",
+    "label": "The LAF & Resolution 1701",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-06-jet-fuel-costs-airline-failures-consolidation-iata": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE THIN-MARGIN BUSINESS",
+        "body": "Airlines are one of the lowest-margin industries on earth — IATA's own figures put the global net margin at roughly 3%, or a few dollars per passenger. A business that keeps three cents of every revenue dollar has no cushion when a major input price jumps.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Fuel",
+                "value": 30,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Labor",
+                "value": 30,
+                "tone": "neutral"
+              },
+              {
+                "label": "Aircraft lease/ownership",
+                "value": 15,
+                "tone": "favorable"
+              },
+              {
+                "label": "Maintenance",
+                "value": 10,
+                "tone": "favorable"
+              },
+              {
+                "label": "Airport & nav fees",
+                "value": 8,
+                "tone": "favorable"
+              },
+              {
+                "label": "Other",
+                "value": 7,
+                "tone": "favorable"
+              }
+            ],
+            "label": "airline operating costs (typical mix)"
+          }
+        ]
+      },
+      {
+        "heading": "THE CRACK SPREAD",
+        "body": "Jet fuel is not crude — it is a refined product, and its price tracks the 'crack spread,' the margin refiners earn turning a barrel of oil into kerosene. When a supply shock hits a refining region, jet fuel can spike faster and further than crude itself, because the bottleneck is refining capacity, not the raw barrel.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The *crack spread* is why fuel shortages can follow an oil shock even when crude supply is adequate — the constraint is the refinery, not the wellhead."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BUDGET CARRIERS BREAK FIRST",
+        "body": "Low-cost carriers strip out everything but the seat, so fuel becomes a far larger share of their costs than for full-service rivals. They also lack a premium cabin — where legacy airlines earn most of their profit on a handful of front-of-plane seats. When fuel rises, the budget carrier has no high-margin revenue to absorb it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Full-service",
+                "value": "~25%",
+                "tone": "neutral",
+                "weight": 25
+              },
+              {
+                "label": "Ultra-low-cost",
+                "value": "~40%",
+                "tone": "unfavorable",
+                "weight": 40
+              }
+            ],
+            "label": "fuel as share of operating cost"
+          }
+        ]
+      },
+      {
+        "heading": "THE HEDGING GAMBLE",
+        "body": "Airlines buy fuel forward — locking in prices months ahead to smooth out spikes. But hedging is a bet: Southwest's aggressive hedges saved it billions in the 2008 oil run-up, then cost it dearly when prices later collapsed. A carrier with a weak balance sheet often cannot afford to hedge at all, leaving it fully exposed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are ultra-low-cost carriers more exposed to a fuel-price spike than legacy airlines?",
+            "options": [
+              "They fly older, thirstier aircraft",
+              "Fuel is a larger cost share and they lack premium-cabin profit to absorb it",
+              "They are barred from hedging fuel",
+              "They fly only long-haul routes"
+            ],
+            "correct": 1,
+            "explanation": "Stripping out everything but the seat makes fuel a bigger slice of costs, and with no premium cabin there is no high-margin revenue to cushion the shock."
+          }
+        ]
+      },
+      {
+        "heading": "CONSOLIDATION IS THE DEFAULT ENDING",
+        "body": "Failing airlines rarely vanish cleanly — their valuable assets (slots, gates, route authorities) get absorbed by stronger rivals in bankruptcy. US deregulation in 1978 unleashed dozens of carriers; waves of failures and mergers left four airlines controlling roughly 80% of the domestic market today. A fuel shock accelerates a consolidation that the economics push toward anyway.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The prize in an airline collapse is rarely the planes — it is the **slots and gates**, the near-irreversible incumbency that a healthy competitor cannot otherwise buy."
+          }
+        ]
+      },
+      {
+        "heading": "THE INDUSTRY VOICE",
+        "body": "IATA is the trade body for some 300 airlines carrying the vast majority of global air traffic. Its director general Willie Walsh is no neutral observer — he ran British Airways through the 2008 crisis and built the IAG group by acquiring weaker carriers, so his prediction of more failures comes from a practitioner of exactly that playbook.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Willie Walsh",
+                "role": "IATA director general",
+                "years": "2021–",
+                "cc": "IE"
+              },
+              {
+                "name": "Willie Walsh",
+                "role": "Built IAG via acquisitions",
+                "years": "2011–2020",
+                "cc": "GB"
+              }
+            ],
+            "label": "the voice and the body"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-06T22:35:01.491Z",
+    "label": "Airline Economics & Fuel Shocks",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-06-maternal-multivitamin-preterm-birth-cohort-study": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE REVERSE-CAUSATION TRAP",
+        "body": "The study's own authors flag the likeliest explanation: women who feel unwell, have chronic conditions, or are flagged as high-risk are exactly the women told to take supplements. The vitamins may be a marker of an at-risk pregnancy, not its cause — the effect runs backward from the arrow the headline implies.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "A study finds multivitamin users have more preterm births. What is the most likely non-causal explanation?",
+            "options": [
+              "Sicker, higher-risk mothers are the ones told to supplement",
+              "Vitamins chemically trigger early labor",
+              "Healthy mothers never take vitamins",
+              "The sample was too small to mean anything"
+            ],
+            "correct": 0,
+            "explanation": "Reverse causation: the supplement marks an already-risky pregnancy rather than causing the outcome — a classic confounding pattern in observational data."
+          }
+        ]
+      },
+      {
+        "heading": "TWO KINDS OF PRETERM BIRTH",
+        "body": "Preterm birth splits into spontaneous (labor or water-breaking starts on its own) and medically-indicated (doctors deliver early because continuing is more dangerous — preeclampsia, fetal distress, growth restriction). This study's signal is in the medically-indicated half, which is precisely the half driven by underlying maternal illness.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction is the whole story: a *medically-indicated* preterm birth is a decision made **because** the mother is sick — the same sickness that prompts supplementation."
+          }
+        ]
+      },
+      {
+        "heading": "ODDS ARE NOT RISK",
+        "body": "\"54% higher odds\" is an odds ratio, not a 54% jump in the chance of preterm birth. When an outcome is uncommon the two numbers track closely, but odds ratios always exaggerate the apparent effect versus the plain probability — a routine source of misread health headlines."
+      },
+      {
+        "heading": "WHAT A COHORT CAN AND CANNOT SHOW",
+        "body": "A cohort study follows a group forward and records who supplemented and who delivered early — it can establish association and timing, but it never randomizes who takes the pill. Only a randomized trial breaks the link between the treatment and the hidden traits of the people who choose it. Adjusting for measured factors cannot remove confounders you never measured.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the **confounding-by-indication** problem: the reason a treatment is prescribed is itself a cause of the outcome, and no amount of statistical adjustment for *measured* variables fixes the *unmeasured* ones."
+          }
+        ]
+      },
+      {
+        "heading": "THE FOLATE EXCEPTION",
+        "body": "One prenatal supplement does have airtight randomized evidence: folic acid before and in early pregnancy sharply cuts neural-tube defects like spina bifida. That single proven win is why prenatal vitamins became near-universal — but the blanket multivitamin riding along with it has far thinner support.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Folic acid",
+                "value": "~70% fewer NTDs",
+                "tone": "favorable"
+              },
+              {
+                "label": "Iron",
+                "value": "treats anemia",
+                "tone": "favorable"
+              },
+              {
+                "label": "Iodine",
+                "value": "protects brain dev",
+                "tone": "favorable"
+              },
+              {
+                "label": "Blanket multivit",
+                "value": "unproven",
+                "tone": "neutral"
+              }
+            ],
+            "label": "prenatal supplement evidence, by strength"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-06T22:35:37.075Z",
+    "label": "Reading a Cohort Study",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-06-niosomal-rhoifolin-leishmaniasis-nanocarrier-therapy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARASITE",
+        "body": "Leishmania is a trypanosomatid — a single-celled parasite in the same family as the agents of sleeping sickness and Chagas disease. It is not transmitted by mosquitoes but by the bite of the female sandfly, a midge so small it slips through standard mosquito netting.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What insect transmits Leishmania to humans?",
+            "options": [
+              "The Anopheles mosquito",
+              "The female sandfly",
+              "The tsetse fly",
+              "The Aedes mosquito"
+            ],
+            "correct": 1,
+            "explanation": "Sandflies are far smaller than mosquitoes and pass through ordinary bed-net mesh, which is why netting alone fails to stop transmission."
+          }
+        ]
+      },
+      {
+        "heading": "TWO DISEASES, ONE PARASITE",
+        "body": "The same genus causes wildly different illness depending on species. Cutaneous leishmaniasis leaves disfiguring skin ulcers — long known in the Levant as the 'Aleppo boil.' Visceral leishmaniasis, or kala-azar, attacks the spleen, liver and bone marrow and is almost always fatal untreated. The deaths the article cites are overwhelmingly the visceral form.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Kala-azar* is Hindi for **'black fever'** — named for the darkening of the skin in advanced visceral disease. *Leishmania major* and its cousins cause the milder skin form; *L. donovani* drives the lethal visceral one."
+          }
+        ]
+      },
+      {
+        "heading": "THE KALA-AZAR BELT",
+        "body": "Visceral leishmaniasis clusters in a few hotspots: the Indian subcontinent (Bihar, Bangladesh, Nepal), East Africa (Sudan, Ethiopia), and Brazil. The subcontinent's Gangetic plain has historically carried the heaviest burden, with poverty, mud-walled housing and sandfly habitat reinforcing each other.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "BD",
+              "NP"
+            ],
+            "label": "the South Asian kala-azar belt"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ANTIMONY, STILL",
+        "body": "Meglumine antimoniate is a pentavalent antimony compound — a heavy metal whose use as a leishmaniasis drug dates to the 1940s. It is toxic to the heart, liver and pancreas, requires weeks of painful injections, and faces growing resistance. It remains frontline in much of the world simply because almost nothing newer is affordable.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Antimony has been a medicine since antiquity, but its therapeutic window is brutally narrow: the dose that kills the parasite sits dangerously close to the dose that harms the patient. That gap is exactly what a **dose-sparing** nanocarrier aims to widen."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE NANOCARRIER DOES",
+        "body": "Leishmania hides inside the host's own macrophages — the immune cells meant to destroy invaders. Lipid nanocarriers are taken up by those same macrophages, delivering the drug directly to where the parasite lives. This concentrates the kill, lets a smaller total dose work, and raises selectivity — sparing healthy tissue the antimony's toxicity."
+      },
+      {
+        "heading": "THE FLAVONOID PARTNER",
+        "body": "Rhoifolin is a flavonoid found in citrus and other plants and used as a food additive. The finding here is an additive effect: the flavonoid and the antimony together kill more parasites than the drug alone at a given dose. Plant compounds rarely cure on their own, but as adjuvants they can shrink the toxic-drug burden — the recurring strategy in neglected-disease research, where new molecules are scarce."
+      },
+      {
+        "heading": "THE NEGLECTED-DISEASE TRAP",
+        "body": "Leishmaniasis kills tens of thousands a year, almost all of them poor, so there is little market pull for novel drugs. The result is a pipeline that leans on repurposed old compounds and reformulation tricks rather than new chemistry — and why a lab result with no completed animal trials still counts as meaningful progress.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the logic of the **neglected tropical disease**: the burden is enormous, but it falls on people who cannot pay, so research depends on public and philanthropic funding rather than commercial incentive."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-06T22:36:16.541Z",
+    "label": "Leishmaniasis & Antimony Drugs",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-06-north-korea-kim-10000-tonne-destroyer-xi-visit": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "GREEN WATER, NOT BLUE",
+        "body": "North Korea has always run a coastal navy — hundreds of small fast-attack craft, midget submarines, and missile boats built to harass and defend close to shore. A 10,000-tonne destroyer is a different category of ambition: a ship meant to operate far from its own coast, in open ocean, alone.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Navies are sorted by reach: a *green-water* fleet fights within sight of its own coast; a *blue-water* fleet projects power across open ocean. Only a handful of states — the US, China, Russia, a few others — field true blue-water navies."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 10,000 TONNES MEANS",
+        "body": "Displacement is the rough proxy for what a warship can carry — radar, vertical-launch missile cells, helicopters, endurance. At 10,000 tonnes North Korea is reaching for the weight class of a US Arleigh Burke or a Japanese Maya, roughly double its current largest hull.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China Type 055",
+                "value": "~13,000t",
+                "cc": "CN",
+                "weight": 13000
+              },
+              {
+                "label": "Japan Maya",
+                "value": "~10,250t",
+                "cc": "JP",
+                "weight": 10250
+              },
+              {
+                "label": "S. Korea Sejong",
+                "value": "~10,000t",
+                "cc": "KR",
+                "weight": 10000
+              },
+              {
+                "label": "US Arleigh Burke",
+                "value": "~9,200t",
+                "cc": "US",
+                "weight": 9200
+              },
+              {
+                "label": "NK (ordered)",
+                "value": "~10,000t",
+                "cc": "KP",
+                "weight": 10000,
+                "tone": "neutral"
+              },
+              {
+                "label": "NK current",
+                "value": "~5,000t",
+                "cc": "KP",
+                "weight": 5000
+              }
+            ],
+            "label": "destroyer displacement (full load, tonnes)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO-COAST TRAP",
+        "body": "North Korea's navy is split between the East Sea (Sea of Japan) and the West Sea (Yellow Sea), separated by the South Korean peninsula. The two fleets cannot reinforce each other without sailing all the way around hostile waters — a structural weakness no number of new hulls fixes.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KP",
+              "KR",
+              "CN",
+              "JP"
+            ],
+            "label": "split between two seas",
+            "markers": [
+              {
+                "lat": 40.0353,
+                "lng": 128.1897,
+                "label": "Sinpo (subs, east)"
+              },
+              {
+                "lat": 38.7269,
+                "lng": 125.3625,
+                "label": "Nampo (shipyard, west)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE UNDERWATER BET",
+        "body": "The 'secret underwater weapons' point at North Korea's real asymmetric play. In 2023 it unveiled the Haeil, a nuclear-capable underwater drone modeled on Russia's Poseidon concept — a slow, hard-to-detect torpedo meant to threaten ports and carrier groups rather than win a fleet battle.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does a nuclear-armed underwater drone appeal to a weaker naval power?",
+            "options": [
+              "It is cheap to detect and easy to recall",
+              "It threatens ports without needing to win a surface battle",
+              "It can carry more troops than a destroyer",
+              "It replaces the need for any submarines"
+            ],
+            "correct": 1,
+            "explanation": "Asymmetric weapons let a weaker navy hold an enemy's ports and fleets at risk by stealth, sidestepping a surface war it would lose."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE TIMING, WHY XI",
+        "body": "China backs the Kim regime not from affection but geography: a collapsed North Korea means a US-allied unified Korea on the Yalu River, 800 km from Beijing. Announcing naval ambitions days before Xi's visit signals strength to Pyongyang's own public while leaning on the one patron it cannot do without.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Kim Jong Un",
+                "role": "North Korean leader",
+                "years": "2011–present",
+                "cc": "KP"
+              },
+              {
+                "name": "Xi Jinping",
+                "role": "Chinese paramount leader",
+                "years": "2012–present",
+                "cc": "CN"
+              }
+            ],
+            "label": "the patron relationship"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-06T22:37:10.932Z",
+    "label": "Blue-Water Ambition",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-06-pope-leo-sanchez-call-iran-war-unjust-illegal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO TESTS",
+        "body": "Just war theory splits into two separate judgments: jus ad bellum (was it just to start?) and jus in bello (is it being fought justly?). A war can pass one and fail the other — a legitimate cause prosecuted with atrocities, or a clean campaign in an unjust war. Vance's claim and the Pope's rejection are arguing the first test.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Jus ad bellum* requires just cause, legitimate authority, last resort, and proportionality — a war that skips *last resort* fails the test no matter how good the cause."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE DOCTRINE COMES FROM",
+        "body": "It is a Christian inheritance, not a modern legal one. Augustine argued in the 5th century that a Christian could fight without sin under strict conditions; Aquinas systematized the criteria in the 13th. Only in the 20th century did the framework migrate into secular international law via the UN Charter.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "0426",
+                "label": "Augustine, City of God"
+              },
+              {
+                "year": "1274",
+                "label": "Aquinas codifies criteria",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1625",
+                "label": "Grotius secularizes it"
+              },
+              {
+                "year": "1945",
+                "label": "UN Charter bans aggression"
+              }
+            ],
+            "label": "from theology to law"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE CHARTER ACTUALLY SAYS",
+        "body": "Modern international law collapsed just-war's many criteria into one bright line: Article 2(4) bans the use of force, with only two exceptions — self-defense under Article 51, or authorization by the Security Council. 'Just war' as Vance invokes it is moral language; 'illegal' as Sánchez invokes it is the Charter test. They are not the same vocabulary.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "All Members shall refrain in their international relations from the threat or use of force against the territorial integrity or political independence of any state.",
+            "speaker": "UN Charter, Article 2(4)",
+            "year": "1945"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE POPE HAS NO LEVER",
+        "body": "Pope Leo XIV's 'no just war' marks a doctrinal shift — recent popes have moved the Church toward near-pacifism, questioning whether modern weapons can ever satisfy proportionality. But papal authority here is purely moral suasion; the Holy See has permanent observer status at the UN, not a vote, and commands no enforcement.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "JD Vance",
+                "role": "US Vice President",
+                "years": "2025–",
+                "cc": "US"
+              },
+              {
+                "name": "Pope Leo XIV",
+                "role": "Bishop of Rome",
+                "years": "2025–",
+                "cc": "VA"
+              },
+              {
+                "name": "Pedro Sánchez",
+                "role": "Spanish PM",
+                "years": "2018–",
+                "cc": "ES"
+              }
+            ],
+            "label": "the three voices"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SPAIN CAN ONLY TALK",
+        "body": "The Security Council's five permanent members hold vetoes; the US is one of them. Spain is not even a current elected member. A state outside the Council cannot table a binding resolution, and any the US opposes dies regardless. Sánchez's word 'illegal' is a diplomatic position, not a remedy — the body that could rule on it is structurally locked by the accused.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can the UN Security Council not act against a permanent member's war?",
+            "options": [
+              "It needs a two-thirds majority",
+              "Any of the five permanent members can veto",
+              "Wars require a General Assembly vote",
+              "The accused state is suspended automatically"
+            ],
+            "correct": 1,
+            "explanation": "The P5 — US, UK, France, Russia, China — each hold an absolute veto, so no binding action can pass over the objection of the state it targets."
+          }
+        ]
+      },
+      {
+        "heading": "THE ISLAMIC PARALLEL",
+        "body": "Islamic jurisprudence developed its own conditions for legitimate war centuries before Aquinas: classical scholars required proper authority, prohibited killing non-combatants, women, children, and clergy, and forbade destroying crops and wells. The structure mirrors jus in bello — restraint in conduct as a binding rule, not a courtesy. Ibn Kathir and other classical jurists treat these limits as obligations, not strategy."
+      }
+    ],
+    "generatedAt": "2026-06-06T22:37:41.908Z",
+    "label": "Just War Doctrine",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-06-pti-counter-budget-tax-relief-pakistan-salaried-class": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WITHHOLDING TRAP",
+        "body": "Salaried workers are the easiest people in any economy to tax: their employer deducts the tax before the paycheck ever lands, so there is nothing to hide and nowhere to hide it. This is why every government short of revenue leans hardest on wages — not because they are the richest, but because they are the most visible.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Pakistan's tax authority, the **FBR**, collects the bulk of personal income tax through *withholding at source* — automatic deduction by employers and banks — rather than self-assessed returns. The formal salaried worker cannot opt out; the shopkeeper paid in cash effectively can."
+          }
+        ]
+      },
+      {
+        "heading": "THE MISSING BASE",
+        "body": "Agriculture is roughly a fifth of Pakistan's economy but contributes a negligible slice of income tax. Under the constitution, taxing farm income is a provincial power, and provinces have never built the machinery to do it — shielding large landowners, who are also heavily represented in the legislatures that would have to vote for the tax.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Agriculture is about a fifth of Pakistan's GDP. Roughly what share of national income tax does it pay?",
+            "options": [
+              "About a fifth — proportional to its size",
+              "Around 10%",
+              "Less than 1%"
+            ],
+            "correct": 2,
+            "explanation": "Farm income is taxed by provinces, which barely collect it, so a huge chunk of the economy sits almost entirely outside the income-tax net."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE RATIO IS SO LOW",
+        "body": "Pakistan collects only around 9-10% of GDP in taxes — among the lowest ratios in the region and far below what a state needs to fund defense, debt service, and development at once. A narrow base means the few who are documented get squeezed harder each year rather than the net being widened.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Tax-to-GDP ratio (approx.)",
+            "peers": [
+              {
+                "value": 9,
+                "cc": "PK"
+              },
+              {
+                "value": 8,
+                "cc": "BD"
+              },
+              {
+                "value": 12,
+                "cc": "IN"
+              },
+              {
+                "value": 11,
+                "cc": "ID"
+              },
+              {
+                "value": 11,
+                "cc": "LK"
+              },
+              {
+                "value": 18,
+                "cc": "TR"
+              }
+            ],
+            "subjectCc": "PK",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "THE IMF SQUEEZE",
+        "body": "Pakistan has entered IMF programs more than twenty times since the 1980s. The lender's standing condition is the same each cycle: raise the revenue-to-GDP ratio. That pressure runs directly against a tax cut for any group — which is why a wider exemption threshold collides with the program rather than fitting inside it.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377,
+              278.485848,
+              278.494701,
+              278.137253,
+              277.408487,
+              278.412506,
+              278.512908,
+              278.575,
+              277.445439,
+              278.55,
+              278.55,
+              278.494021,
+              278.3,
+              278.45,
+              278.61849,
+              278.35,
+              278.5
+            ],
+            "periods": [
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE REGRESSIVE TILT",
+        "body": "Because direct taxes are so hard to collect, Pakistan leans on the sales tax — a flat charge baked into the price of goods. A flat consumption tax takes a larger bite from a poor household's budget than a rich one's, so the system raises money in the most regressive way available precisely because it is the easiest to enforce.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call this the gap between *direct* taxes (on income and wealth, harder to dodge to collect) and *indirect* taxes (on transactions). Pakistan's mix tilts toward indirect — the hallmark of a state that cannot document its earners."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-06"
+    ],
+    "generatedAt": "2026-06-06T22:38:21.472Z",
+    "label": "Pakistan's Narrow Tax Base",
+    "category": "economy",
+    "articleCount": 1
   }
 }
