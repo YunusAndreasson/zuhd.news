@@ -1,26 +1,28 @@
 {
-  "date": "2026-06-05",
+  "date": "2026-06-06",
   "metrics": {
-    "articles": { "value": 43, "detail": "5 cycles, avg 9/cycle" },
+    "articles": { "value": 26, "detail": "5 cycles completed; metrics window counts 26 (cycle logs avg ~9/cycle, avgPublished 9)" },
     "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 17, "economy": 13, "science": 5, "tech": 8 },
-    "multiSource": { "value": 8, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 13, "AS": 10, "ME": 9, "EU": 6, "AF": 4, "GL": 1 } },
-    "sciTech": { "ratio": 30, "target": 25, "met": true },
-    "topSourceShare": { "source": "Hindustan Times", "pct": 9, "target": 20, "met": true },
-    "uniqueSources": 39,
+    "categories": { "politics": 10, "economy": 7, "science": 7, "tech": 2 },
+    "multiSource": { "value": 4, "target": 4, "met": true },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 8, "EU": 7, "ME": 7, "AS": 2 } },
+    "sciTech": { "ratio": 35, "target": 25, "met": true },
+    "topSourceShare": { "source": "Nature", "pct": 15, "target": 20, "met": true },
+    "uniqueSources": 20,
     "duplicates": 0,
-    "avgCycleDuration": 1494
+    "avgCycleDuration": 1804
   },
-  "experiment": "Skipped — all goal metrics within targets, no active experiment to evaluate, and the only queued experiment touches write-prompt.md (out of daily-tuning scope).",
-  "weakestArea": "Science is the metric closest to its floor: 5 articles against a target of exactly 5, down from 9 yesterday. The day-over-day sci-tech ratio fell 46% to 30% as both specialist categories softened (science 9 to 5, tech 12 to 8). Still above the 25% target, but the margin thinned to its narrowest in the two-day window — worth watching if science slips below 5 on a lighter feed day.",
+  "experiment": "Skipped. No active experiments to evaluate; no pause gate. The lone metric miss (tech 2 vs 4) is single-day variance, not a systemic regression, and the tech floor is already at its range max for the selector lever.",
+  "weakestArea": "Tech, at 2 articles (~8% of output), is furthest from target (4/day). But this is day-to-day variance on a low-volume day (26 articles vs 56 yesterday, when tech was 9), not a trend. The tech category floor is already at 3/cycle; raising it to 4 (range max) off one anomalous day isn't justified, and the 2026-05-09 sourcing experiment established that selector floors are a largely tapped lever. Sci+tech ratio still cleared 25% (35%) because science carried 7, so educational coverage held even with tech soft.",
   "watching": [
-    "Asia/Americas skew: AM (13) and AS (10) account for 53% of regional tags today; EU and AF coverage is thinner and could drop toward the 4-region floor on a quiet news day.",
-    "Indian-outlet density: Hindustan Times (4), The Indian Express (2), TimesNow (2), NDTV, News18 — South Asian outlets cluster near the top of the source list; no single source breaches 20% but the regional concentration is worth tracking."
+    "Tech volume: 2 today vs 9 yesterday — confirm it recovers next cycle before treating as a pattern.",
+    "Total output dropped to 26 from 56 — likely a light news day, but worth confirming the feed/selector didn't under-fill.",
+    "Multi-source sat exactly at the floor of 4; one fewer would breach. Feed multi-source supply (~9/cycle) remains the binding cap per 2026-05-09 learning.",
+    "Freshness data is thin (count=2 valid lags today) — median 0 is reliable directionally but based on few datapoints."
   ],
   "coverageGaps": [
-    "Oceania absent today (OC=0 vs 1 yesterday) — no Pacific or Australia/NZ coverage in this cycle set.",
-    "Science volume sat exactly at floor; no margin if the feed thins, and science sourcing leaned on general outlets (NBC, BBC, TASS) alongside the specialist core (Nature, Phys.org, Carbon Brief)."
+    "No Africa (AF) or Oceania (OC) representation today; concentration in AM/EU/ME.",
+    "Tech sourcing narrow — only Nature and Dawn tagged as tech sources, no dedicated tech specialist outlets (Ars Technica, MIT Tech Review, The Diplomat) surfaced today."
   ],
-  "context": "No active or newly-proposed experiment. The experiment slot has been clear since the 2026-05-18 editor-effort entry closed void on 2026-05-26. Prior sourcing-floor work (2026-05-09) concluded that selector-floor levers are tapped and the feed's ~9 multi-source stories/cycle caps published multi-source rate near 22%; multiSource held at 8 today, consistent with that ceiling. Metrics are healthy across the board, so today is a hold."
+  "context": "Clean operational day: 5/5 cycles completed, 0 duplicates, top-source share healthy at 15%, freshness at 0. The history shows the selector category-floor lever has been worked hard (tech 2->3 kept Apr, multi-source floors raised then reverted May) and is near exhaustion for sourcing/diversity gains — future improvements there should target the upstream feed (Event Registry clustering, regional outlet inclusion) rather than selector floors. The queued numerical-density experiment touches write-prompt.md (out of daily-tuning scope) and remains a writer-stage item for the weekly reflect."
 }
