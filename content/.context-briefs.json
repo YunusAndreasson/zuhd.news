@@ -311180,5 +311180,1103 @@
     "label": "When Good News Sinks Stocks",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-06-04-haul-of-1-100-new-ocean-species-in-one-year-shows-depths-of": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NAMING BOTTLENECK",
+        "body": "Finding a species is the easy part. Naming one requires a preserved physical specimen designated as the reference, a formal Latin binomial, a description distinguishing it from every known relative, and peer-reviewed publication. The gap between collection and description routinely runs years to decades — specimens sit in jars in museum basements waiting for a specialist who may never come.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The reference specimen is the **holotype** — the single physical individual that legally *defines* the species name. Lose it and the name can become unanchored."
+          }
+        ]
+      },
+      {
+        "heading": "THE SCALE OF THE UNKNOWN",
+        "body": "Science has formally described roughly a quarter-million marine species. Estimates of what remains unnamed run an order of magnitude higher. We are cataloguing a library we have mostly never opened — and warming and seabed disturbance are editing pages before they are read.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Described",
+                "value": "~240k",
+                "weight": 240000,
+                "tone": "neutral"
+              },
+              {
+                "label": "Still unnamed",
+                "value": "~2.2mn",
+                "weight": 2200000,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "marine species: described vs estimated unnamed"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE DEEP HIDES LIFE",
+        "body": "The deep sea is not a marginal habitat — it is the dominant one. Below 200 metres there is no sunlight, crushing pressure, and near-freezing cold, and reaching it requires ships, submersibles, and remotely operated vehicles that cost tens of thousands of dollars per day. Sampling effort, not scarcity of life, is the binding constraint.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "The dark ocean below 200m makes up roughly what share of Earth's habitable living space by volume?",
+            "options": [
+              "About 5%",
+              "About 30%",
+              "About 95%"
+            ],
+            "correct": 2,
+            "explanation": "Oceans average ~3,700m deep, so the cold, dark deep sea is by far the largest living space on the planet — and the least sampled."
+          }
+        ]
+      },
+      {
+        "heading": "THE BASELINE PROBLEM",
+        "body": "You cannot measure a loss you never counted. A species named only after deep-sea mining or warming has wiped it out registers as a discovery, not an extinction. This is shifting-baseline syndrome at planetary scale: each generation treats the depleted ocean it inherits as the normal one, because the richer prior state was never documented.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2023 High Seas Treaty and the **30x30** pledge aim to protect 30% of the ocean by 2030 — but a protected area means little when the inventory of what lives inside it doesn't yet exist."
+          }
+        ]
+      },
+      {
+        "heading": "THE LINNAEAN ENGINE",
+        "body": "Every species name traces back to one book: Carl Linnaeus's Systema Naturae, whose 1758 tenth edition is the official starting point of zoological naming. His two-word system — genus then species — replaced sprawling Latin descriptions and remains the universal grammar of biology. Taxonomy's crisis is not a broken method; it is a 250-year-old method starved of practitioners as the profession shrinks.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Systema Naturae, per regna tria naturae",
+            "speaker": "Linnaeus, Systema Naturae",
+            "year": "1758"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-06T04:26:36.232Z",
+    "label": "Marine Taxonomy & the Unknown Ocean",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-05-changing-how-we-develop-ladybird": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MONOCULTURE",
+        "body": "There are only three production browser engines left, and two of them share ancestry. Blink (Chrome, Edge, Brave, Opera, Samsung Internet) renders the overwhelming majority of the web; Apple's WebKit holds the rest of the mobile market through Safari; Mozilla's Gecko is a shrinking holdout. Ladybird matters because it is the first genuinely new, independent engine in roughly two decades.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Blink",
+                "value": "~70%",
+                "weight": 70,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "WebKit",
+                "value": "~18%",
+                "weight": 18,
+                "tone": "neutral"
+              },
+              {
+                "label": "Gecko",
+                "value": "~3%",
+                "weight": 3,
+                "tone": "neutral"
+              },
+              {
+                "label": "Ladybird",
+                "value": "pre-alpha",
+                "weight": 0.5,
+                "tone": "favorable"
+              }
+            ],
+            "label": "browser engines by rendering share"
+          }
+        ]
+      },
+      {
+        "heading": "WHY A NEW ENGINE IS NEARLY IMPOSSIBLE",
+        "body": "The web platform is not one specification but thousands — HTML, CSS, the DOM, JavaScript, layout, fonts, networking, security, media codecs — accreted over thirty years with bug-for-bug compatibility expected. Google reportedly spends on the order of a billion dollars a year on Chrome. That scale is exactly why every 'new' browser since 2013 has just wrapped Blink rather than building its own engine."
+      },
+      {
+        "heading": "THE GENEALOGY",
+        "body": "Today's monoculture grew from a single KDE project. KHTML, written for the Linux desktop, was forked by Apple into WebKit, which Google then forked into Blink. Three of the four engines on the web descend from code a handful of open-source developers wrote in the late 1990s.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1998",
+                "label": "KHTML (KDE)",
+                "emphasis": "start"
+              },
+              {
+                "year": "1998",
+                "label": "Gecko (Mozilla) begins"
+              },
+              {
+                "year": "2003",
+                "label": "Apple forks WebKit from KHTML"
+              },
+              {
+                "year": "2008",
+                "label": "Chrome ships on WebKit"
+              },
+              {
+                "year": "2013",
+                "label": "Google forks Blink from WebKit",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Ladybird goes independent"
+              }
+            ],
+            "label": "the engine family tree"
+          }
+        ]
+      },
+      {
+        "heading": "THE EFFORT SIGNAL",
+        "body": "Open-source projects have long used effort as a costly signal of good faith: a large, well-structured patch was hard to fake, so it implied a contributor who understood the code and meant well. Maintainers triaged on that heuristic because reading every line of every submission is impossible at scale.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The economics term is a *costly signal* — a behavior trusted precisely because it is expensive to produce. When generating a plausible 500-line patch costs minutes instead of days, the signal **collapses**, and the maintainer's triage shortcut stops working."
+          }
+        ]
+      },
+      {
+        "heading": "THE MAINTAINER-ONLY TRADEOFF",
+        "body": "Closing contributions trades breadth for trust. A small core team can move coherently and avoid reviewing adversarial or low-quality submissions, but it forfeits the distributed labor that let projects like Linux outpace commercial rivals. For a pre-alpha engine racing toward a usable release, the open question is whether a handful of paid maintainers can match the surface area a thousand drive-by patches once covered.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which rendering engine powers Chrome, Edge, Brave, and Opera?",
+            "options": [
+              "Gecko",
+              "WebKit",
+              "Blink",
+              "Trident"
+            ],
+            "correct": 2,
+            "explanation": "All four are 'reskins' of Blink, Google's fork of WebKit — which is why they share the same rendering behavior."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-06T04:27:13.340Z",
+    "label": "Browser Engines & the Monoculture",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-05-cooling-poverty-affects-2bn-as-heat-risks-swell": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WET-BULB CEILING",
+        "body": "The body sheds heat by evaporating sweat. When humidity is high enough that sweat no longer evaporates, core temperature climbs even at rest in the shade. The theoretical survival limit is a wet-bulb temperature of 35°C — at that point a healthy person dies within hours regardless of water, fitness, or fanning. Cooling is not comfort at that threshold; it is the only thing standing between a body and organ failure.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Heat danger is measured by *wet-bulb globe temperature* — air heat plus humidity plus radiation in one number. Above **32°C WBGT**, outdoor labor becomes medically dangerous for anyone, no matter how acclimatized."
+          }
+        ]
+      },
+      {
+        "heading": "THE COOLING PARADOX",
+        "body": "The standard fix for heat — vapor-compression air conditioning — fights warming by accelerating it twice over: it draws electricity (often from coal) and it leaks refrigerants that trap thousands of times more heat than CO2. A single kilogram of common AC refrigerant warms the planet like over a tonne of carbon dioxide. This is why cooling the people who need it most, without more emissions, is an unsolved engineering and financing problem.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "R-410A",
+                "value": "~2,088×",
+                "tone": "unfavorable",
+                "weight": 2088
+              },
+              {
+                "label": "HFC-134a",
+                "value": "~1,430×",
+                "tone": "unfavorable",
+                "weight": 1430
+              },
+              {
+                "label": "Propane (R-290)",
+                "value": "~3×",
+                "tone": "favorable",
+                "weight": 3
+              },
+              {
+                "label": "CO2",
+                "value": "1×",
+                "tone": "neutral",
+                "weight": 1
+              }
+            ],
+            "label": "warming power per kg vs CO2 (GWP-100)"
+          }
+        ]
+      },
+      {
+        "heading": "WHO CANNOT SWEAT IT OUT",
+        "body": "Cooling poverty clusters where grids are weakest and outdoor labor is the norm — South Asia, the Sahel, equatorial Africa, and maritime Southeast Asia. The most exposed are informal workers with no option to stop and women who cook over fires in unventilated homes. These are also the populations that contributed least to the emissions driving the heat.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "PK",
+              "BD",
+              "NG",
+              "ID"
+            ],
+            "label": "the cooling-poverty belt",
+            "caption": "weak grids, outdoor labor, fastest-rising heat exposure"
+          }
+        ]
+      },
+      {
+        "heading": "THE MONTREAL PRECEDENT",
+        "body": "The world has already rewritten the chemistry of cooling once. The 1987 Montreal Protocol phased out CFCs to save the ozone layer — the most successful environmental treaty ever signed. The 2016 Kigali Amendment extended it to phase down HFCs, the very refrigerants that replaced CFCs but turned out to be potent greenhouse gases. Cooling the next 2 billion means finishing that pivot toward natural refrigerants and efficiency.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1987",
+                "label": "Montreal Protocol bans CFCs",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1996",
+                "label": "CFC production ends in rich nations"
+              },
+              {
+                "year": "2016",
+                "label": "Kigali Amendment phases down HFCs"
+              },
+              {
+                "year": "2019",
+                "label": "Kigali enters into force"
+              }
+            ],
+            "label": "rewriting the chemistry of cold"
+          }
+        ]
+      },
+      {
+        "heading": "COOLING IS A SUPPLY CHAIN",
+        "body": "Air conditioning is the visible face of cooling, but the larger stakes are invisible: the cold chain. Without refrigeration, roughly a third of all food spoils before it is eaten, vaccines lose potency, and medicines degrade. Cooling poverty is therefore also food loss, lost income, and preventable disease — not merely discomfort on a hot day."
+      },
+      {
+        "heading": "THE SURVIVAL LINE",
+        "body": "The number worth remembering is the wet-bulb survivability limit — the point where the human body can no longer cool itself by any means. Regions that occasionally brush this threshold today are projected to cross it more often, which reframes cooling from a luxury good into life-support infrastructure.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Above what wet-bulb temperature can a healthy human no longer survive prolonged exposure, even at rest in shade?",
+            "options": [
+              "28°C wet-bulb",
+              "35°C wet-bulb",
+              "40°C wet-bulb",
+              "45°C wet-bulb"
+            ],
+            "correct": 1,
+            "explanation": "At 35°C wet-bulb, sweat cannot evaporate, so the body cannot shed metabolic heat — core temperature rises fatally within hours."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-06T04:27:56.428Z",
+    "label": "Cooling Poverty",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-05-first-us-screwworm-case-spotlights-contraband-cattle-in-mexi": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THIS PARASITE IS DIFFERENT",
+        "body": "Most blowfly maggots eat dead tissue. The New World screwworm burrows into the living flesh of warm-blooded animals, widening the wound as it feeds and drawing more flies to lay more eggs. Its species name, hominivorax, means 'man-eater' — an untreated infestation can kill a full-grown steer in days.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Cochliomyia hominivorax* — literally **'man-eater.'** The larva screws into living tissue like a wood screw, which is where the common name comes from."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRICK THAT KILLED IT",
+        "body": "Eradication did not use pesticide. Researchers irradiated millions of male flies to sterility and released them; because a female screwworm mates only once in her life, a single mating with a sterile male leaves her eggs infertile. Flood the wild population with enough sterile males and reproduction collapses on its own.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does releasing sterilized male flies collapse a screwworm population?",
+            "options": [
+              "The sterile males kill wild males in competition",
+              "Females mate only once, so a sterile mate wastes their entire reproductive life",
+              "Radiation spreads from the released flies to wild ones",
+              "Sterile males eat the eggs of fertile females"
+            ],
+            "correct": 1,
+            "explanation": "A female screwworm mates a single time; if that mate is a sterile male, her whole clutch is infertile — so flooding the area with sterile males ends reproduction."
+          }
+        ]
+      },
+      {
+        "heading": "THE MEN WHO DESIGNED IT",
+        "body": "The sterile-insect technique was conceived by USDA entomologists Edward Knipling and Raymond Bushland in the 1950s — the first time genetics, rather than poison, eradicated a pest from an entire continent. They later shared the 1992 World Food Prize for it.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Edward Knipling",
+                "role": "USDA entomologist, SIT theorist",
+                "years": "1930s–1980s",
+                "cc": "US"
+              },
+              {
+                "name": "Raymond Bushland",
+                "role": "USDA entomologist, irradiation method",
+                "years": "1930s–1980s",
+                "cc": "US"
+              }
+            ],
+            "label": "the sterile-insect pioneers"
+          }
+        ]
+      },
+      {
+        "heading": "THE MOVING WALL",
+        "body": "Eradication does not hold by itself — it is a wall that must be defended. After clearing the US in 1966, the program pushed the fly south through Mexico and Central America, then held the line at the narrow Darién Gap between Panama and Colombia, where a sterile-fly factory releases insects continuously to keep the parasite from crossing back north.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "MX",
+              "GT",
+              "HN",
+              "NI",
+              "CR",
+              "PA"
+            ],
+            "label": "the eradication corridor",
+            "caption": "The barrier holds at Panama's Darién Gap, not at any national border.",
+            "markers": [
+              {
+                "lat": 9.08,
+                "lng": -79.28,
+                "label": "COPEG sterile-fly plant"
+              },
+              {
+                "lat": 8,
+                "lng": -77.7,
+                "label": "Darién Gap barrier"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY SMUGGLING BREAKS IT",
+        "body": "The wall stops flies, not trucks. Cattle moved north on falsified health certificates can carry larvae in a wound straight past the barrier in a single trip, seeding an outbreak hundreds of kilometers ahead of the front. That is why a parasite gone from the US for sixty years can reappear in Texas — the route, not the insect's own range, did the work.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1954",
+                "label": "Curaçao cleared — first field proof of SIT",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1966",
+                "label": "US declared screwworm-free"
+              },
+              {
+                "year": "1991",
+                "label": "Mexico eradication completed"
+              },
+              {
+                "year": "2006",
+                "label": "barrier established at Darién Gap"
+              },
+              {
+                "year": "2024",
+                "label": "fly breaks north through Central America"
+              },
+              {
+                "year": "2026",
+                "label": "first US case in 60 years"
+              }
+            ],
+            "label": "eradication and its unraveling"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-06T04:28:43.232Z",
+    "label": "Screwworm & Sterile-Insect Eradication",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-05-how-secret-pro-israel-money-flooded-the-labour-party-and-end": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EXCLUSION POWER",
+        "body": "The UK Home Secretary can personally bar any non-citizen whose presence is judged 'non-conducive to the public good' — a standard with no trial, no published criteria, and only narrow appeal rights. The discretion traces to the Immigration Act 1971 and is exercised by ministerial signature, not by a court.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The operative phrase is *non-conducive to the public good* — deliberately undefined, so the bar can be a war criminal, a preacher, or a podcaster, at the minister's reading."
+          }
+        ]
+      },
+      {
+        "heading": "THE EXCLUSION LIST",
+        "body": "Britain's roster of barred foreigners is eclectic and politically revealing — far-right politicians, anti-Islam activists, and provocateurs of every stripe. Exclusion is a recurring tool, and who gets barred tracks the politics of the day more than any consistent threat standard.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Geert Wilders",
+                "value": "2009",
+                "cc": "NL"
+              },
+              {
+                "label": "Louis Farrakhan",
+                "value": "since 1986",
+                "cc": "US"
+              },
+              {
+                "label": "Michael Savage",
+                "value": "2009",
+                "cc": "US"
+              },
+              {
+                "label": "Pamela Geller",
+                "value": "2013",
+                "cc": "US"
+              },
+              {
+                "label": "Robert Spencer",
+                "value": "2013",
+                "cc": "US"
+              }
+            ],
+            "label": "notable exclusions from the UK"
+          }
+        ]
+      },
+      {
+        "heading": "THE THINK-TANK LOOPHOLE",
+        "body": "Political parties must report donations above set thresholds to the Electoral Commission. Think tanks — registered as private companies or charities — face far looser disclosure, so money that could never reach a party directly can flow into the organizing machine that staffs and steers it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can a think tank legally take money a political party could not accept undisclosed?",
+            "options": [
+              "Think tanks are exempt from Electoral Commission donor-reporting rules that bind parties",
+              "Charities are barred from all political activity, so the question never arises",
+              "All UK political donations are anonymous by law"
+            ],
+            "correct": 0,
+            "explanation": "Party donations above thresholds must be reported to the Electoral Commission; think tanks registered as companies or charities sit outside that regime."
+          }
+        ]
+      },
+      {
+        "heading": "THE FACTION MACHINE",
+        "body": "Labour Together was the organizing vehicle that engineered Labour's shift from Corbyn to Starmer — mapping the membership, coordinating candidates, and building the apparatus that captured the party leadership. Its director, Morgan McSweeney, went on to run Starmer's operation as chief of staff.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Keir Starmer",
+                "role": "Labour leader, then PM",
+                "years": "2020–",
+                "cc": "GB"
+              },
+              {
+                "name": "Morgan McSweeney",
+                "role": "Labour Together director, No.10 chief of staff",
+                "years": "2017–",
+                "cc": "GB"
+              }
+            ],
+            "label": "the network"
+          }
+        ]
+      },
+      {
+        "heading": "THE FOREIGN-INFLUENCE GAP",
+        "body": "The United States has required foreign lobbyists to register publicly since the 1938 Foreign Agents Registration Act. Britain had no equivalent for decades; its Foreign Influence Registration Scheme arrived only with the National Security Act 2023. That long gap is why undisclosed foreign-aligned money could shape British policy without a paper trail."
+      }
+    ],
+    "generatedAt": "2026-06-06T04:29:40.006Z",
+    "label": "Exclusion Powers & Dark Money",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-05-india-s-surprise-baby-bust": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE REPLACEMENT NUMBER",
+        "body": "A population holds steady at roughly 2.1 births per woman — two to replace the parents, a fraction more to cover children who die before reproducing. India has already slipped below this line, which means its population is now coasting on momentum: still growing only because past generations were large, not because today's couples are replacing themselves.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **2.1 replacement rate** is not a target — it's an equilibrium. Below it, a population's eventual decline is locked in decades before the headcount actually starts falling."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE DIVIDEND ACTUALLY IS",
+        "body": "When fertility falls, a country briefly fills with working-age adults while the share of children shrinks and the share of elderly hasn't yet risen. This bulge of producers-to-dependents is the demographic dividend — a one-time growth bonus that East Asia rode to prosperity. It is a window, not a gift: it opens when births fall and closes when those workers retire.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Niger",
+                "value": "~6.6",
+                "cc": "NE",
+                "tone": "neutral",
+                "weight": 6.6
+              },
+              {
+                "label": "India",
+                "value": "~2.0",
+                "cc": "IN",
+                "tone": "unfavorable",
+                "weight": 2
+              },
+              {
+                "label": "USA",
+                "value": "~1.6",
+                "cc": "US",
+                "tone": "neutral",
+                "weight": 1.6
+              },
+              {
+                "label": "China",
+                "value": "~1.0",
+                "cc": "CN",
+                "tone": "neutral",
+                "weight": 1
+              },
+              {
+                "label": "South Korea",
+                "value": "~0.7",
+                "cc": "KR",
+                "tone": "neutral",
+                "weight": 0.7
+              }
+            ],
+            "label": "births per woman, 2024 est."
+          }
+        ]
+      },
+      {
+        "heading": "RICH FIRST, THEN OLD",
+        "body": "Japan and South Korea crossed below replacement only after they had become wealthy economies with funded pensions and universal healthcare. They built the welfare state, then aged into it. China coined the warning for itself — 'growing old before growing rich' — and India is now hitting that wall at an even lower income per head."
+      },
+      {
+        "heading": "THE LOW-INCOME TRAP",
+        "body": "The unsettling part for the Global South is that fertility is now collapsing at far lower incomes than the historical pattern predicted. Contraception, urbanization, female literacy, and the rising cost of raising children drive births down well before a country is wealthy enough to fund the old age that follows.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is sub-replacement fertility more dangerous for India than it was for Japan?",
+            "options": [
+              "India's population is already shrinking in absolute terms",
+              "India is aging before building the pensions and healthcare to support the elderly",
+              "India has a higher fertility rate than Japan ever did",
+              "Japan never fell below replacement fertility"
+            ],
+            "correct": 1,
+            "explanation": "Japan grew wealthy and built a welfare state before aging; India faces the same demographic shift with far thinner social infrastructure and lower income per head."
+          }
+        ]
+      },
+      {
+        "heading": "WHO CARRIES THE OLD",
+        "body": "In societies without funded pensions, the working young are the pension system — supporting parents directly. As the worker-to-retiree ratio falls, that burden concentrates on a shrinking cohort, and the state must either tax them harder or let elderly poverty rise. This is the bill that comes due when the dividend window closes."
+      }
+    ],
+    "generatedAt": "2026-06-06T04:30:12.926Z",
+    "label": "Fertility & the Demographic Dividend",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-06-cardano-social-activity-surges-as-ada-falls-under-20-cents-t": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ACADEMIC BET",
+        "body": "Cardano was built on a contrarian premise: ship nothing until it's peer-reviewed. Its proof-of-stake protocol, Ouroboros, was published in academic conferences before it ran in production, and the chain went years without smart contracts while rivals shipped. The thesis was that formal methods would outlast move-fast engineering — a bet that prizes correctness over momentum.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The codebase is written in **Haskell**, a language favored for mathematical provability but with a tiny developer pool — a deliberate filter that bought rigor at the cost of *ecosystem speed*."
+          }
+        ]
+      },
+      {
+        "heading": "THE ETHEREUM DIASPORA",
+        "body": "Cardano is one of several major chains founded by people who left Ethereum. Charles Hoskinson was an original Ethereum co-founder who departed in 2014 over whether the project should be a for-profit company. The pattern recurs across the industry: the biggest 'Ethereum killers' were often built by ex-Ethereum founders carrying a specific grievance about the original design.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Charles Hoskinson",
+                "role": "Cardano founder, ex-Ethereum",
+                "years": "2017–",
+                "cc": "US"
+              },
+              {
+                "name": "Gavin Wood",
+                "role": "Polkadot founder, ex-Ethereum CTO",
+                "years": "2016–",
+                "cc": "GB"
+              }
+            ],
+            "label": "founders who left Ethereum"
+          },
+          {
+            "type": "quiz",
+            "question": "Cardano's founder, Charles Hoskinson, was previously a co-founder of which project?",
+            "options": [
+              "Ethereum",
+              "Bitcoin",
+              "Solana",
+              "Ripple"
+            ],
+            "correct": 0,
+            "explanation": "Hoskinson co-founded Ethereum in 2013 and left in 2014, later launching Cardano as a more academically-grounded alternative."
+          }
+        ]
+      },
+      {
+        "heading": "THE ON-CHAIN TREASURY",
+        "body": "Cardano runs a self-funding treasury: a slice of every block's staking rewards is diverted into a communal pool, and token-holders vote through Project Catalyst on which proposals get funded. It is one of crypto's most ambitious experiments in decentralized budgeting — and its weakness shows in moments like this, when funds sit undeployed because the governance machinery cannot agree fast enough to spend them."
+      },
+      {
+        "heading": "THE TVL TELL",
+        "body": "Market capitalization measures speculative belief; total value locked (TVL) measures how much real capital actually uses a chain's applications. Cardano's gap between the two has long been its critics' favorite data point — a large market cap sitting atop a thin layer of on-chain activity. The deployed-capital league table looks nothing like the market-cap one.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ethereum",
+                "value": "~$60bn",
+                "weight": 60000,
+                "tone": "favorable"
+              },
+              {
+                "label": "Tron",
+                "value": "~$18bn",
+                "weight": 18000,
+                "tone": "neutral"
+              },
+              {
+                "label": "Solana",
+                "value": "~$8bn",
+                "weight": 8000,
+                "tone": "neutral"
+              },
+              {
+                "label": "BNB Chain",
+                "value": "~$5bn",
+                "weight": 5000,
+                "tone": "neutral"
+              },
+              {
+                "label": "Cardano",
+                "value": "~$0.3bn",
+                "weight": 300,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "DeFi value locked by chain (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE CROWD GETS LOUD AT THE BOTTOM",
+        "body": "Counterintuitively, social engagement around a token often peaks as the price collapses, not as it rises. Falling prices trigger blame, post-mortems, and infighting — the loudest activity is grievance, not enthusiasm. Seasoned traders read a spike in social volume during a deep drawdown as a sign of capitulation, the emotional exhaustion that often clusters near a price floor rather than a recovery."
+      }
+    ],
+    "generatedAt": "2026-06-06T04:31:03.288Z",
+    "label": "Cardano & Platform Crypto",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-06-iran-severely-damaged-us-air-operations-center-in-qatar": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A CAOC ACTUALLY IS",
+        "body": "A Combined Air Operations Center is not a runway — it is the brain. Every sortie, refueling track, drone orbit, and strike package across a theater is planned and de-conflicted from one room of screens. Al Udeid's CAOC directed the air wars over Afghanistan, Iraq, Syria, and Yemen from a single building.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The CAOC runs the **ATO** — the *Air Tasking Order*, a daily document assigning every aircraft its mission. Lose the CAOC and the jets still fly, but nobody is orchestrating them."
+          }
+        ]
+      },
+      {
+        "heading": "THE HOSTING BARGAIN",
+        "body": "Qatar is smaller than Connecticut and shares its only land border with Saudi Arabia. Hosting the largest US base in the Middle East is its insurance policy — it buys protection from larger neighbors (including a 2017 Saudi-led blockade) by making itself indispensable to American power projection.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Qatar",
+                "value": "Al Udeid / CENTCOM air HQ",
+                "cc": "QA"
+              },
+              {
+                "label": "Bahrain",
+                "value": "5th Fleet HQ",
+                "cc": "BH"
+              },
+              {
+                "label": "UAE",
+                "value": "Al Dhafra air base",
+                "cc": "AE"
+              },
+              {
+                "label": "Kuwait",
+                "value": "Army forward HQ",
+                "cc": "KW"
+              }
+            ],
+            "label": "US military footprint in the Gulf"
+          }
+        ]
+      },
+      {
+        "heading": "THE FORWARD-BASING DILEMMA",
+        "body": "A base close to the adversary is what makes short-notice air power possible — but proximity is also the vulnerability. The same geography that lets jets reach Iranian targets in minutes puts the base itself inside Iran's missile envelope. Forward presence and survivability pull in opposite directions.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "QA",
+              "IR",
+              "BH",
+              "AE",
+              "SA"
+            ],
+            "label": "the base sits across the Gulf from Iran",
+            "markers": [
+              {
+                "lat": 25.1173,
+                "lng": 51.3149,
+                "label": "Al Udeid Air Base"
+              },
+              {
+                "lat": 26.2069,
+                "lng": 50.6072,
+                "label": "5th Fleet, Bahrain"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY EVACUATION CAME FIRST",
+        "body": "Personnel had already flown to South Carolina before the strikes landed — a tell that the US read the threat in advance. Modern air-defense and satellite warning buys minutes against ballistic missiles, enough to move people but not a building. Hardware can be rebuilt; trained airmen cannot.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does a base evacuate people but accept damage to the facility itself?",
+            "options": [
+              "Buildings are insured and people are not",
+              "Warning time is enough to move personnel but not infrastructure",
+              "Missiles only target buildings, never people",
+              "International law forbids striking occupied buildings"
+            ],
+            "correct": 1,
+            "explanation": "Ballistic-missile warning gives minutes — enough to shelter or evacuate staff, far too little to relocate a hardened command center."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2020 RHYME",
+        "body": "This is not the first Iranian missile strike on a US base. After the killing of Qassem Soleimani in January 2020, Iran fired ballistic missiles at Al-Asad air base in Iraq. No one died, but more than 100 troops were later treated for traumatic brain injuries — a reminder that 'no casualties' headlines undercount the real toll.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2020-01",
+                "label": "Soleimani killed in Baghdad",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020-01",
+                "label": "Missiles hit Al-Asad, Iraq"
+              },
+              {
+                "year": "2026-06",
+                "label": "Al Udeid CAOC struck, Qatar"
+              }
+            ],
+            "label": "Iran's direct strikes on US posture"
+          }
+        ]
+      },
+      {
+        "heading": "THE REBUILD QUESTION",
+        "body": "Whether to rebuild a command center now proven to be inside missile range is a strategic, not a construction, decision. The alternatives — disperse operations across smaller sites, move the CAOC out of range to a place like South Carolina or Europe, or harden in place — each trade responsiveness against resilience. The choice reveals how the US now rates the Iranian threat."
+      }
+    ],
+    "generatedAt": "2026-06-06T04:31:37.262Z",
+    "label": "Al Udeid & Forward Basing",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-06-tiktoker-held-for-making-ai-generated-obscene-video-in-bahaw": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW THE FAKE IS MADE",
+        "body": "Modern deepfakes no longer 'swap' a face frame by frame. Diffusion models learn what a person looks like from a handful of public photos, then generate entirely new pixels conditioned on that identity. The output was never filmed — there is no original footage to find or compare against.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shift from **GANs** (two networks competing) to **diffusion models** (denoising from static) is why a credible fake now needs *minutes* and a phone, not a render farm."
+          }
+        ]
+      },
+      {
+        "heading": "THE DETECTION ASYMMETRY",
+        "body": "Every detector is trained on the outputs of yesterday's generators. The moment a new model ships, detection accuracy drops until someone gathers samples and retrains. Generation leads, detection chases — structurally, the forensics are always one model behind.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When researchers first catalogued deepfake videos online, what were the vast majority?",
+            "options": [
+              "Political disinformation",
+              "Non-consensual sexual imagery of women",
+              "Celebrity comedy edits",
+              "Financial scam ads"
+            ],
+            "correct": 1,
+            "explanation": "An early audit found roughly 96% of deepfake videos were non-consensual pornography, almost entirely targeting women — the technology's first mass use was abuse, not propaganda."
+          }
+        ]
+      },
+      {
+        "heading": "THE LAW LAGS THE TOOL",
+        "body": "Pakistan's Prevention of Electronic Crimes Act (PECA, 2016) predates accessible generative AI. It can reach this case through provisions on harassment, defamation, and 'dignity of a natural person' — but it has no clause naming synthetic media itself, so prosecutors stretch laws written for an earlier internet."
+      },
+      {
+        "heading": "WHO PLATFORMS ANSWER TO",
+        "body": "Whether TikTok must remove or pre-screen such content depends entirely on jurisdiction. The US shields platforms from liability for user posts; the EU now imposes proactive removal duties; Pakistan has enforcement powers over speech but no standard holding platforms responsible for synthetic abuse.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "broad immunity",
+                "tone": "unfavorable",
+                "cc": "US"
+              },
+              {
+                "label": "EU",
+                "value": "duty to act",
+                "tone": "favorable",
+                "cc": "EU"
+              },
+              {
+                "label": "Pakistan",
+                "value": "no standard",
+                "tone": "neutral",
+                "cc": "PK"
+              }
+            ],
+            "label": "platform liability for user content"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE THREAT IS GENDERED",
+        "body": "Image-based sexual abuse weaponizes shame, and shame is socially distributed unequally. In contexts where a woman's reputation carries 'honor' for an entire family, a fabricated video does real-world damage regardless of whether anyone believes it is real — which is precisely why the threat to kill accompanied it here."
+      },
+      {
+        "heading": "THE LIAR'S DIVIDEND",
+        "body": "Deepfakes corrode trust in both directions. Once everyone knows video can be faked, genuine evidence can be waved away as 'just a deepfake.' The harm is not only fabricated proof — it is the plausible deniability the technology hands to the genuinely guilty.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Scholars call this the **liar's dividend**: the more fakes circulate, the easier it becomes to dismiss *real* footage as fabricated."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-06T04:32:13.101Z",
+    "label": "Deepfakes & the Law",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-06-us-attacks-iranian-sites-after-iran-launches-drones-in-lates": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a buffer. Roughly a fifth of global oil consumption passes through daily, and the deepest channel hugs the Iranian side, which is why Iranian naval positioning matters disproportionately.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "QA",
+              "BH",
+              "KW",
+              "SA"
+            ],
+            "label": "the chokepoint and the bases struck",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 26.95,
+                "lng": 56.27,
+                "label": "Qeshm Island"
+              },
+              {
+                "lat": 29.3375,
+                "lng": 47.6581,
+                "label": "US base, Kuwait"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE STRAIT CAN'T BE BYPASSED",
+        "body": "Saudi Arabia's East-West Pipeline and the UAE's Habshan-Fujairah line can together reroute roughly a third of Gulf crude around Hormuz. The rest — and all of Qatar's LNG, the world's largest — has no alternative route. The peninsula has exactly one export door.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hormuz flow",
+                "value": "~21m bbl/d",
+                "tone": "neutral",
+                "weight": 21
+              },
+              {
+                "label": "Saudi E-W pipe",
+                "value": "~5m bbl/d",
+                "tone": "favorable",
+                "weight": 5
+              },
+              {
+                "label": "UAE Fujairah",
+                "value": "~1.5m bbl/d",
+                "tone": "favorable",
+                "weight": 1.5
+              }
+            ],
+            "label": "Hormuz bypass capacity vs flow"
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Prices spiked briefly, then markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners took: disruption is easier to threaten than to sustain.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Tanker War begins"
+              },
+              {
+                "year": "1987",
+                "label": "US reflags Kuwaiti tankers"
+              },
+              {
+                "year": "1988-04",
+                "label": "Operation Praying Mantis",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1988-08",
+                "label": "Iran-Iraq ceasefire",
+                "emphasis": "end"
+              }
+            ],
+            "label": "Gulf shipping under fire"
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "It is Lloyd's of London war-risk premiums — not the missiles or the blocked tankers themselves — that actually close a lane. Once underwriters reclassify the Gulf as a war zone, premiums spike and commercial vessels reroute regardless of how many ships still get through. The financial chokepoint is tighter than the physical one."
+      },
+      {
+        "heading": "THE LEGAL REGIME",
+        "body": "Under UNCLOS Article 38, ships have a right of transit passage through international straits — coastal states cannot suspend it. Iran ratified the convention in 1982 but has long argued Hormuz is governed by its own domestic law, reserving the legal claim to close it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Tehran signed but never *ratified* UNCLOS into binding domestic effect, leaving a deliberate ambiguity it invokes whenever it wants to threaten **transit passage**."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MINES ARE THE REAL THREAT",
+        "body": "Drones and missiles can be intercepted; a mine cannot be shot down. A single mine costs a few thousand dollars, while clearing it costs millions and weeks — and currents drift them off their charted positions. This asymmetry is why mining has been the weapon of choice for weaker naval powers since the American Civil War.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What historically closes a shipping lane fastest in a Gulf crisis?",
+            "options": [
+              "Physical damage to enough tankers",
+              "War-risk insurance premiums spiking",
+              "A naval blockade of the strait",
+              "Sanctions on the coastal state"
+            ],
+            "correct": 1,
+            "explanation": "Once Lloyd's reclassifies the route as a war zone, premiums make transit uneconomic and ships reroute — long before mines or missiles stop traffic physically."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-06T04:32:35.911Z",
+    "label": "Naval Mines, Mines & the Hormuz Chokepoint",
+    "category": "politics",
+    "articleCount": 1
   }
 }
