@@ -1,84 +1,5 @@
 [
   {
-    "timestamp": "2026-05-16T12:38:36.070Z",
-    "candidateCount": 10,
-    "candidates": [
-      {
-        "slug": "2026-05-15-pakistan-trump-xi-summit-cpec-imf-two-track",
-        "title": "Beijing Summit Leaves Pakistan Exposed",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-15-southeast-asia-counter-drone-asean-fragmentation",
-        "title": "ASEAN Lacks Shared Counter-Drone Grid",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-15-sudan-acute-hunger-19-million-rsf-saf-aid-collapse",
-        "title": "RSF War Drives Sudan Famine",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-15-nevada-lithium-thacker-pass-fpic-shoshone-paiute",
-        "title": "Nevada Lithium Mines Skipped Consent",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-16-bitcoin-78k-fed-pivot-inflation-iran-war-liquidations",
-        "title": "Iran Oil Breaks Crypto Rally",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-16-clarity-act-senate-banking-xrp-sec-cftc-jurisdiction",
-        "title": "Senate Panel Advances Crypto Bill",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-16-ucla-autonomous-electroporation-96-384-plate-sdl",
-        "title": "UCLA Students Automate Electroporation",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-15-malawi-mulanje-unesco-bauxite-mining-contradiction",
-        "title": "Malawi Lists and Mines Mulanje",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-16-self-driving-labs-decision-bottleneck-npj-robotics",
-        "title": "Self-Driving Labs Hit Algorithm Wall",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-14-mit-kornbluth-nsf-nih-funding-f1-h1b-research-pipeline",
-        "title": "Federal Cuts Shrink MIT Research",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": null,
-    "skipReason": "all 10 candidates below coverage threshold 1",
-    "sent": false
-  },
-  {
     "timestamp": "2026-05-16T17:49:50.562Z",
     "candidateCount": 12,
     "candidates": [
@@ -9673,5 +9594,105 @@
     "selected": null,
     "skipReason": null,
     "sent": false
+  },
+  {
+    "timestamp": "2026-06-07T04:36:50.731Z",
+    "candidateCount": 11,
+    "candidates": [
+      {
+        "slug": "2026-06-06-armenia-eu-pivot-russia-pashinyan",
+        "title": "Armenia Votes on EU Pivot",
+        "category": "politics",
+        "eventCoverage": 302,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-06-pakistan-heatwave-pmd-june",
+        "title": "Pakistan Issues 51°C Heatwave Warning",
+        "category": "science",
+        "eventCoverage": 25,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-06-marine-family-support-staff-gutted",
+        "title": "Marines Slash Family Support Staff",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-07-north-korea-nuclear-non-negotiable-kim-yo-jong",
+        "title": "Pyongyang Rejects Denuclearization Goal",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-05-sgie-2026-islamic-finance-maturity",
+        "title": "Islamic Finance Enters Maturity Phase",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-07-pakistan-budget-dams-hydropower-shortfall",
+        "title": "Pakistan Budget Shortchanges Mega Dams",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-06-sp500-rejects-spacex-openai-anthropic-profitability",
+        "title": "SpaceX Fails S&P Profit Test",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-07-female-participation-spinal-cord-rehab-trials",
+        "title": "Spinal Rehab Trials Skew Male",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-05-eu-tech-sovereignty-chips-cloud-ai-package",
+        "title": "EU Drafts Chips Act 2.0",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-07-fake-ai-apps-top-malware-lure-kaspersky",
+        "title": "Fake AI Apps Drive Malware",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-05-silicon-valley-fading-india-tech-talent",
+        "title": "Silicon Valley Loses India's Engineers",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-06-06-armenia-eu-pivot-russia-pashinyan",
+      "title": "Armenia Votes on EU Pivot",
+      "category": "politics",
+      "body": "Russian favorability in Armenia collapsed to",
+      "eventCoverage": 302,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Armenia holds snap elections that could end Pashinyan's pro-EU government",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 24
+    }
   }
 ]
