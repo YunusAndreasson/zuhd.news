@@ -317411,5 +317411,1354 @@
     "label": "Pakistan's Narrow Tax Base",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-06-05-eu-tech-sovereignty-chips-cloud-ai-package": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ASML PARADOX",
+        "body": "Europe's dependency is selective, not total. A single Dutch company, ASML, is the sole maker on Earth of the extreme-ultraviolet lithography machines required to print leading-edge chips — every advanced fab in Taiwan, Korea, and the US runs on European tools. Europe owns the irreplaceable bottleneck of the supply chain yet builds almost none of the chips that come out of it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Each **EUV** machine costs roughly **$200m**, weighs as much as two buses, and ships in pieces aboard multiple cargo planes. **ASML** has a true monopoly — the one chokepoint the export-control wars are actually fought over."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE LEADING-EDGE LIVES",
+        "body": "Only three companies on the planet can manufacture the most advanced logic chips, and the overwhelming majority of that capacity sits in Taiwan. This is concentration risk at civilizational scale: a single island fabricates the brains of the global economy, 130km off the Chinese coast.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "TSMC",
+                "value": "~90% share",
+                "cc": "TW",
+                "weight": 90,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Samsung",
+                "value": "small share",
+                "cc": "KR",
+                "weight": 8,
+                "tone": "neutral"
+              },
+              {
+                "label": "Intel",
+                "value": "ramping",
+                "cc": "US",
+                "weight": 2,
+                "tone": "neutral"
+              }
+            ],
+            "label": "leading-edge (sub-7nm) foundry capability"
+          }
+        ]
+      },
+      {
+        "heading": "THE CAPEX WALL",
+        "body": "A single leading-edge fab now costs $20bn or more and takes three to five years to bring online — and the technology node it targets is often obsolete by the time it opens. This is why subsidy 'targets' rarely close gaps: capital this large and this slow does not respond to a market-share goal printed in a law.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which company is the world's only maker of the EUV lithography machines needed for advanced chips?",
+            "options": [
+              "TSMC (Taiwan)",
+              "ASML (Netherlands)",
+              "Intel (USA)",
+              "Nikon (Japan)"
+            ],
+            "correct": 1,
+            "explanation": "ASML's EUV monopoly means even Taiwan and the US depend on Dutch tools to make their most advanced chips."
+          }
+        ]
+      },
+      {
+        "heading": "THE CLOUD HALF",
+        "body": "The second leg of the package targets a different dependency: the cloud. European data overwhelmingly sits on infrastructure run by three American hyperscalers, all governed by US law — which means US courts and sanctions regimes can in principle reach data physically stored in Frankfurt or Paris.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "AWS (US)",
+                "value": 31,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Azure (US)",
+                "value": 24,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Google (US)",
+                "value": 11,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Alibaba (CN)",
+                "value": 4,
+                "tone": "neutral"
+              },
+              {
+                "label": "All others",
+                "value": 30,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global cloud infrastructure share, 2024 est."
+          }
+        ]
+      },
+      {
+        "heading": "TARGETS, NOT TIMETABLES",
+        "body": "The original 2023 Chips Act set a headline goal of 20% of global semiconductor production by 2030 — Europe's share at the time was around 10% and falling. With most of the world's new fab capacity being built in Asia and the US, hitting 20% would require Europe to grow faster than everyone else combined. A target without binding timelines or enforcement is an aspiration, not a policy."
+      }
+    ],
+    "generatedAt": "2026-06-07T04:27:35.746Z",
+    "label": "Chip & Cloud Sovereignty",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-05-sgie-2026-islamic-finance-maturity": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY NOT JUST A BOND",
+        "body": "A conventional bond pays interest — riba — which Islamic law forbids. A sukuk instead sells the investor a fractional ownership stake in a real asset (a toll road, an aircraft, a building), and the returns are the asset's rent or profit, not a fixed coupon. The legal substance must be ownership, not a loan dressed up as one.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The prohibition rests on two pillars: **riba** (interest, or any guaranteed return on money lent) and **gharar** (excessive uncertainty or speculation). A **sukuk** is engineered to avoid both — the holder owns a thing, and bears its risk."
+          }
+        ]
+      },
+      {
+        "heading": "THE TAKAFUL DIFFERENCE",
+        "body": "Conventional insurance is problematic under sharia because the policyholder pays a premium for an uncertain payout — gharar — and the insurer invests the float at interest. Takaful restructures this as a mutual pool: participants donate into a common fund, claims are paid from it, and surpluses are shared back. The company manages the pool for a fee rather than profiting from the spread."
+      },
+      {
+        "heading": "THE HARMONIZATION BOTTLENECK",
+        "body": "There is no single global sharia authority. Bahrain's AAOIFI sets standards followed across the Gulf; Malaysia runs its own Shariah Advisory Council under Bank Negara, which has historically approved structures (like bay' al-inah and aggressive tawarruq) that Gulf scholars reject as backdoor interest. The same product can be halal in Kuala Lumpur and impermissible in Riyadh — which is why cross-border integration stalls.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "AAOIFI",
+                "value": "Bahrain",
+                "cc": "BH"
+              },
+              {
+                "label": "IFSB",
+                "value": "Malaysia",
+                "cc": "MY"
+              },
+              {
+                "label": "Bank Negara SAC",
+                "value": "Malaysia",
+                "cc": "MY"
+              },
+              {
+                "label": "OIC Fiqh Academy",
+                "value": "Saudi Arabia",
+                "cc": "SA"
+              }
+            ],
+            "label": "the standard-setters"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE MONEY SITS",
+        "body": "Islamic finance is not evenly spread across the Muslim world — it concentrates in a handful of markets that built the legal and regulatory plumbing early. Malaysia pioneered the sovereign sukuk; the Gulf states scaled it with oil surpluses; Indonesia, the largest Muslim-majority country, is a relative latecomer despite its population.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Malaysia",
+                "value": "~35%",
+                "cc": "MY",
+                "weight": 35
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~25%",
+                "cc": "SA",
+                "weight": 25
+              },
+              {
+                "label": "UAE",
+                "value": "~12%",
+                "cc": "AE",
+                "weight": 12
+              },
+              {
+                "label": "Indonesia",
+                "value": "~10%",
+                "cc": "ID",
+                "weight": 10
+              },
+              {
+                "label": "Qatar",
+                "value": "~5%",
+                "cc": "QA",
+                "weight": 5
+              }
+            ],
+            "label": "global sukuk issuance, by hub (approx. share)"
+          },
+          {
+            "type": "locations",
+            "codes": [
+              "MY",
+              "ID",
+              "SA",
+              "AE",
+              "BH",
+              "QA"
+            ],
+            "label": "the Islamic finance corridor",
+            "caption": "Two poles: the Gulf and Southeast Asia, with rival standards"
+          }
+        ]
+      },
+      {
+        "heading": "THE SCRIPTURAL FLOOR",
+        "body": "The prohibition of riba is not a modern regulatory choice — it is scriptural. Surah al-Baqarah declares war on those who persist in usury, and the classical jurists built an entire contract law to route around it. Every sukuk and takaful structure is, at bottom, financial engineering in service of a Quranic injunction.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which instrument is Islamic finance's structural alternative to the interest-bearing bond?",
+            "options": [
+              "Sukuk",
+              "Takaful",
+              "Murabaha",
+              "Wakala"
+            ],
+            "correct": 0,
+            "explanation": "Sukuk grant fractional ownership in a real, income-generating asset — returns are the asset's yield, not interest on a loan."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T04:28:16.822Z",
+    "label": "Islamic Finance Mechanics",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-05-silicon-valley-fading-india-tech-talent": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE H-1B BOTTLENECK",
+        "body": "The visa that carried a generation of Indian engineers to California is rationed by lottery, not merit. Demand runs three-to-four times the annual cap, so a standing job offer from a top firm is still a coin flip — and a rejected applicant simply stays home.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **H-1B** caps new skilled-worker entries at **85,000** a year, allocated by random draw. Indian nationals win the largest share — but a lottery means even a confirmed offer from Google clears only on luck."
+          }
+        ]
+      },
+      {
+        "heading": "THE GREEN CARD TRAP",
+        "body": "The deeper deterrent isn't the entry visa — it's permanence. US employment green cards are subject to a per-country ceiling, so applicants from the highest-volume nations queue for decades behind identical applicants from small countries. An Indian engineer can spend an entire career on a temporary visa, unable to change jobs freely or guarantee a future.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do Indian H-1B holders face the longest US green-card waits?",
+            "options": [
+              "A 7% per-country cap on employment green cards",
+              "India is barred from employment-based categories",
+              "Their degrees require re-certification by USCIS",
+              "H-1B renewals reset their place in the queue"
+            ],
+            "correct": 0,
+            "explanation": "Employment green cards are capped at 7% per country of birth, so high-applicant nations like India face backlogs stretching into decades."
+          }
+        ]
+      },
+      {
+        "heading": "THE CAPTIVE-CENTER BOOM",
+        "body": "India's tech economy was once defined by outsourcing — building someone else's product on contract. That has flipped. Multinationals now run their own in-house engineering arms on Indian soil, where staff own core products end-to-end rather than executing tickets for a foreign client.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "These captive arms are called *Global Capability Centers* (**GCCs**) — over **1,700** of them now operate in India. An engineer can build Goldman's or Google's core systems without ever leaving Bengaluru."
+          }
+        ]
+      },
+      {
+        "heading": "THE ARBITRAGE COLLAPSES",
+        "body": "Silicon Valley's pull rested on a wage gap so wide it justified uprooting a life. As Indian product salaries climb and Bay Area living costs stay punishing, the after-rent, after-tax differential narrows to the point where the move no longer pays for itself.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "US Big Tech",
+                "value": "~$300k",
+                "cc": "US",
+                "weight": 300
+              },
+              {
+                "label": "India product",
+                "value": "~$90k",
+                "cc": "IN",
+                "weight": 90
+              }
+            ],
+            "label": "senior software-engineer total comp (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE RETURNING-TALENT PATTERN",
+        "body": "This has happened before. Rising Asian economies routinely reach a tipping point where Western-trained engineers calculate they can build more at home — and that reverse tide tends to seed the next domestic boom.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "China named its returning engineers *haigui* (海归) — 'sea turtles.' They seeded Alibaba, Baidu, and Shenzhen's hardware ecosystem. India is now watching its own tide turn."
+          },
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1985",
+                "label": "Taiwan return wave seeds chip industry"
+              },
+              {
+                "year": "2008",
+                "label": "China launches Thousand Talents",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2015",
+                "label": "China haigui return surge"
+              },
+              {
+                "year": "2026",
+                "label": "India's reversal begins"
+              }
+            ],
+            "label": "waves of returning talent"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T04:29:39.839Z",
+    "label": "Reverse Brain Drain",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-06-armenia-eu-pivot-russia-pashinyan": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GUARANTOR THAT WASN'T",
+        "body": "Armenia's entire security doctrine was built on Russia. Moscow runs the 102nd Military Base at Gyumri, and Yerevan is a founding member of the CSTO — the Russia-led mutual-defense pact meant to function like a post-Soviet NATO. When Azerbaijan attacked in 2020 and again in 2023, the alliance did nothing. That non-response is what 14% favorability actually measures: a security partner that pocketed the dependence and skipped the defense.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **CSTO** (Collective Security Treaty Organization) obliges members to treat an attack on one as an attack on all — *on paper*. Armenia froze its participation in 2024, the first member ever to walk away from the core commitment."
+          },
+          {
+            "type": "quiz",
+            "question": "Which Russia-led bloc did Armenia freeze its participation in after Moscow failed to defend it?",
+            "options": [
+              "The CSTO",
+              "NATO",
+              "The Eurasian Economic Union",
+              "The Shanghai Cooperation Organisation"
+            ],
+            "correct": 0,
+            "explanation": "The CSTO is Moscow's military alliance; Armenia froze its role in 2024. The EAEU is the parallel economic bloc Armenia still belongs to — which is why it's the trap distractor."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHIC TRAP",
+        "body": "Armenia is landlocked with two of its four borders sealed: Turkey closed its frontier in 1993 in solidarity with Azerbaijan, and the Azerbaijani border is a front line. That leaves only Georgia and Iran as outlets to the world — which is precisely why breaking with Moscow is so dangerous. Russia supplies most of Armenia's gas, hosts roughly two million diaspora whose remittances prop up the economy, and sits astride the rail lines north.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AM",
+              "AZ",
+              "GE",
+              "TR",
+              "IR"
+            ],
+            "label": "the South Caucasus squeeze",
+            "caption": "Only the Georgian and Iranian borders stay open.",
+            "markers": [
+              {
+                "lat": 40.7894,
+                "lng": 43.8475,
+                "label": "Gyumri: Russian 102nd base"
+              },
+              {
+                "lat": 39.8154,
+                "lng": 46.7517,
+                "label": "Stepanakert (Khankendi)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LONG WAR OVER KARABAKH",
+        "body": "Nagorno-Karabakh — Armenians call it Artsakh — was an Armenian-majority enclave inside Soviet Azerbaijan. Armenia won control in the 1990s war; Azerbaijan, rearmed by oil money, took most of it back in 2020 and seized the rest in a one-day offensive in September 2023. Nearly the entire Armenian population, around 100,000 people, fled within a week. That exodus broke the implicit bargain that justified dependence on Russia.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1991",
+                "label": "Armenia independent from USSR",
+                "emphasis": "start"
+              },
+              {
+                "year": "1994",
+                "label": "First Karabakh war ends — Armenian control"
+              },
+              {
+                "year": "2018",
+                "label": "Velvet Revolution brings Pashinyan"
+              },
+              {
+                "year": "2020",
+                "label": "Second Karabakh war — Azerbaijan reclaims land"
+              },
+              {
+                "year": "2023-09",
+                "label": "Azerbaijan takes all of Karabakh; exodus",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Armenia freezes CSTO role"
+              }
+            ],
+            "label": "from victory to exodus"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE BALANCE TIPPED",
+        "body": "The shift wasn't diplomacy — it was hydrocarbons. Azerbaijan's Caspian oil and gas revenue let Baku outspend Yerevan on defense for two decades, buying Israeli and Turkish drones that decided the 2020 war. A small economy cannot win an arms race against a petrostate next door, which is the structural reason Armenia is now hunting for a different patron.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Azerbaijan",
+                "value": "~$3bn",
+                "cc": "AZ",
+                "tone": "unfavorable",
+                "weight": 3
+              },
+              {
+                "label": "Armenia",
+                "value": "~$1.4bn",
+                "cc": "AM",
+                "tone": "neutral",
+                "weight": 1.4
+              }
+            ],
+            "label": "defense spending, approx. annual"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRINCIPALS",
+        "body": "Pashinyan rose to power in the peaceful 2018 Velvet Revolution as an anti-corruption reformer, not a geopolitician — the Karabakh defeats happened on his watch and now define his survival. Across the table sit a dynastic strongman flush with oil revenue and a Kremlin that treats the South Caucasus as its own backyard.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Nikol Pashinyan",
+                "role": "Armenian PM, reformist",
+                "years": "2018–",
+                "cc": "AM"
+              },
+              {
+                "name": "Ilham Aliyev",
+                "role": "Azerbaijani president, dynastic",
+                "years": "2003–",
+                "cc": "AZ"
+              },
+              {
+                "name": "Vladimir Putin",
+                "role": "Russian president, ex-patron",
+                "years": "2000–",
+                "cc": "RU"
+              }
+            ],
+            "label": "the three-way contest"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T04:30:41.780Z",
+    "label": "Armenia, Russia & the Karabakh Collapse",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-06-marine-family-support-staff-gutted": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RETENTION VARIABLE",
+        "body": "When the draft ended in 1973 and the United States built an all-volunteer force, the family stopped being a private matter and became a readiness input. The Pentagon's own maxim captures why: you enlist the individual, but you reenlist the household. Spouse satisfaction is one of the strongest predictors of whether a service member stays in.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine is blunt: *\"You recruit the soldier, but you retain the family.\"* Family-support billets exist because attrition is cheaper to prevent than to replace."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE TIMING IS THE STORY",
+        "body": "Deployment is exactly when the support apparatus is supposed to surge, not shrink. Counselors handle the predictable crises of a unit overseas — a death notification, a financial collapse at home, a custody emergency, a spouse in medical distress — that the deployed Marine cannot manage from theater. Cutting that capacity during an active deployment removes the shock absorber at the moment of maximum load.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What structural change first made military family well-being a core retention concern for the US armed forces?",
+            "options": [
+              "The end of the draft and shift to an all-volunteer force in 1973",
+              "The creation of the Department of Defense in 1947",
+              "The GI Bill after World War II",
+              "The post-9/11 surge in deployments"
+            ],
+            "correct": 0,
+            "explanation": "A volunteer force has to compete to keep people; conscripts can be compelled, volunteers leave when family strain outweighs the benefits."
+          }
+        ]
+      },
+      {
+        "heading": "THE BILLET-CONVERSION TRICK",
+        "body": "Replacing civilian coordinators with uniformed troops 'carrying other duties' doesn't make the work disappear — it converts a dedicated job into a collateral assignment layered on top of someone's primary role. The labor still exists; it's just hidden in the cracks of a Marine's day, performed by someone with no specialized training and a war to fight.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In Pentagon budgeting this is the classic **billet conversion**: a civilian salary line vanishes from the books while the task migrates to an **additional duty** that never shows up as a cost."
+          }
+        ]
+      },
+      {
+        "heading": "THE REPLACEMENT MATH",
+        "body": "Recruiting and training a single Marine costs the government tens of thousands of dollars before that Marine is deployable. A counselor who prevents a handful of separations pays for their own salary several times over. This is the arithmetic that built the family-support system in the first place — and the arithmetic that erodes when budgets are cut on a current-year basis rather than a lifecycle one."
+      },
+      {
+        "heading": "THE DRAWDOWN PATTERN",
+        "body": "Military family programs follow a recurring cycle: they expand during and after big wars when the strain is visible, then get harvested for savings once the political attention fades — often while troops are still deployed. The support infrastructure is treated as a wartime luxury rather than a permanent cost of an all-volunteer force, so it is repeatedly rebuilt from scratch.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1965",
+                "label": "Army Community Service — first formal family support"
+              },
+              {
+                "year": "1973",
+                "label": "Draft ends; all-volunteer force begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1991",
+                "label": "Gulf War mobilization exposes support gaps"
+              },
+              {
+                "year": "2003",
+                "label": "Iraq/Afghan deployments drive record family funding"
+              }
+            ],
+            "label": "the volunteer-force family compact"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T04:31:43.541Z",
+    "label": "Military Families & the Volunteer Force",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-06-pakistan-heatwave-pmd-june": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NUMBER THAT ACTUALLY KILLS",
+        "body": "A dry-bulb 51°C reading is not the real danger — humidity is. The body sheds heat by sweating, and sweat only cools if it evaporates. The combined measure is the wet-bulb temperature, and above roughly 35°C wet-bulb a healthy person in full shade with unlimited water dies within hours, because the air can no longer accept their sweat.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A *dry-bulb* 51°C in arid air is survivable in shade; a *wet-bulb* 35°C — perhaps 42°C dry air at 50% humidity — is not. Sindh's coastal belt, fed by Arabian Sea moisture, is one of the few places on Earth that has briefly crossed it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DAY THREE KILLS, NOT DAY ONE",
+        "body": "Heat mortality tracks nighttime lows more than daytime peaks. The body repairs itself during sleep when core temperature falls; when urban nights stay above ~30°C, the cardiovascular system never recovers from the day's load. A six-day warning matters because the deaths cluster in the back half, as heat debt compounds."
+      },
+      {
+        "heading": "JACOBABAD, THE FURNACE",
+        "body": "Sindh holds Jacobabad, one of the hottest inhabited cities on Earth — it has recorded both 50°C+ heat and dangerous wet-bulb spikes, a rare combination of desert heat and river-valley humidity. The Indus corridor funnels Arabian Sea moisture inland, so Sindh gets the worst of both extremes at once.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IN",
+              "AF",
+              "IR"
+            ],
+            "label": "the Indus heat corridor",
+            "markers": [
+              {
+                "lat": 28.2769,
+                "lng": 68.4514,
+                "label": "Jacobabad"
+              },
+              {
+                "lat": 27.7052,
+                "lng": 68.8574,
+                "label": "Sukkur"
+              },
+              {
+                "lat": 24.8607,
+                "lng": 67.0011,
+                "label": "Karachi"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE GRID DEATH SPIRAL",
+        "body": "Extreme heat triggers a feedback loop: demand for air conditioning and fans spikes exactly when transmission lines sag and thermal plants lose efficiency. Load-shedding then cuts power during the deadliest hours — and a heatwave with reliable electricity is survivable, while the same heatwave during a blackout is a mass-casualty event. Karachi's 2015 heatwave, which killed over a thousand, peaked during rolling outages."
+      },
+      {
+        "heading": "WHO STANDS IN THE SUN",
+        "body": "The 10am–4pm advisory is aimed at people who cannot follow it. Roughly 60% of Pakistan's workforce is in agriculture or construction — outdoors, during peak heat, with no practical option to stop. Heat is a class hazard: it concentrates among day laborers, the elderly, and those without cooling.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Above what wet-bulb temperature can a healthy human not survive more than a few hours, even resting in shade with water?",
+            "options": [
+              "31°C wet-bulb",
+              "35°C wet-bulb",
+              "45°C wet-bulb",
+              "51°C wet-bulb"
+            ],
+            "correct": 1,
+            "explanation": "At ~35°C wet-bulb, sweat can no longer evaporate, so the body cannot shed metabolic heat and core temperature climbs fatally."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T04:32:15.585Z",
+    "label": "Heat & the Human Limit",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-06-sp500-rejects-spacex-openai-anthropic-profitability": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "A COMMITTEE, NOT A FORMULA",
+        "body": "The S&P 500 is not the 500 biggest US companies. A committee at S&P Dow Jones Indices hand-selects members against published criteria, then exercises discretion on top. The list is curated, which is why membership can be denied even to a giant."
+      },
+      {
+        "heading": "THE EARNINGS GATE",
+        "body": "The hard rule that stops SpaceX, OpenAI and Anthropic: a candidate must post positive GAAP earnings in the most recent quarter and a positive sum over the trailing four quarters. Consistent accounting profit, not revenue or valuation, is the bar.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The test is **GAAP net income** — audited bottom-line profit — not the adjusted, *non-GAAP* figures startups prefer to headline. A company burning cash to grow can be worth hundreds of billions and still fail it."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRIVATE PROBLEM",
+        "body": "There is an even more basic wall: index members must be publicly listed. SpaceX, OpenAI and Anthropic are private. The profitability debate is really a debate about companies that have not yet held an IPO — inclusion is years away regardless of earnings."
+      },
+      {
+        "heading": "THE INDEX EFFECT",
+        "body": "Roughly $7.5tn of passive money tracks the S&P 500 by rule, not judgment. When a stock is added, those funds must buy it to match the index — mechanical demand that has nothing to do with the company's prospects. That forced bid is the 'index effect.'",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Passive",
+                "value": "~half",
+                "weight": 52,
+                "tone": "favorable"
+              },
+              {
+                "label": "Active",
+                "value": "~half",
+                "weight": 48,
+                "tone": "neutral"
+              }
+            ],
+            "label": "US fund assets: passive has overtaken active"
+          }
+        ]
+      },
+      {
+        "heading": "THE TESLA PRECEDENT",
+        "body": "Tesla was eligible by size for years but blocked on the same profitability rule until it strung together profitable quarters. Added in December 2020 at a market cap near $600bn — the largest entry ever — it forced index funds into a multi-billion-dollar scramble to buy a single stock at once.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What kept Tesla out of the S&P 500 until late 2020, despite its size?",
+            "options": [
+              "It had not posted consistent GAAP profits",
+              "It was too small by market cap",
+              "It was not a US-domiciled company",
+              "Its trading volume was too low"
+            ],
+            "correct": 0,
+            "explanation": "Tesla cleared size and liquidity for years; the four-quarters-of-profit rule was the last gate it had to pass."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE BAR EXISTS",
+        "body": "The profitability screen is meant to keep the index from absorbing speculative, money-losing firms whose collapse would whipsaw the retirement savings passively bound to the benchmark. It is a stability filter dressed as an accounting rule."
+      }
+    ],
+    "generatedAt": "2026-06-07T04:32:57.768Z",
+    "label": "How the S&P 500 Picks Its Members",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-07-fake-ai-apps-top-malware-lure-kaspersky": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE TROJAN HORSE STILL WORKS",
+        "body": "Malware delivery has one eternal constraint: the user has to run it voluntarily. The oldest solution is the Trojan horse — wrap the payload in software the victim actively wants. The better the disguise, the more eagerly the victim installs their own infection.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A *Trojan* is named for the disguise, not the damage. The dangerous part — a **banking trojan** or **spyware** stager — only runs after the wrapper delivers what the user expected, which is why the install feels normal and detection lags."
+          }
+        ]
+      },
+      {
+        "heading": "WHY AI IS THE PERFECT BAIT",
+        "body": "A lure works best when demand outruns familiarity — millions want the tool but can't yet recognize the real installer from a fake. AI tools hit that sweet spot exactly: explosive curiosity, no muscle memory for where the legitimate download lives, and brand names everyone trusts on sight.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              37675,
+              26522,
+              28305,
+              31715,
+              29993,
+              34849,
+              33593,
+              26509,
+              24498,
+              24488,
+              35427,
+              28314,
+              28721,
+              28453,
+              30016,
+              29342,
+              27232,
+              28702,
+              27941,
+              31664,
+              32974,
+              33158,
+              32711,
+              31980,
+              38866,
+              41178,
+              31073,
+              32499,
+              31559,
+              24803
+            ],
+            "periods": [
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6"
+            ],
+            "label": "Artificial intelligence — Wikipedia views",
+            "unit": "views/day",
+            "highlight": "max",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE REAL APPS HAVE NO INSTALLER",
+        "body": "ChatGPT and Claude are primarily web services — there is no official .exe to download for the core product. That gap is the attacker's opening: searching for a 'ChatGPT app' returns a vacuum the fakes rush to fill, and the user has no genuine installer to compare against.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The strongest fakes don't even need malware skills — just an **SEO-optimized download page** and a familiar logo. The brand does the persuading; the trojan only has to run once."
+          }
+        ]
+      },
+      {
+        "heading": "THE PAYLOAD IS THE POINT",
+        "body": "The fake app is disposable; the payload is the business. Banking trojans inject themselves into browser sessions to steal credentials and one-time codes as you type them, while spyware sells persistence — keystrokes, screenshots, and clipboard contents harvested over weeks before anyone notices."
+      },
+      {
+        "heading": "WHY CROSS-PLATFORM SIGNALS A PRO",
+        "body": "Most malware targets one operating system because each needs different code and a different disguise. A group distributing fake Claude apps across Windows, macOS, and mobile at once is running an operation, not a hustle — Silver Fox is a China-linked actor with a documented history of targeting that breadth.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do attackers impersonate AI apps like ChatGPT rather than write generic malware?",
+            "options": [
+              "AI apps have weaker security than other software",
+              "The brand persuades users to install it themselves",
+              "Antivirus tools cannot scan AI software",
+              "AI apps automatically grant admin rights"
+            ],
+            "correct": 1,
+            "explanation": "A trusted, in-demand brand solves malware's hardest problem — getting the victim to run the file voluntarily."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Wikipedia pageviews · as of 2026-06-06"
+    ],
+    "generatedAt": "2026-06-07T04:33:33.726Z",
+    "label": "AI Apps as Malware Lures",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-07-female-participation-spinal-cord-rehab-trials": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INJURY IS ALREADY MALE",
+        "body": "Spinal cord injury itself runs roughly 80% male — driven by young men in vehicle crashes, falls, and violence. So 22% female enrollment partly mirrors who actually gets injured. The sharper critique is that mirroring incidence is not the same as having enough women to learn how women recover.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are spinal cord injury trials overwhelmingly male?",
+            "options": [
+              "Women are deliberately barred from enrolling",
+              "Spinal injury itself is ~80% male, so the pool skews male",
+              "Female nervous systems don't respond to rehab",
+              "Rehab guidelines only apply to men"
+            ],
+            "correct": 1,
+            "explanation": "Trauma-driven spinal injury concentrates in young men, so the trial pool inherits that skew — but it leaves female recovery understudied."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SEX CHANGES RECOVERY",
+        "body": "Sex is not a cosmetic variable in rehab. Muscle mass, bone density, hormonal effects on nerve regeneration, and bladder and autonomic function all differ — meaning the same protocol can yield different recovery curves. Evidence built on one body type quietly becomes the default for both."
+      },
+      {
+        "heading": "THE HISTORICAL DEFAULT",
+        "body": "Excluding women from trials was once official policy. A 1977 US guidance kept women of childbearing potential out of early drug studies; it took the 1993 NIH Revitalization Act to mandate their inclusion, and a 2016 NIH policy to require analyzing sex as a biological variable at all.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1977",
+                "label": "FDA bars women of childbearing potential",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1993",
+                "label": "NIH Revitalization Act mandates inclusion"
+              },
+              {
+                "year": "2014",
+                "label": "NIH targets sex bias in preclinical work"
+              },
+              {
+                "year": "2016",
+                "label": "Sex as a biological variable required"
+              }
+            ],
+            "label": "women in clinical research"
+          }
+        ]
+      },
+      {
+        "heading": "GARBAGE IN, GUIDELINE OUT",
+        "body": "A systematic review does not generate new data — it pools existing trials. If the underlying studies skew 78% male, the meta-analysis inherits that skew and launders it into authority. The clean summary statistic hides whose bodies it was actually measured on.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the *generalizability gap*: a finding is internally valid for the population studied, yet silently extrapolated to a population — **women** — that was never adequately sampled."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PARITY WON'T SELF-CORRECT",
+        "body": "The study found no drift toward balance across 24 years — bias does not fade on its own. Because injured women are scarcer, trials must spend extra effort recruiting them, which costs money and time nobody is forced to spend. Without targeted enrollment quotas, the default stays male by inertia."
+      }
+    ],
+    "generatedAt": "2026-06-07T04:34:10.584Z",
+    "label": "Sex Bias in Clinical Evidence",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-07-north-korea-nuclear-non-negotiable-kim-yo-jong": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE BOMB IS NON-NEGOTIABLE",
+        "body": "Pyongyang learned its lesson from Libya. Gaddafi surrendered his nuclear program in 2003 in exchange for sanctions relief and Western normalization; eight years later NATO airstrikes helped end his rule and his life. For the Kim regime, warheads are not bargaining chips — they are the insurance policy that the Libya precedent proves you must never cash in.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which leader's fate North Korea most often cites as proof that giving up nuclear weapons is fatal?",
+            "options": [
+              "Saddam Hussein (Iraq)",
+              "Muammar Gaddafi (Libya)",
+              "Slobodan Milošević (Serbia)"
+            ],
+            "correct": 1,
+            "explanation": "Gaddafi traded away his nuclear program in 2003 and was killed in 2011 — Pyongyang treats this as the definitive lesson against denuclearization."
+          }
+        ]
+      },
+      {
+        "heading": "ENSHRINED IN THE CONSTITUTION",
+        "body": "In 2023 North Korea wrote its nuclear-weapons status into its constitution, then in 2022 had already passed a law authorizing preemptive nuclear use. Putting the policy in the founding document is deliberate: it raises the political cost of any future reversal and signals that the program survives any single leader.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The constitutional move converts a *negotiating position* into a *founding principle* — reversible policy becomes irreversible identity. That is precisely the word Kim Yo Jong uses: **irreversible**."
+          }
+        ]
+      },
+      {
+        "heading": "THE BUFFER-STATE LOGIC",
+        "body": "China's support for Pyongyang has never been about ideology. A collapsed North Korea means a unified, US-allied Korea with American bases on the Yalu River — 800 km from Beijing. The Kim regime's survival is a geographic buffer, not a political preference, which is why Beijing keeps the lifeline open even when it dislikes the nukes.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KP",
+              "CN",
+              "KR",
+              "JP",
+              "RU"
+            ],
+            "label": "the buffer and its neighbors",
+            "markers": [
+              {
+                "lat": 39.0392,
+                "lng": 125.7625,
+                "label": "Pyongyang"
+              },
+              {
+                "lat": 41.7956,
+                "lng": 126.5097,
+                "label": "Yalu River border"
+              },
+              {
+                "lat": 37.5665,
+                "lng": 126.978,
+                "label": "Seoul"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DYNASTY'S ENFORCER",
+        "body": "Kim Yo Jong is the only blood relative in the inner circle and functions as the regime's hardline voice — the one who issues the threats and the rejections, letting her brother stay above the fray. When she voids a pledge, it carries the family's authority but preserves Kim Jong Un's room to maneuver later.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Kim Jong Un",
+                "role": "Supreme Leader",
+                "years": "2011–",
+                "cc": "KP"
+              },
+              {
+                "name": "Kim Yo Jong",
+                "role": "Sister, deputy dept. director",
+                "years": "2014–",
+                "cc": "KP"
+              },
+              {
+                "name": "Xi Jinping",
+                "role": "Chinese President",
+                "years": "2013–",
+                "cc": "CN"
+              }
+            ],
+            "label": "the Paektu bloodline in power"
+          }
+        ]
+      },
+      {
+        "heading": "THE DIPLOMATIC GRAVEYARD",
+        "body": "Every framework built to denuclearize North Korea has collapsed. The 1994 Agreed Framework, the 2005 Six-Party joint statement, the 2018-19 Trump-Kim summits — each promised disarmament for relief, each unraveled when the sequencing of who moves first broke down. The pattern is now the substrate every new initiative inherits.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1994",
+                "label": "Agreed Framework (US–DPRK)"
+              },
+              {
+                "year": "2003",
+                "label": "Six-Party Talks begin"
+              },
+              {
+                "year": "2006",
+                "label": "First nuclear test",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2009",
+                "label": "DPRK quits Six-Party Talks"
+              },
+              {
+                "year": "2018",
+                "label": "Singapore summit"
+              },
+              {
+                "year": "2019",
+                "label": "Hanoi summit collapses"
+              },
+              {
+                "year": "2023",
+                "label": "Nuclear status constitutionalized"
+              }
+            ],
+            "label": "three decades of failed bargains"
+          }
+        ]
+      },
+      {
+        "heading": "WHO FUNDS THE PROGRAM",
+        "body": "UN sanctions cut Pyongyang off from the global financial system, so the regime improvises hard currency: Chinese trade, arms sales, overseas labor, and — since 2017 — large-scale cryptocurrency theft. UN investigators estimated cyber operations funded a substantial share of the weapons program, which is why Beijing's economic posture is the variable Xi's visit actually tests.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "china",
+                "label": "China trade"
+              },
+              {
+                "id": "crypto",
+                "label": "Crypto theft"
+              },
+              {
+                "id": "arms",
+                "label": "Arms / labor"
+              },
+              {
+                "id": "regime",
+                "label": "Regime coffers"
+              },
+              {
+                "id": "weapons",
+                "label": "Weapons program"
+              }
+            ],
+            "links": [
+              {
+                "source": "china",
+                "target": "regime",
+                "value": 50
+              },
+              {
+                "source": "crypto",
+                "target": "regime",
+                "value": 30
+              },
+              {
+                "source": "arms",
+                "target": "regime",
+                "value": 20
+              },
+              {
+                "source": "regime",
+                "target": "weapons",
+                "value": 60
+              }
+            ],
+            "label": "how Pyongyang earns hard currency (illustrative shares)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T04:34:40.234Z",
+    "label": "North Korea's Nuclear Doctrine",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-07-pakistan-budget-dams-hydropower-shortfall": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TREATY THAT SPLIT THE RIVERS",
+        "body": "The 1960 Indus Waters Treaty, brokered by the World Bank, gave India the three eastern rivers (Ravi, Beas, Sutlej) and Pakistan the three western ones (Indus, Jhelum, Chenab). The catch: the western rivers rise in or pass through Indian-controlled territory before reaching Pakistan, so the lower riparian depends on water it does not control at the source.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1947",
+                "label": "Partition splits the basin"
+              },
+              {
+                "year": "1948",
+                "label": "India briefly halts canal flows"
+              },
+              {
+                "year": "1960",
+                "label": "Indus Waters Treaty signed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2007",
+                "label": "Baglihar dam dispute on Chenab"
+              },
+              {
+                "year": "2016",
+                "label": "India threatens to suspend treaty"
+              }
+            ],
+            "label": "the Indus water question"
+          }
+        ]
+      },
+      {
+        "heading": "RUN-OF-RIVER VS STORAGE",
+        "body": "The treaty lets India build 'run-of-river' hydropower on the western rivers — plants that spin turbines without holding water back. The fear in Islamabad is timing: even a run-of-river dam can briefly fill or empty its pondage, letting the upstream state pulse or starve flows during a planting season or a standoff.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal line is *storage* — India may pass water through, but the treaty caps how much it may **hold**. A storage dam is leverage; a run-of-river dam is, in theory, only electricity."
+          }
+        ]
+      },
+      {
+        "heading": "PAKISTAN'S STORAGE PROBLEM",
+        "body": "Pakistan can store only a few weeks of river flow behind its dams — among the lowest buffers of any major agricultural economy. Silt has steadily eaten the capacity of its two old giants, Tarbela and Mangla, which is the entire reason Diamer-Bhasha and Dasu exist: not new ambition, but replacing storage the country is losing.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Days of water storage per capita (approx.)",
+            "peers": [
+              {
+                "value": 30,
+                "cc": "PK"
+              },
+              {
+                "value": 170,
+                "cc": "IN"
+              },
+              {
+                "value": 300,
+                "cc": "CN"
+              },
+              {
+                "value": 600,
+                "cc": "AU"
+              },
+              {
+                "value": 700,
+                "cc": "EG"
+              },
+              {
+                "value": 900,
+                "cc": "US"
+              }
+            ],
+            "subjectCc": "PK",
+            "unit": "days"
+          }
+        ]
+      },
+      {
+        "heading": "WHY UPSTREAM WINS",
+        "body": "India is advancing dams on the Chenab — Pakistan's river by treaty, but Indian by geography for its upper reaches. Whoever holds the headwaters holds the option to regulate timing, and the only counter is to build downstream storage that smooths whatever arrives. Pakistan currently cannot fund that counter.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IN"
+            ],
+            "label": "the contested headwaters",
+            "caption": "Pakistan's mega-dams sit on the Indus; the upstream squeeze is on the Chenab.",
+            "markers": [
+              {
+                "lat": 35.52,
+                "lng": 73.78,
+                "label": "Diamer-Bhasha (Indus)"
+              },
+              {
+                "lat": 35.32,
+                "lng": 73.31,
+                "label": "Dasu (Indus)"
+              },
+              {
+                "lat": 33.15,
+                "lng": 75.1,
+                "label": "Baglihar (Chenab, India)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE FUNDING TRAP",
+        "body": "A multi-decade dam is the worst kind of project to half-fund: costs escalate every year the timeline slips, and a depreciating rupee makes the imported turbines and contractors more expensive in local terms. Under an IMF program that caps spending, the megaproject is precisely the line item that gets stretched — which raises its final cost.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377,
+              278.485848,
+              278.494701,
+              278.137253,
+              277.408487,
+              278.412506,
+              278.512908,
+              278.575,
+              277.445439,
+              278.55,
+              278.55,
+              278.494021,
+              278.3,
+              278.45,
+              278.61849,
+              278.35,
+              278.5,
+              278.5
+            ],
+            "periods": [
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE TEST",
+        "body": "Hydropower in Pakistan is not really about electricity — it is about controlling when water arrives. The country's vulnerability is structural: it sits at the bottom of a basin whose taps are partly in another state's hands.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the 1960 Indus Waters Treaty, which river is allocated to Pakistan yet rises in Indian-controlled territory?",
+            "options": [
+              "Ravi",
+              "Chenab",
+              "Sutlej",
+              "Beas"
+            ],
+            "correct": 1,
+            "explanation": "The Chenab is a 'western' river allotted to Pakistan, but its upper course runs through India — which is why Indian dams on it alarm Islamabad."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-07"
+    ],
+    "generatedAt": "2026-06-07T04:35:21.007Z",
+    "label": "The Indus Waters & Pakistan's Storage Gap",
+    "category": "economy",
+    "articleCount": 1
   }
 }
