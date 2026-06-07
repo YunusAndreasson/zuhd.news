@@ -322814,5 +322814,1508 @@
     "label": "The Purse, the Pardon & the Judgment Fund",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-07-bitcoin-etf-outflows-institutional-bearish-signal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A SPOT ETF ACTUALLY HOLDS",
+        "body": "A spot Bitcoin ETF holds real bitcoin in custody — when you buy a share, an authorized participant delivers cash or coin and the fund mints a share against it. This is why ETF flows are not paper bets: every redemption forces actual bitcoin out of custody and back onto the market.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The plumbing runs through **authorized participants** — a handful of large brokers who create and redeem shares. When ETFs *bleed*, APs are handing coins back to be sold, not just adjusting a number on a screen."
+          }
+        ]
+      },
+      {
+        "heading": "THE FUTURES-ETF DETOUR",
+        "body": "The SEC blocked spot Bitcoin ETFs for a decade, approving only a futures-based product in 2021 that tracked CME contracts, not coins. Spot ETFs were finally cleared in January 2024 — only after Grayscale won a federal court ruling that the refusal was 'arbitrary and capricious.'",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How did the January 2024 US spot Bitcoin ETFs differ from the first US Bitcoin ETF approved in 2021?",
+            "options": [
+              "The 2024 funds hold actual bitcoin; the 2021 fund held futures contracts",
+              "The 2024 funds were the first to be SEC-regulated",
+              "The 2021 fund was offshore; the 2024 funds were domestic"
+            ],
+            "correct": 0,
+            "explanation": "The 2021 BITO tracked CME futures; spot ETFs hold coins in custody, so their flows move the underlying market directly."
+          }
+        ]
+      },
+      {
+        "heading": "THE GBTC OVERHANG",
+        "body": "Grayscale's trust held hundreds of thousands of coins locked behind a redemption gate, trading at a steep discount to net asset value for years. Conversion to an ETF in 2024 opened the gate — and its high fees triggered the largest sustained outflows in the asset's history, a structural seller distinct from genuine demand loss.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "BlackRock IBIT",
+                "value": "~$50bn",
+                "weight": 50,
+                "tone": "favorable"
+              },
+              {
+                "label": "Grayscale GBTC",
+                "value": "~$18bn",
+                "weight": 18,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Fidelity FBTC",
+                "value": "~$11bn",
+                "weight": 11,
+                "tone": "neutral"
+              },
+              {
+                "label": "Ark/21Shares",
+                "value": "~$3bn",
+                "weight": 3,
+                "tone": "neutral"
+              }
+            ],
+            "label": "spot BTC ETF issuers by assets (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY FLOWS SET THE PRICE",
+        "body": "Miners produce a fixed amount of new bitcoin every day regardless of demand. The absorption ratio measures net new demand — mostly ETF inflows — against that steady supply. Above 1x, buyers soak up more than miners create and price rises; below 1x, miners keep selling into a market with no bid, and price has no floor.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              80189.07,
+              80678.03,
+              82145.66,
+              81725.21,
+              80480.89,
+              79277.8,
+              81051.98,
+              79068.82,
+              78135.01,
+              77425.72,
+              76952.21,
+              76808.81,
+              77459.94,
+              77546.34,
+              75482.52,
+              76672.79,
+              76988.16,
+              77274.4,
+              75824.06,
+              74352.7,
+              73539.84,
+              73382.72,
+              73751.07,
+              73593.37,
+              71360.33,
+              66649.86,
+              64021.89,
+              63796.25,
+              60921.79,
+              60861.88,
+              63105.38
+            ],
+            "periods": [
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 7"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE OPPORTUNITY-COST TRAP",
+        "body": "Bitcoin pays no interest, no dividend, no coupon. When real yields — the return on Treasuries after inflation — are negative, holding cash is a guaranteed loss and capital chases anything scarce. When real yields turn positive, a risk-free bond suddenly out-competes a zero-yield asset, and the institutions who arrived for the upside have a measurable reason to leave.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why an ETF launch is not a one-way ratchet: the same vehicle that lets pensions *buy* bitcoin in size lets them *exit* in size when the macro trade flips."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-06-07"
+    ],
+    "generatedAt": "2026-06-07T22:38:09.500Z",
+    "label": "Spot Bitcoin ETFs & Flows",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-07-crop-trait-stacking-platform-breeding": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY STACKING IS SLOW",
+        "body": "To combine two desirable traits, a breeder crosses two plants and hopes the offspring inherit both — but the genes for yield and drought tolerance sit on different chromosomes that reshuffle randomly each generation. Getting all the wanted genes into one plant, and none of the unwanted ones, takes many cycles of crossing and selection.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The core obstacle is *linkage drag*: a useful gene usually sits next to junk DNA or a harmful gene, and breaking them apart requires a rare recombination event you can only fish for across **thousands** of offspring."
+          }
+        ]
+      },
+      {
+        "heading": "THE MECHANISM",
+        "body": "Direct trait insertion skips sexual crossing entirely. Multiple genes are assembled into a single DNA construct in the lab and delivered into a plant cell at once — by a soil bacterium that naturally transfers DNA, or by gene-gun bombardment — so the whole stack lands together and is inherited as one unit."
+      },
+      {
+        "heading": "THE GREEN REVOLUTION PRECEDENT",
+        "body": "This is the second time seed science promised to leapfrog hunger. In the 1960s, Norman Borlaug's semi-dwarf wheat and IRRI's rice doubled yields across South Asia — but the new varieties only performed with irrigation, fertilizer, and purchased seed, which restructured agriculture around inputs poor farmers could not always afford.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1944",
+                "label": "Borlaug to Mexico wheat program"
+              },
+              {
+                "year": "1962",
+                "label": "Semi-dwarf wheat released",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1966",
+                "label": "IR8 'miracle rice' at IRRI"
+              },
+              {
+                "year": "1970",
+                "label": "Borlaug wins Nobel Peace Prize"
+              },
+              {
+                "year": "1996",
+                "label": "First commercial GM crops"
+              }
+            ],
+            "label": "the seed-yield arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SMALLHOLDERS GET LEFT OUT",
+        "body": "Improved varieties are usually sold as hybrids or patented lines. Hybrid vigor collapses in the second generation, so saved seed yields poorly — forcing farmers to re-buy every season. Patents make seed-saving a legal violation. The technology is rarely withheld on purpose; the business model that funds it simply routes around farmers who can't pay annually.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why must farmers who plant hybrid crop varieties typically buy new seed every season?",
+            "options": [
+              "The seeds are chemically sterilized before sale",
+              "Hybrid vigor weakens sharply in the next generation",
+              "The plants never produce viable seed at all",
+              "International law bans replanting any seed"
+            ],
+            "correct": 1,
+            "explanation": "First-generation hybrids outperform their parents, but that vigor segregates and fades in the second generation, so saved seed underperforms."
+          }
+        ]
+      },
+      {
+        "heading": "THE SEED OLIGOPOLY",
+        "body": "Proprietary breeding is concentrated in a handful of firms after a wave of agrochemical mergers. The same companies sell the seed and the chemicals it is engineered to tolerate, which is why access terms for any new trait-stacking platform usually flow through this short list of gatekeepers.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Bayer (Monsanto)",
+                "value": 23,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Corteva",
+                "value": 17,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Syngenta (ChemChina)",
+                "value": 7,
+                "tone": "neutral"
+              },
+              {
+                "label": "BASF",
+                "value": 5,
+                "tone": "neutral"
+              },
+              {
+                "label": "Limagrain",
+                "value": 5,
+                "tone": "favorable"
+              },
+              {
+                "label": "All others",
+                "value": 43,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global proprietary seed market share (approx.)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T22:38:47.322Z",
+    "label": "Gene Stacking & the Seed Economy",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-07-f47-ngad-shape-unit-patch-osint": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PATCH TRADITION",
+        "body": "Classified US aerospace programs have a decades-old habit of smuggling truth into squadron heraldry — a silhouette, a Latin pun, a number of stars matching a test count. Analysts treat unit patches as a deliberate, low-risk leak channel: morale art that internal review waves through while it quietly encodes the secret it's meant to hide.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 1990s **Bird of Prey** — Boeing's *YF-118G* demonstrator — flew in total secrecy for years; its very name was a nod to a Klingon ship, the kind of in-joke that patches and program code-names trade in."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE TAILS VANISH",
+        "body": "A vertical stabilizer is a flat plate standing perpendicular to the airflow — and to incoming radar. From the side it throws back a bright, predictable return. Deleting the tails removes one of the largest reflectors on an aircraft, which is why every deep-stealth design trends toward the pure flying wing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do the deepest-stealth aircraft eliminate vertical tail fins?",
+            "options": [
+              "Flat vertical surfaces are strong radar reflectors",
+              "Tails add too much weight for long range",
+              "Tails interfere with supersonic flight",
+              "Modern jets no longer need yaw control"
+            ],
+            "correct": 0,
+            "explanation": "A vertical fin is a flat plate that reflects radar brightly from the side; removing it cuts radar cross-section, at the cost of natural yaw stability."
+          }
+        ]
+      },
+      {
+        "heading": "THE LOW-FREQUENCY GAME",
+        "body": "Most stealth jets are shaped to beat the short-wavelength fire-control radars (X-band) that guide missiles. But long-wavelength VHF radars resonate when the wavelength is near the size of an aircraft feature — like a tail fin or a wingtip — and shaping alone can't fully hide a plane from them. A tailless planform with smooth, long edges is one of the few answers.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "VHF (~1–3m)",
+                "value": "shaping weak",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "UHF (~0.3–1m)",
+                "value": "partial",
+                "tone": "neutral"
+              },
+              {
+                "label": "X-band (~3cm)",
+                "value": "shaping strong",
+                "tone": "favorable"
+              }
+            ],
+            "label": "radar bands vs stealth shaping"
+          },
+          {
+            "type": "prose",
+            "text": "This is the **Rayleigh-resonance** problem: when radar wavelength ≈ feature size, returns spike. It's why VHF \"counter-stealth\" radars are resurgent — and why designers chase *tailless* shapes to deny them a resonant edge."
+          }
+        ]
+      },
+      {
+        "heading": "THE STEALTH LINEAGE",
+        "body": "The tailless flying wing is not new — it traces from Cold War black projects through the B-2 to today's NGAD. Each generation pushed shaping further as computing let engineers fly aircraft too unstable for a human to control unaided.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1977",
+                "label": "Have Blue demonstrator"
+              },
+              {
+                "year": "1981",
+                "label": "F-117 first flight",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1989",
+                "label": "B-2 Spirit flying wing"
+              },
+              {
+                "year": "1996",
+                "label": "Bird of Prey (YF-118G)"
+              },
+              {
+                "year": "2025",
+                "label": "F-47 / NGAD revealed"
+              }
+            ],
+            "label": "from faceted to flying wing"
+          }
+        ]
+      },
+      {
+        "heading": "THE STABILITY PRICE",
+        "body": "A tailless jet is aerodynamically unstable — it wants to tumble. It only flies because fly-by-wire computers make tiny corrections dozens of times per second, something impossible before digital flight control. Stealth shape and computer-flown instability are inseparable: you cannot have the radar-defeating planform without the software holding it in the air."
+      }
+    ],
+    "generatedAt": "2026-06-07T22:39:22.557Z",
+    "label": "Stealth Planforms & Patch OSINT",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-07-israel-beirut-strike-iran-missile-escalation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT DAHIYEH ACTUALLY IS",
+        "body": "Dahiyeh is not a neighborhood Israel strikes by accident — it is the dense southern-Beirut suburb that functions as Hezbollah's political and command core, home to its leadership offices, media, and social institutions. Striking it is a deliberate message aimed at the organization's nerve center, not its frontline.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Dahiyeh* simply means **\"the suburb\"** in Arabic — but in Lebanese politics the single word denotes Hezbollah's stronghold, the way \"the Beltway\" means Washington power rather than a road."
+          }
+        ]
+      },
+      {
+        "heading": "THE FORWARD-DEFENSE DOCTRINE",
+        "body": "Iran built a ring of allied militias — Hezbollah in Lebanon, factions in Iraq and Syria, the Houthis in Yemen — so that any war with Israel or the US would be fought far from Iranian soil. Hezbollah's arsenal was the crown jewel: a deterrent meant to make a strike on Iran's nuclear program too costly to attempt.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "IQ",
+              "SY",
+              "LB",
+              "IL",
+              "YE"
+            ],
+            "label": "the forward ring",
+            "markers": [
+              {
+                "lat": 33.85,
+                "lng": 35.5,
+                "label": "Dahiyeh, Beirut"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY BALLISTIC MISSILES, NOT JETS",
+        "body": "Iran's air force is a museum of 1970s American and Soviet jets, no match for Israeli air defenses. Its answer was the largest ballistic and cruise missile arsenal in the Middle East — weapons that fly too fast and too high for aircraft to intercept, forcing the defender to rely on scarce, expensive interceptors that cost more per shot than the missiles they kill."
+      },
+      {
+        "heading": "THE LINE THAT WAS CROSSED IN 2024",
+        "body": "For four decades Iran and Israel fought only through proxies and assassinations. That changed in April 2024, when Iran fired hundreds of drones and missiles directly from its own territory at Israel for the first time — and Israel struck back inside Iran. The taboo on direct state-to-state war is already broken; each new exchange is an escalation along a path opened two years ago.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1982",
+                "label": "Hezbollah founded amid Israeli invasion of Lebanon"
+              },
+              {
+                "year": "2006",
+                "label": "33-day Israel–Hezbollah war"
+              },
+              {
+                "year": "2020",
+                "label": "US kills IRGC's Soleimani in Baghdad"
+              },
+              {
+                "year": "2024-04",
+                "label": "Iran's first direct missile barrage on Israel",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024-09",
+                "label": "Nasrallah killed; Hezbollah command gutted"
+              },
+              {
+                "year": "2024-11",
+                "label": "Lebanon ceasefire"
+              }
+            ],
+            "label": "from shadows to direct war"
+          },
+          {
+            "type": "quiz",
+            "question": "When did Iran first directly attack Israel from Iranian territory?",
+            "options": [
+              "The 1979 Islamic Revolution",
+              "The 2006 Lebanon war",
+              "April 2024",
+              "After the 2020 Soleimani killing"
+            ],
+            "correct": 2,
+            "explanation": "Until April 2024 Iran fought Israel only through proxies; the drone-and-missile barrage that month was the first direct state-to-state strike from Iranian soil."
+          }
+        ]
+      },
+      {
+        "heading": "WHY US BASES ARE 'LEGITIMATE TARGETS'",
+        "body": "Iran is ringed by American installations within missile range — the al-Udeid air base in Qatar, the Fifth Fleet's home port in Bahrain, Ain al-Asad in Iraq. Declaring them targets is Tehran's standard deterrent: it cannot easily reach the US mainland, but it can threaten the forward bases that make American power in the Gulf possible.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "IQ",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "US bases within range",
+            "markers": [
+              {
+                "lat": 25.117,
+                "lng": 51.315,
+                "label": "al-Udeid, Qatar"
+              },
+              {
+                "lat": 26.209,
+                "lng": 50.609,
+                "label": "5th Fleet, Bahrain"
+              },
+              {
+                "lat": 33.785,
+                "lng": 42.441,
+                "label": "Ain al-Asad, Iraq"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE CAST DRIVING THE DECISIONS",
+        "body": "The war is steered by a small set of figures whose authority outlasts any single cabinet: Iran's Supreme Leader sets red lines that elected presidents execute, while Hezbollah operates under new leadership after Israel killed its decades-long chief in 2024.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Ali Khamenei",
+                "role": "Iran's Supreme Leader",
+                "years": "1989–",
+                "cc": "IR"
+              },
+              {
+                "name": "Masoud Pezeshkian",
+                "role": "Iranian President",
+                "years": "2024–",
+                "cc": "IR"
+              },
+              {
+                "name": "Naim Qassem",
+                "role": "Hezbollah Secretary-General",
+                "years": "2024–",
+                "cc": "LB"
+              },
+              {
+                "name": "Benjamin Netanyahu",
+                "role": "Israeli Prime Minister",
+                "years": "2022–",
+                "cc": "IL"
+              }
+            ],
+            "label": "who decides"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T22:40:20.333Z",
+    "label": "The Iran–Israel Direct War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-07-malta-migrant-boat-capsize-mediterranean-deaths": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEADLIEST CROSSING ON EARTH",
+        "body": "The stretch of sea from Libya and Tunisia to Italy and Malta is the single most lethal migration route in the world. The boats are unseaworthy by design — smugglers use cheap rubber dinghies or rusting wooden hulls they expect to lose, loading fuel and people far past capacity because the vessel is disposable.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LY",
+              "TN",
+              "IT",
+              "MT"
+            ],
+            "label": "the central Mediterranean route",
+            "caption": "45 miles of open water with no land in between",
+            "markers": [
+              {
+                "lat": 32.8872,
+                "lng": 13.1913,
+                "label": "Tripoli — main launch point"
+              },
+              {
+                "lat": 35.5053,
+                "lng": 12.6147,
+                "label": "Lampedusa"
+              },
+              {
+                "lat": 35.8989,
+                "lng": 14.5146,
+                "label": "Malta"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "EXTERNALIZATION",
+        "body": "The EU's core strategy is to push its border outward — pay and equip a third country to intercept migrants before they reach EU waters, so no EU asylum obligation is ever triggered. Money, boats, and training flow to Libya; the interceptions and the camps happen out of European jurisdiction and out of European sight.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal trick is *non-refoulement*: a state cannot return a refugee to danger. But if the **Libyan** coast guard does the pulling-back, the EU's hands never touch the migrant — so on paper, no European law is broken."
+          }
+        ]
+      },
+      {
+        "heading": "THE LIBYAN COAST GUARD",
+        "body": "The force the EU funds to do the intercepting is not a conventional national navy. After 2011, Libya fractured into rival militias; several coast guard units are drawn from or aligned with armed groups, and UN investigators have documented that intercepted migrants are routinely returned to detention centers marked by extortion, forced labor, and abuse.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011",
+                "label": "Gaddafi falls; Libya fragments"
+              },
+              {
+                "year": "2015",
+                "label": "EU migration funding begins",
+                "emphasis": "start"
+              },
+              {
+                "year": "2017",
+                "label": "Italy–Libya MoU signed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "EU–Tunisia deal mirrors model"
+              },
+              {
+                "year": "2026",
+                "label": "EU backs 'return hubs'"
+              }
+            ],
+            "label": "how the deal was built"
+          }
+        ]
+      },
+      {
+        "heading": "THE DUTY TO RESCUE",
+        "body": "Maritime law is older and blunter than asylum law. Under the UN Convention on the Law of the Sea and the SOLAS convention, every ship's master is legally bound to assist anyone in distress at sea, regardless of nationality or status. The friction in the Mediterranean is over the next step — which country must let the rescued disembark, a duty the conventions leave deliberately vague.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which migration route has the highest recorded death toll in the world?",
+            "options": [
+              "Central Mediterranean (Libya/Tunisia to Italy)",
+              "Eastern Mediterranean (Turkey to Greece)",
+              "The English Channel",
+              "The US–Mexico border"
+            ],
+            "correct": 0,
+            "explanation": "The central Mediterranean has claimed more than 20,000 lives since 2014 — the deadliest crossing on record."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'RETURN HUBS' KEEP FAILING",
+        "body": "Offshoring asylum to a third country is not new. Australia's 'Pacific Solution' shipped arrivals to Nauru and Papua New Guinea from 2001; the UK's Rwanda scheme tried the same and collapsed in the courts. The recurring problem is the same one stalling the EU now: no third country will volunteer to become a permanent warehouse for another bloc's unwanted arrivals without enormous payment and political cost.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Australia",
+                "value": "Nauru / PNG",
+                "cc": "AU",
+                "tone": "neutral"
+              },
+              {
+                "label": "UK",
+                "value": "Rwanda — struck down",
+                "cc": "GB",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Italy",
+                "value": "Albania camps",
+                "cc": "IT",
+                "tone": "neutral"
+              },
+              {
+                "label": "EU",
+                "value": "'return hubs' — no host",
+                "cc": "EU",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "offshore-processing schemes"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T22:41:02.755Z",
+    "label": "The Central Mediterranean Route",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-07-pakistan-dar-ppp-tax-budget-coalition-bargain": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FRIENDLY OPPOSITION",
+        "body": "The PPP keeps the Sharif government alive without sitting in its cabinet — supplying parliamentary votes from outside in exchange for fiscal concessions and provincial patronage. This 'support from the treasury benches' arrangement lets the PPP claim credit for spending while dodging blame for IMF austerity.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The PML-N and PPP are historic rivals who buried the hatchet in the 2006 *Charter of Democracy*, signed in London by Nawaz Sharif and Benazir Bhutto to stop the army from playing one against the other. Today's coalition is that pact's strange afterlife."
+          }
+        ]
+      },
+      {
+        "heading": "THE CAST",
+        "body": "Three families anchor the bargain: the Sharifs run the executive, the Bhutto-Zardaris run the PPP bloc whose votes the budget needs, and Ishaq Dar — Nawaz Sharif's in-law and four-time finance minister — is the fixer who closes the deal in private.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Shehbaz Sharif",
+                "role": "Prime Minister, PML-N",
+                "years": "2022–",
+                "cc": "PK"
+              },
+              {
+                "name": "Ishaq Dar",
+                "role": "Deputy PM, finance veteran",
+                "years": "2024–",
+                "cc": "PK"
+              },
+              {
+                "name": "Bilawal Bhutto Zardari",
+                "role": "PPP chairman",
+                "years": "2022–",
+                "cc": "PK"
+              },
+              {
+                "name": "Asif Ali Zardari",
+                "role": "President, PPP co-chair",
+                "years": "2024–",
+                "cc": "PK"
+              }
+            ],
+            "label": "who's at the table"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE IMF WRITES THE BUDGET",
+        "body": "Pakistan is in a multi-year IMF program, and the Fund sets quantitative targets — primary surplus, tax revenue, reserve floors — before parliament sees a draft. The 'negotiation' is really about allocating pain inside a total the IMF has already fixed; miss the targets and the next loan tranche freezes.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377,
+              278.485848,
+              278.494701,
+              278.137253,
+              277.408487,
+              278.412506,
+              278.512908,
+              278.575,
+              277.445439,
+              278.55,
+              278.55,
+              278.494021,
+              278.3,
+              278.45,
+              278.61849,
+              278.35,
+              278.5,
+              278.5
+            ],
+            "periods": [
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE TAX-BASE PROBLEM",
+        "body": "Pakistan collects barely a tenth of GDP in taxes — one of the lowest ratios in the region. Agriculture and retail are largely untaxed, the salaried middle class is squeezed instead, and every IMF program demands the base widen. That fight is exactly what gets traded away in back-room budget deals.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Tax revenue as share of GDP",
+            "peers": [
+              {
+                "value": 23,
+                "cc": "TR"
+              },
+              {
+                "value": 14,
+                "cc": "EG"
+              },
+              {
+                "value": 18,
+                "cc": "IN"
+              },
+              {
+                "value": 12,
+                "cc": "ID"
+              },
+              {
+                "value": 8,
+                "cc": "BD"
+              },
+              {
+                "value": 10,
+                "cc": "PK"
+              }
+            ],
+            "subjectCc": "PK",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "THE SERIAL BORROWER",
+        "body": "This budget is not a one-off rescue. Pakistan has gone back to the IMF over and over since its first arrangement in 1958, rarely completing a program before needing the next — a cycle of borrow, reform-on-paper, relapse that has made it one of the Fund's most frequent customers.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many IMF programs has Pakistan entered since 1958?",
+            "options": [
+              "About 5",
+              "About 13",
+              "More than 20",
+              "More than 50"
+            ],
+            "correct": 2,
+            "explanation": "Pakistan has signed more than two dozen IMF arrangements, completing only a handful in full — among the most of any member."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-07"
+    ],
+    "generatedAt": "2026-06-07T22:41:44.882Z",
+    "label": "Pakistan's Coalition Budget Math",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-07-south-africa-ramaphosa-migrant-crackdown-xenophobia": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RECURRING CYCLE",
+        "body": "South Africa's anti-foreigner violence is not new — it spikes on a roughly seven-year rhythm tied to unemployment and election seasons. The 2008 attacks killed more than 60 people and displaced tens of thousands in a single week; 2015 and 2019 brought fresh waves. Each time, foreigners absorb the blame for joblessness the economy itself produces.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2008",
+                "label": "May attacks: 60+ killed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2015",
+                "label": "Durban attacks"
+              },
+              {
+                "year": "2019",
+                "label": "Johannesburg looting"
+              },
+              {
+                "year": "2021",
+                "label": "Operation Dudula forms"
+              },
+              {
+                "year": "2026",
+                "label": "Benoni/Nigeria deadline"
+              }
+            ],
+            "label": "waves of xenophobic violence"
+          }
+        ]
+      },
+      {
+        "heading": "OPERATION DUDULA",
+        "body": "The marches setting the 30 June deadline grow out of a movement that began in 2021 and has since hardened into a political force — patrolling workplaces and clinics to demand foreigners be removed. The name itself signals the method.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Dudula* is Zulu for **\"force out\"** or **\"push back\"** — a vigilante brand that does in its name what the state now proposes to do by law."
+          }
+        ]
+      },
+      {
+        "heading": "A CENTURY OF IMPORTED LABOR",
+        "body": "The same region now framed as an invasion was, for a hundred years, deliberately recruited. South Africa's gold and diamond mines drew contract labor from across southern Africa through the WENELA/TEBA recruitment system — circular migration engineered by the mining houses and apartheid state. The corridors of today's migration are the corridors the economy built.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ZA",
+              "ZW",
+              "MZ",
+              "LS",
+              "MW",
+              "SZ"
+            ],
+            "label": "the labor catchment"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THEY ACTUALLY COME FROM",
+        "body": "The headlines name Nigerians, but the overwhelming majority of South Africa's foreign-born population comes from its immediate neighbors — Zimbabwe above all, after that country's economic collapse. Nigerians are a visible, frequently scapegoated community but a small share of the total.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Zimbabwe",
+                "value": "~1.5M",
+                "cc": "ZW",
+                "weight": 1500
+              },
+              {
+                "label": "Mozambique",
+                "value": "~700k",
+                "cc": "MZ",
+                "weight": 700
+              },
+              {
+                "label": "Lesotho",
+                "value": "~350k",
+                "cc": "LS",
+                "weight": 350
+              },
+              {
+                "label": "Malawi",
+                "value": "~200k",
+                "cc": "MW",
+                "weight": 200
+              },
+              {
+                "label": "Nigeria",
+                "value": "~30k",
+                "cc": "NG",
+                "weight": 30
+              }
+            ],
+            "label": "foreign-born population by origin (rough est.)"
+          },
+          {
+            "type": "quiz",
+            "question": "Which country is the largest source of South Africa's foreign-born population?",
+            "options": [
+              "Nigeria",
+              "Zimbabwe",
+              "Somalia",
+              "DR Congo"
+            ],
+            "correct": 1,
+            "explanation": "Zimbabwe's post-2000 economic collapse drove the single largest migration into South Africa — far above the Nigerian community that dominates the headlines."
+          }
+        ]
+      },
+      {
+        "heading": "WHY EMPLOYER SANCTIONS RARELY WORK",
+        "body": "Criminalizing employers who hire undocumented workers is a tested policy — the US tried it with the 1986 Immigration Reform and Control Act. The result was not fewer migrants but a booming trade in forged documents and cash-only, off-books hiring. Punishing the demand side tends to push the labor underground rather than out of the country.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The US **1986 IRCA** made knowingly hiring the undocumented a crime; enforcement was so weak it mainly spawned a *document-fraud* market while the workforce stayed."
+          }
+        ]
+      },
+      {
+        "heading": "THE ELECTION CLOCK",
+        "body": "Local elections fall in November. Since losing its parliamentary majority in 2024, the ANC has watched anti-migrant parties capture the joblessness grievance directly. Hardening immigration policy ahead of a vote is the predictable move of an incumbent trying to take an issue away from its challengers — the timing is the message."
+      }
+    ],
+    "generatedAt": "2026-06-07T22:42:34.980Z",
+    "label": "South Africa & the Scapegoat Cycle",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-07-survodutide-dual-agonist-masld-phase3-trial": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISEASE, RENAMED",
+        "body": "What this trial treats was called non-alcoholic fatty liver disease until 2023, when an international panel renamed it MASLD — metabolic dysfunction-associated steatotic liver disease — to tie it to its actual driver, metabolic syndrome, rather than defining it by the absence of alcohol. It affects roughly a quarter to a third of adults worldwide and is now the fastest-growing cause of liver transplants.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The rename matters clinically: *MASLD* requires at least one metabolic risk factor (obesity, type 2 diabetes, hypertension) to diagnose — the old *NAFLD* was a diagnosis of exclusion that hid the metabolic cause."
+          }
+        ]
+      },
+      {
+        "heading": "THE COUNTERINTUITIVE TARGET",
+        "body": "Glucagon is famous as insulin's opposite — the hormone that raises blood sugar by telling the liver to release stored glucose. Activating its receptor to treat a metabolic disease sounds backwards. The trick is that glucagon also revs up the liver's own fat-burning and overall energy expenditure, and at drug doses that second effect is the point.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Glucagon is best known in physiology for doing what?",
+            "options": [
+              "Raising blood sugar by mobilizing the liver's glucose",
+              "Lowering blood sugar like insulin",
+              "Suppressing appetite in the brain"
+            ],
+            "correct": 0,
+            "explanation": "Glucagon raises blood glucose — the opposite of insulin — but at therapeutic doses it also drives hepatic fat oxidation, which is why it strips liver fat."
+          }
+        ]
+      },
+      {
+        "heading": "WHY TWO RECEPTORS, NOT ONE",
+        "body": "A pure GLP-1 drug works mostly through the brain — less appetite, less food, less fat everywhere. Adding the glucagon arm acts on the liver directly, increasing fat breakdown independent of how much weight you lose. That is why a dual agonist can clear liver fat faster than weight loss alone would predict."
+      },
+      {
+        "heading": "THE AGONIST ARMS RACE",
+        "body": "The whole field is a race up the receptor count. Semaglutide hits one receptor (GLP-1). Tirzepatide hits two (GLP-1 and GIP). Survodutide and retatrutide are the next generation hitting glucagon as well — each added receptor chases more weight loss and, increasingly, the liver.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Semaglutide",
+                "value": "GLP-1"
+              },
+              {
+                "label": "Tirzepatide",
+                "value": "GLP-1 + GIP"
+              },
+              {
+                "label": "Survodutide",
+                "value": "GLP-1 + GCG"
+              },
+              {
+                "label": "Retatrutide",
+                "value": "GLP-1+GIP+GCG"
+              }
+            ],
+            "label": "incretin drugs by receptor targets"
+          }
+        ]
+      },
+      {
+        "heading": "WHY LIVER FAT IS THE WARNING SIGN",
+        "body": "Fat in the liver is not benign storage. In a subset of patients it triggers inflammation and scarring (MASH), which hardens into fibrosis and eventually cirrhosis. Cutting the fat early is an attempt to interrupt that staircase before the damage becomes irreversible."
+      },
+      {
+        "heading": "THE GILA MONSTER ORIGIN",
+        "body": "This entire drug class traces to a venom. In the 1990s researchers found exendin-4 in the saliva of the Gila monster, a desert lizard — a peptide that mimics human GLP-1 but resists breakdown for hours instead of minutes. That stability is what made a once-weekly injection possible and launched the field these dual agonists now extend.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Native human GLP-1 is destroyed by the enzyme *DPP-4* within about **2 minutes** — useless as a drug. The lizard's **exendin-4** survives for hours, the breakthrough that made the whole class viable."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T22:43:06.939Z",
+    "label": "Dual Agonists & Fatty Liver",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-07-us-buy-chagos-islands-diego-garcia-mauritius": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DETACHMENT",
+        "body": "In 1965, three years before Mauritius gained independence, Britain carved the Chagos Archipelago out of the colony to create the British Indian Ocean Territory. Detaching territory from a colony before granting independence violated a UN resolution Britain itself had voted for — the act that made Chagos the unfinished business it remains."
+      },
+      {
+        "heading": "THE EXPULSION",
+        "body": "Between 1968 and 1973 the entire Chagossian population — around 1,500 people — was forcibly removed to Mauritius and the Seychelles to clear the islands for the base. British officials gassed the islanders' dogs and described the population in internal cables as a few 'Tarzans' and 'Man Fridays' to deny they were a permanent people owed protection.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1965",
+                "label": "Britain splits off BIOT"
+              },
+              {
+                "year": "1968",
+                "label": "Mauritius independence"
+              },
+              {
+                "year": "1971",
+                "label": "Diego Garcia base begins; expulsions",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "ICJ: end colonial rule"
+              },
+              {
+                "year": "2025",
+                "label": "UK agrees handover to Mauritius"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1968",
+                "to": "1973",
+                "label": "forced removal of Chagossians",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "from colony to court"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DIEGO GARCIA",
+        "body": "The atoll sits in the dead center of the Indian Ocean — equidistant from the Persian Gulf, East Africa, and the Strait of Malacca. From here US bombers reached Afghanistan and Iraq without overflight permission from any nearby state. It is one of the few large bases on Earth answerable to no host government, which is exactly its value.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MU",
+              "MV",
+              "SC",
+              "IN",
+              "LK"
+            ],
+            "label": "the mid-ocean pivot",
+            "caption": "Diego Garcia: ~1,900km from any inhabited coast",
+            "markers": [
+              {
+                "lat": -7.3133,
+                "lng": 72.4111,
+                "label": "Diego Garcia base"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE COURT VERDICT",
+        "body": "In 2019 the International Court of Justice ruled that Britain's continued administration of Chagos was unlawful and that decolonization of Mauritius was never lawfully completed. The UN General Assembly then voted 116 to 6 to demand withdrawal — a near-total isolation that pushed London toward the handover deal Trump now calls a mistake.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The ICJ opinion was *advisory* — non-binding in law — yet the **116–6** vote behind it made the legal isolation politically real. Sovereignty here was lost in the *court of opinion* before any court of enforcement."
+          }
+        ]
+      },
+      {
+        "heading": "THE PUERTO RICO MODEL",
+        "body": "Buying inhabited or strategic territory outright is an old American instrument, not an improvisation. Washington purchased Alaska from Russia in 1867, the Danish West Indies (now the US Virgin Islands) in 1917 for $25 million in gold, and repeatedly floated buying Greenland. A direct Chagos purchase would slot into that lineage — sidestepping the sovereignty dispute by simply acquiring the asset.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How did the US acquire its current largest overseas base land at Diego Garcia?",
+            "options": [
+              "Bought it from Mauritius",
+              "Leased it from Britain after the islanders were removed",
+              "Captured it in WWII",
+              "Built it on unclaimed reef"
+            ],
+            "correct": 1,
+            "explanation": "The US leased the depopulated atoll from Britain in 1966; a purchase from Mauritius would replace that arrangement entirely."
+          }
+        ]
+      },
+      {
+        "heading": "THE UNADDRESSED PARTY",
+        "body": "Every version of the deal — British, Mauritian, or American — is negotiated over the Chagossians, not with them. Mauritius claims sovereignty but the exiles were never consulted on whether they want Mauritian, British, or US administration; their core demand, the right to return and resettle their home islands, survives no draft so far."
+      }
+    ],
+    "generatedAt": "2026-06-07T22:43:41.250Z",
+    "label": "Chagos, Diego Garcia & the Last Colony",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-07-ways-and-means-crypto-tax-bills-stablecoins": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY EVERY COFFEE IS A TAXABLE EVENT",
+        "body": "Under current US law, cryptocurrency is property, not currency. Every spend — buying a coffee, swapping one token for another — is a disposal that triggers a capital-gains calculation between purchase price and sale price. The de-minimis bills exist to kill this absurdity below a small threshold.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is a *de minimis* exemption — Latin for \"about trifles,\" the legal principle that the law does not concern itself with tiny amounts. Foreign-currency spending already gets one: gains under **$200** per transaction are exempt."
+          }
+        ]
+      },
+      {
+        "heading": "WHY STABLECOINS BREAK THE LOGIC",
+        "body": "A dollar-pegged stablecoin barely moves in price, so spending one generates almost no gain or loss — yet the property rule still demands a calculation on every transfer. Taxing a thing engineered to equal $1 as if it were a fluctuating asset is the cleanest case for a carve-out.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "USDC (Circle)",
+                "value": "T-bills + cash",
+                "tone": "favorable"
+              },
+              {
+                "label": "USDT (Tether)",
+                "value": "T-bills + other",
+                "tone": "neutral"
+              },
+              {
+                "label": "Algo coins",
+                "value": "code only",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "what backs a stablecoin's peg"
+          }
+        ]
+      },
+      {
+        "heading": "THE MINING TIMING TRAP",
+        "body": "Mining rewards are taxed as ordinary income the moment they are received, valued at that day's price — then taxed again as capital gains when sold. A miner can owe income tax on coins that crash before they ever cash out, paying tax on value that no longer exists.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              80189.07,
+              80678.03,
+              82145.66,
+              81725.21,
+              80480.89,
+              79277.8,
+              81051.98,
+              79068.82,
+              78135.01,
+              77425.72,
+              76952.21,
+              76808.81,
+              77459.94,
+              77546.34,
+              75482.52,
+              76672.79,
+              76988.16,
+              77274.4,
+              75824.06,
+              74352.7,
+              73539.84,
+              73382.72,
+              73751.07,
+              73593.37,
+              71360.33,
+              66649.86,
+              64021.89,
+              63796.25,
+              60921.79,
+              60861.88,
+              63105.38
+            ],
+            "periods": [
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 7"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHO WRITES THE RULES",
+        "body": "Tax law originates in one place: the House Ways and Means Committee. The Constitution requires all revenue-raising bills to start in the House, and Ways and Means is its tax-writing arm — the oldest committee in Congress, dating to 1789. The IRS administers what this committee drafts.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "All Bills for raising Revenue shall originate in the House of Representatives",
+            "speaker": "US Constitution, Article I §7",
+            "year": "1787"
+          }
+        ]
+      },
+      {
+        "heading": "THE REPORTING ENGINE",
+        "body": "Starting with the 2025 tax year, US crypto brokers must file Form 1099-DA reporting every customer's proceeds to the IRS. Once a third party reports your transactions automatically, voluntary compliance stops being voluntary — the same shift that made wage and brokerage income nearly impossible to underreport.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the IRS classify cryptocurrency as property rather than currency?",
+            "options": [
+              "A 2014 IRS notice that was never updated by law",
+              "A Supreme Court ruling banning crypto as money",
+              "International treaty obligations under the IMF"
+            ],
+            "correct": 0,
+            "explanation": "IRS Notice 2014-21 set the property treatment, and Congress has never legislated an alternative — which is exactly what these bills attempt."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-06-07"
+    ],
+    "generatedAt": "2026-06-07T22:44:01.254Z",
+    "label": "Crypto & the Tax Code",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-07-zelensky-abramovich-putin-backchannel-ft": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY A SANCTIONED BILLIONAIRE",
+        "body": "An intermediary works precisely because he is not the state. A private envoy lets both governments float a proposal without the commitment a formal channel implies — if it fails, no one signed anything, and both leaders can deny a meeting was ever close. Abramovich's value is that he can talk to Putin's inner circle and to Kyiv at once without representing either.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is *Track II* diplomacy: unofficial back-channel contact carried by private citizens. It is deniable by design — its entire purpose is to let states explore terms they cannot yet be seen exploring."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2022 PRECEDENT",
+        "body": "This is not Abramovich's first errand. He shuttled between Kyiv, Moscow and Istanbul during the early 2022 talks, the only oligarch trusted by both sides. During that period he and Ukrainian negotiators reported symptoms consistent with suspected poisoning — eyes, skin, peeling — a still-unexplained episode that underscored how dangerous the role is.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Roman Abramovich",
+                "role": "Sanctioned oligarch, intermediary",
+                "cc": "RU"
+              },
+              {
+                "name": "Volodymyr Zelenskyy",
+                "role": "Ukrainian president",
+                "years": "2019–",
+                "cc": "UA"
+              },
+              {
+                "name": "Vladimir Putin",
+                "role": "Russian president",
+                "years": "2000–",
+                "cc": "RU"
+              }
+            ],
+            "label": "the back-channel cast"
+          }
+        ]
+      },
+      {
+        "heading": "THE NEGOTIATION GRAVEYARD",
+        "body": "Russia and Ukraine have a decade of failed frameworks behind them. The Minsk agreements of 2014–15 froze but never resolved the Donbas war; the 2022 Istanbul track collapsed within weeks. Each failure makes the next attempt harder, because both sides cite the last betrayal as proof the other cannot be trusted.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2014-09",
+                "label": "Minsk I ceasefire"
+              },
+              {
+                "year": "2015-02",
+                "label": "Minsk II"
+              },
+              {
+                "year": "2022-02",
+                "label": "Full-scale invasion",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-03",
+                "label": "Istanbul talks (Abramovich shuttles)"
+              },
+              {
+                "year": "2022-04",
+                "label": "Istanbul track collapses"
+              }
+            ],
+            "label": "a decade of failed talks"
+          }
+        ]
+      },
+      {
+        "heading": "THE VENUES",
+        "body": "Neutral ground is itself a negotiation. The 2022 rounds opened on the Belarus–Ukraine border, then moved to Istanbul — Turkey being one of the few states with working channels to both Moscow and Kyiv while staying outside the formal Western bloc.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "BY",
+              "TR"
+            ],
+            "label": "where the talks happened",
+            "markers": [
+              {
+                "lat": 52.4345,
+                "lng": 31.0138,
+                "label": "Gomel border talks"
+              },
+              {
+                "lat": 41.0082,
+                "lng": 28.9784,
+                "label": "Istanbul rounds"
+              },
+              {
+                "lat": 55.7558,
+                "lng": 37.6173,
+                "label": "Moscow"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'NO POINT'",
+        "body": "A leader who believes time favors him on the battlefield has no incentive to negotiate. Putin's standard posture is to treat talks as a tool to extract concessions, not to reach a settlement — agreeing to a summit only when the military picture forces it. Rejecting the bid signals he judges his position strong enough to wait.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do governments often route sensitive peace proposals through private, unofficial intermediaries?",
+            "options": [
+              "Private envoys are legally bound to neutrality",
+              "It allows deniable contact with no formal commitment",
+              "Sanctioned individuals cannot be prosecuted abroad",
+              "International law requires a neutral citizen broker"
+            ],
+            "correct": 1,
+            "explanation": "Back-channel (Track II) diplomacy lets both sides explore terms without the obligations — or the political exposure — of an official negotiation."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T22:44:44.636Z",
+    "label": "Backchannel Diplomacy",
+    "category": "politics",
+    "articleCount": 1
   }
 }
