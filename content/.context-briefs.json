@@ -320084,5 +320084,1319 @@
     "label": "Hormuz, the Fifth Fleet & Frozen Assets",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-06-grapheneos-use-as-suspicion-privacy-chill": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT GRAPHENEOS ACTUALLY IS",
+        "body": "GrapheneOS is a hardened, de-Googled fork of Android that runs only on Google's own Pixel phones — because it leans on the Pixel's verified-boot chain and dedicated security chip. It strips out Google Play Services by default, sandboxes apps more aggressively, and is the OS Edward Snowden has publicly recommended. The irony is structural: it runs exclusively on Google hardware to escape Google software.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which hardware can GrapheneOS officially be installed on?",
+            "options": [
+              "Any Android phone",
+              "Google Pixel devices only",
+              "Samsung Galaxy only",
+              "Jailbroken iPhones"
+            ],
+            "correct": 1,
+            "explanation": "GrapheneOS depends on the Pixel's verified boot and hardware security chip, so it officially supports only Google Pixel devices."
+          }
+        ]
+      },
+      {
+        "heading": "HOW A PHONE GETS 'FLAGGED'",
+        "body": "Modern Android apps don't trust the phone — they ask Google's servers whether the device is 'genuine' before running. A custom OS fails this certification check, which is what lets a third party detect GrapheneOS at all. The detection isn't of a person doing something wrong; it's of a device that refuses to phone home to Google.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The check is the **Play Integrity API** (formerly **SafetyNet**). GrapheneOS actually passes hardware-backed attestation — it reads as *uncertified*, not *tampered* — but an app that only whitelists Google-certified devices treats both states identically: anomaly."
+          }
+        ]
+      },
+      {
+        "heading": "THE ANONYMITY-SET PARADOX",
+        "body": "A privacy tool only hides you if enough people use it. When a tool is rare, choosing it makes you conspicuous — the same logic that lets investigators treat 'connected via Tor' or 'used a burner' as a flag. The smaller the crowd you hide in, the brighter you glow. Privacy at the individual level can become a signal at the population level.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Cryptographers call the crowd you blend into your *anonymity set*. A tool used by **millions** protects each user; a tool used by **thousands** marks them — which is why mass adoption, not technical strength, is what actually buys privacy."
+          }
+        ]
+      },
+      {
+        "heading": "ENCRYPTION AS SUSPICION",
+        "body": "Treating the use of privacy technology as evidence of guilt is an old reflex. In 1991 the US government opened a criminal investigation into Phil Zimmermann for releasing PGP encryption to the public; the 'Crypto Wars' that followed repeatedly cast strong encryption as a tool for criminals rather than a civil right. The argument that privacy tech enables wrongdoers, therefore its users are suspect, has been made for over thirty years.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1991",
+                "label": "PGP released; Zimmermann investigated",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1993",
+                "label": "US 'Clipper Chip' backdoor proposed"
+              },
+              {
+                "year": "2013",
+                "label": "Snowden disclosures"
+              },
+              {
+                "year": "2016",
+                "label": "Apple vs FBI (San Bernardino)"
+              },
+              {
+                "year": "2023",
+                "label": "UK Online Safety Act passed"
+              }
+            ],
+            "label": "the crypto wars"
+          }
+        ]
+      },
+      {
+        "heading": "WHY AGE-VERIFICATION IS THE NEW PERIMETER",
+        "body": "Age-checking laws are spreading fast across Europe and beyond, and they push verification onto private vendors who must prove a user is old enough — often by demanding a face scan, an ID, or a 'trusted' device signal. That last requirement is where a non-standard OS gets caught: a phone that won't produce the expected attestation looks, to the vendor's risk engine, like someone trying to dodge the check.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB",
+              "FR",
+              "DE",
+              "IT",
+              "ES"
+            ],
+            "label": "Europe's age-verification wave"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHILLING EFFECT",
+        "body": "The deeper cost isn't the individual report — it's that the report exists at all. When using a privacy-protective tool can trigger an automatic referral to police, the rational response for most people is to stop using the tool. The mechanism doesn't need to catch anyone to work; the knowledge that it might is enough to thin the crowd, shrink the anonymity set, and make the next privacy choice look even more suspicious."
+      }
+    ],
+    "generatedAt": "2026-06-07T12:35:07.849Z",
+    "label": "Privacy Tools as Suspicion",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-07-ai-gun-detection-liability-lawsuit": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE AI ACTUALLY SEES",
+        "body": "These systems are computer-vision overlays on a school's existing CCTV feed. They detect the visual silhouette of a firearm already in someone's hands. They cannot see a gun in a bag, under a coat, or in a waistband — the detection clock only starts the instant the weapon is brandished, which in most attacks is seconds before the first shot.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What can a camera-based AI gun detector fundamentally NOT do?",
+            "options": [
+              "Detect a concealed firearm before it's drawn",
+              "Recognize a rifle held in the open",
+              "Send an alert to staff phones",
+              "Run on existing security cameras"
+            ],
+            "correct": 0,
+            "explanation": "Vision systems only react to a visible weapon — a gun in a bag or under clothing is invisible until it's brandished, often seconds before firing."
+          }
+        ]
+      },
+      {
+        "heading": "THE THRESHOLD TRADEOFF",
+        "body": "Every detector tunes a single dial: sensitivity. Set it high and it flags umbrellas, phones, and power drills — alarm fatigue sets in and staff start ignoring it. Set it low to kill false alarms and you raise the miss rate. There is no setting that catches every gun and never cries wolf; the vendor's choice of threshold is itself a design decision a court can scrutinize."
+      },
+      {
+        "heading": "THE MARKETING–CAPABILITY GAP",
+        "body": "US law draws a hard line between sales puffery and an express warranty. Vague superlatives ('best-in-class', 'cutting-edge') are non-actionable — courts assume buyers discount them. But a specific factual claim about what a product does can become a binding promise, and that is the seam this lawsuit pries open.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Calling a system *'capable of preventing Parkland-style tragedies'* edges from protected **puffery** toward an express **warranty** — a concrete claim a plaintiff can sue on when the product fails to do exactly that."
+          }
+        ]
+      },
+      {
+        "heading": "THE LIABILITY SHIELD",
+        "body": "Software vendors normally hide behind contract: end-user agreements cap damages, disclaim fitness for any purpose, and recast the product as a 'tool' rather than a guarantee. The reason this suit is called a first is that nobody has yet tested whether an AI safety product can be held to product-liability standards — strict liability for a defective design — rather than mere breach of a service contract."
+      },
+      {
+        "heading": "THE PARKLAND MARKET",
+        "body": "Each mass shooting spawns its own security-tech wave. Columbine birthed lockdown drills; Sandy Hook drove door-hardening and buzzer entry; Parkland — where a known threat was missed — created the demand for automated, always-watching detection. Vendors now market explicitly against the last atrocity, which is why 'prevents the next Parkland' is a sales line and not just a description.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1999",
+                "label": "Columbine — lockdown drills spread"
+              },
+              {
+                "year": "2012",
+                "label": "Sandy Hook — door-hardening, buzzers"
+              },
+              {
+                "year": "2018",
+                "label": "Parkland — AI detection market born",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "Uvalde — police-response scrutiny"
+              }
+            ],
+            "label": "each tragedy, its security wave"
+          }
+        ]
+      },
+      {
+        "heading": "LAYERS, NOT A SILVER BULLET",
+        "body": "Security professionals treat detection as defense-in-depth: no single layer is reliable, so you stack imperfect ones. Each layer fails differently — and a buyer told a camera system replaces the others is being sold a gap, not a solution.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "AI camera",
+                "value": "concealed = blind",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Metal detector",
+                "value": "slow, choke point",
+                "tone": "neutral"
+              },
+              {
+                "label": "Scanner portal",
+                "value": "false positives",
+                "tone": "neutral"
+              },
+              {
+                "label": "Armed officer",
+                "value": "must be present",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "what each layer misses"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T12:36:02.958Z",
+    "label": "AI Gun Detection & Liability",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-07-cair-fairfax-schools-muslim-student-discipline": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SCHOOLHOUSE GATE",
+        "body": "The governing case is Tinker v. Des Moines (1969), where students wore black armbands to protest Vietnam and were suspended. The Supreme Court ruled for the students, establishing that public schools are bound by the First Amendment — discipline of student expression is constitutionally reviewable, not a purely internal matter.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "It can hardly be argued that either students or teachers shed their constitutional rights to freedom of speech or expression at the schoolhouse gate.",
+            "speaker": "Tinker v. Des Moines, US Supreme Court",
+            "year": "1969"
+          }
+        ]
+      },
+      {
+        "heading": "THE DISRUPTION STANDARD",
+        "body": "Tinker did not give students unlimited speech. It set a test: schools may punish expression only if it would cause a 'substantial disruption' of the learning environment, or invade the rights of others. The burden is on the school to show the disruption is real and likely — not merely that administrators dislike the message."
+      },
+      {
+        "heading": "THE VIEWPOINT TRAP",
+        "body": "The constitutional danger in a case like this is selective enforcement. When a school punishes one group's expression while letting comparable expression from other groups pass, it stops being neutral discipline and becomes viewpoint discrimination — the category of First Amendment violation courts scrutinize most harshly.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal hook is not whether the skit was offensive — it is **selective enforcement**: treating identical conduct differently based on *who* spoke or *what* they believe."
+          }
+        ]
+      },
+      {
+        "heading": "THE FEDERAL LEVER",
+        "body": "Beyond the First Amendment, public schools that take federal funds are bound by Title VI of the Civil Rights Act (1964), which bars discrimination based on race, color, or national origin — read to cover shared ancestry and religious identity. This is the statute that lets civil-rights groups sue districts directly rather than only defend individual students.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under Tinker, when may a public school constitutionally punish student speech?",
+            "options": [
+              "Whenever administrators find it offensive",
+              "Only if it would substantially disrupt school operations",
+              "Any speech that mentions politics or religion",
+              "Never — student speech is fully protected"
+            ],
+            "correct": 1,
+            "explanation": "Tinker requires a showing of substantial disruption or invasion of others' rights — mere offense or administrative disapproval is not enough."
+          }
+        ]
+      },
+      {
+        "heading": "THE CASE-LAW ARC",
+        "body": "Since Tinker, the Court has carved exceptions — lewd speech (Fraser), school-sponsored speech like newspapers (Hazelwood), pro-drug messages (Morse) — but reaffirmed in Mahanoy (2021) that the core protection survives. The pattern: schools win narrow categories, but content-based and identity-based punishment of ordinary student expression remains hard to defend.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1969",
+                "label": "Tinker — armbands protected",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1986",
+                "label": "Fraser — lewd speech punishable"
+              },
+              {
+                "year": "1988",
+                "label": "Hazelwood — school-sponsored speech"
+              },
+              {
+                "year": "2007",
+                "label": "Morse — pro-drug banner"
+              },
+              {
+                "year": "2021",
+                "label": "Mahanoy — off-campus speech protected"
+              }
+            ],
+            "label": "student speech at the Supreme Court"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T12:36:35.557Z",
+    "label": "Student Speech & the Schoolhouse Gate",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-07-central-israel-qalqilya-seam-shooting": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE GREEN LINE IS",
+        "body": "The Green Line is not a border — it is the 1949 Armistice Line where the fighting stopped after the war that followed Israel's founding. It was drawn in green pencil on a map and was explicitly labeled as having no political finality. Every map dispute in the West Bank traces back to the fact that this 'line' was never meant to be one.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The armistice agreements stated the line was *'without prejudice'* to a final settlement — a temporary ceasefire mark that, 77 years later, still defines the entire conflict's geography."
+          }
+        ]
+      },
+      {
+        "heading": "QALQILYA, THE ENCIRCLED CITY",
+        "body": "Qalqilya sits directly on the Green Line and is nearly surrounded by Israel's separation barrier — concrete wall and fence wrap around roughly three sides, leaving the city accessible mainly through a single controlled road. Built from 2002 during the Second Intifada, the barrier in places runs east of the Green Line, cutting Palestinian farmers off from their own land.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "PS",
+              "JO"
+            ],
+            "label": "Qalqilya on the Green Line",
+            "markers": [
+              {
+                "lat": 32.19,
+                "lng": 34.97,
+                "label": "Qalqilya"
+              },
+              {
+                "lat": 32.27,
+                "lng": 35.01,
+                "label": "Tayibe"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SEAM ZONE",
+        "body": "Where the barrier runs east of the Green Line, it traps a strip of Palestinian land between the wall and the line itself — the 'Seam Zone.' Palestinians who live or farm there need special permits to reach their own homes and fields, while the land remains formally part of the West Bank.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Hebrew term is *ha-tefer* — literally 'the seam.' Tens of thousands of acres of West Bank farmland sit on the Israeli side of the barrier, reachable only through agricultural gates that open on a fixed schedule."
+          }
+        ]
+      },
+      {
+        "heading": "AREA A, B, AND C",
+        "body": "The 1995 Oslo II accord sliced the West Bank into three zones meant to last five years. Area A (cities) is under Palestinian control; Area B is shared; Area C — over 60% of the territory, including most of the seam — is under full Israeli military control. The 'interim' division is now three decades old.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Area C",
+                "value": "~61%",
+                "tone": "unfavorable",
+                "weight": 61
+              },
+              {
+                "label": "Area B",
+                "value": "~21%",
+                "tone": "neutral",
+                "weight": 21
+              },
+              {
+                "label": "Area A",
+                "value": "~18%",
+                "tone": "favorable",
+                "weight": 18
+              }
+            ],
+            "label": "West Bank under Oslo II (share of land)"
+          }
+        ]
+      },
+      {
+        "heading": "TAYIBE IS NOT THE WEST BANK",
+        "body": "The attacker crossed from Tayibe — an Arab town inside Israel's pre-1967 lines, part of the 'Triangle' of Palestinian-Israeli communities along the Green Line. Its residents are Israeli citizens, a distinction the headline geography obscures: the seam runs through a population that is Palestinian by identity and Israeli by passport.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the legal status of Tayibe, where the attacker crossed from?",
+            "options": [
+              "An Arab town inside Israel whose residents are Israeli citizens",
+              "A Palestinian Authority city in Area A",
+              "A settlement in Area C",
+              "A refugee camp in the Seam Zone"
+            ],
+            "correct": 0,
+            "explanation": "Tayibe is in Israel's 'Triangle' — Palestinian-majority towns annexed in 1949 whose residents hold Israeli citizenship, distinct from West Bank Palestinians."
+          }
+        ]
+      },
+      {
+        "heading": "THE OSLO ARC",
+        "body": "The geography of checkpoints, walls, and military operations grew out of a peace process that was supposed to dissolve them. The barrier and the Area C regime are scaffolding from agreements whose final-status deadline passed in 1999.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1949",
+                "label": "Green Line armistice",
+                "emphasis": "start"
+              },
+              {
+                "year": "1967",
+                "label": "Israel occupies West Bank"
+              },
+              {
+                "year": "1993",
+                "label": "Oslo I signed"
+              },
+              {
+                "year": "1995",
+                "label": "Oslo II: Areas A/B/C"
+              },
+              {
+                "year": "2000",
+                "label": "Second Intifada begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2002",
+                "label": "Separation barrier begun"
+              },
+              {
+                "year": "2004",
+                "label": "ICJ rules barrier unlawful"
+              }
+            ],
+            "label": "from accords to barrier"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T12:37:08.920Z",
+    "label": "The Green Line & the Seam Zone",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-07-chernobyl-spent-fuel-store-drone-strike": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT MAKES SPENT FUEL DANGEROUS",
+        "body": "A fuel rod pulled from a reactor is still fissioning at low levels and generating decay heat — enough to melt itself if left in open air. The hazard is not an explosion; it is heat that must be carried away continuously for years before the rod cools enough to handle.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The killer is *decay heat*: even a fully shut-down reactor's fuel keeps producing heat from radioactive decay. This is precisely what overwhelmed **Fukushima** when its cooling pumps lost power."
+          }
+        ]
+      },
+      {
+        "heading": "WET FIRST, THEN DRY",
+        "body": "Freshly spent fuel spends years in water-filled pools, where water both cools and shields the radiation. Once cool enough, it moves to dry casks — sealed steel cylinders inside thick concrete that need no pumps, no power, no moving parts. That passivity is the whole point."
+      },
+      {
+        "heading": "WHY THE CASKS SHRUGGED OFF THE STRIKE",
+        "body": "A dry cask is meters of steel and reinforced concrete engineered to survive aircraft impact, earthquakes, and fire without releasing contents. A drone warhead is trivial against that mass — which is why the IAEA reported radiation unchanged. The struck reception hall held no fuel at all.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does spent fuel in dry casks need no electricity to stay safe?",
+            "options": [
+              "Backup diesel generators run constantly",
+              "Passive air convection carries away the low decay heat",
+              "The fuel is no longer radioactive",
+              "Water is pumped through continuously"
+            ],
+            "correct": 1,
+            "explanation": "Once fuel has cooled in pools for years, its residual decay heat is low enough to be removed by natural air circulation around the cask — no pumps required."
+          }
+        ]
+      },
+      {
+        "heading": "THE ARCH OVER THE RUIN",
+        "body": "Reactor 4 itself sits under the New Safe Confinement, a 36,000-tonne steel arch slid into place in 2016 over the crumbling 1986 'sarcophagus.' It is the largest movable land-based structure ever built, designed to contain the reactor's remains for a century while robots dismantle what is inside.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1986-04",
+                "label": "Reactor 4 explosion & graphite fire",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1986",
+                "label": "Concrete sarcophagus built"
+              },
+              {
+                "year": "2000",
+                "label": "Last reactor shut down"
+              },
+              {
+                "year": "2016",
+                "label": "New Safe Confinement slid over"
+              },
+              {
+                "year": "2022",
+                "label": "Russian forces occupy the site"
+              },
+              {
+                "year": "2025",
+                "label": "Strikes on Ukraine's nuclear sites"
+              }
+            ],
+            "label": "Chernobyl since 1986"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 1986 WAS DIFFERENT",
+        "body": "Chernobyl's RBMK reactor had no containment dome — the Soviet design omitted the thick western-style shell. When the core exploded, the graphite moderator caught fire and lofted radioactive material for days with nothing to stop it. Today's hazard at the site is legacy waste, not an operating reactor."
+      },
+      {
+        "heading": "NUCLEAR SITES AS WARTIME TERRAIN",
+        "body": "Ukraine's plants have become front-line objects in a way the nuclear age never planned for. Zaporizhzhia, Europe's largest plant, has been held by Russian forces since 2022 with its external power lines repeatedly cut — the real danger being loss of cooling power, not a direct hit on the reactors.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA"
+            ],
+            "label": "Ukraine's nuclear front line",
+            "caption": "Spent-fuel sites and the largest operating plant in Europe",
+            "markers": [
+              {
+                "lat": 51.389,
+                "lng": 30.099,
+                "label": "Chernobyl"
+              },
+              {
+                "lat": 47.512,
+                "lng": 34.585,
+                "label": "Zaporizhzhia NPP"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T12:37:44.769Z",
+    "label": "Spent Fuel & Chernobyl",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-07-iran-afghanistan-mining-rail-bloc": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRILLION-DOLLAR GROUND",
+        "body": "A 2010 Pentagon-and-USGS survey valued Afghanistan's untapped minerals at roughly $1 trillion — iron, copper, lithium, and rare earths, much of it mapped decades earlier by Soviet geologists. The wealth is real; almost none of it has ever been extracted.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What has kept Afghanistan's ~$1tn in minerals mostly in the ground?",
+            "options": [
+              "Lack of railways, roads, and power to move ore",
+              "The deposits are unproven rumors",
+              "A UN ban on Afghan mining",
+              "The ore grades are too low to be worth it"
+            ],
+            "correct": 0,
+            "explanation": "The deposits are well-mapped and rich; what's missing is the transport and power infrastructure to get heavy ore to a market."
+          }
+        ]
+      },
+      {
+        "heading": "WHY RAIL COMES FIRST",
+        "body": "Iron ore is worth pennies a kilogram — it only pays if you can move millions of tonnes cheaply, which means rail, not trucks. Afghanistan is landlocked and has almost no functioning railway, so a mining deal is really an infrastructure deal. The corridor is the precondition for the mine, not a bonus.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "AF",
+              "PK"
+            ],
+            "label": "the corridor and the deposits",
+            "caption": "Iranian rail and ocean access vs. Afghanistan's inland ore bodies",
+            "markers": [
+              {
+                "lat": 34.34,
+                "lng": 62.2,
+                "label": "Khaf–Herat railhead"
+              },
+              {
+                "lat": 34.67,
+                "lng": 68.05,
+                "label": "Hajigak iron ore"
+              },
+              {
+                "lat": 35.26,
+                "lng": 69.34,
+                "label": "Mes Aynak copper"
+              },
+              {
+                "lat": 25.29,
+                "lng": 60.64,
+                "label": "Chabahar port"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE HAJIGAK PRIZE",
+        "body": "Hajigak, in Bamyan province, is one of Asia's largest iron-ore bodies — on the order of two billion tonnes at high grade. An Indian-led consortium won the rights in 2011 and never built anything; the ore that would feed a steelmaker has sat untouched for a decade and a half.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A steelmaker needs **iron ore** plus **coking coal** plus cheap power in one place — Hajigak has the ore, and northern Afghanistan has the coal. The missing third ingredient is the rail to combine them."
+          }
+        ]
+      },
+      {
+        "heading": "THE PATTERN OF UNBUILT DEALS",
+        "body": "Afghan mineral contracts have a history of being signed and then frozen. China's state metals group won the Mes Aynak copper concession in 2007 and barely moved dirt; the Indian Hajigak award stalled. The 2020 Khaf–Herat railway — Afghanistan's first real rail link to the outside — was the rare promise that actually opened.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2007",
+                "label": "China wins Mes Aynak copper"
+              },
+              {
+                "year": "2010",
+                "label": "Pentagon/USGS $1tn estimate"
+              },
+              {
+                "year": "2011",
+                "label": "India consortium wins Hajigak"
+              },
+              {
+                "year": "2020",
+                "label": "Khaf–Herat railway opens",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "Taliban return; Western finance cut"
+              }
+            ],
+            "label": "signed vs. built"
+          }
+        ]
+      },
+      {
+        "heading": "TWO SANCTIONED ECONOMIES, ONE MARKET",
+        "body": "Both Tehran and Kabul are walled off from dollar clearing and Western banks, so this partnership is partly a function of shared exclusion: a closed financial loop where neither side can be cut off from the other. Trade runs on barter, rials, and informal channels rather than wire transfers.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Cross-border value here moves through *hawala* networks and goods-for-goods barter — Iranian fuel and industrial output against Afghan minerals — because the SWIFT-based banking system is closed to both."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHABAHAR ANGLE",
+        "body": "Iran's deep-water port at Chabahar is Afghanistan's only realistic ocean outlet that bypasses Pakistan's Karachi corridor. Whoever controls the rail-to-port chain controls whether Afghan ore reaches a global buyer — which is why a steel-and-rail framework is also a quiet contest over Afghanistan's economic alignment."
+      }
+    ],
+    "generatedAt": "2026-06-07T12:38:38.050Z",
+    "label": "Afghan Minerals & the Landlocked Trap",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-07-nepal-india-bilateral-border-recalibration": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TREATY THAT DREW THE LINE",
+        "body": "The border was fixed by the Treaty of Sugauli in 1816, signed after Nepal lost the Anglo-Nepalese War to the British East India Company. The treaty made the Kali (Mahakali) river Nepal's western boundary — and the entire dispute is an argument over which channel is actually the Kali.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The contested wedge — **Limpiyadhura–Kalapani–Lipulekh** — is roughly **370 km²** of high Himalayan land. Small on a map, but it sits on the only easy pass into Tibet for hundreds of kilometres."
+          }
+        ]
+      },
+      {
+        "heading": "THE SOURCE-OF-THE-RIVER PROBLEM",
+        "body": "Nepal says the Kali originates at Limpiyadhura, far to the northwest; India says it begins at a smaller stream near Kalapani. Move the river's source a few kilometres west and the boundary swings with it — which is why a 19th-century cartographic ambiguity is still a live territorial claim.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NP",
+              "IN",
+              "CN"
+            ],
+            "label": "the disputed tri-junction",
+            "caption": "The three points define the wedge each side claims as the river's source.",
+            "markers": [
+              {
+                "lat": 30.268,
+                "lng": 80.547,
+                "label": "Limpiyadhura (Nepal's claim)"
+              },
+              {
+                "lat": 30.207,
+                "lng": 80.755,
+                "label": "Kalapani"
+              },
+              {
+                "lat": 30.232,
+                "lng": 81.022,
+                "label": "Lipulekh pass"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE PASS IS WORTH A FIGHT",
+        "body": "Lipulekh sits where Nepal, India, and Chinese-administered Tibet meet. It is one of the lowest, most usable Himalayan passes — historically a salt-and-wool trade route and the pilgrimage road to Mount Kailash and Lake Mansarovar. Whoever controls Kalapani overlooks the approach to it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What physical feature does the Nepal–India boundary in this area legally depend on?",
+            "options": [
+              "The watershed ridge line",
+              "The source and channel of the Kali river",
+              "The 1962 ceasefire line",
+              "The edge of Chinese-controlled Tibet"
+            ],
+            "correct": 1,
+            "explanation": "The 1816 Treaty of Sugauli named the Kali river as the boundary, so the border follows wherever the river's true source is determined to be."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2020 FLASHPOINT",
+        "body": "India inaugurated a road through Lipulekh in 2020. Nepal responded by publishing a new official map that absorbed Kalapani, Lipulekh, and Limpiyadhura, then amended its constitution to enshrine it — hardening a quiet dispute into a constitutional commitment.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1816",
+                "label": "Treaty of Sugauli fixes Kali as border",
+                "emphasis": "start"
+              },
+              {
+                "year": "1962",
+                "label": "India posts troops at Kalapani after Sino-Indian war"
+              },
+              {
+                "year": "2015",
+                "label": "India–China expand Lipulekh trade, omit Nepal"
+              },
+              {
+                "year": "2020",
+                "label": "India opens Lipulekh road; Nepal issues new map",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "from treaty to standoff"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHINA CARD",
+        "body": "Kathmandu's leverage has always been to play its giant neighbours against each other. When the prime minister floated Chinese and British mediation, the point was less the mediators than the signal — that Nepal could internationalize a dispute India insists is strictly bilateral. India's flat refusal of any third party is why backing bilateral talks counts as a reversal."
+      }
+    ],
+    "generatedAt": "2026-06-07T12:39:12.885Z",
+    "label": "Kalapani & the Source of the Kali",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-07-nvidia-korea-gaming-ai-robotics-pivot": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY A GAME STUDIO IS A ROBOTICS ASSET",
+        "body": "Modern robots are not programmed move-by-move; they learn behavior in simulation, where a virtual robot can practice for the equivalent of years in a few hours of wall-clock time. The skills a game studio already owns — physics engines, 3D world-building, GPU render farms — are exactly the skills needed to build those training worlds. Nvidia is recruiting Korea's studios for the rigs and the talent, not the games."
+      },
+      {
+        "heading": "THE SIM-TO-REAL PIPELINE",
+        "body": "A robot policy is trained on millions of synthetic runs, then transplanted into a physical machine. The hard part is the reality gap: a model that masters the simulation often fails on real friction, lighting, and sensor noise. The fix is domain randomization — deliberately scrambling textures, masses, and lighting in simulation so the policy learns to ignore details that don't generalize.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "sim",
+                "label": "Game-engine sim"
+              },
+              {
+                "id": "data",
+                "label": "Synthetic runs"
+              },
+              {
+                "id": "gpu",
+                "label": "GPU training"
+              },
+              {
+                "id": "policy",
+                "label": "Trained policy"
+              },
+              {
+                "id": "robot",
+                "label": "Physical robot"
+              }
+            ],
+            "links": [
+              {
+                "source": "sim",
+                "target": "data",
+                "value": 100,
+                "label": "millions of episodes"
+              },
+              {
+                "source": "data",
+                "target": "gpu",
+                "value": 100
+              },
+              {
+                "source": "gpu",
+                "target": "policy",
+                "value": 80
+              },
+              {
+                "source": "policy",
+                "target": "robot",
+                "value": 80,
+                "label": "deploy"
+              }
+            ],
+            "label": "how a robot skill is built"
+          },
+          {
+            "type": "prose",
+            "text": "The technique that closes the reality gap is **domain randomization** — train on chaos so the real world looks like just one more variation."
+          }
+        ]
+      },
+      {
+        "heading": "THE MEMORY CHOKEPOINT",
+        "body": "AI accelerators are starved not by compute but by memory bandwidth — feeding data to the cores fast enough. The answer is high-bandwidth memory (HBM), stacks of DRAM bonded directly beside the GPU die. SK hynix, in those same Seoul meetings, supplies the lion's share of it, which is why a robotics recruiting trip and a memory-supply negotiation happen in the same room.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "SK hynix",
+                "value": "~50%",
+                "cc": "KR",
+                "weight": 50,
+                "tone": "favorable"
+              },
+              {
+                "label": "Samsung",
+                "value": "~40%",
+                "cc": "KR",
+                "weight": 40,
+                "tone": "neutral"
+              },
+              {
+                "label": "Micron",
+                "value": "~10%",
+                "cc": "US",
+                "weight": 10,
+                "tone": "neutral"
+              }
+            ],
+            "label": "HBM market share (approx, 2024)"
+          }
+        ]
+      },
+      {
+        "heading": "THE CUDA MOAT",
+        "body": "Nvidia's durable advantage is not the silicon — competitors can match raw transistors. It is the software layer: CUDA, and on top of it the Omniverse simulation stack and Isaac robotics tools. Once a studio builds its robot-training worlds inside that toolchain, switching to a rival chip means rewriting everything. Recruiting partners onto the platform is how the moat widens.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The lock-in lives in software: **CUDA** for compute, **Omniverse** for simulation, **Isaac** for robotics — each layer a reason not to leave."
+          }
+        ]
+      },
+      {
+        "heading": "KOREA'S BET",
+        "body": "Krafton, maker of PUBG, has stood up its own robotics unit; NCSOFT and other studios bring large 3D art teams and idle render capacity. For Korean gaming firms facing a maturing games market, becoming AI-infrastructure partners is a pivot from selling entertainment to renting out the machinery underneath it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are video-game studios suddenly valuable to robotics firms?",
+            "options": [
+              "They own physics-simulation engines and GPU fleets to train robots virtually",
+              "Their games can be reskinned as robot control panels",
+              "Gamers make good remote robot operators",
+              "Game revenue funds robot manufacturing"
+            ],
+            "correct": 0,
+            "explanation": "Robots learn in simulation first; the engines, 3D worlds, and GPU farms that render games are the same tools that train robot policies."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T12:39:58.453Z",
+    "label": "Game Engines & the Robot Brain",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-07-pakistan-fia-hawala-informal-finance": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW HAWALA SETTLES",
+        "body": "No money crosses a border. A sender pays a broker in Dubai; the broker phones a counterpart in Lahore who pays out the equivalent in rupees. The two brokers settle later by netting offsetting transfers, or through trade invoicing. The system moves value by trust and bookkeeping, not by wire — which is exactly why it leaves no banking trail.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The word is from Arabic *hawala* — \"transfer\" or \"trust.\" It predates the SWIFT banking network by roughly a thousand years and runs on a broker's reputation, not a regulator's license."
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO-RATE PROBLEM",
+        "body": "Hawala thrives on the gap between the official rupee rate and the open-market rate. When the central bank rations dollars and caps the official price, an unofficial premium opens up. Senders abroad route money through hawala because it pays out at the higher street rate — so the wider the gap, the more remittances vanish from the formal channel the state is trying to capture.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377,
+              278.485848,
+              278.494701,
+              278.137253,
+              277.408487,
+              278.412506,
+              278.512908,
+              278.575,
+              277.445439,
+              278.55,
+              278.55,
+              278.494021,
+              278.3,
+              278.45,
+              278.61849,
+              278.35,
+              278.5,
+              278.5
+            ],
+            "periods": [
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE REMITTANCE LIFELINE",
+        "body": "Remittances are among Pakistan's largest sources of foreign currency, rivaling exports and dwarfing foreign aid. That makes the hawala question existential, not criminal-procedural: the same channels the FIA raids carry the dollars that keep the import bill payable. Pakistan sits among the world's top remittance recipients.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Annual remittance inflows",
+            "peers": [
+              {
+                "value": 120,
+                "cc": "IN"
+              },
+              {
+                "value": 65,
+                "cc": "MX"
+              },
+              {
+                "value": 50,
+                "cc": "CN"
+              },
+              {
+                "value": 40,
+                "cc": "PH"
+              },
+              {
+                "value": 30,
+                "cc": "PK"
+              },
+              {
+                "value": 24,
+                "cc": "EG"
+              },
+              {
+                "value": 22,
+                "cc": "BD"
+              }
+            ],
+            "subjectCc": "PK",
+            "unit": "$bn"
+          }
+        ]
+      },
+      {
+        "heading": "THE GULF CORRIDOR",
+        "body": "The bulk of Pakistan's remittances originate in the Gulf, where millions of Pakistani laborers work. The densest hawala routes follow that migration map — Riyadh, Dubai, Doha to Karachi and Lahore. Enforcement seizures like the Rs20.4M Lahore sweep intercept the receiving end of a corridor whose supply side is permanent.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "SA",
+              "AE",
+              "QA",
+              "OM",
+              "KW"
+            ],
+            "label": "the labor-and-money corridor",
+            "markers": [
+              {
+                "lat": 31.5204,
+                "lng": 74.3587,
+                "label": "Lahore — FIA seizure"
+              },
+              {
+                "lat": 25.2048,
+                "lng": 55.2708,
+                "label": "Dubai"
+              },
+              {
+                "lat": 24.7136,
+                "lng": 46.6753,
+                "label": "Riyadh"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE COURIERS ARE THE WRONG TARGET",
+        "body": "Arresting couriers treats a symptom. Hawala demand is a price signal: it exists because the formal system can't or won't supply dollars at the rate people will transact. As long as the rupee shortage and the rate gap persist, every arrested broker is replaced — the seizure removes inventory, not the market.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What primarily drives demand for hawala in Pakistan?",
+            "options": [
+              "The gap between the official and open-market dollar rate",
+              "Lack of mobile phones in rural areas",
+              "Bans on foreign travel"
+            ],
+            "correct": 0,
+            "explanation": "Hawala pays out at the street rate; the wider the official-vs-market gap, the more remittances leave the formal banking channel."
+          }
+        ]
+      },
+      {
+        "heading": "OLDER THAN THE BANK",
+        "body": "Hawala is not a modern smuggling trick. It emerged among traders along the medieval Silk Road and Indian Ocean routes as a way to move value across hostile territory without carrying gold. Classical Islamic jurisprudence recognized it as a legitimate instrument of debt transfer — the legal concept predates double-entry bookkeeping in Europe.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Because settlement is netted between brokers and often closed through **trade invoicing** — over- and under-billing real shipments — hawala leaves the formal economy looking balanced while value quietly crosses borders."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-07"
+    ],
+    "generatedAt": "2026-06-07T12:40:43.964Z",
+    "label": "Hawala & Pakistan's Dollar Shortage",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-07-self-auditing-ai-point-of-care-diagnostics": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "SENSITIVITY IS HALF THE STORY",
+        "body": "A 95.7% sensitivity number means the test catches 95.7% of true cases — it says nothing about false alarms. A model that labels everyone positive scores 100% sensitivity and is useless. Specificity, the rate of correctly clearing the healthy, is the missing half no headline ever quotes.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "A test flags every patient as positive. What is its sensitivity?",
+            "options": [
+              "0% — it found nothing real",
+              "50% — it's a coin flip",
+              "100% — it caught every true case",
+              "Undefined"
+            ],
+            "correct": 2,
+            "explanation": "Flagging everyone catches all true positives (100% sensitivity) but at zero specificity — which is why both numbers must be reported together."
+          }
+        ]
+      },
+      {
+        "heading": "WHY LYME RESISTS DIAGNOSIS",
+        "body": "Standard Lyme testing is two-tier: an ELISA antibody screen, then a confirmatory Western blot. The catch is timing — antibodies take weeks to build, so in the first days after a bite, when treatment works best, blood tests are at their least sensitive.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Early localized",
+                "value": "~30-40%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Early disseminated",
+                "value": "~70%",
+                "tone": "neutral"
+              },
+              {
+                "label": "Late disseminated",
+                "value": ">90%",
+                "tone": "favorable"
+              }
+            ],
+            "label": "two-tier serology sensitivity by stage"
+          },
+          {
+            "type": "prose",
+            "text": "The screen detects the body's *response* to the bacterium **Borrelia burgdorferi**, not the bacterium itself — so an early infection that hasn't yet provoked antibodies reads as a clean result."
+          }
+        ]
+      },
+      {
+        "heading": "THE HALLUCINATION TAX",
+        "body": "A diagnostic model that confidently invents an answer when it has no basis is worse than no model — a clinician without a central lab can't catch the error. A self-auditing model adds the rarest skill in machine learning: knowing when to say 'I don't know' and defer to a real test.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is *selective prediction* — the model abstains on low-confidence cases rather than guessing. The metric that matters is **coverage at a fixed error rate**: how many cases it can safely answer while keeping mistakes below a threshold."
+          }
+        ]
+      },
+      {
+        "heading": "WHY POINT-OF-CARE IS THE PRIZE",
+        "body": "Centralized testing means a sample travels to a lab, queues, and returns days later — fine in a city, fatal to follow-up in a rural clinic where the patient never comes back. Pushing reliable diagnosis to the bedside collapses that loop, which is why every lab-on-a-chip and AI-on-a-sensor effort targets the clinic without a lab behind it."
+      },
+      {
+        "heading": "THE CONTROLLED-CONDITIONS TRAP",
+        "body": "A 95.7% result on a curated study set is the easy 95.7%. Real clinics bring co-infections, atypical presentations, degraded samples, and patients who don't match the training distribution — the gap between lab benchmark and field performance is where most diagnostic AI quietly dies. Validation outside controlled conditions is not a formality; it is the actual test."
+      }
+    ],
+    "generatedAt": "2026-06-07T12:41:21.112Z",
+    "label": "AI Diagnostics & Self-Auditing Models",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-07-toledo-festival-shooting-us-gun-violence": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT COUNTS AS A MASS SHOOTING",
+        "body": "There is no single legal definition. The Gun Violence Archive — source of the '171 in 2026' figure — counts any incident where 4 or more people are shot, wounded or killed, not including the shooter. The FBI's older 'mass murder' standard required 4 or more killed. The Toledo festival, with 12 wounded and zero deaths, is a mass shooting under the first definition and invisible under the second.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the Gun Violence Archive definition, what makes an incident a 'mass shooting'?",
+            "options": [
+              "4 or more people killed",
+              "4 or more people shot, killed or wounded, excluding the shooter",
+              "Any shooting in a public place",
+              "10 or more casualties"
+            ],
+            "correct": 1,
+            "explanation": "GVA counts 4+ people shot (wounded or killed, minus the shooter), which is why its annual tally vastly exceeds the FBI's killed-only count."
+          }
+        ]
+      },
+      {
+        "heading": "THE EXCEPTIONALISM",
+        "body": "The US firearm death rate is not just high — it is an order of magnitude above every other wealthy democracy. The gap is not explained by mental illness or violent media, both of which exist everywhere; the consistent statistical correlate across countries is the sheer number of guns in circulation.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Firearm deaths per 100k people",
+            "peers": [
+              {
+                "value": 13.7,
+                "cc": "US"
+              },
+              {
+                "value": 2.1,
+                "cc": "CA"
+              },
+              {
+                "value": 2,
+                "cc": "FR"
+              },
+              {
+                "value": 1,
+                "cc": "AU"
+              },
+              {
+                "value": 0.9,
+                "cc": "DE"
+              },
+              {
+                "value": 0.2,
+                "cc": "GB"
+              },
+              {
+                "value": 0.02,
+                "cc": "JP"
+              }
+            ],
+            "subjectCc": "US",
+            "unit": "per 100k"
+          }
+        ]
+      },
+      {
+        "heading": "MORE GUNS THAN PEOPLE",
+        "body": "The US holds an estimated 120 civilian firearms per 100 residents — the only country on earth with more guns than people, and roughly double the next-highest nation. With under 5% of the global population, Americans own close to 40% of the world's civilian-held firearms.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Small Arms Survey estimates put US civilian holdings near **400 million** firearms — *more guns than the next 25 countries combined*."
+          }
+        ]
+      },
+      {
+        "heading": "THE SECOND AMENDMENT, RE-READ",
+        "body": "For most of US history courts treated the Second Amendment as a collective, militia-related right. Only in 2008 did the Supreme Court, in District of Columbia v. Heller, rule 5-4 that it protects an individual right to keep a handgun at home. Nearly every modern gun-rights expansion descends from that recent reinterpretation.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "A well regulated Militia, being necessary to the security of a free State, the right of the people to keep and bear Arms, shall not be infringed.",
+            "speaker": "US Constitution, 2nd Amendment",
+            "year": "1791"
+          }
+        ]
+      },
+      {
+        "heading": "THE BAN THAT EXPIRED",
+        "body": "Congress did once restrict semi-automatic rifles: the 1994 Federal Assault Weapons Ban. But it carried a ten-year sunset clause and lapsed in 2004 when Congress let it expire. No comparable federal restriction has passed since — the policy arc on gun control in the US runs backward, not forward.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1934",
+                "label": "National Firearms Act (machine guns)"
+              },
+              {
+                "year": "1968",
+                "label": "Gun Control Act after RFK/MLK killings"
+              },
+              {
+                "year": "1994",
+                "label": "Assault Weapons Ban enacted",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2004",
+                "label": "Ban expires, not renewed"
+              },
+              {
+                "year": "2008",
+                "label": "Heller: individual right"
+              },
+              {
+                "year": "2022",
+                "label": "Bruen expands carry rights"
+              }
+            ],
+            "label": "federal gun-law arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T12:41:58.730Z",
+    "label": "US Gun Violence by the Numbers",
+    "category": "politics",
+    "articleCount": 1
   }
 }
