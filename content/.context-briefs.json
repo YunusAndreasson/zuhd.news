@@ -318760,5 +318760,1329 @@
     "label": "The Indus Waters & Pakistan's Storage Gap",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-06-05-transferable-memory-neuroscience-history": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ORIGINAL CLAIM",
+        "body": "In the early 1960s, James McConnell trained planarian flatworms to flinch at light, ground them up, and fed them to untrained worms. The cannibals, he reported, learned the trick faster — as if eating a trained worm transferred the memory itself."
+      },
+      {
+        "heading": "WHY FLATWORMS",
+        "body": "Planaria are the simplest animals with a true brain and bilateral nervous system, and they regenerate: cut one in half and both ends grow into whole worms. McConnell claimed both halves kept the trained response — implying memory was stored throughout the body, not just in the head.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The whole field rode on one word: *engram* — the physical trace a memory supposedly leaves in tissue. McConnell's bet was that the engram was **chemical and portable**, not locked into a specific wiring of cells."
+          }
+        ]
+      },
+      {
+        "heading": "THE MOLECULE HYPOTHESIS",
+        "body": "The radical idea was that memory is stored in RNA — a transferable molecule — rather than in the pattern of connections between neurons. A few labs pushed it further: Georges Ungar claimed to isolate a peptide from fear-trained rats and named it scotophobin, 'fear of the dark.'",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "James McConnell",
+                "role": "Planaria cannibalism experiments",
+                "years": "1955–1970s",
+                "cc": "US"
+              },
+              {
+                "name": "Georges Ungar",
+                "role": "Isolated 'scotophobin' peptide",
+                "years": "1965–1977",
+                "cc": "US"
+              },
+              {
+                "name": "Eric Kandel",
+                "role": "Mapped memory to synapses",
+                "years": "1960s–2000s",
+                "cc": "US"
+              }
+            ],
+            "label": "the molecular-memory camp vs. the synapse camp"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT COLLAPSED",
+        "body": "Other labs couldn't reproduce the effect. Critics argued the cannibal worms weren't recalling anything — they were following slime trails left by trained worms, or the experimenters were unconsciously scoring ambiguous flinches in the direction they expected. McConnell published in a journal he founded himself, which didn't help.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did critics say the cannibal flatworms appeared to 'inherit' a trained response?",
+            "options": [
+              "They followed chemical slime trails left by trained worms",
+              "RNA from the eaten worms rewired their brains",
+              "The flinch reflex is genetically inherited",
+              "Light intensity was higher in their tanks"
+            ],
+            "correct": 0,
+            "explanation": "Planaria navigate by following each other's mucus trails — a confound that could mimic 'learning' with no memory transfer at all."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE MEMORY ACTUALLY LIVES",
+        "body": "While the worm war raged, Eric Kandel showed in the sea slug Aplysia that learning physically strengthens or weakens specific synapses — the junctions between neurons. Memory turned out to be in the connections, not in a soluble molecule you could eat. Kandel won the 2000 Nobel for it."
+      },
+      {
+        "heading": "WHY RETEST IT NOW",
+        "body": "A discredited result and an untested result are not the same thing. The original data was never cleanly examined with modern controls, blinding, and statistics. Re-running the experiment isn't an endorsement of memory transfer — it's closing a loop science left dangling for sixty years.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1955",
+                "label": "McConnell conditions planaria to light"
+              },
+              {
+                "year": "1962",
+                "label": "Cannibalism 'transfer' result",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1966",
+                "label": "Labs fail to replicate"
+              },
+              {
+                "year": "1972",
+                "label": "Ungar names 'scotophobin'"
+              },
+              {
+                "year": "2000",
+                "label": "Kandel Nobel: memory is synaptic"
+              },
+              {
+                "year": "2026",
+                "label": "Harvard re-examines the data"
+              }
+            ],
+            "label": "the memory-transfer arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T08:20:11.342Z",
+    "label": "The Memory-Transfer Saga",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-05-us-dismantling-ocean-research-climate-data": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PLANET'S HEAT SINK",
+        "body": "More than 90% of the extra heat trapped by greenhouse gases has gone into the ocean, not the air. The 1.5°C we argue about on land is the small leftover fraction; the sea is where the energy actually accumulates. Stop measuring the ocean and you lose the planet's main thermometer.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of the excess heat from global warming has the ocean absorbed?",
+            "options": [
+              "About a quarter",
+              "About half",
+              "More than 90%",
+              "Almost none — it stays in the air"
+            ],
+            "correct": 2,
+            "explanation": "Water's enormous heat capacity means the ocean has taken up over 90% of warming's excess energy, buffering land temperatures for now."
+          }
+        ]
+      },
+      {
+        "heading": "THE CARBON SPONGE",
+        "body": "Of the CO2 humans emit each year, the atmosphere keeps only about half. The rest is split between land plants and the ocean, which absorbs roughly a quarter of all emissions. The deep-ocean monitors being shut are what tell us whether that absorption is slowing — the single biggest uncertainty in climate forecasts.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Stays in atmosphere",
+                "value": 46,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Land biosphere",
+                "value": 30,
+                "tone": "neutral"
+              },
+              {
+                "label": "Ocean uptake",
+                "value": 24,
+                "tone": "favorable"
+              }
+            ],
+            "label": "where each year's CO2 emissions go"
+          }
+        ]
+      },
+      {
+        "heading": "THE CONVEYOR BELT",
+        "body": "A system of currents called the AMOC carries warm tropical water north and cold dense water back south — it is why northwest Europe is far milder than its latitude. Sustained mooring arrays watch it for signs of slowdown, a feared climate tipping point. The signal is subtle and only visible across years of unbroken measurement.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The full name is the *Atlantic Meridional Overturning Circulation* — **AMOC**. A collapse wouldn't warm Europe; it would *cool* it, even as the planet overall heats."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A GAP IS FOREVER",
+        "body": "Climate science runs on continuous time series — you compare today against an unbroken record stretching back decades. A year of missing ocean data cannot be reconstructed later, because the ocean of that year no longer exists to re-measure. Dismantling instruments doesn't pause the record; it punches a permanent hole in it."
+      },
+      {
+        "heading": "THE PUBLIC-GOOD PROBLEM",
+        "body": "Global ocean observation — thousands of robotic Argo floats, moored buoys, and deep sensors — is largely built and funded by a handful of wealthy states, with the US the largest single contributor. The data is shared freely worldwide, which makes it a textbook public good: everyone benefits, so no one country has a private incentive to keep paying for it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The backbone is the **Argo** array — roughly **4,000** drifting floats that dive to 2,000m and surface to beam back temperature and salinity. It is the densest record of the deep ocean humanity has ever had."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T08:20:50.244Z",
+    "label": "How We Measure the Ocean",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-07-dangote-refinery-ipo-pan-african-capital": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARADOX",
+        "body": "Nigeria has been Africa's largest crude exporter for decades, yet imported almost all its petrol — because pumping oil and refining it are different industries. The country's four state-owned refineries ran for years at a fraction of capacity, so crude sailed out and gasoline sailed back in, taxed twice by shipping and middlemen.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did Nigeria, Africa's top crude producer, import most of its petrol for years?",
+            "options": [
+              "Its own refineries ran far below capacity or sat idle",
+              "Nigerian crude is too heavy to refine into petrol",
+              "OPEC rules barred members from refining domestically",
+              "Domestic demand was too small to justify a refinery"
+            ],
+            "correct": 0,
+            "explanation": "The state-run refineries at Port Harcourt, Warri and Kaduna were chronically broken, forcing a crude-out, fuel-in trade despite vast domestic demand."
+          }
+        ]
+      },
+      {
+        "heading": "THE SCALE",
+        "body": "The Dangote plant near Lagos is the largest single-train refinery on earth, designed for around 650,000 barrels per day — enough to cover Nigeria's entire fuel need and export the surplus across West Africa. It was built by one private fortune precisely because the state could not keep its own refineries running.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A **single-train** refinery processes all its crude through one continuous distillation line rather than several parallel units — cheaper to build, but a single point of failure for **650,000 bpd** of output."
+          },
+          {
+            "type": "locations",
+            "codes": [
+              "NG"
+            ],
+            "label": "Lekki Free Zone, Lagos",
+            "caption": "Built on reclaimed coastal land east of Lagos for tanker access.",
+            "markers": [
+              {
+                "lat": 6.4281,
+                "lng": 4.0192,
+                "label": "Dangote Refinery, Lekki"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY AN AFRICAN OFFER",
+        "body": "The exchange's pitch — 'an African offer, not a Nigerian offer' — is an answer to a structural problem: African equity markets are tiny and walled off from one another, so no single bourse can absorb a deal this large. Pooling regional capital is the only way to float a company of Dangote's scale on the continent rather than in London or New York.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Stock exchange market cap (selected African bourses)",
+            "peers": [
+              {
+                "value": 1100,
+                "cc": "ZA"
+              },
+              {
+                "value": 70,
+                "cc": "MA"
+              },
+              {
+                "value": 45,
+                "cc": "EG"
+              },
+              {
+                "value": 40,
+                "cc": "NG"
+              },
+              {
+                "value": 15,
+                "cc": "KE"
+              },
+              {
+                "value": 10,
+                "cc": "MU"
+              }
+            ],
+            "subjectCc": "NG",
+            "unit": "$bn"
+          },
+          {
+            "type": "locations",
+            "codes": [
+              "MA",
+              "EG",
+              "NG",
+              "KE",
+              "ZA"
+            ],
+            "label": "Africa's fragmented equity markets",
+            "caption": "Each bourse trades in its own currency under its own rules — capital rarely crosses."
+          }
+        ]
+      },
+      {
+        "heading": "THE CURRENCY DRAG",
+        "body": "A regional investor's real return depends on the naira holding value. After Tinubu floated the currency in 2023, the naira lost most of its dollar value, meaning even a soaring local index can translate into a loss for someone holding hard currency. The exchange's '50%-plus equity returns' pitch only lands if the next devaluation doesn't eat it.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              1356.19465,
+              1356.19465,
+              1357.96,
+              1363.47,
+              1370.1,
+              1370.5,
+              1370.6,
+              1370.49,
+              1372.988035,
+              1372.74,
+              1371.26,
+              1372.34,
+              1371.25,
+              1370.05,
+              1372.25,
+              1372.25,
+              1367.13,
+              1370.94,
+              1372.84,
+              1373.66,
+              1369.78,
+              1371.7,
+              1371.7,
+              1371.2,
+              1371.71,
+              1367.86,
+              1367,
+              1361.17,
+              1360.3,
+              1360.3
+            ],
+            "periods": [
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7"
+            ],
+            "label": "Nigerian naira",
+            "unit": "NGN / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE SUBSIDY BUILT",
+        "body": "For decades Nigeria capped pump prices with a fuel subsidy that, at its peak, rivaled the entire health and education budgets combined. Tinubu scrapped it on his first day in office in May 2023, tripling petrol prices overnight. That removal is what makes a domestic refinery commercially viable — there is finally a real margin in selling fuel inside Nigeria.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The subsidy was an *import* subsidy: it paid traders the gap between the global price and the capped pump price. A domestic refinery short-circuits that entire racket — which is also why it had powerful enemies."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-07"
+    ],
+    "generatedAt": "2026-06-07T08:21:36.586Z",
+    "label": "Dangote Refinery & African Capital",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-07-haryana-ias-cbi-raids-funds-diversion": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STEEL FRAME",
+        "body": "The Indian Administrative Service is the successor to the colonial Indian Civil Service — Sardar Patel called it the 'steel frame' that holds the union together. Roughly 5,000 officers run districts, ministries, and state departments nationwide. They are recruited centrally but serve state governments, and constitutional protections make them nearly impossible to dismiss without a presidential inquiry."
+      },
+      {
+        "heading": "THE CAGED PARROT",
+        "body": "The CBI has no founding statute of its own — it operates under the Delhi Special Police Establishment Act of 1946, a law written to police wartime supply corruption. In 2013 the Supreme Court called it 'a caged parrot speaking in its master's voice,' capturing how an agency without independent legal standing can be steered by whoever holds power.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "a caged parrot speaking in its master's voice",
+            "speaker": "Supreme Court of India, on the CBI",
+            "year": "2013"
+          }
+        ]
+      },
+      {
+        "heading": "THE CONSENT TRAP",
+        "body": "Because the CBI is rooted in a Delhi-police law, it cannot enter a state to investigate without that state's 'general consent.' Several Indian states have withdrawn consent in recent years, forcing the agency to seek case-by-case court permission. Federalism, not evidence, often decides where the CBI can knock.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does the CBI need before it can investigate inside an Indian state?",
+            "options": [
+              "That state government's consent",
+              "A two-thirds vote in Parliament",
+              "Approval from the United Nations",
+              "Nothing — it has nationwide jurisdiction"
+            ],
+            "correct": 0,
+            "explanation": "The CBI derives its powers from a Delhi police law, so it needs a state's consent to operate there — which states can and do withdraw."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A CONSULTANCY",
+        "body": "Routing money through a private consultancy is the classic shape of a diversion scheme: real departmental funds are paid out for vague 'advisory' or 'project management' services, the firm takes a cut, and the rest is layered back as kickbacks. The intermediary turns traceable public spending into an opaque private flow.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "depts",
+                "label": "10 state depts"
+              },
+              {
+                "id": "firm",
+                "label": "Consultancy"
+              },
+              {
+                "id": "banks",
+                "label": "Private banks"
+              },
+              {
+                "id": "kickback",
+                "label": "Personal benefit"
+              }
+            ],
+            "links": [
+              {
+                "source": "depts",
+                "target": "firm",
+                "value": 661,
+                "label": "Rs 661cr"
+              },
+              {
+                "source": "firm",
+                "target": "banks",
+                "value": 661,
+                "label": "routed"
+              },
+              {
+                "source": "banks",
+                "target": "kickback",
+                "value": 200,
+                "label": "traced"
+              }
+            ],
+            "label": "the diversion shape"
+          }
+        ]
+      },
+      {
+        "heading": "CRORE & LAKH",
+        "body": "Indian figures use a numbering system Western readers misread constantly: a lakh is 100,000 and a crore is 10 million. So Rs 661 crore is 6.61 billion rupees — about $79 million. Commas fall differently too (Rs 6,61,00,00,000), which is why headline sums can look smaller than they are.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**1 lakh** = 100,000 · **1 crore** = 100 lakh = **10 million**. The scale jumps by hundreds, not thousands — so *661 crore* is six-and-a-half *billion* rupees, not millions."
+          }
+        ]
+      },
+      {
+        "heading": "ONE CAPITAL, TWO STATES",
+        "body": "Chandigarh, where the raids took place, is a constitutional oddity: a single planned city — designed by Le Corbusier — that serves as the shared capital of both Punjab and Haryana while being governed directly by the central government as a Union Territory. The arrangement was meant as a temporary fix after Punjab's 1966 partition and has quietly outlasted six decades."
+      }
+    ],
+    "generatedAt": "2026-06-07T08:22:11.574Z",
+    "label": "The IAS, the CBI & Fund Diversion",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-07-india-lpg-hike-hormuz-war-passthrough": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT LPG ACTUALLY IS",
+        "body": "Liquefied petroleum gas is propane and butane — a byproduct of oil refining and gas processing, bottled under modest pressure. It is not the natural gas (methane) that flows in pipelines, nor the deep-chilled LNG carried by tankers. For most of urban India, LPG in a steel cylinder is the kitchen stove.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The fuels are constantly confused: **LPG** is propane/butane, liquefies at mild pressure, sold by the cylinder. **LNG** is methane chilled to *−162°C*, sold by the shipload. India imports both, but the cylinder is the one that shows up in household budgets."
+          }
+        ]
+      },
+      {
+        "heading": "THE SAUDI BENCHMARK",
+        "body": "Asian LPG is priced off the Saudi Aramco Contract Price — a monthly number Aramco posts for propane and butane that effectively sets the cost for every Asian buyer. When the article says the Saudi benchmark rose 46%, it means this single posted price, which India cannot negotiate around.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which benchmark sets the price of LPG for Asian importers like India?",
+            "options": [
+              "Henry Hub",
+              "Saudi Aramco Contract Price (CP)",
+              "Brent crude",
+              "Dutch TTF"
+            ],
+            "correct": 1,
+            "explanation": "Aramco's monthly Contract Price for propane and butane is the reference for nearly all Asian LPG contracts — India is a price-taker on it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HORMUZ IS THE WHOLE GAME",
+        "body": "Most Indian LPG arrives by ship from Gulf producers — Saudi Arabia, the UAE, Qatar — and nearly all of it must exit through the Strait of Hormuz. There is no pipeline alternative to the subcontinent; a closed strait does not raise the price so much as remove the supply.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "SA",
+              "AE",
+              "QA",
+              "IR",
+              "OM"
+            ],
+            "label": "the Gulf-to-India LPG route",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.39,
+                "lng": 49.57,
+                "label": "Ras Tanura, Saudi terminal"
+              },
+              {
+                "lat": 19.076,
+                "lng": 72.877,
+                "label": "Mumbai import hub"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DOLLAR LAYER",
+        "body": "Gulf LPG is invoiced in dollars, so the rupee's exchange rate sits on top of the benchmark move. A weaker rupee means each dollar of LPG costs more rupees at the dock — the household price can rise even when the Saudi CP is flat, and rises faster when both move together.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              94.425498,
+              94.425498,
+              94.8754,
+              95.576514,
+              95.55195,
+              95.719988,
+              95.829548,
+              96.003,
+              96.027,
+              96.13634,
+              96.389098,
+              96.875003,
+              96.376027,
+              96.243053,
+              95.719748,
+              95.700477,
+              95.415433,
+              95.341057,
+              95.70115,
+              96.383018,
+              95.600602,
+              95.01655,
+              95.06455,
+              94.831403,
+              95.108606,
+              95.573359,
+              95.723896,
+              95.657516,
+              95.36885,
+              95.36885
+            ],
+            "periods": [
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE SUBSIDY CUSHION",
+        "body": "India does not pass the full import cost to households instantly. Public oil marketers — Indian Oil, HP, BP — absorb part of the swing, and targeted subsidies (notably the Ujjwala scheme for poor households) blunt the rest. A 29-rupee hike signals the cushion is thinning faster than the state wants to absorb.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The political sensitivity is structural: the **Pradhan Mantri Ujjwala Yojana** put cylinders in *over 100 million* low-income homes. Every benchmark spike turns a global oil-market move into a domestic welfare question."
+          }
+        ]
+      },
+      {
+        "heading": "DEMAND DESTRUCTION",
+        "body": "When prices climb past what users can pay, consumption simply falls — the 20,000-tonne daily drop is households rationing: cooking less, switching back to wood or kerosene, refilling cylinders later. High prices clear a shortage by pricing people out, which is why fuel spikes hit the poorest first.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When a fuel becomes scarce and prices spike, what does 'demand destruction' describe?",
+            "options": [
+              "Producers deliberately cutting output",
+              "Consumers reducing use because they can't afford it",
+              "Governments banning fuel exports",
+              "Refineries shutting for maintenance"
+            ],
+            "correct": 1,
+            "explanation": "Demand destruction is the market clearing a shortage by pricing the least able buyers out — the consumption fall is involuntary, not a policy choice."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-07"
+    ],
+    "generatedAt": "2026-06-07T08:23:05.492Z",
+    "label": "LPG & the Saudi Price Chain",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-07-kohistan-kkh-blockade-hydropower-electricity": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARADOX",
+        "body": "Kohistan is an energy colony in miniature: rivers in its valleys spin federal turbines that light Lahore and Karachi, while its own villages sit dark beneath the transmission towers. This is the classic internal periphery — a poor upland region that exports its single valuable resource and consumes almost none of it."
+      },
+      {
+        "heading": "WHY GENERATION ISN'T SUPPLY",
+        "body": "A hydropower plant feeds electricity into the national grid at very high voltage for long-distance transport. Lighting a nearby village requires a completely separate chain — grid stations, step-down transformers, distribution lines — that is rarely built where it isn't commercially worthwhile. Generating power and receiving power are two different pieces of infrastructure, and the second one is the one Kohistan never got."
+      },
+      {
+        "heading": "THE HIGHWAY AS LEVERAGE",
+        "body": "The Karakoram Highway is the only paved land link between Pakistan and China — the spine of the China-Pakistan Economic Corridor and the highest paved international border crossing on Earth at Khunjerab Pass. Built over twenty years and hundreds of worker deaths, it has no alternative route. Blocking it is the maximum pressure a remote district can apply against Islamabad.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK"
+            ],
+            "label": "Karakoram Highway corridor",
+            "caption": "the only land route Pakistan has to China",
+            "markers": [
+              {
+                "lat": 35.18,
+                "lng": 73.02,
+                "label": "Dubair-Khawar plant"
+              },
+              {
+                "lat": 35.32,
+                "lng": 73.18,
+                "label": "Kohistan blockade"
+              },
+              {
+                "lat": 36.85,
+                "lng": 75.42,
+                "label": "Khunjerab Pass (China)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHO OWNS THE WATER",
+        "body": "Most large dams in Khyber Pakhtunkhwa are built and run by the federal WAPDA, not the province. Provinces are owed a constitutional share of the revenue — net hydel profits — for hosting the infrastructure, and those payments have been disputed and delayed for decades. The grievance beneath the blockade is older than this plant: who captures the value of a resource extracted from someone else's valley.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal hook is **net hydel profits** — the province's share of revenue from federally-run dams on its rivers. Promised under the 1973 constitution and reinforced by the **18th Amendment** (2010), the payments remain a perennial centre-versus-province fight."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE ULEMA LEAD",
+        "body": "In Kohistan the formal state is thin — few officials, little policing, weak service delivery. Religious scholars and mosque networks carry the civic authority that elsewhere belongs to municipalities, which is why a power protest here is organized and announced by ulema rather than a city council or union.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes the Karakoram Highway uniquely hard for Pakistan to lose access to?",
+            "options": [
+              "It is Pakistan's only paved land link to China",
+              "It is the main highway to Karachi's port",
+              "It is the sole road connecting Lahore and Islamabad"
+            ],
+            "correct": 0,
+            "explanation": "The KKH over Khunjerab Pass is the only land corridor between Pakistan and China, making it the backbone of CPEC — and a chokepoint with no detour."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T08:23:59.986Z",
+    "label": "Hydropower & the Resource Periphery",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-07-nigeria-kidnapping-rescue-class-divide": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BUSINESS MODEL",
+        "body": "Mass kidnapping in northern Nigeria is a mature industry with specialization: scouts identify targets, armed groups execute raids, negotiators handle ransom demands, and financiers front operational costs for a cut. It runs like a supply chain, not a series of one-off crimes.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "fin",
+                "label": "Financiers"
+              },
+              {
+                "id": "scouts",
+                "label": "Scouts"
+              },
+              {
+                "id": "raiders",
+                "label": "Armed raiders"
+              },
+              {
+                "id": "neg",
+                "label": "Negotiators"
+              },
+              {
+                "id": "ransom",
+                "label": "Ransom pool"
+              }
+            ],
+            "links": [
+              {
+                "source": "fin",
+                "target": "scouts",
+                "value": 10,
+                "label": "fronts costs"
+              },
+              {
+                "source": "fin",
+                "target": "raiders",
+                "value": 20,
+                "label": "arms, fuel"
+              },
+              {
+                "source": "scouts",
+                "target": "raiders",
+                "value": 10,
+                "label": "targets"
+              },
+              {
+                "source": "raiders",
+                "target": "neg",
+                "value": 30,
+                "label": "captives"
+              },
+              {
+                "source": "neg",
+                "target": "ransom",
+                "value": 40,
+                "label": "demands"
+              },
+              {
+                "source": "ransom",
+                "target": "fin",
+                "value": 15,
+                "label": "return on capital"
+              }
+            ],
+            "label": "how a kidnapping operation is organized"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE NORTH",
+        "body": "Northern Nigeria has fewer than one police officer per 1,000 people across states larger than many European countries. Kebbi alone is the size of Belgium with a fraction of the security infrastructure. The ungoverned spaces between villages mean response forces arrive hours later, if at all.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why the Presidency's *terrain, not status* defense is plausible on its face — and why families don't believe it. The same **security vacuum** that lets raiders operate also dictates who gets a rapid-response convoy and who waits."
+          }
+        ]
+      },
+      {
+        "heading": "THE RANSOM SPIRAL",
+        "body": "Each successful payment proves the model works and attracts new entrants. Nigeria criminalized ransom payments in 2022, but enforcement is impossible — families face execution deadlines, not legal abstractions. The law pushed payments underground without reducing them.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What happened after Nigeria made paying kidnap ransoms a crime in 2022?",
+            "options": [
+              "Abductions fell sharply",
+              "Payments continued, just hidden from authorities",
+              "Insurers took over negotiations",
+              "The military assumed all rescues"
+            ],
+            "correct": 1,
+            "explanation": "Families pay quietly to meet execution deadlines, so the law drove ransoms underground rather than reducing kidnappings."
+          }
+        ]
+      },
+      {
+        "heading": "THE CLASS DIVIDE",
+        "body": "Whose family gets a week-long rescue operation and whose children wait indefinitely tracks wealth and political proximity, not just geography. A minister can mobilize the state apparatus by phone; rural school families have no such line into Abuja.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Adebayo Adelabu",
+                "role": "Power minister, relatives freed",
+                "cc": "NG"
+              },
+              {
+                "name": "Ogbomoso families",
+                "role": "schoolchildren still captive",
+                "cc": "NG"
+              }
+            ],
+            "label": "the asymmetry of access"
+          }
+        ]
+      },
+      {
+        "heading": "THE NAIRA CONTEXT",
+        "body": "Ransom demands are climbing in part because the currency is collapsing — kidnappers index demands to a falling naira, and a sum that bought a captive's freedom last year buys far less today. The economics of abduction move with the exchange rate.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              1356.19465,
+              1356.19465,
+              1357.96,
+              1363.47,
+              1370.1,
+              1370.5,
+              1370.6,
+              1370.49,
+              1372.988035,
+              1372.74,
+              1371.26,
+              1372.34,
+              1371.25,
+              1370.05,
+              1372.25,
+              1372.25,
+              1367.13,
+              1370.94,
+              1372.84,
+              1373.66,
+              1369.78,
+              1371.7,
+              1371.7,
+              1371.2,
+              1371.71,
+              1367.86,
+              1367,
+              1361.17,
+              1360.3,
+              1360.3
+            ],
+            "periods": [
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7"
+            ],
+            "label": "Nigerian naira",
+            "unit": "NGN / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-07"
+    ],
+    "generatedAt": "2026-06-07T08:24:22.362Z",
+    "label": "Nigeria's Kidnapping Economy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-07-openai-chatgpt-super-app-pre-ipo": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 'CONFIDENTIAL' MEANS",
+        "body": "Since the 2012 JOBS Act, a company with under ~$1.2bn in revenue can file its S-1 registration with the SEC in secret, revising it privately with regulators for months before going public at least 15 days before the roadshow. It lets a firm test the waters without exposing financials to rivals if it walks away.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is the **Emerging Growth Company** track — the same one Facebook *declined* in 2012 and most of Silicon Valley has used since. The filing is real; the public just can't read it yet."
+          }
+        ]
+      },
+      {
+        "heading": "THE STRUCTURE NO ONE ELSE HAS",
+        "body": "OpenAI began in 2015 as a nonprofit, then bolted on a 'capped-profit' arm in 2019 — early investors' returns were capped at 100x, with everything above flowing back to the nonprofit. Microsoft holds a large stake and most of the compute. An IPO requires unwinding this into a conventional for-profit that public shareholders can actually own.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2015",
+                "label": "Founded as nonprofit",
+                "emphasis": "start"
+              },
+              {
+                "year": "2019",
+                "label": "Capped-profit arm + Microsoft $1bn"
+              },
+              {
+                "year": "2020",
+                "label": "GPT-3"
+              },
+              {
+                "year": "2022-11",
+                "label": "ChatGPT launches",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "GPT-4"
+              },
+              {
+                "year": "2026",
+                "label": "Confidential IPO filing",
+                "emphasis": "end"
+              }
+            ],
+            "label": "nonprofit to IPO"
+          }
+        ]
+      },
+      {
+        "heading": "THE MONETIZATION GAP",
+        "body": "900 million weekly users sounds like a money machine, but the vast majority pay nothing — and every free query costs real money in GPU inference. Consumer AI has the opposite economics of social media: usage is a cost, not free inventory to sell ads against. That is why the redesign herds users toward paid enterprise seats.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the **freemium** trap in reverse. A free Instagram user is monetizable inventory; a free ChatGPT user is a *bill*. Converting even a low single-digit share of 900M to paid is the whole game."
+          }
+        ]
+      },
+      {
+        "heading": "THE SUPER-APP PLAYBOOK",
+        "body": "Bundling code generation (Codex) and autonomous agents into one app copies a proven model: China's WeChat turned a messaging app into payments, taxis, and government services — one login for everything. The bet is that switching cost rises with every feature folded in, locking users before rivals can pull them out.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "The 'super-app' model — one app for chat, payments, and services — was pioneered most successfully by which platform?",
+            "options": [
+              "WeChat (China)",
+              "WhatsApp (US)",
+              "Telegram (UAE)",
+              "Line (Japan)"
+            ],
+            "correct": 0,
+            "explanation": "Tencent's WeChat became the template every Western firm now chases — a single app handling messaging, payments, and mini-programs for over a billion users."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A TRILLION IS HUGE",
+        "body": "A $1tn debut valuation would dwarf almost every tech listing in history. Only Saudi Aramco's 2019 oil IPO opened larger; the biggest tech debuts — Alibaba, Meta — were a fraction of that. Pricing OpenAI here means public markets must accept a multiple on revenue that no software firm has justified at listing before.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Approx. debut valuation",
+            "peers": [
+              {
+                "value": 1700,
+                "label": "Saudi Aramco"
+              },
+              {
+                "value": 1000,
+                "label": "OpenAI"
+              },
+              {
+                "value": 231,
+                "label": "Alibaba"
+              },
+              {
+                "value": 104,
+                "label": "Meta"
+              },
+              {
+                "value": 82,
+                "label": "Uber"
+              },
+              {
+                "value": 18,
+                "label": "Visa"
+              }
+            ],
+            "subjectLabel": "OpenAI",
+            "unit": "$bn"
+          }
+        ]
+      },
+      {
+        "heading": "WHO STANDS TO GAIN",
+        "body": "Goldman Sachs and Morgan Stanley don't just advise — lead underwriters typically collect a fee on the total raised and allocate shares to favored clients, giving them enormous influence over the opening price. The same two banks have anchored most of the era's landmark tech listings.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The underwriter's incentive is subtle: price the IPO *slightly low* and the first-day 'pop' rewards the institutional clients who got allocations — which is why a stock that jumps 40% on day one means the company arguably left money on the table."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T08:25:13.407Z",
+    "label": "The OpenAI IPO",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-07-skorea-naver-ceo-pm-ai-strategy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OFFICE",
+        "body": "South Korea's prime minister is constitutionally the No. 2 but operationally weak — the president holds executive power; the PM coordinates ministries and stands in ceremonially. The post requires a National Assembly confirmation hearing, which is why Han's appointment is a nomination, not a done deal. Tapping a tech CEO for it is a signal about priorities more than a transfer of real power."
+      },
+      {
+        "heading": "WHY NAVER WON",
+        "body": "Naver is one of a handful of search engines on earth that beat Google on its home turf. It did it by going deep on Korean-language content, building a walled garden of blogs, news, shopping and its 'Knowledge iN' Q&A archive — so the best answers lived inside Naver, not on the open web Google crawls. Localization, not algorithm, is the moat.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Baidu",
+                "value": "~60%",
+                "cc": "CN",
+                "weight": 60
+              },
+              {
+                "label": "Yandex",
+                "value": "~60%",
+                "cc": "RU",
+                "weight": 60
+              },
+              {
+                "label": "Naver",
+                "value": "~55%",
+                "cc": "KR",
+                "weight": 55
+              },
+              {
+                "label": "Seznam",
+                "value": "~25%",
+                "cc": "CZ",
+                "weight": 25
+              }
+            ],
+            "label": "home-market search engines that beat Google"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEVELOPMENTAL STATE",
+        "body": "Korea's growth model has always been the government picking national champions and pouring policy behind them — first the chaebol (Samsung, Hyundai, LG) under Park Chung-hee's export drive, then broadband, then K-content. Designating AI as the 'top policy priority' and installing an industry figure to drive it is the same playbook applied to a new frontier.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Korean term is *chaebol* — family-controlled conglomerates nurtured by state credit and protection. The state-picks-winners reflex it created is now being aimed at **AI** the way it was once aimed at steel and ships."
+          }
+        ]
+      },
+      {
+        "heading": "THE HARDWARE EDGE",
+        "body": "Korea's leverage in AI isn't models — it's memory. Samsung and SK Hynix together supply the vast majority of the world's high-bandwidth memory (HBM), the stacked DRAM that sits beside every Nvidia AI accelerator. Whoever wants to train frontier models has to buy Korean silicon first.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "AI accelerators are bottlenecked on a specialized memory called HBM. Which country's firms dominate its supply?",
+            "options": [
+              "United States",
+              "Taiwan",
+              "South Korea",
+              "Japan"
+            ],
+            "correct": 2,
+            "explanation": "Samsung and SK Hynix make most of the world's high-bandwidth memory; Taiwan's TSMC fabricates the logic chips, but the stacked DRAM is largely Korean."
+          }
+        ]
+      },
+      {
+        "heading": "THE QUIET EMPIRE",
+        "body": "Naver's reach extends well beyond Korea through LINE, the messaging app it built that became the default in Japan, Taiwan and Thailand — markets where WhatsApp and WeChat never took hold. A Korean search firm running the social graph of three foreign countries is the kind of soft-power asset a government notices when it staffs its cabinet.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KR",
+              "JP",
+              "TW",
+              "TH"
+            ],
+            "label": "where LINE became the default messenger"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T08:25:53.253Z",
+    "label": "South Korea's AI Statecraft",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-07-us-iran-drones-hormuz-direct-escalation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE GULF MONARCHIES GET HIT",
+        "body": "Iran cannot reach the continental US, so it strikes what it can reach: the bases that host American power. Bahrain houses the US Fifth Fleet, Qatar holds the largest US airbase in the region at Al Udeid, and Kuwait has been a forward staging ground since 1991. Hitting them is how Tehran punishes Washington without crossing an ocean.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "KW",
+              "BH",
+              "QA",
+              "SA"
+            ],
+            "label": "the targets within reach",
+            "markers": [
+              {
+                "lat": 26.2057,
+                "lng": 50.586,
+                "label": "Manama — US Fifth Fleet"
+              },
+              {
+                "lat": 25.1173,
+                "lng": 51.315,
+                "label": "Al Udeid airbase"
+              },
+              {
+                "lat": 29.3759,
+                "lng": 47.9774,
+                "label": "Kuwait City"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY OF THE STRAIT",
+        "body": "Hormuz sits between Iran and Oman — not Iran and any Arab Gulf state. Iran's coastline runs along the entire northern edge and the deepest shipping channel hugs the Iranian side, which is why coastal radar and naval positioning on that shore matter disproportionately. Roughly 21 million barrels of oil pass through daily, about a fifth of global consumption."
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "This is not the first time. From 1984 to 1988 Iran and Iraq attacked over 400 commercial ships in the Gulf; Iran mined the strait, and the US responded with Operation Earnest Will — reflagging Kuwaiti tankers under the American flag, the largest naval convoy operation since World War II. The lesson planners took away: disruption is far easier to threaten than to sustain.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1980",
+                "label": "Iran–Iraq war begins"
+              },
+              {
+                "year": "1984",
+                "label": "Tanker War opens"
+              },
+              {
+                "year": "1987",
+                "label": "Operation Earnest Will",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1988",
+                "label": "Operation Praying Mantis"
+              },
+              {
+                "year": "1988",
+                "label": "Ceasefire"
+              }
+            ],
+            "label": "the last Gulf naval war"
+          }
+        ]
+      },
+      {
+        "heading": "THE $24 BILLION, EXPLAINED",
+        "body": "Iran's frozen assets are oil revenues parked in escrow accounts at foreign banks — Iran owns the money but cannot move it without a US license. Unfreezing does not mean a wire transfer of cash; it means Washington removes the spending restrictions, usually limiting the funds to pre-approved humanitarian goods. The mechanism is deliberately reversible, which is exactly why it recurs in every US-Iran negotiation.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Iraq",
+                "value": "~$10bn",
+                "cc": "IQ"
+              },
+              {
+                "label": "Qatar",
+                "value": "$6bn",
+                "cc": "QA"
+              },
+              {
+                "label": "South Korea",
+                "value": "$7bn",
+                "cc": "KR"
+              },
+              {
+                "label": "Japan",
+                "value": "~$3bn",
+                "cc": "JP"
+              }
+            ],
+            "label": "where Iran's restricted funds have sat"
+          }
+        ]
+      },
+      {
+        "heading": "THE WATER VULNERABILITY",
+        "body": "Kuwait and Bahrain are among the most water-stressed states on earth — Kuwait has no rivers and almost no groundwater, with desalination supplying over 90% of its freshwater. These plants are usually co-located with power stations on the coast, so a single strike on the wrong complex takes out both water and electricity at once. The threat to civilian infrastructure is not abstract.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of Kuwait's freshwater comes from desalination?",
+            "options": [
+              "About 20%",
+              "About half",
+              "Over 90%",
+              "Under 5%"
+            ],
+            "correct": 2,
+            "explanation": "With no rivers and negligible groundwater, Kuwait depends on coastal desalination for over 90% of its drinking water — a days-not-weeks vulnerability."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PAKISTAN MEDIATES",
+        "body": "Pakistan is the rare state that talks to both sides: a Sunni-majority nuclear power with a long border with Iran, deep security ties to the Gulf monarchies, and a standing relationship with Washington. It has played this go-between role before — quietly carrying messages between Tehran and Riyadh — precisely because it is trusted enough by each camp to be useful and weak enough to threaten none.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Bahrain hosts the **US Fifth Fleet** and **NAVCENT** — the naval arm of **CENTCOM**, US Central Command. That is why a small island of 1.5 million people sits at the center of every Gulf crisis."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T08:26:29.499Z",
+    "label": "Hormuz, the Fifth Fleet & Frozen Assets",
+    "category": "politics",
+    "articleCount": 1
   }
 }
