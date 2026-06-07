@@ -321398,5 +321398,1421 @@
     "label": "US Gun Violence by the Numbers",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-07-bitcoin-slide-ai-ipos-quantum-strategy-overhang": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FOUR-YEAR RHYTHM",
+        "body": "Bitcoin's price has moved in a roughly four-year cycle tied to the halving — the protocol event that cuts new supply issuance in half. Each cycle has ended in a violent drawdown; a 53% fall from peak is, historically, the shallow end of the range.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              80189.07,
+              80678.03,
+              82145.66,
+              81725.21,
+              80480.89,
+              79277.8,
+              81051.98,
+              79068.82,
+              78135.01,
+              77425.72,
+              76952.21,
+              76808.81,
+              77459.94,
+              77546.34,
+              75482.52,
+              76672.79,
+              76988.16,
+              77274.4,
+              75824.06,
+              74352.7,
+              73539.84,
+              73382.72,
+              73751.07,
+              73593.37,
+              71360.33,
+              66649.86,
+              64021.89,
+              63796.25,
+              60921.79,
+              60861.88,
+              62264.77
+            ],
+            "periods": [
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 7"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "HOW DEEP THEY GO",
+        "body": "Every prior Bitcoin bear market erased the majority of the peak. The 2011 and 2014 collapses ran past 80%; even the institution-heavy 2022 cycle bottomed down roughly three-quarters. The pattern is that capitulation overshoots — selling doesn't stop at fair value, it stops at exhaustion.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "2011",
+                "value": "~93%",
+                "tone": "unfavorable",
+                "weight": 93
+              },
+              {
+                "label": "2014",
+                "value": "~85%",
+                "tone": "unfavorable",
+                "weight": 85
+              },
+              {
+                "label": "2018",
+                "value": "~84%",
+                "tone": "unfavorable",
+                "weight": 84
+              },
+              {
+                "label": "2022",
+                "value": "~77%",
+                "tone": "unfavorable",
+                "weight": 77
+              }
+            ],
+            "label": "peak-to-trough drawdown by cycle"
+          },
+          {
+            "type": "quiz",
+            "question": "How far has Bitcoin typically fallen from peak in past bear markets?",
+            "options": [
+              "About 20%",
+              "About 40%",
+              "Over 75%",
+              "Almost exactly 50% each time"
+            ],
+            "correct": 2,
+            "explanation": "Every prior Bitcoin bear market erased more than three-quarters of the peak price before bottoming."
+          }
+        ]
+      },
+      {
+        "heading": "WHY REAL YIELDS MATTER",
+        "body": "Bitcoin pays no interest, no dividend, no coupon. When real yields are negative, holding cash is a guaranteed loss and capital flows to anything scarce. When real yields turn positive, Treasury bonds offer a risk-free real return, and the opportunity cost of holding a zero-yield asset becomes measurable — which is exactly when speculative capital rotates out.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why Bitcoin trades like the *longest-duration* risk asset on the board — it is most sensitive precisely because it has **no cash flow** to anchor its value."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEVERAGE OVERHANG",
+        "body": "A 'forced sale' fear points to corporate treasuries that bought Bitcoin with borrowed money — most prominently Strategy (formerly MicroStrategy), which funded its holdings largely through convertible debt. The danger isn't the holding; it's that debt maturities or covenant triggers can force a seller to sell into a falling market, accelerating the very decline that triggered the sale.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Convertible debt is a bet that the stock keeps rising. When it doesn't, the issuer must either *refinance*, *dilute*, or **sell the underlying** — and the underlying here is the same asset everyone else is dumping."
+          }
+        ]
+      },
+      {
+        "heading": "THE ROTATION",
+        "body": "Money is finite at the margin, and speculative capital chases the steepest narrative. With AI infrastructure and a wave of IPOs absorbing risk appetite, the marginal dollar that once flowed to crypto now flows to equities with a story. Bitcoin doesn't need bad news to fall — it only needs a better-looking destination for the same risk-seeking money."
+      },
+      {
+        "heading": "NOT 'DIGITAL GOLD' THIS TIME",
+        "body": "Bitcoin's promoters long pitched it as digital gold — a hedge that rises when fear rises. But in risk-off rotations the two diverge sharply: gold holds or climbs as a genuine safe haven while Bitcoin sells off with the rest of the risk complex. The divergence is the tell that the market still prices Bitcoin as a speculative growth asset, not a store of value.",
+        "blocks": [
+          {
+            "type": "trend",
+            "series": [
+              {
+                "values": [
+                  80189.07,
+                  80678.03,
+                  82145.66,
+                  81725.21,
+                  80480.89,
+                  79277.8,
+                  81051.98,
+                  79068.82,
+                  78135.01,
+                  77425.72,
+                  76952.21,
+                  76808.81,
+                  77459.94,
+                  77546.34,
+                  75482.52,
+                  76672.79,
+                  76988.16,
+                  77274.4,
+                  75824.06,
+                  74352.7,
+                  73539.84,
+                  73382.72,
+                  73751.07,
+                  73593.37,
+                  71360.33,
+                  66649.86,
+                  64021.89,
+                  63796.25,
+                  60921.79,
+                  60861.88,
+                  62264.77
+                ],
+                "label": "Bitcoin",
+                "highlight": "last"
+              },
+              {
+                "values": [
+                  4706.72,
+                  4711.53,
+                  4692.03,
+                  4753.28,
+                  4711.77,
+                  4685.25,
+                  4650.57,
+                  4540.65,
+                  4535.45,
+                  4535.69,
+                  4575.14,
+                  4491.98,
+                  4536.19,
+                  4525.24,
+                  4494.01,
+                  4522,
+                  4563.72,
+                  4547.87,
+                  4516.99,
+                  4441.32,
+                  4477.7,
+                  4529.52,
+                  4516.92,
+                  4529.81,
+                  4475.04,
+                  4462.11,
+                  4449.62,
+                  4453.49,
+                  4319.76,
+                  4296.28,
+                  4307.59
+                ],
+                "label": "Gold (PAX Gold)",
+                "highlight": "last"
+              }
+            ],
+            "label": "Bitcoin vs gold",
+            "source": 0,
+            "unit": "$",
+            "periods": [
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 7"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-06-07",
+      "CoinGecko · PAXG (gold-backed) · as of 2026-06-07"
+    ],
+    "generatedAt": "2026-06-07T17:39:06.630Z",
+    "label": "Bitcoin's Drawdown Cycle",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-07-epigenetic-inheritance-without-dna-change-animals": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MARK",
+        "body": "DNA methylation attaches a methyl group to cytosine bases, silencing a gene without touching its sequence — the gene is still on the shelf, but its cover is glued shut. The text of the genome is unchanged; only which pages get read shifts.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the core distinction: a change in the **genotype** alters the letters; an *epigenetic* change alters only the **expression** of letters that stay fixed."
+          }
+        ]
+      },
+      {
+        "heading": "THE BARRIER IT BREAKS",
+        "body": "In the 1890s August Weismann argued that the germline — the cells that become sperm and eggs — is sealed off from the body's experience. Nothing the parent's body does can write back into the inheritance stream. This 'Weismann barrier' is why Lamarck's inherited-acquired-traits idea was buried for a century. Heritable methylation pokes a hole in it."
+      },
+      {
+        "heading": "THE RESET",
+        "body": "The reason transmission is shocking: between generations the embryo wipes nearly all methylation marks clean, twice — once after fertilization, once in the forming germline. A mark that survives that double erasure to reach the grandchild is the genuine anomaly the discovery is about, not ordinary cell-to-cell inheritance."
+      },
+      {
+        "heading": "THE EVIDENCE",
+        "body": "Two organisms carry the case. In agouti mice, the mother's diet sets a methylation mark that changes the pups' coat color and disease risk — visibly, heritably. In the worm C. elegans, environmentally triggered gene-silencing has been tracked across dozens of generations, far longer than mammals manage.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is inherited DNA methylation considered an anomaly rather than routine?",
+            "options": [
+              "It permanently rewrites the DNA sequence in offspring",
+              "Most methylation marks are erased in the embryo between generations",
+              "Only plants, never animals, can transmit it",
+              "It requires a mutation to appear first"
+            ],
+            "correct": 1,
+            "explanation": "The embryo wipes methylation nearly clean twice per generation, so any mark reaching offspring had to survive that reset — which is what makes the finding surprising."
+          }
+        ]
+      },
+      {
+        "heading": "THE LONG ARGUMENT",
+        "body": "This is a 200-year fight. Lamarck proposed inherited acquired traits in 1809; Weismann's barrier crushed it; Conrad Waddington coined 'epigenetics' in 1942 to describe how a fixed genome yields different cells; molecular methylation finally gave the old heresy a mechanism.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1809",
+                "label": "Lamarck: inheritance of acquired traits"
+              },
+              {
+                "year": "1892",
+                "label": "Weismann barrier seals the germline",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1942",
+                "label": "Waddington coins 'epigenetics'"
+              },
+              {
+                "year": "2003",
+                "label": "Agouti mouse: diet sets heritable mark"
+              },
+              {
+                "year": "2013",
+                "label": "Methylation 'clock' reads biological age"
+              }
+            ],
+            "label": "from heresy to mechanism"
+          },
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Jean-Baptiste Lamarck",
+                "role": "Proposed acquired inheritance",
+                "years": "1744–1829",
+                "cc": "FR"
+              },
+              {
+                "name": "August Weismann",
+                "role": "Sealed the germline barrier",
+                "years": "1834–1914",
+                "cc": "DE"
+              },
+              {
+                "name": "Conrad Waddington",
+                "role": "Coined 'epigenetics'",
+                "years": "1905–1975",
+                "cc": "GB"
+              }
+            ],
+            "label": "who built the argument"
+          }
+        ]
+      },
+      {
+        "heading": "THE OPEN QUESTION",
+        "body": "How far stress imprints across generations stays genuinely unsettled. Clean multi-generation transmission is solid in worms and plants; in mammals the marks fade fast and confounds are hard to rule out. The honest frontier is durability, not existence — whether a grandparent's famine still echoes three generations down."
+      }
+    ],
+    "generatedAt": "2026-06-07T17:39:41.867Z",
+    "label": "Epigenetic Inheritance",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-07-gilgit-baltistan-assembly-elections-24-seats": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL LIMBO",
+        "body": "Gilgit-Baltistan is governed by Pakistan but has never been made a province. Its assembly is created by presidential order, not the constitution, so Islamabad can amend or dissolve its powers without a constitutional amendment. Residents elect a local body but send no voting members to Pakistan's national parliament.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The arrangement runs on *executive orders* — the 2009 Self-Governance Order and the 2018 reform — not on the constitution. What an order grants, an order can withdraw."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT STAYS UNRESOLVED",
+        "body": "Pakistan deliberately withholds full integration because doing so would imply that the wider Kashmir question is settled. As long as Kashmir's final status is officially 'disputed' at the UN, formally absorbing Gilgit-Baltistan would undercut Pakistan's own legal position on the rest of the territory.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why has Pakistan never made Gilgit-Baltistan a constitutional province?",
+            "options": [
+              "The region is too sparsely populated to qualify",
+              "Full integration would weaken its UN stance on disputed Kashmir",
+              "The assembly voted against provincial status",
+              "China holds a veto over the territory's status"
+            ],
+            "correct": 1,
+            "explanation": "Absorbing GB would imply Kashmir's status is settled, undercutting Pakistan's position that the whole territory remains disputed pending a plebiscite."
+          }
+        ]
+      },
+      {
+        "heading": "THE THREE-WAY CONTEST",
+        "body": "Gilgit-Baltistan sits at the junction of Pakistan, India, and China. India claims it as part of the former princely state of Jammu and Kashmir; China holds the Shaksgam Valley, which Pakistan ceded in a 1963 boundary agreement that India has never recognized.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IN",
+              "CN",
+              "AF"
+            ],
+            "label": "where three borders meet",
+            "caption": "Pakistan, India, China and Afghanistan all touch this corner",
+            "markers": [
+              {
+                "lat": 35.9208,
+                "lng": 74.3144,
+                "label": "Gilgit"
+              },
+              {
+                "lat": 35.8825,
+                "lng": 76.5133,
+                "label": "K2"
+              },
+              {
+                "lat": 36.8511,
+                "lng": 75.4119,
+                "label": "Khunjerab Pass"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE CPEC STAKE",
+        "body": "Every overland link in the China-Pakistan Economic Corridor enters Pakistan through Gilgit-Baltistan via the Khunjerab Pass and the Karakoram Highway. The territory's unsettled status is awkward for a multi-billion-dollar corridor whose legal ground India formally protests.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **Khunjerab Pass** at ~4,700m is the highest paved border crossing on earth — and the *only* road link between China and Pakistan. Cut it, and CPEC has no overland route."
+          }
+        ]
+      },
+      {
+        "heading": "HOW THE PRESENT WAS BUILT",
+        "body": "When the British Raj was partitioned in 1947, local forces in Gilgit rebelled against the Hindu maharaja of Kashmir and acceded to Pakistan. The 1949 Karachi Agreement then handed administration of the region to Islamabad — negotiated without any representative from Gilgit-Baltistan itself.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1947",
+                "label": "Partition; Gilgit rebellion",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1949",
+                "label": "Karachi Agreement cedes control to Pakistan"
+              },
+              {
+                "year": "1963",
+                "label": "Shaksgam Valley ceded to China"
+              },
+              {
+                "year": "2009",
+                "label": "Self-Governance Order creates assembly"
+              },
+              {
+                "year": "2018",
+                "label": "Governance reform order"
+              },
+              {
+                "year": "2020",
+                "label": "Provisional provincial status proposed"
+              }
+            ],
+            "label": "from partition to limbo"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T17:40:10.731Z",
+    "label": "Gilgit-Baltistan's Constitutional Limbo",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-07-greece-crete-palestinian-arrest-attack-suspicion": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY CYPRUS AND CRETE",
+        "body": "The eastern Mediterranean islands sit within a short flight of Israel and Lebanon — Cyprus is barely 250km off the Levantine coast. That proximity, plus open EU borders inland, has made the islands a recurring staging ground for plots aimed at Israeli and Jewish targets, watched closely by Mossad and local services alike.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GR",
+              "CY",
+              "IL",
+              "LB",
+              "TR"
+            ],
+            "label": "the eastern Med theater",
+            "markers": [
+              {
+                "lat": 35.34,
+                "lng": 25.13,
+                "label": "Heraklion, Crete"
+              },
+              {
+                "lat": 34.92,
+                "lng": 33.63,
+                "label": "Larnaca, Cyprus"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECURSOR PROBLEM",
+        "body": "The suspects are alleged to have trained with explosives made from commercial chemicals — the signature of improvised devices that skip military-grade material entirely. The classic example is a peroxide-based explosive synthesized from hardware-store and pharmacy ingredients, which is exactly why hands-on training abroad matters: the chemistry is unstable and lethal to amateurs.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The peroxide explosive **TATP** (triacetone triperoxide) earned the bomb-maker's nickname *\"Mother of Satan\"* — it leaves no nitrogen signature for standard detectors and detonates from the slightest friction or heat, killing more of its makers than its targets."
+          }
+        ]
+      },
+      {
+        "heading": "WHY NO CHARGES YET",
+        "body": "Greece, like most of continental Europe, runs a civil-law system where an investigating magistrate — not a prosecutor filing an indictment — leads the early phase. A suspect can be detained and questioned for an extended period before any formal charge, because the magistrate is gathering the dossier first. 'No charges filed' here signals an open investigation, not a weak case."
+      },
+      {
+        "heading": "THE DISTRIBUTED CELL",
+        "body": "One suspect on Crete, four detained in Cyprus, training routed through Malaysia — the spread across jurisdictions is a deliberate design. Splitting a cell across borders complicates surveillance, slows information-sharing between national services, and means no single police force sees the whole picture until cooperation kicks in.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do transnational cells deliberately split members across multiple countries?",
+            "options": [
+              "It is cheaper than operating in one country",
+              "No single national police service sees the full network",
+              "It is required by international law",
+              "It guarantees lighter sentences if caught"
+            ],
+            "correct": 1,
+            "explanation": "Fragmenting across jurisdictions exploits the gaps between national services, which must coordinate before any one of them can map the whole cell."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Attacks and plots against Israeli and Jewish targets in this corner of the Mediterranean run back decades — from the 1985 killing of Israeli tourists in Larnaca to the 2012 bus bombing of Israeli travelers at Burgas, Bulgaria. The pattern is consistent: soft civilian targets reached through Europe's open interior.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1985",
+                "label": "Larnaca: 3 Israelis killed on a yacht"
+              },
+              {
+                "year": "2012",
+                "label": "Burgas bus bombing, Bulgaria",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "Cyprus arrest over plot on Israelis"
+              },
+              {
+                "year": "2026",
+                "label": "Crete/Cyprus arrests"
+              }
+            ],
+            "label": "plots in the eastern Med"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T17:40:57.278Z",
+    "label": "Eastern Med Security Geography",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-07-intermittent-fasting-gut-brain-axis-depression-myelin": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT MYELIN ACTUALLY DOES",
+        "body": "Myelin is the fatty sheath wrapped around nerve fibers by specialized cells called oligodendrocytes. It lets electrical signals jump between gaps rather than crawl down the whole axon — a trick called saltatory conduction that makes signals travel up to 100 times faster. Lose the insulation and the wiring still exists, but the timing falls apart.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Myelin is not permanent scaffolding — it is constantly remodeled. *Oligodendrocyte precursor cells* keep dividing into adulthood, which is why **demyelination** can sometimes be reversed rather than only halted."
+          }
+        ]
+      },
+      {
+        "heading": "THE GUT-BRAIN AXIS",
+        "body": "The gut and brain talk along two channels: the vagus nerve, a direct neural cable running from the gut wall to the brainstem, and the bloodstream, which carries molecules that gut bacteria manufacture. This is why changing what lives in the gut can change what happens in the brain without anything crossing the skull directly."
+      },
+      {
+        "heading": "THE MOLECULES THAT MATTER",
+        "body": "When gut bacteria ferment dietary fiber, they release short-chain fatty acids — chiefly butyrate, propionate, and acetate. These are not waste; they are signaling molecules that cross into circulation, calm inflammation, and support the cells that build myelin. A microbiome starved of fiber makes fewer of them.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Acetate",
+                "value": "~60%",
+                "weight": 60,
+                "tone": "neutral"
+              },
+              {
+                "label": "Propionate",
+                "value": "~20%",
+                "weight": 20,
+                "tone": "neutral"
+              },
+              {
+                "label": "Butyrate",
+                "value": "~20%",
+                "weight": 20,
+                "tone": "favorable"
+              }
+            ],
+            "label": "short-chain fatty acids in the gut (rough share)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY STRESS REACHES THE WIRING",
+        "body": "Chronic stress keeps the HPA axis — the brain's cortisol system — switched on. Sustained cortisol both reshapes the gut bacterial community and directly stresses oligodendrocytes, so myelin loss can arrive by two routes at once. The gut pathway is the one this study isolates.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The experimental trigger was **chronic restraint stress** — a standard rodent model where mice are briefly immobilized daily. It reliably produces *depression-like behavior* researchers can score, but it is a proxy for human depression, not the thing itself."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT FASTING CHANGES",
+        "body": "Intermittent fasting does more than cut calories. Hours without food shift the body into fat-burning and ketone production, and it reshuffles the gut ecosystem toward fiber-fermenting, butyrate-producing bacteria. The claim here is that the microbial shift — not the calorie cut — is what protects the myelin."
+      },
+      {
+        "heading": "THE MOUSE-TO-HUMAN GAP",
+        "body": "Mice are not small humans. Their gut flora, metabolism, and stress responses differ enough that most findings that work in rodents never replicate in people. This study explicitly notes no human clinical data exists yet — the mechanism is plausible, the prescription is not.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "By what route does the study say fasting protects myelin from stress damage?",
+            "options": [
+              "By reshaping gut bacteria, which alter brain signaling",
+              "By directly thickening myelin sheaths in the brain",
+              "By lowering blood cortisol to zero",
+              "By replacing lost oligodendrocytes with stem cells"
+            ],
+            "correct": 0,
+            "explanation": "The protection is mediated by the gut microbiome — fasting changes the bacteria, and their metabolites do the downstream work."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T17:41:38.753Z",
+    "label": "Myelin & the Gut-Brain Axis",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-07-llm-coding-tools-software-engineering-labor-shift": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "SUBSTITUTE OR COMPLEMENT",
+        "body": "Whether a tool raises a wage or destroys it comes down to one distinction. If the tool substitutes for what you do, your wage falls toward the tool's cost. If it complements what you do — makes your remaining judgment more valuable — your wage rises. The same technology can do both to different workers at once.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call the destructive case the *displacement effect* and the constructive case the *productivity effect*. AI coding tools fire both at once — which is why the labor outcome is genuinely unsettled, not just unknown."
+          }
+        ]
+      },
+      {
+        "heading": "THE AUTOMATION RECORD",
+        "body": "Every wave of software automation since the 1950s was forecast to hollow out the profession it touched. Compilers were supposed to end programming by hand; spreadsheets were supposed to end the accountant. Each instead moved the work up a layer — from writing instructions to specifying intent.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1957",
+                "label": "Fortran compiler automates machine code"
+              },
+              {
+                "year": "1967",
+                "label": "First ATM (Barclays, London)"
+              },
+              {
+                "year": "1979",
+                "label": "VisiCalc — the spreadsheet"
+              },
+              {
+                "year": "2021",
+                "label": "GitHub Copilot ships"
+              },
+              {
+                "year": "2022",
+                "label": "ChatGPT — code on demand",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "tools that were supposed to replace their users"
+          }
+        ]
+      },
+      {
+        "heading": "THE ATM PARADOX",
+        "body": "The machine that should have ended a job is the textbook case that it didn't. ATMs automated the cash-handling that defined the bank teller — yet the number of tellers in the US rose for decades afterward. Cheaper branches meant banks opened more of them, and the teller's job shifted from counting cash to selling relationships.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "After ATMs spread across US banks, what happened to the number of human bank tellers?",
+            "options": [
+              "It collapsed within a decade",
+              "It rose for roughly thirty years",
+              "It stayed almost perfectly flat"
+            ],
+            "correct": 1,
+            "explanation": "Economist James Bessen showed ATMs cut the cost per branch, banks opened far more branches, and total teller employment climbed into the 2010s."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE SENIOR ACTUALLY SELLS",
+        "body": "A senior engineer's value was never typing speed — it was knowing which of a thousand plausible designs survives contact with scale, security, and the next five years of changes. That judgment is largely tacit: learned from outages and rewrites, hard to write down, and therefore hard to automate or even to teach quickly.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Michael Kremer's *O-ring theory* explains the stakes: in production chains where one weak step ruins the whole product, the person who prevents the catastrophic mistake is worth far more than the average contributor — even if they touch fewer lines."
+          }
+        ]
+      },
+      {
+        "heading": "THE TASK LENS",
+        "body": "The sharpest labor economists stopped asking whether AI replaces 'jobs' and started asking which tasks inside a job it automates. A role is a bundle of tasks; automation peels off the routine ones and leaves the rest, so the same job can lose headcount and rise in skill at the same time.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "David Autor",
+                "role": "MIT labor economist",
+                "cc": "US"
+              },
+              {
+                "name": "Daron Acemoglu",
+                "role": "MIT economist, automation theory",
+                "cc": "US"
+              },
+              {
+                "name": "James Bessen",
+                "role": "BU economist, ATM study",
+                "cc": "US"
+              }
+            ],
+            "label": "who built the task framework"
+          }
+        ]
+      },
+      {
+        "heading": "INDUCED DEMAND",
+        "body": "When a resource gets dramatically cheaper, total consumption of it often goes up, not down. If writing software becomes ten times faster, the world does not build the same amount of software with a tenth of the engineers — it builds far more software, because projects that were never worth the cost suddenly are.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the *Jevons paradox*, named for the 1865 observation that more efficient steam engines burned *more* coal, not less, by making coal-powered everything affordable. Whether it rescues engineering demand is the bet the article says the market hasn't settled."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T17:42:40.047Z",
+    "label": "Automation & the Price of Expertise",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-07-ml-remaining-life-power-electronic-converters": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A CONVERTER DOES",
+        "body": "Almost nothing electronic runs on the voltage it's fed. A power converter switches current on and off thousands of times a second to reshape one voltage into another — the chip that lets a 400-volt EV battery drive a motor, or a solar panel's wandering DC become grid-ready AC. It is the single most stressed part of the system because every watt passes through it."
+      },
+      {
+        "heading": "WHY GALLIUM NITRIDE",
+        "body": "Silicon has run out of room. Gallium nitride is a wide-bandgap semiconductor: its atoms hold electrons more tightly, so it tolerates higher voltages and switches far faster with less heat lost as waste. Faster switching means smaller, lighter converters — which is exactly why EVs, data centers, and inverters are moving to it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Gallium nitride",
+                "value": "~3.4 eV",
+                "tone": "favorable",
+                "weight": 3.4
+              },
+              {
+                "label": "Silicon carbide",
+                "value": "~3.3 eV",
+                "tone": "favorable",
+                "weight": 3.3
+              },
+              {
+                "label": "Silicon",
+                "value": "~1.1 eV",
+                "tone": "unfavorable",
+                "weight": 1.1
+              }
+            ],
+            "label": "bandgap — voltage a material withstands"
+          },
+          {
+            "type": "prose",
+            "text": "The whole class is called *wide-bandgap* semiconductors. A bigger gap is what lets the same chip block more volts in less space — the property that makes GaN converters small."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT AGES FIRST",
+        "body": "Speed has a cost. Switching that fast subjects the GaN transistors and their filter capacitors to relentless thermal and electrical cycling — each on-off pulse is a tiny expansion and contraction. These two components fatigue and drift out of spec long before the rest of the board, so they set the converter's lifespan."
+      },
+      {
+        "heading": "THE PREDICTION PROBLEM",
+        "body": "Engineers call the target metric Remaining Useful Life — how many hours are left before a part fails. Classically you estimate it from physics-of-failure models or by pulling the device and testing it. Both are slow, and neither watches the actual unit in the field as it degrades.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**Remaining Useful Life (RUL)** is the whole game in predictive maintenance: not *has it failed* but *how long until it does* — the gap that lets you replace a part on schedule instead of after a blackout."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ON-CHIP MATTERS",
+        "body": "The advance here is that the model shrank small enough to run on the microcontroller already inside the converter — in-situ. Instead of shipping sensor data to a server, the device judges its own health in real time. That is the difference between predictive maintenance as a cloud service and predictive maintenance baked into the hardware.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does running the lifespan model on the converter's own microcontroller matter most?",
+            "options": [
+              "It makes the GaN transistors switch faster",
+              "The device can assess its own degradation in real time, no server needed",
+              "It lowers the battery's voltage",
+              "It replaces the need for capacitors"
+            ],
+            "correct": 1,
+            "explanation": "In-situ inference means the converter monitors its own health continuously, without round-tripping data to the cloud."
+          }
+        ]
+      },
+      {
+        "heading": "THE ECONOMICS",
+        "body": "Maintenance has two failure modes: replace too early and you waste good parts; replace too late and a single converter failure can down a data center rack or strand an EV. Accurate RUL prediction collapses both — you act just before failure, which is why a few percentage points of accuracy translate into large fleet savings."
+      }
+    ],
+    "generatedAt": "2026-06-07T17:43:07.414Z",
+    "label": "Power Converters & Remaining Useful Life",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-07-nigeria-360-freed-boko-haram-mandara-mountains": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NAME",
+        "body": "The group calls itself Jama'at Ahl al-Sunna li'l-Da'wa wa'l-Jihad. \"Boko Haram\" is a Hausa nickname outsiders gave it, usually glossed as \"Western education is forbidden.\" Founded in Maiduguri in 2002 by the preacher Mohammed Yusuf, it began as a puritan study circle, not an army.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The label fuses Hausa *boko* (Western/secular schooling, from the colonial-era word for the Latin script) with Arabic *haram* (forbidden) — a name that frames the whole insurgency as a rejection of the British colonial educational order."
+          }
+        ]
+      },
+      {
+        "heading": "THE TURN TO WAR",
+        "body": "In 2009 a security crackdown ended with Yusuf killed in police custody. The movement went underground, re-emerged under Abubakar Shekau, and by 2014 controlled territory the size of Belgium. The killing of its founder, not its founding, is what made it lethal.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2002",
+                "label": "Yusuf founds the movement in Maiduguri"
+              },
+              {
+                "year": "2009",
+                "label": "Yusuf killed in custody; group goes underground",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2014",
+                "label": "Chibok schoolgirls abducted"
+              },
+              {
+                "year": "2015",
+                "label": "Shekau pledges allegiance to ISIS"
+              },
+              {
+                "year": "2016",
+                "label": "ISWAP splinters off"
+              },
+              {
+                "year": "2021",
+                "label": "Shekau killed by ISWAP rivals"
+              }
+            ],
+            "label": "from study circle to caliphate claim"
+          }
+        ]
+      },
+      {
+        "heading": "THE KIDNAP ECONOMY",
+        "body": "Mass abduction is not a tactic here — it is a budget. Captives are sorted: some ransomed back to families and governments, others forced into labor, farming, or marriage, the rest used as fighters and porters. Hostages become a renewable revenue stream that funds the next raid.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does Boko Haram's kidnapping primarily function as?",
+            "options": [
+              "A one-time terror spectacle",
+              "A self-financing revenue and labor system",
+              "A prisoner-exchange tactic only"
+            ],
+            "correct": 1,
+            "explanation": "Ransom payments and forced labor turn captives into a recurring income source that sustains the insurgency between attacks."
+          }
+        ]
+      },
+      {
+        "heading": "THE TERRAIN",
+        "body": "The Mandara Mountains straddle the Nigeria–Cameroon border: volcanic peaks, caves, and footpaths that vehicles and aircraft can't follow. Fighters cross into Cameroon to regroup, which is why a single army's \"operational success\" rarely closes the camp for good.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "CM",
+              "NE",
+              "TD"
+            ],
+            "label": "the Lake Chad insurgency basin",
+            "caption": "Mandara range hugs the Nigeria–Cameroon frontier",
+            "markers": [
+              {
+                "lat": 11.8311,
+                "lng": 13.151,
+                "label": "Maiduguri"
+              },
+              {
+                "lat": 10.65,
+                "lng": 13.75,
+                "label": "Mandara Mountains"
+              },
+              {
+                "lat": 13,
+                "lng": 14,
+                "label": "Lake Chad"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SPLIT",
+        "body": "Boko Haram is not one group. In 2016 ISIS named Abu Musab al-Barnawi over Shekau, splitting it into ISWAP — which courts civilians and taxes them — and Shekau's faction, which treated ordinary Muslims as legitimate targets. The two factions have killed each other as often as they fight the state.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Mohammed Yusuf",
+                "role": "Founding preacher",
+                "years": "2002–2009",
+                "cc": "NG"
+              },
+              {
+                "name": "Abubakar Shekau",
+                "role": "Hardline JAS leader",
+                "years": "2009–2021",
+                "cc": "NG"
+              },
+              {
+                "name": "Abu Musab al-Barnawi",
+                "role": "ISWAP leader, ISIS-backed",
+                "years": "2016–2021",
+                "cc": "NG"
+              }
+            ],
+            "label": "the rival commanders"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHIBOK PRECEDENT",
+        "body": "The world learned this calculus in 2014, when 276 schoolgirls were taken from Chibok and #BringBackOurGirls trended globally. More than a decade on, dozens remain unaccounted for — proof that rescue is the exception and the captive economy outlasts every headline."
+      }
+    ],
+    "generatedAt": "2026-06-07T17:43:38.837Z",
+    "label": "Boko Haram & the Kidnap Economy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-07-opec-symbolic-quota-hike-hormuz-cannot-deliver": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "A QUOTA IS A CEILING, NOT A PROMISE",
+        "body": "An OPEC+ quota is the maximum a member is permitted to pump, agreed politically in Vienna. It says nothing about whether the oil can physically reach a buyer. Raising the quota signals intent and divides up future market share — it does not, by itself, put a single extra barrel on a tanker.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The number that actually moves markets is not the quota but **deliverable supply** — barrels that can be pumped *and* shipped. With Hormuz shut, the gap between the two is the whole story."
+          }
+        ]
+      },
+      {
+        "heading": "THE SPARE-CAPACITY ILLUSION",
+        "body": "OPEC's power rests on spare capacity — the few million barrels a day, almost all Saudi and Emirati, that can be switched on within 90 days. But that idle capacity sits in fields whose only export route is the Gulf. Spare capacity stranded behind a closed strait is worth nothing on the world market.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "~3.0 mbd",
+                "cc": "SA",
+                "weight": 3
+              },
+              {
+                "label": "UAE",
+                "value": "~1.0 mbd",
+                "cc": "AE",
+                "weight": 1
+              },
+              {
+                "label": "Iraq",
+                "value": "~0.3 mbd",
+                "cc": "IQ",
+                "weight": 0.3
+              },
+              {
+                "label": "Kuwait",
+                "value": "~0.3 mbd",
+                "cc": "KW",
+                "weight": 0.3
+              }
+            ],
+            "label": "where OPEC spare capacity sits (approx, mbd)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE BYPASS PIPELINES AREN'T ENOUGH",
+        "body": "Saudi Arabia built the East-West Pipeline to Yanbu on the Red Sea, and the UAE pipes crude to Fujairah on the Indian Ocean coast — both designed precisely to dodge Hormuz. Together they can reroute only about a third of Gulf exports. The remaining two-thirds has no alternative path to the sea.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SA",
+              "AE",
+              "IR",
+              "OM",
+              "QA",
+              "KW",
+              "IQ"
+            ],
+            "label": "the Gulf's one exit — and its two relief valves",
+            "markers": [
+              {
+                "lat": 26.57,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.12,
+                "lng": 56.33,
+                "label": "Fujairah (UAE bypass)"
+              },
+              {
+                "lat": 24.09,
+                "lng": 38.06,
+                "label": "Yanbu (Saudi bypass)"
+              }
+            ]
+          },
+          {
+            "type": "quiz",
+            "question": "Roughly what share of Gulf oil exports can bypass the Strait of Hormuz via existing pipelines?",
+            "options": [
+              "About 10%",
+              "About a third",
+              "About two-thirds",
+              "Almost all of it"
+            ],
+            "correct": 1,
+            "explanation": "The Saudi East-West and UAE Fujairah lines together can reroute only ~a third; the rest depends entirely on Hormuz."
+          }
+        ]
+      },
+      {
+        "heading": "THE OUTPUT COLLAPSE",
+        "body": "The figures tell the scale: group output fell from 42.77 to 33.19 million barrels a day — nearly a quarter of OPEC+ supply erased not by a production cut but by a blocked exit. No quota decision can restore barrels the geography won't release.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Pre-closure",
+                "value": "42.77 mbd",
+                "tone": "favorable",
+                "weight": 42.77
+              },
+              {
+                "label": "Now",
+                "value": "33.19 mbd",
+                "tone": "unfavorable",
+                "weight": 33.19
+              }
+            ],
+            "label": "OPEC+ output, before vs. with Hormuz shut"
+          }
+        ]
+      },
+      {
+        "heading": "FROM SHORTAGE FEAR TO SURPLUS FEAR",
+        "body": "Every barrel held back during a closure is a barrel waiting to be sold the moment the strait reopens. The same blockage that spikes prices today sets up the crash tomorrow: pent-up supply meets quotas that were just raised, and the market whips from scarcity panic to glut panic. Oil traders fear the reopening almost as much as the closure."
+      }
+    ],
+    "generatedAt": "2026-06-07T17:44:20.535Z",
+    "label": "OPEC Quotas vs. Deliverable Oil",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-07-tokenization-next-crypto-narrative-defi-rails": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BLANK CHECK",
+        "body": "A blank-check merger lets a private firm go public by merging with a shell company that already trades and already holds cash from investors. It skips the months-long scrutiny of a traditional IPO — the valuation is negotiated privately, not discovered by the market, which is why blank-check prices so often sag once real trading begins.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shell is a **SPAC** — *special-purpose acquisition company*. It raises money first and finds a target second, so the public never priced the actual business before the deal closed."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT TOKENIZATION ACTUALLY IS",
+        "body": "Tokenization issues a blockchain token that legally represents a claim on an off-chain asset — a Treasury bond, a share, a building. The point is not the asset; it's that the claim can now move on the same rails as crypto: settle in seconds, trade 24/7, and plug into automated contracts without a custodian bank in the middle."
+      },
+      {
+        "heading": "THE WRAPPER PROBLEM",
+        "body": "A token is only as good as the legal entity that promises to honor it. If the issuer that holds the real bond goes bankrupt or the courts don't recognize the on-chain transfer, the token is a number on a ledger pointing at nothing. The blockchain settles the token instantly; it cannot enforce the off-chain claim the token represents.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the *oracle and custody gap*: code can verify a token moved, but it cannot verify the **real-world asset** behind it still exists or is legally yours."
+          }
+        ]
+      },
+      {
+        "heading": "WHY COLLATERAL IS THE WHOLE PITCH",
+        "body": "The CEO's claim that tokenization beats ETFs rests on composability. An ETF share just sits in a brokerage account. A tokenized bond can be posted as collateral to borrow against, lent out, or bundled into another product automatically — the same asset working in several places at once. That reuse is what decentralized finance does, and what a fund wrapper cannot."
+      },
+      {
+        "heading": "BITCOIN HAS NO NATIVE YIELD",
+        "body": "Bitcoin pays no interest or dividend — a coin held in a wallet earns nothing. Any 'bitcoin yield product' manufactures a return elsewhere: lending the coins to a borrower, writing options against them, or routing them through a DeFi protocol. The yield is a credit or market risk bolted on, not something the asset itself produces.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where does the yield in a 'bitcoin yield product' actually come from?",
+            "options": [
+              "Bitcoin pays a built-in protocol interest rate",
+              "Lending, options-writing, or DeFi — risk added on top",
+              "New coins mined and paid to holders"
+            ],
+            "correct": 1,
+            "explanation": "Bitcoin itself pays nothing; any yield is generated by taking on lending or market risk elsewhere."
+          }
+        ]
+      },
+      {
+        "heading": "THE THIRD WAVE",
+        "body": "Wall Street has reached for tokenization before. The 2017-18 security-token boom promised to put real assets on-chain and mostly collapsed; the 2020 'DeFi summer' built the lending and collateral machinery. This cycle — tokenized Treasuries and money-market funds chasing institutional cash — is the third attempt, and the first with regulated yield instruments at the center.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2017",
+                "label": "Security-token offering boom"
+              },
+              {
+                "year": "2018",
+                "label": "STO bust",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020",
+                "label": "DeFi summer builds collateral rails"
+              },
+              {
+                "year": "2023",
+                "label": "Tokenized Treasuries arrive"
+              },
+              {
+                "year": "2026",
+                "label": "Institutional RWA push"
+              }
+            ],
+            "label": "tokenization's attempts"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T17:44:56.293Z",
+    "label": "Tokenization & RWA Rails",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-07-trump-anti-weaponization-fund-capitol-rioters": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO CONTROLS THE MONEY",
+        "body": "The Constitution gives Congress, not the president, the power to spend. No federal dollar can leave the Treasury without a law appropriating it. A president who wants to pay $1.8 billion to anyone must first find an existing appropriation that permits it — which is the legal hinge the judge's injunction turned on.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "No Money shall be drawn from the Treasury, but in Consequence of Appropriations made by Law.",
+            "speaker": "US Constitution, Article I §9",
+            "year": "1789"
+          }
+        ]
+      },
+      {
+        "heading": "PARDON VS PAYMENT",
+        "body": "A presidential pardon erases the conviction and its penalties, but it transfers no money — it is mercy, not restitution. Compensating the same people requires a separate funding mechanism, which is why a fund became necessary once the pardons were already done.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pardon power is *plenary* — near-absolute for federal crimes and immune from judicial review. The **spending power is the opposite**: hemmed in at every step by Congress. The fund collides with the limit the pardon never had to face."
+          }
+        ]
+      },
+      {
+        "heading": "THE JUDGMENT FUND",
+        "body": "There is a real pot of money — the Judgment Fund, a permanent open-ended appropriation Congress created in 1956 — that pays court judgments and settlements against the United States without going back to Congress each time. Routing compensation through it would sidestep a fresh appropriation, which is precisely why its limits are being contested.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "claim",
+                "label": "Legal claim"
+              },
+              {
+                "id": "settle",
+                "label": "Settlement / judgment"
+              },
+              {
+                "id": "jf",
+                "label": "Judgment Fund"
+              },
+              {
+                "id": "approp",
+                "label": "New appropriation"
+              },
+              {
+                "id": "pay",
+                "label": "Claimant paid"
+              }
+            ],
+            "links": [
+              {
+                "source": "claim",
+                "target": "settle",
+                "value": 10,
+                "label": "court or agency"
+              },
+              {
+                "source": "settle",
+                "target": "jf",
+                "value": 7,
+                "label": "qualifying judgments"
+              },
+              {
+                "source": "settle",
+                "target": "approp",
+                "value": 3,
+                "label": "everything else"
+              },
+              {
+                "source": "jf",
+                "target": "pay",
+                "value": 7
+              },
+              {
+                "source": "approp",
+                "target": "pay",
+                "value": 3
+              }
+            ],
+            "label": "how federal payouts normally flow"
+          }
+        ]
+      },
+      {
+        "heading": "THE SCALE OF THE PROSECUTION",
+        "body": "Roughly 1,600 people were charged over the Capitol attack — the largest single criminal investigation in Justice Department history, larger than the post-9/11 terrorism dragnet by case count. The prosecution itself, not just the riot, is what the proposed fund reframes.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many people were criminally charged over the January 6 Capitol attack?",
+            "options": [
+              "About 160",
+              "About 600",
+              "About 1,600",
+              "About 16,000"
+            ],
+            "correct": 2,
+            "explanation": "Around 1,600 defendants were charged, making it the largest investigation in DOJ history by number of defendants."
+          }
+        ]
+      },
+      {
+        "heading": "WHY AN ACTING AG CAN CONTRADICT THE PRESIDENT",
+        "body": "Since Watergate, the Justice Department has operated under norms of independence — the attorney general answers to the law, not only to the White House. When Acting AG Blanche told Congress the fund was dead and Trump said otherwise, the public split exposed the gap between presidential intent and what the department can lawfully execute.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Donald Trump",
+                "role": "US President",
+                "years": "2025–",
+                "cc": "US"
+              },
+              {
+                "name": "Todd Blanche",
+                "role": "Acting Attorney General",
+                "years": "2025–",
+                "cc": "US"
+              }
+            ],
+            "label": "the contradiction in public"
+          }
+        ]
+      },
+      {
+        "heading": "THE PARDON-THEN-PAY ARC",
+        "body": "The sequence matters: attack, then mass prosecution, then a blanket pardon on day one of the second term, then an attempt to compensate. Each step pushed against a different limit — criminal courts, then the pardon power, now the spending power.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2021-01-06",
+                "label": "Capitol attack",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "Mass federal prosecutions begin"
+              },
+              {
+                "year": "2025-01",
+                "label": "Blanket Jan 6 pardons"
+              },
+              {
+                "year": "2026-05-29",
+                "label": "Fund blocked by federal judge",
+                "emphasis": "end"
+              }
+            ],
+            "label": "from riot to fund"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-07T17:45:31.269Z",
+    "label": "The Purse, the Pardon & the Judgment Fund",
+    "category": "politics",
+    "articleCount": 1
   }
 }
