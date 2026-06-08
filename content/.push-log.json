@@ -1,42 +1,5 @@
 [
   {
-    "timestamp": "2026-05-18T04:29:59.384Z",
-    "candidateCount": 4,
-    "candidates": [
-      {
-        "slug": "2026-05-18-pakistan-us-iran-mediator-shehbaz-sharif",
-        "title": "Pakistan Brokers US-Iran War Talks",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-18-uss-ford-carrier-326-day-deployment-home",
-        "title": "Ford Returns After Record Deployment",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-18-pakistan-used-car-import-drop-auto-parts-industrial-policy",
-        "title": "Pakistan Cuts Used Car Imports 96%",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-18-mumbai-railway-fine-accountability-compensation-gap",
-        "title": "Railways Driver Fined Rs 25,000 for Disabled Teen",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": null,
-    "skipReason": "all 4 candidates below coverage threshold 1",
-    "sent": false
-  },
-  {
     "timestamp": "2026-05-18T08:33:58.157Z",
     "candidateCount": 12,
     "candidates": [
@@ -9647,6 +9610,120 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Bangladeshi migrants pay $12,915 each for Mediterranean crossing, brokers say",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 24
+    }
+  },
+  {
+    "timestamp": "2026-06-08T12:46:52.878Z",
+    "candidateCount": 13,
+    "candidates": [
+      {
+        "slug": "2026-06-08-apple-wwdc-ai-siri-gemini-cook",
+        "title": "Apple Rents AI It Could Not Build",
+        "category": "tech",
+        "eventCoverage": 259,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-08-latvia-shoots-down-drone-nato-airspace",
+        "title": "Rafale Downs Drone Over Latvia",
+        "category": "politics",
+        "eventCoverage": 166,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-08-ukraine-deep-strike-russia-crimea-rail",
+        "title": "Ukraine Drones Hit Crimea Rail",
+        "category": "politics",
+        "eventCoverage": 166,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-08-uk-starmer-on-device-child-image-ultimatum",
+        "title": "UK Sets Child Image Ultimatum",
+        "category": "tech",
+        "eventCoverage": 50,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-08-gaza-male-infertility-siege-investigation",
+        "title": "Gaza Siege Erodes Male Fertility",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-08-egypt-empty-israel-syria-ambassador-posts-signal",
+        "title": "Egypt Leaves Tel Aviv Damascus Vacant",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-08-myanmar-junta-propaganda-manufactured-transition",
+        "title": "Myanmar Junta Stages Fake Transition",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-08-iran-domestic-cryogenic-parts-sanctions-substitution",
+        "title": "Iran Builds Sanctioned Cryogenic Part",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-08-us-ev-tariff-wall-china-global-divergence",
+        "title": "World Electrifies, US Falls Behind",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-08-pancreatic-cancer-combination-tango-revolution-response",
+        "title": "Pancreatic Cancer Drugs Show Response",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-08-nickelate-superconductors-common-electronic-fingerprint",
+        "title": "Nickelates Share Superconductor Fingerprint",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-08-ai-weather-climate-models-limits-hype",
+        "title": "AI Weather Models Hit Physics Ceiling",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-06-moving-beyond-fork-exec-unix-process",
+        "title": "Linux Eyes End of Fork and Exec",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-06-08-apple-wwdc-ai-siri-gemini-cook",
+      "title": "Apple Rents AI It Could Not Build",
+      "category": "tech",
+      "body": "Apple will rebuild Siri on Google's",
+      "eventCoverage": 259,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Apple partners with Google to rebuild Siri on Gemini, sources say",
     "response": {
       "pushed": 1,
       "skipped": 0,
