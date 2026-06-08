@@ -1,29 +1,26 @@
 {
-  "date": "2026-06-07",
+  "date": "2026-06-08",
   "metrics": {
-    "articles": { "value": 44, "detail": "5 cycles completed, avg ~9/cycle (avgPublished 9)" },
+    "articles": { "value": 57, "detail": "5 cycles, avg ~10/cycle, avg duration 2315s" },
     "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 16, "economy": 13, "science": 7, "tech": 8 },
-    "multiSource": { "value": 14, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 12, "ME": 11, "EU": 10, "AS": 6, "AF": 5 } },
-    "sciTech": { "ratio": 34, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 16, "target": 20, "met": true },
-    "uniqueSources": 41,
+    "categories": { "politics": 19, "economy": 14, "science": 12, "tech": 12 },
+    "multiSource": { "value": 11, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 19, "ME": 14, "EU": 11, "AS": 10, "AF": 2, "OC": 1 } },
+    "sciTech": { "ratio": 42, "target": 25, "met": true },
+    "topSourceShare": { "source": "Phys.org", "pct": 9, "target": 20, "met": true },
+    "uniqueSources": 53,
     "duplicates": 0,
-    "avgCycleDuration": 1788
+    "avgCycleDuration": 2315
   },
-  "experiment": "Skipped — all metrics within targets. No active experiments to evaluate, no pause gate. The one queued experiment (2026-05-08-numerical-density) targets scripts/write-prompt.md, a prompt file outside the daily-tuning parameter scope, so it cannot be promoted from this stage.",
-  "weakestArea": "Regional spread is the thinnest-margin goal: 5 regions vs a target of 4, with Oceania entirely absent and Asia soft at 6 despite carrying the largest share of the day's hard-news supply (Pakistan budget, India, Korea). Top-source concentration is the other tight metric — Dawn at 16% (7/44) leaves only 4 points of headroom to the 20% cap — but both clear their targets and reflect a Pakistan/South-Asia-heavy news day rather than a pipeline regression.",
+  "experiment": "Skipped — all primary metrics within targets and no active experiment running. The queued numerical-density experiment targets write-prompt.md, which is out of scope for daily parameter tuning.",
+  "weakestArea": "Intra-regional balance is the softest spot. The region count (6) clears the >=4 target comfortably, but Africa (2 articles) and Oceania (1) are thin relative to the Americas (19) and Middle East (14). This is a distribution skew within an otherwise-passing metric, not a target miss, so it does not warrant an experiment.",
   "watching": [
-    "Israel-Lebanon-Iran escalation (Beirut strike, Iran response) — fast-moving, multi-source, likely to dominate next cycles.",
-    "US-Mauritius Chagos purchase talks — developing diplomatic story worth tracking for follow-through.",
-    "US crypto/tokenization regulatory thread (Congress tax rules, Wall Street pivot, Bitcoin ETF outflows) — three linked economy/tech stories; watch for over-clustering on one theme.",
-    "Pakistan budget process — South Asia driving volume today; confirm it doesn't crowd out other Asian coverage."
+    "Output volume rose to 57 (from 45 yesterday) at a steady ~10/cycle — healthy, but watch that the higher throughput is not padding the standalone tail on lighter news days.",
+    "Multi-source count fell from 15 yesterday to 11 today; still well above the >=4 floor, but feed multi-source supply (~9/cycle) caps the published rate near ~22%, so 11/day is near the structural ceiling."
   ],
   "coverageGaps": [
-    "Oceania (OC) had zero coverage today — recurring blind spot; Australia/Pacific hard news is consistently under-sampled.",
-    "Asia at 6/44 is light relative to its news weight, and skewed toward South Asia (Pakistan/India) with little East/Southeast Asia beyond a single Korea item.",
-    "Latin America absent within the AM bucket, which is US-dominated."
+    "Africa underrepresented at 2 articles today (down from 5 yesterday); Sub-Saharan coverage is the recurring thin region.",
+    "Oceania at 1 article — typical low baseline, but worth noting when regional balance is reviewed."
   ],
-  "context": "Healthy, high-volume day: 44 articles across 5 completed cycles, zero duplicates, 41 unique sources, freshness effectively zero-lag. Every goal area — freshness, diversity (science 7, tech 8, 5 regions, top source 16%), multi-source (14), and educational ratio (34%) — clears its target with margin, a notable rebound from yesterday's light 26-article day (tech 2). Multi-source jumped to 14 (from 4), consistent with a heavy politics/economy slate that naturally yields 2+ perspective stories. No experiment is warranted; the open items are structural regional-balance gaps (Oceania, East Asia, Latin America) that the daily parameter levers can't directly fix — they'd need source-list curation, better handled deliberately than off a single healthy day."
+  "context": "All four goals (freshness, diversity, multi-source, educational value) are met with margin: freshness median 0 days, sci-tech share 42%, top source share 8.8%, 53 unique sources, zero duplicates. No active experiments and no pause gate in effect. Sourcing-cluster history indicates the selector-floor lever for multi-source is tapped; future sourcing gains should target upstream feed clustering (Event Registry), not selector floors. Healthy day — no parameter changes made."
 }
