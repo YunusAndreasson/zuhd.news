@@ -328582,5 +328582,1552 @@
     "label": "EV Tariffs & the China Divergence",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-06-08-acid-attack-more-heinous-than-homicide-tool-of-patriarchal-v": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY ACID IS THE WEAPON",
+        "body": "Concentrated sulfuric and nitric acid is sold openly across South Asia for car batteries, cotton processing, and gold cleaning — costing less than a meal. The weapon's logic is not to kill but to disfigure: an attacker who wants to destroy a woman's face, marriageability, and standing chooses acid precisely because the victim survives to live with it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The intent is *not* lethality but **permanent disfigurement** — which is exactly the reasoning the court used to rank it above homicide."
+          }
+        ]
+      },
+      {
+        "heading": "THE QISAS LOOPHOLE",
+        "body": "Pakistan's penal code runs on qisas (retribution) and diyat (blood money), inherited from a 1990 Islamization of criminal law. The flaw: many violent crimes were 'compoundable' — the victim's family could forgive the perpetrator for compensation. Since acid and honor crimes are usually committed by relatives or in-laws, the family doing the forgiving often overlapped with the family that ordered the attack.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2011 reform made acid crimes **non-compoundable** — closing the loophole where a *qisas* settlement let an in-law buy his way out."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2011 TURN",
+        "body": "After years of survivor campaigns, Pakistan passed the Acid Control and Acid Crime Prevention Act and a parallel Criminal Law Amendment in 2011, fixing penalties at up to life and defining the crime explicitly. This Supreme Court ruling extends that logic — treating disfigurement as a graver harm than death is a jurisprudential escalation, not just a sentencing one.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1990",
+                "label": "Qisas & Diyat ordinance"
+              },
+              {
+                "year": "2011",
+                "label": "Acid Crime Prevention Act",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2012",
+                "label": "Saving Face wins Oscar"
+              },
+              {
+                "year": "2026",
+                "label": "Supreme Court: graver than homicide"
+              }
+            ],
+            "label": "Pakistan's legal response"
+          }
+        ]
+      },
+      {
+        "heading": "THE BANGLADESH MODEL",
+        "body": "The court's recommended sale ban has a regional precedent. Bangladesh once had the world's highest rate of acid violence — hundreds of attacks a year around 2002 — then passed an Acid Control Act regulating sales alongside a fast-track crimes act. Reported attacks fell by roughly 90% over the following two decades. Restricting the chemical, not just punishing the act, is what moved the curve.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "~2002 peak",
+                "value": "~490",
+                "tone": "unfavorable",
+                "cc": "BD",
+                "weight": 490
+              },
+              {
+                "label": "Recent yr",
+                "value": "~30",
+                "tone": "favorable",
+                "cc": "BD",
+                "weight": 30
+              }
+            ],
+            "label": "Bangladesh acid attacks, reported per year"
+          }
+        ]
+      },
+      {
+        "heading": "A SOUTH ASIAN CLUSTER",
+        "body": "Acid violence concentrates where three conditions overlap: unregulated industrial acid, gendered disputes over rejection or dowry, and weak conviction rates. South Asia is the epicenter, though the United Kingdom has seen its own surge — a reminder that the weapon follows access to the chemical, not a single culture.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IN",
+              "BD",
+              "NP",
+              "AF"
+            ],
+            "label": "the regional cluster"
+          },
+          {
+            "type": "quiz",
+            "question": "Which country is most often cited as the success case for curbing acid attacks?",
+            "options": [
+              "Pakistan",
+              "Bangladesh",
+              "India",
+              "Afghanistan"
+            ],
+            "correct": 1,
+            "explanation": "Bangladesh's 2002 laws regulating acid sales and fast-tracking trials cut reported attacks by roughly 90% over two decades."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T17:46:43.554Z",
+    "label": "Acid Violence & the Law",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-08-a-farmer-donated-land-to-turn-into-a-park-the-city-is-buildi": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE $10-TO-$10M FLIP",
+        "body": "Land deeded for a nominal sum almost always carries strings — a deed restriction limiting use to a park, or a reverter clause that returns the land to the donor's heirs if the stated purpose is abandoned. When a city sells donated land for market value, the legal fight is usually over whether such a clause existed and whether it was quietly dropped.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The protection a donor wants is a **reverter clause** — \"this land reverts to my family if it stops being a park.\" Without one, a $10 deed is just a cheap purchase, and the city owns it outright to sell at *fair market value*."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE LAND IS WORTH IT",
+        "body": "A hyperscale data center is not a server room — it is an industrial facility consuming tens of megawatts of power and millions of liters of water daily for cooling, with dedicated substations, backup generators, and security perimeters. The land footprint rivals a mid-size factory, which is why developers pay factory prices for sites near cheap power and water."
+      },
+      {
+        "heading": "THE AI POWER SURGE",
+        "body": "Training and serving AI models packs far more compute per square foot than older web hosting, so a single GPU-dense hall can draw the electricity of a small town. Across the US, data-center demand is now the single largest source of new grid load — the first time in two decades that national electricity consumption is rising sharply rather than plateauing."
+      },
+      {
+        "heading": "WHY TEXAS",
+        "body": "Taylor sits in the corridor Samsung chose for its multi-billion-dollar chip fab. The pull is structural: ERCOT, the standalone Texas grid, offers some of the cheapest industrial power in the country, the state has no income tax, and permitting is fast. The same factors that draw fabs draw the data centers that feed on the same power.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What usually decides where a hyperscale data center can be built?",
+            "options": [
+              "Availability of cheap, reliable power",
+              "Cost of the land itself",
+              "Local internet bandwidth",
+              "Supply of skilled local labor"
+            ],
+            "correct": 0,
+            "explanation": "Power is the binding constraint — a campus can draw tens of megawatts, so siting follows the grid, not land price or labor."
+          }
+        ]
+      },
+      {
+        "heading": "THE JOBS ASYMMETRY",
+        "body": "This is the political combustion point of every data-center deal: the facility consumes the land and power of a factory but employs a fraction of the workers. A finished hyperscale campus often runs on a few dozen permanent staff — security, technicians, facilities — versus thousands at the chip fab or auto plant of comparable footprint.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Data center",
+                "value": "~40 jobs",
+                "weight": 40,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Chip fab",
+                "value": "~2,000",
+                "weight": 2000,
+                "tone": "favorable"
+              },
+              {
+                "label": "Auto plant",
+                "value": "~4,000",
+                "weight": 4000,
+                "tone": "favorable"
+              }
+            ],
+            "label": "permanent jobs at a large facility"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T17:47:25.476Z",
+    "label": "Public Land & the Data-Center Land Rush",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-08-first-a-blast-then-molten-steel-at-1-500-c-falls-to-floor-wh": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE STEEL IS LIQUID",
+        "body": "Integrated steelmaking runs molten: iron is tapped from the blast furnace at ~1,500°C, refined in a converter, then carried in a refractory-lined ladle to the casting floor. Steel must stay above ~1,450°C or it freezes mid-pour, so it is moved hot, overhead, and fast — the single most dangerous handoff in the plant.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The vessel that failed is a *ladle* — a steel bucket lined with refractory brick holding 100+ tonnes of liquid metal. It travels suspended from an **overhead casting crane**, the one machine with no backup if a hoist or brake lets go."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT VIZAG STEEL ACTUALLY IS",
+        "body": "Rashtriya Ispat Nigam (RINL) runs the Visakhapatnam plant — India's first shore-based integrated steelworks, commissioned in 1992. Unlike its larger state sibling SAIL, it sits among the smaller integrated producers, and its location on the Bay of Bengal was meant to ease imports of coking coal and exports of finished steel."
+      },
+      {
+        "heading": "THE STRUCTURAL CURSE",
+        "body": "RINL is the only major Indian integrated steelmaker with no captive iron ore mines. Tata, JSW and SAIL dig their own ore at cost; RINL buys it at market price from NMDC. When ore prices rise, its margin evaporates — which is the root reason a plant of its scale keeps posting losses and why Delhi keeps trying to sell it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A *captive mine* feeds ore to its owner's furnaces at extraction cost, not market price — for a steelmaker it is the difference between **owning the well** and buying at the pump."
+          },
+          {
+            "type": "quiz",
+            "question": "Why does Vizag Steel struggle to compete with Tata, JSW and SAIL?",
+            "options": [
+              "It has no captive iron ore mines and buys ore at market price",
+              "It is barred by law from exporting steel",
+              "It uses obsolete pre-1950s furnace technology",
+              "It is the smallest steel plant in the country"
+            ],
+            "correct": 0,
+            "explanation": "RINL must purchase iron ore from NMDC at market rates, while its rivals mine their own at cost — a permanent margin disadvantage."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE IT SITS IN THE LEAGUE",
+        "body": "India is the world's second-largest steel producer, but its capacity is concentrated in a few giants. RINL's ~7 million-tonne capacity puts it well behind the private leaders — the scale gap matters because steel margins reward the biggest, lowest-cost mills.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "JSW Steel",
+                "value": "~29",
+                "cc": "IN",
+                "weight": 29,
+                "tone": "neutral"
+              },
+              {
+                "label": "Tata Steel",
+                "value": "~21",
+                "cc": "IN",
+                "weight": 21,
+                "tone": "neutral"
+              },
+              {
+                "label": "SAIL",
+                "value": "~20",
+                "cc": "IN",
+                "weight": 20,
+                "tone": "neutral"
+              },
+              {
+                "label": "AM/NS India",
+                "value": "~9",
+                "cc": "IN",
+                "weight": 9,
+                "tone": "neutral"
+              },
+              {
+                "label": "RINL (Vizag)",
+                "value": "~7",
+                "cc": "IN",
+                "weight": 7,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "India crude steel capacity (mtpa, approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRIVATISATION FLASHPOINT",
+        "body": "In January 2021 the cabinet approved 100% strategic disinvestment of RINL — a full exit, not a stake sale. Vizag's unions have fought it ever since, and the plant has become a regional political symbol in Andhra Pradesh. The unions' charge in this accident — that staff shortages drove the risk — folds directly into that years-long fight over the sale.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN"
+            ],
+            "label": "Visakhapatnam, Andhra Pradesh",
+            "caption": "Shore-based integrated works on the Bay of Bengal",
+            "markers": [
+              {
+                "lat": 17.6517,
+                "lng": 83.2003,
+                "label": "Vizag Steel Plant"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T17:48:06.317Z",
+    "label": "Vizag Steel & the Privatisation Fight",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-08-france-germany-scrap-joint-fighter-jet-project": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RECURRING DIVORCE",
+        "body": "Europe has tried to build a fighter together before, and France walked out the same way. In 1985 Paris quit the four-nation Eurofighter consortium over who would lead and whether the jet could fly off carriers — then built the Rafale alone. FCAS is that 1985 argument repeating four decades later, with Dassault again refusing to be a junior partner.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1983",
+                "label": "Eurofighter consortium forms"
+              },
+              {
+                "year": "1985",
+                "label": "France walks out",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1986",
+                "label": "Rafale flies as a solo programme"
+              },
+              {
+                "year": "2003",
+                "label": "Eurofighter Typhoon enters service"
+              },
+              {
+                "year": "2017",
+                "label": "France & Germany launch FCAS"
+              },
+              {
+                "year": "2026",
+                "label": "FCAS cancelled"
+              }
+            ],
+            "label": "European fighter collaboration"
+          }
+        ]
+      },
+      {
+        "heading": "JUSTE RETOUR",
+        "body": "European arms programmes run on a principle that quietly dooms them: each government demands industrial work proportional to the money it puts in. Engineering logic says give each task to whoever does it best; political logic says every partner's factories must stay busy. When the two collide, the programme either splits the work inefficiently or splits apart.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine has a name — *juste retour*, 'fair return.' It is why a single European jet ends up with three assembly lines, and why one partner walking means the workshare math no longer closes."
+          }
+        ]
+      },
+      {
+        "heading": "THREE FIGHTERS, ONE CONTINENT",
+        "body": "The deeper problem is duplication. Where the United States fields effectively one stealth fighter line, Europe already builds three competing fourth-generation jets — Rafale, Typhoon, and Gripen — splitting orders, export markets, and R&D money that a single programme would have pooled. FCAS was meant to end that fragmentation; instead it reproduced it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Eurofighter",
+                "value": "~680",
+                "weight": 680,
+                "cc": "DE"
+              },
+              {
+                "label": "Rafale",
+                "value": "~530",
+                "weight": 530,
+                "cc": "FR"
+              },
+              {
+                "label": "Gripen",
+                "value": "~280",
+                "weight": 280,
+                "cc": "SE"
+              }
+            ],
+            "label": "Europe's competing fighters (approx. built)"
+          }
+        ]
+      },
+      {
+        "heading": "THE NATIONAL CHAMPIONS",
+        "body": "This was never just two governments; it was two industrial dynasties each protecting its crown jewel. France shields Dassault, a family-controlled firm that has built every French combat jet since the 1950s. Germany backs Airbus Defence. Neither leader could hand the other's company the lead without a domestic political cost.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Emmanuel Macron",
+                "role": "French President",
+                "years": "2017–",
+                "cc": "FR"
+              },
+              {
+                "name": "Friedrich Merz",
+                "role": "German Chancellor",
+                "years": "2025–",
+                "cc": "DE"
+              },
+              {
+                "name": "Éric Trappier",
+                "role": "Dassault chairman & CEO",
+                "years": "2013–",
+                "cc": "FR"
+              },
+              {
+                "name": "Guillaume Faury",
+                "role": "Airbus CEO",
+                "years": "2019–",
+                "cc": "DE"
+              }
+            ],
+            "label": "who answered to whom"
+          }
+        ]
+      },
+      {
+        "heading": "THE FORGOTTEN THIRD",
+        "body": "FCAS had a third partner that rarely makes the headlines: Spain, which joined in 2019 backing its own industry. A three-way split made the workshare arithmetic harder, not easier — every disputed task now had three claimants, and Madrid's leverage was the smallest of the three.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "FR",
+              "DE",
+              "ES"
+            ],
+            "label": "the FCAS partners",
+            "caption": "Spain joined in 2019 as the silent third partner"
+          }
+        ]
+      },
+      {
+        "heading": "THE RIVAL BLOC",
+        "body": "While Europe's Franco-German effort stalled, the other camp consolidated: Britain, Italy, and Japan merged their next-generation programmes into GCAP, aiming for a 2035 jet. The continent that wanted one sixth-generation fighter is now on track for two competing blocs — the exact fragmentation the projects were meant to cure.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country walked out of the original Eurofighter consortium to build its own jet instead?",
+            "options": [
+              "France",
+              "Italy",
+              "Spain",
+              "Sweden"
+            ],
+            "correct": 0,
+            "explanation": "France left in 1985 over leadership and carrier requirements and built the Rafale alone — the same fault line that later broke FCAS."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T17:49:02.349Z",
+    "label": "Europe's Fighter Divorce",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-08-how-terry-tao-became-an-evangelist-for-ai-in-math": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT FORMALIZATION ACTUALLY DOES",
+        "body": "A proof assistant like Lean forces every logical step into code the computer checks against the axioms. There is no hand-waving, no 'it is easy to see that' — if a step doesn't follow, the program refuses to compile. The proof becomes a thing that either builds or doesn't.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The dominant systems are *proof assistants* — **Lean** (from Microsoft Research, now a community), **Coq**, and **Isabelle**. Lean's library, *Mathlib*, holds well over a million lines of machine-checked mathematics."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT BREAKS THE TRUST BARRIER",
+        "body": "Mathematics normally runs on personal authority — you believe a proof because you trust the referee who read it. Formalization replaces trust with verification: a hundred strangers (or an AI) can each contribute a chunk, and no one has to vouch for anyone else, because the machine vouches for all of it."
+      },
+      {
+        "heading": "THE FOUR-COLOR PRECEDENT",
+        "body": "The first major theorem to lean on a computer was the Four-Color Theorem in 1976 — any map needs only four colors. Appel and Haken reduced it to ~1,900 cases and had a machine grind through them. Many mathematicians were appalled: a proof no human could read in full felt like no proof at all. That fight is fifty years old.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1976",
+                "label": "Four-Color Theorem (computer-checked)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1998",
+                "label": "Hales proves Kepler conjecture"
+              },
+              {
+                "year": "2005",
+                "label": "Gonthier formalizes Four-Color in Coq"
+              },
+              {
+                "year": "2014",
+                "label": "Flyspeck verifies Kepler proof"
+              },
+              {
+                "year": "2021",
+                "label": "Lean checks Scholze's tensor result"
+              },
+              {
+                "year": "2023",
+                "label": "Tao formalizes PFR conjecture in Lean"
+              }
+            ],
+            "label": "the machine enters the proof"
+          }
+        ]
+      },
+      {
+        "heading": "THE DE BRUIJN FACTOR",
+        "body": "Formalizing a proof isn't free: writing it in machine-checkable form takes several times more text than the informal version. The ratio is called the de Bruijn factor, after the Dutch mathematician whose 1960s Automath system pioneered the whole idea. Lowering that factor — making formalization cheap — is what AI now promises.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which was the first major theorem whose proof relied on a computer to check thousands of cases?",
+            "options": [
+              "Fermat's Last Theorem",
+              "The Four-Color Theorem",
+              "The Riemann Hypothesis",
+              "The Kepler Conjecture"
+            ],
+            "correct": 1,
+            "explanation": "Appel and Haken's 1976 Four-Color proof checked ~1,900 cases by machine; Kepler came later (1998), and Fermat was proved by hand by Wiles."
+          }
+        ]
+      },
+      {
+        "heading": "VERIFY VERSUS ORIGINATE",
+        "body": "Today's AI is strong at the bookkeeping — filling in routine formal steps and translating human arguments into Lean. The open question is whether it can generate a genuinely new idea, the kind that opens a field. Checking a proof and inventing one are different cognitive acts, and only the first is solved.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              26522,
+              28305,
+              31715,
+              29993,
+              34849,
+              33593,
+              26509,
+              24498,
+              24488,
+              35427,
+              28314,
+              28721,
+              28453,
+              30016,
+              29342,
+              27232,
+              28702,
+              27941,
+              31664,
+              32974,
+              33158,
+              32711,
+              31980,
+              38866,
+              41178,
+              31073,
+              32499,
+              31559,
+              24803,
+              29726
+            ],
+            "periods": [
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7"
+            ],
+            "label": "Artificial intelligence — Wikipedia views",
+            "unit": "views/day",
+            "highlight": "max",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY TAO MATTERS HERE",
+        "body": "Terrence Tao is among the most decorated living mathematicians — a Fields Medalist with a reputation for caution, not hype. When someone of that standing co-authors proofs with machine-checked steps, it signals the tooling has crossed from curiosity to working method, which is why the field is paying attention.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Nicolaas de Bruijn",
+                "role": "Automath pioneer",
+                "years": "1967–1970",
+                "cc": "NL"
+              },
+              {
+                "name": "Georges Gonthier",
+                "role": "Formalized Four-Color proof",
+                "years": "2005",
+                "cc": "FR"
+              },
+              {
+                "name": "Thomas Hales",
+                "role": "Led Kepler verification",
+                "years": "1998–2014",
+                "cc": "US"
+              },
+              {
+                "name": "Terence Tao",
+                "role": "Lean-assisted co-author",
+                "years": "2023–",
+                "cc": "US"
+              }
+            ],
+            "label": "the formalization lineage"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Wikipedia pageviews · as of 2026-06-07"
+    ],
+    "generatedAt": "2026-06-08T17:49:45.012Z",
+    "label": "Formal Proof Verification",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-08-inside-the-chaotic-300-million-emergency-bailout-that-saved": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY A PROTOCOL CAN BE RUN LIKE A BANK",
+        "body": "Aave is a lending protocol: depositors supply assets, borrowers post collateral and take loans. Like a bank, it doesn't hold every deposit in reserve — most is lent out. When depositors rush to withdraw faster than loans can be unwound, liquidity dries up. The 1873 and 2008 dynamic, executed by smart contract instead of teller line.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A bank run needs no fraud to be fatal — only the *belief* that others will withdraw first. DeFi compresses the timeline from days to **minutes**, because withdrawal is a single signed transaction, not a queue outside a branch."
+          }
+        ]
+      },
+      {
+        "heading": "THE OVER-COLLATERAL TRICK",
+        "body": "DeFi lending is over-collateralized: to borrow $100 you must lock, say, $150 in assets. The entire safety model assumes the collateral is real. Minting fake collateral breaks the one axiom the system can't verify cheaply — so an attacker borrows real assets against tokens worth nothing, and the pool eats the loss."
+      },
+      {
+        "heading": "WHY SHARED POOLS SPREAD THE FIRE",
+        "body": "Aave's current design pools liquidity so many markets draw on the same reserves — efficient, but it means a loss in one corner instantly debits the whole protocol. The V4 hub-and-spoke redesign isolates risk per pool, the same logic as financial firewalls and tranching: contain a default so it can't cascade.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The tradeoff is ancient: **pooled liquidity** is capital-efficient but contagious; **siloed liquidity** is safe but fragmented. Every clearinghouse, insurer, and central bank lives on this same spectrum."
+          }
+        ]
+      },
+      {
+        "heading": "BRIDGES: CRYPTO'S WEAKEST LINK",
+        "body": "The exploit came through a cross-chain bridge — software that locks a token on one blockchain and mints a representation on another. Bridges hold huge balances and rely on hard-to-audit validator logic, which is why they account for the largest single thefts in crypto history.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Largest crypto exploits",
+            "peers": [
+              {
+                "value": 625,
+                "label": "Ronin Bridge"
+              },
+              {
+                "value": 611,
+                "label": "Poly Network"
+              },
+              {
+                "value": 570,
+                "label": "BNB Bridge"
+              },
+              {
+                "value": 326,
+                "label": "Wormhole"
+              },
+              {
+                "value": 190,
+                "label": "Nomad Bridge"
+              },
+              {
+                "value": 100,
+                "label": "Harmony Bridge"
+              },
+              {
+                "value": 124,
+                "label": "KelpDAO / Aave"
+              }
+            ],
+            "subjectLabel": "KelpDAO / Aave",
+            "unit": "$mn stolen"
+          }
+        ]
+      },
+      {
+        "heading": "THE PATTERN REPEATS",
+        "body": "Bridge hacks are not a new failure mode — they are the recurring one. The same minted-or-stolen-collateral exploit hit Poly Network in 2021, Ronin and Wormhole in 2022, and keeps reappearing wherever value crosses between chains.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2021-08",
+                "label": "Poly Network: $611mn"
+              },
+              {
+                "year": "2022-02",
+                "label": "Wormhole: $326mn"
+              },
+              {
+                "year": "2022-03",
+                "label": "Ronin: $625mn",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-08",
+                "label": "Nomad: $190mn"
+              },
+              {
+                "year": "2022-10",
+                "label": "BNB Bridge: $570mn"
+              },
+              {
+                "year": "2026-06",
+                "label": "KelpDAO / Aave: $124mn"
+              }
+            ],
+            "label": "the bridge-hack era"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY BACKSTOPS DEFI",
+        "body": "There is no central bank of last resort here. When the run hit, an ad-hoc emergency bailout — protocol treasuries, large holders, risk teams — had to assemble in hours. That improvised lender-of-last-resort is exactly the function the Federal Reserve was created to institutionalize in 1913 after a century of panics.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are cross-chain bridges the most-targeted part of crypto?",
+            "options": [
+              "They concentrate large balances behind hard-to-audit validator code",
+              "They are unregulated by securities law",
+              "They charge the highest transaction fees",
+              "They run on older, slower blockchains"
+            ],
+            "correct": 0,
+            "explanation": "Bridges lock huge reserves and rely on complex trust assumptions, so a single logic flaw exposes the whole locked pool — the reason they dominate the largest-theft list."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T17:50:27.171Z",
+    "label": "DeFi Bank Runs & Contagion",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-08-microsoft-hacked-to-deliver-malware-to-claude-and-gemini-use": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY INSTALLING IS EXECUTING",
+        "body": "Most people assume downloading a package is passive — you fetch code, then choose to run it. Package managers like npm and pip break that assumption: they support install-time hooks (npm's postinstall scripts, Python's setup.py) that run arbitrary code the moment a dependency lands on disk. The malware never waits to be called; installation is the trigger.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "An npm package can declare a **postinstall** script that executes automatically on `npm install` — no import, no function call, no human in the loop. This single design choice is the root of most modern supply-chain attacks."
+          }
+        ]
+      },
+      {
+        "heading": "WHY AI AGENTS MAKE IT WORSE",
+        "body": "A human developer at least pauses before running an unfamiliar install command. An AI coding agent resolves dependencies, installs packages, and runs build steps autonomously to complete a task — removing the one moment of friction where a person might have noticed something off. The agent's speed and trust are exactly what the attacker borrows.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes a poisoned dependency dangerous before any of its code is explicitly called?",
+            "options": [
+              "Package managers run install-time hook scripts automatically",
+              "The code is encrypted and can't be inspected",
+              "Antivirus can't scan source code",
+              "The package downloads over HTTPS"
+            ],
+            "correct": 0,
+            "explanation": "Hooks like npm's postinstall execute on installation itself, so malicious code runs before a developer or agent ever imports the library."
+          }
+        ]
+      },
+      {
+        "heading": "DEPENDENCY CONFUSION",
+        "body": "In 2021 researcher Alex Birsan ran code inside Apple, Microsoft, and dozens of other firms with a trick: he published public packages using the same names as companies' private internal ones. Many build tools default to pulling the higher version number, and public registries let anyone publish a 99.0.0. The attacker doesn't break in — the victim's own tooling reaches out and fetches the malicious copy.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The class of bug is called **dependency confusion**: when a build system can't tell an internal package from an identically-named public one, and resolves to whichever has the higher version."
+          }
+        ]
+      },
+      {
+        "heading": "THE PATTERN HAS A HISTORY",
+        "body": "This is not new. The 2018 event-stream incident saw a popular npm library quietly handed to a new maintainer who slipped in code to steal Bitcoin wallets. The 2020 SolarWinds breach pushed a backdoor through a signed software update to 18,000 organisations, including US federal agencies. In 2024 a multi-year social-engineering campaign nearly planted a backdoor in XZ Utils, a compression tool baked into most Linux servers.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2016",
+                "label": "left-pad breaks the internet"
+              },
+              {
+                "year": "2018",
+                "label": "event-stream wallet stealer"
+              },
+              {
+                "year": "2020",
+                "label": "SolarWinds backdoor",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "dependency confusion PoC"
+              },
+              {
+                "year": "2024",
+                "label": "XZ Utils backdoor caught"
+              }
+            ],
+            "label": "supply-chain attacks"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DEFENSE IS HARD",
+        "body": "A modern app pulls in hundreds of dependencies, each of which pulls in its own — a transitive tree no one reads in full. Trust is inherited: you vet a library you chose, but not the dozen packages it silently drags along. The attacker only needs one neglected node deep in that tree, ideally one maintained by a single exhausted volunteer.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Typosquatting",
+                "value": "fake near-name",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Maintainer takeover",
+                "value": "real package",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Dep. confusion",
+                "value": "name collision",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Build hook",
+                "value": "install script",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "where the poison can hide"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T17:51:00.664Z",
+    "label": "Software Supply Chain Attacks",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-08-more-than-13k-displaced-by-renewed-tribal-clashes-in-south-d": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "ARAB VERSUS ARAB",
+        "body": "The popular framing of Darfur as 'Arab versus African' misses this fight entirely. The Beni Halba and Salamat are both Baqqara — cattle-herding Arab tribes who speak Arabic and share a way of life. Their war is over grazing land, water, and migration corridors, not ethnicity.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "The Beni Halba and Salamat fighting in South Darfur are best described as:",
+            "options": [
+              "Arab herders against African farmers",
+              "Two Arab cattle-herding (Baqqara) tribes",
+              "A government militia against rebels",
+              "Rival religious sects"
+            ],
+            "correct": 1,
+            "explanation": "Both are Baqqara Arab pastoralists; the conflict is over land and routes, not the ethnic or sectarian line Darfur is usually reduced to."
+          }
+        ]
+      },
+      {
+        "heading": "THE HAKURA SYSTEM",
+        "body": "Land in Darfur was historically allocated by the hakura — a tribal estate system formalized under the Fur sultanate and frozen in place by British colonial 'Native Administration.' Some tribes were granted a dar (homeland); latecomers and nomads like the Salamat often were not. Who owns the land and who merely passes through it is a grievance centuries old.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A tribe with a *dar* controls territory and the courts that settle disputes on it. A landless tribe is permanently a guest — which is why land, not religion, is the combustible core of Darfur."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE IT BURNS",
+        "body": "South Darfur's Kubum sits in the belt where northern nomadic routes funnel into southern farmland and pasture. Nyala, the state capital and Sudan's second city, anchors a region the size of France that has been a war zone in three of the last four decades.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "TD",
+              "SS",
+              "CF"
+            ],
+            "label": "Darfur and its borders",
+            "caption": "Darfur borders Chad, South Sudan and CAR — arms and fighters cross freely",
+            "markers": [
+              {
+                "lat": 12.05,
+                "lng": 24.88,
+                "label": "Nyala"
+              },
+              {
+                "lat": 13.63,
+                "lng": 25.35,
+                "label": "El Fasher"
+              },
+              {
+                "lat": 13.45,
+                "lng": 22.45,
+                "label": "El Geneina"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE MEDIATOR IS A PARTY",
+        "body": "Hemedti, the RSF commander who brokered the last ceasefire, is no neutral peacemaker. His Rapid Support Forces grew directly out of the Janjaweed militias recruited from Darfur's Arab tribes during the 2003 genocide. A man who built his power by arming these tribes cannot easily disarm them.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Mohamed Hamdan 'Hemedti' Dagalo",
+                "role": "RSF commander",
+                "years": "2013–",
+                "cc": "SD"
+              },
+              {
+                "name": "Abdel Fattah al-Burhan",
+                "role": "Army chief, head of state",
+                "years": "2019–",
+                "cc": "SD"
+              }
+            ],
+            "label": "Sudan's two warlords"
+          }
+        ]
+      },
+      {
+        "heading": "THE DESERTIFICATION ROOT",
+        "body": "The original Darfur catastrophe was ecological. Decades of advancing desert pushed Arab nomads south out of their drying northern pastures and onto land farmed by settled communities. Climate stress, not ideology, lit the fuse that armed politics later turned into genocide.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1989",
+                "label": "Bashir seizes power in Islamist coup"
+              },
+              {
+                "year": "2003",
+                "label": "Darfur war erupts; Janjaweed unleashed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2013",
+                "label": "Janjaweed formalized as the RSF"
+              },
+              {
+                "year": "2019",
+                "label": "Bashir ousted; RSF & army share power"
+              },
+              {
+                "year": "2023",
+                "label": "RSF–army war splits the country"
+              },
+              {
+                "year": "2025-07",
+                "label": "Hemedti's ceasefire deal collapses"
+              }
+            ],
+            "label": "Sudan's war chain"
+          }
+        ]
+      },
+      {
+        "heading": "WHO COUNTS THE DISPLACED",
+        "body": "The figure of 13,000 comes from the International Organization for Migration, the UN's migration agency. In states where the government is itself a combatant, IOM's displacement tracking is often the only neutral census of a humanitarian collapse — which is why aid flows and Security Council attention follow its numbers."
+      }
+    ],
+    "generatedAt": "2026-06-08T17:51:41.403Z",
+    "label": "Darfur's Tribal Fault Lines",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-08-nasa-satellites-reveal-major-ocean-nutrient-stress": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FOREST YOU CAN'T SEE",
+        "body": "Phytoplankton are microscopic drifting plants, yet collectively they account for roughly half of all photosynthesis on Earth — they produce as much oxygen as every forest, grassland, and crop on land combined. About every other breath you take comes from the ocean.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of Earth's oxygen is produced by ocean phytoplankton?",
+            "options": [
+              "About 10%",
+              "About half",
+              "About 90%"
+            ],
+            "correct": 1,
+            "explanation": "Marine phytoplankton perform roughly half of global photosynthesis — comparable to all land plants combined."
+          }
+        ]
+      },
+      {
+        "heading": "THE PUMP",
+        "body": "Phytoplankton live in sunlit surface water but feed on nutrients — nitrate, phosphate, iron — that sink to the cold deep. Upwelling, where deep water rises, is the conveyor that delivers those nutrients back up. Kill the conveyor and the surface starves."
+      },
+      {
+        "heading": "THE CONSTRAINT",
+        "body": "Warm water is lighter than cold water, so a heated surface layer floats on top and refuses to mix downward. This is stratification: the warmer the surface, the stronger the cap, the less upwelling punches through. Warming doesn't just heat the ocean — it locks its layers in place.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Nutrient-poor water is *oligotrophic* — and counterintuitively it is the **clearest blue**. The famous tropical blue of open ocean is the color of a biological desert; productive seas are murky green."
+          }
+        ]
+      },
+      {
+        "heading": "THE CARBON SINK",
+        "body": "When phytoplankton die or are eaten, some carbon sinks as particles into the deep ocean — the 'biological pump' that locks carbon away for centuries. The ocean has absorbed roughly a quarter of all human CO2 emissions, second only to the land biosphere.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Atmosphere",
+                "value": 45,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Land biosphere",
+                "value": 30,
+                "tone": "neutral"
+              },
+              {
+                "label": "Ocean",
+                "value": 25,
+                "tone": "favorable"
+              }
+            ],
+            "label": "where human CO2 emissions end up"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SATELLITES SEE IT FIRST",
+        "body": "Phytoplankton contain chlorophyll, which tints water green and reflects a specific signature back to space. NASA's ocean-color sensors read that hue to estimate biomass — so a thinning of the food web shows up in orbit years before it registers as collapsed fisheries below."
+      },
+      {
+        "heading": "THE BASE OF THE WEB",
+        "body": "Everything larger eats down to phytoplankton eventually: krill eat them, fish eat krill, whales and seabirds eat fish. A nutrient squeeze at the bottom doesn't stay at the bottom — it cascades upward through every level that depends on the one beneath it."
+      }
+    ],
+    "generatedAt": "2026-06-08T17:52:12.269Z",
+    "label": "Phytoplankton & the Biological Pump",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-08-thailand-says-it-will-join-un-backed-conciliation-on-maritim": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ASEAN WAY",
+        "body": "Southeast Asia's defining diplomatic norm is non-interference and consensus — disputes are settled by quiet bilateral talks, never handed to outside judges. Accepting UN conciliation breaks that reflex, which is why the move itself is the news, more than the dispute.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The norm has a name diplomats actually use: the ***ASEAN Way*** — consensus over confrontation, sovereignty over supranational courts. The Philippines suing China over the South China Sea in 2016 was treated as a regional aberration, not a model."
+          }
+        ]
+      },
+      {
+        "heading": "CONCILIATION IS NOT ARBITRATION",
+        "body": "Under UNCLOS Annex V, conciliation produces a non-binding report — a facilitated path to a deal, not a verdict imposed on a loser. That is precisely why a state that fears losing in court will agree to it: the commission recommends, the parties still decide.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did UN conciliation produce when Timor-Leste and Australia used it to settle their Timor Sea boundary in 2018?",
+            "options": [
+              "A binding ruling both sides had to obey",
+              "A negotiated treaty the parties signed voluntarily",
+              "A referral to the International Criminal Court",
+              "A UN-administered shared territory"
+            ],
+            "correct": 1,
+            "explanation": "That 2016–18 case was the first-ever compulsory UNCLOS conciliation; it ended in a treaty the two states signed, settling the Greater Sunrise gas field — the template Thailand and Cambodia are now invoking."
+          }
+        ]
+      },
+      {
+        "heading": "THE OVERLAPPING CLAIMS AREA",
+        "body": "The dispute centers on roughly 26,000 sq km of seabed where Thai and Cambodian maritime claims overlap in the Gulf of Thailand — an offshore zone believed to hold large natural gas reserves both economies want.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TH",
+              "KH",
+              "VN"
+            ],
+            "label": "the Gulf of Thailand overlap",
+            "caption": "~26,000 sq km of contested gas-bearing seabed",
+            "markers": [
+              {
+                "lat": 7.5,
+                "lng": 102.5,
+                "label": "Overlapping Claims Area"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 2001 WORKAROUND THAT STALLED",
+        "body": "In 2001 Bangkok and Phnom Penh signed a memorandum agreeing to jointly develop the contested zone rather than fight over where the line falls — drilling first, drawing borders later. Two decades of domestic politics on both sides kept the gas in the ground.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The model is borrowed: Thailand and Malaysia resolved their own overlap with a **Joint Development Area** in 1979 that still pumps gas today. Shared revenue sidesteps the sovereignty question entirely — but only if both governments stay politically willing."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE LAND POISONS THE SEA",
+        "body": "The maritime fight is inseparable from the Preah Vihear temple on the land border. The ICJ awarded the temple to Cambodia in 1962 and reaffirmed it in 2013; Thai nationalists treated both rulings as humiliations, making any concession to Cambodia — at sea or on land — domestic poison.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1907",
+                "label": "French-Siam treaty maps the border"
+              },
+              {
+                "year": "1962",
+                "label": "ICJ awards Preah Vihear to Cambodia",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1972",
+                "label": "Overlapping sea claims declared"
+              },
+              {
+                "year": "2001",
+                "label": "Joint-development MOU signed"
+              },
+              {
+                "year": "2008",
+                "label": "Deadly border clashes erupt"
+              },
+              {
+                "year": "2013",
+                "label": "ICJ reaffirms Cambodian sovereignty"
+              }
+            ],
+            "label": "border friction, by the courts"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T17:52:50.124Z",
+    "label": "The Gulf of Thailand Sea Dispute",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-08-us-sanctioned-vessel-catches-fire-24-indian-crew-members-eva": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SHADOW FLEET",
+        "body": "Sanctions don't stop oil from moving — they push it onto a parallel armada of aging, opaquely-owned tankers that switch off transponders, falsify positions, and transfer cargo ship-to-ship in open water. Since 2022 this 'dark fleet' has grown to hundreds of vessels, many a decade past the age a mainstream insurer would touch.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The trade runs on two tricks: the *dark fleet* (aging tankers with hidden ownership) and the **flag of convenience** — registering in a state like Panama or Gabon that asks few questions and exercises little oversight."
+          }
+        ]
+      },
+      {
+        "heading": "WHO CREWS THEM",
+        "body": "The men rescued were Indian — not by coincidence. India and the Philippines supply the backbone of the world's merchant crews, and the dark fleet hires from the same labor pool as the legitimate one. The cargo is sanctioned; the deckhands are ordinary migrant seafarers, often unaware of a ship's politics until a blockade appears.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Philippines",
+                "value": "~380k",
+                "cc": "PH",
+                "weight": 380
+              },
+              {
+                "label": "China",
+                "value": "~340k",
+                "cc": "CN",
+                "weight": 340
+              },
+              {
+                "label": "India",
+                "value": "~250k",
+                "cc": "IN",
+                "weight": 250
+              },
+              {
+                "label": "Russia",
+                "value": "~190k",
+                "cc": "RU",
+                "weight": 190
+              },
+              {
+                "label": "Indonesia",
+                "value": "~140k",
+                "cc": "ID",
+                "weight": 140
+              }
+            ],
+            "label": "seafarers supplied to world merchant fleet (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A BLOCKADE CAN LEGALLY DO",
+        "body": "Under the law of naval warfare a blockade must be declared, publicized, and applied impartially to all ships — and crucially, it must let neutral crews and civilians off a stopped vessel before it is disabled. Sanctions enforcement at sea (interdiction) is a softer, peacetime cousin: board, inspect, divert — not sink.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "OM",
+              "IR",
+              "AE"
+            ],
+            "label": "where the Marivex was stopped",
+            "caption": "Disabled off Oman, near the Hormuz chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 23.588,
+                "lng": 58.405,
+                "label": "Muscat"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY OMAN, NOT A WARSHIP, DID THE RESCUE",
+        "body": "Oman has spent decades as the Gulf's neutral broker — talking to Iran, the US, and the Arab states alike. That neutrality makes Muscat the natural responder when a stricken ship sits in its waters: every coastal state owes a duty under the SAR convention to rescue life at sea regardless of a vessel's flag or its cargo's legality."
+      },
+      {
+        "heading": "THE GEOGRAPHY OF THE TRAP",
+        "body": "A tanker leaving Gulf loading points has one way out — Hormuz, then the Gulf of Oman. There is no sea-room to evade a blockade and no second exit, which is why interdiction works here and why the same waters have been the stage for the 1980s Tanker War, the 2019 seizures, and every chokepoint crisis since.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is a tanker leaving the Persian Gulf so vulnerable to interdiction?",
+            "options": [
+              "Hormuz is its only exit — there is no alternative sea route out",
+              "Gulf states ban tankers from sailing at night",
+              "Tankers are too slow to outrun any patrol boat",
+              "Insurance rules forbid evasive maneuvers"
+            ],
+            "correct": 0,
+            "explanation": "The Gulf is a near-enclosed sea; every loaded tanker must funnel through the single Strait of Hormuz, leaving no room to evade a blockade."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T17:53:27.292Z",
+    "label": "Sanctioned Tankers & the Shadow Fleet",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-08-whatsapp-says-nso-targeted-users-with-spearfishing-attacks-i": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "ZERO-CLICK",
+        "body": "The attacks that made Pegasus infamous required nothing from the victim — no tapped link, no opened file. A crafted data packet arriving at the phone is enough to seize it. This is the opposite of phishing, where the target must be tricked into an action.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2019 WhatsApp vector was a **zero-click** exploit delivered through a *missed call* — the malware installed itself before the phone even rang through, and the call log could be wiped afterward."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE CALL FUNCTION",
+        "body": "Voice and video calling code has to parse untrusted data from a stranger before the user accepts the call, and it runs with deep system privileges to handle the camera and microphone. That combination — high privilege, attacker-controlled input, automatic processing — is the richest hunting ground for exploit developers.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What made the 2019 WhatsApp exploit so alarming to security researchers?",
+            "options": [
+              "Victims had to install a fake WhatsApp clone",
+              "It infected phones via a missed call, with no user action",
+              "It required briefly stealing the physical phone",
+              "It only worked on jailbroken devices"
+            ],
+            "correct": 1,
+            "explanation": "The exploit ran when a call was placed, before the target could answer or decline — making it invisible and unstoppable by ordinary caution."
+          }
+        ]
+      },
+      {
+        "heading": "THE MERCENARY MODEL",
+        "body": "NSO does not spy; it sells the capability to spy. Clients are governments and their intelligence services, who run the operations themselves. This lets NSO claim it neither chooses targets nor sees the data — a deniability structure borrowed from the arms trade, where the maker disclaims what the buyer does with the weapon."
+      },
+      {
+        "heading": "THE EXPORT-LICENSE SHIELD",
+        "body": "Israel classifies Pegasus as a weapon, so every sale needs a defense-export license from the Ministry of Defense. That turns a private surveillance product into an instrument of statecraft — licenses have tracked Israel's diplomatic openings, and the regulatory cover is also what NSO invokes to argue it cannot be sued like an ordinary company."
+      },
+      {
+        "heading": "THE FORENSIC TRAIL",
+        "body": "What broke the secrecy was forensics. Independent labs learned to read the traces Pegasus leaves in a phone's logs, turning anonymous infections into named victims — journalists, dissidents, and the inner circles of heads of state across dozens of countries.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**Citizen Lab** at the University of Toronto and **Amnesty International's Security Lab** built the public evidence base; the 2021 *Pegasus Project* leak of 50,000 target phone numbers turned scattered cases into a global scandal."
+          }
+        ]
+      },
+      {
+        "heading": "THE JURISDICTION PROBLEM",
+        "body": "A civil judgment is only as strong as a court's power to enforce it. NSO has no US assets to seize and operates under a foreign government's license, so an injunction is a piece of paper a continent away. The contempt motion is really a test of whether a domestic court can bind a state-shielded foreign firm at all.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2010",
+                "label": "NSO Group founded in Israel",
+                "emphasis": "start"
+              },
+              {
+                "year": "2016",
+                "label": "First iOS Pegasus exposed (Ahmed Mansoor)"
+              },
+              {
+                "year": "2019",
+                "label": "WhatsApp zero-click hack; Meta sues",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "Pegasus Project leak; US blacklists NSO"
+              },
+              {
+                "year": "2025",
+                "label": "US jury rules for WhatsApp, injunction issued"
+              },
+              {
+                "year": "2026",
+                "label": "WhatsApp files contempt"
+              }
+            ],
+            "label": "the NSO arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T17:54:06.876Z",
+    "label": "Mercenary Spyware & the Law",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-08-why-are-houthis-threatening-to-attack-red-sea-shipping-and-w": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SECOND GATE",
+        "body": "The Red Sea has its own chokepoint at the bottom: Bab-el-Mandeb, a 26 km strait between Yemen and Djibouti. A ship escaping a closed Hormuz still has to thread this gap to reach the Suez Canal and Europe. The two chokepoints are sequential — close both and there is no eastern exit from the Gulf except the long way around Africa.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "YE",
+              "SA",
+              "EG",
+              "DJ",
+              "ER",
+              "SD"
+            ],
+            "label": "Red Sea: two gates, one corridor",
+            "markers": [
+              {
+                "lat": 12.58,
+                "lng": 43.33,
+                "label": "Bab-el-Mandeb"
+              },
+              {
+                "lat": 30.02,
+                "lng": 32.55,
+                "label": "Suez Canal"
+              },
+              {
+                "lat": 24.09,
+                "lng": 38.06,
+                "label": "Yanbu terminal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE GATE OF TEARS",
+        "body": "Bab-el-Mandeb means 'Gate of Tears' in Arabic — the name long predates the Houthis. From the Yemeni highlands a cheap drone or anti-ship missile reaches the lane in minutes, which is why a non-state group with no navy can credibly threaten one of the world's busiest sea routes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Houthis are **Zaydi** Shia from Yemen's north — a sect that ruled a thousand-year imamate until 1962. Their reach over the strait is not naval power; it is *geography plus missiles*, the same asymmetry that lets a few thousand dollars of munitions hold a billion-dollar tanker at risk."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE CHOKEPOINT BITES",
+        "body": "Roughly 12% of global seaborne trade and a tenth of seaborne oil move through Bab-el-Mandeb on the way to Suez. Of the world's oil chokepoints it is not the largest, but it is the one a land-based force can reach — Hormuz and Malacca are wider and harder to close from shore.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hormuz",
+                "value": "~21",
+                "weight": 21
+              },
+              {
+                "label": "Malacca",
+                "value": "~16",
+                "weight": 16
+              },
+              {
+                "label": "Suez+SUMED",
+                "value": "~9",
+                "weight": 9
+              },
+              {
+                "label": "Bab-el-Mandeb",
+                "value": "~7",
+                "weight": 7
+              }
+            ],
+            "label": "oil through major chokepoints (mn bbl/day)"
+          }
+        ]
+      },
+      {
+        "heading": "THE CAPE DETOUR",
+        "body": "When the southern Red Sea becomes too dangerous, ships do not stop — they reroute around the Cape of Good Hope. The cargo still arrives, but a voyage from the Gulf to Rotterdam stretches by roughly ten days and thousands of extra tonnes of fuel. The cost shows up as freight rates, not empty shelves.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "via Suez",
+                "value": "~19 days",
+                "tone": "favorable",
+                "weight": 19
+              },
+              {
+                "label": "via Cape",
+                "value": "~29 days",
+                "tone": "unfavorable",
+                "weight": 29
+              }
+            ],
+            "label": "Gulf → NW Europe, one way"
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE TRIGGER",
+        "body": "What actually closes a lane is not a hit — it is the Lloyd's of London war-risk premium. Once underwriters classify the southern Red Sea as a war zone, the surcharge per voyage jumps and commercial vessels reroute regardless of how few missiles are fired. The financial chokepoint shuts before the physical one does.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which strait must a ship leaving the Persian Gulf pass to reach the Suez Canal?",
+            "options": [
+              "Strait of Malacca",
+              "Bab-el-Mandeb",
+              "Bosphorus",
+              "Strait of Gibraltar"
+            ],
+            "correct": 1,
+            "explanation": "Bab-el-Mandeb is the southern gate of the Red Sea; Suez is the northern exit, so a Europe-bound tanker must clear both."
+          }
+        ]
+      },
+      {
+        "heading": "SAUDI ARABIA'S HEDGE",
+        "body": "Diverting crude to Yanbu is exactly the bypass Riyadh built for: the East-West Pipeline carries oil across the peninsula from the Gulf to the Red Sea coast, sidestepping Hormuz. But Yanbu still loads onto ships that must transit the Red Sea — so a Houthi threat to that corridor undercuts the very hedge that was supposed to make Hormuz survivable."
+      }
+    ],
+    "generatedAt": "2026-06-08T17:54:48.159Z",
+    "label": "The Red Sea & Bab-el-Mandeb",
+    "category": "economy",
+    "articleCount": 1
   }
 }
