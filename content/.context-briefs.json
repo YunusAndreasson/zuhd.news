@@ -326993,5 +326993,1594 @@
     "label": "The ECB & Energy-Shock Inflation",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-06-06-moving-beyond-fork-exec-unix-process": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IDIOM",
+        "body": "Unix creates a new program in two steps: fork() clones the running process into a near-identical child, then exec() throws that copy away and overwrites it with the new program. Almost every process you run — every shell command, every server worker — is born this wasteful way.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The split exists because fork() returns *twice* — once in the parent with the child's PID, once in the child with **0**. That one quirky return value is how a program knows which half of itself it became."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT WAS CHEAP IN 1970",
+        "body": "On the PDP-11, fork() was almost free: the whole system ran one process at a time, memory was tiny, and copying an address space meant copying a few kilobytes. The design was a brilliant simplification for the hardware of its era — and that era ended fifty years ago.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1970",
+                "label": "fork() in Research Unix (PDP-11)",
+                "emphasis": "start"
+              },
+              {
+                "year": "1979",
+                "label": "vfork() in 3BSD — skip the copy"
+              },
+              {
+                "year": "1991",
+                "label": "copy-on-write makes fork() lazy"
+              },
+              {
+                "year": "2001",
+                "label": "POSIX standardizes posix_spawn()"
+              },
+              {
+                "year": "2019",
+                "label": "io_uring & clone3 push past fork"
+              }
+            ],
+            "label": "the slow obsolescence of fork()"
+          }
+        ]
+      },
+      {
+        "heading": "THE COPY-ON-WRITE PATCH",
+        "body": "Modern kernels don't actually copy memory on fork(). They mark every page read-only and share it; only when parent or child writes does the kernel duplicate that one page. This is why fork-then-exec survived — the copy you immediately discard was never really made.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "But COW isn't free: the kernel still has to walk and duplicate the parent's entire **page-table** structure. On a process using 100GB of RAM, that bookkeeping alone can take tens of milliseconds — before exec() has even started."
+          }
+        ]
+      },
+      {
+        "heading": "THE MULTITHREAD TRAP",
+        "body": "fork() copies only the calling thread, but inherits all the locks the other threads were holding — locks that will now never be released. A child that touches the heap can deadlock instantly. This is why POSIX says a forked child of a threaded program may safely call almost nothing except exec().",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "After fork() in a multithreaded program, what does the child inherit?",
+            "options": [
+              "All threads, running where they left off",
+              "Only the calling thread, plus every lock the others held",
+              "No threads and no locked state",
+              "A fresh copy of every thread, paused"
+            ],
+            "correct": 1,
+            "explanation": "Only the forking thread survives, but mutexes the vanished threads held stay locked forever — the classic fork-in-threads deadlock."
+          }
+        ]
+      },
+      {
+        "heading": "THE ALTERNATIVES",
+        "body": "Other systems never split the operation. Windows' CreateProcess builds the new program directly. POSIX added posix_spawn() to do fork+exec atomically. The rejected 'spawn templates' idea was Linux's attempt at a primitive that describes the child you want, instead of cloning the parent you don't.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Unix fork+exec",
+                "value": "clone, then discard"
+              },
+              {
+                "label": "vfork",
+                "value": "borrow parent, no copy"
+              },
+              {
+                "label": "posix_spawn",
+                "value": "fork+exec, atomic"
+              },
+              {
+                "label": "Win CreateProcess",
+                "value": "build child direct"
+              },
+              {
+                "label": "spawn templates",
+                "value": "rejected (for now)"
+              }
+            ],
+            "label": "how systems start a program"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT'S HARD TO KILL",
+        "body": "fork() isn't just a function — it's an assumption baked into decades of code. Shells use the gap between fork() and exec() to redirect files, change users, and rewire pipes inside the child. Any replacement must expose all of that configuration up front, which is exactly where the clean proposals keep snagging."
+      }
+    ],
+    "generatedAt": "2026-06-08T12:35:41.590Z",
+    "label": "fork(), exec() & Process Creation",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-08-ai-weather-climate-models-limits-hype": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OLD WAY",
+        "body": "Traditional forecasting solves the physics directly: it carves the atmosphere into a 3D grid and steps the equations of fluid motion and thermodynamics forward in time. It is honest about physics but brutally expensive — a single global run consumes hours on a supercomputer.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1922",
+                "label": "Richardson's hand-calculated forecast fails"
+              },
+              {
+                "year": "1950",
+                "label": "First computer forecast on ENIAC"
+              },
+              {
+                "year": "1979",
+                "label": "ECMWF goes operational"
+              },
+              {
+                "year": "2022",
+                "label": "GraphCast & Pangu match physics models",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "ECMWF launches its own AI model (AIFS)"
+              }
+            ],
+            "label": "from slide rules to silicon"
+          }
+        ]
+      },
+      {
+        "heading": "THE NEW WAY",
+        "body": "Machine-learning models skip the equations entirely. They train on roughly four decades of reanalysis data — a reconstructed history of the atmosphere — and learn the statistical map from today's weather to tomorrow's. Once trained, they forecast in minutes on a single chip.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "GraphCast",
+                "value": "DeepMind"
+              },
+              {
+                "label": "Pangu-Weather",
+                "value": "Huawei"
+              },
+              {
+                "label": "FourCastNet",
+                "value": "Nvidia"
+              },
+              {
+                "label": "AIFS",
+                "value": "ECMWF"
+              }
+            ],
+            "label": "the major AI weather models"
+          }
+        ]
+      },
+      {
+        "heading": "THE BLIND SPOT",
+        "body": "A model that learns from history can only confidently predict what history contains. Faced with a storm more intense than anything in its training set, an ML model tends to regress toward the familiar — smoothing the peak, softening the extreme. Engineers bolt on guardrails for the physically impossible outputs it would otherwise produce.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The failure mode is *out-of-distribution* error: the model can interpolate beautifully but cannot extrapolate. That is why forecasters must manually cap nonsensical outputs like **negative rainfall** — a value physics forbids but pattern-matching does not."
+          }
+        ]
+      },
+      {
+        "heading": "THE LORENZ CEILING",
+        "body": "Both approaches hit the same wall. In 1963 Edward Lorenz discovered that the atmosphere is chaotic: a vanishingly small error in the starting conditions doubles roughly every few days, until the forecast is useless. No amount of compute or cleverness pushes deterministic prediction much past two weeks.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What ultimately caps how far ahead any weather model can forecast?",
+            "options": [
+              "Chaos — tiny input errors amplify, capping skill near two weeks",
+              "Insufficient computing power to run finer grids",
+              "Gaps in satellite coverage over the oceans",
+              "The cost of storing historical weather data"
+            ],
+            "correct": 0,
+            "explanation": "Lorenz showed the atmosphere is chaotic: errors grow exponentially, so deterministic skill collapses past ~2 weeks no matter the hardware."
+          }
+        ]
+      },
+      {
+        "heading": "THE MOVING BASELINE",
+        "body": "Climate change is the deepest threat to the ML approach. As warming pushes temperatures, rainfall, and storm intensities beyond the historical record, the very data these models learned from becomes a less reliable guide to the future — the training set ages out from under them precisely as the extremes that matter most grow more common."
+      }
+    ],
+    "generatedAt": "2026-06-08T12:36:27.779Z",
+    "label": "AI vs Physics in Weather Forecasting",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-08-apple-wwdc-ai-siri-gemini-cook": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INTEGRATION DOCTRINE",
+        "body": "Apple's defining belief is that it must own every layer that matters — the silicon, the operating system, the tools. It designs its own chips, writes its own OS, and resists depending on outside suppliers for anything strategic. Renting the brain of Siri from a rival is a direct break with that fifty-year creed.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "People who are really serious about software should make their own hardware.",
+            "speaker": "Alan Kay",
+            "year": "1982"
+          }
+        ]
+      },
+      {
+        "heading": "WHY APPLE NEVER BUILT THE COMPUTE",
+        "body": "Frontier AI models are forged in vast clusters of GPUs trained on web-scale data. Apple is famously asset-light — it outsources manufacturing and runs lean on capital spending, while its rivals poured tens of billions a year into data centers. You cannot rent your way to a frontier model overnight if you never built the factory.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Amazon",
+                "value": "~$75bn",
+                "weight": 75,
+                "tone": "neutral"
+              },
+              {
+                "label": "Microsoft",
+                "value": "~$55bn",
+                "weight": 55,
+                "tone": "neutral"
+              },
+              {
+                "label": "Alphabet",
+                "value": "~$50bn",
+                "weight": 50,
+                "tone": "neutral"
+              },
+              {
+                "label": "Meta",
+                "value": "~$40bn",
+                "weight": 40,
+                "tone": "neutral"
+              },
+              {
+                "label": "Apple",
+                "value": "~$11bn",
+                "weight": 11,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "annual capital spending, 2024 (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE AI CHIEF WHO CAME FROM GOOGLE",
+        "body": "The irony runs deep: Apple's head of AI, John Giannandrea, ran Google's search and AI for eight years before Apple poached him in 2018 to build exactly the capability it is now licensing back from Google.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Tim Cook",
+                "role": "Apple CEO",
+                "years": "2011–",
+                "cc": "US"
+              },
+              {
+                "name": "John Giannandrea",
+                "role": "Apple AI/ML chief",
+                "years": "2018–",
+                "cc": "US"
+              },
+              {
+                "name": "Craig Federighi",
+                "role": "Apple software SVP",
+                "years": "2012–",
+                "cc": "US"
+              },
+              {
+                "name": "Sundar Pichai",
+                "role": "Alphabet CEO",
+                "years": "2015–",
+                "cc": "US"
+              }
+            ],
+            "label": "the cast"
+          }
+        ]
+      },
+      {
+        "heading": "SIRI WAS A DARPA PROJECT",
+        "body": "Siri did not begin inside Apple. It spun out of SRI International's CALO program — a Pentagon-funded effort to build a digital assistant for military officers. Apple bought the startup in 2010 and shipped it with the iPhone 4S a year later.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where did Siri originate before Apple acquired it?",
+            "options": [
+              "A DARPA-funded research project at SRI International",
+              "An in-house Apple skunkworks team",
+              "A Google assistant Apple bought out",
+              "A Microsoft Research spinoff"
+            ],
+            "correct": 0,
+            "explanation": "Siri grew out of SRI's CALO program, a US defense-funded AI assistant project; Apple acquired the spinoff in 2010."
+          }
+        ]
+      },
+      {
+        "heading": "THE LONG ARC OF SIRI",
+        "body": "Siri was first to market in 2011 and squandered the lead. A decade of incremental updates, a high-profile AI hire, and a 2024 'Apple Intelligence' relaunch never closed the gap — until Apple conceded and reached for a rival's model.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2010",
+                "label": "Apple acquires Siri Inc."
+              },
+              {
+                "year": "2011",
+                "label": "Siri ships on iPhone 4S"
+              },
+              {
+                "year": "2018",
+                "label": "Giannandrea hired from Google"
+              },
+              {
+                "year": "2024",
+                "label": "Apple Intelligence relaunch"
+              },
+              {
+                "year": "2026",
+                "label": "Siri rebuilt on Gemini",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "Siri, 2010–2026"
+          }
+        ]
+      },
+      {
+        "heading": "THE FRENEMY LEDGER",
+        "body": "Apple and Google are the deepest of frenemies. Google already pays Apple a fortune every year to remain the default search engine on the iPhone — a deal a US court ruled an illegal monopoly. Now money flows the other way too, deepening a dependence regulators are already trying to unwind.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Google reportedly pays Apple **~$20bn a year** to be Safari's default search — the single most lucrative contract in tech, and the centerpiece of the **US v. Google** antitrust case. Licensing Gemini ties the two rivals tighter still."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T12:37:31.365Z",
+    "label": "Apple, Siri & the Build-vs-Rent Problem",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-08-egypt-empty-israel-syria-ambassador-posts-signal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SIGNAL BELOW A RECALL",
+        "body": "Severing ties is loud and hard to reverse. Recalling an ambassador 'for consultations' is the classic mid-level rebuke. Simply never filling a vacant post is quieter still — deniable, open-ended, and reversible the moment relations warm. The absence is the message.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "An embassy without an ambassador isn't shut — it runs under a **chargé d'affaires**, a caretaker diplomat. Business continues; the symbolic top seat sits empty. That gap *is* the statement."
+          }
+        ]
+      },
+      {
+        "heading": "THE COLD PEACE",
+        "body": "Egypt was the first Arab state to recognize Israel, breaking the wall at Camp David in 1978. Anwar Sadat paid for it with his life in 1981. The treaty held, but the peace never warmed — trade stayed thin, embassies stayed low-key, and Cairo has used its ambassador as a thermostat for nearly half a century.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1978",
+                "label": "Camp David Accords",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1979",
+                "label": "Peace treaty signed"
+              },
+              {
+                "year": "1982",
+                "label": "Ambassador recalled — Lebanon war"
+              },
+              {
+                "year": "1986",
+                "label": "Ambassador returns"
+              },
+              {
+                "year": "2000",
+                "label": "Recalled — Second Intifada"
+              },
+              {
+                "year": "2005",
+                "label": "Ambassador returns"
+              }
+            ],
+            "label": "Egypt–Israel: a thermostat in ambassadors"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CAIRO, NOT RIYADH",
+        "body": "Egypt's leverage over Israel is unique among Arab states: it holds the only land peace treaty that has survived continuously since the 1970s, plus control of the Rafah crossing into Gaza. When Cairo cools relations, it costs Israel a working channel no other capital can offer.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "EG",
+              "IL",
+              "SY",
+              "JO"
+            ],
+            "label": "the eastern Mediterranean cast",
+            "caption": "Egypt borders Israel and Gaza; Syria sits across Israel's north."
+          }
+        ]
+      },
+      {
+        "heading": "POST-ASSAD SYRIA",
+        "body": "The other empty chair is newer. Bashar al-Assad's government fell in late 2024 after 13 years of civil war, ending a half-century of Assad family rule over Damascus. The Arab League had already readmitted Syria in 2023; now every Arab capital must decide how — and how fast — to deal with whoever holds Damascus next.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which was the first Arab state to sign a peace treaty with Israel?",
+            "options": [
+              "Jordan",
+              "Egypt",
+              "Saudi Arabia",
+              "United Arab Emirates"
+            ],
+            "correct": 1,
+            "explanation": "Egypt signed in 1979 after Camp David; Jordan followed in 1994, and the UAE only in 2020 via the Abraham Accords."
+          }
+        ]
+      },
+      {
+        "heading": "AL-SHAM, THE OLD CENTER",
+        "body": "Damascus is among the oldest continuously inhabited cities on earth and the first capital of the Umayyad caliphate, the seat from which Islam was governed in the 7th and 8th centuries. In Islamic tradition al-Sham — Greater Syria — carries deep significance, which is why upheaval in Damascus resonates across the Muslim world far beyond its strategic weight."
+      }
+    ],
+    "generatedAt": "2026-06-08T12:38:09.984Z",
+    "label": "The Grammar of an Empty Embassy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-08-gaza-male-infertility-siege-investigation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 74-DAY ASSEMBLY LINE",
+        "body": "Sperm production is not a stockpile but a continuous, energy-hungry assembly line: a single cycle of spermatogenesis runs roughly 74 days from stem cell to mature sperm. It is one of the first bodily systems to throttle down under starvation, because the body triages reproduction below survival. This is why a famine's reproductive damage shows up months after the food returns.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A man malnourished today produces degraded sperm for **two to three months** after he eats again — the pipeline is already loaded with damaged cells."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE RUBBLE POISONS",
+        "body": "Modern munitions and pulverized concrete leave a chemical signature in the dust: lead, tungsten, and other heavy metals that are established reproductive toxins. They settle into soil, water, and the air people breathe while sifting debris. Heavy-metal exposure is one of the best-documented causes of reduced sperm motility and count in environmental medicine.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The damage is *cumulative and silent* — heavy metals bioaccumulate in tissue, so the dose that matters is every day of exposure added together, not any single blast."
+          }
+        ]
+      },
+      {
+        "heading": "THE FOURTH ACT",
+        "body": "The 1948 UN Genocide Convention defines genocide not only as killing, but as five distinct acts — and the fourth is the deliberate prevention of a group's births. The drafters, writing in the shadow of the Holocaust, understood that a people can be destroyed by stopping the next generation from being born as surely as by killing the living one.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Imposing measures intended to prevent births within the group.",
+            "speaker": "UN Genocide Convention, Article II(d)",
+            "year": "1948"
+          },
+          {
+            "type": "quiz",
+            "question": "The UN Genocide Convention defines genocide as one of five possible acts. Which of these is one of them?",
+            "options": [
+              "Imposing measures intended to prevent births within a group",
+              "Devaluing a group's currency",
+              "Censoring a group's press",
+              "Expelling a state's diplomats"
+            ],
+            "correct": 0,
+            "explanation": "Article II(d) names the deliberate prevention of births as one of the five acts that legally constitute genocide."
+          }
+        ]
+      },
+      {
+        "heading": "THE SEALED ENCLAVE",
+        "body": "Gaza has been under a land, sea, and air blockade since 2007 — one of the longest sustained sieges in modern history. Movement out runs through just two functional crossings, both controlled by outside states. When the article says treatment requires leaving Gaza, it means passing through a gate someone else holds shut.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PS",
+              "IL",
+              "EG"
+            ],
+            "label": "the two gates out",
+            "caption": "Exit depends on gates controlled by neighbouring states.",
+            "markers": [
+              {
+                "lat": 31.2456,
+                "lng": 34.2664,
+                "label": "Rafah crossing (Egypt)"
+              },
+              {
+                "lat": 31.5613,
+                "lng": 34.5483,
+                "label": "Erez crossing (Israel)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE YOUNGEST PEOPLE ON EARTH",
+        "body": "Before the siege deepened, Gaza had one of the highest fertility rates in the world and a median age under 18 — a population defined by its children. A demographic structure that young is built entirely on continued births. Erode fertility and you do not just shrink a population; you invert the shape of an entire society.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Palestine",
+                "value": "~3.4",
+                "cc": "PS",
+                "weight": 3.4
+              },
+              {
+                "label": "Israel",
+                "value": "~2.9",
+                "cc": "IL",
+                "weight": 2.9
+              },
+              {
+                "label": "Egypt",
+                "value": "~2.8",
+                "cc": "EG",
+                "weight": 2.8
+              },
+              {
+                "label": "Jordan",
+                "value": "~2.8",
+                "cc": "JO",
+                "weight": 2.8
+              },
+              {
+                "label": "World avg",
+                "value": "~2.3",
+                "weight": 2.3
+              }
+            ],
+            "label": "births per woman (approx.)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T12:39:09.465Z",
+    "label": "Siege Biology & the Unborn Generation",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-08-iran-domestic-cryogenic-parts-sanctions-substitution": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY GAS MUST BE CHILLED",
+        "body": "Raw natural gas is a mixture — methane, ethane, propane, water, CO2, sulfur. To separate them you cool the stream to cryogenic temperatures, below about -150°C, where each component condenses out at a different point. The cryogenic exchanger is the cold heart of that process; without it a gas plant cannot make sales-grade methane or strip out the heavier liquids that are worth more than the gas."
+      },
+      {
+        "heading": "THE BRAZED-ALUMINUM BOTTLENECK",
+        "body": "The hard part is not the cold — it is the metal. Cryogenic duty uses plate-fin exchangers: stacks of corrugated aluminum vacuum-brazed into a single block with channel walls thinner than a millimeter, holding pressure at temperatures that make ordinary steel shatter. A handful of firms worldwide can braze them to spec, which is exactly why the component, not the gas field, is the chokepoint a sanctions regime targets.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The workhorse is the *brazed-aluminum plate-fin heat exchanger* — a single block can pack thousands of square meters of heat-transfer surface into a few cubic meters, which is why nothing else fits inside a cold box."
+          }
+        ]
+      },
+      {
+        "heading": "THE FIELD AT STAKE",
+        "body": "South Pars is Iran's slice of the single largest gas accumulation on Earth — the same geological structure Qatar calls the North Dome. The maritime border runs straight through it, so every cubic meter Iran fails to extract is one Qatar can pull from the shared reservoir first. That race is why Tehran cannot simply mothball a plant while it waits out a sanctioned part.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "QA",
+              "BH",
+              "AE"
+            ],
+            "label": "the shared super-field",
+            "caption": "One reservoir, split by a maritime border",
+            "markers": [
+              {
+                "lat": 27.64,
+                "lng": 52,
+                "label": "South Pars (Iran)"
+              },
+              {
+                "lat": 26.2,
+                "lng": 51.85,
+                "label": "North Dome (Qatar)"
+              }
+            ]
+          },
+          {
+            "type": "quiz",
+            "question": "Iran's South Pars field is the same geological structure as which neighbor's flagship gas field?",
+            "options": [
+              "Qatar's North Dome",
+              "Saudi Arabia's Ghawar",
+              "UAE's Shah field",
+              "Oman's Khazzan"
+            ],
+            "correct": 0,
+            "explanation": "South Pars and Qatar's North Dome are one continuous reservoir divided by the maritime boundary — the world's largest known gas field."
+          }
+        ]
+      },
+      {
+        "heading": "SITTING ON THE GAS, STARVED OF THE TOOLS",
+        "body": "Iran holds the world's second-largest proven gas reserves, behind only Russia and ahead of Qatar. The paradox of the sanctions era is that a country this gas-rich struggled for years to monetize it — not for lack of resource, but for lack of imported processing hardware.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Proven natural gas reserves",
+            "peers": [
+              {
+                "value": 38,
+                "cc": "RU"
+              },
+              {
+                "value": 32,
+                "cc": "IR"
+              },
+              {
+                "value": 24,
+                "cc": "QA"
+              },
+              {
+                "value": 14,
+                "cc": "TM"
+              },
+              {
+                "value": 13,
+                "cc": "US"
+              },
+              {
+                "value": 8,
+                "cc": "CN"
+              },
+              {
+                "value": 9,
+                "cc": "SA"
+              }
+            ],
+            "subjectCc": "IR",
+            "unit": "tcm"
+          }
+        ]
+      },
+      {
+        "heading": "THE TECHNOLOGY-DENIAL REGIME",
+        "body": "Modern sanctions rarely ban an entire industry. They target dual-use chokepoint components — the one specialized part with few suppliers that a project cannot finish without. The 2009 block on cryogenic exchangers was a textbook case: not a ban on gas, but a ban on the single piece of cold-box hardware that makes a gas plant run."
+      },
+      {
+        "heading": "THE RESISTANCE-ECONOMY PLAYBOOK",
+        "body": "Every long-sanctioned state runs the same script: announce that the denied item has been reverse-engineered at home, frame it as defiance, and accept that the domestic version will be slower, costlier, and less reliable than the import it replaces. The USSR did it with computers, apartheid South Africa with synthetic fuel, Iraq with weapons — the question is never whether a copy can be built, but whether it can be built to the tolerances cryogenic service demands.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Tehran calls this doctrine *eqtesād-e moqāvematī* — the **\"resistance economy\"** — self-sufficiency reframed not as a fallback but as a strategic virtue."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T12:40:05.684Z",
+    "label": "Cryogenics & Sanctions Substitution",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-08-latvia-shoots-down-drone-nato-airspace": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW JAMMING DEFLECTS A DRONE",
+        "body": "A drone navigating by satellite signal flies blind when that signal is spoofed or jammed. Russian electronic warfare aimed at Ukrainian strike drones doesn't just down them — it can shove a confused airframe off course, and a few drift across the nearest border. The incursion is a side effect of the war, not necessarily a deliberate probe, which is exactly what makes it hard to answer.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The drones run on *GNSS* — satellite positioning. When the signal is **spoofed** (fed false coordinates) rather than merely **jammed** (blanked out), the drone flies confidently in the wrong direction. That distinction is why some land in fields and others cross frontiers."
+          }
+        ]
+      },
+      {
+        "heading": "THE COST ASYMMETRY",
+        "body": "A Rafale scrambling with an air-to-air missile spends roughly a million dollars to kill a drone that cost a few tens of thousands. This is the core economic problem of drone defense: the interceptor is always far more expensive than the target, so an adversary wins simply by making you fire.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Air-to-air missile",
+                "value": "~$1m",
+                "tone": "unfavorable",
+                "weight": 1000
+              },
+              {
+                "label": "Long-range drone",
+                "value": "~$30k",
+                "tone": "favorable",
+                "weight": 30
+              }
+            ],
+            "label": "interceptor vs target, rough unit cost"
+          }
+        ]
+      },
+      {
+        "heading": "WHO GUARDS BALTIC SKIES",
+        "body": "Latvia, Lithuania and Estonia have no fighter jets of their own. Since they joined NATO in 2004, allied air forces have rotated through on the Baltic Air Policing mission — which is why a French Rafale, not a Latvian one, made the intercept. The Baltics' vulnerability is geographic: Russia and the Kaliningrad exclave pincer the narrow Suwałki corridor that links them to the rest of NATO.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LV",
+              "LT",
+              "EE",
+              "PL",
+              "RU"
+            ],
+            "label": "the Baltic flank",
+            "markers": [
+              {
+                "lat": 54.3,
+                "lng": 22.8,
+                "label": "Suwałki gap"
+              },
+              {
+                "lat": 54.71,
+                "lng": 20.51,
+                "label": "Kaliningrad"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "ARTICLE 4, NOT ARTICLE 5",
+        "body": "An unclaimed drone is too ambiguous to trigger collective defense. So allies reach instead for Article 4 — consultation — which lets a member call the alliance together to talk without committing anyone to fight. The deniability is the point: keep each incursion below the threshold where treaty obligations bite.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which NATO treaty article does a member invoke to summon consultations over a threat, short of collective defense?",
+            "options": [
+              "Article 4",
+              "Article 5",
+              "Article 1"
+            ],
+            "correct": 0,
+            "explanation": "Article 4 triggers consultation among members; Article 5 is the collective-defense clause that treats an attack on one as an attack on all."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DENIABILITY IS A WEAPON",
+        "body": "A drone with no markings and no claim of responsibility forces the target to choose between overreacting to a possible accident or normalizing a violation of its airspace. Either choice costs something politically — and Latvia's last incursion helped topple its government in May. Ambiguity, not firepower, is doing the work.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is **gray-zone** pressure: actions calibrated to stay under the threshold of war while steadily eroding the adversary's confidence and cohesion. The drone matters less than the *question* it forces — and questions without clear answers split coalitions."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T12:40:41.059Z",
+    "label": "Drones, Jamming & NATO's Airspace Gap",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-08-myanmar-junta-propaganda-manufactured-transition": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 25% RULE",
+        "body": "Myanmar's 2008 constitution reserves a quarter of every parliament for serving officers the military appoints directly, plus the defense, home, and border ministries. Since amendments require more than 75% of seats, the army holds a permanent veto over its own constraints. Every 'election' is staged inside a cage the military built.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The military calls this *disciplined democracy* — the **Tatmadaw**, Myanmar's armed forces, governs through a constitution it wrote and a parliament it can never lose control of."
+          }
+        ]
+      },
+      {
+        "heading": "THE NARGIS REFERENDUM",
+        "body": "That constitution was ratified in May 2008 by a referendum held days after Cyclone Nargis killed roughly 140,000 people. With survivors still searching for the dead, the junta announced 92% approval on 98% turnout. The number wasn't meant to be believed — it was meant to demonstrate that the result was never in doubt.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What disaster was unfolding in Myanmar when the junta held its 2008 constitutional referendum?",
+            "options": [
+              "Cyclone Nargis, which killed ~140,000",
+              "A nationwide cholera epidemic",
+              "The 1988 student uprising",
+              "An earthquake near Mandalay"
+            ],
+            "correct": 0,
+            "explanation": "The vote went ahead days after the cyclone struck the delta, while relief was still being blocked — the timing made dissent impossible."
+          }
+        ]
+      },
+      {
+        "heading": "THE LONG ARC OF KHAKI RULE",
+        "body": "The army has governed Myanmar for most of its independent history. It crushed the 8888 uprising, annulled the 1990 election the opposition won in a landslide, allowed a managed opening from 2011, then seized power again in 2021 when the ballot box produced the wrong answer twice. The 2026 vote follows the same script as 2010.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1962",
+                "label": "Ne Win seizes power"
+              },
+              {
+                "year": "1988",
+                "label": "8888 uprising crushed"
+              },
+              {
+                "year": "1990",
+                "label": "NLD wins, result annulled"
+              },
+              {
+                "year": "2008",
+                "label": "Nargis-era constitution"
+              },
+              {
+                "year": "2010",
+                "label": "Managed election, USDP 'wins'"
+              },
+              {
+                "year": "2015",
+                "label": "NLD wins the opening"
+              },
+              {
+                "year": "2021",
+                "label": "Coup reverses the vote",
+                "emphasis": "pivot"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1962",
+                "to": "2011",
+                "label": "Direct military rule",
+                "tone": "unfavorable"
+              },
+              {
+                "from": "2011",
+                "to": "2021",
+                "label": "Quasi-civilian opening",
+                "tone": "neutral"
+              }
+            ],
+            "label": "military power in Myanmar"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2010 DRESS REHEARSAL",
+        "body": "The first election under the new constitution was boycotted by the main opposition and shunned by Western observers. The military's proxy party, the USDP, claimed roughly 80% of contested seats amid widespread advance-vote fraud. A staged election with the opposition absent is not a contest — it is a coronation with paperwork.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Min Aung Hlaing",
+                "role": "Coup leader, junta chief",
+                "years": "2021–",
+                "cc": "MM"
+              },
+              {
+                "name": "Than Shwe",
+                "role": "Architect of 2008 charter",
+                "years": "1992–2011",
+                "cc": "MM"
+              },
+              {
+                "name": "Aung San Suu Kyi",
+                "role": "Detained NLD leader",
+                "years": "since 2021",
+                "cc": "MM"
+              },
+              {
+                "name": "Ne Win",
+                "role": "Founder of army rule",
+                "years": "1962–1988",
+                "cc": "MM"
+              }
+            ],
+            "label": "the men behind the curtain"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE ARMY WANTS A BALLOT",
+        "body": "The Tatmadaw funds itself through two military conglomerates that touch jade, banking, beer, and telecoms — it does not need votes for money. What it needs is recognition: a civilian-looking government lets ASEAN neighbors, China, and India deal with Naypyidaw without the embarrassment of dealing with a junta. The election is a diplomatic costume.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MM",
+              "TH",
+              "CN",
+              "IN",
+              "BD",
+              "LA"
+            ],
+            "label": "Myanmar and the neighbors who must choose",
+            "caption": "The junta built Naypyidaw from scratch in 2005, isolated and far from any crowd.",
+            "markers": [
+              {
+                "lat": 19.7633,
+                "lng": 96.0785,
+                "label": "Naypyidaw (capital)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE INFORMATION VACUUM",
+        "body": "A staged transition only works if no one can fact-check it. As donor funding dries up, the independent and exile outlets that documented the 1990 annulment and the post-coup massacres are folding — leaving state media to narrate the vote unopposed. The propaganda is most effective not when it lies loudest, but when there is no one left to contradict it."
+      }
+    ],
+    "generatedAt": "2026-06-08T12:41:25.344Z",
+    "label": "Myanmar's Manufactured Transition",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-08-nickelate-superconductors-common-electronic-fingerprint": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PHENOMENON",
+        "body": "A superconductor carries current with exactly zero resistance — once a current starts in a loop, it circulates forever without a battery. Heike Kamerlingh Onnes discovered it by accident in 1911 when he chilled mercury near absolute zero and watched its resistance vanish, not gradually but as a sudden cliff."
+      },
+      {
+        "heading": "WHY BCS ISN'T ENOUGH",
+        "body": "The 1957 BCS theory explained conventional superconductors: electrons pair up by riding distortions in the crystal lattice, but lattice vibrations are too feeble to hold pairs together above roughly 30 kelvin. For thirty years physicists believed that was a hard ceiling.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "BCS pairs are called *Cooper pairs* — two electrons that would normally repel, bound into a single quantum object. Break the pair and superconductivity dies."
+          },
+          {
+            "type": "quiz",
+            "question": "Conventional BCS theory predicted superconductivity was impossible above roughly what temperature?",
+            "options": [
+              "~30 K (about -240°C)",
+              "~100 K (about -170°C)",
+              "Room temperature, ~300 K"
+            ],
+            "correct": 0,
+            "explanation": "BCS lattice-vibration pairing tops out near 30 K; cuprates superconducting above 90 K shattered the supposed ceiling and exposed a different mechanism."
+          }
+        ]
+      },
+      {
+        "heading": "THE CUPRATE PUZZLE",
+        "body": "In 1986 Bednorz and Müller found copper-oxide ceramics that superconduct far above the BCS ceiling — within a year, above the boiling point of liquid nitrogen. It won a Nobel the next year. Forty years on, no one fully agrees on why cuprates work; it is the central unsolved problem of condensed-matter physics.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Mercury (1911)",
+                "value": "4 K",
+                "weight": 4,
+                "tone": "neutral"
+              },
+              {
+                "label": "MgB2",
+                "value": "39 K",
+                "weight": 39,
+                "tone": "neutral"
+              },
+              {
+                "label": "Nickelate",
+                "value": "~80 K",
+                "weight": 80,
+                "tone": "favorable"
+              },
+              {
+                "label": "Cuprate (YBCO)",
+                "value": "~93 K",
+                "weight": 93,
+                "tone": "favorable"
+              },
+              {
+                "label": "LaH10 (pressed)",
+                "value": "~250 K",
+                "weight": 250,
+                "tone": "favorable"
+              }
+            ],
+            "label": "transition temperature by family (K)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY NICKELATES",
+        "body": "Nickel sits directly beside copper on the periodic table, and engineered nickel-oxide layers were coaxed into superconducting in 2019 — a genuine second family. A second example lets theorists separate what is essential to high-temperature pairing from what is just a quirk of copper.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1911",
+                "label": "Onnes: zero resistance in mercury"
+              },
+              {
+                "year": "1957",
+                "label": "BCS theory of pairing"
+              },
+              {
+                "year": "1986",
+                "label": "Cuprates break the ceiling",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2008",
+                "label": "Iron-based superconductors"
+              },
+              {
+                "year": "2019",
+                "label": "Nickelates superconduct"
+              },
+              {
+                "year": "2023",
+                "label": "Ambient-pressure nickelate"
+              }
+            ],
+            "label": "the superconductivity arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE FINGERPRINT",
+        "body": "A shared spectroscopic signature across different nickelate compounds means the superconductivity is governed by some common electronic feature, not by the accidental details of any one material. That common feature is a knife that cuts away whole categories of competing theories — the surviving ones must explain the fingerprint."
+      },
+      {
+        "heading": "THE PRIZE",
+        "body": "About 5% of generated electricity is lost as heat in transmission lines. A room-temperature, ambient-pressure superconductor would make lossless grids, cheaper MRI magnets, and stable quantum processors physically possible. Narrowing the theory is the step that turns trial-and-error materials hunting into deliberate engineering."
+      }
+    ],
+    "generatedAt": "2026-06-08T12:42:10.834Z",
+    "label": "High-Temperature Superconductivity",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-08-pancreatic-cancer-combination-tango-revolution-response": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEADLIEST COMMON CANCER",
+        "body": "Pancreatic cancer kills almost everyone it touches. Five-year survival sits near 13% — the worst of any common malignancy — mostly because it produces no early symptoms and is usually found after it has spread. That dismal baseline is why even an unconfirmed response signal makes headlines.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "5-year survival by cancer type",
+            "peers": [
+              {
+                "value": 13,
+                "label": "Pancreatic"
+              },
+              {
+                "value": 25,
+                "label": "Lung"
+              },
+              {
+                "value": 50,
+                "label": "Ovarian"
+              },
+              {
+                "value": 65,
+                "label": "Colorectal"
+              },
+              {
+                "value": 91,
+                "label": "Breast"
+              },
+              {
+                "value": 97,
+                "label": "Prostate"
+              }
+            ],
+            "subjectLabel": "Pancreatic",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "THE KRAS PROBLEM",
+        "body": "Roughly 90% of pancreatic tumors carry a mutation in a single gene, KRAS — the highest rate of any cancer. For four decades KRAS was called 'undruggable' because its protein has no good pocket for a drug to grip. Only since 2021 have the first KRAS-blocking drugs reached patients, which is what makes a KRAS-targeted combination newsworthy at all.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**KRAS** sits at the top of the growth-signal cascade — mutate it and the cell's 'divide' switch jams *on*. Block it and you cut the signal at its source, which is why it was the most-wanted target in oncology."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DRUGS CAN'T REACH IT",
+        "body": "Pancreatic tumors wrap themselves in dense scar-like tissue called desmoplasia — a fibrous wall that crushes the blood vessels inside the tumor. Drugs that work elsewhere simply cannot reach the cancer cells in lethal concentration. The barrier is physical, not just biochemical, which is why so many promising agents fail here specifically."
+      },
+      {
+        "heading": "RESPONSE RATE IS NOT SURVIVAL",
+        "body": "A tumor shrinking on a scan is a 'response.' Living longer is 'overall survival.' These are different endpoints, and history is littered with drugs that shrank tumors without adding a single day of life. Response rate is a surrogate — a hopeful early read, not proof of benefit. The article's own caveat that survival is 'unconfirmed' is the whole story.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "A drug shows a high tumor 'response rate' in an early trial. What does this prove about whether patients live longer?",
+            "options": [
+              "Nothing yet — response and survival are separate endpoints",
+              "It proves a survival benefit directly",
+              "It guarantees the drug will be approved"
+            ],
+            "correct": 0,
+            "explanation": "Tumor shrinkage is a surrogate endpoint; many drugs shrink tumors without extending life, so survival must be measured separately."
+          }
+        ]
+      },
+      {
+        "heading": "THE PHASE GAUNTLET",
+        "body": "These were company data from early trials; Phase 3 — the large, randomized test that actually measures survival — has not begun. Oncology drugs have the lowest success rate of any field: the vast majority that look promising early never make it to approval. The gap between 'most patients responded' and 'this drug works' is years of attrition.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Phase 1 → 2",
+                "value": "~63%",
+                "tone": "favorable",
+                "weight": 63
+              },
+              {
+                "label": "Phase 2 → 3",
+                "value": "~25%",
+                "tone": "unfavorable",
+                "weight": 25
+              },
+              {
+                "label": "Phase 3 → approval",
+                "value": "~40%",
+                "tone": "neutral",
+                "weight": 40
+              },
+              {
+                "label": "Overall (Ph1→approval)",
+                "value": "~5%",
+                "tone": "unfavorable",
+                "weight": 5
+              }
+            ],
+            "label": "Probability an oncology drug clears each phase"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ADD AN EPIGENETIC BLOCKER",
+        "body": "Cancer cells don't only mutate genes — they silence and unsilence them by chemically tagging DNA, the 'epigenetic' layer. Tumors use this to escape a targeted drug: shut off the pathway under attack, route around it. Pairing a mutation drug with an epigenetic blocker is an attempt to close the escape hatch before resistance opens it."
+      }
+    ],
+    "generatedAt": "2026-06-08T12:42:50.952Z",
+    "label": "Pancreatic Cancer & Trial Endpoints",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-08-ukraine-deep-strike-russia-crimea-rail": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "AN ISLAND BY GEOGRAPHY",
+        "body": "Crimea connects to the mainland by only two narrow threads: the Perekop Isthmus in the north — barely 5–7 km wide — and the Kerch Strait to the east. A peninsula this isolated cannot feed an army through local roads; everything heavy comes by rail or across a single bridge.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU"
+            ],
+            "label": "Crimea's two land threads",
+            "markers": [
+              {
+                "lat": 44.9521,
+                "lng": 34.1024,
+                "label": "Simferopol rail hub"
+              },
+              {
+                "lat": 45.3417,
+                "lng": 36.5167,
+                "label": "Kerch Bridge"
+              },
+              {
+                "lat": 46.1667,
+                "lng": 33.6833,
+                "label": "Perekop Isthmus"
+              },
+              {
+                "lat": 46.8489,
+                "lng": 35.3653,
+                "label": "Melitopol junction"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY RAIL IS THE TARGET",
+        "body": "Russian ground forces are doctrinally tethered to railways — artillery shells, fuel, and armor move in such tonnage that trucks can only carry them the last stretch from a railhead. Cut the rail line and divisions in the field don't surrender, but they ration. This is the oldest pressure point in continental warfare.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Analysts estimate Russian formations can sustain heavy operations only about **90 km** from a working railhead — beyond that, truck logistics thin out fast."
+          }
+        ]
+      },
+      {
+        "heading": "THE LAND BRIDGE",
+        "body": "When the Kerch Bridge proved vulnerable, Russia leaned on the overland corridor it seized in 2022 — through Melitopol and Mariupol — to rail supplies into Crimea without crossing water. Striking rail on the peninsula squeezes both routes at once: the bridge and the land bridge.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Before 2022, how did Russia move heavy supplies into annexed Crimea?",
+            "options": [
+              "Across the Kerch Strait Bridge",
+              "Through a land corridor via Melitopol",
+              "By air into Simferopol",
+              "Through the Perekop Isthmus rail line, which Ukraine controlled"
+            ],
+            "correct": 0,
+            "explanation": "Until the 2022 invasion seized a southern land corridor, the Kerch Bridge was Russia's only overland link to Crimea — which is why it became such a prized target."
+          }
+        ]
+      },
+      {
+        "heading": "THE LONG ARC OF CRIMEA",
+        "body": "Crimea has changed hands repeatedly: a Crimean Khanate under Ottoman suzerainty, annexed by Catherine the Great in 1783, transferred to Soviet Ukraine in 1954, and seized by Russia in 2014. The current war is the latest contest over a peninsula that has rarely governed itself.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1783",
+                "label": "Russian Empire annexes Khanate"
+              },
+              {
+                "year": "1921",
+                "label": "Crimean ASSR (Soviet)"
+              },
+              {
+                "year": "1954",
+                "label": "Transferred to Ukrainian SSR"
+              },
+              {
+                "year": "1991",
+                "label": "Part of independent Ukraine"
+              },
+              {
+                "year": "2014",
+                "label": "Russia annexes Crimea",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018",
+                "label": "Kerch Bridge opens"
+              },
+              {
+                "year": "2022",
+                "label": "Full-scale invasion"
+              }
+            ],
+            "label": "who held Crimea"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEEP-STRIKE SHIFT",
+        "body": "Early-war Ukrainian drones were short-range quadcopters. By 2024–25, domestically built long-range strike drones could reach hundreds of kilometers behind the front for the cost of a used car — turning rear-area rail yards, depots, and refineries into front-line targets that no amount of trench-digging protects."
+      }
+    ],
+    "generatedAt": "2026-06-08T12:43:24.977Z",
+    "label": "Crimea's Supply Lines",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-08-uk-starmer-on-device-child-image-ultimatum": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "TWO DIFFERENT MACHINES",
+        "body": "There are two very different ways to 'detect child images.' Matching against a database of known abuse images uses perceptual hashing — a fingerprint compared to a fixed list. Catching new, never-seen nude images needs an AI classifier that judges pixels on the fly. The first is precise; the second guesses, and guesses wrong on bath-time photos and teenagers.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Hashing answers *is this the known image?* A classifier answers *does this look like nudity?* — a far harder, error-prone question that runs on **every photo you take**, not just shared ones."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'ON-DEVICE' ACTUALLY MEANS",
+        "body": "End-to-end encryption means the company cannot read your messages in transit — only you and the recipient hold the keys. Client-side scanning sidesteps this by inspecting the content on your phone, before it is encrypted. The firm keeps its promise on the wire while reading over your shoulder at the keyboard. Critics call this the difference between a sealed envelope and one opened at your kitchen table."
+      },
+      {
+        "heading": "THE APPLE PRECEDENT",
+        "body": "Apple already tried this. In August 2021 it announced NeuralHash, on-device scanning of photos bound for iCloud against a known-CSAM database. Within weeks security researchers manufactured hash collisions and warned the architecture could be quietly repointed at any image a government wanted found. Apple paused, then killed the program in 2022 — the rare case of Apple reversing a shipped design under pressure.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What became of Apple's 2021 plan to scan iPhones for child abuse imagery?",
+            "options": [
+              "It shipped quietly and still runs today",
+              "Apple paused, then abandoned it after a researcher and privacy backlash",
+              "A US court struck it down as unconstitutional",
+              "The EU made it mandatory across the bloc"
+            ],
+            "correct": 1,
+            "explanation": "Researchers showed the hash system could be fooled and repurposed; Apple shelved it in 2022 rather than face the surveillance precedent."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE OS LAYER IS THE LEVER",
+        "body": "A government cannot mandate scanning on a thousand apps, but it can lean on the two firms that own the operating system every phone boots into. Control the camera roll and the messaging stack at the OS level and you reach almost the entire population at once — which is why Starmer's ultimatum targets Apple and Google, not WhatsApp or Signal.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Apple iOS",
+                "value": "~52%",
+                "cc": "GB",
+                "weight": 52,
+                "tone": "neutral"
+              },
+              {
+                "label": "Android",
+                "value": "~48%",
+                "cc": "GB",
+                "weight": 48,
+                "tone": "neutral"
+              }
+            ],
+            "label": "UK smartphone OS share (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE CRYPTO WARS NEVER ENDED",
+        "body": "This is the latest round of a fight that began in the 1990s. The 'going dark' argument — that encryption blinds law enforcement — has driven the same clash for thirty years, from the Clipper chip to the FBI's demand that Apple unlock the San Bernardino shooter's iPhone. The justification rotates (terrorism, then child safety); the technical ask is constant: a way in.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1993",
+                "label": "Clipper chip: govt key-escrow proposal",
+                "emphasis": "start"
+              },
+              {
+                "year": "2016",
+                "label": "FBI v. Apple, San Bernardino iPhone",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "Apple announces, then retreats on CSAM scan"
+              },
+              {
+                "year": "2023",
+                "label": "UK Online Safety Act passed"
+              },
+              {
+                "year": "2026",
+                "label": "Starmer's on-device ultimatum"
+              }
+            ],
+            "label": "the encryption fight"
+          }
+        ]
+      },
+      {
+        "heading": "THE MISSION-CREEP PROBLEM",
+        "body": "The objection is not that scanning for abuse is wrong — it is that the infrastructure is content-blind. Once a phone can match images against a secret list and report matches home, the list is just a file. The same pipeline that finds abuse can be ordered to find a banned poster, a leaked document, or a dissident's meme — and the user has no way to inspect what is on the list."
+      }
+    ],
+    "generatedAt": "2026-06-08T12:44:09.909Z",
+    "label": "Client-Side Scanning & Encryption",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-08-us-ev-tariff-wall-china-global-divergence": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PRICE GAP",
+        "body": "The whole conflict reduces to one number: a Chinese-made compact EV can land in a European showroom for under $25,000, while the cheapest US-built EV starts well above that. China's edge is not cheap labor — it is owning the battery supply chain end to end, from the lithium refinery to the pack.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "BYD's name is an acronym — *Build Your Dreams* — but its real moat is the **Blade battery**, a lithium-iron-phosphate (LFP) pack it manufactures in-house. Tesla buys cells; BYD *is* a cell maker that learned to build cars."
+          }
+        ]
+      },
+      {
+        "heading": "THE TARIFF LOGIC",
+        "body": "Washington's wall is a Section 301 tariff — the same legal tool used in the 2018 trade war — stacked to 100% on Chinese EVs. The stated fear is not today's import volume, which is near zero, but tomorrow's: that subsidized Chinese overcapacity would flood the market the way it already has in solar panels, where Western manufacturing never recovered."
+      },
+      {
+        "heading": "THE JAPANESE PRECEDENT",
+        "body": "America has run this playbook before. In 1981, facing a flood of fuel-efficient Toyotas and Hondas, Washington forced Tokyo into 'voluntary' export restraints. The result was not fewer Japanese cars — it was Japanese factories built on US soil, in Ohio and Tennessee, that eventually out-competed Detroit from the inside.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1981",
+                "label": "Japan agrees to 'voluntary' export limits",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1982",
+                "label": "Honda opens Marysville, Ohio plant"
+              },
+              {
+                "year": "1984",
+                "label": "Toyota-GM NUMMI joint venture"
+              },
+              {
+                "year": "1994",
+                "label": "Japanese 'transplants' dominate US output"
+              }
+            ],
+            "label": "the import-shock playbook"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHINA LEADS OUTSIDE NORTH AMERICA",
+        "body": "Strip away the US and Canadian walls and Chinese brands win on sticker price almost everywhere — Latin America, Southeast Asia, Australia, and increasingly Europe. Two firms, BYD and Tesla, anchor the global market, but BYD's volume now runs well ahead.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "BYD",
+                "value": "~4.3M",
+                "cc": "CN",
+                "weight": 4.3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Tesla",
+                "value": "~1.8M",
+                "cc": "US",
+                "weight": 1.8,
+                "tone": "neutral"
+              },
+              {
+                "label": "Geely",
+                "value": "~1.0M",
+                "cc": "CN",
+                "weight": 1,
+                "tone": "favorable"
+              },
+              {
+                "label": "VW Group",
+                "value": "~0.9M",
+                "cc": "DE",
+                "weight": 0.9,
+                "tone": "neutral"
+              },
+              {
+                "label": "SAIC",
+                "value": "~0.8M",
+                "cc": "CN",
+                "weight": 0.8,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global EV sales, 2024 (BEV + plug-in hybrid)"
+          }
+        ]
+      },
+      {
+        "heading": "THE ADOPTION CURVE",
+        "body": "EV uptake follows an S-curve, not a straight line: slow for years, then a near-vertical climb once price parity and charging density cross a threshold. Norway is already past the bend, with EVs at roughly 9 in 10 new cars; the US still sits in the slow early stretch of the same curve.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "EV share of new car sales (approx., 2024)",
+            "peers": [
+              {
+                "value": 90,
+                "cc": "NO"
+              },
+              {
+                "value": 45,
+                "cc": "CN"
+              },
+              {
+                "value": 20,
+                "cc": "DE"
+              },
+              {
+                "value": 18,
+                "cc": "FR"
+              },
+              {
+                "value": 20,
+                "cc": "GB"
+              },
+              {
+                "value": 10,
+                "cc": "US"
+              }
+            ],
+            "subjectCc": "US",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY MAKES THE BATTERY",
+        "body": "The car is the visible product; the battery is the value. Chinese firms refine most of the world's battery-grade lithium, graphite, and cathode material — meaning even a 'Western' EV often rides on a Chinese chemical supply chain. Tariffs on finished cars do nothing about that upstream dependence.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which battery chemistry powers most of China's mass-market EVs and underpins their low price?",
+            "options": [
+              "NMC (nickel-manganese-cobalt)",
+              "LFP (lithium-iron-phosphate)",
+              "Solid-state lithium-metal",
+              "Lead-acid"
+            ],
+            "correct": 1,
+            "explanation": "LFP uses no cobalt or nickel, making it cheaper and longer-lived; China commercialized it at scale years before Western rivals."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T12:45:01.931Z",
+    "label": "EV Tariffs & the China Divergence",
+    "category": "economy",
+    "articleCount": 1
   }
 }
