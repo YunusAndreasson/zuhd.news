@@ -330129,5 +330129,1318 @@
     "label": "The Red Sea & Bab-el-Mandeb",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-06-08-astrazeneca-s-glp-1-pill-shows-promise-in-obesity-diabetes-t": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT GLP-1 ACTUALLY IS",
+        "body": "Glucagon-like peptide-1 is a hormone your gut releases when you eat. It tells the pancreas to release insulin, slows the stomach's emptying, and signals fullness to the brain. The drugs simply impersonate a signal the body already sends — which is why they suppress appetite rather than block fat absorption.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "The first GLP-1 drug was derived from a compound found in what?",
+            "options": [
+              "Gila monster venom",
+              "Synthetic lab peptides only",
+              "Cone snail toxin",
+              "Snake venom"
+            ],
+            "correct": 0,
+            "explanation": "Exenatide (Byetta, 2005) was based on exendin-4, a peptide in the saliva of the Gila monster, which resists rapid breakdown in the body."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A PILL IS HARD",
+        "body": "GLP-1 is a peptide — a short protein. The stomach exists to digest proteins, so a swallowed peptide is destroyed before it can work. That is why the blockbusters (Ozempic, Wegovy, Mounjaro) are injections. The new oral contenders sidestep this by being small molecules, not peptides — chemically stable enough to survive the gut.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction is everything: **peptide** drugs need a needle or heavy absorption-enhancer tricks; a **small-molecule** GLP-1 agonist like elecoglipron can be manufactured cheaply at scale and swallowed like an aspirin."
+          }
+        ]
+      },
+      {
+        "heading": "THE GLUCOSE-DEPENDENT TRICK",
+        "body": "GLP-1 only triggers insulin release when blood sugar is already high. Below that threshold it goes quiet. This is why GLP-1 drugs rarely cause dangerous hypoglycemia — the same trait that made them a diabetes treatment first, and an obesity treatment second."
+      },
+      {
+        "heading": "WHY THE COLD CHAIN MATTERS",
+        "body": "Injectable GLP-1s are temperature-sensitive biologics that must stay refrigerated from factory to patient — the cold chain. Most of the low-income world has no reliable cold chain outside a hospital. A heat-stable pill is not a convenience upgrade; it is the difference between a drug that exists for a country and one that does not.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Tirzepatide",
+                "value": "~21%",
+                "weight": 21,
+                "tone": "favorable"
+              },
+              {
+                "label": "Semaglutide",
+                "value": "~15%",
+                "weight": 15,
+                "tone": "favorable"
+              },
+              {
+                "label": "Orforglipron",
+                "value": "~12%",
+                "weight": 12,
+                "tone": "neutral"
+              },
+              {
+                "label": "Elecoglipron",
+                "value": "~11%",
+                "weight": 11,
+                "tone": "neutral"
+              }
+            ],
+            "label": "GLP-1 weight loss by drug (approx, trial data)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TWENTY-YEAR ARC",
+        "body": "This is not a sudden breakthrough but the latest step in a two-decade climb: from a lizard-venom diabetes shot, to a weekly injection, to a once-daily pill, and now to cheap oral small molecules aiming at the global market.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2005",
+                "label": "Exenatide — first GLP-1, from Gila monster"
+              },
+              {
+                "year": "2017",
+                "label": "Semaglutide (Ozempic) for diabetes"
+              },
+              {
+                "year": "2019",
+                "label": "Oral semaglutide (Rybelsus)"
+              },
+              {
+                "year": "2021",
+                "label": "Wegovy approved for obesity",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "Tirzepatide (Zepbound)"
+              },
+              {
+                "year": "2026",
+                "label": "Oral small-molecule trials read out"
+              }
+            ],
+            "label": "the GLP-1 climb"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T22:23:05.387Z",
+    "label": "GLP-1: the gut hormone drug class",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-08-beyond-search-and-rescue-what-the-japan-south-korea-sarex-re": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY SEARCH-AND-RESCUE FIRST",
+        "body": "SAREX sits on the lowest rung of the military-cooperation ladder. Crews practice plucking sailors from the water — no targeting data, no missile tracks, no sensor fusion exchanged. It is deliberately chosen as the least politically combustible way to put two distrustful navies in the same water, a textbook confidence-building measure.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do estranged militaries typically restart cooperation with search-and-rescue drills specifically?",
+            "options": [
+              "They share no sensitive targeting or intelligence data",
+              "They are the cheapest exercises to run",
+              "International law requires them annually",
+              "They need no government approval"
+            ],
+            "correct": 0,
+            "explanation": "Humanitarian SAR exchanges no weapons-grade data, making it the safest first step back toward trust."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2018 FREEZE",
+        "body": "Cooperation collapsed in December 2018 when Tokyo accused a South Korean destroyer of locking its fire-control radar — the radar that guides a missile to a target — onto a Japanese patrol plane. Seoul denied it. The dispute was technical, but it detonated atop decades of grievance and froze naval contact for nearly a decade.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A **fire-control radar** lock is treated as a near-act of war: it is the last electronic step before a missile launch, distinct from ordinary *search radar* that merely scans for contacts."
+          }
+        ]
+      },
+      {
+        "heading": "THE ISLETS NOBODY WILL CEDE",
+        "body": "At the center of the rivalry sit a pair of barren volcanic islets — Dokdo to Koreans, Takeshima to Japanese — administered by Seoul but claimed by Tokyo. Their economic value is trivial; their symbolic value, as the first Korean territory seized in Japan's 1905 expansion, is total.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KR",
+              "JP"
+            ],
+            "label": "the contested waters",
+            "caption": "Administered by South Korea, claimed by Japan",
+            "markers": [
+              {
+                "lat": 37.2428,
+                "lng": 131.8669,
+                "label": "Dokdo / Takeshima"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE COLONIAL WOUND",
+        "body": "Japan annexed Korea in 1910 and ruled it until 1945 — banning the Korean language in schools, conscripting forced labor, and pressing women into wartime military brothels. The 1965 normalization treaty restored diplomatic ties but settled compensation state-to-state, leaving individual victims' claims a live grievance that resurfaces in every bilateral crisis.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1910",
+                "label": "Japan annexes Korea"
+              },
+              {
+                "year": "1945",
+                "label": "Liberation",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1965",
+                "label": "Normalization treaty"
+              },
+              {
+                "year": "2018",
+                "label": "Radar lock-on dispute"
+              },
+              {
+                "year": "2026",
+                "label": "First joint drill in 9 yrs"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1910",
+                "to": "1945",
+                "label": "Colonial occupation",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "a century of friction"
+          }
+        ]
+      },
+      {
+        "heading": "THE AMERICAN HAND",
+        "body": "Both are treaty allies of Washington, which has spent years pushing its two partners toward trilateral coordination against North Korean missiles and a rising China. The 2016 GSOMIA pact let them share military intelligence directly — Seoul nearly tore it up in 2019. A thaw between Tokyo and Seoul is rarely just bilateral; it is usually Washington's diplomacy made visible.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**GSOMIA** — the General Security of Military Information Agreement — is the legal plumbing that lets allies swap classified data without routing every cable through the United States first."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T22:23:44.922Z",
+    "label": "The Japan–Korea Naval Thaw",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-08-brazilian-breadbasket-s-aquifers-are-falling-and-new-satelli": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW YOU WEIGH WATER FROM SPACE",
+        "body": "You cannot see groundwater from orbit — but you can feel its mass. NASA's GRACE mission flies twin satellites in tandem; when the lead one passes over a region with more water underground, the extra gravity tugs it forward and the gap between the two changes by microns. Measuring that gap reveals how much water a basin has gained or lost.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "GRACE detects mass changes equivalent to a layer of water about **1cm** thick spread over hundreds of kilometers — sensitive enough to track a drought, blind to a single well."
+          }
+        ]
+      },
+      {
+        "heading": "THE GUARANI",
+        "body": "Much of Brazil's farm belt sits atop the Guarani Aquifer, one of the largest freshwater reserves on Earth, shared across Brazil, Argentina, Paraguay and Uruguay. A transboundary aquifer has no single owner and no single regulator — what one country pumps, the others lose, with no treaty forcing them to count.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BR",
+              "PY",
+              "AR",
+              "UY"
+            ],
+            "label": "the Guarani Aquifer basin"
+          }
+        ]
+      },
+      {
+        "heading": "FOSSIL WATER",
+        "body": "Deep aquifers recharge over centuries to millennia — far slower than a single irrigated growing season draws them down. Past a point, the water being pumped is effectively a one-time mineral deposit, not a renewing resource. Saudi Arabia exhausted its fossil aquifers growing wheat in the desert within three decades; the drawdown was permanent."
+      },
+      {
+        "heading": "VIRTUAL WATER",
+        "body": "Every ton of soy carries roughly 1,800 tons of embedded water — the rain and groundwater consumed to grow it. When Brazil exports soy, it is exporting its aquifers in disguise. A water-scarce importer like China effectively outsources its water consumption to the Cerrado's water table.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Brazil",
+                "value": 100
+              },
+              {
+                "label": "USA",
+                "value": 50
+              },
+              {
+                "label": "Paraguay",
+                "value": 6
+              },
+              {
+                "label": "Argentina",
+                "value": 5
+              },
+              {
+                "label": "Canada",
+                "value": 4
+              }
+            ],
+            "label": "world soybean exports, approx. (mn tonnes)"
+          }
+        ]
+      },
+      {
+        "heading": "THE COMMONS PROBLEM",
+        "body": "With no extraction limits, an aquifer is a textbook commons: the water you leave in the ground is water your neighbor pumps tomorrow, so the rational move for every farmer is to pump first and fastest. Falling water tables are the predictable equilibrium — not an accident, but the design.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How do GRACE satellites detect groundwater loss without any sensor touching the water?",
+            "options": [
+              "They measure tiny changes in Earth's gravity from the missing mass",
+              "They photograph dried-up wells from orbit",
+              "They detect the color of stressed crops",
+              "They bounce radar off the water table directly"
+            ],
+            "correct": 0,
+            "explanation": "Water has mass; as a basin loses it, local gravity weakens, shifting the precise distance between the two trailing satellites."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T22:24:17.351Z",
+    "label": "Aquifers & Satellite Gravimetry",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-08-canada-bans-texas-cattle-over-flesh-eating-parasite-concern": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY 'FLESH-EATING' IS LITERAL",
+        "body": "Most blowfly maggots feed on carrion. The New World screwworm is the rare one whose larvae burrow into the living tissue of a wound, widening it as they feed — the infestation, called myiasis, can kill a full-grown steer in days and infects any warm-blooded animal, including humans.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The name comes from the larva's shape: it screws deeper into flesh as it grows, anchored by rings of spines. *Myiasis* is the clinical term for any maggot infestation of a living host."
+          }
+        ]
+      },
+      {
+        "heading": "THE FIRST PEST EVER ERADICATED THIS WAY",
+        "body": "USDA scientists Edward Knipling and Raymond Bushland invented the sterile insect technique against this exact pest in the 1950s — irradiate mass-reared males just enough to make them sterile, release them by the billion, and let them out-compete wild males. It worked, and screwworm became the template later used against fruit flies and tsetse worldwide.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1954",
+                "label": "First SIT field trial, Curaçao"
+              },
+              {
+                "year": "1966",
+                "label": "US declared screwworm-free",
+                "emphasis": "start"
+              },
+              {
+                "year": "1991",
+                "label": "Mexico cleared"
+              },
+              {
+                "year": "2006",
+                "label": "Barrier pushed to Panama–Colombia"
+              },
+              {
+                "year": "2026",
+                "label": "Reincursion confirmed in Texas/NM",
+                "emphasis": "pivot"
+              }
+            ],
+            "spans": [
+              {
+                "from": "2006",
+                "to": "2026",
+                "label": "barrier held at the Darién",
+                "tone": "favorable"
+              }
+            ],
+            "label": "the long eradication and its reversal"
+          }
+        ]
+      },
+      {
+        "heading": "WHY STERILE MALES WIN",
+        "body": "A female screwworm fly mates only once in her life. If that single mating is with a sterile male, every egg she lays is infertile. Flood an area with enough sterile males and the wild population can't reproduce its way out — it collapses within a few generations.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does releasing sterile males collapse a screwworm population?",
+            "options": [
+              "Sterile males kill the wild males they compete with",
+              "Females mate only once, so a sterile mating wastes all her eggs",
+              "Sterile males live far longer than wild ones"
+            ],
+            "correct": 1,
+            "explanation": "The female mates a single time; if it's with a sterile male, her entire lifetime egg output fails to hatch."
+          }
+        ]
+      },
+      {
+        "heading": "THE LIVING WALL",
+        "body": "For two decades the US and Panama held screwworm at bay with a permanent biological barrier across the narrow Darién isthmus — a joint plant (COPEG) breeds sterile flies and aircraft scatter them along the Panama–Colombia line. The wall isn't a fence; it's a continuous rain of sterile insects that has to be maintained forever.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "MX",
+              "GT",
+              "HN",
+              "NI",
+              "CR",
+              "PA",
+              "CO"
+            ],
+            "label": "the corridor the barrier defends",
+            "caption": "Sterile flies dropped along the isthmus block migration north",
+            "markers": [
+              {
+                "lat": 9.08,
+                "lng": -79.28,
+                "label": "COPEG sterile-fly plant"
+              },
+              {
+                "lat": 8,
+                "lng": -77.5,
+                "label": "Darién barrier line"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PRODUCTION PROBLEM",
+        "body": "Eradication is arithmetic: you must out-number wild flies many times over, everywhere, every week. Today's barrier capacity runs around 8 million sterile flies a week, but stamping out an active outbreak in Texas would need roughly 400 million — a fiftyfold scale-up that existing plants can't deliver overnight."
+      },
+      {
+        "heading": "WHY CANADA SLAMS THE GATE",
+        "body": "Live cattle are the fastest vector — an infested animal trucked across a border carries the larvae with it. Importing nations have no graduated response: the standard tool is a blanket movement ban until a region proves itself clean, which is why Canada shut the door on Texas cattle with no date to reopen it."
+      }
+    ],
+    "generatedAt": "2026-06-08T22:25:04.303Z",
+    "label": "Screwworm & the Sterile Wall",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-08-citrini-the-research-firm-that-caused-ai-stocks-meltdown-lay": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT MAKES IT 'PERPETUAL'",
+        "body": "A traditional futures contract settles on a fixed date — you must roll it forward or take delivery. A perpetual future never expires. That single design choice removes the settlement that normally forces a contract's price back to the underlying asset, so perps need a different tether."
+      },
+      {
+        "heading": "THE FUNDING RATE",
+        "body": "The tether is a periodic cash payment between traders. When the perp trades above spot, longs pay shorts; when below, shorts pay longs. This funding rate makes it expensive to be on the crowded side, dragging the contract back toward the real price every few hours without any expiry.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **funding rate** is the whole trick: there is no central party holding the price in line, just an incentive that bleeds the crowded side until the perp re-converges with *spot*."
+          },
+          {
+            "type": "quiz",
+            "question": "What keeps a perpetual future's price tethered to the spot market?",
+            "options": [
+              "Funding payments exchanged between longs and shorts",
+              "A monthly expiry and cash settlement",
+              "A price cap enforced by the exchange",
+              "Mandatory central clearing"
+            ],
+            "correct": 0,
+            "explanation": "With no expiry to force convergence, periodic funding payments penalize the crowded side and pull the contract back toward spot."
+          }
+        ]
+      },
+      {
+        "heading": "THE BITMEX INVENTION",
+        "body": "The perpetual swap was launched by the offshore exchange BitMEX in 2016, but the underlying idea — a futures contract that never expires, held in line by a funding stream — was proposed by economist Robert Shiller in 1992. It sat dormant for a generation until crypto, with no regulated futures venues to compete with, made it the dominant instrument.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1992",
+                "label": "Shiller proposes perpetual claims"
+              },
+              {
+                "year": "2016",
+                "label": "BitMEX launches the perpetual swap",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020",
+                "label": "BitMEX founders indicted in US"
+              },
+              {
+                "year": "2022",
+                "label": "FTX collapse pushes traders to DEXs"
+              },
+              {
+                "year": "2026",
+                "label": "CFTC opens US crypto perps"
+              }
+            ],
+            "label": "the perpetual swap, from theory to dominance"
+          }
+        ]
+      },
+      {
+        "heading": "WHY EXCHANGES PRINT MONEY",
+        "body": "An exchange takes a fee on every trade regardless of which side wins. In crypto, perpetuals carry far more volume than spot because of leverage, so the venue that hosts them collects a toll on a torrent of turnover. The house does not bet; it rents the table."
+      },
+      {
+        "heading": "A TOKEN WITH ACTUAL CASH FLOW",
+        "body": "Most crypto tokens are claims on nothing — their price rests on the hope someone pays more later. What makes this one unusual is that real trading fees are routed into buying the token back off the market, the way a company uses profits for a stock buyback. That ties the token's value to a measurable revenue stream rather than pure sentiment.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "traders",
+                "label": "Traders"
+              },
+              {
+                "id": "exchange",
+                "label": "Exchange revenue"
+              },
+              {
+                "id": "buyback",
+                "label": "Token buybacks"
+              },
+              {
+                "id": "holders",
+                "label": "Holders"
+              }
+            ],
+            "links": [
+              {
+                "source": "traders",
+                "target": "exchange",
+                "value": 100,
+                "label": "trading fees"
+              },
+              {
+                "source": "exchange",
+                "target": "buyback",
+                "value": 90,
+                "label": ">90% routed"
+              },
+              {
+                "source": "buyback",
+                "target": "holders",
+                "value": 90,
+                "label": "supply removed"
+              }
+            ],
+            "label": "fees → buyback → token holders"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE CFTC MATTERS",
+        "body": "For a decade, US regulators treated retail crypto perpetuals as illegal off-exchange derivatives, which is why the big perp venues were all offshore — and why BitMEX's founders were indicted in 2020 for serving Americans. The CFTC now opening regulated US perps is the moment that trade comes onshore, which is why Coinbase and Kraken are scrambling to launch."
+      }
+    ],
+    "generatedAt": "2026-06-08T22:25:57.125Z",
+    "label": "Perpetual Futures & the Cash-Flow Token",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-08-colombia-sentences-otoniel-as-the-gulf-clan-continues-to-exp": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FRANCHISE, NOT THE MAN",
+        "body": "The Gulf Clan is a decentralized network of franchises — local cells that pay for the brand, the routes, and the protection. Removing the man at the top changes the letterhead, not the business. Territory, corridors, and revenue are the assets; the leader is replaceable middle management.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Its formal name is the **Autodefensas Gaitanistas de Colombia** (AGC) — it brands itself a *self-defense* force, the same paramilitary language it inherited at birth."
+          }
+        ]
+      },
+      {
+        "heading": "THE KINGPIN STRATEGY",
+        "body": "Decapitation — kill or capture the boss — has been the spine of US-backed drug policy since Escobar. It reliably ends a leader and reliably fails to end the trade: the Medellín cartel's fall just handed the market to Cali, and Cali's fall fragmented it into dozens of smaller, nimbler 'cartelitos' that are harder to map and harder to kill.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did dismantling Colombia's Medellín and Cali cartels in the 1990s mainly produce?",
+            "options": [
+              "A lasting collapse in cocaine output",
+              "Fragmentation into smaller, harder-to-track groups",
+              "A shift of all production to Bolivia",
+              "The end of cartel violence in Colombia"
+            ],
+            "correct": 1,
+            "explanation": "Removing the big vertically-integrated cartels splintered the trade into many smaller networks — the franchise model the Gulf Clan now embodies."
+          }
+        ]
+      },
+      {
+        "heading": "BORN FROM DEMOBILIZATION",
+        "body": "The Gulf Clan grew directly out of the 2006 demobilization of the AUC, Colombia's right-wing paramilitary umbrella. Fighters laid down weapons on paper; mid-level commanders kept their guns, networks, and trafficking routes and rebranded. The state declared a war over and inadvertently incubated its successor.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1993",
+                "label": "Escobar killed; Medellín cartel ends"
+              },
+              {
+                "year": "1997",
+                "label": "AUC paramilitary bloc forms"
+              },
+              {
+                "year": "2006",
+                "label": "AUC demobilizes",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2008",
+                "label": "Gulf Clan consolidates in Urabá"
+              },
+              {
+                "year": "2021",
+                "label": "Otoniel captured"
+              },
+              {
+                "year": "2026",
+                "label": "Otoniel sentenced; clan still grows"
+              }
+            ],
+            "label": "from paramilitary to cartel"
+          }
+        ]
+      },
+      {
+        "heading": "WHY URABÁ",
+        "body": "The clan's heartland, the Urabá region, is the rare place that touches both the Caribbean and the Darién Gap — the roadless jungle border with Panama that is simultaneously the cocaine route north and the migrant route to the US. Whoever controls Urabá taxes both flows.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CO",
+              "PA"
+            ],
+            "label": "the Urabá–Darién corridor",
+            "caption": "One corridor carries cocaine north and migrants toward the US.",
+            "markers": [
+              {
+                "lat": 8.4256,
+                "lng": -76.7831,
+                "label": "Necoclí (smuggling hub)"
+              },
+              {
+                "lat": 8.6383,
+                "lng": -77.3517,
+                "label": "Capurganá / Darién Gap"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE EXTRADITION LEVER",
+        "body": "Extradition to the US is the single threat Colombian capos fear most — it removes them from networks that can buy off, intimidate, or escape domestic courts. Otoniel was extradited in 2022, which is precisely why his sentence lands in a US courtroom. That 'Chiquito Malo' faces no pending extradition signals how thin the state's leverage over the new leadership currently is."
+      }
+    ],
+    "generatedAt": "2026-06-08T22:26:33.954Z",
+    "label": "Cartels as Franchises",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-08-how-to-buy-spacex-shares-as-its-blockbuster-ipo-readies-for": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT GOING PUBLIC ACTUALLY DOES",
+        "body": "An IPO converts privately held shares into freely tradable ones and, when the company sells new stock, raises cash. The headline number is the raise, not the price of the company — a $75bn raise at a $1.77tn valuation means the public is buying roughly 4% of SpaceX while existing owners keep the rest."
+      },
+      {
+        "heading": "THE PRICE IS SET, NOT DISCOVERED",
+        "body": "Underwriters — the investment banks running the deal — spend weeks 'building a book': polling big institutions on how many shares they'd buy at what price, then fixing a single offer price the night before trading. Retail buyers never see this process; they get the price the banks and their largest clients negotiated.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The banks deliberately price *below* what they think the market will bear — a tactic called **underpricing**. The gap becomes the first-day 'pop,' a gift to the favored institutions who got allocated at the offer price."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONTROL TRICK",
+        "body": "Musk keeps command of a company he owns a minority of through dual-class stock: founder shares carry many votes each, public shares carry one or none. Google, Meta, and Ford all use the structure. It lets a founder raise outside capital without surrendering decisions to the shareholders who provided it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How does Musk retain control of SpaceX after selling shares to the public?",
+            "options": [
+              "He still owns more than half the shares",
+              "His founder shares carry many votes each; public shares carry few or none",
+              "Federal law gives aerospace founders veto rights",
+              "The underwriters vote his shares for him"
+            ],
+            "correct": 1,
+            "explanation": "Dual-class structures concentrate voting power in super-voting founder shares, so control and economic ownership come apart."
+          }
+        ]
+      },
+      {
+        "heading": "WHY RETAIL USUALLY GETS CRUMBS",
+        "body": "In a typical IPO, banks steer the vast majority of shares to institutional clients and hand retail investors roughly a tenth. SpaceX's 30% retail carve-out is unusual precisely because the brand demand lets it bypass the usual allocation politics — the banks don't need to bribe institutions with cheap stock when a million Musk fans will buy at any price."
+      },
+      {
+        "heading": "THE SIZE IN CONTEXT",
+        "body": "A $75bn raise would dwarf every prior listing. Saudi Aramco's 2019 debut — itself the previous record — raised under $30bn even as the most profitable company on earth. Most 'mega-IPOs' of the past two decades raised a fifth of what SpaceX is attempting.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Capital raised at IPO",
+            "peers": [
+              {
+                "value": 75,
+                "label": "SpaceX"
+              },
+              {
+                "value": 29,
+                "label": "Saudi Aramco"
+              },
+              {
+                "value": 25,
+                "label": "Alibaba"
+              },
+              {
+                "value": 24,
+                "label": "SoftBank Corp"
+              },
+              {
+                "value": 20,
+                "label": "Visa"
+              },
+              {
+                "value": 20,
+                "label": "AIA Group"
+              },
+              {
+                "value": 16,
+                "label": "Facebook"
+              }
+            ],
+            "subjectLabel": "SpaceX",
+            "unit": "$bn"
+          }
+        ]
+      },
+      {
+        "heading": "THE LOCKUP AHEAD",
+        "body": "Insiders and early investors are typically barred from selling for about 180 days after listing. When that lockup expires, a wave of long-held shares can hit the market at once — which is why a stock that soars on debut often sags six months later, regardless of how the business is doing."
+      }
+    ],
+    "generatedAt": "2026-06-08T22:27:04.521Z",
+    "label": "How an IPO Works",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-08-lebanon-president-urges-israel-to-negotiate-end-to-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "NO PEACE, ONLY PAUSES",
+        "body": "Lebanon and Israel have never signed a peace treaty. They have been formally at war since 1948 — every halt in fighting since has been an armistice, a ceasefire, or a UN resolution, never a settlement. A non-aggression pact would be the first negotiated agreement between them in over seventy years.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1948",
+                "label": "Armistice line; formal state of war begins",
+                "emphasis": "start"
+              },
+              {
+                "year": "1978",
+                "label": "Operation Litani"
+              },
+              {
+                "year": "1982",
+                "label": "Israel invades, siege of Beirut",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2000",
+                "label": "Israeli withdrawal from the south"
+              },
+              {
+                "year": "2006",
+                "label": "34-day war with Hezbollah"
+              },
+              {
+                "year": "2024",
+                "label": "Renewed Hezbollah–Israel war"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1985",
+                "to": "2000",
+                "label": "Israeli 'security zone' in south Lebanon",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Lebanon–Israel: war without a treaty"
+          }
+        ]
+      },
+      {
+        "heading": "THE ARMED EXCEPTION",
+        "body": "When Lebanon's 1975–1990 civil war ended, the Taif Agreement disarmed every militia — except one. Hezbollah kept its weapons by reclassifying itself as a 'resistance' against Israeli occupation of the south, not a militia. That single exemption is the root of today's crisis: the state cannot make peace because the most powerful armed force in the country is not under its command.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction was deliberate: every faction became a *militia* to be dissolved, but **Hezbollah** alone was a *muqawama* — resistance — and resistance does not disarm while the enemy remains."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONFESSIONAL LEDGER",
+        "body": "Lebanon allocates its top offices by sect, fixed since the 1943 National Pact: the president is always a Maronite Christian, the prime minister a Sunni Muslim, the speaker of parliament a Shia Muslim. This is why a Lebanese 'yes' is never a single voice — every major decision must clear three communities with separate patrons abroad.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under Lebanon's confessional system, which office is reserved for a Shia Muslim?",
+            "options": [
+              "President",
+              "Prime Minister",
+              "Speaker of Parliament"
+            ],
+            "correct": 2,
+            "explanation": "The president is Maronite, the PM Sunni, and the speaker of parliament Shia — a power-sharing formula set in 1943."
+          }
+        ]
+      },
+      {
+        "heading": "WHY LEBANON IS A BARGAINING CHIP",
+        "body": "Hezbollah is the oldest and best-armed node of Iran's 'Axis of Resistance' — a network of allied forces stretching from Tehran through Iraq and Syria to Lebanon and Yemen. Funded and armed by the IRGC since the early 1980s, it gives Iran a deterrent on Israel's northern border without firing from Iranian soil. That is the chip Aoun accuses Tehran of holding.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "IQ",
+              "SY",
+              "LB",
+              "YE"
+            ],
+            "label": "Iran's Axis of Resistance",
+            "caption": "Allied forces give Tehran reach to Israel's borders without Iranian troops"
+          }
+        ]
+      },
+      {
+        "heading": "THE FORCE THAT OUTLIVES PRESIDENTS",
+        "body": "Lebanon's presidency sat empty for over two years before 2025, paralyzed by sectarian deadlock — yet Hezbollah's military command never lapsed. An armed organization with its own budget, telecoms, and foreign sponsor does not need a functioning state to keep operating, which is precisely why disarming it has defeated every government since Taif."
+      }
+    ],
+    "generatedAt": "2026-06-08T22:27:50.764Z",
+    "label": "Lebanon, Hezbollah & the State of War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-08-stock-market-today-june-8-intel-surges-on-reported-google-ai": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "FABLESS VS FOUNDRY",
+        "body": "The chip industry split in two around 1987. Designers like Nvidia, Apple, and AMD own no factories — they are 'fabless,' emailing blueprints to a 'foundry' that owns the fabs and prints the silicon. TSMC invented the pure-foundry model; Intel did the opposite, designing and building everything in-house.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Intel was the last great **IDM** — an *integrated device manufacturer* that designed AND fabricated its own chips. Opening its fabs to outside customers reverses 40 years of strategy."
+          }
+        ]
+      },
+      {
+        "heading": "WHY INTEL FELL BEHIND",
+        "body": "Intel dominated the PC era because owning both design and manufacturing let it tune one to the other. But it stalled at the 10nm node around 2015 while TSMC kept shrinking — losing the lead it had held since the 1970s. The foundry pivot is an attempt to monetize fabs that no longer make the world's best chips for Intel alone.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1971",
+                "label": "First microprocessor (4004)"
+              },
+              {
+                "year": "2006",
+                "label": "Core era — undisputed lead"
+              },
+              {
+                "year": "2015",
+                "label": "10nm stall begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "Foundry strategy launched"
+              },
+              {
+                "year": "2028",
+                "label": "Reported Google AI-chip order"
+              }
+            ],
+            "label": "Intel's process leadership"
+          }
+        ]
+      },
+      {
+        "heading": "WHY TSMC IS SO HARD TO CHALLENGE",
+        "body": "A foundry's advantage compounds: more customers mean more volume, which funds the next node, which attracts more customers. TSMC fabricates the overwhelming majority of the world's most advanced chips, and that scale is the moat — not any single secret.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "TSMC",
+                "value": "~62%",
+                "cc": "TW",
+                "weight": 62,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Samsung",
+                "value": "~11%",
+                "cc": "KR",
+                "weight": 11,
+                "tone": "neutral"
+              },
+              {
+                "label": "SMIC",
+                "value": "~6%",
+                "cc": "CN",
+                "weight": 6,
+                "tone": "neutral"
+              },
+              {
+                "label": "GlobalFoundries",
+                "value": "~5%",
+                "cc": "US",
+                "weight": 5,
+                "tone": "neutral"
+              },
+              {
+                "label": "Intel Foundry",
+                "value": "~1%",
+                "cc": "US",
+                "weight": 1,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Global foundry market share, 2024 est."
+          }
+        ]
+      },
+      {
+        "heading": "THE ANCHOR CUSTOMER PROBLEM",
+        "body": "A new foundry cannot prove its process works until a big customer commits high volume — but no customer commits high volume until the process is proven. This chicken-and-egg trap is why a single confirmed Google order matters far beyond its dollar value: it breaks the deadlock and signals the fabs are credible.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does landing one major external customer matter so much for a new foundry?",
+            "options": [
+              "It proves the manufacturing process at volume, attracting others",
+              "Foundries are legally barred from having only in-house clients",
+              "It immediately makes the foundry the market-share leader"
+            ],
+            "correct": 0,
+            "explanation": "Volume from a credible anchor customer validates yield and breaks the chicken-and-egg trap that keeps cautious clients away."
+          }
+        ]
+      },
+      {
+        "heading": "DESIGNING FOR A RIVAL",
+        "body": "Using Intel as a foundry means handing it your chip designs — and Intel sells competing chips. TSMC's neutrality, never competing with its own customers, is precisely why fabless firms trust it. Intel must convince clients its foundry arm is walled off from its product arm.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the **trust firewall** problem: Nvidia is reportedly testing Intel only as a *backup* foundry — a hedge against TSMC concentration risk, not a vote of confidence in a competitor's discretion."
+          }
+        ]
+      },
+      {
+        "heading": "WHY WASHINGTON CARES",
+        "body": "Nearly all leading-edge AI chips are fabricated in Taiwan, 160km from mainland China. US policy — through the CHIPS Act subsidies — treats domestic advanced fabrication as a national-security goal, which is why an American-made AI-chip supply line draws political weight, not just market interest."
+      }
+    ],
+    "generatedAt": "2026-06-08T22:28:27.168Z",
+    "label": "The Foundry Business",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-08-tests-suggest-russian-satellites-can-jam-gps-on-a-continenta": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY GPS IS SO EASY TO JAM",
+        "body": "A GPS signal arrives from 20,000 km up at a power of roughly a hundred-billion-billionth of a watt — weaker than the background radio noise of the universe itself. The receiver only recovers it by knowing the exact code to correlate against. Drown that whisper with any louder noise on the same frequency and the fix collapses. This is the structural flaw: the signal was never strong, so it never needed to be overwhelmed by much.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *processing gain* — the receiver multiplies the faint signal against a known pseudorandom code to lift it out of the noise floor. A jammer just has to raise that floor **higher than the gain can climb**."
+          }
+        ]
+      },
+      {
+        "heading": "JAMMING VERSUS SPOOFING",
+        "body": "Jamming is brute force — flood the band and the receiver shows nothing. Spoofing is subtler and worse: broadcast a counterfeit signal slightly stronger than the real one, and the receiver locks onto a false position or time without knowing it was fooled. A jammed ship knows it is lost; a spoofed ship sails confidently in the wrong direction.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes GPS spoofing more dangerous than jamming?",
+            "options": [
+              "It permanently damages the receiver hardware",
+              "The receiver trusts the false position as real",
+              "It works at longer range than jamming",
+              "It cannot be detected by any equipment"
+            ],
+            "correct": 1,
+            "explanation": "Jamming produces an obvious loss of signal; spoofing feeds a plausible false fix, so the user keeps acting on data that is wrong."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT MAKES ORBITAL JAMMING NEW",
+        "body": "Jamming has historically been a local affair — a truck-mounted transmitter blanks GPS for a few dozen kilometers. A jammer in orbit changes the geometry entirely: from hundreds of kilometers up it can paint an entire continent in a single footprint. Kosmos 2546 belongs to Russia's EKS early-warning constellation, which rides a highly elliptical orbit that loiters for hours over the northern hemisphere — ideal dwell time over Europe."
+      },
+      {
+        "heading": "FOUR SYSTEMS, NOT ONE",
+        "body": "'GPS' is shorthand for one of four global navigation systems, each run by a rival power. Galileo is Europe's deliberate hedge against depending on the American constellation; GLONASS is Russia's own. Modern receivers blend all four, which is why a real-world outage requires hitting the shared L-band frequencies they crowd into — degrading everyone's signal at once.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "GPS",
+                "value": "~31 sats",
+                "cc": "US"
+              },
+              {
+                "label": "GLONASS",
+                "value": "~24 sats",
+                "cc": "RU"
+              },
+              {
+                "label": "Galileo",
+                "value": "~28 sats",
+                "cc": "EU"
+              },
+              {
+                "label": "BeiDou",
+                "value": "~35 sats",
+                "cc": "CN"
+              }
+            ],
+            "label": "the four global navigation systems"
+          }
+        ]
+      },
+      {
+        "heading": "THE BALTIC JAMMING ZONE",
+        "body": "Europe's GPS interference did not start in orbit. For years, aircraft and ships across the Baltic — Finland, Estonia, Lithuania, Poland — have logged routine outages traced to terrestrial transmitters near Kaliningrad and St. Petersburg. The new finding extends a known pattern from ground to space.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "FI",
+              "EE",
+              "LV",
+              "LT",
+              "PL",
+              "RU"
+            ],
+            "label": "the Baltic interference corridor",
+            "caption": "Years of logged GPS outages cluster around the Baltic approaches."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A NAVIGATION SIGNAL RUNS THE GRID",
+        "body": "GPS is not only about position — its satellites carry atomic clocks, and that precise timing synchronizes power grids, cellular networks, and financial trade timestamps. A continental GPS blackout is therefore a timing attack as much as a navigation one. This is why governments quietly fund backups like eLORAN: a low-frequency ground signal too powerful to jam the way a faint satellite whisper can be.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Engineers call the whole bundle *PNT* — **positioning, navigation, and timing**. Most people only notice the first two; the hidden third is what banks and power stations actually depend on."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T22:29:05.845Z",
+    "label": "Jamming the Sky: GPS Vulnerability",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-08-this-company-will-add-phone-airpod-and-smartwatch-trackers-t": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "EVERY DEVICE IS SHOUTING",
+        "body": "A phone, earbud, or smartwatch with Bluetooth on broadcasts advertising packets several times a second so other devices can find it — in the clear, before any pairing or password. A passive sensor doesn't hack anything; it just listens to a conversation your pocket is already having with the air.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "These packets ride **BLE** — Bluetooth Low Energy — the same beacon protocol behind AirTags and store proximity ads. The radio is *designed* to be discoverable; that discoverability is the attack surface."
+          }
+        ]
+      },
+      {
+        "heading": "WHY RANDOM MAC ADDRESSES FAIL",
+        "body": "Apple and Google rotate the device's MAC address — the hardware ID in each packet — precisely to stop this kind of tracking. But the defense only works if the device is anonymous. Tie one observation of a device to a license plate, and every future sighting of that plate re-anchors the device no matter how often the MAC rotates.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "It is a *correlation* attack, not a decryption one: the system never breaks the rotating **MAC** — it sidesteps it by binding the rotation to a fixed real-world object, the car."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE PLATE IS THE KEY",
+        "body": "A plate can be swapped, stolen, or covered. But once the plate-to-device link is built, swapping the plate just teaches the system the new plate the moment your phone reappears alongside it. The link persists across plate changes because the device, not the plate, is the true identifier.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does linking a phone to a license plate defeat anonymity even after the plate is changed?",
+            "options": [
+              "It decrypts the phone's Bluetooth traffic",
+              "The phone re-identifies the new plate the moment they appear together",
+              "Plates can never legally be changed",
+              "The phone broadcasts its owner's name"
+            ],
+            "correct": 1,
+            "explanation": "The persistent identifier is the device; a new plate is re-bound automatically the next time the two are seen at the same sensor."
+          }
+        ]
+      },
+      {
+        "heading": "THE NETWORK ALREADY EXISTS",
+        "body": "This isn't new hardware — it layers onto automated license-plate-reader networks already blanketing US roads. Camera networks log where tens of millions of plates are, when, building movement histories. Adding a Bluetooth sniffer turns each existing camera site into a device-tracking node too."
+      },
+      {
+        "heading": "THE THIRD-PARTY DOCTRINE",
+        "body": "US law long held that data you expose to the public or hand to a third party gets no Fourth Amendment protection — the logic that made warrantless plate and location collection routine. The Supreme Court only began carving exceptions when the data became comprehensive enough to map a person's whole life.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Smith v. Maryland: third-party doctrine"
+              },
+              {
+                "year": "1983",
+                "label": "Knotts: beeper tracking allowed"
+              },
+              {
+                "year": "2012",
+                "label": "Jones: GPS tracker needs a warrant"
+              },
+              {
+                "year": "2018",
+                "label": "Carpenter: cell location protected",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "how US tracking law evolved"
+          }
+        ]
+      },
+      {
+        "heading": "THE CONSTITUTIONAL ANCHOR",
+        "body": "Every fight over passive mass surveillance circles back to one sentence written for an era of physical searches — and the open question of whether 'effects' includes the invisible radio exhaust your devices emit without your knowledge.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The right of the people to be secure in their persons, houses, papers, and effects, against unreasonable searches and seizures, shall not be violated",
+            "speaker": "US Constitution, Fourth Amendment"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T22:29:43.091Z",
+    "label": "Device Tracking & the Plate Link",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-08-us-nigerian-strikes-killed-dozens-of-civilians-villagers-sa": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SPLIT",
+        "body": "ISWAP exists because Boko Haram's violence was too indiscriminate even for ISIS. In 2016 ISIS endorsed Abu Musab al-Barnawi over Abubakar Shekau, whose mosque bombings and mass killing of Muslim civilians had alienated his own backers. ISWAP rebranded as a governance-providing insurgency that taxes and polices farmers rather than slaughtering them — which is precisely why villages caught between it and the state are so exposed.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Mohammed Yusuf",
+                "role": "Boko Haram founder",
+                "years": "2002–2009",
+                "cc": "NG"
+              },
+              {
+                "name": "Abubakar Shekau",
+                "role": "Boko Haram leader",
+                "years": "2009–2021",
+                "cc": "NG"
+              },
+              {
+                "name": "Abu Musab al-Barnawi",
+                "role": "ISWAP founding leader",
+                "years": "2016–2021",
+                "cc": "NG"
+              }
+            ],
+            "label": "the schism"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE NAME HIDES",
+        "body": "\"Boko Haram\" is a Hausa nickname meaning roughly \"Western education is forbidden\" — the group's own name is Jama'atu Ahlis Sunna Lidda'awati wal-Jihad. It began in Maiduguri in 2002 as a quietist preaching sect under Mohammed Yusuf; it became an insurgency only after police killed Yusuf in custody in 2009. The extrajudicial killing radicalized a movement the state could have contained.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The arc is a recurring pattern: a *preaching sect* becomes an *armed insurgency* not at its founding but at the moment the state kills its leader **outside the law**."
+          }
+        ]
+      },
+      {
+        "heading": "WHY AFRICOM SITS IN GERMANY",
+        "body": "US Africa Command, stood up in 2007, is the only US combatant command headquartered outside the region it covers — it runs African operations from Stuttgart. No African government would host a permanent US military headquarters; the optics revived memories of European colonial garrisons. So the command that just claimed 175 dead directs the continent's war from a base in Europe.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where is US Africa Command (AFRICOM) headquartered?",
+            "options": [
+              "Djibouti",
+              "Stuttgart, Germany",
+              "Lagos, Nigeria",
+              "Tampa, Florida"
+            ],
+            "correct": 1,
+            "explanation": "No African state agreed to host it, so AFRICOM runs continental operations from Stuttgart — the only US combatant command based outside its own theater."
+          }
+        ]
+      },
+      {
+        "heading": "THE SHRINKING LAKE",
+        "body": "The insurgency is a Lake Chad basin war, not a Nigerian one — it bleeds across Niger, Chad and Cameroon, fought jointly through the Multinational Joint Task Force. The lake itself has shrunk by roughly 90% since the 1960s, collapsing the fishing and herding economies that once employed the basin's young men. Ecological ruin is the recruiter the strikes cannot kill.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "NE",
+              "TD",
+              "CM"
+            ],
+            "label": "the Lake Chad basin war",
+            "caption": "One insurgency, four states, a vanishing lake",
+            "markers": [
+              {
+                "lat": 11.8333,
+                "lng": 13.15,
+                "label": "Maiduguri (Borno capital)"
+              },
+              {
+                "lat": 13,
+                "lng": 14,
+                "label": "Lake Chad"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BODY-COUNT PROBLEM",
+        "body": "An enemy death toll is the single most inflation-prone number in counterinsurgency, because the side announcing it is also the side no one can check. The American \"body count\" of the Vietnam War became the textbook case: pressure to report progress turned dead civilians into dead \"fighters\" on the tally. A figure of 175 killed with no independent monitor allowed into Borno sits squarely in that lineage.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2002",
+                "label": "Boko Haram founded in Maiduguri",
+                "emphasis": "start"
+              },
+              {
+                "year": "2009",
+                "label": "Yusuf killed in custody; uprising",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2014",
+                "label": "Chibok schoolgirls abducted"
+              },
+              {
+                "year": "2015",
+                "label": "Shekau pledges to ISIS"
+              },
+              {
+                "year": "2016",
+                "label": "ISWAP splits from Boko Haram"
+              },
+              {
+                "year": "2021",
+                "label": "Shekau killed; ISWAP dominant"
+              }
+            ],
+            "label": "from preaching sect to AFRICOM target"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T22:30:34.330Z",
+    "label": "ISWAP, AFRICOM & the Lake Chad War",
+    "category": "politics",
+    "articleCount": 1
   }
 }
