@@ -324317,5 +324317,1208 @@
     "label": "Backchannel Diplomacy",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-08-askap-repeating-radio-bursts-binary-star": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OLD PARADIGM",
+        "body": "For decades, every repeating radio source in the sky was a pulsar — a spinning neutron star sweeping a beam past Earth like a lighthouse. The beat you detect is the star's rotation, and those stars spin fast: once a second down to hundreds of times a second.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A *millisecond pulsar* can rotate over **600 times a second** — its surface moving at a fifth the speed of light, yet it stays intact because gravity at a neutron star's surface is ~200 billion times Earth's."
+          }
+        ]
+      },
+      {
+        "heading": "THE DEATH LINE",
+        "body": "Pulsars can't beat slowly. As a neutron star's spin winds down over millions of years, it crosses a theoretical 'death line' below which the physics that powers the radio beam shuts off. A source pulsing every several minutes — let alone hours — simply shouldn't emit at all by this model.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "ms pulsar",
+                "value": "~3 ms"
+              },
+              {
+                "label": "normal pulsar",
+                "value": "~1 s"
+              },
+              {
+                "label": "magnetar",
+                "value": "~5 s"
+              },
+              {
+                "label": "long-period transient",
+                "value": "min–hours",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "radio source rhythm by class"
+          }
+        ]
+      },
+      {
+        "heading": "THE NEW CLASS",
+        "body": "In 2022 astronomers found a source pulsing every 18 minutes — wildly too slow for a spinning neutron star. It launched a new category: long-period radio transients. The discovery forced a question the field had assumed was settled — what else, besides rotation, can set the clock?",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1967",
+                "label": "First pulsar (Bell & Hewish)"
+              },
+              {
+                "year": "1982",
+                "label": "First millisecond pulsar"
+              },
+              {
+                "year": "2007",
+                "label": "First fast radio burst"
+              },
+              {
+                "year": "2022",
+                "label": "First long-period transient",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "what counts as a radio source"
+          }
+        ]
+      },
+      {
+        "heading": "WHY A BINARY FITS",
+        "body": "Two stars orbiting each other have their own natural clock: the orbital period. If the radio flashes track the orbit rather than a single star's spin, a rhythm of minutes or hours becomes physical. The leading model pairs a dense white dwarf with a small red-dwarf companion, their magnetic fields interacting each lap.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why was a multi-minute repeating radio source a problem for the standard pulsar model?",
+            "options": [
+              "It was too bright to be a neutron star",
+              "A spinning neutron star can't pulse that slowly and still emit",
+              "Radio waves can't repeat on those timescales",
+              "It was too far away to be in our galaxy"
+            ],
+            "correct": 1,
+            "explanation": "Below the 'death line,' a slowly spinning neutron star loses the voltage that powers its radio beam — so a multi-minute beat points to a different clock, like a binary orbit."
+          }
+        ]
+      },
+      {
+        "heading": "HOW ASKAP SEES IT",
+        "body": "ASKAP isn't one dish but 36 antennas spread across the Western Australian desert, combined into a single virtual telescope by interferometry. Linking widely separated dishes yields the angular resolution of one enormous instrument — sharp enough to pin a faint source to a specific patch of sky and match it to a known star.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AU"
+            ],
+            "label": "the array's home",
+            "caption": "A radio-quiet zone chosen to keep human signals out",
+            "markers": [
+              {
+                "lat": -26.696,
+                "lng": 116.637,
+                "label": "ASKAP, Murchison"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T04:34:06.306Z",
+    "label": "Long-Period Radio Transients",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-08-india-supreme-court-ai-courts-regulation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT RISK SCORING ACTUALLY DOES",
+        "body": "Recidivism tools don't predict whether a specific person will reoffend — they place that person in a statistical bucket of similar past defendants and report the group's base rate. The judge sees a number for the individual; the math underneath is about the cohort. India's draft bans exactly this swap of the group's odds for the person's liberty."
+      },
+      {
+        "heading": "THE LOOMIS PRECEDENT",
+        "body": "In 2016 a Wisconsin man, Eric Loomis, was sentenced partly on a COMPAS risk score and challenged it because the algorithm's logic was a trade secret he couldn't inspect. The state supreme court let the sentence stand but warned judges to treat the score cautiously. The case became the global reference point for the 'right to challenge the machine.'",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**COMPAS** — Correctional Offender Management Profiling for Alternative Sanctions — is a privately owned scoring tool. Its weightings were never disclosed to defendants because the vendor claimed *proprietary trade secret*."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BLACK-BOX MEANS UNAPPEALABLE",
+        "body": "Due process rests on the ability to confront the evidence against you. If a score's inputs and weights are hidden inside a vendor's model, there is nothing to cross-examine — the defendant cannot show the calculation was wrong because they cannot see the calculation. Opacity doesn't just hide bias; it removes the legal mechanism for contesting it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "ProPublica's 2016 audit of COMPAS found the tool was most likely to make which error?",
+            "options": [
+              "Wrongly flagging Black defendants as high-risk",
+              "Wrongly flagging white defendants as high-risk",
+              "Scoring everyone identically regardless of record",
+              "Refusing to score repeat offenders"
+            ],
+            "correct": 0,
+            "explanation": "Black defendants who did not reoffend were nearly twice as likely as white peers to be labeled high-risk — a false-positive gap that became the textbook case for algorithmic bias."
+          }
+        ]
+      },
+      {
+        "heading": "THE FAIRNESS THAT CAN'T COEXIST",
+        "body": "Researchers proved a hard limit after the COMPAS fight: when base rates differ between groups, no scoring system can simultaneously be equally accurate across groups AND produce equal error rates across groups. You must pick which kind of fairness to sacrifice. There is no neutral algorithm — only a hidden choice about which injustice to tolerate."
+      },
+      {
+        "heading": "WHO REGULATES THE COURTROOM ALGORITHM",
+        "body": "India would be early but not alone. The jurisdictions diverge sharply: Europe brands judicial AI a high-risk category requiring human oversight, China actively pushes AI into its courts, and the US has no federal rule at all — leaving risk tools running case-by-case across state systems.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India (draft)",
+                "value": "Ban on liberty cases",
+                "tone": "favorable",
+                "cc": "IN"
+              },
+              {
+                "label": "EU AI Act",
+                "value": "High-risk, oversight",
+                "tone": "neutral",
+                "cc": "EU"
+              },
+              {
+                "label": "United States",
+                "value": "No federal rule",
+                "tone": "unfavorable",
+                "cc": "US"
+              },
+              {
+                "label": "China",
+                "value": "State-promoted",
+                "tone": "unfavorable",
+                "cc": "CN"
+              }
+            ],
+            "label": "AI in courts, by jurisdiction"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T04:34:36.369Z",
+    "label": "Algorithmic Justice & the Black Box",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-08-israel-strikes-iran-irgc-missile-response": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "TWO ARMIES, ONE COUNTRY",
+        "body": "Iran runs two parallel militaries. The regular army (Artesh) inherited from the Shah defends borders; the Islamic Revolutionary Guard Corps, founded in 1979 to protect the revolution itself, controls the missile force, the nuclear file, and the proxy network. They have separate command chains, budgets, and even separate navies in the Gulf.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **IRGC** answers to the Supreme Leader, not the elected president — and through firms like *Khatam al-Anbiya* it also controls an industrial empire estimated at a large share of Iran's economy."
+          }
+        ]
+      },
+      {
+        "heading": "FORWARD DEFENSE",
+        "body": "The IRGC's Quds Force projects power through proxies — Hezbollah in Lebanon, militias in Iraq and Syria, the Houthis in Yemen — rather than its own troops. The doctrine, called 'forward defense,' is to fight Iran's wars on someone else's soil so the homeland stays untouched. Direct missile exchanges with Israel break that model: the war is now on Iranian territory."
+      },
+      {
+        "heading": "WHY THE AIR DEFENCES DIE FIRST",
+        "body": "Air forces never bomb the target on the first pass. They run SEAD — Suppression of Enemy Air Defenses — destroying radar and surface-to-air missile batteries so later strikes face an open sky. Hitting 'air defence and missile sites across four cities' is the textbook opening move: blind the enemy, then operate at will. It is the same sequence the US ran over Iraq in 1991 and over Libya in 2011."
+      },
+      {
+        "heading": "THE 1,500-KILOMETER GAP",
+        "body": "Iran and Israel share no border. Roughly 1,500 km of Iraq, Syria, and Jordan sit between Tehran and Tel Aviv, which is why this is a war of ballistic missiles and long-range aircraft, not tanks. Every missile and every jet must cross third countries' airspace — making Iraqi and Jordanian skies an unwilling battlefield each time the two states trade fire.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "IQ",
+              "SY",
+              "JO",
+              "IL"
+            ],
+            "label": "the missile corridor",
+            "caption": "Missiles and aircraft must cross Iraqi and Jordanian airspace",
+            "markers": [
+              {
+                "lat": 35.6892,
+                "lng": 51.389,
+                "label": "Tehran"
+              },
+              {
+                "lat": 32.0853,
+                "lng": 34.7818,
+                "label": "Tel Aviv"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "FROM SHADOW WAR TO OPEN FIRE",
+        "body": "For over a decade the conflict was covert: the Stuxnet cyberweapon wrecked Iran's centrifuges, assassinations killed nuclear scientists, and proxies skirmished. The US drone strike that killed Quds commander Qasem Soleimani in 2020 escalated it; in April 2024 Iran fired missiles directly at Israel for the first time. The shadow war has become a conventional one.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2010",
+                "label": "Stuxnet cripples Natanz centrifuges"
+              },
+              {
+                "year": "2020-01",
+                "label": "Soleimani killed by US strike",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024-04",
+                "label": "Iran's first direct missile strike on Israel"
+              },
+              {
+                "year": "2024-10",
+                "label": "Second direct missile exchange"
+              }
+            ],
+            "label": "the escalation arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHO HOLDS THE MISSILES",
+        "body": "Iran fields the largest ballistic missile arsenal in the Middle East — thousands of them. Crucially, they belong not to the regular army but to the IRGC Aerospace Force, the same branch that runs the space program. Control of the missiles is concentrated in the revolutionary guard precisely because they are the regime's ultimate guarantee of survival.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which branch of Iran's military controls its ballistic missile arsenal?",
+            "options": [
+              "The regular army (Artesh)",
+              "The IRGC Aerospace Force",
+              "The national air force",
+              "A civilian defense ministry"
+            ],
+            "correct": 1,
+            "explanation": "Iran's missiles sit under the IRGC's Aerospace Force, not the regular military — keeping the regime's most strategic weapons inside its most loyal institution."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T04:35:32.151Z",
+    "label": "The IRGC & the Iran–Israel War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-08-microbial-desalination-refinery-sludge-bacterium": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BRINE PROBLEM",
+        "body": "Conventional desalination is a salt-shifting trick, not a salt-removal one: every liter of fresh water leaves behind a liter or more of hypersaline brine, often dumped back to sea where it sinks, deoxygenates, and kills bottom life. The waste, not the water, is the unsolved half of the industry."
+      },
+      {
+        "heading": "HOW THE CELL WORKS",
+        "body": "A microbial desalination cell is a microbial fuel cell with a third chamber. Bacteria on the anode eat organic waste and strip electrons from it; that current pulls salt ions out of the middle chamber and across ion-exchange membranes. The same electron flow that cleans the brine also powers an external circuit — desalination that yields electricity instead of consuming it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Thermal (MSF)",
+                "value": "~15",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Multi-effect",
+                "value": "~10",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Reverse osmosis",
+                "value": "~3.5",
+                "tone": "neutral"
+              },
+              {
+                "label": "Microbial cell",
+                "value": "net positive",
+                "tone": "favorable"
+              }
+            ],
+            "label": "energy to desalinate, by method (kWh/m³)"
+          }
+        ]
+      },
+      {
+        "heading": "THE PLASTIC DIVIDEND",
+        "body": "The bacterium also banks surplus carbon as polyhydroxybutyrate — granules it stores the way an animal stores fat. PHB is a fully biodegradable polyester that mimics polypropylene, so a single organism turns refinery sludge into clean water, current, and a feedstock for compostable plastic.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Unlike petroleum plastics, **polyhydroxybutyrate (PHB)** is synthesized *inside the cell* as an energy reserve and breaks down in soil or seawater within months — no microplastic tail."
+          }
+        ]
+      },
+      {
+        "heading": "WHY OIL REGIONS FIRST",
+        "body": "The feedstock is the catch: the process runs on hydrocarbon-laden refinery brine, the exact waste stream that water-stressed petro-economies produce in volume. The Gulf and Iran sit on both the world's thirstiest cities and its dirtiest produced water — the problem and the fuel arrive in the same pipe.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "IQ",
+              "SA",
+              "AE",
+              "KW"
+            ],
+            "label": "produced-water belt",
+            "markers": [
+              {
+                "lat": 32.6539,
+                "lng": 51.668,
+                "label": "Isfahan refinery"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE QANAT LEGACY",
+        "body": "Isfahan's water anxiety is ancient. For three thousand years the Iranian plateau survived on qanats — gravity-fed tunnels that tap mountain aquifers and carry water for miles underground with zero pumping. The Zayandeh Rud that once fed the city now runs dry for much of the year, which is why brine-to-water schemes get a hearing here that they wouldn't in a wet country."
+      },
+      {
+        "heading": "THE LAB-TO-FIELD GAP",
+        "body": "A 70-78% mineral removal over 15 days is a beaker result. Microbial cells have stalled at scale for two decades because membrane fouling, slow throughput, and tiny current densities make them hard to size up — the reason the researchers named no field-trial date.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Besides desalinating brine, what two byproducts did the refinery bacterium generate?",
+            "options": [
+              "Electricity and a biodegradable plastic precursor",
+              "Hydrogen fuel and table salt",
+              "Ethanol and fertilizer",
+              "Methane and drinking water only"
+            ],
+            "correct": 0,
+            "explanation": "The microbial cell produced an electric current and stored carbon as PHB, a compostable bioplastic feedstock."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T04:36:18.308Z",
+    "label": "Microbial Desalination Cells",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-08-mindanao-7-8-earthquake-tsunami-warning": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHERE MINDANAO SITS",
+        "body": "Eastern Mindanao faces the Philippine Trench, where the Philippine Sea Plate dives beneath the Sunda Plate. The island is wedged between two opposing subduction zones — one off each coast — which is why it absorbs more large quakes than almost any land on Earth.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PH",
+              "ID",
+              "MY"
+            ],
+            "label": "the Mindanao subduction zone",
+            "markers": [
+              {
+                "lat": 6.11,
+                "lng": 125.17,
+                "label": "General Santos"
+              },
+              {
+                "lat": 6.5,
+                "lng": 126.5,
+                "label": "Philippine Trench"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY MEGATHRUSTS ARE THE BIG ONES",
+        "body": "Only subduction-zone faults — where one plate grinds beneath another over a vast locked surface — can store enough strain for magnitude 8+ ruptures. A slip on a small strike-slip fault tops out far lower. Geography decides the ceiling.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Magnitude is *logarithmic*: each whole step is **~32× more energy released**. A 7.8 is not slightly larger than a 6.8 — it is roughly **thirty times** stronger."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE WAVE IS SMALL AT SEA",
+        "body": "A tsunami in deep water may be only tens of centimetres high but stretches for hundreds of kilometres and travels at jet speed — around 700 km/h. It carries enormous energy without breaking until the shallowing coast forces it to pile up into a wall.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How fast does a tsunami travel across the deep open ocean?",
+            "options": [
+              "About 50 km/h",
+              "About 200 km/h",
+              "About 700 km/h (jet speed)",
+              "Near the speed of sound"
+            ],
+            "correct": 2,
+            "explanation": "In deep water a tsunami moves at roughly 700 km/h — which is why a Pacific warning centre must alert distant coasts within minutes, not hours."
+          }
+        ]
+      },
+      {
+        "heading": "THE 18 CENTIMETRE PUZZLE",
+        "body": "Philippine coasts faced 3-metre waves while Indonesia recorded only 18cm. Tsunami height depends on the rupture's orientation, the seafloor shape between source and shore, and distance — energy radiates strongest perpendicular to the fault, so two coasts at similar range can see wildly different waves.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Philippines",
+                "value": "~3 m",
+                "cc": "PH",
+                "tone": "unfavorable",
+                "weight": 300
+              },
+              {
+                "label": "Indonesia",
+                "value": "18 cm",
+                "cc": "ID",
+                "tone": "neutral",
+                "weight": 18
+              }
+            ],
+            "label": "wave height by coast"
+          }
+        ]
+      },
+      {
+        "heading": "THE RING OF FIRE",
+        "body": "Roughly 90% of the world's earthquakes and three-quarters of its active volcanoes ring the Pacific basin, tracing the boundaries where oceanic plates plunge into the mantle. The Philippines, Indonesia, and Japan all sit on this same belt of converging plates."
+      }
+    ],
+    "generatedAt": "2026-06-08T04:36:42.798Z",
+    "label": "Megathrusts & Tsunami Physics",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-08-ogra-pakistan-regulator-pricing-probe": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY A PRICE REGULATOR IS INDEPENDENT",
+        "body": "A fuel regulator sits between a government that wants revenue and consumers who pay at the pump. Make it independent and pricing stays technical; put the state directly in charge and the referee becomes the tax collector. Installing civil servants atop OGRA collapses that distinction."
+      },
+      {
+        "heading": "THE ORDINANCE INSTRUMENT",
+        "body": "Article 89 of Pakistan's constitution lets the president legislate by ordinance when parliament is not in session — valid 120 days, then renewable. Whole swaths of economic policy are run this way, bypassing floor debate. OGRA itself was created by ordinance in 2002; now an ordinance is being used to capture it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "An ordinance under **Article 89** carries the full force of law the moment it is signed — which is why budget week, with parliament about to convene, is the narrow window in which it can be challenged."
+          }
+        ]
+      },
+      {
+        "heading": "THE REAL PRIZE: THE PETROLEUM LEVY",
+        "body": "Who controls fuel pricing controls a fiscal lever. The Petroleum Development Levy is a fixed per-litre charge that, unlike a sales tax, sits outside the federal-provincial revenue-sharing pool — so Islamabad keeps every rupee. Under successive IMF programs it has been ratcheted up to plug the federal deficit.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A general sales tax on fuel would flow into the **divisible pool** shared with the provinces. The *Petroleum Development Levy* does not — making it the federal government's favorite way to tax fuel without sharing the proceeds."
+          }
+        ]
+      },
+      {
+        "heading": "IMPORT-PARITY PRICING",
+        "body": "Pakistan imports most of its refined fuel, priced in dollars. That means pump prices track the rupee as much as they track crude — when the currency weakens, the import bill rises regardless of what any regulator decides. Pricing 'fraud' allegations land on top of a number the exchange rate is already moving.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377,
+              278.485848,
+              278.494701,
+              278.137253,
+              277.408487,
+              278.412506,
+              278.512908,
+              278.575,
+              277.445439,
+              278.55,
+              278.55,
+              278.494021,
+              278.3,
+              278.45,
+              278.61849,
+              278.35,
+              278.5,
+              278.5,
+              278.440126
+            ],
+            "periods": [
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "REGULATORY CAPTURE, INVERTED",
+        "body": "George Stigler's classic 1971 theory of regulation described how industries capture the agencies meant to oversee them. Pakistan's case runs the other way: it is the state capturing its own regulator — not to soften enforcement, but to control the revenue spigot directly.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Islamabad prefer a petroleum levy over a sales tax on fuel?",
+            "options": [
+              "The levy bypasses the provincial revenue-sharing formula",
+              "The levy is cheaper to collect",
+              "Consumers don't notice the levy",
+              "The IMF forbids fuel sales taxes"
+            ],
+            "correct": 0,
+            "explanation": "Sales tax flows into the divisible pool shared with provinces; the levy stays entirely with the federal government."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-08"
+    ],
+    "generatedAt": "2026-06-08T04:37:33.353Z",
+    "label": "OGRA & Pakistan's Fuel Price Machine",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-08-reinforcement-learning-habit-formation-model": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A HABIT IS, COMPUTATIONALLY",
+        "body": "To a reinforcement-learning theorist, a habit is not a psychological quirk but an algorithm: an action chosen because it paid off before, without re-evaluating whether it still makes sense. The behavior runs on cached value, not on a fresh calculation of consequences."
+      },
+      {
+        "heading": "THE TWO-SYSTEM ORTHODOXY",
+        "body": "The dominant account splits the brain into two learners. A model-free system stamps in whatever worked, blindly and cheaply. A model-based system builds an internal map of the world and plans against it. Habits were assigned to the first, deliberate goals to the second.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Model-free",
+                "value": "cached, fast",
+                "tone": "neutral"
+              },
+              {
+                "label": "Model-based",
+                "value": "planned, slow",
+                "tone": "favorable"
+              }
+            ],
+            "label": "the two learners"
+          }
+        ]
+      },
+      {
+        "heading": "THE TEST THAT SEPARATES THEM",
+        "body": "Psychologists tell the systems apart with devaluation: train an animal to press for food, then make the food worthless. A goal-directed actor stops pressing; a habitual one keeps going because it never consulted the goal. This single experiment is what the two-system theory was built to explain.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "After a food reward is made worthless, what does a purely habitual response do?",
+            "options": [
+              "Stops immediately, since the goal is gone",
+              "Keeps going, because it never checks the goal",
+              "Speeds up to compensate"
+            ],
+            "correct": 1,
+            "explanation": "A habit runs on cached value, so it persists even when the outcome it once chased no longer has any worth — the signature of model-free control."
+          }
+        ]
+      },
+      {
+        "heading": "THE DOPAMINE SIGNAL",
+        "body": "What makes RL a brain theory and not just a math one is dopamine. In the 1990s, Wolfram Schultz found dopamine neurons fire not for reward itself but for reward that was better than expected — a near-exact biological match for the reward prediction error at the heart of model-free learning.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The quantity dopamine appears to encode is the *reward prediction error* — the gap between what was expected and what arrived. Reward fully predicted produces **no** dopamine burst; only surprise moves the signal."
+          }
+        ]
+      },
+      {
+        "heading": "THE OLDER ROOTS",
+        "body": "The vocabulary predates neuroscience by a century. Thorndike's 1898 law of effect — acts followed by satisfaction are repeated — is model-free learning in plain English, and Pavlov's conditioned dog is the same loop with a bell. The new model collapses both classical and instrumental conditioning into one mechanism."
+      },
+      {
+        "heading": "WHY ONE SYSTEM IS THE BIGGER CLAIM",
+        "body": "Reproducing two behaviors with one mechanism is an argument from parsimony: the simpler model that fits the data is preferred until the data forces complexity back in. The catch is the unfinished test — a single system that matches today's experiments may still break on the wider conditioning record."
+      }
+    ],
+    "generatedAt": "2026-06-08T04:38:00.276Z",
+    "label": "Reinforcement Learning & Habits",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-08-trump-peace-deal-israel-iran-strikes-leverage": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY 'I CALL THE SHOTS' RINGS HOLLOW",
+        "body": "The US gives Israel roughly $3.8bn in military aid every year under a 10-year Memorandum of Understanding signed in 2016 — but the money is committed by treaty, not dispensed conditionally month to month. Washington's real-time leverage is far weaker than the headline number suggests, because the aid cannot be switched off without breaking a standing agreement Congress backs.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Israel",
+                "value": "$3.8bn",
+                "cc": "IL",
+                "weight": 3.8
+              },
+              {
+                "label": "Egypt",
+                "value": "$1.3bn",
+                "cc": "EG",
+                "weight": 1.3
+              },
+              {
+                "label": "Jordan",
+                "value": "$1.5bn",
+                "cc": "JO",
+                "weight": 1.5
+              },
+              {
+                "label": "Iraq",
+                "value": "$0.25bn",
+                "cc": "IQ",
+                "weight": 0.25
+              }
+            ],
+            "label": "US military aid, annual ($bn)"
+          }
+        ]
+      },
+      {
+        "heading": "THE RING OF BASES",
+        "body": "Iran is encircled by US installations: Al Udeid in Qatar (CENTCOM's forward headquarters), Al Dhafra in the UAE, the Fifth Fleet at Bahrain, and Ain al-Asad in Iraq. When Tehran says US bases are 'legitimate targets,' it is pointing at a dense ring of facilities all within missile range of Iranian soil.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "IQ",
+              "QA",
+              "AE",
+              "BH",
+              "KW"
+            ],
+            "label": "US footprint around Iran",
+            "markers": [
+              {
+                "lat": 25.117,
+                "lng": 51.315,
+                "label": "Al Udeid (Qatar)"
+              },
+              {
+                "lat": 24.25,
+                "lng": 54.547,
+                "label": "Al Dhafra (UAE)"
+              },
+              {
+                "lat": 26.21,
+                "lng": 50.61,
+                "label": "5th Fleet, Bahrain"
+              },
+              {
+                "lat": 33.785,
+                "lng": 42.441,
+                "label": "Ain al-Asad (Iraq)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "FORWARD DEFENSE",
+        "body": "Iran's doctrine is to fight at distance — through proxies and long-range fires that keep the war off its own territory. Threatening US bases is the same logic aimed at a different adversary: raise the cost of escalation by putting thousands of American personnel inside the blast radius before a single Iranian city is touched.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine is sometimes called *forward defense*: Iran absorbs little risk at home by holding the region's **US garrisons and shipping lanes** hostage instead."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MISSILES MOVE OIL",
+        "body": "Brent broke $95 not because barrels stopped flowing but because traders price the tail risk to the Strait of Hormuz, through which roughly a fifth of the world's oil passes. The market reprices on the probability of closure, weeks before any physical disruption — war-risk insurance premiums, not blocked tankers, are what tighten the chokepoint first.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What typically closes a shipping lane during a Gulf crisis before any vessel is actually hit?",
+            "options": [
+              "A naval blockade of the strait",
+              "A spike in war-risk insurance premiums",
+              "An OPEC production cut",
+              "A formal UN Security Council order"
+            ],
+            "correct": 1,
+            "explanation": "Once Lloyd's war-risk premiums spike, commercial vessels reroute on their own — the financial chokepoint tightens faster than the physical one."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ISRAEL HITS BEIRUT",
+        "body": "Israeli strikes on Beirut almost always mean the Dahiyeh — the dense southern suburbs that are Hezbollah's political and command heartland, not the city center. The targeting reaches back to 2006, when Hezbollah fought Israeli ground forces to a standstill at Bint Jbeil and turned the Dahiyeh into the symbol of a war Israel could not cleanly win.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Donald Trump",
+                "role": "US President",
+                "years": "2025–",
+                "cc": "US"
+              },
+              {
+                "name": "Benjamin Netanyahu",
+                "role": "Israeli Prime Minister",
+                "years": "2022–",
+                "cc": "IL"
+              }
+            ],
+            "label": "the two leaders defying each other"
+          }
+        ]
+      },
+      {
+        "heading": "THE SAFE-HAVEN BID",
+        "body": "When a regional war scare hits, capital runs to gold faster than to any currency — it carries no counterparty, no sanctions exposure, and no central bank that can inflate it away. A spike in bullion is the market's fever chart for geopolitical fear, moving in lockstep with the same headlines that lift crude.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4711.53,
+              4692.03,
+              4753.28,
+              4711.77,
+              4685.25,
+              4650.57,
+              4540.65,
+              4535.45,
+              4535.69,
+              4575.14,
+              4491.98,
+              4536.19,
+              4525.24,
+              4494.01,
+              4522,
+              4563.72,
+              4547.87,
+              4516.99,
+              4441.32,
+              4477.7,
+              4529.52,
+              4516.92,
+              4529.81,
+              4475.04,
+              4462.11,
+              4449.62,
+              4453.49,
+              4319.76,
+              4296.28,
+              4331.89,
+              4309.81
+            ],
+            "periods": [
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 8"
+            ],
+            "label": "Gold (PAX Gold)",
+            "unit": "$/oz",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · PAXG (gold-backed) · as of 2026-06-08"
+    ],
+    "generatedAt": "2026-06-08T04:38:43.694Z",
+    "label": "US Leverage, Iran's Reach",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-08-ultrasound-forceps-delivery-maternal-outcomes": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SECRET INSTRUMENT",
+        "body": "Obstetric forceps were invented around 1600 by Peter Chamberlen, a Huguenot physician in London. His family kept the design a trade secret for roughly a century — arriving at births with the instrument in a locked, ornate box, blindfolding the mother so no rival could copy the mechanism. Countless infants died in difficult labors during the decades the device was hoarded for profit.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1600",
+                "label": "Chamberlen invents forceps",
+                "emphasis": "start"
+              },
+              {
+                "year": "1733",
+                "label": "Chapman publishes the design",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1848",
+                "label": "Simpson's modern blade"
+              },
+              {
+                "year": "1954",
+                "label": "Malmström vacuum extractor"
+              },
+              {
+                "year": "2000",
+                "label": "C-section overtakes instruments"
+              }
+            ],
+            "label": "from secret to obsolescence"
+          }
+        ]
+      },
+      {
+        "heading": "WHY POSITION IS EVERYTHING",
+        "body": "Forceps must be placed against a precisely-located fetal skull, gripping the cheekbones and avoiding the eyes, ears, and facial nerve. The single most important input is the head's rotation — which way the baby is facing. Misjudge it and the blades land wrong.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Babies usually descend *occiput anterior* — face toward the mother's spine. A baby turned the other way, *occiput posterior*, is far harder to deliver and the danger zone for forceps injury."
+          }
+        ]
+      },
+      {
+        "heading": "THE DIGITAL-EXAM BLIND SPOT",
+        "body": "Traditionally the obstetrician determines head position by feel — fingers reading the skull's suture lines through the cervix during contractions. Studies repeatedly show this manual judgment is wrong a large fraction of the time, especially late in labor when the scalp swells. Ultrasound simply removes the guesswork.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How often does a manual (digital) exam misjudge the fetal head's position compared with ultrasound?",
+            "options": [
+              "Almost never — under 5%",
+              "Roughly 1 in 5 to 1 in 3 cases",
+              "About half the time, always",
+              "Only when twins are present"
+            ],
+            "correct": 1,
+            "explanation": "Multiple trials find digital examination disagrees with ultrasound on rotation in 20–35% of cases — which is exactly the error a pre-forceps scan corrects."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT GOES WRONG",
+        "body": "When blades grip a misjudged head, the injuries are mechanical and specific: facial nerve palsy, skull and scalp trauma, and bleeding between the skull and its covering membranes. On the mother's side, the force tears perineal tissue, including the deep third- and fourth-degree lacerations that cause lasting incontinence."
+      },
+      {
+        "heading": "WHY POORER SETTINGS STILL REACH FOR FORCEPS",
+        "body": "A cesarean needs an operating theatre, anaesthesia, and a surgical team; a forceps delivery needs a trained pair of hands and two steel blades. In hospitals without reliable surgery, instrumental delivery remains a life-saving alternative to an obstructed labor — which is precisely why the question of whether a scan helps when imaging itself is scarce stays unresolved."
+      }
+    ],
+    "generatedAt": "2026-06-08T04:39:20.466Z",
+    "label": "Forceps & Fetal Position",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-08-up-police-encounter-killing-extrajudicial": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EUPHEMISM",
+        "body": "An \"encounter\" is the standard South Asian term for a police killing dressed as self-defense: the official story is always that the suspect fired first and police returned fire. The word launders an execution into a shootout, and the dead man can never contradict it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The grammar gives it away — Indian English uses *encounter* as a transitive verb. To say a man was *\"encountered\"* is to say, without ever saying it, that the state killed him."
+          }
+        ]
+      },
+      {
+        "heading": "THE ENCOUNTER RAJ",
+        "body": "Uttar Pradesh — India's largest state, ~240 million people — made encounters a declared policy after 2017. The government openly publicized thousands of \"encounters\" and well over a hundred killings as a law-and-order achievement, turning what is legally a homicide into a campaign promise."
+      },
+      {
+        "heading": "THE LAW THAT WAS IGNORED",
+        "body": "India's Supreme Court ruled in 2014 (PUCL v. Maharashtra) that every encounter death triggers a mandatory FIR, an independent investigation by a different unit, and a magisterial inquiry. A force investigating its own shooting is precisely what the ruling forbids — which is why the absence of an independent inquiry here is the violation, not a detail.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "After a police encounter killing in India, what does the Supreme Court's 2014 ruling require?",
+            "options": [
+              "Nothing, if the suspect had pending cases",
+              "An independent investigation by a separate unit plus a magisterial inquiry",
+              "Only an internal departmental review",
+              "Approval from the state chief minister"
+            ],
+            "correct": 1,
+            "explanation": "PUCL v. Maharashtra (2014) mandates an FIR, investigation by an independent agency, and a magisterial inquiry into every encounter death."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE BOUNTY MATTERS",
+        "body": "A wanted man with 40 cases and a cash bounty is the ideal encounter target: his record pre-justifies the killing in the public eye. But \"wanted\" is an accusation, not a conviction — the trials that would test those 40 cases now never happen, and the presumption of innocence dies with him."
+      },
+      {
+        "heading": "THE MUMBAI BLUEPRINT",
+        "body": "The technique was perfected in 1990s Mumbai, where a handful of officers known as \"encounter specialists\" killed scores of alleged gangsters with celebrity status and film deals. One, Daya Nayak, was later himself charged; the model showed how extrajudicial killing becomes a career path inside a police force."
+      },
+      {
+        "heading": "WHY AYODHYA",
+        "body": "Ayodhya is the flashpoint of modern Indian communal politics: the 1992 demolition of the Babri Masjid by Hindu nationalist crowds triggered riots that killed thousands, and a 2019 Supreme Court verdict handed the contested site to Hindu petitioners, clearing the way for the Ram Mandir. Aggressive policing in this region carries a charge that the same act elsewhere would not.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1992",
+                "label": "Babri Masjid demolished",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2002",
+                "label": "Gujarat riots follow Godhra"
+              },
+              {
+                "year": "2019",
+                "label": "Supreme Court awards site to Hindu side"
+              },
+              {
+                "year": "2024",
+                "label": "Ram Mandir consecrated"
+              }
+            ],
+            "label": "the Ayodhya dispute"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-08T04:39:57.541Z",
+    "label": "Encounter Killings in India",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-08-xi-north-korea-visit-economic-patronage": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BUFFER STATE",
+        "body": "China does not keep North Korea alive out of ideological affection — it keeps it alive as a buffer. A collapsed North means a unified, US-allied Korea with American troops on the Yalu River, China's own border. Mao sent a million 'volunteers' to prevent exactly that outcome in 1950; the calculus has not changed.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "KP",
+              "KR",
+              "RU",
+              "JP"
+            ],
+            "label": "the buffer logic",
+            "caption": "A US-allied unified Korea would put American forces on China's border."
+          }
+        ]
+      },
+      {
+        "heading": "THE LIFELINE",
+        "body": "North Korea is not just a Chinese ally; it is a Chinese dependency. Roughly 90% of its external trade runs through China — fuel, food, machinery. Beijing can throttle the regime by closing a single bridge at Dandong, which is why its leverage is real even when Pyongyang ignores its advice.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of North Korea's external trade passes through China?",
+            "options": [
+              "About a quarter",
+              "About half",
+              "About 90%",
+              "Under 10% — it is heavily sanctioned"
+            ],
+            "correct": 2,
+            "explanation": "Sanctions cut North Korea off from most of the world, which concentrated nearly all its remaining trade — around 90% — through China."
+          }
+        ]
+      },
+      {
+        "heading": "SEVEN YEARS OF DRIFT",
+        "body": "The relationship runs hot and cold. It warmed during the 2018–19 summit season, then cooled as Kim found a richer patron in Moscow. Xi's gap since his last visit is itself the story — a seven-year absence is a diplomatic statement.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1950",
+                "label": "China enters Korean War",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1961",
+                "label": "Treaty of Friendship signed"
+              },
+              {
+                "year": "1992",
+                "label": "China normalizes ties with Seoul"
+              },
+              {
+                "year": "2019",
+                "label": "Xi's last Pyongyang visit"
+              },
+              {
+                "year": "2024",
+                "label": "Kim signs mutual-defense pact with Russia"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1950",
+                "to": "1953",
+                "label": "Korean War",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "the alliance arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1961 TREATY",
+        "body": "The Sino–North Korean Treaty of Friendship still binds the two states, including a clause committing each to military aid if the other is attacked. It is the only mutual-defense treaty China maintains with any country — a measure of how exceptional Pyongyang is in Beijing's foreign policy.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "China has formal alliances with exactly *one* state on Earth, and it is **North Korea** — Beijing otherwise prides itself on a doctrine of non-alignment."
+          }
+        ]
+      },
+      {
+        "heading": "PLAYING THE PATRONS",
+        "body": "Kim's leverage is that he now has two great-power sponsors who distrust each other. By sending munitions and labor to Russia's war, he earned fuel, food, and possibly missile technology — and reminded Beijing that its monopoly on his survival is gone. Xi arrives to reclaim ground lost to Moscow.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Xi Jinping",
+                "role": "Chinese paramount leader",
+                "years": "2012–",
+                "cc": "CN"
+              },
+              {
+                "name": "Kim Jong Un",
+                "role": "North Korean leader",
+                "years": "2011–",
+                "cc": "KP"
+              },
+              {
+                "name": "Vladimir Putin",
+                "role": "Russian president",
+                "years": "2000–",
+                "cc": "RU"
+              }
+            ],
+            "label": "the triangle"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DENUCLEARIZATION IS OFF THE TABLE",
+        "body": "China will not press Kim to give up the bomb, because a stable nuclear neighbor frightens Beijing far less than a collapsing one. Disarmament talks risk destabilizing the regime; a regime that implodes sends refugees north and a rival army to the border. Beijing prefers the devil it arms."
+      }
+    ],
+    "generatedAt": "2026-06-08T04:40:48.259Z",
+    "label": "China & North Korea's Patronage",
+    "category": "economy",
+    "articleCount": 1
   }
 }
