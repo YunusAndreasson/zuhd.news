@@ -333100,5 +333100,1691 @@
     "label": "Ladakh's Logistics Frontier",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-08-ai-scaling-slowing-down-capex-mismatch": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE POWER LAW",
+        "body": "The whole buildout rests on one empirical finding: a model's prediction error falls as a power of compute, data, and parameters — a smooth line on a log-log plot, first pinned down by OpenAI in 2020. The catch is in the word 'power': the exponent is tiny, so each increment of capability costs exponentially more compute than the last. Diminishing returns aren't a surprise; they're the equation."
+      },
+      {
+        "heading": "THE CHINCHILLA TURN",
+        "body": "In 2022 DeepMind showed the field had been building wrong — models were oversized and undertrained. Compute-optimal training pairs roughly 20 tokens of data with every parameter. The implication that haunts the current scare: past a point you can't fix a model by making it bigger, only by feeding it more high-quality data — and data is the scarcer input.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The result is called **Chinchilla scaling**, after the small model that beat a far larger one (Gopher) by training on *more data instead of more parameters*."
+          }
+        ]
+      },
+      {
+        "heading": "THE DATA WALL",
+        "body": "Compute can be bought; tokens cannot be manufactured at will. The supply of high-quality human text on the open web is finite and growing far slower than cluster size. Once a model has effectively read everything, the cheapest scaling lever — just add data — runs dry, and synthetic data risks feeding the model its own errors."
+      },
+      {
+        "heading": "THE DEPRECIATION TRAP",
+        "body": "A data center is not a bridge that lasts a century. The GPUs inside it are obsolete in three to five years and must be paid off before the next generation lands. That short clock is why the buildout is so dangerous: the hardware has to generate its return almost immediately, or it depreciates into a loss before the revenue arrives.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Amazon",
+                "value": "~$100bn",
+                "weight": 100,
+                "cc": "US"
+              },
+              {
+                "label": "Microsoft",
+                "value": "~$80bn",
+                "weight": 80,
+                "cc": "US"
+              },
+              {
+                "label": "Google",
+                "value": "~$75bn",
+                "weight": 75,
+                "cc": "US"
+              },
+              {
+                "label": "Meta",
+                "value": "~$65bn",
+                "weight": 65,
+                "cc": "US"
+              }
+            ],
+            "label": "annual AI capex, big four (2025 est.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE MARKET'S WAGER",
+        "body": "The valuations of the hyperscalers already price in the growth the analyst doubts. Their share prices carry the assumption that the capex converts into durable revenue; if scaling stalls, the gap between the spend and the earnings becomes a stranded asset on a trillion-dollar scale.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              24965.01,
+              24533.58,
+              24380.73,
+              24655.34,
+              24780.42,
+              24425.09,
+              24355.28,
+              23898.15,
+              24188.59,
+              24002.45,
+              24162.98,
+              23586.99,
+              23132.77,
+              22953.38,
+              23740.19,
+              24019.99,
+              24045.53,
+              24192.17,
+              24202.37,
+              24903.17,
+              25082.09,
+              25116.34,
+              25383.72,
+              25842,
+              26204.58,
+              26333,
+              26672.43,
+              26590.34,
+              26479.47,
+              26937.27,
+              26782.62,
+              27303.67,
+              27305.68,
+              27029.01,
+              27186.99,
+              27452.12,
+              27710.36,
+              27651.82,
+              28015.06,
+              28599.17,
+              28563.95,
+              29234.99,
+              29320.66,
+              29064.8,
+              29366.94,
+              29580.3,
+              29125.2,
+              28994.37,
+              28818.84,
+              29297.7,
+              29357.27,
+              29481.64,
+              30001.32,
+              29973.57,
+              30223.89,
+              30333.18,
+              30513.86,
+              30660.6,
+              30571.24,
+              30407.81,
+              28957.6,
+              29414.26
+            ],
+            "periods": [
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 8"
+            ],
+            "label": "NASDAQ-100",
+            "unit": "index",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE OVERBUILD PRECEDENT",
+        "body": "Capital chasing a real technology routinely overshoots the demand. Telecom firms laid millions of miles of fiber around 2000 on forecasts of infinite internet traffic; most sat dark for years and the companies that financed it went bankrupt. The technology was genuine and transformative — that did not save the investors who paid for the capacity too early.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under neural scaling laws, what does each further gain in model capability require?",
+            "options": [
+              "Exponentially more compute than the last gain",
+              "Roughly the same compute each time",
+              "Less compute, as architectures get efficient",
+              "Only more parameters, not more data"
+            ],
+            "correct": 0,
+            "explanation": "Loss falls as a power of compute with a small exponent, so equal capability gains demand ever-larger compute — the diminishing return is built into the math."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · NASDAQ · as of 2026-06-08"
+    ],
+    "generatedAt": "2026-06-09T08:24:13.728Z",
+    "label": "Neural Scaling Laws & the Capex Bet",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-08-endometriosis-systemic-disease-microbiome-inflammation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE DISEASE ACTUALLY IS",
+        "body": "Endometriosis is tissue resembling the uterine lining growing where it shouldn't — on ovaries, bowel, the pelvic wall, occasionally the diaphragm or lung. That tissue still responds to the menstrual cycle: it thickens and bleeds with nowhere to drain, scarring whatever it touches. The leading explanation, retrograde menstruation, is over a century old and still incomplete — it can't explain lesions found far from the pelvis."
+      },
+      {
+        "heading": "WHY 'GYNAECOLOGICAL' WAS THE TRAP",
+        "body": "Classifying a disease by the organ where it's most visible decides which specialist sees it, which trials get funded, and which drugs are developed. Filing endometriosis under gynaecology meant treatment aimed at suppressing the menstrual cycle — hormones and surgery — while the body-wide inflammation it drives went unmonitored. The reframing as systemic is less a discovery about the body than a correction of where medicine was looking.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The genetic signal here is *pleiotropy* — single genes that influence multiple, seemingly unrelated traits at once. The 314 genes don't *cause* heart disease *through* endometriosis; they shape an inflammatory predisposition that surfaces as **both**."
+          }
+        ]
+      },
+      {
+        "heading": "HOW A MILLION-WOMAN STUDY FINDS GENES",
+        "body": "This is a genome-wide association study: scan the DNA of huge populations, flag the genetic variants statistically more common in people with the condition. No single variant 'is' endometriosis — each nudges risk slightly, and only at the scale of hundreds of thousands of genomes does the signal separate from noise. That's why sample size is the whole game, and why the field only now reaches a million participants."
+      },
+      {
+        "heading": "THE INFLAMMATION BRIDGE",
+        "body": "Lesions release cytokines and recruit immune cells, producing a low-grade inflammatory state that never fully resolves. Chronic systemic inflammation is also a recognised driver of atherosclerosis — it damages vessel linings and accelerates plaque. That shared mechanism is the plausible biological bridge between a pelvic disease and elevated cardiovascular risk."
+      },
+      {
+        "heading": "THE ANCESTRY BLIND SPOT",
+        "body": "For most of its history, human genomics has run on overwhelmingly European-ancestry samples. Risk scores built on that data predict poorly in everyone else, so 'first genes found in people of African ancestry' is a genuine milestone, not a footnote — it widens who a future test or drug will actually work for.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "European",
+                "value": "~86%",
+                "tone": "unfavorable",
+                "weight": 86
+              },
+              {
+                "label": "East Asian",
+                "value": "~6%",
+                "tone": "neutral",
+                "weight": 6
+              },
+              {
+                "label": "African",
+                "value": "~2%",
+                "tone": "favorable",
+                "weight": 2
+              },
+              {
+                "label": "Hispanic",
+                "value": "~1%",
+                "tone": "favorable",
+                "weight": 1
+              }
+            ],
+            "label": "ancestry of GWAS participants (global, approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE DIAGNOSTIC DELAY",
+        "body": "Endometriosis is one of the most under-diagnosed common diseases in medicine. Definitive confirmation has historically required laparoscopic surgery, and 'painful periods' are easily normalised, so symptoms are routinely dismissed for years before anyone looks. A genetic or blood-based signal matters partly because it could break that delay.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "On average, how long from first symptoms to an endometriosis diagnosis?",
+            "options": [
+              "Under 1 year",
+              "About 3 years",
+              "Roughly 7–10 years",
+              "Over 20 years"
+            ],
+            "correct": 2,
+            "explanation": "Studies across countries consistently find a 7–10 year average delay, driven by surgical confirmation and the normalising of menstrual pain."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T08:24:52.418Z",
+    "label": "Endometriosis as Systemic Disease",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-08-kazakhstan-stray-animal-euthanasia-reform-debate": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY KILLING DOESN'T REDUCE THE COUNT",
+        "body": "Mass culling almost never shrinks a stray population for long. Removing dogs frees up the food and shelter they were using; survivors breed faster and dogs from surrounding areas move in to fill the gap. Within a year or two the population rebounds to where it started. Ecologists call this the vacuum effect, and it is why catch-and-kill has failed everywhere it has been tried at scale.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does mass culling usually fail to reduce a stray dog population?",
+            "options": [
+              "Survivors breed faster and new dogs move in to fill the freed-up resources",
+              "Killing methods can't keep pace with the birth rate",
+              "Strays migrate across borders to escape",
+              "Public protest shuts the programs down"
+            ],
+            "correct": 0,
+            "explanation": "The vacuum effect: culling frees food and territory, so survivors and immigrants breed back up to the same carrying capacity."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT ACTUALLY SETS THE NUMBER",
+        "body": "A stray population's size is set not by how many dogs you remove but by how much food the environment offers — open garbage, butcher waste, unsecured bins. The dogs are a symptom of available calories. Cities that closed their waste streams cut stray numbers more durably than any culling drive.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **carrying capacity** — the population a habitat can feed. Cull below it and the survivors simply out-breed the gap; the only lasting lever is shrinking the food supply itself."
+          }
+        ]
+      },
+      {
+        "heading": "THE RABIES MATH",
+        "body": "Culling is usually justified as rabies control, but the disease math points the other way. The WHO and WOAH position is that vaccinating roughly 70% of the dog population breaks rabies transmission through herd immunity — and that killing dogs is ineffective, because the vacuum effect refills the population with unvaccinated animals.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The threshold is the whole game: vaccinate **~70%** of dogs and rabies can't sustain a chain of transmission. Bali eliminated its 2008 rabies outbreak with mass vaccination *after* a culling campaign of tens of thousands of dogs had failed to stop it."
+          }
+        ]
+      },
+      {
+        "heading": "THE BITE PARADOX",
+        "body": "Strays are not the main biters. Free-roaming dogs are skittish and avoid humans; the dogs that bite are overwhelmingly owned — chained, territorial, or provoked animals in homes and yards. Critics in Almaty cite owned pets behind 90% of bites, which means a stray-focused euthanasia law targets the wrong population entirely.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Owned pets",
+                "value": "~90%",
+                "tone": "unfavorable",
+                "weight": 90
+              },
+              {
+                "label": "Strays",
+                "value": "~10%",
+                "tone": "neutral",
+                "weight": 10
+              }
+            ],
+            "label": "Almaty dog bites, by source"
+          }
+        ]
+      },
+      {
+        "heading": "THE PROVEN ALTERNATIVE",
+        "body": "The model welfare groups push is catch, sterilise, vaccinate, return the same dog to its territory. A sterilised dog still occupies its patch — blocking newcomers — but produces no litters, so the population falls through attrition while herd immunity to rabies rises. It is slower than killing and far harder to fund, which is why governments under public pressure keep reaching for the cull.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The method is abbreviated **CNVR** (catch–neuter–vaccinate–return) or **TNR** for cats. The returned animal is the point: it holds the territory sterile rather than leaving a vacuum for a fertile newcomer to claim."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T08:25:46.643Z",
+    "label": "Stray Dog Population Control",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-09-gsk-nuvalent-10-6bn-lung-cancer-takeover": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PATENT CLIFF",
+        "body": "A drug patent runs ~20 years from filing, but the clock starts long before approval — so the real market exclusivity is often 10-12 years. When it expires, generic or biosimilar makers enter and revenue can fall 80-90% within a year. The entire pharma business model is a race to replace each blockbuster before its cliff arrives.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "GSK's exposure is concentrated: its HIV franchise built on *dolutegravir* faces loss of exclusivity around **2028**. A single molecule going off-patent can erase a double-digit share of total revenue."
+          }
+        ]
+      },
+      {
+        "heading": "BUY VERSUS BUILD",
+        "body": "Bringing a drug from lab to market takes 10-15 years and most candidates fail in trials. Big pharma increasingly treats biotechs as an outsourced R&D pipeline: let small firms absorb the early scientific risk, then acquire the survivors once human data de-risks them. GSK's own admission — acquisition is 'faster than internal development' — is the whole logic of the industry stated plainly."
+      },
+      {
+        "heading": "WHY ONCOLOGY",
+        "body": "Cancer drugs command annual per-patient prices of $100,000-$200,000, win accelerated regulatory pathways, and meet less insurer resistance than drugs for chronic conditions. That pricing power is why oncology absorbs a disproportionate share of pharma acquisition dollars — a single approved targeted therapy can justify a multibillion-dollar buyout.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Oncology",
+                "value": "~$150k",
+                "tone": "unfavorable",
+                "weight": 150
+              },
+              {
+                "label": "Autoimmune",
+                "value": "~$60k",
+                "tone": "neutral",
+                "weight": 60
+              },
+              {
+                "label": "HIV",
+                "value": "~$30k",
+                "tone": "neutral",
+                "weight": 30
+              },
+              {
+                "label": "Diabetes",
+                "value": "~$5k",
+                "tone": "favorable",
+                "weight": 5
+              },
+              {
+                "label": "Antibiotics",
+                "value": "~$2k",
+                "tone": "favorable",
+                "weight": 2
+              }
+            ],
+            "label": "approx. annual per-patient cost by drug class"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT NUVALENT ACTUALLY MAKES",
+        "body": "The value isn't 'lung cancer' broadly — it's precision inhibitors aimed at tumors driven by specific gene fusions like ALK and ROS1. First-generation drugs in this class work, then tumors mutate around them; the prize is a next-generation molecule that also penetrates the brain, where these cancers frequently spread. A drug that beats resistance is what justifies a 40% premium.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "These are *targeted therapies*, not chemotherapy: they only help the minority of patients whose tumor carries the matching mutation — but in that subgroup the response can be dramatic, which is exactly what speeds an **FDA** approval."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSATLANTIC SHAPE",
+        "body": "A London-headquartered pharma buying a US biotech to be judged by the US FDA is the standard geometry of the industry: the science and the capital are British, but the decisive regulatory verdict — and the largest single drug market on earth — sits in Washington.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB",
+              "US"
+            ],
+            "label": "where the deal lives"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE FDA RULING IS THE PIVOT",
+        "body": "GSK is paying ahead of two pending FDA decisions this year. An approval converts a pipeline asset into a revenue-generating product overnight; a rejection or delay strands billions. Acquirers routinely buy before the verdict precisely to capture the upside before the price reprices on approval.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do cancer drugs command higher prices than drugs for chronic diseases like diabetes?",
+            "options": [
+              "They are cheaper to manufacture",
+              "Accelerated approval, dire need, and weak insurer pushback",
+              "Cancer affects more people than diabetes",
+              "Generics are banned for oncology drugs"
+            ],
+            "correct": 1,
+            "explanation": "Life-or-death urgency, faster regulatory pathways, and limited insurer resistance let oncology drugs sustain $100k+ annual pricing."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T08:26:27.020Z",
+    "label": "Patent Cliffs & Oncology M&A",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-09-india-pakistan-un-fitna-al-hindustan-label": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WORD ITSELF",
+        "body": "'Fitna' is not a neutral term for militancy. In the Quran it denotes trial, temptation, and civil strife — the tearing-apart of the community into discord, treated by classical jurists as among the gravest of evils. By naming the militants 'Fitna al-Hindustan,' Pakistan frames them not as a mere security threat but as agents of religiously-coded sedition.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The root of *fitna* originally meant assaying gold by fire — testing metal for purity. The Quranic usage keeps that sense: a trial that separates the genuine from the false."
+          }
+        ]
+      },
+      {
+        "heading": "THE MIRROR",
+        "body": "For decades India has pressed the Security Council to brand Pakistan-based groups — Lashkar-e-Taiba, Jaish-e-Mohammed — as terrorists. Pakistan's new label inverts the move, alleging Indian sponsorship of Baloch separatists and the Pakistani Taliban. Each state now arrives at the UN with the other's proxies pre-labeled, and the council becomes a venue for the rivalry rather than a referee of it."
+      },
+      {
+        "heading": "THE 1267 MACHINERY",
+        "body": "UN terrorist designations run through the 1267 Sanctions Committee, which acts only by consensus — meaning any single permanent member can freeze a listing indefinitely with a quiet 'technical hold,' no veto vote required. This is why a designation is as much a diplomatic contest as a factual one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which permanent Security Council member repeatedly used 'technical holds' to block listing Pakistan-based militant leaders?",
+            "options": [
+              "China",
+              "Russia",
+              "United States",
+              "France"
+            ],
+            "correct": 0,
+            "explanation": "China shielded Jaish-e-Mohammed's Masood Azhar from a UN listing for roughly a decade, relenting only in 2019."
+          }
+        ]
+      },
+      {
+        "heading": "THE DURAND LINE",
+        "body": "Pakistan's airstrikes inside Afghanistan target Pakistani Taliban (TTP) fighters sheltering across the border. That border — the Durand Line, drawn by a British colonial official in 1893 to split the Pashtun belt — has never been recognized by any Afghan government, Taliban or otherwise. The strikes reopen a dispute older than Pakistan itself.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AF",
+              "PK",
+              "IN"
+            ],
+            "label": "the contested frontier",
+            "caption": "Durand Line border crossings between Pakistan and Afghanistan",
+            "markers": [
+              {
+                "lat": 34.1336,
+                "lng": 71.0917,
+                "label": "Torkham crossing"
+              },
+              {
+                "lat": 30.9215,
+                "lng": 66.4495,
+                "label": "Chaman crossing"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LONG WAR",
+        "body": "The hostility traces to Partition in 1947, when British India was split along religious lines and Kashmir's accession was left unresolved. Three of the four India-Pakistan wars have been fought over that question; the fourth dismembered Pakistan itself.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1947",
+                "label": "Partition; first Kashmir war",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1965",
+                "label": "Second Kashmir war"
+              },
+              {
+                "year": "1971",
+                "label": "Bangladesh war; East Pakistan secedes"
+              },
+              {
+                "year": "1999",
+                "label": "Kargil conflict"
+              },
+              {
+                "year": "2019",
+                "label": "Pulwama–Balakot airstrikes"
+              }
+            ],
+            "label": "India–Pakistan conflict arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE LABEL MATTERS",
+        "body": "Designating a group 'terrorist' is not rhetoric alone — it unlocks asset freezes, travel bans, and a legal basis for cross-border strikes. The fight over who gets listed is really a fight over which state's use of force the world will treat as legitimate counter-terrorism rather than aggression."
+      }
+    ],
+    "generatedAt": "2026-06-09T08:27:21.613Z",
+    "label": "Fitna al-Hindustan & the Proxy War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-09-iran-afghanistan-frozen-assets-un-release": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT IS ACTUALLY FROZEN",
+        "body": "When the Taliban took Kabul in August 2021, roughly $9.5 billion in Da Afghanistan Bank reserves sat outside the country — most of it at the New York Federal Reserve. Within days it was frozen. A central bank's foreign reserves are held at custodian institutions abroad precisely because that is where international payments clear; that same arrangement is what makes them seizable.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where was the bulk of Afghanistan's frozen central-bank reserves held?",
+            "options": [
+              "The New York Federal Reserve",
+              "Vaults inside Kabul",
+              "The IMF in Washington",
+              "Afghan commercial banks"
+            ],
+            "correct": 0,
+            "explanation": "Like most states, Afghanistan parked its dollar reserves at the NY Fed — which is exactly why Washington could freeze them overnight."
+          }
+        ]
+      },
+      {
+        "heading": "THE SPLIT",
+        "body": "In February 2022 a US executive order divided the $7 billion held on American soil: half toward a Swiss-based 'Afghan Fund' meant to backstop the economy without funneling cash to the Taliban, half walled off for September 11 victims' litigation. Neither half flows to Da Afghanistan Bank — and a central bank cannot conduct monetary policy with reserves it cannot touch.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Geneva vehicle, the **Afghan Fund**, is governed by a board that pointedly *excludes* the Taliban — the money exists, but the central bank that owns it has no key."
+          },
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2021-08",
+                "label": "Taliban take Kabul",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021-08",
+                "label": "Reserves frozen at NY Fed"
+              },
+              {
+                "year": "2022-02",
+                "label": "US splits the $7bn"
+              },
+              {
+                "year": "2022-09",
+                "label": "Afghan Fund set up in Geneva"
+              }
+            ],
+            "label": "the freeze"
+          }
+        ]
+      },
+      {
+        "heading": "RESERVES AS A WEAPON",
+        "body": "Freezing a central bank's foreign reserves is one of the oldest financial levers a creditor state holds. The US froze Iranian assets in 1979 during the hostage crisis, Libya's in 2011, and — at unprecedented scale — Russia's in 2022. Afghanistan's case is smaller in dollars but unique in that the target is not a hostile state but a population whose economy collapsed around the missing reserves.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Russia",
+                "value": "~$300bn",
+                "tone": "unfavorable",
+                "cc": "RU",
+                "weight": 300
+              },
+              {
+                "label": "Libya",
+                "value": "~$30bn",
+                "tone": "unfavorable",
+                "cc": "LY",
+                "weight": 30
+              },
+              {
+                "label": "Iran 1979",
+                "value": "~$12bn",
+                "tone": "unfavorable",
+                "cc": "IR",
+                "weight": 12
+              },
+              {
+                "label": "Afghanistan",
+                "value": "~$9.5bn",
+                "tone": "unfavorable",
+                "cc": "AF",
+                "weight": 9.5
+              }
+            ],
+            "label": "central-bank reserve freezes (approx, USD)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE ECONOMY SEIZED",
+        "body": "Without access to reserves, Da Afghanistan Bank could not defend the afghani, supply dollars to importers, or backstop the banking system. The result was a liquidity crisis layered on top of a frozen state: banks rationed withdrawals, trade financing dried up, and the humanitarian appeal now sits only about 14% funded — Iran's envoy frames the freeze as punishing ordinary Afghans rather than the Taliban."
+      },
+      {
+        "heading": "IRAN'S STAKE",
+        "body": "Iran's loud advocacy is not charity. It hosts one of the world's largest Afghan refugee populations — several million people — and a collapsing Afghan economy pushes more across its eastern border. Pakistan carries a comparable burden. For both neighbors, Afghanistan's reserves are a regional stability question, not a distant humanitarian one.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AF",
+              "IR",
+              "PK"
+            ],
+            "label": "Afghanistan's refugee-hosting neighbors",
+            "caption": "Iran and Pakistan host the bulk of the Afghan diaspora"
+          }
+        ]
+      },
+      {
+        "heading": "THE RECOGNITION TRAP",
+        "body": "No state formally recognizes the Taliban government, and Afghanistan's UN seat is still held by the prior republic's diplomats. Returning the reserves would mean handing them to a central bank run by an unrecognized regime — which is why the money is parked in a Geneva fund instead. The article's stalled UN mandate renewal and unfilled special-representative post are symptoms of the same unresolved question: who, legally, speaks for Afghanistan."
+      }
+    ],
+    "generatedAt": "2026-06-09T08:28:05.252Z",
+    "label": "Afghanistan's Frozen Reserves",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-09-putin-spief-russia-economy-global-south-pivot": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WAR-ECONOMY ILLUSION",
+        "body": "Building tanks counts as GDP just like building tractors — but a tank shipped to the front produces nothing afterward. Russia's headline growth in 2023-24 was real arms output substituting for a collapsed consumer and investment economy. This is military Keynesianism: the state spends, factories run hot, and the numbers look healthy right up until the spending has to stop.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call this *military Keynesianism* — defense outlays masking a hollowing core. The growth is real on paper but **non-reproductive**: it builds nothing the economy can use next year."
+          }
+        ]
+      },
+      {
+        "heading": "THE OVERHEATING TRAP",
+        "body": "Pour wartime spending into an economy already short of workers — millions mobilized, emigrated, or drafted into arms plants — and you get inflation, not abundance. The central bank's only tool is to crush demand with brutally high interest rates, which strangles every civilian business that isn't on a defense contract. The 0.4% forecast is the sound of that brake finally biting.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bind: defense spending is the accelerator, the **key rate** is the brake. With the policy rate held near *21%*, the state floors both pedals at once — and the civilian economy stalls between them."
+          }
+        ]
+      },
+      {
+        "heading": "THE GUNS-VS-BUTTER MATH",
+        "body": "Russia now spends a larger share of GDP on defense than at any point since the Cold War — and the finance ministry's own warning that the path is 'unaffordable' is the quiet admission that the math doesn't close. Every ruble to the front is a ruble not servicing the welfare state that buys domestic peace.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Defense spending, share of GDP (2024 est.)",
+            "peers": [
+              {
+                "value": 37,
+                "cc": "UA"
+              },
+              {
+                "value": 7,
+                "cc": "RU"
+              },
+              {
+                "value": 7,
+                "cc": "SA"
+              },
+              {
+                "value": 5,
+                "cc": "IL"
+              },
+              {
+                "value": 3.4,
+                "cc": "US"
+              },
+              {
+                "value": 2.4,
+                "cc": "IN"
+              },
+              {
+                "value": 2.1,
+                "cc": "DE"
+              }
+            ],
+            "subjectCc": "RU",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "THE NABIULLINA PARADOX",
+        "body": "Elvira Nabiullina is the technocrat who kept the ruble from imploding after 2022 with emergency capital controls and rate hikes — and is now the one official whose high rates openly fight the Kremlin's spending. Her absence from the forum, ill or not, is conspicuous: the debate she'd dominate is precisely whether the war economy can be financed at all.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Vladimir Putin",
+                "role": "President",
+                "years": "2000–",
+                "cc": "RU"
+              },
+              {
+                "name": "Elvira Nabiullina",
+                "role": "Central bank chair",
+                "years": "2013–",
+                "cc": "RU"
+              },
+              {
+                "name": "Anton Siluanov",
+                "role": "Finance minister",
+                "years": "2011–",
+                "cc": "RU"
+              }
+            ],
+            "label": "the policy split"
+          }
+        ]
+      },
+      {
+        "heading": "THE SOVIET PRECEDENT",
+        "body": "The USSR also ran a defense burden it couldn't afford, propped up by oil revenue. When crude prices collapsed in 1986, the fiscal floor fell out — within five years the state itself was gone. The lesson Moscow's planners know best is the one they're now living: a petro-funded war economy is only as stable as the oil price.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Soviet invasion of Afghanistan"
+              },
+              {
+                "year": "1986",
+                "label": "Oil price crash guts revenue",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1989",
+                "label": "Eastern bloc unravels"
+              },
+              {
+                "year": "1991",
+                "label": "USSR dissolved"
+              }
+            ],
+            "label": "the last time guns beat butter"
+          },
+          {
+            "type": "quiz",
+            "question": "What broke the late-Soviet budget and helped trigger the USSR's collapse?",
+            "options": [
+              "A collapse in global oil prices",
+              "Hyperinflation from printing money",
+              "Foreign debt default",
+              "A run on the ruble by citizens"
+            ],
+            "correct": 0,
+            "explanation": "The 1986 oil crash gutted the hard-currency revenue that financed the Soviet defense and welfare state, exposing how dependent the system was on crude."
+          }
+        ]
+      },
+      {
+        "heading": "THE FORTRESS PIVOT",
+        "body": "Cut off from Western markets, Russia rerouted trade toward the 'Global South' — China, India, the Gulf — and pushed settlement in yuan and rupees to dodge dollar sanctions. The ruble has been stabilized by capital controls more than by underlying strength; its level reflects what the state permits, not what the market wants.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              74.481524,
+              73.600006,
+              73.827197,
+              74.177267,
+              72.949018,
+              72.7606,
+              72.760611,
+              72.790641,
+              72.776561,
+              71.198733,
+              71.250362,
+              71.195086,
+              71.79052,
+              71.79052,
+              71.003832,
+              71.451534,
+              71.98823,
+              70.902444,
+              70.850944,
+              71.146834,
+              71.146834,
+              71.259883,
+              72.000019,
+              73.199661,
+              73.749689,
+              73.398704,
+              73.673998,
+              73.673998,
+              73.629288,
+              72.974036
+            ],
+            "periods": [
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9"
+            ],
+            "label": "Russian ruble",
+            "unit": "RUB / USD",
+            "highlight": "last",
+            "source": 0
+          },
+          {
+            "type": "prose",
+            "text": "The pivot has a catch: oil sold to India and China is bought at a *discount* and paid in **non-convertible rupees** that pile up in accounts Russia can't easily spend. Sanctions-dodging trade is real — but it trades dollars for friction."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-09"
+    ],
+    "generatedAt": "2026-06-09T08:28:50.267Z",
+    "label": "Russia's War Economy",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-09-saylor-strategy-bitcoin-crash-treasury-risk": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MODEL",
+        "body": "Strategy — formerly MicroStrategy — stopped being a software company in 2020 and became a leveraged Bitcoin holding vehicle. It raises cash by issuing stock, convertible notes, and preferred shares, then converts that cash into Bitcoin. The software business is now a rounding error; the balance sheet is the product.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2020-08",
+                "label": "First Bitcoin purchase",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "Convertible-note buying spree"
+              },
+              {
+                "year": "2024",
+                "label": "Joins the Nasdaq-100"
+              },
+              {
+                "year": "2025-02",
+                "label": "Renamed MicroStrategy → Strategy"
+              },
+              {
+                "year": "2025",
+                "label": "Preferred-share dividend stack"
+              }
+            ],
+            "label": "from software to Bitcoin proxy"
+          }
+        ]
+      },
+      {
+        "heading": "THE PREMIUM ENGINE",
+        "body": "For years Strategy's shares traded far above the value of the Bitcoin it held — an mNAV premium. That premium is the whole trick: if the market pays $2 for every $1 of Bitcoin you own, you can sell new shares, buy more Bitcoin, and raise your Bitcoin-per-share even after dilution. The flywheel only spins while the premium holds.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is textbook *reflexivity* — Soros's term for a feedback loop where price drives fundamentals which drive price. Buying lifts Bitcoin, the higher price justifies a richer **mNAV** premium, the premium funds more buying. Run it backward and every step reverses."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DIVIDENDS ARE THE TRAP",
+        "body": "Bitcoin yields nothing — it pays no coupon, no rent, no dividend. But the preferred shares Strategy issued to buy it demand cash dividends every quarter. The software cash flow can't cover them at scale, so the only liquid asset left to raise cash is the Bitcoin itself. A non-yielding asset is funding a yield obligation.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why might Strategy be forced to sell Bitcoin even if it's bullish long-term?",
+            "options": [
+              "Regulators cap corporate Bitcoin holdings",
+              "Preferred-share dividends require cash Bitcoin doesn't generate",
+              "Its software revenue is taxed in Bitcoin",
+              "Mining costs rise with the price"
+            ],
+            "correct": 1,
+            "explanation": "Bitcoin produces no income, so cash dividends on preferred stock can force liquidation regardless of conviction."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 32 COINS MOVED THE MARKET",
+        "body": "Strategy sold a trivial 32 coins against a stash of 845,256 — yet Bitcoin fell 14%. The volume wasn't the signal; the precedent was. A holder this large turning net seller for the first time tells the market that the biggest buyer's flywheel has reversed, and traders price the overhang, not the trade.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              82145.66,
+              81725.21,
+              80480.89,
+              79277.8,
+              81051.98,
+              79068.82,
+              78135.01,
+              77425.72,
+              76952.21,
+              76808.81,
+              77459.94,
+              77546.34,
+              75482.52,
+              76672.79,
+              76988.16,
+              77274.4,
+              75824.06,
+              74352.7,
+              73539.84,
+              73382.72,
+              73751.07,
+              73593.37,
+              71360.33,
+              66649.86,
+              64021.89,
+              63796.25,
+              60921.79,
+              60861.88,
+              63254.57,
+              63078.44,
+              62878.22
+            ],
+            "periods": [
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9",
+              "Jun 9"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE WHALE AMONG WHALES",
+        "body": "Strategy holds more Bitcoin than every other public company combined, several times over. That concentration is exactly why its selling matters: there is no second corporate holder large enough to absorb the supply if Strategy keeps offloading to meet dividend dates.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Corporate Bitcoin holdings",
+            "peers": [
+              {
+                "value": 845,
+                "label": "Strategy"
+              },
+              {
+                "value": 45,
+                "label": "Marathon"
+              },
+              {
+                "value": 19,
+                "label": "Riot"
+              },
+              {
+                "value": 11,
+                "label": "Tesla"
+              },
+              {
+                "value": 10,
+                "label": "Hut 8"
+              },
+              {
+                "value": 9,
+                "label": "Coinbase"
+              },
+              {
+                "value": 8,
+                "label": "Block"
+              }
+            ],
+            "subjectLabel": "Strategy",
+            "unit": "k BTC"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2022 RHYME",
+        "body": "Leverage against a non-yielding asset has broken before. In 2022, Celsius, Three Arrows Capital, and a wave of Bitcoin miners were forced to dump coins into a falling market precisely because their obligations came due when prices were lowest. Forced sellers always sell at the worst possible moment — that's what makes them forced."
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-06-09"
+    ],
+    "generatedAt": "2026-06-09T08:29:32.990Z",
+    "label": "The Bitcoin Treasury Trap",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-09-south-africa-skills-gap-unemployment-vacancies": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO KINDS OF JOBLESSNESS",
+        "body": "Cyclical unemployment rises in a downturn and falls in a recovery — it is a demand problem. Structural unemployment persists through booms because the skills workers have don't match the jobs that exist. The tell is exactly the paradox in this story: open vacancies and idle workers in the same economy at the same time.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Open vacancies and mass joblessness coexist. Which best explains it?",
+            "options": [
+              "A skills mismatch between workers and jobs (structural)",
+              "A temporary recession suppressing hiring (cyclical)",
+              "Too many immigrants taking available jobs",
+              "Employers simply refusing to hire"
+            ],
+            "correct": 0,
+            "explanation": "When jobs go unfilled while millions seek work, the gap is structural — the skills supplied don't match the skills demanded — not a cyclical demand shortfall."
+          }
+        ]
+      },
+      {
+        "heading": "THE BANTU EDUCATION LEGACY",
+        "body": "The 1953 Bantu Education Act deliberately built a separate, underfunded school system to train Black South Africans for menial labor, not skilled trades or professions. The 1976 Soweto uprising began as a protest against that system. Democracy arrived in 1994, but a generation of teachers trained under it — and the schools they staffed — could not be replaced overnight. The skills deficit is partly an inherited one.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1953",
+                "label": "Bantu Education Act",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1976",
+                "label": "Soweto uprising"
+              },
+              {
+                "year": "1994",
+                "label": "End of apartheid"
+              },
+              {
+                "year": "2026",
+                "label": "Youth jobless rate 45.8%"
+              }
+            ],
+            "label": "the education arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE INSIDER-OUTSIDER MARKET",
+        "body": "Strong employment protections and centralized bargaining raise the cost and risk of hiring an untested worker. That protects those already employed (insiders) but raises the bar for first-time job-seekers (outsiders). Where the entry rung is high, the young and unskilled get stuck off the ladder entirely — which is why youth unemployment runs far above the headline rate.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call those locked out the **outsiders** — and in South Africa a huge share are *NEET*: **Not in Employment, Education or Training**, the 3.9 million under-25s this report counts as outside the system entirely."
+          }
+        ]
+      },
+      {
+        "heading": "THE WORLD'S HIGHEST",
+        "body": "South Africa's unemployment rate is not merely high — it is consistently the highest of any sizeable economy on earth, and has been for years. This is the signature of a structural problem: it does not melt away in good years the way cyclical unemployment does in peer economies.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Unemployment rate",
+            "peers": [
+              {
+                "value": 33,
+                "cc": "ZA"
+              },
+              {
+                "value": 8,
+                "cc": "BR"
+              },
+              {
+                "value": 9,
+                "cc": "TR"
+              },
+              {
+                "value": 7,
+                "cc": "EG"
+              },
+              {
+                "value": 8,
+                "cc": "IN"
+              },
+              {
+                "value": 5,
+                "cc": "ID"
+              },
+              {
+                "value": 3,
+                "cc": "MX"
+              }
+            ],
+            "subjectCc": "ZA",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "THE HIDDEN DENOMINATOR",
+        "body": "The headline rate counts only people actively searching. South Africa's 'expanded' rate, which adds discouraged workers who have given up looking, runs roughly ten points higher. In an economy where searching feels futile, the official number understates the true scale of idleness — the discouraged simply vanish from the statistic."
+      }
+    ],
+    "generatedAt": "2026-06-09T08:30:12.396Z",
+    "label": "South Africa's Structural Unemployment",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-09-ucdp-2025-record-state-conflicts-since-wwii": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW A WAR GETS COUNTED",
+        "body": "The Oslo figures come from the Uppsala Conflict Data Program, the standard source for measuring armed conflict. A dispute qualifies as a 'state-based armed conflict' only when a government is one of the two sides and at least 25 battle-related deaths occur in a calendar year. Cross 1,000 deaths in a year and it is reclassified as a 'war.' These thresholds are why a tally exists at all — without a death floor, every border skirmish would count.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The metric is **battle-related deaths** — soldiers and civilians killed in combat. It deliberately excludes deaths from war-induced famine and disease, which is why the *true* human cost of a war like Sudan's runs far above the battle count."
+          }
+        ]
+      },
+      {
+        "heading": "THE LONG PEACE THAT ENDED",
+        "body": "After the Cold War, political scientists wrote about a 'long peace' — the number of active conflicts fell through the 1990s and battle deaths dropped to historic lows by the early 2000s. That trend has fully reversed. The world is now more violent by this measure than at any point since the data series began in 1946.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1946",
+                "label": "UCDP series begins"
+              },
+              {
+                "year": "1991",
+                "label": "Cold War ends; conflict count peaks"
+              },
+              {
+                "year": "2003",
+                "label": "post-Cold War low in battle deaths"
+              },
+              {
+                "year": "2011",
+                "label": "Arab Spring, Syria war begin",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "Russia invades Ukraine"
+              },
+              {
+                "year": "2025",
+                "label": "65 conflicts — all-time record"
+              }
+            ],
+            "label": "the arc of state-based conflict"
+          }
+        ]
+      },
+      {
+        "heading": "THE PROXY PROBLEM",
+        "body": "Most of today's conflicts are not clean civil wars. They are 'internationalized' — a local war in which outside states send troops, drones, money, or arms to one side. Internationalized conflicts last longer, kill more, and resist negotiated settlement because the people who can end the fighting are not in the country.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "An *internationalized civil war* is the defining shape of modern conflict: Syria, Libya, Yemen, and Sudan all draw in foreign sponsors, turning a domestic fight into a chessboard for rival powers."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CIVILIAN DEATHS SPIKED",
+        "body": "Battle deaths count fighters and bystanders killed in combat. A separate UCDP category — 'one-sided violence' — counts civilians deliberately targeted by an armed group. The 2025 surge in civilian-targeted deaths signals a strategic shift: combatants increasingly treat the population itself as the objective, as in Sudan's RSF campaigns and sieges that starve cities into submission.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many battle-related deaths in a year does UCDP require before it calls a conflict a 'war' rather than a lower-level 'armed conflict'?",
+            "options": [
+              "25",
+              "100",
+              "1,000",
+              "10,000"
+            ],
+            "correct": 2,
+            "explanation": "25 deaths makes it a counted 'armed conflict'; crossing 1,000 in a single year reclassifies it as a 'war.'"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE DYING IS",
+        "body": "A handful of theaters drive the global totals. Sudan's war between two former allied generals has produced the world's largest displacement crisis; Ukraine accounts for the bulk of conventional battle deaths; and conflicts in the eastern Congo, Myanmar, and Palestine each clear the war threshold. A record conflict count does not mean violence spread evenly — it concentrated and intensified.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "UA",
+              "CD",
+              "MM",
+              "PS"
+            ],
+            "label": "the heaviest theaters of 2025"
+          }
+        ]
+      },
+      {
+        "heading": "THE OSLO LENS",
+        "body": "Why Norway? Oslo's PRIO and Sweden's Uppsala built the field of quantitative peace research during the Cold War, when neutral Nordic states had standing to study superpower proxy wars without being party to them. The same institutions that host the Nobel Peace Prize now keep the world's most-cited ledger of organized violence."
+      }
+    ],
+    "generatedAt": "2026-06-09T08:30:54.272Z",
+    "label": "Counting the World's Wars",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-09-un-hong-kong-data-centres-carbon-grid": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INHERITANCE",
+        "body": "A data centre generates no electricity of its own — it draws from the local grid and inherits whatever mix produced that power. Two identical buildings, one in Hong Kong and one in Quebec, can differ tenfold in emissions while running the exact same servers. Location, not engineering, decides the carbon footprint.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What most determines a data centre's carbon footprint?",
+            "options": [
+              "Its cooling and power-conversion efficiency",
+              "The carbon intensity of the grid it plugs into",
+              "The number of servers it houses",
+              "The age of its hardware"
+            ],
+            "correct": 1,
+            "explanation": "Efficiency reduces total kilowatt-hours, but each kilowatt-hour carries the emissions of the grid — so a clean grid beats an efficient building on a dirty one."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT EFFICIENCY ACTUALLY MEASURES",
+        "body": "The industry's headline metric tracks overhead, not emissions. It compares total facility power to the power reaching the servers — a building that spends little extra on cooling scores well. But a perfect score on a fossil grid still produces dirty compute. The metric was never designed to capture carbon.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The metric is **PUE** — Power Usage Effectiveness. A **PUE of 1.1** means only 10% of energy is lost to cooling and conversion; the other 90% reaches the chips. It says *nothing* about whether that energy came from coal or hydro."
+          }
+        ]
+      },
+      {
+        "heading": "HONG KONG'S GRID",
+        "body": "Hong Kong runs mostly on imported coal and gas, topped up with nuclear power piped in from Guangdong. Renewables are a rounding error — the territory has almost no land for solar or wind. That fossil-heavy baseline is why its data centres land far above the global carbon average no matter how new they are.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Natural gas",
+                "value": 48,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Coal",
+                "value": 24,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Nuclear (imported)",
+                "value": 27,
+                "tone": "neutral"
+              },
+              {
+                "label": "Renewables",
+                "value": 1,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Hong Kong electricity mix (approx. share)"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEMAND SHOCK",
+        "body": "Global data-centre electricity demand is on a curve that bends almost vertical with the AI buildout. The UN's 2030 figure — roughly 945 terawatt-hours — would outrun the entire annual electricity use of Pakistan, Bangladesh and Nigeria combined: three nations holding over 600 million people.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Data centres '30",
+                "value": "~945 TWh",
+                "weight": 945,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Pakistan",
+                "value": "~130 TWh",
+                "weight": 130,
+                "cc": "PK",
+                "tone": "neutral"
+              },
+              {
+                "label": "Bangladesh",
+                "value": "~90 TWh",
+                "weight": 90,
+                "cc": "BD",
+                "tone": "neutral"
+              },
+              {
+                "label": "Nigeria",
+                "value": "~35 TWh",
+                "weight": 35,
+                "cc": "NG",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Annual electricity use (TWh, approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THEY GET STUCK ON DIRTY GRIDS",
+        "body": "Data centres cluster where land, fibre, and low-latency connections to financial and population hubs already exist — not where clean power is. Hong Kong is a connectivity gateway, so capacity keeps landing there despite the grid. Decoupling compute growth from emissions means either greening these specific grids or moving the load to where the clean electrons are — both slow, both political."
+      }
+    ],
+    "generatedAt": "2026-06-09T08:31:48.194Z",
+    "label": "Why a Data Centre's Carbon Is Its Grid's Carbon",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-09-us-apache-helicopter-crash-strait-hormuz": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a buffer. Roughly a fifth of the world's oil passes through daily, and the deepest channel hugs the Iranian shore, which is why anything happening on the northern edge — including Bandar Abbas, Iran's main naval base — carries outsized weight.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE"
+            ],
+            "label": "the Hormuz chokepoint",
+            "caption": "The shipping channel runs along Iran's coast, not Oman's.",
+            "markers": [
+              {
+                "lat": 27.18,
+                "lng": 56.27,
+                "label": "Bandar Abbas naval base"
+              },
+              {
+                "lat": 26.57,
+                "lng": 56.25,
+                "label": "narrowest point"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT AN APACHE IS DOING THERE",
+        "body": "The AH-64 Apache is a low-altitude attack helicopter built to kill armor and surface targets, not a transport or a patrol aircraft. Operating one over open water at night puts it inside the engagement envelope of shoulder-fired missiles and naval guns, with no margin to glide or restart if an engine quits — helicopters do not autorotate gracefully over the sea.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Apache flies in a regime pilots call the *deadman's curve* — low and slow, where an engine failure leaves no altitude to trade for a safe landing. Over water that envelope shrinks to almost nothing."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE CAUSE STAYS MURKY",
+        "body": "Fire versus failure is genuinely hard to separate after a sea crash. Salt water corrodes wreckage within hours, a man-portable missile leaves a tiny entry signature, and rotorcraft have high baseline mechanical failure rates. In a contested strait, both sides have incentive to assert whichever cause serves them — so 'unconfirmed' can persist for weeks.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are shoulder-fired missiles (MANPADS) a top global proliferation worry?",
+            "options": [
+              "They can reach airliner cruising altitude",
+              "They are cheap, portable, and downed a charter jet over Mombasa in 2002",
+              "They are nuclear-capable",
+              "Only state air forces can operate them"
+            ],
+            "correct": 1,
+            "explanation": "After the Soviet collapse thousands flooded black markets; the 2002 Mombasa attack on an Israeli charter made MANPADS a top-tier export-control concern."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil spiked briefly, then markets adapted — tankers were reflagged under US and Kuwaiti colors and escorted by warships. The lesson military planners drew has held since: disruption in Hormuz is far easier to threaten than to sustain.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1980",
+                "label": "Iran–Iraq war begins"
+              },
+              {
+                "year": "1984",
+                "label": "Tanker War: ships targeted",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1987",
+                "label": "US reflags Kuwaiti tankers"
+              },
+              {
+                "year": "1988",
+                "label": "USS Samuel B. Roberts hits mine"
+              },
+              {
+                "year": "2019",
+                "label": "Gulf of Oman tanker attacks"
+              }
+            ],
+            "label": "Hormuz as a flashpoint"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL REGIME",
+        "body": "Under UNCLOS Article 38, ships and aircraft hold a right of transit passage through international straits — coastal states cannot suspend it or impose conditions. Iran signed UNCLOS in 1982 but never ratified it, and argues Hormuz falls under its own domestic law. That gap is why every incident here is also a quiet contest over which legal order governs the water.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Ships of all States enjoy the right of transit passage, which shall not be impeded.",
+            "speaker": "UNCLOS, Article 38",
+            "year": "1982"
+          }
+        ]
+      },
+      {
+        "heading": "THE DIPLOMATIC BACKDROP",
+        "body": "The crash lands one day after Iran and Israel announced a mutual halt to attacks, while US–Iran nuclear talks continue without a timeline. Prediction markets had already priced a near-term US–Iran understanding as more likely than not — which is why an ambiguous helicopter loss is dangerous: it can either be quietly absorbed or weaponized to collapse the opening.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              78,
+              70,
+              69,
+              62,
+              63,
+              63,
+              67,
+              66,
+              63,
+              69,
+              67,
+              70,
+              70,
+              62,
+              88,
+              76,
+              81,
+              81,
+              78,
+              78,
+              76,
+              71,
+              73,
+              73,
+              73,
+              74,
+              72,
+              72,
+              68,
+              69,
+              68,
+              69
+            ],
+            "periods": [
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9",
+              "Jun 9"
+            ],
+            "label": "US x Iran permanent peace deal by…",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "78%"
+              },
+              {
+                "atIndex": 31,
+                "label": "69%"
+              }
+            ],
+            "link": "https://polymarket.com/event/us-x-iran-permanent-peace-deal-by",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-06-09"
+    ],
+    "generatedAt": "2026-06-09T08:32:26.416Z",
+    "label": "The Apache at the Hormuz Chokepoint",
+    "category": "politics",
+    "articleCount": 1
   }
 }
