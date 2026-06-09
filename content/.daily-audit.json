@@ -1,26 +1,28 @@
 {
-  "date": "2026-06-08",
+  "date": "2026-06-09",
   "metrics": {
-    "articles": { "value": 57, "detail": "5 cycles, avg ~10/cycle, avg duration 2315s" },
+    "articles": { "value": 41, "detail": "5 cycles (4 completed), avg 7/cycle" },
     "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 19, "economy": 14, "science": 12, "tech": 12 },
+    "categories": { "politics": 14, "economy": 10, "science": 7, "tech": 10 },
     "multiSource": { "value": 11, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 19, "ME": 14, "EU": 11, "AS": 10, "AF": 2, "OC": 1 } },
-    "sciTech": { "ratio": 42, "target": 25, "met": true },
-    "topSourceShare": { "source": "Phys.org", "pct": 9, "target": 20, "met": true },
-    "uniqueSources": 53,
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 15, "EU": 9, "ME": 9, "AS": 4, "AF": 3, "OC": 1 } },
+    "sciTech": { "ratio": 41, "target": 25, "met": true },
+    "topSourceShare": { "source": "Bloomberg Business", "pct": 10, "target": 20, "met": true },
+    "uniqueSources": 45,
     "duplicates": 0,
-    "avgCycleDuration": 2315
+    "avgCycleDuration": 1695
   },
-  "experiment": "Skipped — all primary metrics within targets and no active experiment running. The queued numerical-density experiment targets write-prompt.md, which is out of scope for daily parameter tuning.",
-  "weakestArea": "Intra-regional balance is the softest spot. The region count (6) clears the >=4 target comfortably, but Africa (2 articles) and Oceania (1) are thin relative to the Americas (19) and Middle East (14). This is a distribution skew within an otherwise-passing metric, not a target miss, so it does not warrant an experiment.",
+  "experiment": "Skipped — all goal metrics (freshness, diversity, multi-source, educational value) are within targets and no experiment is active. No pause gate set.",
+  "weakestArea": "Geographic concentration is the softest spot: the Americas drew 15 articles versus 4 for Asia, 3 for Africa, and 1 for Oceania. Unique-region count still meets target (6 >= 4), but the AM skew reflects the day's hard-news gravity (US strikes Iran, ICE funding) rather than a pipeline fault. Science volume (7) is the lowest category but comfortably clears its floor of 5.",
   "watching": [
-    "Output volume rose to 57 (from 45 yesterday) at a steady ~10/cycle — healthy, but watch that the higher throughput is not padding the standalone tail on lighter news days.",
-    "Multi-source count fell from 15 yesterday to 11 today; still well above the >=4 floor, but feed multi-source supply (~9/cycle) caps the published rate near ~22%, so 11/day is near the structural ceiling."
+    "US direct strikes on Iran — fast-moving escalation likely to dominate the next several cycles; watch for retaliation and allied responses.",
+    "Anthropic shipping its flagged 'dangerous' model — AI-safety and regulatory follow-on coverage.",
+    "EU regulatory track — Russia oil price-cap freeze and the WhatsApp interoperability mandate are both developing stories.",
+    "Malawi aid collapse and Kenyan protest deaths — under-covered humanitarian threads worth sustaining."
   ],
   "coverageGaps": [
-    "Africa underrepresented at 2 articles today (down from 5 yesterday); Sub-Saharan coverage is the recurring thin region.",
-    "Oceania at 1 article — typical low baseline, but worth noting when regional balance is reviewed."
+    "Asia at 4 and Oceania at 1 are thin relative to the Americas (15); more APAC hard news would balance the day.",
+    "Africa held at 3 articles — continued low absolute volume despite live stories (Malawi, Kenya, Sudan region)."
   ],
-  "context": "All four goals (freshness, diversity, multi-source, educational value) are met with margin: freshness median 0 days, sci-tech share 42%, top source share 8.8%, 53 unique sources, zero duplicates. No active experiments and no pause gate in effect. Sourcing-cluster history indicates the selector-floor lever for multi-source is tapped; future sourcing gains should target upstream feed clustering (Event Registry), not selector floors. Healthy day — no parameter changes made."
+  "context": "Volume dipped to 41 from yesterday's 65, partly because only 4 of 5 cycles completed and the writer stage ran slow (avg 984s vs typical ~150s), pushing average cycle duration to 1695s. Output quality held: zero duplicates, 45 unique sources, top source share just 10%, and all four editorial goals met. With everything in-target and no active experiment, the conservative move is to hold parameters steady and watch whether the writer-stage slowdown persists before treating it as a tuning target."
 }
