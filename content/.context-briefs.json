@@ -334786,5 +334786,1516 @@
     "label": "The Apache at the Hormuz Chokepoint",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-08-west-asia-crisis-realigns-trade-overland-pakistan-routes": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COST CLIFF",
+        "body": "Moving a ton of cargo by sea costs roughly a cent per kilometer; rail multiplies that several times, and a truck can cost ten to twenty times more. Overland routes don't replace a sea lane — they ration it, carrying only cargo valuable enough to absorb the markup.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Sea freight",
+                "value": "1×",
+                "weight": 1,
+                "tone": "favorable"
+              },
+              {
+                "label": "Rail",
+                "value": "~4×",
+                "weight": 4,
+                "tone": "neutral"
+              },
+              {
+                "label": "Truck",
+                "value": "~15×",
+                "weight": 15,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "rough freight cost per ton-km"
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ ALTERNATIVE",
+        "body": "Roughly a fifth of the world's oil and much of the Gulf's container traffic squeezes through the Strait of Hormuz, 33 km wide at its narrowest. Pakistan's Arabian Sea ports — Karachi and the deepwater Gwadar — sit just east of the chokepoint, the nearest coastline that bypasses it overland.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "OM",
+              "AE"
+            ],
+            "label": "east of the chokepoint",
+            "markers": [
+              {
+                "lat": 26.57,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.29,
+                "lng": 60.64,
+                "label": "Chabahar"
+              },
+              {
+                "lat": 25.12,
+                "lng": 62.32,
+                "label": "Gwadar"
+              },
+              {
+                "lat": 24.86,
+                "lng": 67.01,
+                "label": "Karachi"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT HORMUZ CARRIES",
+        "body": "Hormuz is one of a handful of maritime chokepoints that carry the world's seaborne oil. Disrupt one and there is no overland corridor with comparable throughput — which is why a partial reroute, not a replacement, is the realistic ceiling.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Oil transit",
+            "peers": [
+              {
+                "value": 23,
+                "label": "Malacca"
+              },
+              {
+                "value": 20,
+                "label": "Hormuz"
+              },
+              {
+                "value": 9,
+                "label": "Suez/SUMED"
+              },
+              {
+                "value": 8,
+                "label": "Bab-el-Mandeb"
+              },
+              {
+                "value": 3,
+                "label": "Turkish Str."
+              },
+              {
+                "value": 1,
+                "label": "Panama"
+              }
+            ],
+            "subjectLabel": "Hormuz",
+            "unit": "mn bbl/day"
+          }
+        ]
+      },
+      {
+        "heading": "DOUBLE-LANDLOCKED CUSTOMERS",
+        "body": "Central Asia's republics are landlocked, and every export must cross at least one foreign border to reach a port. That captive geography is exactly what makes them willing to pay for a corridor — and what gives a transit state pricing power.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Uzbekistan is one of only two doubly landlocked countries — every neighbor is itself landlocked. Which is the other?",
+            "options": [
+              "Liechtenstein",
+              "Nepal",
+              "Mongolia",
+              "Switzerland"
+            ],
+            "correct": 0,
+            "explanation": "Liechtenstein borders only Austria and Switzerland — both landlocked — so reaching the sea always crosses two borders, just like Uzbekistan."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSIT RENT",
+        "body": "A state astride a trade route can charge for passage — tolls, fees, the 'corridor rents' the article notes are still taking shape. The Bosphorus, Suez, and Panama all turned geography into a recurring revenue line. Setting no formal terms yet means the pricing power is undiscovered, not absent.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Pakistan isn't starting from scratch: **CPEC** already links Gwadar to western China, and the **INSTC** (International North–South Transport Corridor) ties Iran to Russia and Central Asia. A *transit state* monetizes other nations' trade — geography rented out as an asset."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE SILK ROAD DIED",
+        "body": "Overland Eurasian trade dominated for centuries until ocean routes undercut it — first the Cape passage around Africa, then the Suez Canal. Caravans lost to cargo ships on cost, not on safety. Today's reroutes are a partial, crisis-driven revival of corridors economics had already retired.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1498",
+                "label": "Da Gama reaches India by sea",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1869",
+                "label": "Suez Canal opens"
+              },
+              {
+                "year": "1991",
+                "label": "Central Asian states independent"
+              },
+              {
+                "year": "2013",
+                "label": "Belt and Road launched"
+              }
+            ],
+            "label": "land loses to sea, then partly returns"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T17:21:57.458Z",
+    "label": "Overland Reroutes & Transit Geography",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-09-ai-chatbots-health-information-gaps-nature": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A SEARCH PAGE ACTUALLY DOES",
+        "body": "A list of ranked links is not a failure to answer — it is the answer's audit trail. Seeing ten competing sources, their domains, and their disagreements lets the reader triangulate. The plurality is the feature. A chatbot that returns one fluent paragraph deletes the triangulation step and hands you the conclusion without the evidence it rests on.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Search engine",
+                "value": "10+ sources",
+                "tone": "favorable"
+              },
+              {
+                "label": "Chatbot",
+                "value": "1 answer",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "two ways to answer a health question"
+          }
+        ]
+      },
+      {
+        "heading": "FLUENCY IS NOT ACCURACY",
+        "body": "Language models are trained to produce text that sounds right, which is a different target from being right. A confident, well-structured wrong answer is exactly what the objective rewards. Researchers call the gap between a model's stated confidence and its real accuracy poor calibration — and in health questions, an uncalibrated confident tone is more dangerous than an obvious error.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The deeper failure mode is *sycophancy*: models tuned on human feedback learn to tell users what sounds agreeable and authoritative, not what is hedged or uncertain — the opposite of how a careful clinician speaks."
+          }
+        ]
+      },
+      {
+        "heading": "THE HALLUCINATED CITATION",
+        "body": "When a model doesn't know, it doesn't go blank — it generates plausible-looking detail. In medicine this surfaces as invented dosages, fabricated study references, and journal citations that don't exist but follow the exact format of real ones. The fabrication is convincing precisely because the model learned the shape of a real citation, not its content."
+      },
+      {
+        "heading": "MEDICINE RANKS ITS EVIDENCE",
+        "body": "Clinical knowledge is not flat. There is a formal hierarchy — systematic reviews and meta-analyses at the top, then randomized controlled trials, then observational studies, then case reports, with expert opinion at the bottom. A chatbot's single paragraph blends all of these into one undifferentiated voice, stripping away the most important signal a reader has about how much to trust a claim.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In evidence-based medicine, which sits at the TOP of the evidence hierarchy?",
+            "options": [
+              "A single expert's clinical opinion",
+              "A well-conducted systematic review of trials",
+              "A striking individual case report",
+              "A widely-shared anecdote"
+            ],
+            "correct": 1,
+            "explanation": "Systematic reviews pool many trials and rank highest; expert opinion and single case reports sit near the bottom because they are most prone to bias."
+          }
+        ]
+      },
+      {
+        "heading": "THE REGULATORY GAP",
+        "body": "A device that claims to diagnose or treat is regulated as a medical device — the FDA and Europe's MDR demand clinical validation. A general-purpose chatbot sidesteps this by disclaiming that it offers medical advice while functionally dispensing it. The disclaimer, not the behavior, is what keeps it outside the regulatory perimeter."
+      }
+    ],
+    "generatedAt": "2026-06-09T17:22:29.781Z",
+    "label": "The Verification Layer",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-09-cop31-global-electrification-target-35-percent-2035": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "ELECTRICITY IS NOT ENERGY",
+        "body": "Electricity is only about a fifth of the energy the world actually consumes. The other four-fifths is transport fuel burned in engines, industrial heat for steel and cement, and gas or wood burned directly to heat buildings and cook food. A grid can go fully green and the economy still runs mostly on combustion.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Transport fuel",
+                "value": 29,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Industrial heat",
+                "value": 26,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Building heat & cooking",
+                "value": 24,
+                "tone": "neutral"
+              },
+              {
+                "label": "Electricity",
+                "value": 21,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global final energy by use (approx. share)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE TARGET IS A RATIO",
+        "body": "A 35%-by-2035 goal is a share, not a volume. Because total energy demand keeps growing, doubling electricity's slice means building far more than twice today's clean generation — you have to outrun rising demand and electrify combustion uses at the same time."
+      },
+      {
+        "heading": "THE HARD-TO-ABATE THIRD",
+        "body": "Some uses resist electrification on physics, not cost. Jet fuel packs energy density no battery matches. Blast furnaces and cement kilns need flame temperatures above 1,400°C. These sectors are why no serious roadmap reaches 100% electrification — the question is how high the ceiling sits.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The frontier term is *direct electrification* — swapping a furnace or engine for a heat pump or motor. What can't be swapped waits on *green hydrogen* or *e-fuels*, both still far more expensive than the molecules they replace."
+          }
+        ]
+      },
+      {
+        "heading": "THE WORLD IS THE LAGGARD",
+        "body": "A handful of countries already run near or past the 35% mark — Norway electrified heating and transport early on the back of cheap hydropower. The global average sits roughly where it has for a decade, which is what makes the target a stretch rather than a forecast.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Electricity share of final energy",
+            "peers": [
+              {
+                "value": 50,
+                "label": "Norway"
+              },
+              {
+                "value": 34,
+                "label": "Sweden"
+              },
+              {
+                "value": 30,
+                "label": "Japan"
+              },
+              {
+                "value": 28,
+                "label": "France"
+              },
+              {
+                "value": 27,
+                "label": "China"
+              },
+              {
+                "value": 22,
+                "label": "USA"
+              },
+              {
+                "value": 21,
+                "label": "World"
+              },
+              {
+                "value": 18,
+                "label": "India"
+              }
+            ],
+            "subjectLabel": "World",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "WHY COP TARGETS DON'T BIND",
+        "body": "A COP presidency proposal is a political signal, not a treaty obligation. Since the Paris framework moved to 'nationally determined' pledges, the conferences set direction and name numbers but carry no enforcement and, as here, often no financing. The gap between the headline figure and any mechanism to fund it is the recurring story of climate summitry.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of the world's final energy demand is met by electricity today?",
+            "options": [
+              "About 20%",
+              "About 40%",
+              "About 60%",
+              "About 80%"
+            ],
+            "correct": 0,
+            "explanation": "Electricity is only ~20% of final energy; most demand is still combustion for transport, industrial heat, and heating — which is why doubling the share is so hard."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T17:23:09.932Z",
+    "label": "Electrification & Final Energy",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-09-egypt-pensions-system-failure-tens-of-thousands-cut-off": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BIG-BANG TRAP",
+        "body": "Egypt switched to the digital platform all at once and retired the paper records the same month. In systems engineering this is the 'big-bang' cutover — the riskiest possible migration, because the old system is gone the instant the new one stumbles, with nothing to fall back to.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The safer method has a name: a **parallel run**, where both systems process every claim side by side for months until the new one is proven. Egypt skipped it — there was no fallback the day records stopped matching."
+          }
+        ]
+      },
+      {
+        "heading": "WHY YOU NEVER RETIRE THE OLD SYSTEM FIRST",
+        "body": "Critical systems migrate by running old and new in parallel, reconciling outputs daily, and only decommissioning the old once the new matches for a sustained period. The paper trail is not legacy clutter — it is the audit baseline that proves a digital claim is correct. Destroy it and an error becomes unprovable.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What standard safeguard did Egypt's pension migration skip?",
+            "options": [
+              "A parallel run keeping paper and digital live together",
+              "Encrypting the beneficiary database",
+              "Outsourcing the platform to a foreign vendor",
+              "A public consultation period"
+            ],
+            "correct": 0,
+            "explanation": "A parallel run keeps the old system processing alongside the new one until outputs reconcile — the missing fallback here."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "This is not an Egyptian failing — it is the signature failure mode of large public IT. The same big-bang error has cut off public servants and patients across far richer states, and the bill always runs to billions.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UK NHS NPfIT",
+                "value": "~$15bn",
+                "cc": "GB",
+                "tone": "unfavorable",
+                "weight": 15
+              },
+              {
+                "label": "US Healthcare.gov",
+                "value": "~$2bn",
+                "cc": "US",
+                "tone": "unfavorable",
+                "weight": 2
+              },
+              {
+                "label": "Canada Phoenix",
+                "value": "~$1.7bn",
+                "cc": "CA",
+                "tone": "unfavorable",
+                "weight": 1.7
+              }
+            ],
+            "label": "big-bang public IT disasters (approx. cost)"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGIBILITY PROBLEM",
+        "body": "Digitization forces every citizen into a fixed schema — a clean record with all fields present. But real beneficiaries have messy histories: a widow's claim, a name spelled three ways across decades, a contribution gap from informal work. When the database can't represent you, you don't get an error message; you get erased from the rolls.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The political scientist James C. Scott called this *legibility* — the state can only administer what it can read. Digitization sharpens the state's vision but blinds it to anyone who doesn't fit the form."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE TIMING BITES",
+        "body": "Egypt runs a largely pay-as-you-go pension: today's contributors fund today's retirees, and benefits are fixed in nominal pounds. After the currency's collapse — the pound has lost most of its value against the dollar since 2022 — those fixed pensions buy far less, so a missed or delayed payment is not an inconvenience but a subsistence crisis.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              52.7376,
+              52.8269,
+              52.9233,
+              52.9288,
+              52.897,
+              52.8709,
+              52.834473,
+              53.0759,
+              53.3218,
+              53.1117,
+              53.41957,
+              52.9137,
+              53.0009,
+              53.093587,
+              52.5954,
+              52.2154,
+              52.2172,
+              52.226,
+              52.2213,
+              52.2712,
+              52.22,
+              52.4091,
+              52.0084,
+              51.8616,
+              51.9361,
+              51.8166,
+              51.7562,
+              51.77,
+              51.943,
+              52.1591
+            ],
+            "periods": [
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9"
+            ],
+            "label": "Egyptian pound",
+            "unit": "EGP / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-09"
+    ],
+    "generatedAt": "2026-06-09T17:24:03.962Z",
+    "label": "Big-Bang Migration & the Pension State",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-09-eu-21st-sanctions-russia-india-oil-price-cap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE CAP ACTUALLY BANS",
+        "body": "The cap does not forbid buying Russian oil. It forbids Western firms from providing shipping, insurance, and financing for any cargo sold above the cap price. Because Lloyd's and the EU underwrite most of the world's tanker insurance, the rule was meant to set the price without touching the volume.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The lever is *services*, not the barrel itself — Brussels weaponized the **insurance and reinsurance** market it dominates, not a customs border."
+          },
+          {
+            "type": "quiz",
+            "question": "What does the Russian oil price cap actually restrict?",
+            "options": [
+              "All purchases of Russian crude worldwide",
+              "Western shipping and insurance for oil sold above the cap",
+              "The total volume of oil Russia may export",
+              "Russian central bank reserves held abroad"
+            ],
+            "correct": 1,
+            "explanation": "The cap denies Western maritime services to cargoes priced above the threshold — leaving the oil legal to buy, just hard to move."
+          }
+        ]
+      },
+      {
+        "heading": "THE SHADOW FLEET",
+        "body": "Russia's answer was to buy hundreds of aging tankers, register them under flags of convenience, and self-insure outside the Western system. This 'dark fleet' now carries the bulk of seaborne crude, which is why the cap cut revenue far less than designed — and why the ruble has held rather than collapsed.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              74.481524,
+              73.600006,
+              73.827197,
+              74.177267,
+              72.949018,
+              72.7606,
+              72.760611,
+              72.790641,
+              72.776561,
+              71.198733,
+              71.250362,
+              71.195086,
+              71.79052,
+              71.79052,
+              71.003832,
+              71.451534,
+              71.98823,
+              70.902444,
+              70.850944,
+              71.146834,
+              71.146834,
+              71.259883,
+              72.000019,
+              73.199661,
+              73.749689,
+              73.398704,
+              73.673998,
+              73.673998,
+              73.629288,
+              72.974036
+            ],
+            "periods": [
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9"
+            ],
+            "label": "Russian ruble",
+            "unit": "RUB / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE INDIAN LAUNDERING ROUTE",
+        "body": "Before 2022 India bought almost no Russian crude. Within a year it became one of the largest buyers, refining discounted Urals into diesel and jet fuel that re-enters Europe legally — once refined, the product loses its Russian origin. The new package targets the traders running this arbitrage.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "ru",
+                "label": "Russian crude"
+              },
+              {
+                "id": "in",
+                "label": "India refineries"
+              },
+              {
+                "id": "exp",
+                "label": "Refined exports (EU/US)"
+              },
+              {
+                "id": "dom",
+                "label": "Indian domestic use"
+              }
+            ],
+            "links": [
+              {
+                "source": "ru",
+                "target": "in",
+                "value": 1800,
+                "label": "discounted Urals"
+              },
+              {
+                "source": "in",
+                "target": "exp",
+                "value": 500,
+                "label": "diesel / jet"
+              },
+              {
+                "source": "in",
+                "target": "dom",
+                "value": 1300,
+                "label": "fuel market"
+              }
+            ],
+            "label": "Russian crude through India (kbd, approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHO BUYS THE BARRELS",
+        "body": "Russian seaborne crude that once flowed to Europe was redirected almost entirely to Asia. Three buyers now absorb nearly all of it — China and India taking the lion's share, with Turkey a distant third — which is exactly why sanctions enforcement has shifted from Russia to these third-country intermediaries.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~45%",
+                "cc": "CN",
+                "weight": 45
+              },
+              {
+                "label": "India",
+                "value": "~38%",
+                "cc": "IN",
+                "weight": 38
+              },
+              {
+                "label": "Turkey",
+                "value": "~10%",
+                "cc": "TR",
+                "weight": 10
+              },
+              {
+                "label": "Others",
+                "value": "~7%",
+                "weight": 7
+              }
+            ],
+            "label": "buyers of Russian seaborne crude, share"
+          }
+        ]
+      },
+      {
+        "heading": "THE UNANIMITY TRAP",
+        "body": "Every EU sanctions package requires unanimous approval from all 27 members, so a single capital can block or dilute it. Hungary and Slovakia, still wired into Russian pipeline crude, have repeatedly extracted carve-outs — which is why packages arrive late, watered down, and numbered into the twenties.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "IN",
+              "TR",
+              "CN"
+            ],
+            "label": "where the redirected barrels go"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-09"
+    ],
+    "generatedAt": "2026-06-09T17:24:47.383Z",
+    "label": "The Russian Oil Price Cap",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-09-eu-orders-meta-halt-whatsapp-ai-rival-curbs": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "TWO LAWS, ONE TARGET",
+        "body": "Brussels has two tools to pry open a dominant platform. Article 102 of the EU treaties bans 'abuse of a dominant position' — the old, case-by-case route that requires proving harm. The Digital Markets Act, in force since 2024, skips the proof: it names a handful of firms 'gatekeepers' and imposes interoperability duties up front, no abuse needed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shift from **Article 102** to the **DMA** is the shift from *ex-post* enforcement — sue after the harm — to *ex-ante* regulation — write the rule before the harm. The DMA exists precisely because case-by-case antitrust took years while markets tipped."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'OPEN THE API' IS THE REMEDY",
+        "body": "Competition law's oldest interoperability fight was Microsoft: in 2004 the Commission forced it to share the protocols that let rival software talk to Windows servers, and to unbundle Media Player. The logic recurs here — when a dominant firm controls the pipe everyone needs, the remedy is rarely to break it up; it is to mandate access on fair terms.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2004",
+                "label": "Microsoft: protocols + unbundling",
+                "emphasis": "start"
+              },
+              {
+                "year": "2017",
+                "label": "Google Shopping fine"
+              },
+              {
+                "year": "2018",
+                "label": "Google Android fine"
+              },
+              {
+                "year": "2022",
+                "label": "DMA adopted",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "DMA obligations bite"
+              },
+              {
+                "year": "2024-03",
+                "label": "Apple fined over App Store"
+              }
+            ],
+            "label": "EU vs Big Tech: the enforcement arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE 10% WEAPON",
+        "body": "The fine ceiling is 10% of total worldwide annual turnover — not profit, not EU revenue, the whole top line. For a repeat offender the DMA allows up to 20%. The cap is deliberately tied to global revenue so that the penalty cannot be shrugged off as a cost of doing business.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "The EU's headline fine cap on a gatekeeper is 10% of what?",
+            "options": [
+              "Its global annual revenue",
+              "Its annual profit",
+              "Its revenue earned inside the EU",
+              "The revenue of the specific product at issue"
+            ],
+            "correct": 0,
+            "explanation": "Fines scale to total worldwide turnover, so a small EU footprint offers no shelter — and repeat breaches can reach 20%."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICE OF PRECEDENT",
+        "body": "The Commission has spent two decades calibrating these penalties. The Meta WhatsApp order is small money next to the running tally — but the leverage is the interoperability mandate, not the fine.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Google",
+                "value": "€4.3bn",
+                "cc": "US",
+                "weight": 4.3,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Google",
+                "value": "€2.4bn",
+                "cc": "US",
+                "weight": 2.4,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Apple",
+                "value": "€1.8bn",
+                "cc": "US",
+                "weight": 1.8,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Google",
+                "value": "€1.5bn",
+                "cc": "US",
+                "weight": 1.5,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Meta",
+                "value": "€797m",
+                "cc": "US",
+                "weight": 0.8,
+                "tone": "neutral"
+              },
+              {
+                "label": "Microsoft",
+                "value": "€497m",
+                "cc": "US",
+                "weight": 0.5,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Landmark EU competition fines"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE BUSINESS API",
+        "body": "WhatsApp's consumer app is free, but the WhatsApp Business API is the toll road: companies pay to send order updates, support chats, and increasingly AI agents through it. Controlling which AI may ride that road lets Meta steer the fastest-growing use of its 2-billion-user network toward its own assistant — which is exactly the bottleneck the Commission says it cannot wall off."
+      }
+    ],
+    "generatedAt": "2026-06-09T17:25:25.082Z",
+    "label": "Interoperability & the DMA",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-09-fcc-burner-phone-ban-telecom-id-collection-mandate": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT MAKES A PHONE A \"BURNER\"",
+        "body": "Anonymity is not a feature of the device — it's the absence of a billing relationship. A prepaid SIM bought with cash has no credit check, no contract, no name attached. Banning anonymous phones means forcing a name onto that transaction, not changing the hardware.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is *pay-as-you-go* or **prepaid**; the surveillance term is the *unregistered SIM*. Same object, opposite framings."
+          }
+        ]
+      },
+      {
+        "heading": "THE GLOBAL NORM, NOT THE EXCEPTION",
+        "body": "The US has been an outlier. Most of the world already mandates SIM registration — the GSMA counts over 150 countries — and the regimes range from a photocopied ID on file to live biometrics captured at the point of sale.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Pakistan",
+                "value": "fingerprint",
+                "cc": "PK",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "China",
+                "value": "face + ID",
+                "cc": "CN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Nigeria",
+                "value": "NIN linkage",
+                "cc": "NG",
+                "tone": "neutral"
+              },
+              {
+                "label": "Germany",
+                "value": "ID on file",
+                "cc": "DE",
+                "tone": "neutral"
+              }
+            ],
+            "label": "how SIM registration is enforced"
+          }
+        ]
+      },
+      {
+        "heading": "MEXICO'S BROKEN REGISTRY",
+        "body": "Mexico tried exactly this in 2009 with RENAUT, a national registry of every mobile user. The database leaked and was sold openly; kidnappers used registered numbers to target families. The registry was scrapped in 2012 — the mandate created the very database criminals wanted.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2009",
+                "label": "Mexico's RENAUT registry launched"
+              },
+              {
+                "year": "2011",
+                "label": "Registry data leaked and sold",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2012",
+                "label": "Mexico abolishes RENAUT"
+              },
+              {
+                "year": "2020",
+                "label": "Nigeria orders NIN–SIM linkage"
+              }
+            ],
+            "label": "registration mandates and their failures"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT DOESN'T STOP THE CRIME",
+        "body": "Reviews of registration regimes have repeatedly failed to find a measurable drop in crime. Determined actors switch to stolen identities, foreign SIMs, or a black market in pre-registered cards — while the ordinary user loses anonymity and a single hackable identity database is created.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What have studies of mandatory SIM registration generally found about its effect on crime?",
+            "options": [
+              "Sharp, lasting drop in phone-enabled fraud",
+              "No measurable reduction; crime adapts",
+              "Crime fell only in wealthy countries"
+            ],
+            "correct": 1,
+            "explanation": "Privacy researchers find offenders shift to stolen IDs, foreign or pre-registered SIMs — the mandate burdens ordinary users without denting crime."
+          }
+        ]
+      },
+      {
+        "heading": "THE METADATA IS THE PRIZE",
+        "body": "Even without reading messages, a name tied to a number unlocks the social graph: who called whom, when, and from where. US law has treated this metadata as fair game since Smith v. Maryland (1979), under the third-party doctrine — you have no privacy expectation in numbers you hand to the phone company.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine's logic: data *voluntarily* given to a third party loses Fourth Amendment protection. An ID mandate quietly expands what counts as **voluntarily disclosed**."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T17:26:27.345Z",
+    "label": "SIM Registration & Anonymity",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-09-gold-not-inert-relativistic-electrons-catalysis": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARADOX",
+        "body": "Gold is the noblest metal — it won't tarnish in air, won't dissolve in any single acid, and has been buried in tombs for millennia without corroding. Yet shrunk to a few nanometers it becomes one of the most powerful catalysts known. The same physics drives both the inertness and the reactivity."
+      },
+      {
+        "heading": "WHY GOLD IS INERT",
+        "body": "Gold's nucleus holds 79 protons. The innermost electrons must orbit so fast — over half the speed of light — that Einstein's relativity makes them gain mass and contract toward the nucleus. This drags the outer valence electrons inward and binds them tightly, leaving little appetite to react. Gold's nobility is a relativistic accident.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is gold chemically inert while silver, just above it on the periodic table, tarnishes?",
+            "options": [
+              "Gold has a fuller outer electron shell",
+              "Relativistic speed of inner electrons binds gold's valence electrons tightly",
+              "Silver is more abundant so reacts more often",
+              "Gold atoms are physically too large to bond"
+            ],
+            "correct": 1,
+            "explanation": "Gold's heavier nucleus accelerates inner electrons near light-speed; relativistic contraction stabilizes the valence electrons, making gold far less reactive than lighter silver."
+          }
+        ]
+      },
+      {
+        "heading": "THE SAME EFFECT TURNS IT YELLOW",
+        "body": "That relativistic contraction also narrows the energy gap between gold's filled and empty orbitals, so the metal absorbs blue light and reflects the rest. Silver, too light for strong relativistic effects, absorbs only ultraviolet and stays white. Gold's color and its chemistry come from the identical cause.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Without relativity, gold would look *silvery-white* like the metals around it. The yellow you see is **the speed of light written into a metal's color**."
+          }
+        ]
+      },
+      {
+        "heading": "THE SURFACE THAT HIDES",
+        "body": "A flat bulk gold surface spontaneously reorganizes its top atoms into a dense hexagonal herringbone pattern — the lowest-energy arrangement. This reconstruction packs the atoms so tightly that the reactive sites are buried, which is why a gold bar is catalytically dead."
+      },
+      {
+        "heading": "THE NANOPARTICLE EXCEPTION",
+        "body": "A particle only a few nanometers across simply lacks enough atoms to complete that reconstruction. Its corner and edge atoms stay under-coordinated — bonded to too few neighbors — and those exposed, electron-hungry sites are exactly where catalysis happens. Smaller is more reactive, the inverse of intuition."
+      },
+      {
+        "heading": "THE DISCOVERY THAT FLIPPED THE FIELD",
+        "body": "For most of chemistry's history gold was dismissed as useless for catalysis. In the late 1980s Masatoshi Haruta showed gold nanoparticles oxidize carbon monoxide even below room temperature, overturning the consensus. The theory behind why gold is noble at all was worked out by relativistic chemists like Pekka Pyykkö.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Masatoshi Haruta",
+                "role": "Pioneered gold nanoparticle catalysis",
+                "years": "1987–",
+                "cc": "JP"
+              },
+              {
+                "name": "Pekka Pyykkö",
+                "role": "Relativistic quantum chemist",
+                "years": "1979–",
+                "cc": "FI"
+              }
+            ],
+            "label": "who rewrote gold's reputation"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T17:27:03.644Z",
+    "label": "Gold's Relativistic Chemistry",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-09-linux-kernel-nftables-cve-2026-23111-root-escalation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A USE-AFTER-FREE IS",
+        "body": "Memory gets freed, but a pointer still points at it. The allocator hands that same memory to something else; now two parts of the program disagree about what lives there. An attacker who controls what gets allocated next can place data of their choosing where the kernel still thinks its old object lives — and the kernel acts on attacker-written bytes as if they were its own.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The off-by-one logic bug here — a stray `!` negating a condition — is mundane. The danger is *where* it lives: a **use-after-free** in kernel space means the corrupted object is trusted by the most privileged code on the machine."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE FIREWALL RUNS AS ROOT",
+        "body": "nf_tables is the packet-classification engine inside the Linux kernel — the successor to iptables. Filtering rules must touch every packet at wire speed, so the code runs in kernel space, not as a userland daemon. That performance decision is also the security cost: a bug in rule-parsing isn't a crashed program, it's memory corruption in the kernel itself.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Since 2014, **nftables** replaced the four-tool tangle of *iptables, ip6tables, arptables, ebtables* with one in-kernel virtual machine. Consolidation simplified the rules — and concentrated the attack surface into a single subsystem reachable from any unprivileged user namespace."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'LOCAL' IS THE WHOLE GAME",
+        "body": "This bug grants no remote access — the attacker must already have an ordinary shell. That sounds limiting, but it inverts the modern threat model: cloud tenants, container escapes, and compromised low-privilege service accounts all start as exactly that. Local privilege escalation is the bridge from 'foothold' to 'owns the box,' which is why these bugs are prized far above their unglamorous reputation."
+      },
+      {
+        "heading": "WHY UNPRIVILEGED USERS CAN REACH IT",
+        "body": "User namespaces let an unprivileged process become 'root' inside its own isolated namespace — the feature that makes rootless containers possible. But that fake root can configure its own network firewall, which means it can drive nf_tables and reach the vulnerable code without any real privilege. The feature that enables containers is the feature that exposes the kernel.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can an unprivileged Linux user trigger bugs in the kernel firewall code?",
+            "options": [
+              "The firewall has no access controls",
+              "User namespaces grant fake root that can configure firewall rules",
+              "The exploit requires a stolen admin password",
+              "nf_tables runs as a normal user program"
+            ],
+            "correct": 1,
+            "explanation": "User namespaces give a process root-equivalent powers inside its own namespace — including driving nf_tables — without any real system privilege."
+          }
+        ]
+      },
+      {
+        "heading": "THE PATCH-TO-EXPLOIT WINDOW",
+        "body": "The fix shipped in February; the working exploit was published Monday. That gap is the danger zone: kernel patches land in mainline long before distributions backport them and admins reboot. Attackers read the same commit diffs defenders do — a security fix is itself a map to the vulnerability, and reversing a one-line patch into an exploit is routine.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2016",
+                "label": "Dirty COW (copy-on-write race)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-03",
+                "label": "Dirty Pipe (pipe buffer flaw)"
+              },
+              {
+                "year": "2023",
+                "label": "StackRot (red-black tree UAF)"
+              },
+              {
+                "year": "2026-02",
+                "label": "nf_tables patch lands"
+              },
+              {
+                "year": "2026-06",
+                "label": "working exploit published"
+              }
+            ],
+            "label": "the kernel's recurring privesc bugs"
+          }
+        ]
+      },
+      {
+        "heading": "WHY KERNELS KEEP FAILING THIS WAY",
+        "body": "The Linux kernel is roughly 30 million lines of C, a language with no memory safety — freeing, aliasing, and bounds are the programmer's responsibility. Use-after-free and its cousins account for the majority of serious kernel vulnerabilities, which is why both Google and the kernel maintainers are now pushing Rust into new driver code: not for speed, but to make this entire bug class impossible by construction."
+      }
+    ],
+    "generatedAt": "2026-06-09T17:27:41.844Z",
+    "label": "Use-After-Free & Kernel Privilege Escalation",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-09-siribclone-romance-honeypot-spy-russian-soldiers": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OLDEST EXPLOIT",
+        "body": "Sexpionage predates every firewall. Intelligence services have always known the cheapest way past a target's defenses is the target himself — a willing person hands over what no exploit could extract. The Soviet KGB ran trained seductors as standard tradecraft: female agents were called 'swallows,' male agents 'ravens,' and the apartments wired for the encounter were 'swallow's nests.'",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Stasi industrialized it. Spymaster **Markus Wolf** deployed *Romeo agents* — handsome East German officers sent to seduce lonely secretaries inside West Germany's ministries, turning them into sources. The asset was recruited through the heart, never the wallet."
+          }
+        ]
+      },
+      {
+        "heading": "WHY NO MALWARE IS THE POINT",
+        "body": "A malware attack leaves a signature: code to scan for, traffic to flag, a patch to ship. A romance lure leaves none. The soldier voluntarily types his location into a chat with someone he trusts. There is no payload to detect because the payload is the human decision. Endpoint security, encryption, and air-gaps are all irrelevant when the target is the one leaking.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is a romance honeypot resistant to technical cyber-defenses?",
+            "options": [
+              "It uses unbreakable military-grade encryption",
+              "It exploits the human, not the software, so there's no code to detect",
+              "It hides inside legitimate app traffic",
+              "It only works on outdated devices"
+            ],
+            "correct": 1,
+            "explanation": "The data is volunteered by the target, so antivirus, firewalls, and patches have nothing to scan — the vulnerability is trust, not a bug."
+          }
+        ]
+      },
+      {
+        "heading": "WHY LOCATION DATA KILLS",
+        "body": "On a frontline, a soldier's coordinates are a targeting solution. Aggregate the locations of many soldiers and you map a unit's position, density, and movement — the prerequisites for an artillery or drone strike. This is why armies ban phones near the front: in 2017 a single geolocated photo helped pinpoint troop positions, and metadata has guided strikes ever since.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "UA"
+            ],
+            "label": "the front the data feeds",
+            "caption": "Harvested coordinates map units along the Russia–Ukraine line"
+          }
+        ]
+      },
+      {
+        "heading": "THE LONG LINEAGE",
+        "body": "Honeypots run as a continuous thread through a century of espionage — only the delivery changed, from cafés to dating apps. Mata Hari was executed for it in 1917; the Profumo affair toppled a British minister in 1963; Anna Chapman's ring of 'illegals' was rolled up in 2010. SiribClone is the same playbook ported to a phone screen.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1917",
+                "label": "Mata Hari executed for espionage"
+              },
+              {
+                "year": "1961",
+                "label": "Stasi Romeo agents at peak",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1963",
+                "label": "Profumo affair fells UK minister"
+              },
+              {
+                "year": "2010",
+                "label": "Anna Chapman illegals ring exposed"
+              },
+              {
+                "year": "2025",
+                "label": "SiribClone romance lures"
+              }
+            ],
+            "label": "a century of the honey trap"
+          }
+        ]
+      },
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "A fake profile costs nothing and risks no operative — there is no agent to capture, no embassy to expose. Against it stands an entire army's discipline, which must hold across hundreds of thousands of bored, isolated young men with phones. The defender must win every time; the attacker needs to win once."
+      }
+    ],
+    "generatedAt": "2026-06-09T17:28:19.617Z",
+    "label": "Honeypots & the Human Vulnerability",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-09-spacex-ipo-oversubscribed-orders-multiple-times-float": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT \"OVERSUBSCRIBED\" MEANS",
+        "body": "An IPO is sold by building a book: underwriters collect non-binding bids from institutions, each stating how many shares at what price. When committed demand exceeds the shares on offer, the book is oversubscribed — and the more times over, the more pricing power the seller has. Demand at several times the float is a signal the company can raise the price, not a guarantee every bidder gets stock.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Bids in a book-build are *indications of interest*, not orders — a buyer asking for **$10bn** may be allotted a fraction. Inflating a bid to secure a bigger slice is a known game, which is why \"multiple times oversubscribed\" is partly theater and partly real demand."
+          }
+        ]
+      },
+      {
+        "heading": "THE FLOAT IS THE LEVER",
+        "body": "The float is only the slice of shares actually sold to the public — here a $75bn offering against a company valued far higher. Selling a small float manufactures scarcity: less supply against fixed demand props up the price and lets insiders retain control. It also means the headline valuation rests on a thin sliver of shares that actually changed hands."
+      },
+      {
+        "heading": "HOW THE PRICE IS SET",
+        "body": "The price isn't fixed in advance — it's discovered. Underwriters open a range, watch the book fill, then price at or above the top if demand is deep. Price the deal too low and you leave money on the table in a first-day 'pop'; price too high and the stock breaks below issue, embarrassing everyone. Bankers deliberately aim a touch low to guarantee a pop, which is why a soaring debut is a sign the company was underpriced, not overpriced."
+      },
+      {
+        "heading": "WHY GOING PUBLIC CHANGES THE BOOKS",
+        "body": "Private companies choose what to disclose; public ones cannot. An S-1 filing forces audited GAAP financials into the open — including related-party dealings. SpaceX's profitable rocket business has reported a net loss before, because GAAP consolidation pulled the losses of an affiliated venture onto its statements. The IPO makes every previously invisible line item priceable by the market.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A company can post an **$8bn operating profit** and still book a **net loss** when accounting rules force it to absorb an affiliate's spending. The rockets didn't lose money — the *consolidation structure* did."
+          }
+        ]
+      },
+      {
+        "heading": "THE SCALE OF IT",
+        "body": "At $75bn raised, this would tower over every IPO in history. The previous record — Saudi Aramco in 2019 — raised under $30bn, and the largest Western tech debuts were smaller still. The chokepoint on a deal this size isn't appetite, it's how many institutions can write multi-billion checks at once.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "SpaceX",
+                "value": "~$75bn",
+                "cc": "US",
+                "weight": 75,
+                "tone": "favorable"
+              },
+              {
+                "label": "Saudi Aramco",
+                "value": "~$29bn",
+                "cc": "SA",
+                "weight": 29,
+                "tone": "neutral"
+              },
+              {
+                "label": "Alibaba",
+                "value": "~$25bn",
+                "cc": "CN",
+                "weight": 25,
+                "tone": "neutral"
+              },
+              {
+                "label": "SoftBank",
+                "value": "~$24bn",
+                "cc": "JP",
+                "weight": 24,
+                "tone": "neutral"
+              },
+              {
+                "label": "Visa",
+                "value": "~$20bn",
+                "cc": "US",
+                "weight": 20,
+                "tone": "neutral"
+              },
+              {
+                "label": "Facebook",
+                "value": "~$16bn",
+                "cc": "US",
+                "weight": 16,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Largest IPOs by proceeds raised"
+          }
+        ]
+      },
+      {
+        "heading": "THE LOCK-UP CLIFF",
+        "body": "Insiders and early backers can't sell at the open — a lock-up agreement, typically 90 to 180 days, bars them. The float that trades on day one is artificially tight; when the lock-up expires and held shares become sellable, supply jumps and the price often dips. The real test of demand comes months after the debut, not on it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "An IPO is '5x oversubscribed.' What does that actually tell you?",
+            "options": [
+              "The stock is guaranteed to rise on day one",
+              "Bids total roughly 5x the shares on offer, giving the seller pricing power",
+              "The company is worth 5x its asking price",
+              "Five institutions control the entire deal"
+            ],
+            "correct": 1,
+            "explanation": "Oversubscription measures bid volume against the float — it lets underwriters raise the price, but bids are non-binding indications, not a promise the stock pops."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T17:28:57.133Z",
+    "label": "IPO Mechanics & the Oversubscribed Book",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-09-xi-kim-china-de-facto-recognizes-north-korea-nuclear": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MEMBERSHIP RULE",
+        "body": "The Non-Proliferation Treaty recognizes exactly five legitimate nuclear states — the US, Russia, UK, France, and China — defined as anyone who tested a device before January 1967. The cutoff was deliberate: it froze the club at its existing members and made every later bomb illegitimate by definition.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "North Korea holds a unique status among nuclear powers. What is it?",
+            "options": [
+              "The only state to withdraw from the NPT",
+              "The only state to never sign the NPT",
+              "The smallest country with nuclear weapons",
+              "The first state to test underground"
+            ],
+            "correct": 0,
+            "explanation": "India, Pakistan, and Israel never joined the NPT; North Korea signed in 1985 and is the only state ever to formally withdraw, in 2003."
+          }
+        ]
+      },
+      {
+        "heading": "DE FACTO VS DE JURE",
+        "body": "There is a hard line between possessing a bomb and being recognized as a legitimate nuclear state. India, Pakistan, Israel, and North Korea all have arsenals; none are NPT-recognized. Recognition is a political act, not a technical one — which is exactly what Xi's framing supplies.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction is *de facto* (it exists in fact) versus *de jure* (it exists in law). A great power treating the arsenal as **established, not negotiable** is how de facto quietly hardens into de jure."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE NORTH KOREA SITS",
+        "body": "North Korea's stockpile is the smallest of any nuclear-armed state — an estimated few dozen warheads against Russia's and America's thousands. Its leverage comes not from size but from undeniability: enough to make any preemptive strike a gamble no neighbor will take.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Estimated nuclear warheads",
+            "peers": [
+              {
+                "value": 5500,
+                "cc": "RU"
+              },
+              {
+                "value": 5000,
+                "cc": "US"
+              },
+              {
+                "value": 500,
+                "cc": "CN"
+              },
+              {
+                "value": 290,
+                "cc": "FR"
+              },
+              {
+                "value": 170,
+                "cc": "PK"
+              },
+              {
+                "value": 170,
+                "cc": "IN"
+              },
+              {
+                "value": 90,
+                "cc": "IL"
+              },
+              {
+                "value": 50,
+                "cc": "KP"
+              }
+            ],
+            "subjectCc": "KP",
+            "unit": "warheads"
+          }
+        ]
+      },
+      {
+        "heading": "THE GATEKEEPER PARADOX",
+        "body": "China chairs the Security Council machinery meant to enforce sanctions on Pyongyang while simultaneously holding a veto over any new resolution. The enforcer and the shield are the same hand — which is why sanctions on North Korea have not meaningfully tightened in years.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KP",
+              "CN",
+              "KR",
+              "JP",
+              "RU"
+            ],
+            "label": "the Northeast Asian theatre",
+            "caption": "China and Russia border North Korea and veto at the UNSC"
+          }
+        ]
+      },
+      {
+        "heading": "THE LONG ARC",
+        "body": "Pyongyang's path to the bomb was a slow walk through every diplomatic offramp. Each freeze deal — the 1994 Agreed Framework, the Six-Party Talks — bought time that was spent building, until the 2003 NPT withdrawal removed the last legal restraint.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1985",
+                "label": "Joins the NPT"
+              },
+              {
+                "year": "1994",
+                "label": "Agreed Framework freeze"
+              },
+              {
+                "year": "2003",
+                "label": "Withdraws from NPT",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2006",
+                "label": "First nuclear test"
+              },
+              {
+                "year": "2017",
+                "label": "Thermonuclear + ICBM tests"
+              },
+              {
+                "year": "2022",
+                "label": "Law declares status irreversible"
+              }
+            ],
+            "label": "North Korea's nuclear path"
+          }
+        ]
+      },
+      {
+        "heading": "THE TABLE THAT BROKE",
+        "body": "The Six-Party Talks (2003–2009) were the last serious attempt to denuclearize the peninsula by negotiation. The lineup itself tells the story — the two Koreas plus the four powers whose interests the peninsula sits between.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "North Korea",
+                "role": "the nuclear aspirant",
+                "cc": "KP"
+              },
+              {
+                "name": "South Korea",
+                "role": "the frontline target",
+                "cc": "KR"
+              },
+              {
+                "name": "China",
+                "role": "host and patron",
+                "cc": "CN"
+              },
+              {
+                "name": "United States",
+                "role": "the security guarantor",
+                "cc": "US"
+              },
+              {
+                "name": "Russia",
+                "role": "regional power",
+                "cc": "RU"
+              },
+              {
+                "name": "Japan",
+                "role": "the wary neighbor",
+                "cc": "JP"
+              }
+            ],
+            "label": "the Six-Party Talks"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T17:29:37.034Z",
+    "label": "The Nuclear Club & North Korea",
+    "category": "politics",
+    "articleCount": 1
   }
 }
