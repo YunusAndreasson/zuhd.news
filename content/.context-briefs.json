@@ -331442,5 +331442,1663 @@
     "label": "ISWAP, AFRICOM & the Lake Chad War",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-07-llms-eroding-software-engineering-career-ladder": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LADDER IS A SCHOOL",
+        "body": "The junior rung is not really cheap labor — it is a training pipeline disguised as a hierarchy. Juniors do the bug fixes, tests, and small features partly because the work needs doing, but mostly because grinding through it is how judgment gets built. Remove the rung and you have not just cut a cost; you have closed the school that manufactures your future seniors.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Software inherited this from the trades: the **apprentice → journeyman → master** progression, where the apprentice's low-value output is the tuition the master pays to grow a replacement."
+          }
+        ]
+      },
+      {
+        "heading": "THE SUPERVISION PARADOX",
+        "body": "Someone has to check what the AI writes — and catching a subtle bug in generated code requires exactly the judgment you only get by having written that code badly yourself, many times, and learning why it broke. You cannot supervise a skill you never acquired. Cutting the juniors who would have acquired it removes the seedbed for the seniors who are supposed to police the machine."
+      },
+      {
+        "heading": "EVERY ABSTRACTION WAS GOING TO END PROGRAMMING",
+        "body": "This is the sixth time a tool has been declared the end of the programmer. Each prior wave automated the layer below it — and demand for programmers rose every time, because cheaper software meant the world wanted vastly more of it.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1957",
+                "label": "FORTRAN compiler ('no more coders')",
+                "emphasis": "start"
+              },
+              {
+                "year": "1959",
+                "label": "COBOL ('managers will write programs')"
+              },
+              {
+                "year": "1985",
+                "label": "4GLs & spreadsheets"
+              },
+              {
+                "year": "1990",
+                "label": "CASE / visual tools"
+              },
+              {
+                "year": "2004",
+                "label": "offshoring wave"
+              },
+              {
+                "year": "2015",
+                "label": "low-code / no-code"
+              },
+              {
+                "year": "2023",
+                "label": "LLM code generation",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "tools that 'would replace programmers'"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE ATM HIRED MORE TELLERS",
+        "body": "The most-cited automation case cuts against intuition. When ATMs spread in the 1980s–90s, the number of human bank tellers in the US did not fall — it rose. ATMs made running a branch cheaper, so banks opened far more branches, and each still needed staff for the non-routine work machines couldn't do. The lesson: automation reshapes a job before it deletes it, and demand effects can swamp displacement.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What happened to the number of US bank tellers as ATMs spread in the 1990s?",
+            "options": [
+              "It collapsed by half",
+              "It stayed flat",
+              "It rose",
+              "Tellers vanished by 2000"
+            ],
+            "correct": 2,
+            "explanation": "Cheaper branches meant banks opened more of them, so total teller employment grew even as per-branch staffing fell."
+          }
+        ]
+      },
+      {
+        "heading": "HOW EXPERTISE ACTUALLY FORMS",
+        "body": "Mastery is not absorbed by watching; it accumulates through years of progressively harder problems with tight feedback on each failure. Strip out the easy early problems and you break the gradient — there is no longer a runway of survivable mistakes on which a novice climbs toward judgment.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Researchers call this **deliberate practice**: not mere repetition but repeated attempts just beyond current ability, each corrected. The 'easy' junior tickets *are* the practice set — the thing being automated away."
+          }
+        ]
+      },
+      {
+        "heading": "THE HOLLOWING OUT",
+        "body": "Economists have a name for what happens when machines eat the routine middle of a workforce: job polarization. Demand splits toward high-judgment roles at the top and hard-to-automate manual roles at the bottom, while the rungs in between thin out. A profession that hollows its middle stops being a ladder and becomes a gap — easy to fall into, hard to cross.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "David Autor's work on **skill-biased technical change** documented this for manufacturing and clerical work; the new claim is that software engineering — long assumed immune — is now on the same curve."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T04:34:30.390Z",
+    "label": "The Engineering Career Ladder",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-08-climate-smart-feed-livestock-methane": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHERE THE METHANE COMES FROM",
+        "body": "A cow is a walking fermentation vat. In its rumen, microbes called methanogens — archaea, not bacteria — break down fibrous grass and release methane as a byproduct. The cow then burps it out: over 90% of the gas exits the mouth, not the other end. This is enteric fermentation, and it is the single largest source of livestock emissions.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Most of the methane a cow emits leaves its body through which route?",
+            "options": [
+              "Flatulence",
+              "Burping",
+              "Manure breakdown",
+              "Sweat and breath vapor"
+            ],
+            "correct": 1,
+            "explanation": "Over 90% of enteric methane is belched out — the rumen sits forward in the gut, so gas exits via the mouth."
+          },
+          {
+            "type": "prose",
+            "text": "The culprits are **methanogens** — single-celled *archaea* that thrive in the oxygen-free rumen and turn hydrogen and CO2 into methane."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT RAISES YIELDS, NOT JUST CUTS GAS",
+        "body": "Methane is wasted feed energy — roughly 6–12% of everything a cow eats is burped away as gas it can't use. Block the methanogens and that energy stays in the animal, available for milk and meat. This is the key to the no-income-loss claim: the additive isn't a cost the farmer absorbs for the climate's sake, it's a feed-efficiency gain that happens to reduce emissions."
+      },
+      {
+        "heading": "HOW THE ADDITIVES WORK",
+        "body": "The leading compounds don't change the diet — they target the chemistry. 3-NOP blocks the specific enzyme methanogens use in their final step of making methane. Red seaweed does the same job through a natural compound called bromoform. Both starve the gas-producing pathway while leaving the rest of digestion intact.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Two front-runners: **3-NOP** (a synthetic enzyme inhibitor) and *Asparagopsis* red seaweed, whose active ingredient is **bromoform**."
+          }
+        ]
+      },
+      {
+        "heading": "WHY METHANE GETS THE ATTENTION",
+        "body": "Tonne for tonne, methane traps far more heat than carbon dioxide — but it's short-lived, breaking down in the atmosphere within about a decade rather than centuries. That combination makes it the fastest lever available: cut methane now and the warming benefit shows up within a human lifetime, not a geological one.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Carbon dioxide",
+                "value": "1×",
+                "tone": "neutral",
+                "weight": 1
+              },
+              {
+                "label": "Methane",
+                "value": "~80×",
+                "tone": "unfavorable",
+                "weight": 80
+              },
+              {
+                "label": "Nitrous oxide",
+                "value": "~270×",
+                "tone": "unfavorable",
+                "weight": 270
+              }
+            ],
+            "label": "warming power per tonne, ~20-year horizon"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE HERDS ARE",
+        "body": "The trial regions aren't incidental. India holds the world's largest cattle population, much of it owned by smallholders with a handful of animals each; sub-Saharan Africa runs tens of millions more. The emissions problem and the poverty problem overlap on the same farms — which is why a fix that pays for itself matters more here than a subsidy-dependent one would in the West.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Cattle population",
+            "peers": [
+              {
+                "value": 305,
+                "cc": "IN"
+              },
+              {
+                "value": 230,
+                "cc": "BR"
+              },
+              {
+                "value": 92,
+                "cc": "US"
+              },
+              {
+                "value": 95,
+                "cc": "CN"
+              },
+              {
+                "value": 70,
+                "cc": "ET"
+              },
+              {
+                "value": 53,
+                "cc": "AR"
+              }
+            ],
+            "subjectCc": "IN",
+            "unit": "mn head"
+          },
+          {
+            "type": "locations",
+            "codes": [
+              "KE",
+              "ET",
+              "TZ",
+              "IN",
+              "PK",
+              "BD"
+            ],
+            "label": "where the field trials run",
+            "caption": "sub-Saharan Africa and South Asia — smallholder-dominant herds"
+          }
+        ]
+      },
+      {
+        "heading": "THE GRAZING PROBLEM",
+        "body": "Additives have to reach the cow every day to work — easy in a feedlot where animals eat a measured ration, hard for a smallholder whose cows graze open pasture. A drug that drops methane 30% in a controlled trial may deliver far less at scale, because the delivery mechanism, not the chemistry, is the bottleneck."
+      }
+    ],
+    "generatedAt": "2026-06-09T04:35:11.836Z",
+    "label": "Enteric Methane & Cattle",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-08-migrant-workers-gulf-states-war-no-shelter": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEMOGRAPHIC INVERSION",
+        "body": "In the UAE and Qatar, citizens are a minority in their own countries — roughly 9 in 10 residents are foreign nationals, most of them low-wage laborers. No other states on earth are this dependent on non-citizens to function, which is exactly what makes an evacuation politically impossible: you cannot empty the country of the people who run it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UAE",
+                "value": "~88%",
+                "cc": "AE",
+                "weight": 88,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Qatar",
+                "value": "~88%",
+                "cc": "QA",
+                "weight": 88,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Kuwait",
+                "value": "~70%",
+                "cc": "KW",
+                "weight": 70,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Bahrain",
+                "value": "~55%",
+                "cc": "BH",
+                "weight": 55,
+                "tone": "neutral"
+              },
+              {
+                "label": "Oman",
+                "value": "~46%",
+                "cc": "OM",
+                "weight": 46,
+                "tone": "neutral"
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~38%",
+                "cc": "SA",
+                "weight": 38,
+                "tone": "neutral"
+              }
+            ],
+            "label": "foreign-born share of population, 2024 est."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT KAFALA ACTUALLY DOES",
+        "body": "Under the kafala (sponsorship) system, a migrant's legal status is tied to a single employer — the kafeel — who controls their visa, their job, and historically their right to leave. The worker cannot change jobs or exit the country without the sponsor's consent. The system was designed in the mid-20th century to manage temporary labor; it functions in practice as a tool of immobility.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The chokepoint is the *exit visa*: in several Gulf states a departing worker has needed the **sponsor's signed permission** to board a flight home. Reform has loosened this on paper — Qatar nominally scrapped exit permits for most workers in 2018 — but enforcement is uneven and domestic workers are often carved out."
+          }
+        ]
+      },
+      {
+        "heading": "WHO THEY ARE",
+        "body": "The Gulf's labor force flows overwhelmingly from South Asia — India, Pakistan, Bangladesh, Nepal — plus the Philippines and increasingly East Africa. These are remittance economies in reverse: the money sent home from Gulf construction sites and households is a top source of foreign exchange for the sending states, which is precisely why those governments tread carefully.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "in",
+                "label": "India"
+              },
+              {
+                "id": "pk",
+                "label": "Pakistan"
+              },
+              {
+                "id": "bd",
+                "label": "Bangladesh"
+              },
+              {
+                "id": "np",
+                "label": "Nepal"
+              },
+              {
+                "id": "ph",
+                "label": "Philippines"
+              },
+              {
+                "id": "ksa",
+                "label": "Saudi"
+              },
+              {
+                "id": "uae",
+                "label": "UAE"
+              },
+              {
+                "id": "qkw",
+                "label": "Qatar/Kuwait"
+              }
+            ],
+            "links": [
+              {
+                "source": "in",
+                "target": "ksa",
+                "value": 26
+              },
+              {
+                "source": "in",
+                "target": "uae",
+                "value": 35
+              },
+              {
+                "source": "in",
+                "target": "qkw",
+                "value": 18
+              },
+              {
+                "source": "pk",
+                "target": "ksa",
+                "value": 25
+              },
+              {
+                "source": "pk",
+                "target": "uae",
+                "value": 13
+              },
+              {
+                "source": "bd",
+                "target": "ksa",
+                "value": 22
+              },
+              {
+                "source": "bd",
+                "target": "uae",
+                "value": 10
+              },
+              {
+                "source": "np",
+                "target": "qkw",
+                "value": 9
+              },
+              {
+                "source": "ph",
+                "target": "qkw",
+                "value": 8
+              },
+              {
+                "source": "ph",
+                "target": "uae",
+                "value": 7
+              }
+            ],
+            "label": "principal migrant flows into the Gulf (illustrative scale)"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEVERAGE PROBLEM",
+        "body": "A labor-sending state cannot order a Gulf evacuation. It does not control the airports, the visas, or the exit permits, and it depends on the host's goodwill — and on continued remittances — to keep the corridor open. Diplomacy, not entitlement, governs whether charter flights are allowed to land. The asymmetry runs entirely one direction.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SA",
+              "AE",
+              "QA",
+              "KW",
+              "BH",
+              "OM"
+            ],
+            "label": "the GCC labor states",
+            "markers": [
+              {
+                "lat": 25.2854,
+                "lng": 51.531,
+                "label": "Doha"
+              },
+              {
+                "lat": 25.2048,
+                "lng": 55.2708,
+                "label": "Dubai"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 1990 PRECEDENT",
+        "body": "When Iraq invaded Kuwait in August 1990, roughly 170,000 Indian nationals were stranded. Over 59 days, Air India flew them out via Amman in what the Guinness records logged as the largest civilian airlift in history. The lesson cut both ways: evacuation is possible, but it required a friendly transit corridor, months of lead time, and a state willing to charter hundreds of flights — conditions that rarely align under fire.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Gulf country has the highest share of foreign nationals in its population?",
+            "options": [
+              "Saudi Arabia",
+              "United Arab Emirates",
+              "Oman",
+              "Bahrain"
+            ],
+            "correct": 1,
+            "explanation": "The UAE (and Qatar) sit near 88% foreign-born; Saudi Arabia, despite the largest absolute migrant count, is closer to 38% because its citizen base is far bigger."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T04:35:51.758Z",
+    "label": "Kafala & the Gulf's Migrant Majority",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-08-ocean-sensor-network-dismantled-going-blind": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SAMPLING GAP",
+        "body": "Satellites see the ocean's skin and nothing below it — seawater is opaque to the radio and infrared wavelengths satellites use. Everything beneath the surface must be measured by a physical instrument in the water. The ocean covers 71% of the planet and is, below a few meters, the least-observed environment on Earth.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why ocean networks are *in-situ* by necessity: a buoy, a float, or a seafloor node. There is no remote-sensing shortcut for **subsurface** temperature, salinity, or dissolved CO₂."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HURRICANES NEED THE DEEP",
+        "body": "A hurricane's fuel is not sea-surface temperature alone but ocean heat content — how deep the warm layer goes. A storm churns cold water up from below; if warm water extends deep, that upwelling can't cool the surface and the storm rapidly intensifies. Forecasting intensity requires subsurface temperature profiles, exactly what in-water sensors provide.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What best predicts whether a hurricane will rapidly intensify over warm water?",
+            "options": [
+              "How deep the warm ocean layer extends, not just surface temperature",
+              "The sea-surface temperature on its own",
+              "Atmospheric CO₂ concentration",
+              "The position of the jet stream"
+            ],
+            "correct": 0,
+            "explanation": "Deep warm water resists the cooling upwelling a storm generates, so subsurface heat content — measured by in-water sensors — drives rapid intensification."
+          }
+        ]
+      },
+      {
+        "heading": "THE GLOBAL BACKBONE",
+        "body": "Dedicated arrays sit atop a worldwide system led by Argo — roughly 4,000 free-drifting floats that dive to 2,000m, record a profile, and surface to relay it by satellite every ten days. No single nation owns the ocean record; it is stitched together from national programs, and removing one stitch thins the whole fabric."
+      },
+      {
+        "heading": "THE CARBON LEDGER",
+        "body": "The ocean is the planet's largest active carbon sink, absorbing roughly a quarter of all human CO₂ emissions each year — which is also why it is acidifying. Sensors that measure dissolved CO₂ are how scientists track whether that sink is still working or beginning to saturate.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Stays in atmosphere",
+                "value": 45,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Absorbed by land",
+                "value": 30,
+                "tone": "neutral"
+              },
+              {
+                "label": "Absorbed by ocean",
+                "value": 25,
+                "tone": "favorable"
+              }
+            ],
+            "label": "where human CO₂ emissions end up (approx. share)"
+          }
+        ]
+      },
+      {
+        "heading": "THE COMMONS PROBLEM",
+        "body": "The data fed hurricane warnings, fisheries models, and climate records used far beyond US waters — a global public good paid for by one national budget. That is the structural fragility of shared scientific infrastructure: the benefits diffuse worldwide, but the funding decision sits with a single agency that can recategorize it as a line item.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The official term was a *\"scope adjustment\"* — bureaucratic language for switching off a **$368m** instrument whose readings other nations had quietly come to depend on, with **no replacement timeline**."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T04:36:28.370Z",
+    "label": "Observing the Ocean Interior",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-08-switzerland-referendum-population-cap-10m": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INITIATIVE MACHINE",
+        "body": "Any group that gathers 100,000 valid signatures within 18 months can force a binding national vote to amend the constitution. This is why fringe ideas reach the ballot in Switzerland that would die in committee anywhere else — the citizen, not parliament, sets the agenda.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Passage requires a **double majority**: a yes from the national popular vote *and* from a majority of the 26 cantons. Rural, conservative cantons are overweighted, so a measure can win the popular vote and still fail."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2014 PRECEDENT",
+        "body": "Voters narrowly passed the 'mass immigration initiative' demanding quotas on EU migrants. It directly contradicted free movement, so parliament spent three years quietly watering it down into a toothless 'jobs-first' preference rule. A binding vote does not guarantee a binding outcome.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1970",
+                "label": "Schwarzenbach anti-foreigner vote fails narrowly"
+              },
+              {
+                "year": "2014",
+                "label": "Mass immigration initiative passes",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020",
+                "label": "Free-movement termination vote rejected"
+              },
+              {
+                "year": "2026",
+                "label": "10-million population cap vote"
+              }
+            ],
+            "label": "the recurring referendum"
+          }
+        ]
+      },
+      {
+        "heading": "THE GUILLOTINE CLAUSE",
+        "body": "Switzerland is not in the EU but accesses its market through bilateral treaties bundled so that killing one kills all. Free movement of people is legally chained to market access, air transport, and research deals — Brussels designed it this way precisely so the Swiss cannot cherry-pick.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CH",
+              "DE",
+              "FR",
+              "IT",
+              "AT"
+            ],
+            "label": "free movement with all four neighbors"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ONE IN THREE",
+        "body": "Switzerland's foreign-born share is among the highest in the developed world — a structural feature, not an anomaly. Low birth rates plus a high-wage economy that needs labor for pharma, banking, construction, and care work pull in workers no domestic supply can replace.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Foreign-born share of population",
+            "peers": [
+              {
+                "value": 47,
+                "cc": "LU"
+              },
+              {
+                "value": 30,
+                "cc": "CH"
+              },
+              {
+                "value": 30,
+                "cc": "AU"
+              },
+              {
+                "value": 21,
+                "cc": "CA"
+              },
+              {
+                "value": 20,
+                "cc": "SE"
+              },
+              {
+                "value": 18,
+                "cc": "DE"
+              },
+              {
+                "value": 15,
+                "cc": "US"
+              },
+              {
+                "value": 13,
+                "cc": "FR"
+              }
+            ],
+            "subjectCc": "CH",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEMOGRAPHIC ARITHMETIC",
+        "body": "Capping at 10 million is a near-term trigger, not a distant one — Switzerland already sits around 9 million and grows mostly through migration, not births. A binding cap would force parliament to choose between treaty obligations and a constitutional number it cannot meet any other way.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can a Swiss initiative win the popular vote but still fail?",
+            "options": [
+              "The president can veto it",
+              "It must also win a majority of cantons",
+              "The EU must approve it first",
+              "Turnout fell below 50%"
+            ],
+            "correct": 1,
+            "explanation": "Constitutional amendments need a double majority — the national popular vote and a majority of the 26 cantons, which overweights smaller rural cantons."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T04:37:03.000Z",
+    "label": "Swiss Direct Democracy & Free Movement",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-09-fcc-waives-amazon-leo-launch-deadline": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "USE IT OR LOSE IT",
+        "body": "Radio spectrum and orbital slots are public resources the FCC licenses but does not sell. To stop firms from hoarding a license they never deploy — locking out rivals while sitting idle — regulators attach milestones: launch a set fraction by a date, or forfeit the grant. The Amazon deadline existed to prevent exactly this 'warehousing.'",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The term of art is **spectrum warehousing** — holding a frequency license defensively to deny it to competitors. Milestone deadlines are the FCC's standard antidote: *deploy or forfeit*."
+          }
+        ]
+      },
+      {
+        "heading": "THE HALF-BY-DEADLINE RULE",
+        "body": "Amazon's 2020 authorization for 3,232 satellites came with a classic FCC condition: launch and operate half the constellation — 1,616 satellites — by July 2026, the rest by 2029. With only 333 up, the waiver acknowledges the math was impossible regardless of effort.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the FCC attach launch-milestone deadlines to a satellite license?",
+            "options": [
+              "To prevent firms warehousing spectrum they never deploy",
+              "To raise auction revenue for the treasury",
+              "To slow down orbital debris accumulation",
+              "To force coordination with foreign regulators"
+            ],
+            "correct": 0,
+            "explanation": "Milestones convert a license into a 'deploy or forfeit' obligation, stopping a holder from locking out rivals while sitting idle."
+          }
+        ]
+      },
+      {
+        "heading": "WHY LOW ORBIT",
+        "body": "Traditional broadband satellites sit in geostationary orbit, 35,786 km up, where the round-trip signal delay alone is ~500 milliseconds — unusable for video calls or gaming. Low Earth orbit sits 30-60× closer, cutting latency to ~25 ms. The price of being close: each satellite covers a tiny patch of ground and orbits in ~90 minutes, so you need thousands to blanket the planet."
+      },
+      {
+        "heading": "THE CONSTELLATION RACE",
+        "body": "The LEO broadband field is a small set of mega-constellations, and the gap between the leader and everyone else is enormous. Starlink's head start is measured in years and thousands of satellites — which is precisely the dominance the FCC cited when it relaxed Amazon's clock to keep a second competitor alive.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Starlink",
+                "value": "~8,000",
+                "cc": "US",
+                "weight": 8000,
+                "tone": "favorable"
+              },
+              {
+                "label": "Kuiper",
+                "value": "333",
+                "cc": "US",
+                "weight": 333,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "OneWeb",
+                "value": "~630",
+                "cc": "GB",
+                "weight": 630,
+                "tone": "neutral"
+              },
+              {
+                "label": "Guowang",
+                "value": "low hundreds",
+                "cc": "CN",
+                "weight": 200,
+                "tone": "neutral"
+              }
+            ],
+            "label": "LEO broadband, satellites in orbit"
+          }
+        ]
+      },
+      {
+        "heading": "LAUNCH IS THE BINDING CONSTRAINT",
+        "body": "A satellite design can be finished in software; getting mass to orbit cannot. Both of Amazon's heavy-lift options are grounded, and there is no substitute — you cannot warehouse the satellites on the ground and count them. This is the deeper asymmetry: Starlink's operator owns its own rockets and launches weekly, while Kuiper depends on third-party lift it does not control."
+      },
+      {
+        "heading": "THE CROWDING PROBLEM",
+        "body": "LEO is not infinite. Satellites cluster in narrow altitude shells, and a single collision can scatter debris that triggers further collisions — the cascade physicist Donald Kessler warned of in 1978. Orbital slots and frequencies are allocated first-come, which is why the race to launch is also a race to claim space before rivals fill the shell."
+      }
+    ],
+    "generatedAt": "2026-06-09T04:37:36.518Z",
+    "label": "Spectrum Warehousing & the LEO Race",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-09-hormuz-iran-oman-no-third-party": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "The strait sits between Iran and Oman, not Iran and any Arab Gulf state. Iran's coast runs the entire northern edge, but the deepest shipping channel — and the southern lanes — pass through Omani territorial waters off the Musandam peninsula. Both coastlines touch the lanes, which is the factual seed beneath Tehran's framing.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE"
+            ],
+            "label": "the Hormuz bottleneck",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 26.2,
+                "lng": 56.25,
+                "label": "Musandam (Oman)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE OMANI HALF",
+        "body": "Musandam is an Omani exclave jutting north, separated from the rest of Oman by UAE land. Its tip is what makes the strait's southern shore Omani rather than Emirati — and why any 'two-country' framing of Hormuz names Oman, not Abu Dhabi.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The *Musandam* peninsula is a geographic accident of borders: Omani territory, physically cut off from Oman by the **UAE**, controlling the strait's southern lane."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL REGIME",
+        "body": "Under the UN Convention on the Law of the Sea, ships enjoy a right of transit passage through international straits — coastal states cannot suspend it or impose conditions. This is why 'an Iran-Oman matter' is legally fraught: the lane is not a domestic waterway the two states can govern by agreement. Iran ratified UNCLOS in 1982 but has long argued Hormuz falls under its own domestic law.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "In straits referred to in article 37, all ships and aircraft enjoy the right of transit passage, which shall not be impeded.",
+            "speaker": "UNCLOS, Article 38(1)",
+            "year": "1982"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT CAN'T BE BYPASSED",
+        "body": "Saudi Arabia's East-West Pipeline and the UAE's Habshan-Fujairah line were built precisely to route oil around Hormuz, onto the open Indian Ocean. Together they could reroute only a fraction of Gulf exports; the rest has no alternative path, which is what gives the chokepoint its leverage.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hormuz transit",
+                "value": "~21mn",
+                "weight": 21,
+                "tone": "neutral"
+              },
+              {
+                "label": "Saudi E-W line",
+                "value": "~5mn",
+                "weight": 5,
+                "tone": "favorable"
+              },
+              {
+                "label": "UAE Fujairah",
+                "value": "~1.5mn",
+                "weight": 1.5,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Hormuz flow vs. bypass capacity (mn bbl/day)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Prices spiked briefly, but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners drew: disruption is far easier to threaten than to sustain.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How much of Gulf oil exports can the Saudi and UAE bypass pipelines actually reroute around Hormuz?",
+            "options": [
+              "Almost all of it",
+              "Roughly a third",
+              "Essentially none"
+            ],
+            "correct": 1,
+            "explanation": "Combined bypass capacity covers maybe a third of Gulf exports; the rest must transit Hormuz, which is the source of the strait's leverage."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T04:38:09.237Z",
+    "label": "Hormuz: Sovereignty & Transit",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-09-israeli-strikes-kill-7-including-4-medics-in-lebanon": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PROTECTED STATUS",
+        "body": "Medical personnel and ambulances hold the highest protection in the laws of war. Since the First Geneva Convention of 1864 — the founding treaty of modern humanitarian law — those who tend the wounded are designated non-combatants who must be 'respected and protected in all circumstances.' Striking them is among the clearest categories of war crime.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Medical personnel exclusively engaged in the search for, or the collection, transport or treatment of the wounded or sick... shall be respected and protected in all circumstances.",
+            "speaker": "First Geneva Convention, Article 24",
+            "year": "1949"
+          }
+        ]
+      },
+      {
+        "heading": "THE EMBLEM",
+        "body": "The red cross was chosen in 1864 as a tribute to Switzerland — it is the Swiss flag inverted, not a Christian symbol. The Ottoman Empire rejected the cross in 1876 and adopted the red crescent, which is why most Muslim-majority states use it. Lebanon is an exception: the Lebanese Red Cross keeps the cross, a relic of its founding under the French Mandate.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The emblem is legally a *shield*, not a logo — under the Geneva Conventions, deliberately firing on anything bearing it is a **grave breach**, the treaty's term for prosecutable war crimes."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE SOUTH",
+        "body": "Tyre sits in the coastal strip between the Litani River and the Blue Line, the UN-demarcated boundary with Israel. Under Resolution 1701, this zone south of the Litani was meant to be cleared of armed groups and patrolled by UNIFIL and the Lebanese army — which is precisely why it remains the most struck terrain in the country.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL"
+            ],
+            "label": "south of the Litani",
+            "markers": [
+              {
+                "lat": 33.2705,
+                "lng": 35.2038,
+                "label": "Tyre"
+              },
+              {
+                "lat": 33.2333,
+                "lng": 35.2167,
+                "label": "Litani river mouth"
+              },
+              {
+                "lat": 33.0917,
+                "lng": 35.1264,
+                "label": "Blue Line (Naqoura)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "NO SHIELD ABOVE",
+        "body": "Lebanon has never possessed an air defense system. A state fractured by sectarian power-sharing has neither the budget nor the political consensus to field one, and the question of who would control it — the army or Hezbollah — is itself a fault line. Lebanese airspace is, in practice, open.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Lebanon lack any air defense against incursions into its airspace?",
+            "options": [
+              "It is barred from owning one by treaty",
+              "Its fractured state has never funded or agreed on one",
+              "It relies on a NATO defensive umbrella",
+              "Its mountains make radar coverage impossible"
+            ],
+            "correct": 1,
+            "explanation": "Sectarian power-sharing leaves no consensus or budget for an air defense system, and control of one would itself be contested between the army and Hezbollah."
+          }
+        ]
+      },
+      {
+        "heading": "THE CEASEFIRE THAT HELD ON PAPER",
+        "body": "The November 2024 truce that ended the Israel–Hezbollah war was not a peace treaty — it was an enforcement of Resolution 1701, the 2006 framework that supposedly ended the previous war. Strikes have continued under both. The pattern is structural: a ceasefire freezes the front line but leaves the underlying terms unresolved, so violations resume as 'enforcement.'",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1978",
+                "label": "First Israeli invasion; UNIFIL deployed"
+              },
+              {
+                "year": "1982",
+                "label": "Siege of Beirut"
+              },
+              {
+                "year": "2000",
+                "label": "Israeli withdrawal to Blue Line"
+              },
+              {
+                "year": "2006",
+                "label": "July War; Resolution 1701",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024-11",
+                "label": "Israel–Hezbollah ceasefire"
+              }
+            ],
+            "label": "south Lebanon's recurring war"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T04:38:42.609Z",
+    "label": "Medics & the Laws of War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-09-koala-population-crash-predates-humans-genome": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW ONE GENOME KEEPS TIME",
+        "body": "You do not need fossils or ancient DNA to read a species' deep past — a single living individual carries it. Because every animal inherits one chromosome set from each parent, the pattern of differences between those two copies records how many ancestors existed at each point back in time. Long stretches where the two copies match mean few ancestors then; a population bottleneck leaves a genome-wide signature.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The standard tool is **PSMC** — pairwise sequentially Markovian coalescent — which converts the density of *heterozygous* sites across the genome into a curve of population size stretching back hundreds of thousands of years."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DIVERSITY IS A BUFFER",
+        "body": "Genetic diversity is the raw material natural selection works with: the more variant alleles a population carries, the more likely some individuals already hold the gene that survives a new disease or a hotter climate. A genetically depleted species faces every new pressure with a thin hand of cards — it cannot evolve its way out of trouble because the needed variants were lost long ago."
+      },
+      {
+        "heading": "THE DOUBLE PLAGUE",
+        "body": "Modern koalas are besieged twice over: a chlamydia epidemic that causes blindness and infertility, and a retrovirus that is colonizing the species' DNA in real time. The retrovirus is one of the only documented cases of a virus inserting itself into a mammal's germline before scientists' eyes — the same process that, over millions of years, left ancient viral fragments scattered through every animal genome.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The virus is **KoRV** (koala retrovirus). A population already low on genetic diversity has fewer defenses to muster against either threat — the ancient crash and the modern plagues compound each other."
+          }
+        ]
+      },
+      {
+        "heading": "THE SHIFTING BASELINE",
+        "body": "Conservation usually sets recovery targets against a 'pristine' pre-human state, assuming humans are what knocked a species down. This study breaks that assumption: if the koala was already genetically impoverished 100,000 years before anyone arrived, there is no lush baseline to restore it to. The reference point conservationists aimed at never existed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how long ago did humans first reach Australia?",
+            "options": [
+              "~12,000 years ago",
+              "~50,000 years ago",
+              "~200,000 years ago",
+              "~5,000 years ago"
+            ],
+            "correct": 1,
+            "explanation": "Humans crossed into Australia from Southeast Asia at least ~50,000 years ago — yet the koala's genetic crash predates even that arrival by tens of thousands of years."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT LIKELY CRASHED IT",
+        "body": "The prime suspect is climate, not humans. Late-Pleistocene Australia dried out repeatedly, and shrinking rainfall contracted the eucalyptus forests koalas depend on. Koalas are dietary specialists — they eat almost nothing but eucalyptus leaves — so when the forests retreated, the population had nowhere else to go and no other food to fall back on."
+      }
+    ],
+    "generatedAt": "2026-06-09T04:40:05.042Z",
+    "label": "Genomes as Population Clocks",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-09-pentagon-byd-alibaba-baidu-military-list": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 1260H ACTUALLY IS",
+        "body": "Section 1260H of the 2021 defense bill orders the Pentagon to publish a running list of 'Chinese military companies.' Crucially, it requires no proof a firm makes weapons — listing rests on alleged ties to China's defense-industrial base, and the bar is on doing business with the Defense Department, not an asset freeze.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does a Pentagon 1260H 'military company' designation actually do to a firm?",
+            "options": [
+              "Freezes its US assets immediately",
+              "Bars it from US Defense Dept contracts and procurement",
+              "Bans all exports of US technology to it",
+              "Forces American investors to dump its stock"
+            ],
+            "correct": 1,
+            "explanation": "1260H is a procurement and reputational designation — unlike the Entity List or the SDN list, it does not itself freeze assets or block exports."
+          }
+        ]
+      },
+      {
+        "heading": "MILITARY-CIVIL FUSION",
+        "body": "The doctrine underneath the list is Beijing's 'military-civil fusion' — a state policy, elevated under Xi, that obliges nominally private firms to channel commercial research, data, and talent to the People's Liberation Army when asked. To US planners, this erases the line between a civilian tech champion and a defense supplier.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Washington's logic is that *military-civil fusion* makes the civilian/military distinction meaningless — so a cloud provider or a carmaker is treated as **dual-use by default**, no weapons contract required."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THESE THREE",
+        "body": "Each sits on a different dual-use frontier: BYD makes the lithium batteries and electric drivetrains that also power drones and vehicles; Baidu builds the autonomous-driving stack and large AI models with obvious targeting applications; Alibaba runs China's largest cloud and quantum research. The capability that makes them commercial giants is the same one defense reviewers fear."
+      },
+      {
+        "heading": "THE BLACKLIST ARCHIPELAGO",
+        "body": "The US runs several China lists with very different teeth, and they are constantly confused. The Entity List (Commerce) blocks exports; the SDN list (Treasury) freezes assets and cuts dollar access; the 1260H list (Defense) mainly bars Pentagon dealings and brands a firm. A company can sit on one and not the others.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Entity List",
+                "value": "export ban",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "SDN (OFAC)",
+                "value": "asset freeze",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "1260H (DoD)",
+                "value": "procurement bar",
+                "tone": "neutral"
+              }
+            ],
+            "label": "three US blacklists, three different bites"
+          }
+        ]
+      },
+      {
+        "heading": "THE SCALE BEING NAMED",
+        "body": "BYD is not a niche player Washington can ignore: it overtook Tesla to become the world's largest maker of new-energy vehicles, selling several million cars a year. Listing firms of this size is a bet that the security signal outweighs the cost of antagonizing globally dominant companies.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "New-energy vehicle sales, 2024",
+            "peers": [
+              {
+                "value": 4.3,
+                "cc": "CN"
+              },
+              {
+                "value": 1.8,
+                "cc": "US"
+              },
+              {
+                "value": 1,
+                "cc": "DE"
+              },
+              {
+                "value": 0.7,
+                "cc": "KR"
+              },
+              {
+                "value": 0.6,
+                "cc": "JP"
+              },
+              {
+                "value": 0.4,
+                "cc": "FR"
+              }
+            ],
+            "subjectCc": "CN",
+            "unit": "mn"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT AND THE EXIT",
+        "body": "This path is well-worn. Huawei's 2019 Entity List placement is the template for how a single designation can reorder a global supply chain. But the lists are also reversible: Xiaomi was named a Chinese military company in 2021, sued, and a US court ordered it removed — which is why the petition route the three firms now face is more than a formality.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2019",
+                "label": "Huawei added to Entity List",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020",
+                "label": "First 1260H-style military list"
+              },
+              {
+                "year": "2021",
+                "label": "Xiaomi listed, then won removal in court"
+              },
+              {
+                "year": "2022",
+                "label": "Advanced-chip export controls"
+              },
+              {
+                "year": "2026",
+                "label": "Alibaba, BYD, Baidu added"
+              }
+            ],
+            "label": "the China-tech blacklist escalation"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T04:40:56.573Z",
+    "label": "China's Military Company List",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-09-psx-losses-hormuz-truce-fears": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY KARACHI FEELS HORMUZ",
+        "body": "Pakistan produces almost none of its own crude and routes nearly all imported oil through the Persian Gulf and the Strait of Hormuz. For a net oil importer, a Gulf war is not a distant headline — it is an immediate rise in the country's single largest import line.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "OM",
+              "AE",
+              "SA"
+            ],
+            "label": "Pakistan's oil lifeline",
+            "caption": "Crude enters through Hormuz, lands at Karachi",
+            "markers": [
+              {
+                "lat": 26.57,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 24.84,
+                "lng": 66.98,
+                "label": "Karachi port"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSMISSION",
+        "body": "Oil is priced in dollars, and Pakistan's reserves cover only a few weeks of imports. A spike in crude widens the current-account deficit, drains dollars, and pushes the rupee down — so an Israel-Iran exchange transmits into Karachi through the currency before it ever touches a company's earnings.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377,
+              278.485848,
+              278.494701,
+              278.137253,
+              277.408487,
+              278.412506,
+              278.512908,
+              278.575,
+              277.445439,
+              278.55,
+              278.55,
+              278.494021,
+              278.3,
+              278.45,
+              278.61849,
+              278.35,
+              278.5,
+              278.5,
+              278.440126,
+              278.250184
+            ],
+            "periods": [
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE INDEX MOVES SO FAST",
+        "body": "The KSE-100 is a frontier market: thin liquidity, a narrow float, and outsized influence from foreign portfolio flows. When global risk rises, the marginal seller is often a foreign fund cutting exposure — so a handful of exits can drop the index more than the underlying news warrants.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does a frontier market like the KSE-100 swing harder than a developed one on the same global shock?",
+            "options": [
+              "Thin liquidity and foreign flows magnify each trade",
+              "Frontier companies carry more debt by law",
+              "Trading is halted automatically below 170,000"
+            ],
+            "correct": 0,
+            "explanation": "Low float and reliance on foreign portfolio money mean a few sellers move the whole index, amplifying any external shock."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHRONIC FRAGILITY",
+        "body": "Pakistan has taken more IMF programs than almost any country on earth, returning roughly every few years as reserves run dry. That history is why an oil shock reads as existential here, not merely costly — the buffer that absorbs it barely exists.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Argentina",
+                "value": "~24",
+                "cc": "AR",
+                "weight": 24,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Pakistan",
+                "value": "~23",
+                "cc": "PK",
+                "weight": 23,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Egypt",
+                "value": "~12",
+                "cc": "EG",
+                "weight": 12,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "IMF programs since 1958"
+          }
+        ]
+      },
+      {
+        "heading": "THE BUDGET OVERHANG",
+        "body": "The pending federal budget is the second pressure point because of how Pakistan taxes fuel. A large share of the price at the pump is the Petroleum Development Levy, a tool the government leans on to hit IMF revenue targets — so the budget and the oil price are fighting over the same household.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **Petroleum Development Levy** is collected outside the GST base, letting the centre raise it without sharing revenue with the provinces — which makes fuel the *first* lever pulled when an IMF target needs hitting."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-09"
+    ],
+    "generatedAt": "2026-06-09T04:41:49.794Z",
+    "label": "Oil Shocks & a Frontier Market",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-09-russia-china-trade-jumps-sanctions-rerouting": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GREAT REDIRECTION",
+        "body": "Before 2022, Europe was Russia's largest energy customer — roughly half of Russian crude flowed west. The EU embargo and the G7 price cap forced that volume to find new buyers, and it went east at a discount. China and India absorbed most of the barrels Europe stopped buying; the oil did not disappear, it changed direction.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "ru",
+                "label": "Russian crude"
+              },
+              {
+                "id": "eu",
+                "label": "Europe (pre-2022)"
+              },
+              {
+                "id": "cn",
+                "label": "China"
+              },
+              {
+                "id": "in",
+                "label": "India"
+              },
+              {
+                "id": "tr",
+                "label": "Turkey / other"
+              }
+            ],
+            "links": [
+              {
+                "source": "ru",
+                "target": "eu",
+                "value": 15,
+                "label": "embargoed"
+              },
+              {
+                "source": "ru",
+                "target": "cn",
+                "value": 45,
+                "label": "pipeline + seaborne"
+              },
+              {
+                "source": "ru",
+                "target": "in",
+                "value": 30,
+                "label": "discounted seaborne"
+              },
+              {
+                "source": "ru",
+                "target": "tr",
+                "value": 10
+              }
+            ],
+            "label": "Russian crude: where it went (illustrative shares)"
+          }
+        ]
+      },
+      {
+        "heading": "SETTLED IN YUAN, NOT DOLLARS",
+        "body": "The real shift is monetary. Cut off from SWIFT and dollar clearing, Russia and China now settle the overwhelming majority of their bilateral trade in rubles and yuan. This is the largest live experiment in de-dollarizing a major trade flow — and it works only because the two economies are complementary enough to clear without a third currency.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "By 2023 over **90%** of Russia–China trade settled in *national currencies* — the yuan became Russia's most-traded foreign currency, displacing the dollar on the Moscow Exchange."
+          }
+        ]
+      },
+      {
+        "heading": "THE LOPSIDED PARTNERSHIP",
+        "body": "The relationship is far more vital to Moscow than to Beijing. China is Russia's dominant trade partner by a wide margin, but Russia is a second-tier partner for China — smaller than the EU, ASEAN, or the US. The asymmetry gives Beijing pricing power over discounted Russian energy and leverage Moscow cannot easily reciprocate.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "ASEAN",
+                "value": "~$900bn",
+                "weight": 900,
+                "tone": "neutral"
+              },
+              {
+                "label": "EU",
+                "value": "~$780bn",
+                "weight": 780,
+                "tone": "neutral"
+              },
+              {
+                "label": "United States",
+                "value": "~$680bn",
+                "weight": 680,
+                "tone": "neutral"
+              },
+              {
+                "label": "Russia",
+                "value": "~$240bn",
+                "weight": 240,
+                "tone": "favorable"
+              }
+            ],
+            "label": "China's trade with major partners (annual, approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE PIPELINE GEOGRAPHY",
+        "body": "Pivoting east is not just a contract — it is infrastructure. The Power of Siberia pipeline carries gas from East Siberian fields to China, and rail crossings move machinery and cars north. Unlike seaborne oil, this overland trade is physically beyond the reach of naval interdiction or insurance-driven chokepoints.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "CN",
+              "KZ",
+              "MN"
+            ],
+            "label": "the overland trade corridor",
+            "markers": [
+              {
+                "lat": 50.2725,
+                "lng": 127.5405,
+                "label": "Power of Siberia crossing"
+              },
+              {
+                "lat": 49.5833,
+                "lng": 117.4333,
+                "label": "Manzhouli rail gateway"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE ROAD TO 'NO LIMITS'",
+        "body": "This realignment was years in the making. Western sanctions after the 2014 annexation of Crimea pushed Moscow toward Beijing; the February 2022 'no limits' partnership declaration came weeks before the invasion; the SWIFT cutoff and oil embargo that followed turned a tilt into a structural dependency.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2014",
+                "label": "Crimea sanctions begin"
+              },
+              {
+                "year": "2019",
+                "label": "Power of Siberia gas online"
+              },
+              {
+                "year": "2022-02",
+                "label": "'No limits' partnership declared",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-03",
+                "label": "Russia cut from SWIFT"
+              },
+              {
+                "year": "2022-12",
+                "label": "EU embargo + G7 price cap"
+              },
+              {
+                "year": "2023",
+                "label": "Yuan settlement dominates"
+              }
+            ],
+            "label": "from tilt to dependency"
+          },
+          {
+            "type": "quiz",
+            "question": "Why did China and India absorb most of Russia's redirected oil after 2022?",
+            "options": [
+              "They were offered it below the global benchmark price",
+              "They had no other oil suppliers",
+              "Russian crude is a unique grade they require",
+              "The G7 price cap legally required them to buy it"
+            ],
+            "correct": 0,
+            "explanation": "Russian crude traded at a steep discount to Brent, making it attractive to price-sensitive buyers willing to operate outside Western markets."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T04:42:33.135Z",
+    "label": "Sanctions Rerouting & the Pivot East",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-09-zojila-tunnel-kashmir-ladakh-all-weather-link": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHOKEPOINT",
+        "body": "Zoji La sits at roughly 3,500m on the only direct road from the Kashmir Valley to Ladakh. For nearly half the year, snow and avalanches seal it. Until now, India's entire eastern Himalayan garrison hung on a pass that closes every winter.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "PK",
+              "CN"
+            ],
+            "label": "the Ladakh approaches",
+            "caption": "One road to two contested frontiers",
+            "markers": [
+              {
+                "lat": 34.28,
+                "lng": 75.47,
+                "label": "Zoji La pass"
+              },
+              {
+                "lat": 34.55,
+                "lng": 76.13,
+                "label": "Kargil"
+              },
+              {
+                "lat": 34.15,
+                "lng": 77.57,
+                "label": "Leh"
+              },
+              {
+                "lat": 35.42,
+                "lng": 77.1,
+                "label": "Siachen Glacier"
+              },
+              {
+                "lat": 34.77,
+                "lng": 78.6,
+                "label": "Galwan Valley"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE WINTER STOCKPILE",
+        "body": "Because the passes shut, India has long had to pre-position months of fuel, ammunition and rations in Ladakh before the first snow. The whole force posture was dictated by a logistics calendar — you fought with what you trucked in before October.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "An army that must *stockpile* a winter's supply in advance cannot surge mid-season. A year-round tunnel converts a **seasonal** garrison into a **continuously reinforceable** one — that is the real strategic shift, not the 13km of road."
+          }
+        ]
+      },
+      {
+        "heading": "THE KARGIL LESSON",
+        "body": "In 1999 Pakistani forces infiltrated the heights above the Srinagar–Leh highway near Kargil — not to take towns, but to bring the road under fire and sever Ladakh's lifeline. India fought a costly high-altitude war to clear ridgelines overlooking this exact route.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the 1999 Kargil War primarily fought to control?",
+            "options": [
+              "Heights overlooking the Srinagar–Leh supply road",
+              "The Siachen Glacier",
+              "The Khyber Pass",
+              "Kashmir's capital, Srinagar"
+            ],
+            "correct": 0,
+            "explanation": "Pakistani forces seized ridgelines above the highway to interdict the only land route to Ladakh, forcing India to retake them peak by peak."
+          }
+        ]
+      },
+      {
+        "heading": "EVERY ROUTE IS EXTREME ALTITUDE",
+        "body": "The alternative to Zoji La is the Manali–Leh road, which crosses passes far higher and is open even fewer months. There is no easy way into Ladakh; both land routes climb over some of the highest motorable terrain on Earth.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Zoji La",
+                "value": "~3,500m",
+                "weight": 3500,
+                "tone": "neutral"
+              },
+              {
+                "label": "Rohtang La",
+                "value": "~3,980m",
+                "weight": 3980,
+                "tone": "neutral"
+              },
+              {
+                "label": "Baralacha La",
+                "value": "~4,890m",
+                "weight": 4890,
+                "tone": "neutral"
+              },
+              {
+                "label": "Taglang La",
+                "value": "~5,330m",
+                "weight": 5330,
+                "tone": "neutral"
+              },
+              {
+                "label": "Khardung La",
+                "value": "~5,360m",
+                "weight": 5360,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Himalayan passes on the Ladakh routes (elevation)"
+          }
+        ]
+      },
+      {
+        "heading": "TWO FRONTIERS, ONE GARRISON",
+        "body": "Ladakh is the only Indian region that faces both rivals at once: the Line of Control with Pakistan to the west — including the Siachen Glacier, the world's highest battlefield — and the Line of Actual Control with China to the east, where the 2020 Galwan clash killed soldiers on both sides for the first time in decades.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "On **Siachen**, troops fight above **6,000m** where altitude, not the enemy, causes most casualties — frostbite, pulmonary edema, crevasse falls. The terrain is the adversary; the road is what keeps men alive on it."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T04:43:20.296Z",
+    "label": "Ladakh's Logistics Frontier",
+    "category": "politics",
+    "articleCount": 1
   }
 }
