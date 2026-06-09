@@ -336297,5 +336297,1534 @@
     "label": "The Nuclear Club & North Korea",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-09-amoc-monitoring-at-risk-europe-heatwave": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT IT ACTUALLY DOES",
+        "body": "The AMOC is a conveyor belt: warm surface water flows north, releases its heat to the air over the North Atlantic, then — having grown cold and salty — sinks in the seas off Greenland and returns south in the deep. It is driven not by wind but by density. Heat carried north is what the system delivers; the sinking is the engine.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The proper name is *thermohaline circulation* — from **thermo** (temperature) and **haline** (salt). Both must be right for the water to sink: too warm or too fresh, and the engine stalls."
+          }
+        ]
+      },
+      {
+        "heading": "WHY EUROPE IS WARM",
+        "body": "The heat the AMOC delivers is why northwest Europe is mild for its latitude. London sits farther north than almost all of the contiguous United States, yet its winters are gentle. Strip out the ocean's heat transport and Britain's climate would resemble Labrador's — same sunlight, radically different temperature.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "London",
+                "value": "~5°C",
+                "cc": "GB",
+                "tone": "favorable"
+              },
+              {
+                "label": "Goose Bay",
+                "value": "~-17°C",
+                "cc": "CA",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "January mean temperature, similar latitude"
+          }
+        ]
+      },
+      {
+        "heading": "THE SHUTOFF MECHANISM",
+        "body": "What weakens the AMOC is fresh water. A melting Greenland ice sheet and increased rainfall dilute the salty North Atlantic surface, lowering its density so it no longer sinks. The sinking is the pump; dilute it enough and the whole circulation slows. This is why a warming planet can paradoxically deliver abrupt cooling to Europe."
+      },
+      {
+        "heading": "THE PALEOCLIMATE PRECEDENT",
+        "body": "This has happened before. The Younger Dryas, roughly 12,900 years ago, saw the North Atlantic plunge back into near-glacial cold within decades — likely after a flood of meltwater from a collapsing ice-dammed lake shut the circulation down. Greenland ice cores show temperatures swinging by several degrees in a single human lifetime. Abrupt, not gradual, is the historical signature.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The fear isn't slow drift but *hysteresis*: the AMOC may be **bistable** — once it tips into the 'off' state, restoring the original conditions doesn't switch it back on. The collapse is far easier than the recovery."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MONITORING IS HARD",
+        "body": "You cannot read the AMOC from a satellite — the flow is deep, basin-wide, and slow. Measuring it means moored instruments strung across the entire ocean at a fixed latitude, recording temperature, salinity, and current from surface to seafloor. The RAPID array along 26°N has done this continuously since 2004; losing a major node breaks a record whose value is precisely its unbroken length.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "GB",
+              "IE",
+              "IS",
+              "GL",
+              "CA",
+              "FR",
+              "PT"
+            ],
+            "label": "the North Atlantic basin",
+            "caption": "Warm water flows north; cold dense water sinks near Greenland and returns south.",
+            "markers": [
+              {
+                "lat": 26.5,
+                "lng": -76,
+                "label": "RAPID array (26°N)"
+              },
+              {
+                "lat": 60,
+                "lng": -40,
+                "label": "Labrador/Irminger sinking zone"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TESTABLE CLAIM",
+        "body": "The common shorthand — 'the Gulf Stream keeps Europe warm' — is only half right. The wind-driven Gulf Stream is one limb, but it is the deep overturning, the sinking off Greenland, that pulls warm water north in bulk. Confuse the two and you misjudge what fresh meltwater actually threatens.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What physically drives the AMOC's deep return flow?",
+            "options": [
+              "Surface winds pushing water south",
+              "Cold, salty water becoming dense enough to sink",
+              "The Earth's rotation alone",
+              "Tidal pull from the Moon"
+            ],
+            "correct": 1,
+            "explanation": "Density does the work: water that is both cold and salty sinks near Greenland, pulling warm water north to replace it — which is why freshwater melt can stall the system."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T22:30:18.467Z",
+    "label": "The Atlantic Conveyor",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-09-anthropic-mythos-safe-version-ipo-timing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY A LAB CALLS ITS OWN MODEL DANGEROUS",
+        "body": "Anthropic governs releases through a Responsible Scaling Policy: tiered capability thresholds that trigger stricter safeguards as models grow more capable. Crossing a threshold — say, a model that could meaningfully help synthesize a bioweapon — means the lab withholds or restricts it. Declaring a model too risky is not modesty; it is the policy working as written.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The tiers are called **AI Safety Levels (ASL)** — deliberately modeled on the **biosafety levels (BSL-1 to BSL-4)** that govern labs handling pathogens. The framing is the point: a frontier model is treated as a hazardous material, not a product."
+          }
+        ]
+      },
+      {
+        "heading": "THE GUARDRAIL ISN'T THE MODEL",
+        "body": "A 'guardrailed' version is not a less-capable model — it is the same underlying weights wrapped in refusal training and output filters. The raw capability still exists inside; the safety layer is a learned tendency to decline, plus classifiers that block disallowed responses. This is why jailbreaks work: they coax the capability past the filter rather than adding anything new.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can a 'jailbreak' prompt extract dangerous output from a guardrailed model?",
+            "options": [
+              "It adds new knowledge the model lacked",
+              "The capability is still in the weights; the filter only suppresses it",
+              "It rewrites the model's training data",
+              "It downloads an uncensored version"
+            ],
+            "correct": 1,
+            "explanation": "Guardrails are a behavioral layer over fixed weights — the underlying capability is intact, so bypassing the refusal exposes it."
+          }
+        ]
+      },
+      {
+        "heading": "WEIGHTS VS API — THE RECALL PROBLEM",
+        "body": "How a model is shipped decides whether it can ever be pulled back. Release the weights as a download and every copy is permanent and uncontrollable — no patch, no off switch. Serve it only through an API and the lab keeps the kill switch: it can rate-limit, log, filter, or revoke access at any moment. Anthropic's whole safety case depends on never handing out the weights.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Anthropic",
+                "value": "API only",
+                "tone": "favorable",
+                "cc": "US"
+              },
+              {
+                "label": "OpenAI",
+                "value": "API only",
+                "tone": "favorable",
+                "cc": "US"
+              },
+              {
+                "label": "Google",
+                "value": "API only",
+                "tone": "favorable",
+                "cc": "US"
+              },
+              {
+                "label": "Meta",
+                "value": "open weights",
+                "tone": "unfavorable",
+                "cc": "US"
+              },
+              {
+                "label": "Mistral",
+                "value": "open weights",
+                "tone": "unfavorable",
+                "cc": "FR"
+              }
+            ],
+            "label": "frontier model release approaches"
+          }
+        ]
+      },
+      {
+        "heading": "CONSTITUTIONAL AI",
+        "body": "Anthropic's signature training method skips much of the human labeling that competitors rely on. Instead of thousands of contractors rating responses, the model critiques and revises its own outputs against a written list of principles — a 'constitution' — using AI feedback. It is cheaper, more consistent, and lets the lab point to an explicit, auditable ruleset rather than the opaque preferences of a rating pool.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technique is **Constitutional AI**, and the feedback loop is **RLAIF** — reinforcement learning from *AI* feedback, a deliberate twist on the industry-standard **RLHF** (reinforcement learning from *human* feedback)."
+          }
+        ]
+      },
+      {
+        "heading": "THE PAUSE-LETTER PRECEDENT",
+        "body": "Calls to slow down frontier AI are not new, and they have a mixed record. The 2023 open letter demanding a six-month training pause gathered tens of thousands of signatures and changed no lab's schedule — development accelerated. Governance has since shifted from voluntary moratoriums to binding rules, but the gap between what labs say in public and what they ship has been a constant.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2021",
+                "label": "Anthropic founded by ex-OpenAI staff",
+                "emphasis": "start"
+              },
+              {
+                "year": "2023-03",
+                "label": "FLI 'pause giant AI experiments' letter",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-11",
+                "label": "Bletchley Park AI Safety Summit"
+              },
+              {
+                "year": "2024",
+                "label": "EU AI Act enters into force"
+              }
+            ],
+            "label": "frontier AI governance arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE TIMING SIGNAL",
+        "body": "Shipping a 'safe' version one day after an IPO filing is itself information. A lab heading to public markets must show both frontier capability — to justify the valuation — and restraint — to manage regulatory and reputational risk. Releasing the guardrailed model while withholding the dangerous one threads exactly that needle: proof of power, proof of caution, on the eve of the pitch to investors."
+      }
+    ],
+    "generatedAt": "2026-06-09T22:31:08.520Z",
+    "label": "Frontier AI Safety & Release Policy",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-09-byd-80-percent-china-ev-electrification-bet": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BATTERY COMPANY THAT BUILT A CAR",
+        "body": "BYD — \"Build Your Dreams\" — was founded in Shenzhen in 1995 as a maker of rechargeable phone batteries, and became one of the world's largest before it ever sold a car in 2003. This is the inversion that explains everything: most automakers buy their cells; BYD is a battery firm that learned to wrap a car around its own packs.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The name reads like marketing, but the DNA is chemistry. BYD still makes the *cells*, the *modules*, the motors, and increasingly its own *chips* — a degree of vertical integration no Western carmaker matches."
+          },
+          {
+            "type": "quiz",
+            "question": "What did BYD primarily manufacture before it began building cars?",
+            "options": [
+              "Rechargeable batteries",
+              "Solar panels",
+              "Smartphones",
+              "Shipping containers"
+            ],
+            "correct": 0,
+            "explanation": "BYD started in 1995 as a battery maker for mobile phones and only entered the car business in 2003 by acquiring a state-owned automaker."
+          }
+        ]
+      },
+      {
+        "heading": "THE PENETRATION GAP",
+        "body": "China's 62.9% EV share in a single month is not a forecast — it is a market that has already crossed the tipping point where electric is the default purchase. The US at ~10% sits where China was around 2021. The lead is years, not months.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "New-car EV penetration",
+            "peers": [
+              {
+                "value": 90,
+                "cc": "NO"
+              },
+              {
+                "value": 63,
+                "cc": "CN"
+              },
+              {
+                "value": 25,
+                "cc": "DE"
+              },
+              {
+                "value": 24,
+                "cc": "GB"
+              },
+              {
+                "value": 10,
+                "cc": "US"
+              },
+              {
+                "value": 3,
+                "cc": "JP"
+              },
+              {
+                "value": 3,
+                "cc": "IN"
+              }
+            ],
+            "subjectCc": "CN",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "WHY VERTICAL INTEGRATION WINS",
+        "body": "The reason a BYD costs less than a comparable Western EV is not cheap labor — it is that China owns the whole chain. From the chemicals that go into a cathode to the finished cell, Chinese firms control the majority of global capacity at every stage, so the value never leaves the building.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Lithium refining",
+                "value": "~65%",
+                "weight": 65,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Cathodes",
+                "value": "~75%",
+                "weight": 75,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Anodes",
+                "value": "~85%",
+                "weight": 85,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Cell production",
+                "value": "~75%",
+                "weight": 75,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "China's share of the battery supply chain"
+          }
+        ]
+      },
+      {
+        "heading": "THE LFP BET",
+        "body": "BYD's flagship \"Blade\" pack uses lithium iron phosphate (LFP) — a chemistry with no nickel and no cobalt. It stores less energy per kilogram than the nickel-rich cells Western makers chose, but it is cheaper, far harder to set on fire, and built from materials China isn't dependent on anyone else to supply. The West bet on energy density; China bet on cost and security, and the market is rewarding the cheaper car.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The tradeoff in one line: *NMC* (nickel-manganese-cobalt) buys range; **LFP** buys price, safety, and a supply chain free of Congolese cobalt. China standardized on LFP and drove its cost below everyone else's."
+          }
+        ]
+      },
+      {
+        "heading": "THE TARIFF WALL",
+        "body": "Because no Western firm can match the price, the response has been to block the car at the border rather than meet it in the showroom. The walls vary in height — and a 100% tariff doesn't just tax the car, it signals that the market is closed on principle, not on margin.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "100%",
+                "cc": "US",
+                "weight": 100,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Canada",
+                "value": "100%",
+                "cc": "CA",
+                "weight": 100,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Turkey",
+                "value": "~40%",
+                "cc": "TR",
+                "weight": 40,
+                "tone": "neutral"
+              },
+              {
+                "label": "Brazil",
+                "value": "~35%",
+                "cc": "BR",
+                "weight": 35,
+                "tone": "neutral"
+              },
+              {
+                "label": "EU",
+                "value": "~27%",
+                "cc": "EU",
+                "weight": 27,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Import duty on China-made EVs"
+          }
+        ]
+      },
+      {
+        "heading": "THE HUNGARY GAMBIT",
+        "body": "A factory inside the EU is how you walk through a tariff wall instead of over it: a car assembled in Szeged is a European car, not an import, and the duty evaporates. Hungary is the chosen door because Budapest has courted Chinese capital while other EU capitals slammed it — the same logic that brought CATL's battery plant to Debrecen.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "HU",
+              "DE",
+              "FR",
+              "IT",
+              "PL"
+            ],
+            "label": "China's factory door into the EU",
+            "markers": [
+              {
+                "lat": 46.253,
+                "lng": 20.141,
+                "label": "BYD plant, Szeged"
+              },
+              {
+                "lat": 47.53,
+                "lng": 21.639,
+                "label": "CATL plant, Debrecen"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 1260H LIST",
+        "body": "The Pentagon's \"Chinese military companies\" list, mandated by Section 1260H of the annual defense bill, names firms it judges to be tied to China's military-civil fusion strategy. It carries no immediate sanctions — but it is a flare: it bars the Defense Department from contracting with the firm and warns every investor and partner that Washington now treats the company as an arm of the state. CATL and other consumer-facing Chinese giants have landed on it before.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The list's power is reputational and forward-looking: inclusion under **Section 1260H** is the trip-wire that future sanctions, divestment rules, and *de-risking* legislation tend to reach for first."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T22:32:12.541Z",
+    "label": "BYD & China's EV Machine",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-09-egypt-state-company-profit-bill-exemptions": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MILITARY'S 97-COMPANY EMPIRE",
+        "body": "Egypt's armed forces run a business conglomerate that analysts estimate at a quarter to two-fifths of the entire economy — cement, steel, bottled water, pasta, gas stations, resorts, highways. These firms historically pay no corporate tax, use conscript labor, and access state land for free, which is precisely why a 5% profits tax is being demanded.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how much of Egypt's economy do military-linked companies control, by common estimates?",
+            "options": [
+              "Under 5%",
+              "About 25–40%",
+              "Around 60%",
+              "Over 80%"
+            ],
+            "correct": 1,
+            "explanation": "Estimates run 25–40% of GDP across cement, food, construction, fuel and tourism — the opacity is itself part of the problem."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A 5% TAX IS THE WHOLE FIGHT",
+        "body": "The IMF's objection is not the revenue — it's the distortion. A state firm that pays no tax, gets free land, and uses soldiers as labor can undercut any private competitor. Taxing state firms is meant to restore a level playing field the private sector has never had.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *competitive neutrality* — the principle that government-owned businesses should face the **same costs and rules** as private rivals. It is the quiet center of every IMF program in a military-economy state."
+          }
+        ]
+      },
+      {
+        "heading": "THE EXEMPTION LOOPHOLE",
+        "body": "A tax with an undefined exemption power is not a tax — it is a discretion. By letting the prime minister grant exemptions on unspecified grounds, the bill can satisfy the IMF on paper while leaving the largest firms — the military's — free to apply for relief once the cameras leave."
+      },
+      {
+        "heading": "THE IMF CONDITIONALITY MACHINE",
+        "body": "Egypt has taken repeated IMF bailouts since 2016, each conditioned on subsidy cuts, currency devaluation, and shrinking the state's commercial footprint. Devaluation makes imports costlier and feeds inflation, which builds the very political pressure that makes the structural reforms — like taxing the army — so hard to deliver.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              52.7376,
+              52.8269,
+              52.9233,
+              52.9288,
+              52.897,
+              52.8709,
+              52.834473,
+              53.0759,
+              53.3218,
+              53.1117,
+              53.41957,
+              52.9137,
+              53.0009,
+              53.093587,
+              52.5954,
+              52.2154,
+              52.2172,
+              52.226,
+              52.2213,
+              52.2712,
+              52.22,
+              52.4091,
+              52.0084,
+              51.8616,
+              51.9361,
+              51.8166,
+              51.7562,
+              51.77,
+              51.943,
+              52.1591
+            ],
+            "periods": [
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9"
+            ],
+            "label": "Egyptian pound",
+            "unit": "EGP / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY EGYPT CANNOT SIMPLY SELL",
+        "body": "Genuine privatization would force the military to surrender profitable assets it directly controls. Every Egyptian government since Mubarak has promised exactly this reform and found reasons to delay. A discretionary exemption clause is how delay survives a reform vote."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-09"
+    ],
+    "generatedAt": "2026-06-09T22:32:53.135Z",
+    "label": "Egypt's Military Economy & the IMF",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-09-house-70b-ice-border-patrol-trump": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 214-212 MATH",
+        "body": "A normal bill needs 60 Senate votes to break a filibuster. Budget reconciliation bypasses that — it lets spending and tax measures pass on a simple majority. That is why a $70 billion bill can clear on the thinnest possible margin instead of needing a bipartisan supermajority.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Reconciliation has a leash: the **Byrd Rule** strips out any provision that doesn't directly change spending or revenue. That is why immigration *funding* moves this way but immigration *law* — who can be deported, asylum rules — cannot."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ICE EXISTS",
+        "body": "ICE is younger than most readers assume. The 1924 Border Patrol and the old Immigration and Naturalization Service handled enforcement for decades. After 9/11, the 2002 Homeland Security Act dissolved the INS and split its functions — ICE for interior enforcement, CBP for the border — under the new Department of Homeland Security.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1924",
+                "label": "Border Patrol founded"
+              },
+              {
+                "year": "1933",
+                "label": "INS created"
+              },
+              {
+                "year": "2002",
+                "label": "Homeland Security Act"
+              },
+              {
+                "year": "2003",
+                "label": "INS abolished; ICE + CBP created",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "how US immigration enforcement was built"
+          }
+        ]
+      },
+      {
+        "heading": "THE BED MANDATE",
+        "body": "Detention funding works through a daily-bed count, not a yearly lump sum. For most of the 2010s Congress wrote a 'detention bed mandate' into DHS appropriations — a floor on how many people ICE had to hold at once. Fund more beds and the system fills them; the appropriation drives the detention level, not the other way around.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many detention beds did Congress's 'bed mandate' require ICE to keep filled through the 2010s?",
+            "options": [
+              "~3,400",
+              "~34,000",
+              "~340,000"
+            ],
+            "correct": 1,
+            "explanation": "The mandate hovered around 34,000 beds — a floor that critics said guaranteed arrests to fill capacity regardless of need."
+          }
+        ]
+      },
+      {
+        "heading": "THE DETENTION DUOPOLY",
+        "body": "Most ICE detainees are held in facilities run by two publicly traded companies, GEO Group and CoreCivic. The federal government is their single largest customer, so a multi-year funding surge is a direct revenue forecast — which is why both stocks jumped more than 20% the moment the bill cleared.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "GEO Group",
+                "value": "~81k beds",
+                "cc": "US",
+                "weight": 81
+              },
+              {
+                "label": "CoreCivic",
+                "value": "~70k beds",
+                "cc": "US",
+                "weight": 70
+              }
+            ],
+            "label": "the private detention duopoly"
+          }
+        ]
+      },
+      {
+        "heading": "TWO AGENCIES, NOT ONE",
+        "body": "ICE and Border Patrol do different jobs, and the distinction shapes how money gets spent. Border Patrol works the line — apprehensions between ports of entry. ICE works the interior — arrests, detention, and removal anywhere inside the country. Funding both means expanding enforcement at the border and far behind it at the same time.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The split matters legally: near the border, agents operate under relaxed search standards within a **100-mile zone** of any external boundary — a band that, by population, covers roughly *two-thirds* of Americans."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T22:33:36.392Z",
+    "label": "ICE, Detention & the Money Behind It",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-09-israel-intensifies-gaza-killing-yellow-line-ceasefire": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CAMP THAT NEVER WAS TEMPORARY",
+        "body": "Jabaliya is not a neighborhood — it is a refugee camp, the largest of Gaza's eight. It was set up in 1948 to hold Palestinians expelled from villages around Jaffa and the southern coast during the Nakba. Three generations later, families still live on land registered to UNRWA, holding keys and deeds to homes inside what is now Israel.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PS",
+              "IL",
+              "EG"
+            ],
+            "label": "Gaza's northern camps",
+            "markers": [
+              {
+                "lat": 31.5278,
+                "lng": 34.4831,
+                "label": "Jabaliya camp"
+              },
+              {
+                "lat": 31.5017,
+                "lng": 34.4668,
+                "label": "Gaza City"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE NAKBA",
+        "body": "In 1948 roughly 750,000 Palestinians — about two-thirds of the Arab population — were driven from or fled their homes as the state of Israel was established. More than 500 villages were depopulated and destroyed. Gaza's population tripled almost overnight as refugees concentrated into a strip of land they were never allowed to leave or return from.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1917",
+                "label": "Balfour Declaration"
+              },
+              {
+                "year": "1948",
+                "label": "Nakba — mass expulsion",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1967",
+                "label": "Naksa — Gaza occupied"
+              },
+              {
+                "year": "1987",
+                "label": "First Intifada begins in Jabaliya"
+              },
+              {
+                "year": "2005",
+                "label": "Israeli settlements withdrawn"
+              },
+              {
+                "year": "2007",
+                "label": "Blockade imposed"
+              }
+            ],
+            "label": "the long dispossession"
+          }
+        ]
+      },
+      {
+        "heading": "THE SPARK OF 1987",
+        "body": "The First Intifada — the uprising of stones — did not begin in a parliament or a guerrilla camp. It began in Jabaliya in December 1987, after an Israeli truck killed four residents. Within days it spread across the territories. This same camp has been a center of gravity for Palestinian resistance for nearly four decades.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Arabic word *intifada* means a **shaking off** — the image is of a body throwing off something clinging to it, not a war declared but a reflex of refusal."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLESSED LAND",
+        "body": "In the Quran, Palestine is the land God describes as blessed — Surah al-Isra opens with the Prophet's night journey to al-Aqsa, 'whose surroundings We have blessed.' For Muslims the attachment to this soil is not only national or humanitarian; it is scriptural. This is why the killing of a child in Jabaliya reverberates far beyond Gaza's borders.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is Jabaliya refugee camp originally a camp rather than a town?",
+            "options": [
+              "It was built in 1948 for Palestinians expelled in the Nakba",
+              "It was founded as a planned city in the 1990s",
+              "It was a military base converted to housing after 2005"
+            ],
+            "correct": 0,
+            "explanation": "Jabaliya was established in 1948 to shelter refugees from the coastal villages around Jaffa, and its residents remain registered refugees today."
+          }
+        ]
+      },
+      {
+        "heading": "A POPULATION OF CHILDREN",
+        "body": "Gaza has one of the youngest populations on earth — roughly half its 2 million people are under 18, with a median age near 18. This is the structural reason every casualty count carries so many children: in a population this young, a strike on any crowded place is statistically a strike on the young.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Gaza",
+                "value": "~18",
+                "cc": "PS",
+                "weight": 18,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Egypt",
+                "value": "~24",
+                "cc": "EG",
+                "weight": 24
+              },
+              {
+                "label": "Israel",
+                "value": "~30",
+                "cc": "IL",
+                "weight": 30
+              },
+              {
+                "label": "USA",
+                "value": "~38",
+                "cc": "US",
+                "weight": 38
+              },
+              {
+                "label": "Japan",
+                "value": "~49",
+                "cc": "JP",
+                "weight": 49
+              }
+            ],
+            "label": "median age, 2024 (years)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T22:34:12.819Z",
+    "label": "Jabaliya, the Nakba & a Young Population",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-09-judge-both-sides-ai-cancels-trial": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY MODELS INVENT CASES",
+        "body": "A language model is a next-token predictor, not a database. Legal citations follow a rigid, learnable format — Name v. Name, volume, reporter, page, year — so the model generates citations that look perfectly real because the shape is right, even when no such case exists. It is not retrieving; it is pattern-completing.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The fabricated cites are convincing precisely because they're *well-formed*: real reporters (F.3d, U.S.), plausible court names, even fake *pincites* to holdings that were never written. The format passes a glance; only pulling the actual opinion exposes the void."
+          }
+        ]
+      },
+      {
+        "heading": "THE DUTY BEING BREACHED",
+        "body": "Under Rule 11 of the Federal Rules of Civil Procedure, a lawyer's signature on any filing certifies that its legal claims are warranted by existing law. The signature is the liability — the court does not need to prove intent to deceive, only that the lawyer failed the duty to verify before signing.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Parallel to Rule 11 is the **duty of candor to the tribunal** — a lawyer may not knowingly present false authority. Citing a case you never read, AI-generated or not, has been sanctionable for decades; the tool is new, the rule is old."
+          }
+        ]
+      },
+      {
+        "heading": "THE FOUNDING CASE",
+        "body": "The template for these sanctions is Mata v. Avianca (2023), where two New York lawyers submitted a brief with six ChatGPT-invented cases and were fined after they doubled down when the judge asked for copies. It established that the cover-up — insisting the fake cases were real — draws heavier penalties than the original error.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2023-06",
+                "label": "Mata v. Avianca: first major sanction",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026-06",
+                "label": "Mississippi: both sides sanctioned"
+              }
+            ],
+            "label": "AI-fabricated citation sanctions"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BOTH SIDES IS THE STORY",
+        "body": "The adversarial system assumes each lawyer polices the other's citations — opposing counsel has every incentive to expose a fabricated case. When both sides outsource research to the same kind of tool and neither checks, the structural safeguard collapses, and the burden of catching the fiction falls entirely on the judge."
+      },
+      {
+        "heading": "THE VERIFICATION GAP",
+        "body": "Standard chatbots have no live connection to a case-law database, so they cannot confirm a citation exists. Specialized legal tools bolt on retrieval — they pull a real opinion first, then summarize it — which is why the profession's fix is not 'ban AI' but 'require the model to cite only what it actually retrieved.'",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What drew the heaviest penalty in the landmark Mata v. Avianca AI case?",
+            "options": [
+              "Using ChatGPT for legal research at all",
+              "Insisting the fabricated cases were real when challenged",
+              "Charging the client for the AI's time"
+            ],
+            "correct": 1,
+            "explanation": "Courts treat the cover-up as worse than the error — the lawyers were sanctioned chiefly for defending the fake citations after the judge asked for copies."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T22:35:00.818Z",
+    "label": "AI Hallucination in Court",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-09-kenya-protests-us-ebola-quarantine-nanyuki": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY EBOLA IS QUARANTINED, NOT TREATED-IN-PLACE",
+        "body": "Ebola spreads through direct contact with the bodily fluids of someone already showing symptoms — it is not airborne like measles. That makes it containable, but only if every exposed person is watched through the full incubation window. The entire control strategy is isolation and tracing, not a cure.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The watch window is **21 days** — the maximum time the virus can incubate before symptoms appear. A contact who is symptom-free at day 21 is cleared; one who spikes a fever at day 20 was infectious to no one until that moment, since pre-symptomatic carriers don't transmit."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CONGO, AGAIN",
+        "body": "The Democratic Republic of Congo is where Ebola was first identified in 1976, near the Ebola River — the virus is named for it. The DRC has since suffered more outbreaks than any other country, because the forest reservoir (fruit bats) overlaps with dense rural populations and a health system repeatedly fractured by conflict.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1976",
+                "label": "Yambuku — virus first identified",
+                "emphasis": "start"
+              },
+              {
+                "year": "1995",
+                "label": "Kikwit outbreak"
+              },
+              {
+                "year": "2014",
+                "label": "Équateur province"
+              },
+              {
+                "year": "2018",
+                "label": "Kivu — 2nd-largest ever",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "North Kivu flare-ups"
+              }
+            ],
+            "label": "DRC Ebola outbreaks"
+          }
+        ]
+      },
+      {
+        "heading": "THE FATALITY THAT DRIVES THE PANIC",
+        "body": "The Zaire strain of Ebola — the one endemic to the DRC — kills roughly half the people it infects, and historically far more without modern supportive care. That case-fatality rate, an order of magnitude above almost any other transmissible disease, is why even a handful of exposed evacuees triggers a full quarantine apparatus.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ebola (Zaire)",
+                "value": "~50%",
+                "tone": "unfavorable",
+                "weight": 50
+              },
+              {
+                "label": "Marburg",
+                "value": "~50%",
+                "tone": "unfavorable",
+                "weight": 50
+              },
+              {
+                "label": "Ebola (Sudan)",
+                "value": "~40%",
+                "tone": "unfavorable",
+                "weight": 40
+              },
+              {
+                "label": "Lassa fever",
+                "value": "~1%",
+                "tone": "neutral",
+                "weight": 1
+              },
+              {
+                "label": "Seasonal flu",
+                "value": "<0.1%",
+                "tone": "favorable",
+                "weight": 0.1
+              }
+            ],
+            "label": "case-fatality, untreated (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "NANYUKI IS A GARRISON TOWN",
+        "body": "Nanyuki sits at the foot of Mount Kenya, on the equator, and has hosted foreign militaries for generations — the British Army Training Unit Kenya (BATUK) runs its main exercises from nearby Laikipia. A town built around hosting outside forces is exactly where a foreign power would site a sensitive staging facility, and exactly where the local population is primed to resent it.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KE",
+              "CD",
+              "UG",
+              "TZ"
+            ],
+            "label": "Nanyuki and the outbreak's origin",
+            "caption": "The quarantine site sits ~1,500 km from any active Ebola case.",
+            "markers": [
+              {
+                "lat": 0.0167,
+                "lng": 37.073,
+                "label": "Nanyuki, Kenya"
+              },
+              {
+                "lat": -1.6586,
+                "lng": 29.2206,
+                "label": "Goma / N. Kivu, DRC"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "FLYING IN DEFIANCE OF A COURT",
+        "body": "A Kenyan court suspended the project, yet equipment kept arriving — a collision between a host nation's judiciary and a foreign power's logistics timeline. Status-of-forces arrangements often grant visiting militaries broad operational latitude, but a domestic court order is a sovereignty test: it asks whether Kenyan law actually binds activity on Kenyan soil.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pattern is older than this dispute: Kenyan security forces have repeatedly met street protest with live fire, and a single killing routinely escalates a local grievance into a national one — the dead protester, not the quarantine, becomes the story."
+          }
+        ]
+      },
+      {
+        "heading": "THE GIVEAWAY DETAIL",
+        "body": "Kenya itself reported no Ebola cases. The facility exists to hold Americans being pulled out of the DRC — a quarantine sited not where the disease is, but where the evacuation logistics are convenient. That is the heart of the local objection: the risk is imported, the benefit is foreign.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where does the Ebola virus get its name?",
+            "options": [
+              "A river in the Democratic Republic of Congo",
+              "The doctor who first isolated it",
+              "A village in Uganda",
+              "A Greek word for 'bleeding'"
+            ],
+            "correct": 0,
+            "explanation": "It was named after the Ebola River near Yambuku, DRC, site of the 1976 outbreak where the virus was first identified."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T22:35:47.068Z",
+    "label": "Ebola, Quarantine & Nanyuki's Garrison",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-09-malawi-climate-whiplash-aid-collapse": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RATION MATH",
+        "body": "A cut from $100 to $7 per family is not a 93% trim of comfort — it crosses below the threshold WFP itself defines as a survival ration. Aid economists call the level where calories fall under ~2,100/day the 'crisis' band; a near-zero transfer pushes households straight into negative coping: selling tools, pulling children from school, skipping meals on a rota.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "WFP food and cash assistance is funded primarily by what?",
+            "options": [
+              "Assessed dues every UN member must pay",
+              "Voluntary donations from governments and private donors",
+              "A levy on global grain trade"
+            ],
+            "correct": 1,
+            "explanation": "Unlike the UN's core budget, WFP receives no assessed contributions — every dollar is voluntary, so a few donor cuts can collapse a country program overnight."
+          }
+        ]
+      },
+      {
+        "heading": "WHY WFP RUNS DRY",
+        "body": "The World Food Programme has no guaranteed income. It raises its entire budget each year from voluntary pledges, and a single large donor has historically supplied close to 40% of the total. When that donor trims, no formula forces anyone else to backfill — the gap simply becomes a ration cut somewhere downstream.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the structural fragility of *voluntary-funded* humanitarianism: the agency can be the world's largest food provider and still be **one budget cycle from insolvency** in any given country."
+          }
+        ]
+      },
+      {
+        "heading": "DZALEKA, FOUR TIMES OVER",
+        "body": "UNHCR opened Dzaleka in 1994 on the site of a former political prison, sized for 12,000 people fleeing the Great Lakes wars. Three decades of arrivals from Congo, Burundi, Rwanda and beyond never reversed, and it now holds 52,000 — making a transit camp into one of Malawi's larger settlements by population.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MW",
+              "CD",
+              "BI",
+              "RW",
+              "TZ"
+            ],
+            "label": "Dzaleka and its source regions",
+            "caption": "A 1994 transit camp now holds 4× its design capacity.",
+            "markers": [
+              {
+                "lat": -13.7167,
+                "lng": 33.9333,
+                "label": "Dzaleka camp"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE ENCAMPMENT TRAP",
+        "body": "Malawi enforces an encampment policy: refugees are legally confined to Dzaleka and barred from working or settling outside it. That is precisely why a WFP ration cut bites so hard here — residents cannot legally earn their way around the shortfall, so the food transfer is not a supplement but the entire economy.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "When the law forbids both *work* and *movement*, aid stops being a safety net and becomes the **only** net — removing it has no fallback."
+          }
+        ]
+      },
+      {
+        "heading": "CLIMATE WHIPLASH",
+        "body": "Southern Africa swings between El Niño droughts and La Niña floods, and Malawi sits in the worst of the corridor. The same fields are scorched one season and washed out the next — a rhythm that prevents harvests from rebuilding reserves, so each disaster lands on an economy still depleted by the last.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2015",
+                "label": "Worst floods in 50 years",
+                "emphasis": "start"
+              },
+              {
+                "year": "2016",
+                "label": "El Niño drought, food emergency"
+              },
+              {
+                "year": "2019",
+                "label": "Cyclone Idai"
+              },
+              {
+                "year": "2022",
+                "label": "Cyclones Ana & Gombe"
+              },
+              {
+                "year": "2023",
+                "label": "Cyclone Freddy — record-long storm",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "El Niño drought, state of disaster"
+              }
+            ],
+            "label": "a decade of compounding disasters"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T22:36:28.125Z",
+    "label": "Food Aid & the Funding Cliff",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-09-nasa-artemis-iii-crew-training-moon": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 54-YEAR GAP",
+        "body": "Apollo ended not because the technology failed but because the budget did. Each Saturn V cost roughly $1.5 billion in today's dollars and was expendable. NASA bet everything on the reusable Shuttle, which could only reach low orbit. No heavy-lift Moon rocket existed again until SLS — an entire generation of astronauts retired without the possibility of leaving Earth's neighborhood.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1969",
+                "label": "Apollo 11 first landing"
+              },
+              {
+                "year": "1972",
+                "label": "Apollo 17, last crew on Moon",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "Artemis I uncrewed test"
+              },
+              {
+                "year": "2027",
+                "label": "Artemis III crewed landing"
+              },
+              {
+                "year": "2030",
+                "label": "China targets crewed landing"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1972",
+                "to": "2027",
+                "label": "the 54-year gap",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "humans and the Moon"
+          }
+        ]
+      },
+      {
+        "heading": "WHY A SEPARATE LANDER",
+        "body": "Apollo carried its lander to the Moon on a single rocket. Artemis splits the job: SLS and Orion deliver the crew to lunar orbit, but the actual descent rides on a separately-launched commercial lander — SpaceX's Starship or Blue Origin's Blue Moon. The whole mission now hinges on a vehicle NASA does not build itself.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "SpaceX",
+                "value": "$2.9bn",
+                "cc": "US",
+                "weight": 2.9
+              },
+              {
+                "label": "Blue Origin",
+                "value": "$3.4bn",
+                "cc": "US",
+                "weight": 3.4
+              }
+            ],
+            "label": "Artemis Human Landing System contracts"
+          }
+        ]
+      },
+      {
+        "heading": "THE GRAVITY TAX",
+        "body": "Escaping Earth's gravity costs about 9.4 km/s of velocity change; escaping the Moon costs just 2.4 km/s. This is why the Moon is strategic, not sentimental — fuel, materials, and vehicles produced there are dramatically cheaper to move through space than anything launched from Earth.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The prize buried in the architecture is *in-situ resource utilization* — making rocket propellant from lunar ice instead of hauling it up Earth's gravity well. Whoever masters it owns the **cheapest gas station in the solar system**."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE SOUTH POLE",
+        "body": "Apollo landed near the equator for easy sunlight and communication. Artemis aims for the lunar south pole, where the floors of permanently shadowed craters have never seen sunlight in billions of years — cold traps that hold water ice. Water means drinking water, breathable oxygen, and rocket fuel, all without launching it from Earth.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Artemis target the lunar south pole instead of the equatorial sites Apollo used?",
+            "options": [
+              "Permanently shadowed craters hold water ice",
+              "It is the closest point to Earth",
+              "The terrain is flattest there",
+              "Solar panels work better at the pole"
+            ],
+            "correct": 0,
+            "explanation": "Craters near the pole never receive sunlight, trapping water ice that can be turned into drinking water, oxygen, and fuel."
+          }
+        ]
+      },
+      {
+        "heading": "THE NEW RACE",
+        "body": "The original space race was two superpowers proving a system. This one is about staying: China plans a crewed landing by 2030 and, with Russia, a permanent research base after. The unspoken contest is over the south-pole ice fields — there are only so many craters with both ice and sunlit ridges for solar power nearby."
+      }
+    ],
+    "generatedAt": "2026-06-09T22:37:03.819Z",
+    "label": "Artemis & the Return to the Moon",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-09-ukraine-ai-drone-campaign-russian-logistics": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE JAMMING PROBLEM",
+        "body": "Russia blankets the front with electronic warfare that jams GPS and severs the radio link between a drone and its pilot. A remotely-flown drone goes blind or drops the moment it enters that bubble — which is exactly where the targets are.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The fix is **terminal guidance**: an onboard model that recognizes the target visually in the last seconds and steers into it *with no human link*. The drone finishes the strike even after jamming cuts the radio."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE REAR, NOT THE FRONT",
+        "body": "An army runs on fuel, trucks and rail. Striking a tank kills one tank; striking a fuel train or depot starves a whole sector. This is interdiction — the century-old doctrine of attacking supply behind the lines rather than fighting through armor at the front.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do AI drones target Russian fuel and rail rather than front-line armor?",
+            "options": [
+              "Rear logistics is softer and starves an entire sector at once",
+              "Tanks are immune to drone warheads",
+              "The front line is outside the drones' range"
+            ],
+            "correct": 0,
+            "explanation": "Interdiction strikes the supply that sustains many units, multiplying the effect of a single cheap drone far beyond one destroyed vehicle."
+          }
+        ]
+      },
+      {
+        "heading": "THE COST ASYMMETRY",
+        "body": "A long-range strike drone costs tens of thousands of dollars; a locomotive, fuel depot or air-defense battery is worth millions, and the interceptor fired to stop the drone often costs more than the drone itself. The economics favor the attacker every time.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "FPV / strike drone",
+                "value": "~$30k",
+                "weight": 30,
+                "tone": "favorable"
+              },
+              {
+                "label": "SAM interceptor",
+                "value": "~$1M+",
+                "weight": 1000,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Fuel depot / loco",
+                "value": "~$10M+",
+                "weight": 10000,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "rough unit cost: weapon vs target"
+          }
+        ]
+      },
+      {
+        "heading": "THE CRIMEAN CHOKE",
+        "body": "Crimea is a near-island fed by a handful of supply arteries: the Kerch Strait bridge from Russia and the rail lines running south from the occupied mainland. Cut or disrupt those and everything on the peninsula — fuel, ammunition, reinforcements — backs up.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU"
+            ],
+            "label": "Crimea's supply arteries",
+            "caption": "A peninsula fed by one bridge and a thin rail spine",
+            "markers": [
+              {
+                "lat": 45.31,
+                "lng": 36.5,
+                "label": "Kerch Strait bridge"
+              },
+              {
+                "lat": 44.95,
+                "lng": 34.1,
+                "label": "Simferopol rail hub"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE FORCE MULTIPLIER",
+        "body": "Deep strike lets a numerically weaker force reach targets it could never approach on the ground. Instead of massing for a breakthrough, a small unit projects effects 150 miles into the enemy rear — the same logic that made long-range artillery and air power decisive, now available for the price of a used car."
+      }
+    ],
+    "generatedAt": "2026-06-09T22:37:36.257Z",
+    "label": "AI Drones & Deep Strike",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-09-us-drug-shortages-systemic-generic-margins": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COMMODITY TRAP",
+        "body": "Once a drug goes generic, every approved version is chemically identical, so they compete on one axis only: price. The buyer has no reason to pay more for the same molecule, and margins erode toward the cost of the glass vial. The result is a market that punishes quality investment instead of rewarding it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Brand-name",
+                "value": "~80%",
+                "tone": "favorable",
+                "weight": 80
+              },
+              {
+                "label": "Generic pill",
+                "value": "~30%",
+                "tone": "neutral",
+                "weight": 30
+              },
+              {
+                "label": "Generic shot",
+                "value": "~5%",
+                "tone": "unfavorable",
+                "weight": 5
+              }
+            ],
+            "label": "approx. gross margin by drug type"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE NEEDLE, NOT THE PILL",
+        "body": "Shortages cluster in injectables, not tablets, because sterile manufacturing is unforgiving. A pill can be made in open air; an injectable must be produced in a contamination-free aseptic line, where a single particulate or microbial finding can force the FDA to shut the line for months. High fixed cost, zero margin, and brutal failure modes is the worst combination in industry."
+      },
+      {
+        "heading": "THE SOLE-SOURCE FRAGILITY",
+        "body": "Decades of price competition drove most makers out, so dozens of essential injectables are now produced by just one or two plants. There is no redundancy in the system: when a single facility hits a quality hold or a recall, the shortage is instantly national. The 2017 Hurricane Maria strike on Puerto Rico's IV-bag plants emptied US hospital shelves precisely because so much production sat in one place."
+      },
+      {
+        "heading": "WHY IT LASTS YEARS",
+        "body": "Restarting or qualifying a new sterile line takes years of FDA inspection and validation, and the thin margin gives no one a reason to rush. A profitable product would draw competitors back; a near-zero-margin one stays scarce because fixing it costs more than the market will ever repay.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do cheap generic injectables stay in shortage for years?",
+            "options": [
+              "The active ingredient is rare",
+              "Patents block new producers",
+              "Margins are too thin to justify backup supply",
+              "Demand keeps spiking unpredictably"
+            ],
+            "correct": 2,
+            "explanation": "With margins near zero, no manufacturer has reason to build redundant capacity or restock — so a single plant failure lingers for years."
+          }
+        ]
+      },
+      {
+        "heading": "THE BUYER'S SQUEEZE",
+        "body": "On the other side sit group purchasing organizations, which bundle the buying power of thousands of hospitals to negotiate the lowest possible price. That saves money in normal times, but it accelerates the race to the bottom — squeezing suppliers until only the lowest-cost, lowest-resilience producer survives.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A handful of **GPOs** broker the majority of US hospital drug purchases. Their leverage is the point — and also why a $2 vial can have *no* profitable second source."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T22:38:15.984Z",
+    "label": "Why Generic Drugs Vanish",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-09-us-strikes-iran-apache-retaliation-hormuz": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TERRAIN",
+        "body": "Qeshm and Sirik sit on Iran's southern coast in Hormozgan, the province that fronts the Strait of Hormuz. Qeshm is Iran's largest island and a forward base; from this stretch of shore the IRGC navy can range the entire shipping channel with small boats and missiles. Striking here is striking the chokepoint's trigger.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE"
+            ],
+            "label": "Hormozgan and the Strait",
+            "caption": "Iran's coast runs the entire northern edge of the strait",
+            "markers": [
+              {
+                "lat": 26.75,
+                "lng": 55.9,
+                "label": "Qeshm island"
+              },
+              {
+                "lat": 26.51,
+                "lng": 57.1,
+                "label": "Sirik"
+              },
+              {
+                "lat": 26.57,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "\"PROPORTIONAL SELF-DEFENSE\"",
+        "body": "The phrase is not rhetoric — it invokes Article 51 of the UN Charter, which preserves a state's right to self-defense if an armed attack occurs. The legal fight is always over two words: proportional and necessary. A response calibrated to the original attack is defensible; one that exceeds it becomes the new aggression. Both sides claim the same clause.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Nothing in the present Charter shall impair the inherent right of individual or collective self-defence if an armed attack occurs against a Member of the United Nations",
+            "speaker": "UN Charter, Article 51",
+            "year": "1945"
+          }
+        ]
+      },
+      {
+        "heading": "WHY A HELICOPTER GOES DOWN",
+        "body": "An Apache flies low and slow — the opposite of a fast jet's survivability profile. Over coastal terrain it sits squarely inside the envelope of shoulder-fired air defenses, the cheap, portable missiles that have humbled aircraft from Afghanistan to Ukraine. Losing one is militarily minor but politically combustible: a downed crew demands a visible answer.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**MANPADS** — man-portable air-defense systems — cost tens of thousands of dollars and turn any hill into an anti-aircraft position. They are why low-flying rotary aircraft, not jets, are the asset most often lost over contested ground."
+          }
+        ]
+      },
+      {
+        "heading": "THE LADDER, NOT THE FIRST RUNG",
+        "body": "Direct US–Iran fire is not new — it has flared and cooled for four decades, each exchange calibrated to avoid full war. The 1988 naval clash sank much of Iran's navy in a day; the 2020 Soleimani strike crossed into open assassination; Iran answered with ballistic missiles but warned the base beforehand. The pattern is escalation that both sides choreograph to stop short.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1988",
+                "label": "Operation Praying Mantis",
+                "emphasis": "start"
+              },
+              {
+                "year": "2019",
+                "label": "Iran downs US Global Hawk drone"
+              },
+              {
+                "year": "2020-01",
+                "label": "US kills Soleimani",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020-01",
+                "label": "Iran missiles Al-Asad base"
+              },
+              {
+                "year": "2024",
+                "label": "Direct missile exchanges with Israel"
+              }
+            ],
+            "label": "four decades of calibrated exchange"
+          }
+        ]
+      },
+      {
+        "heading": "THE OIL THE WORLD CAN'T REROUTE",
+        "body": "Roughly a fifth of global oil — about 21 million barrels a day — moves through Hormuz, and the deepest channel hugs the Iranian side. Saudi and UAE bypass pipelines can divert maybe a third of Gulf exports; the rest has no alternate route. This is why a coastal skirmish becomes a price shock the entire world feels.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of global oil consumption transits the Strait of Hormuz each day?",
+            "options": [
+              "About 5%",
+              "About 20%",
+              "About 40%",
+              "About 60%"
+            ],
+            "correct": 1,
+            "explanation": "Around 21 million barrels a day — close to a fifth of global consumption — pass through Hormuz, with no full alternative route for most of it."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-09T22:38:53.544Z",
+    "label": "US–Iran: Direct Fire on the Strait",
+    "category": "politics",
+    "articleCount": 1
   }
 }
