@@ -553,7 +553,9 @@ export const LocationsBlock = memo(function LocationsBlock({
     if (width <= 0 || height <= 0) return [];
     return resolved
       .map((r) => {
-        const cap = getCapitalsByISO2()[r.code];
+        // Uppercase like every other code path (choropleth, topojson name
+        // lookup) — capitals are keyed by uppercase ISO-2.
+        const cap = getCapitalsByISO2()[r.code.toUpperCase()];
         if (!cap) return null;
         const p = projection([cap.lng, cap.lat]);
         if (!p || !Number.isFinite(p[0]) || !Number.isFinite(p[1])) return null;

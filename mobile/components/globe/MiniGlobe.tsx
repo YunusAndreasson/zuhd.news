@@ -83,7 +83,6 @@ import {
   formatLocalTime,
   getMoonPhase,
   getSunPosition,
-  HALF_PI,
   invalidateSunCaches,
   isNear,
   MAKKAH,
@@ -757,13 +756,23 @@ function projectInitial(
   pg.context(ctx)(ARCTIC_CIRCLE);
   pg.context(ctx)(ANTARCTIC_CIRCLE);
 
+  // Point markers below are culled against the clip cone, not the hemisphere:
+  // direct point projection ignores `.clipAngle` (d3 clips streams only), so a
+  // point between clipRad and 90° projects outside the disk, and a far-side
+  // point comes back mirrored *inside* it — proj() never returns null.
+  const clipRad = (clipAngle * Math.PI) / 180;
+
   // Poles
   let northPole: GlobeState['northPole'] = null;
   let southPole: GlobeState['southPole'] = null;
-  const npp = proj(NORTH_POLE);
-  if (npp) northPole = { x: npp[0], y: npp[1] };
-  const spp = proj(SOUTH_POLE);
-  if (spp) southPole = { x: spp[0], y: spp[1] };
+  if (geoDistance(NORTH_POLE, [geo.lng, geo.lat]) < clipRad) {
+    const npp = proj(NORTH_POLE);
+    if (npp) northPole = { x: npp[0], y: npp[1] };
+  }
+  if (geoDistance(SOUTH_POLE, [geo.lng, geo.lat]) < clipRad) {
+    const spp = proj(SOUTH_POLE);
+    if (spp) southPole = { x: spp[0], y: spp[1] };
+  }
 
   let dot: GlobeState['dot'] = null;
   const pt = proj([geo.lng, geo.lat]);
@@ -771,14 +780,14 @@ function projectInitial(
 
   // Makkah
   let makkah: GlobeState['makkah'] = null;
-  if (geoDistance(MAKKAH.coords, [geo.lng, geo.lat]) < HALF_PI) {
+  if (geoDistance(MAKKAH.coords, [geo.lng, geo.lat]) < clipRad) {
     const mp = proj(MAKKAH.coords);
     if (mp) makkah = { x: mp[0], y: mp[1] };
   }
 
   // Subsolar point — projected position of [sunLng, sunLat]
   let subsolar: GlobeState['subsolar'] = null;
-  if (geoDistance([sunLng, sunLat], [geo.lng, geo.lat]) < HALF_PI) {
+  if (geoDistance([sunLng, sunLat], [geo.lng, geo.lat]) < clipRad) {
     const sp = proj([sunLng, sunLat]);
     if (sp) subsolar = { x: sp[0], y: sp[1] };
   }
@@ -816,14 +825,22 @@ function projectInitial(
     cityTwilight0,
   );
 
-  // Qibla arc — great circle from story location to Makkah
+  // Qibla arc — great circle from story location to Makkah. Interpolated
+  // points are culled against the clip cone explicitly (see the clipRad note
+  // above): beyond-cone points would draw the arc into the sky and far-side
+  // points would fold it back mirrored across the disk.
   let qp: ReturnType<typeof Skia.Path.Make> | null = null;
   if (geoDistance([geo.lng, geo.lat], MAKKAH.coords) > 0.02) {
     const interp = geoInterpolate([geo.lng, geo.lat], MAKKAH.coords);
     qp = Skia.Path.Make();
     let started = false;
     for (let i = 0; i <= 30; i++) {
-      const p = proj(interp(i / 30));
+      const ll = interp(i / 30);
+      if (geoDistance(ll, [geo.lng, geo.lat]) >= clipRad) {
+        started = false;
+        continue;
+      }
+      const p = proj(ll);
       if (!p) {
         started = false;
         continue;
@@ -1345,7 +1362,10 @@ export const MiniGlobe = memo(function MiniGlobe({
         if (idx < 0 || idx >= geoData.length) continue;
         const g = geoData[idx];
         if (!g) continue;
-        if (geoDistance([g.lng, g.lat], [geoLng, geoLat]) >= HALF_PI) continue;
+        // Cull against the zoom cone, not the hemisphere — direct point
+        // projection ignores `.clipAngle` (see clipRad note above), so a
+        // ghost between clipRad and 90° would stamp its glow in the sky.
+        if (geoDistance([g.lng, g.lat], [geoLng, geoLat]) >= clipRad) continue;
         const pt = proj([g.lng, g.lat]);
         if (!pt) continue;
         const [gx, gy] = pt;
@@ -1372,10 +1392,13 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
 
       // Country name label — project the cached centroid onto the current
-      // frame. `proj` returns null when the point is clipped (far side of
-      // the globe), which is what we want: hide the label until the
-      // country rotates into view. One projection op per frame; the
-      // centroid itself is pre-computed on settled-country change.
+      // frame, culled against the clip cone first: direct point projection
+      // ignores `.clipAngle` (it never returns null for a clipped point), so
+      // without the cone test a centroid far from the camera — e.g. Russia's
+      // centroid while the story sits in Vladivostok at zoom clip 18° — would
+      // project past the disk and float in the sky. One geoDistance + one
+      // projection op per frame; the centroid itself is pre-computed on
+      // settled-country change.
       // Default offset: 14px below the centroid so the label sits under
       // the highlight. Overridden further below if it would collide with
       // the dot label (location · time).
@@ -1383,7 +1406,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       const COUNTRY_LABEL_OFFSET = 14;
       const centroid = cachedCountryCentroidRef.current;
       const countryName = cachedCountryRef.current?.properties?.name as string | undefined;
-      if (centroid && countryName) {
+      if (centroid && countryName && geoDistance(centroid, [geoLng, geoLat]) < clipRad) {
         const pt = proj(centroid);
         if (pt) {
           const display = displayCountryName(countryName) ?? countryName;
@@ -1430,17 +1453,24 @@ export const MiniGlobe = memo(function MiniGlobe({
       pg.context(skiaCtx)(nightCircleGen.center(nightCenter).radius(96)());
       const twilightPath = tp;
 
-      // Poles
+      // Poles — culled against the clip cone like every other point marker:
+      // proj() never nulls a far-side point, it mirrors it back inside the
+      // disk (a camera at 30°N would paint the south-pole cross at the screen
+      // position of front-side 60°S).
       let northPole: GlobeState['northPole'] = null;
       let southPole: GlobeState['southPole'] = null;
-      const npp = proj(NORTH_POLE);
-      if (npp) northPole = { x: npp[0], y: npp[1] };
-      const spp = proj(SOUTH_POLE);
-      if (spp) southPole = { x: spp[0], y: spp[1] };
+      if (geoDistance(NORTH_POLE, [geoLng, geoLat]) < clipRad) {
+        const npp = proj(NORTH_POLE);
+        if (npp) northPole = { x: npp[0], y: npp[1] };
+      }
+      if (geoDistance(SOUTH_POLE, [geoLng, geoLat]) < clipRad) {
+        const spp = proj(SOUTH_POLE);
+        if (spp) southPole = { x: spp[0], y: spp[1] };
+      }
 
       // Makkah
       let makkah: { x: number; y: number } | null = null;
-      if (geoDistance(MAKKAH.coords, [geoLng, geoLat]) < HALF_PI) {
+      if (geoDistance(MAKKAH.coords, [geoLng, geoLat]) < clipRad) {
         const pt = proj(MAKKAH.coords);
         if (pt) makkah = { x: pt[0], y: pt[1] };
       }
@@ -1448,10 +1478,11 @@ export const MiniGlobe = memo(function MiniGlobe({
       // Subsolar point — drives the day-side ocean specular highlight.
       // The night layer above already computes (sunLng, sunLat); the
       // subsolar point is just the antipode of nightCenter, i.e. the
-      // direct sunLng/sunLat. Projection returns null on the far side,
-      // which is what we want — the highlight is a day-side feature.
+      // direct sunLng/sunLat. Culled against the clip cone — point
+      // projection doesn't clip, so a sun between clipRad and 90° away
+      // would center the specular blob outside the disk near the limb.
       let subsolar: { x: number; y: number } | null = null;
-      if (geoDistance([sunLng, sunLat], [geoLng, geoLat]) < HALF_PI) {
+      if (geoDistance([sunLng, sunLat], [geoLng, geoLat]) < clipRad) {
         const pt = proj([sunLng, sunLat]);
         if (pt) subsolar = { x: pt[0], y: pt[1] };
       }
@@ -1517,7 +1548,15 @@ export const MiniGlobe = memo(function MiniGlobe({
           const interp = geoInterpolate(storyPt, MAKKAH.coords);
           let started = false;
           for (let i = 0; i <= 16; i++) {
-            const p = proj(interp(i / 16));
+            const ll = interp(i / 16);
+            // Explicit cone cull — point projection ignores `.clipAngle`, so
+            // a beyond-cone point would draw the arc into the sky and a
+            // far-side point would fold it back mirrored across the disk.
+            if (geoDistance(ll, [geoLng, geoLat]) >= clipRad) {
+              started = false;
+              continue;
+            }
+            const p = proj(ll);
             if (!p) {
               started = false;
               continue;
@@ -1543,13 +1582,22 @@ export const MiniGlobe = memo(function MiniGlobe({
             const srcCoords = SOURCE_COORDS[src.name];
             if (!srcCoords) continue;
             const srcPt: [number, number] = [srcCoords[1], srcCoords[0]]; // [lng, lat] from [lat, lng]
-            // Skip if source is at the same location as the story or not visible
+            // Skip if source is at the same location as the story
             if (geoDistance(srcPt, storyPt) < 0.05) continue;
-            if (geoDistance(srcPt, [geoLng, geoLat]) >= HALF_PI) continue;
             const interp = geoInterpolate(srcPt, storyPt);
             let started = false;
             for (let i = 0; i <= 10; i++) {
-              const p = proj(interp(i / 10));
+              const ll = interp(i / 10);
+              // Per-point cone cull (not an endpoint check): the source HQ is
+              // routinely outside the zoom cone while the story-side stretch
+              // of the arc is visible — and point projection ignores
+              // `.clipAngle`, so unculled points would land in the sky or
+              // fold back mirrored across the disk.
+              if (geoDistance(ll, [geoLng, geoLat]) >= clipRad) {
+                started = false;
+                continue;
+              }
+              const p = proj(ll);
               if (!p) {
                 started = false;
                 continue;
@@ -2039,7 +2087,10 @@ export const MiniGlobe = memo(function MiniGlobe({
       const rawIndex = Math.max(0, sy / itemHeight);
       const lo = Math.min(Math.floor(rawIndex), articleCount - 1);
       const hi = Math.min(lo + 1, articleCount - 1);
-      const frac = rawIndex - lo;
+      // Clamp: `lo` is capped at the last article but rawIndex is not, so
+      // bottom rubber-band overscroll would push frac past 1 — and the
+      // smoothstep fades downstream extrapolate to negative opacity there.
+      const frac = Math.min(1, rawIndex - lo);
 
       const loLat = coords[lo * 2];
       const loLng = coords[lo * 2 + 1];

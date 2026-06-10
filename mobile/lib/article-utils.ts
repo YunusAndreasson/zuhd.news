@@ -43,8 +43,14 @@ export function formatExactTime(addedAt: number): string {
   yesterday.setDate(now.getDate() - 1);
   if (sameDate(then, yesterday)) return `Yesterday, ${time}`;
 
-  const diffDays = (now.getTime() - then.getTime()) / DAY_MS;
-  if (diffDays < 7) {
+  // Calendar days, not elapsed time: a story from 6 days 23 hours ago falls on
+  // the same weekday as today, and an elapsed-time bound (< 7) would label it
+  // with today's weekday name. Calendar distance 2–6 keeps the name unambiguous.
+  const startOfDay = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  const calendarDays = Math.round(
+    (startOfDay(now).getTime() - startOfDay(then).getTime()) / DAY_MS,
+  );
+  if (calendarDays < 7) {
     const weekday = then.toLocaleDateString(undefined, { weekday: 'long' });
     return `${weekday}, ${time}`;
   }

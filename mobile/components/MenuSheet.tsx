@@ -234,6 +234,9 @@ function ToggleRow({
       ]}
       accessible
       accessibilityRole="switch"
+      // The merged element subsumes the inner Switch, so the on/off state must
+      // be announced here or the screen reader hears a stateless "switch".
+      accessibilityState={{ checked: value }}
     >
       <View style={styles.rowText}>
         <Text variant="label" tone="default">
@@ -316,7 +319,7 @@ function InlineOptionRow<T extends string>({
               hitSlop={8}
               style={styles.inlinePill}
               accessibilityRole="radio"
-              accessibilityState={{ selected: active }}
+              accessibilityState={{ checked: active }}
               accessibilityLabel={opt.label}
             >
               <Text

@@ -140,15 +140,19 @@ export default function HomeScreen() {
   const handleSelectArticle = useCallback(
     (slug: string, category: Category) => {
       menuSheetRef.current?.dismiss();
-      const catIndex = CATEGORIES.indexOf(category);
+      // `category` can be a caller's best guess (related-story strips,
+      // notification payloads) — trust the feed first and navigate to the
+      // category that actually contains the article.
+      const actual = CATEGORIES.find((c) => groupedRef.current[c].some((a) => a.slug === slug));
+      const target = actual ?? category;
+      const catIndex = CATEGORIES.indexOf(target);
       if (catIndex < 0) return;
 
       // If the article rotated out of the feed, inject the bookmarked copy
-      const inFeed = groupedRef.current[category].some((a) => a.slug === slug);
-      if (!inFeed) {
+      if (!actual) {
         const bookmark = getBookmarks().find((b) => b.article.slug === slug);
         if (bookmark) {
-          injectArticle(bookmark.article, category);
+          injectArticle(bookmark.article, target);
         } else {
           toastRef.current?.show('Article no longer available');
           return;
@@ -264,7 +268,12 @@ export default function HomeScreen() {
 
   // Flat feed across categories — memoized so downstream memos keyed on it
   // (e.g. ChokepointSheet's findRelatedArticles) don't invalidate every render.
-  const flatArticles = useMemo(() => Object.values(grouped).flat(), [grouped]);
+  // Each article carries its real feed category so related-story rows don't
+  // have to guess it back from concept tags (which never name a category).
+  const flatArticles = useMemo(
+    () => CATEGORIES.flatMap((c) => grouped[c].map((a) => ({ ...a, category: c }))),
+    [grouped],
+  );
 
   // Active GDACS alerts whose primary or affected-country list includes the
   // currently open country. Phase 1 matches by full country name (GDACS uses

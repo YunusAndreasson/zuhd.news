@@ -1,10 +1,5 @@
 import { getCoords } from '../components/globe/storyDots';
-import {
-  ccToFlag,
-  computeFontScale,
-  formatExactTime,
-  formatTimeAgo,
-} from '../lib/article-utils';
+import { ccToFlag, computeFontScale, formatExactTime, formatTimeAgo } from '../lib/article-utils';
 import { displayLocation } from '../lib/place-names';
 import type { Article } from '@shared/types';
 
@@ -225,6 +220,16 @@ describe('formatExactTime', () => {
     // 4 days back from Thursday Apr 16 = Sunday Apr 12
     const result = formatExactTime(new Date(2026, 3, 12, 10, 15, 0).getTime());
     expect(result).toMatch(/^[A-Za-z]+, 10:15$/);
+  });
+
+  it("does not label a 6-days-23-hours-old timestamp with today's weekday", () => {
+    // Thursday Apr 16 23:00 → last Thursday Apr 9 23:30 is 6.98 elapsed days
+    // but 7 calendar days back; "Thursday, 23:30" would read as today.
+    const now = new Date(2026, 3, 16, 23, 0, 0).getTime();
+    jest.setSystemTime(now);
+    const result = formatExactTime(new Date(2026, 3, 9, 23, 30, 0).getTime());
+    expect(result).not.toMatch(/^Thursday/);
+    expect(result).toMatch(/, 23:30$/); // falls through to the dated form
   });
 
   it('uses Mon D, HH:MM for older same-year timestamps', () => {

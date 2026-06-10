@@ -79,6 +79,11 @@ export const TreemapBlock = memo(function TreemapBlock({
     }
   }, [items, width]);
 
+  // Degenerate data (no positive values) can never produce a layout — drop the
+  // block entirely like other renderers do, instead of leaving the pre-layout
+  // placeholder below on screen as a permanent empty box.
+  if (!items.some((it) => Number.isFinite(it.value) && it.value > 0)) return null;
+
   if (!layout) {
     return (
       <View style={blockContainerStyle[variant]}>

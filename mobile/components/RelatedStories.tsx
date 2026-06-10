@@ -10,15 +10,17 @@ import { Text } from './primitives';
  *  (each sheet finds its own related set) stop collecting at this count. */
 export const MAX_RELATED = 3;
 
-/** Best-guess feed category for an article from its concept tags, so a
- *  related-story tap can scroll to the right pager page. Defaults to
- *  politics when no concept matches a category. */
+/** Last-resort feed-category guess from concept tags. Concepts are entity
+ *  tags ("Somalia", "OPEC"), not categories, so this almost always lands on
+ *  the politics fallback — prefer articles that carry their real `category`
+ *  (HomeScreen's flatArticles attaches it). The tap handler re-resolves the
+ *  true category from the feed either way; this only feeds the row label. */
 export function resolveCategory(article: Article): Category {
   return CATEGORIES.find((c) => (article.concepts || []).includes(c)) ?? 'politics';
 }
 
 interface RelatedStoriesProps {
-  articles: Article[];
+  articles: (Article & { category?: Category })[];
   onArticlePress: (slug: string, category: Category) => void;
   /** Reanimated entering animation forwarded to the wrapping view (stagger). */
   entering?: ComponentProps<typeof Animated.View>['entering'];
@@ -40,7 +42,7 @@ export function RelatedStories({ articles, onArticlePress, entering }: RelatedSt
           slug={a.slug}
           title={a.title}
           addedAt={a.addedAt}
-          category={resolveCategory(a)}
+          category={a.category ?? resolveCategory(a)}
           location={a.location}
           onPress={onArticlePress}
         />

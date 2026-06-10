@@ -124,7 +124,9 @@ export const CompareBlock = memo(function CompareBlock({
         return (
           <Animated.View
             key={`${row.label}-${i}`}
-            entering={FadeIn.duration(ANIMATION.normal).delay(staggerDelay(i))}
+            entering={
+              reduceMotion ? undefined : FadeIn.duration(ANIMATION.normal).delay(staggerDelay(i))
+            }
             style={[
               styles.row,
               { paddingVertical: rowPaddingV },

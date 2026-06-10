@@ -329,12 +329,6 @@ const _SOURCES: Record<string, SourceInfo> = {
     description:
       'World\u2019s largest-selling English-language daily newspaper. Flagship of the Times Group media conglomerate. Generally avoids confrontation with the BJP government; coverage of Hindu-Muslim tensions tends to reflect the ruling party\u2019s framing.',
   },
-  'Times of Israel': {
-    type: 'Digital media',
-    location: 'Tel Aviv, Israel',
-    description:
-      'Online newspaper founded in 2012. Covers Israeli news, Middle East affairs, and Jewish world. Broadly Zionist editorial line. Publishes IDF-sourced material, sometimes without independent verification.',
-  },
   'Yahoo News': {
     type: 'Digital media',
     location: 'Sunnyvale, US',
@@ -887,7 +881,12 @@ for (const [alias, canonical] of Object.entries(ALIASES)) {
 }
 
 export const SOURCES: Record<string, SourceInfo> = new Proxy(_SOURCES, {
-  get(target, prop: string) {
-    return target[prop] ?? _exact.get(prop.toLowerCase()) ?? _fuzzy.get(normalize(prop));
+  // prop can be a symbol (dev-tools inspection), and bare `target[prop]` would
+  // surface inherited Object.prototype members for keys like 'constructor' —
+  // guard both so misses always fall through to undefined.
+  get(target, prop) {
+    if (typeof prop !== 'string') return undefined;
+    const own = Object.hasOwn(target, prop) ? target[prop] : undefined;
+    return own ?? _exact.get(prop.toLowerCase()) ?? _fuzzy.get(normalize(prop));
   },
 });

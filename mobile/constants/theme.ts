@@ -195,10 +195,14 @@ export const BG_RGB: Record<'dark' | 'light', [number, number, number]> = {
 // Font families
 // ---------------------------------------------------------------------------
 
-/** Style subset produced by each font-set entry (fontFamily + optional fontWeight). */
+/** Style subset produced by each font-set entry. Source Sans encodes weight,
+ *  italic and small-caps in the font file itself; the system fallback has to
+ *  express them as style props instead, hence the optional fields. */
 type FontEntry = {
   fontFamily: string | undefined;
   fontWeight?: TextStyle['fontWeight'];
+  fontStyle?: TextStyle['fontStyle'];
+  fontVariant?: TextStyle['fontVariant'];
 };
 
 export type FontSet = {
@@ -223,9 +227,9 @@ export const FONT_SYSTEM: FontSet = {
   regular: { fontFamily: undefined, fontWeight: '400' },
   semiBold: { fontFamily: undefined, fontWeight: '600' },
   bold: { fontFamily: undefined, fontWeight: '700' },
-  italic: { fontFamily: undefined, fontWeight: '400' },
-  boldItalic: { fontFamily: undefined, fontWeight: '700' },
-  smallCaps: { fontFamily: undefined, fontWeight: '600' },
+  italic: { fontFamily: undefined, fontWeight: '400', fontStyle: 'italic' },
+  boldItalic: { fontFamily: undefined, fontWeight: '700', fontStyle: 'italic' },
+  smallCaps: { fontFamily: undefined, fontWeight: '600', fontVariant: ['small-caps'] },
 };
 
 // ---------------------------------------------------------------------------

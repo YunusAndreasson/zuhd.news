@@ -176,8 +176,11 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
         </Text>
         {visibleSources.length > 0 && (
           <Text selectable variant="caption" style={{ marginTop: SPACING.sm }}>
-            Recent stories draw on {prose(visibleSources)}
-            {extraCount > 0 ? `, and ${extraCount} others` : ''}.
+            {/* With extras the "and" belongs before "N others", so the visible
+                list joins with plain commas instead of prose()'s ", and". */}
+            {extraCount > 0
+              ? `Recent stories draw on ${visibleSources.join(', ')}, and ${extraCount} others.`
+              : `Recent stories draw on ${prose(visibleSources)}.`}
           </Text>
         )}
       </Animated.View>

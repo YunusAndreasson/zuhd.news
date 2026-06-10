@@ -19,6 +19,9 @@ import type {
   HeatmapPoint,
   Indicator,
   MetaResponse,
+  TrendBand,
+  TrendHighlight,
+  TrendSeries,
   TrendsSnapshot,
 } from '@shared/types';
 import type { Preferences } from '../constants/theme';
@@ -37,6 +40,14 @@ const isNumberArray = (v: unknown): v is number[] => Array.isArray(v) && v.every
 const isTone = (v: unknown): v is CompareRow['tone'] =>
   v === 'favorable' || v === 'unfavorable' || v === 'neutral';
 
+const isCompareSegment = (v: unknown): v is NonNullable<CompareRow['segments']>[number] => {
+  if (!isObject(v)) return false;
+  if (!isFiniteNumber(v.value) || v.value < 0) return false;
+  if (v.tone !== undefined && !isTone(v.tone)) return false;
+  if (v.label !== undefined && typeof v.label !== 'string') return false;
+  return true;
+};
+
 const isCompareRow = (v: unknown): v is CompareRow => {
   if (!isObject(v)) return false;
   if (typeof v.label !== 'string' || typeof v.value !== 'string') return false;
@@ -44,6 +55,9 @@ const isCompareRow = (v: unknown): v is CompareRow => {
   if (v.cc !== undefined && typeof v.cc !== 'string') return false;
   if (v.weight !== undefined && (typeof v.weight !== 'number' || !Number.isFinite(v.weight)))
     return false;
+  if (v.segments !== undefined) {
+    if (!Array.isArray(v.segments) || !v.segments.every(isCompareSegment)) return false;
+  }
   return true;
 };
 
@@ -80,6 +94,87 @@ const isActor = (v: unknown): v is Actor => {
   return true;
 };
 
+const isTrendHighlight = (v: unknown): v is TrendHighlight =>
+  v === 'last' || v === 'first' || v === 'max' || v === 'min';
+
+/** Raw (unclean) series entry — `highlight` stays unknown until copied. */
+const isRawTrendSeries = (
+  s: unknown,
+): s is { values: number[]; label: string; highlight?: unknown } =>
+  isObject(s) && typeof s.label === 'string' && isNumberArray(s.values) && s.values.length >= 2;
+
+const isLocationMarker = (m: unknown): m is { lat: number; lng: number; label: string } =>
+  isObject(m) &&
+  isFiniteNumber(m.lat) &&
+  m.lat >= -90 &&
+  m.lat <= 90 &&
+  isFiniteNumber(m.lng) &&
+  m.lng >= -180 &&
+  m.lng <= 180 &&
+  typeof m.label === 'string' &&
+  m.label.length > 0 &&
+  m.label.length <= 30;
+
+const isYearLike = (s: unknown): s is string =>
+  typeof s === 'string' && /^\d{4}(-\d{2}(-\d{2})?)?$/.test(s);
+
+const isRawTimelineEvent = (e: unknown): e is { year: string; label: string; emphasis?: unknown } =>
+  isObject(e) &&
+  isYearLike(e.year) &&
+  typeof e.label === 'string' &&
+  e.label.length > 0 &&
+  e.label.length <= 60;
+
+const isRawTimelineSpan = (
+  s: unknown,
+): s is { from: string; to: string; label: string; tone?: unknown } =>
+  isObject(s) &&
+  isYearLike(s.from) &&
+  isYearLike(s.to) &&
+  typeof s.label === 'string' &&
+  s.label.length > 0 &&
+  s.label.length <= 60;
+
+const isRawRankPeer = (p: unknown): p is Record<string, unknown> & { value: number } =>
+  isObject(p) &&
+  isFiniteNumber(p.value) &&
+  ((typeof p.cc === 'string' && p.cc.length > 0) ||
+    (typeof p.label === 'string' && p.label.length > 0));
+
+const isSankeyNode = (n: unknown): n is { id: string; label: string } =>
+  isObject(n) &&
+  typeof n.id === 'string' &&
+  n.id.length > 0 &&
+  typeof n.label === 'string' &&
+  n.label.length > 0 &&
+  n.label.length <= 30;
+
+const isRawSankeyLink = (
+  l: unknown,
+): l is Record<string, unknown> & { source: string; target: string; value: number } =>
+  isObject(l) &&
+  typeof l.source === 'string' &&
+  typeof l.target === 'string' &&
+  isFiniteNumber(l.value);
+
+const isRawTreemapItem = (
+  it: unknown,
+): it is Record<string, unknown> & { label: string; value: number } =>
+  isObject(it) &&
+  typeof it.label === 'string' &&
+  it.label.length > 0 &&
+  it.label.length <= 24 &&
+  isFiniteNumber(it.value) &&
+  it.value > 0;
+
+// Narrowed aliases so each case can build its variant without fighting the union.
+type TrendBlock = Extract<ArticleBlock, { type: 'trend' }>;
+type LocationsBlock = Extract<ArticleBlock, { type: 'locations' }>;
+type TimelineBlock = Extract<ArticleBlock, { type: 'timeline' }>;
+type RankBlock = Extract<ArticleBlock, { type: 'rank' }>;
+type SankeyBlock = Extract<ArticleBlock, { type: 'sankey' }>;
+type TreemapBlock = Extract<ArticleBlock, { type: 'treemap' }>;
+
 /** Shape-check a single block. Returns the block (narrowed) or null if malformed
  *  or of an unknown type — callers drop nulls to stay forward-compatible with
  *  new block types emitted by future pipeline versions. */
@@ -97,26 +192,65 @@ const parseArticleBlock = (v: unknown): ArticleBlock | null => {
       return applySourceRef(block, v);
     }
     case 'trend': {
-      if (!isNumberArray(v.values) || v.values.length < 2) return null;
+      // Either `values` (single series) or `series` (multi, capped at 3) —
+      // mirrors scripts/lib/validate-blocks.js, the authoring-time validator.
+      const values = isNumberArray(v.values) && v.values.length >= 2 ? v.values : null;
+      const seriesIn =
+        Array.isArray(v.series) && v.series.length > 0 && v.series.every(isRawTrendSeries)
+          ? v.series
+          : null;
+      // Length checks (periods, band, annotations) key off the longest series
+      // in the multi case — same rule the generator validated against.
+      const primaryValues = seriesIn
+        ? seriesIn.reduce<number[]>(
+            (longest, s) => (s.values.length > longest.length ? s.values : longest),
+            [],
+          )
+        : values;
+      if (!primaryValues) return null;
       if (typeof v.label !== 'string') return null;
-      const values = v.values;
-      const block: ArticleBlock = { type: 'trend', values, label: v.label };
+      const block: TrendBlock = { type: 'trend', label: v.label };
+      if (values) block.values = values;
+      if (seriesIn) {
+        block.series = seriesIn.slice(0, 3).map((s) => {
+          const out: TrendSeries = { values: s.values, label: s.label };
+          if (isTrendHighlight(s.highlight)) out.highlight = s.highlight;
+          return out;
+        });
+      }
       if (typeof v.unit === 'string') block.unit = v.unit;
-      if (isStringArray(v.periods) && v.periods.length === values.length) {
+      if (isStringArray(v.periods) && v.periods.length === primaryValues.length) {
         block.periods = v.periods;
       }
-      if (
-        v.highlight === 'last' ||
-        v.highlight === 'first' ||
-        v.highlight === 'max' ||
-        v.highlight === 'min'
-      )
-        block.highlight = v.highlight;
+      if (isTrendHighlight(v.highlight)) block.highlight = v.highlight;
       if (Array.isArray(v.annotations)) {
         const anns = v.annotations
-          .map((a) => parseTrendAnnotation(a, values.length))
+          .map((a) => parseTrendAnnotation(a, primaryValues.length))
           .filter((a): a is NonNullable<typeof a> => a != null);
         if (anns.length > 0) block.annotations = anns;
+      }
+      if (v.scale === 'linear' || v.scale === 'log') {
+        // Log scale requires strictly positive values across every series and
+        // the band — silently downgrade to linear if anything fails.
+        if (v.scale === 'log') {
+          const allPositive =
+            (!values || values.every((n) => n > 0)) &&
+            (!seriesIn || seriesIn.every((s) => s.values.every((n) => n > 0)));
+          if (allPositive) block.scale = 'log';
+        } else {
+          block.scale = 'linear';
+        }
+      }
+      if (
+        isObject(v.band) &&
+        isNumberArray(v.band.low) &&
+        isNumberArray(v.band.high) &&
+        v.band.low.length === primaryValues.length &&
+        v.band.high.length === primaryValues.length
+      ) {
+        const band: TrendBand = { low: v.band.low, high: v.band.high };
+        if (typeof v.band.label === 'string') band.label = v.band.label;
+        block.band = band;
       }
       if (typeof v.link === 'string' && /^https?:\/\//.test(v.link)) {
         block.link = v.link;
@@ -125,9 +259,31 @@ const parseArticleBlock = (v: unknown): ArticleBlock | null => {
     }
     case 'locations': {
       if (!isStringArray(v.codes) || v.codes.length === 0) return null;
-      const block: ArticleBlock = { type: 'locations', codes: v.codes };
+      const block: LocationsBlock = { type: 'locations', codes: v.codes };
       if (typeof v.label === 'string') block.label = v.label;
       if (typeof v.caption === 'string') block.caption = v.caption;
+      if (Array.isArray(v.markers)) {
+        const markers = v.markers
+          .filter(isLocationMarker)
+          .slice(0, 8)
+          .map((m) => ({ lat: m.lat, lng: m.lng, label: m.label }));
+        if (markers.length > 0) block.markers = markers;
+      }
+      // Choropleth values — codes referenced must be a subset of the highlight set.
+      if (Array.isArray(v.values)) {
+        const codeSet = new Set(v.codes.map((c) => c.toUpperCase()));
+        const values = v.values.filter(
+          (entry): entry is { cc: string; value: number } =>
+            isObject(entry) &&
+            typeof entry.cc === 'string' &&
+            codeSet.has(entry.cc.toUpperCase()) &&
+            isFiniteNumber(entry.value),
+        );
+        if (values.length >= 2) {
+          block.values = values.map((entry) => ({ cc: entry.cc, value: entry.value }));
+          if (typeof v.valueLabel === 'string') block.valueLabel = v.valueLabel;
+        }
+      }
       return applySourceRef(block, v);
     }
     case 'quote': {
@@ -164,6 +320,112 @@ const parseArticleBlock = (v: unknown): ArticleBlock | null => {
       if (typeof v.explanation === 'string' && v.explanation.length > 0) {
         block.explanation = v.explanation;
       }
+      return applySourceRef(block, v);
+    }
+    case 'timeline': {
+      const events = Array.isArray(v.events)
+        ? v.events
+            .filter(isRawTimelineEvent)
+            .map((e) => {
+              const out: NonNullable<TimelineBlock['events']>[number] = {
+                year: e.year,
+                label: e.label,
+              };
+              if (e.emphasis === 'start' || e.emphasis === 'end' || e.emphasis === 'pivot') {
+                out.emphasis = e.emphasis;
+              }
+              return out;
+            })
+            .slice(0, 8)
+        : [];
+      const spans = Array.isArray(v.spans)
+        ? v.spans
+            .filter(isRawTimelineSpan)
+            .map((s) => {
+              const out: NonNullable<TimelineBlock['spans']>[number] = {
+                from: s.from,
+                to: s.to,
+                label: s.label,
+              };
+              if (isTone(s.tone)) out.tone = s.tone;
+              return out;
+            })
+            .slice(0, 3)
+        : [];
+      if (events.length === 0 && spans.length === 0) return null;
+      const block: TimelineBlock = { type: 'timeline' };
+      if (events.length > 0) block.events = events;
+      if (spans.length > 0) block.spans = spans;
+      if (typeof v.label === 'string') block.label = v.label;
+      return applySourceRef(block, v);
+    }
+    case 'rank': {
+      if (typeof v.metric !== 'string' || v.metric.length === 0) return null;
+      const subjectCc =
+        typeof v.subjectCc === 'string' && v.subjectCc.length > 0 ? v.subjectCc : null;
+      const subjectLabel =
+        typeof v.subjectLabel === 'string' && v.subjectLabel.length > 0 ? v.subjectLabel : null;
+      if (!subjectCc && !subjectLabel) return null;
+      if (!Array.isArray(v.peers)) return null;
+      const peers = v.peers.filter(isRawRankPeer).map((p) => {
+        const out: RankBlock['peers'][number] = { value: p.value };
+        if (typeof p.cc === 'string' && p.cc.length > 0) out.cc = p.cc;
+        if (typeof p.label === 'string' && p.label.length > 0) out.label = p.label;
+        return out;
+      });
+      if (peers.length < 5) return null;
+      const subjectInPeers = peers.some((p) =>
+        subjectCc ? p.cc?.toUpperCase() === subjectCc.toUpperCase() : p.label === subjectLabel,
+      );
+      if (!subjectInPeers) return null;
+      const block: RankBlock = { type: 'rank', metric: v.metric, peers };
+      if (subjectCc) block.subjectCc = subjectCc;
+      if (subjectLabel) block.subjectLabel = subjectLabel;
+      if (typeof v.unit === 'string') block.unit = v.unit;
+      return applySourceRef(block, v);
+    }
+    case 'sankey': {
+      if (!Array.isArray(v.nodes) || !Array.isArray(v.links)) return null;
+      const nodes = v.nodes.filter(isSankeyNode).map((n) => ({ id: n.id, label: n.label }));
+      if (nodes.length < 2 || nodes.length > 12) return null;
+      const ids = new Set(nodes.map((n) => n.id));
+      const links = v.links
+        .filter(
+          (l): l is Record<string, unknown> & { source: string; target: string; value: number } =>
+            isRawSankeyLink(l) &&
+            l.source !== l.target &&
+            ids.has(l.source) &&
+            ids.has(l.target) &&
+            l.value > 0,
+        )
+        .slice(0, 15)
+        .map((l) => {
+          const out: SankeyBlock['links'][number] = {
+            source: l.source,
+            target: l.target,
+            value: l.value,
+          };
+          if (typeof l.label === 'string') out.label = l.label;
+          return out;
+        });
+      if (links.length === 0) return null;
+      const block: SankeyBlock = { type: 'sankey', nodes, links };
+      if (typeof v.label === 'string') block.label = v.label;
+      return applySourceRef(block, v);
+    }
+    case 'treemap': {
+      if (!Array.isArray(v.items)) return null;
+      const items = v.items
+        .filter(isRawTreemapItem)
+        .map((it) => {
+          const out: TreemapBlock['items'][number] = { label: it.label, value: it.value };
+          if (isTone(it.tone)) out.tone = it.tone;
+          return out;
+        })
+        .slice(0, 10);
+      if (items.length < 2) return null;
+      const block: TreemapBlock = { type: 'treemap', items };
+      if (typeof v.label === 'string') block.label = v.label;
       return applySourceRef(block, v);
     }
     default:

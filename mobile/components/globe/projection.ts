@@ -240,7 +240,12 @@ export function findCountry(
     }
   }
   for (const [dlat, dlng] of NUDGES) {
-    const ptLng = lng + dlng;
+    // Wrap a nudge that crosses the antimeridian (179.95 + 0.1 → -179.95) —
+    // bboxes are clamped to [-180, 180], so an unwrapped 180.05 would fail
+    // the prefilter and never reach geoContains for Fiji/Chukotka coords.
+    let ptLng = lng + dlng;
+    if (ptLng > 180) ptLng -= 360;
+    else if (ptLng < -180) ptLng += 360;
     const ptLat = lat + dlat;
     const pt: [number, number] = [ptLng, ptLat];
     for (let i = 0; i < countries.features.length; i++) {

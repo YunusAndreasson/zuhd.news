@@ -28,7 +28,7 @@ export function DemographyCard({ data }: DemographyCardProps) {
   else subtitle = `Far below replacement — rapid aging ahead.`;
 
   if (fert1980 && Math.abs(fert1980[1] - r) > 1) {
-    const dir = r < fert1980[1] ? 'fell' : 'rose';
+    const dir = r < fert1980[1] ? 'Fell' : 'Rose';
     subtitle += ` ${dir} from ${fert1980[1].toFixed(1)} in 1980.`;
   }
 
