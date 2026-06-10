@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.4.12/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.4.16/schema.json",
   "assist": {
     "actions": {
       "source": { "organizeImports": "on" }
@@ -7,25 +7,66 @@
   },
   "linter": {
     "enabled": true,
+    "domains": {
+      "test": "recommended"
+    },
     "rules": {
       "recommended": true,
       "suspicious": {
         "noArrayIndexKey": "off",
         "noAssignInExpressions": "warn",
         "noImplicitAnyLet": "error",
-        "noExplicitAny": "error"
+        "noExplicitAny": "error",
+        "noEvolvingTypes": "error",
+        "useAwait": "warn",
+        "noSkippedTests": "warn"
+      },
+      "correctness": {
+        "useExhaustiveDependencies": "warn",
+        "noUnusedVariables": "error",
+        "noUnusedImports": "error",
+        "noUnusedFunctionParameters": "warn"
       },
       "style": {
         "noNonNullAssertion": "warn"
-      },
-      "correctness": {
-        "useExhaustiveDependencies": "warn"
       }
     }
   },
   "files": {
-    "includes": ["app/**", "components/**", "constants/**", "hooks/**", "lib/**", "scripts/**"]
+    "includes": [
+      "app/**",
+      "components/**",
+      "constants/**",
+      "hooks/**",
+      "lib/**",
+      "scripts/**",
+      "perf/**",
+      "__tests__/**"
+    ]
   },
+  "overrides": [
+    {
+      "includes": ["**/__tests__/**", "**/*.test.ts", "**/*.test.tsx"],
+      "assist": {
+        "actions": {
+          "source": { "organizeImports": "off" }
+        }
+      },
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "useAwait": "off"
+          },
+          "style": {
+            "noNonNullAssertion": "off"
+          },
+          "complexity": {
+            "useLiteralKeys": "off"
+          }
+        }
+      }
+    }
+  ],
   "formatter": {
     "enabled": true,
     "indentStyle": "space",

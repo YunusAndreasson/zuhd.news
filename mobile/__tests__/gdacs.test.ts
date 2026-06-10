@@ -29,7 +29,11 @@ const baseAlert: GdacsAlert = {
 describe('parseSeverityHero', () => {
   it('reduces EQ severityText to a focal "M X.X" + depth subtitle', () => {
     expect(
-      parseSeverityHero({ ...baseAlert, eventtype: 'EQ', severityText: 'Magnitude 7.4M, Depth:23km' }),
+      parseSeverityHero({
+        ...baseAlert,
+        eventtype: 'EQ',
+        severityText: 'Magnitude 7.4M, Depth:23km',
+      }),
     ).toEqual({ focal: 'M 7.4', secondary: '23 km deep' });
   });
 

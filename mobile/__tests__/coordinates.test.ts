@@ -28,7 +28,7 @@ describe('coordinate data integrity', () => {
   });
 
   it('all CITY_TZ values are valid IANA timezone strings', () => {
-    for (const [city, tz] of Object.entries(CITY_TZ)) {
+    for (const tz of Object.values(CITY_TZ)) {
       // IANA timezones follow the pattern Area/Location or Area/Sub/Location
       expect(tz).toMatch(
         /^(Africa|America|Antarctica|Asia|Atlantic|Australia|Europe|Indian|Pacific)\//,
@@ -41,7 +41,7 @@ describe('coordinate data integrity', () => {
   });
 
   it('all COUNTRY_TZ values are valid IANA timezone strings', () => {
-    for (const [country, tz] of Object.entries(COUNTRY_TZ)) {
+    for (const tz of Object.values(COUNTRY_TZ)) {
       expect(tz).toMatch(
         /^(Africa|America|Antarctica|Asia|Atlantic|Australia|Europe|Indian|Pacific)\//,
       );

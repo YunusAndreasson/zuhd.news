@@ -28,7 +28,9 @@ function createFileStorage(): AsyncStorage<string> {
     return cachePromise;
   };
 
-  const flush = async (data: Record<string, string>) => {
+  // expo-file-system `File.write` is synchronous (and throws synchronously, so
+  // the try/catch is sufficient) — no await needed.
+  const flush = (data: Record<string, string>) => {
     try {
       CACHE_FILE.write(JSON.stringify(data));
     } catch {}
@@ -42,12 +44,12 @@ function createFileStorage(): AsyncStorage<string> {
     setItem: async (key: string, value: string) => {
       const data = await load();
       data[key] = value;
-      await flush(data);
+      flush(data);
     },
     removeItem: async (key: string) => {
       const data = await load();
       delete data[key];
-      await flush(data);
+      flush(data);
     },
   };
 }

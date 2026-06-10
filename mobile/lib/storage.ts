@@ -37,6 +37,11 @@ export async function getLastSeenAt(): Promise<number> {
   }
 }
 
+// Async signature is intentional: it keeps the storage API uniformly
+// Promise-based alongside the genuinely-async getters and lets the backing
+// store swap to an async one without touching callers. `File.write` itself is
+// synchronous in expo-file-system, hence no await.
+// biome-ignore lint/suspicious/useAwait: stable async storage API; see note above
 export async function saveLastSeenAt(ts: number): Promise<void> {
   try {
     LAST_SEEN_FILE.write(String(ts));
@@ -56,6 +61,7 @@ export async function getPreferences(): Promise<Preferences> {
   }
 }
 
+// biome-ignore lint/suspicious/useAwait: stable async storage API; see saveLastSeenAt
 export async function savePreferences(prefs: Preferences): Promise<void> {
   try {
     PREFS_FILE.write(JSON.stringify(prefs));

@@ -10,6 +10,7 @@
  */
 
 import { type GeoContext, geoOrthographic, geoPath } from 'd3-geo';
+import { clipAngleForCountry } from '../../components/globe/projection';
 import {
   bordersMeshMedium,
   countries,
@@ -17,7 +18,6 @@ import {
   iceSheets,
   landMedium,
 } from '../../components/globe/shared';
-import { clipAngleForCountry } from '../../components/globe/projection';
 import { bench } from '../bench-utils';
 
 interface Ctx {
@@ -79,12 +79,7 @@ export default bench<Ctx>({
     const clip = clipAngleForCountry(country);
     const scale = 150 / Math.sin((clip * Math.PI) / 180);
 
-    proj
-      .clipAngle(clip)
-      .precision(0)
-      .rotate([-lng, -lat, 0])
-      .scale(scale)
-      .translate([150, 150]);
+    proj.clipAngle(clip).precision(0).rotate([-lng, -lat, 0]).scale(scale).translate([150, 150]);
 
     // Land silhouette (settled frame uses landMedium per MiniGlobe.tsx:1316).
     pg(landMedium as never);

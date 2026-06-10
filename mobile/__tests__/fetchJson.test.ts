@@ -15,7 +15,11 @@ const isThing = (raw: unknown): raw is Thing =>
   typeof raw === 'object' && raw !== null && (raw as Thing).ok === true;
 
 function mockResponse(data: unknown, status = 200) {
-  return { ok: status >= 200 && status < 300, status, json: () => Promise.resolve(data) } as Response;
+  return {
+    ok: status >= 200 && status < 300,
+    status,
+    json: () => Promise.resolve(data),
+  } as Response;
 }
 
 beforeEach(() => {

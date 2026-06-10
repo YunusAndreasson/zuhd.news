@@ -48,10 +48,9 @@ describe('useScrollState', () => {
 
     const fired = jest.fn();
     act(() => {
-      result.current.overscrollTimer.current = setTimeout(
-        fired,
-        800,
-      ) as unknown as ReturnType<typeof setTimeout>;
+      result.current.overscrollTimer.current = setTimeout(fired, 800) as unknown as ReturnType<
+        typeof setTimeout
+      >;
     });
 
     unmount();

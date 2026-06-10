@@ -9,10 +9,10 @@
  *   tsx perf/run-bench.ts --json            # machine-readable output
  */
 
-import { readdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
-import { join, dirname } from 'node:path';
-import { fileURLToPath, pathToFileURL } from 'node:url';
+import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
+import { dirname, join } from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { type BenchResult, type BenchSpec, fmt, measure } from './bench-utils';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -66,10 +66,7 @@ async function loadBenches(filter: string): Promise<BenchSpec[]> {
   const specs: BenchSpec[] = [];
   const seen = new Set<string>();
   for (const f of files) {
-    const mod = (await import(pathToFileURL(join(BENCHES_DIR, f)).href)) as Record<
-      string,
-      unknown
-    >;
+    const mod = (await import(pathToFileURL(join(BENCHES_DIR, f)).href)) as Record<string, unknown>;
     let fileHasSpecs = false;
     for (const value of Object.values(mod)) {
       if (!isBenchSpec(value)) continue;
@@ -145,9 +142,7 @@ function printTable(outcomes: Outcome[]) {
     o.driftPct == null ? '—' : `${o.driftPct >= 0 ? '+' : ''}${o.driftPct.toFixed(1)}%`,
     o.status === 'ok' ? 'ok' : o.status.toUpperCase(),
   ]);
-  const widths = cols.map((c, i) =>
-    Math.max(c.length, ...rows.map((r) => (r[i] ?? '').length)),
-  );
+  const widths = cols.map((c, i) => Math.max(c.length, ...rows.map((r) => (r[i] ?? '').length)));
   const pad = (s: string, w: number) => s + ' '.repeat(Math.max(0, w - s.length));
   const sep = widths.map((w) => '─'.repeat(w)).join('─┼─');
   console.log(cols.map((c, i) => pad(c, widths[i] ?? 0)).join(' │ '));
