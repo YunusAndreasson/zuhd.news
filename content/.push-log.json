@@ -1,98 +1,5 @@
 [
   {
-    "timestamp": "2026-05-20T04:29:38.996Z",
-    "candidateCount": 10,
-    "candidates": [
-      {
-        "slug": "2026-05-20-iran-ahmadinejad-regime-change-plot-nyt-report",
-        "title": "Iran War Hid Regime Change",
-        "category": "politics",
-        "eventCoverage": 19,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-20-xi-putin-beijing-meeting-after-trump-visit",
-        "title": "Putin Follows Trump to Beijing",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-20-pakistan-sana-yousaf-tiktok-femicide-death-sentence",
-        "title": "Pakistan Court Sentences Yousaf's Killer",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-20-pakistan-ml1-railway-cpec-displacement-resettlement",
-        "title": "Pakistan Rail Project Displaces Slums",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-20-png-hiremen-highlands-violence-economy-patronage",
-        "title": "Highlands Violence Runs on Patronage",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-20-chile-atacama-lithium-race-water-indigenous",
-        "title": "Chile Lithium Race Strains Ecosystems",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-20-uk-ccc-adaptation-cheaper-than-climate-damages",
-        "title": "UK Climate Adaptation Beats Inaction",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-20-us-researchers-trump-science-policy-brain-drain",
-        "title": "Trump Disrupts US Science Base",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-20-filipino-virtual-assistants-linkedin-ai-content-mill",
-        "title": "Filipino Workers Run LinkedIn's Ghost Mill",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-20-23andme-healthex-dna-medical-records-ai-summary",
-        "title": "23andMe Fuses DNA, Medical Records",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-05-20-iran-ahmadinejad-regime-change-plot-nyt-report",
-      "title": "Iran War Hid Regime Change",
-      "category": "politics",
-      "body": "[Israel](country:IL) planned Ahmadinejad as [Iran](country:IR)'s post-war",
-      "eventCoverage": 19,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Israel planned to install Ahmadinejad as Iran's leader after strikes, report says",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 24
-    }
-  },
-  {
     "timestamp": "2026-05-20T12:39:32.337Z",
     "candidateCount": 12,
     "candidates": [
@@ -9871,6 +9778,106 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Iran's Revolutionary Guard strikes 2 US military bases across the Gulf",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 24
+    }
+  },
+  {
+    "timestamp": "2026-06-10T08:35:18.144Z",
+    "candidateCount": 11,
+    "candidates": [
+      {
+        "slug": "2026-06-10-johannesburg-cleveland-mass-shooting-informal-settlement",
+        "title": "12 Killed in Johannesburg Settlement",
+        "category": "politics",
+        "eventCoverage": 87,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-10-meta-reliance-india-ai-data-center-deal",
+        "title": "Meta Bets on India Compute",
+        "category": "tech",
+        "eventCoverage": 65,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-10-kerala-free-bus-travel-women-ksrtc",
+        "title": "Kerala Grants Women Free Rides",
+        "category": "politics",
+        "eventCoverage": 24,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-09-south-korea-ballot-shortage-election-commission-trust",
+        "title": "Ballot Shortage Tests South Korea",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-10-bitcoin-etf-assets-slide-macro-hedge-unwind",
+        "title": "Bitcoin ETFs Hit Election Lows",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-10-spacex-pre-ipo-synthetic-market-falls-27-percent",
+        "title": "SpaceX Derivative Falls Pre-IPO",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-10-short-oral-regimen-rifampicin-resistant-tuberculosis",
+        "title": "Oral Regimen Beats Resistant TB",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-10-southern-philippines-earthquake-toll-rises-45",
+        "title": "Philippines Quake Kills 45",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-10-nature-index-2026-east-asia-research-output-rising",
+        "title": "China Leads East Asia Research",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-09-uk-weakens-telecoms-security-rules-industry-lobbying",
+        "title": "UK Weakens Post-Typhoon Telecom Rules",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-10-bitcoin-news-btc-and-gold-fall-together-as-a-rate-hike-bet-h",
+        "title": "Rate Bets Hit Bitcoin, Gold",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-06-10-johannesburg-cleveland-mass-shooting-informal-settlement",
+      "title": "12 Killed in Johannesburg Settlement",
+      "category": "politics",
+      "body": "Gunmen killed 12 in Johannesburg's Jumpers informal",
+      "eventCoverage": 87,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Gunmen kill 12 in Johannesburg informal settlement, police say",
     "response": {
       "pushed": 1,
       "skipped": 0,
