@@ -339260,5 +339260,1559 @@
     "label": "Water as a Target of War",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-09-south-korea-ballot-shortage-election-commission-trust": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "A FOURTH BRANCH",
+        "body": "South Korea's National Election Commission is not a government agency — it is a constitutionally independent body, ranked alongside the courts and the constitutional court. Its chair is by convention a sitting Supreme Court justice. The framers placed it outside the executive precisely so no president could administer the vote that might unseat him.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The NEC sits among Korea's *independent constitutional organs* — bodies the 1987 democratic constitution deliberately walled off from presidential control after decades of rigged elections."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE WOUND IS OLD",
+        "body": "On March 15, 1960, the Rhee Syngman regime brazenly rigged the vote — ballot-stuffing, pre-marked papers, gangs at polling stations. The fraud was so naked it triggered the April Revolution, students filled the streets, and Rhee fled to Hawaii within weeks. Election integrity is not an abstraction in Korea; a stolen vote already toppled one government.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1960",
+                "label": "March 15 rigged election",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1960-04",
+                "label": "April Revolution topples Rhee"
+              },
+              {
+                "year": "1987",
+                "label": "Democratic constitution, independent NEC"
+              },
+              {
+                "year": "2024-12",
+                "label": "Yoon's martial law; troops sent to NEC"
+              },
+              {
+                "year": "2025",
+                "label": "Lee Jae-myung wins snap election"
+              }
+            ],
+            "label": "vote integrity & Korean democracy"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE FRAUD STORY CAME FROM",
+        "body": "The conspiracy is not fringe noise — it was state doctrine for one night. When Yoon Suk-yeol declared martial law in December 2024, among his first moves was dispatching troops to seize the NEC's servers, citing unproven election-fraud claims circulating on the far right. His impeachment cleared the way for Lee Jae-myung's victory, but it legitimized the fraud narrative in a way nothing else could.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Lee Jae-myung",
+                "role": "President, elected 2025",
+                "years": "2025–",
+                "cc": "KR"
+              },
+              {
+                "name": "Yoon Suk-yeol",
+                "role": "President, impeached",
+                "years": "2022–2025",
+                "cc": "KR"
+              }
+            ],
+            "label": "the cast"
+          }
+        ]
+      },
+      {
+        "heading": "WHY KOREA STILL HAND-COUNTS",
+        "body": "South Korea uses paper ballots counted by hand, with electronic machines only sorting, never tallying, the final result. This is deliberate: a paper trail can be recounted and audited, while a purely digital count asks voters to trust a black box. The tradeoff is logistics — millions of physical ballots must be printed, distributed, and reconciled, and a shortfall anywhere is visible to everyone."
+      },
+      {
+        "heading": "WHY A SHORTAGE BECOMES 'PROOF'",
+        "body": "Conspiracy theories feed on administrative failure. A genuine logistics error — too few ballots at a precinct — is indistinguishable, to a motivated observer, from deliberate suppression. The commission's only defense is transparency: explain the error fully and fast. Silence or defensiveness reads as concealment, which is why how Lee responds matters more than the shortage itself.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What event made election fraud a live political accusation in South Korea, not just a fringe theory?",
+            "options": [
+              "A contested presidential recount in 2017",
+              "Yoon's 2024 martial law decree, which sent troops to seize the election commission",
+              "A Supreme Court ruling overturning a vote",
+              "Foreign interference exposed by intelligence services"
+            ],
+            "correct": 1,
+            "explanation": "Yoon justified his December 2024 martial law partly on election-fraud claims and ordered troops to the NEC, lending state weight to a previously fringe narrative."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T08:25:58.654Z",
+    "label": "South Korea's Election Commission",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-09-uk-weakens-telecoms-security-rules-industry-lobbying": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BACKDOOR PARADOX",
+        "body": "Modern carriers are legally required to build wiretap access into their networks so police can serve warrants. That mandated access point is exactly what Salt Typhoon walked through — the door built for law enforcement is the door for everyone who can pick the lock.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In the US the mandate is the 1994 **CALEA** law (*Communications Assistance for Law Enforcement Act*); the UK's equivalent powers run through the *Investigatory Powers Act*. A **lawful-intercept** system is a permanent, privileged tap sitting inside the core network — the highest-value target an attacker could ask for."
+          }
+        ]
+      },
+      {
+        "heading": "THE TYPHOON FAMILY",
+        "body": "Salt Typhoon is one of several China-linked intrusion sets Western agencies track under '-Typhoon' names, each with a distinct mission. Salt Typhoon does espionage — reading calls and metadata. Its siblings do other jobs entirely, which is why a telecom breach and a power-grid breach can trace to the same state apparatus but different teams.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Salt Typhoon",
+                "value": "telecom spying",
+                "cc": "CN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Volt Typhoon",
+                "value": "infra pre-position",
+                "cc": "CN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Flax Typhoon",
+                "value": "botnet/proxy",
+                "cc": "CN",
+                "tone": "neutral"
+              }
+            ],
+            "label": "China-linked 'Typhoon' clusters"
+          }
+        ]
+      },
+      {
+        "heading": "THE ATHENS PRECEDENT",
+        "body": "This already happened, in miniature. During the 2004 Athens Olympics, intruders hijacked the lawful-intercept subsystem of Vodafone Greece and tapped the phones of the prime minister and over 100 officials for nearly a year — using the network's own wiretap feature against it. The lesson, ignored for two decades, is that intercept capability is a liability, not just a tool.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1994",
+                "label": "CALEA mandates built-in wiretap access",
+                "emphasis": "start"
+              },
+              {
+                "year": "2004",
+                "label": "Athens Affair: intercept system hijacked",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2013",
+                "label": "Snowden exposes bulk telecom collection"
+              },
+              {
+                "year": "2024",
+                "label": "Salt Typhoon breaches US carriers"
+              }
+            ],
+            "label": "the wiretap-as-target arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY OPERATORS LOBBY IT DOWN",
+        "body": "Security rules impose a real, immediate cost on the carrier — engineers, audits, hardware refreshes — while the benefit is a breach that may never visibly happen. The cost is concentrated and the benefit is diffuse, so the industry always has more incentive to fight the rule than the public has to defend it. Regulators weaken under that asymmetry repeatedly.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call this *concentrated costs, diffuse benefits* — the structural reason safety regulation erodes between disasters. The carrier writes the lobbying check today; the espionage cost lands on millions of users invisibly, years later."
+          }
+        ]
+      },
+      {
+        "heading": "THE GOING-DARK TRAP",
+        "body": "Security agencies have spent decades demanding guaranteed access to communications — the 'going dark' argument. But a backdoor cannot tell friend from foe: any access engineered for one government is access the next intruder inherits. Salt Typhoon is the going-dark debate's bill coming due.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How did Salt Typhoon primarily get inside US carrier networks?",
+            "options": [
+              "Through the lawful-intercept systems built for law enforcement",
+              "By cloning consumer SIM cards",
+              "By cutting and splicing undersea cables",
+              "By cracking 5G encryption"
+            ],
+            "correct": 0,
+            "explanation": "The breach targeted the court-ordered wiretap infrastructure carriers are legally required to maintain — the access point built for police became the access point for spies."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T08:26:41.456Z",
+    "label": "Lawful-Intercept Backdoors & Salt Typhoon",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-10-bitcoin-etf-assets-slide-macro-hedge-unwind": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CREATION-REDEMPTION ENGINE",
+        "body": "A spot ETF tracks bitcoin's price not by promising to, but through arbitrage: authorized participants create new shares by delivering bitcoin and redeem them by taking bitcoin out. When ETF shares trade above the coin price, APs mint and sell; when below, they redeem and buy. Outflows are not sentiment — they are APs physically pulling bitcoin out of the trust and selling it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why ETF flows move the *spot* market directly: a redemption isn't a paper transaction, it's an **authorized participant** dumping real coins onto the order book."
+          }
+        ]
+      },
+      {
+        "heading": "WHY RATES ARE THE LEVER",
+        "body": "Bitcoin pays no interest, no dividend, no coupon. When real yields — the rate above inflation — are negative, holding cash guarantees a loss and capital flees to anything scarce. When real yields turn positive, Treasury bonds offer a risk-free real return, and the opportunity cost of holding a zero-yield asset becomes a measurable line item. A hot inflation print that lifts rate-hike odds reprices that cost overnight.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does a rising real interest rate pull money out of bitcoin?",
+            "options": [
+              "Higher rates make bitcoin mining illegal",
+              "Bonds now pay a safe real return, raising the cost of holding a zero-yield asset",
+              "The Fed directly sells bitcoin to fight inflation",
+              "Banks are forced to liquidate crypto reserves"
+            ],
+            "correct": 1,
+            "explanation": "Bitcoin yields nothing, so its appeal rests on cash and bonds yielding less than inflation; positive real rates flip that calculus."
+          }
+        ]
+      },
+      {
+        "heading": "THE ABSORPTION RATIO",
+        "body": "Absorption ratio measures how much new bitcoin miners produce versus how much net new demand — primarily ETF inflows — absorbs. Above 1x, demand exceeds fresh supply and price rises. When ETF buying stalls while miners keep selling their block rewards, the ratio collapses below 1x and the market has to clear at lower prices. A four-week, $5 billion outflow is exactly that mechanism running in reverse.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              81725.21,
+              80480.89,
+              79277.8,
+              81051.98,
+              79068.82,
+              78135.01,
+              77425.72,
+              76952.21,
+              76808.81,
+              77459.94,
+              77546.34,
+              75482.52,
+              76672.79,
+              76988.16,
+              77274.4,
+              75824.06,
+              74352.7,
+              73539.84,
+              73382.72,
+              73751.07,
+              73593.37,
+              71360.33,
+              66649.86,
+              64021.89,
+              63796.25,
+              60921.79,
+              60861.88,
+              63254.57,
+              63078.44,
+              61658.31,
+              61550.78
+            ],
+            "periods": [
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9",
+              "Jun 10",
+              "Jun 10"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE AI ROTATION",
+        "body": "Bitcoin and AI equities compete for the same pool of risk-seeking capital. When the AI capex trade is running hot, money rotates out of crypto and into the hyperscalers building data centers. The two assets that look correlated in a risk-on melt-up diverge sharply when one narrative eats the other's flows.",
+        "blocks": [
+          {
+            "type": "trend",
+            "series": [
+              {
+                "values": [
+                  27305.68,
+                  27029.01,
+                  27186.99,
+                  27452.12,
+                  27710.36,
+                  27651.82,
+                  28015.06,
+                  28599.17,
+                  28563.95,
+                  29234.99,
+                  29320.66,
+                  29064.8,
+                  29366.94,
+                  29580.3,
+                  29125.2,
+                  28994.37,
+                  28818.84,
+                  29297.7,
+                  29357.27,
+                  29481.64,
+                  30001.32,
+                  29973.57,
+                  30223.89,
+                  30333.18,
+                  30513.86,
+                  30660.6,
+                  30571.24,
+                  30407.81,
+                  28957.6,
+                  29414.26,
+                  29084.5
+                ],
+                "label": "NASDAQ-100",
+                "highlight": "last"
+              },
+              {
+                "values": [
+                  81725.21,
+                  80480.89,
+                  79277.8,
+                  81051.98,
+                  79068.82,
+                  78135.01,
+                  77425.72,
+                  76952.21,
+                  76808.81,
+                  77459.94,
+                  77546.34,
+                  75482.52,
+                  76672.79,
+                  76988.16,
+                  77274.4,
+                  75824.06,
+                  74352.7,
+                  73539.84,
+                  73382.72,
+                  73751.07,
+                  73593.37,
+                  71360.33,
+                  66649.86,
+                  64021.89,
+                  63796.25,
+                  60921.79,
+                  60861.88,
+                  63254.57,
+                  63078.44,
+                  61658.31,
+                  61550.78
+                ],
+                "label": "Bitcoin",
+                "highlight": "last"
+              }
+            ],
+            "label": "NASDAQ-100 vs Bitcoin",
+            "source": 1,
+            "unit": "index",
+            "periods": [
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 8",
+              "Jun 9"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE GOLD TELL",
+        "body": "Bitcoin marketed itself as 'digital gold' — a scarce, non-sovereign store of value. The stress test is whether the two move together when fear spikes. They often don't: in an inflation scare gold tends to hold or climb as the analog safe haven, while bitcoin trades like a high-beta tech stock and sells off. The divergence reveals which asset the market actually treats as a hedge.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4753.28,
+              4711.77,
+              4685.25,
+              4650.57,
+              4540.65,
+              4535.45,
+              4535.69,
+              4575.14,
+              4491.98,
+              4536.19,
+              4525.24,
+              4494.01,
+              4522,
+              4563.72,
+              4547.87,
+              4516.99,
+              4441.32,
+              4477.7,
+              4529.52,
+              4516.92,
+              4529.81,
+              4475.04,
+              4462.11,
+              4449.62,
+              4453.49,
+              4319.76,
+              4296.28,
+              4331.89,
+              4306.92,
+              4209.89,
+              4169.29
+            ],
+            "periods": [
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9",
+              "Jun 10",
+              "Jun 10"
+            ],
+            "label": "Gold (PAX Gold)",
+            "unit": "$/oz",
+            "highlight": "last",
+            "source": 2
+          }
+        ]
+      },
+      {
+        "heading": "HOW BIG IS $77.6 BILLION",
+        "body": "The spot bitcoin ETF complex is large by launch standards — it was the fastest-growing ETF category in history — but small against the giants of the fund world. Set beside the largest gold and equity funds, the entire bitcoin ETF universe is still a rounding error, which is why a few billion in outflows moves it so much.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "SPY (S&P 500)",
+                "value": "~$600bn",
+                "weight": 600,
+                "tone": "neutral"
+              },
+              {
+                "label": "Gold (GLD)",
+                "value": "~$95bn",
+                "weight": 95,
+                "tone": "neutral"
+              },
+              {
+                "label": "Bitcoin ETFs",
+                "value": "$77.6bn",
+                "weight": 77.6,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "selected US ETF AUM, rough"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-06-10",
+      "FRED · NASDAQ · as of 2026-06-09",
+      "CoinGecko · PAXG (gold-backed) · as of 2026-06-10"
+    ],
+    "generatedAt": "2026-06-10T08:27:35.428Z",
+    "label": "Spot Bitcoin ETFs & Real Rates",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-10-bitcoin-news-btc-and-gold-fall-together-as-a-rate-hike-bet-h": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OPPORTUNITY COST",
+        "body": "Bitcoin and gold pay no interest, no dividend, no coupon. Their entire appeal rests on scarcity. When a risk-free Treasury bill pays nothing in real terms, holding a zero-yield asset costs you nothing — but the moment real yields rise, that bond offers a guaranteed return and holding something inert becomes a measurable loss.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The number that matters is the **real** rate — the nominal yield *minus* expected inflation. A hot inflation print can lift the real rate two ways: by pushing the Fed toward hikes, and by signaling the cuts markets priced in won't come."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THEY FALL TOGETHER",
+        "body": "Both assets discount the same variable: the real yield on cash. A rate-hike bet raises the opportunity cost of every non-yielding store of value at once, so gold and bitcoin can sell off in lockstep even though one is a 5,000-year-old metal and the other a 17-year-old network.",
+        "blocks": [
+          {
+            "type": "trend",
+            "series": [
+              {
+                "values": [
+                  81725.21,
+                  80480.89,
+                  79277.8,
+                  81051.98,
+                  79068.82,
+                  78135.01,
+                  77425.72,
+                  76952.21,
+                  76808.81,
+                  77459.94,
+                  77546.34,
+                  75482.52,
+                  76672.79,
+                  76988.16,
+                  77274.4,
+                  75824.06,
+                  74352.7,
+                  73539.84,
+                  73382.72,
+                  73751.07,
+                  73593.37,
+                  71360.33,
+                  66649.86,
+                  64021.89,
+                  63796.25,
+                  60921.79,
+                  60861.88,
+                  63254.57,
+                  63078.44,
+                  61658.31,
+                  61550.78
+                ],
+                "label": "Bitcoin",
+                "highlight": "last"
+              },
+              {
+                "values": [
+                  4753.28,
+                  4711.77,
+                  4685.25,
+                  4650.57,
+                  4540.65,
+                  4535.45,
+                  4535.69,
+                  4575.14,
+                  4491.98,
+                  4536.19,
+                  4525.24,
+                  4494.01,
+                  4522,
+                  4563.72,
+                  4547.87,
+                  4516.99,
+                  4441.32,
+                  4477.7,
+                  4529.52,
+                  4516.92,
+                  4529.81,
+                  4475.04,
+                  4462.11,
+                  4449.62,
+                  4453.49,
+                  4319.76,
+                  4296.28,
+                  4331.89,
+                  4306.92,
+                  4209.89,
+                  4169.29
+                ],
+                "label": "Gold (PAX Gold)",
+                "highlight": "last"
+              }
+            ],
+            "label": "Bitcoin vs gold",
+            "source": 0,
+            "unit": "$",
+            "periods": [
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9",
+              "Jun 10",
+              "Jun 10"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE YIELD GAP",
+        "body": "The choice a rate move sharpens: a Treasury now pays a real return for taking almost no risk, while gold and bitcoin pay nothing and swing violently. That gap is the gravity pulling capital out of both.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "10yr Treasury",
+                "value": "~4%",
+                "tone": "favorable"
+              },
+              {
+                "label": "Gold",
+                "value": "0%",
+                "tone": "neutral"
+              },
+              {
+                "label": "Bitcoin",
+                "value": "0%",
+                "tone": "neutral"
+              }
+            ],
+            "label": "annual yield on holding"
+          }
+        ]
+      },
+      {
+        "heading": "GOLD'S REAL JOB",
+        "body": "Gold isn't an inflation hedge so much as a real-rate hedge. It tends to rise when real yields fall and fall when they rise — which is why it tracked downward the moment markets started pricing hikes, decades of monetary history behind it notwithstanding."
+      },
+      {
+        "heading": "THE HEDGE TEST",
+        "body": "A true macro hedge should zig when risk assets zag. Bitcoin's problem is that it has mostly zigged with them — selling off alongside tech stocks in stress, rallying alongside them in euphoria. The tell traders watch is divergence: if gold steadies while bitcoin keeps falling, bitcoin is trading as a risk asset, not a hedge.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What most directly determines the opportunity cost of holding a zero-yield asset like gold or bitcoin?",
+            "options": [
+              "The nominal interest rate alone",
+              "The real interest rate (yield minus expected inflation)",
+              "The inflation rate alone",
+              "The stock market's level"
+            ],
+            "correct": 1,
+            "explanation": "What you give up by holding a non-yielding asset is the real return available on safe alternatives — the nominal yield net of inflation."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-06-10",
+      "CoinGecko · PAXG (gold-backed) · as of 2026-06-10"
+    ],
+    "generatedAt": "2026-06-10T08:28:01.800Z",
+    "label": "Real Rates & the Zero-Yield Trap",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-10-johannesburg-cleveland-mass-shooting-informal-settlement": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SPATIAL LEGACY",
+        "body": "Informal settlements like Jumpers exist because apartheid's 1950 Group Areas Act forced non-white South Africans to the urban periphery, far from work and services. The democratic transition in 1994 dismantled the laws but not the map — millions still live in shack settlements ringing the cities, on land they do not own, with electricity and water that arrive informally if at all.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ZA"
+            ],
+            "label": "Cleveland, eastern Johannesburg",
+            "caption": "Settlements cluster on the city's industrial edge",
+            "markers": [
+              {
+                "lat": -26.2041,
+                "lng": 28.0473,
+                "label": "Johannesburg"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE MURDER RATE",
+        "body": "About 60 killings a day is not a spike — it is the baseline. South Africa's homicide rate sits near 45 per 100,000, roughly seven times the United States and among the highest of any country not in an active war. The figure has climbed steadily since the mid-2010s.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Homicide rate",
+            "peers": [
+              {
+                "value": 45,
+                "cc": "ZA"
+              },
+              {
+                "value": 25,
+                "cc": "MX"
+              },
+              {
+                "value": 21,
+                "cc": "BR"
+              },
+              {
+                "value": 26,
+                "cc": "CO"
+              },
+              {
+                "value": 6,
+                "cc": "US"
+              },
+              {
+                "value": 22,
+                "cc": "NG"
+              },
+              {
+                "value": 3,
+                "cc": "IN"
+              }
+            ],
+            "subjectCc": "ZA",
+            "unit": "per 100k"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY POLICES",
+        "body": "South Africa's private security industry is one of the largest on earth — registered guards outnumber police officers by more than two to one. Walled estates, malls, and businesses buy the protection the state cannot supply, which means safety has quietly become a purchase. Informal settlements, where nobody can pay, are left with the thinnest coverage.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In South Africa, how do private security guards compare in number to police officers?",
+            "options": [
+              "Far fewer guards than police",
+              "Roughly equal",
+              "More than double the number of police"
+            ],
+            "correct": 2,
+            "explanation": "Registered private guards exceed police by over 2-to-1, so effective protection tracks who can pay for it."
+          }
+        ]
+      },
+      {
+        "heading": "THE MINIBUS DETAIL",
+        "body": "Attackers arriving by minibus is its own signal. South Africa's minibus-taxi sector moves most of the country's commuters and is privately run, route by route, with no central regulator — which has made control of routes worth killing for. 'Taxi wars' between rival associations produce assassinations and mass shootings on a scale that overlaps with, and sometimes drives, the broader violence.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The minibus is the workhorse of the *gautrain*-less commute — but the same vehicle that carries workers at dawn carries **hit teams** at night, because route control is enforced privately, not by the state."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MANHUNTS STALL",
+        "body": "No arrests and no motive is the predictable outcome, not a failure of one investigation. South Africa's police clear only a small fraction of murders; forensic backlogs run years deep, witnesses in settlements fear retaliation more than they trust protection, and a settlement of unnumbered shacks has no addresses to canvass. The structural conditions that produce the violence also defeat the response to it."
+      }
+    ],
+    "generatedAt": "2026-06-10T08:28:35.464Z",
+    "label": "South Africa's Violence Geography",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-10-kerala-free-bus-travel-women-ksrtc": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FAREBOX NEVER COVERS THE BUS",
+        "body": "Public transit almost never pays for itself at the ticket window. The share of operating cost recovered from fares — the farebox recovery ratio — sits below half in most bus systems worldwide, with the rest covered by the state. Making rides free for one group is less a giveaway than a change in who is formally subsidized and by how much.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The metric to watch is the **farebox recovery ratio** — fares ÷ operating cost. When it's already low, eliminating fares costs the treasury far less than the sticker 'free' implies, because most of the bus was tax-funded anyway."
+          }
+        ]
+      },
+      {
+        "heading": "THE WOMEN-FARE WAVE",
+        "body": "Kerala is the latest entrant in a competition that has spread across Indian states since 2019: free or subsidized bus travel restricted to women. Delhi's 'pink ticket' opened it; Tamil Nadu, Punjab, Karnataka's Shakti scheme, and Telangana's Mahalakshmi followed. It has become a near-mandatory electoral offering rather than a one-off policy.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2019",
+                "label": "Delhi — pink ticket"
+              },
+              {
+                "year": "2021",
+                "label": "Tamil Nadu & Punjab"
+              },
+              {
+                "year": "2023",
+                "label": "Karnataka — Shakti scheme"
+              },
+              {
+                "year": "2023",
+                "label": "Telangana — Mahalakshmi"
+              },
+              {
+                "year": "2026",
+                "label": "Kerala — ordinary buses",
+                "emphasis": "end"
+              }
+            ],
+            "label": "free women's bus travel spreads across Indian states"
+          }
+        ]
+      },
+      {
+        "heading": "WHY WOMEN, NOT EVERYONE",
+        "body": "The targeting reflects a documented constraint: across India, the cost and safety of getting somewhere limits women's paid work more than the availability of jobs. India's female labour-force participation is among the lowest of major economies, and travel cost is repeatedly cited in surveys as a reason women decline work outside the home. Subsidizing mobility is cheaper than subsidizing employment directly."
+      },
+      {
+        "heading": "THE STATE-CORPORATION HOLE",
+        "body": "India's state road transport undertakings, KSRTC among them, are structurally loss-making — saddled with legacy pension and salary obligations, fuel costs, and politically capped fares. The article's ₹1,500 crore is the bus company's standing operating subsidy; the ₹800 crore for women's rides is layered on top of a corporation that was already not covering its costs."
+      },
+      {
+        "heading": "FREE TRANSIT IS A GLOBAL EXPERIMENT",
+        "body": "Fare-free transit is a real and growing policy worldwide, not an Indian quirk. Estonia's capital Tallinn made buses free for residents in 2013; Luxembourg became the first entire country to abolish public-transport fares in 2020. The debates are identical everywhere: does ridership rise enough to justify the lost revenue, and does 'free' crowd out spending on more buses?",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which was the first country to make all public transport free nationwide?",
+            "options": [
+              "Estonia",
+              "Luxembourg",
+              "Sweden",
+              "India"
+            ],
+            "correct": 1,
+            "explanation": "Luxembourg abolished fares on all public transport in 2020; Estonia's Tallinn went free in 2013 but only for the capital's residents."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T08:29:28.430Z",
+    "label": "Fare-Free Transit & the Women-Fare Wave",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-10-meta-reliance-india-ai-data-center-deal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE REAL CONSTRAINT",
+        "body": "An AI data center is a power plant with servers bolted on. The scarce input is not chips or land — it is uninterrupted megawatts delivered to one site. Capacity is now leased in MW, not square feet, because power, not floor space, is what runs out first.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The deal is sized at **168MW** — the metric that matters is electrical draw, not building size. A frontier AI cluster's bottleneck is the *grid connection*, which is why hyperscalers now chase power before they chase real estate."
+          }
+        ]
+      },
+      {
+        "heading": "WHY JAMNAGAR",
+        "body": "Jamnagar hosts Reliance's twin oil refineries — the largest refining complex on Earth at a single location. Decades of building captive power, water desalination, and land assembly there means the hardest pieces of a data center already exist on site. Meta is renting an industrial base, not a green field.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN"
+            ],
+            "label": "the build site",
+            "caption": "Gujarat coast — Reliance's refining and power hub",
+            "markers": [
+              {
+                "lat": 22.3496,
+                "lng": 69.8597,
+                "label": "Jamnagar complex"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE CAPTIVE POWER EDGE",
+        "body": "Reliance already generates its own power at Jamnagar at a scale that dwarfs the lease — captive generation built to run refineries that never stop. Bolting an AI campus onto that base is incremental, not foundational, which is the whole reason the economics work.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Meta lease",
+                "value": "~168 MW",
+                "weight": 168,
+                "tone": "neutral"
+              },
+              {
+                "label": "Large reactor",
+                "value": "~1,000 MW",
+                "weight": 1000,
+                "tone": "neutral"
+              },
+              {
+                "label": "Jamnagar captive",
+                "value": "~1,700 MW",
+                "weight": 1700,
+                "tone": "favorable"
+              }
+            ],
+            "label": "continuous power draw, in megawatts"
+          }
+        ]
+      },
+      {
+        "heading": "LEASE, NOT BUILD",
+        "body": "Meta is not constructing this facility — Reliance handles design, construction, and operations, and Meta rents the finished capacity. This colocation model lets the tenant book compute fast without sinking years and billions into substations, cooling towers, and permits. The landlord owns the hard, slow physical layer; the tenant owns the workload."
+      },
+      {
+        "heading": "THE RENEWABLE PARADOX",
+        "body": "AI training runs flat-out, 24 hours a day, while solar and wind are intermittent by nature. Powering a constant load from variable sources forces a workaround — oversized generation, grid backup, or storage — because the chips cannot pause when a cloud passes.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is matching an AI data center to renewable power hard?",
+            "options": [
+              "Solar panels can't produce enough total energy",
+              "AI runs a constant load while renewables are intermittent",
+              "Renewable power is more expensive per unit than coal",
+              "Data centers legally can't connect to solar farms"
+            ],
+            "correct": 1,
+            "explanation": "AI clusters draw steady power around the clock, so variable solar/wind must be firmed with storage or backup to avoid interruption."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T08:30:13.793Z",
+    "label": "AI Data Centers & Captive Power",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-10-nature-index-2026-east-asia-research-output-rising": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE INDEX ACTUALLY COUNTS",
+        "body": "The Nature Index is not a count of all research. It tracks papers in a curated set of roughly 145 high-quality natural-science and health journals, then splits credit for each paper fractionally among the institutions of its authors. So a country's 'Share' rises only when its scientists lead — or co-lead — work in the field's most selective venues, not when it simply publishes more.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The key unit is **Share** (formerly *fractional count*): a single paper with ten authors from five countries hands each country one-tenth, weighted by author fraction. It rewards leadership in elite journals, not raw volume — which is why it moves slowly and why a 22% jump is enormous."
+          }
+        ]
+      },
+      {
+        "heading": "THE OVERTAKING",
+        "body": "China passed the United States to become the world's largest contributor to the Nature Index in 2023 — the first time any country had displaced US scientific primacy on this measure since the Index began. The 2026 edition extends that to the institutional level, with a Chinese university topping the global table that Harvard, MIT and Stanford had monopolized for a generation.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Nature Index Share, leading contributors (approx.)",
+            "peers": [
+              {
+                "value": 100,
+                "cc": "CN"
+              },
+              {
+                "value": 78,
+                "cc": "US"
+              },
+              {
+                "value": 26,
+                "cc": "DE"
+              },
+              {
+                "value": 21,
+                "cc": "GB"
+              },
+              {
+                "value": 16,
+                "cc": "JP"
+              },
+              {
+                "value": 9,
+                "cc": "KR"
+              }
+            ],
+            "subjectCc": "CN",
+            "unit": "Share"
+          }
+        ]
+      },
+      {
+        "heading": "THE R&D ENGINE",
+        "body": "China's output rests on scale, not intensity. It spends a smaller share of GDP on research than South Korea, the US or Japan — but on an economy this large, even a modest percentage funds the world's biggest research workforce. The East Asian intensity leader is South Korea, which pours nearly 5% of GDP into R&D, among the highest ratios on earth.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "South Korea",
+                "value": "~4.9%",
+                "cc": "KR",
+                "weight": 4.9,
+                "tone": "favorable"
+              },
+              {
+                "label": "United States",
+                "value": "~3.5%",
+                "cc": "US",
+                "weight": 3.5,
+                "tone": "neutral"
+              },
+              {
+                "label": "Japan",
+                "value": "~3.3%",
+                "cc": "JP",
+                "weight": 3.3,
+                "tone": "neutral"
+              },
+              {
+                "label": "Germany",
+                "value": "~3.1%",
+                "cc": "DE",
+                "weight": 3.1,
+                "tone": "neutral"
+              },
+              {
+                "label": "China",
+                "value": "~2.6%",
+                "cc": "CN",
+                "weight": 2.6,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "gross R&D spending, share of GDP (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE CENTER ALWAYS MOVES",
+        "body": "Scientific leadership has migrated before. Renaissance Italy gave way to Enlightenment Britain and France, then to imperial Germany, which dominated physics and chemistry until the 1930s. Nazi Germany's expulsion of Jewish scientists handed that lead to the United States in a single decade — the largest forced transfer of intellectual capital in history. The current shift to East Asia is the next turn of a very old wheel.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1660",
+                "label": "Royal Society founded (Britain)",
+                "emphasis": "start"
+              },
+              {
+                "year": "1810",
+                "label": "Humboldt research university (Berlin)"
+              },
+              {
+                "year": "1901",
+                "label": "First Nobels — German dominance"
+              },
+              {
+                "year": "1933",
+                "label": "Nazi expulsion of scientists",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1945",
+                "label": "US postwar primacy"
+              },
+              {
+                "year": "2023",
+                "label": "China overtakes US in Index"
+              }
+            ],
+            "label": "where science was done"
+          }
+        ]
+      },
+      {
+        "heading": "THE EAST ASIAN CLUSTER",
+        "body": "The Index's growth is regionally concentrated. China, South Korea and Japan together now anchor a research bloc with deep supply chains, shared instrumentation, and rising cross-border co-authorship — even as their governments remain strategic rivals. Geographic proximity lets talent, equipment and collaboration circulate inside the region faster than across the Pacific.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "KR",
+              "JP"
+            ],
+            "label": "the East Asian research bloc"
+          }
+        ]
+      },
+      {
+        "heading": "VOLUME IS NOT IMPACT",
+        "body": "Leading the Nature Index measures where elite papers are produced, not which papers reshape a field. By citation impact and Nobel-class breakthroughs, the US and Europe still hold an edge built over decades. Output can be scaled with money and people; the prestige of being cited, copied, and built upon lags output by years. The gap between the two is where the real contest now sits.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does a country's Nature Index 'Share' primarily measure?",
+            "options": [
+              "Total number of scientific papers published",
+              "Fractional authorship in a curated set of elite journals",
+              "Citations received across all journals",
+              "Government R&D spending as a share of GDP"
+            ],
+            "correct": 1,
+            "explanation": "Share splits credit for papers in ~145 selective journals among authors' institutions — it rewards leadership in top venues, not raw volume or citations."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T08:31:07.921Z",
+    "label": "The Nature Index & Scientific Power",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-10-short-oral-regimen-rifampicin-resistant-tuberculosis": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY TB IS SO HARD TO KILL",
+        "body": "Mycobacterium tuberculosis wraps itself in a waxy cell wall built from mycolic acids that most antibiotics cannot penetrate. It also divides slowly and can lie dormant for years — and most antibiotics only kill bacteria while they are actively replicating. That combination is why TB needs months of drugs, not days.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The wax is the whole problem: that **mycolic acid** coat is why TB stains differently from other bacteria (it is *acid-fast*) and why the cure takes months while strep throat takes days."
+          }
+        ]
+      },
+      {
+        "heading": "THE INJECTION ERA",
+        "body": "Until recently, drug-resistant TB meant 18–24 months of treatment anchored by daily injections of aminoglycosides like kanamycin or amikacin. These drugs are notoriously ototoxic — permanent hearing loss was a routine price of cure — and the needles tethered patients to a clinic for the better part of two years.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Old MDR course",
+                "value": "18–24 mo",
+                "tone": "unfavorable",
+                "weight": 21
+              },
+              {
+                "label": "BPaLM",
+                "value": "6 mo, oral",
+                "tone": "favorable",
+                "weight": 6
+              }
+            ],
+            "label": "drug-resistant TB regimens"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT BPaLM ACTUALLY IS",
+        "body": "BPaLM is an acronym for four oral drugs taken together: bedaquiline, pretomanid, linezolid, and moxifloxacin. Bedaquiline, approved in 2012, was the first genuinely new class of TB drug in over forty years — it starves the bacterium by jamming its energy-producing enzyme, a target nothing before it had hit.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**B**edaquiline · **Pa**retomanid · **L**inezolid · **M**oxifloxacin — four pills replacing two years of needles."
+          },
+          {
+            "type": "quiz",
+            "question": "Bedaquiline, a core BPaLM drug, was notable for being what?",
+            "options": [
+              "A repurposed malaria drug",
+              "The first new class of TB drug in over 40 years",
+              "An injectable, not oral",
+              "A vaccine, not a treatment"
+            ],
+            "correct": 1,
+            "explanation": "Approved in 2012, bedaquiline was the first novel anti-TB drug class since rifampicin in the 1960s, attacking the bacterium's ATP synthase."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ORAL CHANGES EVERYTHING",
+        "body": "An injectable regimen only works if the patient reaches a clinic almost every day for years — a brutal demand in rural, high-burden settings. An all-oral course can be taken at home, which slashes the dropout rate. And incomplete TB treatment is exactly how resistance is bred, so easier completion is itself a tool against resistance.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Half-finished courses are how *resistance* is manufactured: the susceptible bacteria die first, the hardy survivors repopulate. Every dropout is a potential breeding ground for the next strain."
+          }
+        ]
+      },
+      {
+        "heading": "THE NEW-DRUG DROUGHT",
+        "body": "After rifampicin arrived in the 1960s, TB drug development effectively stopped for decades — the disease had retreated to poor countries with no purchasing power. The pipeline only reopened in the 2010s, and BPaLM is the payoff of that long-delayed restart.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1943",
+                "label": "Streptomycin discovered"
+              },
+              {
+                "year": "1952",
+                "label": "Isoniazid"
+              },
+              {
+                "year": "1963",
+                "label": "Rifampicin"
+              },
+              {
+                "year": "2012",
+                "label": "Bedaquiline — first new class in 40 yrs",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Pretomanid approved"
+              },
+              {
+                "year": "2022",
+                "label": "WHO endorses BPaLM"
+              }
+            ],
+            "label": "TB drug development"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE BURDEN SITS",
+        "body": "TB is overwhelmingly concentrated in a handful of high-burden countries. India alone accounts for roughly a quarter of the world's cases, and South Africa — where the TB-PRACTECAL trial ran much of its work — carries one of the heaviest per-capita loads, compounded by HIV co-infection.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "India",
+                "value": 27
+              },
+              {
+                "label": "Indonesia",
+                "value": 10
+              },
+              {
+                "label": "China",
+                "value": 7
+              },
+              {
+                "label": "Philippines",
+                "value": 7
+              },
+              {
+                "label": "Pakistan",
+                "value": 6
+              },
+              {
+                "label": "Nigeria",
+                "value": 5
+              },
+              {
+                "label": "Bangladesh",
+                "value": 4
+              },
+              {
+                "label": "South Africa",
+                "value": 3
+              },
+              {
+                "label": "Rest of world",
+                "value": 31
+              }
+            ],
+            "label": "share of global TB cases (approx.)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T08:31:55.126Z",
+    "label": "Drug-Resistant TB & BPaLM",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-10-southern-philippines-earthquake-toll-rises-45": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DOUBLE SQUEEZE",
+        "body": "Mindanao is one of the rare places on Earth caught between two opposing subduction zones. The Philippine Sea Plate dives west under the island along the Philippine Trench, while the Sunda/Celebes plates push east along the Cotabato Trench. The island is being crushed from both sides, which is why its faults rupture more often and more violently than a single-margin coast.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Geologists call this squeezed zone the **Philippine Mobile Belt** — a crumpling collision corridor, not a stable plate. The whole archipelago is migrating northwest a few centimeters a year."
+          },
+          {
+            "type": "locations",
+            "codes": [
+              "PH",
+              "ID",
+              "MY"
+            ],
+            "label": "the Celebes Sea collision zone",
+            "caption": "Southern Mindanao sits between the Philippine and Cotabato trenches",
+            "markers": [
+              {
+                "lat": 6.1164,
+                "lng": 125.1716,
+                "label": "General Santos"
+              },
+              {
+                "lat": 7.0731,
+                "lng": 125.6128,
+                "label": "Davao"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY 7.8 IS NOT 'A BIT MORE THAN 7'",
+        "body": "The magnitude scale is logarithmic: each whole number is roughly ten times the ground shaking and about thirty-two times the energy released. A 7.8 is not 11% stronger than a 7.0 — it unleashes on the order of fifteen times more energy. This is why people consistently underestimate large quakes from the number alone.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How much more energy does a magnitude 8.0 quake release than a magnitude 7.0?",
+            "options": [
+              "About 10 times",
+              "About 32 times",
+              "About 100 times",
+              "Exactly double"
+            ],
+            "correct": 1,
+            "explanation": "Each whole magnitude step is ~10x the shaking amplitude but ~32x the energy — the 10x figure is the common misconception."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1976 PRECEDENT",
+        "body": "This exact stretch of sea has done this before. The 1976 Moro Gulf earthquake, a magnitude 7.9 just off Mindanao, generated a tsunami that killed thousands along the Cotabato and Celebes coasts — one of the deadliest disasters in Philippine history. Offshore ruptures here are not freak events; they are the local pattern.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1976",
+                "label": "Moro Gulf M7.9 + tsunami",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1990",
+                "label": "Luzon M7.7"
+              },
+              {
+                "year": "2013",
+                "label": "Bohol M7.2"
+              },
+              {
+                "year": "2019",
+                "label": "Cotabato M6.6 swarm"
+              },
+              {
+                "year": "2023",
+                "label": "Mindanao M7.6"
+              }
+            ],
+            "label": "major Philippine quakes"
+          }
+        ]
+      },
+      {
+        "heading": "WHY OFFSHORE QUAKES ARE DIFFERENT",
+        "body": "A quake under land kills by collapse. A quake under the seabed adds a second weapon: if the fault thrusts vertically, it lifts the entire water column above it, sending out a tsunami. The danger window is brutally short here — with the trench so close to shore, waves can reach the coast in minutes, before any warning propagates."
+      },
+      {
+        "heading": "THE RING OF FIRE",
+        "body": "The Philippines sits on the western arc of the Pacific Ring of Fire, the horseshoe of subduction zones that hosts about 90% of the world's earthquakes and most of its active volcanoes. The country averages several perceptible quakes a day; the question is never whether the next large one comes, only where along the arc the strain releases.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The same plate boundary that shakes Mindanao also feeds its volcanoes — subducted crust melts at depth and rises, which is why earthquake country and volcano country are almost always *the same country*."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HOMES, NOT THE QUAKE, KILL",
+        "body": "Most earthquake deaths come from a handful of building failures — unreinforced masonry that shatters, and 'soft-story' structures with open ground floors that pancake. In the rural south, concrete-block homes built without seismic detailing are the dominant casualty driver, which is why a moderate quake can level 460 houses in one town while sturdier construction nearby stands."
+      }
+    ],
+    "generatedAt": "2026-06-10T08:32:48.979Z",
+    "label": "Mindanao & the Ring of Fire",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-10-spacex-pre-ipo-synthetic-market-falls-27-percent": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INSTRUMENT",
+        "body": "SPCX is not a share of SpaceX. It is a cash-settled perpetual — a bet whose payout is the difference between entry and exit price, with no claim on any underlying asset. Nobody who holds it owns a sliver of the company; they own a position against another trader.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A *perpetual* swap is a futures contract with **no expiry date** — invented by crypto exchanges so traders can hold leveraged directional bets indefinitely. Settlement is always in cash, never in the thing being tracked."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT TETHERS THE PRICE",
+        "body": "Normal perpetuals stay glued to a real spot price through a funding rate: longs pay shorts (or vice versa) every few hours to pull the contract back toward the underlying. With no listed SpaceX share to anchor to, there is nothing to converge on — the price is pure crowd positioning, which is why a 27% move signals a leverage flush, not news about rockets."
+      },
+      {
+        "heading": "WHY NO REAL PRICE EXISTS YET",
+        "body": "SpaceX is private. Its shares trade only in negotiated secondary deals and employee tender offers, not on any exchange, so there is no continuous public quote. A company's first genuine open-market price is set on the day it lists — everything before that is estimate, appraisal, or wager."
+      },
+      {
+        "heading": "THE OVERSUBSCRIPTION SIGNAL",
+        "body": "A reported $250bn in orders for a $75bn offer means the book was oversubscribed more than threefold. Underwriters run a 'book-build,' collecting indications of interest, then deliberately price below clearing so the stock pops on day one — the pop rewards favored institutional clients and is a known, structural transfer of value away from the issuer.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When an IPO is heavily oversubscribed, why do underwriters usually still price it below where demand would clear?",
+            "options": [
+              "Law caps the offer price",
+              "A first-day pop rewards favored institutional buyers",
+              "The company demands the lowest possible price",
+              "Retail investors set the price"
+            ],
+            "correct": 1,
+            "explanation": "Deliberate underpricing engineers a first-day 'pop' that rewards the banks' institutional clients — value that leaves the issuing company's pocket."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEVERAGE UNWIND",
+        "body": "At 5x leverage, a 20% move against a position wipes the entire margin and triggers forced liquidation. Those liquidations sell into the same falling market, pushing price down further and liquidating the next tier — a cascade. The drop measures how crowded and over-leveraged one side of the trade had become, nothing more."
+      },
+      {
+        "heading": "THE SHADOW MARKET",
+        "body": "SpaceX sits atop a generation of companies that stayed private far longer than firms once did — funded by venture and sovereign capital large enough to delay the public markets indefinitely. Their valuations are set in private rounds, leaving a hungry secondary market for any synthetic exposure.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Most valuable private companies (approx. valuation)",
+            "peers": [
+              {
+                "value": 350,
+                "label": "SpaceX"
+              },
+              {
+                "value": 300,
+                "label": "ByteDance"
+              },
+              {
+                "value": 260,
+                "label": "OpenAI"
+              },
+              {
+                "value": 70,
+                "label": "Stripe"
+              },
+              {
+                "value": 60,
+                "label": "Databricks"
+              },
+              {
+                "value": 60,
+                "label": "Anthropic"
+              }
+            ],
+            "subjectLabel": "SpaceX",
+            "unit": "$bn"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T08:33:26.591Z",
+    "label": "Pre-IPO Synthetics & Book-Building",
+    "category": "economy",
+    "articleCount": 1
   }
 }
