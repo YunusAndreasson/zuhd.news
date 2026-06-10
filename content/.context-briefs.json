@@ -337826,5 +337826,1439 @@
     "label": "US–Iran: Direct Fire on the Strait",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-10-ai-transfer-learning-unlearn-new-physics-cosmology": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT TRANSFER LEARNING DOES",
+        "body": "Instead of training a model from random weights, you start from one already trained on a related task and fine-tune it. The payoff is enormous: a cosmology classifier that would need millions of labeled simulations can converge on a fraction of them, because the early layers already encode useful structure."
+      },
+      {
+        "heading": "THE HIDDEN COST",
+        "body": "Those reused weights are not neutral. A model pretrained on standard-model simulations has learned to represent the universe the way the standard model describes it. It becomes exquisitely good at recognizing what theory already predicts — and structurally blind to a signal the theory has no category for.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is *inductive bias* made physical: the priors baked into the weights act as a lens that **filters out** anything the training distribution never contained. New physics, by definition, lives outside that distribution."
+          }
+        ]
+      },
+      {
+        "heading": "FORGETTING AS A FEATURE",
+        "body": "In normal machine learning, catastrophic forgetting — a network erasing old knowledge as it learns something new — is the enemy you fight with elaborate tricks. The proposal here inverts that: deliberately induce forgetting, a technique called machine unlearning, so the model approaches the data without the standard model's answer pre-loaded.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In conventional deep learning, 'catastrophic forgetting' is normally treated as:",
+            "options": [
+              "A failure mode to be prevented",
+              "A required training step",
+              "A type of hardware fault"
+            ],
+            "correct": 0,
+            "explanation": "Forgetting prior knowledge while learning new tasks is usually a bug researchers suppress — this proposal weaponizes it instead."
+          }
+        ]
+      },
+      {
+        "heading": "THE ANOMALY PROBLEM",
+        "body": "Searching for new physics is a hunt for the unknown unknown. A supervised model can only flag deviations from patterns it was taught; anything genuinely novel may be smoothed away as noise. The whole point of unlearning is to widen what the model is willing to call 'surprising.'"
+      },
+      {
+        "heading": "WHY THIS KEEPS HAPPENING",
+        "body": "The history of cosmology is largely a history of accidents — signals nobody's theory predicted, nearly dismissed as instrument error. The fear motivating this research is that an AI optimized to confirm the standard model would have quietly deleted exactly those anomalies.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Penzias & Wilson",
+                "role": "Found cosmic microwave background",
+                "years": "1965",
+                "cc": "US"
+              },
+              {
+                "name": "Jocelyn Bell Burnell",
+                "role": "Found the first pulsar",
+                "years": "1967",
+                "cc": "GB"
+              },
+              {
+                "name": "Perlmutter, Riess, Schmidt",
+                "role": "Found cosmic acceleration",
+                "years": "1998",
+                "cc": "US"
+              }
+            ],
+            "label": "discoveries no theory ordered"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T04:22:56.362Z",
+    "label": "Transfer Learning & the Bias Trap",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-10-amazon-employees-mock-ai-coding-tool-slack-sloppenheimer": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY 'SLOPPENHEIMER'",
+        "body": "The nickname fuses Oppenheimer with 'slop' — the industry term for fluent-but-low-quality AI output. The joke lands because the failure mode of a code generator is not silence; it is confident, plausible, syntactically perfect code that is subtly wrong.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Slop* is the AI-era word for output that *looks* right at a glance — compiles, reads cleanly — but encodes a wrong assumption. The danger isn't bad code that fails loudly; it's **plausible code that fails quietly**."
+          }
+        ]
+      },
+      {
+        "heading": "HOW IT ACTUALLY WORKS",
+        "body": "A coding assistant is a language model predicting the next token from patterns in billions of lines of public code. It has no model of whether the program is correct — only of what code statistically tends to come next. Correctness is a side effect of fluency, not a guarantee.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The engine is **next-token prediction**, not reasoning about your program's state. That's why it nails boilerplate and fumbles the one edge case that wasn't well-represented in its training data."
+          }
+        ]
+      },
+      {
+        "heading": "THE MEASUREMENT PROBLEM",
+        "body": "Software has resisted a productivity metric for fifty years. Lines of code rewards bloat; commits reward churn; tickets closed rewards triviality. AI tools generate output that scores well on exactly these surface metrics while saying nothing about whether the system got better.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why has 'lines of code written' long been rejected as a productivity metric?",
+            "options": [
+              "It's too hard to count automatically",
+              "More code often means more bugs and maintenance, not more value",
+              "It only works for compiled languages",
+              "Modern editors hide line counts"
+            ],
+            "correct": 1,
+            "explanation": "Often the best change deletes code; rewarding volume rewards the opposite of good engineering — a classic case where the metric inverts the goal."
+          }
+        ]
+      },
+      {
+        "heading": "THE MANDATE TRAP",
+        "body": "When leadership mandates a tool and then measures adoption, adoption becomes the target instead of the outcome. Engineers accept suggestions to hit usage numbers; the metric looks healthy while the underlying work quietly degrades.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is **Goodhart's law**: *when a measure becomes a target, it ceases to be a good measure.* A vendor's 'acceptance rate' counts suggestions taken — not suggestions that survived code review unchanged."
+          }
+        ]
+      },
+      {
+        "heading": "THE REVIEW INVERSION",
+        "body": "Generation is now cheap; verification is not. The bottleneck shifts from writing code to reading it — and reading someone else's (or a machine's) code for hidden errors is harder and slower than writing your own. The labor doesn't vanish; it moves downstream to review and debugging.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The old constraint was *typing speed*; the new one is **review bandwidth**. A tool that 10×'s output but leaves review at 1× has moved the wall, not removed it."
+          }
+        ]
+      },
+      {
+        "heading": "THE ABSTRACTION LADDER",
+        "body": "Every leap in programming has automated the layer below it — and each was met with the same fear and the same overstatement. Compilers, IDEs, and autocomplete all raised the abstraction level without removing the need for engineers who understand what the machine is doing.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1957",
+                "label": "FORTRAN: first practical compiler"
+              },
+              {
+                "year": "1983",
+                "label": "IDEs bundle editor + tooling"
+              },
+              {
+                "year": "1996",
+                "label": "IntelliSense autocomplete"
+              },
+              {
+                "year": "2021",
+                "label": "GitHub Copilot launches",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "LLM chat enters the workflow"
+              }
+            ],
+            "label": "raising the abstraction level"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T04:23:45.078Z",
+    "label": "AI Coding Tools & the Productivity Mirage",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-10-cisa-binding-directive-risk-based-vulnerability-triage": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FIREHOSE",
+        "body": "The core problem is volume. The number of disclosed software vulnerabilities has grown from a few thousand a year in the early 2010s to over 40,000 logged in 2024. No security team — not even a federal agency's — can test, validate, and deploy a patch for every one. Mandatory-patch-everything was always a fiction that worked only because backlogs were tolerated.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Each flaw gets a **CVE** — a Common Vulnerabilities and Exposures ID, the universal serial number every vendor and scanner references. The catalog has issued IDs since *1999*; the year-2024 prefix space alone holds tens of thousands."
+          }
+        ]
+      },
+      {
+        "heading": "SEVERITY ISN'T EXPLOITABILITY",
+        "body": "Every CVE gets a CVSS score from 0 to 10 measuring how bad the damage would be if exploited — but that says nothing about whether anyone ever will. The triage insight: most critical-rated flaws are never weaponized, while a handful of medium-rated ones get mass-exploited. Patching by severity wastes effort on theoretical risk; patching by exploitation targets the real one.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "CVEs published",
+                "value": "~40,000",
+                "weight": 40000,
+                "tone": "neutral"
+              },
+              {
+                "label": "Rated high/crit",
+                "value": "~22,000",
+                "weight": 22000,
+                "tone": "neutral"
+              },
+              {
+                "label": "Ever exploited",
+                "value": "~2,000",
+                "weight": 2000,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "the vulnerability funnel (annual, approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE KEV PRECEDENT",
+        "body": "CISA already crossed this bridge in 2021. Binding Operational Directive 22-01 created the Known Exploited Vulnerabilities catalog and ordered agencies to patch only flaws with confirmed real-world exploitation — on a deadline. The new directive generalizes that logic from a curated list to the full firehose: rank by risk, remediate top-down.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1999",
+                "label": "CVE system launches",
+                "emphasis": "start"
+              },
+              {
+                "year": "2005",
+                "label": "CVSS scoring standardized"
+              },
+              {
+                "year": "2021",
+                "label": "KEV catalog + BOD 22-01",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021-12",
+                "label": "EPSS prediction model released"
+              },
+              {
+                "year": "2026",
+                "label": "Risk-based triage directive",
+                "emphasis": "end"
+              }
+            ],
+            "label": "from catalog everything to triage"
+          }
+        ]
+      },
+      {
+        "heading": "PREDICTING THE ATTACK",
+        "body": "EPSS — the Exploit Prediction Scoring System — assigns each CVE a probability that it will be exploited in the next 30 days, trained on observed attack telemetry rather than on how scary the bug sounds. It is the machinery that makes 'risk-based' operational: a ranking engine that sorts the firehose by likelihood, not by dread.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Of all software vulnerabilities ever assigned a CVE, roughly what share are known to have been exploited in the wild?",
+            "options": [
+              "Around 5%",
+              "Around 25%",
+              "Around half",
+              "The large majority"
+            ],
+            "correct": 0,
+            "explanation": "Only a low single-digit percentage of CVEs see confirmed real-world exploitation — which is exactly why triage beats patch-everything."
+          }
+        ]
+      },
+      {
+        "heading": "THE UNDEFINED VARIABLE",
+        "body": "The directive names no threshold for 'acceptable risk.' That blank is the whole policy. Deprioritized never means safe — it means a bet that a given flaw won't be the one that gets weaponized. When the bet is wrong, the unpatched medium-severity bug that everyone skipped becomes the breach, and the accountability question is who set the cutoff and on what evidence."
+      }
+    ],
+    "generatedAt": "2026-06-10T04:24:24.945Z",
+    "label": "Risk-Based Vulnerability Triage",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-10-congo-ebola-outbreak-600-cases-undetected-conflict": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "NOT ONE VIRUS, BUT SIX",
+        "body": "\"Ebola\" is a genus, not a single pathogen. Six species are known; four sicken humans, and they differ enormously in lethality. The Bundibugyo strain in this outbreak — first identified in a 2007 Ugandan district of the same name — kills roughly a third of those infected, far below the Zaire strain's 50–90%. Which species is circulating dictates everything about the response.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Zaire",
+                "value": "~50–90%",
+                "tone": "unfavorable",
+                "weight": 70
+              },
+              {
+                "label": "Sudan",
+                "value": "~50%",
+                "tone": "unfavorable",
+                "weight": 50
+              },
+              {
+                "label": "Bundibugyo",
+                "value": "~30%",
+                "tone": "neutral",
+                "weight": 30
+              },
+              {
+                "label": "Taï Forest",
+                "value": "<5%",
+                "tone": "favorable",
+                "weight": 3
+              }
+            ],
+            "label": "Ebola species by case-fatality rate"
+          }
+        ]
+      },
+      {
+        "heading": "THE VACCINE THAT DOESN'T FIT",
+        "body": "The licensed Ebola vaccine (Ervebo) and the standard monoclonal-antibody treatments were built against the Zaire strain. They do not reliably protect against Bundibugyo or Sudan. An outbreak of the \"wrong\" species means the tools that ended the 2018–20 epidemic in this same region may not work — a reason strain identification is the first emergency, not the last.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2022 *Sudan-strain* outbreak in Uganda was contained with no licensed vaccine at all — purely by contact tracing and isolation. Strain mismatch throws medicine back to **19th-century epidemiology**."
+          }
+        ]
+      },
+      {
+        "heading": "THE BAT RESERVOIR",
+        "body": "Ebola does not live in humans between outbreaks — it persists in fruit bats, which carry it without dying. Spillover happens at a single contact point: butchered bushmeat, a contaminated cave, an infected ape. From that one event the virus amplifies human-to-human. This is why outbreaks appear suddenly in forest-edge communities and why they cannot be eradicated — the reservoir is wild and permanent."
+      },
+      {
+        "heading": "WHY IT RAN UNSEEN FOR WEEKS",
+        "body": "Most African national labs can confirm only 3–5 hemorrhagic fevers. An early Bundibugyo case that tests negative for the Zaire strain is not ruled out — it is unclassified, logged as malaria or typhoid, and sent home. Weeks of silent transmission are baked into the diagnostic gap before anyone knows which virus they are fighting.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did the Congo outbreak spread undetected for weeks?",
+            "options": [
+              "The Bundibugyo strain causes no symptoms",
+              "Surveillance was disabled by conflict and labs couldn't ID the strain",
+              "The virus is airborne and outran tracing",
+              "Vaccinated people were silent carriers"
+            ],
+            "correct": 1,
+            "explanation": "Armed conflict in Ituri and North Kivu collapsed the surveillance network, and limited lab capacity left early cases unclassified."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONFLICT OVERLAY",
+        "body": "Eastern Congo's Ituri and North Kivu have been war zones for nearly three decades — over 100 armed groups, M23's Rwanda-backed offensives, 1.8 million displaced. Contact tracing requires reaching every contact of every case; that is impossible when health workers are attacked and whole districts are inaccessible. Conflict does not just slow the response — it deletes the early-warning system entirely.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CD",
+              "UG",
+              "RW",
+              "SS"
+            ],
+            "label": "the outbreak zone, eastern Congo",
+            "caption": "Forest-edge, war-torn, and astride three borders",
+            "markers": [
+              {
+                "lat": 1.5667,
+                "lng": 30.25,
+                "label": "Bunia (Ituri)"
+              },
+              {
+                "lat": -1.6792,
+                "lng": 29.2228,
+                "label": "Goma (N. Kivu)"
+              },
+              {
+                "lat": 0.7167,
+                "lng": 30.0667,
+                "label": "Bundibugyo (UG)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY AFRICA CDC EXISTS",
+        "body": "After the WHO's Geneva-centered system responded slowly to the 2014 West African epidemic that killed over 11,000, the African Union built its own. Africa CDC, founded in 2017, became an autonomous AU agency in 2023 with authority to declare a continental health emergency without waiting for Geneva — a structural answer to the lesson that distance costs lives.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1976",
+                "label": "First Ebola outbreak, Zaire (Congo)",
+                "emphasis": "start"
+              },
+              {
+                "year": "2007",
+                "label": "Bundibugyo strain identified, Uganda"
+              },
+              {
+                "year": "2014",
+                "label": "West Africa epidemic, 11,000+ dead",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017",
+                "label": "Africa CDC founded"
+              },
+              {
+                "year": "2020",
+                "label": "Ervebo vaccine deployed in DRC"
+              },
+              {
+                "year": "2023",
+                "label": "Africa CDC made autonomous AU agency"
+              }
+            ],
+            "label": "the institutional response arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T04:25:03.452Z",
+    "label": "Ebola: strains, reservoirs & surveillance",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-10-generalist-biomedical-vision-language-multi-clip-distillation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SPECIALIST TRAP",
+        "body": "Medical imaging AI has historically meant one model per task: a chest-X-ray classifier, a separate retinal-scan reader, another for skin lesions. Each needs its own training data, its own deployment, its own maintenance. A clinic wanting broad coverage had to run and update a dozen narrow tools — which is why almost none did."
+      },
+      {
+        "heading": "WHAT DISTILLATION ACTUALLY MOVES",
+        "body": "Distillation trains a small 'student' model to mimic a large 'teacher.' The trick is that the student learns not from the teacher's final answer but from its full probability distribution — the teacher saying '85% pneumonia, 10% effusion, 5% normal' carries far more signal than a bare label. This soft output is what Geoffrey Hinton called 'dark knowledge.'",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The teacher-student gap is the whole point: a student a fraction of the teacher's size can recover most of its accuracy precisely because it inherits the teacher's *uncertainty*, not just its verdict."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'MULTI-CLIP'",
+        "body": "CLIP-style models learn by matching images to text descriptions, so a single backbone can absorb radiology reports, pathology captions, and dermatology notes alike. This method distills several specialist CLIP teachers — each expert in one modality — into one student that inherits all of their domains at once.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "rad",
+                "label": "Radiology CLIP"
+              },
+              {
+                "id": "path",
+                "label": "Pathology CLIP"
+              },
+              {
+                "id": "derm",
+                "label": "Dermatology CLIP"
+              },
+              {
+                "id": "ophth",
+                "label": "Retinal CLIP"
+              },
+              {
+                "id": "student",
+                "label": "Generalist student"
+              },
+              {
+                "id": "clinic",
+                "label": "Edge clinic"
+              }
+            ],
+            "links": [
+              {
+                "source": "rad",
+                "target": "student",
+                "value": 25,
+                "label": "distill"
+              },
+              {
+                "source": "path",
+                "target": "student",
+                "value": 25,
+                "label": "distill"
+              },
+              {
+                "source": "derm",
+                "target": "student",
+                "value": 25,
+                "label": "distill"
+              },
+              {
+                "source": "ophth",
+                "target": "student",
+                "value": 25,
+                "label": "distill"
+              },
+              {
+                "source": "student",
+                "target": "clinic",
+                "value": 100,
+                "label": "deploy"
+              }
+            ],
+            "label": "many specialist teachers, one student"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SIZE IS THE WHOLE GAME AT THE EDGE",
+        "body": "A low-resource clinic rarely has a datacenter GPU, reliable bandwidth to a cloud API, or an IT staff to manage model updates. A model that runs on a laptop or a single modest GPU is not a convenience — it is the difference between deployable and theoretical. Compression is the deployment strategy."
+      },
+      {
+        "heading": "THE SOFT-LABEL TEST",
+        "body": "The reason distillation beats simply training a small model from scratch is the richness of the teacher's output. A small model trained on hard labels alone plateaus; trained on the teacher's full distribution, it climbs much closer to the teacher's accuracy.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does a distilled student outperform an identical small model trained from scratch on the same data?",
+            "options": [
+              "It learns from the teacher's full probability distribution, not just the correct label",
+              "It secretly has more parameters than it reports",
+              "It is trained on a larger raw dataset",
+              "It runs at higher numerical precision"
+            ],
+            "correct": 0,
+            "explanation": "The teacher's soft outputs encode similarities between classes ('dark knowledge') that a one-hot label throws away."
+          }
+        ]
+      },
+      {
+        "heading": "THE VALIDATION GAP",
+        "body": "Matching a benchmark is not the same as being safe in a clinic. Patient populations, scanner hardware, and disease prevalence differ from the curated training sets, and a model that holds up on paper can drift badly on real-world data. Open-access release accelerates scrutiny — but published benchmarks are the start of clinical validation, not the end of it."
+      }
+    ],
+    "generatedAt": "2026-06-10T04:25:42.574Z",
+    "label": "Knowledge Distillation in Medical AI",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-10-india-cockroach-gen-z-revolt-modi-jantar-mantar": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY JANTAR MANTAR",
+        "body": "The rally site is not random. After authorities pushed protests off the Boat Club lawns near Parliament in the 1990s, the road beside Jantar Mantar — an 18th-century stone observatory — became Delhi's officially tolerated protest venue. It is close enough to power to be seen, far enough to be contained.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Confining dissent to a single sanctioned square is an old statecraft trick: protest is *permitted* but *quarantined*, visible to cameras yet sealed off from the institutions it targets."
+          }
+        ]
+      },
+      {
+        "heading": "THE REGIONAL WAVE",
+        "body": "India's joke-turned-rally is the latest ripple in a youth-protest belt running across South and Southeast Asia into East Africa. The common ignition is demographic: these are some of the youngest societies on earth, where a median citizen is barely into their twenties and formal jobs are scarce.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "BD",
+              "NP",
+              "LK",
+              "ID",
+              "KE"
+            ],
+            "label": "the youth-protest belt",
+            "values": [
+              {
+                "cc": "KE",
+                "value": 20
+              },
+              {
+                "cc": "NP",
+                "value": 25
+              },
+              {
+                "cc": "BD",
+                "value": 26
+              },
+              {
+                "cc": "IN",
+                "value": 28
+              },
+              {
+                "cc": "ID",
+                "value": 30
+              },
+              {
+                "cc": "LK",
+                "value": 34
+              }
+            ],
+            "valueLabel": "MEDIAN AGE (YRS)"
+          },
+          {
+            "type": "quiz",
+            "question": "Which youth-led uprising forced a long-ruling prime minister to flee the country in 2024?",
+            "options": [
+              "Bangladesh's anti-quota movement",
+              "Kenya's anti-finance-bill protests",
+              "India's cockroach movement",
+              "Indonesia's labor-law protests"
+            ],
+            "correct": 0,
+            "explanation": "Bangladesh's student-led revolt over civil-service job quotas escalated until PM Sheikh Hasina fled to India in August 2024 after 15 years in power."
+          }
+        ]
+      },
+      {
+        "heading": "THE ARC",
+        "body": "What looks like spontaneous combustion is a chain of demonstration effects: each uprising teaches the next that a leaderless online swarm can topple an entrenched government. Sri Lanka's 2022 occupation of the president's palace was the template the others copied.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2022",
+                "label": "Sri Lanka: Aragalaya storms palace",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024-06",
+                "label": "Kenya: anti-finance-bill protests"
+              },
+              {
+                "year": "2024-07",
+                "label": "Bangladesh: Hasina ousted"
+              },
+              {
+                "year": "2025-09",
+                "label": "Nepal: Gen Z protests topple PM Oli"
+              },
+              {
+                "year": "2026-06",
+                "label": "India: cockroach rally"
+              }
+            ],
+            "label": "the Gen Z uprising chain"
+          }
+        ]
+      },
+      {
+        "heading": "LEADERLESS BY DESIGN",
+        "body": "A movement with no leader is hard to behead — there is no organizer to arrest, no committee to co-opt. But the same trait that makes it survivable makes it brittle: with no one authorized to negotiate or call the next step, momentum often evaporates as fast as it gathered. The absent 'follow-up rally' is the structural weakness, not an accident."
+      },
+      {
+        "heading": "WHY SILENCE IS A STRATEGY",
+        "body": "A government that does not respond denies a leaderless movement the thing it needs most — a confrontation to rally around. Crackdowns create martyrs and footage; silence creates anticlimax. For a state confident the swarm cannot sustain itself, waiting it out is cheaper than engaging it."
+      }
+    ],
+    "generatedAt": "2026-06-10T04:26:38.839Z",
+    "label": "Gen Z Revolts & the Protest Square",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-10-iran-strikes-us-fifth-fleet-bahrain-gulf-bases": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY BAHRAIN",
+        "body": "Bahrain has hosted the US Navy since 1948 and the Fifth Fleet headquarters since it was reconstituted in 1995. The island is a Shia-majority country ruled by the Sunni Al Khalifa dynasty — a sectarian fault line Iran has long probed, which is precisely why the largest US naval command in the region sits there. The base is the anchor that keeps the monarchy in Washington's orbit.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "BH",
+              "KW",
+              "QA",
+              "AE",
+              "IQ"
+            ],
+            "label": "the bases that ring Iran",
+            "markers": [
+              {
+                "lat": 26.21,
+                "lng": 50.61,
+                "label": "NSA Bahrain (5th Fleet)"
+              },
+              {
+                "lat": 25.11,
+                "lng": 51.32,
+                "label": "Al Udeid (CENTCOM air)"
+              },
+              {
+                "lat": 28.9,
+                "lng": 48.16,
+                "label": "Camp Arifjan, Kuwait"
+              },
+              {
+                "lat": 24.25,
+                "lng": 54.55,
+                "label": "Al Dhafra, UAE"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "TWO NAVIES, ONE STATE",
+        "body": "Iran runs two parallel armed forces. The conventional Artesh handles blue-water defense; the Revolutionary Guard's own navy operates the swarming small-boat fleet and the missiles. The IRGC reports directly to the Supreme Leader, not the president — so a strike attributed to 'Iran' is a deliberate decision of the Guard, the actor that also conducts ship seizures in Hormuz.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **IRGC** was created in 1979 to defend the *revolution itself*, not the borders — a separate chain of command that lets Tehran strike while the foreign ministry negotiates."
+          }
+        ]
+      },
+      {
+        "heading": "THE RING OF STEEL",
+        "body": "The US does not have one base near Iran; it has an arc of them. Each Gulf monarchy hosts a different piece — air command in Qatar, naval command in Bahrain, ground logistics in Kuwait, surveillance and refueling in the UAE. The dispersal is deliberate: no single strike can decapitate the regional posture.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Qatar",
+                "value": "Al Udeid (air)",
+                "cc": "QA",
+                "weight": 10000
+              },
+              {
+                "label": "Kuwait",
+                "value": "Arifjan (army)",
+                "cc": "KW",
+                "weight": 13000
+              },
+              {
+                "label": "Bahrain",
+                "value": "5th Fleet (navy)",
+                "cc": "BH",
+                "weight": 9000
+              },
+              {
+                "label": "UAE",
+                "value": "Al Dhafra (air)",
+                "cc": "AE",
+                "weight": 3500
+              }
+            ],
+            "label": "principal US installations around the Gulf"
+          }
+        ]
+      },
+      {
+        "heading": "THE TELEGRAPHED STRIKE",
+        "body": "Iran's modern playbook is the calibrated, pre-warned strike. After the US killed Qassem Soleimani in 2020, Iran fired ballistic missiles at the Al-Asad base in Iraq — but signaled the attack in advance through Iraqi channels, allowing personnel to shelter. No Americans died. The pattern is retaliation that satisfies domestic honor without forcing escalation neither side wants.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1988",
+                "label": "Tanker War ends; US sinks IRGC boats",
+                "emphasis": "start"
+              },
+              {
+                "year": "2019",
+                "label": "Drones/missiles hit Saudi Abqaiq"
+              },
+              {
+                "year": "2020-01",
+                "label": "Ballistic missiles hit Al-Asad",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Direct missile barrage on Israel"
+              }
+            ],
+            "label": "Iran's escalating willingness to strike directly"
+          }
+        ]
+      },
+      {
+        "heading": "THE FOG OF FIRST REPORTS",
+        "body": "This story's damage claims originate solely from Iranian and Russian state wires — and in the first hours, both attacker and defender have incentives to lie. The striker inflates the hit to satisfy its public; the target downplays it to deny a win. Reliable battle-damage assessment takes days of satellite imagery and independent confirmation, not minutes.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Gulf country hosts the headquarters of the US Navy's Fifth Fleet?",
+            "options": [
+              "Qatar",
+              "Bahrain",
+              "Kuwait",
+              "United Arab Emirates"
+            ],
+            "correct": 1,
+            "explanation": "Bahrain has hosted US naval command since 1948; Qatar hosts CENTCOM's air operations at Al Udeid, a separate function."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T04:27:20.683Z",
+    "label": "The Fifth Fleet & Gulf Basing",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-10-isar-aerospace-series-d-europe-launch-sovereignty": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SOVEREIGNTY GAP",
+        "body": "For a stretch, Europe could not put a payload into orbit on its own. Russia pulled its Soyuz rockets out of the Kourou spaceport after the 2022 invasion of Ukraine, Ariane 5 retired in 2023, Ariane 6 ran years late, and Vega-C was grounded after a failure. A continent that pioneered commercial launch found itself buying rides from SpaceX.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2022-02",
+                "label": "Russia withdraws Soyuz from Kourou",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-12",
+                "label": "Vega-C fails, fleet grounded"
+              },
+              {
+                "year": "2023-07",
+                "label": "Ariane 5 retired"
+              },
+              {
+                "year": "2024-07",
+                "label": "Ariane 6 maiden flight"
+              },
+              {
+                "year": "2025-03",
+                "label": "Isar Spectrum first flight fails"
+              }
+            ],
+            "label": "how the gap opened"
+          }
+        ]
+      },
+      {
+        "heading": "THE TYRANNY OF THE ROCKET EQUATION",
+        "body": "Tsiolkovsky's equation dictates that velocity scales with the logarithm of the mass ratio — so reaching orbit demands that the overwhelming majority of a rocket's liftoff weight be propellant. A typical orbital rocket is around 90% fuel, a few percent structure, and only 2-4% payload. This is why rockets are mostly empty tanks and why shaving structural mass is worth almost any cost.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Isar's vehicle, *Spectrum*, burns a *propane–liquid oxygen* mix — chosen partly because propane is denser than the usual kerosene, letting the tanks be smaller for the same energy."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MAIDEN FLIGHTS FAIL",
+        "body": "A first orbital flight failing within a minute is closer to the norm than the exception. SpaceX's first rocket, Falcon 1, failed its first three launches before reaching orbit on the fourth — and that nearly bankrupted the company. New-space firms now treat early flights as instrumented test data, not products; the factory matters more than any single rocket.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many times did SpaceX's first rocket, Falcon 1, fail before it ever reached orbit?",
+            "options": [
+              "It succeeded on the first try",
+              "Once",
+              "Three times",
+              "It never reached orbit"
+            ],
+            "correct": 2,
+            "explanation": "Falcon 1 failed its first three flights; the fourth, in 2008, reached orbit and kept SpaceX alive."
+          }
+        ]
+      },
+      {
+        "heading": "THE FACTORY IS THE PRODUCT",
+        "body": "Isar's pitch is not one rocket but a plant scaling to 40 vehicles a year. The new-space model copies SpaceX: vertically integrate manufacturing, build in volume so each unit gets cheaper, and accept that you learn by flying. The bottleneck in launch was never physics — it was cadence. Europe's legacy program flew a handful of times a year at premium prices.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "United States",
+                "value": 145,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "China",
+                "value": 68,
+                "tone": "neutral"
+              },
+              {
+                "label": "Russia",
+                "value": 17,
+                "tone": "favorable"
+              },
+              {
+                "label": "Japan",
+                "value": 7,
+                "tone": "favorable"
+              },
+              {
+                "label": "India",
+                "value": 5,
+                "tone": "favorable"
+              },
+              {
+                "label": "Europe",
+                "value": 3,
+                "tone": "favorable"
+              }
+            ],
+            "label": "orbital launches by country, 2024 (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE EUROPE LAUNCHES",
+        "body": "Europe's flagship spaceport is in Kourou, French Guiana — near the equator, where Earth's rotation gives a free velocity boost. But new small-launch firms fly from northern Europe: Isar uses Norway's Andøya, the continent's first operational orbital spaceport on its own soil, ideal for the polar orbits that imaging and weather satellites need.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NO",
+              "SE",
+              "DE",
+              "FR"
+            ],
+            "label": "Europe's northern spaceports",
+            "caption": "Northern sites favor polar orbits; Kourou favors equatorial ones.",
+            "markers": [
+              {
+                "lat": 69.294,
+                "lng": 16.03,
+                "label": "Andøya, Norway"
+              },
+              {
+                "lat": 67.894,
+                "lng": 21.106,
+                "label": "Esrange, Sweden"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T04:28:07.762Z",
+    "label": "Europe's Launch Gap",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-10-kuwait-air-defense-systems-repelling-aerial-attack-general-s": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LAYERED-DEFENSE LOGIC",
+        "body": "Modern air defense is not one system but a stack: long-range Patriot batteries kill ballistic missiles at altitude, medium-range systems catch aircraft and cruise missiles, and short-range guns handle drones and saturation. The IRGC's preferred tactic — flooding the sky with cheap drones and missiles at once — is engineered to exhaust the expensive upper layers."
+      },
+      {
+        "heading": "THE COST-EXCHANGE TRAP",
+        "body": "A Patriot interceptor costs roughly $4 million; the Shahed-style drone it shoots down costs $20,000–50,000. Defenders win every engagement and lose the economics. This asymmetry — the same logic that makes naval mines effective — is the central problem of Gulf air defense, not the hit rate.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Patriot PAC-3",
+                "value": "~$4M",
+                "tone": "unfavorable",
+                "weight": 4000
+              },
+              {
+                "label": "SM-3 (BMD)",
+                "value": "~$12M",
+                "tone": "unfavorable",
+                "weight": 12000
+              },
+              {
+                "label": "Shahed drone",
+                "value": "~$40k",
+                "tone": "favorable",
+                "weight": 40
+              },
+              {
+                "label": "ballistic missile",
+                "value": "~$1M",
+                "tone": "neutral",
+                "weight": 1000
+              }
+            ],
+            "label": "interceptor vs. threat, per shot"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY FIRES",
+        "body": "When Tehran strikes ships or US bases, it is the Islamic Revolutionary Guard Corps, not the regular Artesh army. The IRGC was created in 1979 to defend the revolution itself, reports directly to the Supreme Leader, and runs the missile, drone, and naval-asymmetric forces — so a ceasefire signed by the foreign ministry does not automatically bind the force doing the firing.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Iran fields *two* parallel militaries: the **Artesh**, inherited from the Shah's conventional army, and the **IRGC**, a parallel state with its own navy, air force, and missile command answering only to the Supreme Leader."
+          }
+        ]
+      },
+      {
+        "heading": "WHY KUWAIT IS IN THE BLAST RADIUS",
+        "body": "Kuwait sits at the head of the Gulf, wedged between Iran, Iraq, and Saudi Arabia, and hosts Camp Arifjan and Ali Al Salem Air Base — major US logistics hubs. Missiles and drones aimed at US facilities in Bahrain or Iraq overfly or fall short into Kuwaiti airspace, which is why Kuwait engages targets it did not provoke.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KW",
+              "IR",
+              "IQ",
+              "SA",
+              "BH",
+              "QA"
+            ],
+            "label": "the head of the Gulf",
+            "markers": [
+              {
+                "lat": 29.3375,
+                "lng": 47.9581,
+                "label": "Kuwait City"
+              },
+              {
+                "lat": 29,
+                "lng": 47.9,
+                "label": "Camp Arifjan"
+              },
+              {
+                "lat": 26.2235,
+                "lng": 50.5876,
+                "label": "5th Fleet, Bahrain"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 1991 SCUD PRECEDENT",
+        "body": "This is not new ground for Kuwait. During the 1991 Gulf War, Iraqi Scud missiles rained on Kuwait, Saudi Arabia, and Israel; Patriot batteries claimed high intercept rates that postwar analysis sharply revised downward. The lesson the Gulf states absorbed: claimed intercepts and confirmed kills are very different numbers — which is why the current Kuwaiti statement reports engagements, not results."
+      },
+      {
+        "heading": "THE FOG-OF-WAR SOURCING",
+        "body": "The confirmation here is routed through Russian state media relaying a Kuwaiti official statement. In wartime, the chain of attribution matters as much as the claim: each relay has an incentive to shape the narrative, and 'engaged targets' with no damage or intercept figures is precisely the kind of ambiguous claim that survives because it cannot be checked.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the IRGC's chain of command complicate an Iranian ceasefire?",
+            "options": [
+              "It reports to the Supreme Leader, not the foreign ministry that signs deals",
+              "It is controlled by a foreign government",
+              "It has no missile or naval forces of its own",
+              "It is part of the regular Artesh army"
+            ],
+            "correct": 0,
+            "explanation": "The IRGC answers directly to the Supreme Leader, so a deal signed by Iran's diplomats does not automatically bind the force conducting strikes."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T04:28:33.760Z",
+    "label": "Gulf Air Defense & the IRGC",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-10-pakistan-ultra-processed-food-tax-zardari-petition": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 'ULTRA-PROCESSED' ACTUALLY MEANS",
+        "body": "The term isn't marketing — it's a formal category. Brazilian epidemiologist Carlos Monteiro's NOVA system sorts food not by nutrients but by degree of industrial transformation: group four is formulations of substances extracted from food (oils, starches, protein isolates) plus additives you'd never find in a home kitchen. The test is the ingredient list, not the calorie count.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Under **NOVA**, a sugary home-made dessert is *processed*; a mass-produced biscuit with emulsifiers and flavor enhancers is *ultra-processed*. The distinction is industrial formulation, not sweetness."
+          }
+        ]
+      },
+      {
+        "heading": "THE PIGOVIAN LOGIC",
+        "body": "A sin tax rests on a century-old idea from economist Arthur Pigou: when a product imposes costs on others — here, the diabetes and heart-disease bills a public health system eventually pays — taxing it makes the buyer face the true cost. The tax is meant to shrink consumption first and raise revenue second. The two goals quietly conflict: a tax that works destroys its own base."
+      },
+      {
+        "heading": "THE MEXICO PRECEDENT",
+        "body": "Governments don't theorize this anymore — they copy. Mexico imposed a one-peso-per-litre soda tax in 2014 and saw purchases fall measurably within a year, especially among the poorest households. The UK's 2018 levy was designed differently: it taxed by sugar tier, which pushed manufacturers to reformulate rather than pay. Pakistan would be joining a well-worn experiment.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Mexico",
+                "value": "1 peso/L",
+                "cc": "MX"
+              },
+              {
+                "label": "UK",
+                "value": "tiered '18",
+                "cc": "GB"
+              },
+              {
+                "label": "Saudi",
+                "value": "50% excise",
+                "cc": "SA"
+              },
+              {
+                "label": "S. Africa",
+                "value": "~11%",
+                "cc": "ZA"
+              }
+            ],
+            "label": "how sugar taxes are designed"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PAKISTAN, WHY NOW",
+        "body": "This isn't an abstract health campaign. Pakistan carries one of the highest adult diabetes rates on earth — roughly a quarter to a third of adults — driven by genetics, urbanization, and a diet shift toward cheap packaged calories. A health-system already strained makes the external-cost argument unusually concrete.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Adult diabetes prevalence",
+            "peers": [
+              {
+                "value": 31,
+                "cc": "PK"
+              },
+              {
+                "value": 25,
+                "cc": "KW"
+              },
+              {
+                "value": 20,
+                "cc": "EG"
+              },
+              {
+                "value": 17,
+                "cc": "MX"
+              },
+              {
+                "value": 13,
+                "cc": "CN"
+              },
+              {
+                "value": 11,
+                "cc": "US"
+              },
+              {
+                "value": 9,
+                "cc": "IN"
+              },
+              {
+                "value": 6,
+                "cc": "GB"
+              }
+            ],
+            "subjectCc": "PK",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "THE REGRESSIVE CATCH",
+        "body": "Sin taxes fall hardest on the poor, who spend a larger share of income on cheap calories. Defenders flip this: the poor also suffer the most disease and benefit most when consumption drops. The fight over a junk-food tax is rarely about health science — it's about which households absorb the cost, and which industries fund the opposition.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the NOVA system, which of these counts as 'ultra-processed'?",
+            "options": [
+              "Packaged instant noodles with flavor sachets",
+              "A home-cooked lentil curry",
+              "Plain whole-wheat flour",
+              "Fresh unsweetened yogurt"
+            ],
+            "correct": 0,
+            "explanation": "NOVA's top tier is defined by industrial formulation and additives — not sugar or calories — so instant noodles qualify while a sweet home dish does not."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE PRESIDENT'S DESK",
+        "body": "Forwarding a petition is a signal, not a law. Under Pakistan's 18th Amendment, the presidency is largely ceremonial; budget and tax authority sit with the finance ministry and the Federal Board of Revenue. Zardari routing the heart association's petition to those bodies is political endorsement — it raises the petition's profile without committing the state to anything the revenue board hasn't agreed to."
+      }
+    ],
+    "generatedAt": "2026-06-10T04:29:26.089Z",
+    "label": "Sin Taxes & Ultra-Processed Food",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-10-portable-ultrasound-online-sex-selective-abortion-india": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHOKEPOINT LOGIC",
+        "body": "India's 1994 PCPNDT Act regulated the machine's location, not the machine. It assumed ultrasound lived inside licensed clinics, so it policed clinics: mandatory registration, logged scans, a sign on every wall stating the sex of the fetus will not be disclosed. A device that ships to a private home has no clinic to police.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The law's enforcement model is *premise-based* — it inspects registered rooms. A pocket-sized **probe that plugs into a phone** moves the scan outside every premise the inspector is allowed to enter."
+          }
+        ]
+      },
+      {
+        "heading": "THE MISSING WOMEN",
+        "body": "Economist Amartya Sen coined the phrase in 1990: across Asia, roughly 100 million women who should statistically be alive are not — lost to neglect, infanticide, and later, prenatal selection. India accounts for the largest single share. The skew is not random; it tracks regions, castes, and birth order.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the natural sex ratio at birth, with no intervention?",
+            "options": [
+              "About 105 boys per 100 girls",
+              "Exactly 100 boys per 100 girls",
+              "About 95 boys per 100 girls"
+            ],
+            "correct": 0,
+            "explanation": "Slightly more boys are born naturally (~105:100) because male infants have higher mortality; ratios above ~107 signal selection."
+          }
+        ]
+      },
+      {
+        "heading": "THE SECOND-CHILD TELL",
+        "body": "The distortion concentrates among later births. A family's first child shows a near-normal ratio; the second or third — when the first was a girl — swings sharply male. Selection is a backstop deployed when nature didn't deliver the desired son, which is why the law targeted the diagnostic moment, not the abortion.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Sex ratio at birth (boys per 100 girls)",
+            "peers": [
+              {
+                "value": 114,
+                "cc": "AZ"
+              },
+              {
+                "value": 111,
+                "cc": "CN"
+              },
+              {
+                "value": 111,
+                "cc": "VN"
+              },
+              {
+                "value": 110,
+                "cc": "AM"
+              },
+              {
+                "value": 108,
+                "cc": "IN"
+              },
+              {
+                "value": 107,
+                "cc": "GE"
+              },
+              {
+                "value": 105,
+                "cc": "US"
+              }
+            ],
+            "subjectCc": "IN",
+            "unit": "boys/100"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SONS",
+        "body": "The preference is economic, not merely cultural. Dowry makes a daughter a transfer of wealth out of the family at marriage; patrilocal custom means sons inherit land and house aging parents while daughters join their husband's household. In the absence of a state pension, a son is the retirement plan.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "CN",
+              "VN",
+              "AZ",
+              "AM",
+              "GE"
+            ],
+            "label": "where birth ratios skew male",
+            "values": [
+              {
+                "cc": "AZ",
+                "value": 114
+              },
+              {
+                "cc": "CN",
+                "value": 111
+              },
+              {
+                "cc": "VN",
+                "value": 111
+              },
+              {
+                "cc": "AM",
+                "value": 110
+              },
+              {
+                "cc": "IN",
+                "value": 108
+              },
+              {
+                "cc": "GE",
+                "value": 107
+              }
+            ],
+            "valueLabel": "BOYS PER 100 GIRLS"
+          }
+        ]
+      },
+      {
+        "heading": "THE TECHNOLOGY ALWAYS WINS",
+        "body": "Each generation of selection tech outran its ban. India outlawed prenatal sex tests in 1994; amniocentesis gave way to cheaper ultrasound, ultrasound to portable units, and now to mail-order probes. Regulation chases the device down the price curve, always one node behind the market.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1975",
+                "label": "Amniocentesis reaches Indian clinics"
+              },
+              {
+                "year": "1980",
+                "label": "Ultrasound spreads, sex tests advertised"
+              },
+              {
+                "year": "1994",
+                "label": "PCNDT Act bans prenatal sex tests",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2003",
+                "label": "Act amended to cover pre-conception"
+              },
+              {
+                "year": "2011",
+                "label": "Census shows child ratio still falling"
+              }
+            ],
+            "label": "the law vs the device"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T04:30:00.177Z",
+    "label": "Sex Selection & the Enforcement Chokepoint",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-10-us-strikes-destroy-water-tanks-southern-iran-villages": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TERRAIN",
+        "body": "Sirik county sits on Iran's Gulf of Oman coast in Hormozgan, the province that fronts the Strait of Hormuz. This is some of the driest, hottest land in Iran — interior villages depend on trucked-in and tank-stored water, not rivers, so a destroyed storage tank is not an inconvenience but the entire local supply.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE"
+            ],
+            "label": "Hormozgan & the Strait",
+            "caption": "arid coastal districts with no perennial rivers",
+            "markers": [
+              {
+                "lat": 26.5167,
+                "lng": 57.1,
+                "label": "Sirik county"
+              },
+              {
+                "lat": 27.1833,
+                "lng": 56.2667,
+                "label": "Bandar Abbas"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LAW IT BREAKS",
+        "body": "International humanitarian law treats water supplies as a protected category, not collateral. Additional Protocol I to the Geneva Conventions (1977) singles out drinking-water installations by name as objects that may not be attacked, because depriving civilians of water is a slow form of the starvation tactic the same article bans.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "It is prohibited to attack, destroy, remove or render useless objects indispensable to the survival of the civilian population, such as foodstuffs, agricultural areas, crops, livestock, drinking water installations and supplies and irrigation works.",
+            "speaker": "Additional Protocol I, Article 54(2)",
+            "year": "1977"
+          }
+        ]
+      },
+      {
+        "heading": "WHY TANKS, NOT PIPES",
+        "body": "In remote arid districts, water arrives intermittently and is held in surface tanks until households draw it down — the tank is the reservoir, the buffer, and the distribution point all at once. There is no pressurized municipal grid to fall back on, so the failure is total and immediate the moment the tank is gone, which is why the company could give no restoration timeline.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A city loses water gradually as pressure drops across a network; a tank-fed village loses it *instantly and completely* — there is no redundancy between the **storage tank** and the tap."
+          }
+        ]
+      },
+      {
+        "heading": "IRAN'S WATER FRAGILITY",
+        "body": "Iran was already one of the most water-stressed countries on earth before any strike — decades of dam-building, groundwater over-extraction, and a drying climate have pushed much of the country past the threshold where it withdraws more freshwater each year than nature replenishes. Damaged infrastructure lands on a system with almost no margin to absorb it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Iran withdraws over **80%** of its renewable freshwater annually — a level the World Resources Institute classes as *extremely high* baseline water stress, alongside its Gulf neighbours."
+          }
+        ]
+      },
+      {
+        "heading": "THE INFRASTRUCTURE PRECEDENT",
+        "body": "Targeting the systems behind water — power plants, treatment stations, pumping grids — has a long modern record. In the 1991 Gulf War, coalition strikes on Iraq's electrical grid disabled water treatment and sewage pumping nationwide; the public-health toll from contaminated water in the years after dwarfed deaths from the bombing itself. Hitting water is rarely about the immediate blast and almost always about the cascade.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the Geneva Conventions' Additional Protocol I, why are drinking-water installations specifically protected from attack?",
+            "options": [
+              "Destroying them is treated as a method of starving the civilian population",
+              "They are always located near hospitals",
+              "Water is classified as cultural property",
+              "They are too expensive to rebuild"
+            ],
+            "correct": 0,
+            "explanation": "Article 54 bans attacking objects indispensable to civilian survival precisely because cutting water and food starves civilians — a prohibited method of warfare."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T04:30:46.186Z",
+    "label": "Water as a Target of War",
+    "category": "politics",
+    "articleCount": 1
   }
 }
