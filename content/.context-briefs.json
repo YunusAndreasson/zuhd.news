@@ -342369,5 +342369,1551 @@
     "label": "Sex-Offender Registers & Vetting",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-08-apple-ai-architecture-built-around-google-gemini": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE VERTICAL INTEGRATION DOCTRINE",
+        "body": "Apple's entire advantage is owning the full stack — chips, OS, and apps designed together. Jobs's founding axiom was that the best products come from controlling every layer. Routing the core intelligence to Google is the first time in a generation Apple has rented its most important component from a rival.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phrase Apple uses is **Private Cloud Compute** — its promise that off-device queries run on Apple's own stateless silicon servers, not a third party's. Routing to *Gemini* runs queries on **Google's** infrastructure instead, outside that chain."
+          }
+        ]
+      },
+      {
+        "heading": "WHY APPLE COULDN'T JUST BUILD IT",
+        "body": "Training a frontier model takes tens of thousands of GPUs running for months, vast web-scale text, and a research org built over a decade. Apple optimized for on-device privacy and battery life, not data-center scale. The gap isn't talent — it's that the company spent ten years pointed the other way.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Apple on-device",
+                "value": "~3B",
+                "tone": "unfavorable",
+                "weight": 3
+              },
+              {
+                "label": "Gemini / GPT-class",
+                "value": "~1tn+",
+                "tone": "favorable",
+                "weight": 1000
+              }
+            ],
+            "label": "model size: on-device vs frontier (approx params)"
+          }
+        ]
+      },
+      {
+        "heading": "THE ATTESTATION PROBLEM",
+        "body": "Apple's privacy claim rests on cryptographic attestation: a device checks that the server is running exactly the published, audited software image before sending data — and Apple invites researchers to verify those images. That chain of proof only holds for hardware Apple controls. A Google server cannot offer the same guarantee, which is why 'unverified' is the precise charge.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes Apple's Private Cloud Compute privacy claim auditable in principle?",
+            "options": [
+              "A signed legal contract with the cloud provider",
+              "Cryptographic attestation that the server runs only published, inspectable code",
+              "End-to-end encryption that even the server can't read",
+              "A promise to delete logs after 30 days"
+            ],
+            "correct": 1,
+            "explanation": "Attestation lets the device refuse to send data unless the server proves it's running the exact software researchers can inspect — a guarantee that can't extend to a third party's hardware."
+          }
+        ]
+      },
+      {
+        "heading": "THE IRONY IN THE ORG CHART",
+        "body": "Apple's AI chief, John Giannandrea, ran Google's Search and AI before Apple hired him in 2018 to close exactly this gap. Eight years later, the strategy he was brought in to prevent — depending on Google for intelligence — is the one Apple shipped.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "John Giannandrea",
+                "role": "Apple SVP, AI strategy",
+                "years": "2018–",
+                "cc": "US"
+              },
+              {
+                "name": "Craig Federighi",
+                "role": "Apple SVP, software",
+                "years": "2012–",
+                "cc": "US"
+              },
+              {
+                "name": "Demis Hassabis",
+                "role": "Google DeepMind CEO",
+                "years": "2023–",
+                "cc": "US"
+              },
+              {
+                "name": "Sundar Pichai",
+                "role": "Google / Alphabet CEO",
+                "years": "2015–",
+                "cc": "US"
+              }
+            ],
+            "label": "who built which side"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT IS SEARCH",
+        "body": "This is not the first time Apple has quietly outsourced a strategic function to Google. For Safari's default search engine, Google pays Apple an enormous annual fee — a dependency the US Justice Department's antitrust case put at the center of its monopoly findings.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how much does Google pay Apple each year to stay Safari's default search engine?",
+            "options": [
+              "About $2 billion",
+              "About $20 billion",
+              "About $100 billion"
+            ],
+            "correct": 1,
+            "explanation": "Court filings in the US v. Google antitrust case put the payment near $20bn a year — the financial glue binding the two rivals long before Gemini."
+          }
+        ]
+      },
+      {
+        "heading": "WHO HOLDS THE LEVERAGE",
+        "body": "Once the intelligence layer lives on a partner's servers, the partner sets the roadmap, the pricing, and the model behavior. Apple can swap suppliers in theory, but every quarter of dependence makes the wrapper harder to replace — the classic trap of renting the part of the stack that defines your product."
+      }
+    ],
+    "generatedAt": "2026-06-10T17:29:23.650Z",
+    "label": "Apple Intelligence & the Integration Gamble",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-10-amnesty-israel-state-led-ethnic-cleansing-west-bank": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BLESSED LAND",
+        "body": "Palestine is named in the Quran as the land God blessed — Surah al-Isra opens with the Prophet's night journey to al-Aqsa, 'the farthest mosque,' and surrounding verses describe the surrounding territory as blessed for all peoples. For the reader, this is why the West Bank is never merely a real-estate dispute: the ground itself carries scriptural weight, and dispossession from it registers as a violation of sacred trust, not just property.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PS",
+              "IL",
+              "JO"
+            ],
+            "label": "the West Bank & al-Quds",
+            "markers": [
+              {
+                "lat": 31.7781,
+                "lng": 35.236,
+                "label": "al-Aqsa, Jerusalem"
+              },
+              {
+                "lat": 31.9038,
+                "lng": 35.2034,
+                "label": "Ramallah"
+              },
+              {
+                "lat": 31.5326,
+                "lng": 35.0998,
+                "label": "Hebron / al-Khalil"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TERM, PRECISELY",
+        "body": "Ethnic cleansing means rendering an area ethnically homogeneous by force — expulsion, demolition, intimidation — without necessarily intending physical extermination. It is distinct from genocide, which requires intent to destroy a group as such. The distinction matters legally, but the lived mechanism is the same: people leave because staying becomes impossible.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**Ethnic cleansing** is not a defined crime in the Rome Statute; it is prosecuted as *deportation*, *persecution*, or *forcible transfer* — each a crime against humanity. The label carries political force precisely because it sits just beside *genocide*."
+          }
+        ]
+      },
+      {
+        "heading": "THE OSLO PARTITION",
+        "body": "The 1995 Oslo II accords sliced the West Bank into three zones. Area A (Palestinian civil and security control) and Area B (Palestinian civil, Israeli security) are fragmented islands. Area C — full Israeli control — is the connective tissue: it holds the land between Palestinian towns, nearly all the open space, water, and settlement-building room.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Area C (Israeli control)",
+                "value": 60,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Area B (shared)",
+                "value": 22,
+                "tone": "neutral"
+              },
+              {
+                "label": "Area A (Palestinian)",
+                "value": 18,
+                "tone": "favorable"
+              }
+            ],
+            "label": "West Bank by administrative zone (% of land)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY AREA C IS THE LEVER",
+        "body": "Displacement concentrates in Area C because there the state controls every building permit. Palestinian construction is almost never approved, so homes are built 'illegally' and then demolished; pastoral communities are designated 'firing zones' and evicted for military training. The legal architecture, not random violence, is what makes the land empty.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How much of the West Bank is Area C, under full Israeli civil and military control?",
+            "options": [
+              "About 18%",
+              "About 40%",
+              "About 60%",
+              "About 75%"
+            ],
+            "correct": 2,
+            "explanation": "Area C is roughly 60% of the West Bank — and it surrounds and separates the Palestinian-administered enclaves of Areas A and B."
+          }
+        ]
+      },
+      {
+        "heading": "THE NAKBA AS BASELINE",
+        "body": "The current displacement is read by Palestinians against the Nakba — the 'catastrophe' of 1948, when roughly 750,000 were expelled or fled and over 400 villages were depopulated. The right of return, affirmed in UN Resolution 194, was never realized. Every subsequent removal is felt as continuation, not novelty.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1948",
+                "label": "Nakba: ~750,000 expelled",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1967",
+                "label": "West Bank occupation begins"
+              },
+              {
+                "year": "1993",
+                "label": "Oslo I signed"
+              },
+              {
+                "year": "1995",
+                "label": "Oslo II creates Areas A/B/C"
+              },
+              {
+                "year": "2005",
+                "label": "Settlement growth accelerates"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1967",
+                "to": "2026",
+                "label": "Military occupation",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "displacement, the long arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE ASSOCIATION-AGREEMENT CLAUSE",
+        "body": "Amnesty's demand to suspend EU-Israel ties points at a specific lever: the 2000 EU-Israel Association Agreement, the legal basis for preferential trade. Its opening articles make respect for human rights a binding condition of the whole deal — which is why suspension talk is legally coherent, not merely rhetorical.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Article 2 of the agreement makes human rights an *essential element* — treaty language that, in EU practice, means a breach can justify suspending the entire accord. The clause has rarely been invoked, which is exactly the gap campaigners are pressing on."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T17:30:28.138Z",
+    "label": "The West Bank: Land, Law, Displacement",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-10-anti-immigrant-violence-in-uk-shocking-un": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INTERFACE",
+        "body": "Belfast's rioting almost never happens randomly across the city — it clusters at the \"interfaces,\" the seams where nationalist and unionist neighborhoods meet. Physical \"peace walls,\" some 25 feet high, still separate these communities. Counterintuitively, there are more of these barriers standing today than there were when the 1998 peace deal was signed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How does the number of Belfast \"peace walls\" today compare with 1998, when the Good Friday Agreement was signed?",
+            "options": [
+              "Most were torn down within a decade",
+              "Roughly the same number remain",
+              "There are more barriers now than in 1998"
+            ],
+            "correct": 2,
+            "explanation": "Communities kept requesting new barriers after 1998; the count rose rather than fell, a sign peace held politically but not at street level."
+          }
+        ]
+      },
+      {
+        "heading": "THE SOUTHPORT TEMPLATE",
+        "body": "This follows a now-familiar British script. In summer 2024 a knife attack in Southport killed three children; false online claims that the attacker was a Muslim asylum-seeker triggered the worst riots England had seen in over a decade, with mosques and asylum hotels targeted across multiple towns. The attacker was in fact UK-born — but the rumor outran the correction."
+      },
+      {
+        "heading": "WHY THE RUMOR FILLS THE VACUUM",
+        "body": "Police withhold a suspect's identity in the first hours for legal reasons, which leaves an information vacuum. Decontextualized footage and invented details spread faster than verified facts because they offer a story immediately. By the time officials confirm the truth, the mobilizing narrative has already done its work.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pattern has a name in research circles: a *data void* — a moment of high public demand for information with no authoritative supply, which bad actors rush to fill."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT OFCOM CAN ACTUALLY DO",
+        "body": "Britain's 2023 Online Safety Act made Ofcom the platform regulator, with power to fine companies up to 10% of global revenue for failing to curb illegal content, including incitement to hatred. But \"warnings\" are not enforcement: the codes of practice phase in slowly, investigations take months, and a platform can litigate. The threat is real but rarely fast.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UK (OSA)",
+                "value": "~10%",
+                "cc": "GB",
+                "weight": 10
+              },
+              {
+                "label": "EU (DSA)",
+                "value": "~6%",
+                "cc": "EU",
+                "weight": 6
+              }
+            ],
+            "label": "max fine as share of global revenue"
+          }
+        ]
+      },
+      {
+        "heading": "THE LONG ARC",
+        "body": "Northern Ireland's street violence sits on three decades of layered grievance: first sectarian (Catholic vs. Protestant, nationalist vs. unionist), then Brexit-era constitutional anxiety, and now anti-immigrant sentiment grafted onto the same interface geography. The actors and the flashpoints change; the fault lines are inherited.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1969",
+                "label": "British troops deployed (Operation Banner)"
+              },
+              {
+                "year": "1972",
+                "label": "Bloody Sunday"
+              },
+              {
+                "year": "1998",
+                "label": "Good Friday Agreement",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "Loyalist riots over Brexit protocol"
+              },
+              {
+                "year": "2024",
+                "label": "Southport-linked anti-migrant riots"
+              }
+            ],
+            "label": "from sectarian to racial flashpoints"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T17:31:28.115Z",
+    "label": "Belfast, Peace Walls & Online Incitement",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-10-byd-turkey-ev-plant-deal-unravels-pivots-hungary": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CUSTOMS UNION TRAP",
+        "body": "Turkey has been in a customs union with the EU since 1995 — its industrial goods cross into Europe duty-free. But a customs union is not membership. Turkey sits outside the single market, outside EU trade negotiations, and outside the bloc's rules on what counts as 'European' content. A car built in Manisa clears the tariff but fails the origin test.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction is the whole story: a **customs union** harmonizes external tariffs on goods; the **single market** harmonizes the rules, standards, and origin definitions behind them. Turkey bought into the first and was locked out of the second."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HUNGARY",
+        "body": "Hungary offers what Turkey cannot: a seat inside the EU. It also offers the lowest corporate tax rate in the bloc — a flat 9% — and a government under Viktor Orbán that has courted Chinese capital harder than any other European capital, blocking EU measures against Beijing in exchange.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hungary",
+                "value": "9%",
+                "cc": "HU",
+                "weight": 9,
+                "tone": "favorable"
+              },
+              {
+                "label": "Ireland",
+                "value": "12.5%",
+                "cc": "IE",
+                "weight": 12.5,
+                "tone": "neutral"
+              },
+              {
+                "label": "France",
+                "value": "~25%",
+                "cc": "FR",
+                "weight": 25,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Germany",
+                "value": "~30%",
+                "cc": "DE",
+                "weight": 30,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "EU corporate tax rate (headline)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TARIFF WALL",
+        "body": "In late 2024 the EU imposed anti-subsidy duties on Chinese-made EVs, stacking up to roughly 35% on top of the standard 10% car tariff. A factory built inside the EU sidesteps the wall entirely — the cars are no longer imports. This, not labor cost, is the real driver of the plant rush into Europe.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "TR",
+              "HU"
+            ],
+            "label": "the pivot — origin, rejected site, chosen site",
+            "markers": [
+              {
+                "lat": 38.61,
+                "lng": 27.43,
+                "label": "Manisa (abandoned)"
+              },
+              {
+                "lat": 46.25,
+                "lng": 20.15,
+                "label": "Szeged plant (HU)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "RULES OF ORIGIN",
+        "body": "Trade deals decide where a product 'comes from' by measuring how much value was added locally. The EU's proposed 'Made in Europe' content thresholds count only the single market — so assembly in customs-union Turkey would not qualify a car as European, while assembly in Hungary would.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does building in Hungary, not Turkey, qualify BYD's cars as 'European'?",
+            "options": [
+              "Hungary has cheaper electricity than Turkey",
+              "Hungary is in the EU single market; Turkey is only in the customs union",
+              "Turkey charges higher export tariffs",
+              "Hungary has no labor unions"
+            ],
+            "correct": 1,
+            "explanation": "Customs-union membership clears the import tariff but does not satisfy EU rules of origin — only single-market production counts as local content."
+          }
+        ]
+      },
+      {
+        "heading": "CHINA'S EUROPEAN BEACHHEAD",
+        "body": "BYD overtook Tesla in global EV sales in 2024 and now treats Central Europe as a manufacturing base, not just an export market. Building inside the tariff wall converts a trade fight into a jobs-and-investment story that European governments find hard to refuse."
+      }
+    ],
+    "generatedAt": "2026-06-10T17:32:03.125Z",
+    "label": "Customs Union vs. Single Market",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-10-cops-arrested-using-flock-alpr-to-stalk": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW ALPR WORKS",
+        "body": "Automated License Plate Recognition cameras photograph every passing vehicle, extract the plate via OCR, and log it with a timestamp and GPS fix. A single camera captures 1,500–1,800 plates per minute. The technology is thirty years old — what changed is networking thousands of cameras into one searchable database.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Flock's edge is the *network*: a search in one town queries plates seen by cameras in **thousands of jurisdictions**, turning isolated sightings into a national movement history."
+          }
+        ]
+      },
+      {
+        "heading": "FROM EVIDENCE TO DRAGNET",
+        "body": "Traditional plate checks were reactive — an officer ran a plate during a stop. ALPR inverts this: it records everyone continuously, so the database already contains your movements before any suspicion exists. The car becomes a tracker you cannot turn off."
+      },
+      {
+        "heading": "WHY MISUSE IS PREDICTABLE",
+        "body": "Mass surveillance databases are abused by the people who hold the keys, not by outside hackers. The NSA coined the term LOVEINT for analysts who spied on spouses and lovers; police have done the same with criminal-records systems for decades. A tool that logs everyone and audits no one converts ordinary jealousy into a stalking weapon.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1956",
+                "label": "FBI launches COINTELPRO"
+              },
+              {
+                "year": "2013",
+                "label": "NSA discloses 'LOVEINT' cases",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2016",
+                "label": "AP: cops misuse criminal databases nationwide"
+              },
+              {
+                "year": "2026",
+                "label": "Officers arrested for stalking via Flock"
+              }
+            ],
+            "label": "insider abuse of surveillance systems"
+          }
+        ]
+      },
+      {
+        "heading": "THE AUDIT GAP",
+        "body": "An officer ran his ex-girlfriend's plate 69 times before anyone noticed. The failure is architectural: without real-time anomaly flagging, a search that should never happen looks identical to a legitimate one. Logs that nobody reads deter nobody.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is repeated personal misuse of an ALPR system hard to catch?",
+            "options": [
+              "Searches require no stated reason and aren't audited in real time",
+              "The cameras don't record who ran each search",
+              "Plate data is encrypted from the police",
+              "Federal law bans reviewing officer search logs"
+            ],
+            "correct": 0,
+            "explanation": "Flock logs searches but has no live audit to flag a suspicious pattern, so misuse blends in until a victim complains."
+          }
+        ]
+      },
+      {
+        "heading": "THE THIRD-PARTY LOOPHOLE",
+        "body": "For decades US courts held that data you expose to a third party — a phone company, a camera vendor — carries no expectation of privacy, so police need no warrant to query it. The 2018 Carpenter ruling cracked this for long-term cell-location tracking, but ALPR networks sit in the unsettled space the decision left open.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Carpenter v. United States held that tracking someone's location over time is a *search* requiring a warrant — but it pointedly declined to extend the rule to **conventional surveillance tools**, leaving plate-reader networks legally ambiguous."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T17:32:33.510Z",
+    "label": "Plate Readers & Insider Abuse",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-10-cyberattack-australian-sugar-mills-harvest": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "IT VS OT",
+        "body": "The systems that run a factory floor — the controllers opening valves, spinning centrifuges, regulating boiler pressure — are a separate world from the email-and-spreadsheets layer most cyberattacks hit. When this operational layer goes dark, you can't crush cane; a backup of your inbox doesn't restart a mill.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The split is **IT** (information technology — data, email, billing) versus **OT** (operational technology — the PLCs and SCADA systems steering physical machinery). Attackers increasingly aim at OT because downtime there is measured in spoiled product, not lost files."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MILLS ARE SOFT TARGETS",
+        "body": "Industrial control systems were built for reliability over decades, not for the internet — many still run unpatched software from the 2000s on the assumption they were 'air-gapped.' But remote monitoring, vendor diagnostics, and plant Wi-Fi quietly bridged those gaps years ago, leaving brittle, never-rebooted machinery exposed."
+      },
+      {
+        "heading": "THE CRUSH CLOCK",
+        "body": "Cut sugarcane is a chemistry experiment running against you. Once severed from the root, the stalk's enzymes and microbes start converting sucrose into glucose and fructose — sugars the mill can't crystallize and sell. The deterioration begins within hours and is severe within a couple of days, which is why mills run around the clock during harvest.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why must harvested sugarcane be crushed within roughly a day or two?",
+            "options": [
+              "Cut cane begins breaking sucrose down into unsellable sugars",
+              "Cane dries out and becomes too hard to crush",
+              "Refrigeration regulations require fast processing",
+              "Government quotas reset every 48 hours"
+            ],
+            "correct": 0,
+            "explanation": "Enzymes and microbes invert the cane's sucrose into glucose and fructose, which won't crystallize — so harvest losses mount with every day a mill stays offline."
+          }
+        ]
+      },
+      {
+        "heading": "WHY TIMING IS THE LEVERAGE",
+        "body": "Ransomware extortion works on the value of time. A bank can pay later; a sugar mill mid-harvest with cane rotting in trucks cannot. Attackers increasingly target seasonal and perishable industries — meatpackers, grain handlers, harvesters — precisely because the cost of every offline hour is visible and rising, which sharpens the incentive to pay fast."
+      },
+      {
+        "heading": "AUSTRALIA'S PLACE IN THE TRADE",
+        "body": "Almost all of Australia's cane grows in a thin coastal strip of Queensland, and roughly 80% of the raw sugar it produces is exported — making the country one of the world's largest sugar exporters despite a modest share of global output. A harvest disruption there ripples into Asian refineries that buy the raw product.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Brazil",
+                "value": "~45%",
+                "cc": "BR",
+                "weight": 45,
+                "tone": "neutral"
+              },
+              {
+                "label": "Thailand",
+                "value": "~11%",
+                "cc": "TH",
+                "weight": 11,
+                "tone": "neutral"
+              },
+              {
+                "label": "Australia",
+                "value": "~5%",
+                "cc": "AU",
+                "weight": 5,
+                "tone": "favorable"
+              },
+              {
+                "label": "India",
+                "value": "~4%",
+                "cc": "IN",
+                "weight": 4,
+                "tone": "neutral"
+              },
+              {
+                "label": "Guatemala",
+                "value": "~3%",
+                "cc": "GT",
+                "weight": 3,
+                "tone": "neutral"
+              }
+            ],
+            "label": "top raw sugar exporters (approx. share)"
+          },
+          {
+            "type": "locations",
+            "codes": [
+              "AU"
+            ],
+            "label": "Queensland's cane belt",
+            "caption": "Australia's mills cluster along a narrow tropical coastal strip",
+            "markers": [
+              {
+                "lat": -19.57,
+                "lng": 147.4,
+                "label": "Burdekin (Ayr)"
+              },
+              {
+                "lat": -21.14,
+                "lng": 149.18,
+                "label": "Mackay"
+              },
+              {
+                "lat": -24.87,
+                "lng": 152.35,
+                "label": "Bundaberg"
+              },
+              {
+                "lat": -17.53,
+                "lng": 146.03,
+                "label": "Tully"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T17:33:20.060Z",
+    "label": "OT Ransomware & the Crush Clock",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-10-early-step-evolution-of-photosynthesis": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "TWO KINDS OF PHOTOSYNTHESIS",
+        "body": "Most people picture photosynthesis as plants making oxygen, but that is the late, advanced version. The older form — anoxygenic photosynthesis, still used by purple and green bacteria — captures light and fixes carbon without ever splitting water or releasing oxygen. The article's lineage preserves that earlier chemistry."
+      },
+      {
+        "heading": "THE WATER-SPLITTING PROBLEM",
+        "body": "Pulling electrons out of water is one of the hardest oxidation reactions in biology — water clings to its electrons. Life solved it once, with a four-manganese cluster (the oxygen-evolving complex) that acts like a tiny battery, storing four light-driven charges before ripping a water molecule apart. Every plant, alga, and cyanobacterium on Earth inherited that single invention.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The whole leap is one enzyme: the **oxygen-evolving complex**. Splitting water needs two linked light reactions wired in series — the *Z-scheme* — because no single photosystem is powerful enough alone."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT CAME BEFORE WATER",
+        "body": "Before life could crack water, photosynthesizers fed on electron donors that give up electrons easily — hydrogen sulfide from volcanic vents, dissolved ferrous iron, hydrogen gas. Water was the prize precisely because it is everywhere; the organism that learned to use it was no longer limited by scarce chemical fuel.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hydrogen gas",
+                "value": "very easy",
+                "tone": "favorable"
+              },
+              {
+                "label": "Hydrogen sulfide",
+                "value": "easy",
+                "tone": "favorable"
+              },
+              {
+                "label": "Ferrous iron",
+                "value": "moderate",
+                "tone": "neutral"
+              },
+              {
+                "label": "Water",
+                "value": "hardest",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "electron donors, easiest to hardest"
+          }
+        ]
+      },
+      {
+        "heading": "THE POISON THAT REMADE THE PLANET",
+        "body": "Oxygen was a toxic waste product. As cyanobacteria spread, free oxygen built up and triggered the Great Oxidation Event around 2.4 billion years ago — a mass extinction for the anaerobic life that then dominated, and the reason the atmosphere you breathe exists. Photosynthesis is the only biological process to ever rewrite a planet's air.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did Earth's first photosynthesizers use as an electron source before water?",
+            "options": [
+              "Hydrogen sulfide and dissolved iron",
+              "Carbon dioxide",
+              "Atmospheric oxygen",
+              "Liquid methane"
+            ],
+            "correct": 0,
+            "explanation": "Early anoxygenic photosynthesis ran on easy-to-oxidize donors like hydrogen sulfide and ferrous iron; water-splitting and oxygen came hundreds of millions of years later."
+          }
+        ]
+      },
+      {
+        "heading": "THE ENGINEERING PRIZE",
+        "body": "The enzyme that fixes carbon, RuBisCO, is famously sluggish and often grabs oxygen by mistake — a flaw baked in because it evolved before oxygen was abundant. Understanding the pre-oxygen photosystem matters because engineers want to build carbon-fixing systems that sidestep RuBisCO's ancient inefficiencies and outperform any leaf."
+      }
+    ],
+    "generatedAt": "2026-06-10T17:34:01.734Z",
+    "label": "The Origin of Photosynthesis",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-10-egypt-bread-subsidy-merge-cash-transfer-cut": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "BREAD MEANS LIFE",
+        "body": "In Egyptian Arabic the word for bread is not the classical khubz but aish — the same root as 'to live.' The subsidized round loaf is called baladi, 'of the country.' This is not metaphor: for tens of millions, the five-piastre loaf is the daily margin between sufficiency and hunger, which is why no government touches it lightly.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The staple loaf is *aish baladi* — literally *living-bread of the country*. To threaten the subsidy is, linguistically, to threaten **life itself**."
+          }
+        ]
+      },
+      {
+        "heading": "A WARTIME RELIC THAT NEVER ENDED",
+        "body": "The bread subsidy began as WWII rationing under British occupation and was entrenched by Nasser's social contract after 1952: the state guarantees cheap bread, the people accept authoritarian rule. Every president since has inherited that bargain — and discovered it is far easier to keep than to unwind.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1941",
+                "label": "Wartime bread rationing begins",
+                "emphasis": "start"
+              },
+              {
+                "year": "1977",
+                "label": "Bread Intifada",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2014",
+                "label": "Smart-card 'tamween' targeting"
+              },
+              {
+                "year": "2016",
+                "label": "IMF deal, pound floated"
+              },
+              {
+                "year": "2024",
+                "label": "Loaf price raised, first in ~30yrs"
+              },
+              {
+                "year": "2026",
+                "label": "Merge into cash transfers"
+              }
+            ],
+            "label": "the subsidy's long life"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1977 PRECEDENT",
+        "body": "When Sadat cut subsidies under IMF pressure in January 1977, riots erupted across Egypt within hours; roughly 80 people died. Sadat dismissed it as the 'intifada of thieves' but reversed the cuts in 48 hours. The lesson stamped into every Egyptian cabinet since: bread reform is survivable only if it is invisible — which is exactly what 'wake up one morning removed' describes.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What triggered Egypt's 1977 'Bread Intifada'?",
+            "options": [
+              "IMF-driven cuts to staple subsidies",
+              "A wheat blight that emptied bakeries",
+              "Defeat in a war with Israel",
+              "A sudden collapse of the pound"
+            ],
+            "correct": 0,
+            "explanation": "Sadat lifted subsidies under IMF conditions; riots killed ~80 people and he reversed the cuts within two days."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IN-KIND BEAT CASH",
+        "body": "A loaf subsidy is inflation-proof by design: the recipient gets bread, whatever flour costs. A cash transfer fixes a number of pounds — and a number erodes the moment the currency falls. Egypt floated the pound under its IMF program and lost most of its dollar value; a 2024 cash figure buys a fraction of the bread it did, while the loaf entitlement would have held.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              52.8269,
+              52.9233,
+              52.9288,
+              52.897,
+              52.8709,
+              52.834473,
+              53.0759,
+              53.3218,
+              53.1117,
+              53.41957,
+              52.9137,
+              53.0009,
+              53.093587,
+              52.5954,
+              52.2154,
+              52.2172,
+              52.226,
+              52.2213,
+              52.2712,
+              52.22,
+              52.4091,
+              52.0084,
+              51.8616,
+              51.9361,
+              51.8166,
+              51.7562,
+              51.77,
+              51.943,
+              52.1591,
+              51.7095
+            ],
+            "periods": [
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9",
+              "Jun 10"
+            ],
+            "label": "Egyptian pound",
+            "unit": "EGP / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE IMPORT TRAP",
+        "body": "Egypt is perennially the world's largest or second-largest wheat importer, buying the bulk of it from Russia and Ukraine across the Black Sea. That is why the subsidy is also a foreign-policy exposure: a Black Sea war or a Russian export ban lands in Cairo's bakeries within weeks, and the state — not the consumer — has historically absorbed the shock.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Wheat imports",
+            "peers": [
+              {
+                "value": 12,
+                "cc": "EG"
+              },
+              {
+                "value": 11,
+                "cc": "ID"
+              },
+              {
+                "value": 10,
+                "cc": "CN"
+              },
+              {
+                "value": 9,
+                "cc": "TR"
+              },
+              {
+                "value": 8,
+                "cc": "DZ"
+              },
+              {
+                "value": 7,
+                "cc": "BR"
+              },
+              {
+                "value": 6,
+                "cc": "PH"
+              }
+            ],
+            "subjectCc": "EG",
+            "unit": "mn tonnes/yr"
+          }
+        ]
+      },
+      {
+        "heading": "WHO GETS CUT, AND HOW",
+        "body": "The reform's real mechanism is targeting: moving from a near-universal entitlement to a means-tested list, then handing those who remain cash instead of bread. The danger is the targeting error — strip 10 million names from a 70 million roll with no announced date, and some of those removed will be people who genuinely needed it. The subsidy's century-long durability came precisely from not asking who deserved it."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-10"
+    ],
+    "generatedAt": "2026-06-10T17:34:59.042Z",
+    "label": "Egypt's Bread Subsidy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-10-latam-marijuana-trade-reversal-paraguay-bust": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PREMIUM IS THE POINT",
+        "body": "Prohibition does not eliminate a drug's value — it concentrates it. The entire street price of an illegal good is a risk premium paid to whoever is willing to carry it past the law. Legalize the good in one market and that premium collapses there, while staying intact next door. Smugglers simply follow the gradient."
+      },
+      {
+        "heading": "PARAGUAY, THE BREADBASKET",
+        "body": "Paraguay has been the cannabis supplier for the entire Southern Cone for decades, its plantations clustered along the porous Brazilian border around Pedro Juan Caballero. The local product is prensado — leaf compressed into dense bricks for transport, low-grade and seed-heavy. For fifty years the flow ran one way: out of Paraguay into Brazil, Argentina and Uruguay.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PY",
+              "BR",
+              "AR",
+              "UY"
+            ],
+            "label": "the Southern Cone cannabis corridor",
+            "markers": [
+              {
+                "lat": -22.5478,
+                "lng": -55.7256,
+                "label": "Pedro Juan Caballero"
+              },
+              {
+                "lat": -25.2867,
+                "lng": -57.3333,
+                "label": "Asunción"
+              }
+            ]
+          },
+          {
+            "type": "prose",
+            "text": "The Paraguayan brick is called *prensado* — pressed; the seedless high-potency flower it now competes against is *sinsemilla*, Spanish for *without seed*."
+          }
+        ]
+      },
+      {
+        "heading": "THE POTENCY GAP",
+        "body": "What flipped the trade is quality. Decades of selective breeding and indoor cultivation pushed legal US dispensary flower past 20% THC, while Paraguayan brick weed sits around 5%. A product engineered in legal markets is now the premium good that gets smuggled south.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "1970s leaf",
+                "value": "~2%",
+                "weight": 2,
+                "tone": "neutral"
+              },
+              {
+                "label": "PY prensado",
+                "value": "~5%",
+                "weight": 5,
+                "tone": "neutral"
+              },
+              {
+                "label": "US flower",
+                "value": "~20%",
+                "weight": 20,
+                "tone": "favorable"
+              },
+              {
+                "label": "Concentrate",
+                "value": "~80%",
+                "weight": 80,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "typical THC content by product"
+          }
+        ]
+      },
+      {
+        "heading": "THE ARBITRAGE",
+        "body": "Once US states legalized, a glut of high-grade flower drove wholesale prices in Colorado and Oregon to a fraction of their illicit-era highs. That same flower, carried to a market where it remains banned and where nothing local matches its strength, commands a multiple of its origin price. The seizure's $3.6m valuation is that gradient made visible.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1996",
+                "label": "California: medical cannabis"
+              },
+              {
+                "year": "2012",
+                "label": "Colorado & Washington: recreational",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018",
+                "label": "Canada legalizes nationally"
+              },
+              {
+                "year": "2021",
+                "label": "Uruguay & Mexico expand access"
+              }
+            ],
+            "label": "US legalization wave"
+          }
+        ]
+      },
+      {
+        "heading": "THE LESSON OF PROHIBITION",
+        "body": "Economists call this the iron law of prohibition: enforcement pushes the market toward more concentrated, higher-value forms because potency-per-volume is what survives the risk of being caught. The same logic turned weak colonial-era spirits into bootleg moonshine under US alcohol Prohibition. Cannabis is now running the law in reverse — legal supply flowing back toward the prohibited markets that still pay the premium.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did high-potency US cannabis start flowing south into South America?",
+            "options": [
+              "Legalization collapsed US prices while it stayed banned and pricey abroad",
+              "South America stopped growing its own cannabis",
+              "It is cheaper to grow cannabis in Florida than Paraguay",
+              "US courts ordered surplus cannabis exported"
+            ],
+            "correct": 0,
+            "explanation": "Legalizing in one market collapses the risk premium there; the premium survives in markets where the drug is still banned, so supply flows toward them."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T17:35:44.214Z",
+    "label": "The Legalization Arbitrage",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-10-ob-gyns-maternal-vaccine-guidance-conflicts-cdc": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BODY THAT ACTUALLY DECIDES",
+        "body": "The FDA approves a vaccine as safe and effective, but it does not tell doctors who should get it. That job belongs to the Advisory Committee on Immunization Practices, a 15-member panel of outside experts that votes on the schedule. Once the CDC director signs off, the ACIP recommendation — not the FDA license — becomes the official national guidance.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Approval and recommendation are two separate gates. The **FDA** answers *can this be sold?*; **ACIP** answers *who should get it, and when?* A vaccine can stay licensed while quietly vanishing from the schedule."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE RECOMMENDATION IS THE MONEY",
+        "body": "The Affordable Care Act requires private insurers to cover ACIP-recommended vaccines with no copay, and the federal Vaccines for Children program supplies them free to roughly half of US children based on the same list. Drop a shot from the schedule and you don't just change advice — you remove the legal trigger for free coverage. That is why a medical society's competing guidance is more than a press release; it is a fight over what gets paid for.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In the US, which body's recommendation legally triggers no-copay insurance coverage of a vaccine?",
+            "options": [
+              "The FDA, when it licenses the vaccine",
+              "ACIP, once adopted by the CDC",
+              "The vaccine's manufacturer",
+              "The patient's individual doctor"
+            ],
+            "correct": 1,
+            "explanation": "The ACA ties first-dollar coverage to vaccines on the CDC-adopted ACIP schedule — so removing a shot from that list can strip its free coverage."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PREGNANCY IS THE TARGET",
+        "body": "A newborn's immune system can't mount its own defense for months, and the flu vaccine isn't given until six months of age. Vaccinating the mother solves this: antibodies cross the placenta in the third trimester and circulate in the infant after birth. The pregnant patient is vaccinated partly to protect someone who cannot yet be vaccinated at all.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is *passive immunity* — the mother manufactures the antibodies and ships them across the placenta, plus more through breast milk. The infant borrows a defense it can't yet build."
+          }
+        ]
+      },
+      {
+        "heading": "THE GOVERNANCE ARC",
+        "body": "The current system was built incrementally over sixty years, each layer added after a crisis. What makes 2025 unusual is that the lever being pulled — the composition of the advisory committee itself — was the one piece long treated as insulated from a single official's preferences.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1964",
+                "label": "ACIP established as the federal advisory panel"
+              },
+              {
+                "year": "1993",
+                "label": "Vaccines for Children, after measles resurgence"
+              },
+              {
+                "year": "2010",
+                "label": "ACA ties coverage to ACIP list"
+              },
+              {
+                "year": "2025",
+                "label": "ACIP panel dismissed and reconstituted",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026",
+                "label": "Medical societies issue rival schedules"
+              }
+            ],
+            "label": "how vaccine guidance got centralized"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SOCIETIES CAN GO SOLO",
+        "body": "Professional bodies like ACOG and the pediatric academies write their own clinical guidelines independent of government — they always have. What's new is the divergence: when the society's schedule and the federal schedule say different things, physicians follow their specialty's standard of care, but insurers may still anchor reimbursement to the CDC's list. The patient ends up caught in the gap between what their doctor advises and what their plan will pay for."
+      }
+    ],
+    "generatedAt": "2026-06-10T17:36:26.224Z",
+    "label": "Who Sets the Vaccine Schedule",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-10-pakistan-govt-fuel-levy-cost-push-inflation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "TWO KINDS OF INFLATION",
+        "body": "Demand-pull inflation comes from too much money chasing too few goods — and a central bank can cool it by raising rates. Cost-push inflation comes from a supply-side shock that raises the price of an input everything depends on. Rate hikes do nothing to the input price; they only suppress demand on top of an already-squeezed economy. That is the trap this story describes.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't interest-rate hikes cure a fuel-levy-driven inflation spike?",
+            "options": [
+              "The hikes raise the levy further",
+              "It's cost-push — rates don't touch the input price",
+              "Central banks can't change rates during an IMF program",
+              "Fuel prices are set in dollars, not rupees"
+            ],
+            "correct": 1,
+            "explanation": "A levy raises the cost of an input directly; tightening only crushes demand and raises debt-service costs without lowering the fuel price itself."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THIS LEVY, SPECIFICALLY",
+        "body": "Pakistan's Petroleum Development Levy is a fixed charge per litre, not a percentage of price. Crucially, it is classified as federal non-tax revenue — which means, unlike general sales tax, it is NOT pooled and shared with the provinces under the constitutional NFC revenue-sharing formula. The federal government keeps every rupee, which is exactly why it leans on the levy when it needs cash it doesn't have to split.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The instrument is the *Petroleum Development Levy* — a per-litre charge that bypasses the **NFC Award** that splits ordinary tax revenue with the provinces. That structural quirk is why fiscal pressure always lands here first."
+          }
+        ]
+      },
+      {
+        "heading": "THE COORDINATION FAILURE",
+        "body": "Economists call this a fiscal-monetary conflict: the treasury raises fuel prices to hit revenue targets while the central bank raises rates to fight the resulting inflation. Each arm is rational alone; together they amplify the squeeze. The classic warning is Sargent and Wallace's 1981 result — when fiscal dominance forces the issue, tight money can eventually make inflation worse, not better, because it just piles up debt the state must later monetize."
+      },
+      {
+        "heading": "THE IMPORT-PRICE AMPLIFIER",
+        "body": "Pakistan imports most of its refined fuel, priced in dollars. So the rupee's value is a second lever on the pump price: every step the currency falls makes the same barrel cost more rupees, before the levy is even added. A weak rupee and a rising levy push in the same direction, which is why fuel inflation in Pakistan rarely comes from one cause alone.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377,
+              278.485848,
+              278.494701,
+              278.137253,
+              277.408487,
+              278.412506,
+              278.512908,
+              278.575,
+              277.445439,
+              278.55,
+              278.55,
+              278.494021,
+              278.3,
+              278.45,
+              278.61849,
+              278.35,
+              278.5,
+              278.5,
+              278.440126,
+              278.250184,
+              278.85127
+            ],
+            "periods": [
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9",
+              "Jun 10"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE IMF LOCK",
+        "body": "The reason the levy can't simply be cut is that the IMF program counts it toward agreed revenue floors. Pakistan has now entered IMF arrangements more than twenty times since 1958 — among the most of any member — and each program tightens the conditions because the previous one failed to fix the underlying gap between what the state spends and what it can tax.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1958",
+                "label": "First IMF standby",
+                "emphasis": "start"
+              },
+              {
+                "year": "1988",
+                "label": "Structural adjustment era begins"
+              },
+              {
+                "year": "2008",
+                "label": "Balance-of-payments rescue"
+              },
+              {
+                "year": "2019",
+                "label": "$6bn Extended Fund Facility"
+              },
+              {
+                "year": "2023",
+                "label": "Standby to avert default",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "New multi-year EFF"
+              }
+            ],
+            "label": "Pakistan's IMF dependency"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DIESEL HITS HARDEST",
+        "body": "A fuel levy is not felt evenly. Diesel powers trucks, tractors, rail, and irrigation pumps — the backbone of food production and freight. A diesel price rise feeds straight into food and transport costs, which weigh most in poor households' budgets. That is the mechanism by which a single line in a budget document becomes a double-digit inflation print and a political problem."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-10"
+    ],
+    "generatedAt": "2026-06-10T17:37:10.448Z",
+    "label": "Cost-Push Inflation & the Fuel Levy",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-10-tajikistan-death-in-detention-police-on-trial": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE CHARGE MATTERS MORE THAN THE TRIAL",
+        "body": "Prosecutors can describe the same death two ways: as 'exceeding official authority' or as torture. The first treats it as one officer overstepping; the second names a method the state uses to extract confessions. Choosing the lesser charge concedes the body but protects the practice — and that choice is made before any verdict."
+      },
+      {
+        "heading": "WHAT 'TORTURE' LEGALLY MEANS",
+        "body": "Under the 1984 UN Convention Against Torture, the defining element is not the severity of pain but who inflicts it: severe suffering deliberately caused by — or with the consent of — a public official, to obtain information or a confession. That state-actor element is exactly what a torture charge would put on the record, and exactly what a downgraded charge erases.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the UN Convention Against Torture, what distinguishes torture from an ordinary assault?",
+            "options": [
+              "It is inflicted by, or with the consent of, a state official",
+              "It leaves permanent physical injury",
+              "It takes place inside a prison",
+              "It is planned in advance rather than spontaneous"
+            ],
+            "correct": 0,
+            "explanation": "The Convention's hinge is the actor and purpose — a public official extracting information — not the degree or location of the harm."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONFESSION ENGINE",
+        "body": "Tajikistan's police inherited the Soviet militsiya, where investigation was built around the confession (priznaniye) rather than physical evidence. When a guilty verdict is treated as the only acceptable outcome, pressure on the detainee becomes structural, not aberrant — the torture is a feature of how the case is built.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In post-Soviet courts a confession is the *queen of evidence*. Acquittal rates across the region run a fraction of one percent — in Russia under **0.5%** — so an arrest is, in practice, already a conviction."
+          }
+        ]
+      },
+      {
+        "heading": "A LAW ON THE BOOKS, UNUSED",
+        "body": "Tajikistan ratified the Convention in 1995 and, under international pressure, finally added torture as a distinct crime to its criminal code in 2012. The gap the article exposes is not a missing law but an unused one: the offense exists, prosecutors simply decline to apply it.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1991",
+                "label": "Independence from USSR"
+              },
+              {
+                "year": "1995",
+                "label": "Ratifies UN Convention Against Torture"
+              },
+              {
+                "year": "2012",
+                "label": "Torture added as a distinct crime",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026",
+                "label": "Custody death tried without a torture charge"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1992",
+                "to": "1997",
+                "label": "Civil war",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "the torture statute that isn't used"
+          }
+        ]
+      },
+      {
+        "heading": "THE POST-SOVIET PATTERN",
+        "body": "Closed Central Asian states share the same architecture: a powerful security apparatus, courts subordinate to the executive, and rare, downgraded prosecutions when a detainee dies. Tajikistan, under one of the world's longest-serving presidents, sits at the closed end of even this group.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TJ",
+              "UZ",
+              "KG",
+              "KZ",
+              "TM"
+            ],
+            "label": "the post-Soviet militsiya belt",
+            "caption": "Five republics, one inherited policing model",
+            "markers": [
+              {
+                "lat": 38.5598,
+                "lng": 68.787,
+                "label": "Dushanbe"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T17:38:00.007Z",
+    "label": "Custody Death & the Torture Charge",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-10-trump-vows-fresh-iran-strikes-after-playing-us-for-suckers": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil spiked briefly, but markets adapted — tankers were reflagged under US and Kuwaiti colors and escorted by warships. The lesson planners took: disruption is easier to threaten than to sustain.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1980",
+                "label": "Iran–Iraq war begins"
+              },
+              {
+                "year": "1984",
+                "label": "Tanker War opens",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1987",
+                "label": "US reflags Kuwaiti tankers"
+              },
+              {
+                "year": "1988",
+                "label": "Operation Praying Mantis"
+              },
+              {
+                "year": "2019",
+                "label": "Gulf of Oman tanker mines"
+              }
+            ],
+            "label": "Gulf as a battlefield"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE BASES, NOT THE STRAIT",
+        "body": "Iran answered with missiles at US bases in Bahrain, Kuwait and Jordan rather than closing Hormuz. Striking bases signals resolve while sparing the waterway Iran's own oil exports depend on — a calibrated blow, not a self-inflicted blockade.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "BH",
+              "KW",
+              "JO",
+              "OM"
+            ],
+            "label": "where the missiles landed",
+            "markers": [
+              {
+                "lat": 26.2095,
+                "lng": 50.6112,
+                "label": "NSA Bahrain (5th Fleet)"
+              },
+              {
+                "lat": 28.8667,
+                "lng": 48.1561,
+                "label": "Camp Arifjan, Kuwait"
+              },
+              {
+                "lat": 31.8333,
+                "lng": 36.7833,
+                "label": "Muwaffaq Salti AB, Jordan"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE FIFTH FLEET ANCHOR",
+        "body": "Bahrain hosts the headquarters of the US Navy's Fifth Fleet — the standing command for the entire Gulf, Red Sea and Arabian Sea. It is the closest major US military node to Iran's coast, which is exactly why it tops Tehran's target list.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Fifth Fleet sits at **NSA Bahrain**, barely *200 km* across the water from the Iranian shore — within easy range of short-range ballistic missiles."
+          }
+        ]
+      },
+      {
+        "heading": "WHY POWER PLANTS",
+        "body": "Trump's threat to hit Iranian power plants targets the civilian grid, not nuclear or military sites. Grid strikes degrade a state's ability to function without crossing the nuclear-escalation threshold — the same logic the US used against Iraq's electrical system in 1991.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which body of water does Iran share its southern coast with at the Strait of Hormuz?",
+            "options": [
+              "Oman, across the strait",
+              "Saudi Arabia, across the strait",
+              "the UAE, across the strait",
+              "Iraq, across the strait"
+            ],
+            "correct": 0,
+            "explanation": "Hormuz sits between Iran and Oman; Iran's coastline runs the entire northern edge, and the deepest shipping channel hugs the Iranian side."
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "It is Lloyd's of London war-risk premiums — not missiles — that close a shipping lane. Once underwriters reprice the Gulf as a war zone, commercial vessels reroute regardless of whether any strait is physically blocked. The financial chokepoint tightens faster than the military one.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Roughly **21 million barrels** a day — about *a fifth* of global oil consumption — transits Hormuz, in lanes just **3 km** wide each way."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL REGIME",
+        "body": "Under UNCLOS Article 38, ships hold a right of transit passage through international straits — coastal states cannot suspend it. Iran signed UNCLOS in 1982 but never ratified it, and argues Hormuz is governed by its own domestic law, leaving the legal status of any closure permanently contested."
+      }
+    ],
+    "generatedAt": "2026-06-10T17:38:33.804Z",
+    "label": "Iran, the Gulf Bases & Hormuz",
+    "category": "politics",
+    "articleCount": 1
   }
 }
