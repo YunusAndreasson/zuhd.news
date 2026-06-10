@@ -340814,5 +340814,1560 @@
     "label": "Pre-IPO Synthetics & Book-Building",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-06-08-we-really-are-going-blind-scientists-warn-world-losing-sight": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OCEAN DID THE ABSORBING",
+        "body": "The atmosphere gets the headlines, but the ocean has absorbed roughly 90% of the excess heat trapped by greenhouse gases since the industrial era, plus about a quarter of human CO2 emissions. Without that buffer, surface air temperatures would already be catastrophically higher. The sensors being switched off measured exactly this uptake.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Oceans",
+                "value": "~91%",
+                "weight": 91,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Land",
+                "value": "~5%",
+                "weight": 5,
+                "tone": "neutral"
+              },
+              {
+                "label": "Ice melt",
+                "value": "~3%",
+                "weight": 3,
+                "tone": "neutral"
+              },
+              {
+                "label": "Atmosphere",
+                "value": "~1%",
+                "weight": 1,
+                "tone": "neutral"
+              }
+            ],
+            "label": "where Earth's excess heat has gone"
+          },
+          {
+            "type": "quiz",
+            "question": "Where has most of the excess heat from global warming actually accumulated?",
+            "options": [
+              "The atmosphere",
+              "The oceans",
+              "Melting polar ice",
+              "The land surface"
+            ],
+            "correct": 1,
+            "explanation": "The oceans have taken up roughly 90% of the excess heat — which is why ocean heat content, not air temperature, is the steadiest measure of warming."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A GAP CAN'T BE BACK-FILLED",
+        "body": "A broken climate record is not like a missing page you can re-read later. Each measurement is calibrated against the continuous series before it; once the instrument is gone, there is no reference against which to reconstruct the missing years. The signal scientists hunt — a fraction of a degree per decade — is smaller than the year-to-year noise, so only an unbroken baseline can resolve it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The climate signal hides *inside* the noise: a trend of ~**0.2°C per decade** has to be extracted from seasonal and El Niño swings many times larger. Continuity is not a nicety — it is the only thing that makes the trend visible."
+          }
+        ]
+      },
+      {
+        "heading": "THE KEELING PRECEDENT",
+        "body": "The single most important climate dataset is the Keeling Curve — atmospheric CO2 measured continuously at Mauna Loa since 1958. Its scientific power comes entirely from never having stopped; Charles Keeling spent decades fighting to keep its funding alive precisely because a single break would have destroyed comparability across the whole record.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1958",
+                "label": "Keeling begins Mauna Loa CO2 record",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2000",
+                "label": "Argo profiling-float network launches"
+              },
+              {
+                "year": "2016",
+                "label": "NSF ocean arrays come fully online"
+              },
+              {
+                "year": "2026",
+                "label": "4 of 5 US ocean arrays switched off",
+                "emphasis": "end"
+              }
+            ],
+            "label": "the continuous-record tradition"
+          }
+        ]
+      },
+      {
+        "heading": "OCEAN HEAT, THE TRUE THERMOMETER",
+        "body": "Surface air temperature lurches with weather and El Niño cycles, making any single year a poor guide. Ocean heat content integrates the energy imbalance across a vast, slow-moving reservoir, so it rises in a far smoother line. This is why oceanographers treat it as the planet's most reliable thermometer — and why losing the instruments that measure it is so costly."
+      },
+      {
+        "heading": "THE TWO PUMPS",
+        "body": "The ocean pulls down carbon two ways: the solubility pump, where cold water at high latitudes dissolves CO2 and sinks, and the biological pump, where plankton fix carbon that drifts to the deep when they die. Both are slow and sensitive to temperature — warmer water holds less gas — so the rate of uptake is itself changing, which is exactly what continuous sensors were built to catch."
+      }
+    ],
+    "generatedAt": "2026-06-10T12:32:26.845Z",
+    "label": "Ocean Observation & Climate Baselines",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-10-big-tech-big-cons-scammers-are-hiding-in-the-apps-that-make": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ONBOARDING WAVE",
+        "body": "When Reliance Jio launched in 2016 with near-free data, India added hundreds of millions of first-time internet users in a few years — many of them coming online directly through WhatsApp and Google, with no prior exposure to the older internet's scams. Fraud literacy lagged connectivity by a decade.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The newest users are the most exposed: someone whose *entire* internet is **WhatsApp** has no mental model for a forged message, a fake verification badge, or a spoofed payment screen."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE BRAND IS THE BAIT",
+        "body": "The scam doesn't fight the platform's credibility — it borrows it. A message arriving inside WhatsApp inherits the trust the user places in WhatsApp itself. The same brand recognition that makes platforms safe enough to onboard a billion people is what makes their channels the ideal delivery vehicle for fraud."
+      },
+      {
+        "heading": "PIG BUTCHERING",
+        "body": "The dominant model is a slow con, not a quick trick. The victim is befriended over weeks, drawn into a fake romance or a too-good investment, and only extracted from once fully committed — then drained in a single move.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Chinese name is *sha zhu pan* — **'pig butchering.'** The victim is the pig, 'fattened' with attention and small early payouts before the slaughter: one large, irreversible transfer."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPOUND ECONOMY",
+        "body": "Much of the volume targeting South Asia originates not from lone scammers but from industrial scam compounds in Southeast Asia — fenced facilities in Myanmar's borderlands, Cambodia, and the Laos Golden Triangle, staffed in part by trafficked workers forced to run scripts around the clock. The operation is a factory; the apps are just its distribution layer.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "MM",
+              "TH",
+              "KH",
+              "LA"
+            ],
+            "label": "scam-compound geography → target market",
+            "caption": "Compounds in Myanmar, Cambodia and Laos run scripts aimed at users across South Asia.",
+            "markers": [
+              {
+                "lat": 16.69,
+                "lng": 98.55,
+                "label": "KK Park, Myawaddy"
+              },
+              {
+                "lat": 10.63,
+                "lng": 103.52,
+                "label": "Sihanoukville"
+              },
+              {
+                "lat": 20.35,
+                "lng": 100.1,
+                "label": "Golden Triangle SEZ"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE PLATFORMS DON'T CATCH IT",
+        "body": "Onboarding a user earns revenue; moderating one is a cost. At a billion-account scale, the economics favor reach over policing — and the platforms have not published fraud-removal rates for India's newest users, which is precisely the cohort least able to self-protect.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes UPI and similar instant-payment rails so attractive to scammers?",
+            "options": [
+              "Transfers are instant and irreversible — no chargeback once authorized",
+              "They charge high fees the scammer pockets",
+              "They require no phone number to use",
+              "They are only available to first-time users"
+            ],
+            "correct": 0,
+            "explanation": "Unlike a card payment, an authorized instant push-transfer clears immediately with no built-in reversal, so a tricked victim cannot claw the money back."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T12:33:12.156Z",
+    "label": "Platform Trust & Online Fraud",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-10-congress-calls-returning-officer-s-order-on-meenakshi-natara": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HOUSE NO VOTER ELECTS",
+        "body": "The Rajya Sabha is India's upper house, and ordinary citizens never vote for it. Its members are chosen by the elected members of each state's legislative assembly, through a single transferable vote. A Madhya Pradesh seat is decided entirely by that state's MLAs — which is why party arithmetic in the state assembly, not public opinion, determines who gets in.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How are most members of India's Rajya Sabha selected?",
+            "options": [
+              "Direct popular vote, like the Lok Sabha",
+              "Elected by state legislative assembly members",
+              "Appointed by the President",
+              "Chosen by sitting members of Parliament"
+            ],
+            "correct": 1,
+            "explanation": "State MLAs elect Rajya Sabha members by proportional representation; only a handful are presidential nominees for arts and sciences."
+          }
+        ]
+      },
+      {
+        "heading": "THE GATEKEEPER",
+        "body": "A returning officer is the bureaucrat who runs a single election — receives nominations, scrutinizes them, and has statutory power to reject a candidate whose papers are defective. That rejection is an administrative act, not a court verdict, which is exactly why it becomes a legal fight: a clerk's reading of the rules can keep a nominee off the ballot before any judge weighs in.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The officer's power flows from the *Representation of the People Act, 1951* — the statute that governs every Indian election, from a village ward to the Rajya Sabha."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHARGES-FRAMED LINE",
+        "body": "Indian law forces a candidate to disclose a criminal case in their sworn affidavit only once a judge has formally framed charges — the stage where the court decides there is enough to put someone on trial. A mere complaint, or even a registered police case, sits below that line. The whole dispute here turns on which side of that threshold the matter falls.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1951",
+                "label": "Representation of the People Act"
+              },
+              {
+                "year": "2002",
+                "label": "Supreme Court mandates candidate affidavits",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2003",
+                "label": "Form 26: assets, education, criminal record"
+              },
+              {
+                "year": "2013",
+                "label": "Lily Thomas: instant disqualification on conviction"
+              },
+              {
+                "year": "2018",
+                "label": "Parties must publish criminal antecedents"
+              }
+            ],
+            "label": "how disclosure law was built"
+          }
+        ]
+      },
+      {
+        "heading": "THE CRIMINALIZATION OF POLITICS",
+        "body": "The disclosure regime exists because of a hard fact India's courts kept confronting: a large and rising share of sitting MPs face open criminal cases. Watchdog tallies of declared affidavits have tracked the climb across every recent general election, which is what turned candidate transparency into a Supreme Court priority rather than a paperwork detail.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "2009",
+                "value": "~30%",
+                "weight": 30,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "2014",
+                "value": "~34%",
+                "weight": 34,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "2019",
+                "value": "~43%",
+                "weight": 43,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "2024",
+                "value": "~46%",
+                "weight": 46,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Lok Sabha MPs declaring criminal cases"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE FIGHT GOES TO COURT",
+        "body": "The Election Commission supervises the machinery of voting, but it cannot itself disqualify a candidate over a disputed criminal record — that power sits with the judiciary and with the strict text of the statute. So a party that loses at the returning-officer stage has one real lever: a writ petition asking a court to overturn the rejection before the withdrawal deadline freezes the ballot."
+      }
+    ],
+    "generatedAt": "2026-06-10T12:33:50.824Z",
+    "label": "The Rajya Sabha & Electoral Disclosure",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-10-effects-of-di-2-ethylhexyl-phthalate-dehp-and-hyperoxia-on-c": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE PLASTIC ISN'T STABLE",
+        "body": "Medical PVC is rigid on its own; DEHP is added — up to a third or more by weight — to make tubing soft and flexible. But the plasticizer is only dissolved into the polymer, not chemically bonded to it. So it migrates out continuously, the way a scent leaves a room.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "DEHP can be **30–40% of a PVC IV line by weight**, yet not a single molecule is covalently bound. That unbonded fraction is exactly what leaches into the patient."
+          }
+        ]
+      },
+      {
+        "heading": "THE LIPID TRAP",
+        "body": "DEHP is lipophilic — it dissolves into fats far more readily than into water. That is why the fluids that matter most in neonatal care are the worst offenders: lipid nutrition emulsions and blood pull DEHP out of the tubing aggressively, while plain saline barely touches it. Warmth and long dwell times make it worse.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Lipid TPN",
+                "value": "highest",
+                "tone": "unfavorable",
+                "weight": 100
+              },
+              {
+                "label": "Blood",
+                "value": "high",
+                "tone": "unfavorable",
+                "weight": 65
+              },
+              {
+                "label": "Saline",
+                "value": "minimal",
+                "tone": "favorable",
+                "weight": 8
+              }
+            ],
+            "label": "DEHP leaching by infused fluid"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE SMALLEST PATIENTS GET THE BIGGEST DOSE",
+        "body": "A preterm infant in intensive care is wrapped in plastic: IV lines, blood transfusions, feeding tubes, ventilator circuits. Their tiny body weight means each microgram of DEHP per kilogram lands harder, and their immature liver metabolizes it slowly. The same NICU that keeps them alive delivers the highest per-kilogram phthalate exposure of any patient group.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does a premature infant absorb a far higher DEHP dose per kilogram than an adult on the same tubing?",
+            "options": [
+              "Newborn skin is more permeable to plastics",
+              "Tiny body weight plus many simultaneous devices and slow metabolism",
+              "Infant blood is more acidic and dissolves more plasticizer",
+              "Neonatal tubing contains more DEHP by design"
+            ],
+            "correct": 1,
+            "explanation": "Dose scales per kilogram: a 1kg infant on multiple plastic devices with an immature liver concentrates exposure that an adult body would dilute and clear."
+          }
+        ]
+      },
+      {
+        "heading": "THE OXYGEN MULTIPLIER",
+        "body": "Preterm lungs can't oxygenate alone, so clinicians raise inspired oxygen — but high oxygen floods tissue with reactive oxygen species, the same oxidative stress DEHP itself induces. The study's finding is that the two hits converge on the developing heart's cells, so the harm is not additive but amplified: each makes the other worse."
+      },
+      {
+        "heading": "THE REGULATORY SPLIT",
+        "body": "Europe treats DEHP as a substance of very high concern: under REACH it was flagged in 2008, and the Medical Device Regulation now forces manufacturers to justify any phthalate above 0.1% and label it. The US FDA, by contrast, has issued only guidance and notifications since 2002 — no binding limit. The chemistry is identical on both continents; only the law differs.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2002",
+                "label": "FDA public-health notification (US)",
+                "emphasis": "start"
+              },
+              {
+                "year": "2008",
+                "label": "EU lists DEHP as SVHC under REACH"
+              },
+              {
+                "year": "2015",
+                "label": "EU authorisation requirement bites"
+              },
+              {
+                "year": "2021",
+                "label": "EU MDR: phthalate justification + labelling",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "regulating DEHP in devices"
+          },
+          {
+            "type": "prose",
+            "text": "The EU's lever is the **0.1% threshold** — above it, a maker must prove no safer alternative exists. The US has no equivalent binding line for medical devices."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T12:34:38.391Z",
+    "label": "DEHP, Plastic Tubing & the Preterm Heart",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-10-europe-injects-over-16-bcm-of-gas-into-storage-for-next-wint": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY STORAGE EXISTS AT ALL",
+        "body": "Gas demand triples in winter for heating, but pipelines and LNG terminals deliver at a roughly flat rate year-round. The gap is bridged by injecting cheap summer gas into underground caverns and depleted fields, then withdrawing it in the cold. Europe's storage holds only about a quarter to a third of winter demand — it is a buffer, not a reservoir.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The price Europe pays is set at the Dutch **TTF** hub — the continent's benchmark. A wide summer-to-winter spread is what makes filling storage profitable; flatten it and traders stop injecting."
+          }
+        ]
+      },
+      {
+        "heading": "THE PIPELINE SEVERANCE",
+        "body": "Before 2022, Russian pipelines met roughly 40% of EU gas demand at a stable, low price — no bidding required. The 2022 invasion, the throttling of Nord Stream 1, and then the September 2022 undersea explosions ended that. Europe replaced a piped baseload with seaborne cargoes it must now compete for.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011",
+                "label": "Nord Stream 1 opens"
+              },
+              {
+                "year": "2022-02",
+                "label": "Russia invades Ukraine",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-06",
+                "label": "Russia throttles NS1 flows"
+              },
+              {
+                "year": "2022-09",
+                "label": "Nord Stream pipelines sabotaged"
+              },
+              {
+                "year": "2023",
+                "label": "EU storage mandate enters force"
+              }
+            ],
+            "label": "from pipeline to cargo"
+          }
+        ]
+      },
+      {
+        "heading": "THE NEW SUPPLY MAP",
+        "body": "With Russian pipeline gas gone, Norway became Europe's largest single supplier and US LNG surged to fill the rest. The mix is now spread across far more counterparties — more resilient to any one cutoff, but priced at the global market rather than a bilateral pipeline deal.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Norway (pipeline)",
+                "value": 30,
+                "tone": "favorable"
+              },
+              {
+                "label": "US LNG",
+                "value": 18,
+                "tone": "neutral"
+              },
+              {
+                "label": "Russia (residual)",
+                "value": 15,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Algeria",
+                "value": 12,
+                "tone": "favorable"
+              },
+              {
+                "label": "Qatar LNG",
+                "value": 6,
+                "tone": "neutral"
+              },
+              {
+                "label": "Other",
+                "value": 19,
+                "tone": "favorable"
+              }
+            ],
+            "label": "EU gas supply by source, 2024 (approx. share)"
+          }
+        ]
+      },
+      {
+        "heading": "THE ASIA BIDDING WAR",
+        "body": "LNG is a global commodity loaded onto ships that sail wherever the price is highest. When Europe fills storage in summer, it competes for the same cargoes as Japan, South Korea, and China. A cold snap or a heatwave in Asia can divert tankers mid-ocean, and Europe must out-bid to keep them coming.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Asian buyers price off the **JKM** benchmark (Japan-Korea Marker). The TTF–JKM spread is the magnet: cargoes flow toward whichever hub is paying more, so Europe's storage refill is hostage to Asian demand."
+          }
+        ]
+      },
+      {
+        "heading": "THE 90% MANDATE",
+        "body": "After the 2022 crisis the EU wrote a hard rule: storage must reach 90% capacity by 1 November, with interim targets through the summer. The mandate prevents free-riding — no member state can run its tanks dry and rely on neighbours — but it also forces buying on a fixed calendar regardless of whether prices are favourable.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can filling storage on a legal deadline backfire on price?",
+            "options": [
+              "Buyers must purchase on schedule even when prices are high, signaling urgency to sellers",
+              "Storage caverns degrade gas quality over the summer",
+              "The 90% target is measured in dollars, not volume",
+              "Pipelines cannot operate above 90% capacity"
+            ],
+            "correct": 0,
+            "explanation": "A known deadline tells suppliers Europe must buy by a fixed date, weakening its bargaining position and inviting price spikes during the summer fill."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T12:35:29.068Z",
+    "label": "Europe's Gas Storage Cycle",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-10-iceye-s-bet-pays-off-with-10-billion-valuation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY OPTICAL SATELLITES GO BLIND",
+        "body": "At any moment roughly two-thirds of Earth is under cloud, and night blacks out half the planet. A conventional imaging satellite — a camera in orbit — is useless through both. Most of the time, over most of the world, it sees nothing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How does ICEYE's radar image the ground through thick cloud and in total darkness?",
+            "options": [
+              "It uses microwave radar that passes through cloud and needs no sunlight",
+              "It boosts a normal camera's brightness with onboard floodlights",
+              "It waits for cloud gaps and only shoots in daylight"
+            ],
+            "correct": 0,
+            "explanation": "Radar emits its own long-wavelength microwaves, which pass through cloud and work day or night — unlike a passive optical camera that depends on reflected sunlight."
+          }
+        ]
+      },
+      {
+        "heading": "THE SYNTHETIC APERTURE",
+        "body": "Radar resolution depends on antenna size — and a sharp image from orbit would need an antenna kilometres wide. The trick: fly a small antenna along its path and combine the echoes collected over that distance, synthesizing one enormous virtual antenna. The 'aperture' is the flight path, not the hardware.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why it is *synthetic*-aperture radar: a 1-metre antenna moving 10 km mimics a **10-kilometre** dish. The satellite's own motion is the lens."
+          }
+        ]
+      },
+      {
+        "heading": "THE REVISIT PROBLEM",
+        "body": "One satellite in low orbit passes over a given spot only every few days. A battlefield or a flood front changes by the hour. The only way to get persistent coverage is to fly many satellites — which is why ICEYE chases a fleet measured in the hundreds rather than a single exquisite machine."
+      },
+      {
+        "heading": "THE NEW SPACE ECONOMICS",
+        "body": "Legacy radar satellites were multi-tonne, billion-dollar national assets built one at a time. ICEYE's are roughly the size of a suitcase and built on a production line, collapsing cost per satellite by orders of magnitude. The strategy is quantity-as-capability: cheap enough to lose, numerous enough to revisit.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "FI",
+              "QA",
+              "UA"
+            ],
+            "label": "the deal's geography",
+            "caption": "Finnish builder, Qatari capital, demand forged in Ukraine"
+          }
+        ]
+      },
+      {
+        "heading": "THE SOVEREIGN MONEY",
+        "body": "Qatar's investment authority is one of a cluster of Gulf and Asian sovereign wealth funds increasingly steering oil and trade surpluses into defense, space, and dual-use technology. For a fund that size, a €450m round is a rounding error — but a strategic foothold in persistent surveillance.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Sovereign wealth fund assets",
+            "peers": [
+              {
+                "value": 1.7,
+                "label": "Norway"
+              },
+              {
+                "value": 1.3,
+                "label": "China (CIC)"
+              },
+              {
+                "value": 1,
+                "label": "Abu Dhabi"
+              },
+              {
+                "value": 0.9,
+                "label": "Saudi (PIF)"
+              },
+              {
+                "value": 0.8,
+                "label": "Kuwait"
+              },
+              {
+                "value": 0.5,
+                "label": "Qatar (QIA)"
+              },
+              {
+                "value": 0.7,
+                "label": "Singapore (GIC)"
+              }
+            ],
+            "subjectLabel": "Qatar (QIA)",
+            "unit": "$tn"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T12:36:10.552Z",
+    "label": "Synthetic-Aperture Radar",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-10-iran-s-auto-imports-register-47-growth-in-2-months-irica": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEAL BEHIND THE NUMBER",
+        "body": "The Eurasian Economic Union is a Russia-led customs bloc — Russia, Belarus, Kazakhstan, Armenia, Kyrgyzstan — that lets goods move between members at near-zero tariffs. Iran's 2025 free-trade agreement bolts it onto that internal market, so a car routed through Russia enters Iran without the Western-facing barriers that used to gate it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bloc is built around the **EAEU common external tariff**: members tax the outside world at one shared rate, but charge each other almost nothing. A trade deal with the bloc means Iran is being treated as an *insider*, not a foreign exporter."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IRAN BANNED ITS OWN CAR IMPORTS",
+        "body": "Tehran outlawed most car imports in 2018 — not over sanctions, but to stop scarce dollars leaking out during a currency collapse. The ban protected foreign reserves and the domestic carmakers, but it froze the fleet and sent used-car prices soaring. The reopening through the EAEU is the slow unwinding of that self-imposed wall.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2018",
+                "label": "Import ban amid rial crisis",
+                "emphasis": "start"
+              },
+              {
+                "year": "2022",
+                "label": "Russia legalizes parallel imports"
+              },
+              {
+                "year": "2023",
+                "label": "Iran partially eases the ban"
+              },
+              {
+                "year": "2025",
+                "label": "EAEU free-trade deal in force",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "Iran's import wall"
+          }
+        ]
+      },
+      {
+        "heading": "THE CASPIAN CORRIDOR",
+        "body": "The route is geography, not just diplomacy. Goods move down through Russia, across the Caspian or along its western shore through Azerbaijan, into Iran's northern ports — the International North-South Transport Corridor. It is the one major trade artery that never touches a Western-controlled chokepoint or a dollar-clearing bank.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "AZ",
+              "IR"
+            ],
+            "label": "the North-South corridor",
+            "markers": [
+              {
+                "lat": 46.35,
+                "lng": 48.04,
+                "label": "Astrakhan"
+              },
+              {
+                "lat": 40.41,
+                "lng": 49.87,
+                "label": "Baku"
+              },
+              {
+                "lat": 37.47,
+                "lng": 49.46,
+                "label": "Bandar Anzali"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PARALLEL-IMPORT PLAYBOOK",
+        "body": "Iran is copying Russia's own response to 2022. When Western brands fled Moscow, Russia legalized 'parallel imports' — buying genuine cars and parts through third countries without the manufacturer's permission. The maker never sells to Iran directly; an intermediary does, and the warranty chain is the casualty.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Parallel imports* are legal goods bought through an unauthorized channel — the opposite of counterfeits, which are fake. The car is real; what's missing is the manufacturer's *consent* and the support that comes with it."
+          }
+        ]
+      },
+      {
+        "heading": "WHO MAKES IRAN'S CARS",
+        "body": "Two state-linked giants, Iran Khodro and Saipa, build the overwhelming majority of cars sold in Iran. When Peugeot and Renault exited in 2018, both lost access to modern platforms and parts — which is exactly why imported foreign cars, even via a back door, command such demand.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country is NOT a member of the Eurasian Economic Union?",
+            "options": [
+              "Belarus",
+              "Kazakhstan",
+              "Turkey",
+              "Armenia"
+            ],
+            "correct": 2,
+            "explanation": "The EAEU's members are Russia, Belarus, Kazakhstan, Armenia, and Kyrgyzstan; Turkey is not among them."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T12:36:56.183Z",
+    "label": "Iran, the EAEU & Sanctions Trade",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-10-may-sees-highest-ever-monthly-inflow-of-remittances-at-4-3bn": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BIGGEST DOLLAR PUMP",
+        "body": "Remittances are Pakistan's single largest source of foreign exchange — larger than foreign direct investment, and roughly the size of all goods exports combined. The dollars that keep the country solvent come not from what it sells, but from the workers it exports.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Remittances",
+                "value": "~$38bn",
+                "tone": "favorable",
+                "weight": 38
+              },
+              {
+                "label": "Goods exports",
+                "value": "~$32bn",
+                "tone": "neutral",
+                "weight": 32
+              },
+              {
+                "label": "Net FDI",
+                "value": "~$2bn",
+                "tone": "unfavorable",
+                "weight": 2
+              }
+            ],
+            "label": "Pakistan external dollar inflows (FY26, approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE GULF",
+        "body": "The flow traces to the 1970s oil boom, when millions of Pakistani laborers went to build the Gulf. Today Saudi Arabia and the UAE alone account for the largest share — the diaspora's geography is why a single month's total swings on Gulf wage cycles and Hajj-season travel, not on Western economies.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "SA",
+              "AE",
+              "QA",
+              "KW",
+              "OM",
+              "GB"
+            ],
+            "label": "where the workers are"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHANNEL WAR",
+        "body": "Every remittance dollar can arrive through a bank or through the informal hawala network. When the open-market rupee trades far below the official rate, senders route through informal channels to capture the gap — so official remittance totals partly measure how stable the currency looks, not just how much money is sent.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The informal system is called *hundi* or *hawala* — settlement by trust between brokers, no money actually crossing a border. The State Bank's incentive schemes exist almost entirely to win flows back from it."
+          },
+          {
+            "type": "trend",
+            "values": [
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377,
+              278.485848,
+              278.494701,
+              278.137253,
+              277.408487,
+              278.412506,
+              278.512908,
+              278.575,
+              277.445439,
+              278.55,
+              278.55,
+              278.494021,
+              278.3,
+              278.45,
+              278.61849,
+              278.35,
+              278.5,
+              278.5,
+              278.440126,
+              278.250184,
+              278.85127
+            ],
+            "periods": [
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9",
+              "Jun 10"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE CURRENT-ACCOUNT CRUTCH",
+        "body": "Pakistan runs a chronic trade deficit — it imports far more than it exports. Remittances are the silent transfer that closes the gap, funding fuel and food imports without new borrowing. When remittances dip, the current account tips into crisis and the IMF queue forms.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "rem",
+                "label": "Remittances"
+              },
+              {
+                "id": "exp",
+                "label": "Exports"
+              },
+              {
+                "id": "fx",
+                "label": "FX pool"
+              },
+              {
+                "id": "imp",
+                "label": "Import bill"
+              }
+            ],
+            "links": [
+              {
+                "source": "rem",
+                "target": "fx",
+                "value": 38
+              },
+              {
+                "source": "exp",
+                "target": "fx",
+                "value": 32
+              },
+              {
+                "source": "fx",
+                "target": "imp",
+                "value": 60,
+                "label": "fuel, food, machinery"
+              }
+            ],
+            "label": "how remittances plug the gap ($bn, approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE PAKISTAN RANKS",
+        "body": "Pakistan is one of the world's top remittance recipients, in the same league as far larger economies. The dependence is structural: for India remittances are a rounding error on GDP, but for Pakistan they are close to a tenth of the entire economy.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Annual remittances received",
+            "peers": [
+              {
+                "value": 125,
+                "cc": "IN"
+              },
+              {
+                "value": 65,
+                "cc": "MX"
+              },
+              {
+                "value": 48,
+                "cc": "CN"
+              },
+              {
+                "value": 40,
+                "cc": "PH"
+              },
+              {
+                "value": 38,
+                "cc": "PK"
+              },
+              {
+                "value": 24,
+                "cc": "EG"
+              },
+              {
+                "value": 23,
+                "cc": "BD"
+              }
+            ],
+            "subjectCc": "PK",
+            "unit": "$bn"
+          },
+          {
+            "type": "quiz",
+            "question": "Which country is the single largest source of remittances to Pakistan?",
+            "options": [
+              "United Kingdom",
+              "Saudi Arabia",
+              "United States",
+              "United Arab Emirates"
+            ],
+            "correct": 1,
+            "explanation": "Saudi Arabia hosts the largest Pakistani labor diaspora and consistently sends the most, with the UAE close behind."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-10"
+    ],
+    "generatedAt": "2026-06-10T12:37:42.127Z",
+    "label": "Remittances & Pakistan's Dollar Lifeline",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-10-mexico-is-securing-the-world-cup-residents-ask-security-for": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NUMBER THAT REPEATS",
+        "body": "Mexico put 100,000 security forces around the tournament. It is the same order of magnitude as the people who have vanished inside the country: more than 100,000 are officially registered as disappeared. The symmetry is exactly what the collectives are pointing at — the state can field a force that size when tourists are the ones to protect.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many people are officially registered as disappeared in Mexico?",
+            "options": [
+              "About 5,000",
+              "About 30,000",
+              "More than 100,000",
+              "Around 1 million"
+            ],
+            "correct": 2,
+            "explanation": "Mexico's national registry crossed 100,000 disappeared persons in 2022 and has kept climbing — most cases since the 2006 drug war."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'DISAPPEARED' IS A SPECIFIC WORD",
+        "body": "Forced disappearance is not a synonym for murder or kidnapping. In international law it is a distinct crime: a person is seized, then the state or its proxies deny any knowledge, placing the victim outside the protection of the law. It is classified as a continuing offense — the crime is committed fresh every day the fate stays unknown, which is why there is no statute of limitations.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Spanish term families use is *desaparecidos* — and the women who hunt clandestine graves themselves, because the state won't, are the **buscadoras**."
+          }
+        ]
+      },
+      {
+        "heading": "THE DIRTY WAR ROOTS",
+        "body": "Disappearance in Mexico did not begin with the cartels. During the Guerra Sucia of the 1960s–80s, the state itself disappeared hundreds of leftist students, guerrillas, and dissidents. The technique — seize, deny, erase — was a government tool decades before it became a criminal one, which is part of why impunity is so structural.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1968",
+                "label": "Tlatelolco massacre"
+              },
+              {
+                "year": "1971",
+                "label": "Guerra Sucia intensifies"
+              },
+              {
+                "year": "2006",
+                "label": "Drug war declared",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2014",
+                "label": "43 Ayotzinapa students vanish"
+              },
+              {
+                "year": "2022",
+                "label": "Registry passes 100,000"
+              }
+            ],
+            "label": "the arc of disappearance"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY SEARCHES",
+        "body": "The bodies are found by relatives, not detectives. Collectives of mostly mothers walk fields with steel rods, smelling the ground for the dead, mapping fosas clandestinas the authorities won't excavate. Several buscadoras have themselves been murdered for getting close to answers — a grim measure of how little the state's force is pointed at this problem."
+      },
+      {
+        "heading": "THE MEGA-EVENT BUBBLE",
+        "body": "Securing tourists while residents go unprotected is the template, not the exception. Brazil flooded its 2014 World Cup cities with troops and 'pacified' favelas for the cameras; Qatar 2022 built a surveillance-saturated zone for the duration. The host country buys a temporary island of order for visitors, then lets it dissolve once the cameras leave.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Brazil '14",
+                "value": "~150,000",
+                "cc": "BR",
+                "weight": 150
+              },
+              {
+                "label": "Russia '18",
+                "value": "~100,000",
+                "cc": "RU",
+                "weight": 100
+              },
+              {
+                "label": "Mexico '26",
+                "value": "~100,000",
+                "cc": "MX",
+                "weight": 100
+              }
+            ],
+            "label": "World Cup security deployments"
+          }
+        ]
+      },
+      {
+        "heading": "PLAN KUKULKÁN",
+        "body": "The operation is named for the Maya feathered-serpent deity — added to the 2026 tournament, the first hosted across three nations and the first with 48 teams. Mexico's slice runs through three stadiums, each now ringed with helicopters and anti-drone systems for the matches.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MX"
+            ],
+            "label": "Mexico's 2026 host cities",
+            "markers": [
+              {
+                "lat": 19.3029,
+                "lng": -99.1505,
+                "label": "Estadio Azteca"
+              },
+              {
+                "lat": 20.6815,
+                "lng": -103.4626,
+                "label": "Estadio Akron"
+              },
+              {
+                "lat": 25.6691,
+                "lng": -100.2444,
+                "label": "Estadio BBVA (Monterrey)"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T12:38:33.695Z",
+    "label": "Mexico's Disappeared & the Security Bubble",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-10-more-than-1-300-migrants-have-died-trying-to-reach-the-spani": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISPLACEMENT EFFECT",
+        "body": "Tightening one crossing rarely stops migration — it pushes it onto a longer, deadlier one. When patrols closed the short Strait of Gibraltar hop, traffic shifted south to Mauritania and Senegal, trading a 14km strait for 1,500km of open Atlantic. The body count rises even as the official 'crossings' fall.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Border scholars call this the *waterbed effect*: press down on one route and the pressure surfaces elsewhere. Enforcement reshapes the **geography** of migration far more reliably than it reduces the **volume**."
+          }
+        ]
+      },
+      {
+        "heading": "THE ATLANTIC CROSSING",
+        "body": "Boats now depart from Mauritania, Senegal, Gambia and Mali — Muslim-majority Sahel and coastal states — aiming for the Canaries, Spanish territory 100km off the African coast. The frail wooden cayucos increasingly target El Hierro, the smallest island, because the longer southern routes drift west into open ocean before turning north.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ES",
+              "MA",
+              "MR",
+              "SN",
+              "GM",
+              "ML"
+            ],
+            "label": "the northwest Atlantic route",
+            "caption": "Departure points run from Mauritania to Senegal; arrival clusters on the western islands.",
+            "markers": [
+              {
+                "lat": 27.74,
+                "lng": -18.03,
+                "label": "El Hierro"
+              },
+              {
+                "lat": 28.13,
+                "lng": -15.43,
+                "label": "Las Palmas"
+              },
+              {
+                "lat": 20.93,
+                "lng": -17.03,
+                "label": "Nouadhibou"
+              },
+              {
+                "lat": 14.69,
+                "lng": -17.45,
+                "label": "Dakar"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 2006 PRECEDENT",
+        "body": "This is not new. In 2006 the 'cayuco crisis' saw tens of thousands reach the Canaries in months, overwhelming the islands. EU patrol cooperation with West African states quieted the route for a decade — until enforcement elsewhere and Sahel instability reopened it, hitting record arrivals in 2024.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1994",
+                "label": "First cayucos reach Fuerteventura"
+              },
+              {
+                "year": "2006",
+                "label": "Cayuco crisis overwhelms Canaries",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020",
+                "label": "Route reopens as patrols shift"
+              },
+              {
+                "year": "2024",
+                "label": "Record arrivals to the Canaries"
+              }
+            ],
+            "label": "the route's pulse"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THIS ROUTE KILLS",
+        "body": "The Atlantic is the deadliest path to Europe. The Canary Current sweeps disabled boats westward into open ocean, beyond any patrol or rescue coverage. Vessels that lose their engines are not found near Spain — they drift for weeks across thousands of kilometres.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Wooden cayucos lost on the Atlantic route have been found adrift as far as—",
+            "options": [
+              "The Caribbean and Brazil",
+              "Portugal's coast",
+              "Iceland",
+              "Nowhere — they all sink quickly"
+            ],
+            "correct": 0,
+            "explanation": "The Canary Current carries disabled boats across the ocean; ghost vessels with bodies aboard have washed up in the Caribbean and Brazil."
+          }
+        ]
+      },
+      {
+        "heading": "THE EXTERNALIZATION BARGAIN",
+        "body": "Europe's core strategy is to pay third countries to stop departures before they reach EU waters — funding patrols, equipment and detention in Mauritania, Senegal and beyond. The model began at scale with the 2016 Turkey deal and now stretches across North and West Africa, shifting both the enforcement and the deaths offshore.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Turkey",
+                "value": "€6bn",
+                "cc": "TR",
+                "weight": 6000,
+                "tone": "neutral"
+              },
+              {
+                "label": "Mauritania",
+                "value": "€210m",
+                "cc": "MR",
+                "weight": 210,
+                "tone": "neutral"
+              },
+              {
+                "label": "Egypt",
+                "value": "~€200m",
+                "cc": "EG",
+                "weight": 200,
+                "tone": "neutral"
+              },
+              {
+                "label": "Tunisia",
+                "value": "€105m",
+                "cc": "TN",
+                "weight": 105,
+                "tone": "neutral"
+              }
+            ],
+            "label": "EU migration deterrence deals (headline figures)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T12:40:18.635Z",
+    "label": "The Atlantic Migration Route",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-10-pakistan-air-strikes-in-afghanistan-kill-26-as-tensions-re-i": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LINE NO ONE AGREED TO",
+        "body": "The Pakistan-Afghanistan border is the Durand Line, drawn in 1893 by a British colonial official and an Afghan emir under duress. Afghanistan has never recognized it — the only country to vote against Pakistan's UN admission in 1947 was Afghanistan, over exactly this border. Every Afghan government since, including the Taliban, treats it as an unsettled colonial imposition.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1893",
+                "label": "Durand Line drawn",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1947",
+                "label": "Afghanistan votes against Pakistan's UN seat"
+              },
+              {
+                "year": "1949",
+                "label": "Afghan loya jirga repudiates the line"
+              },
+              {
+                "year": "2007",
+                "label": "TTP founded in the tribal belt"
+              },
+              {
+                "year": "2021",
+                "label": "Taliban retake Kabul"
+              },
+              {
+                "year": "2026",
+                "label": "Cross-border strikes escalate",
+                "emphasis": "end"
+              }
+            ],
+            "label": "a border in permanent dispute"
+          }
+        ]
+      },
+      {
+        "heading": "THE PASHTUN BELT",
+        "body": "The line cuts straight through Pashtun tribal lands, leaving the same clans on both sides. Families, smuggling routes, and madrassa networks span the border, which is why a militant struck in Pakistan can be sheltering with relatives in Khost a few hours later — and why Pakistani strikes there kill civilians who are kin to the targets.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AF",
+              "PK"
+            ],
+            "label": "the strike zone",
+            "caption": "Pashtun tribal districts straddle the Durand Line",
+            "markers": [
+              {
+                "lat": 33.3395,
+                "lng": 69.9204,
+                "label": "Khost"
+              },
+              {
+                "lat": 33.5969,
+                "lng": 71.5249,
+                "label": "Peshawar"
+              },
+              {
+                "lat": 32.0809,
+                "lng": 69.9619,
+                "label": "Wana, S. Waziristan"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "TWO TALIBANS, NOT ONE",
+        "body": "The Tehrik-e-Taliban Pakistan (TTP) and the Afghan Taliban are separate organizations with a shared ideology. The Afghan Taliban now governs Kabul; the TTP wants to overthrow Islamabad. Pakistan spent two decades backing the Afghan Taliban as strategic depth — only to find the same victory emboldened the TTP next door.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Hibatullah Akhundzada",
+                "role": "Afghan Taliban supreme leader",
+                "years": "2016–",
+                "cc": "AF"
+              },
+              {
+                "name": "Noor Wali Mehsud",
+                "role": "TTP emir",
+                "years": "2018–",
+                "cc": "PK"
+              },
+              {
+                "name": "Baitullah Mehsud",
+                "role": "TTP founder",
+                "years": "2007–2009",
+                "cc": "PK"
+              }
+            ],
+            "label": "who's who across the line"
+          }
+        ]
+      },
+      {
+        "heading": "THE BLOWBACK DOCTRINE",
+        "body": "Strategic depth was the Pakistani military's bet that a friendly Islamist Kabul would give it rearguard cover against India. The bet curdled: the ideology Islamabad cultivated to control Afghanistan now animates the insurgency aimed at Pakistan itself. Intelligence services that arm a movement rarely keep the off-switch.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The term of art is *strategic depth* — and the TTP is its **blowback**. A movement nurtured as a proxy turned its guns on the patron, the same arc the US lived with the Afghan mujahideen it funded in the 1980s."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE STRIKES KEEP COMING",
+        "body": "Pakistan's playbook — hot-pursuit airstrikes on claimed TTP sanctuaries — assumes the Afghan Taliban can or will police the border. Kabul, bound by Pashtun obligations of asylum and unwilling to legitimize the Durand Line, mostly will not. With no extradition framework and no recognized border, each Pakistani casualty triggers a strike, and each strike kills Afghan civilians who were never the target.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why has Afghanistan never recognized the Durand Line as its border with Pakistan?",
+            "options": [
+              "It was drawn in 1893 under British colonial pressure and splits the Pashtun lands",
+              "It was only ever meant as a temporary ceasefire line",
+              "The UN never formally ratified Pakistan's 1947 independence"
+            ],
+            "correct": 0,
+            "explanation": "The 1893 line was a colonial imposition cutting through Pashtun tribes; every Afghan government, Taliban included, has rejected it."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-10T12:40:53.284Z",
+    "label": "The Durand Line & the TTP",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-10-synergy-of-postural-adaptation-and-exteroception-for-robust": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SPINAL ENGINE",
+        "body": "Walking is not orchestrated by the brain stride-by-stride. A network of neurons in the spinal cord — the central pattern generator — produces the rhythmic muscle activation of a gait on its own, no sensory input or conscious command required. A cat whose spinal cord is surgically severed from its brain will still step in coordinated rhythm on a moving treadmill.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1911",
+                "label": "Graham Brown: half-center model",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1966",
+                "label": "Decerebrate cat treadmill stepping"
+              },
+              {
+                "year": "1985",
+                "label": "Lamprey CPG fully mapped"
+              },
+              {
+                "year": "2008",
+                "label": "CPG controllers enter robotics"
+              }
+            ],
+            "label": "discovering the rhythm circuit"
+          }
+        ]
+      },
+      {
+        "heading": "THE HALF-CENTER TRICK",
+        "body": "Graham Brown's 1911 insight was that rhythm needs no rhythmic input. Two pools of neurons — one for flexors, one for extensors — mutually inhibit each other; when one tires and fatigues out, the other fires, and the alternation generates a self-sustaining oscillation. Rhythm emerges from the wiring, not from a clock.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The principle is **rhythm from mutual inhibition** — the same motif appears in heartbeat pacemakers, breathing, and chewing. Biology reuses the *half-center oscillator* everywhere a body needs a beat."
+          }
+        ]
+      },
+      {
+        "heading": "TWO LAYERS, NOT ONE",
+        "body": "Animal locomotion separates the job. The CPG handles the open-loop rhythm — the basic stepping cycle. A second, faster pathway reads the ground and corrects balance reactively. The robot copies this split: a pattern generator for the gait, separate terrain sensing for stability. Decoupling them is what makes the system robust.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The two senses doing the work: *proprioception* (where my own limbs are) and **exteroception** (what the world outside is doing). Reflexes fuse both faster than any brain-routed decision could."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE RL BASELINE BREAKS",
+        "body": "A pure reinforcement-learning controller learns a policy by optimizing over the terrains it trained on. It can become superb on those and brittle off-distribution — it has no built-in notion of a gait, only a reward-maximizing reaction it memorized. Hand it terrain it never saw and the learned correlations can fail silently. A CPG carries the gait as structure, so novelty degrades it gracefully rather than catastrophically.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the bioinspired controller beat reinforcement learning specifically on unfamiliar terrain?",
+            "options": [
+              "It runs on faster hardware",
+              "The gait is built-in structure, not a memorized reaction to training terrain",
+              "It uses more terrain sensors",
+              "It was trained on more data"
+            ],
+            "correct": 1,
+            "explanation": "A CPG encodes the rhythmic gait as fixed structure, so it generalizes; an RL policy only learns reactions to terrains it saw, so novelty can break it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY QUADRUPEDS WIN ON ROUGH GROUND",
+        "body": "Four legs allow static stability — at any instant three feet can stay planted, keeping the center of mass over a support triangle. Bipeds and runners rely on dynamic stability, perpetually catching a fall. This is why the first robots to leave the lab for rubble, stairs, and pipelines were dogs, not humanoids: the control problem is forgiving."
+      }
+    ],
+    "generatedAt": "2026-06-10T12:41:32.328Z",
+    "label": "Central Pattern Generators & Legged Locomotion",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-10-vetting-crisis-over-100-000-educators-in-sa-remain-unchecked": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE REGISTER IS",
+        "body": "South Africa's National Register for Sex Offenders was created by the Criminal Law (Sexual Offences and Related Matters) Amendment Act of 2007. It lists people convicted of sexual offences against children or the mentally disabled, and anyone employed to work with those groups must be cleared against it before contact.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The register is a *list of names*; the legal duty it creates is a duty to **check** — and a check that never happens leaves the list inert."
+          }
+        ]
+      },
+      {
+        "heading": "CONFIDENTIAL BY DESIGN",
+        "body": "Unlike the American model, South Africa's register is closed. It is not searchable by the public — only designated employers, courts, and licensing bodies may query it. This reflects a deliberate choice: many countries concluded that public registries drive offenders underground and fuel vigilantism without measurably improving child safety.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "Public online",
+                "tone": "neutral",
+                "cc": "US"
+              },
+              {
+                "label": "South Africa",
+                "value": "Employer-only",
+                "tone": "favorable",
+                "cc": "ZA"
+              },
+              {
+                "label": "United Kingdom",
+                "value": "Police/DBS",
+                "tone": "favorable",
+                "cc": "GB"
+              },
+              {
+                "label": "Australia",
+                "value": "Police-held",
+                "tone": "favorable",
+                "cc": "AU"
+              }
+            ],
+            "label": "who can see the register"
+          }
+        ]
+      },
+      {
+        "heading": "THE BOTTLENECK IS THE POLICE, NOT THE LIST",
+        "body": "Querying the register is near-instant, but clearance is bundled into a full South African Police Service criminal-record check — fingerprint-based, manually processed, and chronically understaffed. That pipeline, not the register itself, is what turns a 119,000-person backlog into a multi-year problem."
+      },
+      {
+        "heading": "A LIST WITHOUT A CHECK",
+        "body": "A register only protects children if every employee is actually screened before they enter a classroom. With 119,000 teachers unvetted, the register is functionally absent for those rooms — the protection exists on paper but was never switched on for a large share of the workforce.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How does South Africa's sex-offenders register differ from the US model?",
+            "options": [
+              "It is confidential — only employers, courts, and licensing bodies may check it",
+              "It is published online for anyone to search",
+              "It only covers offences committed against adults",
+              "It is maintained by schools rather than the state"
+            ],
+            "correct": 0,
+            "explanation": "SA's NRSO is a closed list queried only by designated bodies, unlike the publicly searchable US registries created under Megan's Law."
+          }
+        ]
+      },
+      {
+        "heading": "PREVENTION VS DETECTION",
+        "body": "The 59 teachers found guilty of misconduct last year were caught after the fact — detection. Vetting is the opposite mechanism: it works before placement, screening out a known offender so harm never occurs. A backlog in vetting does not show up in misconduct statistics, because its failures are invisible until an unchecked offender acts."
+      }
+    ],
+    "generatedAt": "2026-06-10T12:42:15.161Z",
+    "label": "Sex-Offender Registers & Vetting",
+    "category": "politics",
+    "articleCount": 1
   }
 }
