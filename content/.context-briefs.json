@@ -349720,5 +349720,1802 @@
     "label": "Somalia's Clan Politics",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-11-amazon-data-centers-mississippi-electricity-rates": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RATE BASE",
+        "body": "A regulated utility like Entergy does not profit by selling electricity — it profits by building things. Regulators let it earn a guaranteed percentage return on every dollar of approved capital investment, recovered from customers' bills. The bigger the plant, the bigger the earnings base.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is **cost-of-service regulation**: the utility's profit is a fixed *rate of return* (typically **~9–10%**) on its **rate base** — the depreciated value of its physical assets. Spending capital is literally how it grows earnings."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE BILL ROSE BEFORE THE CENTER OPENED",
+        "body": "Under this model, approved buildout costs are spread across the entire customer base as soon as regulators sign off — not when the data center switches on. Every household pays a slice of infrastructure built to serve a single corporate load.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "ratepayers",
+                "label": "All ratepayers"
+              },
+              {
+                "id": "entergy",
+                "label": "Entergy"
+              },
+              {
+                "id": "plant",
+                "label": "$4bn plant"
+              },
+              {
+                "id": "amazon",
+                "label": "Amazon centers"
+              },
+              {
+                "id": "profit",
+                "label": "Guaranteed return"
+              }
+            ],
+            "links": [
+              {
+                "source": "ratepayers",
+                "target": "entergy",
+                "value": 100,
+                "label": "higher bills"
+              },
+              {
+                "source": "entergy",
+                "target": "plant",
+                "value": 80,
+                "label": "capex"
+              },
+              {
+                "source": "entergy",
+                "target": "profit",
+                "value": 20,
+                "label": "ROE"
+              },
+              {
+                "source": "plant",
+                "target": "amazon",
+                "value": 80,
+                "label": "power supply"
+              }
+            ],
+            "label": "who funds the buildout"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DATA CENTERS STRAIN THE GRID",
+        "body": "A single hyperscale campus draws power on the scale of a mid-sized city, around the clock, with almost no seasonal dip. That flat, enormous, always-on demand forces utilities to build new generation rather than lean on existing slack — and AI training loads are pushing campus draws toward a full gigawatt.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "City of 1M",
+                "value": "~1,500 MW",
+                "weight": 1500
+              },
+              {
+                "label": "Hyperscale campus",
+                "value": "~1,000 MW",
+                "tone": "unfavorable",
+                "weight": 1000
+              },
+              {
+                "label": "Aluminum smelter",
+                "value": "~700 MW",
+                "weight": 700
+              },
+              {
+                "label": "Steel mill",
+                "value": "~300 MW",
+                "weight": 300
+              }
+            ],
+            "label": "continuous power draw (MW)"
+          }
+        ]
+      },
+      {
+        "heading": "THE SOCIALIZED-COST PATTERN",
+        "body": "This is an old structure wearing new clothes. Utilities have always rate-based their largest projects — nuclear plants in the 1970s, scrubbers in the 1990s — letting all customers underwrite assets that benefit a few. The novelty is the speed and scale at which AI demand is triggering it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call this a **negative externality made visible on the bill**: the data center captures the benefit, while the *cost of new capacity* is diffused across millions of small customers who never asked for it."
+          }
+        ]
+      },
+      {
+        "heading": "THE SPECIAL-RATE FIGHT",
+        "body": "Regulators can require large new loads to sign dedicated contracts that make them pay for the capacity they trigger, shielding ordinary customers. Whether a utility negotiates such a contract — or simply folds the cost into everyone's rate base — is the entire fight, and it usually happens in commission filings few people read.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under cost-of-service regulation, who normally bears the cost of a utility's new power plant?",
+            "options": [
+              "Only the customer the plant was built to serve",
+              "All ratepayers, via the shared rate base",
+              "The utility's shareholders alone",
+              "The federal government through subsidies"
+            ],
+            "correct": 1,
+            "explanation": "Approved capital enters the rate base and is recovered from the whole customer body — unless a special-load contract assigns the cost to the specific user."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T17:38:53.796Z",
+    "label": "Who Pays for the Grid",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-11-amazon-deforestation-falling-progress-stalling": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY 'FLATTENING' IS THE REAL STORY",
+        "body": "A falling deforestation rate still means forest is being lost — just more slowly. The Amazon doesn't recover cleared primary forest on any human timescale; secondary regrowth holds a fraction of the carbon and biodiversity. So even a record-low year adds to a permanent deficit. The only number that stabilizes the forest is zero net loss, not a smaller loss."
+      },
+      {
+        "heading": "WHAT ACTUALLY CLEARS THE FOREST",
+        "body": "Roughly 80% of deforested Amazon land becomes cattle pasture — Brazil runs one of the world's largest commercial herds. Soy, logging, gold mining, and road-building account for the rest. Cattle ranching dominates because it requires little capital and stakes a land claim, which is the deeper driver: clearing forest is how undocumented occupants establish title in the absence of clear ownership.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Cattle pasture",
+                "value": 80,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Soy & cropland",
+                "value": 10,
+                "tone": "neutral"
+              },
+              {
+                "label": "Logging",
+                "value": 5,
+                "tone": "favorable"
+              },
+              {
+                "label": "Mining & roads",
+                "value": 5,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Amazon clearing by end use (approx. share)"
+          },
+          {
+            "type": "quiz",
+            "question": "What becomes of most land cleared in the Brazilian Amazon?",
+            "options": [
+              "Soy plantations",
+              "Cattle pasture",
+              "Gold mining pits",
+              "Timber plantations"
+            ],
+            "correct": 1,
+            "explanation": "About four-fifths of cleared Amazon land is turned into pasture — ranching, not crops, is the primary engine of deforestation."
+          }
+        ]
+      },
+      {
+        "heading": "THE FOREST THAT MAKES ITS OWN RAIN",
+        "body": "The Amazon recycles its own moisture: trees transpire water that falls again as rain downwind, in 'flying rivers' that water the entire basin and feed agriculture as far as Argentina. Clear enough forest and the cycle weakens — scientists warn of a tipping point where the eastern Amazon flips from rainforest to dry savanna, a transition that would release vast carbon and could not be reversed by replanting.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The feared transition is called **dieback** — beyond an estimated **20–25%** loss of the basin, the moisture-recycling weakens enough that forest converts to *cerrado*-like savanna on its own."
+          }
+        ]
+      },
+      {
+        "heading": "ONE FOREST, NINE COUNTRIES",
+        "body": "Brazil holds about 60% of the Amazon, but the basin spans nine nations — Peru, Colombia, Bolivia, Venezuela, Ecuador, Guyana, Suriname, and French Guiana share the rest. This is why Brazilian policy moves the headline number but cannot, alone, save the system: deforestation fronts in Peru and Bolivia have accelerated even as Brazil's slowed.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BR",
+              "PE",
+              "CO",
+              "BO",
+              "VE",
+              "EC",
+              "GY",
+              "SR"
+            ],
+            "label": "the Amazon basin"
+          }
+        ]
+      },
+      {
+        "heading": "BRAZIL HAS DONE THIS BEFORE",
+        "body": "Deforestation isn't a steady trend — it's a policy switch. Enforcement, satellite monitoring, and supply-chain pacts (the 2006 Soy Moratorium, the 2009 cattle agreement) cut clearing by roughly 80% between 2004 and 2012. It then surged again when enforcement was rolled back at the end of the decade. The 2025 low is the system swinging back toward the earlier playbook.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2004",
+                "label": "Record clearing (~2.8M ha)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2006",
+                "label": "Soy Moratorium signed"
+              },
+              {
+                "year": "2009",
+                "label": "Cattle agreement"
+              },
+              {
+                "year": "2012",
+                "label": "Historic low"
+              },
+              {
+                "year": "2019",
+                "label": "Enforcement rollback, surge"
+              },
+              {
+                "year": "2025",
+                "label": "Falls below 1M ha"
+              }
+            ],
+            "label": "Brazil's deforestation rate, four decades"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T17:39:29.578Z",
+    "label": "The Amazon Carbon Sink",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-11-bangladesh-myanmar-arakan-army-border-abductions": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RECOGNITION TRAP",
+        "body": "International diplomacy runs through states. When the entity that physically controls a border is an armed group no government can recognise, there is no address to send a protest to — recognising it would imply Myanmar's sovereignty over Rakhine has lapsed, which Dhaka cannot say out loud. So the killings generate no formal response, only silence.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The gap is between *de jure* sovereignty — Myanmar's junta still holds Rakhine's UN seat — and *de facto* control, which now belongs to a **non-state actor** Dhaka can neither ignore nor legitimise."
+          }
+        ]
+      },
+      {
+        "heading": "WHO THE ARAKAN ARMY IS",
+        "body": "Founded in 2009, the Arakan Army is the armed wing of the United League of Arakan and one of Myanmar's most effective ethnic forces. As part of the Three Brotherhood Alliance, it launched Operation 1027 in late 2023 and by 2024 had seized most townships in Rakhine, reducing the junta to a handful of garrisons.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Its commander, **Twan Mrat Naing**, frames the goal as the *Way of Rakhine* — confederal autonomy, not outright secession — which is precisely why neither full independence nor surrender is on offer."
+          }
+        ]
+      },
+      {
+        "heading": "ARAKAN BEFORE BURMA",
+        "body": "Rakhine was the independent kingdom of Arakan, ruled from Mrauk U, until the Burmese Konbaung dynasty conquered it in 1784. That conquest — not a colonial accident — is the root grievance: the Arakan Army sees itself restoring a sovereignty erased two centuries ago, and frames Bamar-majority Myanmar as the occupier.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1784",
+                "label": "Burmese conquest of Arakan",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1948",
+                "label": "Burma independence"
+              },
+              {
+                "year": "1982",
+                "label": "Citizenship law strips Rohingya"
+              },
+              {
+                "year": "2017",
+                "label": "Mass Rohingya expulsion"
+              },
+              {
+                "year": "2023",
+                "label": "Operation 1027 launched"
+              },
+              {
+                "year": "2024",
+                "label": "AA controls most of Rakhine"
+              }
+            ],
+            "label": "Arakan's long arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1982 LAW & STATELESSNESS",
+        "body": "Myanmar's 1982 citizenship law recognised 135 national races but excluded the Rohingya, rendering roughly a million people stateless in their own homeland. The 2017 military clearance operations — which a UN mission called genocidal in intent — drove over 700,000 across the Naf River into Bangladesh in weeks.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Bangladesh",
+                "value": "~960k",
+                "cc": "BD",
+                "weight": 960,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Pakistan",
+                "value": "~350k",
+                "cc": "PK",
+                "weight": 350,
+                "tone": "neutral"
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~190k",
+                "cc": "SA",
+                "weight": 190,
+                "tone": "neutral"
+              },
+              {
+                "label": "Malaysia",
+                "value": "~150k",
+                "cc": "MY",
+                "weight": 150,
+                "tone": "neutral"
+              },
+              {
+                "label": "India",
+                "value": "~40k",
+                "cc": "IN",
+                "weight": 40,
+                "tone": "neutral"
+              }
+            ],
+            "label": "where the Rohingya fled (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE BORDER ITSELF",
+        "body": "The Bangladesh-Myanmar frontier runs about 270 km, much of it along the Naf River. On the Bangladesh side sit the Cox's Bazar camps — the largest refugee settlement on Earth. On the Myanmar side, the towns the Rohingya fled are now held by the Arakan Army, which means any repatriation must be negotiated with the group accused of new abuses.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BD",
+              "MM",
+              "IN"
+            ],
+            "label": "the Naf River frontier",
+            "caption": "Refugees on one bank; the Arakan Army on the other",
+            "markers": [
+              {
+                "lat": 21.2,
+                "lng": 92.16,
+                "label": "Cox's Bazar camps"
+              },
+              {
+                "lat": 20.82,
+                "lng": 92.36,
+                "label": "Maungdaw"
+              },
+              {
+                "lat": 20.15,
+                "lng": 92.9,
+                "label": "Sittwe"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY DHAKA IS STUCK",
+        "body": "To secure its border and ever repatriate the refugees, Bangladesh must talk to whoever holds the other side — now the Arakan Army. But opening a formal channel legitimises a separatist force and antagonises Myanmar's junta, while staying silent lets citizens die unprotected. Every option carries a sovereignty cost.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country hosts the world's largest Rohingya refugee population?",
+            "options": [
+              "Malaysia",
+              "Bangladesh",
+              "Pakistan",
+              "Saudi Arabia"
+            ],
+            "correct": 1,
+            "explanation": "Bangladesh's Cox's Bazar district shelters roughly a million Rohingya — the largest refugee camp complex on Earth."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T17:40:20.726Z",
+    "label": "The Arakan Army & the Recognition Trap",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-11-banks-tokenized-cash-public-blockchain-europe": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "TWO KINDS OF MONEY",
+        "body": "The balance in your bank account is not central-bank money — it's a private IOU from your bank, backed by its balance sheet and your faith in it. Only physical cash and reserves held at the central bank are 'public' money. Every digital-currency fight is really an argument over which of these two moneys does the settling.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Digital euro",
+                "value": "Central bank",
+                "tone": "favorable"
+              },
+              {
+                "label": "Tokenized deposit",
+                "value": "Your bank",
+                "tone": "neutral"
+              },
+              {
+                "label": "Stablecoin",
+                "value": "Private issuer",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "MMF token",
+                "value": "Fund assets",
+                "tone": "neutral"
+              }
+            ],
+            "label": "who actually owes you the money"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ON-CHAIN SETTLEMENT",
+        "body": "Today a securities trade and its cash payment ride separate systems and settle days apart (T+2), leaving counterparty risk in the gap. Tokenize both the asset and the cash and they swap in a single indivisible step — the cash moves only if the asset moves, and vice versa.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The prize is *atomic settlement* — **delivery-versus-payment** with no failed leg, no settlement window, no daylight credit. This is the genuine efficiency case, separate from any crypto hype."
+          }
+        ]
+      },
+      {
+        "heading": "THE DECADE OF PRIVATE CHAINS",
+        "body": "Banks spent roughly ten years building permissioned blockchains only they could see — R3's Corda, Hyperledger, JPMorgan's Quorum. Most stalled: a closed ledger shared by rivals reproduces the coordination problems it was meant to solve, while liquidity and network effects pooled on open chains. The pivot to public rails quietly concedes that bet.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2015",
+                "label": "R3 / Corda consortium forms"
+              },
+              {
+                "year": "2016",
+                "label": "Hyperledger launched"
+              },
+              {
+                "year": "2019",
+                "label": "JPMorgan's JPM Coin"
+              },
+              {
+                "year": "2023",
+                "label": "ECB digital-euro prep phase"
+              },
+              {
+                "year": "2026",
+                "label": "Banks pivot to public chains",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "banks' blockchain bets"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BANKS FEAR THE DIGITAL EURO",
+        "body": "A retail CBDC lets ordinary citizens hold central-bank money directly, bypassing the deposit entirely. In a panic, money can flee a wobbly bank for the riskless central-bank wallet in seconds — a digital bank run at fiber-optic speed. The ECB proposed holding caps precisely to stop deposits from draining out of the banking system.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical name for the fear is **disintermediation** — the bank cut out of the chain between the saver and the central bank, losing the cheap deposit funding its whole business runs on."
+          },
+          {
+            "type": "quiz",
+            "question": "Why did the ECB propose capping how much digital euro each person could hold?",
+            "options": [
+              "To prevent a digital run that drains bank deposits",
+              "To limit the central bank's electricity costs",
+              "To keep stablecoin issuers competitive",
+              "To comply with crypto mining rules"
+            ],
+            "correct": 0,
+            "explanation": "An uncapped central-bank wallet would let deposits flee fragile banks instantly in a panic — the disintermediation banks fear most."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT BACKS A STABLECOIN",
+        "body": "A stablecoin is only as stable as the assets behind it. The credible ones hold short-dated government debt and central-bank reserves and can redeem at par on demand; the failures held thin or imaginary collateral. TerraUSD claimed a 'stable' dollar peg backed largely by its own sister token — and unwound to near zero in days when confidence cracked."
+      }
+    ],
+    "generatedAt": "2026-06-11T17:41:24.850Z",
+    "label": "Tokenized Money & the Settlement Asset",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-11-flock-alpr-license-plate-searches-leak": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT FLOCK ACTUALLY IS",
+        "body": "Flock Safety is not a government program. It is a private company that installs automated license plate reader cameras in thousands of US towns and rents access to local police on subscription. The surveillance network is corporate-owned; departments are customers, not builders.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "An **ALPR** (automated license plate reader) is a camera plus optical character recognition. The hardware is cheap; the value is the *shared database* every subscriber feeds and queries."
+          }
+        ]
+      },
+      {
+        "heading": "THE CAPTURE IS TOTAL",
+        "body": "An ALPR does not watch for wanted cars. It photographs and timestamps every plate that passes, logging location and often the vehicle itself. The handful of hotlist matches are the advertised purpose; the rest is a continuous record of where ordinary people drove and when.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of plates an ALPR network records belong to vehicles on a police hotlist?",
+            "options": [
+              "A tiny fraction — it logs every plate, wanted or not",
+              "Only plates flagged as stolen or wanted",
+              "Roughly half, after filtering",
+              "Just plates whose owners have warrants"
+            ],
+            "correct": 0,
+            "explanation": "The system captures everyone; the hotlist match is a rounding error against the total, which is what makes the stored history so revealing."
+          }
+        ]
+      },
+      {
+        "heading": "HOW IT LEAKED",
+        "body": "The exposed searches were not hacked. The queries — plates, case numbers, officers' stated reasons — rode inside the URL as parameters. When a system puts sensitive data into a web address that a crawler can reach, search engines index it like any other page. The breach was a default, not an intrusion."
+      },
+      {
+        "heading": "THE MOSAIC THEORY",
+        "body": "One plate read tells you nothing. Thousands, stitched together, reveal a pattern of life — where you sleep, which clinic you visit, which mosque you attend, which protest you joined. In Carpenter v. United States (2018), the Supreme Court held that aggregated location data is qualitatively different from any single point, finally giving the 'mosaic' idea legal teeth.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1967",
+                "label": "Katz: reasonable expectation of privacy"
+              },
+              {
+                "year": "1979",
+                "label": "Smith v. Maryland: third-party doctrine"
+              },
+              {
+                "year": "2012",
+                "label": "US v. Jones: GPS tracking is a search"
+              },
+              {
+                "year": "2018",
+                "label": "Carpenter: location mosaic protected",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "the Fourth Amendment meets digital tracking"
+          }
+        ]
+      },
+      {
+        "heading": "THE THIRD-PARTY LOOPHOLE",
+        "body": "Smith v. Maryland (1979) established that information you hand to a third party — a phone company, a bank — loses much of its Fourth Amendment protection because you 'assumed the risk' of disclosure. ALPR data lives on a private vendor's servers, which is precisely the gap that lets police query a nationwide movement database without the warrant a GPS tracker would require.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The right of the people to be secure in their persons, houses, papers, and effects, against unreasonable searches and seizures, shall not be violated, and no Warrants shall issue, but upon probable cause",
+            "speaker": "US Constitution, Fourth Amendment"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T17:42:09.933Z",
+    "label": "ALPR & the Surveillance Database",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-11-jalveer-tanker-fire-oman-hormuz-shipping": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE SAILORS ARE INDIAN",
+        "body": "A tanker's crew rarely shares the nationality of its owner, flag, or cargo. India is one of the largest single suppliers of merchant seafarers on Earth — its maritime academies feed a global labor market where officers and ratings are hired per voyage, not per nation. When any ship is hit anywhere, the odds that Indians are aboard are structurally high.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Share of global merchant seafarers (approx.)",
+            "peers": [
+              {
+                "value": 13,
+                "cc": "PH"
+              },
+              {
+                "value": 12,
+                "cc": "CN"
+              },
+              {
+                "value": 10,
+                "cc": "IN"
+              },
+              {
+                "value": 8,
+                "cc": "RU"
+              },
+              {
+                "value": 7,
+                "cc": "ID"
+              },
+              {
+                "value": 4,
+                "cc": "UA"
+              }
+            ],
+            "subjectCc": "IN",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "FOUR NATIONALITIES, ONE HULL",
+        "body": "Modern shipping deliberately separates ownership, registration, crewing, and cargo across borders — partly for tax and liability, partly for deniability. A single tanker can be Greek-owned, Panama-flagged, Indian-crewed, and carrying Gulf oil bound for China. This fragmentation is why 'whose ship was it' has no clean answer.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal nationality of a vessel is its **flag state** — not its owner or crew. A *flag of convenience* lets an owner register abroad to escape home-country labor, tax, and inspection rules; **Panama**, **Liberia**, and the **Marshall Islands** flag a third of world tonnage between them."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE GULF OF OMAN",
+        "body": "The strikes happened off Shinas, on Oman's coast — in the Gulf of Oman, the staging water just outside the Strait of Hormuz. Tankers slow and queue here before threading the strait's narrow lanes, which makes these waters the natural place to intercept shipping without entering the chokepoint itself.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "OM",
+              "IR",
+              "AE",
+              "PK"
+            ],
+            "label": "the approach to Hormuz",
+            "caption": "Tankers queue in the Gulf of Oman before transiting the strait",
+            "markers": [
+              {
+                "lat": 24.74,
+                "lng": 56.47,
+                "label": "Shinas (Oman)"
+              },
+              {
+                "lat": 26.57,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE HELLFIRE GOES TO SEA",
+        "body": "The AGM-114 Hellfire was built in the 1980s to kill tanks from a helicopter. Its small warhead and precision make it the weapon of choice for striking a specific point on a specific vessel — a deck, a bridge, an engine — rather than sinking the whole ship. That precision is also what makes crew casualties, not cargo loss, the headline.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What flag does the world's single largest ship registry fly?",
+            "options": [
+              "Panama",
+              "United States",
+              "Greece",
+              "China"
+            ],
+            "correct": 0,
+            "explanation": "Panama's open registry flags more gross tonnage than any nation — a flag of convenience used by owners worldwide, very few of whom are Panamanian."
+          }
+        ]
+      },
+      {
+        "heading": "THE DIPLOMATIC BIND",
+        "body": "India can summon a diplomat over dead citizens, but it cannot easily escalate: its sailors were on a ship it did not own or flag, and it is courting Washington economically. Modi meeting Trump days later turns a consular grievance into a leverage test — how much a partner's lives weigh against a partnership.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Narendra Modi",
+                "role": "Indian Prime Minister",
+                "years": "2014–",
+                "cc": "IN"
+              },
+              {
+                "name": "Donald Trump",
+                "role": "US President",
+                "years": "2025–",
+                "cc": "US"
+              }
+            ],
+            "label": "the meeting next week"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T17:42:55.354Z",
+    "label": "Who Crews the World's Tankers",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-11-spacex-ipo-market-test-blackrock-concentration": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY STAY PRIVATE SO LONG",
+        "body": "Companies go public to raise capital they can't get privately. SpaceX never needed to — sovereign funds, BlackRock, and Founders Fund supplied billions in private rounds, letting Musk avoid quarterly earnings calls, activist shareholders, and the disclosure that comes with public markets. Going public now is a choice about liquidity for existing holders, not a cash necessity."
+      },
+      {
+        "heading": "WHAT 'OVERSUBSCRIBED' MEANS",
+        "body": "Underwriters run a bookbuilding process: they quietly poll big investors for orders before setting a price. '4x oversubscribed' means orders total four times the shares on offer. That lets the banks raise the price and hand allocations to favored institutions — and it almost guarantees a first-day 'pop' that the company itself captures none of.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The gap between the offer price and the first-day close is money the company *left on the table* — which is why a wildly **oversubscribed** book is a sign the bankers priced too low, not a pure triumph."
+          }
+        ]
+      },
+      {
+        "heading": "THE SIZE, IN CONTEXT",
+        "body": "A $75 billion raise would be the largest IPO in history by a wide margin — more than double Saudi Aramco's 2019 record. Most blockbuster listings cluster in the $15–30 billion range; SpaceX would be in a category of its own.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Largest IPOs by capital raised",
+            "peers": [
+              {
+                "value": 75,
+                "label": "SpaceX"
+              },
+              {
+                "value": 29,
+                "label": "Saudi Aramco"
+              },
+              {
+                "value": 25,
+                "label": "Alibaba"
+              },
+              {
+                "value": 24,
+                "label": "SoftBank"
+              },
+              {
+                "value": 20,
+                "label": "AIA"
+              },
+              {
+                "value": 20,
+                "label": "Visa"
+              },
+              {
+                "value": 16,
+                "label": "Facebook"
+              }
+            ],
+            "subjectLabel": "SpaceX",
+            "unit": "$bn"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE INDEX SAID NO",
+        "body": "S&P Dow Jones doesn't admit companies just because they're huge. Eligibility for the S&P 500 requires the sum of the four most recent quarters of GAAP earnings to be positive — and the most recent quarter too. A 'seasoning' expectation that a stock trade publicly for a period before inclusion compounds it. Size alone buys nothing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does the S&P 500 require before a company can be added?",
+            "options": [
+              "A high enough market capitalization, nothing more",
+              "Positive GAAP earnings over the trailing four quarters",
+              "A minimum number of employees",
+              "Approval by a shareholder vote"
+            ],
+            "correct": 1,
+            "explanation": "The committee requires the sum of the last four quarters of GAAP net income to be positive — a profitability screen many giant firms fail."
+          }
+        ]
+      },
+      {
+        "heading": "THE STARLINK ENGINE",
+        "body": "The $1.75 trillion valuation isn't really about rockets — it's about Starlink. Launch is a low-margin, lumpy business; the satellite-internet subscription stream is recurring revenue that markets value like a telecom. Reusable boosters made the constellation cheap to deploy, and the constellation is what makes the valuation make sense."
+      },
+      {
+        "heading": "THE CONCENTRATION QUESTION",
+        "body": "BlackRock alone sought $5 billion of the offering. When index funds and a handful of mega-managers absorb the bulk of a landmark IPO, the same institutions end up owning slices of nearly every large public company — a concentration of ownership that draws scrutiny precisely because it is passive and quiet rather than activist.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "BlackRock",
+                "value": "~$11tn",
+                "weight": 11
+              },
+              {
+                "label": "Vanguard",
+                "value": "~$9tn",
+                "weight": 9
+              },
+              {
+                "label": "Fidelity",
+                "value": "~$5tn",
+                "weight": 5
+              },
+              {
+                "label": "State Street",
+                "value": "~$4tn",
+                "weight": 4
+              }
+            ],
+            "label": "Assets under management"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T17:43:35.089Z",
+    "label": "IPOs & Index Inclusion",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-11-sp-global-food-prices-emerging-market-inflation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "ENGEL'S LAW",
+        "body": "The poorer the household, the larger the share of income spent on food. This is one of the oldest empirical regularities in economics — observed by Ernst Engel in 1857. It is why the same percentage rise in food prices is a rounding error in Germany and a crisis in Lagos: a Nigerian family spending over 40% of income on food has no slack to absorb it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Nigeria",
+                "value": "~55%",
+                "cc": "NG",
+                "weight": 55,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Kenya",
+                "value": "~47%",
+                "cc": "KE",
+                "weight": 47,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Egypt",
+                "value": "~37%",
+                "cc": "EG",
+                "weight": 37,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Brazil",
+                "value": "~18%",
+                "cc": "BR",
+                "weight": 18,
+                "tone": "neutral"
+              },
+              {
+                "label": "USA",
+                "value": "~7%",
+                "cc": "US",
+                "weight": 7,
+                "tone": "favorable"
+              }
+            ],
+            "label": "share of household spending on food"
+          }
+        ]
+      },
+      {
+        "heading": "FOOD IS DOWNSTREAM OF GAS",
+        "body": "Synthetic nitrogen fertiliser is manufactured from natural gas via the Haber-Bosch process — gas supplies both the hydrogen feedstock and the heat to fix it with atmospheric nitrogen. Roughly half the nitrogen in the world's food supply comes from this single industrial reaction. When energy prices spike, fertiliser is the first crop input to follow, which is why an 'energy shock' becomes a 'food shock' one harvest later.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Fritz Haber's process is sometimes called the invention that *feeds half the world* — without synthetic nitrogen, the planet could sustain perhaps **4 billion** people, not 8."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSMISSION LAG",
+        "body": "Fertiliser is bought and applied at planting; the price effect shows up at harvest and then at retail — typically a lag of several months to over a year. This is why food inflation is forecastable: a fertiliser price seen today is already baked into next season's bread. S&P's call that food will overtake energy inflation is really a statement about this delay finally arriving."
+      },
+      {
+        "heading": "THE NIGERIA CASE",
+        "body": "Nigeria removed its decades-old petrol subsidy in 2023, and fuel prices have climbed since — a 25% rise since February alone. Diesel powers the trucks, generators, and irrigation pumps that move and grow food, so fuel inflation feeds food inflation directly. A weak naira compounds it: imported fertiliser and wheat are priced in dollars.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              1370.1,
+              1370.5,
+              1370.6,
+              1370.49,
+              1372.988035,
+              1372.74,
+              1371.26,
+              1372.34,
+              1371.25,
+              1370.05,
+              1372.25,
+              1372.25,
+              1367.13,
+              1370.94,
+              1372.84,
+              1373.66,
+              1369.78,
+              1371.7,
+              1371.7,
+              1371.2,
+              1371.71,
+              1367.86,
+              1367,
+              1361.17,
+              1360.3,
+              1360.3,
+              1360.06,
+              1360.06,
+              1359.14,
+              1360.45
+            ],
+            "periods": [
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9",
+              "Jun 10",
+              "Jun 11"
+            ],
+            "label": "Nigerian naira",
+            "unit": "NGN / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY THIS IS A SECURITY ISSUE",
+        "body": "Food price spikes have toppled governments more reliably than ideology. The 1977 Egyptian bread riots, the 2008 global food crisis that hit 30+ countries, and the 2011 Arab Spring all tracked surging staple prices. Where households spend half their income on food, the bread price is not a consumer statistic — it is a measure of political stability.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is synthetic nitrogen fertiliser primarily manufactured from?",
+            "options": [
+              "Phosphate rock",
+              "Natural gas",
+              "Potash deposits",
+              "Crude oil"
+            ],
+            "correct": 1,
+            "explanation": "The Haber-Bosch process uses natural gas as the hydrogen feedstock, which is why fertiliser prices track energy markets."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-11"
+    ],
+    "generatedAt": "2026-06-11T17:44:16.117Z",
+    "label": "Food Inflation & the Fertiliser Chain",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-11-sudan-drone-attacks-el-obeid-civilian-toll": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO THE RSF ACTUALLY ARE",
+        "body": "The Rapid Support Forces grew out of the Janjaweed — the Arab militias Khartoum unleashed in Darfur in 2003, accused of genocide. In 2013 the state rebranded them into a paramilitary force, gave them a budget, and let them control gold mines. A counter-insurgency tool became an army that could rival the army that built it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The RSF is not a rebel group that grew against the state — it is a *state-grown* militia that turned on its maker. Its leader, **Hemedti**, rose from camel trader to the second-most-powerful man in Sudan on gold revenue, not conscription."
+          }
+        ]
+      },
+      {
+        "heading": "WHY EL OBEID",
+        "body": "El Obeid is the capital of North Kordofan and the hinge between Khartoum and Darfur. Whoever holds it controls the rail line and the roads west. That is why a city far from the original Khartoum battlefront keeps drawing fire — it is the gate, and the gate is contested.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "TD",
+              "SS",
+              "EG"
+            ],
+            "label": "Kordofan: the corridor west",
+            "caption": "El Obeid links the capital to the Darfur theatre",
+            "markers": [
+              {
+                "lat": 13.1833,
+                "lng": 30.2167,
+                "label": "El Obeid"
+              },
+              {
+                "lat": 15.5007,
+                "lng": 32.5599,
+                "label": "Khartoum"
+              },
+              {
+                "lat": 13.45,
+                "lng": 25.35,
+                "label": "El Fasher (Darfur)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY DRONES CHANGED THE WAR",
+        "body": "Early in the war the RSF was a ground force — technicals and infantry. The arrival of long-range loitering drones let it strike cities it could not capture, hitting fuel depots, power stations, and crowds hundreds of kilometres from any front line. A militia gained the reach of an air force without owning a single runway.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A loitering munition costs a few thousand dollars; the dam, depot, or mourner-filled cemetery it hits cannot be defended for that price. This is the same *cost asymmetry* that has made drones the weapon of choice for forces that cannot win the sky outright."
+          }
+        ]
+      },
+      {
+        "heading": "THE ARC OF THE WAR",
+        "body": "The fighting began in April 2023 as a power struggle between two generals who had jointly staged a coup eighteen months earlier. What looked like a Khartoum street battle metastasised into a national war, splitting the country roughly between an RSF-held west and an army-held east and north.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2003",
+                "label": "Janjaweed mobilised in Darfur"
+              },
+              {
+                "year": "2013",
+                "label": "RSF formally created"
+              },
+              {
+                "year": "2019",
+                "label": "Bashir ousted; generals share power"
+              },
+              {
+                "year": "2021-10",
+                "label": "SAF–RSF joint coup"
+              },
+              {
+                "year": "2023-04",
+                "label": "War erupts in Khartoum",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2025",
+                "label": "Army retakes Khartoum; war shifts west"
+              }
+            ],
+            "label": "from partners to war"
+          }
+        ]
+      },
+      {
+        "heading": "THE HUNGER WEAPON",
+        "body": "The UN warning about a damaged bridge near Delling is not a footnote. In Sudan, the rainy season turns dirt roads to mud and isolates whole regions; controlling a bridge or a road controls who eats. Famine here is engineered by blocking access, not just by failed harvests — and Sudan now holds one of the largest displaced populations on earth.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes Sudan's rainy season so dangerous for civilians caught in the war?",
+            "options": [
+              "It floods cities and drowns residents directly",
+              "It cuts roads to mud, isolating regions from aid",
+              "It grounds all drones, intensifying ground combat",
+              "It spreads disease that the war's medics can't treat"
+            ],
+            "correct": 1,
+            "explanation": "Sudan's unpaved roads turn to impassable mud in the rains, so a single damaged bridge can sever an entire region's humanitarian lifeline."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T17:44:47.639Z",
+    "label": "Sudan's War & the RSF",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-11-trump-kharg-island-seizure-threat-iran-oil": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY ONE ISLAND",
+        "body": "Kharg Island sits 25 km off Iran's coast in the northern Persian Gulf, where pipelines from the southwestern oil fields meet supertankers. Roughly 90% of Iranian crude exports load at this single terminal — a concentration of infrastructure with no modern parallel among major oil producers.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "IQ",
+              "KW",
+              "SA"
+            ],
+            "label": "the northern Gulf",
+            "markers": [
+              {
+                "lat": 29.2333,
+                "lng": 50.3167,
+                "label": "Kharg terminal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SINGLE-POINT VULNERABILITY",
+        "body": "Most oil states diversified export routes after the 1970s — Saudi Arabia built the East-West Pipeline to bypass the Gulf, the UAE pipes crude to Fujairah on the Indian Ocean. Iran planned similar bypasses like the Neka-Jask line, but sanctions and funding gaps left Kharg as the irreplaceable bottleneck.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Iran's crude exports loads at Kharg Island?",
+            "options": [
+              "About a third",
+              "Roughly half",
+              "Around 90%",
+              "Just under 20%"
+            ],
+            "correct": 2,
+            "explanation": "Nearly all Iranian crude — about 90% — funnels through Kharg, because bypass pipelines were never funded to completion."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MINES WORK",
+        "body": "A single naval mine costs a few thousand dollars; clearing it costs millions and weeks. This asymmetry has made mining the weapon of choice for weaker naval powers since the American Civil War, and it is why Iran's mined shoreline raises the casualty math on any seizure.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The threat is structural: a defender lays mines for *thousands* of dollars, while the attacker spends *millions* and weeks to sweep each one — and currents drift them off their charted positions."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf, and Iraq hit Kharg repeatedly. Iran dispersed some loading to Sirri and Larak islands further south but never matched Kharg's throughput — the lesson both sides took is that the terminal is irreplaceable, and disruption is easier to threaten than to sustain.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Tanker War begins",
+                "emphasis": "start"
+              },
+              {
+                "year": "1986",
+                "label": "Iraq's heaviest Kharg raids",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1988",
+                "label": "Ceasefire; throughput recovers",
+                "emphasis": "end"
+              }
+            ],
+            "label": "Kharg under fire"
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ LEVERAGE",
+        "body": "Hormuz is 33 km wide at its narrowest, with shipping lanes just 3 km each, and roughly a fifth of the world's oil passes through daily. By closing the strait, Iran answers a threat to its export terminal with a threat to everyone's imports — the financial chokepoint of war-risk insurance premiums closes a lane faster than any mine.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4711.77,
+              4685.25,
+              4650.57,
+              4540.65,
+              4535.45,
+              4535.69,
+              4575.14,
+              4491.98,
+              4536.19,
+              4525.24,
+              4494.01,
+              4522,
+              4563.72,
+              4547.87,
+              4516.99,
+              4441.32,
+              4477.7,
+              4529.52,
+              4516.92,
+              4529.81,
+              4475.04,
+              4462.11,
+              4449.62,
+              4453.49,
+              4319.76,
+              4296.28,
+              4331.89,
+              4306.92,
+              4209.89,
+              4051.63,
+              4125.17
+            ],
+            "periods": [
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9",
+              "Jun 10",
+              "Jun 11",
+              "Jun 11"
+            ],
+            "label": "Gold (PAX Gold)",
+            "unit": "$/oz",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE ODDS THE MARKET PRICES",
+        "body": "Open military action against Iran has been threatened for decades and rarely executed, because the cost-benefit math favors deterrence over invasion. Prediction markets let you watch that calculus move in real time as rhetoric escalates.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              27,
+              28,
+              28,
+              28,
+              28,
+              32,
+              31,
+              28,
+              33,
+              28,
+              26,
+              30,
+              18,
+              19,
+              19,
+              19,
+              23,
+              18,
+              18,
+              18,
+              16,
+              17,
+              18,
+              17,
+              17,
+              17,
+              16,
+              17,
+              19,
+              19,
+              22,
+              20
+            ],
+            "periods": [
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9",
+              "Jun 10",
+              "Jun 11",
+              "Jun 11"
+            ],
+            "label": "US invade Iran before 2027?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "27%"
+              },
+              {
+                "atIndex": 31,
+                "label": "20%"
+              }
+            ],
+            "link": "https://polymarket.com/event/will-the-us-invade-iran-before-2027",
+            "source": 1
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · PAXG (gold-backed) · as of 2026-06-11",
+      "Polymarket · as of 2026-06-11"
+    ],
+    "generatedAt": "2026-06-11T17:45:13.026Z",
+    "label": "Kharg Island & Iran's Oil Bottleneck",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-11-tuvalu-statehood-sea-level-rise-sovereignty": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MONTEVIDEO TEST",
+        "body": "The 1933 Montevideo Convention set the four classic criteria for statehood: a permanent population, a defined territory, a government, and the capacity to enter relations with other states. Tuvalu's submersion attacks exactly one of these — territory — while leaving the other three intact, which is precisely why its lawyers think statehood can survive.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which of these is NOT one of the Montevideo Convention's criteria for statehood?",
+            "options": [
+              "A permanent population",
+              "A defined territory",
+              "Recognition by the United Nations",
+              "Capacity to enter relations with other states"
+            ],
+            "correct": 2,
+            "explanation": "Statehood under Montevideo is declaratory — it exists once the four criteria are met; UN membership is a consequence of statehood, not a condition of it."
+          }
+        ]
+      },
+      {
+        "heading": "THE OCEAN IS THE ASSET",
+        "body": "Tuvalu's land is about 26 km², but the Exclusive Economic Zone projected from its nine atolls is roughly 750,000 km² of ocean — tuna licences, seabed minerals, fishing rights. The whole legal fight is not about the islands. It is about keeping the maritime estate that the islands generate.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Kiribati",
+                "value": "~3.4m",
+                "cc": "KI",
+                "weight": 3440000
+              },
+              {
+                "label": "Marshall Is.",
+                "value": "~2.0m",
+                "cc": "MH",
+                "weight": 1990000
+              },
+              {
+                "label": "Tuvalu",
+                "value": "~750k",
+                "cc": "TV",
+                "weight": 750000,
+                "tone": "favorable"
+              },
+              {
+                "label": "Nauru",
+                "value": "~308k",
+                "cc": "NR",
+                "weight": 308000
+              }
+            ],
+            "label": "Pacific micro-states: EEZ controlled (km²)"
+          },
+          {
+            "type": "prose",
+            "text": "The ratio is staggering: Tuvalu's sea is roughly **29,000×** its land. A nation of specks governs an ocean the size of a continent."
+          }
+        ]
+      },
+      {
+        "heading": "THE FROZEN BASELINE",
+        "body": "Under UNCLOS, maritime zones are measured from baselines drawn along the coast — so if the coast drowns, the baselines move inward and the EEZ shrinks with it. Tuvalu's innovation is to legislate that its baselines are permanently fixed at their current coordinates, regardless of where the actual shoreline ends up. Pacific states are now pushing the UN to accept this as customary law.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1933",
+                "label": "Montevideo statehood criteria"
+              },
+              {
+                "year": "1982",
+                "label": "UNCLOS sets baseline rule"
+              },
+              {
+                "year": "2023",
+                "label": "Falepili Union with Australia",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026",
+                "label": "Tuvalu freezes baselines in law"
+              }
+            ],
+            "label": "the legal scaffolding"
+          }
+        ]
+      },
+      {
+        "heading": "THE FALEPILI UNION",
+        "body": "In 2023 Tuvalu signed the Falepili Union with Australia — a treaty that opens a migration pathway for Tuvaluans, commits Australia to defend Tuvalu in a disaster, and, in a striking clause, has Australia recognise that Tuvalu's statehood and sovereignty will endure even if its land disappears. It is the first time a country has bound itself by treaty to recognise a future landless state.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TV",
+              "AU"
+            ],
+            "label": "the climate-migration treaty",
+            "markers": [
+              {
+                "lat": -8.5211,
+                "lng": 179.1962,
+                "label": "Funafuti"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DIGITAL TWIN",
+        "body": "Tuvalu is building a digital replica of itself — terrain, archives, cultural records, and government functions migrated to the cloud — so that administration, citizenship, and national identity can persist on servers hosted abroad. The goal is continuity of the state as a functioning institution even when the physical capital is uninhabitable.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phrase Tuvalu uses is the *first digital nation* — sovereignty re-hosted as data, with the population and government deliberately decoupled from a single patch of ground."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT VACUUM",
+        "body": "History offers no case of a state surviving the total loss of its land — states have died by conquest or merger, never by going underwater. The nearest analogue is the Sovereign Military Order of Malta, which lost its island in 1798 yet has kept international legal personality and diplomatic relations with over 100 countries for two centuries — proof that sovereignty can, in principle, outlive territory."
+      }
+    ],
+    "generatedAt": "2026-06-11T17:46:06.681Z",
+    "label": "Statehood Without Territory",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-11-vietnam-first-halal-law-exports-muslim-tourism": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "CERTIFICATION IS A BORDER, NOT A LABEL",
+        "body": "A halal certificate functions like a customs document: it is the entry pass that lets a product clear into a Muslim-majority market at all. For a non-Muslim exporter like Vietnam, building certification bodies is less about religious assurance to its own population and more about manufacturing a key that fits the importing country's lock."
+      },
+      {
+        "heading": "THE COUNTERINTUITIVE EXPORTERS",
+        "body": "The world's largest suppliers of halal meat are not Muslim countries. Brazil dominates halal poultry and beef shipped to the Gulf and Southeast Asia; India, Australia, and Thailand follow. Halal has long been a global supply chain in which the slaughter standard is met by certified plants regardless of the host country's religion — exactly the niche Vietnam is now formalizing.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Brazil",
+                "value": "~$6bn/yr",
+                "cc": "BR",
+                "weight": 60
+              },
+              {
+                "label": "Australia",
+                "value": "~$2bn/yr",
+                "cc": "AU",
+                "weight": 20
+              },
+              {
+                "label": "India",
+                "value": "~$2bn/yr",
+                "cc": "IN",
+                "weight": 20
+              },
+              {
+                "label": "Thailand",
+                "value": "~$1bn/yr",
+                "cc": "TH",
+                "weight": 10
+              }
+            ],
+            "label": "leading halal meat exporters"
+          }
+        ]
+      },
+      {
+        "heading": "WHY A CERTIFICATE ISN'T ENOUGH",
+        "body": "Recognition is bilateral. A certificate issued in one country is worthless in an importing market unless that market's religious authority has formally accredited the issuing body. This is why Vietnam's law admits the hard part is still ahead — the certifier must be added to the recognized-bodies lists kept by Malaysia, Indonesia, the UAE, and Saudi Arabia, one negotiation at a time.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Malaysia's **JAKIM** maintains a published roster of foreign certifiers it accepts; being struck from that list can shut an exporter out of an entire market overnight. The *standard* is global, but the *recognition* is political."
+          }
+        ]
+      },
+      {
+        "heading": "THE SOUTHEAST ASIAN RIVALRY",
+        "body": "Malaysia and Indonesia are not just markets — they are the rule-setters. Malaysia's JAKIM mark is treated as the global gold standard, while Indonesia made halal certification legally mandatory for food sold domestically in 2024. Vietnam is entering a regional contest where its neighbors control the certification infrastructure it must satisfy.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "VN",
+              "MY",
+              "ID",
+              "TH"
+            ],
+            "label": "the certification corridor",
+            "caption": "Vietnam competes with neighbors who already write the rules"
+          }
+        ]
+      },
+      {
+        "heading": "THE TOURISM HALF",
+        "body": "Halal travel is the faster-growing prize. The category covers prayer facilities, certified hotel kitchens, and alcohol-free options for visitors from the Gulf and Southeast Asia — a multi-hundred-billion-dollar flow that countries like Japan and South Korea, with almost no Muslim population, have aggressively courted. Vietnam is following the same playbook: certify the supply chain, then market the destination.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country is the world's largest exporter of halal meat?",
+            "options": [
+              "Saudi Arabia",
+              "Brazil",
+              "Malaysia",
+              "Turkey"
+            ],
+            "correct": 1,
+            "explanation": "Brazil — a non-Muslim country — leads global halal poultry and beef exports, supplying much of the Gulf and Southeast Asia through certified plants."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T17:46:41.558Z",
+    "label": "Halal Certification as Trade Infrastructure",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-11-world-bank-cuts-global-growth-iran-war-lost-decade": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY FERTILIZER, NOT JUST FUEL",
+        "body": "Hormuz isn't only an oil chokepoint — the Gulf is the world's nitrogen-fertilizer kitchen. Qatar, Saudi Arabia, the UAE and Oman convert cheap natural gas into ammonia and urea. Close the strait and you cut both the crude tankers and the fertilizer ships, so the shock hits the harvest, not just the pump.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "gas",
+                "label": "Gulf natural gas"
+              },
+              {
+                "id": "ammonia",
+                "label": "Ammonia"
+              },
+              {
+                "id": "urea",
+                "label": "Urea / nitrogen fert."
+              },
+              {
+                "id": "crops",
+                "label": "Grain yields"
+              },
+              {
+                "id": "food",
+                "label": "Food prices"
+              }
+            ],
+            "links": [
+              {
+                "source": "gas",
+                "target": "ammonia",
+                "value": 100,
+                "label": "feedstock"
+              },
+              {
+                "source": "ammonia",
+                "target": "urea",
+                "value": 80,
+                "label": "synthesis"
+              },
+              {
+                "source": "urea",
+                "target": "crops",
+                "value": 80,
+                "label": "applied N"
+              },
+              {
+                "source": "crops",
+                "target": "food",
+                "value": 80,
+                "label": "supply"
+              }
+            ],
+            "label": "from Gulf gas to the dinner plate"
+          }
+        ]
+      },
+      {
+        "heading": "THE GAS-FERTILIZER LINK",
+        "body": "Nitrogen fertilizer is essentially natural gas in solid form: gas is roughly 70-80% of the cost of making ammonia via the Haber-Bosch process. That is why a Gulf gas disruption shows up months later as a fertilizer bill in Bangladesh or Nigeria.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The chemistry is fixed: making one tonne of ammonia consumes the energy of roughly *1,000 cubic metres* of natural gas. Cut the gas and you cut the **urea**, and the world grows about **half its food** on synthetic nitrogen."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE POOR PAY FIRST",
+        "body": "Engel's law: the poorer the household, the larger the share of income spent on food. In low-income countries food can be half the family budget versus a tenth in rich ones, so a global fertilizer-driven price rise lands as a deep cut to living standards, not an inconvenience.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does a global food-price shock hit low-income countries hardest?",
+            "options": [
+              "They import all of their fertilizer",
+              "Food is a far larger share of household budgets there",
+              "They lack central banks",
+              "They grow no grain of their own"
+            ],
+            "correct": 1,
+            "explanation": "Engel's law: poorer households spend a much larger share of income on food, so the same price rise consumes far more of their budget."
+          }
+        ]
+      },
+      {
+        "heading": "THE GULF NITROGEN HUB",
+        "body": "The fertilizer exposure concentrates in a few terminals on the wrong side of the strait. Qatar's Ras Laffan complex is one of the planet's largest urea exporters; the loading berths and the Hormuz shipping lanes are a single chokepoint apart.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "QA",
+              "SA",
+              "AE",
+              "OM",
+              "BH",
+              "KW"
+            ],
+            "label": "Gulf fertilizer exporters behind Hormuz",
+            "markers": [
+              {
+                "lat": 25.9,
+                "lng": 51.6,
+                "label": "Ras Laffan, Qatar"
+              },
+              {
+                "lat": 26.57,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 2008 RHYME",
+        "body": "This pattern has played before. Fertilizer and grain prices spiked in 2008, triggering food riots in over 30 countries; the 2010-11 run-up in wheat helped light the Arab Spring; the 2022 Russia-Ukraine war cut gas-based fertilizer again. Food inflation has been a political detonator each time.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2008",
+                "label": "Food riots in 30+ countries",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011",
+                "label": "Wheat spike feeds Arab Spring"
+              },
+              {
+                "year": "2022",
+                "label": "Ukraine war cuts gas & grain"
+              },
+              {
+                "year": "2026",
+                "label": "Hormuz fertilizer shock"
+              }
+            ],
+            "label": "modern food-price shocks"
+          }
+        ]
+      },
+      {
+        "heading": "THE GROWTH FLOOR",
+        "body": "Economists treat roughly 2.5% world growth as the line below which the global economy feels recessionary, because population growth and rising-economy momentum mean per-capita output barely advances. The World Bank's 1.3% worst case would put most of the developing world into outright shrinkage per person."
+      }
+    ],
+    "generatedAt": "2026-06-11T17:47:24.865Z",
+    "label": "Hormuz, Fertilizer & the Food Shock",
+    "category": "economy",
+    "articleCount": 1
   }
 }

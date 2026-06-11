@@ -2,13 +2,257 @@
   "version": 1,
   "stories": [
     {
+      "id": "trump-kharg-island-seizure-threat-iran-oil",
+      "label": "Alarm and scepticism follow Trump's Kharg Island threat",
+      "firstSeen": "2026-06-11T17:06:54.012Z",
+      "lastCovered": "2026-06-11T17:06:54.012Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-11-trump-kharg-island-seizure-threat-iran-oil"
+      ],
+      "eventUri": "eng-11734981",
+      "summary": "Trump says the US will be 'taking Kharg Island' — the terminal that handles roughly 90% of Iran's crude exports — and other oil infrastructure. Lead with the escalation the threat represents: seizing a named country's primary export node is an act of war and economic strangulation in one, not a market headline. The structural why is how the US is reframing a chokepoint conflict from interdiction to outright capture of sovereign energy assets, and why analysts are sceptical it is operationally real. Multi-source with regional voices (Al Jazeera QA, Dawn PK) alongside US/Indian wires. Lead from the verified threat, flag the scepticism, do not present seizure as accomplished.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Kharg_Island",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Venezuela",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/United_States_Navy"
+      ]
+    },
+    {
+      "id": "world-bank-cuts-global-growth-iran-war-lost-decade",
+      "label": "World Bank revises global growth forecast down over Iran war impact",
+      "firstSeen": "2026-06-11T17:06:54.012Z",
+      "lastCovered": "2026-06-11T17:06:54.012Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-11-world-bank-cuts-global-growth-iran-war-lost-decade"
+      ],
+      "eventUri": "spa-4229404",
+      "summary": "The World Bank cut its global growth forecast to the lowest since the pandemic and labelled the 2020s a 'lost decade' for developing countries — pinning the latest downgrade on the US-Iran war and its Hormuz spillover. Lead with who bears it: developing economies, already battered by serial shocks, facing higher fertiliser, fuel and food costs from a war they have no part in. The structural why is how a single regional conflict transmits through energy and shipping into a worldwide growth penalty concentrated on the poorest. Regional source (TRT World, TR) anchors the multi-source pair.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/World_Bank",
+        "http://en.wikipedia.org/wiki/Inflation",
+        "http://en.wikipedia.org/wiki/Middle_East",
+        "http://en.wikipedia.org/wiki/Coronavirus",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Developing_country",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Fertilizer"
+      ]
+    },
+    {
+      "id": "sudan-drone-attacks-el-obeid-civilian-toll",
+      "label": "Dozens killed in drone attacks across Sudan as El Obeid toll reaches 23",
+      "firstSeen": "2026-06-11T17:06:54.012Z",
+      "lastCovered": "2026-06-11T17:06:54.012Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-11-sudan-drone-attacks-el-obeid-civilian-toll"
+      ],
+      "eventUri": "eng-11732635",
+      "summary": "Drone strikes across Sudan killed at least 30 civilians and five soldiers this week, with El Obeid in North Kordofan worst hit (23 civilian dead). Lead with the named victims and the mechanism: cheap one-way drones are turning Sudan's war into a campaign of remote civilian killing far from any front line. The structural why is how a conflict the world has stopped watching keeps killing at scale, documented here by a Sudanese outlet (Radio Dabanga) when Western wires are absent. Dignity and consequence; directly addresses the audit's Africa coverage gap.",
+      "conceptUris": []
+    },
+    {
+      "id": "bangladesh-myanmar-arakan-army-border-abductions",
+      "label": "Bangladesh's Myanmar Border Challenge Is No Longer Just About the Rohingya",
+      "firstSeen": "2026-06-11T17:06:54.012Z",
+      "lastCovered": "2026-06-11T17:06:54.012Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-11-bangladesh-myanmar-arakan-army-border-abductions"
+      ],
+      "eventUri": null,
+      "summary": "Bangladeshis are being abducted and killed by the Arakan Army, the de facto power across the border in Myanmar's Rakhine — but Dhaka has no official channel to a non-state actor it cannot recognise. Lead with that diplomatic trap: a sovereign state unable to protect its own citizens because the authority on the other side of the line is not a government. The structural why is how the collapse of the Myanmar state has handed border control to armed groups, rewriting what 'foreign relations' even means for neighbours. Asia hard-news pick; OIC-member Bangladesh, no regional Bangladeshi outlet in feed — note for feed-side audit.",
+      "conceptUris": []
+    },
+    {
+      "id": "jalveer-tanker-fire-oman-hormuz-shipping",
+      "label": "India evacuates crew after tanker fire off Oman",
+      "firstSeen": "2026-06-11T17:06:54.012Z",
+      "lastCovered": "2026-06-11T17:06:54.012Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-11-jalveer-tanker-fire-oman-hormuz-shipping"
+      ],
+      "eventUri": "eng-11733984",
+      "summary": "The asphalt tanker Jalveer is ablaze off Oman and its crew evacuated, the latest civilian shipping casualty as the US-Iran war reaches into the Gulf of Oman approaches to Hormuz — Indian sailors are among the dead in the wider strikes. Lead with the human and commercial cost converging on one waterway: crews killed, hulls burning, and the insurance-and-freight shock that radiates from every hit. The structural why is how a chokepoint war turns neutral merchant shipping into collateral, raising the cost of every barrel and container that transits. Multi-source (Middle East Eye, Al Jazeera QA, RT RU).",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Oman",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Tanker_(ship)",
+        "http://en.wikipedia.org/wiki/United_States_Central_Command",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Gulf_of_Oman"
+      ]
+    },
+    {
+      "id": "spacex-ipo-market-test-blackrock-concentration",
+      "label": "SpaceX IPO Could Test Market, Says 1789 Capital's Abrahimzadeh",
+      "firstSeen": "2026-06-11T17:06:54.012Z",
+      "lastCovered": "2026-06-11T17:06:54.012Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-11-spacex-ipo-market-test-blackrock-concentration"
+      ],
+      "eventUri": "eng-11730903",
+      "summary": "SpaceX's public debut is shaping up as the year's stress test for investor appetite, with BlackRock alone reportedly seeking at least $5bn of shares. Lead with the concentration the IPO reveals: a single privately-held launch-and-satellite monopoly is about to absorb a record slug of institutional capital just as Nvidia slips toward bear territory and AI names sell off. The structural why is how much of the market's risk budget is now bet on one founder's rocket-and-Starlink complex — and what a wobble would mean. Multi-source (Bloomberg, Investing.com IN, Yahoo Finance).",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/SpaceX",
+        "http://en.wikipedia.org/wiki/Initial_public_offering",
+        "http://en.wikipedia.org/wiki/Elon_Musk",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Valuation_(finance)",
+        "http://en.wikipedia.org/wiki/Rocket",
+        "http://en.wikipedia.org/wiki/Nasdaq",
+        "http://en.wikipedia.org/wiki/Starlink"
+      ]
+    },
+    {
+      "id": "vietnam-first-halal-law-exports-muslim-tourism",
+      "label": "Vietnam enacts first halal law to boost exports and Muslim tourism",
+      "firstSeen": "2026-06-11T17:06:54.012Z",
+      "lastCovered": "2026-06-11T17:06:54.012Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-11-vietnam-first-halal-law-exports-muslim-tourism"
+      ],
+      "eventUri": null,
+      "summary": "Vietnam has passed its first national halal law — a non-Muslim-majority state legislating to certify exports and court Muslim travellers. Lead with the strategic read: Hanoi is treating the $2-trillion-plus global halal economy as an export lane and tourism market to be captured, not a faith matter. The structural why is how the halal standard has become trade infrastructure — and how Southeast Asian exporters are racing to meet OIC-market certification rather than cede ground to Malaysia, Indonesia and Thailand. Reader-aligned Muslim-world economy pick from a specialist outlet (Salaam Gateway).",
+      "conceptUris": []
+    },
+    {
+      "id": "sp-global-food-prices-emerging-market-inflation",
+      "label": "S&P Global flags food prices as potential driver of inflation across emerging markets",
+      "firstSeen": "2026-06-11T17:06:54.012Z",
+      "lastCovered": "2026-06-11T17:06:54.012Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-11-sp-global-food-prices-emerging-market-inflation"
+      ],
+      "eventUri": null,
+      "summary": "S&P Global warns food costs may overtake energy as the chief inflation driver across emerging markets, with African economies likely hit hardest as fertiliser and transport costs climb. Lead with the distributional sting: in economies where households already spend most of their income on food, a few percentage points is hunger, not a CPI line. The structural why is how the same war-driven fuel and fertiliser shock that the World Bank flagged converts into bread-and-staple inflation precisely where buffers are thinnest. Regional source (Premium Times, NG); reinforces the Africa coverage gap.",
+      "conceptUris": []
+    },
+    {
+      "id": "amazon-deforestation-falling-progress-stalling",
+      "label": "Amazon deforestation is falling, but progress is stalling",
+      "firstSeen": "2026-06-11T17:06:54.012Z",
+      "lastCovered": "2026-06-11T17:06:54.012Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-11-amazon-deforestation-falling-progress-stalling"
+      ],
+      "eventUri": null,
+      "summary": "Brazil cleared 984,794 hectares of native vegetation in 2025 — below a million for the first time since 2019, a 20.6% drop on 2024 — but the rate of improvement is flattening. Lead with the concrete numbers and the plateau they reveal: enforcement gains hit a ceiling once the easy reductions are banked. The structural why is that headline deforestation declines mask a stalling trend, and a stalled Amazon is still a net carbon and biodiversity loss. Reader-aligned Global South environmental science with a measurable mechanism.",
+      "conceptUris": []
+    },
+    {
+      "id": "tuvalu-statehood-sea-level-rise-sovereignty",
+      "label": "How Tuvalu Is Rewriting the Rules of Statehood",
+      "firstSeen": "2026-06-11T17:06:54.012Z",
+      "lastCovered": "2026-06-11T17:06:54.012Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-11-tuvalu-statehood-sea-level-rise-sovereignty"
+      ],
+      "eventUri": null,
+      "summary": "As rising seas threaten to submerge its land, Tuvalu is pioneering a legal doctrine that a state's sovereignty survives even if its territory does not. Lead with the precedent it sets: a nation pre-emptively rewriting international law so statehood, maritime zones and citizenship persist for a 'digital' or deterritorialised country. The structural why is that climate change is forcing a redefinition of one of the oldest concepts in the state system — and small Pacific nations, not great powers, are authoring it. Fills the persistent Oceania coverage gap flagged in the audit.",
+      "conceptUris": []
+    },
+    {
+      "id": "amazon-data-centers-mississippi-electricity-rates",
+      "label": "Amazon Data Centers In Mississippi Have Already Raised Electricity Rates for Local Customers, Report Suggests",
+      "firstSeen": "2026-06-11T17:06:54.012Z",
+      "lastCovered": "2026-06-11T17:06:54.012Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-11-amazon-data-centers-mississippi-electricity-rates"
+      ],
+      "eventUri": null,
+      "summary": "Three Amazon data centers in Mississippi aren't even open yet, but a new study finds local residents already pay at least $10.60 more a month to subsidise them. Lead with that number and who pays it: ordinary ratepayers underwriting hyperscale AI infrastructure before a single server boots. The structural why is how utility rate design quietly socialises the grid costs of the AI boom onto households while the compute benefits accrue to a trillion-dollar company. Reader-aligned accountability reporting from 404 Media on the hidden local economics of the data-center buildout.",
+      "conceptUris": []
+    },
+    {
+      "id": "flock-alpr-license-plate-searches-leak",
+      "label": "Flock Leaked Cops' License Plate Searches via DuckDuckGo, Bing",
+      "firstSeen": "2026-06-11T17:06:54.012Z",
+      "lastCovered": "2026-06-11T17:06:54.012Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-11-flock-alpr-license-plate-searches-leak"
+      ],
+      "eventUri": null,
+      "summary": "Flock, the automatic license-plate-reader firm, exposed which plates police were hunting and why — leaking the searches through ordinary search engines like DuckDuckGo and Bing. Lead with the irony of the surveillance machine surveilling itself into the open: the queries reveal the reasons cops ran searches, an audit trail no one was supposed to see. The structural why is how a sprawling private ALPR network accumulates sensitive policing data with so little security that a misconfiguration spills it to the public web. Reader-aligned privacy exposé from an original-reporting outlet (404 Media).",
+      "conceptUris": []
+    },
+    {
+      "id": "banks-tokenized-cash-public-blockchain-europe",
+      "label": "Big banks are ditching private blockchains to build tokenized cash networks on public infrastructure",
+      "firstSeen": "2026-06-11T17:06:54.012Z",
+      "lastCovered": "2026-06-11T17:06:54.012Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-11-banks-tokenized-cash-public-blockchain-europe"
+      ],
+      "eventUri": "eng-11731209",
+      "summary": "European banks are abandoning the walled-garden private ledgers they spent a decade building and moving tokenized cash onto public blockchains instead. Lead with the reversal: the institutions that dismissed public chains as unfit for finance are now standardising on them, sidelining policymakers' preference for central-bank-led digital money. The structural why is that bank-backed tokenized deposits, not euro stablecoins or CBDCs, may become the rails for institutional money — a quiet contest over who controls the next payment layer. Reader-aligned fintech-infrastructure story (CoinDesk).",
+      "conceptUris": []
+    },
+    {
       "id": "britain-s-defence-minister-healey-quits-over-defence-spendin",
       "label": "Britain's defence ⁠minister Healey quits over defence spending",
       "firstSeen": "2026-06-11T12:08:54.669Z",
       "lastCovered": "2026-06-11T12:08:54.669Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-11-britain-s-defence-minister-healey-quits-over-defence-spendin"
@@ -33,7 +277,7 @@
       "lastCovered": "2026-06-11T12:08:54.669Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-11-violence-in-mogadishu-a-fractured-elite-what-renewed-violenc"
@@ -49,7 +293,7 @@
       "lastCovered": "2026-06-11T12:08:54.669Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-11-india-actively-working-to-deprive-pakistan-of-water"
@@ -65,7 +309,7 @@
       "lastCovered": "2026-06-11T12:08:54.669Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-11-a-nakba-of-2026-an-idf-reservist-recounts-his-time-in-lebano"
@@ -81,7 +325,7 @@
       "lastCovered": "2026-06-11T12:08:54.669Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-11-philippine-foreign-secretary-says-she-will-meet-myanmar-oppo"
@@ -97,7 +341,7 @@
       "lastCovered": "2026-06-11T12:08:54.669Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-11-bangladesh-targets-growth-revival-with-record-budget-spendin"
@@ -122,7 +366,7 @@
       "lastCovered": "2026-06-11T12:08:54.669Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-11-is-trump-finally-burying-the-zombie-us-mexico-canada-trade-p"
@@ -138,7 +382,7 @@
       "lastCovered": "2026-06-11T12:08:54.669Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-11-a-leap-of-faith-inside-syria-s-first-frog-farm"
@@ -154,7 +398,7 @@
       "lastCovered": "2026-06-11T12:08:54.669Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-11-on-the-hunt-for-cosmic-dawn-and-the-universe-s-very-first-st"
@@ -170,7 +414,7 @@
       "lastCovered": "2026-06-11T12:08:54.669Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-09-we-still-need-people-to-hold-our-hands-inside-the-collapse-o"
@@ -186,7 +430,7 @@
       "lastCovered": "2026-06-11T12:08:54.669Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-11-china-builds-a-rival-satellite-constellation-as-spacex-goes"
@@ -202,7 +446,7 @@
       "lastCovered": "2026-06-11T12:08:54.669Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-09-fcc-wants-to-kill-burner-phones-by-forcing-telecoms-to-get-a"
@@ -218,7 +462,7 @@
       "lastCovered": "2026-06-11T12:08:54.669Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-11-google-deepmind-is-worried-about-what-happens-when-millions"
@@ -234,7 +478,7 @@
       "lastCovered": "2026-06-11T08:06:07.461Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-11-irgc-closes-strait-of-hormuz-shipping-shock"
@@ -250,7 +494,7 @@
       "lastCovered": "2026-06-11T08:06:07.461Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-11-unhcr-one-in-70-forcibly-displaced-returns"
@@ -275,7 +519,7 @@
       "lastCovered": "2026-06-11T08:06:07.461Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-11-thailand-death-sentence-uighur-bangkok-bombing"
@@ -300,7 +544,7 @@
       "lastCovered": "2026-06-11T08:06:07.461Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-11-east-africa-indo-pacific-trade-chokepoint"
@@ -316,7 +560,7 @@
       "lastCovered": "2026-06-11T08:06:07.461Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-11-bitcoin-deep-bear-market-inflation-rates"
@@ -332,7 +576,7 @@
       "lastCovered": "2026-06-11T08:06:07.461Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-10-gaza-child-amputees-prosthetic-care"
@@ -348,7 +592,7 @@
       "lastCovered": "2026-06-11T08:06:07.461Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-09-great-ai-divide-us-china-global-south"
@@ -364,7 +608,7 @@
       "lastCovered": "2026-06-11T08:06:07.461Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-10-html-first-web-performance-access"
@@ -380,7 +624,7 @@
       "lastCovered": "2026-06-11T08:06:07.461Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-11-ryanair-investigated-over-charging-parents-to-sit-with-child"
@@ -405,7 +649,7 @@
       "lastCovered": "2026-06-11T08:06:07.461Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-11-comparative-analysis-of-soil-prokaryotic-community-structure"
@@ -421,7 +665,7 @@
       "lastCovered": "2026-06-11T04:05:29.188Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-10-overnight-attacks-rattle-us-iran-ceasefire"
@@ -437,7 +681,7 @@
       "lastCovered": "2026-06-11T04:05:29.188Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-11-pacific-fuel-shock-price-on-women"
@@ -453,7 +697,7 @@
       "lastCovered": "2026-06-11T04:05:29.188Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-10-egypt-civil-democratic-movement-divisions"
@@ -469,7 +713,7 @@
       "lastCovered": "2026-06-11T04:05:29.188Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-11-cape-town-planning-tribunal-accountability"
@@ -485,7 +729,7 @@
       "lastCovered": "2026-06-11T04:05:29.188Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-10-pakistan-austerity-drive-extended-oil-crisis"
@@ -510,7 +754,7 @@
       "lastCovered": "2026-06-11T04:05:29.188Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-10-india-oman-cepa-hormuz-trade-hedge"
@@ -526,7 +770,7 @@
       "lastCovered": "2026-06-11T04:05:29.188Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-11-south-korea-coupang-record-data-leak-fine"
@@ -551,7 +795,7 @@
       "lastCovered": "2026-06-11T04:05:29.188Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-11-india-ethanol-excise-cut-mandate-delay"
@@ -576,7 +820,7 @@
       "lastCovered": "2026-06-11T04:05:29.188Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-11-indonesia-floods-tapanuli-orangutans-deforestation"
@@ -592,7 +836,7 @@
       "lastCovered": "2026-06-11T04:05:29.188Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-10-earth-energy-imbalance-record-warming"
@@ -608,7 +852,7 @@
       "lastCovered": "2026-06-11T04:05:29.188Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-10-boeing-ghost-bat-armed-autonomous-drone"
@@ -624,7 +868,7 @@
       "lastCovered": "2026-06-10T22:05:28.734Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-10-bill-gates-testifies-house-epstein-ties"
@@ -649,7 +893,7 @@
       "lastCovered": "2026-06-10T22:05:28.734Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-10-hegseth-guantanamo-warns-cuba-weapons"
@@ -674,7 +918,7 @@
       "lastCovered": "2026-06-10T22:05:28.734Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-10-nnpc-mele-kyari-senate-arrest-missing-naira"
@@ -690,7 +934,7 @@
       "lastCovered": "2026-06-10T22:05:28.734Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-10-japan-visa-rules-immigrant-entrepreneurs-crisis"
@@ -706,7 +950,7 @@
       "lastCovered": "2026-06-10T22:05:28.734Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-10-us-escorts-oil-through-hormuz-iran"
@@ -731,7 +975,7 @@
       "lastCovered": "2026-06-10T22:05:28.734Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-10-blackrock-fidelity-bitcoin-etf-duopoly"
@@ -747,7 +991,7 @@
       "lastCovered": "2026-06-10T22:05:28.734Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-10-kalshi-prediction-market-sports-betting-loophole"
@@ -763,7 +1007,7 @@
       "lastCovered": "2026-06-10T22:05:28.734Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-10-esa-sentinel-1-next-gen-radar-satellites"
@@ -779,7 +1023,7 @@
       "lastCovered": "2026-06-10T22:05:28.734Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-10-melanesian-marine-protected-areas-network"
@@ -795,7 +1039,7 @@
       "lastCovered": "2026-06-10T22:05:28.734Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-10-german-ruling-google-liable-ai-overviews"
@@ -811,7 +1055,7 @@
       "lastCovered": "2026-06-10T22:05:28.734Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-10-google-diffusiongemma-open-model-speed"
@@ -827,7 +1071,7 @@
       "lastCovered": "2026-06-10T22:05:28.734Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-10-cisa-three-day-patch-directive"
@@ -843,7 +1087,7 @@
       "lastCovered": "2026-06-10T22:05:28.734Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-10-florida-faulty-face-recognition-wrongful-arrest"
@@ -859,7 +1103,7 @@
       "lastCovered": "2026-06-10T17:06:03.576Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-10-trump-vows-fresh-iran-strikes-after-playing-us-for-suckers"
@@ -884,7 +1128,7 @@
       "lastCovered": "2026-06-10T17:06:03.576Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-10-anti-immigrant-violence-in-uk-shocking-un"
@@ -909,7 +1153,7 @@
       "lastCovered": "2026-06-10T17:06:03.576Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-10-amnesty-israel-state-led-ethnic-cleansing-west-bank"
@@ -934,7 +1178,7 @@
       "lastCovered": "2026-06-10T17:06:03.576Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-10-egypt-bread-subsidy-merge-cash-transfer-cut"
@@ -950,7 +1194,7 @@
       "lastCovered": "2026-06-10T17:06:03.576Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-10-tajikistan-death-in-detention-police-on-trial"
@@ -966,7 +1210,7 @@
       "lastCovered": "2026-06-10T17:06:03.576Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-10-byd-turkey-ev-plant-deal-unravels-pivots-hungary"
@@ -991,7 +1235,7 @@
       "lastCovered": "2026-06-10T17:06:03.576Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-10-pakistan-govt-fuel-levy-cost-push-inflation"
@@ -1007,7 +1251,7 @@
       "lastCovered": "2026-06-10T17:06:03.576Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-10-latam-marijuana-trade-reversal-paraguay-bust"
@@ -1023,7 +1267,7 @@
       "lastCovered": "2026-06-10T17:06:03.576Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-10-early-step-evolution-of-photosynthesis"
@@ -1039,7 +1283,7 @@
       "lastCovered": "2026-06-10T17:06:03.576Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-10-ob-gyns-maternal-vaccine-guidance-conflicts-cdc"
@@ -1055,7 +1299,7 @@
       "lastCovered": "2026-06-10T17:06:03.576Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-10-cops-arrested-using-flock-alpr-to-stalk"
@@ -1071,7 +1315,7 @@
       "lastCovered": "2026-06-10T17:06:03.576Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-10-cyberattack-australian-sugar-mills-harvest"
@@ -1087,239 +1331,13 @@
       "lastCovered": "2026-06-10T17:06:03.576Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-08-apple-ai-architecture-built-around-google-gemini"
       ],
       "eventUri": null,
       "summary": "Apple — the company that built its brand on doing everything in-house — is rearchitecting Apple Intelligence around Google's Gemini models. Lead with the strategic concession: the most vertically integrated firm in tech is outsourcing the core of its AI to a rival, an admission that it could not build a competitive frontier model in time. The structural why for the developer reader is the consolidation of the AI layer into a few foundation-model providers, with even Apple becoming a customer rather than a builder — and the privacy and dependency questions that follow from routing Siri's intelligence through Google. A flagship HN-surfaced story on where the AI stack is concentrating.",
-      "conceptUris": []
-    },
-    {
-      "id": "pakistan-air-strikes-in-afghanistan-kill-26-as-tensions-re-i",
-      "label": "Pakistan air strikes in Afghanistan kill 26 as tensions re-ignites",
-      "firstSeen": "2026-06-10T12:06:04.656Z",
-      "lastCovered": "2026-06-10T12:06:04.656Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-10-pakistan-air-strikes-in-afghanistan-kill-26-as-tensions-re-i"
-      ],
-      "eventUri": "eng-11729822",
-      "summary": "Pakistani airstrikes on Khost, Kunar and Paktika killed civilians including children, per the Taliban's spokesman, reigniting a cross-border conflict between two Muslim-majority states. Lead with the named victims and the locations, and the mechanism: Islamabad strikes inside Afghan territory to hit TTP sanctuaries, but the bodies counted are civilians, and each round hardens the Kabul-Islamabad rupture. Multi-source with Al Jazeera carrying the regional voice — let the reader weigh the Taliban's casualty claim against the strike's stated counter-militancy rationale.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Afghanistan",
-        "http://en.wikipedia.org/wiki/Taliban",
-        "http://en.wikipedia.org/wiki/Paktika_Province",
-        "http://en.wikipedia.org/wiki/Khost",
-        "http://en.wikipedia.org/wiki/Kunar_Province",
-        "http://en.wikipedia.org/wiki/Airstrike",
-        "http://en.wikipedia.org/wiki/Zabihullah_Mujahid"
-      ]
-    },
-    {
-      "id": "congress-calls-returning-officer-s-order-on-meenakshi-natara",
-      "label": "Congress calls Returning Officer's order on Meenakshi Natarajan's RS nomination 'egregious'",
-      "firstSeen": "2026-06-10T12:06:04.656Z",
-      "lastCovered": "2026-06-10T12:06:04.656Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-10-congress-calls-returning-officer-s-order-on-meenakshi-natara"
-      ],
-      "eventUri": "eng-11730472",
-      "summary": "A returning officer rejected the opposition Congress's Rajya Sabha nominee in Madhya Pradesh, and the party is calling it 'blatantly unlawful.' Lead with the accountability mechanism the reader should track: control of who is even allowed onto the ballot is a quieter, more durable lever over electoral outcomes than any single vote, and a contested rejection by an election official is exactly where institutional impartiality is tested. Frame it as part of a wider pattern of opposition complaints about India's election machinery, not an isolated procedural spat. Multi-source (The Hindu, Indian Express).",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Meenakshi_Natarajan",
-        "http://en.wikipedia.org/wiki/Indian_National_Congress",
-        "http://en.wikipedia.org/wiki/Abhishek_Singhvi",
-        "http://en.wikipedia.org/wiki/Rajya_Sabha",
-        "http://en.wikipedia.org/wiki/Madhya_Pradesh",
-        "http://en.wikipedia.org/wiki/Jairam_Ramesh",
-        "http://en.wikipedia.org/wiki/Randeep_Surjewala",
-        "http://en.wikipedia.org/wiki/Member_of_parliament"
-      ]
-    },
-    {
-      "id": "more-than-1-300-migrants-have-died-trying-to-reach-the-spani",
-      "label": "More than 1,300 migrants have died trying to reach the Spanish coast in 2026, says NGO",
-      "firstSeen": "2026-06-10T12:06:04.656Z",
-      "lastCovered": "2026-06-10T12:06:04.656Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-10-more-than-1-300-migrants-have-died-trying-to-reach-the-spani"
-      ],
-      "eventUri": "eng-11727874",
-      "summary": "Caminando Fronteras counts 1,317 people dead trying to reach Spain so far in 2026, most on the Atlantic route to the Canary Islands. Lead with the number and the named monitor: this is a continuing, countable toll produced by a deliberate policy of border deterrence, timed to a papal visit that will draw attention to it. The structural why is that the deadliness of a migration route is a policy output, not a natural fact — when legal paths close, the body count on the sea route is the cost being externalised onto the world's poorest. Africa-to-Europe consequence story with named victims.",
-      "conceptUris": []
-    },
-    {
-      "id": "vetting-crisis-over-100-000-educators-in-sa-remain-unchecked",
-      "label": "Vetting crisis: Over 100,000 educators in SA remain unchecked amid child safety",
-      "firstSeen": "2026-06-10T12:06:04.656Z",
-      "lastCovered": "2026-06-10T12:06:04.656Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-10-vetting-crisis-over-100-000-educators-in-sa-remain-unchecked"
-      ],
-      "eventUri": null,
-      "summary": "More than 119,000 South African teachers across four provinces still haven't been checked against the national sex-offenders register, three years after the vetting drive began. Lead with the accountability gap: a child-safety safeguard exists on paper but the state never finished executing it, leaving the most vulnerable exposed by administrative neglect rather than any policy decision. The structural why is implementation capacity — laws that protect children are only as real as the bureaucratic follow-through, and the gap between mandate and delivery is where harm accumulates. A Daily Maverick figures-obtained investigation; an Africa governance-accountability story.",
-      "conceptUris": []
-    },
-    {
-      "id": "mexico-is-securing-the-world-cup-residents-ask-security-for",
-      "label": "Mexico Is Securing the World Cup. Residents Ask: Security for Whom?",
-      "firstSeen": "2026-06-10T12:06:04.656Z",
-      "lastCovered": "2026-06-10T12:06:04.656Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-10-mexico-is-securing-the-world-cup-residents-ask-security-for"
-      ],
-      "eventUri": null,
-      "summary": "Mexico is deploying nearly 100,000 security personnel for the 2026 World Cup while disappearances and everyday violence continue unaddressed. Lead with the two-tier mechanism: the state can summon overwhelming security capacity when foreign tourists and FIFA revenue are at stake, which exposes that the chronic insecurity ordinary Mexicans live with is a matter of political priority, not capability. The structural why for the reader is the 'security bubble' as a governance choice — protection is allocated to what generates money and image, not to the residents whose missing relatives go uninvestigated. Latin America accountability story.",
-      "conceptUris": []
-    },
-    {
-      "id": "may-sees-highest-ever-monthly-inflow-of-remittances-at-4-3bn",
-      "label": "May sees 'highest-ever monthly inflow' of remittances at $4.3bn",
-      "firstSeen": "2026-06-10T12:06:04.656Z",
-      "lastCovered": "2026-06-10T12:06:04.656Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-10-may-sees-highest-ever-monthly-inflow-of-remittances-at-4-3bn"
-      ],
-      "eventUri": "eng-11730151",
-      "summary": "Pakistan logged a record $4.3 billion in remittances in May, its highest-ever monthly inflow, per the State Bank. Lead with what remittances actually are for Pakistan: not a feel-good statistic but the load-bearing pillar of an economy starved of dollars, the inflow that keeps the rupee and import cover standing while exports lag. The structural why for the reader is dependence — a country whose external stability rests on the wages of its workers in the Gulf is hostage to Gulf labour demand and oil cycles it does not control. Dawn carries the regional voice; an OIC macro story with a clear mechanism.",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-s-auto-imports-register-47-growth-in-2-months-irica",
-      "label": "Iran's auto imports register 47% growth in 2 months: IRICA",
-      "firstSeen": "2026-06-10T12:06:04.656Z",
-      "lastCovered": "2026-06-10T12:06:04.656Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-10-iran-s-auto-imports-register-47-growth-in-2-months-irica"
-      ],
-      "eventUri": null,
-      "summary": "Iran's car imports jumped 47% in two months, customs reports, on the first anniversary of its free-trade agreement with the Eurasian Economic Union. Lead with the reorientation the number signals: cut off from Western markets, Iran is wiring its trade into a Russia-led bloc, and a surge in auto imports is a visible marker of that pivot. The structural why for the reader is how sanctions reshape rather than sever trade — they redirect a sanctioned economy toward whichever partners will transact, building a parallel commercial axis. Mehr carries the regional voice; read the figure as geo-economics, not just a customs stat.",
-      "conceptUris": []
-    },
-    {
-      "id": "europe-injects-over-16-bcm-of-gas-into-storage-for-next-wint",
-      "label": "Europe injects over 16 bcm of gas into storage for next winter",
-      "firstSeen": "2026-06-10T12:06:04.656Z",
-      "lastCovered": "2026-06-10T12:06:04.656Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-10-europe-injects-over-16-bcm-of-gas-into-storage-for-next-wint"
-      ],
-      "eventUri": null,
-      "summary": "EU countries have already injected more than 16 billion cubic metres of gas into storage since April, racing to refill for winter. Lead with the mechanism that now governs European energy security: having largely severed Russian pipeline supply, the bloc must buy and bank gas on the open (largely LNG) market during the summer to survive the cold months, making storage levels the single number that sets winter prices and political nerves. The structural why is the cost of decoupling — energy security bought through pricier, more volatile imports. Source is Russian state wire TASS, so treat the framing with care and lead on the verifiable storage mechanics.",
-      "conceptUris": []
-    },
-    {
-      "id": "we-really-are-going-blind-scientists-warn-world-losing-sight",
-      "label": "'We really are going blind': Scientists warn world losing sight of the ocean",
-      "firstSeen": "2026-06-10T12:06:04.656Z",
-      "lastCovered": "2026-06-10T12:06:04.656Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-08-we-really-are-going-blind-scientists-warn-world-losing-sight"
-      ],
-      "eventUri": null,
-      "summary": "The Trump administration's dismantling of a $368 million ocean sensor network is the latest blow to the observation systems that track marine health and the global climate. Lead with the loss of capability, not the politics: ocean sensors are the eyes through which we measure heat uptake, currents, and the carbon cycle, and switching them off means flying blind on the system that regulates Earth's climate. The structural why for the reader is that scientific monitoring is infrastructure — once a continuous data record is broken, decades of baseline are gone and cannot be back-filled, so a budget cut today blinds forecasting for years. Accountability meets earth science.",
-      "conceptUris": []
-    },
-    {
-      "id": "effects-of-di-2-ethylhexyl-phthalate-dehp-and-hyperoxia-on-c",
-      "label": "Effects of Di(2-ethylhexyl) phthalate (DEHP) and hyperoxia on cardiovascular development in newborn rats",
-      "firstSeen": "2026-06-10T12:06:04.656Z",
-      "lastCovered": "2026-06-10T12:06:04.656Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-10-effects-of-di-2-ethylhexyl-phthalate-dehp-and-hyperoxia-on-c"
-      ],
-      "eventUri": null,
-      "summary": "A Nature study finds the plasticiser DEHP — leached from medical tubing and IV lines — combines with the high-oxygen therapy that premature babies routinely receive to disrupt heart development in newborn rats. Lead with the cruel irony the reader will grasp: the very equipment keeping the most fragile infants alive is also delivering a hormone-disrupting chemical at the worst possible moment. The structural why is that phthalates are everywhere in medical plastics precisely because they are cheap and flexible, and proving a developmental-origins link to later cardiovascular disease is what forces a costly materials rethink. Open-access research with a direct neonatal-care stake.",
-      "conceptUris": []
-    },
-    {
-      "id": "big-tech-big-cons-scammers-are-hiding-in-the-apps-that-make",
-      "label": "Big Tech, big cons: Scammers are hiding in the apps that make your life easy",
-      "firstSeen": "2026-06-10T12:06:04.656Z",
-      "lastCovered": "2026-06-10T12:06:04.656Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-10-big-tech-big-cons-scammers-are-hiding-in-the-apps-that-make"
-      ],
-      "eventUri": null,
-      "summary": "A new book on India's internet boom documents how fraudsters weaponise the trust users place in Google, Facebook and WhatsApp — the platforms become the con's credibility, not its target. Lead with the mechanism the technically literate reader will recognise: scams scale because the platform's brand launders the fraudster's legitimacy, and the same network effects that onboarded hundreds of millions of first-time Indian users left them with no fraud literacy. The structural why is platform accountability — when a billion-user company captures a market it has not built defences for, the cost of that gap lands on the most newly connected. Global South tech reporting (Rest of World).",
-      "conceptUris": []
-    },
-    {
-      "id": "iceye-s-bet-pays-off-with-10-billion-valuation",
-      "label": "ICEYE's Bet Pays Off with €10 Billion Valuation",
-      "firstSeen": "2026-06-10T12:06:04.656Z",
-      "lastCovered": "2026-06-10T12:06:04.656Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-10-iceye-s-bet-pays-off-with-10-billion-valuation"
-      ],
-      "eventUri": null,
-      "summary": "Finnish SAR-satellite maker ICEYE closed a round valuing it above €10 billion, with the full transaction topping €1 billion. Lead with what synthetic-aperture radar actually changes: unlike optical imagery, SAR sees through clouds and darkness, so a constellation of small radar satellites delivers all-weather, day-and-night surveillance — the capability militaries and insurers are now paying a sovereignty premium for. The structural why for the reader is Europe building its own intelligence-from-orbit so it isn't dependent on US imagery, and the Ukraine war turning persistent radar reconnaissance from niche to strategic. A non-US-centric space/defence-tech story with agency.",
-      "conceptUris": []
-    },
-    {
-      "id": "synergy-of-postural-adaptation-and-exteroception-for-robust",
-      "label": "Synergy of postural adaptation and exteroception for robust CPG-driven quadrupedal locomotion",
-      "firstSeen": "2026-06-10T12:06:04.656Z",
-      "lastCovered": "2026-06-10T12:06:04.656Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-10-synergy-of-postural-adaptation-and-exteroception-for-robust"
-      ],
-      "eventUri": null,
-      "summary": "Researchers pair a central-pattern-generator controller with exteroception (terrain sensing) to make a reinforcement-learning quadruped robot walk robustly over uneven ground. Lead with the engineering insight the developer-reader will want: instead of one giant learned policy, a biologically inspired rhythmic generator handles the gait while sensing handles balance, splitting the locomotion problem the way animal nervous systems do. The structural why is that legged robots fail in the real world on exactly the irregular terrain wheels can't handle, so a control architecture that stays stable when a foot lands wrong is what moves quadrupeds from demo videos to field use. Open-access robotics research.",
       "conceptUris": []
     }
   ]
