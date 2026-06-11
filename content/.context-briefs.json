@@ -345489,5 +345489,1297 @@
     "label": "Naval Convoys & the Hormuz Chokepoint",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-06-10-boeing-ghost-bat-armed-autonomous-drone": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LOYAL WINGMAN IDEA",
+        "body": "Ghost Bat belongs to a class the militaries call Collaborative Combat Aircraft — uncrewed jets that fly alongside a piloted fighter, acting as forward sensors and extra missile racks. The pilot stays back; the drone takes the risk of pushing into contested airspace."
+      },
+      {
+        "heading": "WHY THE WEAPONS GO INSIDE",
+        "body": "Radar doesn't see an aircraft so much as its sharp edges and right angles. A missile bolted to an external pylon acts as a corner reflector, throwing back a bright return that erases any stealth shaping on the airframe itself. Tucking the missile into an internal bay keeps the skin smooth — which is exactly why the F-22 and F-35 do the same.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why must a stealth aircraft carry its missiles in internal bays rather than on wing pylons?",
+            "options": [
+              "Internal bays let missiles fly faster off the rail",
+              "Externally-mounted missiles reflect radar and ruin the stealth shaping",
+              "Internal bays keep the missiles warm at high altitude",
+              "International treaty bans external missiles on drones"
+            ],
+            "correct": 1,
+            "explanation": "An external missile and its pylon act as radar corner-reflectors, producing a bright return that defeats the airframe's low-observable shaping."
+          }
+        ]
+      },
+      {
+        "heading": "THE ATTRITABLE BET",
+        "body": "The whole logic rests on price. A crewed fighter is too expensive and too valuable — the pilot — to throw at a heavily defended target. An uncrewed jet costing a fraction as much is 'attritable': you can lose a few and still come out ahead. The economics, not the technology, are what make the concept new.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "F-35A",
+                "value": "~$80m",
+                "cc": "US",
+                "weight": 80,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "F/A-18E",
+                "value": "~$70m",
+                "cc": "US",
+                "weight": 70,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Ghost Bat",
+                "value": "~$15m",
+                "cc": "AU",
+                "weight": 15,
+                "tone": "favorable"
+              },
+              {
+                "label": "XQ-58",
+                "value": "~$5m",
+                "cc": "US",
+                "weight": 5,
+                "tone": "favorable"
+              }
+            ],
+            "label": "rough flyaway cost per airframe"
+          }
+        ]
+      },
+      {
+        "heading": "THE MISSILE ITSELF",
+        "body": "The AIM-120 is a fire-and-forget weapon: after launch its own onboard radar locks the target, so the shooter can turn away instead of holding the lock. Putting it on a drone means the uncrewed jet can take the long-range shot a manned fighter would otherwise have to fly forward to make.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **AIM-120 AMRAAM** is *active-radar homing* — once it goes 'pitbull' in the terminal phase, it guides itself, freeing the launch aircraft to maneuver away. That independence is what lets a wingman drone be a real shooter, not just a sensor."
+          }
+        ]
+      },
+      {
+        "heading": "THE AUTONOMY CEILING",
+        "body": "These aircraft fly, navigate and formation-keep on their own, but the decision to fire generally stays with a human in the loop. The hard engineering problem isn't flight — it's building enough trust and reliable data-links that a pilot will let the drone operate at the edge of its leash without micromanaging it."
+      }
+    ],
+    "generatedAt": "2026-06-11T04:22:41.529Z",
+    "label": "Loyal Wingmen & Internal Bays",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-10-earth-energy-imbalance-record-warming": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PLANETARY BALANCE SHEET",
+        "body": "Climate is, at bottom, an accounting problem. Sunlight pours in; Earth radiates infrared back out. When the two match, temperature holds steady. The energy imbalance is the surplus left on the books — the single most fundamental number in climate science, because it measures heat actually accumulating, not just air temperature, which wobbles year to year.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The imbalance is tiny in relative terms — roughly *1 watt per square metre* against ~340 W/m² of incoming sunlight — but spread across the whole planet it equals the heat of **several Hiroshima bombs per second**, every second, for decades."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE HEAT GOES",
+        "body": "The atmosphere holds almost none of the surplus. Roughly 90% of the trapped heat sinks into the oceans, which is why deep-water temperatures are the truest thermometer of warming. Air temperature is the volatile froth on top of a vast, slow-warming reservoir.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Oceans",
+                "value": 90,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Land",
+                "value": 5,
+                "tone": "neutral"
+              },
+              {
+                "label": "Ice melt",
+                "value": 3,
+                "tone": "neutral"
+              },
+              {
+                "label": "Atmosphere",
+                "value": 1,
+                "tone": "favorable"
+              }
+            ],
+            "label": "where Earth's excess heat accumulates"
+          }
+        ]
+      },
+      {
+        "heading": "THE MECHANISM",
+        "body": "Visible sunlight passes freely through CO₂ and warms the surface. The surface re-emits that energy as longer-wave infrared — and CO₂ molecules absorb infrared, re-radiating it in all directions, including back down. More CO₂ doesn't block incoming heat; it slows the outgoing escape. The planet warms until it radiates hard enough to balance the books again."
+      },
+      {
+        "heading": "WHY 'CO₂ EQUIVALENT'",
+        "body": "The 56.8 billion-tonne figure bundles several gases into one number. Methane, nitrous oxide and others trap far more heat per molecule than CO₂, so each is converted to its CO₂-equivalent via its global warming potential before being summed.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "CO₂",
+                "value": "1×",
+                "weight": 1
+              },
+              {
+                "label": "Methane",
+                "value": "~28×",
+                "weight": 28
+              },
+              {
+                "label": "Nitrous oxide",
+                "value": "~273×",
+                "weight": 273
+              }
+            ],
+            "label": "warming power per tonne vs CO₂ (100-yr)"
+          }
+        ]
+      },
+      {
+        "heading": "THE COMMITTED WARMING",
+        "body": "Because the oceans absorb heat slowly, the climate lags its cause. Even if emissions stopped today, the surplus already on the books would keep surface temperatures rising for years as the system grinds toward a new balance. The warming we feel reflects the atmosphere of years past, not this year's emissions."
+      },
+      {
+        "heading": "WHAT THE RECORD MEANS",
+        "body": "A rising imbalance is more alarming than a rising temperature. Temperature tells you how warm it is now; the imbalance tells you how fast heat is still flowing in — the rate of change. A record imbalance means the engine driving warming is not just running, it is accelerating.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which gas contributes the most to current human-caused warming?",
+            "options": [
+              "Carbon dioxide",
+              "Water vapour",
+              "Methane",
+              "Nitrous oxide"
+            ],
+            "correct": 0,
+            "explanation": "Water vapour amplifies warming but acts as a feedback, not a driver; CO₂'s sheer volume and long atmospheric lifetime make it the dominant forcing."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T04:23:23.907Z",
+    "label": "Earth's Energy Imbalance",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-10-egypt-civil-democratic-movement-divisions": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ORIGINAL SIN",
+        "body": "Egypt's secular and liberal opposition fatally split from the Islamists in 2013, when most of them backed the military's removal of elected president Mohamed Morsi. Having endorsed a coup to defeat their rivals, they had no principled ground left to stand on when the same military turned to crush them.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What broke the secular opposition's moral standing against Sisi's military rule?",
+            "options": [
+              "They boycotted the 2011 Tahrir uprising",
+              "They backed the 2013 coup that removed elected president Morsi",
+              "They accepted funding from the Muslim Brotherhood",
+              "They refused to contest any elections"
+            ],
+            "correct": 1,
+            "explanation": "By endorsing the military's 2013 ouster of Morsi to defeat the Brotherhood, liberals legitimized the very coup machinery that later crushed them."
+          }
+        ]
+      },
+      {
+        "heading": "THE TOLERATED-OPPOSITION MODEL",
+        "body": "Authoritarian regimes rarely ban opposition outright — they cultivate a weak, fragmented, legal opposition that lends elections a veneer of competition while never threatening the outcome. A movement that fractures over a leader's demolished villa is exactly the kind of opposition such a system is designed to produce.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Political scientists call this *competitive authoritarianism* — the regime keeps real institutions like parliaments and courts, then hollows them so contestation is permitted but **winning is impossible**."
+          }
+        ]
+      },
+      {
+        "heading": "THE CLASS FAULT LINE",
+        "body": "The faction that compared a party leader's demolished mansion to the mass forced evictions of Cairo's poor exposed the movement's deepest weakness: an elite, professionalized leadership disconnected from the urban poor it claimed to speak for. Egypt's secular opposition has long been a movement of lawyers, intellectuals, and Nasserist notables — not of the street."
+      },
+      {
+        "heading": "THE CAST",
+        "body": "The faces of Egypt's secular and leftist opposition cycled through Tahrir, the 2012 election, and a decade of marginalization. Each commanded a constituency too narrow to coalesce; none could build the mass base the Brotherhood once had.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Mohamed ElBaradei",
+                "role": "Liberal figurehead, ex-IAEA chief",
+                "years": "2011–2013",
+                "cc": "EG"
+              },
+              {
+                "name": "Hamdeen Sabahi",
+                "role": "Nasserist presidential candidate",
+                "years": "2012–2014",
+                "cc": "EG"
+              },
+              {
+                "name": "Khaled Ali",
+                "role": "Leftist labor lawyer",
+                "years": "2012–2018",
+                "cc": "EG"
+              }
+            ],
+            "label": "the secular opposition's notables"
+          }
+        ]
+      },
+      {
+        "heading": "THE LONG ARC",
+        "body": "What collapsed this year began at Tahrir in 2011. The revolution that toppled Mubarak gave way to a year of Brotherhood rule, a 2013 military takeover, and a decade of Sisi-era consolidation that steadily narrowed the space any opposition could occupy.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011",
+                "label": "Tahrir uprising topples Mubarak",
+                "emphasis": "start"
+              },
+              {
+                "year": "2012",
+                "label": "Morsi elected president"
+              },
+              {
+                "year": "2013",
+                "label": "Military removes Morsi",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2014",
+                "label": "Sisi elected"
+              },
+              {
+                "year": "2017",
+                "label": "Civil Democratic Movement founded"
+              },
+              {
+                "year": "2018",
+                "label": "Sisi re-elected, near-unopposed"
+              },
+              {
+                "year": "2026",
+                "label": "Movement collapses",
+                "emphasis": "end"
+              }
+            ],
+            "label": "from Tahrir to clinical death"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T04:23:59.530Z",
+    "label": "Egypt's Secular Opposition",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-10-india-oman-cepa-hormuz-trade-hedge": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHIC HEDGE",
+        "body": "Almost all of Oman's coastline faces the Gulf of Oman and the open Arabian Sea — outside the Strait of Hormuz, not inside the Gulf. Ports like Sohar and Duqm can take inbound cargo without a tanker ever entering the contested strait. That single fact is why Muscat, alone among the Gulf monarchies, sells itself as a chokepoint-proof gateway.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "OM",
+              "IR",
+              "AE"
+            ],
+            "label": "Oman's coast vs the strait",
+            "caption": "Sohar and Duqm sit beyond the Hormuz pinch-point",
+            "markers": [
+              {
+                "lat": 26.57,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 24.34,
+                "lng": 56.71,
+                "label": "Sohar port"
+              },
+              {
+                "lat": 19.67,
+                "lng": 57.7,
+                "label": "Duqm port"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE MUSANDAM TWIST",
+        "body": "The southern shore of the Strait of Hormuz is itself Omani — the Musandam peninsula — but Musandam is an exclave, cut off from the rest of Oman by UAE territory. So Oman both guards the chokepoint and lies almost entirely outside it. The bypass works precisely because the country's economic heartland sits on the far side of the bottleneck.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What's unusual about Musandam, the peninsula on Hormuz's southern shore?",
+            "options": [
+              "It is an Omani exclave, separated from Oman by the UAE",
+              "It is jointly administered by Iran and Oman",
+              "It is uninhabited and demilitarized by treaty"
+            ],
+            "correct": 0,
+            "explanation": "Musandam is Omani territory but physically detached from the rest of Oman, sitting across UAE land at the tip of the strait."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHOKEPOINTS BIND",
+        "body": "Roughly a fifth of the world's seaborne oil passes through Hormuz — more than any other maritime chokepoint. A few cheap mines or a single insurance scare can effectively close it, because war-risk premiums reroute commercial fleets long before any vessel is actually hit. The strait's value as leverage comes from this concentration: there is no overland substitute at scale.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hormuz",
+                "value": "~20",
+                "weight": 20,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Malacca",
+                "value": "~16",
+                "weight": 16,
+                "tone": "neutral"
+              },
+              {
+                "label": "Suez/SUMED",
+                "value": "~9",
+                "weight": 9,
+                "tone": "neutral"
+              },
+              {
+                "label": "Bab-el-Mandeb",
+                "value": "~7",
+                "weight": 7,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Seaborne crude through major chokepoints (mn bbl/day)"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A CEPA ACTUALLY IS",
+        "body": "The India-Oman pact is a Comprehensive Economic Partnership Agreement — a trade deal that goes beyond cutting tariffs on goods to cover services, investment, and rules of origin. India has signed similar CEPAs with the UAE (2022) and Australia, using them to lock in Gulf market access ahead of slower multilateral talks.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A **CEPA** is broader than a free-trade agreement: it binds *goods, services, and investment* in one framework — which is why India favors them as fast, bilateral building blocks while the WTO stalls."
+          }
+        ]
+      },
+      {
+        "heading": "OMAN THE NEUTRAL",
+        "body": "Oman has spent decades as the Gulf's back-channel — hosting the secret US-Iran talks that led to the 2015 nuclear deal and staying out of the Yemen and Qatar blockade fights. That neutrality is rooted partly in Ibadi Islam, the distinct school followed by most Omanis, which sits apart from both the Sunni and Shia mainstream and has long encouraged a non-aligned foreign posture.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Most Omanis follow **Ibadi** Islam — neither Sunni nor Shia — the oldest surviving school, which historically prized consensus and political quietism over sectarian alignment."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DUQM MATTERS TO DELHI",
+        "body": "India already has a stake in Duqm, Oman's deepwater port on the open Arabian Sea, with naval access rights agreed in 2018. For a country that imports most of its crude through the Gulf, a friendly port outside Hormuz is both a commercial gateway and a strategic insurance policy against the strait being closed."
+      }
+    ],
+    "generatedAt": "2026-06-11T04:24:45.232Z",
+    "label": "Oman & the Hormuz Bypass",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-10-overnight-attacks-rattle-us-iran-ceasefire": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CALIBRATED STRIKE",
+        "body": "Iran's signature move is the telegraphed strike — enough force to satisfy domestic demands for retaliation, choreographed to avoid the American deaths that would force Washington's hand. The January 2020 ballistic-missile barrage on Iraq's Ain al-Asad base was the template: Tehran signaled the timing through back channels, hit a base it knew would be braced, and killed no one — though roughly 100 US troops were later diagnosed with traumatic brain injuries.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was notable about Iran's January 2020 missile strike on the Ain al-Asad base?",
+            "options": [
+              "It was telegraphed in advance and killed no US troops",
+              "It was a surprise attack that killed dozens",
+              "It used cruise missiles launched from submarines",
+              "It targeted a base inside Iran by mistake"
+            ],
+            "correct": 0,
+            "explanation": "Iran signaled the strike through back channels so the US could shelter troops — retaliation calibrated to avoid the deaths that would demand escalation."
+          }
+        ]
+      },
+      {
+        "heading": "THE RING OF BASES",
+        "body": "Iran is surrounded by American firepower at close range. The Gulf hosts the forward headquarters of US Central Command's air and naval forces — Al Udeid in Qatar is the largest US air base in the region, Bahrain houses the Navy's Fifth Fleet, and Ain al-Asad in Iraq sits within easy missile range. The proximity that lets the US pressure Iran also makes those same bases the obvious targets when Iran answers.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "IQ",
+              "QA",
+              "BH",
+              "AE",
+              "KW"
+            ],
+            "label": "US bases ring the Gulf",
+            "caption": "Forward US air and naval bases within Iranian missile range",
+            "markers": [
+              {
+                "lat": 25.117,
+                "lng": 51.315,
+                "label": "Al Udeid (Qatar)"
+              },
+              {
+                "lat": 26.209,
+                "lng": 50.61,
+                "label": "NSA Bahrain / 5th Fleet"
+              },
+              {
+                "lat": 24.248,
+                "lng": 54.547,
+                "label": "Al Dhafra (UAE)"
+              },
+              {
+                "lat": 33.785,
+                "lng": 42.441,
+                "label": "Ain al-Asad (Iraq)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY MISSILES, NOT JETS",
+        "body": "Iran's air force is a museum of 1970s American jets it can no longer fully maintain, so decades of sanctions pushed it to build the largest ballistic-missile arsenal in the Middle East instead. Missiles are the cheap, deniable equalizer against a vastly superior air power — and Tehran's families of road-mobile rockets are tuned to reach exactly the ring of Gulf bases that surround it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Fateh-110",
+                "value": "~300 km",
+                "weight": 300
+              },
+              {
+                "label": "Zolfaghar",
+                "value": "~700 km",
+                "weight": 700
+              },
+              {
+                "label": "Shahab-3",
+                "value": "~2,000 km",
+                "weight": 2000
+              },
+              {
+                "label": "Sejjil",
+                "value": "~2,000 km",
+                "weight": 2000
+              },
+              {
+                "label": "Khorramshahr",
+                "value": "~2,000 km",
+                "weight": 2000
+              }
+            ],
+            "label": "Iran's missile families by reach (approx. km)"
+          }
+        ]
+      },
+      {
+        "heading": "ESCALATE TO DE-ESCALATE",
+        "body": "Both sides are playing a game strategists call managed escalation: hit hard enough to look strong at home, but stay below the threshold that triggers all-out war. A 'disputed Apache downing' becomes a flashpoint precisely because each side must answer an incident without being seen to start the larger conflict — the ambiguity is the safety valve.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine has a name: **escalate to de-escalate** — a calibrated blow meant to *reset* the bargaining table, not to open a war. Its danger is that it depends on the other side reading the signal correctly."
+          }
+        ]
+      },
+      {
+        "heading": "FORTY-SIX YEARS OF SHADOW WAR",
+        "body": "The US and Iran have not had diplomatic relations since 1979, and the hostility has run as a low-grade conflict ever since — punctuated by naval clashes, a downed airliner, proxy battles, and targeted killings, but never quite tipping into open war. Each ceasefire sits inside this longer pattern of confrontation that resets but never resolves.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Embassy seized; ties severed",
+                "emphasis": "start"
+              },
+              {
+                "year": "1988",
+                "label": "USS Vincennes downs Iran Air 655"
+              },
+              {
+                "year": "2015",
+                "label": "Nuclear deal (JCPOA) signed"
+              },
+              {
+                "year": "2018",
+                "label": "US exits the deal"
+              },
+              {
+                "year": "2020",
+                "label": "Soleimani killed; Ain al-Asad strike",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026",
+                "label": "Base exchanges around fragile ceasefire"
+              }
+            ],
+            "label": "US–Iran flashpoints"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T04:25:42.396Z",
+    "label": "US–Iran: the calibrated war",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-10-pakistan-austerity-drive-extended-oil-crisis": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IMPORT TRAP",
+        "body": "Pakistan imports roughly 80% of the crude and refined fuel it burns, almost all of it arriving by tanker through the Strait of Hormuz. A Gulf war doesn't just raise the price — it threatens the route itself, which is why a shooting war hundreds of miles away forces fuel rationing in Islamabad.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA"
+            ],
+            "label": "Pakistan's oil lifeline",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 24.84,
+                "lng": 66.99,
+                "label": "Karachi port"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "AUSTERITY BY COMPRESSION",
+        "body": "Pakistan's external accounts often look healthier in a crisis — not because exports boom, but because the state strangles imports. Cutting fuel use, idling official fleets, and shortening work weeks all suppress demand for dollars. A surplus built this way is a symptom of pain, not recovery.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call this *import compression*: the current account improves because the economy can no longer **afford** to buy from abroad, not because it earns more selling to it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY RATION THE OFFICIAL CARS",
+        "body": "Rationing government vehicles saves trivial volumes of fuel — its real purpose is dollar-defense and signaling. Every barrel not bought is foreign exchange preserved, and a visibly austere state is a precondition for the political consent austerity requires from ordinary citizens."
+      },
+      {
+        "heading": "THE IMF FREQUENT FLYER",
+        "body": "Pakistan has entered more than twenty IMF programs since the 1950s — one of the most frequent borrowers in the Fund's history. Each rescue arrives with the same conditions: cut subsidies, raise fuel and electricity tariffs, compress imports. The austerity is rarely Islamabad's choice alone."
+      },
+      {
+        "heading": "THE RUPEE AS PRESSURE GAUGE",
+        "body": "When import costs spike and reserves thin, the rupee is the first thing to give. The exchange rate is the cleanest live readout of whether the squeeze is holding the line or losing it.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377,
+              278.485848,
+              278.494701,
+              278.137253,
+              277.408487,
+              278.412506,
+              278.512908,
+              278.575,
+              277.445439,
+              278.55,
+              278.55,
+              278.494021,
+              278.3,
+              278.45,
+              278.61849,
+              278.35,
+              278.5,
+              278.5,
+              278.440126,
+              278.250184,
+              278.85127,
+              278.390134
+            ],
+            "periods": [
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9",
+              "Jun 10",
+              "Jun 11"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE INELASTIC LEVER",
+        "body": "Fuel is the rationing tool of choice everywhere because demand barely flexes with price — people still need to get to work. That inelasticity makes fuel both the most reliable tax base and the most painful thing to ration.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Pakistan's current-account balance often improve during an economic crisis?",
+            "options": [
+              "Exports surge as the rupee weakens",
+              "Imports collapse because the economy can't afford them",
+              "The IMF directly pays the trade deficit",
+              "Remittances automatically rise in downturns"
+            ],
+            "correct": 1,
+            "explanation": "Import compression — suppressed demand for foreign goods and fuel — narrows the deficit, masking weakness rather than reflecting strength."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-11"
+    ],
+    "generatedAt": "2026-06-11T04:26:21.403Z",
+    "label": "Pakistan's Import-Driven Austerity",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-11-cape-town-planning-tribunal-accountability": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHERE THE VALUE IS",
+        "body": "The reason a rezoning decision is worth hiding conflicts over: changing a parcel's designation from agricultural or single-residential to high-density or commercial can multiply its value overnight, without the owner laying a single brick. Planners call this captured uplift the betterment, or planning gain — pure value created by a stroke of the pen.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The land is unchanged; only the *permitted use* changed. That gap between what a site is worth as zoned and what it's worth rezoned is the **betterment** — and it's precisely what makes a tribunal member's undisclosed interest lucrative."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A TRIBUNAL DECIDES, NOT A COUNCIL",
+        "body": "Until 2013, provinces handled land-use appeals. SPLUMA — the Spatial Planning and Land Use Management Act — devolved that power to Municipal Planning Tribunals: expert panels of officials and outside professionals meant to depoliticise zoning. The tradeoff is that a small, technical body now wields decisions that once required elected councillors who at least faced voters.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1996",
+                "label": "Constitution §32: right of access to information"
+              },
+              {
+                "year": "2000",
+                "label": "PAIA enacted to give §32 teeth",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2013",
+                "label": "SPLUMA creates Municipal Planning Tribunals"
+              }
+            ],
+            "label": "the legal scaffolding"
+          }
+        ]
+      },
+      {
+        "heading": "THE LAW THEY USED TO SAY NO",
+        "body": "PAIA — the Promotion of Access to Information Act — was one of the world's first laws to extend a freedom-of-information right not just to the state but to private bodies, flowing from a constitutional right written after apartheid's secrecy. The irony of this story is a public tribunal invoking that same access framework to withhold, rather than disclose.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "PAIA's design assumption was a citizen prying records *out* of an opaque state. Here the machinery runs backward: the body uses the access statute's exemption clauses as a shield, treating members' qualifications as private records rather than public credentials."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DISCLOSURE IS THE WHOLE GAME",
+        "body": "Conflict-of-interest rules don't assume corruption; they assume that the appearance of impartiality can't be verified after the fact. If residents can't see who sits on the panel or what interests they hold, they can't tell whether a developer-friendly rezoning came from sound planning or from a member who quietly stood to gain — and an unreviewable decision is functionally an unaccountable one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does a hidden conflict of interest matter even if a rezoning decision is technically sound?",
+            "options": [
+              "It makes the decision impossible to challenge or verify as impartial",
+              "It automatically voids the rezoning under SPLUMA",
+              "It transfers the decision back to the provincial government",
+              "It increases the property's tax assessment"
+            ],
+            "correct": 0,
+            "explanation": "Accountability depends on verifiability — an interest that can't be inspected can't be ruled out, so the decision becomes unreviewable regardless of its merits."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T04:26:55.758Z",
+    "label": "Rezoning Power & the Right to Know",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-11-india-ethanol-excise-cut-mandate-delay": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY BLEND AT ALL",
+        "body": "India imports over 85% of its crude. Every percentage point of ethanol blended into petrol is a percentage point of oil not imported — ethanol blending is import substitution dressed as climate policy. The 2025 push to E20 was sold on emissions but justified on the dollar trade balance.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              95.55195,
+              95.719988,
+              95.829548,
+              96.003,
+              96.027,
+              96.13634,
+              96.389098,
+              96.875003,
+              96.376027,
+              96.243053,
+              95.719748,
+              95.700477,
+              95.415433,
+              95.341057,
+              95.70115,
+              96.383018,
+              95.600602,
+              95.01655,
+              95.06455,
+              94.831403,
+              95.108606,
+              95.573359,
+              95.723896,
+              95.657516,
+              95.36885,
+              95.36885,
+              95.27204,
+              95.607455,
+              95.443443,
+              95.566967
+            ],
+            "periods": [
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9",
+              "Jun 10",
+              "Jun 11"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHAT E20 MEANS",
+        "body": "The number is the percentage of ethanol by volume — E20 is 20% ethanol, 80% petrol; E25 is 25%. Ethanol carries less energy per litre than petrol, so higher blends mean slightly lower mileage, traded against lower import costs and cleaner combustion.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Ethanol's higher octane resists knock, but its lower energy density means **E20** delivers roughly **6-7% fewer km per litre** than straight petrol — the hidden tax on the cheaper fuel."
+          }
+        ]
+      },
+      {
+        "heading": "WHY OLD ENGINES CHOKE",
+        "body": "Ethanol is a solvent and absorbs water. In engines not built for it, it corrodes rubber fuel lines, swells gaskets, and runs the air-fuel mix lean — which raises combustion temperatures and can damage valves. This is why a blanket mandate above E20 is risky: most cars on Indian roads predate E20 certification.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't most older petrol engines safely run high ethanol blends?",
+            "options": [
+              "Ethanol corrodes fuel-system parts and leans out the mixture",
+              "Ethanol is too thick to pass through fuel injectors",
+              "Ethanol freezes in cold weather and blocks the lines",
+              "Ethanol cannot be ignited by a standard spark plug"
+            ],
+            "correct": 0,
+            "explanation": "Ethanol's solvency and water absorption attack rubber and metal, and its different stoichiometry leans the mix — older materials and ECUs aren't tuned for it."
+          }
+        ]
+      },
+      {
+        "heading": "THE BRAZIL PRECEDENT",
+        "body": "Brazil has run high ethanol blends since the 1975 Proálcool program, launched after the oil shock to turn sugarcane into fuel. Today its standard petrol is around 27% ethanol and most new cars are flex-fuel, able to burn anything from pure petrol to pure ethanol. India is attempting in a decade what Brazil built over fifty years.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Brazil",
+                "value": "~27%",
+                "cc": "BR",
+                "weight": 27
+              },
+              {
+                "label": "India",
+                "value": "20% (E20)",
+                "cc": "IN",
+                "weight": 20
+              },
+              {
+                "label": "USA",
+                "value": "~10% (E10)",
+                "cc": "US",
+                "weight": 10
+              },
+              {
+                "label": "EU",
+                "value": "~10% (E10)",
+                "cc": "EU",
+                "weight": 10
+              }
+            ],
+            "label": "mandated ethanol blend in petrol"
+          }
+        ]
+      },
+      {
+        "heading": "THE FOOD-VERSUS-FUEL TENSION",
+        "body": "Ethanol comes from sugarcane, surplus rice, and maize — the same crops that feed people. India has at times diverted rice from food reserves to distilleries, so a fuel target quietly becomes an agricultural and food-security decision. The blending rate is set in Delhi, but its inputs are grown in the fields.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2003",
+                "label": "First 5% blending pilot"
+              },
+              {
+                "year": "2018",
+                "label": "National Biofuel Policy"
+              },
+              {
+                "year": "2022",
+                "label": "E10 achieved nationwide"
+              },
+              {
+                "year": "2025",
+                "label": "E20 target hit early",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "India's ethanol program"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ZERO THE EXCISE",
+        "body": "Fuel taxes are India's most reliable revenue — petrol can be two-thirds tax at the pump. Waiving excise on blends above E20 is a deliberate price signal: forgo tax revenue now to pull refiners and consumers toward higher ethanol, because the import savings outweigh the lost duty."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-11"
+    ],
+    "generatedAt": "2026-06-11T04:27:25.568Z",
+    "label": "Ethanol Blending & the Fuel Bill",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-11-indonesia-floods-tapanuli-orangutans-deforestation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NEWEST GREAT APE",
+        "body": "The Tapanuli orangutan was described as a distinct species only in 2017 — the first new great ape named in nearly 90 years, since the bonobo in 1929. It was identified from skull geometry, genetics, and a unique frizzy coat before scientists realized it was already the most endangered great ape on Earth.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When was the Tapanuli orangutan first described as a separate species?",
+            "options": [
+              "2017",
+              "1929",
+              "1986",
+              "2004"
+            ],
+            "correct": 0,
+            "explanation": "Named in 2017, it is the most recently described great ape — discovered as a distinct species after its habitat was already shrinking."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE FOREST HELD THE WATER",
+        "body": "Intact rainforest is a sponge: the canopy slows rainfall, leaf litter absorbs it, and root systems bind the soil. Strip the trees and the same rain sheets straight off bare slopes, concentrating into flash floods and landslides downhill. The deforestation didn't just shrink the orangutans' range — it engineered the flood that killed them.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism has a name: deforested catchments raise both *peak flow* and *sediment load*, so the same storm that a forest would absorb becomes a **debris flow** capable of erasing a hillside in minutes."
+          }
+        ]
+      },
+      {
+        "heading": "THE FRAGMENTATION TRAP",
+        "body": "The 800 survive in three separate forest blocks with little gene flow between them. Below a minimum viable population, a species enters an extinction vortex — inbreeding and chance events compound faster than births can offset them. A single flood killing 7% of one block is exactly the kind of shock a fragmented population cannot absorb."
+      },
+      {
+        "heading": "THE BATANG TORU SQUEEZE",
+        "body": "The entire species lives in the Batang Toru ecosystem of North Sumatra, hemmed by logging, mining, and a contested Chinese-financed hydroelectric dam cutting through the densest orangutan habitat. When a population occupies one valley, every road, clearing, and reservoir is an existential variable.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ID"
+            ],
+            "label": "the entire range of a species",
+            "caption": "All ~800 Tapanuli orangutans live in this one Sumatran ecosystem.",
+            "markers": [
+              {
+                "lat": 1.45,
+                "lng": 99.05,
+                "label": "Batang Toru forest"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "RAREST OF THE GREAT APES",
+        "body": "Humans aside, eight great ape species share the planet. The Tapanuli orangutan sits at the very bottom of the count — fewer individuals than mountain gorillas, and a rounding error against the hundreds of thousands of chimpanzees and western gorillas.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Wild population, great ape species",
+            "peers": [
+              {
+                "value": 800,
+                "label": "Tapanuli orangutan"
+              },
+              {
+                "value": 1000,
+                "label": "Mountain gorilla"
+              },
+              {
+                "value": 14000,
+                "label": "Sumatran orangutan"
+              },
+              {
+                "value": 18000,
+                "label": "Bonobo"
+              },
+              {
+                "value": 100000,
+                "label": "Bornean orangutan"
+              },
+              {
+                "value": 200000,
+                "label": "Chimpanzee"
+              },
+              {
+                "value": 360000,
+                "label": "Western gorilla"
+              }
+            ],
+            "subjectLabel": "Tapanuli orangutan",
+            "unit": "individuals"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T04:28:08.214Z",
+    "label": "The Tapanuli Orangutan",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-11-pacific-fuel-shock-price-on-women": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IMPORT TRAP",
+        "body": "Pacific island states import essentially all their liquid fuel — there are no refineries and the markets are too small to build one. Diesel doesn't just move cars; it runs the electricity grids, the inter-island boats, the water pumps, and the refrigeration that keeps a fish or a vegetable saleable. A fuel shock is therefore an everything-shock, hitting power, food, and mobility at the same instant.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PG",
+              "SB",
+              "VU",
+              "FJ",
+              "TO",
+              "WS"
+            ],
+            "label": "the import-dependent arc",
+            "caption": "Every state on this map imports ~100% of its liquid fuel",
+            "markers": [
+              {
+                "lat": -18.1416,
+                "lng": 178.4419,
+                "label": "Suva, Fiji"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TYRANNY OF DISTANCE",
+        "body": "Economists have a name for the structural penalty of small, remote islands: the tyranny of distance. A drum of diesel that is cheap at a Singapore refinery arrives in a Pacific port carrying weeks of shipping, insurance, and trans-shipment cost stacked on top. The smaller and more scattered the country, the higher fuel's share of every final price — which is why the same global price move lands far harder in Suva than in Sydney.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The penalty compounds: high freight makes fuel dear, and dear fuel makes *all future freight* dearer. This is the **diseconomy of small scale** — the opposite of the volume discount that lets large economies absorb shocks."
+          }
+        ]
+      },
+      {
+        "heading": "WHY WOMEN ABSORB IT FIRST",
+        "body": "Across the Pacific the marketplace is a female economy — women make up the large majority of vendors selling produce, fish, and handicrafts, and most reach the market by bus, truck, or boat. When transport costs spike, their thin margins are the first to vanish: the fare to reach the stall can exceed a day's earnings, so the income simply disappears rather than merely shrinking.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Solomon Is.",
+                "value": "~90%",
+                "cc": "SB",
+                "weight": 90,
+                "tone": "neutral"
+              },
+              {
+                "label": "PNG",
+                "value": "~80%",
+                "cc": "PG",
+                "weight": 80,
+                "tone": "neutral"
+              },
+              {
+                "label": "Vanuatu",
+                "value": "~80%",
+                "cc": "VU",
+                "weight": 80,
+                "tone": "neutral"
+              },
+              {
+                "label": "Fiji",
+                "value": "~75%",
+                "cc": "FJ",
+                "weight": 75,
+                "tone": "neutral"
+              }
+            ],
+            "label": "women's share of marketplace vendors"
+          }
+        ]
+      },
+      {
+        "heading": "TIME POVERTY",
+        "body": "The hidden cost of a fuel shock is measured in hours, not dollars. When buses stop running or fares rise, women walk — adding hours to journeys that are layered on top of unpaid cooking, water-hauling, and childcare. Researchers call this time poverty: a person can be working every waking hour and still be poor, because the time itself has been taxed away.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Time poverty is invisible to GDP because **unpaid care work** is never priced. A fuel shock that adds two walking hours a day is a real tax — it just never shows up in any ledger."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT AN EMERGENCY DECLARATION ACTUALLY DOES",
+        "body": "When a government declares a fuel emergency, the tools it reaches for — securing supply routes, rationing, price caps at the pump — are designed to keep the macro-economy moving: the grid, the ports, official transport. None of them touch the informal economy where the female cost is concentrated. The protection is real, but it is aimed at the formal sector that men more often occupy.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Across many Pacific island nations, roughly what share of open-market vendors are women?",
+            "options": [
+              "About a quarter",
+              "About half",
+              "Three-quarters or more",
+              "An even split by stall"
+            ],
+            "correct": 2,
+            "explanation": "Surveys across Melanesia find women are 75–90% of marketplace vendors, which is why transport-cost shocks fall on them first."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T04:28:56.750Z",
+    "label": "Pacific Fuel Dependence & the Gendered Cost",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-11-south-korea-coupang-record-data-leak-fine": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE REGULATOR",
+        "body": "South Korea's Personal Information Protection Commission (PIPC) is one of the world's most aggressive data authorities. Created as an independent ministry-level body in 2020, it can fine up to 3% of total revenue — not just the revenue tied to the breach, the GDPR-style cap that makes its penalties bite.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Korea's law lets the **PIPC** levy fines on *total* turnover, not breach-segment revenue — the same lever the EU's **GDPR** pioneered and the reason both regimes produce nine-figure penalties."
+          }
+        ]
+      },
+      {
+        "heading": "WHY AUTHENTICATION FAILS",
+        "body": "Most large breaches aren't dramatic hacks — they're credential stuffing. Attackers take username-password pairs leaked from other sites and replay them at scale, betting on password reuse. Without rate limiting, anomaly detection, or multi-factor authentication, a retailer's login page becomes a sieve."
+      },
+      {
+        "heading": "THE NOTIFICATION CLOCK",
+        "body": "Modern privacy laws weaponize the disclosure deadline. Korea requires notice to regulators and users within 72 hours of discovery, mirroring GDPR. Delay is itself a separate, finable offense — which is why 'delayed breach notifications' appears in the ruling alongside the leak itself.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is a delayed breach disclosure penalized separately from the breach itself?",
+            "options": [
+              "Late notice lets attackers reuse stolen data while victims stay unaware",
+              "It doubles the regulator's paperwork",
+              "Disclosure laws only cover financial firms"
+            ],
+            "correct": 0,
+            "explanation": "The notification window exists so users can change passwords and freeze accounts before stolen credentials are exploited; silence defeats the purpose."
+          }
+        ]
+      },
+      {
+        "heading": "THE NUMBERS GAP",
+        "body": "Coupang says 3,000 records leaked; the PIPC found 33 million — a 10,000-fold gap. The dispute isn't cosmetic: penalty math scales with the count of exposed data subjects, so the difference between the two figures is the difference between a fine and a record fine."
+      },
+      {
+        "heading": "WHERE THIS RANKS",
+        "body": "A $408M penalty puts Coupang in the global top tier of privacy fines — the company is South Korea's largest e-commerce platform, often called the country's Amazon, so the percentage-of-revenue cap translates into a very large absolute number.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Major data-privacy fines",
+            "peers": [
+              {
+                "value": 1300,
+                "label": "Meta (EU)"
+              },
+              {
+                "value": 1200,
+                "label": "Didi (China)"
+              },
+              {
+                "value": 800,
+                "label": "Amazon (EU)"
+              },
+              {
+                "value": 700,
+                "label": "Equifax (US)"
+              },
+              {
+                "value": 408,
+                "label": "Coupang"
+              },
+              {
+                "value": 370,
+                "label": "TikTok (EU)"
+              }
+            ],
+            "subjectLabel": "Coupang",
+            "unit": "$m"
+          }
+        ]
+      },
+      {
+        "heading": "WHY COURTS MATTER",
+        "body": "Coupang plans to challenge the ruling — the standard playbook. Regulators set headline numbers partly for deterrence, knowing appeals routinely shrink them. The real test is whether courts uphold the regulator's count of affected users, which is the variable the entire fine rests on."
+      }
+    ],
+    "generatedAt": "2026-06-11T04:29:31.021Z",
+    "label": "Data Breach Enforcement",
+    "category": "tech",
+    "articleCount": 1
   }
 }
