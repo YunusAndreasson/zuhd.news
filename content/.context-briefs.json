@@ -348144,5 +348144,1581 @@
     "label": "Forced Displacement",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-09-fcc-wants-to-kill-burner-phones-by-forcing-telecoms-to-get-a": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHERE THE ANONYMITY LIVES",
+        "body": "A phone is never truly anonymous to the network — the tower always knows which handset is connected and where. The only thing a burner hides is the link between that device and a legal name. Mandatory ID closes exactly that gap, and nothing else.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is the **IMSI** — the unique subscriber number burned into every SIM. A burner doesn't make the IMSI invisible; it just leaves the *identity* column blank. An ID mandate fills that column in."
+          }
+        ]
+      },
+      {
+        "heading": "THE THIRD-PARTY DOCTRINE",
+        "body": "US law has held since 1979 that data you hand to a company — the numbers you dial, your billing address — carries no Fourth Amendment privacy protection, because you volunteered it. A telecom ID registry isn't a search the government performs; it's a record a company keeps that the government can later request.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "a person has no legitimate expectation of privacy in information he voluntarily turns over to third parties",
+            "speaker": "Smith v. Maryland, US Supreme Court",
+            "year": "1979"
+          }
+        ]
+      },
+      {
+        "heading": "THE GLOBAL NORM",
+        "body": "The US is the outlier here, not the pioneer. Well over 150 countries already require ID to activate a SIM, and several have pushed past paper ID to biometrics. The American anonymous prepaid phone is one of the last of its kind.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Pakistan",
+                "value": "Biometric",
+                "cc": "PK",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": "ID + Aadhaar",
+                "cc": "IN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "China",
+                "value": "Real-name + face",
+                "cc": "CN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Germany",
+                "value": "ID required",
+                "cc": "DE",
+                "tone": "neutral"
+              },
+              {
+                "label": "USA",
+                "value": "None (today)",
+                "cc": "US",
+                "tone": "favorable"
+              }
+            ],
+            "label": "how some states register SIMs"
+          }
+        ]
+      },
+      {
+        "heading": "THE PERMANENCE PROBLEM",
+        "body": "The ACLU's objection isn't about fraud — it's that registries built for one purpose get repurposed for another. The 1940 US Census promised confidentiality; its block-level data was quietly handed to the Army to locate Japanese-Americans for internment. A database's original justification rarely constrains its eventual use.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Pakistan's biometric SIM regime was sold as **counter-terrorism** after the 2014 Peshawar school attack. The same database now anchors tax enforcement, SIM-blocking of non-filers, and political dissident tracking — a textbook case of *function creep*."
+          }
+        ]
+      },
+      {
+        "heading": "METADATA IS THE PRIZE",
+        "body": "Investigators rarely need the content of a call. The pattern — who you contact, how often, from where, at what hour — reconstructs a life. A name attached to a SIM is the key that turns a stream of anonymous tower pings into a named person's movements and social graph.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many countries already mandate ID or biometric registration to activate a SIM card?",
+            "options": [
+              "About a dozen",
+              "Around 50",
+              "More than 150",
+              "Only authoritarian states"
+            ],
+            "correct": 2,
+            "explanation": "By GSMA's count over 150 countries mandate SIM registration — it's the global default, with the US among the few holdouts."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T12:23:12.467Z",
+    "label": "SIM Registration & Anonymity",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-09-we-still-need-people-to-hold-our-hands-inside-the-collapse-o": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE VOLUNTARY FUNDING TRAP",
+        "body": "Unlike the UN's core budget, the World Food Programme collects no assessed dues from member states — every dollar is a voluntary donation, solicited crisis by crisis. A handful of wealthy governments, led for decades by the United States, supply the bulk of it. When one large donor tightens, there is no statutory backstop; rations are simply cut to fit the cash on hand.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How is the World Food Programme funded?",
+            "options": [
+              "Entirely by voluntary donations, year to year",
+              "By assessed dues from UN member states",
+              "By a fixed share of the UN regular budget"
+            ],
+            "correct": 0,
+            "explanation": "WFP receives no guaranteed UN funding — it must raise 100% voluntarily, which is why a single donor's pullback can collapse a ration."
+          }
+        ]
+      },
+      {
+        "heading": "THE 93% CUT",
+        "body": "A drop from $100 to $7 a month is not belt-tightening — it is the difference between a survival ration and a token. Humanitarian agencies set a minimum food basket below which calorie intake falls into emergency territory; $7 sits far beneath it. Cuts of this scale are how a chronically underfunded system rations scarcity: it spreads a shrinking pot thinner rather than removing names from the list.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Before",
+                "value": "$100",
+                "weight": 100,
+                "tone": "neutral"
+              },
+              {
+                "label": "Now",
+                "value": "$7",
+                "weight": 7,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Dzaleka monthly ration per person"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THEY FLED FROM",
+        "body": "Dzaleka's population is overwhelmingly from the Great Lakes — the Democratic Republic of Congo, Burundi, and Rwanda — with a Somali minority who crossed the entire continent. These are the long tails of wars that the headlines left years ago: the eastern Congo conflicts, the Burundian crises, the aftermath of the Rwandan genocide. Malawi is not a neighbor to any of them; it is a destination of last resort, a thousand kilometres past the nearest border.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MW",
+              "CD",
+              "BI",
+              "RW",
+              "SO"
+            ],
+            "label": "origins and refuge",
+            "caption": "Most residents crossed from the Great Lakes, far to the north.",
+            "markers": [
+              {
+                "lat": -13.72,
+                "lng": 33.85,
+                "label": "Dzaleka camp"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "PROTRACTED BY DESIGN",
+        "body": "Dzaleka opened in 1994 for roughly 10,000–12,000 people and was never meant to be permanent. Thirty years and 52,000 residents later, it is what the UN calls a protracted refugee situation — five or more years in exile with no resolution. Malawi compounds the trap with an encampment policy: refugees are legally confined to Dzaleka, barred from settling or working freely elsewhere, so they cannot grow their own way out of dependence on the ration.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "An *encampment policy* is the quiet mechanism here: it converts a temporary shelter into a permanent holding pen by making **the camp the only lawful place to be**, so when the food stops there is nowhere else to earn a meal."
+          }
+        ]
+      },
+      {
+        "heading": "THE CLIMATE MULTIPLIER",
+        "body": "Five cyclones since 2019 — most destructively Cyclone Freddy in 2023, one of the longest-lived storms ever recorded — have kept Malawi's relief system in permanent emergency mode. Each disaster pulls the same finite donor money toward fresh victims, so a slow-burn crisis like Dzaleka competes for funds against an acute one next door. Climate shocks do not just create new need; they cannibalize the budget keeping older needs alive."
+      }
+    ],
+    "generatedAt": "2026-06-11T12:24:07.724Z",
+    "label": "Refugee Rations & the Funding Trap",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-11-a-leap-of-faith-inside-syria-s-first-frog-farm": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY FROGS RESIST FARMING",
+        "body": "Most frogs strike only at moving prey — a still pellet on the ground reads to them as inedible. Until growers learned to train frogs onto vibrating feeders or to raise live insect colonies alongside them, frog farming lagged decades behind fish aquaculture, which is why almost all frog legs on the market are still wild-caught.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The trade even has its own name — **ranaculture**, from *Rana*, the genus of the true frogs. Its central problem is feed: a frog that won't eat dead food turns every pond into an insect-farming operation in disguise."
+          }
+        ]
+      },
+      {
+        "heading": "THE FRENCH PARADOX",
+        "body": "Frog legs are so French that the English slur for the nation is built on them — yet France banned commercial harvest of its own wild frogs in 1980 after populations collapsed. The dish that defines French cuisine now arrives almost entirely on import, frozen, from the other side of the world.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Despite the dish's French identity, which country supplies most of the world's internationally traded frog legs?",
+            "options": [
+              "France",
+              "Indonesia",
+              "China",
+              "United States"
+            ],
+            "correct": 1,
+            "explanation": "Indonesia dominates the global frog-leg export trade, shipping mostly wild-caught frogs to the EU; France is the buyer, not the source."
+          }
+        ]
+      },
+      {
+        "heading": "THE WILD HARVEST PROBLEM",
+        "body": "Because farming is hard, the trade strips frogs from wild wetlands faster than they breed. Studies trace a chain reaction: fewer frogs means more crop-eating insects, which means heavier pesticide use — the harvested countries end up paying in agriculture what they earn in exports. This ecological bill is the structural argument for farming rather than netting."
+      },
+      {
+        "heading": "THE TURKISH PIPELINE",
+        "body": "It is no accident that Duleybi learned the trade in Turkey: Turkey is itself one of Europe's frog-leg suppliers, netting wild water frogs from Anatolian lakes and shipping them west. A displaced Syrian landed inside a working industry, then carried the knowledge home to a region whose own wild frogs were never harvested at scale.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SY",
+              "TR"
+            ],
+            "label": "the returnee's route",
+            "caption": "trade learned in Turkey, built in Hama",
+            "markers": [
+              {
+                "lat": 35.1318,
+                "lng": 36.7578,
+                "label": "Hama frog ponds"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE RETURNEE ECONOMY",
+        "body": "Turkey hosted the largest Syrian refugee population of any country. As the war wound down, returnees became an economic force — carrying skills, contacts, and small capital into a reconstruction economy where the basic machinery of trade, like export licenses and lifted sanctions, is still being assembled. A frog farm with no buyer and no license is that unfinished system in miniature.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Turkey",
+                "value": "~3.6M",
+                "cc": "TR",
+                "weight": 3.6
+              },
+              {
+                "label": "Lebanon",
+                "value": "~1.5M",
+                "cc": "LB",
+                "weight": 1.5
+              },
+              {
+                "label": "Jordan",
+                "value": "~1.3M",
+                "cc": "JO",
+                "weight": 1.3
+              },
+              {
+                "label": "Germany",
+                "value": "~1.0M",
+                "cc": "DE",
+                "weight": 1
+              }
+            ],
+            "label": "where Syrians sheltered (approx.)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T12:25:11.355Z",
+    "label": "Frog Farming & the Leg Trade",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-11-a-nakba-of-2026-an-idf-reservist-recounts-his-time-in-lebano": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DAHIYA DOCTRINE",
+        "body": "After the 2006 war, Israeli commanders openly articulated a doctrine: in any village from which fighters operate, apply force so disproportionate that the civilian cost itself becomes the deterrent. It is named after Beirut's southern suburb, which was leveled in 2006. Razing homes for displaying a flag is this doctrine applied house by house.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine treats the line between *combatant* and *civilian infrastructure* as deliberately erased — the **Dahiya** approach holds that flattening the surroundings of an enemy is a feature, not an excess."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE LAW SAYS",
+        "body": "Destroying a family's home because someone flew a flag is the textbook definition of collective punishment — penalizing a population for acts it did not personally commit. The Fourth Geneva Convention prohibits this in plain language, and separately bars the destruction of property not justified by military necessity.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "No protected person may be punished for an offence he or she has not personally committed. Collective penalties and likewise all measures of intimidation or of terrorism are prohibited.",
+            "speaker": "Fourth Geneva Convention, Article 33",
+            "year": "1949"
+          }
+        ]
+      },
+      {
+        "heading": "THE BORDER VILLAGES",
+        "body": "A string of Shia villages hugs the Blue Line — the UN-demarcated boundary from Israel's 2000 withdrawal. Aitaroun, Bint Jbeil, and Maroun al-Ras sit within sight of the fence. Their position makes them the first ground in every war and the most exposed to the bulldozer afterward.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL"
+            ],
+            "label": "the frontline villages",
+            "caption": "Shia villages along the Blue Line, the 2000 withdrawal boundary",
+            "markers": [
+              {
+                "lat": 33.1083,
+                "lng": 35.4297,
+                "label": "Aitaroun (razed)"
+              },
+              {
+                "lat": 33.1219,
+                "lng": 35.4356,
+                "label": "Bint Jbeil"
+              },
+              {
+                "lat": 33.0906,
+                "lng": 35.4242,
+                "label": "Maroun al-Ras"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LONG OCCUPATION",
+        "body": "This is not new ground for Israel's army. It crossed into south Lebanon in 1978, again in 1982 reaching Beirut, then held a self-declared 'security zone' across the south for fifteen years before withdrawing in 2000. The 2006 war birthed the doctrine now being applied; each cycle has flattened more of the same villages.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1978",
+                "label": "Operation Litani — first invasion"
+              },
+              {
+                "year": "1982",
+                "label": "Invasion reaches Beirut"
+              },
+              {
+                "year": "2000",
+                "label": "Withdrawal to the Blue Line"
+              },
+              {
+                "year": "2006",
+                "label": "July War — Dahiya flattened",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Renewed war on the south"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1985",
+                "to": "2000",
+                "label": "'Security zone' occupation",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Israel in south Lebanon"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'NAKBA'",
+        "body": "The reservist's word is deliberate. The Nakba — Arabic for 'catastrophe' — was the 1948 depopulation of Palestine, when over 400 Arab villages were emptied and destroyed and some 750,000 people were driven from their homes, barred from returning. Naming a 2026 razing a Nakba claims it as the same act: not collateral damage, but the erasure of a place so its people cannot come back.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is the point: destroying the homes, not just defeating the fighters, is what converts a battle into a *demographic* fact. A village with no buildings has no one to return to it."
+          }
+        ]
+      },
+      {
+        "heading": "THE SATELLITE WITNESS",
+        "body": "Aitaroun's destruction was never publicly announced — it was documented from orbit. Commercial satellite imagery has become the forensic record of choice precisely because it captures what is not declared: before-and-after frames reveal block-by-block leveling that no official statement admits, and the timestamps are hard to dispute.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "The Dahiya Doctrine is named after a flattened suburb of which city?",
+            "options": [
+              "Gaza City",
+              "Beirut",
+              "Damascus",
+              "Tyre"
+            ],
+            "correct": 1,
+            "explanation": "Dahiya is the southern suburb of Beirut leveled in the 2006 war, which the doctrine of disproportionate destruction was named after."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T12:26:04.777Z",
+    "label": "South Lebanon & the Dahiya Doctrine",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-11-bangladesh-targets-growth-revival-with-record-budget-spendin": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A FLAT TAX ACTUALLY TRADES",
+        "body": "A flat tax replaces graduated brackets with a single rate for everyone. It buys administrative simplicity and harder evasion at the cost of progressivity — the rich and poor pay the same percentage. For a state with a weak collection apparatus, the appeal is not fairness but enforceability: fewer brackets, fewer loopholes, fewer auditors required.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The case for a flat rate is rarely about *rates* — it is about the **tax base**. A simple system that actually collects from 30% of earners beats a progressive one that collects from 5%."
+          }
+        ]
+      },
+      {
+        "heading": "THE REAL CONSTRAINT: COLLECTION",
+        "body": "Bangladesh runs one of the lowest tax-to-GDP ratios in the world — under 8%, well below its South Asian neighbors. The problem was never the rate schedule; it is that most economic activity is informal and untaxed. Automating collection and flattening the rate are both attempts to widen a base that has stayed stubbornly narrow for decades.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Tax revenue as share of GDP (selected)",
+            "peers": [
+              {
+                "value": 8,
+                "cc": "BD"
+              },
+              {
+                "value": 10,
+                "cc": "PK"
+              },
+              {
+                "value": 11,
+                "cc": "LK"
+              },
+              {
+                "value": 12,
+                "cc": "ID"
+              },
+              {
+                "value": 17,
+                "cc": "IN"
+              },
+              {
+                "value": 19,
+                "cc": "NP"
+              }
+            ],
+            "subjectCc": "BD",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE FLAT TAX WAS BORN",
+        "body": "The modern flat tax is an Eastern European invention. Estonia adopted the first one in 1994, and a wave followed across the post-Soviet states through the 2000s — Russia's 13% rate in 2001 became the famous example, credited with sharply raising compliance. Developing states copy the model precisely because it asks little of a thin bureaucracy.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country pioneered the modern single-rate flat income tax in 1994?",
+            "options": [
+              "Estonia",
+              "Russia",
+              "United States",
+              "Hong Kong"
+            ],
+            "correct": 0,
+            "explanation": "Estonia introduced the first modern flat tax in 1994; Russia's better-known 13% flat rate followed in 2001."
+          }
+        ]
+      },
+      {
+        "heading": "A BUDGET WITHOUT A MANDATE",
+        "body": "Bangladesh once had a constitutional caretaker-government system: a neutral body ran the country during elections, used in 1996, 2001 and 2008. Hasina's government abolished it by constitutional amendment in 2011. After she fled in August 2024, an unelected interim administration under Muhammad Yunus took power — now writing a record budget with no ballot behind it.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Sheikh Hasina",
+                "role": "Awami League prime minister",
+                "years": "2009–2024",
+                "cc": "BD"
+              },
+              {
+                "name": "Muhammad Yunus",
+                "role": "interim chief adviser",
+                "years": "2024–",
+                "cc": "BD"
+              }
+            ],
+            "label": "before and after the fall"
+          }
+        ]
+      },
+      {
+        "heading": "THE IMPORT SQUEEZE ON INFLATION",
+        "body": "Bangladesh imports roughly 95% of its primary energy and much of its food, so the budget's 7.5% inflation target is hostage to the taka. A weakening currency raises the local-currency cost of every imported barrel and tonne, feeding prices the moment reserves come under pressure — which is exactly the bind Dhaka has faced since 2022.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              122.941176,
+              122.750926,
+              122.797769,
+              122.797769,
+              122.986257,
+              122.986257,
+              122.884563,
+              122.775325,
+              122.938183,
+              122.860795,
+              122.945161,
+              122.787401,
+              122.465659,
+              122.756259,
+              122.814773,
+              122.958968,
+              122.704238,
+              122.760854,
+              122.760854,
+              122.760854,
+              122.910954,
+              122.739352,
+              122.726692,
+              122.935959,
+              122.779727,
+              122.779727,
+              122.779727,
+              122.63972,
+              122.882933,
+              122.796608
+            ],
+            "periods": [
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9",
+              "Jun 10",
+              "Jun 11"
+            ],
+            "label": "Bangladesh taka",
+            "unit": "BDT / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-11"
+    ],
+    "generatedAt": "2026-06-11T12:26:51.587Z",
+    "label": "Flat Tax & Bangladesh's Fiscal Bet",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-11-britain-s-defence-minister-healey-quits-over-defence-spendin": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TREASURY ALWAYS WINS",
+        "body": "In Britain, no department can spend a pound the Treasury hasn't released. The Chancellor sets the envelope; the spending minister allocates within it. When a Defence Secretary and HM Treasury disagree on the size of that envelope, the Treasury holds the cash key — so the minister's only real leverage is the threat of resignation.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the **power of the purse**: HM Treasury is the oldest and most dominant department in Whitehall precisely because it controls every other department's budget line."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2% LINE",
+        "body": "NATO members pledged at the 2014 Wales summit to spend 2% of GDP on defence — a floor, not a ceiling. For a decade most missed it. Britain's 2.68% sits comfortably above the bar, which is why the dispute is striking: Healey is arguing that the alliance benchmark itself is now too low for what Britain has agreed to do.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Defence spending, % of GDP",
+            "peers": [
+              {
+                "value": 4.1,
+                "cc": "PL"
+              },
+              {
+                "value": 3.4,
+                "cc": "US"
+              },
+              {
+                "value": 3.4,
+                "cc": "EE"
+              },
+              {
+                "value": 3.1,
+                "cc": "GR"
+              },
+              {
+                "value": 2.68,
+                "cc": "GB"
+              },
+              {
+                "value": 2.1,
+                "cc": "FR"
+              },
+              {
+                "value": 2.1,
+                "cc": "DE"
+              },
+              {
+                "value": 1.4,
+                "cc": "CA"
+              },
+              {
+                "value": 1.3,
+                "cc": "ES"
+              }
+            ],
+            "subjectCc": "GB",
+            "unit": "%"
+          },
+          {
+            "type": "quiz",
+            "question": "What is NATO's headline defence-spending target, agreed at the 2014 Wales summit?",
+            "options": [
+              "1% of GDP",
+              "2% of GDP",
+              "5% of total budget",
+              "2% of government spending"
+            ],
+            "correct": 1,
+            "explanation": "The Wales pledge set a floor of 2% of GDP on defence — a guideline many members took a decade to reach."
+          }
+        ]
+      },
+      {
+        "heading": "OVERSTRETCH",
+        "body": "Leading NATO's Hormuz and Arctic missions at once is a two-theatre commitment for a navy that has shrunk for seventy years — from over 200 surface combatants after WWII to roughly two dozen today. The mismatch between standing global commitments and a hollowing fleet is the structural complaint beneath the resignation.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB",
+              "NO",
+              "OM",
+              "AE"
+            ],
+            "label": "two theatres, one fleet",
+            "markers": [
+              {
+                "lat": 26.57,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 71.17,
+                "lng": 25.78,
+                "label": "Arctic / North Cape"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "EAST OF SUEZ",
+        "body": "The pattern is old. The 1956 Suez crisis proved Britain could no longer act militarily without Washington's consent; in 1968 a cash-strapped Labour government formally withdrew forces 'East of Suez,' abandoning the global posture for good. Every defence review since has been a negotiation over how much reach the budget still buys.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1956",
+                "label": "Suez crisis — US forces British withdrawal"
+              },
+              {
+                "year": "1968",
+                "label": "Withdrawal 'East of Suez'",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1981",
+                "label": "Nott review — navy cuts"
+              },
+              {
+                "year": "1998",
+                "label": "Strategic Defence Review"
+              },
+              {
+                "year": "2010",
+                "label": "SDSR — deepest post-war cuts"
+              },
+              {
+                "year": "2021",
+                "label": "Integrated Review 'tilt'"
+              }
+            ],
+            "label": "Britain's shrinking reach"
+          }
+        ]
+      },
+      {
+        "heading": "RESIGNATION AS A WEAPON",
+        "body": "Cabinet ministers govern under collective responsibility: they must publicly defend the government's line or leave. A resignation over money is therefore a deliberate signal — it converts a private budget loss into a public verdict that the policy is unfundable, and it puts the Prime Minister, not the Treasury, on the hook.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "John Healey",
+                "role": "Defence Secretary (resigned)",
+                "cc": "GB"
+              },
+              {
+                "name": "Keir Starmer",
+                "role": "Prime Minister",
+                "cc": "GB"
+              }
+            ],
+            "label": "the standoff"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T12:27:42.874Z",
+    "label": "Treasury vs the Generals",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-11-china-builds-a-rival-satellite-constellation-as-spacex-goes": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY LOW ORBIT",
+        "body": "A geostationary satellite sits ~36,000 km up, so a signal's round trip takes roughly 600 milliseconds — useless for video calls or trading. Drop to ~550 km and that falls under 50ms. The entire case for these constellations is the speed of light over a shorter distance.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do broadband constellations fly at ~550 km instead of geostationary orbit (~36,000 km)?",
+            "options": [
+              "Round-trip latency drops from ~600ms to under 50ms",
+              "Low satellites are far cheaper to build",
+              "It avoids the crowded geostationary belt",
+              "Radio signals can't reach geostationary distance"
+            ],
+            "correct": 0,
+            "explanation": "Latency scales with distance; at 36,000 km the speed of light alone imposes ~600ms, fatal for real-time use. Low orbit cuts the trip ~65×."
+          }
+        ]
+      },
+      {
+        "heading": "THE NUMBERS GAME",
+        "body": "The catch with low orbit: each satellite sees only a small patch of ground and races across the sky in minutes. To blanket the planet continuously you need thousands, constantly handing users off from one bird to the next. This is why a constellation is a manufacturing problem, not a launch problem.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Starlink",
+                "value": "~42,000",
+                "cc": "US",
+                "weight": 42000
+              },
+              {
+                "label": "Qianfan",
+                "value": "~15,000",
+                "cc": "CN",
+                "weight": 15000
+              },
+              {
+                "label": "Guowang",
+                "value": "~13,000",
+                "cc": "CN",
+                "weight": 13000
+              },
+              {
+                "label": "Kuiper",
+                "value": "~3,200",
+                "cc": "US",
+                "weight": 3200
+              },
+              {
+                "label": "OneWeb",
+                "value": "~650",
+                "cc": "GB",
+                "weight": 650
+              }
+            ],
+            "label": "planned constellation size (satellites)"
+          }
+        ]
+      },
+      {
+        "heading": "THE LAND RUSH",
+        "body": "Radio spectrum and orbital paths are finite and allocated by the ITU on a first-come, first-served basis. File early and you lock priority; latecomers must avoid interfering with you. China's mega-filings are partly defensive — claiming slots and frequencies before they are gone, the same logic that drove Starlink's frenetic early launches.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "SpaceSail's network is the *Qianfan* — \"Thousand Sails\" — also tagged **G60 Starlink** in Chinese filings. The naming is the strategy stated out loud: a state-backed answer to a single American firm."
+          }
+        ]
+      },
+      {
+        "heading": "THE SPLINTERNET IN ORBIT",
+        "body": "Broadband from space lands a foreign company's hardware between a government and its citizens' connectivity — bypassing national fiber, cell towers, and the censorship and surveillance that ride on them. That is why states Starlink won't serve, or won't trust, turn to a Chinese alternative. Connectivity itself is being sorted into two blocs.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The choice is rarely about price. It is about **who holds the kill switch** — a constellation operator can throttle or cut a region's access, as the Ukraine war made unmistakable."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRAGEDY OF LOW ORBIT",
+        "body": "Tens of thousands of satellites crossing the same shells of altitude raises the odds of collision. A single crash spreads debris that can trigger more crashes — the Kessler syndrome, a cascade that could render useful orbits unusable for generations. Two rival constellations doubling the traffic makes coordination a physics problem, not just a political one."
+      }
+    ],
+    "generatedAt": "2026-06-11T12:28:30.762Z",
+    "label": "LEO Broadband & the Orbital Land Rush",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-11-google-deepmind-is-worried-about-what-happens-when-millions": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY MANY AGENTS ≠ ONE AGENT",
+        "body": "Aligning a single AI agent to behave well says nothing about how a million of them behave together. A system built entirely of individually well-behaved parts can still produce collective behavior no part intended — the property is emergent, living in the interactions, not the agents.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the same gap that separates *microeconomics* from *macroeconomics*: every household acting rationally can still produce a **bank run** or a recession that no household wanted."
+          }
+        ]
+      },
+      {
+        "heading": "THE GAME-THEORY ROOT",
+        "body": "When agents each optimize their own reward, they settle into a Nash equilibrium — a state no agent can improve by acting alone. The trap is that this equilibrium is often collectively terrible. The prisoner's dilemma and the tragedy of the commons are the same mathematics: individually rational moves summing to a shared disaster.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In a prisoner's dilemma, why do two rational agents both defect even though cooperating would leave them better off?",
+            "options": [
+              "Defecting is each agent's best move no matter what the other does",
+              "They cannot communicate before deciding",
+              "The reward for cooperating is set too low",
+              "One agent always moves first"
+            ],
+            "correct": 0,
+            "explanation": "Defection is a dominant strategy — it beats cooperation regardless of the other's choice — so both defect even though mutual cooperation pays more."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SIMULATION IS THE ONLY LAB",
+        "body": "Emergent properties cannot be proven from the equations of a single agent — they only appear when the agents actually run against each other. There is no shortcut: to learn what a swarm does, you have to instantiate the swarm. That is why Shah frames simulation, not theory, as the field's primary instrument."
+      },
+      {
+        "heading": "THE PRECEDENT IN FINANCE",
+        "body": "Markets already ran the multi-agent experiment. Autonomous trading algorithms interacting at machine speed have repeatedly cascaded into failures no single program was designed to cause — the closest existing analogue to what swarms of AI agents could do across the economy.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1987",
+                "label": "Black Monday: portfolio-insurance selling feedback loop"
+              },
+              {
+                "year": "2010",
+                "label": "Flash Crash: ~$1tn wiped in minutes",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2012",
+                "label": "Knight Capital loses $440m in 45 min"
+              }
+            ],
+            "label": "automated systems cascading"
+          }
+        ]
+      },
+      {
+        "heading": "EMERGENT COLLUSION",
+        "body": "Pricing algorithms left to learn against each other have been shown to converge on supra-competitive prices — effectively colluding — without ever being instructed to, and without communicating. Harmful coordination can arise as a learned equilibrium, which is why it cannot be ruled out simply by checking that no agent was told to cheat.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Regulators call this *tacit collusion*: no agreement, no message, just two optimizers independently discovering that **keeping prices high** is each one's best response to the other."
+          }
+        ]
+      },
+      {
+        "heading": "THE SPEED PROBLEM",
+        "body": "Human oversight assumes a window to notice and intervene. Agents interacting at machine speed compress that window toward zero — a cascade can run its full course in the time it takes an operator to read the first alert. The faster the loop, the less a human circuit-breaker can do."
+      }
+    ],
+    "generatedAt": "2026-06-11T12:29:18.018Z",
+    "label": "Multi-Agent Safety",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-11-india-actively-working-to-deprive-pakistan-of-water": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TREATY",
+        "body": "Signed in 1960 by Nehru and Ayub Khan and brokered by the World Bank after nine years of talks, the Indus Waters Treaty split the basin's six rivers: the three eastern rivers (Ravi, Beas, Sutlej) went to India, the three western rivers (Indus, Jhelum, Chenab) to Pakistan. India may use the western rivers only for non-consumptive purposes — run-of-river hydropower, not storage that stops the flow.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Who brokered the 1960 Indus Waters Treaty between India and Pakistan?",
+            "options": [
+              "The United Nations",
+              "The World Bank",
+              "The United States",
+              "The International Court of Justice"
+            ],
+            "correct": 1,
+            "explanation": "The World Bank mediated for nine years and even helped fund Pakistan's replacement canals and dams — it is a party to the treaty, not just a witness."
+          }
+        ]
+      },
+      {
+        "heading": "THE LOWER RIPARIAN PROBLEM",
+        "body": "The Indus rises in Tibet and its western tributaries cross Indian-administered Kashmir before reaching Pakistan. That geography makes Pakistan the lower riparian — every drop arrives through territory its rival controls. Upstream position is leverage; downstream position is dependence.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A *lower riparian* state sits downstream and takes whatever the upstream state lets pass. It is the structural weakness behind most of the world's water conflicts — the Nile for Egypt, the Tigris-Euphrates for Iraq, the Mekong for Vietnam."
+          },
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "PK",
+              "CN"
+            ],
+            "label": "the Indus basin",
+            "caption": "western rivers cross Indian Kashmir before reaching Pakistan",
+            "markers": [
+              {
+                "lat": 34.09,
+                "lng": 72.69,
+                "label": "Tarbela Dam (PK)"
+              },
+              {
+                "lat": 33.14,
+                "lng": 73.64,
+                "label": "Mangla Dam (PK)"
+              },
+              {
+                "lat": 34.65,
+                "lng": 74.78,
+                "label": "Kishanganga (IN)"
+              },
+              {
+                "lat": 33.15,
+                "lng": 75.25,
+                "label": "Baglihar Dam (IN)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT CAN'T BE SWITCHED OFF",
+        "body": "A river is not a tap. To actually withhold the western rivers India would need dams and diversion canals large enough to store or redirect their flow — infrastructure that takes years to build and would itself flood Indian territory. That is why officials concede new diversions cannot begin before mid-2027: the constraint is concrete and earthworks, not political will."
+      },
+      {
+        "heading": "WHO GOT THE WATER",
+        "body": "The split looks generous to Pakistan on paper — the three western rivers it received carry the great majority of the basin's flow, while India's eastern rivers carry far less. But volume on paper is not control on the ground: the big rivers still enter Pakistan through Indian hands.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Pakistan (W rivers)",
+                "value": "~135 MAF",
+                "cc": "PK",
+                "weight": 135,
+                "tone": "neutral"
+              },
+              {
+                "label": "India (E rivers)",
+                "value": "~33 MAF",
+                "cc": "IN",
+                "weight": 33,
+                "tone": "neutral"
+              }
+            ],
+            "label": "annual flow allocated, Indus basin"
+          }
+        ]
+      },
+      {
+        "heading": "PAKISTAN'S LIFELINE",
+        "body": "The Indus Basin Irrigation System is the largest contiguous irrigation network on earth, and roughly 80% of Pakistan's cropland depends on it. Agriculture employs a plurality of the workforce and underpins the textile exports that earn the country's foreign currency. To Pakistan, the river is not a resource — it is the economy, which is why Islamabad calls diversion an act of war."
+      },
+      {
+        "heading": "IT SURVIVED EVERY WAR — UNTIL NOW",
+        "body": "The treaty's remarkable feature is how long it held. Through three full wars and the Kargil conflict, water kept flowing under its terms; it was cited for decades as the most durable water-sharing pact in the world. Its suspension marks the first time either side has treated the river itself as a weapon.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1960",
+                "label": "Treaty signed",
+                "emphasis": "start"
+              },
+              {
+                "year": "1965",
+                "label": "Second Indo-Pak war"
+              },
+              {
+                "year": "1971",
+                "label": "Bangladesh Liberation War"
+              },
+              {
+                "year": "1999",
+                "label": "Kargil conflict"
+              },
+              {
+                "year": "2025",
+                "label": "India suspends the treaty",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "a treaty that outlasted the wars"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T12:30:08.015Z",
+    "label": "The Indus Waters Treaty",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-11-is-trump-finally-burying-the-zombie-us-mexico-canada-trade-p": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SUNSET CLAUSE",
+        "body": "USMCA is the first major US trade pact built to expire. It runs 16 years but forces a joint review at year 6 (2026). If all three confirm, the clock resets for another 16. If any one declines — as Washington just did — the deal survives but enters annual reviews until 2036, when it dies automatically unless renewed.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1994",
+                "label": "NAFTA takes effect",
+                "emphasis": "start"
+              },
+              {
+                "year": "2020",
+                "label": "USMCA replaces NAFTA",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026",
+                "label": "first 6-year review"
+              },
+              {
+                "year": "2036",
+                "label": "auto-expiry if not renewed",
+                "emphasis": "end"
+              }
+            ],
+            "spans": [
+              {
+                "from": "2026",
+                "to": "2036",
+                "label": "annual-review limbo",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "from NAFTA to the cliff"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT RULES OF ORIGIN DO",
+        "body": "A free-trade deal is worthless without a fence. Rules of origin define how much of a product must be made inside the bloc to cross borders duty-free — otherwise a Chinese car could enter Mexico, get a badge, and flood the US tariff-free. The content threshold is the real lever of any trade pact; tariffs are just the penalty for missing it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The fight is over *regional value content* — the share of a good's value that must originate within North America. Raise it, and supply chains must re-route toward US factories or lose duty-free access."
+          }
+        ]
+      },
+      {
+        "heading": "THE 75% RULE",
+        "body": "USMCA already tightened the auto threshold sharply: a car needs 75% North American content to qualify, up from NAFTA's 62.5%. Washington now wants the 'North American' share rewritten as a 'US' share — which would pull production out of Canadian and Mexican plants and into American ones.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "NAFTA (1994)",
+                "value": "62.5%",
+                "weight": 62.5,
+                "tone": "neutral"
+              },
+              {
+                "label": "USMCA (2020)",
+                "value": "75%",
+                "weight": 75,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "auto regional-content threshold"
+          },
+          {
+            "type": "quiz",
+            "question": "Under USMCA, what share of a car's value must be made in North America to cross borders duty-free?",
+            "options": [
+              "50%",
+              "62.5%",
+              "75%",
+              "90%"
+            ],
+            "correct": 2,
+            "explanation": "USMCA raised the bar to 75%, up from NAFTA's 62.5% — one of the strictest auto-content rules in any trade pact."
+          }
+        ]
+      },
+      {
+        "heading": "THE LABOR-VALUE TWIST",
+        "body": "USMCA added a rule no prior trade deal had: 40-45% of a car's content must be built by workers earning at least $16 an hour. The target was explicit — Mexican auto wages run a fraction of that, so the clause was designed to claw assembly work back north of the Rio Grande.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "MX",
+              "CA"
+            ],
+            "label": "one supply chain, three jurisdictions",
+            "caption": "A single engine block can cross these borders six or more times before final assembly."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CANADA IS EXPOSED",
+        "body": "Canadian and Mexican plants sit inside US supply chains by design — a part may cross borders six to eight times before a finished vehicle rolls off the line. That integration is leverage: rewriting content rules to favor US inputs hits the smaller partners hardest, because they have the most to lose from being designed out.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Annual reviews are the pressure itself. A deal that *might* lapse every year cannot be planned around — and uncertainty alone pushes automakers to hedge by building in the **US** rather than betting on Canadian or Mexican access surviving the next review."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T12:30:39.735Z",
+    "label": "USMCA & Rules of Origin",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-11-on-the-hunt-for-cosmic-dawn-and-the-universe-s-very-first-st": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TELESCOPE IS A TIME MACHINE",
+        "body": "Light travels at a finite speed, so distance is age: an object 13 billion light-years away is seen as it was 13 billion years ago. A telescope that sees farther doesn't see more space — it sees deeper into the past. 'Cosmic dawn' is roughly 100–250 million years after the Big Bang, the moment the first stars switched on.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Astronomers measure this distance-in-time by *redshift* — written **z**. The expanding universe stretches a photon's wavelength as it travels, so the more an object's light is shifted toward the red, the older and farther it is. Cosmic dawn sits near **z ≈ 15–20**."
+          }
+        ]
+      },
+      {
+        "heading": "THE DARK AGES",
+        "body": "For its first few hundred thousand years the universe was an opaque plasma. When it cooled enough for protons and electrons to combine into neutral hydrogen, light finally streamed free — that flash is the cosmic microwave background. But there were no stars yet. The universe entered a starless, lightless stretch astronomers literally call the Dark Ages, ending only when gravity pulled the first gas clouds dense enough to ignite."
+      },
+      {
+        "heading": "WHY ONLY WEBB CAN SEE IT",
+        "body": "The first stars shone in ultraviolet and visible light. But after billions of years of cosmic expansion, that light arrives stretched far into the infrared — beyond what Hubble's optics were built to detect. JWST was engineered for exactly this band: a chilled infrared eye that can catch ancient starlight Hubble was blind to.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hubble",
+                "value": "z ≈ 11",
+                "weight": 11,
+                "tone": "neutral"
+              },
+              {
+                "label": "JWST",
+                "value": "z ≈ 14+",
+                "weight": 14,
+                "tone": "favorable"
+              }
+            ],
+            "label": "deepest confirmed lookback (by redshift z)"
+          }
+        ]
+      },
+      {
+        "heading": "POPULATION III",
+        "body": "The first stars were unlike any alive today. The early universe held only hydrogen and helium — every heavier element, from the carbon in your body to the iron in the planet, had to be forged inside stars that didn't exist yet. With no metals to cool their gas, these first stars grew enormous, burned ferociously, and died fast.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Astronomers call them **Population III** stars — counterintuitively, the *first* generation gets the *highest* number, because the naming scheme was set before anyone knew they existed. None has ever been directly confirmed; finding one is a prime target of the cosmic-dawn search."
+          }
+        ]
+      },
+      {
+        "heading": "THE GREAT CLEARING",
+        "body": "Neutral hydrogen is a fog — it absorbs starlight. The intense ultraviolet radiation from the first stars and galaxies stripped electrons back off that hydrogen, ionizing the gas and making the universe transparent again. This 'Epoch of Reionization' is the last great phase transition in cosmic history, and the first stars are the engine that drove it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does observing 'cosmic dawn' require an infrared telescope rather than an optical one?",
+            "options": [
+              "The first stars only emitted infrared light",
+              "Cosmic expansion stretched their light from UV/visible into the infrared",
+              "Infrared passes through interstellar dust more easily",
+              "Optical telescopes can't be built large enough"
+            ],
+            "correct": 1,
+            "explanation": "Redshift from the expanding universe stretches the original UV/visible starlight into the infrared by the time it reaches us, which is the band JWST was built to see."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T12:31:24.326Z",
+    "label": "Cosmic Dawn & the First Stars",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-11-philippine-foreign-secretary-says-she-will-meet-myanmar-oppo": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ASEAN WAY",
+        "body": "ASEAN runs on two unwritten rules: decisions require consensus, and members never criticize each other's internal affairs. Born in 1967 among post-colonial states terrified of outside meddling, non-interference was the price of holding rivals like Indonesia and Malaysia in one room. It also means the bloc is paralyzed the moment one member misbehaves at home.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Consensus plus non-interference produces a structural veto: the bloc can only move as fast as its most reluctant member, so a *coup* inside one state becomes a problem no one is allowed to name."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE 2021 COUP UNDID",
+        "body": "Myanmar's military annulled an election the National League for Democracy won in a landslide, jailing Aung San Suu Kyi and reinstalling direct army rule. The generals now stage their own managed elections to relabel the junta as a 'civilian' government — the relabeling the article describes.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1962",
+                "label": "Ne Win's first coup"
+              },
+              {
+                "year": "1988",
+                "label": "8888 uprising crushed"
+              },
+              {
+                "year": "1990",
+                "label": "NLD win annulled"
+              },
+              {
+                "year": "2011",
+                "label": "Quasi-civilian transition"
+              },
+              {
+                "year": "2015",
+                "label": "NLD wins open election"
+              },
+              {
+                "year": "2021",
+                "label": "Military seizes power",
+                "emphasis": "pivot"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1962",
+                "to": "2011",
+                "label": "Military rule",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Myanmar's cycle of military rule"
+          }
+        ]
+      },
+      {
+        "heading": "THE PARALLEL GOVERNMENT",
+        "body": "The opposition Manila will meet is the National Unity Government — ousted lawmakers, ethnic-minority leaders, and exiles who declared themselves Myanmar's legitimate authority. No state formally recognizes it, but engaging it at all breaks the ASEAN posture that Naypyidaw's generals are the only address.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **NUG** (National Unity Government) claims the mandate of the 2020 vote; the junta's **SAC** (State Administration Council) claims the guns. Recognition is the entire war by other means."
+          }
+        ]
+      },
+      {
+        "heading": "THE FIVE-POINT CONSENSUS",
+        "body": "Weeks after the coup, ASEAN extracted a five-point plan from the junta chief himself: end violence, dialogue, a special envoy, humanitarian aid, and a visit to all parties. The generals signed and then ignored every point. ASEAN's response was to bar Myanmar's leaders from summits — its sharpest sanction ever, and still toothless.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did ASEAN do when Myanmar's junta ignored the Five-Point Consensus it had agreed to?",
+            "options": [
+              "Suspended Myanmar from the bloc entirely",
+              "Barred its leaders from summits but kept its seat",
+              "Imposed economic sanctions on Naypyidaw",
+              "Authorized a peacekeeping deployment"
+            ],
+            "correct": 1,
+            "explanation": "ASEAN excluded the junta's political leaders from high-level meetings but never suspended membership — the non-interference rule blocks anything harder."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLOC SPLITS",
+        "body": "Consensus only works when members agree. On Myanmar they no longer do: Thailand quietly engages the generals across a shared border, Indonesia and Malaysia pushed harder for the opposition, and the Philippines — with no border and a treaty alliance to Washington — can afford the boldest line. The split is geographic before it is moral.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MM",
+              "TH",
+              "PH",
+              "ID",
+              "MY",
+              "SG",
+              "VN",
+              "LA",
+              "KH"
+            ],
+            "label": "ASEAN's divided neighborhood",
+            "markers": [
+              {
+                "lat": 19.7633,
+                "lng": 96.0785,
+                "label": "Naypyidaw"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY MANILA IS DIFFERENT",
+        "body": "Distance buys freedom. Thailand and Laos share a long land border with Myanmar and absorb its refugees, so they court the people holding territory. The Philippines, an archipelago at the bloc's eastern edge, bears none of that cost — which is exactly why it can defy a consensus the frontline states cannot.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Min Aung Hlaing",
+                "role": "Junta commander-in-chief",
+                "years": "2021–",
+                "cc": "MM"
+              },
+              {
+                "name": "Aung San Suu Kyi",
+                "role": "Detained NLD leader",
+                "years": "2021–",
+                "cc": "MM"
+              }
+            ],
+            "label": "the contest for legitimacy"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T12:32:01.484Z",
+    "label": "ASEAN, Non-Interference & Myanmar",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-11-violence-in-mogadishu-a-fractured-elite-what-renewed-violenc": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 4.5 FORMULA",
+        "body": "Somalia's power is divided by a formula, not a ballot: the four major clan families — Darod, Hawiye, Dir, Rahanweyn — each receive an equal share of parliamentary seats, while all minority groups together split a half-share. Brokered in 2000 to end clan warfare, it froze the rivalry into a quota system that every crisis re-litigates.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Darod",
+                "value": "~61",
+                "weight": 61
+              },
+              {
+                "label": "Hawiye",
+                "value": "~61",
+                "weight": 61
+              },
+              {
+                "label": "Dir",
+                "value": "~61",
+                "weight": 61
+              },
+              {
+                "label": "Rahanweyn",
+                "value": "~61",
+                "weight": 61
+              },
+              {
+                "label": "Minorities",
+                "value": "~31",
+                "weight": 31,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Lower house seats by clan (4.5 formula, 275 total)"
+          },
+          {
+            "type": "prose",
+            "text": "The *.5* is the political tell: minority Somalis — the **Bantu**, **Benadiri**, and others — are written into the constitution as worth exactly half a clan."
+          }
+        ]
+      },
+      {
+        "heading": "NO ONE ACTUALLY VOTES",
+        "body": "Somalia has never held a one-person-one-vote national election. Clan elders nominate delegates, who choose members of parliament, who in turn elect the president. Every 'election' is a negotiation among a few thousand hand-picked insiders — which is why control of the process, not the popular mood, decides who wins.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How is Somalia's president chosen?",
+            "options": [
+              "Direct national popular vote",
+              "Members of parliament, themselves picked by clan-selected delegates",
+              "Appointment by the African Union"
+            ],
+            "correct": 1,
+            "explanation": "Clan elders pick delegates who pick MPs who elect the president — an indirect model in place since 2000; promised universal suffrage keeps slipping."
+          }
+        ]
+      },
+      {
+        "heading": "THE TERM-EXTENSION TRAP",
+        "body": "Extending a sitting president's mandate is Somalia's recurring detonator. In 2021, when parliament pushed President Farmaajo's term two years past its expiry, opposition militias and clan-aligned army units fought gun battles in Mogadishu's streets. The 2026 one-year extension follows the same script — and the same fault lines.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1991",
+                "label": "Siad Barre falls; state collapses",
+                "emphasis": "start"
+              },
+              {
+                "year": "2000",
+                "label": "4.5 formula brokered in Djibouti"
+              },
+              {
+                "year": "2012",
+                "label": "First post-transition government"
+              },
+              {
+                "year": "2021",
+                "label": "Term extension sparks Mogadishu clashes",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "Hassan Sheikh elected"
+              },
+              {
+                "year": "2026",
+                "label": "One-year extension"
+              }
+            ],
+            "label": "state collapse to contested mandates"
+          }
+        ]
+      },
+      {
+        "heading": "THE CAST",
+        "body": "The fight is between former allies. Hassan Sheikh Mohamud, twice president, controls the federal apparatus; Hassan Ali Khaire, the technocrat prime minister he and Farmaajo once relied on, has rebuilt himself as the opposition's standard-bearer in his own clan base.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Hassan Sheikh Mohamud",
+                "role": "Federal President",
+                "years": "2012–17, 2022–",
+                "cc": "SO"
+              },
+              {
+                "name": "Hassan Ali Khaire",
+                "role": "Former PM, opposition leader",
+                "years": "2017–2020",
+                "cc": "SO"
+              }
+            ],
+            "label": "the two camps"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE CAPITAL FRACTURES",
+        "body": "There is no neutral national army to enforce the peace. Soldiers are recruited and deployed along clan lines, so a dispute among elites instantly becomes armed units with rival loyalties — all while al-Shabaab still holds territory outside the city and waits for the government to turn its guns inward.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SO",
+              "KE",
+              "ET",
+              "DJ"
+            ],
+            "label": "the Horn flashpoint",
+            "caption": "Opposition rallies from the fortified airport zone into clan strongholds",
+            "markers": [
+              {
+                "lat": 2.0469,
+                "lng": 45.3182,
+                "label": "Mogadishu"
+              },
+              {
+                "lat": 2.0145,
+                "lng": 45.3047,
+                "label": "Aden Adde airport compound"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T12:32:47.137Z",
+    "label": "Somalia's Clan Politics",
+    "category": "politics",
+    "articleCount": 1
   }
 }
