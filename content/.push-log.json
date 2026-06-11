@@ -1,91 +1,5 @@
 [
   {
-    "timestamp": "2026-05-21T04:29:08.374Z",
-    "candidateCount": 9,
-    "candidates": [
-      {
-        "slug": "2026-05-21-delhi-cab-auto-strike-iran-war-fuel-app-commissions",
-        "title": "Delhi Drivers Strike Fuel Squeeze",
-        "category": "economy",
-        "eventCoverage": 32,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-21-unama-750-afghan-civilian-casualties-pakistan-airstrikes-unsc",
-        "title": "Pakistan Strikes Hit 750 Afghans",
-        "category": "politics",
-        "eventCoverage": 31,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-21-xi-pyongyang-visit-china-russia-dprk-axis",
-        "title": "Xi Plans Pyongyang Visit",
-        "category": "politics",
-        "eventCoverage": 22,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-20-caribbean-coastal-land-grab-barbuda-foreign-developers",
-        "title": "Barbuda Resists Developer Land Grab",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-20-coal-plants-built-2025-output-fell-capacity-reserve-decoupling",
-        "title": "Coal Builds Peak, Output Falls",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-21-drc-ebola-outbreak-uk-funding-uganda-spillover",
-        "title": "Ebola Crosses Into Uganda",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-20-texas-flock-alpr-ban-councilmember-internet-prohibition",
-        "title": "Texas Town Bans Flock Cameras",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-21-trump-ai-executive-order-voluntary-framework-ceo-ceremony",
-        "title": "Trump AI Order Stays Voluntary",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-21-brain-tumor-cnn-transformer-explainability-dual-score-radiology",
-        "title": "Brain Tumor AI Self-Audits",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-05-21-delhi-cab-auto-strike-iran-war-fuel-app-commissions",
-      "title": "Delhi Drivers Strike Fuel Squeeze",
-      "category": "economy",
-      "body": "App payouts halved as crude hit $120 per barrel, unions",
-      "eventCoverage": 32,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Delhi cab and auto drivers strike over fuel costs, fare freeze, unions say",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 24
-    }
-  },
-  {
     "timestamp": "2026-05-21T08:39:34.497Z",
     "candidateCount": 11,
     "candidates": [
@@ -9892,6 +9806,106 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Epstein used Gates affairs as leverage to demand renewed contact, Gates testifies",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 24
+    }
+  },
+  {
+    "timestamp": "2026-06-11T04:31:03.807Z",
+    "candidateCount": 11,
+    "candidates": [
+      {
+        "slug": "2026-06-11-india-ethanol-excise-cut-mandate-delay",
+        "title": "India Waives Ethanol Blend Duty",
+        "category": "economy",
+        "eventCoverage": 31,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-11-south-korea-coupang-record-data-leak-fine",
+        "title": "Seoul Fines Coupang Record $408M",
+        "category": "tech",
+        "eventCoverage": 23,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-10-pakistan-austerity-drive-extended-oil-crisis",
+        "title": "Pakistan Extends Austerity to June",
+        "category": "economy",
+        "eventCoverage": 21,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-10-overnight-attacks-rattle-us-iran-ceasefire",
+        "title": "Iran Strikes US Bases Again",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-11-pacific-fuel-shock-price-on-women",
+        "title": "Pacific Fuel Shock Hits Women",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-10-egypt-civil-democratic-movement-divisions",
+        "title": "Egypt Opposition Clinically Dead",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-11-cape-town-planning-tribunal-accountability",
+        "title": "Cape Town Tribunal Hides Members",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-10-india-oman-cepa-hormuz-trade-hedge",
+        "title": "India-Oman Deal Skirts Hormuz",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-11-indonesia-floods-tapanuli-orangutans-deforestation",
+        "title": "Floods Wipe Out Tapanuli Orangutans",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-10-earth-energy-imbalance-record-warming",
+        "title": "Earth Heat Surplus Sets Record",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-10-boeing-ghost-bat-armed-autonomous-drone",
+        "title": "Ghost Bat Gains Internal Weapons",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-06-11-india-ethanol-excise-cut-mandate-delay",
+      "title": "India Waives Ethanol Blend Duty",
+      "category": "economy",
+      "body": "[India](country:IN) zeroed excise on petrol blends above",
+      "eventCoverage": 31,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "India scraps excise duty on high-ethanol petrol blends, officials say",
     "response": {
       "pushed": 1,
       "skipped": 0,
