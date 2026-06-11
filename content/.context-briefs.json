@@ -346781,5 +346781,1368 @@
     "label": "Data Breach Enforcement",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-06-09-great-ai-divide-us-china-global-south": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FULL STACK",
+        "body": "\"Choosing\" an AI provider is not choosing a chatbot — it is choosing a vertical stack: the chips that train the model, the cloud that serves it, the data-governance terms baked into the contract, and the language the model speaks well. Adopt one layer and you tend to inherit all of them.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is the **AI stack**: *silicon → cloud → foundation model → application*. Whoever controls the bottom layer (compute) sets the terms for everything above it."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPUTE MOAT",
+        "body": "Frontier models require tens of thousands of advanced GPUs to train — and the supply chain has exactly one chokepoint at each layer: NVIDIA designs the chips, TSMC fabricates them, and ASML in the Netherlands builds the only machines that can etch them. Washington's export controls weaponized that chain, cutting China off from the top chips and forcing it to build a parallel stack.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2019",
+                "label": "Huawei added to US entity list"
+              },
+              {
+                "year": "2022-10",
+                "label": "Sweeping GPU export controls",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-10",
+                "label": "Controls tightened; A800/H800 banned"
+              },
+              {
+                "year": "2025",
+                "label": "China scales domestic accelerators"
+              }
+            ],
+            "label": "the chip-control escalation"
+          }
+        ]
+      },
+      {
+        "heading": "WHY NVIDIA, NOT INTEL",
+        "body": "The compute moat is really one company's moat. NVIDIA's lead is not just its silicon but CUDA — the software layer that almost every AI researcher has trained on for fifteen years. Rivals can match the chip; matching the ecosystem of tools and trained engineers is the harder wall.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What locks developers into NVIDIA beyond the hardware itself?",
+            "options": [
+              "CUDA — its proprietary software ecosystem",
+              "Lower chip prices than competitors",
+              "A monopoly on silicon wafers",
+              "Exclusive control of undersea data cables"
+            ],
+            "correct": 0,
+            "explanation": "CUDA is NVIDIA's software layer; a generation of AI engineers built on it, so switching chips means rewriting the toolchain."
+          }
+        ]
+      },
+      {
+        "heading": "THE LANGUAGE GAP",
+        "body": "Large models are overwhelmingly trained on English and a handful of high-resource languages. For most of the Global South — Swahili, Hausa, Bengali dialects, the languages of Indonesia and the Sahel — coverage is thin. Whichever power decides a language is worth the training data effectively decides whose populations get useful AI.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Linguists call these *low-resource languages* — spoken by hundreds of millions, but starved of the digital text a model needs. The gap is not about speakers; it is about who pays to collect the data."
+          }
+        ]
+      },
+      {
+        "heading": "THE DATA-GOVERNANCE FORK",
+        "body": "The two stacks carry opposite assumptions about who controls data. The EU model treats personal data as an individual right; the Chinese model treats it as a state asset; the US model leaves it largely to sectoral rules and contracts. A smaller state importing a foreign stack imports that philosophy along with it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "EU (GDPR)",
+                "value": "rights-first",
+                "tone": "neutral",
+                "cc": "EU"
+              },
+              {
+                "label": "China (PIPL)",
+                "value": "state-first",
+                "tone": "unfavorable",
+                "cc": "CN"
+              },
+              {
+                "label": "US",
+                "value": "sectoral/contract",
+                "tone": "favorable",
+                "cc": "US"
+              }
+            ],
+            "label": "three data-governance philosophies"
+          }
+        ]
+      },
+      {
+        "heading": "THE NON-ALIGNED ECHO",
+        "body": "This is a familiar shape. At Bandung in 1955, newly independent states tried to refuse the choice between Washington and Moscow and build a third bloc. Non-alignment proved hard to sustain when both superpowers controlled the capital, arms, and technology a developing state actually needed. The AI divide poses the same trap in a new layer of the economy."
+      }
+    ],
+    "generatedAt": "2026-06-11T08:31:24.053Z",
+    "label": "The AI Duopoly",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-10-gaza-child-amputees-prosthetic-care": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY A LIMB IS NOT A ONE-TIME FIX",
+        "body": "An adult's prosthetic can last three to five years; a growing child's lasts months. Bones lengthen, residual limbs reshape, and a socket that fit at age six digs in painfully by age seven. A child amputee needs perhaps 15 to 25 new fittings before they stop growing — each one a fresh cast, alignment, and gait retraining.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How often does a still-growing child typically need a new prosthetic limb?",
+            "options": [
+              "Roughly every year",
+              "Once, lasting into adulthood",
+              "Every five years, like an adult",
+              "Only after a second injury"
+            ],
+            "correct": 0,
+            "explanation": "Bone growth and limb reshaping mean a child outgrows the socket annually — the device is a subscription, not a purchase."
+          }
+        ]
+      },
+      {
+        "heading": "THE SOCKET IS THE HARD PART",
+        "body": "The visible limb is the cheap, durable part. The socket — the custom-molded cup where the residual limb meets the device — is what must be remade each time, and a poor fit causes pressure sores, tissue breakdown, and abandonment of the limb entirely. Most amputees who 'reject' a prosthetic are really rejecting a bad socket.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Clinicians distinguish the *socket* (the fitted interface) from the *terminal device* (foot or hand). A limb fails at the **socket**, not the mechanism — which is why follow-up care, not the initial fitting, is the real supply chain."
+          }
+        ]
+      },
+      {
+        "heading": "REHAB IS HALF THE DEVICE",
+        "body": "A prosthetic without physiotherapy is dead weight. Re-learning to walk on a synthetic limb rewires balance, retrains intact muscles, and prevents the spine and joints from compensating into permanent deformity. Cut the rehab — as a siege does — and a survivable amputation hardens into lifelong disability even if the limb itself arrives."
+      },
+      {
+        "heading": "WHY A BLOCKADE TARGETS PROSTHETICS",
+        "body": "Carbon-fiber components, alignment jigs, and even some socket resins fall under dual-use export controls — materials that can theoretically serve a military purpose. Under a blockade, a pediatric prosthetics clinic competes for the same scarce permits as everything else, and a year-long approval delay maps exactly onto the year in which the child has already outgrown the limb.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PS",
+              "IL",
+              "EG"
+            ],
+            "label": "the care corridor",
+            "caption": "Limbs and components enter only through controlled crossings",
+            "markers": [
+              {
+                "lat": 31.5017,
+                "lng": 34.4668,
+                "label": "Gaza City"
+              },
+              {
+                "lat": 31.2167,
+                "lng": 34.2667,
+                "label": "Rafah crossing"
+              },
+              {
+                "lat": 31.3547,
+                "lng": 34.2667,
+                "label": "Kerem Shalom crossing"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BLESSED LAND",
+        "body": "In the Islamic tradition, Palestine is not incidental geography. Surah al-Isra describes the land around al-Aqsa as blessed, and classical scholars including Ibn Kathir treat the wider land of al-Sham as a place under particular divine favor. For the Muslim reader, the maiming of its children carries a weight that the clinical language of 'follow-up care' cannot hold."
+      }
+    ],
+    "generatedAt": "2026-06-11T08:31:57.980Z",
+    "label": "Prosthetic Care for Children",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-10-html-first-web-performance-access": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY HTML NEVER FAILS TO RENDER",
+        "body": "HTML is a streaming, fault-tolerant format: a browser paints it incrementally as bytes arrive and simply ignores tags it doesn't understand. A single-page app, by contrast, ships a blank page plus a program that must download, parse, and run before anything appears — so one failed script means a white screen.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the old principle of **progressive enhancement**: start with content that works everywhere, then layer interactivity on top. The SPA era inverted it into *graceful degradation that rarely degrades gracefully*."
+          }
+        ]
+      },
+      {
+        "heading": "THE TAX IS CPU, NOT BANDWIDTH",
+        "body": "The expensive part of JavaScript isn't downloading it — it's parsing and executing it. A megabyte of JS can take a high-end phone 200ms to run and a budget Android several seconds, because the bottleneck is a single-threaded CPU, not the network. This is why faster connections don't rescue cheap devices.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "For a low-end phone, what makes a heavy JavaScript bundle slowest to become usable?",
+            "options": [
+              "Downloading the file over the network",
+              "Parsing and executing the code on the CPU",
+              "Storing the file in the browser cache",
+              "Rendering the final HTML to pixels"
+            ],
+            "correct": 1,
+            "explanation": "Download scales with bandwidth, but parse/compile/execute is CPU-bound and single-threaded — a budget chip can spend seconds where a flagship spends milliseconds."
+          }
+        ]
+      },
+      {
+        "heading": "THE MEDIAN DEVICE ISN'T YOURS",
+        "body": "Developers build on $2,000 laptops and flagship phones; most of the world browses on sub-$200 Androids over intermittent 3G. A site that feels instant in San Francisco can be unusable in Lagos or Dhaka — the gap is hardware and network, not user skill.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "1995 static HTML",
+                "value": "~15 KB",
+                "tone": "favorable",
+                "weight": 15
+              },
+              {
+                "label": "2010 page",
+                "value": "~500 KB",
+                "tone": "neutral",
+                "weight": 500
+              },
+              {
+                "label": "2024 median",
+                "value": "~2.3 MB",
+                "tone": "unfavorable",
+                "weight": 2300
+              }
+            ],
+            "label": "typical web page weight by era"
+          }
+        ]
+      },
+      {
+        "heading": "THE PENDULUM OF RENDERING",
+        "body": "The web has swung between server and client three times. Early pages were server-rendered HTML; Ajax (2005) moved logic to the browser; React-era frameworks (2013) made the client render everything. The current swing — server components, islands, HTML-first builds — is a return to shipping mostly HTML again.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1993",
+                "label": "Static server HTML",
+                "emphasis": "start"
+              },
+              {
+                "year": "2005",
+                "label": "Ajax: logic moves to browser"
+              },
+              {
+                "year": "2010",
+                "label": "AngularJS launches"
+              },
+              {
+                "year": "2013",
+                "label": "React; the SPA era",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2016",
+                "label": "Next.js server rendering"
+              },
+              {
+                "year": "2024",
+                "label": "Islands / HTML-first revival",
+                "emphasis": "end"
+              }
+            ],
+            "label": "where the page gets built"
+          }
+        ]
+      },
+      {
+        "heading": "ACCESSIBILITY IS A SIDE EFFECT",
+        "body": "Semantic HTML — real buttons, links, and headings — is read correctly by screen readers, keyboards, and search crawlers for free. JavaScript-built interfaces often rebuild those controls from generic <div>s, which is why heavy SPAs tend to be the least accessible and reaching old game-console browsers becomes possible only after stripping the JS away."
+      }
+    ],
+    "generatedAt": "2026-06-11T08:32:30.094Z",
+    "label": "The JavaScript Tax",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-11-bitcoin-deep-bear-market-inflation-rates": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HIGH-BETA TRUTH",
+        "body": "Bitcoin was sold as 'digital gold' — an uncorrelated store of value. In practice it trades like a leveraged tech stock: when the Nasdaq rallies, Bitcoin rallies harder; when risk appetite drains, Bitcoin falls further. 'High-beta' means it amplifies the market's moves in both directions.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              80480.89,
+              79277.8,
+              81051.98,
+              79068.82,
+              78135.01,
+              77425.72,
+              76952.21,
+              76808.81,
+              77459.94,
+              77546.34,
+              75482.52,
+              76672.79,
+              76988.16,
+              77274.4,
+              75824.06,
+              74352.7,
+              73539.84,
+              73382.72,
+              73751.07,
+              73593.37,
+              71360.33,
+              66649.86,
+              64021.89,
+              63796.25,
+              60921.79,
+              60861.88,
+              63254.57,
+              63078.44,
+              61658.31,
+              61492.51,
+              62862.86
+            ],
+            "periods": [
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9",
+              "Jun 10",
+              "Jun 11",
+              "Jun 11"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT'S NOT AN INFLATION HEDGE",
+        "body": "A true inflation hedge holds value when money loses it. But Bitcoin's price is driven by liquidity, not the price level — it rises when capital is cheap and abundant, and falls when central banks tighten. High inflation forces tightening, which drains the very liquidity Bitcoin feeds on. So the asset sells off exactly when an inflation hedge is supposed to pay off.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is **real yields** — the interest rate *minus* inflation. When real yields are negative, holding cash is a guaranteed loss and capital floods into scarce assets. When they turn positive, a Treasury bond pays a risk-free real return, and a zero-yield asset like Bitcoin must compete against it."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT ACTUALLY MOVES TOGETHER",
+        "body": "Sort assets by how violently they react to the same liquidity wave and Bitcoin sits at the leveraged end of the spectrum — beyond equities, in the opposite corner from the assets people actually flee to in a crisis.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Bitcoin",
+                "value": "very high",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Nasdaq-100",
+                "value": "high",
+                "tone": "neutral"
+              },
+              {
+                "label": "S&P 500",
+                "value": "moderate",
+                "tone": "neutral"
+              },
+              {
+                "label": "Gold",
+                "value": "near zero",
+                "tone": "favorable"
+              },
+              {
+                "label": "US Treasuries",
+                "value": "inverse",
+                "tone": "favorable"
+              }
+            ],
+            "label": "sensitivity to risk-on/risk-off swings"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE FED DECISION IS THE WHOLE STORY",
+        "body": "The FOMC doesn't set Bitcoin's price, but it sets the cost of money — and that cascades into every risk asset. A surprise hike (or even a hawkish tone) raises the discount rate on all future cash flows, makes risk-free bonds more attractive, and pulls leverage out of the system. This is why a trader can forecast Bitcoin entirely off the next rate decision rather than off anything crypto-specific."
+      },
+      {
+        "heading": "THE ABSORPTION PROBLEM",
+        "body": "Miners produce a steady stream of new Bitcoin every day and must sell much of it to cover energy costs. That supply only gets absorbed if net new demand — chiefly ETF inflows — keeps pace. When tightening scares buyers off, miners keep selling into a thinning market, and the price gaps down. The selloff is mechanical, not sentimental."
+      },
+      {
+        "heading": "THE ASSET IT CLAIMS TO BE",
+        "body": "Gold is the benchmark Bitcoin measures itself against — and the divergence is the lesson. Through a tightening cycle gold tends to hold or climb as a genuine safe haven, while Bitcoin behaves like the risk asset it actually is. The gap between the two lines is the difference between a hedge and a bet.",
+        "blocks": [
+          {
+            "type": "trend",
+            "series": [
+              {
+                "values": [
+                  4711.77,
+                  4685.25,
+                  4650.57,
+                  4540.65,
+                  4535.45,
+                  4535.69,
+                  4575.14,
+                  4491.98,
+                  4536.19,
+                  4525.24,
+                  4494.01,
+                  4522,
+                  4563.72,
+                  4547.87,
+                  4516.99,
+                  4441.32,
+                  4477.7,
+                  4529.52,
+                  4516.92,
+                  4529.81,
+                  4475.04,
+                  4462.11,
+                  4449.62,
+                  4453.49,
+                  4319.76,
+                  4296.28,
+                  4331.89,
+                  4306.92,
+                  4209.89,
+                  4051.63,
+                  4100.45
+                ],
+                "label": "Gold (PAX Gold)",
+                "highlight": "last"
+              },
+              {
+                "values": [
+                  80480.89,
+                  79277.8,
+                  81051.98,
+                  79068.82,
+                  78135.01,
+                  77425.72,
+                  76952.21,
+                  76808.81,
+                  77459.94,
+                  77546.34,
+                  75482.52,
+                  76672.79,
+                  76988.16,
+                  77274.4,
+                  75824.06,
+                  74352.7,
+                  73539.84,
+                  73382.72,
+                  73751.07,
+                  73593.37,
+                  71360.33,
+                  66649.86,
+                  64021.89,
+                  63796.25,
+                  60921.79,
+                  60861.88,
+                  63254.57,
+                  63078.44,
+                  61658.31,
+                  61492.51,
+                  62862.86
+                ],
+                "label": "Bitcoin",
+                "highlight": "last"
+              }
+            ],
+            "label": "Gold vs Bitcoin",
+            "source": 1,
+            "unit": "$/oz",
+            "periods": [
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9",
+              "Jun 10",
+              "Jun 11",
+              "Jun 11"
+            ]
+          },
+          {
+            "type": "quiz",
+            "question": "Why do rising real interest rates tend to pressure Bitcoin's price?",
+            "options": [
+              "Higher rates make risk-free bonds attractive, raising the opportunity cost of a zero-yield asset",
+              "Higher rates directly tax cryptocurrency transactions",
+              "Higher rates force miners to produce more Bitcoin",
+              "Higher rates increase Bitcoin's dividend yield"
+            ],
+            "correct": 0,
+            "explanation": "Bitcoin pays no yield, so when real returns on safe bonds turn positive, capital rotates out of scarce non-yielding assets into Treasuries."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-06-11",
+      "CoinGecko · PAXG (gold-backed) · as of 2026-06-11"
+    ],
+    "generatedAt": "2026-06-11T08:33:07.660Z",
+    "label": "Bitcoin as a Risk Asset",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-11-comparative-analysis-of-soil-prokaryotic-community-structure": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHURCH FOREST",
+        "body": "Ethiopian Orthodox Tewahedo churches surround themselves with a ring of native trees, treated as a sacred boundary. In the stripped highlands these groves — tens of thousands of them, most just a few hectares — are frequently the only intact forest left for miles, conserved by liturgy rather than law.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ET"
+            ],
+            "label": "the Amhara highlands",
+            "caption": "Most surviving church forests cluster in the South Gondar highlands around Lake Tana.",
+            "markers": [
+              {
+                "lat": 12,
+                "lng": 37.3,
+                "label": "Lake Tana church forests"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "FILTER VS DISPERSAL",
+        "body": "Microbial communities are assembled by two forces: dispersal, where microbes ride wind and water everywhere, and environmental filtering, where local soil conditions select which arrivals actually thrive. When 81% of variation tracks local filtering, it means place — not chance arrival — decides who lives in the soil.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The finding that *filtering* dominates *dispersal* is the whole story: clearing a forest doesn't just remove trees, it removes the **selective conditions** that the soil's specialist microbes require to persist."
+          }
+        ]
+      },
+      {
+        "heading": "WHO RUNS THE SOIL",
+        "body": "A single gram of forest soil holds billions of prokaryotes — bacteria and archaea — and they, not plants, drive the chemistry that makes land fertile: nitrogen fixation, nitrification, and the decomposition that frees nutrients. The visible forest sits on top of an invisible one that does the metabolic work.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What has preserved Ethiopia's last fragments of intact highland forest?",
+            "options": [
+              "Ethiopian Orthodox church groves",
+              "Colonial-era forestry reserves",
+              "National parks created in the 1990s",
+              "Commercial eucalyptus plantations"
+            ],
+            "correct": 0,
+            "explanation": "The forests survive as sacred rings around churches — conserved by religious custom long before any state conservation existed."
+          }
+        ]
+      },
+      {
+        "heading": "MODELED, NOT MEASURED",
+        "body": "The authors flagged that the nitrogen-cycling benefits were inferred from which microbes are present, not observed in the field. This is a known trap in soil ecology: carrying a gene for a process is not the same as performing it. A genome can hold the blueprint for nitrogen fixation while the organism does nothing of the sort under field conditions."
+      },
+      {
+        "heading": "THE DEFORESTATION FLOOR",
+        "body": "Ethiopia's highlands once carried far more forest than the low single-digit percentages of the late 20th century. As farmland advanced to the church wall, the groves became reference points — the last living record of what the soil community looked like before the land was cleared, and the seed bank for any attempt to rebuild it."
+      }
+    ],
+    "generatedAt": "2026-06-11T08:33:52.290Z",
+    "label": "Church Forests & Soil Microbes",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-11-east-africa-indo-pacific-trade-chokepoint": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THIS COAST",
+        "body": "East Africa is the western wall of the Indian Ocean — the ocean across which roughly four-fifths of global oil moves by sea. A port here is not just a port; it is a foothold on the sea lane connecting the Gulf, South Asia, and the Malacca Strait. Whoever services these harbors gains standing presence astride that traffic.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KE",
+              "TZ",
+              "MZ",
+              "SO",
+              "DJ"
+            ],
+            "label": "the contested coast",
+            "caption": "Each harbor sits on the Gulf–Malacca sea lane",
+            "markers": [
+              {
+                "lat": -4.0435,
+                "lng": 39.6682,
+                "label": "Mombasa port"
+              },
+              {
+                "lat": -6.7924,
+                "lng": 39.2083,
+                "label": "Dar es Salaam port"
+              },
+              {
+                "lat": -12.974,
+                "lng": 40.518,
+                "label": "Cabo Delgado LNG"
+              },
+              {
+                "lat": 11.5722,
+                "lng": 43.1456,
+                "label": "Djibouti — bases"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TAZARA PRECEDENT",
+        "body": "China's engagement with East Africa is not new. Between 1970 and 1975, Beijing built the 1,860km TAZARA railway from Dar es Salaam to the Zambian copperbelt — its largest foreign-aid project at the time, funded when China was still desperately poor. It was a statement: an alternative patron for states wary of both Cold War blocs. Today's port deals are that posture at industrial scale.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1970",
+                "label": "TAZARA railway begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1975",
+                "label": "TAZARA completed"
+              },
+              {
+                "year": "2013",
+                "label": "Belt & Road launched"
+              },
+              {
+                "year": "2017",
+                "label": "Mombasa–Nairobi SGR opens"
+              },
+              {
+                "year": "2017",
+                "label": "China's Djibouti base opens"
+              }
+            ],
+            "label": "China in East Africa"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEBT MECHANISM",
+        "body": "The model is consistent: a Chinese policy bank lends for a railway or port, a Chinese state firm builds it, and repayment is often anchored to the asset's revenue or to commodity exports. When the asset under-earns — Kenya's standard-gauge railway has run far below projected freight — the borrowing state carries the gap. The leverage is financial, not military.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              6.7923,
+              6.7864,
+              6.8107,
+              6.8099,
+              6.8099,
+              6.8142,
+              6.8012,
+              6.8119,
+              6.8015,
+              6.8007,
+              6.7948,
+              6.7948,
+              6.7853,
+              6.7873,
+              6.783,
+              6.7852,
+              6.7728,
+              6.7664,
+              6.7664,
+              6.7678,
+              6.7633,
+              6.7664,
+              6.7756,
+              6.7748,
+              6.7764,
+              6.7764,
+              6.7784,
+              6.7802,
+              6.774,
+              6.7747
+            ],
+            "periods": [
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9",
+              "Jun 10",
+              "Jun 11"
+            ],
+            "label": "Chinese yuan",
+            "unit": "CNY / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE STRING OF PEARLS",
+        "body": "Analysts describe China's chain of Indian Ocean facilities — Gwadar in Pakistan, Hambantota in Sri Lanka, Djibouti, and now bids along the African coast — as a network of commercial ports that could, if needed, support naval reach. Washington reads the same map as encirclement of the routes its allies depend on.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phrase **String of Pearls** was coined in a 2005 US defense contractor report, not by China — it describes a *suspected* strategy, where each 'pearl' is a dual-use port that is commercial in peacetime and logistically useful in war."
+          }
+        ]
+      },
+      {
+        "heading": "THE GAS PRIZE",
+        "body": "Mozambique's Cabo Delgado holds some of the largest offshore gas finds of the century, with TotalEnergies, ExxonMobil, and Asian buyers all invested. An Islamist insurgency stalled the onshore project in 2021, turning a pure energy play into a security one — which is precisely how foreign militaries acquire a reason to stay.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MZ",
+              "TZ"
+            ],
+            "label": "Cabo Delgado gas province",
+            "markers": [
+              {
+                "lat": -10.8,
+                "lng": 40.5,
+                "label": "Afungi LNG site"
+              },
+              {
+                "lat": -12.974,
+                "lng": 40.518,
+                "label": "Palma — 2021 attack"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE COASTAL STATES WANT",
+        "body": "Tanzania, Kenya, and Mozambique are not pawns — they play the patrons against each other. The genuine prize for them is not a flag but throughput: whichever deal moves the most cargo and earns the most transit fees wins, regardless of whose loan funds it. Non-alignment here is a revenue strategy.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was China's TAZARA railway, built 1970–75?",
+            "options": [
+              "A Belt-and-Road port concession",
+              "A rail line linking Tanzania's coast to Zambia's copperbelt",
+              "A Cold War US aid project",
+              "A pipeline carrying Mozambican gas"
+            ],
+            "correct": 1,
+            "explanation": "TAZARA connected Dar es Salaam to landlocked Zambia's copper mines — China's largest foreign-aid project of its era, decades before Belt and Road."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-11"
+    ],
+    "generatedAt": "2026-06-11T08:34:30.599Z",
+    "label": "East Africa & the Indian Ocean Contest",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-11-irgc-closes-strait-of-hormuz-shipping-shock": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the usable shipping lanes are just 3 km each — two inbound, two outbound, with a buffer between. Roughly 20 million barrels of oil cross daily, about a fifth of global consumption, and the deepest channel hugs the Iranian side.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "QA",
+              "SA"
+            ],
+            "label": "the chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Hormuz shipping lanes"
+              },
+              {
+                "lat": 25.1,
+                "lng": 56.35,
+                "label": "Fujairah (bypass port)"
+              },
+              {
+                "lat": 26.95,
+                "lng": 56.27,
+                "label": "Bandar Abbas (IRGC navy)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY A WEAK NAVY CAN CLOSE IT",
+        "body": "Iran does not need to defeat the US Fifth Fleet. Mines, anti-ship missiles, and swarms of small fast boats launched from thousands of coastal points make the lanes too dangerous to insure. The cost asymmetry is the weapon — a few thousand dollars of ordnance against a $100m tanker.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is *sea denial*, not sea control. Iran can't hold the strait open for itself — but it can make the strait closed *for everyone*, which is all a declared closure requires."
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE WEAPON",
+        "body": "Lloyd's of London war-risk premiums — not the ordnance itself — are what actually shut a lane. During the 2019 Gulf of Oman tanker attacks, premiums jumped roughly tenfold overnight. Once a surcharge approaches the value of the cargo, commercial vessels reroute regardless of how many mines remain."
+      },
+      {
+        "heading": "WHY IT CAN'T BE BYPASSED",
+        "body": "Pipelines exist, but they don't add up. The UAE's Habshan–Fujairah line moves up to 1.5m barrels/day to the Gulf of Oman; Saudi Arabia's East–West line to the Red Sea adds another 5m. Together they reroute roughly a third of Hormuz throughput — the rest has no alternative.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hormuz flow",
+                "value": "~20m",
+                "tone": "unfavorable",
+                "weight": 20
+              },
+              {
+                "label": "Saudi E–W line",
+                "value": "~5m",
+                "tone": "neutral",
+                "weight": 5
+              },
+              {
+                "label": "UAE Fujairah",
+                "value": "~1.5m",
+                "tone": "favorable",
+                "weight": 1.5
+              }
+            ],
+            "label": "Hormuz volume vs. bypass capacity (m bbl/day)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "Iran mined the Gulf in 1987–88. The USS Samuel B. Roberts struck a mine and nearly sank; the US answered with Operation Praying Mantis, its largest naval surface battle since WWII. The lesson: the battles were won in a day, but clearing the mines took months.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1980",
+                "label": "Iran–Iraq Tanker War begins"
+              },
+              {
+                "year": "1987",
+                "label": "US reflags Kuwaiti tankers"
+              },
+              {
+                "year": "1988-04",
+                "label": "Operation Praying Mantis",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Gulf of Oman tanker attacks"
+              }
+            ],
+            "label": "the strait under fire"
+          }
+        ]
+      },
+      {
+        "heading": "WHO THE IRGC NAVY IS",
+        "body": "The closure was declared by the Revolutionary Guard Navy — not Iran's regular navy. The IRGC is a parallel military answering to the Supreme Leader, and since 2007 it owns the Gulf while the regular navy patrols open seas. Its doctrine is explicitly asymmetric: speedboats, mines, and missiles, not capital ships.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the IRGC Navy, not Iran's regular navy, control the Strait of Hormuz?",
+            "options": [
+              "The regular navy was disbanded after 1979",
+              "A 2007 split assigned the Gulf to the IRGC, open seas to the regular navy",
+              "The IRGC has larger warships",
+              "Hormuz lies outside Iran's territorial waters"
+            ],
+            "correct": 1,
+            "explanation": "Since 2007 the IRGC holds the Persian Gulf with asymmetric forces, while the regular navy operates in open waters like the Gulf of Oman and beyond."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T08:35:02.792Z",
+    "label": "The Hormuz Chokepoint",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-11-ryanair-investigated-over-charging-parents-to-sit-with-child": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE UNBUNDLING MODEL",
+        "body": "Low-cost carriers invented their economics by stripping the ticket to a bare seat, then selling back everything that was once included — bags, printed passes, legroom, and the right to sit together. The £8 family-seating fee isn't an accident of pricing; it's the business model working as designed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is *unbundling*: the headline fare advertises near a loss, and the airline earns its margin on **ancillary revenue** — the menu of add-ons bolted on after you've committed."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE MONEY ACTUALLY IS",
+        "body": "For the ultra-low-cost carriers, fees are not a side business — they are the business. A large share of Ryanair's revenue per passenger comes from ancillaries, and at the most aggressive carriers the add-ons rival or exceed the fare itself.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Spirit (US)",
+                "value": "~50%",
+                "cc": "US",
+                "weight": 50,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Wizz Air",
+                "value": "~45%",
+                "cc": "HU",
+                "weight": 45,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Ryanair",
+                "value": "~35%",
+                "cc": "IE",
+                "weight": 35,
+                "tone": "neutral"
+              },
+              {
+                "label": "easyJet",
+                "value": "~25%",
+                "cc": "GB",
+                "weight": 25,
+                "tone": "neutral"
+              },
+              {
+                "label": "Legacy carriers",
+                "value": "~10%",
+                "weight": 10,
+                "tone": "favorable"
+              }
+            ],
+            "label": "ancillary revenue as share of total"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'DRIP PRICING' IS THE TARGET",
+        "body": "The watchdog's real concern is structural: a price that starts low and accumulates mandatory-feeling charges as you click through checkout. Drip pricing works because the sunk cost of having entered card details makes travelers absorb fees they'd have rejected up front — a documented behavioral trap, not a hunch.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does 'drip pricing' extract more from buyers than showing the full price upfront?",
+            "options": [
+              "The fees are technically illegal so go unchallenged",
+              "Buyers commit early, then absorb add-ons rather than restart",
+              "Airlines hide the fees from regulators entirely"
+            ],
+            "correct": 1,
+            "explanation": "Once a buyer has invested time and entered details, the psychological cost of abandoning checkout exceeds the fee — so they pay rather than walk."
+          }
+        ]
+      },
+      {
+        "heading": "THE SAFETY ANGLE",
+        "body": "The CMA's sharpest claim is that the fee may charge parents for the airline's own duty. Carriers are obliged under safety rules to seat young children near a responsible adult for evacuation purposes — so a charge to guarantee that seating arguably bills the customer for a cost the airline already owes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal hinge: if adjacent seating is a *safety obligation* rather than a *premium service*, then pricing it as an extra converts a duty into a revenue line — the exact move consumer law is built to catch."
+          }
+        ]
+      },
+      {
+        "heading": "THE WATCHDOG'S NEW TEETH",
+        "body": "Until recently the CMA had to drag firms through court to punish them. Under the Digital Markets, Competition and Consumers Act — in force from 2025 — it can rule on consumer-law breaches itself and fine companies up to 10% of global turnover directly. For a carrier the size of Ryanair, that ceiling is what makes the probe more than symbolic."
+      }
+    ],
+    "generatedAt": "2026-06-11T08:35:33.904Z",
+    "label": "Unbundling & Drip Pricing",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-11-thailand-death-sentence-uighur-bangkok-bombing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO THE UYGHURS ARE",
+        "body": "The Uyghurs are a Turkic, Sunni Muslim people native to Xinjiang — the region many Uyghurs call East Turkestan. They are ethnically and linguistically closer to Central Asians and Turks than to Han Chinese, which is precisely why China treats their distinct identity as a security problem rather than a culture to preserve.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Their language is written in an *Arabic-derived* script and their kinship runs west toward **Turkey** — the reason Ankara, alone among major powers, has historically opened its doors to fleeing Uyghurs."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A HINDU SHRINE",
+        "body": "The Erawan Shrine honors the Hindu god Brahma and sits at a central Bangkok intersection that draws crowds of East Asian tourists, many of them mainland Chinese. Investigators concluded the target was chosen for its density of Chinese visitors — making the attack a strike at China by proxy, on Thai soil.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TH",
+              "CN"
+            ],
+            "label": "the attack site",
+            "markers": [
+              {
+                "lat": 13.744,
+                "lng": 100.5405,
+                "label": "Erawan Shrine, Bangkok"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "NON-REFOULEMENT",
+        "body": "International law forbids returning people to a country where they face persecution — a principle older than the modern refugee. Thailand's July 2015 transfer of 109 Uyghurs to China, weeks before the bombing, was condemned globally as a textbook breach, and authorities then refused to probe the obvious link to the attack.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine is called *non-refoulement* — literally \"no pushing back.\" It binds states whether or not they have signed the refugee convention, because it is treated as **customary international law**."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSIT CORRIDOR",
+        "body": "Uyghurs fleeing Xinjiang rarely go west directly; the hardened Central Asian borders push them south through Southeast Asia. The escape line runs through Thailand and Malaysia toward Turkey, which is why a landlocked Chinese grievance keeps surfacing in Bangkok detention cells and Kuala Lumpur transit lounges.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "TH",
+              "MY",
+              "TR"
+            ],
+            "label": "Xinjiang to Turkey, the long way around"
+          }
+        ]
+      },
+      {
+        "heading": "THE ELEVEN-YEAR ARC",
+        "body": "The case has spanned more than a decade, and the pattern repeated: in February 2025, Thailand again deported dozens of detained Uyghurs to China despite international protest. The bombing trial and the deportations are two faces of the same pressure Beijing applies to its smaller neighbors.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2014",
+                "label": "Uyghurs detained in Thai camps"
+              },
+              {
+                "year": "2015-07",
+                "label": "109 Uyghurs deported to China"
+              },
+              {
+                "year": "2015-08",
+                "label": "Erawan Shrine bombing kills 20",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017",
+                "label": "Trial of two suspects opens"
+              },
+              {
+                "year": "2025-02",
+                "label": "Thailand deports more Uyghurs"
+              },
+              {
+                "year": "2026",
+                "label": "Death sentences handed down"
+              }
+            ],
+            "label": "shrine, deportation, sentence"
+          }
+        ]
+      },
+      {
+        "heading": "THAILAND'S DEATH PENALTY",
+        "body": "Thailand switched from firing squad to lethal injection in 2003 and observed a near-decade pause in executions, leading many to assume abolition was coming. That ended abruptly in 2018 with the first execution in nine years — so a death sentence here is neither automatic nor empty.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did investigators conclude the Erawan Shrine was targeted?",
+            "options": [
+              "It was crowded with Chinese tourists",
+              "It is a major Buddhist temple",
+              "It sits next to a government ministry",
+              "It was a symbol of the monarchy"
+            ],
+            "correct": 0,
+            "explanation": "The shrine drew dense crowds of mainland Chinese visitors, making it a way to strike at China — weeks after Thailand deported 109 Uyghurs there."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T08:36:14.861Z",
+    "label": "The Erawan Bombing & the Uyghur Transit Route",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-11-unhcr-one-in-70-forcibly-displaced-returns": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO POPULATIONS",
+        "body": "Most of the displaced never cross a border. Of the world's forcibly displaced, the majority are internally displaced people — uprooted but still inside their own country, where no other state owes them protection. Only those who cross an international border become refugees in the legal sense, and that line determines who the UN can help and how.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction is legal, not semantic: an *IDP* remains under the jurisdiction of the government that often drove them out, while a *refugee* triggers the protections of international law the moment they cross a frontier."
+          },
+          {
+            "type": "quiz",
+            "question": "Most forcibly displaced people in the world are:",
+            "options": [
+              "Refugees who have crossed into another country",
+              "Internally displaced within their own country",
+              "Resettled in wealthy Western nations"
+            ],
+            "correct": 1,
+            "explanation": "Internally displaced people outnumber refugees roughly two to one; they stay inside borders and fall outside the formal refugee regime."
+          }
+        ]
+      },
+      {
+        "heading": "THE CORNERSTONE RULE",
+        "body": "The entire refugee system rests on one principle from the 1951 Refugee Convention: non-refoulement — no state may return a person to a territory where they face persecution. Everything else (camps, asylum hearings, resettlement) is machinery built around this single prohibition. When countries expel asylum-seekers en masse, this is the law they are accused of breaking."
+      },
+      {
+        "heading": "WHO ACTUALLY HOSTS THEM",
+        "body": "The popular image is of refugees flooding rich Europe; the reality is that low- and middle-income countries host the large majority. A handful of neighbors to crisis zones — Iran, Turkey, Pakistan, Uganda, Colombia — carry a wildly disproportionate share, often with a fraction of the resources of the wealthy states that resettle far fewer.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Iran",
+                "value": "~3.5m",
+                "cc": "IR",
+                "weight": 3.5,
+                "tone": "neutral"
+              },
+              {
+                "label": "Turkey",
+                "value": "~3.0m",
+                "cc": "TR",
+                "weight": 3,
+                "tone": "neutral"
+              },
+              {
+                "label": "Colombia",
+                "value": "~2.8m",
+                "cc": "CO",
+                "weight": 2.8,
+                "tone": "neutral"
+              },
+              {
+                "label": "Germany",
+                "value": "~2.5m",
+                "cc": "DE",
+                "weight": 2.5,
+                "tone": "neutral"
+              },
+              {
+                "label": "Pakistan",
+                "value": "~2.0m",
+                "cc": "PK",
+                "weight": 2,
+                "tone": "neutral"
+              },
+              {
+                "label": "Uganda",
+                "value": "~1.6m",
+                "cc": "UG",
+                "weight": 1.6,
+                "tone": "neutral"
+              }
+            ],
+            "label": "largest refugee-hosting countries (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE SOURCE CONCENTRATION",
+        "body": "Displacement is not evenly spread across failing states; it pours out of a short list of protracted catastrophes. A few countries — Syria, Afghanistan, Ukraine, Sudan, Venezuela — account for most of the world's refugees, which is why a single peace or a single new war can swing the global total by millions.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Syria",
+                "value": 6
+              },
+              {
+                "label": "Afghanistan",
+                "value": 6
+              },
+              {
+                "label": "Ukraine",
+                "value": 6
+              },
+              {
+                "label": "Venezuela",
+                "value": 6
+              },
+              {
+                "label": "Sudan",
+                "value": 3
+              },
+              {
+                "label": "South Sudan",
+                "value": 2
+              },
+              {
+                "label": "Myanmar",
+                "value": 1.3
+              }
+            ],
+            "label": "refugees by country of origin (millions, approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE THREE DURABLE SOLUTIONS",
+        "body": "UNHCR recognizes only three real endings to displacement: voluntary repatriation (going home safely), local integration (becoming a citizen where you fled to), or resettlement (a third country takes you in). Resettlement is rarest by far — a fraction of one percent of refugees get a slot — so when the agency reports a decline, it almost always means people went home, not that they were resettled."
+      },
+      {
+        "heading": "THE AFGHAN RETURN PROBLEM",
+        "body": "Afghan returns drove the first decline in a decade — but 'return' conceals coercion. Pakistan and Iran have pushed out hundreds of thousands of Afghans under deportation drives, so movement counted as repatriation is often expulsion. The agency's own caveat — conditions called resolved while the causes of flight persist — is the structural tension: a returnee re-crossing into a country that is still dangerous still counts as a solution on paper.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AF",
+              "PK",
+              "IR"
+            ],
+            "label": "the Afghan return corridor",
+            "caption": "Pakistan and Iran together host — and expel — most of the Afghan diaspora."
+          },
+          {
+            "type": "prose",
+            "text": "The euphemism matters: a *voluntary repatriation* assumes the refugee chose to go; a deportation drive that leaves no choice is *refoulement* wearing the statistics of success."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T08:37:00.545Z",
+    "label": "Forced Displacement",
+    "category": "politics",
+    "articleCount": 1
   }
 }
