@@ -3568,5 +3568,22 @@
     "briefCount": 10,
     "guardrailFailures": [],
     "degenerate": false
+  },
+  {
+    "ts": "2026-06-11T12:35:01.172Z",
+    "cycleId": "2026-06-11T12-35",
+    "cycleHour": "12",
+    "rvs": 76.96,
+    "clusters": {
+      "picking": null,
+      "writing": 88.46,
+      "briefing": 82.82,
+      "sourcing": 35.2,
+      "coverage": 95.6
+    },
+    "articleCount": 13,
+    "briefCount": 13,
+    "guardrailFailures": [],
+    "degenerate": false
   }
 ]
