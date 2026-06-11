@@ -1,28 +1,26 @@
 {
-  "date": "2026-06-10",
+  "date": "2026-06-11",
   "metrics": {
-    "articles": { "value": 58, "detail": "5 cycles completed, avg 10/cycle" },
-    "freshness": { "median": 0.2, "p90": 0.9, "max": 0.9, "target": 1.0, "met": true },
-    "categories": { "politics": 21, "economy": 14, "science": 10, "tech": 13 },
-    "multiSource": { "value": 12, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 21, "ME": 14, "EU": 8, "AS": 8, "AF": 6, "OC": 1 } },
-    "sciTech": { "ratio": 40, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online", "pct": 10, "target": 20, "met": true },
-    "uniqueSources": 43,
+    "articles": { "value": 43, "detail": "5 cycles, avg 9/cycle" },
+    "freshness": { "median": 0.4, "p90": 0.4, "max": 0.4, "target": 1.0, "met": true },
+    "categories": { "politics": 15, "economy": 13, "science": 6, "tech": 9 },
+    "multiSource": { "value": 9, "target": 4, "met": true },
+    "regions": { "count": 7, "target": 4, "met": true, "breakdown": { "ME": 5, "AM": 11, "AS": 11, "EU": 7, "AF": 6, "OC": 2, "GL": 1 } },
+    "sciTech": { "ratio": 35, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 12, "target": 20, "met": true },
+    "uniqueSources": 38,
     "duplicates": 0,
-    "avgCycleDuration": 1744
+    "avgCycleDuration": 1767
   },
-  "experiment": "Skipped — all goal metrics (freshness, diversity, multi-source, educational value) are within targets, no experiment is active, and no pause gate is set. The one queued experiment (numerical-density) targets scripts/write-prompt.md, which is out of scope for daily tuning.",
-  "weakestArea": "Geographic concentration is again the softest spot: the Americas drew 21 articles versus 8 Asia, 8 Europe, 6 Africa, and just 1 Oceania. Unique-region count still clears target (6 >= 4), but the AM skew tracks the day's gravity (US-Iran escalation, Western-hemisphere economy) rather than a pipeline fault. Science volume (10) is the lowest category but doubles its floor of 5.",
+  "experiment": "Skipped — all four goal areas (freshness, diversity, multi-source, educational value) are within targets, no experiment is active, and no pause gate is set.",
+  "weakestArea": "Science volume is the softest goal metric: 6 articles, the smallest category and only one above its floor of 5. It still clears the diversity target, but if the next cycles run light on quality science sourcing it is the first metric at risk of dropping below floor.",
   "watching": [
-    "US-Iran escalation — still the dominant thread; watch for retaliation, allied responses, and oil-market spillover.",
-    "European Spaceflight ran 3 stories — a launch-cadence cluster worth tracking for follow-on science coverage.",
-    "Crypto/markets — CoinDesk at 4 articles suggests an active digital-asset news window.",
-    "Africa hard news (Daily Maverick, Premium Times, Mada Masr) — sustaining the under-covered humanitarian and governance threads."
+    "US-Iran escalation continues to anchor Americas/Middle East coverage; ME at 5 and AM at 11 reflect that gravity rather than a sourcing skew.",
+    "Asia coverage is strong today (11, led by The Diplomat and South China Morning Post) — worth confirming it holds as the US-Iran story competes for selector slots."
   ],
   "coverageGaps": [
-    "Oceania at 1 article is persistently thin; APAC-Pacific hard news remains under-represented.",
-    "Africa at 6 improved over recent days but absolute volume stays low relative to the Americas (21)."
+    "Oceania remains thin at 2 articles, the persistent low region across recent cycles.",
+    "Science leans on a narrow set of quality sources (Phys.org, Nature) — only two genuinely science-dedicated outlets in today's mix."
   ],
-  "context": "Healthy day: throughput recovered to 58 articles across 5 completed cycles (up from 41 yesterday), zero duplicates, 43 unique sources, top-source share just 10%, and all four editorial goals met. Average cycle duration held high at 1744s, driven by the writer stage (avg 752s vs typical ~150s) — the same writer-stage slowness flagged yesterday persists and is now a two-day pattern worth watching, though it has not affected output quality or volume. With every metric in-target, the conservative move is to hold all parameters steady."
+  "context": "Freshness is computed off only 2 datable articles today (count=2), so the 0.4-day median is a small sample and should not be over-read; the broader pipeline shows no lag signal. Yesterday was an unusually heavy day (71 articles); today's 43 is a normal 5-cycle output. All goal metrics are within targets, so no parameter change is made today."
 }
