@@ -351517,5 +351517,1387 @@
     "label": "Hormuz, Fertilizer & the Food Shock",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-06-10-anthropic-fable-guardrails-security-researchers": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DUAL-USE PROBLEM",
+        "body": "The instructions to find a software vulnerability and the instructions to fix one are nearly identical — the same knowledge that writes an exploit writes the patch. A model can read intent only from words, not from who is typing them, so it cannot reliably tell a penetration tester from an attacker.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Security has a name for this: *offense and defense are the same craft*. A **vulnerability researcher** and an **exploit developer** run the identical analysis — only the last step differs."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CLASSIFIERS OVER-BLOCK",
+        "body": "A safety filter trades two errors: blocking a legitimate request (false positive) versus permitting a harmful one (false negative). Because a single catastrophic misuse is far more costly to the provider than thousands of annoyed researchers, the threshold is set to over-block. The result is precision sacrificed to protect against the rare tail event.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does a cautious AI safety filter tend to block harmless cybersecurity questions?",
+            "options": [
+              "The model cannot understand technical code at all",
+              "One missed harmful request costs the provider far more than many false alarms",
+              "Security questions are genuinely rare in the training data",
+              "Regulators require a total ban on security topics"
+            ],
+            "correct": 1,
+            "explanation": "When a false negative is catastrophic and a false positive is merely annoying, the optimal threshold deliberately over-blocks — recall is bought with precision."
+          }
+        ]
+      },
+      {
+        "heading": "THE CRYPTO WARS PRECEDENT",
+        "body": "This is the second time a defensive technology has been treated as a weapon. Through the 1990s the US classified strong encryption as a munition under export-control law, prosecuting researchers and forcing weakened ciphers abroad — until the controls collapsed under the reality that the math was already public.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1991",
+                "label": "PGP released, leaks worldwide"
+              },
+              {
+                "year": "1993",
+                "label": "Clipper Chip key-escrow push",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1996",
+                "label": "Bernstein v. US: code is speech"
+              },
+              {
+                "year": "2000",
+                "label": "Export controls largely lifted"
+              }
+            ],
+            "label": "encryption as a controlled munition"
+          }
+        ]
+      },
+      {
+        "heading": "THE VERIFIED-ACCESS PATTERN",
+        "body": "When a capability is too dangerous to open and too useful to forbid, gatekeepers fall back on identity. A vetting program — prove who you are, get the unfiltered tool — is the same logic that governs other dual-use goods, shifting trust from the words of the request to the credentials of the requester.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Strong crypto",
+                "value": "export license"
+              },
+              {
+                "label": "Pathogens",
+                "value": "biosafety registry"
+              },
+              {
+                "label": "Exploit tools",
+                "value": "vetted researcher"
+              },
+              {
+                "label": "AI cyber access",
+                "value": "verification program"
+              }
+            ],
+            "label": "dual-use capability, gated by identity not intent"
+          }
+        ]
+      },
+      {
+        "heading": "WHO BEARS THE COST",
+        "body": "Over-blocking does not stop a determined attacker — adversaries run uncensored open-weight models or route around the filter with reworded prompts. The friction lands almost entirely on the legitimate defenders doing routine code review, the exact users the guardrail was never meant to obstruct."
+      }
+    ],
+    "generatedAt": "2026-06-11T22:27:20.255Z",
+    "label": "Dual-Use AI & the Over-Block Problem",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-10-dubai-office-market-demand-outpaces-supply": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FREE-ZONE MACHINE",
+        "body": "Dubai's pull isn't the skyline — it's a legal device. Inside ringfenced zones like the DIFC and JAFZA, a foreign company gets 100% ownership, its own English-common-law courts, and guaranteed tax holidays, none of which apply in the surrounding emirate. The zone is a sovereign carve-out designed to import the rules global firms already trust.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW",
+              "OM"
+            ],
+            "label": "the Gulf hub race",
+            "markers": [
+              {
+                "lat": 25.211,
+                "lng": 55.2796,
+                "label": "DIFC, Dubai"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE TAX ACTUALLY IS",
+        "body": "The UAE has never levied personal income tax, and that hasn't changed. What changed in 2023 was the arrival of a 9% federal corporate tax — but qualifying free-zone income stays at 0%. So the headline 'tax advantage' is really two distinct promises: nothing on salaries, and a zone-gated escape from the corporate rate.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pitch to a relocating executive is blunt: **0% personal income tax**, and free-zone profits taxed at **0%** while the mainland rate sits at **9%** — still among the lowest corporate rates on earth."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SUPPLY CAN'T CATCH UP",
+        "body": "An office tower takes three to four years from groundbreaking to handover, so today's rents reflect demand decisions made before the demand existed. Developers also stay cautious by scar tissue: the last building spree ended in a crash, and lenders still price that memory into construction finance.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do Dubai office rents spike even when developers want to build?",
+            "options": [
+              "A tower takes years to deliver, so supply always lags demand",
+              "Foreign firms are legally barred from new buildings",
+              "The government caps the number of office towers per year"
+            ],
+            "correct": 0,
+            "explanation": "Construction lead times of three to four years mean supply responds to demand that existed when ground was broken, not today's."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2009 SCAR",
+        "body": "Dubai's property boom ended in a near-default. State-backed Dubai World could not service its debts, prices fell by half, and neighbouring Abu Dhabi stepped in with a $20bn rescue in 2009. The world's tallest tower, opened months later as the Burj Dubai, was renamed Burj Khalifa to honour Abu Dhabi's ruler. The rivalry between the two emirates is written into the skyline.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2002",
+                "label": "Freehold law opens market to foreigners"
+              },
+              {
+                "year": "2008",
+                "label": "Prices peak"
+              },
+              {
+                "year": "2009",
+                "label": "Crash; Abu Dhabi $20bn bailout",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2010",
+                "label": "Burj Dubai renamed Burj Khalifa"
+              },
+              {
+                "year": "2021",
+                "label": "Post-pandemic boom begins"
+              },
+              {
+                "year": "2026",
+                "label": "Office demand outruns supply"
+              }
+            ],
+            "label": "Dubai's property cycle"
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPETITION NEXT DOOR",
+        "body": "Dubai's advantage is no longer uncontested. In 2024 Saudi Arabia began requiring multinationals to base their regional headquarters in Riyadh to remain eligible for government contracts — a direct bid to divert the firms Dubai has spent two decades attracting. The Gulf's capitals are now competing for the same corporate tenants.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Dubai (DIFC)",
+                "role": "Established Gulf financial hub",
+                "cc": "AE"
+              },
+              {
+                "name": "Riyadh",
+                "role": "HQ mandate challenger",
+                "cc": "SA"
+              },
+              {
+                "name": "Abu Dhabi (ADGM)",
+                "role": "Rising rival free zone",
+                "cc": "AE"
+              },
+              {
+                "name": "Doha (QFC)",
+                "role": "Smaller competing centre",
+                "cc": "QA"
+              }
+            ],
+            "label": "the rival hubs"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T22:27:59.222Z",
+    "label": "Dubai's Free-Zone Magnet",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-10-fishers-el-nino-fuel-crisis-philippines-peru": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY PERU HAS FISH AT ALL",
+        "body": "Peru's coast is one of the most productive fishing grounds on Earth because the Humboldt Current and offshore trade winds drag deep, cold, nutrient-rich water up to the surface. That upwelling feeds plankton, which feeds the anchoveta, which feeds everything above it. The desert coast is barren; the wealth is entirely in the water."
+      },
+      {
+        "heading": "WHAT EL NIÑO ACTUALLY DOES",
+        "body": "Normally Pacific trade winds pile warm water toward Asia, letting cold water surface off South America. In an El Niño year the winds slacken and that warm water sloshes back east, capping the cold upwelling like a lid. Nutrients stop rising, plankton crashes, and the anchoveta scatter to deeper, cooler water out of reach of small boats.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does El Niño collapse the catch off Peru?",
+            "options": [
+              "Warm surface water shuts off the cold nutrient upwelling",
+              "Heavy rain makes the sea too rough to fish",
+              "Fish migrate north to escape predators",
+              "Sunlight is blocked, killing the plankton"
+            ],
+            "correct": 0,
+            "explanation": "Without upwelling there are no nutrients, so the plankton-anchoveta food chain starves at its base."
+          }
+        ]
+      },
+      {
+        "heading": "THE ANCHOVETA",
+        "body": "The Peruvian anchoveta is, in good years, the single largest fishery on the planet by tonnage — most of it ground into fishmeal that feeds farmed salmon, pigs, and poultry worldwide. A small silver fish off Peru is a hidden input cost in a Norwegian salmon fillet.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~13mt",
+                "cc": "CN",
+                "weight": 13
+              },
+              {
+                "label": "Indonesia",
+                "value": "~6mt",
+                "cc": "ID",
+                "weight": 6
+              },
+              {
+                "label": "Peru",
+                "value": "~5mt",
+                "cc": "PE",
+                "weight": 5
+              },
+              {
+                "label": "India",
+                "value": "~4mt",
+                "cc": "IN",
+                "weight": 4
+              },
+              {
+                "label": "Russia",
+                "value": "~5mt",
+                "cc": "RU",
+                "weight": 5
+              },
+              {
+                "label": "USA",
+                "value": "~4mt",
+                "cc": "US",
+                "weight": 4
+              }
+            ],
+            "label": "marine capture, top nations (mn tonnes/yr)"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1972 WARNING",
+        "body": "A severe El Niño plus heavy overfishing collapsed the anchoveta stock in 1972, knocking out a fishery that had supplied roughly a fifth of the world's catch. Global fishmeal prices spiked, soybean substituted in, and the shock rippled into world feed and grain markets. The lesson — that this fishery can fail suddenly and globally — was learned the hard way.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1972",
+                "label": "Anchoveta collapse",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1982",
+                "label": "Extreme El Niño"
+              },
+              {
+                "year": "1997",
+                "label": "Record warm event"
+              },
+              {
+                "year": "2015",
+                "label": "Strong El Niño"
+              },
+              {
+                "year": "2023",
+                "label": "El Niño returns"
+              }
+            ],
+            "label": "major El Niño events"
+          }
+        ]
+      },
+      {
+        "heading": "WHY FUEL IS THE BREAKING POINT",
+        "body": "Artisanal fishers run on diesel, and fuel is the largest variable cost of every trip. When stocks scatter, boats must travel farther and burn more to find the same fish — so a fuel-price rise and an El Niño compound each other exactly when catches are thinnest. The margin closes from both ends at once."
+      },
+      {
+        "heading": "THE NAME ITSELF",
+        "body": "Peruvian fishers named the phenomenon centuries ago, after noticing the warm, fish-poor current tended to arrive around Christmas.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*El Niño* means **the Christ child** — named for the late-December warming. Its cold-water opposite phase is *La Niña*; together scientists call the cycle **ENSO** (El Niño–Southern Oscillation)."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T22:28:44.093Z",
+    "label": "El Niño & the Humboldt Fishery",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-10-turkey-syria-new-rulers-uneasy-allies": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "FOUR CENTURIES UNDER ISTANBUL",
+        "body": "Syria — al-Sham, the blessed land of the Levant — was Ottoman territory for 400 years, governed from Istanbul as the provinces of Damascus and Aleppo until 1918. Turkish involvement in Syria is not a 21st-century novelty; it is the resumption of a relationship the fall of the caliphate interrupted.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1516",
+                "label": "Ottomans take al-Sham at Marj Dabiq"
+              },
+              {
+                "year": "1916",
+                "label": "Sykes-Picot carves up the Levant"
+              },
+              {
+                "year": "1920",
+                "label": "French Mandate over Syria"
+              },
+              {
+                "year": "1939",
+                "label": "France cedes Hatay to Turkey"
+              },
+              {
+                "year": "1946",
+                "label": "Syrian independence"
+              },
+              {
+                "year": "2011",
+                "label": "Uprising and civil war"
+              },
+              {
+                "year": "2020",
+                "label": "Turkey enters Idlib as guarantor"
+              },
+              {
+                "year": "2024",
+                "label": "Assad falls; new rulers take Damascus",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "from Ottoman province to Turkish client"
+          }
+        ]
+      },
+      {
+        "heading": "THE LINES EUROPE DREW",
+        "body": "The 1916 Sykes-Picot agreement let Britain and France secretly partition Ottoman Arab lands; Syria fell to France as a mandate. The borders the reader sees today are colonial inventions, not organic nations — which is why questions of who guards Damascus reopen so easily.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TR",
+              "SY",
+              "SA",
+              "QA",
+              "AE"
+            ],
+            "label": "the patron and the suitors",
+            "caption": "Turkey holds the north; the Gulf offers capital from the south",
+            "markers": [
+              {
+                "lat": 33.5138,
+                "lng": 36.2765,
+                "label": "Damascus"
+              },
+              {
+                "lat": 35.9239,
+                "lng": 36.6339,
+                "label": "Idlib"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE HATAY WOUND",
+        "body": "In 1939 France detached the Syrian province of Alexandretta and handed it to Turkey to keep Ankara neutral as war loomed; it became Turkey's Hatay province. Damascus never formally recognized the loss — a standing reminder that a Turkish security guarantee comes from a state that once annexed Syrian land.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Syrian province did France cede to Turkey in 1939, on the eve of World War II?",
+            "options": [
+              "Hatay (Alexandretta)",
+              "Idlib",
+              "Aleppo",
+              "Latakia"
+            ],
+            "correct": 0,
+            "explanation": "France detached Alexandretta to buy Turkish neutrality; renamed Hatay, it remains a Syrian territorial grievance to this day."
+          }
+        ]
+      },
+      {
+        "heading": "HOW TURKEY BECAME THE GUARANTOR",
+        "body": "Turkey's leverage rests on the 2017 Astana process — the Russia-Turkey-Iran framework that carved Syria into de-escalation zones — and on the troops and observation posts it placed in Idlib in 2020. A guarantor with soldiers on your soil and a wall along your border is hard to defy.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Astana guarantors — **Turkey**, **Russia**, and **Iran** — divided wartime Syria into spheres. With Assad and his Iranian backers gone, Ankara is the one guarantor still physically embedded in the *north*."
+          }
+        ]
+      },
+      {
+        "heading": "WHY COURT THE GULF",
+        "body": "Turkey offers security but is itself cash-strapped, its lira battered; the Gulf monarchies offer something Ankara cannot — sovereign-wealth capital for reconstruction. Damascus is trying the classic small-state hedge: trade one patron's guns for another's money to avoid being captured by either.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Ahmed al-Sharaa",
+                "role": "Syria's transitional president",
+                "years": "2024–",
+                "cc": "SY"
+              },
+              {
+                "name": "Recep Tayyip Erdogan",
+                "role": "Turkish president, security patron",
+                "years": "2014–",
+                "cc": "TR"
+              },
+              {
+                "name": "Mohammed bin Salman",
+                "role": "Saudi crown prince, courted donor",
+                "years": "2017–",
+                "cc": "SA"
+              }
+            ],
+            "label": "the new triangle"
+          }
+        ]
+      },
+      {
+        "heading": "THE SIGNIFICANCE OF DAMASCUS",
+        "body": "Damascus and al-Sham hold deep weight in Islamic tradition — a hadith in Sahih Muslim places key end-times events in and around Damascus and the lands of al-Sham. Whoever guards the city guards a place that carries scriptural, not merely strategic, meaning — which is part of why control of it draws so many outside hands."
+      }
+    ],
+    "generatedAt": "2026-06-11T22:29:27.215Z",
+    "label": "Turkey & Syria: al-Sham's New Patron",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-10-uk-israeli-settlement-real-estate-event-ban": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY 'ILLEGAL'",
+        "body": "The basis isn't politics — it's a single treaty clause. The Fourth Geneva Convention (1949) bars an occupying power from transferring its own civilian population into the territory it holds. Settlements are that transfer, which is why nearly every government, the UK included, labels them unlawful regardless of who governs in either capital.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The Occupying Power shall not deport or transfer parts of its own civilian population into the territory it occupies.",
+            "speaker": "Fourth Geneva Convention, Article 49",
+            "year": "1949"
+          }
+        ]
+      },
+      {
+        "heading": "THE GREEN LINE",
+        "body": "The West Bank sits east of the 1949 armistice line — the 'Green Line' — and has been under military occupation since the 1967 war. International law treats everything beyond that line as occupied, not Israeli sovereign territory, which is precisely why selling homes there abroad collides with British law on facilitating activity in occupied land.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "PS",
+              "JO"
+            ],
+            "label": "the occupied West Bank",
+            "markers": [
+              {
+                "lat": 31.9038,
+                "lng": 35.2034,
+                "label": "Ramallah"
+              },
+              {
+                "lat": 31.5326,
+                "lng": 35.0998,
+                "label": "Hebron"
+              },
+              {
+                "lat": 31.8667,
+                "lng": 35.45,
+                "label": "Maale Adumim settlement"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "AREA C",
+        "body": "The Oslo Accords sliced the West Bank into three zones. Area C — roughly 60% of the land, including almost all the settlements — remains under full Israeli civil and military control, while Palestinian-governed Areas A and B are fragmented islands inside it. Settlement real estate is almost entirely an Area C product.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Area C (Israeli control)",
+                "value": 60,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Area B (joint)",
+                "value": 22,
+                "tone": "neutral"
+              },
+              {
+                "label": "Area A (Palestinian)",
+                "value": 18,
+                "tone": "favorable"
+              }
+            ],
+            "label": "West Bank by Oslo zone (% of land)"
+          },
+          {
+            "type": "prose",
+            "text": "Oslo was meant to be a *five-year* interim arrangement. Three decades on, **Area C** has hardened into a permanent map — the temporary became the structure."
+          }
+        ]
+      },
+      {
+        "heading": "THE WORLD COURT WEIGHS IN",
+        "body": "In July 2024 the International Court of Justice issued an advisory opinion finding Israel's continued presence in the occupied territories unlawful and calling for settlements to be evacuated. It is advisory, not enforceable — but it sharpened the legal exposure of anyone facilitating settlement transactions, which is the thread the UK is now pulling.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1967",
+                "label": "Occupation begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1977",
+                "label": "Likud accelerates settlement"
+              },
+              {
+                "year": "1993",
+                "label": "Oslo Accords divide West Bank"
+              },
+              {
+                "year": "2005",
+                "label": "Gaza disengagement"
+              },
+              {
+                "year": "2024",
+                "label": "ICJ rules occupation unlawful"
+              }
+            ],
+            "label": "the long arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE ENFORCEMENT GAP",
+        "body": "London has called settlements illegal for decades, yet a sale event can still book a venue in the city. The distance between a state's stated legal position and what it actually polices is where stories like this live — condemnation is cheap, prosecution is rare, and governments routinely hold both at once.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the primary legal basis for calling Israeli settlements illegal under international law?",
+            "options": [
+              "Fourth Geneva Convention's bar on transferring population into occupied land",
+              "The UN Charter's ban on the use of force",
+              "A binding UN Security Council membership rule",
+              "The Israel-Jordan peace treaty"
+            ],
+            "correct": 0,
+            "explanation": "Article 49 of the Fourth Geneva Convention prohibits an occupying power from moving its own civilians into occupied territory — the legal core of the 'illegal settlements' finding."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T22:30:05.668Z",
+    "label": "Settlements & International Law",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-11-ai-data-center-rural-rebellion-utah": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY AI EATS POWER",
+        "body": "An AI training cluster is thousands of GPUs running flat-out, 24/7, at near-100% utilization — unlike a web server that idles most of the day. A single rack of modern AI accelerators can draw more power than an entire street of houses, and the heat they shed is the binding constraint on how densely you can pack them."
+      },
+      {
+        "heading": "THE GIGAWATT SCALE",
+        "body": "Nine gigawatts is not a large data center — it is a national-grid-sized load. A standard nuclear reactor produces about one gigawatt. This single campus would need the equivalent of nine reactors running solely to power servers, which is why the comparison to Utah's whole grid is literal, not rhetorical.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Stratos campus",
+                "value": "9 GW",
+                "weight": 9,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "NYC summer peak",
+                "value": "~10 GW",
+                "weight": 10,
+                "tone": "neutral"
+              },
+              {
+                "label": "Hoover Dam",
+                "value": "~2 GW",
+                "weight": 2,
+                "tone": "neutral"
+              },
+              {
+                "label": "Nuclear reactor",
+                "value": "~1 GW",
+                "weight": 1,
+                "tone": "neutral"
+              }
+            ],
+            "label": "continuous power draw (gigawatts)"
+          }
+        ]
+      },
+      {
+        "heading": "THE GAS-PLANT WORKAROUND",
+        "body": "Plugging a multi-gigawatt load into the public grid means joining an interconnection queue that can run five years or more, because the transmission system has to be studied and upgraded first. Building a dedicated gas plant next to the campus sidesteps that queue entirely — the data center never touches the grid it would otherwise overwhelm.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is called **behind-the-meter** generation: the power plant and the consumer are the same project, so no public utility regulator approves the rates and no queue applies. It trades grid delay for a permanent local emissions source."
+          }
+        ]
+      },
+      {
+        "heading": "THE WATER QUESTION",
+        "body": "Cooling those racks is as constraining as powering them. Evaporative cooling can consume millions of gallons of water a day, a brutal ask in Utah's high desert, where the Great Salt Lake is already shrinking and water rights are the most contested resource in the state's politics."
+      },
+      {
+        "heading": "THE REFERENDUM LEVER",
+        "body": "Utah, like many Western states, lets citizens overturn a local government decision by gathering enough signatures to force a public vote — a Progressive-era tool built precisely so a county commission cannot hand a sweeping concession to an outside corporation without the governed getting a veto.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do giant data centers increasingly build their own dedicated power plants instead of buying from the grid?",
+            "options": [
+              "Grid interconnection queues can take 5+ years",
+              "On-site power is always cheaper than grid power",
+              "Federal law bans them from public utilities",
+              "They cannot legally use renewable energy"
+            ],
+            "correct": 0,
+            "explanation": "The bottleneck is time: joining the grid means years of transmission studies and upgrades, so developers self-generate to start operating sooner."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T22:30:36.632Z",
+    "label": "AI Data Centers & the Grid",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-11-amazon-software-cuts-driver-ac-summer-heat": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY OPEN DOORS MATTER",
+        "body": "A cargo van is a greenhouse. With the engine off and doors open at every stop, cabin temperatures on a hot day can climb 20-30°F above outside air within minutes. The danger isn't a single stop — it's the cumulative load across a 200-stop shift, when the body never gets to shed core heat.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Heat illness is governed by the *wet-bulb* temperature — air heat **plus humidity**. Above a wet-bulb of ~35°C, sweat stops evaporating and the body cannot cool itself at all, regardless of how fit or hydrated the worker is."
+          }
+        ]
+      },
+      {
+        "heading": "THE MANAGER IS SOFTWARE",
+        "body": "An over-the-air update that disables cooling is algorithmic management: the rules that govern a worker's body are written in code, pushed remotely, and applied uniformly without a supervisor in the room. The same logic that optimizes route density and idle time now optimizes battery range — and the driver is downstream of a parameter, not a conversation."
+      },
+      {
+        "heading": "THE EV TRADEOFF",
+        "body": "Climate control is the single largest non-propulsion draw on an electric vehicle — running the AC can cut real-world range by 15-25% in extreme heat. A delivery fleet paid by routes completed per charge has a direct financial incentive to throttle cooling. The conflict between range and comfort is structural, not incidental.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "On an electric delivery van, what is the biggest drain on range after the motor itself?",
+            "options": [
+              "The headlights and cargo lighting",
+              "The air conditioning / cabin climate control",
+              "The onboard delivery-scanner tablet",
+              "Regenerative braking losses"
+            ],
+            "correct": 1,
+            "explanation": "Cabin heating and cooling is the largest auxiliary load on an EV, which is why throttling it meaningfully extends range per charge."
+          }
+        ]
+      },
+      {
+        "heading": "THE UPS PRECEDENT",
+        "body": "In 2023 the Teamsters won a landmark contract forcing UPS to install air conditioning in new delivery trucks and add fans and heat shields to the existing fleet — the first time a major US carrier accepted heat protection as a bargained right. It happened because UPS drivers are unionized employees with the leverage to strike.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UPS driver",
+                "value": "Union employee, AC mandated",
+                "tone": "favorable"
+              },
+              {
+                "label": "Amazon driver",
+                "value": "DSP contractor, no heat deal",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "two delivery models, same roads"
+          }
+        ]
+      },
+      {
+        "heading": "THE CLASSIFICATION SHIELD",
+        "body": "Most Amazon delivery drivers are not employed by Amazon. They work for Delivery Service Partners — small contractor firms that hire, pay, and theoretically manage them, while Amazon supplies the vans, the app, the routes, and the performance targets. The structure lets Amazon set the conditions while holding the contractor legally responsible for them.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The arrangement is the **DSP** (Delivery Service Partner) model — a layer of legal separation that keeps the largest delivery employer in the US off the hook as the legal *employer* of the people delivering its packages."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T22:31:09.659Z",
+    "label": "Algorithmic Management & Heat",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-11-modest-wear-mainstream-fashion-sgie-report": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT MODEST FASHION ACTUALLY IS",
+        "body": "Modest fashion is a design grammar, not a single garment: loose silhouette, full coverage, opacity. The hijab is the most visible piece, but the category spans abayas, long-line cuts, and high-neck swimwear — and it travels across faiths, picked up by observant Jewish and Christian women who want the same coverage.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term of art is *modest*, deliberately faith-neutral — it lets a brand sell to a Muslim woman in Jakarta and a *tzniut*-observant woman in Brooklyn from the same rack."
+          }
+        ]
+      },
+      {
+        "heading": "THE ECONOMY BEHIND THE HEADLINE",
+        "body": "Modest fashion is one slice of a much larger 'Islamic economy' that the report tracks — a consumer bloc whose spending crosses food, finance, travel, pharma and media. Halal food dwarfs every other sector; fashion is the second-largest discretionary category.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Halal food",
+                "value": 1400,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Fashion",
+                "value": 320,
+                "tone": "neutral"
+              },
+              {
+                "label": "Media/recreation",
+                "value": 230,
+                "tone": "favorable"
+              },
+              {
+                "label": "Travel",
+                "value": 190,
+                "tone": "favorable"
+              },
+              {
+                "label": "Pharma",
+                "value": 100,
+                "tone": "favorable"
+              },
+              {
+                "label": "Cosmetics",
+                "value": 85,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Muslim consumer spend by sector ($bn, approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHO SETS THE DESIGN NOW",
+        "body": "The article's real claim is a power shift: demand no longer trails Western design, it leads it. The largest apparel-spending Muslim markets are populous Asian and Middle Eastern states — not the Gulf petro-states most people picture — and their volume is now big enough to pull global ranges toward them.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Iran",
+                "value": "~$50bn",
+                "cc": "IR",
+                "weight": 50
+              },
+              {
+                "label": "Turkey",
+                "value": "~$30bn",
+                "cc": "TR",
+                "weight": 30
+              },
+              {
+                "label": "Indonesia",
+                "value": "~$25bn",
+                "cc": "ID",
+                "weight": 25
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~$22bn",
+                "cc": "SA",
+                "weight": 22
+              },
+              {
+                "label": "Pakistan",
+                "value": "~$20bn",
+                "cc": "PK",
+                "weight": 20
+              }
+            ],
+            "label": "largest Muslim-market apparel spend"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEMOGRAPHIC ENGINE",
+        "body": "The structural reason brands cannot ignore this market is age and growth. The global Muslim population is young and rising fast — projected to approach a quarter of humanity by 2030 — so a faith-aligned apparel preference compounds into decades of expanding demand, exactly the curve a fashion house plans around.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "By consumer spend, which is the largest sector of the global Islamic economy?",
+            "options": [
+              "Modest fashion",
+              "Halal food",
+              "Islamic finance",
+              "Halal tourism"
+            ],
+            "correct": 1,
+            "explanation": "Halal food is by far the biggest spend category; Islamic finance is larger by assets but isn't consumer spending."
+          }
+        ]
+      },
+      {
+        "heading": "THE MAINSTREAM CROSSOVER",
+        "body": "What 'enters mainstream' looks like in practice is a decade of luxury and mass-market labels building dedicated lines rather than one-off capsules. Once a sportswear giant ships a performance hijab, the category has crossed from accommodation to standard product.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2015",
+                "label": "Uniqlo x Hana Tajima collection"
+              },
+              {
+                "year": "2016",
+                "label": "Dolce & Gabbana abaya line"
+              },
+              {
+                "year": "2017",
+                "label": "Nike Pro Hijab",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018",
+                "label": "H&M, Mango modest ranges"
+              }
+            ],
+            "label": "brands move in"
+          }
+        ]
+      },
+      {
+        "heading": "THE REPORT ITSELF",
+        "body": "The 'State of the Global Islamic Economy' has been published annually since 2013 by the Dubai-based research firm DinarStandard, tied to Dubai's bid to position itself as the capital of the halal economy. Its yearly verdict is closely read precisely because it sets the numbers brands and banks cite back to investors."
+      }
+    ],
+    "generatedAt": "2026-06-11T22:32:06.847Z",
+    "label": "Modest Fashion & the Islamic Economy",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-11-palestine-activists-wolverhampton-arms-factory-trial": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LAWFUL EXCUSE",
+        "body": "Under the Criminal Damage Act 1971, smashing property is no crime if done to protect property or life from a greater danger. Activists stretch this into a necessity defence: the damage to the factory was justified to prevent a graver crime — alleged war crimes in Gaza. The jury, not the judge, decides whether that excuse holds.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine has two cousins in English law: *necessity* (acting to avert imminent harm) and **section 3 of the Criminal Law Act 1967** — the right to use reasonable force to *prevent a crime*. Both put the alleged crime being prevented on trial alongside the defendant."
+          }
+        ]
+      },
+      {
+        "heading": "THE SEEDS OF HOPE PRECEDENT",
+        "body": "This is not new. In 1996 four women broke into a BAE site and hammered a Hawk jet bound for Indonesia, which was then bombing East Timor. A Liverpool jury acquitted them on lawful-excuse grounds — they argued they were preventing genocide. The 2010 'Decommissioners' who wrecked the EDO arms plant in Brighton, making parts used by Israel, were likewise cleared.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1996",
+                "label": "Seeds of Hope: Hawk jet disarmed, acquitted",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2010",
+                "label": "EDO Decommissioners cleared, Brighton"
+              },
+              {
+                "year": "2021",
+                "label": "Colston Four acquitted, Bristol"
+              }
+            ],
+            "label": "UK juries clearing arms-factory raids"
+          }
+        ]
+      },
+      {
+        "heading": "HOW A HUNG JURY WORKS",
+        "body": "A Crown Court jury starts out needing all 12 to agree. After hours of deadlock the judge may accept a 10-2 majority. If even that fails, the jury is 'hung' — no verdict — and the Crown alone decides whether to drag the defendants through a second trial or quietly drop it. A hung jury is not an acquittal, but it is rarely a defeat for the accused.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When a Crown Court jury cannot reach even a 10-2 majority, what happens?",
+            "options": [
+              "The defendants are automatically acquitted",
+              "The judge enters a guilty verdict",
+              "The Crown decides whether to retry or drop the case",
+              "The case goes straight to appeal"
+            ],
+            "correct": 2,
+            "explanation": "A hung jury ends in no verdict; the prosecution must choose whether to mount a fresh trial or abandon the charges."
+          }
+        ]
+      },
+      {
+        "heading": "THE SUPPLY CHAIN",
+        "body": "Moog's Wolverhampton plant makes precision flight-control actuators — the hydraulics that move a jet's control surfaces. Components like these feed into the global F-35 programme, an aircraft Israel flies in its Gaza campaign. The activists' claim rests on this chain: a part stamped in the English Midlands ends up over Gaza.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB",
+              "IL",
+              "PS"
+            ],
+            "label": "from the Midlands to Gaza",
+            "markers": [
+              {
+                "lat": 52.5862,
+                "lng": -2.1288,
+                "label": "Moog Wolverhampton plant"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE STATE FEARS THE JURY",
+        "body": "Since Bushel's Case in 1670, an English jury cannot be punished for its verdict, however the judge directs them. This independence lets jurors acquit against the evidence when they find the law unjust — 'jury equity'. Direct-action defendants don't need to win the legal argument; they need 12 strangers to refuse to convict. That is why these cases unsettle prosecutors far beyond the damage involved."
+      }
+    ],
+    "generatedAt": "2026-06-11T22:32:53.193Z",
+    "label": "The Necessity Defence & the Jury",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-11-us-cyber-force-rejected-senate-defense-bill": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "SERVICES VS. WARFIGHTERS",
+        "body": "US law splits two jobs. Military services — Army, Navy, Air Force — 'organize, train, and equip' forces under Title 10. Combatant commands actually employ those forces in operations. A 'Cyber Force' would be a service that raises and trains cyber troops; the fighting already happens at US Cyber Command, which a new branch would feed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the *Title 10* distinction at the heart of the debate: a service is a **personnel pipeline**, not a battlefield command. The argument for a Cyber Force is that no single service currently owns recruiting and retaining elite cyber talent — each grows its own."
+          }
+        ]
+      },
+      {
+        "heading": "HOW A BRANCH IS BORN",
+        "body": "New military branches are rare and politically explosive. The Air Force split from the Army in 1947 only after airpower's WWII record made the case undeniable. The Space Force in 2019 was the first new branch in 72 years — and it was carved out of the Air Force, not built from scratch. Every creation triggers a turf fight over budgets and billets.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1775",
+                "label": "Army, Navy, Marines (Continental)"
+              },
+              {
+                "year": "1790",
+                "label": "Coast Guard"
+              },
+              {
+                "year": "1947",
+                "label": "Air Force splits from Army",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Space Force"
+              },
+              {
+                "year": "2026",
+                "label": "Cyber Force fails 14–13",
+                "emphasis": "end"
+              }
+            ],
+            "label": "the six (almost seven) branches"
+          }
+        ]
+      },
+      {
+        "heading": "THE DUAL HAT",
+        "body": "US Cyber Command shares its commander with the National Security Agency — one officer wears both hats. This lets military operations draw on NSA's signals-intelligence reach, but it also means offensive cyber and intelligence collection compete for the same tools and the same access. Reformers have argued for years over whether to split the roles.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The tension is structural: NSA wants to *quietly watch* an adversary's network for intelligence; Cyber Command may want to *loudly break* it. Using an access for an attack can burn the intelligence value — the same door can't be both a peephole and a battering ram."
+          }
+        ]
+      },
+      {
+        "heading": "THE JOINTNESS DOCTRINE",
+        "body": "The 1986 Goldwater-Nichols Act reshaped the entire US military after operations where the services couldn't even talk to each other — incompatible radios, rival chains of command. It forced 'jointness': promotions now require joint-duty tours. Opponents of a Cyber Force argue cyber should stay joint and embedded, not siloed into a seventh tribe.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Harry Truman",
+                "role": "signed Air Force into being",
+                "years": "1947",
+                "cc": "US"
+              },
+              {
+                "name": "Donald Trump",
+                "role": "stood up Space Force",
+                "years": "2019",
+                "cc": "US"
+              },
+              {
+                "name": "Kirsten Gillibrand",
+                "role": "Cyber Force sponsor",
+                "years": "2026",
+                "cc": "US"
+              }
+            ],
+            "label": "who creates branches"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CYBER RESISTS THE MODEL",
+        "body": "Conventional services are built around expensive platforms — carriers, fighter wings — that justify a permanent bureaucracy. Cyber's main asset is people, who can earn far more in the private sector and whose skills decay if not constantly used. The unresolved question is whether a single-service personnel system retains talent better than the current spread-out approach.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Before the failed Cyber Force vote, when was the last entirely new US military branch created?",
+            "options": [
+              "1947 — the Air Force",
+              "1986 — under Goldwater-Nichols",
+              "2019 — the Space Force",
+              "2003 — after the Iraq invasion"
+            ],
+            "correct": 2,
+            "explanation": "The Space Force (2019) was the first new branch since the Air Force split from the Army in 1947 — and it was carved out of the Air Force rather than built fresh."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T22:33:32.450Z",
+    "label": "Cyber Force & the Services",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-11-xi-draws-line-north-korea-alliance-demands": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TREATY THAT BINDS BEIJING",
+        "body": "The 1961 Sino-North Korean Treaty of Friendship is the only mutual-defense pact China still maintains with any country. Its Article 2 obliges each side to render immediate military assistance if the other is attacked — and it auto-renews every twenty years unless both agree to drop it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many active mutual-defense treaties does China have with other countries?",
+            "options": [
+              "Just one — with North Korea",
+              "Five, across Asia",
+              "None — China avoids formal alliances",
+              "A dozen, like the US"
+            ],
+            "correct": 0,
+            "explanation": "Beijing's only binding mutual-defense treaty is the 1961 pact with Pyongyang; it otherwise rejects formal alliances as entanglements."
+          }
+        ]
+      },
+      {
+        "heading": "LIPS AND TEETH",
+        "body": "China entered the Korean War in 1950, sending hundreds of thousands of troops to save the North from collapse. Mao framed the relationship as 'lips and teeth' — if the lips are gone, the teeth feel the cold. That intervention, and the dead it cost, is the founding debt of the alliance.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phrase Mao used — *chunwang chihan*, '**when the lips are gone, the teeth feel the cold**' — still frames Beijing's view: a hostile or collapsed North means US forces on the Yalu River, China's own border."
+          }
+        ]
+      },
+      {
+        "heading": "MOSCOW REENTERS",
+        "body": "Russia's own 1961 treaty with Pyongyang lapsed after the Soviet collapse left the North without a patron. The 2024 comprehensive strategic partnership revived a mutual-defense clause — and it was that new bond, not the old Chinese one, that put North Korean troops on European soil.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Xi Jinping",
+                "role": "Chinese president",
+                "years": "2012–",
+                "cc": "CN"
+              },
+              {
+                "name": "Kim Jong Un",
+                "role": "North Korean leader",
+                "years": "2011–",
+                "cc": "KP"
+              },
+              {
+                "name": "Vladimir Putin",
+                "role": "Russian president",
+                "years": "1999–",
+                "cc": "RU"
+              }
+            ],
+            "label": "the three leaders"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY FEEDS THE NORTH",
+        "body": "China supplies the overwhelming share of North Korea's trade, fuel, and food — leverage Moscow cannot match even with arms deals. That dependence is precisely why Beijing resents being asked to underwrite obligations a Russia–Pyongyang alignment generates.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~90%",
+                "cc": "CN",
+                "weight": 90,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Russia",
+                "value": "growing",
+                "cc": "RU",
+                "weight": 7,
+                "tone": "neutral"
+              },
+              {
+                "label": "All others",
+                "value": "marginal",
+                "weight": 3,
+                "tone": "favorable"
+              }
+            ],
+            "label": "North Korea's external trade by partner"
+          }
+        ]
+      },
+      {
+        "heading": "TROOPS ABROAD, A FIRST",
+        "body": "The deployment to Russia's Kursk front is the first time North Korea has sent ground forces into a foreign war since the Korean War armistice. An open-ended commitment with no drawdown turns Pyongyang from arms supplier into co-belligerent — a status its treaty with Beijing was never meant to cover.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KP",
+              "CN",
+              "RU"
+            ],
+            "label": "the new alignment, and where it leads",
+            "markers": [
+              {
+                "lat": 51.73,
+                "lng": 36.19,
+                "label": "Kursk front"
+              },
+              {
+                "lat": 39.03,
+                "lng": 125.75,
+                "label": "Pyongyang"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LONG ARC",
+        "body": "Pyongyang has spent seventy years playing its two giant neighbors against each other — leaning on whichever offered more without surrendering autonomy to either. The current moment is the same game, now with Moscow bidding higher than Beijing is willing to match.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1950",
+                "label": "China intervenes in Korean War"
+              },
+              {
+                "year": "1961",
+                "label": "Treaties with both Beijing and Moscow"
+              },
+              {
+                "year": "1991",
+                "label": "Soviet collapse; North loses a patron"
+              },
+              {
+                "year": "2024-06",
+                "label": "Russia–DPRK strategic partnership"
+              },
+              {
+                "year": "2024",
+                "label": "North Korean troops to Russia",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "patrons and treaties"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-11T22:34:20.352Z",
+    "label": "The Pyongyang–Beijing–Moscow Triangle",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-11-zebra-finch-heat-call-prenatal-priming": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EGG AS CLASSROOM",
+        "body": "A bird embryo is not a passive lump of tissue. In the last days before hatching its inner ear is already functional, and it hears — and reacts to — sounds passing through the shell. Learning begins before life in air does."
+      },
+      {
+        "heading": "THE HEAT CALL",
+        "body": "The relevant sound is not a song but a specific rapid call zebra finch parents make only when panting in heat, above roughly 26°C, late in incubation. It is acoustically distinct from their everyday contact calls — a dedicated signal, not just the sound of a stressed bird.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is *prenatal acoustic priming*: the parent's call doesn't carry instructions, it carries a **weather forecast** the embryo uses to tune its own development before it has ever felt the sun."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A SMALLER BODY WINS",
+        "body": "Chicks primed by heat calls grow into smaller adults — and smaller is the point. A small body has more surface area per gram of mass, so it sheds heat faster. The call nudges the chick toward the body shape the coming climate will reward.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did exposure to parental heat calls in the egg do to the zebra finch chicks?",
+            "options": [
+              "Made them grow into smaller adults",
+              "Made them grow larger and faster",
+              "Made them hatch several days earlier",
+              "Had no measurable effect on the body"
+            ],
+            "correct": 0,
+            "explanation": "A smaller body has a higher surface-to-volume ratio and sheds heat faster — the call tunes the chick to the hot world it is about to enter."
+          }
+        ]
+      },
+      {
+        "heading": "BERGMANN'S RULE, IN ONE GENERATION",
+        "body": "That smaller bodies suit hot climates is one of biology's oldest patterns — Bergmann's rule, named in 1847: within related animals, those in warmer regions tend to be smaller. Evolution normally arrives there over thousands of generations. The heat call lets a single chick get partway there before it hatches.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Polar bear",
+                "value": "~450kg",
+                "weight": 450,
+                "tone": "favorable"
+              },
+              {
+                "label": "Brown bear",
+                "value": "~300kg",
+                "weight": 300,
+                "tone": "neutral"
+              },
+              {
+                "label": "Black bear",
+                "value": "~150kg",
+                "weight": 150,
+                "tone": "neutral"
+              },
+              {
+                "label": "Sun bear",
+                "value": "~50kg",
+                "weight": 50,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Bergmann's rule: bear body mass by climate"
+          }
+        ]
+      },
+      {
+        "heading": "NOT LAMARCK",
+        "body": "This is not the inheritance of acquired traits through the genes. The chick's DNA is unchanged; what changes is how that DNA is expressed during development — a parental effect, a flexible response to a signal. It is one of the cleanest demonstrations that an animal's body can be calibrated to a future it has not yet met."
+      }
+    ],
+    "generatedAt": "2026-06-11T22:35:28.859Z",
+    "label": "Prenatal Acoustic Priming",
+    "category": "science",
+    "articleCount": 1
   }
 }
