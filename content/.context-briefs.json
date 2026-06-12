@@ -356198,5 +356198,1682 @@
     "label": "Waste-Pickers & the Circular Economy",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-06-10-how-do-the-dutch-make-ev-sharing-work": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IDLE ASSET",
+        "body": "A privately owned car sits parked roughly 95% of its life. The entire economic case for car sharing rests on that number: one well-utilized vehicle can absorb the trips of ten households, so the same mobility needs a tenth of the steel and a tenth of the curb space.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of the time does a typical privately owned car sit parked?",
+            "options": [
+              "About half",
+              "About 75%",
+              "About 95%",
+              "About 99%"
+            ],
+            "correct": 2,
+            "explanation": "Most cars are driven under 5% of the day; the rest is parking — which is why one shared car can replace many private ones."
+          }
+        ]
+      },
+      {
+        "heading": "PARKING IS THE POLICY",
+        "body": "Car sharing does not spread on its own enthusiasm — it spreads when parking gets scarce and expensive. The Dutch lever is removing parking from new developments and pricing curb space, so a private car becomes a liability and a shared one becomes the rational default.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The hidden subsidy to driving is the **parking minimum** — rules requiring developers to build a fixed number of spaces per home. Scrap them, and the land that once held idle cars becomes housing or a shared-car bay instead."
+          }
+        ]
+      },
+      {
+        "heading": "THE DENSITY THRESHOLD",
+        "body": "Sharing is a network good: it only works when enough members live within a short walk of enough vehicles. Below a critical density the nearest car is too far to bother, usage collapses, and the system unravels — which is why sprawling cities cannot simply copy the model."
+      },
+      {
+        "heading": "THE RANDSTAD",
+        "body": "The Netherlands is unusually built for this. Its four big cities cluster into a single ring — the Randstad — packed tightly enough that compact, walkable neighborhoods are the norm, not the exception. The geography itself supplies the density the model needs.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NL"
+            ],
+            "label": "the Randstad ring",
+            "caption": "Four major cities clustered within ~60km",
+            "markers": [
+              {
+                "lat": 52.3676,
+                "lng": 4.9041,
+                "label": "Amsterdam"
+              },
+              {
+                "lat": 51.9244,
+                "lng": 4.4777,
+                "label": "Rotterdam"
+              },
+              {
+                "lat": 52.0705,
+                "lng": 4.3007,
+                "label": "The Hague"
+              },
+              {
+                "lat": 52.0907,
+                "lng": 5.1214,
+                "label": "Utrecht"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE COST GAP",
+        "body": "What makes members switch is arithmetic. Owning a private car — depreciation, insurance, fuel, parking, maintenance — runs to several thousand euros a year whether or not it moves. A cooperative membership plus per-trip fees lands far below that for anyone who drives occasionally.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Own a car",
+                "value": "~€6,000/yr",
+                "tone": "unfavorable",
+                "weight": 6000
+              },
+              {
+                "label": "Car-share",
+                "value": "~€1,500/yr",
+                "tone": "favorable",
+                "weight": 1500
+              }
+            ],
+            "label": "annual cost to the household (rough)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TRUST PROBLEM",
+        "body": "Cooperatives at €15/month per household run on a culture of shared upkeep — the same consensus-and-trust habit the Dutch call the polder model, forged over centuries of jointly managing land below sea level. That social capital cannot be subsidized into existence, which is the real reason replication is hard."
+      }
+    ],
+    "generatedAt": "2026-06-12T12:40:30.383Z",
+    "label": "Car Sharing & Urban Density",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-12-cameras-sensors-and-3d-body-scans-all-the-tech-helping-elimi": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY MILLIMETERS",
+        "body": "Offside is a binary line judgment: at the instant the ball is played, is any part of the attacker's body that can score ahead of the second-last defender? There is no tolerance band in the law — a toe past the line is offside, so the measurement has to resolve to body-part precision, not player-position precision."
+      },
+      {
+        "heading": "FROM BALL-TRACKING TO BODY-TRACKING",
+        "body": "Hawk-Eye began in 2001 as a cricket ball-tracker, triangulating one object from multiple synchronized cameras. Skeletal tracking is a harder problem: instead of one point, the system reconstructs ~29 anatomical landmarks per player, 50 times a second, for 22 moving bodies at once.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2001",
+                "label": "Hawk-Eye debuts in cricket"
+              },
+              {
+                "year": "2006",
+                "label": "Adopted in tennis"
+              },
+              {
+                "year": "2014",
+                "label": "Goal-line tech at World Cup"
+              },
+              {
+                "year": "2018",
+                "label": "VAR introduced",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "Semi-automated offside"
+              },
+              {
+                "year": "2026",
+                "label": "Pre-scanned 3D player models"
+              }
+            ],
+            "label": "officiating tech, by tournament"
+          }
+        ]
+      },
+      {
+        "heading": "THE DIGITAL TWIN",
+        "body": "Scanning each squad before the tournament builds a personalized 3D model of every player's body. Tracking a generic skeleton onto live video is error-prone where limbs overlap; fitting a known body shape resolves the ambiguity — the system knows exactly how long this player's leg is.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pre-built model is a *digital twin* — a calibrated geometric copy of the real body. It turns **pose estimation** (guess the skeleton) into **model fitting** (place a known skeleton), which is both faster and more accurate."
+          }
+        ]
+      },
+      {
+        "heading": "THE KICK-POINT PROBLEM",
+        "body": "The hardest variable isn't the bodies — it's the exact frame the ball is struck. Offside is judged at that instant, so a one-frame error shifts the line by however far a sprinting attacker travels in 20 milliseconds. Earlier systems leaned on a separate sensor in the ball to timestamp the kick to the millisecond."
+      },
+      {
+        "heading": "WHY 'SEMI' AUTOMATED",
+        "body": "The system proposes a decision; a human in the video room confirms it before it reaches the on-field referee. Full automation is technically possible, but football's governing bodies keep a person in the loop deliberately — to absorb edge cases the model wasn't trained for and to keep accountability human.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In the offside law, the decisive moment is judged when the ball is —",
+            "options": [
+              "played by a teammate",
+              "received by the attacker",
+              "crossing the goal line",
+              "first touched in the box"
+            ],
+            "correct": 0,
+            "explanation": "Offside is fixed at the instant a teammate plays the ball, not when the attacker receives it — which is why timestamping the kick precisely is the whole game."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-12T12:40:56.312Z",
+    "label": "Skeletal Tracking & the Offside Call",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-12-chile-offers-new-data-on-food-warning-label-efficacy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OCTAGON IS THE MESSAGE",
+        "body": "Chile's choice of a black stop-sign octagon was deliberate behavioral design. Earlier voluntary schemes — traffic lights, guideline daily amounts — gave consumers numbers to interpret. The octagon gives a verdict: ALTO. It is interpretive, not informational, and that is precisely why it changes behavior at the shelf in the half-second a shopper actually spends.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shape borrows the universal grammar of the *pare* — the **stop sign**. A label you must decode competes with the brand; a label that simply says *stop* does not."
+          }
+        ]
+      },
+      {
+        "heading": "THE LABEL IS ONLY ONE LEG",
+        "body": "Ley 20.606 was never just a sticker. The same law banned cartoon mascots on high-sugar products, prohibited their sale in schools, and restricted TV advertising of labeled foods to children. The obesity drop reflects the package of measures — the warning makes the product legible, the marketing ban removes the pull, the school ban removes the access.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Besides the warning labels, what else did Chile's 2016 food law do?",
+            "options": [
+              "Banned cartoon mascots on labeled products and their sale in schools",
+              "Imposed a flat sugar tax on all sodas",
+              "Required calorie counts on restaurant menus",
+              "Subsidized fresh produce for low-income families"
+            ],
+            "correct": 0,
+            "explanation": "The law paired warnings with a marketing-to-children ban and a school-sales ban — removing the cereal-box Tony the Tiger and the playground vending machine at once."
+          }
+        ]
+      },
+      {
+        "heading": "THE THRESHOLD GAME",
+        "body": "A product gets a black octagon when it crosses a per-100g ceiling for sugar, sodium, saturated fat, or calories. Chile tightened these thresholds in three phases, so a cereal that escaped a label in 2016 could earn three by 2019. This is why researchers expect the stricter 2018 rules to show larger effects — the net widened with each phase.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2012",
+                "label": "Law 20.606 enacted"
+              },
+              {
+                "year": "2016",
+                "label": "Phase 1: first octagons appear",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018",
+                "label": "Phase 2: thresholds tightened"
+              },
+              {
+                "year": "2019",
+                "label": "Phase 3: strictest limits"
+              }
+            ],
+            "label": "Chile's phased rollout"
+          }
+        ]
+      },
+      {
+        "heading": "WHY REFORMULATION DID THE WORK",
+        "body": "The deepest effect was not at the checkout but in the factory. Faced with an ugly mandatory label, manufacturers quietly cut sugar and salt to dodge it — reformulating thousands of products. A label that nobody on a diet chooses still works on everyone, because the entire shelf gets healthier whether you read the octagon or not."
+      },
+      {
+        "heading": "THE MODEL TRAVELS",
+        "body": "Chile pioneered the mandatory black-octagon warning, and the region copied it almost verbatim. Mexico, Peru, Uruguay, Argentina and Brazil have since adopted front-of-package warnings, making Latin America the global laboratory for the policy — and the reason food multinationals lobbied so hard to stop the first one.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CL",
+              "MX",
+              "PE",
+              "UY",
+              "AR",
+              "BR"
+            ],
+            "label": "where the octagon spread",
+            "caption": "Latin America became the testing ground for warning-label policy"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-12T12:41:36.418Z",
+    "label": "Front-of-Package Warning Labels",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-12-china-arrests-us-researcher-it-says-is-suspected-of-spying": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY MYANMAR IS NOT PERIPHERAL TO CHINA",
+        "body": "Myanmar gives China something the map otherwise denies it: a back door to the Indian Ocean. Twin oil and gas pipelines run from the deepwater port of Kyaukpyu on the Bay of Bengal up to Kunming, the very city where the analyst disappeared. Tankers offload there and the crude never touches the South China Sea.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MM",
+              "CN"
+            ],
+            "label": "the Kyaukpyu–Kunming corridor",
+            "caption": "twin pipelines bypass the Strait of Malacca",
+            "markers": [
+              {
+                "lat": 19.4314,
+                "lng": 93.5469,
+                "label": "Kyaukpyu port"
+              },
+              {
+                "lat": 24.8801,
+                "lng": 102.8329,
+                "label": "Kunming"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE MALACCA DILEMMA",
+        "body": "Roughly 80% of China's imported oil squeezes through the Strait of Malacca, a chokepoint the US Navy could close in a war. Chinese strategists have named this vulnerability for two decades. The Myanmar pipelines were the first serious attempt to route around it overland — which is why Beijing protects its Myanmar foothold regardless of who runs Naypyidaw.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phrase *Malacca Dilemma* entered Chinese strategic language around 2003. The pipelines reroute only a fraction of imports — **a few hundred thousand barrels a day** against millions still passing Malacca — so the dilemma is eased, never solved."
+          },
+          {
+            "type": "quiz",
+            "question": "About what share of China's imported oil passes through the Strait of Malacca?",
+            "options": [
+              "Around 20%",
+              "Around 50%",
+              "Around 80%",
+              "Almost none — pipelines replaced it"
+            ],
+            "correct": 2,
+            "explanation": "Roughly four-fifths of Chinese oil imports transit Malacca; the Myanmar pipelines divert only a small slice of the total."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE ESPIONAGE LAW ACTUALLY SAYS",
+        "body": "China revised its Counter-Espionage Law in 2023, broadening 'espionage' to cover transferring almost any 'documents, data or materials related to national security' — terms left deliberately undefined. Ordinary research, due diligence and journalism can now fall inside the statute. Detention can precede any public charge, and consular notification can lag for days.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2023 revision is the teeth behind a pattern that long predates it: foreign consultancies raided, analysts barred from leaving. The vagueness is the point — it lets the state decide *after the fact* what counted as a secret."
+          }
+        ]
+      },
+      {
+        "heading": "THE DUAL-NATIONAL TRAP",
+        "body": "China's Nationality Law does not recognize dual citizenship. To Beijing, a US-Myanmar dual national of Chinese-region interest is treated under whichever status limits outside protection most. This is also why exit bans work so well: a person can be legally inside China, uncharged, yet simply unable to leave while an investigation runs.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does dual nationality often weaken, not strengthen, a detainee's position in China?",
+            "options": [
+              "China grants extra consular rights to dual nationals",
+              "China does not recognize dual citizenship, narrowing outside protection",
+              "Dual nationals are exempt from the espionage law",
+              "It triggers automatic deportation instead of detention"
+            ],
+            "correct": 1,
+            "explanation": "Because Beijing recognizes only one nationality, it can decline to treat the person as foreign — limiting the leverage a consulate can apply."
+          }
+        ]
+      },
+      {
+        "heading": "BEIJING PLAYS BOTH SIDES OF THE BORDER",
+        "body": "China is the junta's most important backer, yet it also keeps channels open to the ethnic armed groups that control much of the frontier — and has repeatedly brokered ceasefires to keep its pipelines and trade routes intact. Min Aung Hlaing's visit, landing just after the arrest was confirmed, is a study in this leverage: Myanmar needs Beijing far more than Beijing needs Naypyidaw.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Min Aung Hlaing",
+                "role": "Myanmar junta commander-in-chief",
+                "years": "2021–",
+                "cc": "MM"
+              },
+              {
+                "name": "Xi Jinping",
+                "role": "Chinese president",
+                "years": "2013–",
+                "cc": "CN"
+              }
+            ],
+            "label": "the principals"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-12T12:42:16.024Z",
+    "label": "China, Myanmar & the Espionage Law",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-12-dd-or-didn-t-he-cocaine-bust-witness-questioned-about-appare": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A COMMISSION CAN'T DO",
+        "body": "A judicial commission of inquiry can subpoena documents, compel testimony, and brand a witness a liar — but it cannot convict anyone. It gathers evidence and recommends; only the National Prosecuting Authority can charge. This is why the chair labeling Mashaba 'untruthful' carries no immediate legal consequence.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What can a South African commission of inquiry do at the end of its work?",
+            "options": [
+              "Convict and sentence those it finds guilty",
+              "Only recommend prosecutions to the authorities",
+              "Issue binding orders to remove officials"
+            ],
+            "correct": 1,
+            "explanation": "Commissions investigate and recommend; prosecution still rests entirely with the NPA, which is why findings rarely translate quickly into convictions."
+          }
+        ]
+      },
+      {
+        "heading": "THE ZONDO SHADOW",
+        "body": "The 2018–2022 Zondo Commission into 'state capture' heard hundreds of witnesses across four years and cost the better part of a billion rand. Years on, it produced sweeping findings but only a handful of prosecutions. The gap between what a commission concludes and what a court convicts is South Africa's chronic accountability problem.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "South Africans now reflexively distinguish a commission's *findings* from a courtroom's *convictions* — the first is a report, the second is a sentence, and the road between them is where most cases quietly die."
+          }
+        ]
+      },
+      {
+        "heading": "THE CAST",
+        "body": "The Madlanga Commission was convened to probe whether cartels have penetrated the police and prosecution. It reports up to President Ramaphosa — the same office once held by the very man, Mabuza, whose name surfaced in Friday's testimony.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Mbuyiseli Madlanga",
+                "role": "Commission chair, ex-Constitutional Court justice",
+                "years": "2025–",
+                "cc": "ZA"
+              },
+              {
+                "name": "Cyril Ramaphosa",
+                "role": "President, receives the report",
+                "years": "2018–",
+                "cc": "ZA"
+              },
+              {
+                "name": "David Mabuza",
+                "role": "Former deputy president",
+                "years": "2018–2023",
+                "cc": "ZA"
+              }
+            ],
+            "label": "who's who"
+          }
+        ]
+      },
+      {
+        "heading": "SOUTH AFRICA AS A COCAINE CORRIDOR",
+        "body": "South Africa is not mainly a cocaine consumer — it is a transit hub. Product from South American producers moves through its deepwater ports, especially Durban, onward to European and Asian markets. That transshipment role is precisely what gives cartels an incentive to buy protection inside the justice system.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BR",
+              "ZA",
+              "MZ"
+            ],
+            "label": "the transit route",
+            "caption": "South American supply, Southern African transit, onward markets",
+            "markers": [
+              {
+                "lat": -29.87,
+                "lng": 31.02,
+                "label": "Durban port"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE AUGUST DEADLINE",
+        "body": "Commissions live and die by their terms of reference and reporting date. This one must report to the President by August 31. That clock shapes the inquiry's choices — what it can chase, whom it can recall, and which threads it must leave to prosecutors after the gavel falls."
+      }
+    ],
+    "generatedAt": "2026-06-12T12:42:59.304Z",
+    "label": "Commissions of Inquiry & SA's Cocaine Corridor",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-12-heading-off-new-technique-helps-track-grain-smuggling-expans": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STOLEN HARVEST",
+        "body": "Crimea was Ukrainian farmland before Russia's 2014 annexation. Grain grown there, or trucked in from occupied Kherson and Zaporizhzhia, is loaded at Black Sea ports like Feodosia and shipped out as if it were Russian — laundering the origin is the whole point. The journey from Feodosia to Benghazi is the supply chain made visible.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "TR",
+              "LY"
+            ],
+            "label": "Feodosia → Benghazi",
+            "caption": "grain routed out of occupied Crimea via the Black Sea straits",
+            "markers": [
+              {
+                "lat": 45.031,
+                "lng": 35.382,
+                "label": "Feodosia (Crimea)"
+              },
+              {
+                "lat": 41.1,
+                "lng": 29.05,
+                "label": "Bosphorus"
+              },
+              {
+                "lat": 32.119,
+                "lng": 20.068,
+                "label": "Benghazi"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BREADBASKET",
+        "body": "Ukraine and Russia together supply roughly a quarter to a third of world wheat exports in a normal year. That is why grain laundered out of occupied territory blends so easily into the legitimate trade — Russia is already the single largest exporter on the planet, so an extra cargo raises no flags at the dockside.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Russia",
+                "value": "~48mt",
+                "cc": "RU",
+                "weight": 48,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "EU",
+                "value": "~35mt",
+                "cc": "EU",
+                "weight": 35,
+                "tone": "neutral"
+              },
+              {
+                "label": "Australia",
+                "value": "~28mt",
+                "cc": "AU",
+                "weight": 28,
+                "tone": "neutral"
+              },
+              {
+                "label": "Canada",
+                "value": "~25mt",
+                "cc": "CA",
+                "weight": 25,
+                "tone": "neutral"
+              },
+              {
+                "label": "USA",
+                "value": "~20mt",
+                "cc": "US",
+                "weight": 20,
+                "tone": "neutral"
+              },
+              {
+                "label": "Ukraine",
+                "value": "~15mt",
+                "cc": "UA",
+                "weight": 15,
+                "tone": "favorable"
+              }
+            ],
+            "label": "world wheat exports (mn tonnes, approx)"
+          },
+          {
+            "type": "quiz",
+            "question": "Which country is the world's single largest wheat exporter?",
+            "options": [
+              "United States",
+              "Russia",
+              "Ukraine",
+              "Canada"
+            ],
+            "correct": 1,
+            "explanation": "Russia overtook the US and EU in the late 2010s and now leads global wheat exports — which is exactly what makes laundered Crimean grain easy to hide."
+          }
+        ]
+      },
+      {
+        "heading": "HOW SHIPS GO DARK",
+        "body": "Every large ship broadcasts its identity, position and course on AIS — the Automatic Identification System the IMO mandates for collision avoidance. A smuggler simply switches the transponder off, or spoofs a fake position, and the vessel vanishes from the public maps. 'Going dark' over sanctioned waters is the maritime equivalent of pulling a license plate.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Switching off **AIS** is itself a red flag — but it is not illegal in international waters, so a dark stretch over the Black Sea proves intent without proving a crime."
+          }
+        ]
+      },
+      {
+        "heading": "THE FORENSIC LEAP",
+        "body": "The new technique exploits what a ship can't hide: its physical heading, captured by satellite radar and high-resolution imagery that see through cloud and darkness. Even with the transponder off, a hull leaves a wake, a shape and a bearing. Investigators stitch these snapshots into a track and bridge the gap between the port a ship left and the port where it reappears."
+      },
+      {
+        "heading": "WHY BENGHAZI",
+        "body": "Libya has been split since 2014 between a Tripoli government in the west and Khalifa Haftar's forces in the east, where Benghazi sits. Haftar's faction has deepened ties with Moscow — hosting Russian aircraft and fighters — which makes eastern Libyan ports a sympathetic landing point for cargoes the West is trying to choke off.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Khalifa Haftar",
+                "role": "Eastern commander, LNA",
+                "cc": "LY"
+              },
+              {
+                "name": "Abdul Hamid Dbeibah",
+                "role": "Tripoli-based PM, GNU",
+                "cc": "LY"
+              }
+            ],
+            "label": "Libya's two governments"
+          }
+        ]
+      },
+      {
+        "heading": "THE BOSPHORUS GATE",
+        "body": "Everything leaving the Black Sea must pass the Turkish straits, governed by the 1936 Montreux Convention, which gives Ankara control over passage and the right to restrict warships in wartime. Commercial traffic stays free, so a grain carrier slips through legally — the chokepoint that could stop it is diplomatic, not physical."
+      }
+    ],
+    "generatedAt": "2026-06-12T12:43:57.804Z",
+    "label": "Stolen Grain & Dark Ships",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-12-indian-weapons-never-harmed-europe-jaishankar-subtly-calls-o": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISCOUNT TRADE",
+        "body": "After 2022, sanctions stranded Russia's Urals crude and it began trading at a steep discount to Brent — at the peak, $20–30 a barrel cheaper. India's private refiners, built to process heavy sour crude, were the natural buyers. This was not ideology; it was arbitrage on the largest discount in modern oil markets.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Pre-war 2021",
+                "value": "~2%",
+                "tone": "neutral",
+                "cc": "RU",
+                "weight": 2
+              },
+              {
+                "label": "2023–24",
+                "value": "~40%",
+                "tone": "unfavorable",
+                "cc": "RU",
+                "weight": 40
+              }
+            ],
+            "label": "India's crude imports from Russia (share)"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICE CAP MECHANISM",
+        "body": "The G7 never banned Russian oil outright — it capped the price at $60 a barrel, enforced not at the wellhead but through the chokepoint of Western insurance and shipping. Roughly 90% of the world's tanker insurance runs through London. The cap only bites if a cargo needs a Western insurer; Russia answered by assembling a 'shadow fleet' of older tankers with opaque ownership and non-Western cover.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The leverage was never the oil — it was the *paper*. **Insurance, not embargo**, is how a maritime power polices a trade it cannot physically blockade."
+          }
+        ]
+      },
+      {
+        "heading": "THE REFINING LAUNDROMAT",
+        "body": "Crude has a nationality; refined diesel and jet fuel do not. India bought discounted Russian crude, refined it, and legally sold the products onward — including to the same Europe that had sworn off Russian barrels. Once a molecule is cracked in a Gujarat refinery, it is no longer 'Russian oil.'",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "ru",
+                "label": "Russian crude"
+              },
+              {
+                "id": "in",
+                "label": "India refineries"
+              },
+              {
+                "id": "eu",
+                "label": "Europe (fuels)"
+              },
+              {
+                "id": "dom",
+                "label": "India domestic"
+              },
+              {
+                "id": "asia",
+                "label": "Other Asia"
+              }
+            ],
+            "links": [
+              {
+                "source": "ru",
+                "target": "in",
+                "value": 180,
+                "label": "discounted crude"
+              },
+              {
+                "source": "in",
+                "target": "dom",
+                "value": 90
+              },
+              {
+                "source": "in",
+                "target": "eu",
+                "value": 50,
+                "label": "diesel, jet fuel"
+              },
+              {
+                "source": "in",
+                "target": "asia",
+                "value": 40
+              }
+            ],
+            "label": "the molecule's journey"
+          }
+        ]
+      },
+      {
+        "heading": "THE RUPEE TRAP",
+        "body": "To dodge the dollar, India and Russia tried settling oil in rupees through special vostro accounts. The problem: Russia ran a huge trade surplus with India and had little to buy back, leaving billions of rupees piling up in accounts that couldn't easily be spent or converted. A non-convertible currency makes a poor settlement medium — the deal stalled and much trade quietly reverted to dirhams and yuan."
+      },
+      {
+        "heading": "THE NON-ALIGNMENT DOCTRINE",
+        "body": "India's refusal to pick a camp is not new. Nehru co-founded the Non-Aligned Movement in 1961; the 1971 Indo-Soviet Treaty made Moscow India's principal arms supplier through the Cold War. What Jaishankar calls 'strategic autonomy' is the same instinct rebranded — buy where it serves the national interest, lecture from no one.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1961",
+                "label": "India co-founds Non-Aligned Movement"
+              },
+              {
+                "year": "1971",
+                "label": "Indo-Soviet Treaty of Friendship"
+              },
+              {
+                "year": "1991",
+                "label": "USSR collapses; arms ties persist"
+              },
+              {
+                "year": "2022",
+                "label": "India pivots to discounted Russian oil",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "Delhi & Moscow, the long thread"
+          }
+        ]
+      },
+      {
+        "heading": "THE TARIFF AS WEAPON",
+        "body": "Washington first nudged India toward Russian barrels — keeping global supply flowing kept prices down — then turned tariffs on those same purchases into leverage. The lesson Jaishankar draws is structural: a tariff lifted by executive choice can be reimposed by executive choice. There is no treaty floor, only the current administration's preference.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did India's refiners suddenly favor Russian crude after 2022?",
+            "options": [
+              "It traded at a record discount to Brent",
+              "Middle East suppliers ran dry",
+              "Russia demanded payment in gold",
+              "Indian refineries could only process Russian grades"
+            ],
+            "correct": 0,
+            "explanation": "Sanctions stranded Urals crude, forcing Russia to sell at a steep discount — pure arbitrage for refiners built to handle heavy sour grades."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-12T12:44:41.748Z",
+    "label": "India, Russian Oil & Strategic Autonomy",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-12-monero-xmr-prices-rocket-to-438-amid-120-million-onchain-lau": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FREEZE POWER",
+        "body": "Tether is not a cryptocurrency in the decentralized sense — it is a database controlled by one company that mints and burns tokens. That issuer can flip any address to frozen on demand, which is how it locked $72m here. The privacy that decentralized coins offer comes from giving up exactly this kind of central authority.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Tether (USDT)",
+                "value": "$2.7bn+",
+                "tone": "favorable"
+              },
+              {
+                "label": "USDC (Circle)",
+                "value": "yes",
+                "tone": "favorable"
+              },
+              {
+                "label": "DAI",
+                "value": "partial",
+                "tone": "neutral"
+              },
+              {
+                "label": "Monero (XMR)",
+                "value": "none",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "can an issuer claw the funds back?"
+          }
+        ]
+      },
+      {
+        "heading": "WHY MONERO CAN'T BE FROZEN",
+        "body": "Monero hides senders, receivers, and amounts at the protocol level. There is no issuer to call, no blacklist to add to, and no public ledger entry tying coins to an identity. To freeze a coin you first have to find it; Monero is built so that you can't.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Three mechanisms stack: *ring signatures* blend your transaction with decoys so the real spender is unprovable, *stealth addresses* generate a fresh one-time address per payment, and *RingCT* encrypts the amount. Bitcoin, by contrast, is a **fully public ledger** — every transaction traceable forever."
+          }
+        ]
+      },
+      {
+        "heading": "THE LAUNDERING ROUTE",
+        "body": "Tron carries most illicit USDT because transfers are near-instant and cost cents. The play is to move stablecoin fast, fragment it across decentralized swaps, and convert into Monero before anyone can act — at which point the trail goes dark. Speed is the whole point: Tether froze the portion still sitting in USDT, not the portion already gone.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "usdt",
+                "label": "USDT on Tron"
+              },
+              {
+                "id": "frozen",
+                "label": "Tether froze"
+              },
+              {
+                "id": "swaps",
+                "label": "DEX swap chains"
+              },
+              {
+                "id": "xmr",
+                "label": "Monero"
+              }
+            ],
+            "links": [
+              {
+                "source": "usdt",
+                "target": "frozen",
+                "value": 72,
+                "label": "blacklisted"
+              },
+              {
+                "source": "usdt",
+                "target": "swaps",
+                "value": 48,
+                "label": "escaped"
+              },
+              {
+                "source": "swaps",
+                "target": "xmr",
+                "value": 48,
+                "label": "converted"
+              }
+            ],
+            "label": "the $120m flow ($m)"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICE TELL",
+        "body": "Monero's market is thin compared to Bitcoin, so a sudden multi-million-dollar buy has nowhere to hide in the order book — it shoves the price up. The coin built to conceal the transaction broadcast the conversion through its own price chart, which is how the flow was spotted at all.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              397.52,
+              395.66,
+              381.61,
+              388.52,
+              388.69,
+              383.37,
+              399.05,
+              404.4,
+              391.88,
+              381.31,
+              387.09,
+              392.13,
+              385.86,
+              379.72,
+              392.44,
+              354.29,
+              396.63,
+              370.17,
+              367.3,
+              343.27,
+              325.33,
+              357.82,
+              373.5,
+              307.35,
+              295.75,
+              304.4,
+              314.46,
+              311.09,
+              335.21,
+              389.4,
+              381.46
+            ],
+            "periods": [
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9",
+              "Jun 10",
+              "Jun 11",
+              "Jun 12",
+              "Jun 12"
+            ],
+            "label": "Monero",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE DELISTING SQUEEZE",
+        "body": "Regulators can't break Monero's cryptography, so they pressure the on-ramps instead. Binance delisted Monero in 2024, and others followed, pushing trading toward smaller venues. Thinner liquidity makes each large conversion move the price more — sharpening the very tell that exposed this flow.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why could Tether freeze part of the funds while the Monero portion stayed out of reach?",
+            "options": [
+              "Tether is issued by a central company that can blacklist any address",
+              "Monero transactions are slower to confirm",
+              "The Tron blockchain is private and Monero's is public",
+              "Tether uses stronger encryption than Monero"
+            ],
+            "correct": 0,
+            "explanation": "USDT is a centrally issued token, so its issuer can freeze any address; Monero has no issuer and no traceable ledger to freeze against."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-06-12"
+    ],
+    "generatedAt": "2026-06-12T12:45:31.595Z",
+    "label": "Privacy Coins & the Freeze Power",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-12-nato-to-reduce-kosovo-peacekeeping-force-as-security-situati": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WAR THAT MADE KFOR",
+        "body": "NATO bombed Serbia for 78 days in 1999 without a UN Security Council mandate — Russia would have vetoed it. The campaign ended with Serbian forces withdrawing from Kosovo and NATO's Kosovo Force moving in. It was the alliance's first war, fought outside its own treaty's collective-defense logic.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1989",
+                "label": "Milošević strips Kosovo autonomy"
+              },
+              {
+                "year": "1998",
+                "label": "KLA insurgency, Serb crackdown"
+              },
+              {
+                "year": "1999",
+                "label": "NATO bombing; KFOR deploys",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2008",
+                "label": "Kosovo declares independence"
+              },
+              {
+                "year": "2013",
+                "label": "Brussels normalization deal"
+              },
+              {
+                "year": "2023",
+                "label": "Banjska clash in the north"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1999",
+                "to": "2026",
+                "label": "KFOR deployment",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Kosovo's arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL PARADOX",
+        "body": "UN Resolution 1244, which authorized KFOR, simultaneously reaffirmed the 'sovereignty and territorial integrity' of Yugoslavia — meaning Serbia. The same document that put NATO in Kosovo also says Kosovo is part of Serbia. That contradiction has never been resolved; it is the seam every dispute since runs along."
+      },
+      {
+        "heading": "THE RECOGNITION SPLIT",
+        "body": "Kosovo declared independence in 2008. Roughly 100 states recognize it; Serbia, Russia, and China do not — and crucially, five EU members (Spain, Greece, Cyprus, Romania, Slovakia) also refuse, each fearing precedent for their own separatist regions. Without consensus, Kosovo cannot join the UN or the EU.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do five EU states refuse to recognize Kosovo?",
+            "options": [
+              "They fear it sets a precedent for their own separatist regions",
+              "They are formal allies of Russia",
+              "They never recognized Serbia either",
+              "Religious objections to a Muslim-majority state"
+            ],
+            "correct": 0,
+            "explanation": "Spain (Catalonia), Cyprus, Romania, Slovakia and Greece each worry recognition legitimizes unilateral secession at home."
+          }
+        ]
+      },
+      {
+        "heading": "THE NORTH IS THE FLASHPOINT",
+        "body": "Most of Kosovo is ethnic-Albanian, but four municipalities around North Mitrovica are Serb-majority and look to Belgrade, not Pristina. License plates, currency, and local police there have all triggered standoffs. When violence flares, it flares in the north — which is why KFOR's posture there matters more than its headcount.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "XK",
+              "RS",
+              "AL",
+              "MK",
+              "ME"
+            ],
+            "label": "Kosovo and its neighbors",
+            "caption": "The Serb-majority north hugs the border with Serbia.",
+            "markers": [
+              {
+                "lat": 42.8914,
+                "lng": 20.866,
+                "label": "North Mitrovica"
+              },
+              {
+                "lat": 42.6629,
+                "lng": 21.1655,
+                "label": "Pristina"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY A SMALL FORCE STILL DETERS",
+        "body": "A peacekeeping force this size cannot win a war — it is a tripwire. Its value is that any attack on it is an attack on NATO, triggering the alliance behind it. Thinning the force without removing it keeps the tripwire intact while cutting cost; the deterrent is the flag, not the troop count.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine is called a *tripwire force*: too small to fight, large enough that crossing it pulls in **the entire alliance**. The same logic stations US troops in the Baltics and once held the Fulda Gap."
+          }
+        ]
+      },
+      {
+        "heading": "THE US PIVOT AWAY FROM EUROPE",
+        "body": "The drawdown coincides with Washington pressing to shift NATO assets out of Europe toward the Pacific. Kosovo is a soft target for cuts: it has been quiet for years, and unlike the Baltic flank, no nuclear-armed rival sits across its border. The risk is that 'quiet' in the Balkans has always been provisional."
+      }
+    ],
+    "generatedAt": "2026-06-12T12:46:07.232Z",
+    "label": "KFOR & the Kosovo Question",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-12-pm-shehbaz-addresses-cabinet-budget": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY A BUDGET CAN BE 'IMF-CONSTRAINED'",
+        "body": "An IMF program doesn't lend cash freely — it disburses in tranches, each released only after the government hits agreed targets: tax-to-GDP ratios, subsidy cuts, a floor on central-bank reserves. The budget becomes a contract. Parliament votes on it, but the IMF's review schedule sets its shape.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Pakistan's current deal is a **$7bn Extended Fund Facility** — the *EFF* is the IMF's longer, structural-reform program, distinct from the short-term *Stand-By Arrangement* used for acute crises."
+          }
+        ]
+      },
+      {
+        "heading": "THE SERIAL BORROWER",
+        "body": "This is roughly Pakistan's two-dozenth IMF program since 1958 — one of the longest patron relationships in the Fund's history. The pattern is structural: a balance-of-payments crisis forces a program, austerity stabilizes reserves, the program lapses, spending loosens, and the cycle repeats. Few countries have returned to the well as often.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "IMF arrangements since 1958 (approx.)",
+            "peers": [
+              {
+                "value": 22,
+                "cc": "AR"
+              },
+              {
+                "value": 24,
+                "cc": "PK"
+              },
+              {
+                "value": 12,
+                "cc": "EG"
+              },
+              {
+                "value": 10,
+                "cc": "UA"
+              },
+              {
+                "value": 19,
+                "cc": "TR"
+              },
+              {
+                "value": 16,
+                "cc": "LK"
+              }
+            ],
+            "subjectCc": "PK",
+            "unit": "programs"
+          }
+        ]
+      },
+      {
+        "heading": "THE 38% PEAK",
+        "body": "Inflation hitting 38% in 2023 was not a normal price story — it was a currency collapse. When reserves fell to weeks of import cover, the rupee was forced sharply lower, and Pakistan imports its energy and much of its food. Import-led inflation is what austerity is designed to choke off, by crushing demand until the trade gap closes.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the main driver of Pakistan's 38% inflation peak in 2023?",
+            "options": [
+              "A sharp fall in the rupee feeding into imported food and fuel",
+              "Wage-price spirals from rapid economic growth",
+              "A domestic harvest glut pushing up storage costs"
+            ],
+            "correct": 0,
+            "explanation": "With reserves near-empty the rupee was devalued hard, and because Pakistan imports energy and food, those costs flowed straight into consumer prices."
+          }
+        ]
+      },
+      {
+        "heading": "THE POLICY RATE AS A LEVER",
+        "body": "The State Bank cut its rate from 22.5% to 11% as inflation fell — easing only as fast as the disinflation allowed. The US-Iran war reversed that: an oil shock threatens both imported inflation and the rupee, so the bank raised again. A rate cut is the central bank's reward for a stable currency; an external shock claws it back.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377,
+              278.485848,
+              278.494701,
+              278.137253,
+              277.408487,
+              278.412506,
+              278.512908,
+              278.575,
+              277.445439,
+              278.55,
+              278.55,
+              278.494021,
+              278.3,
+              278.45,
+              278.61849,
+              278.35,
+              278.5,
+              278.5,
+              278.440126,
+              278.250184,
+              278.85127,
+              278.390134,
+              277.354384
+            ],
+            "periods": [
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9",
+              "Jun 10",
+              "Jun 11",
+              "Jun 12"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE DENOMINATION TRAP",
+        "body": "Pakistan borrows in both rupees and dollars. Rupee debt can theoretically be inflated away — but that destroys domestic savings. Dollar debt cannot be inflated away at all: a weaker rupee makes every dollar of it more expensive to service. This is why defending the currency and servicing the debt are the same fight, and why an oil shock that hits the rupee tightens the noose.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Rupee debt",
+                "value": "inflatable",
+                "tone": "neutral"
+              },
+              {
+                "label": "Dollar debt",
+                "value": "not inflatable",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "two kinds of sovereign debt"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE SHOCK COMES FROM",
+        "body": "The US-Iran war matters to Islamabad through one channel above all: the Strait of Hormuz, the channel between Iran and Oman through which a fifth of the world's oil moves. Pakistan, a net energy importer with thin reserves, sits downstream of every price spike that starts there — geography, not policy, sets the size of the blow.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "OM",
+              "AE"
+            ],
+            "label": "the import chokepoint upstream of Karachi",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-12"
+    ],
+    "generatedAt": "2026-06-12T12:46:44.514Z",
+    "label": "Pakistan & the IMF Ratchet",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-12-pok-mon-go-players-unwittingly-contributed-to-tech-with-mili": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY DRONES CAN'T TRUST GPS",
+        "body": "GPS is a faint signal from 20,000 km up — trivially jammed, spoofed, or blocked by buildings and terrain. In contested airspace it is the first thing an adversary takes away, which is why a drone that can navigate by what it sees is worth more than one that depends on satellites."
+      },
+      {
+        "heading": "HOW VISUAL POSITIONING WORKS",
+        "body": "A Visual Positioning System matches the live camera feed against a stored 3D point cloud of a place's visual features — corners, edges, textures — and returns position to within centimeters. The catch is that someone first has to build that point cloud by scanning the world, location by location.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "GPS resolves to roughly **5 meters** and dies indoors; a good **VPS** resolves to **centimeters** and works in exactly the GPS-denied canyons where it matters most."
+          }
+        ]
+      },
+      {
+        "heading": "THE DATA MOAT",
+        "body": "Thirty billion scans is not a dataset a rival can simply buy or scrape — it was harvested one player at a time over a decade, in alleys and plazas a survey vehicle never reaches. The value isn't the AI model; it's that no one else can re-collect the input."
+      },
+      {
+        "heading": "THE CIA-MAPPING LINEAGE",
+        "body": "This is not Niantic's first brush with defense. Its founder built Keyhole, a 3D-mapping startup funded by In-Q-Tel — the CIA's venture arm — before Google bought it in 2004 and turned it into Google Earth. The man who mapped the planet for the intelligence community later built the game that crowdsourced the close-up scans.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2001",
+                "label": "Keyhole founded"
+              },
+              {
+                "year": "2003",
+                "label": "In-Q-Tel (CIA) invests",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2004",
+                "label": "Google buys it → Google Earth"
+              },
+              {
+                "year": "2010",
+                "label": "Niantic founded inside Google"
+              },
+              {
+                "year": "2016",
+                "label": "Pokémon Go launches"
+              },
+              {
+                "year": "2025",
+                "label": "Scopely (Saudi PIF) buys the games"
+              }
+            ],
+            "label": "from CIA mapping to Pokémon Go"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT DUAL-USE MEANS",
+        "body": "The same point cloud that snaps a cartoon monster onto a real street corner can tell a drone where that corner is. Nothing was repurposed in secret — augmented reality and terminal guidance are the same geometry problem, which is why a consumer AR model licenses cleanly to a defense contractor.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Before Pokémon Go, Niantic's founder built a 3D-mapping startup backed by the CIA's venture arm. What did it become?",
+            "options": [
+              "Google Earth",
+              "Apple Maps",
+              "Waze",
+              "OpenStreetMap"
+            ],
+            "correct": 0,
+            "explanation": "Keyhole, funded by In-Q-Tel, was acquired by Google in 2004 and became Google Earth — and its founder later started Niantic."
+          }
+        ]
+      },
+      {
+        "heading": "WHO HOLDS THE SCANS NOW",
+        "body": "Ownership of crowdsourced spatial data shifts with corporate sales, not consent. Scopely — backed by Saudi Arabia's sovereign wealth fund — now controls fresh scans under rewritten privacy terms, while the historical 30 billion already train a model licensed toward military clients. The players generated an asset whose end use they never agreed to."
+      }
+    ],
+    "generatedAt": "2026-06-12T12:47:29.930Z",
+    "label": "Visual Positioning & Dual-Use Maps",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-12-puffy-super-neptune-emerges-383-light-years-away-with-a-dens": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 'LESS DENSE THAN BALSA WOOD' MEANS",
+        "body": "Density is mass divided by volume, and for a planet it reveals composition without ever seeing the surface. A world lighter than wood cannot be rock or iron — it must be a small core wrapped in an enormous, puffed-up envelope of hydrogen and helium. These are nicknamed 'super-puffs.'",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Earth",
+                "value": "5.5",
+                "weight": 5.5
+              },
+              {
+                "label": "Jupiter",
+                "value": "1.33",
+                "weight": 1.33
+              },
+              {
+                "label": "Water",
+                "value": "1.00",
+                "weight": 1
+              },
+              {
+                "label": "Saturn",
+                "value": "0.69",
+                "weight": 0.69
+              },
+              {
+                "label": "Balsa wood",
+                "value": "~0.16",
+                "weight": 0.16
+              },
+              {
+                "label": "TOI-1883 b",
+                "value": "<0.16",
+                "weight": 0.15,
+                "tone": "favorable"
+              }
+            ],
+            "label": "mean density, g/cm³"
+          }
+        ]
+      },
+      {
+        "heading": "THE NEPTUNE DESERT",
+        "body": "Plot known exoplanets by size and orbital distance and a gap appears: almost no Neptune-sized worlds orbit very close to their stars. This 'Neptune desert' exists because intense stellar radiation should boil away a Neptune's atmosphere until only a bare rocky core survives. A puffy super-Neptune sitting near that edge is a near-impossibility that lived.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism that carves the desert is **photoevaporation** — high-energy X-ray and ultraviolet light heats the upper atmosphere until gas escapes the planet's gravity entirely, like a comet's tail bleeding off a world."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ESCAPE IS EASIER THAN IT SOUNDS",
+        "body": "An atmosphere is held only by gravity. Heat any gas enough and some molecules exceed escape velocity and leave for good. Hydrogen, the lightest gas, escapes first and fastest — which is why small, hot worlds lose their hydrogen envelopes and end up as dense rocky remnants. A low-density envelope surviving close-in is the puzzle the paper flags."
+      },
+      {
+        "heading": "HOW WE KNOW IT'S PUFFY AT 383 LIGHT-YEARS",
+        "body": "Two measurements combine. The transit — the planet crossing its star's face — dims the starlight by an amount that scales with the planet's radius. A separate radial-velocity measurement, the star's tiny wobble, gives the mass. Big radius plus small mass equals tiny density. Neither alone reveals a super-puff; you need both.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which is the only planet in our solar system with a mean density lower than water?",
+            "options": [
+              "Jupiter",
+              "Saturn",
+              "Neptune",
+              "Uranus"
+            ],
+            "correct": 1,
+            "explanation": "Saturn's density is about 0.69 g/cm³ — given a big enough ocean, it would float."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE LIGHT-YEAR FIGURE IS THE EASY PART",
+        "body": "383 light-years sounds vast, but it is the photometry, not the distance, that limits the science. Brightness falls with distance squared, yet a transit measures a relative dimming — the percentage drop is the same whether the star is near or far. Distance mostly sets how faint the star is, and so how long a telescope like Subaru must stare to pull the signal from the noise."
+      }
+    ],
+    "generatedAt": "2026-06-12T12:48:01.340Z",
+    "label": "Super-Puff Planets & Atmospheric Escape",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-12-what-we-know-so-far-about-the-reported-us-iran-mou": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY AN MOU, NOT A TREATY",
+        "body": "A memorandum of understanding is a statement of intent, not a binding contract. It needs no Senate ratification, which is exactly why both sides reach for it — and exactly why neither fully trusts it. The JCPOA in 2015 was also never a ratified treaty, which is what let a single president dissolve US participation in 2018.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal weakness is the political feature: an **MOU** binds no successor administration, so the deal lives only as long as both governments choose to honor it."
+          }
+        ]
+      },
+      {
+        "heading": "THE JCPOA SHADOW",
+        "body": "This is not the first US-Iran nuclear bargain. The 2015 deal traded sanctions relief for enrichment caps and inspections; the US walked out in 2018 and reimposed sanctions, and Iran responded by expanding enrichment past the agreed limits. Every clause in the current drafts is written against the memory of that collapse.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2015",
+                "label": "JCPOA signed",
+                "emphasis": "start"
+              },
+              {
+                "year": "2016",
+                "label": "Sanctions relief begins"
+              },
+              {
+                "year": "2018",
+                "label": "US withdraws, reimposes sanctions",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Iran exceeds enrichment caps"
+              },
+              {
+                "year": "2020",
+                "label": "Soleimani killed"
+              },
+              {
+                "year": "2026",
+                "label": "New MOU talks",
+                "emphasis": "end"
+              }
+            ],
+            "label": "the nuclear-deal arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE SEQUENCING PROBLEM",
+        "body": "The $300bn gap is really a fight over who moves first. Iran wants $24bn upfront as proof the US is serious; Washington ties every dollar of relief to verified compliance. This is the classic trust trap — each side wants the other to take the irreversible step first, and a non-binding MOU gives neither a guarantee."
+      },
+      {
+        "heading": "SANCTIONS RELIEF ISN'T A SWITCH",
+        "body": "Even when Washington signs, money does not flow the next morning. Secondary sanctions mean foreign banks can be punished for touching Iranian transactions, so global institutions stay away long after the formal restrictions lift — exactly what happened after 2015, when promised relief arrived slowly and partially. The chilling effect outlasts the paperwork.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did sanctions relief disappoint Iran even while the 2015 JCPOA was in force?",
+            "options": [
+              "Iran refused to accept the funds",
+              "Foreign banks avoided Iran fearing US secondary sanctions",
+              "The UN blocked all transfers",
+              "Oil prices made trade unprofitable"
+            ],
+            "correct": 1,
+            "explanation": "Secondary sanctions let the US penalize any foreign bank dealing with Iran, so global institutions stayed away even after primary sanctions eased."
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ TOLL",
+        "body": "Tehran wants the Strait reopened on a 30-day clock; Washington wants it immediate and toll-free. Under UNCLOS Article 38, ships have a right of transit passage through international straits that coastal states cannot suspend — but Iran has long argued Hormuz falls under its own law. The 'toll-free' demand echoes Denmark's Sound Dues, the strait toll it charged for 400 years until the powers paid it off in 1857.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "QA",
+              "SA",
+              "KW"
+            ],
+            "label": "the Hormuz chokepoint",
+            "caption": "~21% of global oil consumption transits these lanes daily",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 29.2333,
+                "lng": 50.3167,
+                "label": "Kharg Island terminal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE MARKET BELIEVES",
+        "body": "Prediction markets price diplomacy in real time. A narrow nuclear deal is treated as roughly a coin flip, while a durable, permanent peace is seen as a long shot — the spread captures the gap between a 60-day technical window and the deep mistrust that makes any signed MOU fragile.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              28,
+              27,
+              25,
+              26,
+              24,
+              21,
+              34,
+              26,
+              31,
+              27,
+              20,
+              37,
+              36,
+              43,
+              49,
+              35,
+              44,
+              46,
+              37,
+              40,
+              34,
+              31,
+              31,
+              30,
+              28,
+              26,
+              24,
+              19,
+              20,
+              17,
+              46,
+              49
+            ],
+            "periods": [
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9",
+              "Jun 10",
+              "Jun 11",
+              "Jun 12",
+              "Jun 12"
+            ],
+            "label": "US-Iran nuclear deal by June 30?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "28%"
+              },
+              {
+                "atIndex": 31,
+                "label": "49%"
+              }
+            ],
+            "link": "https://polymarket.com/event/us-iran-nuclear-deal-by-june-30",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-06-12"
+    ],
+    "generatedAt": "2026-06-12T12:48:38.843Z",
+    "label": "US-Iran Diplomacy & Sanctions Relief",
+    "category": "politics",
+    "articleCount": 1
   }
 }
