@@ -1,26 +1,26 @@
 {
-  "date": "2026-06-11",
+  "date": "2026-06-12",
   "metrics": {
-    "articles": { "value": 43, "detail": "5 cycles, avg 9/cycle" },
-    "freshness": { "median": 0.4, "p90": 0.4, "max": 0.4, "target": 1.0, "met": true },
-    "categories": { "politics": 15, "economy": 13, "science": 6, "tech": 9 },
-    "multiSource": { "value": 9, "target": 4, "met": true },
-    "regions": { "count": 7, "target": 4, "met": true, "breakdown": { "ME": 5, "AM": 11, "AS": 11, "EU": 7, "AF": 6, "OC": 2, "GL": 1 } },
-    "sciTech": { "ratio": 35, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online", "pct": 12, "target": 20, "met": true },
-    "uniqueSources": 38,
+    "articles": { "value": 49, "detail": "5 cycles, avg 9/cycle" },
+    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
+    "categories": { "politics": 23, "economy": 11, "science": 6, "tech": 9 },
+    "multiSource": { "value": 12, "target": 4, "met": true },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "ME": 7, "AS": 8, "AM": 18, "EU": 13, "AF": 3 } },
+    "sciTech": { "ratio": 31, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 16, "target": 20, "met": true },
+    "uniqueSources": 41,
     "duplicates": 0,
-    "avgCycleDuration": 1767
+    "avgCycleDuration": 1680
   },
-  "experiment": "Skipped — all four goal areas (freshness, diversity, multi-source, educational value) are within targets, no experiment is active, and no pause gate is set.",
-  "weakestArea": "Science volume is the softest goal metric: 6 articles, the smallest category and only one above its floor of 5. It still clears the diversity target, but if the next cycles run light on quality science sourcing it is the first metric at risk of dropping below floor.",
+  "experiment": "Skipped — all four goal areas (freshness, diversity, multi-source, educational value) are within targets, no experiment is active, no pause gate is set, and the only queued experiment edits scripts/write-prompt.md, which is out of bounds for the parameter tuner.",
+  "weakestArea": "Science volume is again the softest goal metric: 6 articles, the smallest category and only one above its floor of 5, dragging the sci/tech ratio down to 31% from yesterday's 44%. It still clears every target, but it is the first metric at risk if a cycle runs light on quality science sourcing.",
   "watching": [
-    "US-Iran escalation continues to anchor Americas/Middle East coverage; ME at 5 and AM at 11 reflect that gravity rather than a sourcing skew.",
-    "Asia coverage is strong today (11, led by The Diplomat and South China Morning Post) — worth confirming it holds as the US-Iran story competes for selector slots."
+    "Politics dominated today at 23 of 49 articles (47%), with Americas (18) and Europe (13) the heaviest regions — likely ongoing US-Iran and Western-politics gravity rather than a sourcing skew, but worth confirming it doesn't crowd out science slots.",
+    "Science leaned on just four dedicated outlets (Phys.org, Nature, Carbon Brief, STAT); confirm the quality science pipeline holds as politics competes for selector capacity."
   ],
   "coverageGaps": [
-    "Oceania remains thin at 2 articles, the persistent low region across recent cycles.",
-    "Science leans on a narrow set of quality sources (Phys.org, Nature) — only two genuinely science-dedicated outlets in today's mix."
+    "Oceania produced zero articles today (no OC region), continuing its run as the persistent low region.",
+    "Africa was thin at 3 articles, below its usual recent level."
   ],
-  "context": "Freshness is computed off only 2 datable articles today (count=2), so the 0.4-day median is a small sample and should not be over-read; the broader pipeline shows no lag signal. Yesterday was an unusually heavy day (71 articles); today's 43 is a normal 5-cycle output. All goal metrics are within targets, so no parameter change is made today."
+  "context": "Freshness is computed from only 1 datable article today (count=1), so the 0-day median is a near-meaningless sample and should not be read as a freshness signal — the broader pipeline shows no lag. Output of 49 across 5 completed cycles is normal. All goal metrics are within targets, so no parameter change is made today; the queued numerical-density experiment remains blocked and is a prompt change outside this tuner's scope."
 }
