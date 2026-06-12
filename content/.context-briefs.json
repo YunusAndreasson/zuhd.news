@@ -352899,5 +352899,1518 @@
     "label": "Prenatal Acoustic Priming",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-06-10-what-a-drug-bust-involving-a-mrbeast-winner-says-about-latam": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE REVERSAL",
+        "body": "For decades the drug trade ran one direction across the Americas: cannabis and cocaine moved north toward the US consumer market, and the profit sat at the American border. A US-grown shipment heading south to Brazil inverts that century-old gradient — the value is now in the export, not the import.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "BR",
+              "PY"
+            ],
+            "label": "the southbound route",
+            "markers": [
+              {
+                "lat": 25.7617,
+                "lng": -80.1918,
+                "label": "Miami — origin"
+              },
+              {
+                "lat": -25.2637,
+                "lng": -57.5759,
+                "label": "Asuncion — seizure"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY US PRICES COLLAPSED",
+        "body": "Cannabis is legal under state law but still federally prohibited, which makes interstate shipment a federal crime. Each legal state is therefore a sealed market: a grower in an oversupplied state cannot legally sell into a tight one. Gluts have nowhere to drain, so wholesale prices crater while neighboring markets stay expensive.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The result is a textbook *trapped surplus* — federal law blocks the arbitrage that would normally equalize prices, so a pound that fetches four figures in one state sells for a fraction of that next door."
+          }
+        ]
+      },
+      {
+        "heading": "THE ARBITRAGE",
+        "body": "Smuggling has never cared about direction — only about the spread. When the same premium pound costs near a thousand dollars wholesale in the US and several times that on the street in Brazil, the price gap pays for the jet, the risk, and the bust. The flow follows the differential.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "US wholesale",
+                "value": "~$1,000",
+                "tone": "favorable",
+                "cc": "US",
+                "weight": 1000
+              },
+              {
+                "label": "Brazil illicit",
+                "value": "$5k+",
+                "tone": "unfavorable",
+                "cc": "BR",
+                "weight": 5000
+              }
+            ],
+            "label": "premium cannabis, rough price per pound"
+          }
+        ]
+      },
+      {
+        "heading": "PARAGUAY, THE BREADBASKET",
+        "body": "Paraguay is South America's cannabis warehouse — for decades it has grown the cheap, pressed 'brick' weed that supplies Brazil and Argentina across porous borders. That a seizure happened here is no accident: the smuggling infrastructure already runs through Asuncion. The novelty is the cargo's origin, not the route.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did US legal cannabis collapse to record-low wholesale prices?",
+            "options": [
+              "Federal prohibition bars interstate sales, trapping each state's overproduction in a sealed market",
+              "Demand fell sharply as more states decriminalized",
+              "A bumper import year from Canada flooded the US market"
+            ],
+            "correct": 0,
+            "explanation": "Because growers can't legally ship across state lines, oversupplied states can't drain their gluts, so local wholesale prices crash."
+          }
+        ]
+      },
+      {
+        "heading": "THE POTENCY PREMIUM",
+        "body": "What flows south isn't the pressed brick Paraguay grows — it's high-THC American sinsemilla, the seedless flower that commands a luxury tier everywhere. Even in a market saturated with cheap local product, a recognizable premium strain sells at a multiple, which is exactly what makes the export math work.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Sinsemilla* — Spanish for 'without seed' — is unpollinated female flower bred for maximum **THC**; it is to brick weed what single-malt is to bulk spirit."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-12T04:23:08.658Z",
+    "label": "Cannabis & the Reversed Flow",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-11-f-22-s-catfish-757-testbed-spotted-carrying-raptor-s-new-inf": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EMISSION PROBLEM",
+        "body": "A fighter's radar is a spotlight in the dark: to see, it must broadcast. Any aircraft with a radar warning receiver detects that beam first — often at longer range than the radar can detect them. Against a stealthy peer, turning on your radar is the same as announcing your position, heading, and that you're hunting.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The countermeasure is the **RWR** (radar warning receiver) — a passive antenna that hears an enemy's emissions. Modern doctrine calls this *emissions control*: win the fight without ever keying your own radar."
+          }
+        ]
+      },
+      {
+        "heading": "HOW IRST WORKS",
+        "body": "Infrared search-and-track grabs the heat every aircraft radiates — engine exhaust, hot leading edges, even airframe friction at speed. It is purely a receiver: it emits nothing, so it cannot be detected by an RWR. A stealth airframe is shaped to defeat radar, but it cannot hide its thermal signature the same way."
+      },
+      {
+        "heading": "THE TRADEOFF",
+        "body": "IRST sees a bearing, not a range. Heat tells you which direction a target is, but not precisely how far — passive sensors can't measure distance the way a radar's timed echo can. Clouds, humidity, and water vapor also absorb infrared, so weather that radar ignores can blind an IR sensor. The fix is usually fusing IRST bearing with another data source to triangulate."
+      },
+      {
+        "heading": "THE SOVIET HEAD START",
+        "body": "The West is catching up here, not pioneering. Soviet fourth-generation fighters carried IRST as standard for decades, while US designers leaned on powerful radars and beyond-visual-range missiles and treated IR as secondary. Now that stealth-versus-stealth is the design problem, the passive sensor the Soviets never abandoned is the capability everyone wants back.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Su-27 / Su-35",
+                "value": "Built-in",
+                "cc": "RU",
+                "tone": "favorable"
+              },
+              {
+                "label": "MiG-29",
+                "value": "Built-in",
+                "cc": "RU",
+                "tone": "favorable"
+              },
+              {
+                "label": "Eurofighter",
+                "value": "PIRATE",
+                "cc": "DE",
+                "tone": "favorable"
+              },
+              {
+                "label": "F/A-18",
+                "value": "IRST21 pod",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "F-22",
+                "value": "None (until now)",
+                "cc": "US",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "IRST across frontline fighters"
+          },
+          {
+            "type": "quiz",
+            "question": "Why did US fighters historically lag Soviet jets in carrying IRST?",
+            "options": [
+              "The US lacked the infrared technology",
+              "US doctrine relied on powerful radar and long-range missiles",
+              "IRST was banned by arms-control treaties",
+              "Soviet jets had no radar at all"
+            ],
+            "correct": 1,
+            "explanation": "US designers prioritized radar and beyond-visual-range AMRAAM-style missiles, treating IR sensing as secondary; the Soviets kept IRST as standard kit."
+          }
+        ]
+      },
+      {
+        "heading": "THE FLYING LABORATORY",
+        "body": "New sensors get tested on airliners before fighters. A converted Boeing 757 testbed carries the pod aloft with engineers and racks of instrumentation aboard — far cheaper and roomier than a single-seat jet. Boeing's 757 testbed has flown F-22 avionics since the 1990s, which is why a Raptor sensor first appears bolted to a commercial airframe over Edwards, not on a Raptor."
+      }
+    ],
+    "generatedAt": "2026-06-12T04:23:45.970Z",
+    "label": "Passive Infrared Search & Track",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-11-italy-skips-crew-allocation-queue-thanks-to-astronaut-s-test": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BARTER ECONOMY",
+        "body": "Europe does not buy seats on American spacecraft with cash. ESA pays in hardware — it builds critical flight components and is repaid in crew flights and cargo slots. Every European who reaches orbit is a contracted return on industrial contribution, not a passenger ticket.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is called *barter*: ESA delivers in-kind capability and draws down credits in **astronaut flight opportunities** rather than reimbursing NASA in dollars."
+          }
+        ]
+      },
+      {
+        "heading": "EUROPE'S LEVERAGE",
+        "body": "Europe builds the European Service Module — the propulsion, power, water, and air unit bolted beneath NASA's Orion capsule. Orion cannot reach the Moon or come home without it. That single dependency is what buys Europeans their place in the Artemis crew rotation.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does Europe build that gives ESA leverage for Artemis crew seats?",
+            "options": [
+              "Orion's heat shield",
+              "The European Service Module — Orion's propulsion and life-support unit",
+              "The Artemis lunar lander",
+              "The Space Launch System rocket"
+            ],
+            "correct": 1,
+            "explanation": "The ESM, built by Airbus in Bremen, provides Orion's propulsion, power, and life support — NASA's capsule is inert without it."
+          }
+        ]
+      },
+      {
+        "heading": "WHO PAYS THE MOST",
+        "body": "ESA runs on a 'geographic return' rule — each member state gets industrial contracts and flight opportunities roughly proportional to what it pays in. Germany is the largest funder, France second, Italy third. That hierarchy is why Germany expected the slot and why Italy displacing it is notable.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Germany",
+                "value": "~21%",
+                "cc": "DE",
+                "weight": 21
+              },
+              {
+                "label": "France",
+                "value": "~18%",
+                "cc": "FR",
+                "weight": 18
+              },
+              {
+                "label": "Italy",
+                "value": "~14%",
+                "cc": "IT",
+                "weight": 14
+              },
+              {
+                "label": "UK",
+                "value": "~10%",
+                "cc": "GB",
+                "weight": 10
+              },
+              {
+                "label": "Spain",
+                "value": "~7%",
+                "cc": "ES",
+                "weight": 7
+              }
+            ],
+            "label": "share of ESA's budget (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TEST-PILOT PREMIUM",
+        "body": "When a mission is a flight test, crews skew toward pilots who can fly a vehicle that misbehaves. Retooling Artemis III into a low-Earth-orbit shakedown flight shifted the selection logic from scientist-explorer to test pilot — and Parmitano, a former Italian Air Force test pilot, fit the new profile better than the scheduled candidate.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Luca Parmitano",
+                "role": "ex-Air Force test pilot",
+                "years": "2009–",
+                "cc": "IT"
+              },
+              {
+                "name": "Matthias Maurer",
+                "role": "materials scientist",
+                "years": "2017–",
+                "cc": "DE"
+              },
+              {
+                "name": "Thomas Pesquet",
+                "role": "airline & test pilot",
+                "years": "2009–",
+                "cc": "FR"
+              }
+            ],
+            "label": "the ESA astronauts in contention"
+          }
+        ]
+      },
+      {
+        "heading": "THE ARTEMIS LADDER",
+        "body": "Artemis was always staged: an uncrewed shakedown, then a crewed lunar flyby, then the landing, then the Gateway station. Slipping the first crewed landing down the ladder is the program's recurring pattern — hardware readiness, not political will, sets the rungs.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2022",
+                "label": "Artemis I — uncrewed lunar test",
+                "emphasis": "start"
+              },
+              {
+                "year": "2026",
+                "label": "Artemis II — crewed flyby"
+              },
+              {
+                "year": "2027",
+                "label": "Artemis III — LEO test flight",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2028",
+                "label": "Artemis IV — first crewed landing"
+              }
+            ],
+            "label": "the Artemis sequence"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-12T04:24:30.427Z",
+    "label": "How ESA Earns Its Astronaut Seats",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-11-locked-out-of-ipo-asia-investors-find-new-ways-to-bet-on-spa": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY AN OFFERING CAN PICK ITS BUYERS",
+        "body": "A share offering is not a public market — it is a contract, and the issuer can write who is allowed to sign. US securities law lets a company sell privately to chosen investors and exclude entire jurisdictions, which is how an IPO can be open to Europe and closed to Asia in the same breath.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal switch is *Regulation S* (offshore sales) layered on top of *Reg D* (private placements) — together they let the underwriter carve the investor pool by passport, not by price."
+          }
+        ]
+      },
+      {
+        "heading": "THE REAL REASON: ITAR AND CFIUS",
+        "body": "SpaceX is a launch and satellite contractor whose technology falls under US export-control rules. Foreign ownership — especially Chinese capital — triggers ITAR restrictions and review by CFIUS, the panel that can block or unwind foreign stakes in sensitive firms. Gating Asian money out is cheaper than litigating it later.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KR",
+              "CN",
+              "JP"
+            ],
+            "label": "the capital locked out"
+          }
+        ]
+      },
+      {
+        "heading": "SPACEX DWARFS THE LISTED FIELD",
+        "body": "The reason there is no easy substitute is scale: SpaceX is valued at multiples of every publicly traded space company combined. Buying the listed peers gives you exposure to the sector but almost none to the actual giant.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Space-company valuation",
+            "peers": [
+              {
+                "value": 350,
+                "label": "SpaceX"
+              },
+              {
+                "value": 14,
+                "label": "Rocket Lab"
+              },
+              {
+                "value": 6,
+                "label": "AST SpaceMobile"
+              },
+              {
+                "value": 2,
+                "label": "Planet Labs"
+              },
+              {
+                "value": 1,
+                "label": "Intuitive Mach."
+              },
+              {
+                "value": 0.3,
+                "label": "Astra"
+              }
+            ],
+            "subjectLabel": "SpaceX",
+            "unit": "$bn"
+          }
+        ]
+      },
+      {
+        "heading": "HOW PRIVATE STAYS PRIVATE",
+        "body": "SpaceX has stayed off public markets by running periodic tender offers — the company sets a price and lets employees and early backers sell a slice to approved buyers. There is no continuous order book, so outsiders cannot simply buy at will; liquidity arrives only when the company decides it should.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A *tender offer* is a company-orchestrated liquidity window, not a market — price is **administered**, not discovered, which is why a secondary-market 'timeline' is something SpaceX grants rather than something investors can demand."
+          }
+        ]
+      },
+      {
+        "heading": "THE PROXY TRADE AND ITS FLAW",
+        "body": "Shut out of the real thing, Asian traders buy correlation: Rocket Lab as the only pure-play listed launcher, plus space ETFs that bundle dozens of contractors. The flaw is dilution — an ETF spreads your bet across satellite operators and defense primes, so a SpaceX-sized event barely moves the fund.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do space ETFs track SpaceX poorly even when the sector booms?",
+            "options": [
+              "ETFs are banned from holding aerospace stocks",
+              "SpaceX is private, so the fund holds peers instead — not SpaceX itself",
+              "ETFs only hold government bonds",
+              "SpaceX shares trade on Asian exchanges already"
+            ],
+            "correct": 1,
+            "explanation": "A fund can only hold listed securities; with SpaceX private, the ETF buys substitutes whose moves are diluted across the whole sector."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-12T04:25:18.618Z",
+    "label": "Geo-Gated IPOs & Proxy Investing",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-11-sir-please-fix-irctc-captcha-students-plea-prompts-ashwini-v": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SCALE PROBLEM",
+        "body": "IRCTC is one of the busiest transactional websites on Earth — it books well over a million tickets a day, and most of that demand lands in a few concentrated minutes. The site doesn't fail because it's badly built; it fails because almost everyone arrives at once."
+      },
+      {
+        "heading": "THE TATKAL WINDOW",
+        "body": "Most of the crush comes from Tatkal — the same-day quota that opens at a fixed hour one day before travel. Tens of thousands of people hit 'book' in the same second for a handful of seats, turning a routine purchase into a synchronized stampede.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Tatkal* (Hindi for *immediate*) is a deliberate scarcity mechanism: a small last-minute quota at a premium fare. Because supply is tiny and the start time is exact, it is the perfect target for automation."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A CAPTCHA ACTUALLY IS",
+        "body": "A CAPTCHA is a reverse Turing test — instead of a human judging whether a machine seems human, a machine sets a puzzle that humans pass easily and software is supposed to fail. The acronym literally spells out the goal: telling computers and humans apart.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is a CAPTCHA designed to do?",
+            "options": [
+              "Encrypt your password before it's sent",
+              "Prove a user is human, not a script",
+              "Speed up page loading under heavy traffic",
+              "Verify your payment card is valid"
+            ],
+            "correct": 1,
+            "explanation": "CAPTCHA stands for a 'public Turing test to tell computers and humans apart' — its only job is to block automated software, not to secure data."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE BOTS WIN",
+        "body": "The economics are lopsided. A scalper writes one script that solves the puzzle and submits a form in milliseconds; a student types it by hand in seconds. On a quota that sells out in under a minute, that speed gap decides who gets the seat.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Booking bot",
+                "value": "<1 sec",
+                "tone": "unfavorable",
+                "weight": 1
+              },
+              {
+                "label": "Human typing",
+                "value": "~10 sec",
+                "tone": "favorable",
+                "weight": 10
+              }
+            ],
+            "label": "time to clear a text CAPTCHA + submit"
+          }
+        ]
+      },
+      {
+        "heading": "THE LOSING ARMS RACE",
+        "body": "Every CAPTCHA generation has been broken in turn — distorted text fell to OCR, image grids fell to vision models, and modern AI now solves the hardest puzzles faster than people. Defenders ship a static challenge; attackers test it offline against a model until it cracks. That asymmetry is structural, which is why the industry is drifting toward behavioral and identity signals instead.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2000",
+                "label": "Distorted-text CAPTCHA goes mainstream",
+                "emphasis": "start"
+              },
+              {
+                "year": "2007",
+                "label": "reCAPTCHA digitizes scanned books"
+              },
+              {
+                "year": "2014",
+                "label": "Google's 'No CAPTCHA' checkbox"
+              },
+              {
+                "year": "2014",
+                "label": "Neural nets read text CAPTCHAs",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018",
+                "label": "Invisible / behavioral scoring"
+              },
+              {
+                "year": "2024",
+                "label": "Vision models clear image grids"
+              }
+            ],
+            "label": "the CAPTCHA cat-and-mouse"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-12T04:26:01.081Z",
+    "label": "CAPTCHA & the Tatkal Arms Race",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-12-building-robust-materials-from-start-may-ease-critical-miner": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DESIGN PROBLEM",
+        "body": "Most products are engineered to perform, then recycled as an afterthought — glued, soldered and alloyed in ways that make later separation nearly impossible. The institute's argument inverts the sequence: decide how a battery or magnet will come apart before deciding what goes into it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The discipline has a name — *design for disassembly*. A product that can be **unbuilt** in reverse order, with reversible fasteners instead of adhesives, turns a waste stream back into a supply stream."
+          }
+        ]
+      },
+      {
+        "heading": "THE ENTROPY TRAP",
+        "body": "Recycling fights the second law of thermodynamics. Assembling a phone mixes dozens of elements into one dense object; recovering them means un-mixing, and un-mixing always costs more energy than mixing did. The finer the blend — rare earths dispersed through a magnet, lithium bonded into cathode crystals — the steeper the energy bill to pull them back out."
+      },
+      {
+        "heading": "THE RECYCLING SPREAD",
+        "body": "Design, not chemistry, decides what gets recovered. Lead-acid car batteries are recycled at near-total rates because they were standardized into a few simple, separable parts. Lithium-ion packs and rare-earth magnets sit at the bottom — not because the metals are worthless, but because nobody designed them to come apart.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Lead-acid batt.",
+                "value": "~99%",
+                "tone": "favorable",
+                "weight": 99
+              },
+              {
+                "label": "Steel",
+                "value": "~85%",
+                "tone": "favorable",
+                "weight": 85
+              },
+              {
+                "label": "Aluminum",
+                "value": "~75%",
+                "tone": "favorable",
+                "weight": 75
+              },
+              {
+                "label": "Lithium-ion",
+                "value": "<5%",
+                "tone": "unfavorable",
+                "weight": 5
+              },
+              {
+                "label": "Rare-earth mag.",
+                "value": "<1%",
+                "tone": "unfavorable",
+                "weight": 1
+              }
+            ],
+            "label": "end-of-life recycling rate by material"
+          }
+        ]
+      },
+      {
+        "heading": "THE NUMBER THAT SHAMES THE INDUSTRY",
+        "body": "Rare-earth permanent magnets sit inside nearly every EV motor and wind turbine, yet almost none are reclaimed at end of life. They are too tightly fused into the assembly to extract economically — so the world keeps mining fresh neodymium rather than harvesting the millions of tonnes already in circulation.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of rare-earth magnets are recycled at end of life today?",
+            "options": [
+              "Under 1%",
+              "About 15%",
+              "About 40%",
+              "Over 60%"
+            ],
+            "correct": 0,
+            "explanation": "Despite their value, well under 1% of rare-earth magnets are recovered — they're fused into assemblies never designed to come apart."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'CRITICAL' ACTUALLY MEANS",
+        "body": "A mineral isn't 'critical' because it's rare — it's critical when high economic importance meets high supply risk. The EU's 2024 Critical Raw Materials Act codified this with hard targets: by 2030 the bloc wants 10% of its critical minerals mined domestically, 40% processed in Europe, and 25% supplied from recycling. The institute's design-first stance is aimed squarely at that last number."
+      },
+      {
+        "heading": "THE REFINING CHOKEPOINT",
+        "body": "Diversifying supply runs into a wall: even minerals mined elsewhere are mostly refined in one place. China controls the processing step for rare earths almost completely, which is why Europe treats recycling and redesign as the only levers it can pull at home — you cannot out-mine a chokepoint, but you can design around needing the input at all.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 56,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "USA",
+                "value": 12,
+                "tone": "neutral"
+              },
+              {
+                "label": "Myanmar",
+                "value": 9,
+                "tone": "neutral"
+              },
+              {
+                "label": "Australia",
+                "value": 5,
+                "tone": "favorable"
+              },
+              {
+                "label": "Thailand",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Rest of world",
+                "value": 15,
+                "tone": "favorable"
+              }
+            ],
+            "label": "rare-earth mine production share, 2024 (approx.)"
+          },
+          {
+            "type": "locations",
+            "codes": [
+              "DE",
+              "EU",
+              "CN"
+            ],
+            "label": "design in Europe, refining in China",
+            "caption": "The EU's leverage is at the design and recycling end, not the mine."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-12T04:26:49.902Z",
+    "label": "Designing Out Critical Minerals",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-12-economic-survey-2025-26-provinces-development-freeze-to-pers": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 18TH AMENDMENT",
+        "body": "In 2010 Pakistan rewrote its constitution to devolve power — health, education, agriculture, and a guaranteed revenue share — from Islamabad to the four provinces. It was the largest transfer of authority in the country's history and is constitutionally entrenched: the Centre cannot simply repeal it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **18th Amendment** abolished the Concurrent List and made the provincial revenue share a *floor*, not a ceiling — Islamabad's share of the pool can be cut, but a province's cannot be reduced below the previous award."
+          }
+        ]
+      },
+      {
+        "heading": "THE DIVISIBLE POOL",
+        "body": "Most federal taxes — income tax, sales tax, customs — flow into a single 'divisible pool' split by the National Finance Commission. Under the 7th NFC Award (2010), provinces collectively take about 57.5% and the Centre keeps the rest. The split is weighted mostly by population, which is why Punjab dominates.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "taxes",
+                "label": "Federal taxes"
+              },
+              {
+                "id": "pool",
+                "label": "Divisible pool"
+              },
+              {
+                "id": "centre",
+                "label": "Centre"
+              },
+              {
+                "id": "punjab",
+                "label": "Punjab"
+              },
+              {
+                "id": "sindh",
+                "label": "Sindh"
+              },
+              {
+                "id": "kp",
+                "label": "KP"
+              },
+              {
+                "id": "balochistan",
+                "label": "Balochistan"
+              }
+            ],
+            "links": [
+              {
+                "source": "taxes",
+                "target": "pool",
+                "value": 100
+              },
+              {
+                "source": "pool",
+                "target": "centre",
+                "value": 42.5
+              },
+              {
+                "source": "pool",
+                "target": "punjab",
+                "value": 29.7
+              },
+              {
+                "source": "pool",
+                "target": "sindh",
+                "value": 14
+              },
+              {
+                "source": "pool",
+                "target": "kp",
+                "value": 8.4
+              },
+              {
+                "source": "pool",
+                "target": "balochistan",
+                "value": 5.2
+              }
+            ],
+            "label": "the divisible pool (share of 100)"
+          }
+        ]
+      },
+      {
+        "heading": "THE RECENTRALIZATION TRAP",
+        "body": "Here is the structural bind: the provinces hold most of the spending money, but the Centre carries nearly all the debt and defense burden. When shocks hit, Islamabad cannot legally claw back the provincial share — so it leans on the provinces to 'voluntarily' surrender surpluses, exactly what diverting Rs900bn means.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under Pakistan's 7th NFC Award, roughly what share of the federal divisible pool goes to the four provinces?",
+            "options": [
+              "About a quarter",
+              "About 40%",
+              "About 57%",
+              "About 75%"
+            ],
+            "correct": 2,
+            "explanation": "The 2010 award fixed the provincial share at roughly 57.5%, leaving the Centre to fund debt service and defense from the remainder."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE RUPEE IS THE BACKDROP",
+        "body": "Pakistan services a large stock of dollar debt while its tax-to-GDP ratio sits near 10% — one of the world's lowest. A weaker rupee makes each dollar of debt costlier in local terms, squeezing the Centre's share of the pool and feeding the pressure to recentralize.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377,
+              278.485848,
+              278.494701,
+              278.137253,
+              277.408487,
+              278.412506,
+              278.512908,
+              278.575,
+              277.445439,
+              278.55,
+              278.55,
+              278.494021,
+              278.3,
+              278.45,
+              278.61849,
+              278.35,
+              278.5,
+              278.5,
+              278.440126,
+              278.250184,
+              278.85127,
+              278.390134,
+              277.354384
+            ],
+            "periods": [
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9",
+              "Jun 10",
+              "Jun 11",
+              "Jun 12"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE IMF LEVER",
+        "body": "Every IMF program since the 1980s has pushed Pakistan to raise revenue and cut development spending. But the Fund negotiates with Islamabad, which controls only the federal share — so 'fiscal consolidation' often means freezing the provincial development budgets the Centre cannot tax its way out of.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1973",
+                "label": "Constitution mandates NFC awards"
+              },
+              {
+                "year": "2010",
+                "label": "18th Amendment + 7th NFC",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "$6bn IMF Extended Fund Facility"
+              },
+              {
+                "year": "2023",
+                "label": "$3bn IMF Stand-By Arrangement"
+              }
+            ],
+            "label": "fiscal federalism arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE SINGLE-DIGIT PROMISE",
+        "body": "The budget's pledge of single-digit lending rates for housing and agriculture is a classic directed-credit tool: the state leans on banks to lend cheaply to favored sectors. It stimulates politically sensitive industries, but it also pulls credit away from market pricing — and competes with the IMF's preference for tighter money."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-06-12"
+    ],
+    "generatedAt": "2026-06-12T04:27:27.117Z",
+    "label": "Pakistan's Fiscal Federalism",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-12-families-of-mexico-s-disappeared-march-in-the-capital-as-wor": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SCALE",
+        "body": "More than 135,000 people are registered as missing in Mexico, the vast majority since 2006. This is not a wartime body count in the conventional sense — most vanished without a battlefield, taken one by one, their fates never officially resolved.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When did Mexico's mass-disappearance crisis accelerate sharply?",
+            "options": [
+              "After the 2006 militarized 'war on drugs'",
+              "During the 1910 Revolution",
+              "After the 1994 Zapatista uprising",
+              "During the 1968 student movement"
+            ],
+            "correct": 0,
+            "explanation": "The disappearance count exploded after President Calderón deployed the military against cartels in late 2006, militarizing the conflict."
+          }
+        ]
+      },
+      {
+        "heading": "FORCED DISAPPEARANCE",
+        "body": "'Disappearance' is a legal category, not just an absence. It means abduction by the state, or by groups acting with state tolerance, followed by a refusal to acknowledge the person's fate. The point is to erase the victim and the crime at once — no body, no case, no accountability.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Spanish term is *desaparición forzada*. Mexico criminalized it federally only in **2017** — a decade into the crisis — and convictions remain rare, with impunity estimated above **90%**."
+          }
+        ]
+      },
+      {
+        "heading": "WHO DOES THE SEARCHING",
+        "body": "The state rarely digs. Instead, collectives of mothers — the madres buscadoras — walk the deserts and hillsides with steel rods, probing the soil for the smell of decomposition. They have located thousands of clandestine graves the authorities never opened.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "These hidden mass graves are called *fosas clandestinas*. Searching for them is dangerous work: dozens of *buscadoras* have themselves been murdered for getting close to the people responsible."
+          }
+        ]
+      },
+      {
+        "heading": "AYOTZINAPA",
+        "body": "In 2014, 43 student teachers from Ayotzinapa were abducted in Iguala and never seen again. The official 'historical truth' — that local police handed them to a cartel that incinerated them — collapsed under independent investigation, exposing army complicity and a cover-up that reached the federal government.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2006",
+                "label": "Calderón militarizes the drug war",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011",
+                "label": "Movement for Peace with Justice"
+              },
+              {
+                "year": "2014",
+                "label": "43 Ayotzinapa students vanish"
+              },
+              {
+                "year": "2017",
+                "label": "Forced disappearance criminalized"
+              },
+              {
+                "year": "2020",
+                "label": "Registry passes 80,000 missing"
+              },
+              {
+                "year": "2026",
+                "label": "Registry exceeds 135,000"
+              }
+            ],
+            "label": "the crisis arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE STAGE",
+        "body": "Families choose moments of maximum visibility — a World Cup opener, a presidential inauguration — because the disappeared are invisible by design. A graffitied monument forces the absent back into a national frame built to look away from them.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Felipe Calderón",
+                "role": "Launched militarized drug war",
+                "years": "2006–2012",
+                "cc": "MX"
+              },
+              {
+                "name": "Enrique Peña Nieto",
+                "role": "Presided over Ayotzinapa cover-up",
+                "years": "2012–2018",
+                "cc": "MX"
+              },
+              {
+                "name": "Andrés Manuel López Obrador",
+                "role": "Reopened Ayotzinapa case",
+                "years": "2018–2024",
+                "cc": "MX"
+              },
+              {
+                "name": "Claudia Sheinbaum",
+                "role": "Inherited the missing-persons crisis",
+                "years": "2024–",
+                "cc": "MX"
+              }
+            ],
+            "label": "the presidencies that span the crisis"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-12T04:27:57.670Z",
+    "label": "Mexico's Disappeared",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-12-israeli-firm-blackcore-suspected-of-meddling-in-new-york-and": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INDUSTRY",
+        "body": "Influence operations are now a commercial service. Private firms sell what intelligence agencies once monopolized: networks of fake accounts, fabricated news sites, and targeted smear campaigns, billed by the contract. The client buys deniability along with the disinformation — the firm absorbs the attribution risk so the sponsor never appears.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The trade has a clinical name on the analyst side — *coordinated inauthentic behavior* — and a market name on the vendor side: **influence-for-hire**. The buyer rents an outcome, not a tool."
+          }
+        ]
+      },
+      {
+        "heading": "VIGINUM, THE NAMER",
+        "body": "France's interference watchdog is VIGINUM, created in 2021 under the prime minister's office to monitor foreign digital manipulation of public debate. Its power is not legal but reputational: it cannot prosecute, only publish. Naming a firm is the weapon — exposure forces the operation to burn its own assets, which is why BlackCore scrubbed its web presence the moment France spoke."
+      },
+      {
+        "heading": "THE ISRAELI PRIVATE-INTEL ECOSYSTEM",
+        "body": "Israel exports an outsized share of the world's private surveillance and influence firms, staffed largely by veterans of military signals and intelligence units like 8200. The pattern is well-documented: Black Cube ran agent operations against critics, NSO sold the Pegasus spyware to governments, and the 'Team Jorge' unit exposed in 2023 boasted of manipulating elections worldwide.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Black Cube",
+                "role": "private intelligence agency",
+                "cc": "IL"
+              },
+              {
+                "name": "NSO Group",
+                "role": "Pegasus spyware vendor",
+                "cc": "IL"
+              },
+              {
+                "name": "Team Jorge / 'Aims'",
+                "role": "election-manipulation unit",
+                "cc": "IL"
+              }
+            ],
+            "label": "the precedents"
+          }
+        ]
+      },
+      {
+        "heading": "THE PLAYBOOK",
+        "body": "A smear operation rarely invents from nothing. It seeds a damaging frame through sockpuppet accounts, amplifies it with bot networks to fake consensus, then waits for real journalists and partisans to pick it up — at which point the campaign becomes self-sustaining and the fake origin is invisible. The goal is not to convince everyone but to make a target look toxic to associate with."
+      },
+      {
+        "heading": "WHY ATTRIBUTION IS HARD",
+        "body": "Operations are built in layers of cutouts: a shell firm hires a subcontractor that rents server infrastructure through a third party that pays in crypto. Investigators can map the behavior — the network, the timing, the tooling — long before they can name the client. France identified the operator, BlackCore, but explicitly could not identify who paid it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "France named the firm BlackCore but said it could not identify what?",
+            "options": [
+              "Who paid for the campaigns",
+              "Which countries were targeted",
+              "What platforms were used"
+            ],
+            "correct": 0,
+            "explanation": "Layered cutouts let investigators map the operator's behavior while the sponsor stays hidden behind shells and anonymous payment."
+          }
+        ]
+      },
+      {
+        "heading": "THE TARGETING PATTERN",
+        "body": "The named targets were pro-Palestinian politicians across at least five countries — including figures in France's left-wing La France Insoumise and in New York City. A cross-border campaign hitting the same political position in multiple democracies is a signature of a coordinated operation, not coincidence: someone defined the target set by ideology, not nationality.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "FR",
+              "US",
+              "IL"
+            ],
+            "label": "named in the operation",
+            "caption": "France and the US named; the operator based in Israel, two more targets undisclosed"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-12T04:28:36.359Z",
+    "label": "Disinformation-for-Hire",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-12-jailed-south-korea-ex-president-gets-30-more-years-for-sendi": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONSTITUTIONAL TRIGGER",
+        "body": "South Korea's Article 77 lets a president declare martial law in war or grave emergency — but the same article hands the National Assembly the power to lift it by simple majority. That one clause is what made Yoon's December 3 declaration collapse within hours: the document that grants the power also wrote in its own off-switch.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Martial law (*gyeeomryeong*) suspends civilian authority and hands governance to the military. The 1987 constitution — written as the country exited dictatorship — deliberately kept the **Assembly's override** so a president could never again rule by decree the way the generals had."
+          }
+        ]
+      },
+      {
+        "heading": "THE SIX HOURS",
+        "body": "Yoon's martial law lasted roughly six hours. Lawmakers climbed fences past soldiers to reach the chamber and voted to annul it — unanimously, including members of Yoon's own party. The speed of the reversal is the whole story: the institution outran the troops sent to stop it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What ended Yoon's December 2024 martial law decree?",
+            "options": [
+              "A National Assembly vote to lift it",
+              "A military refusal to obey",
+              "A US intervention",
+              "A Constitutional Court ruling"
+            ],
+            "correct": 0,
+            "explanation": "Article 77 lets the Assembly annul martial law by majority; 190 lawmakers reached the chamber and voted it down within hours."
+          }
+        ]
+      },
+      {
+        "heading": "THE GWANGJU SHADOW",
+        "body": "The last time martial law was declared in South Korea was 1980, when Chun Doo-hwan used it to seize power and crush the Gwangju uprising — soldiers killed hundreds of civilians. For Koreans over fifty, 'martial law' is not an abstraction; it is the memory of the massacre that defined the path to democracy.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1961",
+                "label": "Park Chung-hee coup"
+              },
+              {
+                "year": "1972",
+                "label": "Yushin self-coup, lifetime rule"
+              },
+              {
+                "year": "1979",
+                "label": "Park assassinated"
+              },
+              {
+                "year": "1980",
+                "label": "Chun's coup, Gwangju massacre",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1987",
+                "label": "Democratization, new constitution"
+              },
+              {
+                "year": "2024",
+                "label": "Yoon's 6-hour martial law"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1961",
+                "to": "1987",
+                "label": "military rule",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "martial law & the road to democracy"
+          }
+        ]
+      },
+      {
+        "heading": "THE FALSE-FLAG LOGIC",
+        "body": "The court's finding is that Yoon engineered a provocation — drone overflights of Pyongyang meant to draw a North Korean strike — to manufacture the 'grave emergency' the constitution requires. The maneuver is ancient: a leader who lacks a legal pretext for emergency powers creates one, betting the crisis will silence objections."
+      },
+      {
+        "heading": "WHY OVERFLY PYONGYANG",
+        "body": "The two Koreas remain technically at war under a 1953 armistice, separated by the world's most militarized border. A drone over the enemy capital is among the sharpest provocations short of gunfire — close enough to invite retaliation, deniable enough to disclaim. That calibration is exactly what made it useful as a pretext.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KR",
+              "KP"
+            ],
+            "label": "the divided peninsula",
+            "markers": [
+              {
+                "lat": 39.0392,
+                "lng": 125.7625,
+                "label": "Pyongyang"
+              },
+              {
+                "lat": 37.9583,
+                "lng": 126.6769,
+                "label": "Panmunjom (DMZ)"
+              },
+              {
+                "lat": 37.5665,
+                "lng": 126.978,
+                "label": "Seoul"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE CAST",
+        "body": "Yoon did not act alone. His defense minister, Kim Yong-hyun, and counterintelligence commander, Yeo In-hyung, were convicted alongside him — the civilian and military hands the plan required. Insurrection charges in South Korea reach beyond the figurehead to the chain of command that carried it out.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Yoon Suk-yeol",
+                "role": "President",
+                "years": "2022–2025",
+                "cc": "KR"
+              },
+              {
+                "name": "Kim Yong-hyun",
+                "role": "Defense minister",
+                "cc": "KR"
+              },
+              {
+                "name": "Yeo In-hyung",
+                "role": "Counterintelligence commander",
+                "cc": "KR"
+              }
+            ],
+            "label": "the convicted"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-12T04:29:12.485Z",
+    "label": "Martial Law & South Korea's Democracy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-12-manipur-two-killed-one-injured-in-fresh-violence-day-after-r": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THREE PEOPLES, NOT TWO",
+        "body": "Manipur's conflict is usually told as Meitei versus Kuki, but the state holds three rival communities. The Meitei dominate the Imphal valley; the Naga and the Kuki-Zo share the surrounding hills and have their own long-running quarrel with each other. This killing sits on the Kuki-Naga axis, the one Western coverage almost never names.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Meitei",
+                "value": 53,
+                "tone": "neutral"
+              },
+              {
+                "label": "Naga groups",
+                "value": 24,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Kuki-Zo groups",
+                "value": 16,
+                "tone": "favorable"
+              },
+              {
+                "label": "Others",
+                "value": 7,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Manipur population by community (approx. share)"
+          }
+        ]
+      },
+      {
+        "heading": "THE HILL-VALLEY ASYMMETRY",
+        "body": "The valley is roughly a tenth of the land but holds more than half the people; the hills are the reverse. Meitei cannot legally buy land in the protected hill districts, while hill tribes move freely into the valley — a one-way land law that turns every demographic shift into a constitutional grievance.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Imphal valley",
+                "value": "~10% land",
+                "weight": 10,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Hill districts",
+                "value": "~90% land",
+                "weight": 90,
+                "tone": "favorable"
+              }
+            ],
+            "label": "land vs people in Manipur"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1990s KUKI-NAGA WAR",
+        "body": "Today's killings echo a forgotten war. From 1992 to 1997 the Naga insurgent group NSCN-IM ran a campaign to clear Kukis from land it claimed; hundreds died in village massacres and tens of thousands were displaced. The grievance never closed — it was frozen, not resolved.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1992",
+                "label": "NSCN-IM campaign against Kukis begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1993",
+                "label": "Joupi and Gelnel village massacres"
+              },
+              {
+                "year": "1997",
+                "label": "NSCN-IM ceasefire with India"
+              },
+              {
+                "year": "2008",
+                "label": "Kuki militias sign Suspension of Operations"
+              },
+              {
+                "year": "2023",
+                "label": "Meitei-Kuki violence erupts"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1992",
+                "to": "1997",
+                "label": "Kuki-Naga clashes",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "the unresolved feud"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE LAND IS CONTESTED",
+        "body": "Naga nationalism's maximal demand is a single homeland stitched from Naga-inhabited districts across four Indian states and a slice of Myanmar. Kuki villages sit inside that claimed map, which is why hill territory between the two communities is fought over inch by inch.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The claim is called **Greater Nagalim**, and the group pressing it — the **NSCN-IM** — holds a ceasefire with Delhi but has never surrendered the territorial demand. A ceasefire with the state is not peace between the communities."
+          }
+        ]
+      },
+      {
+        "heading": "THE MYANMAR DIMENSION",
+        "body": "Manipur's eastern districts open onto Myanmar, and the Kuki-Zo are kin to the Chin and Mizo across that border. For decades a Free Movement Regime let people cross up to 16km without papers — so militancy, weapons, and refugees flow with the family ties, and Delhi's recent move to fence the border cuts through a single ethnic nation.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "MM"
+            ],
+            "label": "Manipur on the Myanmar frontier",
+            "caption": "Kuki-Zo kinship runs across the India-Myanmar line",
+            "markers": [
+              {
+                "lat": 24.817,
+                "lng": 93.938,
+                "label": "Imphal"
+              },
+              {
+                "lat": 24.247,
+                "lng": 94.312,
+                "label": "Moreh border crossing"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A SHUTDOWN SIGNALS",
+        "body": "When a community body calls a bandh — a total shutdown — it is demonstrating that it, not the state, controls daily life in its territory. The United Naga Council's 24-hour shutdown is less a protest than a show of who holds parallel authority in the hills.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Greater Nagalim, the homeland claimed by Naga nationalists, extends beyond India into which neighbouring country?",
+            "options": [
+              "Myanmar",
+              "Bangladesh",
+              "Bhutan",
+              "China"
+            ],
+            "correct": 0,
+            "explanation": "The claim folds in Naga-inhabited areas of Myanmar's Sagaing region alongside four Indian states, which is part of why Delhi treats it as unnegotiable."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-12T04:30:08.016Z",
+    "label": "Manipur's Three-Way Ethnic Map",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-12-us-supreme-court-denies-alabama-s-request-to-carry-out-nitro": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY NITROGEN WAS SUPPOSED TO BE PAINLESS",
+        "body": "The theory: flood a mask with pure nitrogen, the body never registers a problem, and the prisoner loses consciousness in seconds. Nitrogen already makes up 78% of the air we breathe — the pitch was a quiet, drug-free death.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The science behind the pitch is real: your urge to breathe is triggered by rising **carbon dioxide**, not falling **oxygen**. Pilots and divers black out from hypoxia without ever feeling air hunger."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT WENT WRONG IN PRACTICE",
+        "body": "Witnesses to Alabama's first nitrogen executions in 2024 described minutes of thrashing, gasping, and convulsions — not the swift unconsciousness predicted. A loose mask, involuntary gasping, or any air leak reintroduces CO2, which restores the panic the method was designed to avoid.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What actually triggers the body's suffocation panic — the feeling of needing to breathe?",
+            "options": [
+              "Falling oxygen levels in the blood",
+              "Rising carbon dioxide levels in the blood",
+              "A drop in blood pressure to the brain"
+            ],
+            "correct": 1,
+            "explanation": "Air hunger is driven by CO2 buildup, not oxygen loss — which is why nitrogen was theorized to be painless, and why any CO2 leak makes it agonizing."
+          }
+        ]
+      },
+      {
+        "heading": "THE METHOD TREADMILL",
+        "body": "Every American execution method was adopted as the humane replacement for the last one, then abandoned when it proved gruesome. The electric chair replaced hanging; the gas chamber replaced the chair; lethal injection replaced the gas chamber. Nitrogen is the newest rung on a 130-year ladder.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1890",
+                "label": "Electric chair (NY, first use)"
+              },
+              {
+                "year": "1924",
+                "label": "Gas chamber (Nevada)"
+              },
+              {
+                "year": "1982",
+                "label": "Lethal injection (Texas, first use)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Nitrogen hypoxia (Alabama)"
+              }
+            ],
+            "label": "the search for a 'humane' method"
+          }
+        ]
+      },
+      {
+        "heading": "WHY LETHAL INJECTION FAILED FIRST",
+        "body": "Nitrogen exists because lethal injection broke down. After 2011, European manufacturers — bound by EU export bans — cut off the sedatives US prisons relied on. States improvised with untested drug cocktails, producing a string of botched, prolonged executions that drove the hunt for an alternative.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hanging",
+                "value": "pre-1890"
+              },
+              {
+                "label": "Electric chair",
+                "value": "1890s–"
+              },
+              {
+                "label": "Gas chamber",
+                "value": "1920s–"
+              },
+              {
+                "label": "Lethal injection",
+                "value": "1982–"
+              },
+              {
+                "label": "Nitrogen",
+                "value": "2024–"
+              }
+            ],
+            "label": "US execution methods, by era"
+          }
+        ]
+      },
+      {
+        "heading": "THE EVOLVING-STANDARDS DOCTRINE",
+        "body": "The Eighth Amendment's ban on 'cruel and unusual' punishment is not frozen in 1791. Since Trop v. Dulles (1958), the Court reads it against 'the evolving standards of decency that mark the progress of a maturing society' — which is why a punishment legal in one era can become unconstitutional in another.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The Amendment must draw its meaning from the evolving standards of decency that mark the progress of a maturing society.",
+            "speaker": "Trop v. Dulles, US Supreme Court",
+            "year": "1958"
+          }
+        ]
+      },
+      {
+        "heading": "THE SHADOW DOCKET",
+        "body": "The order blocking the execution was unsigned, briefly reasoned, and issued on an emergency timeline — the 'shadow docket.' These rulings can halt or permit an execution overnight without full briefing or argument, which is why the underlying constitutional question stays formally unresolved even as a man's fate is decided."
+      }
+    ],
+    "generatedAt": "2026-06-12T04:30:45.464Z",
+    "label": "Nitrogen Execution & the Eighth Amendment",
+    "category": "politics",
+    "articleCount": 1
   }
 }
