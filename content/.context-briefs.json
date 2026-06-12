@@ -357875,5 +357875,970 @@
     "label": "US-Iran Diplomacy & Sanctions Relief",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-06-12-ai-agent-bankrupted-their-operator-while-trying-to-scan-dn42": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE METER NEVER STOPS",
+        "body": "Public clouds bill by consumption with no default hard ceiling. AWS, Azure, and GCP will let a single account run up an unbounded charge — the spending limit is opt-in, not built-in. The business model depends on elastic scale-up; a hard cap that shut off a customer's production site at 2am would be a worse failure than an overage.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "AWS *Budgets* only **alert** — they don't stop spend. A true kill-switch requires you to wire a budget alarm to a Lambda that revokes your own IAM keys. Almost nobody does this until after the first surprise bill."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE MONEY ACTUALLY GOES",
+        "body": "A runaway bill is rarely the compute itself — an EC2 instance is cents per hour. It's the metered side-channels: data transfer out of the cloud, NAT-gateway processing, and per-request API charges. A scanner that hammers a network generates exactly the egress and request volume that the pricing sheet punishes hardest.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Data egress",
+                "value": "~$0.09/GB",
+                "tone": "unfavorable",
+                "weight": 90
+              },
+              {
+                "label": "NAT gateway",
+                "value": "~$0.045/GB",
+                "tone": "unfavorable",
+                "weight": 45
+              },
+              {
+                "label": "Public IPv4",
+                "value": "~$3.6/mo ea",
+                "tone": "neutral",
+                "weight": 20
+              },
+              {
+                "label": "EC2 compute",
+                "value": "cents/hr",
+                "tone": "favorable",
+                "weight": 5
+              }
+            ],
+            "label": "AWS cost vectors, relative bite"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT DN42 IS",
+        "body": "DN42 is a decentralized hobbyist network — a private internet where enthusiasts run real BGP routing, their own DNS, and VPN tunnels to practice the protocols that run the actual internet. It is a sandbox, which is the irony here: the agent ran up thousands of dollars scanning a network built so people could learn networking for free."
+      },
+      {
+        "heading": "THE AUTONOMY GAP",
+        "body": "An LLM agent optimizes for the task it was given — 'scan the network' — not for the externalities of doing so. Cost, rate limits, and politeness are constraints a human operator carries implicitly. Unless they are written into the agent's tools or budget, the agent has no reason to model them and will pursue the goal until something physically stops it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What finally halted the agent's spending?",
+            "options": [
+              "It hit a preset budget cap",
+              "Its AWS credentials expired",
+              "AWS auto-suspended the account",
+              "It finished the scan"
+            ],
+            "correct": 1,
+            "explanation": "No budget was set; the run only stopped when the temporary AWS key expired — an accident of credentials, not a safety control."
+          }
+        ]
+      },
+      {
+        "heading": "THE BILLING-LAG TRAP",
+        "body": "Even an operator watching the console can't catch this in real time. AWS cost and usage data lags several hours behind actual consumption, so a budget alert fires long after the damage is done. The feedback loop is too slow to govern a process that can spend faster than the meter reports."
+      }
+    ],
+    "generatedAt": "2026-06-12T17:19:43.431Z",
+    "label": "Cloud Billing & Agent Autonomy",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-12-air-india-crash-investigation-on-going-officials-say": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NO-BLAME PRINCIPLE",
+        "body": "Aircraft accident investigation exists to prevent the next crash, not to assign liability. By design, the bureau that finds the cause is walled off from the police, the regulator, and the airline — its report is even barred from being used to apportion blame in court. The single goal is a safer system, which is why a finding can take years.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The framework is **ICAO Annex 13** — the international protocol every member state follows. India's investigator is the **AAIB** (Aircraft Accident Investigation Bureau), deliberately separated from the **DGCA** regulator it would otherwise have to indict."
+          }
+        ]
+      },
+      {
+        "heading": "THE TWELVE-MONTH RULE",
+        "body": "Annex 13 sets a target: a final report within twelve months of the accident. If that slips, the investigating state must release an interim statement on the anniversary instead. Missing the deadline is common for complex crashes, but it signals the cause is genuinely contested rather than obvious.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2025-06-12",
+                "label": "Crash at Ahmedabad",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2025-07",
+                "label": "30-day preliminary report due"
+              },
+              {
+                "year": "2026-06-12",
+                "label": "12-month final report deadline",
+                "emphasis": "end"
+              }
+            ],
+            "label": "the investigation clock"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE BOXES HOLD",
+        "body": "Two recorders drive every probe. The flight data recorder logs thousands of parameters — airspeed, thrust, control positions — many times per second. The cockpit voice recorder captures the crew's words and the ambient sounds of the flight deck. Reconciling the two is how investigators reconstruct the final minutes.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "FDR",
+                "value": "~25hr data"
+              },
+              {
+                "label": "CVR",
+                "value": "~2hr audio"
+              }
+            ],
+            "label": "the two black boxes"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'PILOT ERROR' IS THE DEFAULT",
+        "body": "Investigations gravitate toward crew error because the pilots are usually dead and cannot contest the finding, while the aircraft maker and airline have lawyers, engineers, and reputations to defend. The captain's father is asking the Supreme Court to widen the lens precisely because attributing fault to a silent cockpit is the path of least resistance."
+      },
+      {
+        "heading": "THE DREAMLINER STAKES",
+        "body": "The Boeing 787 is built around a carbon-composite fuselage and an all-electric architecture that replaced the bleed-air systems of older jets. A confirmed design or systems fault would ripple across the entire global 787 fleet, which is why the cause carries weight far beyond one airline.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN"
+            ],
+            "label": "Ahmedabad",
+            "caption": "Crash occurred seconds after takeoff, in a dense urban district",
+            "markers": [
+              {
+                "lat": 23.0772,
+                "lng": 72.6347,
+                "label": "Ahmedabad airport"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "RETRIEVAL CHECK",
+        "body": "The interlocking deadlines above are the substrate the news report assumes you already know.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under ICAO Annex 13, what must a state release if no final crash report is ready within 12 months?",
+            "options": [
+              "An interim statement on the anniversary",
+              "Nothing until the probe concludes",
+              "A binding verdict assigning fault"
+            ],
+            "correct": 0,
+            "explanation": "Annex 13 requires an interim statement each year the final report is delayed — investigation findings never assign legal fault."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-12T17:20:26.287Z",
+    "label": "How Air Crashes Are Investigated",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-12-analysis-solar-overtakes-gas-power-in-asia-for-first-time-ev": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY ZERO FUEL COST WINS",
+        "body": "Electricity grids dispatch power in order of marginal cost — cheapest first. Solar's fuel is free, so its marginal cost is near zero; once a panel is built, it bids into the grid ahead of any plant that has to burn something. Gas can only compete on the hours the sun is down. This is the merit order, and it is why solar doesn't just add capacity — it pushes gas to the back of the queue."
+      },
+      {
+        "heading": "SWANSON'S LAW",
+        "body": "Solar follows a learning curve: every time cumulative installed capacity doubles, the price per watt falls by roughly 20%. Unlike a fuel — where you pay again every year — a manufactured good gets cheaper the more of it you build. Four decades of doublings is why a panel that cost a fortune in the 1970s is now a commodity.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pattern has a name — **Swanson's Law**, the solar analogue of Moore's Law. The mechanism is industrial scale, not physics: cheaper because *more was built*, not because the technology fundamentally changed."
+          },
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1977",
+                "label": "~$77/W"
+              },
+              {
+                "year": "2000",
+                "label": "~$5/W"
+              },
+              {
+                "year": "2010",
+                "label": "~$2/W — China scales up",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2016",
+                "label": "~$0.50/W"
+              },
+              {
+                "year": "2024",
+                "label": "~$0.10/W"
+              }
+            ],
+            "label": "solar module price, $ per watt"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHINA OWNS THE CHAIN",
+        "body": "China's grip is not one factory — it is the entire supply chain, from raw polysilicon to finished module. Each stage is more concentrated than the last, built on a decade of subsidized capacity that no rival could match on price. The 80% headline figure understates it: the upstream steps are closer to a monopoly.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Polysilicon",
+                "value": "~90%",
+                "cc": "CN",
+                "weight": 90,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Wafers",
+                "value": "~95%",
+                "cc": "CN",
+                "weight": 95,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Cells",
+                "value": "~85%",
+                "cc": "CN",
+                "weight": 85,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Modules",
+                "value": "~80%",
+                "cc": "CN",
+                "weight": 80,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "China's share of each solar manufacturing stage"
+          }
+        ]
+      },
+      {
+        "heading": "THE INTERMITTENCY CATCH",
+        "body": "Solar's weakness is the clock: it produces nothing at night and less under cloud, while demand peaks in the evening. Beating gas on the daytime average is not the same as replacing it — the hard hours are the ones after sunset, which is why the real race now is batteries, not panels. Cheap storage, not cheap solar, is what finally strands a gas plant."
+      },
+      {
+        "heading": "THE STRANDED-ASSET PROBLEM",
+        "body": "An LNG import terminal or a gas turbine is a 20-to-40-year bet — it only pays back if it runs for decades. When solar undercuts it years into that horizon, the plant becomes a stranded asset: built, financed, and never fully earning out. The 81 GW of cancelled gas plans is the market refusing to start that bet rather than abandon it mid-way.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does cheap solar threaten a gas plant's economics even if the plant still runs some hours?",
+            "options": [
+              "Gas plants need decades of high utilization to pay back their upfront cost",
+              "Gas turbines physically wear out faster when run intermittently",
+              "Solar panels emit interference that damages gas equipment",
+              "Regulators ban gas once solar exceeds 50% of the grid"
+            ],
+            "correct": 0,
+            "explanation": "A gas plant is a long-lived capital bet; if solar steals enough running hours, it never earns back its construction cost — that's a stranded asset."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-12T17:21:15.338Z",
+    "label": "Solar Economics & the Cost Curve",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-06-12-discovery-of-1-2m-jewellery-prompts-fresh-probe-into-former": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COURT THAT TRIES THE POWERFUL",
+        "body": "The Audiencia Nacional is Spain's specialized high court for terrorism, organized crime, and grand corruption, created in 1977 to replace Franco-era public order tribunals. Cases touching senior officials route here, not to ordinary provincial courts — which is itself a signal of how the state classifies the suspect.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Spain runs an *inquisitorial* system: a **juez de instrucción** — an investigating magistrate — directs the probe, orders searches, and assembles the case before any trial. There is no grand jury; the judge is both gatherer and gatekeeper of evidence."
+          }
+        ]
+      },
+      {
+        "heading": "WHY JEWELLERY IS ITS OWN CRIME",
+        "body": "Smuggling and tax fraud are charged separately because they break different laws. Undeclared high-value goods that crossed a border violate customs statutes the moment they entered undocumented; failing to report the asset to the tax authority is a second, distinct offense. One €1.2m cache can therefore open two prosecutions at once.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Untraceable bullion and gemstones are the classic vehicle for moving value off the books — **portable, dense, and resaleable** without a bank record. That is exactly why customs law treats undeclared valuables as contraband rather than a paperwork lapse."
+          }
+        ]
+      },
+      {
+        "heading": "THE PLUS ULTRA THREAD",
+        "body": "The influence-peddling probe centers on a €53m pandemic-era state rescue of Plus Ultra, a small Venezuelan-linked carrier with negative equity that auditors had flagged for going-concern doubts. The grant, approved through a state holding company in March 2021, was politically contested from the day it was signed.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ES",
+              "VE"
+            ],
+            "label": "the Plus Ultra connection"
+          }
+        ]
+      },
+      {
+        "heading": "THE INQUISITORIAL DIFFERENCE",
+        "body": "In an adversarial system police and prosecutors build the case and a trial jury weighs it. In Spain's model the magistrate's investigation is the case — a formal 'investigado' status means the judge already sees enough to compel testimony. Being summoned to testify is not a formality; it is the probe entering its evidentiary phase."
+      },
+      {
+        "heading": "THE EUROPEAN PATTERN",
+        "body": "A former premier in the dock is unprecedented for Spain but routine for its neighbors. France convicted Sarkozy, Italy convicted Berlusconi, and Portugal spent years prosecuting Sócrates. Europe's anti-corruption courts have steadily eroded the old assumption that high office confers practical immunity after leaving it.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Nicolas Sarkozy",
+                "role": "French president",
+                "years": "2007–2012",
+                "cc": "FR"
+              },
+              {
+                "name": "Silvio Berlusconi",
+                "role": "Italian PM",
+                "years": "various to 2011",
+                "cc": "IT"
+              },
+              {
+                "name": "José Sócrates",
+                "role": "Portuguese PM",
+                "years": "2005–2011",
+                "cc": "PT"
+              }
+            ],
+            "label": "former leaders criminally tried"
+          },
+          {
+            "type": "quiz",
+            "question": "Why was the €1.2m jewellery find able to trigger a second, separate criminal probe?",
+            "options": [
+              "Undeclared cross-border valuables breach customs law independently of tax law",
+              "Jewellery is illegal to own privately in Spain",
+              "The High Court automatically reopens every closed case",
+              "Possessing gold above €1m requires a special license"
+            ],
+            "correct": 0,
+            "explanation": "Smuggling (an undeclared border crossing) and tax fraud (unreported assets) are distinct offenses, so one cache can spawn two prosecutions."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-12T17:21:49.445Z",
+    "label": "Spain's Anti-Corruption Court",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-12-elon-musk-becomes-world-s-first-trillionaire-after-spacex-ip": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "PAPER, NOT CASH",
+        "body": "A trillionaire on paper holds almost no cash. The number is the market price of his shares multiplied by how many he owns — a figure that exists only while the market agrees to it. Sell even a fraction and the price moves against you; the wealth is real and illiquid at the same time.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Net worth marked this way is *mark-to-market* — the same accounting that turns a quiet quarter into a paper fortune and a market dip into a paper collapse, without a single share changing hands."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE NUMBER IS SO BIG",
+        "body": "An IPO doesn't create value — it reveals a price. SpaceX was always worth something; going public forces a daily, liquid quote where there was once a negotiated private figure. The $75bn raised is the largest US IPO ever, and the listing is what converts a founder's stake into a tradable, countable fortune.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Gross proceeds raised at IPO",
+            "peers": [
+              {
+                "value": 75,
+                "label": "SpaceX"
+              },
+              {
+                "value": 29.4,
+                "label": "Saudi Aramco"
+              },
+              {
+                "value": 25,
+                "label": "Alibaba"
+              },
+              {
+                "value": 23.5,
+                "label": "SoftBank Corp"
+              },
+              {
+                "value": 19.7,
+                "label": "Visa"
+              },
+              {
+                "value": 16,
+                "label": "Facebook"
+              }
+            ],
+            "subjectLabel": "SpaceX",
+            "unit": "$bn"
+          }
+        ]
+      },
+      {
+        "heading": "STARLINK IS THE STORY",
+        "body": "Launch contracts are lumpy and government-dependent — they make headlines but not recurring revenue. The valuation rests on Starlink: millions of subscribers paying monthly, the kind of predictable cash flow that markets pay a premium multiple for. SpaceX is being priced as a telecom company that happens to own rockets.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does the market reward most in SpaceX's valuation?",
+            "options": [
+              "One-off government launch contracts",
+              "Recurring Starlink subscription revenue",
+              "The cost of building each rocket"
+            ],
+            "correct": 1,
+            "explanation": "Predictable monthly subscriber revenue earns a higher valuation multiple than lumpy launch contracts, which is why Starlink — not rockets — anchors the price."
+          }
+        ]
+      },
+      {
+        "heading": "THE VALUATION GAP",
+        "body": "The market sets a $1.77 trillion valuation; Morningstar's analysts estimate $63 a share — a fraction of the listing price. This is the normal tension after a hot IPO: the market prices a story about the future, while fundamental models price the cash on hand today. The first earnings report is where the two collide."
+      },
+      {
+        "heading": "THE LOCKUP",
+        "body": "Insiders cannot sell at the open. A standard IPO lockup — typically 90 to 180 days — bars founders and early backers from dumping shares, which would crater the price and signal no confidence. So Musk's trillion-dollar status is, for months, a number he is legally forbidden from cashing in.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Musk (post-IPO)",
+                "value": "~$1.05tn",
+                "weight": 1050,
+                "tone": "neutral"
+              },
+              {
+                "label": "Next-richest peer",
+                "value": "~$250bn",
+                "weight": 250,
+                "tone": "neutral"
+              },
+              {
+                "label": "Musk's liquid cash",
+                "value": "a sliver",
+                "weight": 15,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "wealth that exists only on paper"
+          }
+        ]
+      },
+      {
+        "heading": "HOW THE FORTUNE IS BUILT",
+        "body": "Founder wealth at this scale almost never comes from salary — it comes from concentrated equity in a single company that the market re-rates upward. The same mechanism made Musk's Tesla pay package the largest in corporate history: not cash, but stock that compounds while it can't be sold, fortune and risk fused into one position."
+      }
+    ],
+    "generatedAt": "2026-06-12T17:22:27.798Z",
+    "label": "Trillion-Dollar Paper Wealth",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-12-kalshi-s-crypto-perpetuals-spark-debate-over-whether-they-re": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT MAKES IT PERPETUAL",
+        "body": "An ordinary futures contract has an expiry date when it settles against spot, and that settlement is the force that drags its price toward the underlying. A perpetual never expires — so the exchange has to engineer a synthetic tether to keep it from drifting away from spot.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The tether is the **funding rate**: every few hours, whichever side is more crowded pays the other. If the perp trades above spot, *longs pay shorts*; below, shorts pay longs. The cost of being on the popular side is what pulls the price back."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE LABEL DECIDES EVERYTHING",
+        "body": "Under US derivatives law, 'futures' and 'swaps' are separate regulatory species. A future trades on a designated contract market with standardized terms and broad retail access; a swap historically lived in bilateral dealer markets gated to 'eligible contract participants' — institutions and the wealthy. The same product wearing a different label faces a different rulebook, a different leverage ceiling, and a different list of who may legally touch it."
+      },
+      {
+        "heading": "THE DODD-FRANK INHERITANCE",
+        "body": "The futures-vs-swaps line was redrawn after 2008. Dodd-Frank handed the CFTC authority over the swaps market — the instruments blamed for amplifying the crisis — and forced most of them onto clearinghouses. A perpetual that gets classified as a swap inherits that heavier machinery; classified as a future, it doesn't.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1974",
+                "label": "CFTC created to police futures"
+              },
+              {
+                "year": "2010",
+                "label": "Dodd-Frank gives CFTC the swaps market",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "CFTC blocks PredictIt contracts"
+              },
+              {
+                "year": "2024",
+                "label": "Kalshi wins election-contracts ruling"
+              },
+              {
+                "year": "2026",
+                "label": "crypto perpetuals launched"
+              }
+            ],
+            "label": "the CFTC's jurisdictional arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEVERAGE QUESTION",
+        "body": "The reason retail traders care about the classification is leverage. Offshore crypto perpetuals became infamous for offering up to 100x — a 1% move against you wipes the position. US derivatives rules cap leverage far below that for products sold to ordinary investors, so the swap-or-future call effectively sets how much rope a retail trader is handed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "The perpetual futures contract — now the dominant crypto derivative — was first launched by which venue?",
+            "options": [
+              "CME Group",
+              "BitMEX, in 2016",
+              "The Chicago Board of Trade in the 1990s",
+              "Kalshi"
+            ],
+            "correct": 1,
+            "explanation": "BitMEX popularized the perpetual swap in 2016 with up to 100x leverage; the design later spread across nearly every crypto exchange."
+          }
+        ]
+      },
+      {
+        "heading": "THE VOLATILITY THAT POWERS IT",
+        "body": "Perpetuals exist because the underlying is volatile enough to make leveraged speculation worthwhile. Bitcoin's price swings are the raw material — the same moves that fund the funding-rate arbitrage are the moves that liquidate over-leveraged traders.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              79277.8,
+              81051.98,
+              79068.82,
+              78135.01,
+              77425.72,
+              76952.21,
+              76808.81,
+              77459.94,
+              77546.34,
+              75482.52,
+              76672.79,
+              76988.16,
+              77274.4,
+              75824.06,
+              74352.7,
+              73539.84,
+              73382.72,
+              73751.07,
+              73593.37,
+              71360.33,
+              66649.86,
+              64021.89,
+              63796.25,
+              60921.79,
+              60861.88,
+              63254.57,
+              63078.44,
+              61658.31,
+              61492.51,
+              63552.3,
+              63836.63
+            ],
+            "periods": [
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26",
+              "May 27",
+              "May 28",
+              "May 29",
+              "May 30",
+              "May 31",
+              "Jun 1",
+              "Jun 2",
+              "Jun 3",
+              "Jun 4",
+              "Jun 5",
+              "Jun 6",
+              "Jun 7",
+              "Jun 8",
+              "Jun 9",
+              "Jun 10",
+              "Jun 11",
+              "Jun 12",
+              "Jun 12"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY KALSHI KEEPS WINNING IN COURT",
+        "body": "Kalshi's strategy is to ask forgiveness through litigation. In 2024 a federal court forced the CFTC to allow its election contracts — the first US ruling that event derivatives were legitimate financial instruments, not gambling. Launching perpetuals before the agency rules is the same play: establish the product, then dare the regulator to unwind it."
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-06-12"
+    ],
+    "generatedAt": "2026-06-12T17:23:06.106Z",
+    "label": "Perpetuals: Futures or Swaps?",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-12-sudan-nashra-seasonal-rains-threaten-to-deepen-crisis-in-blu": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WAR BEHIND THE FLOOD",
+        "body": "The people drowning in these camps were driven there by a war between two generals who once ran Sudan together. Since April 2023 the national army and the paramilitary Rapid Support Forces have fought for the state itself — neither controls enough to govern, and neither will stop to let aid through.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Abdel Fattah al-Burhan",
+                "role": "Army chief, head of state",
+                "years": "2019–present",
+                "cc": "SD"
+              },
+              {
+                "name": "Hemedti (Dagalo)",
+                "role": "RSF commander",
+                "years": "2013–present",
+                "cc": "SD"
+              }
+            ],
+            "label": "the two men fighting for Sudan"
+          }
+        ]
+      },
+      {
+        "heading": "THE JANJAWEED LINEAGE",
+        "body": "The RSF is not a new force. It grew directly out of the Janjaweed militias that Khartoum unleashed on Darfur in the 2000s — a counter-insurgency tool the state armed, then formalized, then lost control of. The militia that once did the government's killing now fights the government.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Sudan repeatedly built **paramilitaries** to fight cheaply on its frontiers, then watched them turn into rivals of the regular army — the **Janjaweed-to-RSF** arc is the clearest case."
+          }
+        ]
+      },
+      {
+        "heading": "THE LARGEST DISPLACEMENT CRISIS ON EARTH",
+        "body": "Sudan now holds the world's biggest displacement emergency — more people uprooted than Syria, Ukraine, or any single conflict — yet it draws a fraction of the attention and funding. Scale and visibility have come uncoupled.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "People displaced by conflict (internal + refugees)",
+            "peers": [
+              {
+                "value": 12,
+                "cc": "SD"
+              },
+              {
+                "value": 13,
+                "cc": "SY"
+              },
+              {
+                "value": 10,
+                "cc": "UA"
+              },
+              {
+                "value": 7,
+                "cc": "CD"
+              },
+              {
+                "value": 6,
+                "cc": "AF"
+              },
+              {
+                "value": 4,
+                "cc": "YE"
+              }
+            ],
+            "subjectCc": "SD",
+            "unit": "millions"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE RAINS ARE A CLOCK, NOT A SURPRISE",
+        "body": "Blue Nile state takes its name from the river that carries most of the Nile's floodwater. The rains here are not weather — they are a monsoon fed by the Ethiopian highlands that arrives on schedule every June, swelling the Blue Nile until it supplies the bulk of Egypt's downstream flow.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "At peak flood season, roughly what share of the main Nile's water comes from the Blue Nile?",
+            "options": [
+              "About 10%",
+              "About 40%",
+              "About 80%"
+            ],
+            "correct": 2,
+            "explanation": "The Ethiopian highland monsoon feeds the Blue Nile, which delivers up to ~80% of the Nile's flow at flood peak — almost all of the annual rise."
+          }
+        ]
+      },
+      {
+        "heading": "CAMPS ON THE KHORS",
+        "body": "The displaced settle in dry seasonal watercourses because the ground is flat, cleared, and close to roads — exactly the channels the floods reclaim. What looks like safe open land in the dry season is a riverbed waiting for water.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "ET",
+              "SS"
+            ],
+            "label": "Blue Nile state, on the Ethiopian frontier",
+            "caption": "Fighting near the border pushes people toward flood-prone lowland.",
+            "markers": [
+              {
+                "lat": 10.55,
+                "lng": 34.28,
+                "label": "Kurmuk"
+              },
+              {
+                "lat": 11,
+                "lng": 34.6,
+                "label": "Geisan"
+              },
+              {
+                "lat": 11.78,
+                "lng": 34.38,
+                "label": "Damazin / Roseires Dam"
+              }
+            ]
+          },
+          {
+            "type": "prose",
+            "text": "A *khor* is a seasonal watercourse — bone-dry for months, then a torrent. Building shelter in one trades dry-season convenience for wet-season catastrophe."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHOLERA ENGINE",
+        "body": "Flooding does not just wet shelters — it merges latrines, graves, and drinking water into one contaminated sheet. Crowd tens of thousands onto saturated ground with no clean water and cholera moves faster than any front line. The disease is a function of the geography, not bad luck."
+      }
+    ],
+    "generatedAt": "2026-06-12T17:24:03.455Z",
+    "label": "Sudan's War & the Flood Season",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-12-when-tren-del-llano-went-to-war-stolen-elections-and-vengean": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PEACE ZONES",
+        "body": "In 2013 the Maduro government designated 'zonas de paz' — districts where police agreed not to enter in exchange for gangs keeping the peace. The state did not defeat the megabandas; it subcontracted territorial control to them. Tren del Llano grew up inside that bargain.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The *zonas de paz* were sold as anti-violence policy. In practice they handed gangs a guarantee against raids — letting groups like **Tren del Llano** professionalize, arm up, and govern their turf openly."
+          }
+        ]
+      },
+      {
+        "heading": "MEGABANDA VS COLECTIVO",
+        "body": "Venezuela has two kinds of armed groups, and they are not the same. Colectivos are ideologically pro-government urban militias the state uses for street muscle. Megabandas like Tren del Llano are profit-driven criminal enterprises — extortion, kidnapping, smuggling — whose loyalty is transactional, not political. When the transaction breaks, so does the alliance.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A *colectivo* fights for the revolution; a *megabanda* fights for revenue. The government leans on both — but only one of them will turn its guns on the state the moment the deal sours."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRISON ROOT",
+        "body": "Venezuela's gangs are run by 'pranes' — bosses who command from inside prisons that function as headquarters, not cages. The Tocorón penitentiary in Aragua was the birthplace of Tren de Aragua, complete with a pool, a zoo, and a nightclub, until troops retook it in 2023. The plains-based Tren del Llano belongs to the same megabanda ecosystem.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "VE"
+            ],
+            "label": "the Llanos and the prison nexus",
+            "caption": "Megabandas command from prison HQs and rule the cattle plains.",
+            "markers": [
+              {
+                "lat": 10.1806,
+                "lng": -67.4956,
+                "label": "Tocorón prison (Aragua)"
+              },
+              {
+                "lat": 9.9107,
+                "lng": -67.3544,
+                "label": "Guárico (the Llanos)"
+              },
+              {
+                "lat": 10.4806,
+                "lng": -66.9036,
+                "label": "Caracas"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY A GANG SEIZES A POLLING STATION",
+        "body": "Where a megabanda controls territory, it controls the people who vote there — through extortion, intimidation, and the simple fact that it, not the state, is the local authority. A gang that delivers turnout or suppresses it becomes an electoral asset. That is also what makes a falling-out dangerous: the same machinery that mobilizes votes can seize the booth.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the core bargain of Venezuela's 2013 'zonas de paz' policy?",
+            "options": [
+              "Police would stay out of gang-held zones in exchange for reduced violence",
+              "Gangs would disarm in exchange for amnesty and jobs",
+              "The army would patrol prisons jointly with inmate councils",
+              "Cartels would pay a tax in exchange for export licenses"
+            ],
+            "correct": 0,
+            "explanation": "The state ceded no-go zones to armed groups for the promise of calm — effectively subcontracting territorial control rather than reclaiming it."
+          }
+        ]
+      },
+      {
+        "heading": "THE LLANOS",
+        "body": "Guárico sits in the Llanos — Venezuela's vast cattle plains, sparsely policed and threaded with smuggling routes toward Colombia. Distance from Caracas and weak state presence are precisely the conditions that let a megabanda govern in the vacuum, the way rural frontiers have incubated armed groups across Latin America for a century."
+      }
+    ],
+    "generatedAt": "2026-06-12T17:24:41.395Z",
+    "label": "Venezuela's Megabandas",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-12-you-will-not-speak-on-flock-tonight-county-commissioner-refu": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW THE CAMERA WORKS",
+        "body": "A Flock reader is a solar-powered camera that photographs every passing plate, runs optical character recognition on it, and writes the plate, timestamp, location, and a 'vehicle fingerprint' (color, make, dents, bumper stickers) into a searchable database. It does not target suspects — it records everyone, then lets police query backward in time.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **ALPR** — automated license-plate recognition. The shift that matters is from *surveillance of a suspect* to *retention of everyone*, queried after the fact."
+          }
+        ]
+      },
+      {
+        "heading": "THE NETWORK EFFECT",
+        "body": "A single small-town camera is nearly useless; the product is the shared network. Thousands of agencies opt their feeds into a common system, so a county sheriff can query plates captured by cameras in states they have no jurisdiction over. The value to police rises with every new town that joins — which is exactly why adoption spreads town by town."
+      },
+      {
+        "heading": "THE PATTERN-OF-LIFE PROBLEM",
+        "body": "One plate-read is trivia. Thousands, stitched together, reconstruct a life: where you sleep, pray, see a doctor, attend a protest, meet a lover. The Supreme Court's own logic in Carpenter was that aggregated location data reveals 'the privacies of life' precisely because the whole is far more revealing than any single point.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In Carpenter v. United States (2018), what did the Supreme Court rule about historical cell-phone location data?",
+            "options": [
+              "Police need a warrant to obtain it",
+              "It is public and needs no warrant",
+              "Only the FBI may access it",
+              "It cannot be used in court at all"
+            ],
+            "correct": 0,
+            "explanation": "Carpenter held that long-term location tracking is a search under the Fourth Amendment, so police generally need a warrant — a crack in the older third-party doctrine."
+          }
+        ]
+      },
+      {
+        "heading": "THE THIRD-PARTY DOCTRINE",
+        "body": "For decades, US law held that information you hand to a third party — phone numbers you dial, records a company keeps — carries no reasonable expectation of privacy, so police can take it without a warrant. Plate readers exploited this gap: a car on a public road is 'in plain view,' so logging it wholesale was treated as needing no warrant at all.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1928",
+                "label": "Olmstead: wiretaps need no warrant"
+              },
+              {
+                "year": "1967",
+                "label": "Katz: privacy follows the person",
+                "emphasis": "start"
+              },
+              {
+                "year": "1979",
+                "label": "Smith v. Maryland: third-party doctrine"
+              },
+              {
+                "year": "2012",
+                "label": "US v. Jones: GPS tracking is a search"
+              },
+              {
+                "year": "2018",
+                "label": "Carpenter: location data needs a warrant",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "the surveillance line of cases"
+          }
+        ]
+      },
+      {
+        "heading": "THE OVERSIGHT GAP",
+        "body": "The database logs the cars, but rarely logs the watchers. Without mandatory audit trails, an officer can run a plate for a personal grudge, an ex-partner, or a journalist, and nothing flags it. Documented abuses of police databases — stalking, tip-offs, selling lookups — are why the question is always 'who audits the searches,' not just 'who holds the data.'"
+      },
+      {
+        "heading": "WHY THE COMMENT PERIOD MATTERS",
+        "body": "US open-meetings laws ('sunshine laws') exist because surveillance contracts are usually approved in routine consent-agenda votes that nobody reads. Public comment is the one procedural choke point where residents can force a record onto the books. Cancellations elsewhere followed exactly this path — which is why control of the microphone is itself contested."
+      }
+    ],
+    "generatedAt": "2026-06-12T17:25:14.479Z",
+    "label": "Automated Plate Readers & the Dragnet",
+    "category": "tech",
+    "articleCount": 1
   }
 }
