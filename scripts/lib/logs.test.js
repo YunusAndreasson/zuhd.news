@@ -42,10 +42,17 @@ test('no new silent stage failures', () => {
     // service consumed only ~1.5min CPU over the 36min wall window (idle-blocked, not looping;
     // box had 6GB free, no OOM), so the outer `timeout 1800` killed it (and the SIGTERM lost the
     // session transcript, hence the blank log). Same class as the 2026-05-08 selector 5xx entry:
-    // transient upstream stall, no per-request timeout or retry wired in run-cycle.sh yet.
-    // TODO: retry the Writer once on exit=124 so a transient stall doesn't lose the whole cycle.
+    // transient upstream stall. RESOLVED 2026-06-12: run-cycle.sh now retries the Writer once
+    // on exit=124 when zero articles were produced, so a transient stall no longer loses the cycle.
     'cycle-2026-05-24_2201.log: Writer exit=124', // API stall — Published: 0
     'cycle-2026-05-26_1701.log: Writer exit=124', // API stall — Published: 0
+    // Audio briefing crashed on Google TTS `3 INVALID_ARGUMENT` while synthesizing
+    // category chunk 4/5 — malformed SSML from a chunk-boundary split. The throw was
+    // uncaught, so the whole day's briefing died after intro+3 categories had already
+    // synthesized. FIXED in generate-briefing.js: synthesizeChunk() now retries a
+    // rejected chunk as plain text and drops just that chunk on a second failure
+    // instead of crashing. Entry kept only until this log rotates out of the 14-cycle window.
+    'cycle-2026-06-12_0403.log: Briefing exit=1',
   ])
   const failures = []
   const stages = ['Selector', 'Writer', 'Editor', 'Edu context', 'Build', 'Deploy', 'Briefing']

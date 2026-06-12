@@ -209,9 +209,30 @@ echo "" | tee -a "$LOG_FILE"
 echo "--- Stage 2: Writer ---" | tee -a "$LOG_FILE"
 T2=$SECONDS
 WRITE_PROMPT=$(cat scripts/write-prompt.md)
-timeout 1800 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_MODEL --allowedTools $TOOLS_WRITER --max-turns 60 --exclude-dynamic-system-prompt-sections -p "$WRITE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+
+run_writer() {
+  timeout 1800 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_MODEL --allowedTools $TOOLS_WRITER --max-turns 60 --exclude-dynamic-system-prompt-sections -p "$WRITE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+}
+
+run_writer
 WRITE_EXIT=$?
 echo "Writer exit: $WRITE_EXIT — $((SECONDS - T2))s" | tee -a "$LOG_FILE"
+
+# Retry once on timeout if the writer produced nothing. This is the documented
+# API-stall failure mode (2026-05-24, 2026-05-26, 2026-06-09): the `claude -p`
+# request idle-blocks with zero output for the full 1800s, the outer timeout
+# kills it (exit 124), and the cycle publishes 0. Gate on "no articles written"
+# so a slow-but-productive run (partial output present) is kept, not discarded.
+if [ "$WRITE_EXIT" -eq 124 ]; then
+  WRITER_PRODUCED=$( { git diff --name-only content/articles/ 2>/dev/null; git ls-files --others --exclude-standard content/articles/ 2>/dev/null; } | grep -c . )
+  if [ "$WRITER_PRODUCED" -eq 0 ]; then
+    echo "Writer timed out with zero output — retrying once (transient API-stall mode)" | tee -a "$LOG_FILE"
+    T2R=$SECONDS
+    run_writer
+    WRITE_EXIT=$?
+    echo "Writer retry exit: $WRITE_EXIT — $((SECONDS - T2R))s" | tee -a "$LOG_FILE"
+  fi
+fi
 
 if [ "$WRITE_EXIT" -ne 0 ]; then
   echo "Writer failed (exit $WRITE_EXIT) — continuing with any partial output" | tee -a "$LOG_FILE"

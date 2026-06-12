@@ -233,7 +233,12 @@ Return ONLY the JSON object. No commentary, no markdown fences.`
       '--output-format', 'json',
       '-p', prompt,
     ],
-    { encoding: 'utf-8', timeout: 30_000, maxBuffer: 512 * 1024, env },
+    // 60s, not 30s: the batched 10-13 article scan routinely needed 30-35s and
+    // hit a 30s wall, SIGTERM-killing (exit 143) ~28% of cycles and losing all
+    // stock-entity extraction for them. The input tokens are already billed by
+    // then — the kill just discarded paid-for output. Stage budget is 180s, so
+    // 60s leaves ample headroom for the entity-haiku call that follows.
+    { encoding: 'utf-8', timeout: 60_000, maxBuffer: 512 * 1024, env },
   )
 
   if (res.status !== 0) {

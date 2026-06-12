@@ -115,7 +115,7 @@ try {
   const env = { ...process.env }
   delete env.CLAUDECODE
   const result = spawnSync('claude', [
-    '--model', process.env.ZUHD_BRIEFING_MODEL || 'claude-opus-4-7',
+    '--model', process.env.ZUHD_BRIEFING_MODEL || 'claude-opus-4-8',
     '--effort', 'medium',
     '--no-session-persistence',
     '--max-turns', '1',
@@ -275,6 +275,43 @@ const client = new textToSpeech.TextToSpeechClient()
 const tmpDir = join(AUDIO_DIR, '.tmp')
 mkdirSync(tmpDir, { recursive: true })
 
+// Synthesize one SSML chunk with a graceful degradation path. Google TTS
+// rejects malformed SSML (chunk-boundary tag splits, stray entities) with
+// `3 INVALID_ARGUMENT`, which previously threw uncaught and lost the ENTIRE
+// day's briefing after several chunks had already synthesized (2026-06-12
+// 04:00 cycle: died on category chunk 4/5). Fail-soft instead: on rejection,
+// retry once with all SSML markup stripped to plain text (always valid input);
+// if even that fails, return null so the caller drops just this chunk and the
+// briefing still ships with the rest of the audio.
+async function synthesizeChunk(ssml, label) {
+  const audioConfig = {
+    audioEncoding: 'LINEAR16',
+    sampleRateHertz: 24000,
+    effectsProfileId: ['headphone-class-device'],
+  }
+  const voice = { languageCode: 'en-US', name: VOICE_NAME }
+  try {
+    const [response] = await client.synthesizeSpeech({ input: { ssml }, voice, audioConfig })
+    return Buffer.from(response.audioContent)
+  } catch (err) {
+    console.error(`  ⚠ ${label}: SSML synthesis rejected (${err.message?.split('\n')[0]}) — retrying as plain text`)
+    const plain = ssml.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
+    if (!plain) {
+      console.error(`  ✗ ${label}: empty after strip — dropping chunk`)
+      return null
+    }
+    try {
+      const [response] = await client.synthesizeSpeech({
+        input: { ssml: `<speak>${plain}</speak>` }, voice, audioConfig,
+      })
+      return Buffer.from(response.audioContent)
+    } catch (err2) {
+      console.error(`  ✗ ${label}: plain-text retry also failed (${err2.message?.split('\n')[0]}) — dropping chunk`)
+      return null
+    }
+  }
+}
+
 // Build ordered list of audio parts: music files + synthesized TTS chunks
 const audioParts = [] // file paths in final playback order
 let chunkIdx = 0
@@ -290,21 +327,15 @@ for (let si = 0; si < ssmlSections.length; si++) {
   // Synthesize this section's TTS chunks
   const chunks = chunkSection(section.ssml)
   for (let ci = 0; ci < chunks.length; ci++) {
-    console.log(`  Synthesizing ${section.type} ${si + 1}/${ssmlSections.length}, chunk ${ci + 1}/${chunks.length} (${Buffer.byteLength(chunks[ci], 'utf-8')} bytes)`)
+    const label = `${section.type} ${si + 1}/${ssmlSections.length}, chunk ${ci + 1}/${chunks.length}`
+    console.log(`  Synthesizing ${label} (${Buffer.byteLength(chunks[ci], 'utf-8')} bytes)`)
     // Request LINEAR16 (uncompressed PCM, returned as a RIFF/WAV blob) instead
     // of MP3. This eliminates the lossy decode→re-encode generation that would
     // otherwise compound when we mux the chunks together at the end.
-    const [response] = await client.synthesizeSpeech({
-      input: { ssml: chunks[ci] },
-      voice: { languageCode: 'en-US', name: VOICE_NAME },
-      audioConfig: {
-        audioEncoding: 'LINEAR16',
-        sampleRateHertz: 24000,
-        effectsProfileId: ['headphone-class-device']
-      }
-    })
+    const audio = await synthesizeChunk(chunks[ci], label)
+    if (!audio) continue // chunk dropped (see synthesizeChunk) — ship the rest
     const chunkPath = join(tmpDir, `chunk-${chunkIdx++}.wav`)
-    writeFileSync(chunkPath, Buffer.from(response.audioContent))
+    writeFileSync(chunkPath, audio)
     audioParts.push(chunkPath)
   }
 }

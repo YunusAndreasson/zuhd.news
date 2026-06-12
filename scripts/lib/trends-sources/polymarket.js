@@ -142,7 +142,11 @@ Return ONLY a JSON array of the shortened strings, in the same order, same lengt
     '--max-turns', '1',
     '--output-format', 'json',
     '-p', prompt,
-  ], { encoding: 'utf-8', timeout: 20_000, maxBuffer: 256 * 1024, env })
+    // 40s, not 20s: a 6-7 title batch routinely overran 20s and got SIGTERM-
+    // killed (exit 143), forcing the regex fallback every cycle even though the
+    // Haiku output we'd already paid for was nearly ready. Trends stage budget
+    // is 120s, so 40s is comfortably within headroom.
+  ], { encoding: 'utf-8', timeout: 40_000, maxBuffer: 256 * 1024, env })
 
   if (res.status !== 0) {
     console.error(`  ✗ polymarket-haiku ${tmpId}: exit ${res.status} — falling back to regex`)
