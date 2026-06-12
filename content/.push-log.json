@@ -1,98 +1,5 @@
 [
   {
-    "timestamp": "2026-05-22T04:36:00.301Z",
-    "candidateCount": 10,
-    "candidates": [
-      {
-        "slug": "2026-05-22-us-arrests-gaesa-cuba-sister-florida",
-        "title": "US Arrests GAESA Chief's Sister",
-        "category": "politics",
-        "eventCoverage": 19,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-22-us-sanctions-hezbollah-aligned-lebanon-officials",
-        "title": "US Sanctions 9 Lebanese Officials",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-21-china-vocational-internship-child-labor",
-        "title": "China Internships Endanger Vocational Teens",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-22-spacex-starship-v3-scrub-launch-tower",
-        "title": "Starship V3 Scrubbed at T-40 Seconds",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-22-mass-general-brigham-mortality-metric-dispute",
-        "title": "Brigham's Mortality Claim Disputed",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-21-china-power-emissions-two-province-decline",
-        "title": "China's Power Cut Was 2 Provinces",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-21-jwst-wasp-94ab-weather-map",
-        "title": "JWST Maps Exoplanet Weather",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-21-acurite-iot-app-shutdown-cloud-dependency",
-        "title": "AcuRite Kills App, Strands Users",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-23-cisa-kev-external-nominations-researcher-form",
-        "title": "CISA Opens Vulnerability Catalog to Public",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-21-oldest-animal-sex-locomotion-fossil-canada",
-        "title": "567M-Year Fossils Redate Animal Sex",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-05-22-us-arrests-gaesa-cuba-sister-florida",
-      "title": "US Arrests GAESA Chief's Sister",
-      "category": "politics",
-      "body": "The sister of [Cuba](country:CU)'s military conglomerate GAESA chief is in US",
-      "eventCoverage": 19,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "US arrests sister of Cuba's GAESA military chief in Florida",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 24
-    }
-  },
-  {
     "timestamp": "2026-05-22T08:26:27.298Z",
     "candidateCount": 8,
     "candidates": [
@@ -9904,5 +9811,112 @@
     "selected": null,
     "skipReason": "all 12 candidates below coverage threshold 1",
     "sent": false
+  },
+  {
+    "timestamp": "2026-06-12T04:32:41.496Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-06-11-locked-out-of-ipo-asia-investors-find-new-ways-to-bet-on-spa",
+        "title": "Asia Locked Out of SpaceX",
+        "category": "economy",
+        "eventCoverage": 31,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-12-jailed-south-korea-ex-president-gets-30-more-years-for-sendi",
+        "title": "Yoon Gets 30 More Years",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-12-us-supreme-court-denies-alabama-s-request-to-carry-out-nitro",
+        "title": "Court Blocks Nitrogen Execution",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-12-israeli-firm-blackcore-suspected-of-meddling-in-new-york-and",
+        "title": "France Names Israeli Election Firm",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-12-manipur-two-killed-one-injured-in-fresh-violence-day-after-r",
+        "title": "Manipur Kuki Leaders Killed",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-12-families-of-mexico-s-disappeared-march-in-the-capital-as-wor",
+        "title": "Mexico's Missing March World Cup",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-12-economic-survey-2025-26-provinces-development-freeze-to-pers",
+        "title": "Pakistan Freezes Provincial Budgets",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-10-what-a-drug-bust-involving-a-mrbeast-winner-says-about-latam",
+        "title": "Cannabis Now Flows South",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-12-building-robust-materials-from-start-may-ease-critical-miner",
+        "title": "Design Out Critical Minerals",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-11-italy-skips-crew-allocation-queue-thanks-to-astronaut-s-test",
+        "title": "Italy Wins Artemis III Slot",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-11-sir-please-fix-irctc-captcha-students-plea-prompts-ashwini-v",
+        "title": "India Rebuilds Rail Ticket Site",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-11-f-22-s-catfish-757-testbed-spotted-carrying-raptor-s-new-inf",
+        "title": "F-22 Gets Passive Infrared Pod",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-06-11-locked-out-of-ipo-asia-investors-find-new-ways-to-bet-on-spa",
+      "title": "Asia Locked Out of SpaceX",
+      "category": "economy",
+      "body": "Asian investors locked out of $75bn SpaceX",
+      "eventCoverage": 31,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Asian investors locked out of $350bn SpaceX IPO, turn to proxies",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 24
+    }
   }
 ]
