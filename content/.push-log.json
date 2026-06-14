@@ -1,98 +1,5 @@
 [
   {
-    "timestamp": "2026-05-24T04:32:24.627Z",
-    "candidateCount": 10,
-    "candidates": [
-      {
-        "slug": "2026-05-24-bengal-bjp-bakrid-holiday-cut-muslim-public-life",
-        "title": "BJP Cuts Bengal's Eid Holiday",
-        "category": "politics",
-        "eventCoverage": 19,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-24-trump-iran-deal-largely-negotiated-regional-anchoring",
-        "title": "Trump: Iran Deal Drafted",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-24-bolivia-monkox-indigenous-women-wildfire-recovery",
-        "title": "Bolivia Fire: Women Rebuild Alone",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-24-hormuz-tanker-skylight-indian-sailor-survivor-missing",
-        "title": "Skylight Sailor Survives; Crewmate Missing",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-24-east-africa-mitumba-import-ban-textile-trade-off",
-        "title": "East Africa Stalls Mitumba Ban",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-24-pfas-defluorination-solar-catalyst-500h-wastewater",
-        "title": "Solar Catalyst Breaks Forever Chemicals",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-24-indonesia-java-sea-wall-climate-adaptation-bet",
-        "title": "Indonesia Bets on Java Seawall",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-24-china-us-ai-research-networked-shared-commons",
-        "title": "US-China AI Knowledge Flows On",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-24-cisa-kev-catalog-public-nomination-researcher",
-        "title": "CISA Opens Bugs List Publicly",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-24-improved-pied-kingfisher-optimization-algorithm-for-optimal",
-        "title": "Algorithm Cuts Microgrid Costs 10%",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-05-24-bengal-bjp-bakrid-holiday-cut-muslim-public-life",
-      "title": "BJP Cuts Bengal's Eid Holiday",
-      "category": "politics",
-      "body": "Bengal's Eid al-Adha cut to 1 day by executive",
-      "eventCoverage": 19,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "West Bengal cuts Eid al-Adha holiday from 2 days to 1, officials say",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 24
-    }
-  },
-  {
     "timestamp": "2026-05-24T08:31:19.114Z",
     "candidateCount": 8,
     "candidates": [
@@ -9962,6 +9869,78 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Orban reelected Fidesz leader with 729 votes despite historic election defeat",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 24
+    }
+  },
+  {
+    "timestamp": "2026-06-14T04:34:04.576Z",
+    "candidateCount": 7,
+    "candidates": [
+      {
+        "slug": "2026-06-13-khamenei-funeral-dates-mashhad-burial",
+        "title": "Iran Sets Khamenei Burial Date",
+        "category": "politics",
+        "eventCoverage": 210,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-14-ajk-internet-shutdown-jaac-crackdown",
+        "title": "Pakistan Blacks Out Kashmir Web",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-14-australia-ndis-cuts-disability-scheme",
+        "title": "Australia Fast-Tracks Disability Cuts",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-14-tongaat-hulett-rescue-elite-capture",
+        "title": "Zimbabwe Creditors Target South Africa",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-14-russia-china-payments-de-dollarization",
+        "title": "Russia-China Payments Bypass Sanctions",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-13-us-directive-suspend-fable-mythos-access",
+        "title": "US Suspends Frontier AI Model",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-13-census-bureau-noise-infusion-ban-privacy",
+        "title": "Commerce Bans Census Privacy Technique",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-06-13-khamenei-funeral-dates-mashhad-burial",
+      "title": "Iran Sets Khamenei Burial Date",
+      "category": "politics",
+      "body": "[Iran](country:IR) set Khamenei's burial for July",
+      "eventCoverage": 210,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Iran sets burial date for Supreme Leader Khamenei for July 9",
     "response": {
       "pushed": 1,
       "skipped": 0,
