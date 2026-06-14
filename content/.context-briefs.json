@@ -358840,5 +358840,892 @@
     "label": "Automated Plate Readers & the Dragnet",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-06-13-census-bureau-noise-infusion-ban-privacy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RECONSTRUCTION ATTACK",
+        "body": "In 2019, Census Bureau researchers proved that the public tables from the 2010 Census were mathematically reconstructible. By treating thousands of published cross-tabulations as a system of simultaneous equations and solving it, they recovered the individual responses of over 52 million Americans — no hack, no leak, no external data required.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "The 2010 Census re-identification attack used which data source?",
+            "options": [
+              "Hacked Census Bureau microdata servers",
+              "Publicly released Census summary tables",
+              "Social media cross-referenced with voter rolls",
+              "A whistleblower's leaked individual records"
+            ],
+            "correct": 1,
+            "explanation": "Public summary tables can be solved as simultaneous equations — no breach needed. The attack used only data the Census Bureau had already published."
+          }
+        ]
+      },
+      {
+        "heading": "THE AGGREGATION PARADOX",
+        "body": "A single Census table is harmless: \"1,200 people in this tract are Hispanic women aged 25–34.\" A thousand interlocking tables form an over-determined system with a unique solution — individual records. The Census publishes exactly this kind of dense, cross-referenced matrix across every demographic variable it collects."
+      },
+      {
+        "heading": "HOW DIFFERENTIAL PRIVACY WORKS",
+        "body": "Differential privacy adds precisely calibrated mathematical noise to query outputs before they are published. The guarantee is a proof: for a parameter ε (epsilon), whether or not any specific person is in the dataset, the probability of any given output shifts by at most a factor of e^ε. This is not a policy promise — it is a mathematical theorem.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**Epsilon (ε)** controls the privacy-accuracy tradeoff: smaller epsilon means more noise and stronger privacy, but less precise published statistics. Even the 2020 Census's implementation drew criticism from statisticians who argued the chosen epsilon values provided only weak protection for small demographic groups in rural tracts."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ANONYMIZATION FAILS",
+        "body": "The previous standard — k-anonymity — suppressed any data cell referring to fewer than k people. In 2008, researchers re-identified 99% of Netflix's supposedly anonymous user ratings by cross-referencing them with public IMDb reviews. Statistical anonymization without a proven lower bound on information leakage has no floor on how badly it fails when auxiliary data exists.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "k-anonymity",
+                "value": "No formal bound",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "l-diversity",
+                "value": "No formal bound",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Suppression",
+                "value": "No formal bound",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Diff. privacy",
+                "value": "ε-proved bound",
+                "tone": "favorable"
+              }
+            ],
+            "label": "Statistical privacy techniques"
+          }
+        ]
+      },
+      {
+        "heading": "TITLE 13 AND THE 72-YEAR SEAL",
+        "body": "Title 13 of the US Code makes releasing individual Census responses a federal crime for 72 years — the assumed maximum human lifespan when the rule was enacted. This is why the 1950 Census became available only in 2022, and why genealogists track the release calendar. Removing differential privacy does not change this legal obligation; it only changes whether the Census Bureau can technically honor it.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1954",
+                "label": "Title 13 enacted — 72-yr seal"
+              },
+              {
+                "year": "2006",
+                "label": "Differential privacy formalized"
+              },
+              {
+                "year": "2008",
+                "label": "Netflix re-identification published"
+              },
+              {
+                "year": "2019",
+                "label": "Census announces DP for 2020",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "1950 Census publicly opened"
+              },
+              {
+                "year": "2026",
+                "label": "Commerce bans DP"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1954",
+                "to": "2026",
+                "label": "Title 13 seal active",
+                "tone": "favorable"
+              },
+              {
+                "from": "2019",
+                "to": "2026",
+                "label": "DP protection in effect",
+                "tone": "favorable"
+              }
+            ],
+            "label": "Census privacy arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-14T04:20:10.736Z",
+    "label": "Statistical Privacy & the Census",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-13-khamenei-funeral-dates-mashhad-burial": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SHRINE CITY",
+        "body": "Mashhad is the holiest city on Iranian soil — home to the shrine of Imam Ali al-Ridha, the eighth imam in Twelver Shia tradition and the only imam buried inside Iran. Khamenei was born and educated there; burial near the shrine signals a claim to sacred proximity that Tehran, where Khomeini rests in a purpose-built mausoleum, cannot match.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR"
+            ],
+            "label": "Mashhad vs. Tehran — the two burial sites",
+            "markers": [
+              {
+                "lat": 36.2872,
+                "lng": 59.6162,
+                "label": "Imam Reza Shrine, Mashhad"
+              },
+              {
+                "lat": 35.5527,
+                "lng": 51.4231,
+                "label": "Khomeini Mausoleum, Tehran"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE KHURASANI WEIGHT",
+        "body": "Khorasan — the historical region in which Mashhad sits — carries specific weight in Sunni eschatological tradition. A hadith in Sahih Muslim describes an army with black banners emerging from Khorasan as a portent preceding major end-times events. The burial of a Shia supreme leader in this region, adjacent to the shrine that draws millions of pilgrims annually, layers two very different religious registers onto the same geography.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**Khorasan** (meaning 'where the sun rises' in Persian) once stretched from northeastern Iran into Central Asia; Mashhad is its modern capital. The hadith tradition treats the region as a *theater of eschatological significance* — not an abstraction, but a named place where specific events are expected to unfold."
+          }
+        ]
+      },
+      {
+        "heading": "THE SELECTION MECHANISM",
+        "body": "Iran's 88-member Assembly of Experts holds sole constitutional authority to appoint the Supreme Leader. The assembly is elected by the public, but every candidate must pass vetting by the Guardian Council — half of whose members are appointed by the Supreme Leader himself. Rafsanjani engineered Khamenei's selection in 1989 by controlling the assembly's deliberation; whoever controls that room in 2026 determines the outcome.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Ruhollah Khomeini",
+                "role": "Founding Supreme Leader",
+                "years": "1979–1989",
+                "cc": "IR"
+              },
+              {
+                "name": "Ali Khamenei",
+                "role": "President, then Leader",
+                "years": "1981–2026",
+                "cc": "IR"
+              },
+              {
+                "name": "Akbar Hashemi Rafsanjani",
+                "role": "Assembly of Experts chair",
+                "years": "1983–2007",
+                "cc": "IR"
+              }
+            ],
+            "label": "the 1989 selection cast"
+          }
+        ]
+      },
+      {
+        "heading": "THE CONSTITUTIONAL THRESHOLD",
+        "body": "Velayat-e Faqih — the doctrine of 'guardianship of the jurist' — requires the Supreme Leader to possess sufficient jurisprudential rank to interpret Islamic law. When Khomeini died, Khamenei was a mid-ranking cleric who lacked marja status. The Assembly of Experts amended the constitution within days to remove the marja requirement, making his selection retroactively valid — and establishing that the job can reshape its own qualifications.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When the Assembly of Experts appointed Khamenei in 1989, what constitutional requirement did they remove?",
+            "options": [
+              "The leader must hold marja (grand ayatollah) status",
+              "The leader must have been directly elected by popular vote",
+              "The leader must have served as parliament speaker first",
+              "The leader must be over 60 years of age"
+            ],
+            "correct": 0,
+            "explanation": "Khamenei was a mid-ranking cleric; the constitution was amended within days of Khomeini's death to enable the appointment."
+          }
+        ]
+      },
+      {
+        "heading": "THE MOJTABA QUESTION",
+        "body": "Mojtaba Khamenei controls his father's office apparatus and has built deep IRGC relationships over the past decade — the same informal accumulation that preceded his father's own rise. The system has no vice-supreme-leader, no automatic succession line, and no tested procedure for a vacancy during active foreign negotiations. Hereditary succession contradicts the republic's founding mythology — the 1979 revolution overthrew a dynasty — but institutional network control is constitutionally a different thing.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Islamic Revolution; Khomeini becomes leader",
+                "emphasis": "start"
+              },
+              {
+                "year": "1989-06",
+                "label": "Khomeini dies; Khamenei chosen within hours",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026",
+                "label": "Khamenei killed; succession opens",
+                "emphasis": "end"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1979",
+                "to": "1989",
+                "label": "Khomeini era",
+                "tone": "neutral"
+              },
+              {
+                "from": "1989",
+                "to": "2026",
+                "label": "Khamenei era — 37 years",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Iran's Supreme Leadership arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-14T04:21:52.749Z",
+    "label": "Khamenei's Succession & Mashhad",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-13-us-directive-suspend-fable-mythos-access": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEEMED EXPORT RULE",
+        "body": "Under US law, a foreign national accessing controlled technology on American soil constitutes an 'export' to their home country — no data needs to cross a border. The deemed export doctrine was written for Cold War classified blueprints; applied to a global API, it means every authenticated login is a potential export event requiring an individual license Anthropic does not hold for restricted nationals.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **deemed export** rule is why 'we cannot segment our user base by nationality' is not evasion — it is a precise legal statement. Any API call by a restricted national, anywhere in the world, triggers the doctrine regardless of where the server sits."
+          },
+          {
+            "type": "quiz",
+            "question": "Under US deemed export rules, what triggers an export event for a controlled AI model?",
+            "options": [
+              "Model weights are physically shipped to a foreign server",
+              "A foreign national accesses the model, even from US soil",
+              "The company opens an office in a restricted country",
+              "A foreign government requests a licensing agreement"
+            ],
+            "correct": 1,
+            "explanation": "The deemed export rule treats access by a restricted-nationality user as an export to their home country — no physical movement of data or hardware is required."
+          }
+        ]
+      },
+      {
+        "heading": "THE CRYPTO WARS PRECEDENT",
+        "body": "In 1991, Phil Zimmermann released PGP encryption software. US authorities opened a criminal investigation, classifying strong encryption as a munition under the International Traffic in Arms Regulations. The case collapsed when Zimmermann published the source code as a book — protected speech under the First Amendment. By 2000, the Clinton administration abandoned encryption export controls entirely after non-US alternatives had already proliferated. Every attempt to hold the line on dual-use software has followed the same arc.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1991",
+                "label": "Zimmermann releases PGP; federal investigation opens",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1993",
+                "label": "Clinton proposes Clipper Chip backdoor"
+              },
+              {
+                "year": "1995",
+                "label": "Bernstein v. DOJ: source code ruled protected speech"
+              },
+              {
+                "year": "2000",
+                "label": "Encryption export controls abandoned"
+              },
+              {
+                "year": "2023",
+                "label": "Biden EO: frontier AI reporting above 10^26 FLOP"
+              },
+              {
+                "year": "2026",
+                "label": "Fable 5 suspended globally"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1991",
+                "to": "2000",
+                "label": "Crypto Wars",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "software export controls: the arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'FRONTIER' MEANS IN LAW",
+        "body": "The legal trip-wire for US export control is not benchmark scores or public perception — it is training compute. Biden's October 2023 Executive Order set the threshold at 10^26 floating-point operations. Below that number, lighter rules apply. Above it, a model is legally 'frontier' regardless of what it can actually do, who deployed it, or whether its capabilities differ from a model just below the line.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **10^26 FLOP** threshold was chosen partly because no publicly deployed model had clearly crossed it in 2023 — it was engineered as a near-future trip-wire, not a regulation of what already existed. The moment a model crosses it, the entire export-control apparatus applies automatically."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CAPABILITY CANNOT BE REDACTED",
+        "body": "A frontier model's dangerous capability — synthesizing hazardous instructions, generating disinformation at scale — is not a separable module. It emerges from the same weights that make the model useful for legitimate tasks. There is no surgical procedure that produces a frontier model with its frontier capability removed. This is fundamentally different from physical dual-use technology: you can export a nuclear reactor without the enriched fuel, but you cannot export a language model without its language.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This inseparability is why 'fine-tune out the dangerous parts' is not a real solution: the capability is **distributed across billions of parameters**, not located in any particular layer or component that an export-safe build could omit."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-14T04:24:28.303Z",
+    "label": "AI Export Controls",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-06-14-ajk-internet-shutdown-jaac-crackdown": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONSTITUTIONAL GAP",
+        "body": "Azad Kashmir is not a province of Pakistan. Its residents elect their own assembly and prime minister but have no seats in Pakistan's National Assembly or Senate — they cannot vote out the government in Islamabad that controls their defense, foreign affairs, and communications infrastructure. This democratic deficit is structural, not incidental.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IN"
+            ],
+            "label": "the disputed corridor",
+            "caption": "AJK borders both Pakistan and Indian-administered J&K",
+            "markers": [
+              {
+                "lat": 34.3607,
+                "lng": 73.4688,
+                "label": "Muzaffarabad (capital)"
+              },
+              {
+                "lat": 33.8571,
+                "lng": 73.7604,
+                "label": "Rawalakot"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE JAAC ORIGIN",
+        "body": "The Joint Awami Action Committee emerged in May 2022 after Islamabad removed subsidized wheat flour and raised electricity prices across AJK. Sit-ins blocked the Murree-Muzaffarabad highway for weeks until federal ministers were summoned to sign written agreements restoring subsidies — the first time a popular movement in AJK had extracted signed federal commitments. That victory made the JAAC a permanent political force.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2022-05",
+                "label": "Wheat subsidy cut triggers sit-in"
+              },
+              {
+                "year": "2022-06",
+                "label": "Islamabad signs JAAC agreement",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Renewed protests as IMF conditions bite"
+              },
+              {
+                "year": "2026-06",
+                "label": "Crackdown; 8-day internet blackout"
+              }
+            ],
+            "spans": [
+              {
+                "from": "2022-05",
+                "to": "2026-06",
+                "label": "JAAC active",
+                "tone": "neutral"
+              }
+            ],
+            "label": "JAAC protest arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE SUBSIDY BARGAIN",
+        "body": "AJK residents historically received below-market wheat and cheap electricity as informal compensation for living in a disputed territory without full parliamentary representation. The arrangement was never codified as a legal right — it was a political transfer, which made it revocable. When the IMF pressed Pakistan to reduce energy and food subsidies, AJK's arrangement was cut despite its special constitutional status.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **JAAC** is a cross-party coalition of lawyers, political parties, and civil society groups — not a registered party, which is why Islamabad's attempt to *ban* it is legally contested rather than administratively clean."
+          }
+        ]
+      },
+      {
+        "heading": "THE SHUTDOWN ARCHITECTURE",
+        "body": "AJK's fiber backbone terminates at telecom exchanges in Rawalpindi, controlled by Pakistan's federal PTA — not by AJK's own assembly. A single federal directive can sever connectivity to the entire territory without any AJK legislative input. Students crossing into Khyber Pakhtunkhwa are physically entering a different network zone, where the same directive does not apply.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Myanmar (Chin)",
+                "value": "550+ days",
+                "cc": "MM",
+                "weight": 550,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Ethiopia (Tigray)",
+                "value": "~400 days",
+                "cc": "ET",
+                "weight": 400,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India (J&K)",
+                "value": "213 days",
+                "cc": "IN",
+                "weight": 213,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Pak. AJK (now)",
+                "value": "8+ days",
+                "cc": "PK",
+                "weight": 8,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Iran (Nov 2019)",
+                "value": "~7 days",
+                "cc": "IR",
+                "weight": 7,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Notable internet shutdown durations"
+          }
+        ]
+      },
+      {
+        "heading": "THE PLEBISCITE THAT NEVER HAPPENED",
+        "body": "UN Security Council Resolution 47 (1948) called for a free and impartial plebiscite to let Kashmiris determine their future. Pakistan accepted; India agreed in principle but linked troop withdrawal to conditions that were never met. The resolution has never been rescinded — it remains the legal basis for Pakistan's claim that AJK is disputed territory pending self-determination, not sovereign Pakistani land.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Has the UN-mandated Kashmir plebiscite called for in Resolution 47 (1948) ever been held?",
+            "options": [
+              "Yes, under UN supervision in 1952",
+              "No — unimplemented after 78 years",
+              "It was superseded by the 1972 Simla Agreement",
+              "India held a domestic referendum in 1957"
+            ],
+            "correct": 1,
+            "explanation": "Never held. India argues the 1972 Simla Agreement replaced UN resolutions with bilateral resolution; Pakistan rejects that reading — the dispute remains legally unresolved."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-14T04:27:19.112Z",
+    "label": "Azad Kashmir & the JAAC",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-14-australia-ndis-cuts-disability-scheme": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INSURANCE MODEL",
+        "body": "The NDIS is structured as an insurance scheme, not welfare. Each participant gets an individual plan with a dollar budget they control — to hire a support worker, buy a wheelchair, fund therapy. This replaced block funding, where governments paid providers to run group homes and day programs. The structural shift gave disabled Australians purchasing power but created a scheme that could grow unboundedly as eligible individuals enrolled.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011",
+                "label": "Productivity Commission recommends NDIS"
+              },
+              {
+                "year": "2013",
+                "label": "NDIS Act passed; trial sites launched",
+                "emphasis": "start"
+              },
+              {
+                "year": "2016",
+                "label": "National rollout begins"
+              },
+              {
+                "year": "2019",
+                "label": "Full scheme — 411k forecast already surpassed"
+              },
+              {
+                "year": "2023",
+                "label": "Independent review: 'back on track'"
+              },
+              {
+                "year": "2026",
+                "label": "200,000 to be removed by 2031",
+                "emphasis": "pivot"
+              }
+            ],
+            "spans": [
+              {
+                "from": "2013",
+                "to": "2019",
+                "label": "Rollout phase",
+                "tone": "favorable"
+              },
+              {
+                "from": "2020",
+                "to": "2026",
+                "label": "Cost blowout & reform drive",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "NDIS arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE COST BLOWOUT",
+        "body": "The Productivity Commission's 2011 modeling forecast ~411,000 participants and ~$22bn/year at maturity. By 2025 the scheme had over 650,000 participants and was tracking above $45bn/year — making it Australia's fastest-growing budget line and the second-largest social program after Medicare. The gap between forecast and reality is the entire political crisis.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "NDIS now costs more than **all of Australia's public hospitals combined** on a per-annum basis — a scale the original architects did not model and Parliament did not vote for."
+          }
+        ]
+      },
+      {
+        "heading": "THE DIAGNOSIS DRIVER",
+        "body": "An NDIS plan averaged over $70,000/year per participant by the mid-2020s. This attached large financial stakes to clinical diagnosis. Autism spectrum disorder became the dominant entry point — roughly a quarter of all participants — partly because DSM-5 (2013) had already broadened the diagnostic criteria, and the NDIS then added a dollar incentive to assessment. GPs, psychologists, and pediatricians began assessing through a lens shaped by what a diagnosis could unlock.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Autism spectrum",
+                "value": 26,
+                "tone": "neutral"
+              },
+              {
+                "label": "Intellectual disability",
+                "value": 22,
+                "tone": "neutral"
+              },
+              {
+                "label": "Psychosocial",
+                "value": 14,
+                "tone": "neutral"
+              },
+              {
+                "label": "Physical impairment",
+                "value": 13,
+                "tone": "neutral"
+              },
+              {
+                "label": "Neurological",
+                "value": 8,
+                "tone": "neutral"
+              },
+              {
+                "label": "Sensory / speech",
+                "value": 7,
+                "tone": "neutral"
+              },
+              {
+                "label": "Other",
+                "value": 10,
+                "tone": "neutral"
+              }
+            ],
+            "label": "NDIS participants by primary disability (~2024 est.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE FEDERAL-STATE TRAP",
+        "body": "Before NDIS, state governments block-funded disability providers to run group homes, day programs, and respite care. When the federal scheme launched, states withdrew those parallel systems to avoid duplication and cost overlap. Participants now removed from the NDIS fall back on state systems that were deliberately wound down. There is nothing to catch them — which is exactly what state ministers are saying this week.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is called the **foundational supports gap**: a missing middle tier — supports lighter than the full NDIS but more than nothing — that states were meant to build but haven't funded."
+          }
+        ]
+      },
+      {
+        "heading": "WHO THE CUTS TARGET",
+        "body": "The independent review found 'unintended' participants — people with mild autism, ADHD, psychosocial conditions, or developmental delays — who enrolled because no other support pathway existed, not because the scheme was designed for them. The NDIS was built for severe, permanent disability. The 200,000 facing removal are largely from this cohort, and the government's bet is that a cheaper 'foundational supports' tier will absorb them — a tier that does not yet fully exist.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "The NDIS replaced which earlier model for funding disability services in Australia?",
+            "options": [
+              "Block funding paid directly to service providers",
+              "Means-tested welfare payments to individuals",
+              "State insurance schemes run by each territory",
+              "Private insurance with government co-payments"
+            ],
+            "correct": 0,
+            "explanation": "Block funding paid organisations to run services; NDIS shifted the money to individuals as portable plan budgets — a structural redesign, not a top-up."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-14T04:28:59.875Z",
+    "label": "Australia's NDIS",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-06-14-russia-china-payments-de-dollarization": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW THE DOLLAR TRAP WORKS",
+        "body": "Nearly all cross-border payments — even between two non-American parties — pass through US correspondent banks because the dollar is the world's settlement currency. When Washington sanctions an entity, any bank processing dollar transactions for it violates US law and risks losing its own US banking license. The trap is not about American firms; it's about American currency.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is called **correspondent banking**: your bank holds a dollar account at a US bank; that US bank holds one at the Federal Reserve. Every international dollar payment chains through this hierarchy — giving Washington a veto over any dollar-denominated transaction anywhere on earth."
+          }
+        ]
+      },
+      {
+        "heading": "SWIFT IS NOT A BANK",
+        "body": "SWIFT is a messaging network — it carries payment instructions, not money. Excluding Russia did not freeze Russian funds; it severed the communication layer that tells counterpart banks what to do with them. The 2022 exclusion of Russian banks was the largest such action since Iran in 2012, and it immediately created the impasse this article describes — not because money disappeared, but because banks could no longer talk to each other.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1944",
+                "label": "Bretton Woods: dollar as reserve currency",
+                "emphasis": "start"
+              },
+              {
+                "year": "1973",
+                "label": "Petrodollar: oil priced in USD"
+              },
+              {
+                "year": "2012",
+                "label": "Iran excluded from SWIFT",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2015",
+                "label": "China launches CIPS"
+              },
+              {
+                "year": "2022",
+                "label": "Russia's major banks excluded from SWIFT"
+              }
+            ],
+            "label": "SWIFT as a sanctions weapon"
+          }
+        ]
+      },
+      {
+        "heading": "THE SECONDARY SANCTIONS PROBLEM",
+        "body": "Chinese state banks initially refused Russia-linked transactions not because US law applies to them directly, but because of secondary sanctions: any bank processing significant Russia business risks being cut from the US financial system entirely. Chinese banks valued their US correspondent access more than the Russia trade — which is why the impasse persisted for months after the primary sanctions hit.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**Secondary sanctions** don't target China directly — they threaten any entity doing *significant business* with sanctioned Russian firms. A Chinese bank with a New York branch has far more to lose than it has to gain from routing Russian payments."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT CHINA BUILT INSTEAD",
+        "body": "China's Cross-Border Interbank Payment System (CIPS) launched in 2015 and processes yuan-denominated transactions with its own messaging layer — a partial alternative to SWIFT. Russia runs its own messaging system (SPFS). Both systems are dwarfed by SWIFT's global reach, and most commodity contracts still price in dollars.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "SWIFT",
+                "value": "~11,000 banks",
+                "weight": 11000,
+                "tone": "neutral"
+              },
+              {
+                "label": "CIPS (China)",
+                "value": "~1,500 banks",
+                "weight": 1500,
+                "tone": "favorable"
+              },
+              {
+                "label": "SPFS (Russia)",
+                "value": "~500 banks",
+                "weight": 500,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Global payment messaging, 2024"
+          },
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "CN"
+            ],
+            "label": "Russia–China bilateral corridor",
+            "markers": [
+              {
+                "lat": 59.9343,
+                "lng": 30.3351,
+                "label": "St. Petersburg (SPIEF)"
+              },
+              {
+                "lat": 39.9042,
+                "lng": 116.4074,
+                "label": "Beijing (CIPS hub)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE YUAN TRAP",
+        "body": "Russia accumulating yuan creates a structural problem: the yuan is not freely convertible. China's strict capital controls mean Russia can buy Chinese goods with yuan but cannot easily exchange it for euros, rupees, or other currencies in open markets. Trading one currency dependency for another — except this one comes with a single counterparty who controls the conversion rules.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't Russia freely convert its yuan earnings into other currencies on open markets?",
+            "options": [
+              "China's capital controls restrict yuan conversion outside its own system",
+              "Yuan is not accepted by any third-country central bank",
+              "US sanctions prohibit third parties from accepting yuan from Russia",
+              "The yuan is dollar-pegged, making conversion circular"
+            ],
+            "correct": 0,
+            "explanation": "China runs a managed capital account — yuan buys Chinese exports freely, but large-scale conversion to other currencies must go through China's own channels, giving Beijing structural leverage over Russia's reserves."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-14T04:30:28.736Z",
+    "label": "Dollar Sanctions & the Bypass",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-06-14-tongaat-hulett-rescue-elite-capture": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ACCOUNTING COLLAPSE",
+        "body": "Tongaat Hulett's 2019 forensic audit found executives had overstated profits by billions of rands over several years — inflating land valuations and sugar revenues. The scandal cratered the share price and the market value of its debt, which is precisely what made those liabilities cheap enough for Vision to buy.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2019-05",
+                "label": "Forensic audit reveals billions in overstatement",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "CEO departs; criminal investigation opens"
+              },
+              {
+                "year": "2021",
+                "label": "Business rescue proceedings begin"
+              },
+              {
+                "year": "2024",
+                "label": "Vision acquires debt at steep discount"
+              },
+              {
+                "year": "2026-06",
+                "label": "Durban High Court: liquidation hearing resumes"
+              }
+            ],
+            "label": "Tongaat's collapse arc"
+          }
+        ]
+      },
+      {
+        "heading": "HOW DISTRESSED DEBT WORKS",
+        "body": "When a company can't service its obligations, its debts trade below face value on secondary markets — sometimes at 20 cents on the dollar. The buyer pays the discount but acquires the same legal creditor rights as the original lender: the right to vote on rescue plans, block restructurings, or push for liquidation.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The gap between *what you paid* and *face value* is the leverage. A buyer who holds 40% of the debt for pennies controls the restructuring without risking proportional capital — a position built on discount, not investment."
+          }
+        ]
+      },
+      {
+        "heading": "THE COERCION MECHANIC",
+        "body": "South Africa's Companies Act requires creditor approval for any business rescue plan. A majority debt-holder can veto any proposal it dislikes or credibly threaten liquidation, which would destroy the state lender's existing exposure. The IDC faces a binary: accept Vision's rescue terms, or watch the company enter liquidation and recover cents on every rand it's owed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does buying a company's distressed debt at a discount actually give you?",
+            "options": [
+              "The same creditor rights as the original lender",
+              "Equity ownership of the company's assets",
+              "A claim only enforceable in full liquidation",
+              "No legal standing below face value"
+            ],
+            "correct": 0,
+            "explanation": "Distressed debt trades below par but carries identical contractual rights — the buyer can vote on restructuring, approve or block rescue plans, and petition for liquidation just as the original lender could."
+          }
+        ]
+      },
+      {
+        "heading": "THE FOUR-COUNTRY FOOTPRINT",
+        "body": "Tongaat Hulett is not merely a South African company. Its sugar estates and mills span South Africa, Zimbabwe, Mozambique, and Botswana — making it a regional food-strategic asset. Whoever controls the rescue controls the supply chain for a significant share of southern African sugar production.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ZA",
+              "ZW",
+              "MZ",
+              "BW"
+            ],
+            "label": "Tongaat Hulett operations",
+            "caption": "Sugar estates and mills across 4 countries",
+            "markers": [
+              {
+                "lat": -29.858,
+                "lng": 31.021,
+                "label": "Durban High Court"
+              },
+              {
+                "lat": -29.567,
+                "lng": 31.115,
+                "label": "OThongathi (HQ)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PATTERN",
+        "body": "Elite capture through financial engineering follows a recognizable arc in southern Africa: a strategically important company fails — often through fraud — its debt becomes cheap, politically connected buyers acquire the creditor positions, and then use that leverage to control the restructuring without a competitive acquisition process. The asset transfers without a market price ever being paid for control.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**AmaBhungane** — Zulu for *dung beetles*, the creatures that dig through waste to find what's valuable — is the South African investigative non-profit that broke this story. Founded as an independent newsroom in 2015, it exposed the Gupta state capture network and the SARS rogue unit affair before turning here."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-06-14T04:32:32.423Z",
+    "label": "Distressed Debt & Elite Capture",
+    "category": "economy",
+    "articleCount": 1
   }
 }
