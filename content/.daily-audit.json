@@ -1,27 +1,27 @@
 {
-  "date": "2026-06-13",
+  "date": "2026-06-14",
   "metrics": {
-    "articles": { "value": 44, "detail": "5 cycles, avg ~9/cycle, all completed" },
-    "freshness": { "median": 0, "p90": 0.4, "max": 0.4, "target": 1.0, "met": true },
-    "categories": { "politics": 18, "economy": 10, "science": 10, "tech": 6 },
-    "multiSource": { "value": 6, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 12, "EU": 12, "ME": 8, "AS": 7, "AF": 4, "OC": 1 } },
-    "sciTech": { "ratio": 36, "target": 25, "met": true },
-    "topSourceShare": { "source": "Nature", "pct": 20, "target": 20, "met": true },
-    "uniqueSources": 27,
+    "articles": { "value": 49, "detail": "5 cycles, all completed, avg ~9/cycle" },
+    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
+    "categories": { "politics": 18, "economy": 15, "science": 8, "tech": 8 },
+    "multiSource": { "value": 11, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "EU": 15, "AM": 11, "ME": 10, "AF": 8, "AS": 4, "OC": 1 } },
+    "sciTech": { "ratio": 33, "target": 25, "met": true },
+    "topSourceShare": { "source": "Nature", "pct": 18, "target": 20, "met": true },
+    "uniqueSources": 36,
     "duplicates": 0,
-    "avgCycleDuration": 2085
+    "avgCycleDuration": 1942
   },
-  "experiment": "Skipped — all four goal areas (freshness, diversity, multi-source, educational value) are within targets, no experiment is active, and no pause gate is set. The only queued experiment edits scripts/write-prompt.md, which is outside the parameter tuner's scope.",
-  "weakestArea": "Source concentration is the softest metric today: Nature supplied 9 of 44 articles (20.5%), rounding to exactly the 20% ceiling — the highest single-source share in recent audits and the first to ride the limit. It is editorially benign (Nature is a quality science outlet and its volume is what lifts science to 10 and the sci/tech ratio to 36%), but it is the first metric that would breach if science leans even harder on one outlet next cycle.",
+  "experiment": "Skipped — all four goal areas (freshness, diversity, multi-source, educational value) are within targets, no experiment is active, and no pause gate is set. The only queued experiment edits scripts/write-prompt.md, outside the parameter tuner's scope.",
+  "weakestArea": "Sci/tech coverage is the least-margin area today: science fell 12→8 and tech 9→8 day-over-day, pulling the blended ratio 40%→33%. Both still clear their floors (science ≥5, tech ≥4) and the ratio stays well above the 25% target, so nothing is in breach — but tech sourcing is unusually narrow: the 8 tech articles draw only on CoinDesk and Nature, with no dedicated tech-press outlets in the set today.",
   "watching": [
-    "Nature at 9/44 (20.5%) sits right on the source-diversity ceiling; watch whether science volume keeps concentrating on a single outlet or spreads back across Phys.org / 404 Media / specialist sources.",
-    "Tech fell to 6 (from 14 yesterday) — still above its 4/day target but the day's smallest category; confirm the tech selector floor is being met per-cycle and the dip is feed-driven, not a sustained slide.",
-    "Politics led at 18/44 with Americas (12) and Europe (12) the heaviest regions, consistent with the recent Western-politics gravity."
+    "Tech sourcing is thin — today's 8 tech articles rest on CoinDesk (crypto) and Nature (research) only; Ars Technica / 404 Media / Hacker News all appeared yesterday but not today. Watch whether tech leans on crypto + journal-science substitutes when tech-specialist feed supply is light.",
+    "Science dipped 12→8 and concentrates on Nature (9 source mentions, ~18% of articles); confirm next cycles restore Phys.org / regional science breadth rather than riding a single journal toward the 20% ceiling.",
+    "Politics led at 18/49 with Europe (15) and Americas (11) the heaviest regions, consistent with the recent Western-politics gravity."
   ],
   "coverageGaps": [
-    "Oceania produced just 1 article, continuing its run as the persistent low region.",
-    "Africa was thin at 4 articles, near its usual recent floor."
+    "No dedicated technology-press outlet in today's tech set — the category is filled by CoinDesk and Nature rather than tech-news sources.",
+    "Oceania near-absent (1) and Asia underweight (4) against EU/AM/ME at 10-15 each."
   ],
-  "context": "Output of 44 across 5 completed cycles is normal; freshness is computed from only 10 datable articles, so the 0-day median is a small sample but consistent with no pipeline lag. History shows the selector multi-source floor lever is tapped (2026-05-09 and 2026-05-18 experiments both faded to baseline), and the news-API token budget bars raising feed-side fetch counts — so source diversity is best managed by watching outlet concentration rather than a parameter change. No tunable metric is out of target, so no experiment is proposed today; the queued numerical-density experiment remains a prompt change outside this tuner's scope."
+  "context": "Five clean cycles, 49 articles, zero duplicates, and perfect freshness (median/p90/max all 0). Multi-source at 11 is nearly 3x its floor. History shows the selector multi-source floor lever is tapped (2026-05-09 and 2026-05-18 experiments both faded to baseline) and the NewsAPI token budget bars raising feed-side fetch counts — so sourcing breadth is best managed by watching outlet concentration, not a parameter change. No tunable metric is out of target, so no experiment is proposed today. Avg cycle duration 1942s is elevated vs the ~1033s seen earlier in June (writer avg 622s the main contributor) — worth a glance if it persists, though all five cycles completed."
 }
