@@ -2,13 +2,257 @@
   "version": 1,
   "stories": [
     {
+      "id": "newsom-trump-doj-probe-political-vendetta",
+      "label": "Gavin Newsom claims Trump ordered criminal probe in 'personal vendetta' ahead of 2028 race",
+      "firstSeen": "2026-06-15T22:07:24.572Z",
+      "lastCovered": "2026-06-15T22:07:24.572Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-15-newsom-trump-doj-probe-political-vendetta"
+      ],
+      "eventUri": "eng-11746222",
+      "summary": "California's governor says Trump personally directed the DOJ to investigate him and his wife because he may run in 2028. The mechanism to lead with is the weaponization of federal prosecution against a named political rival — accountability inverted, the justice system turned into a campaign tool. Note the framing gap: Al Jazeera leads on the targeting, Bloomberg on the denial.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Gavin_Newsom",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+        "http://en.wikipedia.org/wiki/California",
+        "http://en.wikipedia.org/wiki/Governor_of_California",
+        "http://en.wikipedia.org/wiki/Democratic_Party_(United_States)",
+        "http://en.wikipedia.org/wiki/Jennifer_Siebel_Newsom",
+        "http://en.wikipedia.org/wiki/Governor"
+      ]
+    },
+    {
+      "id": "israel-displaces-syrians-quneitra-occupation",
+      "label": "“They Stole Our Home and Our Life”: Israel Permanently Displaces Syrians in Quneitra",
+      "firstSeen": "2026-06-15T22:07:24.572Z",
+      "lastCovered": "2026-06-15T22:07:24.572Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-15-israel-displaces-syrians-quneitra-occupation"
+      ],
+      "eventUri": null,
+      "summary": "A ground report: the Israeli military has seized land in southwest Syria, expelled residents, demolished homes, built new bases, and run arrest sweeps in Quneitra. Lead with named victims and the permanence — this is occupation and displacement as the development itself, not a 'clash'. A unique on-the-ground account no wire is carrying. Note: the feed offered no regional (SY/Levant) outlet on this specific Quneitra displacement event — feed-side gap to audit.",
+      "conceptUris": []
+    },
+    {
+      "id": "nigeria-court-deregisters-opposition-parties",
+      "label": "Court orders deregistration of ADC, Accord, three other parties",
+      "firstSeen": "2026-06-15T22:07:24.572Z",
+      "lastCovered": "2026-06-15T22:07:24.572Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-15-nigeria-court-deregisters-opposition-parties"
+      ],
+      "eventUri": "eng-11745238",
+      "summary": "A Federal High Court in Abuja ordered Nigeria's electoral commission to deregister five opposition parties, including the ADC, citing a constitutional clause on party performance. Lead with the precedent: a court thinning the opposition field, and Governor Adeleke's rejoinder calling it 'an abuse of court process' that threatens electoral integrity. The structural why — judicial deregistration as a lever over who is allowed to contest. OIC-region story; the feed's only coverage is the Nigerian outlet itself.",
+      "conceptUris": []
+    },
+    {
+      "id": "nino-guerrero-tren-de-aragua-kingpin-strategy",
+      "label": "Niño Guerrero Is Dead. This Is How He Built Latin America’s Most Notorious Criminal Franchise",
+      "firstSeen": "2026-06-15T22:07:24.572Z",
+      "lastCovered": "2026-06-15T22:07:24.572Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-15-nino-guerrero-tren-de-aragua-kingpin-strategy"
+      ],
+      "eventUri": null,
+      "summary": "The top leader of Venezuela's Tren de Aragua was killed in a joint US-Venezuela operation, billed as a win for Trump's 'kingpin' strategy. The investigative angle: decapitation rarely dents a franchise built on cells, not a person — InSight Crime argues his death will have little effect on the network or regional organized crime. Lead with the structural critique of kingpin strategy, with Latin America as the actor, not the backdrop.",
+      "conceptUris": []
+    },
+    {
+      "id": "warsh-fed-independence-trump-inflation-bind",
+      "label": "Warsh faces bind between Trump, inflation",
+      "firstSeen": "2026-06-15T22:07:24.572Z",
+      "lastCovered": "2026-06-15T22:07:24.572Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-15-warsh-fed-independence-trump-inflation-bind"
+      ],
+      "eventUri": "eng-11744905",
+      "summary": "PGIM has broken from consensus to forecast three Fed rate hikes this year, then reversals in 2027 — a bet that war-driven inflation forces tightening even as Trump demands cuts. Lead with the bind facing presumptive chair Kevin Warsh: Fed independence versus White House pressure, with the Iran war's inflation shock as the wedge. Surface the sharp framing split (WSJ opinion siding with Trump vs The Hill).",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Inflation",
+        "http://en.wikipedia.org/wiki/Kevin_Warsh",
+        "http://en.wikipedia.org/wiki/Interest_rate",
+        "http://en.wikipedia.org/wiki/Central_bank",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Chair_of_the_Federal_Reserve"
+      ]
+    },
+    {
+      "id": "fox-roku-22bn-streaming-acquisition",
+      "label": "Fox to Acquire Roku, Joining the Battle for the Living Room",
+      "firstSeen": "2026-06-15T22:07:24.572Z",
+      "lastCovered": "2026-06-15T22:07:24.572Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-15-fox-roku-22bn-streaming-acquisition"
+      ],
+      "eventUri": "eng-11743490",
+      "summary": "Fox is buying Roku for $22bn to bolt a hardware-and-ad platform onto its streaming push. Lead with the consolidation mechanic: a legacy broadcaster buying the operating system of the TV itself — and the leverage that gives over advertising and what 70M+ Roku households watch. The reader should grasp how the streaming endgame concentrates control of attention.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Roku",
+        "http://en.wikipedia.org/wiki/Streaming_media",
+        "http://en.wikipedia.org/wiki/Fox_Broadcasting_Company",
+        "http://en.wikipedia.org/wiki/Fox_Corporation",
+        "http://en.wikipedia.org/wiki/United_States_dollar",
+        "http://en.wikipedia.org/wiki/Tubi",
+        "http://en.wikipedia.org/wiki/Advertising",
+        "http://en.wikipedia.org/wiki/Chief_executive_officer"
+      ]
+    },
+    {
+      "id": "fda-colorado-canada-drug-imports",
+      "label": "FDA approves Colorado's plan to import cheaper drugs from Canada",
+      "firstSeen": "2026-06-15T22:07:24.572Z",
+      "lastCovered": "2026-06-15T22:07:24.572Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-15-fda-colorado-canada-drug-imports"
+      ],
+      "eventUri": null,
+      "summary": "The FDA cleared Colorado to import certain prescription drugs from Canada — only the second US state granted this after a quarter-century of the idea being blocked. Lead with the mechanism: states routing around domestic drug prices via cross-border importation, and why pharma resistance kept it dormant so long. Teaches the structural reason Americans pay more — and the narrow crack now opening.",
+      "conceptUris": []
+    },
+    {
+      "id": "h5n1-ten-particles-cow-mammary-infection",
+      "label": "Only 10 viral particles cause H5N1 avian flu infection in cows",
+      "firstSeen": "2026-06-15T22:07:24.572Z",
+      "lastCovered": "2026-06-15T22:07:24.572Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-15-h5n1-ten-particles-cow-mammary-infection"
+      ],
+      "eventUri": null,
+      "summary": "A new study finds just 10 viral particles can infect a cow with H5N1 — and that the virus targets mammary glands, not airways, which explains why dairy-cattle outbreaks have confounded containment. Lead with the number and the tropism: an extraordinarily low infectious dose plus an unexpected route rewrites how this outbreak spreads. The reader grasps why milk, not breath, became the vector.",
+      "conceptUris": []
+    },
+    {
+      "id": "chinese-rocket-breakup-starlink-debris",
+      "label": "A Chinese rocket breaks apart dangerously close to the Starlink constellation",
+      "firstSeen": "2026-06-15T22:07:24.572Z",
+      "lastCovered": "2026-06-15T22:07:24.572Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-15-chinese-rocket-breakup-starlink-debris"
+      ],
+      "eventUri": null,
+      "summary": "A commercial Chinese rocket's upper stage broke apart in low-Earth orbit, scattering debris through the band that houses the ISS and much of Starlink. Lead with the collision-cascade risk (Kessler syndrome) and the accountability gap: no binding regime forces operators to deorbit spent stages. Teaches why one breakup threatens shared orbital infrastructure for everyone.",
+      "conceptUris": []
+    },
+    {
+      "id": "covid-vaccines-cardiovascular-protection-study",
+      "label": "COVID vaccines still protect against heart problems, large study finds",
+      "firstSeen": "2026-06-15T22:07:24.572Z",
+      "lastCovered": "2026-06-15T22:07:24.572Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-15-covid-vaccines-cardiovascular-protection-study"
+      ],
+      "eventUri": null,
+      "summary": "Drawing on data from more than a million people, a study finds updated COVID shots still cut cardiovascular disease — most sharply for those over 75 and with underlying conditions — even as most Americans skip them. Lead with the size and the at-risk benefit, against the backdrop of collapsing uptake. The mechanism worth highlighting: protection is concentrated exactly where the risk is highest.",
+      "conceptUris": []
+    },
+    {
+      "id": "amd-tsme-memory-encryption-removed-consumer-cpus",
+      "label": "Users cry foul after AMD stripped memory crypto from its consumer CPUs",
+      "firstSeen": "2026-06-15T22:07:24.572Z",
+      "lastCovered": "2026-06-15T22:07:24.572Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-15-amd-tsme-memory-encryption-removed-consumer-cpus"
+      ],
+      "eventUri": null,
+      "summary": "AMD quietly removed Transparent Secure Memory Encryption (TSME) — a decade-old defense against cold-boot and physical RAM attacks — from consumer CPUs. Lead with the mechanism: encrypting RAM contents thwarts data siphoning from a stolen or seized machine, and stripping it silently downgrades security for everyone who didn't opt into pricier parts. The reader is a builder who now has to check whether their own chip lost the protection.",
+      "conceptUris": []
+    },
+    {
+      "id": "judge-meta-ai-scraping-training-data-lawsuit",
+      "label": "Judge Rules Blacked.com Can Sue Meta for Scraping Its Porn",
+      "firstSeen": "2026-06-15T22:07:24.572Z",
+      "lastCovered": "2026-06-15T22:07:24.572Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-15-judge-meta-ai-scraping-training-data-lawsuit"
+      ],
+      "eventUri": null,
+      "summary": "A judge ruled that an adult-content company can sue Meta for allegedly pirating thousands of its videos to train AI, finding Meta's 'rogue employees' defense 'strains credulity.' Lead with the precedent: a court letting a copyright suit over AI training data proceed, and what discovery could expose about how a major lab actually sourced its corpus. The mechanism is accountability for AI's data supply chain — a question every model maker is exposed to.",
+      "conceptUris": []
+    },
+    {
+      "id": "tesla-fsd-safety-claims-europe-approval",
+      "label": "Tesla Says FSD Is Safer, But Its Numbers Tell A Messier Story",
+      "firstSeen": "2026-06-15T22:07:24.572Z",
+      "lastCovered": "2026-06-15T22:07:24.572Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-15-tesla-fsd-safety-claims-europe-approval"
+      ],
+      "eventUri": "eng-11744371",
+      "summary": "As Tesla pushes for FSD approval in Europe, scrutiny of its own safety statistics shows the comparison is stacked — highway-skewed Autopilot miles measured against all crashes. Lead with the methodology gap: how a company markets autonomy as 'safer' using numbers that don't control for road type or driver. The reader gets the mechanism behind a safety claim used to win regulatory entry abroad.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Tesla,_Inc.",
+        "http://en.wikipedia.org/wiki/Netherlands",
+        "http://en.wikipedia.org/wiki/Sweden",
+        "http://en.wikipedia.org/wiki/Europe",
+        "http://en.wikipedia.org/wiki/Tesla_Autopilot",
+        "http://en.wikipedia.org/wiki/Elon_Musk",
+        "http://en.wikipedia.org/wiki/Marketing",
+        "http://en.wikipedia.org/wiki/United_States"
+      ]
+    },
+    {
       "id": "sudan-drone-warfare-1000-civilians-killed-un",
       "label": "Drone warfare kills over 1,000 in Sudan in 2026 as strikes multiply: UN",
       "firstSeen": "2026-06-15T17:08:08.769Z",
       "lastCovered": "2026-06-15T17:08:08.769Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-15-sudan-drone-warfare-1000-civilians-killed-un"
@@ -33,7 +277,7 @@
       "lastCovered": "2026-06-15T17:08:08.769Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-15-uk-court-palestine-action-terror-ban-precedent"
@@ -58,7 +302,7 @@
       "lastCovered": "2026-06-15T17:08:08.769Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-14-israel-india-strategic-partnership-realignment"
@@ -83,7 +327,7 @@
       "lastCovered": "2026-06-15T17:08:08.769Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-15-egypt-warraq-island-displacement-protest-children-injured"
@@ -99,7 +343,7 @@
       "lastCovered": "2026-06-15T17:08:08.769Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-15-pakistan-debt-interest-payments-fy27-budget"
@@ -115,7 +359,7 @@
       "lastCovered": "2026-06-15T17:08:08.769Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-15-turkiye-10bn-national-ai-action-plan"
@@ -131,7 +375,7 @@
       "lastCovered": "2026-06-15T17:08:08.769Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-15-south-korea-china-critical-mineral-dependency"
@@ -147,7 +391,7 @@
       "lastCovered": "2026-06-15T17:08:08.769Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-15-how-many-elementary-particles-standard-model"
@@ -163,7 +407,7 @@
       "lastCovered": "2026-06-15T17:08:08.769Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-15-cysteine-backup-pathway-discovery-cancer-treatment"
@@ -179,7 +423,7 @@
       "lastCovered": "2026-06-15T17:08:08.769Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-15-iss-russia-segment-cracks-emergency-refuge"
@@ -195,7 +439,7 @@
       "lastCovered": "2026-06-15T17:08:08.769Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-15-als-brain-implant-first-power-user-speech-bci"
@@ -211,7 +455,7 @@
       "lastCovered": "2026-06-15T17:08:08.769Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-15-reddit-poisoning-ai-search-prompt-injection-research"
@@ -227,7 +471,7 @@
       "lastCovered": "2026-06-15T17:08:08.769Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-15-russia-astral-cyberattack-business-disruption"
@@ -243,7 +487,7 @@
       "lastCovered": "2026-06-15T12:07:52.752Z",
       "coverageCount": 4,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-06-15-sensex-rallies-us-iran-deal-oil",
@@ -271,7 +515,7 @@
       "lastCovered": "2026-06-15T12:07:52.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-13-khamenei-funeral-july-4-succession-security"
@@ -296,7 +540,7 @@
       "lastCovered": "2026-06-15T12:07:52.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-15-gaza-photographers-golden-pen-freedom-award"
@@ -312,7 +556,7 @@
       "lastCovered": "2026-06-15T12:07:52.752Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-15-kebbi-troops-repel-lakurawa-recover-rpgs"
@@ -328,7 +572,7 @@
       "lastCovered": "2026-06-15T12:07:52.752Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-15-trump-100-tariff-french-wine-digital-tax"
@@ -353,7 +597,7 @@
       "lastCovered": "2026-06-15T12:07:52.752Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-15-gulf-states-post-assad-syria-reconstruction-bet"
@@ -369,7 +613,7 @@
       "lastCovered": "2026-06-15T12:07:52.752Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-15-cex-volumes-low-rwa-perps-record-binance"
@@ -385,7 +629,7 @@
       "lastCovered": "2026-06-15T12:07:52.752Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-15-marine-microbiome-predicts-ocean-chemistry-ml"
@@ -401,7 +645,7 @@
       "lastCovered": "2026-06-15T12:07:52.752Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-15-south-africa-renewables-approved-but-ungridded"
@@ -417,7 +661,7 @@
       "lastCovered": "2026-06-15T12:07:52.752Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-14-ghostwriter-targets-polish-officials-family-gmail"
@@ -433,7 +677,7 @@
       "lastCovered": "2026-06-15T12:07:52.752Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-15-china-open-source-ai-strategy-vs-openai"
@@ -449,7 +693,7 @@
       "lastCovered": "2026-06-15T08:07:44.662Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-14-noida-jewar-airport-opens-farmers-land-acquisition"
@@ -474,7 +718,7 @@
       "lastCovered": "2026-06-15T08:07:44.662Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-15-china-detains-underground-church-leaders-jiangyou"
@@ -490,7 +734,7 @@
       "lastCovered": "2026-06-15T08:07:44.662Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-15-imran-khan-fifth-eye-procedure-pims-prison-health"
@@ -506,7 +750,7 @@
       "lastCovered": "2026-06-15T08:07:44.662Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-15-india-wholesale-inflation-968-base-year-revision"
@@ -531,7 +775,7 @@
       "lastCovered": "2026-06-15T08:07:44.662Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-15-boj-decision-yen-carry-trade-shorts-nine-year-high"
@@ -547,7 +791,7 @@
       "lastCovered": "2026-06-15T08:07:44.662Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-15-russia-kalashnikov-bk16e-assault-boats-africa-export"
@@ -563,7 +807,7 @@
       "lastCovered": "2026-06-15T08:07:44.662Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-15-glp1-semaglutide-bone-health-fractures-diabetes"
@@ -579,7 +823,7 @@
       "lastCovered": "2026-06-15T08:07:44.662Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-15-mediterranean-pufferfish-invasion-greek-fishermen-crete"
@@ -595,7 +839,7 @@
       "lastCovered": "2026-06-15T08:07:44.662Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-15-cyberscam-syndicates-relocate-cambodia-to-vietnam"
@@ -611,7 +855,7 @@
       "lastCovered": "2026-06-15T08:07:44.662Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-15-team5pm-johannesburg-ai-content-hub-africa"
@@ -627,7 +871,7 @@
       "lastCovered": "2026-06-15T04:07:49.382Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-06-14-us-iran-deal-complete-hormuz-blockade-ends",
@@ -655,7 +899,7 @@
       "lastCovered": "2026-06-15T04:07:49.382Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-06-14-g7-evian-summit-geneva-protest-violence",
@@ -680,7 +924,7 @@
       "lastCovered": "2026-06-15T04:07:49.382Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-15-kyiv-pechersk-lavra-fire-russian-strike-ukraine"
@@ -705,7 +949,7 @@
       "lastCovered": "2026-06-15T04:07:49.382Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-15-south-africa-sacr-constitutional-campaign-ngos"
@@ -721,7 +965,7 @@
       "lastCovered": "2026-06-15T04:07:49.382Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-15-pakistan-pti-rejects-charter-of-economy"
@@ -737,7 +981,7 @@
       "lastCovered": "2026-06-15T04:07:49.382Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-15-pakistan-monsoon-rains-kp-punjab-deaths"
@@ -753,7 +997,7 @@
       "lastCovered": "2026-06-15T04:07:49.382Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-15-harvestmen-paternal-care-citizen-science"
@@ -769,7 +1013,7 @@
       "lastCovered": "2026-06-15T04:07:49.382Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-15-uk-under-16-social-media-restrictions"
@@ -785,7 +1029,7 @@
       "lastCovered": "2026-06-15T04:07:49.382Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-15-deep-learning-rice-nutrient-multispectral"
@@ -801,7 +1045,7 @@
       "lastCovered": "2026-06-15T04:07:49.382Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-15-electrochemical-vector-hydrophone-low-frequency"
@@ -817,7 +1061,7 @@
       "lastCovered": "2026-06-14T22:08:13.249Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-14-missouri-skydiving-plane-crash-twelve-killed"
@@ -840,7 +1084,7 @@
       "lastCovered": "2026-06-14T22:08:13.249Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-14-tommy-robinson-detained-terrorism-act-heathrow"
@@ -863,7 +1107,7 @@
       "lastCovered": "2026-06-14T22:08:13.249Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-14-african-delegates-china-denounce-sa-xenophobia"
@@ -879,7 +1123,7 @@
       "lastCovered": "2026-06-14T22:08:13.249Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-14-coou-sacks-professors-sexual-abuse-extortion"
@@ -895,7 +1139,7 @@
       "lastCovered": "2026-06-14T22:08:13.249Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-14-bitcoin-retracement-pattern-48000-risk"
@@ -911,7 +1155,7 @@
       "lastCovered": "2026-06-14T22:08:13.249Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-14-us-house-digital-asset-tax-bills-crypto-regs"
@@ -927,7 +1171,7 @@
       "lastCovered": "2026-06-14T22:08:13.249Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-14-delhi-yamuna-eflow-treated-wastewater-project"
@@ -948,7 +1192,7 @@
       "lastCovered": "2026-06-14T22:08:13.249Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-14-ultrathin-materials-scaling-law-strength"
@@ -964,7 +1208,7 @@
       "lastCovered": "2026-06-14T22:08:13.249Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-14-explainable-ai-cardiovascular-polyiran-polypars"
@@ -980,7 +1224,7 @@
       "lastCovered": "2026-06-14T22:08:13.249Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-14-fourier-diffusion-endoscopic-image-exposure"
@@ -996,239 +1240,13 @@
       "lastCovered": "2026-06-14T22:08:13.249Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-14-variable-selection-optimal-treatment-regimes"
       ],
       "eventUri": null,
       "summary": "A new penalized-classification method picks which patient variables actually matter when choosing among multiple treatments — the statistical machinery behind 'precision medicine.' The angle for the reader: how algorithms decide which treatment suits which patient, why selecting the right variables (and discarding noise) is the hard part, and the role of inverse-probability weighting in making such recommendations from observational data rather than randomized trials.",
-      "conceptUris": []
-    },
-    {
-      "id": "trump-decries-israeli-strike-beirut-iran-deal-talks",
-      "label": "Trump decries Israeli strike on Beirut, insists deal still close",
-      "firstSeen": "2026-06-14T17:07:35.033Z",
-      "lastCovered": "2026-06-14T17:07:35.033Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-14-trump-decries-israeli-strike-beirut-iran-deal-talks"
-      ],
-      "eventUri": "eng-11742906",
-      "summary": "After yesterday's strike on Beirut's Dahiyeh, the diplomatic fallout is now the story: Iran's Ghalibaf accuses the US of giving Israel a 'green light' and warns there is 'no point' in talks if Washington can't restrain Israel, even as Trump claims a deal is still close. Lead with the contradiction — the US is simultaneously brokering an Iran deal and underwriting the strikes that wreck it. Mechanism for the reader: how an Israeli strike on Lebanon is wired directly into US-Iran negotiations and the Hormuz crisis. Count the Lebanese cost. Continuation-of-injustice arc on Lebanon's south, advanced by the diplomatic rupture.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Beirut",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Mohammad_Bagher_Ghalibaf",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Lebanon",
-        "http://en.wikipedia.org/wiki/Hezbollah",
-        "http://en.wikipedia.org/wiki/Zionism"
-      ]
-    },
-    {
-      "id": "putin-trump-call-iran-ukraine-linkage",
-      "label": "Putin discussed Iran, Ukraine war in call with Trump: Kremlin",
-      "firstSeen": "2026-06-14T17:07:35.033Z",
-      "lastCovered": "2026-06-14T17:07:35.033Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-13-putin-trump-call-iran-ukraine-linkage"
-      ],
-      "eventUri": "rus-2080465",
-      "summary": "Putin and Trump spoke about both the Ukraine war and the Iran crisis in one call — Trump telling Putin ending Ukraine is 'vital' while seeking Russian leverage on Iran. Lead with the linkage: the two largest active wars are being negotiated through the same Washington-Moscow channel, with the Global South (India, the Gulf) reading the outcome. Mechanism for the reader — how great-power bargaining couples two theatres, so concessions in one become currency in the other. Sources span RU, US, UA, IN, AE — note the spread in framing (sentiment divergence 0.34).",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Vladimir_Putin",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
-        "http://en.wikipedia.org/wiki/Moscow",
-        "http://en.wikipedia.org/wiki/Moscow_Kremlin",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle"
-      ]
-    },
-    {
-      "id": "kebbi-lakurawa-attack-20-killed-nigeria-border",
-      "label": "Terrorists kill 20 in Kebbi attack",
-      "firstSeen": "2026-06-14T17:07:35.033Z",
-      "lastCovered": "2026-06-14T17:07:35.033Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-14-kebbi-lakurawa-attack-20-killed-nigeria-border"
-      ],
-      "eventUri": "eng-11742498",
-      "summary": "Suspected Lakurawa insurgents killed at least 20 in Fasken Rafi village, Arewa LGA of Kebbi State. Lead with the named victims and the spreading frontier: Lakurawa is a newer cross-border insurgent group exploiting the Nigeria-Niger borderland, distinct from the Zamfara/Sokoto bandit networks. Mechanism for the reader — how state absence on the northwestern border lets armed groups tax, raid and govern villages with impunity. Named cost: 20 dead in one Sunday raid, a continuation of an under-covered rural insurgency. Africa, a persistent coverage gap.",
-      "conceptUris": []
-    },
-    {
-      "id": "fafen-kp-right-to-information-enforcement-gap",
-      "label": "Fafen calls for overhaul of KP Right to Information Act",
-      "firstSeen": "2026-06-14T17:07:35.033Z",
-      "lastCovered": "2026-06-14T17:07:35.033Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-14-fafen-kp-right-to-information-enforcement-gap"
-      ],
-      "eventUri": null,
-      "summary": "Twelve years after Khyber Pakhtunkhwa became Pakistan's first province to enact a Right to Information law, the Free and Fair Election Network finds the pioneering framework 'underutilised and vulnerable to disinformation due to weak enforcement and structural gaps.' Lead with the accountability mechanism: a transparency law on paper is worthless without an empowered information commission and penalties for stonewalling. The reader gets why RTI matters — it's the citizen's only lever to audit how a province spends and governs — and how easily that lever rusts. A governance-accountability story from within the Muslim world that Western wires ignore.",
-      "conceptUris": []
-    },
-    {
-      "id": "egypt-military-divestment-wataniya-quick-fuel-taqa",
-      "label": "In 1st military asset sale, Egypt transfers Wataniya shares to new entity managed by Khaled Abu Bakr",
-      "firstSeen": "2026-06-14T17:07:35.033Z",
-      "lastCovered": "2026-06-14T17:07:35.033Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-14-egypt-military-divestment-wataniya-quick-fuel-taqa"
-      ],
-      "eventUri": null,
-      "summary": "Egypt's first-ever sale of a military-owned asset: shares in army fuel retailer Wataniya transferred to Quick Fuel, to be managed by TAQA Arabia — a private firm owned by gas businessman Khaled Abu Bakr. Lead with what 'first military divestment' actually means: under IMF pressure to shrink the army's vast economic footprint, the state is moving a military monopoly to a politically-connected private hand, not into open competition. Mechanism for the reader — privatisation as elite reallocation, where 'reform' can mean swapping a military rentier for a crony one. A Mada Masr accountability scoop on who really owns Egypt's economy.",
-      "conceptUris": []
-    },
-    {
-      "id": "sec-tokenization-exemption-securities-rulemaking",
-      "label": "SEC's big swing to clear tokenization path isn't likely to get resilience of full rule",
-      "firstSeen": "2026-06-14T17:07:35.033Z",
-      "lastCovered": "2026-06-14T17:07:35.033Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-14-sec-tokenization-exemption-securities-rulemaking"
-      ],
-      "eventUri": null,
-      "summary": "The SEC is preparing one of its most consequential moves — using its exemptive power to clear a legal path for tokenized securities — but former SEC lawyers say it will be narrow and time-limited, not a durable rule. Lead with the fragility: a market structure shift this large is being built on an exemption a future chair could revoke, not on rulemaking. Mechanism for the reader — how regulators use exemptive authority to fast-track an industry ahead of Congress, and why that speed trades durability for reversibility. The structural why: Wall Street's plumbing is being rewired around tokenization before the rules that govern it exist.",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-south-pars-phase-11-new-well-output",
-      "label": "New well lifts South Pars Gas Field's Phase 11 output",
-      "firstSeen": "2026-06-14T17:07:35.033Z",
-      "lastCovered": "2026-06-14T17:07:35.033Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-14-iran-south-pars-phase-11-new-well-output"
-      ],
-      "eventUri": null,
-      "summary": "A new well brings Phase 11 of South Pars online at over 26 million cubic metres of rich gas per day. Lead with the resilience signal: as the US blockades Hormuz and strikes Iranian targets, Tehran is publicly demonstrating it can still grow output from the world's largest gas field — the shared reservoir with Qatar's North Dome. Mechanism for the reader — Phase 11's troubled history (a stalled French/Chinese partnership Iran finished alone) makes each new well a statement about sanctions-era self-reliance. The structural why: South Pars is the financial spine Iran must keep producing through the war.",
-      "conceptUris": []
-    },
-    {
-      "id": "musk-first-trillionaire-wealth-concentration",
-      "label": "Musk becomes the world's first trillionaire as wealth gap widens",
-      "firstSeen": "2026-06-14T17:07:35.033Z",
-      "lastCovered": "2026-06-14T17:07:35.033Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-14-musk-first-trillionaire-wealth-concentration"
-      ],
-      "eventUri": "eng-11739776",
-      "summary": "Elon Musk crossed $1 trillion in net worth — the first person ever — on a SpaceX valuation surge plus Tesla, xAI and X. Lead with the framing that went viral: the average American is now closer to Jeff Bezos's net worth than Bezos is to Musk. Mechanism for the reader — concentration at the very top has reached a scale where the gap between the second-richest and the richest dwarfs the gap between an ordinary citizen and a near-trillionaire. The structural why: equity wealth compounds on itself, so a single valuation event can manufacture a sum larger than most national economies, with no productivity behind the leap.",
-      "conceptUris": []
-    },
-    {
-      "id": "kaduna-rigasa-gully-erosion-intervention",
-      "label": "Kaduna to spend N34bn on Rigasa erosion crisis after three decades of neglect",
-      "firstSeen": "2026-06-14T17:07:35.033Z",
-      "lastCovered": "2026-06-14T17:07:35.033Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-14-kaduna-rigasa-gully-erosion-intervention"
-      ],
-      "eventUri": null,
-      "summary": "Kaduna State is committing N34 billion to fix gully erosion in the Rigasa corridor after three decades of neglect, a project expected to benefit over two million people. Lead with the mechanism of slow disaster: unmanaged stormwater in a fast-growing West African city carves gullies that swallow homes, roads and farmland over years — a climate-and-infrastructure problem, not a single flood. The reader gets why erosion control is development, not cleanup, and why 'three decades of neglect' is the real story. Africa and environment, both persistent coverage gaps.",
-      "conceptUris": []
-    },
-    {
-      "id": "ionic-liquid-cation-co2-cyclic-carbonates",
-      "label": "Effect of the nature of cation of ionic liquid on the CO2 conversion to cyclic carbonates -- a theoretical study",
-      "firstSeen": "2026-06-14T17:07:35.033Z",
-      "lastCovered": "2026-06-14T17:07:35.033Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-14-ionic-liquid-cation-co2-cyclic-carbonates"
-      ],
-      "eventUri": null,
-      "summary": "A computational study maps how the choice of cation in an ionic liquid governs how efficiently waste CO2 can be locked into cyclic carbonates — useful industrial chemicals. Lead with the payoff: carbon capture only matters if the captured CO2 becomes something valuable, and the catalyst's molecular design is the bottleneck. Mechanism for the reader — ionic liquids are tunable 'designer solvents,' and tweaking one ion shifts the energy barrier of the reaction. The structural why: turning CO2 from a disposal problem into a feedstock is the difference between carbon capture as cost and as industry.",
-      "conceptUris": []
-    },
-    {
-      "id": "dairy-cow-fertility-methylated-fatty-acid-biomarker",
-      "label": "Association between methylated fatty acids and early pregnancy outcomes in dairy cows: a plasma GC-MS assay",
-      "firstSeen": "2026-06-14T17:07:35.033Z",
-      "lastCovered": "2026-06-14T17:07:35.033Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-14-dairy-cow-fertility-methylated-fatty-acid-biomarker"
-      ],
-      "eventUri": null,
-      "summary": "Researchers used plasma GC-MS to link methylated fatty-acid signatures to early conception failure in dairy cows — a leading hidden cost in milk production. Lead with the stakes for food systems: early embryo loss quietly drains dairy yields worldwide, and a blood biomarker that flags at-risk animals could replace guesswork breeding. Mechanism for the reader — metabolomics reads the cow's biochemistry to predict fertility before any visible sign. The structural why: livestock fertility is an under-examined lever on global food supply, and cheap blood markers scale to herds in ways hormone tests don't.",
-      "conceptUris": []
-    },
-    {
-      "id": "crypto-exchanges-tokenized-equities-brokerage-convergence",
-      "label": "Crypto exchanges are morphing into stock brokerages to stop capital from fleeing to Wall Street",
-      "firstSeen": "2026-06-14T17:07:35.033Z",
-      "lastCovered": "2026-06-14T17:07:35.033Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-14-crypto-exchanges-tokenized-equities-brokerage-convergence"
-      ],
-      "eventUri": null,
-      "summary": "Crypto exchanges are racing to offer tokenized and synthetic equities as tokenized-treasury markets hit $14.6 billion, trying to keep users from drifting back to traditional brokerages. Lead with the convergence: the wall between crypto venues and stock brokerages is dissolving, each absorbing the other's product. Mechanism for the reader — a tokenized equity is a blockchain claim that tracks a real share, which raises new settlement, custody and liquidity risks that the old brokerage rails already solved. The structural why: whoever owns the merged rails owns the next generation of retail markets — and the compliance gaps are where it breaks.",
-      "conceptUris": []
-    },
-    {
-      "id": "aerodrome-liquidity-prediction-market-ai-agents",
-      "label": "Aerodrome is turning liquidity into a prediction market with its biggest upgrade yet",
-      "firstSeen": "2026-06-14T17:07:35.033Z",
-      "lastCovered": "2026-06-14T17:07:35.033Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-14-aerodrome-liquidity-prediction-market-ai-agents"
-      ],
-      "eventUri": null,
-      "summary": "Aerodrome's biggest upgrade rewards users, funds and AI agents for correctly forecasting where on-chain liquidity will be needed next — turning a DeFi exchange into a prediction market for its own capital. Lead with the design idea: instead of paying liquidity providers flat emissions, it pays them for being right about future demand. Mechanism for the reader — markets that price their own future state, with autonomous AI agents as participants, are a genuinely new primitive. The structural why: if it works, capital allocation in DeFi shifts from incentive-farming to forecasting skill, and AI agents become first-class market actors.",
       "conceptUris": []
     }
   ]
