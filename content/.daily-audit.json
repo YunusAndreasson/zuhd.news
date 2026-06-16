@@ -1,27 +1,26 @@
 {
-  "date": "2026-06-15",
+  "date": "2026-06-16",
   "metrics": {
-    "articles": { "value": 55, "detail": "5 cycles, all completed, avg ~9/cycle" },
+    "articles": { "value": 32, "detail": "5 cycles scheduled, 4 completed, avg 7/cycle (down from 58 yesterday)" },
     "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 17, "economy": 14, "science": 12, "tech": 12 },
-    "multiSource": { "value": 9, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 16, "ME": 14, "EU": 12, "AS": 8, "AF": 5 } },
-    "sciTech": { "ratio": 44, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 9, "target": 20, "met": true },
-    "uniqueSources": 46,
+    "categories": { "politics": 9, "economy": 7, "science": 7, "tech": 9 },
+    "multiSource": { "value": 10, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 10, "EU": 9, "AS": 7, "AF": 3, "ME": 2, "OC": 1 } },
+    "sciTech": { "ratio": 50, "target": 25, "met": true },
+    "topSourceShare": { "source": "Nature", "pct": 9, "target": 20, "met": true },
+    "uniqueSources": 37,
     "duplicates": 0,
-    "avgCycleDuration": 2166
+    "avgCycleDuration": 2031
   },
-  "experiment": "Skipped — all four goal areas (freshness, diversity, multi-source, educational value) are within targets, no experiment is active, and no pause gate is set. The one queued experiment edits scripts/write-prompt.md, outside the parameter tuner's scope.",
-  "weakestArea": "Regional spread is the least-margin goal: 5 regions clears the ≥4 target but only barely, and Oceania was absent for a second straight day while Africa (5) and Asia (8) trail the Americas (16), Middle East (14), and Europe (12). Nothing is in breach, but the AM/ME/EU gravity continues and Oceania remains the persistent blind spot.",
+  "experiment": "Skipped — all four goals (freshness, diversity, multi-source, educational) within targets and no active experiment to evaluate. No pause gate set. The one queued experiment (numerical-density) edits write-prompt.md, which is out of scope for daily tuning.",
+  "weakestArea": "Throughput, not a goal metric but the clearest deviation: 32 articles vs 58 yesterday, with only 4 of 5 cycles completing and avgCycleDuration elevated to 2031s (writer stage 875s, ~34 min total vs the ~22 min norm). One dropped cycle accounts for most of the shortfall; the slow writer stage is worth watching but did not breach any quality target.",
   "watching": [
-    "Sci/tech rebounded strongly — science 8→12 and tech 8→12 day-over-day, lifting the blended ratio 33%→44% with tech now drawing on dedicated tech press (MIT Tech Review, Ars Technica, 404 Media, The Record, Rest of World) rather than yesterday's CoinDesk+Nature substitutes.",
-    "Source concentration eased: top outlet Dawn at 5/55 (9%), down from Nature's 18% yesterday, with 46 unique sources — healthy breadth, no outlet near the 20% ceiling.",
-    "Avg cycle duration 2166s stays elevated (vs ~1033s earlier in June, 1942s yesterday); writer averages 701s as the main contributor. All five cycles completed, but worth a glance if the climb persists."
+    "Writer-stage wall-time at 875s avg is well above the historical ~150s norm — if it persists it risks writer/editor timeouts and more incomplete cycles.",
+    "Oceania (1) and Middle East (2) coverage thin today; Americas (10) and Europe (9) dominated the regional mix."
   ],
   "coverageGaps": [
-    "Oceania absent for a second consecutive day (0 today, 1 yesterday).",
-    "Africa (5) and Asia (8) underweight against AM/ME/EU clustered at 12-16 each."
+    "Oceania had a single story; no sustained Pacific/Australia-NZ thread today.",
+    "Middle East coverage (2) was light relative to its typical share — yesterday it was 14."
   ],
-  "context": "Five clean cycles, 55 articles, zero duplicates, and perfect freshness (median/p90/max all 0; freshness sampled on 3 datable articles today). Every goal metric is met with comfortable margin — multi-source at 9 is over 2x its floor and sci/tech at 44% is well above the 25% target. No tunable parameter metric is out of target, so no experiment is proposed. The only queued experiment (numerical-density) targets scripts/write-prompt.md, which the parameter tuner is not permitted to edit, so it remains parked. Sourcing breadth is best managed by watching outlet concentration rather than a feed-side parameter change, given the NewsAPI token-budget constraint and that the selector multi-source/category floor levers have already faded to baseline in prior experiments."
+  "context": "All quality and diversity goals are comfortably met; sci+tech ran 50% of output on strong specialist sources (Nature, New Scientist, Ars Technica, Phys.org, MIT Tech Review). The day's only soft spot is volume: one of five scheduled cycles did not complete and the writer stage ran long, trimming total output to 32. No experiment is warranted while metrics are healthy; the next lever for the persistently low sourcing cluster is upstream feed clustering, not selector floors (per the 2026-05-09 floor revert)."
 }
