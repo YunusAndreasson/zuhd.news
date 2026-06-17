@@ -1,26 +1,26 @@
 {
-  "date": "2026-06-16",
+  "date": "2026-06-17",
   "metrics": {
-    "articles": { "value": 32, "detail": "5 cycles scheduled, 4 completed, avg 7/cycle (down from 58 yesterday)" },
+    "articles": { "value": 51, "detail": "5 cycles (4 completed), avg ~7/cycle" },
     "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 9, "economy": 7, "science": 7, "tech": 9 },
-    "multiSource": { "value": 10, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 10, "EU": 9, "AS": 7, "AF": 3, "ME": 2, "OC": 1 } },
-    "sciTech": { "ratio": 50, "target": 25, "met": true },
-    "topSourceShare": { "source": "Nature", "pct": 9, "target": 20, "met": true },
-    "uniqueSources": 37,
+    "categories": { "politics": 16, "economy": 16, "science": 11, "tech": 8 },
+    "multiSource": { "value": 8, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 16, "EU": 15, "ME": 9, "AS": 8, "AF": 2, "GL": 1 } },
+    "sciTech": { "ratio": 37, "target": 25, "met": true },
+    "topSourceShare": { "source": "Nature", "pct": 14, "target": 20, "met": true },
+    "uniqueSources": 42,
     "duplicates": 0,
-    "avgCycleDuration": 2031
+    "avgCycleDuration": 2408
   },
-  "experiment": "Skipped — all four goals (freshness, diversity, multi-source, educational) within targets and no active experiment to evaluate. No pause gate set. The one queued experiment (numerical-density) edits write-prompt.md, which is out of scope for daily tuning.",
-  "weakestArea": "Throughput, not a goal metric but the clearest deviation: 32 articles vs 58 yesterday, with only 4 of 5 cycles completing and avgCycleDuration elevated to 2031s (writer stage 875s, ~34 min total vs the ~22 min norm). One dropped cycle accounts for most of the shortfall; the slow writer stage is worth watching but did not breach any quality target.",
+  "experiment": "Skipped — all goal metrics within targets and no active experiment to evaluate. No pause gate present; holding to the one-change-per-day / skip-if-healthy rule.",
+  "weakestArea": "Africa is the thinnest region at just 2 of 51 articles (behind AM 16, EU 15, ME 9, AS 8). This is a coverage-depth gap rather than a metric miss — the regions target (≥4 unique) is comfortably met at 6 — but African hard-news representation is the most uneven part of an otherwise healthy day.",
   "watching": [
-    "Writer-stage wall-time at 875s avg is well above the historical ~150s norm — if it persists it risks writer/editor timeouts and more incomplete cycles.",
-    "Oceania (1) and Middle East (2) coverage thin today; Americas (10) and Europe (9) dominated the regional mix."
+    "One of five cycles did not complete (4/5) — worth confirming it was a transient timeout, not a recurring failure, given avg cycle duration of 2408s.",
+    "Tech is the lowest category at 8 articles; still above floor and sci+tech ratio is healthy at 37%, but tech volume is the soft spot if either drifts."
   ],
   "coverageGaps": [
-    "Oceania had a single story; no sustained Pacific/Australia-NZ thread today.",
-    "Middle East coverage (2) was light relative to its typical share — yesterday it was 14."
+    "Africa coverage at 2 articles — sub-Saharan and West African hard news underrepresented relative to the Americas/Europe/Middle East.",
+    "Oceania absent from today's regional breakdown (only a single GL/global-tagged item outside the six core regions)."
   ],
-  "context": "All quality and diversity goals are comfortably met; sci+tech ran 50% of output on strong specialist sources (Nature, New Scientist, Ars Technica, Phys.org, MIT Tech Review). The day's only soft spot is volume: one of five scheduled cycles did not complete and the writer stage ran long, trimming total output to 32. No experiment is warranted while metrics are healthy; the next lever for the persistently low sourcing cluster is upstream feed clustering, not selector floors (per the 2026-05-09 floor revert)."
+  "context": "A strong, balanced day: 51 articles with perfect freshness (median/p90/max all 0d), zero duplicates, 8 multi-source stories, and top-source concentration low at Nature 14%. With no active experiment, no queued experiment eligible for daily tuning (the queued numerical-density item targets write-prompt.md, out of scope), and every goal metric met, the correct move is to hold steady and let the current configuration baseline. The standing lesson from the 2026-05-09 floor experiment still applies: the selector multi-source lever is tapped at ~22% given feed supply, so future sourcing-cluster work should target upstream feed clustering, not selector floors."
 }
