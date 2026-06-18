@@ -4159,5 +4159,25 @@
       "category tech below floor 2 (got 1)"
     ],
     "degenerate": true
+  },
+  {
+    "ts": "2026-06-18T17:57:59.774Z",
+    "cycleId": "2026-06-18T17-57",
+    "cycleHour": "17",
+    "rvs": 51.26,
+    "clusters": {
+      "picking": null,
+      "writing": 88,
+      "briefing": 0,
+      "sourcing": 42.54,
+      "coverage": 79.34
+    },
+    "articleCount": 25,
+    "briefCount": 0,
+    "guardrailFailures": [
+      "article 2026-06-18-israel-cuts-eu-contact-kallas-apartheid-merz has source with country:null",
+      "article 2026-06-18-ukraine-moscow-refinery-drone-strike-biggest-in-years has source with country:null"
+    ],
+    "degenerate": true
   }
 ]
