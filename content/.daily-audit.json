@@ -1,26 +1,26 @@
 {
-  "date": "2026-06-17",
+  "date": "2026-06-18",
   "metrics": {
-    "articles": { "value": 51, "detail": "5 cycles (4 completed), avg ~7/cycle" },
-    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 16, "economy": 16, "science": 11, "tech": 8 },
+    "articles": { "value": 52, "detail": "5 cycles (4 completed), avg 9/cycle" },
+    "freshness": { "median": 0.3, "p90": 1.4, "max": 1.4, "target": 1.0, "met": true },
+    "categories": { "politics": 16, "economy": 13, "science": 12, "tech": 11 },
     "multiSource": { "value": 8, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 16, "EU": 15, "ME": 9, "AS": 8, "AF": 2, "GL": 1 } },
-    "sciTech": { "ratio": 37, "target": 25, "met": true },
-    "topSourceShare": { "source": "Nature", "pct": 14, "target": 20, "met": true },
-    "uniqueSources": 42,
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 19, "EU": 11, "AS": 9, "ME": 8, "AF": 3, "OC": 2 } },
+    "sciTech": { "ratio": 44, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 12, "target": 20, "met": true },
+    "uniqueSources": 51,
     "duplicates": 0,
-    "avgCycleDuration": 2408
+    "avgCycleDuration": 2678
   },
-  "experiment": "Skipped — all goal metrics within targets and no active experiment to evaluate. No pause gate present; holding to the one-change-per-day / skip-if-healthy rule.",
-  "weakestArea": "Africa is the thinnest region at just 2 of 51 articles (behind AM 16, EU 15, ME 9, AS 8). This is a coverage-depth gap rather than a metric miss — the regions target (≥4 unique) is comfortably met at 6 — but African hard-news representation is the most uneven part of an otherwise healthy day.",
+  "experiment": "Skipped — all goal metrics within targets, no active experiment to evaluate, and no pause gate present. Holding to the skip-if-healthy / one-change-per-day rule.",
+  "weakestArea": "Oceania (2) and Africa (3) are the thinnest regions against AM 19, EU 11, AS 9, ME 8. This is coverage depth rather than a metric miss — the regions target (≥4 unique) is comfortably met at 6 — but the Global South tail remains the most uneven part of an otherwise strong, well-distributed day.",
   "watching": [
-    "One of five cycles did not complete (4/5) — worth confirming it was a transient timeout, not a recurring failure, given avg cycle duration of 2408s.",
-    "Tech is the lowest category at 8 articles; still above floor and sci+tech ratio is healthy at 37%, but tech volume is the soft spot if either drifts."
+    "One of five cycles did not complete (4/5) for the second straight day; worth confirming it is a transient timeout rather than a recurring stage failure, given avg cycle duration crept to 2678s from 2408s yesterday.",
+    "Writer stage averaged 1010s today — the dominant cost in the 2678s cycle; if cycle duration keeps climbing, the writer is the lever to watch."
   ],
   "coverageGaps": [
-    "Africa coverage at 2 articles — sub-Saharan and West African hard news underrepresented relative to the Americas/Europe/Middle East.",
-    "Oceania absent from today's regional breakdown (only a single GL/global-tagged item outside the six core regions)."
+    "Oceania at 2 articles — Pacific and Australasian hard news underrepresented.",
+    "Africa at 3 articles — sub-Saharan and West African coverage thin relative to the Americas, Europe, and Asia."
   ],
-  "context": "A strong, balanced day: 51 articles with perfect freshness (median/p90/max all 0d), zero duplicates, 8 multi-source stories, and top-source concentration low at Nature 14%. With no active experiment, no queued experiment eligible for daily tuning (the queued numerical-density item targets write-prompt.md, out of scope), and every goal metric met, the correct move is to hold steady and let the current configuration baseline. The standing lesson from the 2026-05-09 floor experiment still applies: the selector multi-source lever is tapped at ~22% given feed supply, so future sourcing-cluster work should target upstream feed clustering, not selector floors."
+  "context": "A healthy, balanced day: 52 articles, perfect-to-near-perfect freshness (median 0.3d), zero duplicates, 8 multi-source stories, sci+tech a strong 44%, and top-source concentration low at Dawn 12% across 51 unique sources. With every goal metric met, no active experiment, and no queued in-scope parameter change (the standing numerical-density item targets write-prompt.md, out of tuning scope), the correct move is to hold steady. The standing lesson from the 2026-05-09 floor experiment still applies: the selector multi-source lever is tapped at ~22% given feed supply, so future sourcing work should target upstream feed clustering rather than selector floors."
 }
