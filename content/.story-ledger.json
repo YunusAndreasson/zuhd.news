@@ -2,13 +2,466 @@
   "version": 1,
   "stories": [
     {
+      "id": "ukraine-moscow-refinery-drone-strike-biggest-in-years",
+      "label": "Ukraine sets Moscow refinery ablaze in biggest attack in years",
+      "firstSeen": "2026-06-18T17:12:17.894Z",
+      "lastCovered": "2026-06-18T17:12:17.894Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-18-ukraine-moscow-refinery-drone-strike-biggest-in-years"
+      ],
+      "eventUri": "eng-11755631",
+      "summary": "Ukraine's largest drone strike on Moscow in years hit a major oil refinery and forced evacuations at Russia's busiest airport. Lead with the reach: Kyiv is now able to put fires over the Russian capital and disrupt its export infrastructure, shifting the war's cost back onto Moscow itself. Mechanism for the reader: refinery strikes are an energy-economy weapon, not just symbolism — and the three sources (Pakistan, India, Albania) show how a European war is read from the Global South. Continues the Ukraine long-range-strike arc.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Moscow",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Oil_refinery",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Kyiv"
+      ]
+    },
+    {
+      "id": "israel-cuts-eu-contact-kallas-apartheid-merz",
+      "label": "Merz slaps down Kallas over 'apartheid' comments",
+      "firstSeen": "2026-06-18T17:12:17.894Z",
+      "lastCovered": "2026-06-18T17:12:17.894Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-18-israel-cuts-eu-contact-kallas-apartheid-merz"
+      ],
+      "eventUri": "spa-4237292",
+      "summary": "Israel's foreign minister Gideon Sa'ar severed all contact with the EU's top diplomat, Kaja Kallas, after she reportedly likened Israel to apartheid-era South Africa — and German Chancellor Merz publicly sided against Kallas. Lead with the rupture: a sitting EU foreign-policy chief invoked the apartheid analogy and a member-state leader moved to discipline her for it, exposing the bloc's fracture over Israel. Five sources across Bangladesh, Jordan, Pakistan and Europe show the divergence in how the clash is framed. Who holds power: Berlin, shielding Israel inside EU institutions.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Apartheid",
+        "http://en.wikipedia.org/wiki/European_Union",
+        "http://en.wikipedia.org/wiki/Gideon_Sa'ar",
+        "http://en.wikipedia.org/wiki/South_Africa",
+        "http://en.wikipedia.org/wiki/Diplomacy",
+        "http://en.wikipedia.org/wiki/Foreign_minister"
+      ]
+    },
+    {
+      "id": "niamey-airport-attack-niger-sahel-jihadism",
+      "label": "Explosions reported at airport in African state's capital",
+      "firstSeen": "2026-06-18T17:12:17.894Z",
+      "lastCovered": "2026-06-18T17:12:17.894Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-18-niamey-airport-attack-niger-sahel-jihadism"
+      ],
+      "eventUri": "eng-11754853",
+      "summary": "Gunmen breached the perimeter of Niamey's main international airport and fought security forces before being repelled, briefly halting operations in Niger's capital. Lead with the target: an assault on the capital airport signals jihadist groups can now strike the seat of the junta's power, not just the rural Sahel. Who bears the cost: a coup government that justified itself on restoring security. NOTE: the feed carried only RT (Russia) on this event — no Niger or West African regional outlet was available; flag as a feed-side gap for an OIC-member story.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Niger",
+        "http://en.wikipedia.org/wiki/Niamey",
+        "http://en.wikipedia.org/wiki/Jihadism",
+        "http://en.wikipedia.org/wiki/Diori_Hamani_International_Airport",
+        "http://en.wikipedia.org/wiki/Sahel",
+        "http://en.wikipedia.org/wiki/Military_dictatorship"
+      ]
+    },
+    {
+      "id": "ecuador-venezuela-criminal-networks-colombia-security-vote",
+      "label": "On the Radar: Criminal Shake-Ups in Ecuador and Venezuela as Colombia Votes on Security",
+      "firstSeen": "2026-06-18T17:12:17.894Z",
+      "lastCovered": "2026-06-18T17:12:17.894Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-18-ecuador-venezuela-criminal-networks-colombia-security-vote"
+      ],
+      "eventUri": null,
+      "summary": "The capture of the brother of 'Fito' could fracture the financial network of Ecuador's Los Choneros, while the death of Venezuela's Niño Guerrero reshapes the Tren de Aragua, all as Colombia votes amid a security crisis. Lead with the mechanism InSight Crime traces best: how the removal of one financial or leadership node reorders an entire transnational criminal economy. Why it matters to the reader: Latin America's organized-crime structures are state-shaping actors with their own logic, not a backdrop to US drug policy.",
+      "conceptUris": []
+    },
+    {
+      "id": "ai-token-pricing-end-of-flat-rate-subscriptions",
+      "label": "Why AI's All-You-Can-Eat Buffet Is Coming to an End",
+      "firstSeen": "2026-06-18T17:12:17.894Z",
+      "lastCovered": "2026-06-18T17:12:17.894Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-18-ai-token-pricing-end-of-flat-rate-subscriptions"
+      ],
+      "eventUri": "eng-11753365",
+      "summary": "AI vendors are abandoning flat-rate subscriptions for metered token pricing, forcing customers to pay for what they actually consume. Lead with the reversal: after years of subsidizing adoption, developers now need usage to pay for itself — a tell that the economics of the AI boom are tightening. Who is exposed: businesses that built workflows on cheap unlimited AI and now face variable bills they can't forecast. Mechanism for the reader: the shift from flat to per-token billing is how the industry quietly admits inference is expensive.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Cloud_computing",
+        "http://en.wikipedia.org/wiki/Generative_artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Automation"
+      ]
+    },
+    {
+      "id": "accenture-cuts-fy26-outlook-india-it-ai-pressure",
+      "label": "Accenture cuts FY26 growth outlook",
+      "firstSeen": "2026-06-18T17:12:17.894Z",
+      "lastCovered": "2026-06-18T17:12:17.894Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-18-accenture-cuts-fy26-outlook-india-it-ai-pressure"
+      ],
+      "eventUri": "eng-11755636",
+      "summary": "Accenture lowered the top end of its annual revenue forecast and warned of weaker Q4, dragging down Indian IT stocks despite a decent third quarter. Lead with the contagion: when the world's largest consultancy signals AI is compressing demand for human IT services, the cost lands hardest on India's outsourcing sector, which staffs that work. Mechanism for the reader: the same AI that vendors are now charging more for is hollowing out the labor-arbitrage business model that built India's tech-services economy.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Accenture",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Information_technology",
+        "http://en.wikipedia.org/wiki/Revenue",
+        "http://en.wikipedia.org/wiki/Infosys"
+      ]
+    },
+    {
+      "id": "gcc-economies-8-percent-growth-2027-post-conflict-rebound",
+      "label": "GCC economies to grow 8.1% in 2027 as conflict disruptions subside",
+      "firstSeen": "2026-06-18T17:12:17.894Z",
+      "lastCovered": "2026-06-18T17:12:17.894Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-18-gcc-economies-8-percent-growth-2027-post-conflict-rebound"
+      ],
+      "eventUri": null,
+      "summary": "Gulf economies are projected to rebound to 8.1% growth in 2027 as the disruptions of the Iran war fade and Hormuz traffic normalizes. Lead with the number and its premise: the forecast prices in peace, making it a barometer of how much the conflict actually cost the Gulf and how fragile the recovery is if the ceasefire fails. Who benefits: GCC states positioned to capture rebound investment; who is exposed: the same economies if the deal unravels. Regional outlet (Salaam Gateway, UAE) gives the Gulf's own read.",
+      "conceptUris": []
+    },
+    {
+      "id": "genome-physicality-confounds-ai-blueprint-metaphor",
+      "label": "Why the Human Genome's Tangled Physicality May Confound AI",
+      "firstSeen": "2026-06-18T17:12:17.894Z",
+      "lastCovered": "2026-06-18T17:12:17.894Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-18-genome-physicality-confounds-ai-blueprint-metaphor"
+      ],
+      "eventUri": null,
+      "summary": "Biologists are arguing the genome is not a blueprint or an algorithm but a physical, three-dimensional tangle — which means the AI models trained to 'read' it as code may be working from the wrong metaphor. Lead with the conceptual reversal: the dominant computational framing of genetics may be a category error, and that limits what AI can predict about gene function. Mechanism for the technically literate reader: spatial folding, not sequence alone, governs expression — a constraint no purely sequence-trained model captures.",
+      "conceptUris": []
+    },
+    {
+      "id": "siberia-plague-hunter-gatherers-ancient-dna-5500-years",
+      "label": "Hunter-gatherers in Siberia died of a plague outbreak 5,500 years ago",
+      "firstSeen": "2026-06-18T17:12:17.894Z",
+      "lastCovered": "2026-06-18T17:12:17.894Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-18-siberia-plague-hunter-gatherers-ancient-dna-5500-years"
+      ],
+      "eventUri": "eng-11752598",
+      "summary": "Oxford researchers sequenced Yersinia pestis DNA from the teeth of southeastern Siberian hunter-gatherers, showing plague killed dozens 5,500 years ago — far earlier among foragers than the disease's usual association with dense farming settlements. Lead with the surprise: plague struck mobile hunter-gatherer bands, upending the assumption that crowd diseases require agriculture and cities. Mechanism for the reader: ancient DNA trapped in tooth pulp lets us read epidemics that left no written trace.",
+      "conceptUris": []
+    },
+    {
+      "id": "papua-new-guinea-pumice-raft-titan-ridge-eruption",
+      "label": "Floating Volcanic Rock Is Disrupting Life in Papua New Guinea",
+      "firstSeen": "2026-06-18T17:12:17.894Z",
+      "lastCovered": "2026-06-18T17:12:17.894Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-18-papua-new-guinea-pumice-raft-titan-ridge-eruption"
+      ],
+      "eventUri": null,
+      "summary": "The ongoing Titan Ridge eruption has blanketed stretches of Papua New Guinea's coast in meters of floating pumice, choking the waters that coastal communities depend on for food and transport. Lead with the human cost: a geological event is severing a subsistence economy from the sea it lives on. Mechanism for the reader: pumice rafts are a little-understood eruption byproduct that can persist for months and travel across oceans. Fills an Oceania coverage gap; the affected are a community with no buffer against the loss.",
+      "conceptUris": []
+    },
+    {
+      "id": "salesforce-internal-ai-adoption-leaderboard-coercion",
+      "label": "Salesforce's Internal AI Leaderboard Has Teams Competing for Little Trophies",
+      "firstSeen": "2026-06-18T17:12:17.894Z",
+      "lastCovered": "2026-06-18T17:12:17.894Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-18-salesforce-internal-ai-adoption-leaderboard-coercion"
+      ],
+      "eventUri": null,
+      "summary": "Salesforce built an internal leaderboard ranking employees and teams by AI-tool adoption — complete with badges and a 'click to see who' feature that publicly surfaces workers who haven't earned them. Lead with the coercion dressed as gamification: this is how AI mandates get enforced socially, by making non-adoption visible and shameful. Why it matters to the reader: it's a concrete look at how large employers are manufacturing AI uptake from the inside, regardless of whether the tools help.",
+      "conceptUris": []
+    },
+    {
+      "id": "chinese-ai-models-cost-advantage-western-companies",
+      "label": "The quiet rise of Chinese AI inside Western companies",
+      "firstSeen": "2026-06-18T17:12:17.894Z",
+      "lastCovered": "2026-06-18T17:12:17.894Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-18-chinese-ai-models-cost-advantage-western-companies"
+      ],
+      "eventUri": null,
+      "summary": "Western firms are quietly adopting Chinese AI models because they are dramatically cheaper, turning cost — not capability — into the decisive commercial lever. Lead with the inversion: the AI race the West frames as a contest of frontier power is being won inside Western companies on price. Who holds power: Chinese labs undercutting US incumbents; what the reader keeps: cost advantage routes Chinese AI into Western infrastructure without a single policy decision, a dependency built one procurement choice at a time.",
+      "conceptUris": []
+    },
+    {
+      "id": "mackay-sugar-ransomware-halts-harvest-australia",
+      "label": "Australian sugar producer works to restore operations as ransomware group claims attack",
+      "firstSeen": "2026-06-18T17:12:17.894Z",
+      "lastCovered": "2026-06-18T17:12:17.894Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-18-mackay-sugar-ransomware-halts-harvest-australia"
+      ],
+      "eventUri": null,
+      "summary": "Mackay Sugar shut down harvesting and milling after a highly active ransomware group claimed a cyberattack on the producer. Lead with the physical consequence: ransomware didn't just lock files, it halted an agricultural processing operation mid-harvest, where downtime is measured in spoiling crop. Mechanism for the reader: industrial and food-supply operators are now prime ransomware targets precisely because their downtime is so costly they're pressured to pay fast.",
+      "conceptUris": []
+    },
+    {
+      "id": "apple-intel-chip-manufacturing-deal-reshapes-foundry-race",
+      "label": "Apple-Intel Chip Manufacturing Deal Reshapes Foundry Race",
+      "firstSeen": "2026-06-18T12:09:46.615Z",
+      "lastCovered": "2026-06-18T12:09:46.615Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-18-apple-intel-chip-manufacturing-deal-reshapes-foundry-race"
+      ],
+      "eventUri": "eng-11754607",
+      "summary": "Intel jumped ~9% premarket after Trump announced Apple will design and build chips with Intel in the US. Lead with what the deal does to the foundry race: Apple — TSMC's anchor customer — hedging into a US fab is a structural bet that reorders who controls advanced-node manufacturing. Who holds power: Washington wielding industrial policy to repatriate semiconductors; who is exposed: Taiwan/TSMC's dominance and the supply chains routed through it. The mechanism for the reader: chip sovereignty is being engineered by state pressure, not market choice. Dawn (PK) carries the non-US read on what reshored supply means for Asian buyers.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Apple_Inc.",
+        "http://en.wikipedia.org/wiki/Intel",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Integrated_circuit",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Semiconductor",
+        "http://en.wikipedia.org/wiki/Nvidia",
+        "http://en.wikipedia.org/wiki/TSMC"
+      ]
+    },
+    {
+      "id": "investors-rotate-magnificent-7-into-ai-infrastructure-bottlenecks",
+      "label": "Mounting AI costs and weaker performance are driving investors toward AI infrastructure",
+      "firstSeen": "2026-06-18T12:09:46.615Z",
+      "lastCovered": "2026-06-18T12:09:46.615Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-18-investors-rotate-magnificent-7-into-ai-infrastructure-bottlenecks"
+      ],
+      "eventUri": null,
+      "summary": "Capital is rotating out of the Magnificent 7 and into the picks-and-shovels of AI — semiconductors, memory, power, SpaceX-linked plays — as doubts grow over whether hyperscaler AI spend can pay off. Lead with the reversal: the market is starting to price the AI boom as a capex problem, not a software miracle. Who is exposed: retail holders still long the mega-caps; what the reader keeps: bottlenecks (chips, memory, energy) are where the returns are migrating, a tell that the cycle is maturing.",
+      "conceptUris": []
+    },
+    {
+      "id": "israeli-arms-imports-to-uk-surged-gaza-war",
+      "label": "Revealed: Israeli arms imports to UK surged during Gaza war",
+      "firstSeen": "2026-06-18T12:09:46.615Z",
+      "lastCovered": "2026-06-18T12:09:46.615Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-18-israeli-arms-imports-to-uk-surged-gaza-war"
+      ],
+      "eventUri": null,
+      "summary": "UN trade data shows the value of military goods imported from Israel into the UK rose more than 100-fold between 2023 and 2025 — even as Britain publicly restricted arms exports to Israel over Gaza. Lead with the number and the direction: while London signalled restraint on what it sells, it quietly became a major buyer of Israeli weaponry battle-tested on Palestinians. Accountability is the spine — named state, hard customs data, a 100x figure no wire is carrying. The mechanism: the arms trade flows both ways, and the import side is where the political accounting has been missing.",
+      "conceptUris": []
+    },
+    {
+      "id": "super-potent-synthetic-opioids-spread-fentanyl-crackdown",
+      "label": "Super-Potent Synthetic Opioids Spread Across US Amid Fentanyl Crackdown",
+      "firstSeen": "2026-06-18T12:09:46.615Z",
+      "lastCovered": "2026-06-18T12:09:46.615Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-18-super-potent-synthetic-opioids-spread-fentanyl-crackdown"
+      ],
+      "eventUri": null,
+      "summary": "A Bellingcat investigation (co-published with STAT and Signal Ohio) traces how the crackdown on fentanyl is pushing the US drug supply toward even more potent synthetics — nitazenes and analogues that kill at lower doses. Lead with the policy paradox: enforcement designed to save lives is selecting for deadlier chemistry. Who is affected: users like Ashley Delgado, named and humanised; who holds power: a prohibition regime whose pressure reshapes the supply rather than shrinking it. The systemic lesson for the reader: interdiction without demand-side care drives substitution up the potency ladder.",
+      "conceptUris": []
+    },
+    {
+      "id": "pakistan-kp-militant-drones-afghanistan-hardware",
+      "label": "Countering drones",
+      "firstSeen": "2026-06-18T12:09:46.615Z",
+      "lastCovered": "2026-06-18T12:09:46.615Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-17-pakistan-kp-militant-drones-afghanistan-hardware"
+      ],
+      "eventUri": "eng-11751579",
+      "summary": "Militants in Pakistan's Khyber Pakhtunkhwa and former FATA have absorbed drone tactics and hardware — including kit abandoned after the US exit from Afghanistan — turning KP into a testbed for cheap aerial insurgency, with 380+ attacks logged in 2025 and Bannu hit hardest. Lead with the diffusion: weapons and know-how from one war (Afghanistan, Ukraine) re-arming another front entirely. Who bears the cost: Pakistani security forces and civilians in the borderlands; the structural why — the drone has democratised stand-off attack, and the state's countermeasures lag the threat. Regional voice (Dawn, PK) carries the on-the-ground detail Western wires miss.",
+      "conceptUris": []
+    },
+    {
+      "id": "kazan-declaration-russia-asean-strategic-partnership",
+      "label": "Kazan Declaration and strategic partnership: outcomes of the Russia-ASEAN Summit",
+      "firstSeen": "2026-06-18T12:09:46.615Z",
+      "lastCovered": "2026-06-18T12:09:46.615Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-18-kazan-declaration-russia-asean-strategic-partnership"
+      ],
+      "eventUri": "eng-11747505",
+      "summary": "Putin and ASEAN leaders adopted the Kazan Declaration, formalising a Russia-ASEAN strategic partnership spanning maritime security, underwater infrastructure, and economic cooperation. Lead with the realignment: as the West tightens sanctions, Southeast Asia is hedging by deepening ties with Moscow — a Global South bloc refusing to pick a single patron. Who holds power: ASEAN states extracting concessions from a Russia hungry for non-Western partners; the structural why — multipolar hedging is now policy, not rhetoric. Note for the writer: the feed clustered only TASS (RU state media) on this — frame the declaration's claims as Moscow's account and source the partnership terms carefully.",
+      "conceptUris": []
+    },
+    {
+      "id": "noam-shazeer-leaves-google-gemini-for-openai",
+      "label": "Google Gemini co-lead Noam Shazeer leaving for OpenAI",
+      "firstSeen": "2026-06-18T12:09:46.615Z",
+      "lastCovered": "2026-06-18T12:09:46.615Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-18-noam-shazeer-leaves-google-gemini-for-openai"
+      ],
+      "eventUri": "eng-11754447",
+      "summary": "Noam Shazeer — co-author of 'Attention Is All You Need' and co-lead of Gemini — is leaving Google for OpenAI, two years after Google paid billions to lure him back. Lead with the talent gravity: the single most influential living AI researcher defecting to a rival signals where the frontier action (and conviction) is migrating. Who holds power: a handful of researchers whose moves reprice entire labs; the structural why — in AI, key individuals are strategic assets, and retention is now a competitive front as fierce as compute.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Google",
+        "http://en.wikipedia.org/wiki/OpenAI",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/ChatGPT",
+        "http://en.wikipedia.org/wiki/Startup_company",
+        "http://en.wikipedia.org/wiki/Chatbot",
+        "http://en.wikipedia.org/wiki/Initial_public_offering",
+        "http://en.wikipedia.org/wiki/Vice_President_of_the_United_States"
+      ]
+    },
+    {
+      "id": "chile-china-undersea-cable-us-veto",
+      "label": "Chile turned to China for an undersea cable. The U.S. said no",
+      "firstSeen": "2026-06-18T12:09:46.615Z",
+      "lastCovered": "2026-06-18T12:09:46.615Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-18-chile-china-undersea-cable-us-veto"
+      ],
+      "eventUri": null,
+      "summary": "A planned Chile-to-Hong Kong subsea cable that would have linked South America directly to Asia was rerouted after US pressure — a case study in how Washington polices the physical internet to box out Chinese telecom. Lead with the chokepoint: who lays the cable decides who routes a continent's data, and Chile's sovereign infrastructure choice was overridden from outside. Who is affected: a Latin American state denied agency over its own connectivity; the structural why — undersea cables are the new terrain of US-China rivalry, and the Global South is where the lines are drawn.",
+      "conceptUris": []
+    },
+    {
+      "id": "asia-ai-strategy-europe-falling-behind",
+      "label": "Asia Is Sprinting on AI. Europe Is Still Tying Its Laces.",
+      "firstSeen": "2026-06-18T12:09:46.615Z",
+      "lastCovered": "2026-06-18T12:09:46.615Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-18-asia-ai-strategy-europe-falling-behind"
+      ],
+      "eventUri": null,
+      "summary": "China, South Korea, Japan, India, and Singapore are each setting concrete national AI targets while the EU drifts further behind on capability and deployment. Lead with the divergence: Asia is treating AI as industrial strategy with state coordination, while Europe's regulatory-first posture leaves it without a competitive engine. Who gains: Asian states converting policy clarity into compute, talent, and adoption; the structural why for the reader — AI leadership is consolidating outside the transatlantic axis, and the gap is now measured in strategy, not just chips.",
+      "conceptUris": []
+    },
+    {
+      "id": "china-provincial-five-year-plans-climate-energy",
+      "label": "Q&A: What do China's provincial five-year plans say about climate and energy?",
+      "firstSeen": "2026-06-18T12:09:46.615Z",
+      "lastCovered": "2026-06-18T12:09:46.615Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-18-china-provincial-five-year-plans-climate-energy"
+      ],
+      "eventUri": null,
+      "summary": "China's provinces have now all published their 15th Five-Year Plans, and the granular targets reveal how the world's largest emitter intends to balance coal, renewables, and growth at the level where policy actually bites. Lead with the divergence between provinces: national net-zero rhetoric resolves into very different local bets on solar, wind, and fossil capacity. Who holds power: provincial governments whose plans determine global emissions trajectories; the mechanism for the reader — the energy transition is decided in sub-national budgets, not summit communiqués.",
+      "conceptUris": []
+    },
+    {
+      "id": "complex-life-earth-habitability-500-million-years",
+      "label": "Complex life on Earth may last 500 million years longer than expected",
+      "firstSeen": "2026-06-18T12:09:46.615Z",
+      "lastCovered": "2026-06-18T12:09:46.615Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-17-complex-life-earth-habitability-500-million-years"
+      ],
+      "eventUri": "eng-11755585",
+      "summary": "New modelling of how the brightening sun will eventually cook Earth finds complex life could persist some 500 million years longer than prior estimates before CO2 collapse renders the planet microbe-only. Lead with the revised deadline and the mechanism: it's the carbon-cycle and temperature thresholds — not the sun alone — that set the habitability clock. For the reader who thinks in systems: a clean illustration of how feedbacks, not single drivers, govern planetary-scale outcomes, and how a model assumption can move a 'deadline' by hundreds of millions of years.",
+      "conceptUris": []
+    },
+    {
+      "id": "solar-geoengineering-practical-engineering-challenges",
+      "label": "Geoengineering still faces major practical challenges",
+      "firstSeen": "2026-06-18T12:09:46.615Z",
+      "lastCovered": "2026-06-18T12:09:46.615Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-17-solar-geoengineering-practical-engineering-challenges"
+      ],
+      "eventUri": null,
+      "summary": "Solar geoengineering is pitched as a climate 'emergency brake', but the engineering of actually lofting reflective particles at scale — delivery, persistence, distribution, governance — remains deeply unsolved. Lead with the gap between the rhetoric of a quick planetary thermostat and the hard logistics. Who holds power: the handful of labs and funders shaping whether this becomes deployable; the structural why for the reader — treating geoengineering as a ready backstop risks weakening mitigation while the technology can't yet do what its boosters imply.",
+      "conceptUris": []
+    },
+    {
       "id": "jharkhand-resort-politics-rajya-sabha-mla-poaching",
       "label": "Resort politics begins in Jharkhand as BJP herds legislators away",
       "firstSeen": "2026-06-18T08:13:17.625Z",
       "lastCovered": "2026-06-18T08:13:17.625Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-16-jharkhand-resort-politics-rajya-sabha-mla-poaching"
@@ -33,7 +486,7 @@
       "lastCovered": "2026-06-18T08:13:17.625Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-18-philippine-senate-ousts-duterte-ally-impeachment"
@@ -49,7 +502,7 @@
       "lastCovered": "2026-06-18T08:13:17.625Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-17-ukraine-europe-long-range-missile-sovereignty"
@@ -65,7 +518,7 @@
       "lastCovered": "2026-06-18T08:13:17.625Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-17-antarctica-power-struggle-ushuaia-argentina"
@@ -81,7 +534,7 @@
       "lastCovered": "2026-06-18T08:13:17.625Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-17-gulf-states-post-assad-syria-reconstruction-bet"
@@ -97,7 +550,7 @@
       "lastCovered": "2026-06-18T08:13:17.625Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-18-adb-700m-loan-pakistan-insurance-protection-gap"
@@ -113,7 +566,7 @@
       "lastCovered": "2026-06-18T08:13:17.625Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-18-india-uk-ceta-trade-pact-july-rollout"
@@ -138,7 +591,7 @@
       "lastCovered": "2026-06-18T08:13:17.625Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-18-lake-st-lucia-estuary-management-debate"
@@ -154,7 +607,7 @@
       "lastCovered": "2026-06-18T08:13:17.625Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-18-sexual-health-cancer-chronic-illness-care-gap"
@@ -170,7 +623,7 @@
       "lastCovered": "2026-06-18T08:13:17.625Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-17-usaf-collaborative-combat-aircraft-fq42-fq44-production"
@@ -186,7 +639,7 @@
       "lastCovered": "2026-06-18T08:13:17.625Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-17-lore-open-source-version-control-scalability"
@@ -202,7 +655,7 @@
       "lastCovered": "2026-06-18T08:13:17.625Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-17-us-science-politics-compact-broken"
@@ -218,7 +671,7 @@
       "lastCovered": "2026-06-18T04:08:07.439Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-18-iran-us-mou-signed-hormuz-reopen-blockade-lift"
@@ -243,7 +696,7 @@
       "lastCovered": "2026-06-18T04:08:07.439Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-18-un-caac-record-child-violations-israeli-settlers-blacklist"
@@ -265,7 +718,7 @@
       "lastCovered": "2026-06-18T04:08:07.439Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-18-lhc-stone-crushing-silicosis-public-health-emergency"
@@ -281,7 +734,7 @@
       "lastCovered": "2026-06-18T04:08:07.439Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-18-india-us-relations-sailors-killed-strategic-friction"
@@ -297,7 +750,7 @@
       "lastCovered": "2026-06-18T04:08:07.439Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-18-cme-sue-cftc-kalshi-perpetual-futures-dodd-frank"
@@ -313,7 +766,7 @@
       "lastCovered": "2026-06-18T04:08:07.439Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-18-brexit-customs-union-exports-12-percent-single-market"
@@ -329,7 +782,7 @@
       "lastCovered": "2026-06-18T04:08:07.439Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-18-autism-adhd-rise-widening-diagnostic-criteria-study"
@@ -345,7 +798,7 @@
       "lastCovered": "2026-06-18T04:08:07.439Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-18-pre-cellular-diversity-open-ended-evolution-origins-life"
@@ -361,7 +814,7 @@
       "lastCovered": "2026-06-18T04:08:07.439Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-18-india-heat-clothing-caste-inequality-adaptation"
@@ -377,7 +830,7 @@
       "lastCovered": "2026-06-18T04:08:07.439Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-18-apple-raise-prices-ai-memory-chip-shortage"
@@ -402,7 +855,7 @@
       "lastCovered": "2026-06-18T04:08:07.439Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-18-msg-knicks-hack-facial-recognition-risk-list-leak"
@@ -418,7 +871,7 @@
       "lastCovered": "2026-06-18T04:08:07.439Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-18-ncsc-hostile-states-prepositioning-uk-infrastructure"
@@ -434,7 +887,7 @@
       "lastCovered": "2026-06-18T04:08:07.439Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-18-mangione-accused-insurance-ceo-killer-could-face-hurdles-wit"
@@ -450,7 +903,7 @@
       "lastCovered": "2026-06-17T22:10:19.870Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-17-lula-g7-brazil-us-trade-pressure"
@@ -475,7 +928,7 @@
       "lastCovered": "2026-06-17T22:10:19.870Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-17-us-iran-14-point-ceasefire-memorandum-terms"
@@ -500,7 +953,7 @@
       "lastCovered": "2026-06-17T22:10:19.870Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-17-eu-parliament-offshore-detention-asylum"
@@ -525,7 +978,7 @@
       "lastCovered": "2026-06-17T22:10:19.870Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-17-gaza-yellow-line-israel-land-seizure"
@@ -541,7 +994,7 @@
       "lastCovered": "2026-06-17T22:10:19.870Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-17-strait-of-hormuz-reopening-shipping"
@@ -557,7 +1010,7 @@
       "lastCovered": "2026-06-17T22:10:19.870Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-17-nigeria-charcoal-boom-cooking-gas-prices"
@@ -573,7 +1026,7 @@
       "lastCovered": "2026-06-17T22:10:19.870Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-17-sloppy-shuffles-card-randomness-proof"
@@ -589,7 +1042,7 @@
       "lastCovered": "2026-06-17T22:10:19.870Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-17-tesco-vmware-exit-broadcom-lawsuit"
@@ -605,7 +1058,7 @@
       "lastCovered": "2026-06-17T22:10:19.870Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-17-ai-agents-autonomous-robot-training"
@@ -621,7 +1074,7 @@
       "lastCovered": "2026-06-17T22:10:19.870Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-17-japan-intelligence-council-overhaul"
@@ -637,7 +1090,7 @@
       "lastCovered": "2026-06-17T22:10:19.870Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-17-world-cup-matches-and-ufc-fights-help-european-leaders-placa"
@@ -662,7 +1115,7 @@
       "lastCovered": "2026-06-17T22:10:19.870Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-17-in-vivo-crispr-knockout-screen-identifies-polr1a-as-a-key-dr"
@@ -678,7 +1131,7 @@
       "lastCovered": "2026-06-17T17:10:59.547Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-17-gaza-death-toll-since-ceasefire-tops-1-000"
@@ -694,7 +1147,7 @@
       "lastCovered": "2026-06-17T17:10:59.547Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-17-egypt-pensioners-insurance-digital-system"
@@ -710,7 +1163,7 @@
       "lastCovered": "2026-06-17T17:10:59.547Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-17-spain-zapatero-graft-court-hearing"
@@ -735,7 +1188,7 @@
       "lastCovered": "2026-06-17T17:10:59.547Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-17-trump-delays-clayton-dni-surveillance-standoff"
@@ -760,7 +1213,7 @@
       "lastCovered": "2026-06-17T17:10:59.547Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-17-china-steel-capacity-rules-green-transition"
@@ -776,7 +1229,7 @@
       "lastCovered": "2026-06-17T17:10:59.547Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-17-egypt-gmo-seed-ban-bayer-coalition"
@@ -792,7 +1245,7 @@
       "lastCovered": "2026-06-17T17:10:59.547Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-17-fda-huntingtons-gene-therapy-reversal"
@@ -808,7 +1261,7 @@
       "lastCovered": "2026-06-17T17:10:59.547Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-17-fda-livestock-antibiotics-resistance-petition"
@@ -824,7 +1277,7 @@
       "lastCovered": "2026-06-17T17:10:59.547Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-17-llm-acute-coronary-syndrome-triage"
@@ -840,7 +1293,7 @@
       "lastCovered": "2026-06-17T17:10:59.547Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-17-ice-buying-immigrant-tax-ids-data-broker"
@@ -856,7 +1309,7 @@
       "lastCovered": "2026-06-17T17:10:59.547Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-17-eu-ukraine-cybersecurity-reserve-access"
@@ -872,7 +1325,7 @@
       "lastCovered": "2026-06-17T17:10:59.547Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-16-meta-engineering-org-restructuring"
@@ -888,7 +1341,7 @@
       "lastCovered": "2026-06-17T17:10:59.547Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-17-the-gemini-powered-google-home-speaker-arrives-on-june-25-fo"
@@ -905,487 +1358,6 @@
         "http://en.wikipedia.org/wiki/Microphone",
         "http://en.wikipedia.org/wiki/Google_Assistant"
       ]
-    },
-    {
-      "id": "us-iran-mou-not-final-trump-warns-of-dropping-bombs-if-he-do",
-      "label": "US-Iran MoU not final? Trump warns of 'dropping bombs' if he 'doesn't like deal'",
-      "firstSeen": "2026-06-17T12:10:18.889Z",
-      "lastCovered": "2026-06-17T12:10:18.889Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-17-us-iran-mou-not-final-trump-warns-of-dropping-bombs-if-he-do"
-      ],
-      "eventUri": "eng-11751834",
-      "summary": "Days before the Pakistan-brokered signing, Trump publicly calls the Iran MoU 'not final' and threatens to resume bombing if Tehran 'doesn't behave.' Lead with the fragility this exposes: the ceasefire everyone treated as settled is one presidential mood away from collapse, and the Hormuz-reopening that markets priced in rests on an unsigned framework. Who's affected: Iranians and Lebanese under a war that could reignite, and oil markets betting on a durable truce. The structural why — a personalised, reversible deal with no enforcement architecture is not peace, it's a pause. Continues the Iran-war-aftermath arc; this is the diplomatic-instability beat, distinct from the concrete tanker-movement story.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Washington,_D.C.",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Nuclear_weapon",
-        "http://en.wikipedia.org/wiki/Lebanon"
-      ]
-    },
-    {
-      "id": "ni-o-guerrero-is-dead-this-is-how-he-built-latin-america-s-m",
-      "label": "Niño Guerrero Is Dead. This Is How He Built Latin America's Most Notorious Criminal Franchise",
-      "firstSeen": "2026-06-17T12:10:18.889Z",
-      "lastCovered": "2026-06-17T12:10:18.889Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-15-ni-o-guerrero-is-dead-this-is-how-he-built-latin-america-s-m"
-      ],
-      "eventUri": null,
-      "summary": "Tren de Aragua founder Héctor 'Niño' Guerrero was killed in a joint US-Venezuela operation on June 12, framed by Washington as a win for its kingpin strategy. Lead with the analyst's counterintuitive verdict: his death will barely dent the gang, because Tren de Aragua is a franchise, not a hierarchy — decentralised cells that don't need a boss. Who holds power: the US 'drug war' apparatus claiming a scalp; who's affected: the Latin American communities the gang exploits regardless of leadership. The mechanism to teach — why decapitation strategies fail against networked criminal franchises. InSight Crime's specialist organized-crime reporting, the kind no wire matches; adds Latin America to an otherwise Iran/Europe-heavy day.",
-      "conceptUris": []
-    },
-    {
-      "id": "revealed-illegal-west-bank-settlements-advertised-at-israeli",
-      "label": "Revealed: Illegal West Bank settlements advertised at Israeli event in London",
-      "firstSeen": "2026-06-17T12:10:18.889Z",
-      "lastCovered": "2026-06-17T12:10:18.889Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-15-revealed-illegal-west-bank-settlements-advertised-at-israeli"
-      ],
-      "eventUri": null,
-      "summary": "Despite organisers' denials, evidence gathered inside a 'Great Israeli Real Estate' event in London shows occupied West Bank land was being marketed to UK buyers. Lead with the primary-evidence finding, not the denial: property in illegal settlements was openly on sale in a European capital, and UK ministers only belatedly referred it to the Advertising Standards Authority. Who holds power: organisers and the regulators who looked away; who's affected: Palestinians whose occupied land is commodified abroad. Mechanism to teach — how settlement expansion is financed and normalised through ordinary real-estate marketing in third countries, and where domestic law (mis)applies. Original investigative reporting with documented evidence, not an unsourced advocacy claim.",
-      "conceptUris": []
-    },
-    {
-      "id": "iranian-tankers-exit-us-blockade-zone-before-talks-to-end-wa",
-      "label": "Iranian tankers exit US blockade zone before talks to end war",
-      "firstSeen": "2026-06-17T12:10:18.889Z",
-      "lastCovered": "2026-06-17T12:10:18.889Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-17-iranian-tankers-exit-us-blockade-zone-before-talks-to-end-wa"
-      ],
-      "eventUri": "eng-11750719",
-      "summary": "TankerTrackers data shows several Iranian crude tankers have physically crossed the US blockade line in the Strait of Hormuz, two days before talks resume. Lead with the concrete signal in the ship-tracking data: oil is moving again before any deal is signed, which is the real-economy proof that the framework is holding where rhetoric is shaky. Who's affected: global oil buyers and Iran's sanctioned export economy; who holds power: the US Navy enforcing (and now easing) the blockade. Mechanism to teach — how independent vessel-tracking (AIS) lets outsiders verify a geopolitical thaw in real time, ahead of official confirmation. OIC-region story carried by Al Jazeera (QA), the right regional voice; the economic counterpart to the diplomatic-fragility beat.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Blockade",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Oil_tanker",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/United_States_Navy",
-        "http://en.wikipedia.org/wiki/Tanker_(ship)",
-        "http://en.wikipedia.org/wiki/United_States"
-      ]
-    },
-    {
-      "id": "bubble-risks-are-rising-as-ai-borrowing-balloons",
-      "label": "Bubble Risks Are Rising as AI Borrowing Balloons",
-      "firstSeen": "2026-06-17T12:10:18.889Z",
-      "lastCovered": "2026-06-17T12:10:18.889Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-17-bubble-risks-are-rising-as-ai-borrowing-balloons"
-      ],
-      "eventUri": "eng-11751014",
-      "summary": "The AI infrastructure buildout is increasingly financed by debt, not cash — and Bloomberg flags the bubble risk as borrowing balloons. Lead with the mechanism the reader should grasp: data-centre and chip capex is now being funded on leverage, which means an AI slowdown wouldn't just wipe equity, it would leave a wall of debt across the sector and its lenders. Who holds power: the hyperscalers and the banks underwriting them; who's exposed: pension funds and credit markets holding the paper. The structural why — leverage converts a hype cycle into systemic financial risk. Pairs with the leaked-OpenAI-losses arc as the macro view of whether AI's economics can ever close.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Information_technology",
-        "http://en.wikipedia.org/wiki/Productivity",
-        "http://en.wikipedia.org/wiki/Generative_artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Automation"
-      ]
-    },
-    {
-      "id": "heir-to-135-year-gulf-dynasty-is-moving-a-6-trillion-trade-m",
-      "label": "Heir to 135-year Gulf dynasty is moving a $6 trillion trade market onto blockchain rails",
-      "firstSeen": "2026-06-17T12:10:18.889Z",
-      "lastCovered": "2026-06-17T12:10:18.889Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-17-heir-to-135-year-gulf-dynasty-is-moving-a-6-trillion-trade-m"
-      ],
-      "eventUri": null,
-      "summary": "The Kanoo family — one of Bahrain's oldest trading dynasties — is putting global trade finance onto blockchain via ARP, licensed in Bahrain and approved in Dubai, integrated with Fireblocks. Lead with the scale and the geography: a $6tn trade-settlement market is being re-plumbed from the Gulf, positioning Bahrain/Dubai as a hub for moving institutional capital onchain. Who holds power: a 135-year-old merchant house pivoting to digital-asset infrastructure with regulator backing; who's affected: the correspondent-banking rails this aims to displace. Mechanism to teach — what 'tokenising trade finance' concretely means and why Gulf regulators are racing to host it. OIC-region (Bahrain) economic story; feed carried only CoinDesk, no Gulf regional outlet — noted.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Bahrain",
-        "http://en.wikipedia.org/wiki/Blockchain",
-        "http://en.wikipedia.org/wiki/Bitcoin",
-        "http://en.wikipedia.org/wiki/Dubai",
-        "http://en.wikipedia.org/wiki/Logistics"
-      ]
-    },
-    {
-      "id": "us-fed-expected-to-hold-rates-steady",
-      "label": "US Fed expected to hold rates steady",
-      "firstSeen": "2026-06-17T12:10:18.889Z",
-      "lastCovered": "2026-06-17T12:10:18.889Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-17-us-fed-expected-to-hold-rates-steady"
-      ],
-      "eventUri": "eng-11751370",
-      "summary": "The Fed is expected to hold rates in new chair Kevin Warsh's first decision — caught between Trump's pressure to cut and an Iran-war energy shock that pushed gasoline up. Lead with the bind, not the (no-change) outcome: Warsh's debut tests whether the Fed's independence survives a president demanding cuts while imported oil inflation argues for holding. Who holds power: a new chair installed by the very president pressuring him; who's affected: borrowers worldwide priced off the dollar. Mechanism to teach — why central-bank independence is most visible precisely when politics and inflation point in opposite directions. Recategorised from the feed's 'science' tag to economy where it belongs.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Inflation",
-        "http://en.wikipedia.org/wiki/Kevin_Warsh",
-        "http://en.wikipedia.org/wiki/Interest_rate",
-        "http://en.wikipedia.org/wiki/Central_bank",
-        "http://en.wikipedia.org/wiki/Chair_of_the_Federal_Reserve",
-        "http://en.wikipedia.org/wiki/Federal_Reserve",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Federal_Open_Market_Committee"
-      ]
-    },
-    {
-      "id": "baby-fossils-reveal-link-between-human-and-neanderthal-devel",
-      "label": "Baby fossils reveal link between human and Neanderthal development",
-      "firstSeen": "2026-06-17T12:10:18.889Z",
-      "lastCovered": "2026-06-17T12:10:18.889Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-17-baby-fossils-reveal-link-between-human-and-neanderthal-devel"
-      ],
-      "eventUri": null,
-      "summary": "An international study of infant Neanderthal remains from 50,000–75,000 years ago maps how our evolutionary cousins grew — and how closely that trajectory tracks our own. Lead with what infant bones reveal that adult skeletons can't: developmental timing (how fast the brain and body matured) is where human and Neanderthal biology converge or diverge. Mechanism to teach — why paleoanthropologists read growth rates, not just morphology, to reconstruct what made a species. A clean, accessible science story for a serious lay reader, and a counterweight to the day's dense Nature-paper offerings.",
-      "conceptUris": []
-    },
-    {
-      "id": "analysis-uk-s-ev-drivers-are-now-saving-1-100-each-a-year-an",
-      "label": "Analysis: UK's EV drivers are now saving £1,100 each a year – and £3bn in total",
-      "firstSeen": "2026-06-17T12:10:18.889Z",
-      "lastCovered": "2026-06-17T12:10:18.889Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-15-analysis-uk-s-ev-drivers-are-now-saving-1-100-each-a-year-an"
-      ],
-      "eventUri": null,
-      "summary": "Carbon Brief's analysis finds UK EV drivers now save £1,100 each per year — £3bn collectively — just as the government weighs weakening EV targets. Lead with the number against the policy timing: the running-cost case for EVs has flipped decisively to the driver's favour at the exact moment ministers consider easing the mandate that drives adoption. Who's affected: ordinary drivers and the climate trajectory; who holds power: a government tempted to dilute targets under industry pressure. Mechanism to teach — how the total-cost-of-ownership crossover (not sticker price) is the real lever on EV uptake, and why policy lag works against household savings.",
-      "conceptUris": []
-    },
-    {
-      "id": "stability-in-the-face-of-global-decline-a-20-year-study-of-a",
-      "label": "Stability in the face of global decline: a 20-year study of arthropods in an oceanic archipelago",
-      "firstSeen": "2026-06-17T12:10:18.889Z",
-      "lastCovered": "2026-06-17T12:10:18.889Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-17-stability-in-the-face-of-global-decline-a-20-year-study-of-a"
-      ],
-      "eventUri": null,
-      "summary": "A rare 20-year dataset of arthropods in the Azores finds local communities stayed stable even as global insect populations crash. Lead with the counterintuitive result and resist over-reading it: an isolated oceanic archipelago held steady, which raises the question of what protects (or merely delays decline in) island ecosystems versus continental ones. Mechanism to teach — why long-term, same-site monitoring is the only way to separate real trends from year-to-year noise in biodiversity, and why 'no decline here' is a finding, not a reassurance. A distinctive science pick beyond the day's clinical Nature papers.",
-      "conceptUris": []
-    },
-    {
-      "id": "windows-and-linux-users-the-deadline-to-update-secure-boot-k",
-      "label": "Windows and Linux users: The deadline to update Secure Boot keys is near",
-      "firstSeen": "2026-06-17T12:10:18.889Z",
-      "lastCovered": "2026-06-17T12:10:18.889Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-17-windows-and-linux-users-the-deadline-to-update-secure-boot-k"
-      ],
-      "eventUri": "eng-11744728",
-      "summary": "Three certificates that underpin Secure Boot expire and must be rotated starting June 24 — or machines lose protection against firmware-level UEFI malware that loads before the OS and antivirus do. Lead with the actionable deadline and the stakes: hundreds of millions of Windows and Linux devices depend on a key-rotation most users have never heard of, and missing it reopens the lowest, hardest-to-detect layer of the system to infection. Mechanism to teach — why boot-chain trust is anchored in expiring certificates, and what it means that the security of every PC quietly depends on a calendar. Concrete, reader-is-the-affected-party tech.",
-      "conceptUris": []
-    },
-    {
-      "id": "when-americans-choose-chinese-ai",
-      "label": "When Americans choose Chinese AI",
-      "firstSeen": "2026-06-17T12:10:18.889Z",
-      "lastCovered": "2026-06-17T12:10:18.889Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-17-when-americans-choose-chinese-ai"
-      ],
-      "eventUri": null,
-      "summary": "US developers are quietly adopting China's DeepSeek because it's good enough at a fraction of the cost — 'you don't need God to write your email.' Lead with the inversion of the AI-sovereignty narrative: even as Washington frames Chinese models as a security threat, American builders pick them on pure price-performance, eroding the premium US labs charge. Who holds power: the US frontier labs whose pricing assumes no substitute; who's affected: the global developers for whom cost, not flag, decides. Mechanism to teach — how open-weight, cheap models commoditise inference and break the moat, and what that means for who depends on whom in AI. Rest of World's global-tech lens, distinct from US-centric coverage.",
-      "conceptUris": []
-    },
-    {
-      "id": "france-awards-eutelsat-138-million-contract-to-provide-secur",
-      "label": "France Awards Eutelsat €138 Million Contract to Provide Secure Communications",
-      "firstSeen": "2026-06-17T12:10:18.889Z",
-      "lastCovered": "2026-06-17T12:10:18.889Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-17-france-awards-eutelsat-138-million-contract-to-provide-secur"
-      ],
-      "eventUri": null,
-      "summary": "France's armed forces awarded Eutelsat €138m for priority access to its OneWeb low-orbit constellation under a 10-year, €1bn framework. Lead with the sovereignty play: Paris is buying guaranteed military bandwidth on a European-controlled satellite network rather than leaning on US providers like Starlink — the space-layer counterpart to the DGSI dropping Palantir. Who holds power: a European state building independent secure comms; who's affected: the strategic-autonomy calculus of a continent that learned its dependencies the hard way. Mechanism to teach — why owning the orbital communications layer, not just the ground software, is now treated as core defence infrastructure.",
-      "conceptUris": []
-    },
-    {
-      "id": "pentagon-restores-name-of-us-pacific-command-drops-indo",
-      "label": "Pentagon restores name of US Pacific Command, drops 'Indo'",
-      "firstSeen": "2026-06-17T08:08:09.118Z",
-      "lastCovered": "2026-06-17T08:08:09.118Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-17-pentagon-restores-name-of-us-pacific-command-drops-indo"
-      ],
-      "eventUri": "eng-11750558",
-      "summary": "The Pentagon quietly reversed its 2018 'Indo-Pacific Command' branding back to 'Pacific Command' — a name change with no operational effect but a clear strategic signal: India's centrality to US Asia strategy is being downgraded. Lead with the symbolism that India will read instantly. Why it matters: command names encode doctrine, and dropping 'Indo' tells New Delhi where it now sits in Washington's mental map even as it spends record sums on defense. Covered here by Dawn — the regional read from Pakistan is itself the story.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/United_States_Indo-Pacific_Command",
-        "http://en.wikipedia.org/wiki/Harry_S._Truman",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/United_States_Department_of_War",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Pacific_Ocean",
-        "http://en.wikipedia.org/wiki/Unified_combatant_command",
-        "http://en.wikipedia.org/wiki/West_Coast_of_the_United_States"
-      ]
-    },
-    {
-      "id": "virtual-wali-of-khartoum-defects-from-sudan-s-rsf-militia",
-      "label": "'Virtual Wali of Khartoum' defects from Sudan's RSF militia",
-      "firstSeen": "2026-06-17T08:08:09.118Z",
-      "lastCovered": "2026-06-17T08:08:09.118Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-17-virtual-wali-of-khartoum-defects-from-sudan-s-rsf-militia"
-      ],
-      "eventUri": null,
-      "summary": "Fares El Nour — a senior RSF figure and member of the parallel 'Tasees' government's Presidential Council, styled the 'virtual Wali (governor)' of Khartoum — has defected. Lead with what a high-level defection signals about the cohesion of the RSF's parallel-state project as Sudan's war grinds on. Why it matters: the RSF has tried to build a rival government to legitimize its hold; defections from its political tier erode that claim. Named actor, named institution, a war the world has stopped watching. Radio Dabanga is the indispensable Sudanese source here.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Rapid_Support_Forces",
-        "http://en.wikipedia.org/wiki/Militia",
-        "http://en.wikipedia.org/wiki/Sudan",
-        "http://en.wikipedia.org/wiki/Khartoum_(state)",
-        "http://en.wikipedia.org/wiki/Presidential_Council_(Libya)"
-      ]
-    },
-    {
-      "id": "rss-alleges-petrol-bomb-attack-at-its-ranchi-office",
-      "label": "RSS alleges petrol bomb attack at its Ranchi office",
-      "firstSeen": "2026-06-17T08:08:09.118Z",
-      "lastCovered": "2026-06-17T08:08:09.118Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-17-rss-alleges-petrol-bomb-attack-at-its-ranchi-office"
-      ],
-      "eventUri": "eng-11750870",
-      "summary": "Two men hurled petrol bombs at an RSS office in Ranchi, Jharkhand; the devices fell short, no one was hurt, but the BJP is already alleging a 'larger conspiracy.' Lead with the gap between a failed, low-casualty attack and the outsized political framing it triggers in a BJP-versus-opposition state. Why it matters: how communal-political violence gets narrated in India shapes the next escalation more than the act itself. Multi-source Indian coverage (NDTV, The Hindu, TimesNow) lets the writer weigh the claims against the thin facts.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Ranchi",
-        "http://en.wikipedia.org/wiki/Rashtriya_Swayamsevak_Sangh",
-        "http://en.wikipedia.org/wiki/Molotov_cocktail",
-        "http://en.wikipedia.org/wiki/Closed-circuit_television",
-        "http://en.wikipedia.org/wiki/Bharatiya_Janata_Party",
-        "http://en.wikipedia.org/wiki/Babulal_Marandi",
-        "http://en.wikipedia.org/wiki/Jharkhand",
-        "http://en.wikipedia.org/wiki/Gasoline"
-      ]
-    },
-    {
-      "id": "putin-hosts-asean-summit-energy-russia",
-      "label": "Putin Hosts First Southeast Asia Summit Since Ukraine Invasion",
-      "firstSeen": "2026-06-17T08:08:09.118Z",
-      "lastCovered": "2026-06-17T08:08:09.118Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-17-putin-hosts-asean-summit-energy-russia"
-      ],
-      "eventUri": "eng-11745301",
-      "summary": "Putin is hosting ASEAN leaders in Kazan — the first Russia-Southeast Asia summit since the Ukraine invasion — to lock in a 2026-2030 plan on energy, trade, and investment. Lead with what this says about the failure of Western isolation: a sanctioned Russia courting and being courted by a bloc of neutral Asian economies hungry for cheap energy. Why it matters for the reader: the Global South is hedging, not aligning, and energy security is the lever Moscow is pulling.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Kazan",
-        "http://en.wikipedia.org/wiki/Vladimir_Putin",
-        "http://en.wikipedia.org/wiki/ASEAN",
-        "http://en.wikipedia.org/wiki/Ferdinand_Marcos",
-        "http://en.wikipedia.org/wiki/Philippines",
-        "http://en.wikipedia.org/wiki/Summit_(meeting)",
-        "http://en.wikipedia.org/wiki/Energy_security"
-      ]
-    },
-    {
-      "id": "nigeria-nuclear-power-programme-iaea-grossi",
-      "label": "EXCLUSIVE: Nigeria's nuclear power programme plans still alive - IAEA DG",
-      "firstSeen": "2026-06-17T08:08:09.118Z",
-      "lastCovered": "2026-06-17T08:08:09.118Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-17-nigeria-nuclear-power-programme-iaea-grossi"
-      ],
-      "eventUri": null,
-      "summary": "IAEA chief Rafael Grossi tells Premium Times Nigeria's nuclear ambitions remain alive — but only at a 'pre-decision' stage, complicated by the fact that Nigeria is a major oil exporter weighing nuclear against its hydrocarbon base. Lead with the structural tension: an OPEC oil producer with chronic grid failure considering reactors. Why it matters: energy choices made now lock in decades of cost and dependency, and Africa's largest economy can't keep the lights on. Regional source (Premium Times) carrying an exclusive — the right voice for this story.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-defence-output-record-atmanirbhar",
-      "label": "India's defence output reaches all-time high of Rs 1.78 lakh crore - What's next?",
-      "firstSeen": "2026-06-17T08:08:09.118Z",
-      "lastCovered": "2026-06-17T08:08:09.118Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-17-india-defence-output-record-atmanirbhar"
-      ],
-      "eventUri": "eng-11750774",
-      "summary": "India's annual defence production hit a record Rs 1.78 lakh crore in FY2025-26 — up 15.6% on the year and 110% since FY2020-21. Lead with the trajectory, not the single number: a doubling in five years driven by the 'Atmanirbhar' import-substitution push and a growing private-sector share. Why it matters: India is converting strategic anxiety into industrial capacity and an export pipeline, reshaping the arms market the Global South buys from. Pair with the Pentagon command rename for the strategic backdrop.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Indian_rupee",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Crore",
-        "http://en.wikipedia.org/wiki/Lakh",
-        "http://en.wikipedia.org/wiki/Fiscal_year",
-        "http://en.wikipedia.org/wiki/Private_sector",
-        "http://en.wikipedia.org/wiki/Rajnath_Singh",
-        "http://en.wikipedia.org/wiki/Minister_of_Defence_(India)"
-      ]
-    },
-    {
-      "id": "japan-russian-oil-sakhalin-2-sanctions-exemption",
-      "label": "Japan bought about 364,000 barrels of Russian oil in May",
-      "firstSeen": "2026-06-17T08:08:09.118Z",
-      "lastCovered": "2026-06-17T08:08:09.118Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-17-japan-russian-oil-sakhalin-2-sanctions-exemption"
-      ],
-      "eventUri": null,
-      "summary": "Japan — a G7 nation that signed onto Russia sanctions — bought roughly 364,000 barrels of Russian oil in May, all tied to the Sakhalin-2 project that Tokyo carved out of the sanctions regime. Lead with the mechanism: the Sakhalin-2 exemption is how an energy-poor ally keeps a foot in Russian supply while publicly backing Ukraine. Why it matters: sanctions are full of negotiated holes, and the gap between G7 rhetoric and G7 LNG dependence is the real story. Source is Russian state wire (TASS) reporting a verifiable trade statistic — treat the number, not the spin.",
-      "conceptUris": []
-    },
-    {
-      "id": "ldha-erra-ovarian-cancer-chemoresistance",
-      "label": "Metabolic activation of LDHA by ERRα represses inflammasome-dependent pyroptosis and promotes ovarian cancer chemoresistance",
-      "firstSeen": "2026-06-17T08:08:09.118Z",
-      "lastCovered": "2026-06-17T08:08:09.118Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-17-ldha-erra-ovarian-cancer-chemoresistance"
-      ],
-      "eventUri": null,
-      "summary": "Researchers identify a metabolic switch — ERRα activating the enzyme LDHA — that lets ovarian cancer cells dodge pyroptosis (inflammatory cell death) and survive chemotherapy. Lead with the mechanism in plain terms: tumors rewire their sugar metabolism to silence the self-destruct signal chemo is meant to trigger. Why it matters: chemoresistance is the main reason ovarian cancer kills, and this points to a druggable target. Keep it concrete for a technically literate reader without medical training.",
-      "conceptUris": []
-    },
-    {
-      "id": "beclin1-autophagy-goblet-cells-colitis",
-      "label": "Impact of BECLIN1 haploinsufficiency on goblet cell function and susceptibility to colitis",
-      "firstSeen": "2026-06-17T08:08:09.118Z",
-      "lastCovered": "2026-06-17T08:08:09.118Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-17-beclin1-autophagy-goblet-cells-colitis"
-      ],
-      "eventUri": null,
-      "summary": "A single working copy of the autophagy gene BECLIN1 isn't enough: haploinsufficiency impairs intestinal goblet cells — the mucus-makers that line the gut — and raises susceptibility to colitis. Lead with the dose-sensitivity insight: half-strength of one housekeeping gene is enough to weaken the gut barrier. Why it matters: it links the cell's recycling machinery (autophagy) to inflammatory bowel disease risk, a mechanism for why some people are genetically primed for colitis. Explain goblet cells and autophagy for the lay-but-serious reader.",
-      "conceptUris": []
-    },
-    {
-      "id": "running-local-llms-good-now-offline-inference",
-      "label": "Running local models is good now",
-      "firstSeen": "2026-06-17T08:08:09.118Z",
-      "lastCovered": "2026-06-17T08:08:09.118Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-16-running-local-llms-good-now-offline-inference"
-      ],
-      "eventUri": null,
-      "summary": "An engineer documents that running capable LLMs entirely on a personal laptop has crossed from frustrating to genuinely usable — open-weight models plus better local runtimes now match what required a cloud API a year ago. Lead with what this shifts: inference is escaping the data center, which changes the economics of AI, the privacy calculus, and who depends on whom. Why it matters for the reader: a developer can now run models offline, no token bill, no telemetry. The mechanism — quantization and efficient runtimes — is the teach-the-reader hook.",
-      "conceptUris": []
-    },
-    {
-      "id": "b-52-crash-radar-test-modernization-program",
-      "label": "B-52 Involved In Tragic Crash Was Heading Out On Radar Test Sortie",
-      "firstSeen": "2026-06-17T08:08:09.118Z",
-      "lastCovered": "2026-06-17T08:08:09.118Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-16-b-52-crash-radar-test-modernization-program"
-      ],
-      "eventUri": null,
-      "summary": "The B-52 that crashed was flying a radar-test sortie central to the bomber's modernization program — the effort to keep a 1960s airframe flying into the 2050s with new radar and re-engining. Lead with the program risk, not the crash spectacle: losing a test aircraft and crew sets back an already strained, decades-long upgrade the US is betting its bomber fleet on. Why it matters: it exposes how thin the margins are on sustaining legacy hardware that's meant to outlive the people maintaining it.",
-      "conceptUris": []
-    },
-    {
-      "id": "guiana-space-centre-strike-ariane-6-launch",
-      "label": "Arianespace CEO Says Strike Will Not Affect Ariane 6 Launch",
-      "firstSeen": "2026-06-17T08:08:09.118Z",
-      "lastCovered": "2026-06-17T08:08:09.118Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-16-guiana-space-centre-strike-ariane-6-launch"
-      ],
-      "eventUri": null,
-      "summary": "A general strike by Guyanese workers (UTG) barricaded entrances to the Guiana Space Centre, but Arianespace says tomorrow's Ariane 6 launch proceeds as planned. Lead with the friction Europe rarely acknowledges: its sovereign access to space depends on a spaceport in French Guiana, where local labor disputes can physically gate launches. Why it matters: the workers who keep Europe's rocket program running sit thousands of kilometres from Paris in a territory with its own grievances — infrastructure dependency meets colonial geography.",
-      "conceptUris": []
     }
   ]
 }
