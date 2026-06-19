@@ -342,19 +342,14 @@ $BODY_LENGTHS
   NARRATE_EXIT=$?
   echo "Narration exit: $NARRATE_EXIT — $((SECONDS - T34D))s" | tee -a "$LOG_FILE"
 
-  # Stage 3.5: Educational context briefs
-  echo "" | tee -a "$LOG_FILE"
-  echo "--- Stage 3.5: Educational context briefs ---" | tee -a "$LOG_FILE"
-  T35=$SECONDS
-  # 1200s allows ~11 sequential Claude calls at ~30-40s each plus headroom
-  # for one or two that hit their per-call 300s timeout without killing the
-  # whole stage. Per-article mode (one brief per Claude call) replaces the
-  # old batched call to give each brief full attention.
-  timeout 1200 node scripts/generate-edu-context.js > /tmp/zuhd-edu.log 2>&1
-  EDU_EXIT=$?
-  cat /tmp/zuhd-edu.log >> "$LOG_FILE"
-  rm -f /tmp/zuhd-edu.log
-  echo "Edu context exit: $EDU_EXIT — $((SECONDS - T35))s" | tee -a "$LOG_FILE"
+  # Stage 3.5 (Educational context briefs) removed 2026-06-19: the per-article
+  # generator (scripts/generate-edu-context.js) outgrew its 1200s budget as the
+  # 16MB .context-briefs.json inflated each prompt, timing out and producing
+  # nothing since 2026-06-14. We've stopped generating new briefs. The existing
+  # frozen content/.context-briefs.json is still committed, built, and served
+  # (site context + /api/context/{id}.json), so the app keeps showing context
+  # for articles up to 2026-06-14. To resume, restore this stage — ideally with
+  # incremental writes + a finite brief cap + bounded concurrency.
 
   # Stage 3.6: Entity extraction — scan article bodies for known rich nouns
   # (commodities, currencies, chokepoints, crypto, indices, stocks) and

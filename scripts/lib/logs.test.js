@@ -55,7 +55,9 @@ test('no new silent stage failures', () => {
     'cycle-2026-06-12_0403.log: Briefing exit=1',
   ])
   const failures = []
-  const stages = ['Selector', 'Writer', 'Editor', 'Edu context', 'Build', 'Deploy', 'Briefing']
+  // 'Edu context' dropped 2026-06-19: that stage was removed from run-cycle.sh
+  // (we no longer generate context briefs), so its log line no longer appears.
+  const stages = ['Selector', 'Writer', 'Editor', 'Build', 'Deploy', 'Briefing']
   for (const { f, raw } of loadRecent()) {
     for (const stage of stages) {
       const re = new RegExp(`^${stage} exit: ([1-9]\\d*)`, 'm')
