@@ -291,7 +291,35 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap) =
     ? `<a class="article-pagination-next" href="/a/${next.slug}" rel="next"><span class="article-pagination-label">Next</span><span class="article-pagination-title">${escHtmlAttr(next.title)}</span></a>`
     : '<span class="article-pagination-next"></span>'
 
+  // NewsArticle structured data — gates Top Stories / rich-result eligibility.
+  // JSON.stringify handles escaping; the closing `</` is split to avoid an
+  // early </script> break inside the inline JSON-LD block.
+  const url = `https://zuhd.news/a/${slug}`
+  const publisher = {
+    '@type': 'Organization',
+    name: 'zuhd.news',
+    url: 'https://zuhd.news/',
+    logo: { '@type': 'ImageObject', url: 'https://zuhd.news/apple-touch-icon.png' },
+  }
+  const jsonLd = `<script type="application/ld+json">${JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    headline: title,
+    description,
+    image: [`https://zuhd.news/api/og/${slug}.png`],
+    datePublished: isoDate,
+    dateModified: isoDate,
+    url,
+    mainEntityOfPage: url,
+    articleSection: category,
+    inLanguage: 'en',
+    isAccessibleForFree: true,
+    author: publisher,
+    publisher,
+  }).replace(/<\//g, '<\\/')}</script>`
+
   return template
+    .replace(/{{jsonLd}}/g, jsonLd)
     .replace(/{{slug}}/g, slug)
     .replace(/{{title}}/g, escHtmlAttr(title))
     .replace(/{{titleAttr}}/g, escHtmlAttr(title))
@@ -331,6 +359,7 @@ if (existsSync(audioSrc)) {
 const cssContent = transformSync(readFileSync(join(ROOT, 'public', 'style.css'), 'utf-8'), { loader: 'css', minify: true }).code
 const jsContent = readFileSync(join(ROOT, 'public', 'reader.js'), 'utf-8')
 const headCommon = `<meta charset="utf-8">
+  <meta name="google-site-verification" content="wE52hhFpRSdZ0DSAJM4Z57wM4AXTQ68eLrlo-zk_xLw">
   <meta name="color-scheme" content="light dark">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)">
@@ -936,13 +965,16 @@ console.log(`  Built: country/ (${countryResult.count} pages)`)
 // sitemap.xml covers homepage, static pages, and all article pages.
 // Cloudflare Pages serves /a/{slug}.html at /a/{slug} (extensionless).
 const staticPages = ['about', 'contact', 'privacy', 'mcp']
+// Build timestamp as lastmod for non-article pages (lists/indices that change
+// whenever the corpus does); articles carry their own publication date.
+const buildIso = new Date().toISOString()
 const sitemapEntries = [
-  `  <url><loc>https://zuhd.news/</loc><changefreq>hourly</changefreq><priority>1.0</priority></url>`,
-  ...staticPages.map(p => `  <url><loc>https://zuhd.news/${p}</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>`),
+  `  <url><loc>https://zuhd.news/</loc><lastmod>${buildIso}</lastmod><changefreq>hourly</changefreq><priority>1.0</priority></url>`,
+  ...staticPages.map(p => `  <url><loc>https://zuhd.news/${p}</loc><lastmod>${buildIso}</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>`),
   ...sorted.map(a => `  <url><loc>https://zuhd.news/a/${a.slug}</loc><lastmod>${new Date(a.meta.date || a.addedAt).toISOString()}</lastmod><priority>0.8</priority></url>`),
-  ...(countryResult.codes || []).map(cc => `  <url><loc>https://zuhd.news/country/${cc}</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>`),
-  ...CATEGORY_ORDER.filter(c => (byCategory[c]||[]).length > 0).map(c => `  <url><loc>https://zuhd.news/c/${c}</loc><changefreq>hourly</changefreq><priority>0.7</priority></url>`),
-  ...(entityResult.ids || []).map(id => `  <url><loc>https://zuhd.news/e/${id}</loc><changefreq>daily</changefreq><priority>0.5</priority></url>`),
+  ...(countryResult.codes || []).map(cc => `  <url><loc>https://zuhd.news/country/${cc}</loc><lastmod>${buildIso}</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url>`),
+  ...CATEGORY_ORDER.filter(c => (byCategory[c]||[]).length > 0).map(c => `  <url><loc>https://zuhd.news/c/${c}</loc><lastmod>${buildIso}</lastmod><changefreq>hourly</changefreq><priority>0.7</priority></url>`),
+  ...(entityResult.ids || []).map(id => `  <url><loc>https://zuhd.news/e/${id}</loc><lastmod>${buildIso}</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url>`),
 ]
 writeFileSync(join(DIST_DIR, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -959,7 +991,7 @@ for (const page of staticPages) {
   writeFileSync(join(DIST_DIR, `${page}.html`), homepage
     .replace('<div class="article-view-inner"></div>', `<div class="article-view-inner">${pageContent}</div>`)
     .replace('article-view" aria-live="polite" hidden', `article-view" aria-live="polite" data-page="${page}"`)
-    .replace('<title>zuhd.news</title>', `<title>zuhd.news — ${page}</title>`)
+    .replace('<title>zuhd.news — Global news, no noise</title>', `<title>zuhd.news — ${page}</title>`)
     .replace('<link rel="canonical" href="https://zuhd.news/">', `<link rel="canonical" href="https://zuhd.news/${page}">`)
     .replace('<meta property="og:title" content="zuhd.news">', `<meta property="og:title" content="zuhd.news — ${page}">`)
     .replace('<meta property="og:url" content="https://zuhd.news/">', `<meta property="og:url" content="https://zuhd.news/${page}">`)

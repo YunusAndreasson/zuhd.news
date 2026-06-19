@@ -2,7 +2,11 @@ name = "zuhd-share-preview"
 main = "index.js"
 compatibility_date = "2025-01-01"
 
+# RETIRED 2026-06-19: the `zuhd.news/a/*` route is removed. This worker was a
+# legacy SPA-era shim that intercepted every article URL and either redirected
+# older slugs to the homepage or served a stub that bounced browsers to /#slug.
+# It shadowed the real static article pages build.js now emits at /a/{slug}.html
+# — those carry full OG tags + the same /api/og/{slug}.png images, so share
+# previews are unaffected. Route left empty so a stray deploy can't re-bind it.
 [env.production]
-routes = [
-  { pattern = "zuhd.news/a/*", zone_name = "zuhd.news" }
-]
+routes = []
