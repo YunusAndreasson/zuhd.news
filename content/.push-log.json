@@ -1,119 +1,5 @@
 [
   {
-    "timestamp": "2026-05-29T22:38:34.856Z",
-    "candidateCount": 13,
-    "candidates": [
-      {
-        "slug": "2026-05-29-netanyahu-orders-expansion-of-gaza-occupation",
-        "title": "Netanyahu Orders Gaza Expansion",
-        "category": "politics",
-        "eventCoverage": 645,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-29-us-iran-framework-deal-blockade-frozen-assets",
-        "title": "US-Iran Framework Nears on Hormuz",
-        "category": "politics",
-        "eventCoverage": 412,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-29-judge-blocks-trump-anti-weaponisation-fund",
-        "title": "Judge Freezes Trump's $1.8bn Fund",
-        "category": "politics",
-        "eventCoverage": 216,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-29-iran-economy-inflation-unemployment-sanctions",
-        "title": "Iran Economy Contracts Under Sanctions",
-        "category": "economy",
-        "eventCoverage": 103,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-29-india-deficient-monsoon-forecast-imd",
-        "title": "India Faces 60% Drought Probability",
-        "category": "economy",
-        "eventCoverage": 103,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-29-ice-officer-arrested-minneapolis-shooting",
-        "title": "ICE Agent Arrested for January Shooting",
-        "category": "politics",
-        "eventCoverage": 80,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-29-kenya-court-blocks-us-ebola-exposed-americans",
-        "title": "Kenya Blocks US Ebola Quarantine Plan",
-        "category": "science",
-        "eventCoverage": 80,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-29-netherlands-17-million-device-botnet-dismantled",
-        "title": "Dutch Police Seize 17-Million-Device Botnet",
-        "category": "tech",
-        "eventCoverage": 80,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-29-coinbase-kalshi-perpetual-crypto-futures-us",
-        "title": "Perpetual Crypto Futures Enter US Market",
-        "category": "economy",
-        "eventCoverage": 48,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-29-classical-computers-quantum-chemistry-result",
-        "title": "Classical Computers Solve Quantum Chemistry",
-        "category": "science",
-        "eventCoverage": 48,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-29-us-fossil-fuel-investment-ai-boom-china",
-        "title": "AI Boom Drives US Past China on Fossil Fuels",
-        "category": "science",
-        "eventCoverage": 48,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-29-ai-chatbot-dark-patterns-cdt-study",
-        "title": "Study Maps 37 Chatbot Manipulation Tactics",
-        "category": "tech",
-        "eventCoverage": 48,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-29-microsoft-zero-day-disclosure-poc-github",
-        "title": "Researcher Drops Live Microsoft Exploits",
-        "category": "tech",
-        "eventCoverage": 48,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-05-29-netanyahu-orders-expansion-of-gaza-occupation",
-      "title": "Netanyahu Orders Gaza Expansion",
-      "category": "politics",
-      "body": "Netanyahu ordered 70% of Gaza occupied.",
-      "eventCoverage": 645,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Israel expands Gaza control beyond ceasefire limits, Netanyahu orders 70% occupation",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 24
-    }
-  },
-  {
     "timestamp": "2026-05-30T04:31:33.473Z",
     "candidateCount": 0,
     "candidates": [],
@@ -9910,6 +9796,99 @@
       "pushed": 1,
       "skipped": 0,
       "tokens": 25
+    }
+  },
+  {
+    "timestamp": "2026-06-19T22:23:03.527Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-06-19-zelensky-stripped-polish-honour-upa-unit",
+        "title": "Poland Strips Zelensky of Honour",
+        "category": "politics",
+        "eventCoverage": 239,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-19-us-israel-lebanon-talks-washington-ceasefire",
+        "title": "47 Die Before Lebanon Truce",
+        "category": "politics",
+        "eventCoverage": 135,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-19-colombia-runoff-security-drugs-fossil-fuels",
+        "title": "Colombia Votes on Drug-War Method",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-19-china-taiwan-exclusion-ocean-ecology-track2",
+        "title": "China Blocks Taiwan Ocean Cooperation",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-19-nyanya-bombing-2014-death-sentence-nigeria",
+        "title": "Nyanya Bomber Sentenced to Death",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-19-saudi-arabia-pakistan-africa-drive-dependency",
+        "title": "Creditors Throttle Pakistan's Africa Drive",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-19-schwab-cboe-sp500-prediction-market-options",
+        "title": "Schwab Launches S&P Binary Options",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-19-carbon-removal-scale-up-overshoot-1-5c",
+        "title": "Climate Science Accepts 1.5C Overshoot",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-19-human-ai-collaboration-healthcare-scoping-review",
+        "title": "Medical AI Defers High-Risk Decisions",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-18-new-outlook-performance-regression-classic",
+        "title": "Microsoft Outlook Slows on Notifications",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-06-19-zelensky-stripped-polish-honour-upa-unit",
+      "title": "Poland Strips Zelensky of Honour",
+      "category": "politics",
+      "body": "Poland stripped Zelensky of its highest state",
+      "eventCoverage": 239,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Poland strips Zelensky of state honour over Ukrainian nationalist unit naming",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 26
     }
   }
 ]
