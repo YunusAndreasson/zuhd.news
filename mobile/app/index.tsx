@@ -36,7 +36,6 @@ import { BriefingBar } from '../components/BriefingBar';
 import { CategoryBar } from '../components/CategoryBar';
 import { ChokepointSheet } from '../components/ChokepointSheet';
 import { ConflictSheet } from '../components/ConflictSheet';
-import { ContextSheet } from '../components/ContextSheet';
 import { CountrySheet } from '../components/CountrySheet';
 import { DisambiguationSheet } from '../components/DisambiguationSheet';
 import { DisasterSheet } from '../components/DisasterSheet';
@@ -51,7 +50,6 @@ import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useChokepoints } from '../hooks/useChokepoints';
 import { useConflictEvents } from '../hooks/useConflictEvents';
-import { useContextBrief } from '../hooks/useContextBrief';
 import { useGdacsAlerts } from '../hooks/useGdacsAlerts';
 import { useHeatmap } from '../hooks/useHeatmap';
 import { usePendingNotification } from '../hooks/usePendingNotification';
@@ -74,7 +72,6 @@ export default function HomeScreen() {
   const disasterSheetRef = useRef<BottomSheetModal>(null);
   const conflictSheetRef = useRef<BottomSheetModal>(null);
   const disambiguationSheetRef = useRef<BottomSheetModal>(null);
-  const contextSheetRef = useRef<BottomSheetModal>(null);
   const entitySheetRef = useRef<BottomSheetModal>(null);
   const renderBackdrop = useCallback(
     (props: BottomSheetBackdropProps) => (
@@ -127,16 +124,6 @@ export default function HomeScreen() {
     () => (activeEntity ? (indicatorsById.get(activeEntity.indicatorId) ?? null) : null),
     [activeEntity, indicatorsById],
   );
-  const {
-    brief: contextBrief,
-    loading: contextLoading,
-    error: contextError,
-    fetchBrief: fetchContext,
-    retry: retryContext,
-    reset: resetContext,
-  } = useContextBrief();
-  const [contextThreadLabel, setContextThreadLabel] = useState<string | undefined>();
-
   const handleSelectArticle = useCallback(
     (slug: string, category: Category) => {
       menuSheetRef.current?.dismiss();
@@ -201,23 +188,6 @@ export default function HomeScreen() {
     }
     briefingPlayer.toggle();
   }, [briefingPlayer.available, briefingPlayer.toggle]);
-
-  const handleDeeperPress = useCallback(() => {
-    const active = activeArticleRef.current;
-    if (!active) return;
-    hapticImpact();
-
-    // Fetch context if article has a thread
-    if (active.threadId) {
-      const allArticles = Object.values(groupedRef.current).flat();
-      const match = allArticles.find((a) => a.threadId === active.threadId);
-      setContextThreadLabel(match?.threadLabel);
-      fetchContext(active.threadId);
-    } else {
-      setContextThreadLabel(undefined);
-    }
-    contextSheetRef.current?.present();
-  }, [fetchContext]);
 
   const handleSourcesPress = useCallback((article: Article) => {
     hapticImpact();
@@ -294,9 +264,8 @@ export default function HomeScreen() {
   }, []);
 
   // Hop into the CountrySheet by country name, synthesizing a minimal
-  // TapResult (no globe location/time). Shared by the disaster/conflict/context
-  // sheets' onCountryPress. `data` defaults to the shared dataset lookup;
-  // ContextSheet passes its already-resolved CountryData.
+  // TapResult (no globe location/time). Shared by the disaster/conflict
+  // sheets' onCountryPress. `data` defaults to the shared dataset lookup.
   const openCountry = useCallback(
     (countryName: string, data: CountryData | null = COUNTRY_DATA[countryName] ?? null) => {
       setCountrySheet({ countryName, location: null, localTime: null, data });
@@ -552,7 +521,6 @@ export default function HomeScreen() {
           onBriefingPress={handleBriefingPress}
           onZoomPress={handleZoomToggle}
           onSharePress={handleBottomShare}
-          onContextPress={handleDeeperPress}
         />
       )}
 
@@ -670,22 +638,6 @@ export default function HomeScreen() {
         bottomInset={insets.bottom}
         renderBackdrop={renderBackdrop}
         onDismiss={() => setSheetSources([])}
-      />
-
-      <ContextSheet
-        sheetRef={contextSheetRef}
-        brief={contextBrief}
-        loading={contextLoading}
-        error={contextError}
-        threadLabel={contextThreadLabel}
-        bottomInset={insets.bottom}
-        renderBackdrop={renderBackdrop}
-        onDismiss={() => {
-          setContextThreadLabel(undefined);
-          resetContext();
-        }}
-        onRetry={retryContext}
-        onCountryPress={({ countryName, data }) => openCountry(countryName, data)}
       />
     </View>
   );

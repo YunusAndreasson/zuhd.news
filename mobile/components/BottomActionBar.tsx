@@ -13,7 +13,6 @@ interface BottomActionBarProps {
   onBriefingPress: () => void;
   onZoomPress: () => void;
   onSharePress: () => void;
-  onContextPress: () => void;
 }
 
 function ActionPill({
@@ -52,7 +51,6 @@ export function BottomActionBar({
   onBriefingPress,
   onZoomPress,
   onSharePress,
-  onContextPress,
 }: BottomActionBarProps) {
   return (
     <View
@@ -80,12 +78,6 @@ export function BottomActionBar({
           onPress={onSharePress}
           accessibilityLabel="Share article"
           accessibilityHint="Opens the system share sheet"
-        />
-        <ActionPill
-          label="context"
-          onPress={onContextPress}
-          accessibilityLabel="Story context"
-          accessibilityHint="Shows background and related coverage"
         />
       </View>
     </View>
