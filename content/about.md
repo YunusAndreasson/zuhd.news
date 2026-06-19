@@ -46,3 +46,7 @@ Data providers include [World Bank](https://data.worldbank.org/), [IMF PortWatch
 *adalah* — Sources are weighed by character, not only by content.
 
 *haqq* — Truth is published without regard to power.
+
+## Colophon
+
+zuhd.news is created by [Yunus Andreasson](https://andreassonphoto.com).
