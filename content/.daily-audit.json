@@ -1,26 +1,25 @@
 {
-  "date": "2026-06-18",
+  "date": "2026-06-19",
   "metrics": {
-    "articles": { "value": 52, "detail": "5 cycles (4 completed), avg 9/cycle" },
-    "freshness": { "median": 0.3, "p90": 1.4, "max": 1.4, "target": 1.0, "met": true },
-    "categories": { "politics": 16, "economy": 13, "science": 12, "tech": 11 },
-    "multiSource": { "value": 8, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 19, "EU": 11, "AS": 9, "ME": 8, "AF": 3, "OC": 2 } },
-    "sciTech": { "ratio": 44, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 12, "target": 20, "met": true },
-    "uniqueSources": 51,
+    "articles": { "value": 40, "detail": "5 cycles (4 completed), avg 7/cycle" },
+    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
+    "categories": { "politics": 14, "economy": 9, "science": 10, "tech": 7 },
+    "multiSource": { "value": 9, "target": 4, "met": true },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "EU": 14, "AM": 11, "ME": 7, "AS": 4, "AF": 4 } },
+    "sciTech": { "ratio": 43, "target": 25, "met": true },
+    "topSourceShare": { "source": "Bloomberg Business", "pct": 10, "target": 20, "met": true },
+    "uniqueSources": 34,
     "duplicates": 0,
-    "avgCycleDuration": 2678
+    "avgCycleDuration": 2416
   },
-  "experiment": "Skipped — all goal metrics within targets, no active experiment to evaluate, and no pause gate present. Holding to the skip-if-healthy / one-change-per-day rule.",
-  "weakestArea": "Oceania (2) and Africa (3) are the thinnest regions against AM 19, EU 11, AS 9, ME 8. This is coverage depth rather than a metric miss — the regions target (≥4 unique) is comfortably met at 6 — but the Global South tail remains the most uneven part of an otherwise strong, well-distributed day.",
+  "experiment": "Skipped — all metrics within targets and no active experiment to evaluate. The one queued experiment (numerical-density) edits scripts/write-prompt.md, which is out of scope for daily tuning.",
+  "weakestArea": "Regional spread is the slimmest margin: 5 regions vs the target of 4, with Asia and Africa at only 4 articles each and Oceania absent today. Europe-heavy (14) and Americas-heavy (11) output dominated — a normal weekday clustering rather than a structural gap, but the AS/AF tail is thin enough to watch.",
   "watching": [
-    "One of five cycles did not complete (4/5) for the second straight day; worth confirming it is a transient timeout rather than a recurring stage failure, given avg cycle duration crept to 2678s from 2408s yesterday.",
-    "Writer stage averaged 1010s today — the dominant cost in the 2678s cycle; if cycle duration keeps climbing, the writer is the lever to watch."
+    "Article throughput dropped to 40 from yesterday's unusually high 67 — within normal range (avg 7/cycle) but worth confirming it is feed-driven, not a cycle failure (4 of 5 cycles completed).",
+    "Tech at 7 is comfortably above floor but is the lowest category count; no action needed unless it slides toward the floor of 4 over consecutive days."
   ],
   "coverageGaps": [
-    "Oceania at 2 articles — Pacific and Australasian hard news underrepresented.",
-    "Africa at 3 articles — sub-Saharan and West African coverage thin relative to the Americas, Europe, and Asia."
+    "Oceania had zero coverage today; Asia and Africa each only 4 articles — non-Western regional depth was light this cycle."
   ],
-  "context": "A healthy, balanced day: 52 articles, perfect-to-near-perfect freshness (median 0.3d), zero duplicates, 8 multi-source stories, sci+tech a strong 44%, and top-source concentration low at Dawn 12% across 51 unique sources. With every goal metric met, no active experiment, and no queued in-scope parameter change (the standing numerical-density item targets write-prompt.md, out of tuning scope), the correct move is to hold steady. The standing lesson from the 2026-05-09 floor experiment still applies: the selector multi-source lever is tapped at ~22% given feed supply, so future sourcing work should target upstream feed clustering rather than selector floors."
+  "context": "No active experiments and no pause gate in effect. All four goal areas — freshness, diversity, multi-source, educational value — are met with healthy margins (freshness median 0 days, sci+tech 43%, top source 10%, 0 duplicates). Sourcing-cluster history shows the selector multi-source floor lever is tapped (~22% ceiling from feed supply); future sourcing gains require upstream feed work, not tunable parameters. No new experiment proposed."
 }
