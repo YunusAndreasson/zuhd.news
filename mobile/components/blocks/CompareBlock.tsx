@@ -99,7 +99,7 @@ export const CompareBlock = memo(function CompareBlock({
                   {flag ? `${flag}  ` : ''}
                   {row.label}
                 </Text>
-                <Text variant="labelXs" tone="secondary" style={styles.segmentedValue}>
+                <Text variant="labelXs" tone="emphasis" style={styles.segmentedValue}>
                   {row.value}
                 </Text>
               </View>

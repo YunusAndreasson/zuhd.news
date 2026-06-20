@@ -26,7 +26,7 @@ export function SheetBookmarksPage({ onSelectArticle }: SheetBookmarksPageProps)
   }, []);
 
   if (bookmarks.length === 0) {
-    return <EmptyState message="Long-press an article to save it" />;
+    return <EmptyState message="nothing saved" hint="Long-press any article to save it" />;
   }
 
   return (

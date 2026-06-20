@@ -319,7 +319,12 @@ export const ArticleList = memo(function ArticleList({
 
   const keyExtractor = useCallback((item: Article) => item.slug, []);
 
-  if (sortedArticles.length === 0) return <EmptyState message="No articles yet" />;
+  if (sortedArticles.length === 0)
+    return (
+      <View style={{ height: viewportHeight }}>
+        <EmptyState message="no articles yet" hint="New coverage arrives through the day" />
+      </View>
+    );
 
   return (
     <View

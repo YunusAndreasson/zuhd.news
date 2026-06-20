@@ -253,7 +253,14 @@ function ToggleRow({
         onValueChange={handleChange}
         accessibilityLabel={label}
         accessibilityHint={hint}
-        trackColor={{ false: colors.rule, true: colors.textSecondary }}
+        // On-state fills the track with `text` and punches a `bg`-colored
+        // thumb — the guaranteed-inverting pair reads as a high-contrast "on"
+        // in both modes. `thumbColor` is required on Android (otherwise the
+        // default Material teal thumb leaks the platform accent into a
+        // monochrome app); it also keeps the iOS thumb visible against the
+        // near-`text` on-track. Off-state stays a quiet `rule` track.
+        trackColor={{ false: colors.rule, true: colors.text }}
+        thumbColor={value ? colors.bg : colors.textSecondary}
         ios_backgroundColor={colors.rule}
       />
     </View>

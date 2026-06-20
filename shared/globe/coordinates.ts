@@ -327,12 +327,21 @@ export const CITY_TZ: Record<string, string> = {
   brasilia: 'America/Sao_Paulo',
   'buenos aires': 'America/Argentina/Buenos_Aires',
   caracas: 'America/Caracas',
+  // Sinaloa keeps Mountain time (UTC−7, no DST) — a different zone from the
+  // Mexico country fallback (America/Mexico_City, UTC−6), so a Culiacán dateline
+  // needs an explicit city entry or it reads an hour fast. Key is ASCII; the
+  // lookup strips diacritics from the dateline before matching.
+  culiacan: 'America/Mazatlan',
   'guatemala city': 'America/Guatemala',
   havana: 'America/Havana',
   lima: 'America/Lima',
   'mexico city': 'America/Mexico_City',
   montevideo: 'America/Montevideo',
   'new york': 'America/New_York',
+  // US cities outside the country-fallback zone (America/New_York). Pacific
+  // datelines would otherwise read 3h fast.
+  sacramento: 'America/Los_Angeles',
+  redmond: 'America/Los_Angeles',
   ottawa: 'America/Toronto',
   quito: 'America/Guayaquil',
   santiago: 'America/Santiago',
@@ -422,7 +431,7 @@ export const COUNTRY_TZ: Record<string, string> = {
   Iraq: 'Asia/Baghdad',
   Ireland: 'Europe/Dublin',
   Israel: 'Asia/Jerusalem',
-  Italy: 'Europe/Rome', // IANA has no alternative zone for Israel
+  Italy: 'Europe/Rome',
   Jamaica: 'America/Jamaica',
   Japan: 'Asia/Tokyo',
   Jordan: 'Asia/Amman',
@@ -523,7 +532,11 @@ export const COUNTRY_TZ: Record<string, string> = {
 // representation we want to correct. Keyed lowercase.
 // ---------------------------------------------------------------------------
 export const COUNTRY_OVERRIDES: Record<string, string> = {
-  singapore: 'Singapore',
+  // Singapore is intentionally NOT overridden: the 110m TopoJSON carries no
+  // Singapore polygon, so an override here would resolve to null and drop the
+  // focal highlight + dot/time label. Its coordinates fall inside the 110m
+  // Malaysia polygon (southern Malay peninsula), so the normal nudge-loop
+  // lookup highlights the right landmass while the dot still reads "Singapore".
   // Historic Palestine — all cities in the occupied West Bank, Gaza,
   // and 1948 territories that may fall outside 110m TopoJSON polygons.
   gaza: 'Palestine',

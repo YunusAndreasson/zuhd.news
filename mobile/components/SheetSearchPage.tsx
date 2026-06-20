@@ -101,6 +101,7 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
   return (
     <>
       <View style={[styles.inputRow, { borderBottomColor: colors.rule }]}>
+        <Icon name="search" tone="secondary" />
         <BottomSheetTextInput
           ref={inputRef}
           value={query}
@@ -133,8 +134,14 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
         )}
       </View>
 
-      {deferredQuery.length > 0 && results.length === 0 ? (
-        <EmptyState message="No articles found" />
+      {deferredQuery.length === 0 ? (
+        <View style={styles.emptyFill}>
+          <EmptyState message="search all coverage" hint="By title, topic, or location" />
+        </View>
+      ) : results.length === 0 ? (
+        <View style={styles.emptyFill}>
+          <EmptyState message="no articles found" hint="Try a different term" />
+        </View>
       ) : (
         <BottomSheetFlatList
           data={results}
@@ -160,6 +167,7 @@ const styles = StyleSheet.create({
   inputRow: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap: SPACING.sm,
     paddingHorizontal: SPACING.screenPadding,
     paddingBottom: SPACING.md,
     borderBottomWidth: StyleSheet.hairlineWidth,
@@ -170,7 +178,11 @@ const styles = StyleSheet.create({
     padding: 0,
   },
   clearButton: {
-    paddingLeft: SPACING.sm,
+    // Spacing before the clear button comes from the row `gap`.
+    paddingLeft: 0,
+  },
+  emptyFill: {
+    flex: 1,
   },
   listContent: {
     paddingHorizontal: SPACING.screenPadding,

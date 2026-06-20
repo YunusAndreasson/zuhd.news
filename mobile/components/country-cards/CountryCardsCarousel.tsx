@@ -3,7 +3,6 @@ import {
   type LayoutChangeEvent,
   type NativeScrollEvent,
   type NativeSyntheticEvent,
-  Pressable,
   ScrollView,
   StyleSheet,
   View,
@@ -13,6 +12,7 @@ import { ANIMATION, EASING, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { type CountryCardData, getCountryCardData } from '../../lib/country-cards';
 import { hapticTick } from '../../lib/haptics';
+import { Pressable } from '../primitives';
 import { ComplexityCard } from './ComplexityCard';
 import { DemographyCard } from './DemographyCard';
 import { EconomyCard } from './EconomyCard';
@@ -186,6 +186,10 @@ function DotIndicator({
         <Pressable
           key={i}
           onPress={() => onSelect(i)}
+          // `goToPage` already fires a conditional tick (only when the index
+          // actually changes), so suppress the primitive's own haptic to avoid
+          // a double-buzz — we adopt it purely for the spring press feedback.
+          haptic="none"
           accessibilityRole="button"
           accessibilityLabel={`View card ${i + 1} of ${count}`}
           accessibilityState={{ selected: i === active }}

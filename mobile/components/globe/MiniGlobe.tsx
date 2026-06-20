@@ -1548,7 +1548,14 @@ export const MiniGlobe = memo(function MiniGlobe({
           const loc = displayLocation(article?.location ?? null);
           if (loc) {
             let sub: string | undefined;
-            const cityKey = (article?.location ?? '').toLowerCase();
+            // Strip diacritics so an accented dateline ("Culiacán", "São Paulo")
+            // matches the ASCII-keyed CITY_TZ table; without this it falls
+            // through to the country zone — wrong for any city in a non-default
+            // zone (e.g. Sinaloa is UTC−7, not Mexico City's UTC−6).
+            const cityKey = (article?.location ?? '')
+              .toLowerCase()
+              .normalize('NFD')
+              .replace(/[\u0300-\u036f]/g, '');
             const tz =
               CITY_TZ[cityKey] ?? (settledCountry ? COUNTRY_TZ[settledCountry] : undefined);
             if (tz) sub = formatLocalTime(tz) ?? undefined;
@@ -2763,7 +2770,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           borders below) so the coast > borders hierarchy reads. Reuses the
           already-projected `landPath`, so it's one extra GPU-batched stroke. */}
       {state.landPath && (
-        <Path path={state.landPath} color={colors.accent} opacity={light ? 0.25 : 0.1} />
+        <Path path={state.landPath} color={colors.accent} opacity={light ? 0.32 : 0.1} />
       )}
       {state.landPath && (
         <Path
@@ -2772,7 +2779,12 @@ export const MiniGlobe = memo(function MiniGlobe({
           style="stroke"
           strokeWidth={0.6}
           strokeJoin="round"
-          opacity={light ? 0.4 : 0.3}
+          // Light mode leans harder on the coastline: cream ocean vs the gentle
+          // `accent` land fill is a low-contrast pair, so the crisp `text` edge
+          // is what actually carries figure-ground there (dark mode already has
+          // the near-black ocean doing that work). Stays "definition over
+          // brightness" — a sharper line, not a louder fill.
+          opacity={light ? 0.5 : 0.3}
         />
       )}
 

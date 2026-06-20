@@ -35,7 +35,7 @@ function ActionPill({
       onPress={onPress}
       haptic="none"
       hitSlop={PILL_HIT_SLOP}
-      style={[styles.actionPill, { backgroundColor: colors.pillBg }]}
+      style={[styles.actionPill, { backgroundColor: colors.pillBg, borderColor: colors.rule }]}
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel}
       accessibilityHint={accessibilityHint}
@@ -110,6 +110,12 @@ const styles = StyleSheet.create({
     paddingVertical: SPACING.xs,
     paddingHorizontal: SPACING.smPlus,
     borderRadius: RADIUS.floating,
+    // Hairline edge so the pill always reads as a defined control over the
+    // variable globe backdrop (land, coastline, city-glow), where the low-lift
+    // `pillBg` fill alone can blend into what's behind it — especially in dark
+    // mode. `colors.rule` inverts the right way per mode: lighter-than-map in
+    // dark, darker-than-cream in light. Definition over elevation — no shadow.
+    borderWidth: StyleSheet.hairlineWidth,
     alignItems: 'center',
     justifyContent: 'center',
   },

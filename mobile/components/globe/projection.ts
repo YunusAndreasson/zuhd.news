@@ -222,7 +222,12 @@ export function findCountry(
   if (location) {
     const override = COUNTRY_OVERRIDES[location.toLowerCase()];
     if (override) {
-      return countries.features.find((f) => f.properties?.name === override) ?? null;
+      const matched = countries.features.find((f) => f.properties?.name === override);
+      // If the override names a feature the 110m topology doesn't carry (e.g. a
+      // city-state with no polygon), fall through to the coordinate nudge loop
+      // instead of returning null — returning null here would drop the focal
+      // highlight AND suppress the dot/time label for the whole story.
+      if (matched) return matched;
     }
   }
   for (const [dlat, dlng] of NUDGES) {
