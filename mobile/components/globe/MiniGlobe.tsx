@@ -507,6 +507,10 @@ interface GlobeState {
    *  two-tier render gives the terminator a soft lighting-up gradient
    *  instead of a hard on/off seam. */
   cityLightsTwilightPath: ReturnType<typeof Skia.Path.Make> | null;
+  /** Zoom-fade multiplier for the civil-twilight tier (0 at 1× ambient → 1
+   *  at full zoom). Holds the dim terminator-edge speckle out of the
+   *  resting view; the deep-night tier ignores it and always paints. */
+  cityTwilightOpacity: number;
 }
 
 /** Memoized moon — skips React reconciliation during scroll since all props are stable. */
@@ -597,8 +601,11 @@ const Moon = memo(function Moon({
   );
 });
 
-/** Country highlight — soft glow brighter than surrounding land.
- *  Small countries get stronger glow so they're visible at globe scale. */
+/** Country highlight — the focal "figure" of the globe: a soft glow for body
+ *  plus a crisp outline for definition. Small countries get a stronger glow so
+ *  they stay visible at globe scale. The outline is what separates the focused
+ *  country from the quiet ground — the soft fill alone (0.12–0.25) read almost
+ *  identically to the 0.3 neighbour borders, so nothing popped. */
 const CountryHighlight = memo(function CountryHighlight({
   path: p,
   countryName,
@@ -611,9 +618,21 @@ const CountryHighlight = memo(function CountryHighlight({
   const area = countryName ? (countryAreas[countryName] ?? 0) : 0;
   const opacity = area < 0.001 ? 0.25 : area < 0.005 ? 0.18 : 0.12;
   return (
-    <Path path={p} color={color} opacity={opacity}>
-      <BlurMask blur={1} style="solid" />
-    </Path>
+    <>
+      <Path path={p} color={color} opacity={opacity}>
+        <BlurMask blur={1} style="solid" />
+      </Path>
+      {/* Crisp focal outline — no blur, brighter than the borders/coastline so
+          the focused country clearly leads the figure-ground hierarchy. */}
+      <Path
+        path={p}
+        color={color}
+        style="stroke"
+        strokeWidth={1}
+        strokeJoin="round"
+        opacity={0.5}
+      />
+    </>
   );
 });
 
@@ -647,6 +666,7 @@ const EMPTY_GLOBE: GlobeState = {
   riversOpacity: 0,
   cityLightsNightPath: null,
   cityLightsTwilightPath: null,
+  cityTwilightOpacity: 0,
 };
 
 /** City-light pass — fills `nightPath` and `twilightPath` with small circles
@@ -666,6 +686,7 @@ function collectCityLights(
   clipCos: number,
   nightPath: ReturnType<typeof Skia.Path.Make>,
   twilightPath: ReturnType<typeof Skia.Path.Make>,
+  collectTwilight: boolean,
 ): { hasNight: boolean; hasTwilight: boolean } {
   let hasNight = false;
   let hasTwilight = false;
@@ -680,12 +701,16 @@ function collectCityLights(
     // Sun-overhead dot: > 0 = day side, ≤ 0 = night side.
     const sunDot = ux * sunUnitX + uy * sunUnitY + uz * sunUnitZ;
     if (sunDot > 0) continue;
+    // Tier is known from sunDot before projecting, so the zoom-gated
+    // twilight tier skips its proj() entirely at 1× ambient.
+    const isDeepNight = sunDot < CITY_LIGHT_DEEP_NIGHT_DOT;
+    if (!isDeepNight && !collectTwilight) continue;
     const i2 = i * 2;
     tmp[0] = CITY_LIGHT_COORDS[i2] as number;
     tmp[1] = CITY_LIGHT_COORDS[i2 + 1] as number;
     const pt = proj(tmp);
     if (!pt) continue;
-    if (sunDot < CITY_LIGHT_DEEP_NIGHT_DOT) {
+    if (isDeepNight) {
       nightPath.addCircle(pt[0], pt[1], CITY_LIGHT_RADIUS);
       hasNight = true;
     } else {
@@ -810,6 +835,15 @@ function projectInitial(
   const camUnitY0 = camCosLat0 * Math.sin(camLngR0);
   const camUnitZ0 = Math.sin(camLatR0);
   const clipCos0 = Math.cos((clipAngle * Math.PI) / 180);
+  // Civil-twilight city tier is zoom-gated identically to the per-frame
+  // pass, so the first paint matches what the next tick will draw.
+  const cityTwilightOpacity0 =
+    clipAngle < PLACES_APPEAR_CLIP
+      ? Math.min(
+          1,
+          Math.max(0, (PLACES_APPEAR_CLIP - clipAngle) / (PLACES_APPEAR_CLIP - PLACES_FULL_CLIP)),
+        )
+      : 0;
   const cityNight0 = Skia.Path.Make();
   const cityTwilight0 = Skia.Path.Make();
   const cityRes0 = collectCityLights(
@@ -823,6 +857,7 @@ function projectInitial(
     clipCos0,
     cityNight0,
     cityTwilight0,
+    cityTwilightOpacity0 > 0,
   );
 
   // Qibla arc — great circle from story location to Makkah. Interpolated
@@ -882,6 +917,7 @@ function projectInitial(
     riversOpacity: 0,
     cityLightsNightPath: cityRes0.hasNight ? cityNight0 : null,
     cityLightsTwilightPath: cityRes0.hasTwilight ? cityTwilight0 : null,
+    cityTwilightOpacity: cityTwilightOpacity0,
   };
 }
 
@@ -1657,11 +1693,27 @@ export const MiniGlobe = memo(function MiniGlobe({
       const sunUnitY = sunCosLat * Math.sin(sunLngR);
       const sunUnitZ = Math.sin(sunLatR);
 
+      // Zoom-band label ramp (0 at PLACES_APPEAR_CLIP=25° → 1 at
+      // PLACES_FULL_CLIP=10°). Hoisted above the marker loops so the
+      // zoom-gated layers below all share it: the dim civil-twilight city
+      // tier (here), the green-tier disaster gate (GDACS loop), and the
+      // country/water label pipeline further down.
+      const placesActive = clipAngle < PLACES_APPEAR_CLIP;
+      const labelOpacity = placesActive
+        ? Math.min(
+            1,
+            Math.max(0, (PLACES_APPEAR_CLIP - clipAngle) / (PLACES_APPEAR_CLIP - PLACES_FULL_CLIP)),
+          )
+        : 0;
+
       // City lights — refresh both tier paths. Two dot products + one
       // optional proj() per entry × ~190 entries; the dot products handle
       // the hemisphere/clip cull and the day-side cull before any
       // projection runs, so worst case is the visible-night-hemisphere
-      // count of proj() calls (typically 50–80).
+      // count of proj() calls (typically 50–80). The dim civil-twilight tier
+      // is zoom-gated — held back at 1× ambient (labelOpacity 0) so the
+      // terminator-edge speckle doesn't clutter the resting view, and faded
+      // in via `cityTwilightOpacity` past 25°. Deep-night dots always show.
       const cityNightPath = cityLightsNightPathRef.current;
       cityNightPath.rewind();
       const cityTwilightPath = cityLightsTwilightPathRef.current;
@@ -1677,6 +1729,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         clipCos,
         cityNightPath,
         cityTwilightPath,
+        labelOpacity > 0,
       );
 
       // Chokepoints — always projected (unlike hotspots). The set is small
@@ -1699,12 +1752,15 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
 
       // GDACS alerts — same cull + project pattern as chokepoints. Per-tier
-      // cap upstream (Green ≤30 most-recent; Orange/Red uncapped). Worst
-      // case ~30 + (orange+red) geoDistance calls + ≤(visible) proj()
-      // calls per frame — well under the 32ms budget alongside the
-      // existing chokepoint loop.
+      // cap upstream (Green ≤30 most-recent; Orange/Red uncapped). Green-tier
+      // alerts are the low-severity bulk of the feed, so they're zoom-gated:
+      // skipped entirely at 1× ambient (labelOpacity 0) and faded in past 25°,
+      // folded into recencyAlpha since render multiplies stroke opacity by it.
+      // Orange/Red are rare + consequential, so they always show.
       const gdacsMarks: GlobeState['gdacsMarks'] = [];
       for (const a of gdacsAlertsRef.current) {
+        const isGreen = a.alertlevel === 'Green';
+        if (isGreen && labelOpacity <= 0) continue;
         if (geoDistance(a.coords, cameraCoords) >= clipRad) continue;
         const pt = proj(a.coords);
         if (!pt) continue;
@@ -1714,7 +1770,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           eventid: a.eventid,
           eventtype: a.eventtype,
           alertlevel: a.alertlevel,
-          recencyAlpha: a.recencyAlpha,
+          recencyAlpha: isGreen ? a.recencyAlpha * labelOpacity : a.recencyAlpha,
         });
       }
 
@@ -1752,13 +1808,8 @@ export const MiniGlobe = memo(function MiniGlobe({
       const waterLabels: GlobeState['waterLabels'] = [];
       let riversPath: GlobeState['riversPath'] = null;
       let riversOpacity = 0;
-      const placesActive = clipAngle < PLACES_APPEAR_CLIP;
-      const labelOpacity = placesActive
-        ? Math.min(
-            1,
-            Math.max(0, (PLACES_APPEAR_CLIP - clipAngle) / (PLACES_APPEAR_CLIP - PLACES_FULL_CLIP)),
-          )
-        : 0;
+      // `placesActive` + `labelOpacity` are computed once above the marker
+      // loops (the green-disaster gate shares them) and reused here.
       const settledName = cachedCountryRef.current?.properties?.name as string | undefined;
 
       // Country centroids — hemisphere cull uses a precomputed cartesian
@@ -1943,7 +1994,19 @@ export const MiniGlobe = memo(function MiniGlobe({
         const nfont = neighborFontRef.current;
         const wfont = waterFontRef.current;
         const occupied: { x0: number; y0: number; x1: number; y1: number }[] = [];
-        const pad = 2;
+        // Label spacing widens at ambient zoom and tightens as the reader
+        // zooms in. A generous gap thins crowded continents (Europe is the
+        // densest cluster on the globe) at 1×, while 3× framings — where the
+        // reader has opted into detail — pack tighter so the atlas fills in.
+        // Linear 2px @ PLACES_FULL_CLIP (10°) → 7px @ PLACES_APPEAR_CLIP (25°),
+        // clamped, so big-country 1× clips (up to 70°) also get the wide gap.
+        const pad =
+          2 +
+          5 *
+            Math.min(
+              1,
+              Math.max(0, (clipAngle - PLACES_FULL_CLIP) / (PLACES_APPEAR_CLIP - PLACES_FULL_CLIP)),
+            );
         if (countryLabel) {
           const w = measureLines(countryLabel.lines, cfont, 6);
           occupied.push({
@@ -1973,8 +2036,8 @@ export const MiniGlobe = memo(function MiniGlobe({
           const w = nfont ? nfont.getTextWidth(n.name) : n.name.length * 5;
           const x0 = n.x - w / 2 - pad;
           const x1 = n.x + w / 2 + pad;
-          const y0 = n.y - 10;
-          const y1 = n.y + 3;
+          const y0 = n.y - 10 - pad;
+          const y1 = n.y + 3 + pad;
           let collides = false;
           for (const o of occupied) {
             if (x0 < o.x1 && x1 > o.x0 && y0 < o.y1 && y1 > o.y0) {
@@ -1997,8 +2060,8 @@ export const MiniGlobe = memo(function MiniGlobe({
           const yc = w.kind === 'river' ? w.y - 7 : w.y;
           const x0 = w.x - tw / 2 - pad;
           const x1 = w.x + tw / 2 + pad;
-          const y0 = yc - 10;
-          const y1 = yc + 3;
+          const y0 = yc - 10 - pad;
+          const y1 = yc + 3 + pad;
           let collides = false;
           for (const o of occupied) {
             if (x0 < o.x1 && x1 > o.x0 && y0 < o.y1 && y1 > o.y0) {
@@ -2044,6 +2107,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         riversOpacity,
         cityLightsNightPath: cityRes.hasNight ? cityNightPath : null,
         cityLightsTwilightPath: cityRes.hasTwilight ? cityTwilightPath : null,
+        cityTwilightOpacity: labelOpacity,
       });
     },
     [],
@@ -2691,9 +2755,25 @@ export const MiniGlobe = memo(function MiniGlobe({
         </Circle>
       )}
 
-      {/* Land silhouette */}
+      {/* Land silhouette — a faint fill for body plus a crisp coastline edge
+          for definition. The edge (not a brighter fill) is what lifts the map
+          out of the "faded" register: a defined outline reads as cartography
+          and matches the line-led typographic brand, where a louder fill would
+          just smear. Drawn in `text` (brighter than the `accent` interior
+          borders below) so the coast > borders hierarchy reads. Reuses the
+          already-projected `landPath`, so it's one extra GPU-batched stroke. */}
       {state.landPath && (
         <Path path={state.landPath} color={colors.accent} opacity={light ? 0.25 : 0.1} />
+      )}
+      {state.landPath && (
+        <Path
+          path={state.landPath}
+          color={colors.text}
+          style="stroke"
+          strokeWidth={0.6}
+          strokeJoin="round"
+          opacity={light ? 0.4 : 0.3}
+        />
       )}
 
       {/* Permanent ice sheets — Antarctica + Greenland. Scientifically the two
@@ -2754,12 +2834,14 @@ export const MiniGlobe = memo(function MiniGlobe({
           Dark mode needs a heavier hand: dark-mode ocean composites to
           ~rgb(16,17,20), so BLACK at 0.15 produced only a 2–3 unit per-
           channel step — below perceptual threshold, leaving day and night
-          visually identical on water. 0.28 lifts the differential to ~5–6
-          units (clearly readable) while keeping the night limb close
-          enough to the bg that the rim glow still silhouettes the globe.
+          visually identical on water. 0.20 lifts the differential to ~4
+          units (readable) without driving the unlit hemisphere to near-
+          black — at 0.28 the night side swallowed the land/coastline detail,
+          reading as a dead zone. The terminator stroke + twilight band still
+          carry the seam, so the softer fill loses no day/night legibility.
           Light mode already had ~36 units of contrast at 0.15 — leave it. */}
       {state.nightPath && (
-        <Path path={state.nightPath} color={BLACK} opacity={light ? 0.15 : 0.28} />
+        <Path path={state.nightPath} color={BLACK} opacity={light ? 0.15 : 0.2} />
       )}
 
       {/* Terminator — thin stroke at the day/night boundary */}
@@ -2788,7 +2870,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         <Path
           path={state.cityLightsTwilightPath}
           color={colors.textEmphasis}
-          opacity={light ? 0.22 : 0.32}
+          opacity={(light ? 0.22 : 0.32) * state.cityTwilightOpacity}
         />
       )}
       {state.cityLightsNightPath && (
@@ -2819,12 +2901,18 @@ export const MiniGlobe = memo(function MiniGlobe({
       {/* Coverage hotspots — RadialGradient halo + sharp core dot.
           Gradient shader gives smoother falloff than stacked BlurMask circles
           and skips the blur pass entirely. Recency fades older hotspots:
-          fresh stories are prominent, stale ones whisper. */}
+          fresh stories are prominent, stale ones whisper. Opacities lifted
+          (core 0.42→0.6, halo peak/mid roughly doubled, recency floor
+          0.3→0.45) so coverage clusters — where the news is concentrated —
+          actually read as warmth on the globe instead of staying subliminal.
+          Stays monochrome (`colors.text`); the diffuse blurred halo reads as a
+          different texture from the sharp editorial story dot, so the dot
+          remains the brightest, most-focal point. */}
       {state.hotspotGlows.map((z) => {
-        const fade = 0.3 + 0.7 * z.recency;
+        const fade = 0.45 + 0.55 * z.recency;
         const haloR = 18 + z.intensity * 16;
-        const peak = withAlpha(colors.text, (0.1 + z.intensity * 0.13) * fade);
-        const mid = withAlpha(colors.text, (0.04 + z.intensity * 0.06) * fade);
+        const peak = withAlpha(colors.text, (0.18 + z.intensity * 0.18) * fade);
+        const mid = withAlpha(colors.text, (0.08 + z.intensity * 0.1) * fade);
         const edge = withAlpha(colors.text, 0);
         const coreR = 0.9 + z.intensity * 0.7;
         // Key by lat,lng so reconciliation stays stable across heatmap
@@ -2840,7 +2928,7 @@ export const MiniGlobe = memo(function MiniGlobe({
                 positions={[0, 0.35, 1]}
               />
             </Circle>
-            <Circle cx={z.x} cy={z.y} r={coreR} color={colors.text} opacity={0.42 * fade} />
+            <Circle cx={z.x} cy={z.y} r={coreR} color={colors.text} opacity={0.6 * fade} />
           </Group>
         );
       })}

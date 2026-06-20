@@ -57,36 +57,22 @@ export const ANCHOR_COUNTRY_AREA = 0.018;
  *  or GDP — easy to argue at the margin, but the set is intentionally
  *  conservative (additions invite a follow-on debate; subtractions don't). */
 export const ANCHOR_NAMES_EXTRA: ReadonlySet<string> = new Set([
-  // Europe — additions chosen for centroid isolation, not just recognition;
-  // densely-packed Central/Eastern members get culled by the collision
-  // packer at globe scale, so listing them here adds work without payoff.
+  // Europe — a deliberately sparse recognition spine, not full coverage.
+  // Europe is geographically compact, so at 1× ambient zoom a generous list
+  // packs into a wall of names (the densest cluster on the globe). We keep
+  // only the large, centroid-isolated members that orient the reader; the
+  // rest (Portugal, Netherlands, Switzerland, Ireland, the Nordics minus
+  // Sweden, and the whole Central/Eastern band) are de-anchored and resurface
+  // through the non-anchor label path as the zoom pill tightens the clip.
   'France',
-  'Spain',
-  'Portugal',
   'Germany',
+  'Spain',
   'Italy',
-  'Netherlands',
-  'Switzerland',
-  'Ireland',
   'United Kingdom',
   'Poland',
-  'Greece',
-  'Sweden',
-  'Norway',
-  'Finland',
-  'Denmark',
   'Ukraine',
-  // Central/Eastern Europe — completes the band so the continent doesn't read
-  // as France→Poland with a void. The collision packer culls the densely-
-  // packed members at 1× scale; surplus candidates surface as the zoom pill
-  // tightens the clip.
-  'Austria',
-  'Czechia',
-  'Hungary',
-  'Romania',
-  'Serbia',
-  'Belarus',
-  'Bulgaria',
+  'Sweden',
+  'Greece',
   // Africa — Maghreb completion (Algeria/Libya/Egypt anchor by area),
   // Gulf of Guinea coast (Nigeria is the only nearby anchor), East Africa
   // recognition anchor (Kenya), and the Mozambique-Channel isolate.
