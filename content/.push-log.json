@@ -1,112 +1,5 @@
 [
   {
-    "timestamp": "2026-05-30T12:37:06.319Z",
-    "candidateCount": 12,
-    "candidates": [
-      {
-        "slug": "2026-05-30-munich-airport-operations-fully-suspended-after-uav-detected",
-        "title": "Drone Reports Close Munich Airport",
-        "category": "politics",
-        "eventCoverage": 124,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-30-fiscal-monetary-policy-agility-needed-in-fy27-finance-minist",
-        "title": "India Inflation Squeezes RBI Options",
-        "category": "economy",
-        "eventCoverage": 35,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-30-at-least-22-refugees-returning-from-pakistan-killed-after-tr",
-        "title": "Deportation Crash Kills 18 in Afghanistan",
-        "category": "politics",
-        "eventCoverage": 34,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-30-16-feared-dead-in-suspected-bandits-reprisal-attack-on-katsi",
-        "title": "Katsina Bandits Kill 16 in Reprisal",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-30-gaza-death-toll-nears-73-000-since-oct-07-2023-ministry",
-        "title": "929 Killed Under Gaza Ceasefire",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-29-critical-minerals-the-west-is-learning-the-wrong-lesson-from",
-        "title": "West Skips Consent China Now Seeks",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-30-ripple-said-to-lead-1-billion-xrp-treasury-raise",
-        "title": "Ripple Plans $1bn XRP Treasury Vehicle",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-30-axial-encoding-unlocks-up-to-eightfold-faster-3d-microscopy",
-        "title": "AIMED Images Live Cells 8× Faster",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-30-cryowriter-a-robotic-solution-for-improved-cryo-em-grid-prep",
-        "title": "Robot Automates Cryo-EM's Bottleneck",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-28-claude-opus-4-8",
-        "title": "Anthropic Ships Opus 4.8, Cuts Fast Mode",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-28-isar-aerospace-signs-agreement-to-launch-from-future-canadia",
-        "title": "Unproven Spectrum Rocket Books Canada Pad",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-30-deep-learning-based-histomorphological-phenotyping-and-progn",
-        "title": "AI Separates Lung Tumours Pathologists Confuse",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-05-30-munich-airport-operations-fully-suspended-after-uav-detected",
-      "title": "Drone Reports Close Munich Airport",
-      "category": "politics",
-      "body": "Both runways closed over a drone nobody",
-      "eventCoverage": 124,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Drone sighting halts all flights at Munich Airport, Germany",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 24
-    }
-  },
-  {
     "timestamp": "2026-05-30T17:44:12.405Z",
     "candidateCount": 12,
     "candidates": [
@@ -9900,6 +9793,120 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Spain court orders PM Sánchez wife to trial on corruption charges",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 26
+    }
+  },
+  {
+    "timestamp": "2026-06-20T22:34:11.179Z",
+    "candidateCount": 13,
+    "candidates": [
+      {
+        "slug": "2026-06-20-burn-lebanon-post-israeli-strikes-kill-16-south-lebanon",
+        "title": "Israel Kills 16 in Lebanon",
+        "category": "politics",
+        "eventCoverage": 2045,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-20-edinburgh-anti-muslim-rampage-five-injured-terror-probe",
+        "title": "Counterterrorism Probes Edinburgh Muslim Attacks",
+        "category": "politics",
+        "eventCoverage": 75,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-20-israeli-strikes-kill-11-in-gaza-including-two-girls",
+        "title": "Israel Kills Sisters, Cameraman",
+        "category": "politics",
+        "eventCoverage": 56,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-20-pakistan-pm-army-chief-switzerland-us-iran-talks",
+        "title": "Pakistan Army Chief to Switzerland",
+        "category": "politics",
+        "eventCoverage": 44,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-20-bangladesh-pm-malaysia-china-bypasses-india-first-tour",
+        "title": "Bangladesh Chooses China Over India",
+        "category": "politics",
+        "eventCoverage": 40,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-20-buffett-zero-inflation-fed-target-debate",
+        "title": "Buffett Wants Zero Inflation Target",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-20-goldman-sachs-cuts-gold-price-target",
+        "title": "Goldman Cuts Gold Target $500",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-20-iran-kazakhstan-caspian-port-transit-cooperation",
+        "title": "Iran Seeks Caspian Transit Deal",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-20-meteor-sonic-booms-atmospheric-physics-explained",
+        "title": "Meteors Pack Tons of TNT",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-19-colombia-election-fossil-fuel-phaseout-litmus-test",
+        "title": "Colombia Votes on Oil Sunday",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-20-deep-learning-stress-detection-eye-tracking",
+        "title": "Eye Tracking Detects Stress",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-19-rc-135-rivet-joint-drone-teaming-isr",
+        "title": "Rivet Joints May Lead Drones",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-18-airpods-effect-earbuds-as-body-computing-platform",
+        "title": "AirPods Normalize Body-Level Computing",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-06-20-burn-lebanon-post-israeli-strikes-kill-16-south-lebanon",
+      "title": "Israel Kills 16 in Lebanon",
+      "category": "politics",
+      "body": "Israeli strikes killed 16 in southern",
+      "eventCoverage": 2045,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Israeli strikes kill 16 in southern Lebanon, breaching ceasefire deal",
     "response": {
       "pushed": 1,
       "skipped": 0,
