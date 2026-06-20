@@ -1,25 +1,26 @@
 {
-  "date": "2026-06-19",
+  "date": "2026-06-20",
   "metrics": {
-    "articles": { "value": 40, "detail": "5 cycles (4 completed), avg 7/cycle" },
+    "articles": { "value": 22, "detail": "Partial day — 3 of 5 cycles completed, avg 5/cycle. Yesterday: 44." },
     "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 14, "economy": 9, "science": 10, "tech": 7 },
-    "multiSource": { "value": 9, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "EU": 14, "AM": 11, "ME": 7, "AS": 4, "AF": 4 } },
-    "sciTech": { "ratio": 43, "target": 25, "met": true },
-    "topSourceShare": { "source": "Bloomberg Business", "pct": 10, "target": 20, "met": true },
-    "uniqueSources": 34,
+    "categories": { "politics": 9, "economy": 5, "science": 4, "tech": 4 },
+    "multiSource": { "value": 7, "target": 4, "met": true },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 9, "ME": 5, "EU": 5, "AS": 2, "AF": 1 } },
+    "sciTech": { "ratio": 36, "target": 25, "met": true },
+    "topSourceShare": { "source": "Phys.org / Dawn / Al Jazeera (tied)", "pct": 14, "target": 20, "met": true },
+    "uniqueSources": 24,
     "duplicates": 0,
-    "avgCycleDuration": 2416
+    "avgCycleDuration": 680
   },
-  "experiment": "Skipped — all metrics within targets and no active experiment to evaluate. The one queued experiment (numerical-density) edits scripts/write-prompt.md, which is out of scope for daily tuning.",
-  "weakestArea": "Regional spread is the slimmest margin: 5 regions vs the target of 4, with Asia and Africa at only 4 articles each and Oceania absent today. Europe-heavy (14) and Americas-heavy (11) output dominated — a normal weekday clustering rather than a structural gap, but the AS/AF tail is thin enough to watch.",
+  "experiment": "Skipped — all assessable metrics within targets and no structural gap. Selector floor levers for sourcing/category are tapped per prior reverted experiment (2026-05-09-multi-source-floor-3); no upstream feed change is warranted on a single partial-day signal.",
+  "weakestArea": "Science at 4 is the only count below an explicit goal (≥5/day), but the day is incomplete — only 3 of 5 cycles ran (22 articles vs yesterday's 44), and yesterday science landed at 11. With two cycles remaining and the science floor already at 2, this reads as a partial-day artifact rather than a coverage deficit.",
   "watching": [
-    "Article throughput dropped to 40 from yesterday's unusually high 67 — within normal range (avg 7/cycle) but worth confirming it is feed-driven, not a cycle failure (4 of 5 cycles completed).",
-    "Tech at 7 is comfortably above floor but is the lowest category count; no action needed unless it slides toward the floor of 4 over consecutive days."
+    "Two cycles (17:00, 22:00 UTC) still pending today — final science and tech counts should clear their daily goals once they run.",
+    "Region thinness in AF (1) and AS (2) today; both recover on full days (yesterday AF 4, AS 5), worth confirming after the remaining cycles."
   ],
   "coverageGaps": [
-    "Oceania had zero coverage today; Asia and Africa each only 4 articles — non-Western regional depth was light this cycle."
+    "Oceania (OC) had zero coverage today — a recurring structural gap, not specific to this cycle.",
+    "Africa represented by a single article so far; lighter than the 4-region comfort margin until later cycles fill in."
   ],
-  "context": "No active experiments and no pause gate in effect. All four goal areas — freshness, diversity, multi-source, educational value — are met with healthy margins (freshness median 0 days, sci+tech 43%, top source 10%, 0 duplicates). Sourcing-cluster history shows the selector multi-source floor lever is tapped (~22% ceiling from feed supply); future sourcing gains require upstream feed work, not tunable parameters. No new experiment proposed."
+  "context": "Today is a partial measurement window: 3 of 5 daily cycles completed at audit time, so absolute counts run roughly half of a full day. Rate-based quality signals (sci-tech 36%, multi-source 7, top-source share 14%, freshness 0, zero duplicates) are all healthy and not distorted by the short window. No experiment is active and there is no pause gate; the corpus is stable, so the correct move is to hold parameters and let the remaining cycles complete."
 }
