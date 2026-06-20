@@ -1,13 +1,5 @@
 [
   {
-    "timestamp": "2026-05-30T04:31:33.473Z",
-    "candidateCount": 0,
-    "candidates": [],
-    "selected": null,
-    "skipReason": null,
-    "sent": false
-  },
-  {
     "timestamp": "2026-05-30T08:31:56.346Z",
     "candidateCount": 12,
     "candidates": [
@@ -9890,5 +9882,35 @@
       "skipped": 0,
       "tokens": 26
     }
+  },
+  {
+    "timestamp": "2026-06-20T04:27:54.163Z",
+    "candidateCount": 3,
+    "candidates": [
+      {
+        "slug": "2026-06-19-influencers-and-organized-crime-identifying-patterns-in-thei",
+        "title": "Cartels Recruit Through Influencers",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-18-why-the-human-genome-s-tangled-physicality-may-confound-ai",
+        "title": "AI Cannot Map Genome Folds",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-20-nanobubbles-for-algae-cleanup-q-a-with-researcher-wen-zhang",
+        "title": "Nanobubbles Scour Algae Without Floating",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": null,
+    "skipReason": "all 3 candidates below coverage threshold 1",
+    "sent": false
   }
 ]
