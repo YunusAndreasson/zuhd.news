@@ -1,9 +1,0 @@
-# Generated native projects (Continuous Native Generation): EAS prebuilds
-# ios/ and android/ during the build, but they are absent on this (Linux)
-# machine when `eas build` computes the runtime-version fingerprint. Excluding
-# them keeps the local and EAS fingerprints identical so EAS Update’s
-# CONFIGURE_EXPO_UPDATES phase does not fail on a runtime-version mismatch.
-# Native-relevant changes are still captured via package.json, app config, and
-# the native module dirs under node_modules.
-/ios
-/android

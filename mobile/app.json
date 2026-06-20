@@ -12,16 +12,14 @@
       "ios",
       "android"
     ],
-    "runtimeVersion": {
-      "policy": "fingerprint"
-    },
+    "runtimeVersion": "1.0.0",
     "updates": {
       "url": "https://u.expo.dev/14c4589a-a039-41ad-b3f6-23cff746c7a8"
     },
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "zuhd.news",
-      "buildNumber": "276",
+      "buildNumber": "278",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "UIBackgroundModes": [
