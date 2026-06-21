@@ -1,26 +1,26 @@
 {
-  "date": "2026-06-20",
+  "date": "2026-06-21",
   "metrics": {
-    "articles": { "value": 22, "detail": "Partial day — 3 of 5 cycles completed, avg 5/cycle. Yesterday: 44." },
-    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 9, "economy": 5, "science": 4, "tech": 4 },
-    "multiSource": { "value": 7, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 9, "ME": 5, "EU": 5, "AS": 2, "AF": 1 } },
-    "sciTech": { "ratio": 36, "target": 25, "met": true },
-    "topSourceShare": { "source": "Phys.org / Dawn / Al Jazeera (tied)", "pct": 14, "target": 20, "met": true },
-    "uniqueSources": 24,
+    "articles": { "value": 37, "detail": "5 cycles completed, avg ~7/cycle (avgPublished 9)" },
+    "freshness": { "median": 0.0, "p90": 0.2, "max": 0.2, "target": 1.0, "met": true },
+    "categories": { "politics": 11, "economy": 12, "science": 8, "tech": 6 },
+    "multiSource": { "value": 3, "target": 4, "met": false },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "EU": 14, "ME": 9, "AM": 7, "AS": 4, "AF": 3 } },
+    "sciTech": { "ratio": 38, "target": 25, "met": true },
+    "topSourceShare": { "source": "Nature", "pct": 24, "target": 20, "met": false },
+    "uniqueSources": 22,
     "duplicates": 0,
-    "avgCycleDuration": 680
+    "avgCycleDuration": 1240
   },
-  "experiment": "Skipped — all assessable metrics within targets and no structural gap. Selector floor levers for sourcing/category are tapped per prior reverted experiment (2026-05-09-multi-source-floor-3); no upstream feed change is warranted on a single partial-day signal.",
-  "weakestArea": "Science at 4 is the only count below an explicit goal (≥5/day), but the day is incomplete — only 3 of 5 cycles ran (22 articles vs yesterday's 44), and yesterday science landed at 11. With two cycles remaining and the science floor already at 2, this reads as a partial-day artifact rather than a coverage deficit.",
+  "experiment": "Skipped — both misses (multi-source 3, Nature 24%) are single-day variance from a Nature-heavy science day. The selector multi-source floor lever is tapped (2026-05-09-multi-source-floor-3 reverted), and the upstream feed lever (fetch-news-api.js) is constrained by the NewsAPI token-budget rule. No clean lever for a one-day artifact.",
+  "weakestArea": "Top-source share is furthest from target: Nature supplied 9 of 37 articles (24% vs <20% target). This same Nature concentration is the proximate cause of the multi-source miss (3 vs 4) — science is structurally single-source, so an unusually Nature-heavy day both spikes the top-source share and depresses the multi-source count. Yesterday Nature was 3/44 (14%) with multi-source at 8, so this is day-noise rather than a structural shift.",
   "watching": [
-    "Two cycles (17:00, 22:00 UTC) still pending today — final science and tech counts should clear their daily goals once they run.",
-    "Region thinness in AF (1) and AS (2) today; both recover on full days (yesterday AF 4, AS 5), worth confirming after the remaining cycles."
+    "Nature concentration: 9 articles in one day is roughly 3x its typical daily share — watch whether the next cycles revert to the ~3/day norm or whether a science-news surge sustains the over-index.",
+    "Multi-source count dipped to 3 (from 8 yesterday); confirm it recovers to >=4 once the science mix normalizes, since the feed-supply cap (~9 multi/cycle) leaves room when politics/economy are well-represented."
   ],
   "coverageGaps": [
-    "Oceania (OC) had zero coverage today — a recurring structural gap, not specific to this cycle.",
-    "Africa represented by a single article so far; lighter than the 4-region comfort margin until later cycles fill in."
+    "Oceania (OC) absent again today; regional spread leaned EU-heavy (14 of 37) with only 3 Africa and 4 Asia articles.",
+    "Tech at 6 met the >=4 floor but sat at the low end; science (8) outweighed tech within the sci-tech bucket."
   ],
-  "context": "Today is a partial measurement window: 3 of 5 daily cycles completed at audit time, so absolute counts run roughly half of a full day. Rate-based quality signals (sci-tech 36%, multi-source 7, top-source share 14%, freshness 0, zero duplicates) are all healthy and not distorted by the short window. No experiment is active and there is no pause gate; the corpus is stable, so the correct move is to hold parameters and let the remaining cycles complete."
+  "context": "All four freshness/category/region/sci-tech goals are comfortably met on a full 5-cycle day with zero duplicates and median lag of 0 days. The two misses are a coupled single-day artifact of a Nature-dominated science day, not a regression — the relevant tuning levers are either documented as tapped (selector floors) or off-limits (feed token budget), so no experiment is warranted on this signal alone."
 }
