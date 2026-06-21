@@ -1,105 +1,5 @@
 [
   {
-    "timestamp": "2026-05-31T12:42:01.243Z",
-    "candidateCount": 11,
-    "candidates": [
-      {
-        "slug": "2026-05-31-world-no-tobacco-day-vape-ban-global-south",
-        "title": "Asia Groups Demand Vape Bans",
-        "category": "politics",
-        "eventCoverage": 277,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-31-meteor-airburst-massachusetts-300-tonnes-tnt",
-        "title": "Meteor Shakes Northeast US",
-        "category": "science",
-        "eventCoverage": 136,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-31-ukraine-iris-t-launcher-germany-air-defense-arithmetic",
-        "title": "Germany Delivers One Launcher",
-        "category": "politics",
-        "eventCoverage": 68,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-31-ukraine-saratov-refinery-strike-fuel-war",
-        "title": "Ukraine Strikes Rosneft Fuel Plant",
-        "category": "economy",
-        "eventCoverage": 63,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-29-sudan-rsf-drones-darfur-eid-markets-blue-nile",
-        "title": "RSF Drones Hit Eid Markets",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-29-brazil-pcc-red-command-terrorist-designation",
-        "title": "US Brands Brazil Gangs Terrorists",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-29-brazil-peru-railway-china-trade-amazon-cost",
-        "title": "Brazil-Peru Rail Slices Amazon",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-31-godzilla-el-nino-southern-africa-drought-forecast",
-        "title": "Monster El Niño Looms",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-29-pentagon-spacex-orbital-aircraft-tracking-4b",
-        "title": "SpaceX Wins Pentagon Orbit Deal",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-29-pope-ai-encyclical-who-shapes-ai-ethics",
-        "title": "Pope Issues AI Ethics Doctrine",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-05-31-global-disruptions-in-energy-markets",
-        "title": "Pakistan Oil Bill Tops $20bn",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-05-31-world-no-tobacco-day-vape-ban-global-south",
-      "title": "Asia Groups Demand Vape Bans",
-      "category": "politics",
-      "body": "[Philippines](country:PH) sold 90 billion cigarettes in 2024, the Southeast",
-      "eventCoverage": 277,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Asia health groups call for immediate vape bans on World No Tobacco Day",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 24
-    }
-  },
-  {
     "timestamp": "2026-05-31T17:44:28.172Z",
     "candidateCount": 9,
     "candidates": [
@@ -9865,6 +9765,43 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Egypt charges woman who reported hospital abuse with spreading false news",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 26
+    }
+  },
+  {
+    "timestamp": "2026-06-21T22:45:21.690Z",
+    "candidateCount": 2,
+    "candidates": [
+      {
+        "slug": "2026-06-21-several-reported-injured-after-explosion-at-factory-in-qatar",
+        "title": "Explosion Hits Qatar LNG Facility",
+        "category": "economy",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-21-coronary-artery-stenosis-segmentation-using-u-net-architectu",
+        "title": "Deep Learning Advances Stenosis Detection",
+        "category": "science",
+        "eventCoverage": 268,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-06-21-several-reported-injured-after-explosion-at-factory-in-qatar",
+      "title": "Explosion Hits Qatar LNG Facility",
+      "category": "economy",
+      "body": "An explosion hit [Qatar](country:QA)'s Barzan gas facility",
+      "eventCoverage": 268,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Explosion hits Qatar Barzan gas facility, fire contained, QatarEnergy says",
     "response": {
       "pushed": 1,
       "skipped": 0,
