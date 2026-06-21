@@ -2,13 +2,182 @@
   "version": 1,
   "stories": [
     {
+      "id": "trump-threatens-iran-strikes-lebanon-amid-switzerland-talks",
+      "label": "US president threatens Iran amid Siwtzerland talks",
+      "firstSeen": "2026-06-21T17:06:25.106Z",
+      "lastCovered": "2026-06-21T17:06:25.106Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-21-trump-threatens-iran-strikes-lebanon-amid-switzerland-talks"
+      ],
+      "eventUri": "eng-11763283",
+      "summary": "On the same day US-Iran talks open in Switzerland to implement the Islamabad war-ending MoU, Trump threatens fresh strikes unless Iran reins in Hezbollah in Lebanon — and Tehran halts the talks in response. Lead with the contradiction: Washington negotiating an exit while threatening re-entry, with Lebanon as the pressure point. Who bears the risk is Lebanese and Iranian civilians, not the principals. Multi-source spanning IR/TR/FR/IN/RU shows how differently the threat reads from each capital.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Lebanon",
+        "http://en.wikipedia.org/wiki/Proxy_war",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/Hezbollah",
+        "http://en.wikipedia.org/wiki/Switzerland",
+        "http://en.wikipedia.org/wiki/Israel"
+      ]
+    },
+    {
+      "id": "omnia-sweidan-egypt-false-news-trial-medical-abuse",
+      "label": "Omnia Sweidan referred to ‘false news’ trial over description of medical abuses against women",
+      "firstSeen": "2026-06-21T17:06:25.106Z",
+      "lastCovered": "2026-06-21T17:06:25.106Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-21-omnia-sweidan-egypt-false-news-trial-medical-abuse"
+      ],
+      "eventUri": null,
+      "summary": "Accountability inverted: an Egyptian woman who described routine medical abuses against women — testimony that went viral — is the one facing 'false news' charges, arrested at home and now referred to trial. Lead with the mechanism by which 'false news' law is used to silence the reporting of abuse rather than the abuse itself. A unique Mada Masr report (EG regional outlet) on how speech criminalization works in practice.",
+      "conceptUris": []
+    },
+    {
+      "id": "west-bank-gaza-ceasefire-illusion-palestinian-toll",
+      "label": "The Guardian view on Israel and the West Bank: allies must protect Palestinian lives and livelihoods",
+      "firstSeen": "2026-06-21T17:06:25.106Z",
+      "lastCovered": "2026-06-21T17:06:25.106Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-21-west-bank-gaza-ceasefire-illusion-palestinian-toll"
+      ],
+      "eventUri": "eng-11763499",
+      "summary": "Continuation of injustice IS the development: while attention is on Iran, the Gaza 'ceasefire' is, per UNICEF, a 'cruel and deadly illusion' — Israeli forces have killed more than 1,000 Palestinians since it began — and West Bank violence plus an economic chokehold compound it. Writer should lead with the documented figures and the named actors, not the editorial framing; treat the column as a pointer to the underlying facts. Anchor the structural why: occupation as economic strangulation, not just episodic violence.",
+      "conceptUris": []
+    },
+    {
+      "id": "hormuz-shipping-recovers-gasoline-prices-sticky",
+      "label": "Over 100 commercial ships pass through Strait of Hormuz in two days -- US official",
+      "firstSeen": "2026-06-21T17:06:25.106Z",
+      "lastCovered": "2026-06-21T17:06:25.106Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-21-hormuz-shipping-recovers-gasoline-prices-sticky"
+      ],
+      "eventUri": null,
+      "summary": "Why a ceasefire doesn't lower your fuel bill: over 100 vessels have transited Hormuz in two days as traffic normalizes, yet the US energy secretary won't predict when gasoline prices fall. Lead with the disconnect between physical shipping recovery and sticky retail prices — the mechanism is that oil risk premia and refining margins, not chokepoint flow alone, set the pump price. Teaches the reader how the world's most important chokepoint actually transmits to cost.",
+      "conceptUris": []
+    },
+    {
+      "id": "iran-steel-industry-sanctions-industrial-resilience",
+      "label": "Iran's steel industry stands at 43rd place in world",
+      "firstSeen": "2026-06-21T17:06:25.106Z",
+      "lastCovered": "2026-06-21T17:06:25.106Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-21-iran-steel-industry-sanctions-industrial-resilience"
+      ],
+      "eventUri": null,
+      "summary": "Sanctions-era industrial resilience, read critically: Iranian state media frames steel — up while global output fell ~2% in 2025 — as turning geopolitical crisis into technological advantage via domestic direct-reduced-iron capacity. Lead with the structural why (import-substitution forced by sanctions builds heavy industry) while flagging that this is a single state-source claim. The reader gets the mechanism by which embargoes can paradoxically deepen a domestic industrial base.",
+      "conceptUris": []
+    },
+    {
+      "id": "fosfomycin-revival-fluorinated-analogues-antibiotic-resistance",
+      "label": "Targeting bacterial influx pathways to defeat antibiotic resistance: fluorinated glucose-6-phosphate analogues revive fosfomycin efficacy",
+      "firstSeen": "2026-06-21T17:06:25.106Z",
+      "lastCovered": "2026-06-21T17:06:25.106Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-21-fosfomycin-revival-fluorinated-analogues-antibiotic-resistance"
+      ],
+      "eventUri": null,
+      "summary": "A resistance-reversal strategy that exploits how bacteria take up nutrients: fluorinated glucose-6-phosphate analogues force open the influx pathway that lets the old, cheap antibiotic fosfomycin back into resistant bacteria. Lead with the mechanism — instead of inventing a new drug, you trick the cell's own transporter to revive an existing one. Stakes: antimicrobial resistance is a slow-moving global mortality crisis, and adjuvant approaches that rescue off-patent antibiotics are cheap to deploy in the Global South.",
+      "conceptUris": []
+    },
+    {
+      "id": "nasa-ernest-rover-autonomy-extreme-terrain",
+      "label": "NASA testing advanced capabilities for moon, Mars rovers",
+      "firstSeen": "2026-06-21T17:06:25.106Z",
+      "lastCovered": "2026-06-21T17:06:25.106Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-21-nasa-ernest-rover-autonomy-extreme-terrain"
+      ],
+      "eventUri": null,
+      "summary": "ERNEST drove 26km across the Colorado Desert with minimal human intervention — the point isn't the distance but the autonomy: rovers that navigate extreme slopes themselves, because Mars round-trip latency makes joystick control impossible. Lead with the autonomy-over-latency mechanism. The reader grasps why on-board decision-making, not raw mobility, is the bottleneck for extreme-terrain exploration.",
+      "conceptUris": []
+    },
+    {
+      "id": "google-ipv6-50-percent-adoption-milestone",
+      "label": "Google Hits 50% IPv6",
+      "firstSeen": "2026-06-21T17:06:25.106Z",
+      "lastCovered": "2026-06-21T17:06:25.106Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-21-google-ipv6-50-percent-adoption-milestone"
+      ],
+      "eventUri": null,
+      "summary": "A quiet infrastructure milestone with three decades of inertia behind it: half of Google's traffic now arrives over IPv6. Lead with what 50% actually means — the long tail of IPv4 scarcity, carrier-grade NAT, and why some regions (mobile-first networks in Asia) leapfrogged while legacy networks lag. The reader is a developer who should understand that address exhaustion was solved by adoption curves, not a flag day.",
+      "conceptUris": []
+    },
+    {
+      "id": "ginkgosense-net-field-computer-vision-fruit-detection",
+      "label": "GinkgoSense-Net: A method for characterization and real-time detection of ginkgo fruits in complex field environments",
+      "firstSeen": "2026-06-21T17:06:25.106Z",
+      "lastCovered": "2026-06-21T17:06:25.106Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-21-ginkgosense-net-field-computer-vision-fruit-detection"
+      ],
+      "eventUri": null,
+      "summary": "Agricultural computer vision against a hard real-world problem: detecting ginkgo fruit reliably in cluttered, variable-light field conditions for automated picking. Lead with why 'complex field environments' is the actual research frontier — lab-trained vision models collapse on occlusion, shadow, and clutter, so the engineering value is robustness, not accuracy on clean images. Concrete window into how machine vision moves from benchmark to field deployment in food production.",
+      "conceptUris": []
+    },
+    {
+      "id": "russian-geran-drones-wipes-out-ukrainian-fuel-depot-in-dnepr",
+      "label": "Russian Geran drones wipes out Ukrainian fuel depot in Dnepropetrovsk Region",
+      "firstSeen": "2026-06-21T17:06:25.106Z",
+      "lastCovered": "2026-06-21T17:06:25.106Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-21-russian-geran-drones-wipes-out-ukrainian-fuel-depot-in-dnepr"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for economy floor] The strikes were followed by a strong fire, the Russian defense ministry said\n\nMOSCOW, June 21. /TASS/. A fuel depot of the Ukrainian army has been wiped out in the Dnepropetrovsk Region by Russian forces with the use of Geran drones, the Russian defense ministry said.\n\n\"On June 20, crews of Geran-2",
+      "conceptUris": []
+    },
+    {
       "id": "colombia-presidential-runoff-outsider-progressive",
       "label": "Colombians vote in a presidential runoff that pits an outsider against a progressive",
       "firstSeen": "2026-06-21T12:07:05.929Z",
       "lastCovered": "2026-06-21T12:07:05.929Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-colombia-presidential-runoff-outsider-progressive"
@@ -33,7 +202,7 @@
       "lastCovered": "2026-06-21T12:07:05.929Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-albania-protests-kushner-resort-protected-area"
@@ -56,7 +225,7 @@
       "lastCovered": "2026-06-21T12:07:05.929Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-19-iran-us-war-end-pakistan-investment-payoff"
@@ -72,7 +241,7 @@
       "lastCovered": "2026-06-21T12:07:05.929Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-donald-duke-prp-candidacy-court-challenge"
@@ -88,7 +257,7 @@
       "lastCovered": "2026-06-21T12:07:05.929Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-piketty-global-wealth-tax-climate-plan"
@@ -104,7 +273,7 @@
       "lastCovered": "2026-06-21T12:07:05.929Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-johannesburg-metro-infrastructure-collapse-numbers"
@@ -120,7 +289,7 @@
       "lastCovered": "2026-06-21T12:07:05.929Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-pakistan-400k-workers-world-cup-2034-labor-export"
@@ -136,7 +305,7 @@
       "lastCovered": "2026-06-21T12:07:05.929Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-20-palbociclib-retreatment-after-abemaciclib-breast-cancer"
@@ -152,7 +321,7 @@
       "lastCovered": "2026-06-21T12:07:05.929Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-coral-sand-stone-columns-foundation-engineering"
@@ -168,7 +337,7 @@
       "lastCovered": "2026-06-21T12:07:05.929Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-cerium-134-radionuclide-therapy-monte-carlo-dosimetry"
@@ -184,7 +353,7 @@
       "lastCovered": "2026-06-21T12:07:05.929Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-iranian-women-grab-gold-as-karate-team-finishes-runner-up"
@@ -200,7 +369,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-starmer-expected-to-resign-burnham-labour-leadership"
@@ -216,7 +385,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-bushra-bibi-solitary-confinement-ihc-petition"
@@ -232,7 +401,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-19-afghanistan-forgotten-empires-coins-british-museum"
@@ -248,7 +417,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-hormuz-threat-oil-markets-bitcoin-ceasefire"
@@ -264,7 +433,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-kerch-strait-ferry-drone-attack-crimea-logistics"
@@ -280,7 +449,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-navi-mumbai-airport-abu-dhabi-route-gulf-corridor"
@@ -302,7 +471,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-20-june-solstice-daylength-by-latitude"
@@ -324,7 +493,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-aml-transplant-conditioning-intensity-elderly-ebmt"
@@ -340,7 +509,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-19-hyundai-buys-boston-dynamics-softbank-exit"
@@ -356,7 +525,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-ethereum-sandwich-bot-drained-mev-exploit"
@@ -372,7 +541,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-19-vc-25b-bridge-jet-air-force-one-program"
@@ -388,7 +557,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-21-life-term-for-father-uncle-over-girl-s-murder"
@@ -404,7 +573,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-21-ekitidecides2026-oyebanji-secures-second-term-defies-ekiti-s"
@@ -420,7 +589,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-19-the-case-of-shakira-gal-ndez-highlights-a-growing-crisis-for"
@@ -436,7 +605,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-20-shrugging-off-multiple-ceasefires-israel-tries-for-high-grou"
@@ -452,7 +621,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-21-neet-ug-re-test-live-updates-re-exam-today-with-multi-layer"
@@ -468,7 +637,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-21-balochistan-was-ignored-in-federal-budget-opposition"
@@ -484,7 +653,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-21-do-corporate-bond-offering-and-listing-comment-letters-incre"
@@ -500,7 +669,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-21-climate-change-boosts-soybean-production-but-worsens-bean-qu"
@@ -516,7 +685,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-21-france-bans-alcohol-consumption-at-music-festival-events-und"
@@ -541,7 +710,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-21-recent-advances-in-individual-differences-in-addiction-neuro"
@@ -557,7 +726,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-19-project-valhalla-explained-how-a-decade-of-work-arrives-in-j"
@@ -573,7 +742,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-19-how-many-of-the-170k-english-words-do-you-know"
@@ -589,7 +758,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-21-case-study-application-of-high-throughput-new-approach-metho"
@@ -605,7 +774,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-20-israeli-strikes-kill-11-in-gaza-including-two-girls"
@@ -630,7 +799,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-20-burn-lebanon-post-israeli-strikes-kill-16-south-lebanon"
@@ -655,7 +824,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-20-pakistan-pm-army-chief-switzerland-us-iran-talks"
@@ -680,7 +849,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-20-bangladesh-pm-malaysia-china-bypasses-india-first-tour"
@@ -705,7 +874,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-20-edinburgh-anti-muslim-rampage-five-injured-terror-probe"
@@ -730,7 +899,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-20-buffett-zero-inflation-fed-target-debate"
@@ -746,7 +915,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-20-goldman-sachs-cuts-gold-price-target"
@@ -762,7 +931,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-20-iran-kazakhstan-caspian-port-transit-cooperation"
@@ -778,7 +947,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-20-meteor-sonic-booms-atmospheric-physics-explained"
@@ -794,7 +963,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-19-colombia-election-fossil-fuel-phaseout-litmus-test"
@@ -810,7 +979,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-20-deep-learning-stress-detection-eye-tracking"
@@ -826,7 +995,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-19-rc-135-rivet-joint-drone-teaming-isr"
@@ -842,7 +1011,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-18-airpods-effect-earbuds-as-body-computing-platform"
@@ -858,7 +1027,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-06-20-nobel-prize-winner-john-jumper-quits-google-deepmind-for-ant",
@@ -882,7 +1051,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-20-iran-says-strait-of-hormuz-has-been-closed-tasnim-reports"
@@ -906,7 +1075,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-20-bolivia-president-declares-state-of-emergency"
@@ -930,7 +1099,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-20-spanish-court-orders-pm-s-wife-to-face-trial"
@@ -953,7 +1122,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-20-sudan-rsf-tribal-war-beni-halba-salamat"
@@ -969,7 +1138,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-19-india-neet-retest-2-million-candidates"
@@ -990,7 +1159,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-20-strategy-strc-preferred-stock-loses-par"
@@ -1006,7 +1175,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-20-jet-fuel-crash-airlines-keep-savings"
@@ -1022,7 +1191,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-20-ancient-mongolian-cemetery-status-over-kinship"
@@ -1038,7 +1207,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-20-fat-cells-skin-immune-defense-staph"
@@ -1054,7 +1223,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-20-ai-crypto-security-audits-limits"
@@ -1070,173 +1239,13 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-20-physicists-black-holes-may-not-exist"
       ],
       "eventUri": null,
       "summary": "A group of physicists argues the objects we call black holes may instead be horizonless 'stranger' compact objects, sidestepping the singularity and information-paradox problems that have dogged general relativity. Lead with the stakes for physics: if there is no event horizon, decades of theory about what falls in and what is lost need rewriting. The mechanism to highlight is what observational signatures — gravitational-wave echoes, shadow imaging — could actually distinguish the models, so the reader grasps it as a testable claim, not speculation.",
-      "conceptUris": []
-    },
-    {
-      "id": "why-bangladesh-is-fencing-its-border-with-myanmar",
-      "label": "Why Bangladesh Is Fencing Its Border With Myanmar",
-      "firstSeen": "2026-06-20T04:08:55.439Z",
-      "lastCovered": "2026-06-20T04:08:55.439Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-19-why-bangladesh-is-fencing-its-border-with-myanmar"
-      ],
-      "eventUri": null,
-      "summary": "A non-state actor — the Arakan Army — now controls Myanmar's side of the frontier, so Dhaka can no longer manage the border state-to-state and is falling back on unilateral fencing. The mechanism to lead with: when the neighbour across the line is a rebel army, not a government, conventional border diplomacy collapses and a wall becomes the only lever. Affected: Rohingya and border communities; helps the thin Asia/OIC coverage by centring Bangladesh's agency and its limits.",
-      "conceptUris": []
-    },
-    {
-      "id": "the-tibet-aid-cadres-system-as-a-mechanism-for-political-con",
-      "label": "The 'Tibet Aid' Cadres System as a Mechanism for Political Control in Tibet",
-      "firstSeen": "2026-06-20T04:08:55.439Z",
-      "lastCovered": "2026-06-20T04:08:55.439Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-19-the-tibet-aid-cadres-system-as-a-mechanism-for-political-con"
-      ],
-      "eventUri": null,
-      "summary": "A programme branded as development aid for Tibet in fact sidelines local Tibetan officials while fast-tracking the careers of Han Chinese cadres rotated in from other provinces. Lead with the inversion — 'aid' as an instrument of demographic and administrative control — then the structural why: Beijing governs Tibet through personnel pipelines, not just policing. Accountability angle on how a named bureaucratic system entrenches ethnic hierarchy.",
-      "conceptUris": []
-    },
-    {
-      "id": "influencers-and-organized-crime-identifying-patterns-in-thei",
-      "label": "Influencers and Organized Crime: Identifying Patterns in Their Relationship",
-      "firstSeen": "2026-06-20T04:08:55.439Z",
-      "lastCovered": "2026-06-20T04:08:55.439Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-19-influencers-and-organized-crime-identifying-patterns-in-thei"
-      ],
-      "eventUri": null,
-      "summary": "InSight Crime maps how Latin American criminal groups co-opt social-media influencers to launder reputation, recruit, and project power — and is candid about the limits of the open-source data. Lead with the mechanism: organized crime now buys reach the way it once bought silence. Reader gets a systemic pattern no wire covers, with the methodological honesty that makes it credible.",
-      "conceptUris": []
-    },
-    {
-      "id": "deep-dive-breaking-down-us-israeli-defense-industry-integrat",
-      "label": "Deep Dive: Breaking Down US-Israeli Defense Industry 'Integration'",
-      "firstSeen": "2026-06-20T04:08:55.439Z",
-      "lastCovered": "2026-06-20T04:08:55.439Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-19-deep-dive-breaking-down-us-israeli-defense-industry-integrat"
-      ],
-      "eventUri": null,
-      "summary": "A provision buried in House legislation would weld the US and Israeli defense industrial bases together in ways that would be hard to unwind. Lead with the concrete legislative mechanism — what the clause actually does to procurement, export, and oversight — then the accountability stakes: industrial integration locks in policy that survives any single administration. Names the institutions and the money behind a relationship usually discussed only in geopolitical terms.",
-      "conceptUris": []
-    },
-    {
-      "id": "germany-breaks-ground-on-one-of-two-govsatcom-hub-locations",
-      "label": "Germany Breaks Ground on One of Two GOVSATCOM Hub Locations",
-      "firstSeen": "2026-06-20T04:08:55.439Z",
-      "lastCovered": "2026-06-20T04:08:55.439Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-18-germany-breaks-ground-on-one-of-two-govsatcom-hub-locations"
-      ],
-      "eventUri": null,
-      "summary": "Germany is putting up to €50m into a Cologne hub for the EU's GOVSATCOM system — sovereign, pooled government satellite comms that went operational in January. Lead with the strategic-autonomy logic: Europe is buying its way off dependence on US and commercial satcom, and the hub is where that money becomes infrastructure. The reader grasps the industrial-policy stakes — who owns the pipes of secure government communication.",
-      "conceptUris": []
-    },
-    {
-      "id": "why-the-human-genome-s-tangled-physicality-may-confound-ai",
-      "label": "Why the Human Genome's Tangled Physicality May Confound AI",
-      "firstSeen": "2026-06-20T04:08:55.439Z",
-      "lastCovered": "2026-06-20T04:08:55.439Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-18-why-the-human-genome-s-tangled-physicality-may-confound-ai"
-      ],
-      "eventUri": null,
-      "summary": "The genome is not a clean digital blueprint or algorithm — it is a physical, three-dimensionally folded object whose meaning depends on how it is packed in space, which is precisely what sequence-trained AI models cannot see. Lead with the conceptual correction: biologists' 'code' metaphor is what trips up the machine-learning models now being pointed at genetics. Teaches the reader a deep mechanism and a sharp limit on AI-for-biology hype.",
-      "conceptUris": []
-    },
-    {
-      "id": "interview-california-lawmaker-calls-for-a-peptide-working-gr",
-      "label": "Interview: California Lawmaker Calls for a Peptide Working Group",
-      "firstSeen": "2026-06-20T04:08:55.439Z",
-      "lastCovered": "2026-06-20T04:08:55.439Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-19-interview-california-lawmaker-calls-for-a-peptide-working-gr"
-      ],
-      "eventUri": null,
-      "summary": "Amid a national push to loosen restrictions on therapeutic peptides, a California legislator wants a state working group to recommend how physicians and hospitals could prescribe and study them. Lead with the regulatory mechanism — a state trying to route around federal caution on a fast-moving, lightly-evidenced drug class — and the tension between access and safety. The reader gets the structure of how a contested therapy migrates from gray market toward the clinic.",
-      "conceptUris": []
-    },
-    {
-      "id": "nanobubbles-for-algae-cleanup-q-a-with-researcher-wen-zhang",
-      "label": "Nanobubbles for algae cleanup: Q&A with researcher Wen Zhang",
-      "firstSeen": "2026-06-20T04:08:55.439Z",
-      "lastCovered": "2026-06-20T04:08:55.439Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-20-nanobubbles-for-algae-cleanup-q-a-with-researcher-wen-zhang"
-      ],
-      "eventUri": null,
-      "summary": "Gas bubbles roughly 100 nanometres across — too small to see and unusually stable in water — can strip pollutants from oil spills to toxic algal blooms. Lead with the counterintuitive physics: why bubbles this small don't just float away, and how that stability does the cleaning work. A concrete, low-cost environmental tool the reader hasn't met, with the mechanism front and centre rather than the press-release optimism.",
-      "conceptUris": []
-    },
-    {
-      "id": "norway-imposes-near-ban-on-ai-in-elementary-school",
-      "label": "Norway imposes near ban on AI in elementary school",
-      "firstSeen": "2026-06-20T04:08:55.439Z",
-      "lastCovered": "2026-06-20T04:08:55.439Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-19-norway-imposes-near-ban-on-ai-in-elementary-school"
-      ],
-      "eventUri": null,
-      "summary": "Norway is moving to all-but-prohibit generative AI in primary classrooms — a sharp counter-current as most education systems rush to integrate it. Lead with the policy specifics and the reasoning: a wealthy, high-trust state betting that young children need foundational skills built without machine assistance. The mechanism worth highlighting for a technical reader is the deliberate developmental rationale, not a Luddite reflex; this is a real-world A/B on AI in early education.",
-      "conceptUris": []
-    },
-    {
-      "id": "anomaly-delays-full-scale-space-rider-drop-test-until-octobe",
-      "label": "Anomaly Delays Full-Scale Space Rider Drop Test Until October",
-      "firstSeen": "2026-06-20T04:08:55.439Z",
-      "lastCovered": "2026-06-20T04:08:55.439Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-19-anomaly-delays-full-scale-space-rider-drop-test-until-octobe"
-      ],
-      "eventUri": null,
-      "summary": "ESA's reusable Space Rider spaceplane had its full-scale drop test aborted in May after an anomaly during the captive-ascent phase, pushing the campaign to October. Lead with the concrete setback and what it reveals: Europe's bid for an autonomous, reusable orbital platform is harder and slower than the mass-simulator tests of 2024-25 suggested. A clear-eyed engineering-progress story for the reader tracking who can actually field reusable spaceflight beyond the US.",
       "conceptUris": []
     }
   ]
