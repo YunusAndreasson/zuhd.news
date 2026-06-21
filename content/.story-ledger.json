@@ -2,13 +2,205 @@
   "version": 1,
   "stories": [
     {
+      "id": "colombia-presidential-runoff-outsider-progressive",
+      "label": "Colombians vote in a presidential runoff that pits an outsider against a progressive",
+      "firstSeen": "2026-06-21T12:07:05.929Z",
+      "lastCovered": "2026-06-21T12:07:05.929Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-21-colombia-presidential-runoff-outsider-progressive"
+      ],
+      "eventUri": "ita-917527",
+      "summary": "Colombians decide today whether to continue Petro's leftist path or join Latin America's rightward turn by electing a law-and-order outsider. Lead with what is actually on the ballot beyond personalities: Colombia was the first major fossil producer to pledge no new oil-and-gas exploration, and the right wants to reverse it — so a mid-sized producer's runoff is a referendum on an emerging international climate norm. Advances the developing 'colombia-election-fossil-fuel-phaseout' arc with the vote itself. Multi-source (Reuters/Al Jazeera/SCMP).",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Colombia",
+        "http://en.wikipedia.org/wiki/Two-round_system",
+        "http://en.wikipedia.org/wiki/Left-wing_politics",
+        "http://en.wikipedia.org/wiki/Gustavo_Petro",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Far-right_politics",
+        "http://en.wikipedia.org/wiki/Progressivism",
+        "http://en.wikipedia.org/wiki/United_States"
+      ]
+    },
+    {
+      "id": "albania-protests-kushner-resort-protected-area",
+      "label": "Albanian protesters rally against Kushner-backed resort in protected area",
+      "firstSeen": "2026-06-21T12:07:05.929Z",
+      "lastCovered": "2026-06-21T12:07:05.929Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-21-albania-protests-kushner-resort-protected-area"
+      ],
+      "eventUri": "deu-2139963",
+      "summary": "Thousands marched in Tirana in the largest rally yet against a luxury resort tied to Jared Kushner and the Trump family, planned on a protected coastal area. Lead with the accountability mechanism: how a foreign president's family deal in a protected zone became a domestic corruption flashpoint, and what it reveals about how Trump-orbit ventures convert political access into land in smaller states. Albania is an OIC member — sources are Al Jazeera (cross-region) and RT; no Albanian regional outlet appeared in the feed, worth a feed-side gap note. Multi-source.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Albania",
+        "http://en.wikipedia.org/wiki/Jared_Kushner",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Tirana",
+        "http://en.wikipedia.org/wiki/Edi_Rama",
+        "http://en.wikipedia.org/wiki/Ivanka_Trump"
+      ]
+    },
+    {
+      "id": "iran-us-war-end-pakistan-investment-payoff",
+      "label": "What Will the End of the Iran-US War Mean for Pakistan?",
+      "firstSeen": "2026-06-21T12:07:05.929Z",
+      "lastCovered": "2026-06-21T12:07:05.929Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-19-iran-us-war-end-pakistan-investment-payoff"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan helped broker Trump's offramp from the Iran-US war and now expects investment flows in return. Lead with the structural bargain: how a Muslim-majority state converted its military relationships with both Washington and Tehran into diplomatic capital, and what Islamabad is actually banking on — investment, debt relief, legitimacy. Continues the 'pakistan-pm-army-chief-switzerland' guarantor arc with the what-next. Single-source analysis from a credible regional-affairs outlet; frame as forward-looking, not a sourced scoop.",
+      "conceptUris": []
+    },
+    {
+      "id": "donald-duke-prp-candidacy-court-challenge",
+      "label": "Court to hear suit challenging ex-Gov. Donald Duke's presidential candidacy",
+      "firstSeen": "2026-06-21T12:07:05.929Z",
+      "lastCovered": "2026-06-21T12:07:05.929Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-21-donald-duke-prp-candidacy-court-challenge"
+      ],
+      "eventUri": "eng-11762954",
+      "summary": "A Federal High Court in Abuja will hear a challenge to Donald Duke's emergence as the PRP's presidential candidate, alleging it breached INEC's primary regulations. Lead with the mechanism, not the personality: how Nigerian courts are increasingly the venue where party-primary disputes — not voters — decide who appears on a presidential ballot, and what that judicialization of candidate selection says about the health of the 2027 race. Original reporting from a leading Nigerian outlet; adds African coverage flagged thin in the daily audit.",
+      "conceptUris": []
+    },
+    {
+      "id": "piketty-global-wealth-tax-climate-plan",
+      "label": "Thomas Piketty think-tank unveils a global wealth shake-up plan",
+      "firstSeen": "2026-06-21T12:07:05.929Z",
+      "lastCovered": "2026-06-21T12:07:05.929Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-21-piketty-global-wealth-tax-climate-plan"
+      ],
+      "eventUri": null,
+      "summary": "As Musk crosses into trillionaire territory on his SpaceX IPO, Piketty's World Inequality Lab has published a blueprint pairing a global wealth tax with climate finance. Lead with the mechanism the plan proposes — taxing extreme wealth to fund decarbonisation — and treat it as a teaching device for the macro reader: why redistribution and climate financing are being modelled as a single problem, and the political reasons such a global tax has never been enforceable. Global South source (South Africa) on a planetary economics story.",
+      "conceptUris": []
+    },
+    {
+      "id": "johannesburg-metro-infrastructure-collapse-numbers",
+      "label": "Joburg by numbers: The figures behind Parliament's grilling of SA's biggest metro",
+      "firstSeen": "2026-06-21T12:07:05.929Z",
+      "lastCovered": "2026-06-21T12:07:05.929Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-21-johannesburg-metro-infrastructure-collapse-numbers"
+      ],
+      "eventUri": null,
+      "summary": "Johannesburg spent 1% of its budget on infrastructure maintenance against an 8% benchmark, lost R8.5-billion to water and electricity leakage, and carries R7.6-billion in irregular expenditure under investigation. Lead with the numbers as a diagnosis of municipal collapse: how Africa's wealthiest city hollowed out its own infrastructure, and the mechanism — deferred maintenance and unaccountable spending — by which a functioning metro decays. Accountability with hard figures; strengthens African coverage flagged thin in the daily audit.",
+      "conceptUris": []
+    },
+    {
+      "id": "pakistan-400k-workers-world-cup-2034-labor-export",
+      "label": "Pakistan targets 400,000 trained workers for FIFA World Cup 2034",
+      "firstSeen": "2026-06-21T12:07:05.929Z",
+      "lastCovered": "2026-06-21T12:07:05.929Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-21-pakistan-400k-workers-world-cup-2034-labor-export"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan plans to train and deploy 300,000-400,000 workers for projects tied to the Saudi-hosted 2034 World Cup, as a deliberate overseas-employment strategy. Lead with the structural why: a state explicitly engineering labour export to capture Gulf construction demand and remittances — and who bears the cost, given the documented record of migrant-worker conditions on Gulf mega-projects. OIC-region economic story carried by a regional outlet (Dawn/PK); the reader will read both the remittance upside and the accountability question on worker protections.",
+      "conceptUris": []
+    },
+    {
+      "id": "palbociclib-retreatment-after-abemaciclib-breast-cancer",
+      "label": "Clinical benefit of palbociclib retreatment after abemaciclib exposure in HR-positive, HER2-negative metastatic breast cancer",
+      "firstSeen": "2026-06-21T12:07:05.929Z",
+      "lastCovered": "2026-06-21T12:07:05.929Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-20-palbociclib-retreatment-after-abemaciclib-breast-cancer"
+      ],
+      "eventUri": null,
+      "summary": "A study finds patients with hormone-receptor-positive, HER2-negative metastatic breast cancer can still benefit from the CDK4/6 inhibitor palbociclib even after a different drug in the same class (abemaciclib) has stopped working. Lead with the clinical stakes: re-treatment within a drug class is usually assumed futile, so evidence that it extends benefit reshapes options for patients who have run out of them. Teach the mechanism — CDK4/6 inhibition and why cross-resistance is not absolute.",
+      "conceptUris": []
+    },
+    {
+      "id": "coral-sand-stone-columns-foundation-engineering",
+      "label": "Bearing capacity mechanism of vibro-replacement stone columns in coral sand with particle breakage",
+      "firstSeen": "2026-06-21T12:07:05.929Z",
+      "lastCovered": "2026-06-21T12:07:05.929Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-21-coral-sand-stone-columns-foundation-engineering"
+      ],
+      "eventUri": null,
+      "summary": "Coral sand defeats standard ground-improvement theory because its grains crush under load, so foundations behave unpredictably. Lead with where this matters: the reclaimed islands and coastal mega-projects of the Gulf, the Maldives, and the South China Sea are built on exactly this fragile substrate. Teach the mechanism — why particle breakage invalidates the usual assumptions behind stone-column foundations, and what the new model changes for engineers building on coral. A specialist paper with direct bearing on how unstable land gets made buildable.",
+      "conceptUris": []
+    },
+    {
+      "id": "cerium-134-radionuclide-therapy-monte-carlo-dosimetry",
+      "label": "Evaluation of radiation damage effects of low-energy Auger and conversion electrons emitted by 134Ce decay using a Monte Carlo method",
+      "firstSeen": "2026-06-21T12:07:05.929Z",
+      "lastCovered": "2026-06-21T12:07:05.929Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-21-cerium-134-radionuclide-therapy-monte-carlo-dosimetry"
+      ],
+      "eventUri": null,
+      "summary": "Researchers use Monte Carlo simulation to model exactly how much cellular damage the low-energy electrons from cerium-134 deliver — the computational backbone of targeted radionuclide cancer therapy. Lead with the method, not the isotope: how simulation lets clinicians estimate dose at the scale of a single cell before any patient is treated, replacing guesswork with modelled physics. For the technically literate reader, a concrete look at how computation is becoming the design tool for next-generation cancer treatments.",
+      "conceptUris": []
+    },
+    {
+      "id": "iranian-women-grab-gold-as-karate-team-finishes-runner-up",
+      "label": "Iranian women grab gold as Karate team finishes runner-up",
+      "firstSeen": "2026-06-21T12:07:05.929Z",
+      "lastCovered": "2026-06-21T12:07:05.929Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-21-iranian-women-grab-gold-as-karate-team-finishes-runner-up"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for tech floor] TEHRAN, Jun. 22 (MNA) - Iran's women's kumite team won gold while the national karate delegation secured an overall runner-up finish at the 22nd Asian Senior Karate Championships in Bali, Indonesia.\n\nThe June 19-21 tournament brought together competitors from 33 countries across the continent.\n\nIran",
+      "conceptUris": []
+    },
+    {
       "id": "starmer-expected-to-resign-burnham-labour-leadership",
       "label": "Keir Starmer expected to announce departure as prime minister on Monday",
       "firstSeen": "2026-06-21T08:06:38.055Z",
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-starmer-expected-to-resign-burnham-labour-leadership"
@@ -24,7 +216,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-bushra-bibi-solitary-confinement-ihc-petition"
@@ -40,7 +232,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-19-afghanistan-forgotten-empires-coins-british-museum"
@@ -56,7 +248,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-hormuz-threat-oil-markets-bitcoin-ceasefire"
@@ -72,7 +264,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-kerch-strait-ferry-drone-attack-crimea-logistics"
@@ -88,7 +280,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-navi-mumbai-airport-abu-dhabi-route-gulf-corridor"
@@ -110,7 +302,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-20-june-solstice-daylength-by-latitude"
@@ -132,7 +324,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-aml-transplant-conditioning-intensity-elderly-ebmt"
@@ -148,7 +340,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-19-hyundai-buys-boston-dynamics-softbank-exit"
@@ -164,7 +356,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-ethereum-sandwich-bot-drained-mev-exploit"
@@ -180,7 +372,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-19-vc-25b-bridge-jet-air-force-one-program"
@@ -196,7 +388,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-life-term-for-father-uncle-over-girl-s-murder"
@@ -212,7 +404,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-ekitidecides2026-oyebanji-secures-second-term-defies-ekiti-s"
@@ -228,7 +420,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-19-the-case-of-shakira-gal-ndez-highlights-a-growing-crisis-for"
@@ -244,7 +436,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-20-shrugging-off-multiple-ceasefires-israel-tries-for-high-grou"
@@ -260,7 +452,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-neet-ug-re-test-live-updates-re-exam-today-with-multi-layer"
@@ -276,7 +468,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-balochistan-was-ignored-in-federal-budget-opposition"
@@ -292,7 +484,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-do-corporate-bond-offering-and-listing-comment-letters-incre"
@@ -308,7 +500,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-climate-change-boosts-soybean-production-but-worsens-bean-qu"
@@ -324,7 +516,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-france-bans-alcohol-consumption-at-music-festival-events-und"
@@ -349,7 +541,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-recent-advances-in-individual-differences-in-addiction-neuro"
@@ -365,7 +557,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-19-project-valhalla-explained-how-a-decade-of-work-arrives-in-j"
@@ -381,7 +573,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-19-how-many-of-the-170k-english-words-do-you-know"
@@ -397,7 +589,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-case-study-application-of-high-throughput-new-approach-metho"
@@ -413,7 +605,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-20-israeli-strikes-kill-11-in-gaza-including-two-girls"
@@ -438,7 +630,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-20-burn-lebanon-post-israeli-strikes-kill-16-south-lebanon"
@@ -463,7 +655,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-20-pakistan-pm-army-chief-switzerland-us-iran-talks"
@@ -488,7 +680,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-20-bangladesh-pm-malaysia-china-bypasses-india-first-tour"
@@ -513,7 +705,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-20-edinburgh-anti-muslim-rampage-five-injured-terror-probe"
@@ -538,7 +730,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-20-buffett-zero-inflation-fed-target-debate"
@@ -554,7 +746,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-20-goldman-sachs-cuts-gold-price-target"
@@ -570,7 +762,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-20-iran-kazakhstan-caspian-port-transit-cooperation"
@@ -586,7 +778,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-20-meteor-sonic-booms-atmospheric-physics-explained"
@@ -602,7 +794,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-19-colombia-election-fossil-fuel-phaseout-litmus-test"
@@ -618,7 +810,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-20-deep-learning-stress-detection-eye-tracking"
@@ -634,7 +826,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-19-rc-135-rivet-joint-drone-teaming-isr"
@@ -650,7 +842,7 @@
       "lastCovered": "2026-06-20T22:08:23.227Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-18-airpods-effect-earbuds-as-body-computing-platform"
@@ -666,7 +858,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-06-20-nobel-prize-winner-john-jumper-quits-google-deepmind-for-ant",
@@ -690,7 +882,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-20-iran-says-strait-of-hormuz-has-been-closed-tasnim-reports"
@@ -714,7 +906,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-20-bolivia-president-declares-state-of-emergency"
@@ -738,7 +930,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-20-spanish-court-orders-pm-s-wife-to-face-trial"
@@ -761,7 +953,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-20-sudan-rsf-tribal-war-beni-halba-salamat"
@@ -777,7 +969,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-19-india-neet-retest-2-million-candidates"
@@ -798,7 +990,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-20-strategy-strc-preferred-stock-loses-par"
@@ -814,7 +1006,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-20-jet-fuel-crash-airlines-keep-savings"
@@ -830,7 +1022,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-20-ancient-mongolian-cemetery-status-over-kinship"
@@ -846,7 +1038,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-20-fat-cells-skin-immune-defense-staph"
@@ -862,7 +1054,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-20-ai-crypto-security-audits-limits"
@@ -878,7 +1070,7 @@
       "lastCovered": "2026-06-20T17:05:44.522Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-20-physicists-black-holes-may-not-exist"
@@ -894,7 +1086,7 @@
       "lastCovered": "2026-06-20T04:08:55.439Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-19-why-bangladesh-is-fencing-its-border-with-myanmar"
@@ -910,7 +1102,7 @@
       "lastCovered": "2026-06-20T04:08:55.439Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-19-the-tibet-aid-cadres-system-as-a-mechanism-for-political-con"
@@ -926,7 +1118,7 @@
       "lastCovered": "2026-06-20T04:08:55.439Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-19-influencers-and-organized-crime-identifying-patterns-in-thei"
@@ -942,7 +1134,7 @@
       "lastCovered": "2026-06-20T04:08:55.439Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-19-deep-dive-breaking-down-us-israeli-defense-industry-integrat"
@@ -958,7 +1150,7 @@
       "lastCovered": "2026-06-20T04:08:55.439Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-18-germany-breaks-ground-on-one-of-two-govsatcom-hub-locations"
@@ -974,7 +1166,7 @@
       "lastCovered": "2026-06-20T04:08:55.439Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-18-why-the-human-genome-s-tangled-physicality-may-confound-ai"
@@ -990,7 +1182,7 @@
       "lastCovered": "2026-06-20T04:08:55.439Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-19-interview-california-lawmaker-calls-for-a-peptide-working-gr"
@@ -1006,7 +1198,7 @@
       "lastCovered": "2026-06-20T04:08:55.439Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-20-nanobubbles-for-algae-cleanup-q-a-with-researcher-wen-zhang"
@@ -1022,7 +1214,7 @@
       "lastCovered": "2026-06-20T04:08:55.439Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-19-norway-imposes-near-ban-on-ai-in-elementary-school"
@@ -1038,239 +1230,13 @@
       "lastCovered": "2026-06-20T04:08:55.439Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-19-anomaly-delays-full-scale-space-rider-drop-test-until-octobe"
       ],
       "eventUri": null,
       "summary": "ESA's reusable Space Rider spaceplane had its full-scale drop test aborted in May after an anomaly during the captive-ascent phase, pushing the campaign to October. Lead with the concrete setback and what it reveals: Europe's bid for an autonomous, reusable orbital platform is harder and slower than the mass-simulator tests of 2024-25 suggested. A clear-eyed engineering-progress story for the reader tracking who can actually field reusable spaceflight beyond the US.",
-      "conceptUris": []
-    },
-    {
-      "id": "us-israel-lebanon-talks-washington-ceasefire",
-      "label": "US announces new round of Israel-Lebanon talks in Washington next week",
-      "firstSeen": "2026-06-19T22:09:37.400Z",
-      "lastCovered": "2026-06-19T22:09:37.400Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-19-us-israel-lebanon-talks-washington-ceasefire"
-      ],
-      "eventUri": "eng-11752608",
-      "summary": "A renewed Israel-Hezbollah ceasefire and a fresh Washington negotiating track were announced the same day four Israeli soldiers were killed and a far-right minister called for 'all of Lebanon' to burn. The story is the fragility of the truce: it advances the active 'Iran warned Trump' arc, where Tehran has privately threatened to strike Israel without warning if the Lebanon war continues. Lead with the gap between the diplomatic announcement and the violence on the ground; the mechanism is a ceasefire hostage to a second front the US-Iran MOU never settled. Affected: Lebanese civilians under bombardment. Power: US, Israel, Iran.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Hezbollah",
-        "http://en.wikipedia.org/wiki/Lebanon",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Israel_Defense_Forces"
-      ]
-    },
-    {
-      "id": "zelensky-stripped-polish-honour-upa-unit",
-      "label": "Zelensky stripped of Polish honour over WW2 name of army unit",
-      "firstSeen": "2026-06-19T22:09:37.400Z",
-      "lastCovered": "2026-06-19T22:09:37.400Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-19-zelensky-stripped-polish-honour-upa-unit"
-      ],
-      "eventUri": "rus-2083085",
-      "summary": "Poland's president revoked Zelensky's Order of the White Eagle because Kyiv named a military unit after the Ukrainian Insurgent Army, fighters tied to WW2-era massacres of Poles. The surprise is two wartime allies feuding over historical memory while Russia watches: a rare public rupture between Warsaw and Kyiv. Lead with the honour-stripping as the concrete act, then the structural why — Ukraine's wartime nation-building rehabilitates figures Poland regards as perpetrators of the Volhynia massacres. Note RT's framing amplifies the 'Nazi tribute' line for Moscow's benefit.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
-        "http://en.wikipedia.org/wiki/Poland",
-        "http://en.wikipedia.org/wiki/Ukrainian_Insurgent_Army",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/President_of_Poland",
-        "http://en.wikipedia.org/wiki/Order_of_the_White_Eagle_(Poland)",
-        "http://en.wikipedia.org/wiki/President_of_Ukraine",
-        "http://en.wikipedia.org/wiki/Warsaw"
-      ]
-    },
-    {
-      "id": "colombia-runoff-security-drugs-fossil-fuels",
-      "label": "Two Extremes: The Security Choices Facing Colombian Voters",
-      "firstSeen": "2026-06-19T22:09:37.400Z",
-      "lastCovered": "2026-06-19T22:09:37.400Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-19-colombia-runoff-security-drugs-fossil-fuels"
-      ],
-      "eventUri": null,
-      "summary": "Colombians vote Sunday in a presidential runoff between Iván Cepeda (continue Petro's negotiated 'Total Peace' and voluntary coca substitution) and Abelardo de la Espriella (militarized war on trafficking, doubling down on fossil fuels). The story is a fork for Latin America: 25 years and $15bn of US aid have failed to dent a record cocaine economy, and the choice now reshapes both drug policy and the global fossil-fuel-phaseout movement born in Colombia. Lead with the two opposed mechanisms — eradication-by-force vs development-and-negotiation — and what each means as Trump's Caribbean boat strikes (200+ dead) expand. Merge the security and climate angles.",
-      "conceptUris": []
-    },
-    {
-      "id": "china-taiwan-exclusion-ocean-ecology-track2",
-      "label": "Beijing's Bullying of Taiwan Threatens Ocean Ecology",
-      "firstSeen": "2026-06-19T22:09:37.400Z",
-      "lastCovered": "2026-06-19T22:09:37.400Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-19-china-taiwan-exclusion-ocean-ecology-track2"
-      ],
-      "eventUri": null,
-      "summary": "China secured Taiwan's exclusion from a Track 2 maritime-ecology platform — extending its political warfare into scientific and environmental cooperation. The surprise is the venue: Beijing is willing to degrade shared ocean governance to isolate Taipei. Lead with the concrete exclusion, then the structural why — when a great power can veto a rival's seat even in apolitical conservation forums, the cost is borne by the marine ecosystem the forum exists to protect. Reader takeaway: cross-strait coercion now operates through institutions, not just military pressure.",
-      "conceptUris": []
-    },
-    {
-      "id": "nyanya-bombing-2014-death-sentence-nigeria",
-      "label": "2014 Nyanya Bombing: Court sentences 37-year-old culprit to death by hanging",
-      "firstSeen": "2026-06-19T22:09:37.400Z",
-      "lastCovered": "2026-06-19T22:09:37.400Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-19-nyanya-bombing-2014-death-sentence-nigeria"
-      ],
-      "eventUri": null,
-      "summary": "A Federal High Court in Abuja sentenced Zakaria Garba to death for the 2014 Nyanya motor-park bombing that killed dozens at the height of Boko Haram's campaign. The story is the 12-year gap between atrocity and verdict — a window on how slowly Nigeria's terrorism-justice system processes the Boko Haram era, and what closure looks like for victims a decade on. Lead with the timeline; the mechanism is Nigeria's prosecution backlog and the death-penalty question. Helps the West Africa coverage gap.",
-      "conceptUris": []
-    },
-    {
-      "id": "saudi-arabia-pakistan-africa-drive-dependency",
-      "label": "How Saudi Arabia Derailed Pakistan's Africa Drive",
-      "firstSeen": "2026-06-19T22:09:37.400Z",
-      "lastCovered": "2026-06-19T22:09:37.400Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-19-saudi-arabia-pakistan-africa-drive-dependency"
-      ],
-      "eventUri": null,
-      "summary": "Pakistan's bid to expand trade and influence in Africa is being throttled by its own economic fragility and dependence on Gulf financing — and Riyadh's shifting priorities. The story is how an indebted middle power's foreign-policy ambitions are mortgaged to its creditors: Islamabad can only project where its patrons permit. Lead with the dependency mechanism, then the stakes for South-South ties the West rarely covers. Helps the Africa gap and centres an OIC actor's agency and its limits. Single-source analysis — Dawn did not cover this specific framing; note for feed audit.",
-      "conceptUris": []
-    },
-    {
-      "id": "schwab-cboe-sp500-prediction-market-options",
-      "label": "Schwab to join prediction markets race with S&P 500 event-based options: WSJ",
-      "firstSeen": "2026-06-19T22:09:37.400Z",
-      "lastCovered": "2026-06-19T22:09:37.400Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-19-schwab-cboe-sp500-prediction-market-options"
-      ],
-      "eventUri": "eng-11760108",
-      "summary": "Charles Schwab is working with Cboe to launch event-based options on the S&P 500 — a mainstream brokerage bringing prediction-market mechanics to retail investors while pointedly avoiding politics and sports. The surprise is the legitimization: what was the territory of Polymarket and Kalshi is migrating into regulated, benchmark-tied contracts. Lead with the move's significance for market structure — binary event bets dressed as options — and the regulatory line Schwab is drawing. Reader is macro-literate and will grasp the convergence of gambling and derivatives.",
-      "conceptUris": []
-    },
-    {
-      "id": "sgie-2026-top-islamic-economy-ecosystems",
-      "label": "SGIE Report 2026: Top 10 Islamic economy ecosystems in the world",
-      "firstSeen": "2026-06-19T22:09:37.400Z",
-      "lastCovered": "2026-06-19T22:09:37.400Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-18-sgie-2026-top-islamic-economy-ecosystems"
-      ],
-      "eventUri": null,
-      "summary": "The State of the Global Islamic Economy report ranks the top 10 ecosystems for halal trade, Islamic finance, modest fashion, and halal tourism. The story is the map of where the $5-trillion-plus Islamic economy is institutionalizing — which states (Malaysia, UAE, Saudi, Indonesia) are building the standards and infrastructure, and which are falling behind. Lead with the ranking and what separates the leaders: regulatory ecosystems, not just Muslim population. Directly on-brand for the reader; centre the structural drivers over the leaderboard.",
-      "conceptUris": []
-    },
-    {
-      "id": "carbon-removal-scale-up-overshoot-1-5c",
-      "label": "Experts: Why carbon removal needs a 'major scale up' to return warming to 1.5C",
-      "firstSeen": "2026-06-19T22:09:37.400Z",
-      "lastCovered": "2026-06-19T22:09:37.400Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-19-carbon-removal-scale-up-overshoot-1-5c"
-      ],
-      "eventUri": null,
-      "summary": "More than 260 researchers convened in Milan concluded that carbon dioxide removal must scale enormously to bring warming back toward 1.5C — implicitly conceding overshoot is now baked in. The story is the quiet shift in climate science from 'avoid overshoot' to 'plan for drawdown,' and the gulf between current CDR capacity and what the math demands. Lead with the scale gap and what scaling realistically requires (land, energy, money). Pairs with the Bonn talks context; the reader wants the mechanism and the honest numbers, not optimism.",
-      "conceptUris": []
-    },
-    {
-      "id": "extreme-heat-wildlife-birds-fish-suffer",
-      "label": "From birds to fish, how extreme heat causes wildlife to suffer",
-      "firstSeen": "2026-06-19T22:09:37.400Z",
-      "lastCovered": "2026-06-19T22:09:37.400Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-19-extreme-heat-wildlife-birds-fish-suffer"
-      ],
-      "eventUri": null,
-      "summary": "As heatwaves lengthen and intensify, wildlife from birds to fish face disrupted feeding and breeding and, in extremes, mass die-offs. The story is the under-covered ecological cost of heat — the physiological mechanisms by which warming kills non-human life, not just the human toll. Lead with concrete cases (heat-driven breeding collapse, fish kills) and the systemic point: climate impacts cascade through food webs. Complements the carbon-removal piece as the 'why it matters' on the ground.",
-      "conceptUris": []
-    },
-    {
-      "id": "midjourney-medical-imaging-pivot",
-      "label": "Midjourney Medical",
-      "firstSeen": "2026-06-19T22:09:37.400Z",
-      "lastCovered": "2026-06-19T22:09:37.400Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-18-midjourney-medical-imaging-pivot"
-      ],
-      "eventUri": null,
-      "summary": "Midjourney — known for generative art — is moving into medical imaging, drawing 1,330 points and 864 comments on Hacker News. The story is the pivot: an image-generation company applying its models to clinical contexts, and the developer community's sharp scrutiny of accuracy, liability, and hype. Lead with the surprise of an art-AI firm entering medicine and the specific capability claimed, then the skepticism. Reader is technical and will want the mechanism and the risk, not the marketing.",
-      "conceptUris": []
-    },
-    {
-      "id": "human-ai-collaboration-healthcare-scoping-review",
-      "label": "A scoping review of human-AI collaboration patterns and task divisions in healthcare applications",
-      "firstSeen": "2026-06-19T22:09:37.400Z",
-      "lastCovered": "2026-06-19T22:09:37.400Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-19-human-ai-collaboration-healthcare-scoping-review"
-      ],
-      "eventUri": null,
-      "summary": "An npj Digital Medicine review maps how AI and clinicians actually divide labour across real healthcare deployments — who decides, who verifies, where the handoffs fail. The story is the move past 'AI vs doctor' hype to the empirical question of task allocation: which patterns work and which create new failure modes. Lead with the most common division of labour found and where it breaks. Pairs with Midjourney Medical as the rigorous counterpart to the product hype; reader wants the structure, not the slogans.",
-      "conceptUris": []
-    },
-    {
-      "id": "new-outlook-performance-regression-classic",
-      "label": "Microsoft new Outlook takes 10 seconds to do what Outlook Classic does instantly",
-      "firstSeen": "2026-06-19T22:09:37.400Z",
-      "lastCovered": "2026-06-19T22:09:37.400Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-18-new-outlook-performance-regression-classic"
-      ],
-      "eventUri": null,
-      "summary": "Microsoft's web-stack 'new Outlook' takes ~10 seconds to perform actions Outlook Classic does instantly — 712 points and 504 comments on Hacker News. The story is software regression as a business decision: a platform owner shipping a slower client because the web architecture is cheaper to maintain, and pushing users onto it regardless. Lead with the measured latency gap, then the structural why — telemetry, ads, and unification economics over user performance. Reader uses these tools daily and will recognize the pattern across modern software.",
       "conceptUris": []
     }
   ]
