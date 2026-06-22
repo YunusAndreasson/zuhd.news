@@ -1,26 +1,26 @@
 {
-  "date": "2026-06-21",
+  "date": "2026-06-22",
   "metrics": {
-    "articles": { "value": 37, "detail": "5 cycles completed, avg ~7/cycle (avgPublished 9)" },
-    "freshness": { "median": 0.0, "p90": 0.2, "max": 0.2, "target": 1.0, "met": true },
-    "categories": { "politics": 11, "economy": 12, "science": 8, "tech": 6 },
-    "multiSource": { "value": 3, "target": 4, "met": false },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "EU": 14, "ME": 9, "AM": 7, "AS": 4, "AF": 3 } },
-    "sciTech": { "ratio": 38, "target": 25, "met": true },
-    "topSourceShare": { "source": "Nature", "pct": 24, "target": 20, "met": false },
-    "uniqueSources": 22,
+    "articles": { "value": 64, "detail": "5 cycles, day total 64 (avgPublished 10/cycle attributed)" },
+    "freshness": { "median": 0, "p90": 1.5, "max": 1.5, "target": 1.0, "met": true },
+    "categories": { "politics": 18, "economy": 17, "science": 14, "tech": 15 },
+    "multiSource": { "value": 19, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 17, "ME": 14, "EU": 13, "AS": 13, "OC": 6, "AF": 1 } },
+    "sciTech": { "ratio": 45, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 13, "target": 20, "met": true },
+    "uniqueSources": 53,
     "duplicates": 0,
-    "avgCycleDuration": 1240
+    "avgCycleDuration": 1480
   },
-  "experiment": "Skipped — both misses (multi-source 3, Nature 24%) are single-day variance from a Nature-heavy science day. The selector multi-source floor lever is tapped (2026-05-09-multi-source-floor-3 reverted), and the upstream feed lever (fetch-news-api.js) is constrained by the NewsAPI token-budget rule. No clean lever for a one-day artifact.",
-  "weakestArea": "Top-source share is furthest from target: Nature supplied 9 of 37 articles (24% vs <20% target). This same Nature concentration is the proximate cause of the multi-source miss (3 vs 4) — science is structurally single-source, so an unusually Nature-heavy day both spikes the top-source share and depresses the multi-source count. Yesterday Nature was 3/44 (14%) with multi-source at 8, so this is day-noise rather than a structural shift.",
+  "experiment": "Skipped — every goal metric is within target (freshness median 0, science 14 / tech 15, multi-source 19, regions 6, sci-tech 45%, top source 13%, 0 duplicates). No active experiment to evaluate and no pause gate. The day's one soft spot (Africa volume) is upstream of any tunable selector lever, so no experiment is warranted.",
+  "weakestArea": "Africa is furthest from a healthy spread: 1 article of 64 (AF) against AM 17 / ME 14 / EU 13 / AS 13 / OC 6. The region-count target (>=4) is still met at 6, so this is not a metric breach, but AF sits an order of magnitude below every other region. Africa volume is driven by upstream event clustering and regional-outlet availability, not by any tunable parameter (selector floors are per-category, not per-region), so it is a coverage-mix note rather than an experiment candidate.",
   "watching": [
-    "Nature concentration: 9 articles in one day is roughly 3x its typical daily share — watch whether the next cycles revert to the ~3/day norm or whether a science-news surge sustains the over-index.",
-    "Multi-source count dipped to 3 (from 8 yesterday); confirm it recovers to >=4 once the science mix normalizes, since the feed-supply cap (~9 multi/cycle) leaves room when politics/economy are well-represented."
+    "High day-volume (64 articles vs 37 yesterday) on healthy diversity — confirm it reflects genuine news supply and not a backfill or dedup-leak artifact over the next cycles.",
+    "p90 freshness 1.5 days against median 0 indicates a small older tail; watch that standalone-cap trimming keeps the tail from widening on lighter news days."
   ],
   "coverageGaps": [
-    "Oceania (OC) absent again today; regional spread leaned EU-heavy (14 of 37) with only 3 Africa and 4 Asia articles.",
-    "Tech at 6 met the >=4 floor but sat at the low end; science (8) outweighed tech within the sci-tech bucket."
+    "Sub-Saharan Africa: only 1 AF-tagged article today despite 53 unique sources — regional-outlet representation is thin in the events feed.",
+    "Oceania at 6 is the second-lowest region but adequate; no structural concern."
   ],
-  "context": "All four freshness/category/region/sci-tech goals are comfortably met on a full 5-cycle day with zero duplicates and median lag of 0 days. The two misses are a coupled single-day artifact of a Nature-dominated science day, not a regression — the relevant tuning levers are either documented as tapped (selector floors) or off-limits (feed token budget), so no experiment is warranted on this signal alone."
+  "context": "Clean, healthy day across all four goals — freshness, diversity, multi-source, and educational value all met with margin on a full 5-cycle, 64-article day with zero duplicates. No active experiments and no pause gate; the queued numerical-density item still targets write-prompt.md, which is outside daily-tuning scope. The only diversity concern (Africa) is upstream of the tunable parameters, so the correct move is to skip a new experiment and surface Africa volume to the operator rather than perturb a system currently meeting every target."
 }
