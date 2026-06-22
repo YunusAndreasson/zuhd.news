@@ -2,13 +2,214 @@
   "version": 1,
   "stories": [
     {
+      "id": "tharoor-kashmir-congress-internal-rift",
+      "label": "Shashi Tharoor's Kashmir visit sparks row, snowballs into Congress vs Congress tiff",
+      "firstSeen": "2026-06-22T04:08:50.215Z",
+      "lastCovered": "2026-06-22T04:08:50.215Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-22-tharoor-kashmir-congress-internal-rift"
+      ],
+      "eventUri": "eng-11759779",
+      "summary": "A widening fault line inside India's opposition: Tharoor's Kashmir visit and meeting with the LG, plus his stated admiration for Modi, has put him at open odds with his own Congress party. The angle is structural — what a senior MP drifting toward the BJP's line on Kashmir signals about the erosion of a coherent opposition, and how that shapes contested Kashmir's politics. Keep it tight on consequence, not personality.",
+      "conceptUris": []
+    },
+    {
+      "id": "australia-record-cocaine-bunker-sydney",
+      "label": "Australia's largest ever cocaine bust made in underground bunker raid",
+      "firstSeen": "2026-06-22T04:08:50.215Z",
+      "lastCovered": "2026-06-22T04:08:50.215Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-22-australia-record-cocaine-bunker-sydney"
+      ],
+      "eventUri": "eng-11764033",
+      "summary": "A record 2.7 tonnes of cocaine buried in plastic tubs under Sydney's outskirts is the largest haul in Australian history. The angle for an economically literate reader: what a single bunker reveals about the scale and logistics economics of the Pacific cocaine trade — burial as cold-storage inventory, and what a seizure this size does (and doesn't) do to street price. Multi-source (SCMP + BBC).",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Cocaine",
+        "http://en.wikipedia.org/wiki/Australia",
+        "http://en.wikipedia.org/wiki/Sydney",
+        "http://en.wikipedia.org/wiki/Tonne",
+        "http://en.wikipedia.org/wiki/Organized_crime",
+        "http://en.wikipedia.org/wiki/Derry",
+        "http://en.wikipedia.org/wiki/Australian_dollar",
+        "http://en.wikipedia.org/wiki/Queensland"
+      ]
+    },
+    {
+      "id": "punjab-cotton-shortfall-pakistan-imports",
+      "label": "Punjab misses cotton cultivation target by 18pc",
+      "firstSeen": "2026-06-22T04:08:50.215Z",
+      "lastCovered": "2026-06-22T04:08:50.215Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-22-punjab-cotton-shortfall-pakistan-imports"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's cotton heartland missed its planting target by 18% (3.2m vs target acreage), pointing to higher cotton and edible-oil import bills in the months ahead. The mechanism to highlight: a domestic shortfall converting directly into hard-currency import dependence for a country already under FX strain — who pays is the textile sector and the household grocery bill. OIC-region story with native regional source (Dawn).",
+      "conceptUris": []
+    },
+    {
+      "id": "medicare-scam-ads-facebook-meta",
+      "label": "A New Report Shows Costly Medicare Scams Are Spreading on Facebook",
+      "firstSeen": "2026-06-22T04:08:50.215Z",
+      "lastCovered": "2026-06-22T04:08:50.215Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-22-medicare-scam-ads-facebook-meta"
+      ],
+      "eventUri": "eng-11764251",
+      "summary": "A watchdog finds Medicare scam ads surging on Facebook, exposing seniors to identity theft and fraudulent enrollment. The accountability angle: name the platform — Meta profits from the ad spend while the cost (stolen identities, drained benefits) lands on elderly users and the public Medicare system. Lead with the financial mechanism of ad-funded fraud, not the individual scam.",
+      "conceptUris": []
+    },
+    {
+      "id": "giant-viruses-polar-biogeochemistry",
+      "label": "The giant viruses that orchestrate life in the polar regions",
+      "firstSeen": "2026-06-22T04:08:50.215Z",
+      "lastCovered": "2026-06-22T04:08:50.215Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-22-giant-viruses-polar-biogeochemistry"
+      ],
+      "eventUri": null,
+      "summary": "Giant viruses, long invisible to science, turn out to be major regulators of polar microbial communities — shaping the flow of matter and global biogeochemical cycles in exactly the ecosystems most exposed to warming. The teach-the-reader angle: viruses as ecosystem engineers, and why mapping them matters for predicting how carbon cycling shifts as the poles change.",
+      "conceptUris": []
+    },
+    {
+      "id": "fat-distribution-sleep-apnea-diabetes-mri",
+      "label": "Associations between fat distribution and obstructive sleep apnea severity among individuals with type 2 diabetes: an MRI-based study",
+      "firstSeen": "2026-06-22T04:08:50.215Z",
+      "lastCovered": "2026-06-22T04:08:50.215Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-22-fat-distribution-sleep-apnea-diabetes-mri"
+      ],
+      "eventUri": null,
+      "summary": "An MRI-based study unpicks why obstructive sleep apnea (which affects ~1 billion people, 2:1 male-to-female) hits differently by sex among type-2 diabetics: it's visceral and abdominal fat distribution, not weight alone, that drives severity. The takeaway for the reader: a mechanistic, measurable risk factor that reframes a hugely common condition beyond the blunt instrument of BMI.",
+      "conceptUris": []
+    },
+    {
+      "id": "brain-overload-constant-bad-news",
+      "label": "The brain was not designed for this much bad news",
+      "firstSeen": "2026-06-22T04:08:50.215Z",
+      "lastCovered": "2026-06-22T04:08:50.215Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-22-brain-overload-constant-bad-news"
+      ],
+      "eventUri": null,
+      "summary": "Research on how chronic exposure to a high-volume bad-news stream taxes attention and stress systems the brain never evolved to handle. Fitting for a zuhd readership: the cognitive science of why constant crisis-feed consumption degrades judgment, and what the evidence says about deliberate informational restraint. Lead with the mechanism, not the self-help framing.",
+      "conceptUris": []
+    },
+    {
+      "id": "black-holes-alternative-hypothesis",
+      "label": "Scientists Propose Black Holes Don't Exist, Are Something Much Stranger",
+      "firstSeen": "2026-06-22T04:08:50.215Z",
+      "lastCovered": "2026-06-22T04:08:50.215Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-22-black-holes-alternative-hypothesis"
+      ],
+      "eventUri": null,
+      "summary": "A proposal that what we call black holes may be a different class of object entirely, challenging a cornerstone of astrophysics. The teach angle: walk the reader through what observational evidence actually constrains (and doesn't), so they can weigh a genuinely novel hypothesis without sensationalism. Protected unique source (404 Media).",
+      "conceptUris": []
+    },
+    {
+      "id": "gm-cobots-replace-detroit-workers",
+      "label": "General Motors Facing Backlash For Replacing Over 1,000 Human Workers With 50 Robots At Detroit Plant",
+      "firstSeen": "2026-06-22T04:08:50.215Z",
+      "lastCovered": "2026-06-22T04:08:50.215Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-22-gm-cobots-replace-detroit-workers"
+      ],
+      "eventUri": "eng-11760044",
+      "summary": "GM cut more than 1,000 assembly jobs at a Detroit plant while installing 50 collaborative robots — a stark labor-to-capital ratio that puts the automation trade in plain numbers. The mechanism to lead with: cobots crossing from pilot to line-replacement, and who absorbs the cost (Detroit workers) versus who captures the gain. Name the accountability question for a flagship American employer.",
+      "conceptUris": []
+    },
+    {
+      "id": "ai-chokepoint-mythos-model-access",
+      "label": "Power, dilution and the AI chokepoint",
+      "firstSeen": "2026-06-22T04:08:50.215Z",
+      "lastCovered": "2026-06-22T04:08:50.215Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-22-ai-chokepoint-mythos-model-access"
+      ],
+      "eventUri": null,
+      "summary": "The abrupt disabling of Anthropic's Mythos models showed how one government can sever global access to a frontier AI system overnight — a sovereignty chokepoint countries dependent on foreign models cannot ignore. The structural angle for a strategic reader: AI as a controllable export good, and what dependence on a single national jurisdiction means for the Global South and middle powers alike.",
+      "conceptUris": []
+    },
+    {
+      "id": "mandarin-gap-ai-intelligence-limits",
+      "label": "Lost in translation: Australia's Mandarin intelligence gap",
+      "firstSeen": "2026-06-22T04:08:50.215Z",
+      "lastCovered": "2026-06-22T04:08:50.215Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-22-mandarin-gap-ai-intelligence-limits"
+      ],
+      "eventUri": null,
+      "summary": "AI can surface China's strategic communications at scale, but without enough Mandarin speakers to verify what the machine flags, the output is unaudited — a concrete case of the human-in-the-loop limit on AI intelligence work. The mechanism to highlight: automation widens collection but does not replace the linguistic judgment that validates it, and the capability gap that creates.",
+      "conceptUris": []
+    },
+    {
+      "id": "egypt-claims-first-ever-world-cup-match-victory-with-win-ove",
+      "label": "Egypt claims first-ever World Cup match victory with win over New Zealand",
+      "firstSeen": "2026-06-22T04:08:50.215Z",
+      "lastCovered": "2026-06-22T04:08:50.215Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-22-egypt-claims-first-ever-world-cup-match-victory-with-win-ove"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for politics floor] Before this match, the Egyptians had played eight games at the tournament, recording three draws and five defeats\n\nWASHINGTON, June 22. /TASS/. Egypt defeated New Zealand 3-1 in a second-round group stage match of the 2026 FIFA World Cup in Vancouver, Canada.\n\nMostafa Zico scored in the 58th minute,",
+      "conceptUris": []
+    },
+    {
       "id": "iran-protests-trump-s-language-of-intimidation",
       "label": "Iran protests Trump's language of intimidation",
       "firstSeen": "2026-06-21T22:06:59.622Z",
       "lastCovered": "2026-06-21T22:06:59.622Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-iran-protests-trump-s-language-of-intimidation"
@@ -33,7 +234,7 @@
       "lastCovered": "2026-06-21T22:06:59.622Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-ramiro-valdes-lauded-as-hero-of-cuban-revolution-dies-at-94"
@@ -58,7 +259,7 @@
       "lastCovered": "2026-06-21T22:06:59.622Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-trump-admin-s-coal-investments-assist-plants-with-repeated-v"
@@ -74,7 +275,7 @@
       "lastCovered": "2026-06-21T22:06:59.622Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-mob-seizes-suspect-from-police-custody-lynches-her-over-alle"
@@ -90,7 +291,7 @@
       "lastCovered": "2026-06-21T22:06:59.622Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-rupee-currency-crash-visa-crackdowns-force-indian-students-t"
@@ -106,7 +307,7 @@
       "lastCovered": "2026-06-21T22:06:59.622Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-are-perps-swaps-a-quick-look-at-that-cme-suit-state-of-crypt"
@@ -122,7 +323,7 @@
       "lastCovered": "2026-06-21T22:06:59.622Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-several-reported-injured-after-explosion-at-factory-in-qatar"
@@ -138,7 +339,7 @@
       "lastCovered": "2026-06-21T22:06:59.622Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-coronary-artery-stenosis-segmentation-using-u-net-architectu"
@@ -154,7 +355,7 @@
       "lastCovered": "2026-06-21T22:06:59.622Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-what-is-unhealthy-about-public-health-vaccination-evidence-a"
@@ -170,7 +371,7 @@
       "lastCovered": "2026-06-21T22:06:59.622Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-identity-verification-on-claude"
@@ -186,7 +387,7 @@
       "lastCovered": "2026-06-21T22:06:59.622Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-20-vpn-ban-update-for-uk-households-as-government-looks-at-age"
@@ -202,7 +403,7 @@
       "lastCovered": "2026-06-21T22:06:59.622Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-21-ttap-demands-removal-of-it-minister-over-anti-people-telecom"
@@ -218,7 +419,7 @@
       "lastCovered": "2026-06-21T17:06:25.106Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-trump-threatens-iran-strikes-lebanon-amid-switzerland-talks"
@@ -243,7 +444,7 @@
       "lastCovered": "2026-06-21T17:06:25.106Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-omnia-sweidan-egypt-false-news-trial-medical-abuse"
@@ -259,7 +460,7 @@
       "lastCovered": "2026-06-21T17:06:25.106Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-west-bank-gaza-ceasefire-illusion-palestinian-toll"
@@ -275,7 +476,7 @@
       "lastCovered": "2026-06-21T17:06:25.106Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-hormuz-shipping-recovers-gasoline-prices-sticky"
@@ -291,7 +492,7 @@
       "lastCovered": "2026-06-21T17:06:25.106Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-iran-steel-industry-sanctions-industrial-resilience"
@@ -307,7 +508,7 @@
       "lastCovered": "2026-06-21T17:06:25.106Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-fosfomycin-revival-fluorinated-analogues-antibiotic-resistance"
@@ -323,7 +524,7 @@
       "lastCovered": "2026-06-21T17:06:25.106Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-nasa-ernest-rover-autonomy-extreme-terrain"
@@ -339,7 +540,7 @@
       "lastCovered": "2026-06-21T17:06:25.106Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-google-ipv6-50-percent-adoption-milestone"
@@ -355,7 +556,7 @@
       "lastCovered": "2026-06-21T17:06:25.106Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-ginkgosense-net-field-computer-vision-fruit-detection"
@@ -371,7 +572,7 @@
       "lastCovered": "2026-06-21T17:06:25.106Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-21-russian-geran-drones-wipes-out-ukrainian-fuel-depot-in-dnepr"
@@ -387,7 +588,7 @@
       "lastCovered": "2026-06-21T12:07:05.929Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-21-colombia-presidential-runoff-outsider-progressive"
@@ -412,7 +613,7 @@
       "lastCovered": "2026-06-21T12:07:05.929Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-21-albania-protests-kushner-resort-protected-area"
@@ -435,7 +636,7 @@
       "lastCovered": "2026-06-21T12:07:05.929Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-19-iran-us-war-end-pakistan-investment-payoff"
@@ -451,7 +652,7 @@
       "lastCovered": "2026-06-21T12:07:05.929Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-21-donald-duke-prp-candidacy-court-challenge"
@@ -467,7 +668,7 @@
       "lastCovered": "2026-06-21T12:07:05.929Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-21-piketty-global-wealth-tax-climate-plan"
@@ -483,7 +684,7 @@
       "lastCovered": "2026-06-21T12:07:05.929Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-21-johannesburg-metro-infrastructure-collapse-numbers"
@@ -499,7 +700,7 @@
       "lastCovered": "2026-06-21T12:07:05.929Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-21-pakistan-400k-workers-world-cup-2034-labor-export"
@@ -515,7 +716,7 @@
       "lastCovered": "2026-06-21T12:07:05.929Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-20-palbociclib-retreatment-after-abemaciclib-breast-cancer"
@@ -531,7 +732,7 @@
       "lastCovered": "2026-06-21T12:07:05.929Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-21-coral-sand-stone-columns-foundation-engineering"
@@ -547,7 +748,7 @@
       "lastCovered": "2026-06-21T12:07:05.929Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-21-cerium-134-radionuclide-therapy-monte-carlo-dosimetry"
@@ -563,7 +764,7 @@
       "lastCovered": "2026-06-21T12:07:05.929Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-21-iranian-women-grab-gold-as-karate-team-finishes-runner-up"
@@ -579,7 +780,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-21-starmer-expected-to-resign-burnham-labour-leadership"
@@ -595,7 +796,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-21-bushra-bibi-solitary-confinement-ihc-petition"
@@ -611,7 +812,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-19-afghanistan-forgotten-empires-coins-british-museum"
@@ -627,7 +828,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-21-hormuz-threat-oil-markets-bitcoin-ceasefire"
@@ -643,7 +844,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-21-kerch-strait-ferry-drone-attack-crimea-logistics"
@@ -659,7 +860,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-21-navi-mumbai-airport-abu-dhabi-route-gulf-corridor"
@@ -681,7 +882,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-20-june-solstice-daylength-by-latitude"
@@ -703,7 +904,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-21-aml-transplant-conditioning-intensity-elderly-ebmt"
@@ -719,7 +920,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-19-hyundai-buys-boston-dynamics-softbank-exit"
@@ -735,7 +936,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-21-ethereum-sandwich-bot-drained-mev-exploit"
@@ -751,7 +952,7 @@
       "lastCovered": "2026-06-21T08:06:38.055Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-19-vc-25b-bridge-jet-air-force-one-program"
@@ -761,13 +962,39 @@
       "conceptUris": []
     },
     {
+      "id": "pakistan-pm-army-chief-switzerland-us-iran-talks",
+      "label": "Pakistan's PM, army commander go to Switzerland for US-Iran talks",
+      "firstSeen": "2026-06-20T22:08:23.227Z",
+      "lastCovered": "2026-06-22T04:08:50.215Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 1,
+      "arc": "developing",
+      "articles": [
+        "2026-06-20-pakistan-pm-army-chief-switzerland-us-iran-talks",
+        "2026-06-22-us-and-iran-conclude-high-level-talks-in-switzerland-mediato"
+      ],
+      "eventUri": "eng-11761802",
+      "summary": "Pakistan's PM and army chief are flying to Buergenstock as technical-level guarantors of the Islamabad MoU underpinning the US-Iran ceasefire. Lead with the surprising elevation of Pakistan from regional player to broker between Washington and Tehran — and what Islamabad expects in return. Mechanism to highlight: a Muslim-majority state leveraging its military relationship with both sides into diplomatic capital. Who holds power here is not just the US; name the Pakistani military's role and what 'guarantor' status actually commits them to.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Switzerland",
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Islamabad",
+        "http://en.wikipedia.org/wiki/Memorandum_of_understanding",
+        "http://en.wikipedia.org/wiki/Qatar",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Ministry_of_Foreign_Affairs_(Pakistan)"
+      ]
+    },
+    {
       "id": "life-term-for-father-uncle-over-girl-s-murder",
       "label": "Life term for father, uncle over girl's murder",
       "firstSeen": "2026-06-21T04:05:10.053Z",
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-21-life-term-for-father-uncle-over-girl-s-murder"
@@ -783,7 +1010,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-21-ekitidecides2026-oyebanji-secures-second-term-defies-ekiti-s"
@@ -799,7 +1026,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-19-the-case-of-shakira-gal-ndez-highlights-a-growing-crisis-for"
@@ -815,7 +1042,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-20-shrugging-off-multiple-ceasefires-israel-tries-for-high-grou"
@@ -831,7 +1058,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-21-neet-ug-re-test-live-updates-re-exam-today-with-multi-layer"
@@ -847,7 +1074,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-21-balochistan-was-ignored-in-federal-budget-opposition"
@@ -863,7 +1090,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-21-do-corporate-bond-offering-and-listing-comment-letters-incre"
@@ -879,7 +1106,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-21-climate-change-boosts-soybean-production-but-worsens-bean-qu"
@@ -895,7 +1122,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-21-france-bans-alcohol-consumption-at-music-festival-events-und"
@@ -920,7 +1147,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-21-recent-advances-in-individual-differences-in-addiction-neuro"
@@ -936,7 +1163,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-19-project-valhalla-explained-how-a-decade-of-work-arrives-in-j"
@@ -952,7 +1179,7 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-19-how-many-of-the-170k-english-words-do-you-know"
@@ -968,266 +1195,13 @@
       "lastCovered": "2026-06-21T04:05:10.053Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-21-case-study-application-of-high-throughput-new-approach-metho"
       ],
       "eventUri": null,
       "summary": "The US EPA's ExpoCast project uses high-throughput computational models and machine learning to infer what chemicals people are actually absorbing — back-calculating exposure from urine metabolites and indoor measurements. Lead with the inversion: instead of guessing dose from product labels, the model reads the body and the room to reconstruct intake. The mechanism to highlight is how ML and exposure forecasting replace slow, costly toxicology testing for thousands of untested chemicals. For the technically literate reader, a window into computational toxicology as regulatory infrastructure.",
-      "conceptUris": []
-    },
-    {
-      "id": "israeli-strikes-kill-11-in-gaza-including-two-girls",
-      "label": "Israeli strikes kill 11 in Gaza, including two girls",
-      "firstSeen": "2026-06-20T22:08:23.227Z",
-      "lastCovered": "2026-06-20T22:08:23.227Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-20-israeli-strikes-kill-11-in-gaza-including-two-girls"
-      ],
-      "eventUri": "eng-11761598",
-      "summary": "Israeli strikes killed at least 11 in Gaza, among them two girls and Al Jazeera cameraman Ahmed Wishah — days into a supposed US-Iran ceasefire that was meant to halt all fronts. Lead with the named dead and the targeted journalist: the ceasefire exists on paper while civilians and the press keep dying. Mechanism to highlight is the gap between the diplomatic framework signed in Switzerland and what the IDF is doing on the ground. Count the Palestinian dead by name; this is dignity (karamah) and accountability.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Gaza_City",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/Palestinians",
-        "http://en.wikipedia.org/wiki/Gaza_Strip",
-        "http://en.wikipedia.org/wiki/Israel_Defense_Forces",
-        "http://en.wikipedia.org/wiki/Hamas",
-        "http://en.wikipedia.org/wiki/Strike_action"
-      ]
-    },
-    {
-      "id": "burn-lebanon-post-israeli-strikes-kill-16-south-lebanon",
-      "label": "X greenlights Israeli national security minister's 'burn Lebanon' post",
-      "firstSeen": "2026-06-20T22:08:23.227Z",
-      "lastCovered": "2026-06-20T22:08:23.227Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-20-burn-lebanon-post-israeli-strikes-kill-16-south-lebanon"
-      ],
-      "eventUri": "eng-11760835",
-      "summary": "At least 16 people were killed in southern Lebanon by Israeli strikes hours after a ceasefire was meant to take effect, while an Israeli minister's 'burn Lebanon' post was left up on X. Lead with the incitement-meets-impunity angle: a cabinet minister calling for a country's destruction on a US platform that declined to act, paired with a body count. The structural why is how the US-Iran framework explicitly covered Lebanon yet fighting continues — Iran ties reopening Hormuz to Israel halting in the south. Highest sentiment divergence in the feed (0.76); name the victims and the minister.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Lebanon",
-        "http://en.wikipedia.org/wiki/Hezbollah",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Israel_Defense_Forces",
-        "http://en.wikipedia.org/wiki/Donald_Trump"
-      ]
-    },
-    {
-      "id": "pakistan-pm-army-chief-switzerland-us-iran-talks",
-      "label": "Pakistan's PM, army commander go to Switzerland for US-Iran talks",
-      "firstSeen": "2026-06-20T22:08:23.227Z",
-      "lastCovered": "2026-06-20T22:08:23.227Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-20-pakistan-pm-army-chief-switzerland-us-iran-talks"
-      ],
-      "eventUri": "eng-11761802",
-      "summary": "Pakistan's PM and army chief are flying to Buergenstock as technical-level guarantors of the Islamabad MoU underpinning the US-Iran ceasefire. Lead with the surprising elevation of Pakistan from regional player to broker between Washington and Tehran — and what Islamabad expects in return. Mechanism to highlight: a Muslim-majority state leveraging its military relationship with both sides into diplomatic capital. Who holds power here is not just the US; name the Pakistani military's role and what 'guarantor' status actually commits them to.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Switzerland",
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Islamabad",
-        "http://en.wikipedia.org/wiki/Memorandum_of_understanding",
-        "http://en.wikipedia.org/wiki/Qatar",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Ministry_of_Foreign_Affairs_(Pakistan)"
-      ]
-    },
-    {
-      "id": "bangladesh-pm-malaysia-china-bypasses-india-first-tour",
-      "label": "Bangladesh PM to visit Malaysia, China on first foreign tour",
-      "firstSeen": "2026-06-20T22:08:23.227Z",
-      "lastCovered": "2026-06-20T22:08:23.227Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-20-bangladesh-pm-malaysia-china-bypasses-india-first-tour"
-      ],
-      "eventUri": "eng-11760992",
-      "summary": "New Bangladeshi PM Tarique Rahman makes Malaysia and China his first foreign stops — pointedly skipping neighbouring India, the traditional first call for any Dhaka leader. Lead with the snub as signal: a deliberate post-Hasina reorientation away from Delhi and toward Beijing and the Muslim world. Mechanism to highlight is how a single itinerary encodes a foreign-policy pivot. This is a non-Western state exercising agency; the reader will read the China tilt and the India cold shoulder as the real story.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Tarique_Rahman",
-        "http://en.wikipedia.org/wiki/Malaysia",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Bangladesh",
-        "http://en.wikipedia.org/wiki/Dhaka",
-        "http://en.wikipedia.org/wiki/Memorandum_of_understanding",
-        "http://en.wikipedia.org/wiki/Foreign_Secretary",
-        "http://en.wikipedia.org/wiki/Kuala_Lumpur"
-      ]
-    },
-    {
-      "id": "edinburgh-anti-muslim-rampage-five-injured-terror-probe",
-      "label": "Man Is Arrested in Scotland After Rampage Leaves 5 Hurt",
-      "firstSeen": "2026-06-20T22:08:23.227Z",
-      "lastCovered": "2026-06-20T22:08:23.227Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-20-edinburgh-anti-muslim-rampage-five-injured-terror-probe"
-      ],
-      "eventUri": "eng-11761838",
-      "summary": "Counterterrorism police took over an Edinburgh investigation after a series of attacks left five men injured in what authorities treat as suspected anti-Muslim violence. Lead with the victims and the official terror designation: five Muslim men hurt on Leith Walk, near a mosque, and the state naming it as such. Mechanism to highlight is the rise of anti-Muslim violence in Western Europe and how rarely it is classified as terrorism — here it was. Dignity and accountability angle for a reader who tracks how Muslims in the West are treated.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Edinburgh",
-        "http://en.wikipedia.org/wiki/Scotland",
-        "http://en.wikipedia.org/wiki/Muslims",
-        "http://en.wikipedia.org/wiki/Mosque",
-        "http://en.wikipedia.org/wiki/Counterterrorism",
-        "http://en.wikipedia.org/wiki/Police",
-        "http://en.wikipedia.org/wiki/Police_Scotland",
-        "http://en.wikipedia.org/wiki/Leith_Walk"
-      ]
-    },
-    {
-      "id": "buffett-zero-inflation-fed-target-debate",
-      "label": "Why Warren Buffett Wants the Fed to Target Zero Inflation -- and Economists Disagree",
-      "firstSeen": "2026-06-20T22:08:23.227Z",
-      "lastCovered": "2026-06-20T22:08:23.227Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-20-buffett-zero-inflation-fed-target-debate"
-      ],
-      "eventUri": "eng-11759218",
-      "summary": "Buffett argues the Fed is too comfortable with rising prices even at its 2% target; most economists counter that zero inflation invites deflation, higher unemployment, and strips the Fed of room to cut rates in a downturn. Lead with the disagreement as a teaching device: why central banks deliberately aim for positive inflation rather than zero. Mechanism to highlight is the asymmetry between inflation and deflation risk, and why a famed investor and academic economists land on opposite sides. Reader-aligned macro explainer.",
-      "conceptUris": []
-    },
-    {
-      "id": "goldman-sachs-cuts-gold-price-target",
-      "label": "Goldman Sachs revisits its gold price target after Fed meeting",
-      "firstSeen": "2026-06-20T22:08:23.227Z",
-      "lastCovered": "2026-06-20T22:08:23.227Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-20-goldman-sachs-cuts-gold-price-target"
-      ],
-      "eventUri": "tur-1331058",
-      "summary": "After gold hit an all-time high near $5,600 in January and slid steadily since, Goldman Sachs — the bank most responsible for hyping the rally — finally cut its year-end target by $500 to $4,900. Lead with the climbdown: the sell-side caught up to the market, not the other way round. Mechanism to highlight is how bank price targets lag rather than lead, and what the gold reversal signals about post-war risk appetite and a softening Fed-rate outlook. For the macro reader who tracks safe-haven flows.",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-kazakhstan-caspian-port-transit-cooperation",
-      "label": "Iran emphasizes enhancing port, transit coop. with Kazakhstan",
-      "firstSeen": "2026-06-20T22:08:23.227Z",
-      "lastCovered": "2026-06-20T22:08:23.227Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-20-iran-kazakhstan-caspian-port-transit-cooperation"
-      ],
-      "eventUri": null,
-      "summary": "Iran's roads minister is in Aktau pushing deeper port and transit ties with Kazakhstan across the Caspian — quiet infrastructure diplomacy as the war winds down. Lead with the strategic why: sanctioned Iran and landlocked Kazakhstan both need overland corridors that bypass Western-controlled chokepoints, and the Caspian is the seam. Mechanism to highlight is the North-South transit corridor as sanctions-resilient trade plumbing. A non-Western, OIC-region economic story the wires ignore; pair the Iranian source with the corridor's wider geopolitics.",
-      "conceptUris": []
-    },
-    {
-      "id": "meteor-sonic-booms-atmospheric-physics-explained",
-      "label": "Sonic booms from meteors can release the energy of hundreds of tons of TNT. Here's how they work",
-      "firstSeen": "2026-06-20T22:08:23.227Z",
-      "lastCovered": "2026-06-20T22:08:23.227Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-20-meteor-sonic-booms-atmospheric-physics-explained"
-      ],
-      "eventUri": null,
-      "summary": "When a meteor punches through the atmosphere it can unleash a shock wave carrying the energy of hundreds of tons of TNT — the physics of why meteor sonic booms are so violent. Lead with the number, then the mechanism: hypersonic compression, the difference between the flash and the delayed boom, and why some airbursts shatter windows on the ground. A clean science explainer that teaches the reader the atmospheric physics behind a phenomenon they've heard but never understood.",
-      "conceptUris": []
-    },
-    {
-      "id": "colombia-election-fossil-fuel-phaseout-litmus-test",
-      "label": "Colombia elections: a litmus test for fossil fuel phaseout",
-      "firstSeen": "2026-06-20T22:08:23.227Z",
-      "lastCovered": "2026-06-20T22:08:23.227Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-19-colombia-election-fossil-fuel-phaseout-litmus-test"
-      ],
-      "eventUri": null,
-      "summary": "Colombia's presidential vote is a referendum on the fossil-fuel phaseout movement Petro launched: far-right frontrunner Abelardo de la Espriella wants to reverse the no-new-exploration policy and double down on oil and gas. Lead with the stakes for global climate politics — Colombia was the first major fossil producer to commit to leaving reserves in the ground, and that precedent is on the ballot. Mechanism to highlight is how one mid-sized producer's election can make or break an emerging international norm. Timely: vote is Sunday.",
-      "conceptUris": []
-    },
-    {
-      "id": "deep-learning-stress-detection-eye-tracking",
-      "label": "Classifying mental stress from eye tracking data: deep learning approaches for out-of-the-lab conditions",
-      "firstSeen": "2026-06-20T22:08:23.227Z",
-      "lastCovered": "2026-06-20T22:08:23.227Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-20-deep-learning-stress-detection-eye-tracking"
-      ],
-      "eventUri": null,
-      "summary": "Researchers trained deep-learning models (LSTM-based) to detect mental stress from raw eye-tracking signals under messy, real-world recording conditions — not the controlled lab. Lead with what's actually new: stress inference moving out of the lab and onto consumer-grade gaze sensors, and how data quality, calibration and signal characteristics make or break it. Mechanism to highlight is the privacy stakes — if a webcam or headset can read your stress, who gets that signal. For the AI-literate reader who should clock the surveillance implications, not just the model architecture.",
-      "conceptUris": []
-    },
-    {
-      "id": "rc-135-rivet-joint-drone-teaming-isr",
-      "label": "RC-135 Rivet Joints Could Control Drones To Drastically Expand Collection Capabilities",
-      "firstSeen": "2026-06-20T22:08:23.227Z",
-      "lastCovered": "2026-06-20T22:08:23.227Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-19-rc-135-rivet-joint-drone-teaming-isr"
-      ],
-      "eventUri": null,
-      "summary": "The US is exploring letting RC-135 Rivet Joint spy planes command drones, using uncrewed aircraft as forward sensors to vastly extend signals-intelligence reach. Lead with the architecture shift: from a single crewed platform flying near hostile airspace to a manned mothership directing expendable drones over it. Mechanism to highlight is manned-unmanned teaming as the dominant trend in air ISR, and what it means for how surveillance is conducted near contested borders. For the reader who tracks military tech as a window onto where power is projected next.",
-      "conceptUris": []
-    },
-    {
-      "id": "airpods-effect-earbuds-as-body-computing-platform",
-      "label": "The AirPods Effect",
-      "firstSeen": "2026-06-20T22:08:23.227Z",
-      "lastCovered": "2026-06-20T22:08:23.227Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-18-airpods-effect-earbuds-as-body-computing-platform"
-      ],
-      "eventUri": null,
-      "summary": "A widely-discussed essay (440 points on Hacker News) on how AirPods quietly reshaped social behaviour and blurred the line between earbuds and hearing aids. Lead with the mechanism, not the gadget: always-in earbuds normalize ambient computing on the body and quietly mainstream assistive tech for the masses. The angle for the technically literate reader is platform lock-in and the body as the next computing surface — how a single accessory became infrastructure. Treat it as a tech-and-society piece, leading with the structural shift rather than the product.",
       "conceptUris": []
     }
   ]
