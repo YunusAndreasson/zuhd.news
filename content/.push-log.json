@@ -1,112 +1,5 @@
 [
   {
-    "timestamp": "2026-06-01T22:48:21.804Z",
-    "candidateCount": 12,
-    "candidates": [
-      {
-        "slug": "2026-06-01-trump-netanyahu-call-lebanon-rift",
-        "title": "Trump: Netanyahu Risks Prison",
-        "category": "politics",
-        "eventCoverage": 1572,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-01-florida-sues-openai-altman-chatgpt-liability",
-        "title": "Florida Sues OpenAI CEO",
-        "category": "politics",
-        "eventCoverage": 148,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-01-tina-peters-released-trump-pressure-election",
-        "title": "Colorado Frees Election Saboteur",
-        "category": "politics",
-        "eventCoverage": 93,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-01-saic-galicia-ev-plant-eu-tariffs",
-        "title": "SAIC's EU Plant Is a Tariff Bypass",
-        "category": "economy",
-        "eventCoverage": 71,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-01-caesars-mgm-takeover-prediction-markets",
-        "title": "Caesars and MGM Are in Play",
-        "category": "economy",
-        "eventCoverage": 62,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-01-us-terror-designation-pcc-brazil-economy",
-        "title": "US Terror Label Traps Brazil's Banks",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-01-cross-river-nigeria-services-out-migration",
-        "title": "9 in 10 Cross River Residents Plan to Leave",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-01-india-air-pollution-health-inequality-pm25",
-        "title": "Pollution's Toll Tracks India's Caste Lines",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-01-rna-segment-editing-hku-gene-therapy",
-        "title": "RNA Edit Tool Spares the Genome",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-01-meta-ai-chatbot-instagram-account-takeover",
-        "title": "Meta AI Handed Over Instagram Accounts",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-01-ice-paragon-spyware-foia-redactions",
-        "title": "ICE Spyware Contract: All Blacked Out",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-01-nist-nvd-backlog-inspector-general",
-        "title": "NIST's Flaw Database Is Falling Apart",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-06-01-trump-netanyahu-call-lebanon-rift",
-      "title": "Trump: Netanyahu Risks Prison",
-      "category": "politics",
-      "body": "Trump told Netanyahu bombing Beirut would mean",
-      "eventCoverage": 1572,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Trump warns Netanyahu Beirut strikes risk prison, sources say",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 24
-    }
-  },
-  {
     "timestamp": "2026-06-02T04:33:45.950Z",
     "candidateCount": 9,
     "candidates": [
@@ -9842,5 +9735,91 @@
       "skipped": 0,
       "tokens": 27
     }
+  },
+  {
+    "timestamp": "2026-06-23T08:25:03.529Z",
+    "candidateCount": 11,
+    "candidates": [
+      {
+        "slug": "2026-06-23-lebanon-war-toll-passes-4175-dead",
+        "title": "Lebanon Toll Hits 4,175",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-22-aipac-oracle-lobbyist-maryland-hoyer-seat",
+        "title": "AIPAC Buys Hoyer's Maryland Seat",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-22-uyghurs-us-human-rights-china-trump-xi",
+        "title": "Trump-Xi Summit Splits Uyghur Diaspora",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-23-nigeria-presidency-dismisses-obi-tinubu-resignation",
+        "title": "Nigeria Dismisses Obi Resignation Call",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-23-bangladesh-malaysia-labor-migration-debt-bondage",
+        "title": "Bangladesh Presses Malaysia on Migration",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-23-iran-homemade-drilling-rig-persian-gulf-sanctions",
+        "title": "Iran Builds Rig Around Sanctions",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-23-vegetarian-diet-cancer-risk-esophageal-colorectal",
+        "title": "Vegetarians Face Esophageal Cancer Signal",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-23-nitrogen-fixation-amines-charged-microdroplets",
+        "title": "Droplets Bypass Haber-Bosch Nitrogen Route",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-22-esa-european-spacesuit-prototype-iss-eurosuit",
+        "title": "ESA Tests First European Spacesuit",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-21-anthropic-claude-identity-verification-privacy",
+        "title": "Claude Adds Identity Verification",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-23-spacex-starfall-orbital-cargo-delivery-reentry",
+        "title": "SpaceX Starfall Eyes Pentagon Cargo",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": null,
+    "skipReason": "all 11 candidates below coverage threshold 1",
+    "sent": false
   }
 ]
