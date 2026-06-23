@@ -1,26 +1,27 @@
 {
-  "date": "2026-06-22",
+  "date": "2026-06-23",
   "metrics": {
-    "articles": { "value": 64, "detail": "5 cycles, day total 64 (avgPublished 10/cycle attributed)" },
-    "freshness": { "median": 0, "p90": 1.5, "max": 1.5, "target": 1.0, "met": true },
-    "categories": { "politics": 18, "economy": 17, "science": 14, "tech": 15 },
-    "multiSource": { "value": 19, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 17, "ME": 14, "EU": 13, "AS": 13, "OC": 6, "AF": 1 } },
-    "sciTech": { "ratio": 45, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online", "pct": 13, "target": 20, "met": true },
-    "uniqueSources": 53,
+    "articles": { "value": 49, "detail": "5 cycles completed, avg 9/cycle" },
+    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
+    "categories": { "politics": 18, "economy": 13, "science": 8, "tech": 10 },
+    "multiSource": { "value": 12, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 17, "ME": 11, "EU": 9, "AS": 5, "AF": 5, "OC": 2 } },
+    "sciTech": { "ratio": 37, "target": 25, "met": true },
+    "topSourceShare": { "source": "The Diplomat", "pct": 8, "target": 20, "met": true },
+    "uniqueSources": 49,
     "duplicates": 0,
-    "avgCycleDuration": 1480
+    "avgCycleDuration": 1243
   },
-  "experiment": "Skipped — every goal metric is within target (freshness median 0, science 14 / tech 15, multi-source 19, regions 6, sci-tech 45%, top source 13%, 0 duplicates). No active experiment to evaluate and no pause gate. The day's one soft spot (Africa volume) is upstream of any tunable selector lever, so no experiment is warranted.",
-  "weakestArea": "Africa is furthest from a healthy spread: 1 article of 64 (AF) against AM 17 / ME 14 / EU 13 / AS 13 / OC 6. The region-count target (>=4) is still met at 6, so this is not a metric breach, but AF sits an order of magnitude below every other region. Africa volume is driven by upstream event clustering and regional-outlet availability, not by any tunable parameter (selector floors are per-category, not per-region), so it is a coverage-mix note rather than an experiment candidate.",
+  "experiment": "Skipped — all goal metrics within targets and no active experiment to evaluate. The queued numerical-density experiment touches write-prompt.md, which is out of scope for daily parameter tuning.",
+  "weakestArea": "Sci-tech ratio fell from yesterday's 45% to 37% on lower throughput (49 articles vs 73), driven by a soft science day (8 vs 18). Still comfortably above the 25% target and above the science floor of 5, so no action — worth watching if the science dip persists across cycles.",
   "watching": [
-    "High day-volume (64 articles vs 37 yesterday) on healthy diversity — confirm it reflects genuine news supply and not a backfill or dedup-leak artifact over the next cycles.",
-    "p90 freshness 1.5 days against median 0 indicates a small older tail; watch that standalone-cap trimming keeps the tail from widening on lighter news days."
+    "Science output dropped to 8 today from 18 yesterday — monitor whether this is single-day feed thinness or a sustained slide toward the floor.",
+    "Daily throughput compressed to 49 articles (vs 73 yesterday); avgPublished held at 9/cycle, so the drop reflects a lighter news day rather than a pipeline regression.",
+    "Today's freshness sample is only 3 dated articles (median 0); the full-day signal will firm up but tracks yesterday's median-0 freshness."
   ],
   "coverageGaps": [
-    "Sub-Saharan Africa: only 1 AF-tagged article today despite 53 unique sources — regional-outlet representation is thin in the events feed.",
-    "Oceania at 6 is the second-lowest region but adequate; no structural concern."
+    "Oceania remains thin at 2 articles — persistent structural underrepresentation versus AM (17) and ME (11).",
+    "Africa at 5 is adequate but concentrated in a few outlets (Premium Times Nigeria 3, Daily Maverick 3)."
   ],
-  "context": "Clean, healthy day across all four goals — freshness, diversity, multi-source, and educational value all met with margin on a full 5-cycle, 64-article day with zero duplicates. No active experiments and no pause gate; the queued numerical-density item still targets write-prompt.md, which is outside daily-tuning scope. The only diversity concern (Africa) is upstream of the tunable parameters, so the correct move is to skip a new experiment and surface Africa volume to the operator rather than perturb a system currently meeting every target."
+  "context": "No experiment has been active since the 2026-05-18 editor-effort experiment closed void on 2026-05-26. History shows the selector multi-source floor lever is tapped out (2026-05-09 reverted: feed supplies ~9 multi-source/cycle, capping published multi-source rate near 22%); future sourcing gains should target upstream feed clustering, not selector floors. All four daily goals — freshness, diversity, multi-source, educational value — are met today, so the healthiest move is to hold parameters steady and continue baselining the current model lineup."
 }
