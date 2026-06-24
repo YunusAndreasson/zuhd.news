@@ -2,13 +2,250 @@
   "version": 1,
   "stories": [
     {
+      "id": "us-iran-deal-in-dispute-inspections-sanctions",
+      "label": "A deal in dispute: where the US and Iran disagree",
+      "firstSeen": "2026-06-24T12:06:09.996Z",
+      "lastCovered": "2026-06-24T12:06:09.996Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-24-us-iran-deal-in-dispute-inspections-sanctions"
+      ],
+      "eventUri": "eng-11771092",
+      "summary": "After an 18-hour first round at Lake Lucerne mediated by Pakistan and Qatar, both sides claim a 60-day roadmap — but the divergence is the story (sentimentDivergence 0.55). Lead with the specific point of disagreement on inspections/sanctions sequencing, then show the gap between Reuters' framing (Trump 'insists Iran agreed') and the regional read. The post-war Iran arc continues; the reader wants the mechanism of the dispute, not the photo-op. Pakistan/Qatar as mediators is the karāmah angle — Muslim-world states brokering, not bystanders.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/International_Atomic_Energy_Agency",
+        "http://en.wikipedia.org/wiki/Switzerland",
+        "http://en.wikipedia.org/wiki/Israel"
+      ]
+    },
+    {
+      "id": "trump-netanyahu-gaza-ceasefire-pressure-book",
+      "label": "'All the Jews are sick of you': New book reveals Trump's reported warning to Netanyahu",
+      "firstSeen": "2026-06-24T12:06:09.996Z",
+      "lastCovered": "2026-06-24T12:06:09.996Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-24-trump-netanyahu-gaza-ceasefire-pressure-book"
+      ],
+      "eventUri": "tur-1333012",
+      "summary": "A Haberman/Swan book alleges Trump pressured Netanyahu not to abandon the 2025 Gaza ceasefire deal. Lead not on the quote but on the mechanism it exposes: how far US leverage over Israel actually extended at the ceasefire's most fragile point, and what that says about who held power in the room. Accountability angle — name the pressure and the deal it was meant to save. Flag clearly that this is sourced to a journalists' account, not contemporaneous record.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Jews",
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Benjamin_Netanyahu",
+        "http://en.wikipedia.org/wiki/Gaza_City",
+        "http://en.wikipedia.org/wiki/The_New_York_Times",
+        "http://en.wikipedia.org/wiki/Qatar",
+        "http://en.wikipedia.org/wiki/White_House"
+      ]
+    },
+    {
+      "id": "albania-flamingo-revolution-kushner-coast",
+      "label": "Albanians Embrace Their 'Flamingo Revolution'",
+      "firstSeen": "2026-06-24T12:06:09.996Z",
+      "lastCovered": "2026-06-24T12:06:09.996Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-24-albania-flamingo-revolution-kushner-coast"
+      ],
+      "eventUri": null,
+      "summary": "Jared Kushner and Ivanka Trump's $6bn resort would permanently alter one of Europe's last pristine protected coastlines — and has triggered Albania's first major anti-corruption probe and mass 'Flamingo Revolution' protests. Lead with the named actors and the dollar figure: a sitting US president's family monetizing access while a small OIC-member state's protected land is the collateral. Accountability + karāmah of a place. Unique ground reportage no wire is carrying.",
+      "conceptUris": []
+    },
+    {
+      "id": "sowore-bail-ruling-nigeria-press-freedom",
+      "label": "Court to rule on detained Sowore's request for bail restoration",
+      "firstSeen": "2026-06-24T12:06:09.996Z",
+      "lastCovered": "2026-06-24T12:06:09.996Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-24-sowore-bail-ruling-nigeria-press-freedom"
+      ],
+      "eventUri": "eng-11764969",
+      "summary": "Activist-publisher Omoyele Sowore was remanded to Kuje prison after a court revoked his bail and issued a bench warrant. Lead with the mechanism of how Nigeria's courts are being used against a dissident journalist — bail revoked, bench warrant, remand — and what precedent the ruling sets for press freedom. Accountability story with named actors; regional outlet (Premium Times) carries it, not Western wires.",
+      "conceptUris": []
+    },
+    {
+      "id": "trump-doj-probe-oil-majors-fuel-prices",
+      "label": "Trump orders probe into oil giants over fuel-price gouging",
+      "firstSeen": "2026-06-24T12:06:09.996Z",
+      "lastCovered": "2026-06-24T12:06:09.996Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-24-trump-doj-probe-oil-majors-fuel-prices"
+      ],
+      "eventUri": "eng-11771647",
+      "summary": "Trump directs DOJ to investigate major oil companies for keeping pump prices high while crude fell. Lead with the gap — the mechanism of why retail gasoline lags a crude drop (refining margins, not conspiracy) — and let the reader judge whether a probe addresses it or deflects from the Iran-war oil shock that drove prices up. Accountability framing with the oil majors named; multi-source spans RT, Fox Business and AP so the divergence in framing is visible.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Gasoline",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Price_of_oil",
+        "http://en.wikipedia.org/wiki/Petroleum_industry",
+        "http://en.wikipedia.org/wiki/United_States"
+      ]
+    },
+    {
+      "id": "segro-12bn-takeover-ai-datacentre-landlord",
+      "label": "AI landlord targeted for £12bn takeover",
+      "firstSeen": "2026-06-24T12:06:09.996Z",
+      "lastCovered": "2026-06-24T12:06:09.996Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-24-segro-12bn-takeover-ai-datacentre-landlord"
+      ],
+      "eventUri": "eng-11771629",
+      "summary": "Warehouse REIT Segro — increasingly a landlord to AI data centres — draws a £12bn takeover approach. Lead with the structural shift: physical real estate is being repriced as AI-infrastructure scarcity, so a logistics landlord becomes a strategic asset. The mechanism for the reader is how the data-centre buildout is reshaping property markets, not just chip and power markets. Multi-source (Telegraph + Yahoo Finance).",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Segro",
+        "http://en.wikipedia.org/wiki/Prologis",
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/Shareholder",
+        "http://en.wikipedia.org/wiki/FTSE_100_Index",
+        "http://en.wikipedia.org/wiki/Real_estate_investment_trust",
+        "http://en.wikipedia.org/wiki/Logistics",
+        "http://en.wikipedia.org/wiki/London"
+      ]
+    },
+    {
+      "id": "ukraine-strike-orenburg-gas-helium-kazakhstan",
+      "label": "Ukraine Says It Hit Russian Gas-Processing Plant Near Kazakhstan",
+      "firstSeen": "2026-06-24T12:06:09.996Z",
+      "lastCovered": "2026-06-24T12:06:09.996Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-24-ukraine-strike-orenburg-gas-helium-kazakhstan"
+      ],
+      "eventUri": "ukr-354100",
+      "summary": "Ukrainian drones struck a Gazprom gas-processing and helium complex in Orenburg — right on Kazakhstan's doorstep, threatening knock-on disruption to Kazakh oil and gas output. Lead with the cross-border spillover: a strike inside Russia jeopardises a neutral OIC-member's energy revenue, and the helium angle (a globally scarce input for chips and medicine) shows how a single facility hit ripples through unexpected supply chains.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Orenburg",
+        "http://en.wikipedia.org/wiki/Helium",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Explosive",
+        "http://en.wikipedia.org/wiki/Sulfur",
+        "http://en.wikipedia.org/wiki/Conflagration",
+        "http://en.wikipedia.org/wiki/Ethane",
+        "http://en.wikipedia.org/wiki/General_staff"
+      ]
+    },
+    {
+      "id": "yeast-nuclei-synthetic-dna-mammalian-embryos",
+      "label": "Yeast nuclei-mediated precise delivery of synthetic megabase-scale human DNA into mammalian embryos",
+      "firstSeen": "2026-06-24T12:06:09.996Z",
+      "lastCovered": "2026-06-24T12:06:09.996Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-24-yeast-nuclei-synthetic-dna-mammalian-embryos"
+      ],
+      "eventUri": null,
+      "summary": "Researchers report a method (NICE) to ferry megabase-scale synthetic human DNA from yeast nuclei into mammalian embryos — a long-standing wall in synthetic genomics. Lead with what becomes newly possible: building and transplanting whole synthetic chromosomes, and why crossing the species-delivery barrier matters for engineered biology. Pair the capability with the obvious governance stakes for embryo editing — the reader wants the mechanism and the line it approaches.",
+      "conceptUris": []
+    },
+    {
+      "id": "greenwashing-unverifiable-eco-labels-uts",
+      "label": "Buyer beware: Your sustainable shopping choices may not be as green as they look",
+      "firstSeen": "2026-06-24T12:06:09.996Z",
+      "lastCovered": "2026-06-24T12:06:09.996Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-24-greenwashing-unverifiable-eco-labels-uts"
+      ],
+      "eventUri": null,
+      "summary": "New UTS marketing research finds most 'green' product claims are effectively unverifiable, so eco-labels function as trust shortcuts that often mask the full picture. Lead with the verification gap — what specifically can't be checked and why — turning a consumer story into an accountability one about who polices environmental claims. The teaching point: absence of a standard, not bad intentions, is what makes greenwashing structural.",
+      "conceptUris": []
+    },
+    {
+      "id": "ev-battery-recycling-china-west-divergence",
+      "label": "China and the West are taking opposite paths on EV battery recycling",
+      "firstSeen": "2026-06-24T12:06:09.996Z",
+      "lastCovered": "2026-06-24T12:06:09.996Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-24-ev-battery-recycling-china-west-divergence"
+      ],
+      "eventUri": null,
+      "summary": "China holds 85% of the world's battery-recycling capacity and now mandates shredding old packs; the US instead wants to redeploy them to prop up the power grid. Lead with the 85% figure and the divergent mechanisms — recover-the-materials vs reuse-for-storage — and what each path means for who controls the critical-minerals loop. Structural tech-economy story with China as the agent, not the backdrop.",
+      "conceptUris": []
+    },
+    {
+      "id": "meta-employee-tracker-ai-training-paused",
+      "label": "Meta pauses employee tracker for AI training amid privacy concerns",
+      "firstSeen": "2026-06-24T12:06:09.996Z",
+      "lastCovered": "2026-06-24T12:06:09.996Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-24-meta-employee-tracker-ai-training-paused"
+      ],
+      "eventUri": "eng-11767304",
+      "summary": "Meta paused a tool that logged staff keystrokes, mouse clicks and screen content to train AI, after a worker petition. Lead with what the tool actually captured and the precedent it sets: the workplace as a labeled training corpus, with employees as unconsenting data sources. Accountability angle — name the surveillance mechanism and the backlash that stopped it, and ask what 'paused' leaves intact.",
+      "conceptUris": []
+    },
+    {
+      "id": "valve-steam-machine-launch-linux-console",
+      "label": "Steam Machine launches today",
+      "firstSeen": "2026-06-24T12:06:09.996Z",
+      "lastCovered": "2026-06-24T12:06:09.996Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-22-valve-steam-machine-launch-linux-console"
+      ],
+      "eventUri": null,
+      "summary": "Valve's Steam Machine ships — a Linux-based living-room PC drawing huge developer attention (1,800+ HN points). Lead with the structural bet: an open, x86/Linux console challenging the locked-down Xbox/PlayStation model, and why a Proton-driven Linux gaming stack matters beyond gaming. For the technically literate reader, the angle is platform control and whether Valve can pull mainstream computing toward an open base.",
+      "conceptUris": []
+    },
+    {
       "id": "adani-india-nuclear-energy-security",
       "label": "Adani Bets on India Energy Security With Nuclear Power Project",
       "firstSeen": "2026-06-24T08:04:42.469Z",
       "lastCovered": "2026-06-24T08:04:42.469Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-24-adani-india-nuclear-energy-security"
@@ -29,7 +266,7 @@
       "lastCovered": "2026-06-24T08:04:42.469Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-24-senate-hearings-trump-uae-crypto-deal"
@@ -50,7 +287,7 @@
       "lastCovered": "2026-06-24T08:04:42.469Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-24-waziristan-girls-school-bombed"
@@ -66,7 +303,7 @@
       "lastCovered": "2026-06-24T08:04:42.469Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-24-gulf-security-framework-with-iran"
@@ -82,7 +319,7 @@
       "lastCovered": "2026-06-24T08:04:42.469Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-23-sudan-imminent-mass-atrocities-warning"
@@ -98,7 +335,7 @@
       "lastCovered": "2026-06-24T08:04:42.469Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-24-north-korean-soldier-defection-dmz"
@@ -119,7 +356,7 @@
       "lastCovered": "2026-06-24T08:04:42.469Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-24-us-israel-aid-to-trade-restructuring"
@@ -135,7 +372,7 @@
       "lastCovered": "2026-06-24T08:04:42.469Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-24-nirav-modi-uk-court-bank-of-india-repayment"
@@ -156,7 +393,7 @@
       "lastCovered": "2026-06-24T08:04:42.469Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-24-fusobacterium-decanoic-acid-colorectal-cancer"
@@ -172,7 +409,7 @@
       "lastCovered": "2026-06-24T08:04:42.469Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-24-embryo-editing-startups-advocacy-silence"
@@ -188,7 +425,7 @@
       "lastCovered": "2026-06-24T08:04:42.469Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-22-canada-nuclear-renaissance-ten-reactors"
@@ -204,7 +441,7 @@
       "lastCovered": "2026-06-24T08:04:42.469Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-24-nothing-phone-4b-launching-on-july-7-here-is-everything-we-k"
@@ -229,7 +466,7 @@
       "lastCovered": "2026-06-24T04:09:15.986Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-23-israel-repositioning-south-lebanon-washington-talks"
@@ -245,7 +482,7 @@
       "lastCovered": "2026-06-24T04:09:15.986Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-23-senate-iran-war-powers-resolution-passes"
@@ -261,7 +498,7 @@
       "lastCovered": "2026-06-24T04:09:15.986Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-22-eu-waits-burnham-uk-leadership-transition"
@@ -286,7 +523,7 @@
       "lastCovered": "2026-06-24T04:09:15.986Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-23-china-red-lines-shaping-global-news-reporting"
@@ -302,7 +539,7 @@
       "lastCovered": "2026-06-24T04:09:15.986Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-24-us-sanctions-lagos-bdc-operator-iswap-financing"
@@ -318,7 +555,7 @@
       "lastCovered": "2026-06-24T04:09:15.986Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-23-sgie-muslim-markets-local-pharma-manufacturing"
@@ -334,7 +571,7 @@
       "lastCovered": "2026-06-24T04:09:15.986Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-24-fairshake-crypto-pac-congress-influence-spending"
@@ -350,7 +587,7 @@
       "lastCovered": "2026-06-24T04:09:15.986Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-24-burnham-borrowing-bond-market-fiscal-constraints"
@@ -366,7 +603,7 @@
       "lastCovered": "2026-06-24T04:09:15.986Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-24-sperm-whale-dialects-mediterranean-vocal-culture"
@@ -382,7 +619,7 @@
       "lastCovered": "2026-06-24T04:09:15.986Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-23-gaba-glioblastoma-immune-suppression-sex-dependent"
@@ -398,7 +635,7 @@
       "lastCovered": "2026-06-24T04:09:15.986Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-23-age-verification-mass-surveillance-identity-dragnet"
@@ -414,7 +651,7 @@
       "lastCovered": "2026-06-24T04:09:15.986Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-23-stromal-and-endothelial-transcriptional-changes-during-progr"
@@ -430,7 +667,7 @@
       "lastCovered": "2026-06-23T22:08:58.362Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-23-temperatures-hit-record-levels-in-western-europe"
@@ -455,7 +692,7 @@
       "lastCovered": "2026-06-23T22:08:58.362Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-23-putin-russia-ready-negotiate-ukraine-istanbul-agreements"
@@ -480,7 +717,7 @@
       "lastCovered": "2026-06-23T22:08:58.362Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-23-marine-100-years-ice-detention-protest-sentences"
@@ -504,7 +741,7 @@
       "lastCovered": "2026-06-23T22:08:58.362Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-23-trump-board-of-peace-gaza-documents-palestinian-self-determination"
@@ -520,7 +757,7 @@
       "lastCovered": "2026-06-23T22:08:58.362Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-23-kzn-immigrants-popup-repatriation-sites-durban"
@@ -536,7 +773,7 @@
       "lastCovered": "2026-06-23T22:08:58.362Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-23-supreme-court-exxon-cuba-1-billion-expropriation-suit"
@@ -561,7 +798,7 @@
       "lastCovered": "2026-06-23T22:08:58.362Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-23-roubini-technodollar-tokenization-etf-securitize"
@@ -577,7 +814,7 @@
       "lastCovered": "2026-06-23T22:08:58.362Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-23-thailand-auto-industry-ev-china-localization"
@@ -593,7 +830,7 @@
       "lastCovered": "2026-06-23T22:08:58.362Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-22-engineered-injectable-mini-livers-transplant-alternative"
@@ -609,7 +846,7 @@
       "lastCovered": "2026-06-23T22:08:58.362Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-22-breath-test-pneumonia-plasmosniff-point-of-care"
@@ -625,7 +862,7 @@
       "lastCovered": "2026-06-23T22:08:58.362Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-23-pakistan-nab-ai-investigation-financial-crime"
@@ -641,7 +878,7 @@
       "lastCovered": "2026-06-23T22:08:58.362Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-23-libraries-self-censor-pride-displays-public-records"
@@ -651,13 +888,30 @@
       "conceptUris": []
     },
     {
+      "id": "klotho-gene-therapy-longevity-fda-bypass",
+      "label": "Unapproved gene therapy for boosting longevity is set to go on sale",
+      "firstSeen": "2026-06-23T12:07:49.894Z",
+      "lastCovered": "2026-06-24T12:06:09.996Z",
+      "coverageCount": 2,
+      "category": "science",
+      "importance": 2,
+      "arc": "developing",
+      "articles": [
+        "2026-06-23-klotho-gene-therapy-longevity-fda-bypass",
+        "2026-06-24-regenxbio-duchenne-gene-therapy-fda-accelerated"
+      ],
+      "eventUri": null,
+      "summary": "A US company (Minicircle) will sell an injectable gene therapy that boosts the anti-ageing protein klotho — at overseas clinics, deliberately to bypass FDA rules. Lead with the regulatory-arbitrage move: medical tourism as a way to commercialize unproven human gene editing on healthy people. The evidence base is mouse data; the buyers are wealthy longevity seekers. Accountability and science in one — who polices a therapy sold where no regulator has jurisdiction?",
+      "conceptUris": []
+    },
+    {
       "id": "trump-iran-inspection-deal-tehran-disputes",
       "label": "Trump touts Iran inspection deal as Tehran disputes terms",
       "firstSeen": "2026-06-23T17:08:54.809Z",
       "lastCovered": "2026-06-23T17:08:54.809Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-23-trump-iran-inspection-deal-tehran-disputes"
@@ -682,7 +936,7 @@
       "lastCovered": "2026-06-23T17:08:54.809Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-23-lavrov-us-not-objective-mediator-ukraine"
@@ -707,7 +961,7 @@
       "lastCovered": "2026-06-23T17:08:54.809Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-23-kenya-us-ebola-facility-halted-court"
@@ -732,7 +986,7 @@
       "lastCovered": "2026-06-23T17:08:54.809Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-22-hungary-magyar-dismantle-orban-capture"
@@ -757,7 +1011,7 @@
       "lastCovered": "2026-06-23T17:08:54.809Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-23-judge-strikes-down-snap-purchase-limits"
@@ -782,7 +1036,7 @@
       "lastCovered": "2026-06-23T17:08:54.809Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-23-oracle-21000-jobs-ai-datacenter-capex"
@@ -807,7 +1061,7 @@
       "lastCovered": "2026-06-23T17:08:54.809Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-23-diezani-uk-acquittal-nigeria-accountability"
@@ -829,7 +1083,7 @@
       "lastCovered": "2026-06-23T17:08:54.809Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-23-indonesia-tech-sector-shareholder-value"
@@ -845,7 +1099,7 @@
       "lastCovered": "2026-06-23T17:08:54.809Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-23-seed-patents-stifle-innovation-corporate"
@@ -861,7 +1115,7 @@
       "lastCovered": "2026-06-23T17:08:54.809Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-23-esa-gateway-contributions-nasa-pause"
@@ -877,7 +1131,7 @@
       "lastCovered": "2026-06-23T17:08:54.809Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-23-msg-dossier-facial-recognition-activists"
@@ -893,7 +1147,7 @@
       "lastCovered": "2026-06-23T17:08:54.809Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-23-kids-online-safety-bill-duty-of-care-cut"
@@ -909,7 +1163,7 @@
       "lastCovered": "2026-06-23T17:08:54.809Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-23-wikipedia-cofounder-sanger-banned-canvassing"
@@ -925,7 +1179,7 @@
       "lastCovered": "2026-06-23T12:07:49.894Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-23-un-probe-israel-targeting-children-gaza-genocide"
@@ -950,7 +1204,7 @@
       "lastCovered": "2026-06-23T12:07:49.894Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-23-brexit-decade-cost-britain-economy"
@@ -975,7 +1229,7 @@
       "lastCovered": "2026-06-23T12:07:49.894Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-23-israel-west-bank-polluting-factories-eu-markets"
@@ -991,7 +1245,7 @@
       "lastCovered": "2026-06-23T12:07:49.894Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-23-johannesburg-thembelihle-water-access-township"
@@ -1007,7 +1261,7 @@
       "lastCovered": "2026-06-23T12:07:49.894Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-23-hormuz-tanker-traffic-resumes-oil-iran-waiver"
@@ -1032,7 +1286,7 @@
       "lastCovered": "2026-06-23T12:07:49.894Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-23-gene-editing-startup-230m-china-licensing-deal"
@@ -1048,7 +1302,7 @@
       "lastCovered": "2026-06-23T12:07:49.894Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-23-bitcoin-slides-tech-selloff-crypto-correlation"
@@ -1058,29 +1312,13 @@
       "conceptUris": []
     },
     {
-      "id": "klotho-gene-therapy-longevity-fda-bypass",
-      "label": "Unapproved gene therapy for boosting longevity is set to go on sale",
-      "firstSeen": "2026-06-23T12:07:49.894Z",
-      "lastCovered": "2026-06-23T12:07:49.894Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-23-klotho-gene-therapy-longevity-fda-bypass"
-      ],
-      "eventUri": null,
-      "summary": "A US company (Minicircle) will sell an injectable gene therapy that boosts the anti-ageing protein klotho — at overseas clinics, deliberately to bypass FDA rules. Lead with the regulatory-arbitrage move: medical tourism as a way to commercialize unproven human gene editing on healthy people. The evidence base is mouse data; the buyers are wealthy longevity seekers. Accountability and science in one — who polices a therapy sold where no regulator has jurisdiction?",
-      "conceptUris": []
-    },
-    {
       "id": "climate-warming-snakebite-risk-global-south",
       "label": "As the world warms, the risk of snakebites is rising",
       "firstSeen": "2026-06-23T12:07:49.894Z",
       "lastCovered": "2026-06-23T12:07:49.894Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-23-climate-warming-snakebite-risk-global-south"
@@ -1096,7 +1334,7 @@
       "lastCovered": "2026-06-23T12:07:49.894Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-23-world-cup-ai-data-workers-global-south-labor"
@@ -1112,7 +1350,7 @@
       "lastCovered": "2026-06-23T12:07:49.894Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-23-nigeria-inec-portal-voter-registration-failure"
@@ -1128,205 +1366,13 @@
       "lastCovered": "2026-06-23T12:07:49.894Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-23-cadence-100m-regulated-ai-chronic-care"
       ],
       "eventUri": null,
       "summary": "Cadence raised $100M to push AI into chronic-disease management under FDA regulation and Medicare reimbursement — the test case for whether clinical AI can scale inside the rules rather than around them. Lead with the contrast to the unregulated longevity-gene-therapy play in the same news cycle: two opposite bets on how medical AI reaches patients. The reader cares about the mechanism — how Medicare payment design quietly decides which AI care models survive.",
-      "conceptUris": []
-    },
-    {
-      "id": "lebanon-war-toll-passes-4175-dead",
-      "label": "Lebanon war toll passes 4,175 dead",
-      "firstSeen": "2026-06-23T08:08:40.547Z",
-      "lastCovered": "2026-06-23T08:08:40.547Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-23-lebanon-war-toll-passes-4175-dead"
-      ],
-      "eventUri": null,
-      "summary": "The death toll from Israeli attacks on Lebanon since March 2 has climbed to 4,175 killed and 12,164 wounded — the continuation of the killing IS the story, even five days after the June 18 Iran-US memorandum. Lead with the number and the date gap: a 'peace deal' was signed but the Lebanese front keeps producing dead. Count the dead by name where possible; this is karāmah and accountability, not a stale war update. OIC-region story — Mehr (IR) cites Al Jazeera; no Lebanese regional outlet in feed, note feed gap.",
-      "conceptUris": []
-    },
-    {
-      "id": "aipac-oracle-lobbyist-maryland-hoyer-seat",
-      "label": "In Maryland District, a Last-Minute Scramble to Stop “AIPAC Adrian” Boafo",
-      "firstSeen": "2026-06-23T08:08:40.547Z",
-      "lastCovered": "2026-06-23T08:08:40.547Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-22-aipac-oracle-lobbyist-maryland-hoyer-seat"
-      ],
-      "eventUri": null,
-      "summary": "Original reporting on how AIPAC and an Oracle lobbyist are converging on the safe Democratic seat being vacated by AIPAC stalwart Steny Hoyer — and the last-minute realignment of local power-brokers trying to block them. The mechanism to highlight: how pro-Israel and corporate money pre-selects nominees in uncontested districts before voters weigh in. Accountability story; name the lobby, the money, and the candidates.",
-      "conceptUris": []
-    },
-    {
-      "id": "uyghurs-us-human-rights-china-trump-xi",
-      "label": "Uyghurs Wonder: Does the US Still Care About Human Rights in China?",
-      "firstSeen": "2026-06-23T08:08:40.547Z",
-      "lastCovered": "2026-06-23T08:08:40.547Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-22-uyghurs-us-human-rights-china-trump-xi"
-      ],
-      "eventUri": null,
-      "summary": "After a transactional Trump-Xi summit, Uyghurs in the US are split on whether Washington has quietly traded away its human-rights leverage over Xinjiang for a trade deal. The structural why: great-power détente turns a persecuted Muslim minority into a bargaining chip. Lead with the community's own divided voices, not Washington's framing — the ummah notices when its persecuted are dropped from the agenda.",
-      "conceptUris": []
-    },
-    {
-      "id": "nigeria-presidency-dismisses-obi-tinubu-resignation",
-      "label": "Presidency dismisses Obi's call for Tinubu's resignation",
-      "firstSeen": "2026-06-23T08:08:40.547Z",
-      "lastCovered": "2026-06-23T08:08:40.547Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-23-nigeria-presidency-dismisses-obi-tinubu-resignation"
-      ],
-      "eventUri": "eng-11766931",
-      "summary": "Nigeria's presidency brushed off opposition leader Peter Obi's demand that President Tinubu resign, telling him to 'wait for the election.' The stakes for 145 million Nigerians: the legitimacy fight over Tinubu's economic record is hardening into a 2027 contest. Addresses today's Africa coverage gap (1 AF article of 64 yesterday). Regional outlet present (Premium Times, NG).",
-      "conceptUris": []
-    },
-    {
-      "id": "bangladesh-malaysia-labor-migration-debt-bondage",
-      "label": "Bangladeshi PM Tarique Rahman Asks Malaysia to Lift Restrictions on Labor Migration",
-      "firstSeen": "2026-06-23T08:08:40.547Z",
-      "lastCovered": "2026-06-23T08:08:40.547Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-23-bangladesh-malaysia-labor-migration-debt-bondage"
-      ],
-      "eventUri": null,
-      "summary": "Bangladesh's PM is pressing Malaysia to reopen its doors to Bangladeshi workers — the same doors Kuala Lumpur tightened over abuse, debt bondage, and predatory recruitment fees. The mechanism to expose: a remittance-dependent economy lobbying to restore a labor pipeline whose workers were being exploited. OIC-to-OIC migration; who bears the cost when a state needs the remittances more than it protects the migrants.",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-homemade-drilling-rig-persian-gulf-sanctions",
-      "label": "Iran installs giant homemade drilling rig in Persian Gulf",
-      "firstSeen": "2026-06-23T08:08:40.547Z",
-      "lastCovered": "2026-06-23T08:08:40.547Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-23-iran-homemade-drilling-rig-persian-gulf-sanctions"
-      ],
-      "eventUri": null,
-      "summary": "Iran installed a super-sized, domestically built drilling rig at a key Persian Gulf oilfield despite sanctions barring access to foreign drilling technology. The mechanism for the reader: sanctions designed to freeze Iran's upstream capacity instead forced an indigenous-manufacturing workaround — import substitution as a war economy adapts. OIC-region story; regional source (Mehr, IR) present.",
-      "conceptUris": []
-    },
-    {
-      "id": "aaoifi-shariah-standard-62-sukuk-fiqh-market",
-      "label": "AAOIFI Shariah Standard 62: A hexagonal fiqhi-market synthesis",
-      "firstSeen": "2026-06-23T08:08:40.547Z",
-      "lastCovered": "2026-06-23T08:08:40.547Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-22-aaoifi-shariah-standard-62-sukuk-fiqh-market"
-      ],
-      "eventUri": null,
-      "summary": "AAOIFI's Standard 62 — which reshapes how sukuk are structured around asset ownership and risk transfer — is being debated as both a fiqh ruling and a market-moving event for a multi-trillion-dollar Islamic finance sector. The teaching angle: a single standards body's interpretation can reprice the entire global sukuk market. Directly reader-aligned (Islamic finance); a story no Western wire covers.",
-      "conceptUris": []
-    },
-    {
-      "id": "vegetarian-diet-cancer-risk-esophageal-colorectal",
-      "label": "Interpreting the adverse esophageal and colorectal findings in the Cancer Risk in Vegetarians Consortium",
-      "firstSeen": "2026-06-23T08:08:40.547Z",
-      "lastCovered": "2026-06-23T08:08:40.547Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-23-vegetarian-diet-cancer-risk-esophageal-colorectal"
-      ],
-      "eventUri": null,
-      "summary": "The largest pooled analysis to date finds vegetarians have lower risk for kidney, pancreatic, breast, and prostate cancers and myeloma — but adverse signals for esophageal and colorectal cancer that this Nature correspondence argues are likely confounded, not causal. The mechanism to teach: how diet-cancer epidemiology gets misread when reverse causation and fiber/processing differences aren't separated. Serious, non-sensational health science for a discerning reader.",
-      "conceptUris": []
-    },
-    {
-      "id": "nitrogen-fixation-amines-charged-microdroplets",
-      "label": "Facile Synthesis of Primary Amines via Nitrogen Fixation in Charged Microdroplets",
-      "firstSeen": "2026-06-23T08:08:40.547Z",
-      "lastCovered": "2026-06-23T08:08:40.547Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-23-nitrogen-fixation-amines-charged-microdroplets"
-      ],
-      "eventUri": null,
-      "summary": "Researchers fixed atmospheric nitrogen into primary amines inside charged water microdroplets — at ambient conditions, sidestepping the energy-hungry Haber-Bosch route that underpins global fertilizer and chemical production. The teaching angle for a technically literate reader: microdroplet chemistry as a low-energy path to nitrogen fixation, one of industry's largest carbon footprints. Mechanism over hype — early-stage, unedited manuscript.",
-      "conceptUris": []
-    },
-    {
-      "id": "esa-european-spacesuit-prototype-iss-eurosuit",
-      "label": "ESA Astronaut Tests European Spacesuit Prototype Aboard ISS",
-      "firstSeen": "2026-06-23T08:08:40.547Z",
-      "lastCovered": "2026-06-23T08:08:40.547Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-22-esa-european-spacesuit-prototype-iss-eurosuit"
-      ],
-      "eventUri": null,
-      "summary": "ESA astronaut Sophie Adenot tested a European-built intravehicular spacesuit prototype on the ISS, with a second unit run through water-survival trials in Marseille. The structural why: Europe's CNES-led EuroSuit project is a bid to end dependence on US and Russian suit hardware — sovereignty in human spaceflight, not just a gadget. Concrete milestone, geographic balance toward Europe's space program.",
-      "conceptUris": []
-    },
-    {
-      "id": "anthropic-claude-identity-verification-privacy",
-      "label": "Identity verification on Claude",
-      "firstSeen": "2026-06-23T08:08:40.547Z",
-      "lastCovered": "2026-06-23T08:08:40.547Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-21-anthropic-claude-identity-verification-privacy"
-      ],
-      "eventUri": null,
-      "summary": "Anthropic is rolling out identity verification for Claude access — a structural shift in how a frontier AI lab gates its product, and a privacy tradeoff developers are debating sharply (708 HN comments). The mechanism to examine: as AI labs add KYC-style checks, who gets excluded, what data is collected, and how it interacts with the Five Eyes' own warning about AI-enabled abuse. Directly reader-aligned (developers who use Claude).",
-      "conceptUris": []
-    },
-    {
-      "id": "spacex-starfall-orbital-cargo-delivery-reentry",
-      "label": "With Starfall, SpaceX eyes an edge in global cargo delivery from orbit",
-      "firstSeen": "2026-06-23T08:08:40.547Z",
-      "lastCovered": "2026-06-23T08:08:40.547Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-23-spacex-starfall-orbital-cargo-delivery-reentry"
-      ],
-      "eventUri": "eng-11766987",
-      "summary": "SpaceX is launching Starfall, a saucer-shaped reentry pod built in secrecy to deliver cargo anywhere on Earth from low orbit — a capability whose named customer is military 'rapid transport.' The structural why: point-to-point delivery from orbit is dual-use logistics that could let one power drop materiel onto any spot on the globe within an hour. Lead with the secrecy and the Pentagon use-case, not the rocket spectacle.",
       "conceptUris": []
     }
   ]
