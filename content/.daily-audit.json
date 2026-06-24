@@ -1,27 +1,27 @@
 {
-  "date": "2026-06-23",
+  "date": "2026-06-24",
   "metrics": {
-    "articles": { "value": 49, "detail": "5 cycles completed, avg 9/cycle" },
+    "articles": { "value": 50, "detail": "5 cycles completed, avg 9/cycle published" },
     "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 18, "economy": 13, "science": 8, "tech": 10 },
-    "multiSource": { "value": 12, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 17, "ME": 11, "EU": 9, "AS": 5, "AF": 5, "OC": 2 } },
-    "sciTech": { "ratio": 37, "target": 25, "met": true },
-    "topSourceShare": { "source": "The Diplomat", "pct": 8, "target": 20, "met": true },
-    "uniqueSources": 49,
+    "categories": { "politics": 17, "economy": 13, "science": 11, "tech": 9 },
+    "multiSource": { "value": 10, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 17, "EU": 14, "ME": 7, "AS": 6, "AF": 5, "OC": 1 } },
+    "sciTech": { "ratio": 40, "target": 25, "met": true },
+    "topSourceShare": { "source": "RT", "pct": 8, "target": 20, "met": true },
+    "uniqueSources": 44,
     "duplicates": 0,
-    "avgCycleDuration": 1243
+    "avgCycleDuration": 1289
   },
-  "experiment": "Skipped — all goal metrics within targets and no active experiment to evaluate. The queued numerical-density experiment touches write-prompt.md, which is out of scope for daily parameter tuning.",
-  "weakestArea": "Sci-tech ratio fell from yesterday's 45% to 37% on lower throughput (49 articles vs 73), driven by a soft science day (8 vs 18). Still comfortably above the 25% target and above the science floor of 5, so no action — worth watching if the science dip persists across cycles.",
+  "experiment": "Skipped — all metrics within targets, no active experiments, no pause gate.",
+  "weakestArea": "Nothing is near a target. The softest signal is freshness measurement coverage: only 2 of 50 articles produced a computable publication lag today (4 of 56 yesterday), so the median of 0 rests on a thin sample even though it is directionally healthy. OC remains the thinnest region at 1 article, but region count (6) still clears the floor of 4.",
   "watching": [
-    "Science output dropped to 8 today from 18 yesterday — monitor whether this is single-day feed thinness or a sustained slide toward the floor.",
-    "Daily throughput compressed to 49 articles (vs 73 yesterday); avgPublished held at 9/cycle, so the drop reflects a lighter news day rather than a pipeline regression.",
-    "Today's freshness sample is only 3 dated articles (median 0); the full-day signal will firm up but tracks yesterday's median-0 freshness."
+    "Freshness lag is computed on only 2 articles today and 4 yesterday — worth confirming the lag-extraction step parses publication dates for the full corpus rather than silently dropping most articles.",
+    "Tech (9) is the lowest specialist category — comfortably above its floor of 4 but worth watching it does not drift down on lighter news days.",
+    "RT is the single largest source at 4/50 (8%); state-media concentration stays well under the 20% cap but is worth a periodic glance."
   ],
   "coverageGaps": [
-    "Oceania remains thin at 2 articles — persistent structural underrepresentation versus AM (17) and ME (11).",
-    "Africa at 5 is adequate but concentrated in a few outlets (Premium Times Nigeria 3, Daily Maverick 3)."
+    "Oceania surfaced only 1 article (OC) — recurring thinness, though within the regional floor.",
+    "Africa at 5 articles (AF) is the second-thinnest region; coverage skews heavily to the Americas (17) and Europe (14)."
   ],
-  "context": "No experiment has been active since the 2026-05-18 editor-effort experiment closed void on 2026-05-26. History shows the selector multi-source floor lever is tapped out (2026-05-09 reverted: feed supplies ~9 multi-source/cycle, capping published multi-source rate near 22%); future sourcing gains should target upstream feed clustering, not selector floors. All four daily goals — freshness, diversity, multi-source, educational value — are met today, so the healthiest move is to hold parameters steady and continue baselining the current model lineup."
+  "context": "Healthy day across every goal: 50 articles over 5 completed cycles, 40% sci-tech share, 10 multi-source stories, 6 regions, 0 duplicates, top-source share 8%. No experiment is active and the queued numerical-density experiment targets scripts/write-prompt.md, which is out of scope for daily parameter tuning. Per the skip-if-healthy rule, no new experiment is proposed; the selector multi-source-floor lever was found tapped on 2026-05-16, so future sourcing work should target the upstream feed rather than floors."
 }
