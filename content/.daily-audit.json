@@ -1,27 +1,27 @@
 {
-  "date": "2026-06-24",
+  "date": "2026-06-25",
   "metrics": {
-    "articles": { "value": 50, "detail": "5 cycles completed, avg 9/cycle published" },
+    "articles": { "value": 47, "detail": "5 cycles, avg 9/cycle (61 yesterday)" },
     "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 17, "economy": 13, "science": 11, "tech": 9 },
+    "categories": { "politics": 17, "economy": 13, "science": 7, "tech": 10 },
     "multiSource": { "value": 10, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 17, "EU": 14, "ME": 7, "AS": 6, "AF": 5, "OC": 1 } },
-    "sciTech": { "ratio": 40, "target": 25, "met": true },
-    "topSourceShare": { "source": "RT", "pct": 8, "target": 20, "met": true },
-    "uniqueSources": 44,
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 18, "EU": 9, "AS": 8, "ME": 6, "AF": 5, "OC": 1 } },
+    "sciTech": { "ratio": 36, "target": 25, "met": true },
+    "topSourceShare": { "source": "Ars Technica", "pct": 9, "target": 20, "met": true },
+    "uniqueSources": 47,
     "duplicates": 0,
-    "avgCycleDuration": 1289
+    "avgCycleDuration": 1136
   },
-  "experiment": "Skipped — all metrics within targets, no active experiments, no pause gate.",
-  "weakestArea": "Nothing is near a target. The softest signal is freshness measurement coverage: only 2 of 50 articles produced a computable publication lag today (4 of 56 yesterday), so the median of 0 rests on a thin sample even though it is directionally healthy. OC remains the thinnest region at 1 article, but region count (6) still clears the floor of 4.",
+  "experiment": "Skipped — all metrics within targets, no active experiments, and the selector-floor lever is documented as tapped out for the binding sourcing-cluster metric (see 2026-05-09 revert).",
+  "weakestArea": "Science is the metric closest to its floor: 7 articles today against a target of 5, down sharply from 14 yesterday, and the sci+tech ratio fell 44%→36% in tandem. Still comfortably above the 25% target, so this reads as normal day-to-day variance in specialist-feed supply rather than a regression — worth watching only if it persists for several cycles.",
   "watching": [
-    "Freshness lag is computed on only 2 articles today and 4 yesterday — worth confirming the lag-extraction step parses publication dates for the full corpus rather than silently dropping most articles.",
-    "Tech (9) is the lowest specialist category — comfortably above its floor of 4 but worth watching it does not drift down on lighter news days.",
-    "RT is the single largest source at 4/50 (8%); state-media concentration stays well under the 20% cap but is worth a periodic glance."
+    "Science output halved day-over-day (14→7); confirm it rebounds next cycle rather than settling into a lower band.",
+    "Total throughput eased 61→47 while avgPublished held at 9/cycle, so this is lighter feed days rather than a pipeline stall.",
+    "Americas region share is 38% (18/47) — the heaviest single bucket; not a violation but the diversity edge to monitor."
   ],
   "coverageGaps": [
-    "Oceania surfaced only 1 article (OC) — recurring thinness, though within the regional floor.",
-    "Africa at 5 articles (AF) is the second-thinnest region; coverage skews heavily to the Americas (17) and Europe (14)."
+    "Oceania represented by a single article (OC: 1) — the standing structural thin spot in regional coverage.",
+    "Science specialist sourcing narrowed today to five outlets (Phys.org, Quanta, Nature, Carbon Brief, NDTV), fewer distinct science sources than yesterday."
   ],
-  "context": "Healthy day across every goal: 50 articles over 5 completed cycles, 40% sci-tech share, 10 multi-source stories, 6 regions, 0 duplicates, top-source share 8%. No experiment is active and the queued numerical-density experiment targets scripts/write-prompt.md, which is out of scope for daily parameter tuning. Per the skip-if-healthy rule, no new experiment is proposed; the selector multi-source-floor lever was found tapped on 2026-05-16, so future sourcing work should target the upstream feed rather than floors."
+  "context": "All four goal areas (freshness, diversity, multi-source, educational value) are met with margin, zero duplicates, and top-source concentration at ~9% — well under the 20% cap. No experiment is active, and prior sourcing-cluster work concluded that the selector-floor lever cannot push multi-source rate past the feed's ~9/cycle supply ceiling; future sourcing gains require upstream Event Registry / regional-feed changes that are outside daily-tuning scope. Holding steady is the correct move today."
 }
