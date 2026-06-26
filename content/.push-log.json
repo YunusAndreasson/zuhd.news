@@ -1,112 +1,5 @@
 [
   {
-    "timestamp": "2026-06-05T08:32:08.516Z",
-    "candidateCount": 12,
-    "candidates": [
-      {
-        "slug": "2026-06-05-bitcoin-falls-ai-trade-unwind-etf-outflows",
-        "title": "Bitcoin Tracks AI Equity Slide",
-        "category": "economy",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-oman-mina-al-fahal-oil-terminal-explosion",
-        "title": "Blast Hits Oman Oil Terminal",
-        "category": "economy",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-trump-kushner-albania-sazan-resort-protests",
-        "title": "Albanians Protest Kushner Resort",
-        "category": "economy",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-04-exploration-company-reusable-heavy-lift-rocket",
-        "title": "Europe Startup Builds Heavy Rocket",
-        "category": "science",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-03-br-319-amazon-highway-deforestation-risk",
-        "title": "Brazil Funds Amazon Highway",
-        "category": "science",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-04-berkeley-cs-failing-grades-ai-math-skills",
-        "title": "AI Use Triples Berkeley Fail Rate",
-        "category": "tech",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-04-ukraine-low-cost-interceptor-missile-test",
-        "title": "Ukraine Tests Cheap Interceptor",
-        "category": "tech",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-londa-2025-africa-digital-rights-report",
-        "title": "Africa's Surveillance Outpaces Its Laws",
-        "category": "tech",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-rbi-holds-repo-rate-5-25-war-inflation",
-        "title": "War Freezes India's Rate",
-        "category": "economy",
-        "eventCoverage": 217,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-annamalai-quits-bjp-tamil-nadu-split",
-        "title": "BJP Loses Top Tamil Face",
-        "category": "politics",
-        "eventCoverage": 118,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-uss-ford-carrier-fire-worse-than-reported",
-        "title": "Carrier Fire Worse Than Reported",
-        "category": "politics",
-        "eventCoverage": 25,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-manipur-kuki-village-attack-three-killed",
-        "title": "3 Killed in Manipur Village Attack",
-        "category": "politics",
-        "eventCoverage": 24,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-06-05-bitcoin-falls-ai-trade-unwind-etf-outflows",
-      "title": "Bitcoin Tracks AI Equity Slide",
-      "category": "economy",
-      "body": "Bitcoin shed 14.5% in a week as global AI bets",
-      "eventCoverage": 268,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Bitcoin drops 14% in a week as AI trade unwinds",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 24
-    }
-  },
-  {
     "timestamp": "2026-06-05T12:37:33.183Z",
     "candidateCount": 11,
     "candidates": [
@@ -9921,6 +9814,106 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Volkswagen closes 4 German plants, cuts 35,000 jobs",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 27
+    }
+  },
+  {
+    "timestamp": "2026-06-26T17:26:55.258Z",
+    "candidateCount": 11,
+    "candidates": [
+      {
+        "slug": "2026-06-26-chinese-social-media-shows-possible-plane-incident-in-beijin",
+        "title": "Beijing Skyscraper Crash Censored",
+        "category": "politics",
+        "eventCoverage": 300,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-the-regional-quartet-security-after-the-war-on-iran",
+        "title": "Muslim Powers Caucus Post-Iran War",
+        "category": "politics",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-over-425-000-kids-in-u-s-face-deportation-hearings-without-l",
+        "title": "425,000 US Kids Face Court Alone",
+        "category": "politics",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-russian-energy-ministry-drafts-decree-to-ban-crypto-mining-i",
+        "title": "Russia Bans Moscow Crypto Mining",
+        "category": "economy",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-thanks-to-trump-russia-s-own-pivot-to-asia-is-bearing-fruit",
+        "title": "Southeast Asia Pivots to Russia",
+        "category": "economy",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-blackrock-backed-securitize-to-raise-400-million-nearing-pub",
+        "title": "Securitize Takes Tokenization Rails Public",
+        "category": "economy",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-feedbacks-upon-feedbacks-rock-weathering-and-the-climate",
+        "title": "Rock Erosion Can Amplify Warming",
+        "category": "science",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-coupled-dual-channel-memristors-for-hardware-native-trustwor",
+        "title": "Memristors Run Uncertainty-Aware AI",
+        "category": "tech",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-25-the-papers-please-era-of-the-internet-will-decimate-your-pri",
+        "title": "Age Checks Build an ID Web",
+        "category": "tech",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-eu-to-refuse-military-age-ukrainian-men-refugee-protection",
+        "title": "EU Bars Draft-Age Ukrainians",
+        "category": "politics",
+        "eventCoverage": 169,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-trump-accuses-iran-of-violating-ceasefire-with-us",
+        "title": "Iran Drone Hits Hormuz Ship",
+        "category": "politics",
+        "eventCoverage": 131,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-06-26-chinese-social-media-shows-possible-plane-incident-in-beijin",
+      "title": "Beijing Skyscraper Crash Censored",
+      "category": "politics",
+      "body": "A small aircraft struck Beijing's CITIC Tower",
+      "eventCoverage": 300,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "China censors plane crash into Beijing's tallest tower, officials silent",
     "response": {
       "pushed": 1,
       "skipped": 0,
