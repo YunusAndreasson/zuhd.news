@@ -1,105 +1,5 @@
 [
   {
-    "timestamp": "2026-06-05T12:37:33.183Z",
-    "candidateCount": 11,
-    "candidates": [
-      {
-        "slug": "2026-06-05-naval-drone-explodes-at-romania-s-constanta-port",
-        "title": "Drone Detonates at NATO Port",
-        "category": "politics",
-        "eventCoverage": 221,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-azerbaijan-drone-strikes-kill-five-nationals-sea-of-azov",
-        "title": "Ukraine Drones Kill 5 Azerbaijanis",
-        "category": "politics",
-        "eventCoverage": 61,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-airtrunk-30-billion-india-data-centers",
-        "title": "AirTrunk Pledges $30B for India",
-        "category": "economy",
-        "eventCoverage": 54,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-wana-tribal-elder-sons-killed-south-waziristan",
-        "title": "Malik's Sons Killed in Wana",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-us-forced-labor-ruling-vietnam-trade-probes",
-        "title": "US Probes Squeeze Vietnam Talks",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-south-africa-antivenom-stockout-nhls",
-        "title": "South Africa Antivenom Runs Out",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-04-argentina-vaca-muerta-fracking-waste-pollution",
-        "title": "Fracking Waste Pollutes Neuquén Homes",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-antarctic-deep-meltwater-southern-ocean",
-        "title": "Antarctic Melt Reaches Deeper Waters",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-meta-ai-agent-hijacked-instagram-account-theft",
-        "title": "Meta AI Agent Hijacked Accounts",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-zcash-orchard-pool-vulnerability-hayes-sells",
-        "title": "Zcash Flaw Enables Invisible Minting",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-engro-baidu-pakistan-ai-mou-china",
-        "title": "Pakistan Anchors AI to Baidu",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-06-05-naval-drone-explodes-at-romania-s-constanta-port",
-      "title": "Drone Detonates at NATO Port",
-      "category": "politics",
-      "body": "A naval drone detonated at the port's oil terminal",
-      "eventCoverage": 221,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Sea drone detonates at Romania's Constanta port oil terminal, no casualties",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 24
-    }
-  },
-  {
     "timestamp": "2026-06-05T17:28:15.006Z",
     "candidateCount": 9,
     "candidates": [
@@ -9914,6 +9814,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "China censors plane crash into Beijing's tallest tower, officials silent",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 27
+    }
+  },
+  {
+    "timestamp": "2026-06-26T22:35:21.801Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-06-26-israel-lebanon-framework-hezbollah-conditions",
+        "title": "Israel-Lebanon Framework Signed",
+        "category": "politics",
+        "eventCoverage": 583,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-trump-100-tariff-europe-digital-services-tax",
+        "title": "Trump Threatens 100% Digital Tax Tariff",
+        "category": "economy",
+        "eventCoverage": 349,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-us-strikes-iran-drone-cargo-ship-hormuz",
+        "title": "US Strikes Iran Over Hormuz",
+        "category": "politics",
+        "eventCoverage": 335,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-hormuz-oil-below-70-postwar-recovery",
+        "title": "Oil Drops to $69 Despite Hormuz Strike",
+        "category": "economy",
+        "eventCoverage": 218,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-john-bolton-guilty-classified-documents",
+        "title": "Bolton Pleads Guilty to Secrets Charge",
+        "category": "politics",
+        "eventCoverage": 202,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-eu-antitrust-probe-sanofi-vaccine",
+        "title": "EU Probes Sanofi Vaccine Smear Campaign",
+        "category": "economy",
+        "eventCoverage": 71,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-burkina-faso-cuts-ties-france-sahel",
+        "title": "Burkina Faso Severs French Ties",
+        "category": "politics",
+        "eventCoverage": 56,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-pakistan-airstrikes-afghan-civilians",
+        "title": "Pakistan Drones Kill Afghan Civilians",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-microsoft-openai-nyt-copyright-supercomputer",
+        "title": "NYT: Microsoft Built Supercomputer to Infringe",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-taiwan-chip-ev-factories-poland",
+        "title": "Taiwan Fills Poland's Chip Factory Gap",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-coal-pollution-himalayas-tibetan-plateau",
+        "title": "Coal Soot Crosses the Himalayas",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-brain-cancer-misdiagnosis-tapeworm-cyst",
+        "title": "Tapeworm Larvae Mimicked Brain Cancer",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-06-26-israel-lebanon-framework-hezbollah-conditions",
+      "title": "Israel-Lebanon Framework Signed",
+      "category": "politics",
+      "body": "Hezbollah said it would keep its weapons after [Israel](country:IL),",
+      "eventCoverage": 583,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Israel, Lebanon and US sign peace framework; Hezbollah vows to keep weapons",
     "response": {
       "pushed": 1,
       "skipped": 0,
