@@ -1,27 +1,27 @@
 {
-  "date": "2026-06-25",
+  "date": "2026-06-26",
   "metrics": {
-    "articles": { "value": 47, "detail": "5 cycles, avg 9/cycle (61 yesterday)" },
+    "articles": { "value": 43, "detail": "5 cycles, avg 8/cycle (down from 57 yesterday)" },
     "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 17, "economy": 13, "science": 7, "tech": 10 },
-    "multiSource": { "value": 10, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 18, "EU": 9, "AS": 8, "ME": 6, "AF": 5, "OC": 1 } },
-    "sciTech": { "ratio": 36, "target": 25, "met": true },
-    "topSourceShare": { "source": "Ars Technica", "pct": 9, "target": 20, "met": true },
-    "uniqueSources": 47,
+    "categories": { "politics": 17, "economy": 13, "science": 9, "tech": 4 },
+    "multiSource": { "value": 11, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "EU": 14, "AM": 10, "ME": 10, "AS": 6, "OC": 2, "AF": 1 } },
+    "sciTech": { "ratio": 30, "target": 25, "met": true },
+    "topSourceShare": { "source": "Nature/Dawn/Phys.org/TASS (tie)", "pct": 9, "target": 20, "met": true },
+    "uniqueSources": 44,
     "duplicates": 0,
-    "avgCycleDuration": 1136
+    "avgCycleDuration": 951
   },
-  "experiment": "Skipped — all metrics within targets, no active experiments, and the selector-floor lever is documented as tapped out for the binding sourcing-cluster metric (see 2026-05-09 revert).",
-  "weakestArea": "Science is the metric closest to its floor: 7 articles today against a target of 5, down sharply from 14 yesterday, and the sci+tech ratio fell 44%→36% in tandem. Still comfortably above the 25% target, so this reads as normal day-to-day variance in specialist-feed supply rather than a regression — worth watching only if it persists for several cycles.",
+  "experiment": "Skipped — all four goal areas (freshness, diversity, multi-source, educational value) are within targets and no experiment is active. No tunable-parameter lever would address today's soft spots without risking a healthy metric.",
+  "weakestArea": "Tech is the metric closest to its target: 4 articles, exactly at the 4/day floor and down sharply from 14 yesterday. The sci-tech ratio (30%) still clears 25% because science held at 9, but tech volume is being carried entirely by the selector floor rather than organic feed supply. A single weak cycle would drop tech below floor.",
   "watching": [
-    "Science output halved day-over-day (14→7); confirm it rebounds next cycle rather than settling into a lower band.",
-    "Total throughput eased 61→47 while avgPublished held at 9/cycle, so this is lighter feed days rather than a pipeline stall.",
-    "Americas region share is 38% (18/47) — the heaviest single bucket; not a violation but the diversity edge to monitor."
+    "Tech collapsed from 14 to 4 day-over-day with no parameter change — likely feed-supply variance, but two consecutive low-tech days would warrant raising the tech floor or inspecting tech-source clustering.",
+    "Article throughput fell from 57 to 43 (avg 8/cycle); within the 8/cycle guardrail but at the lower edge — watch for a sustained decline vs one light news day.",
+    "Politics share is elevated at 17/43 (40%); acceptable given multi-source strength but worth monitoring it doesn't crowd specialist coverage."
   ],
   "coverageGaps": [
-    "Oceania represented by a single article (OC: 1) — the standing structural thin spot in regional coverage.",
-    "Science specialist sourcing narrowed today to five outlets (Phys.org, Quanta, Nature, Carbon Brief, NDTV), fewer distinct science sources than yesterday."
+    "Africa near-absent today: 1 article (AF) vs 5 yesterday — the thinnest region by a wide margin.",
+    "Tech sourcing is narrow (Nature, Ars Technica, The Diplomat); little hard-tech/enterprise coverage in the mix this cycle."
   ],
-  "context": "All four goal areas (freshness, diversity, multi-source, educational value) are met with margin, zero duplicates, and top-source concentration at ~9% — well under the 20% cap. No experiment is active, and prior sourcing-cluster work concluded that the selector-floor lever cannot push multi-source rate past the feed's ~9/cycle supply ceiling; future sourcing gains require upstream Event Registry / regional-feed changes that are outside daily-tuning scope. Holding steady is the correct move today."
+  "context": "No active experiments and no pause gate in .experiments.json. All goal metrics are green, so the rules direct a skip. The day's notable swing is the tech and total-throughput drop from an unusually high yesterday (57 articles, 14 tech) back to a more typical level — not a regression to act on yet. Freshness remains excellent (median 0), and source concentration is very low (top source 9%). The lever for tech volume is the selector tech floor (currently 3), but raising it during a single-day dip would be premature; revisit if low-tech persists."
 }
