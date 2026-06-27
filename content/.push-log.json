@@ -1,91 +1,5 @@
 [
   {
-    "timestamp": "2026-06-05T17:28:15.006Z",
-    "candidateCount": 9,
-    "candidates": [
-      {
-        "slug": "2026-06-05-iss-air-leak-astronauts-shelter-zvezda",
-        "title": "ISS Crew Suits Up Over Zvezda Crack",
-        "category": "science",
-        "eventCoverage": 517,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-us-iran-war-pushing-millions-into-food-crisis-warns-un",
-        "title": "Iran War Fuels Global Hunger",
-        "category": "politics",
-        "eventCoverage": 48,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-insurgents-kill-eight-soldiers-at-borno-military-base",
-        "title": "8 Soldiers Die in Borno Raid",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-israel-permanent-occupation-lebanon-abu-safiyah-solitary",
-        "title": "Lebanon Rejects 'Booby-Trapped' Ceasefire",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-04-egypt-municipal-bill-constitutional-amendments",
-        "title": "Egypt Bill Targets Constitution",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-tanzania-rosatom-nuclear-energy-talks",
-        "title": "Tanzania Opens Rosatom Nuclear Talks",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-why-china-solar-boom-is-slowing-down",
-        "title": "China Solar Installations Collapse",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-ice-facial-recognition-app-local-police",
-        "title": "ICE Pushes Face-Scan App to Police",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-gps-military-numbers-station-encrypted-keys",
-        "title": "GPS Hides Pentagon Encryption Channel",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-06-05-iss-air-leak-astronauts-shelter-zvezda",
-      "title": "ISS Crew Suits Up Over Zvezda Crack",
-      "category": "science",
-      "body": "5 astronauts suited up as Zvezda's crack",
-      "eventCoverage": 517,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "NASA astronauts don spacesuits in Crew Dragon as ISS Zvezda module air leak worsens",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 24
-    }
-  },
-  {
     "timestamp": "2026-06-05T22:26:17.496Z",
     "candidateCount": 11,
     "candidates": [
@@ -9921,6 +9835,99 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Israel, Lebanon and US sign peace framework; Hezbollah vows to keep weapons",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 27
+    }
+  },
+  {
+    "timestamp": "2026-06-27T04:24:24.821Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-06-27-india-mahasagar-modi-seychelles-indian-ocean",
+        "title": "Modi Opens Seychelles Summit",
+        "category": "politics",
+        "eventCoverage": 86,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-china-fujian-three-carrier-era-taiwan-strait",
+        "title": "Fujian Carrier Transits Taiwan Strait",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-27-connecticut-inmate-death-custodial-video",
+        "title": "J'Allen Jones Death Video Released",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-27-anthropic-h1b-salaries-ai-talent-market",
+        "title": "Anthropic Reveals $1.38M Salaries",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-25-ohb-510m-capital-raise-european-launch",
+        "title": "OHB Raises €482M for Space",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-colombia-power-shift-fossil-fuel-transition",
+        "title": "Colombia Elects Pro-Fracking President",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-nasa-braking-engines-rosalind-franklin-mars",
+        "title": "NASA Delivers Mars Rover Engines",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-europe-june-heat-climate-attribution",
+        "title": "Europe Hits Record June Heat",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-south-korea-military-drone-warriors-training",
+        "title": "South Korea Builds Drone Army",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-27-pig-kidney-xenotransplant-transgenes-primates",
+        "title": "Pig Kidney Extends Primate Survival",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-06-27-india-mahasagar-modi-seychelles-indian-ocean",
+      "title": "Modi Opens Seychelles Summit",
+      "category": "politics",
+      "body": "[Seychelles](country:SC) welcomed Modi and 2 Indian Navy ships",
+      "eventCoverage": 86,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Modi arrives in Seychelles, signs 7 cooperation agreements with Indian Ocean partner",
     "response": {
       "pushed": 1,
       "skipped": 0,
