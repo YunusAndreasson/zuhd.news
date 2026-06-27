@@ -4888,5 +4888,25 @@
       "category tech below floor 2 (got 1)"
     ],
     "degenerate": true
+  },
+  {
+    "ts": "2026-06-27T12:22:16.315Z",
+    "cycleId": "2026-06-27T12-22",
+    "cycleHour": "12",
+    "rvs": 45.16,
+    "clusters": {
+      "picking": null,
+      "writing": 81.25,
+      "briefing": 0,
+      "sourcing": 43.57,
+      "coverage": 58.83
+    },
+    "articleCount": 8,
+    "briefCount": 0,
+    "guardrailFailures": [
+      "category politics below floor 3 (got 2)",
+      "category tech below floor 2 (got 1)"
+    ],
+    "degenerate": true
   }
 ]
