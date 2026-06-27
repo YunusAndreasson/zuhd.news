@@ -1,105 +1,5 @@
 [
   {
-    "timestamp": "2026-06-05T22:26:17.496Z",
-    "candidateCount": 11,
-    "candidates": [
-      {
-        "slug": "2026-06-05-senate-70bn-immigration-enforcement-bill",
-        "title": "Senate Passes $70B Deportation Bill",
-        "category": "economy",
-        "eventCoverage": 279,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-judge-strikes-down-trump-asylum-visa-bar-39-countries",
-        "title": "Judge Voids 39-Country Asylum Freeze",
-        "category": "politics",
-        "eventCoverage": 135,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-france-war-crimes-probe-israel-gaza-flotilla",
-        "title": "France Probes Israel for War Crimes",
-        "category": "politics",
-        "eventCoverage": 88,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-sudan-rsf-armed-tribes-darfur-tribal-war",
-        "title": "RSF-Armed Tribes Ignite Darfur War",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-pew-poll-global-views-israel-36-countries",
-        "title": "World Sours on Israel, Pew Finds",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-usaf-mq9-reaper-losses-iran-houthi-attrition",
-        "title": "US Scrambles for Reapers After Iran",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-wall-street-selloff-chips-jobs-rate-fears",
-        "title": "Strong Jobs Snap Wall Street Streak",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-anwr-arctic-oil-lease-sale-few-bids",
-        "title": "ANWR Auction Gets 9 Bids, No Majors",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-india-deep-tech-space-startup-partnership",
-        "title": "India Fuses State and Space Startups",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-05-bluetooth-speaker-over-the-air-hid-attack",
-        "title": "Bluetooth Speaker Becomes PC Backdoor",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-04-ai-recursive-self-improvement-progress",
-        "title": "AI Now Helps Build Its Successor",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-06-05-senate-70bn-immigration-enforcement-bill",
-      "title": "Senate Passes $70B Deportation Bill",
-      "category": "economy",
-      "body": "The [US](country:US) Senate approved $70 billion for",
-      "eventCoverage": 279,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Senate passes $70B immigration enforcement bill, sending it to House",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 24
-    }
-  },
-  {
     "timestamp": "2026-06-06T04:34:12.556Z",
     "candidateCount": 11,
     "candidates": [
@@ -9933,5 +9833,70 @@
       "skipped": 0,
       "tokens": 27
     }
+  },
+  {
+    "timestamp": "2026-06-27T08:21:46.533Z",
+    "candidateCount": 8,
+    "candidates": [
+      {
+        "slug": "2026-06-26-peru-fujimori-extortion-illegal-mining-congress",
+        "title": "Extortion Outlasts Peru's 8 Presidents",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-26-uk-palestine-activist-sentenced-terrorist-property-damage",
+        "title": "Britain Sentences Protesters as Terrorists",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-27-punjab-habitual-offenders-anti-social-behaviour-law",
+        "title": "Punjab Punishes Annoyance, Skips Trials",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-27-saylor-strategy-leverage-bitcoin-systemic-risk",
+        "title": "Strategy's Leverage Model Cracks",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-27-crypto-selloff-capital-rotation-ai-stocks",
+        "title": "Crypto Falls as AI Rallies",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-27-india-msmes-access-capital-markets-growth",
+        "title": "India MSMEs Lack Capital Access",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-27-surveillance-normalization-public-space-data",
+        "title": "Rio Scanned Millions Without Limits",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-27-design-and-analysis-of-modified-octagonal-ring-shaped-mimo-a",
+        "title": "4-Port Antenna Covers 5G, Wi-Fi",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": null,
+    "skipReason": "all 8 candidates below coverage threshold 1",
+    "sent": false
   }
 ]
