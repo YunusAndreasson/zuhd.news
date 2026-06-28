@@ -1,26 +1,27 @@
 {
-  "date": "2026-06-27",
+  "date": "2026-06-28",
   "metrics": {
-    "articles": { "value": 38, "detail": "5 cycles, avg 8/cycle (down from 55 yesterday — light Saturday feed)" },
+    "articles": { "value": 46, "detail": "5 cycles, ~9/cycle, all completed" },
     "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 12, "economy": 12, "science": 7, "tech": 7 },
-    "multiSource": { "value": 5, "target": 4, "met": true },
-    "regions": { "count": 7, "target": 4, "met": true, "breakdown": { "AM": 14, "EU": 11, "ME": 5, "AS": 4, "AF": 2, "OC": 1, "GL": 1 } },
-    "sciTech": { "ratio": 37, "target": 25, "met": true },
-    "topSourceShare": { "source": "Nature", "pct": 18, "target": 20, "met": true },
-    "uniqueSources": 31,
+    "categories": { "politics": 16, "economy": 15, "science": 10, "tech": 5 },
+    "multiSource": { "value": 7, "target": 4, "met": true },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "ME": 13, "EU": 12, "AM": 8, "AF": 8, "AS": 5 } },
+    "sciTech": { "ratio": 33, "target": 25, "met": true },
+    "topSourceShare": { "source": "Mehr News Agency", "pct": 13, "target": 20, "met": true },
+    "uniqueSources": 36,
     "duplicates": 0,
-    "avgCycleDuration": 1068
+    "avgCycleDuration": 1015
   },
-  "experiment": "Skipped — all metrics within targets, no active experiment to evaluate, no pause gate set.",
-  "weakestArea": "Top-source concentration is the closest metric to breach: Nature supplied 7 of 38 articles (18.4%, just under the 20% cap) and accounts for all of today's science picks plus part of tech. On a low-throughput day a single specialist outlet pulls disproportionate weight; if tomorrow is similarly thin, Nature could cross 20%. Not actionable as a tunable parameter today, but worth watching.",
+  "experiment": "Skipped — all goal metrics within targets and no experiment slot is active. Queued numerical-density experiment stays out of scope (write-prompt.md is not a daily-tuning parameter file).",
+  "weakestArea": "Tech is furthest from comfort: 5 articles (~11% share) sits just one above its floor of 4, and tech sources are thin (Hacker News, Aol, Mehr, Nature). The overall sci+tech ratio (33%) clears the 25% target mainly because science was strong at 10 today; on a weaker science day the tech floor alone would leave little margin.",
   "watching": [
-    "Throughput dropped to 38 vs 55 yesterday — consistent with a thin Saturday feed rather than a pipeline fault; confirm it recovers Monday.",
-    "Nature share at 18.4% — monitor that science coverage doesn't become single-outlet dependent on low-volume days."
+    "Tech volume hovering near its floor (5 today vs 8 yesterday) — high variance; if it sits at 5 across multiple cycles the tech floor of 3/cycle becomes the binding constraint rather than feed supply.",
+    "Mehr News Agency at 6 articles (13%) is the day's concentration leader — within the 20% cap but the highest single-source share; watch it does not creep on lighter-volume days.",
+    "Multi-source rate (7/day) holding above target; the feed's ~9/cycle multi supply caps this near ~22%, so no selector lever to push further (2026-05-09 learning)."
   ],
   "coverageGaps": [
-    "Africa under-covered at 2 articles and Oceania at 1 — regional diversity target is met overall but the long tail is thin.",
-    "Multi-source count of 5 is only just above the floor of 4; the feed's per-cycle multi-source supply remains the binding constraint (per the 2026-05-09 floor experiment learning, the selector floor lever is tapped)."
+    "Oceania (OC) absent today (1 yesterday) — recurring thin-region pattern, feed-supply driven rather than a tunable miss.",
+    "Asia (AS 5) under-weighted vs ME/EU despite available regional outlets (Dawn, Hindustan Times, NDTV, The Diplomat all appeared) — depth, not absence."
   ],
-  "context": "All four goal areas (freshness, diversity, multi-source, educational value) are within target. No experiments are active and there is no noNewExperimentsUntil gate, but history shows the selector multi-source floor lever is exhausted (2026-05-09 reverted) and write-prompt.md is out of daily-tuning scope, so the remaining sourcing headroom lives upstream in feed clustering. Holding steady today rather than introducing a variable into a healthy, low-volume weekend."
+  "context": "Healthy day across the board: 46 articles over 5 completed cycles, zero duplicates, freshness pinned at 0, and low source concentration (36 unique sources, top share 13%). No active experiments and no pause gate, but with every metric green there is no defensible single-variable change to make — proposing one would add a confound without a problem to solve. The standing sourcing lesson holds: the multi-source rate is feed-capped, so the next meaningful sourcing experiment should target upstream Event Registry clustering / regional-outlet inclusion, not selector floors (which 2026-05-09 showed are tapped)."
 }
