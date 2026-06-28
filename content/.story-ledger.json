@@ -2,13 +2,225 @@
   "version": 1,
   "stories": [
     {
+      "id": "putin-admits-ukrainian-strikes-russian-fuel-shortage",
+      "label": "Putin admits Ukrainian strikes driving Russian fuel shortages",
+      "firstSeen": "2026-06-28T22:07:39.888Z",
+      "lastCovered": "2026-06-28T22:07:39.888Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-28-putin-admits-ukrainian-strikes-russian-fuel-shortage"
+      ],
+      "eventUri": "eng-11783627",
+      "summary": "Putin, on the record to the Kremlin's own outlet, concedes a 'certain shortage' of fuel from Ukrainian drone strikes on refineries — a rare admission of cost from a leader who insists the war is going to plan. Lead with the mechanism: Kyiv has shifted from territorial defence to systematically degrading Russia's refining capacity, and the pressure is now visible at the pump inside Russia. Multi-perspective — Guardian, India Today and Al Jazeera framings diverge (divergence 0.4). Advances the Ukraine refinery-strike arc with a fresh angle: the adversary's own concession, not another strike report.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Oil_refinery",
+        "http://en.wikipedia.org/wiki/Vladimir_Putin"
+      ]
+    },
+    {
+      "id": "venezuela-earthquakes-68000-missing-undp-damage",
+      "label": "More than 68,000 people still missing in Venezuela after earthquakes",
+      "firstSeen": "2026-06-28T22:07:39.888Z",
+      "lastCovered": "2026-06-28T22:07:39.888Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-28-venezuela-earthquakes-68000-missing-undp-damage"
+      ],
+      "eventUri": "spa-4249238",
+      "summary": "Who is affected: tens of thousands still unaccounted for after back-to-back quakes, with the UNDP pricing direct physical damage at $6.7 billion. Lead with the 68,000 missing — a number that signals a search-and-rescue system overwhelmed, not just a death toll. The structural why: an already sanctions-strained Venezuelan state must absorb a catastrophe with degraded capacity and limited international access; track whether aid pledges (EU €5.6m, others) actually reach affected zones. Multi-source across five countries.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Venezuela",
+        "http://en.wikipedia.org/wiki/Earthquake",
+        "http://en.wikipedia.org/wiki/International_community"
+      ]
+    },
+    {
+      "id": "us-iran-agree-halt-strikes-doha-consultations",
+      "label": "United States, Iran agreed to stop strikes — Axios",
+      "firstSeen": "2026-06-28T22:07:39.888Z",
+      "lastCovered": "2026-06-28T22:07:39.888Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-28-us-iran-agree-halt-strikes-doha-consultations"
+      ],
+      "eventUri": null,
+      "summary": "Washington and Tehran have reportedly agreed to halt strikes and hold consultations in Doha on June 30, per Axios reporting carried here by TASS. Lead with the de-escalation against the backdrop of the Article 5 / Strait of Hormuz dispute we covered last cycle — this is the exit ramp the MoU ambiguity nearly closed off. The mechanism to watch: Qatari mediation in Doha as the venue where the chokepoint-control question gets renegotiated. Sourcing caveat for the writer — single feed source (TASS attributing Axios); treat as agreed-to-talk, not signed peace, and flag if wires diverge.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Doha",
+        "http://en.wikipedia.org/wiki/Tehran"
+      ]
+    },
+    {
+      "id": "pakistan-directive-arrest-undocumented-afghans-july-10",
+      "label": "Interior ministry issues directive to arrest Afghan nationals without valid visas from July 10",
+      "firstSeen": "2026-06-28T22:07:39.888Z",
+      "lastCovered": "2026-06-28T22:07:39.888Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-28-pakistan-directive-arrest-undocumented-afghans-july-10"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's Interior Ministry orders provinces to arrest from July 10 any Afghan national found without a valid visa — formalising a mass-removal apparatus aimed at a population that has lived in Pakistan for decades. Who bears the cost: Afghan families, many born in Pakistan, facing detention and deportation into a Taliban-run economy in collapse. Lead with the named state order and the date — this is a scheduled, bureaucratised displacement, not a one-off raid. OIC-region story carried by Dawn (PK).",
+      "conceptUris": []
+    },
+    {
+      "id": "pakistan-peacemaker-image-enforced-disappearances",
+      "label": "Pakistan Wants the World to See It as a Peacemaker. I Want It to Find My Father.",
+      "firstSeen": "2026-06-28T22:07:39.888Z",
+      "lastCovered": "2026-06-28T22:07:39.888Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-28-pakistan-peacemaker-image-enforced-disappearances"
+      ],
+      "eventUri": null,
+      "summary": "As Pakistan rebrands itself diplomatically, a family's account of an enforced disappearance names the cost of that image management. Lead with the accountability gap: the same state seeking peacemaker credibility abroad has an unresolved domestic record of disappearances. The mechanism — image laundering on the international stage while named victims go unanswered at home. Single-source but original first-person testimony; OIC-region subject with no Pakistani regional outlet in the feed cluster (feed-side gap, noted).",
+      "conceptUris": []
+    },
+    {
+      "id": "spacex-index-rule-401k-openai-anthropic",
+      "label": "SpaceX just landed in millions of 401(k)s due to key index rule changes — and the same rules open the door to OpenAI and Anthropic",
+      "firstSeen": "2026-06-28T22:07:39.888Z",
+      "lastCovered": "2026-06-28T22:07:39.888Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-28-spacex-index-rule-401k-openai-anthropic"
+      ],
+      "eventUri": "eng-11781994",
+      "summary": "A technical index-eligibility rule change quietly pulled newly-public SpaceX into the Nasdaq-100 — and therefore into millions of passive 401(k) accounts — after a volatile IPO that ran to a ~$3tn valuation then gave most of it back. Lead with the mechanism ordinary readers never see: index rules, not investor choice, decide what retirement money owns, and the same door now opens for OpenAI and Anthropic. The structural why: concentration of household savings into a handful of volatile AI/space megacaps by rule, not judgment.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/SpaceX",
+        "http://en.wikipedia.org/wiki/Nasdaq-100",
+        "http://en.wikipedia.org/wiki/Exchange-traded_fund",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence"
+      ]
+    },
+    {
+      "id": "nelson-mandela-bay-metro-financial-collapse-auditor",
+      "label": "Auditor-General and Treasury's dismal assessment of Nelson Mandela Bay metro",
+      "firstSeen": "2026-06-28T22:07:39.888Z",
+      "lastCovered": "2026-06-28T22:07:39.888Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-28-nelson-mandela-bay-metro-financial-collapse-auditor"
+      ],
+      "eventUri": null,
+      "summary": "Two official reports — from the Auditor-General and National Treasury — find a major South African metro on the brink of financial collapse, with the AG warning that absent environmental controls may be actively harming residents. Lead with the accountability finding: independent state auditors naming a municipality's failure, and the human cost (water/sanitation harm) buried in the fiscal language. The structural why: local-government collapse as the frontline of South Africa's governance crisis, distinct from the national immigration politics dominating SA coverage.",
+      "conceptUris": []
+    },
+    {
+      "id": "max-planck-1940s-papers-retraction-puzzle",
+      "label": "Why did this journal retract two 1940s papers by Max Planck?",
+      "firstSeen": "2026-06-28T22:07:39.888Z",
+      "lastCovered": "2026-06-28T22:07:39.888Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-28-max-planck-1940s-papers-retraction-puzzle"
+      ],
+      "eventUri": null,
+      "summary": "Eighty years on, a journal retracts two papers by quantum pioneer Max Planck — not for fraud, but on integrity grounds historians find puzzling. Lead with the surprise: a Nobel laureate with no whisper of scandal, retracted retroactively, and what that says about how the modern retraction apparatus handles the historical record. The mechanism to teach: retraction as a tool designed for present-day misconduct being applied backward across eras with different norms.",
+      "conceptUris": []
+    },
+    {
+      "id": "solar-gravitational-lens-map-white-dwarfs-black-holes",
+      "label": "The solar gravitational lens could map white dwarfs and black holes",
+      "firstSeen": "2026-06-28T22:07:39.888Z",
+      "lastCovered": "2026-06-28T22:07:39.888Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-28-solar-gravitational-lens-map-white-dwarfs-black-holes"
+      ],
+      "eventUri": null,
+      "summary": "A new arXiv paper argues the Solar Gravitational Lens — using the Sun's mass to magnify distant light — could image not just exoplanets but white dwarfs and black holes. Lead with the leap in capability: a 'telescope' built from spacetime itself, resolving objects no built instrument can. The mechanism to teach the reader: gravitational lensing turns the Sun into the aperture, and why the mission's hard part is geometry and distance (550+ AU), not optics.",
+      "conceptUris": []
+    },
+    {
+      "id": "eu-chat-control-client-side-scanning-trilogue",
+      "label": "EU to legislate about Chat Control behind closed doors",
+      "firstSeen": "2026-06-28T22:07:39.888Z",
+      "lastCovered": "2026-06-28T22:07:39.888Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-28-eu-chat-control-client-side-scanning-trilogue"
+      ],
+      "eventUri": null,
+      "summary": "The EU's 'Chat Control' client-side-scanning proposal is reportedly being advanced through closed-door trilogue with imminent concessions, reviving the fight over mandatory scanning of private messages. Lead with the mechanism developers grasp instantly: client-side scanning breaks end-to-end encryption by design — there is no 'scan only the bad messages' that doesn't also create a surveillance backdoor for everyone. The accountability angle: lawmaking on a measure that touches every encrypted app, conducted out of public view.",
+      "conceptUris": []
+    },
+    {
+      "id": "ford-ai-quality-control-rehires-engineers",
+      "label": "Ford's AI wasn't smart enough to replace veteran engineers — so it hired 350 specialists to shore up its quality control issues",
+      "firstSeen": "2026-06-28T22:07:39.888Z",
+      "lastCovered": "2026-06-28T22:07:39.888Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-28-ford-ai-quality-control-rehires-engineers"
+      ],
+      "eventUri": "eng-11776294",
+      "summary": "Ford concedes it leaned too hard on AI over experienced engineers in quality control — and is now hiring 350 specialists to fix what the automation missed, after alienating senior talent. Lead with the reversal: a marquee manufacturer publicly admitting AI under-delivered on a safety-critical task, a rare data point against the replace-the-workforce narrative. The mechanism to teach: where AI fails in physical engineering is exactly the tacit, experiential judgment that resists training-data capture.",
+      "conceptUris": []
+    },
+    {
+      "id": "physical-media-ownership-vs-revocable-licenses",
+      "label": "The case for physical media ownership",
+      "firstSeen": "2026-06-28T22:07:39.888Z",
+      "lastCovered": "2026-06-28T22:07:39.888Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-06-27-physical-media-ownership-vs-revocable-licenses"
+      ],
+      "eventUri": null,
+      "summary": "A widely-read argument (473 HN points) that licensing has quietly replaced ownership: the films, books and games people 'buy' can be revoked, edited, or vanish at a platform's discretion. Lead with the structural shift, not nostalgia — the legal substitution of a revocable license for a durable property right, and what that means for cultural permanence. The mechanism to teach: 'buy' buttons that grant a license terminable at will, and why physical media is the only copy no one can reach into and delete.",
+      "conceptUris": []
+    },
+    {
       "id": "article-5-mou-strait-of-hormuz-confrontations",
       "label": "Why is Article 5 of MoU causing confrontations in the Strait of Hormuz?",
       "firstSeen": "2026-06-28T17:07:34.922Z",
       "lastCovered": "2026-06-28T17:07:34.922Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-28-article-5-mou-strait-of-hormuz-confrontations"
@@ -33,7 +245,7 @@
       "lastCovered": "2026-06-28T17:07:34.922Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-28-iraq-arrests-47-officials-anti-corruption-crackdown"
@@ -58,7 +270,7 @@
       "lastCovered": "2026-06-28T17:07:34.922Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-28-el-obeid-drone-strikes-sudan-humanitarian-crisis"
@@ -74,7 +286,7 @@
       "lastCovered": "2026-06-28T17:07:34.922Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-28-aramco-helicopter-crash-ras-tanura-14-dead"
@@ -99,7 +311,7 @@
       "lastCovered": "2026-06-28T17:07:34.922Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-28-bis-ai-bust-credit-circular-financing-risk"
@@ -124,7 +336,7 @@
       "lastCovered": "2026-06-28T17:07:34.922Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-28-sudanese-pound-decline-war-economy"
@@ -140,7 +352,7 @@
       "lastCovered": "2026-06-28T17:07:34.922Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-28-asean-section-301-tariffs-integration"
@@ -156,7 +368,7 @@
       "lastCovered": "2026-06-28T17:07:34.922Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-28-sodium-ion-cathode-activated-na-sites"
@@ -172,7 +384,7 @@
       "lastCovered": "2026-06-28T17:07:34.922Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-28-algal-uv-defenses-plants-conquer-land"
@@ -188,7 +400,7 @@
       "lastCovered": "2026-06-28T17:07:34.922Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-28-utah-colorado-wildfires-firefighter-deaths"
@@ -204,7 +416,7 @@
       "lastCovered": "2026-06-28T17:07:34.922Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-06-26-gpt-5-6-sol-preview-next-generation-model"
@@ -220,7 +432,7 @@
       "lastCovered": "2026-06-28T12:04:59.618Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-28-uganda-muhoozi-ntv-daily-monitor-media-shutdown"
@@ -236,7 +448,7 @@
       "lastCovered": "2026-06-28T12:04:59.618Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-28-kaduna-lynching-arrests-accountability-police-complicity"
@@ -252,7 +464,7 @@
       "lastCovered": "2026-06-28T12:04:59.618Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-28-sonam-wangchuk-hunger-strike-delhi-police-ladakh-autonomy"
@@ -268,7 +480,7 @@
       "lastCovered": "2026-06-28T12:04:59.618Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-28-modi-gold-foreign-travel-appeal-rupee-import-bill"
@@ -290,7 +502,7 @@
       "lastCovered": "2026-06-28T12:04:59.618Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-28-ukraine-154-billion-western-financing-dependency"
@@ -306,7 +518,7 @@
       "lastCovered": "2026-06-28T12:04:59.618Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-28-france-heatwave-1000-excess-deaths-elderly-climate"
@@ -328,7 +540,7 @@
       "lastCovered": "2026-06-28T12:04:59.618Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-28-delipidated-adipocyte-reprogramming-regenerative-medicine"
@@ -344,7 +556,7 @@
       "lastCovered": "2026-06-28T12:04:59.618Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-28-iran-umbilical-cord-stem-cell-therapy-osteoarthritis-royan"
@@ -360,7 +572,7 @@
       "lastCovered": "2026-06-28T12:04:59.618Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-06-28-dr-ravishankar-chamarajnagar-coindesk-author"
@@ -376,7 +588,7 @@
       "lastCovered": "2026-06-28T08:06:32.992Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-27-us-first-strike-iran-peace-memorandum-collapse"
@@ -398,7 +610,7 @@
       "lastCovered": "2026-06-28T08:06:32.992Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-28-south-africa-mass-migrant-arrests-family-separation"
@@ -414,7 +626,7 @@
       "lastCovered": "2026-06-28T08:06:32.992Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-28-nigeria-witchcraft-mob-violence-impunity-cross-river"
@@ -430,7 +642,7 @@
       "lastCovered": "2026-06-28T08:06:32.992Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-28-iran-iraq-baghdad-regional-security-architecture"
@@ -446,7 +658,7 @@
       "lastCovered": "2026-06-28T08:06:32.992Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-28-iran-italy-european-complicity-us-israeli-war"
@@ -462,7 +674,7 @@
       "lastCovered": "2026-06-28T08:06:32.992Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-28-india-temple-gold-sabarimala-ram-mandir-accountability"
@@ -478,7 +690,7 @@
       "lastCovered": "2026-06-28T08:06:32.992Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-28-europe-waste-exports-morocco-recycling-pollution"
@@ -494,7 +706,7 @@
       "lastCovered": "2026-06-28T08:06:32.992Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-28-iran-kazakhstan-bandar-abbas-transit-corridor"
@@ -510,7 +722,7 @@
       "lastCovered": "2026-06-28T08:06:32.992Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-28-bitcoin-back-to-back-quarterly-loss-etf-macro"
@@ -526,7 +738,7 @@
       "lastCovered": "2026-06-28T08:06:32.992Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-26-openai-gpt56-us-government-access-vetting"
@@ -542,7 +754,7 @@
       "lastCovered": "2026-06-28T08:06:32.992Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-28-world-cup-argentina-conquer-jordan-as-austria-algeria-share"
@@ -558,7 +770,7 @@
       "lastCovered": "2026-06-28T08:06:32.992Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-06-28-pride-march-caps-joyous-new-york-june-while-threats-mount"
@@ -574,7 +786,7 @@
       "lastCovered": "2026-06-28T04:05:39.624Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-28-karachi-ttp-attack-sindh-rangers-killed"
@@ -590,7 +802,7 @@
       "lastCovered": "2026-06-28T04:05:39.624Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-26-scotus-trump-tps-haitians-syrians-deportation"
@@ -606,7 +818,7 @@
       "lastCovered": "2026-06-28T04:05:39.624Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-28-south-africa-anti-immigrant-shutdown-zuma-shadow"
@@ -622,7 +834,7 @@
       "lastCovered": "2026-06-28T04:05:39.624Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-26-turkey-yildirimhan-icbm-strategic-autonomy"
@@ -638,7 +850,7 @@
       "lastCovered": "2026-06-28T04:05:39.624Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-26-iran-war-most-unpopular-us-history-polling"
@@ -654,7 +866,7 @@
       "lastCovered": "2026-06-28T04:05:39.624Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-28-ukraine-drone-strike-krasnodar-refinery-fire"
@@ -670,7 +882,7 @@
       "lastCovered": "2026-06-28T04:05:39.624Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-28-pakistan-supreme-court-property-contracts-inflation"
@@ -686,7 +898,7 @@
       "lastCovered": "2026-06-28T04:05:39.624Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-28-egcg-stroke-microglia-nrf2-neuroinflammation"
@@ -702,7 +914,7 @@
       "lastCovered": "2026-06-28T04:05:39.624Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-27-female-baboons-family-bonds-survival-benefits"
@@ -718,7 +930,7 @@
       "lastCovered": "2026-06-28T04:05:39.624Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-26-erdos-probabilistic-method-upgrade-networks"
@@ -734,7 +946,7 @@
       "lastCovered": "2026-06-28T04:05:39.624Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-28-wild-tomato-genome-recombination-barriers-breeding"
@@ -750,7 +962,7 @@
       "lastCovered": "2026-06-28T04:05:39.624Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-06-28-lvad-thrombosis-computational-blood-flow-modeling"
@@ -766,7 +978,7 @@
       "lastCovered": "2026-06-28T04:05:39.624Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-06-27-iran-uae-trade-resumes-jebel-ali",
@@ -783,7 +995,7 @@
       "lastCovered": "2026-06-27T22:11:23.759Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-27-serbia-s-president-aleksandar-vucic-says-will-resign-within"
@@ -808,7 +1020,7 @@
       "lastCovered": "2026-06-27T22:11:23.759Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-27-trump-taps-former-oklahoma-trooper-as-new-ice-director"
@@ -833,7 +1045,7 @@
       "lastCovered": "2026-06-27T22:11:23.759Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-27-poster-boy-sanctioned-kinahan-cartel-lieutenant-found-playin"
@@ -849,7 +1061,7 @@
       "lastCovered": "2026-06-27T22:11:23.759Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-27-pm-modi-govt-s-silence-on-gaza-cost-india-morally-strategica"
@@ -874,7 +1086,7 @@
       "lastCovered": "2026-06-27T22:11:23.759Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-26-living-better-living-hidden-the-struggle-of-trans-women-in-s"
@@ -890,7 +1102,7 @@
       "lastCovered": "2026-06-27T22:11:23.759Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-27-btc-price-analysis-why-a-selloff-in-gold-and-silver-is-dragg"
@@ -906,7 +1118,7 @@
       "lastCovered": "2026-06-27T22:11:23.759Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-27-why-is-hunger-on-the-rise-among-us-military-families"
@@ -922,7 +1134,7 @@
       "lastCovered": "2026-06-27T22:11:23.759Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-27-ogun-s-28km-coastal-highway-stretch-ready-this-year-as-deep"
@@ -938,7 +1150,7 @@
       "lastCovered": "2026-06-27T22:11:23.759Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-27-panic-attacks-and-fractures-venezuela-hospital-treats-earthq"
@@ -954,7 +1166,7 @@
       "lastCovered": "2026-06-27T22:11:23.759Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-27-factors-related-to-reaching-near-full-of-predicted-spinal-co"
@@ -970,7 +1182,7 @@
       "lastCovered": "2026-06-27T22:11:23.759Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-27-scientists-think-they-ve-uncovered-the-15-million-year-old-o"
@@ -986,7 +1198,7 @@
       "lastCovered": "2026-06-27T22:11:23.759Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-27-brain-inspired-spatial-intelligence-for-embodied-agents"
@@ -1002,200 +1214,13 @@
       "lastCovered": "2026-06-27T22:11:23.759Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-27-metal-center-electron-affinity-modulates-multicolor-electroc"
       ],
       "eventUri": null,
       "summary": "By tuning the electron affinity of the metal center, researchers control multicolor electrochromism in 2D conjugated metal-organic frameworks — a materials-design route to surfaces that change color on demand. Lead with the application space: smart windows, low-power displays and adaptive camouflage all hinge on cheap, tunable electrochromic materials. The structural why for the reader — this is the kind of molecular-level control that turns a lab curiosity into a manufacturable display technology.",
-      "conceptUris": []
-    },
-    {
-      "id": "china-russia-11th-joint-air-patrol-pacific",
-      "label": "China, Russia hold joint air drills over Sea of Japan, Pacific",
-      "firstSeen": "2026-06-27T17:05:30.007Z",
-      "lastCovered": "2026-06-27T17:05:30.007Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-27-china-russia-11th-joint-air-patrol-pacific"
-      ],
-      "eventUri": "eng-11781906",
-      "summary": "The 11th joint China-Russia strategic air patrol — Su-30SM/Su-35S alongside Chinese J-16s over the Sea of Japan, East China Sea and western Pacific. South Korea scrambled jets as 10 aircraft 'briefly' entered its ADIZ. Lead with the institutionalization: an 11th iteration means this is now a standing routine, not a signal. The structural why for a strategic reader — a maturing Beijing-Moscow military axis testing US allies (Seoul, Tokyo) in the Pacific while Washington is absorbed in the Gulf.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/South_Korea",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Fighter_aircraft",
-        "http://en.wikipedia.org/wiki/Anti-aircraft_warfare",
-        "http://en.wikipedia.org/wiki/Airspace",
-        "http://en.wikipedia.org/wiki/Seoul",
-        "http://en.wikipedia.org/wiki/Joint_Chiefs_of_Staff"
-      ]
-    },
-    {
-      "id": "afghanistan-pakistan-hindu-kush-earthquake",
-      "label": "Strong earthquake shakes Afghanistan, Pakistan",
-      "firstSeen": "2026-06-27T17:05:30.007Z",
-      "lastCovered": "2026-06-27T17:05:30.007Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-27-afghanistan-pakistan-hindu-kush-earthquake"
-      ],
-      "eventUri": "eng-11782584",
-      "summary": "A strong quake struck the Hindu Kush, felt from Kabul across Pakistan and India-administered Kashmir, sending people fleeing homes. Lead with the structural vulnerability: Afghanistan's mountain communities sit on a seismic fault with almost no resilient housing or response capacity after years of aid cutoffs and Taliban-era isolation — disaster risk compounded by political abandonment. Track as developing; named victims and damage will follow.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Earthquake",
-        "http://en.wikipedia.org/wiki/Afghanistan",
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Hindu_Kush",
-        "http://en.wikipedia.org/wiki/Moment_magnitude_scale",
-        "http://en.wikipedia.org/wiki/Delhi",
-        "http://en.wikipedia.org/wiki/Jammu_and_Kashmir_(union_territory)",
-        "http://en.wikipedia.org/wiki/Epicenter"
-      ]
-    },
-    {
-      "id": "edinburgh-anti-muslim-attacks-anti-racism-rally",
-      "label": "Hundreds join anti-racism demo after terrorism-linked murder bids",
-      "firstSeen": "2026-06-27T17:05:30.007Z",
-      "lastCovered": "2026-06-27T17:05:30.007Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-27-edinburgh-anti-muslim-attacks-anti-racism-rally"
-      ],
-      "eventUri": null,
-      "summary": "Thousands rallied in Edinburgh a week after alleged anti-Muslim attacks injured five people, in incidents police are treating as terrorism. Lead with the victims and the classification: this is anti-Muslim violence in a Western capital named as terrorism, not a vague 'community tension' story. For the reader, the angle is the asymmetry in how such attacks are framed and policed — accountability for who is protected.",
-      "conceptUris": []
-    },
-    {
-      "id": "binance-eu-mica-license-suspension",
-      "label": "Binance to suspend crypto services in several EU countries",
-      "firstSeen": "2026-06-27T17:05:30.007Z",
-      "lastCovered": "2026-06-27T17:05:30.007Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-26-binance-eu-mica-license-suspension"
-      ],
-      "eventUri": "eng-11773243",
-      "summary": "Binance is pulling services from Poland, Italy, Spain and France from next week after failing to secure a MiCA license, telling customers how to withdraw funds. Lead with the mechanism: the EU's MiCA regime is the first to force the world's largest exchange to choose between compliance and exit, with Spain's watchdog refusing to extend the deadline. The structural why — regulators, not markets, are now setting the boundaries of crypto, and millions of EU users bear the switching cost.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Binance",
-        "http://en.wikipedia.org/wiki/European_Union",
-        "http://en.wikipedia.org/wiki/Greece",
-        "http://en.wikipedia.org/wiki/Europe",
-        "http://en.wikipedia.org/wiki/France",
-        "http://en.wikipedia.org/wiki/Cryptocurrency",
-        "http://en.wikipedia.org/wiki/Member_state_of_the_European_Union",
-        "http://en.wikipedia.org/wiki/Money_laundering"
-      ]
-    },
-    {
-      "id": "robinhood-bitgo-layoffs-crypto-contraction",
-      "label": "What Robinhood's recent layoffs say about the current state of crypto investments",
-      "firstSeen": "2026-06-27T17:05:30.007Z",
-      "lastCovered": "2026-06-27T17:05:30.007Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-27-robinhood-bitgo-layoffs-crypto-contraction"
-      ],
-      "eventUri": null,
-      "summary": "Robinhood's C-suite departures and headcount cuts, plus BitGo slashing 15% of staff, signal a sharp contraction in crypto-investing infrastructure. Lead with the labor numbers, not sentiment: when the platforms that onboarded retail crypto start cutting, it marks a structural cooling distinct from price volatility. Ground strictly in the reported layoffs (avoid the opinion framing) — the story is the industry's workforce shrinking as the speculative cycle turns.",
-      "conceptUris": []
-    },
-    {
-      "id": "europe-heatwave-records-germany-denmark-deaths",
-      "label": "Germany, Denmark gripped by record temperatures as European heatwave moves east",
-      "firstSeen": "2026-06-27T17:05:30.007Z",
-      "lastCovered": "2026-06-27T17:05:30.007Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-27-europe-heatwave-records-germany-denmark-deaths"
-      ],
-      "eventUri": "eng-11779509",
-      "summary": "Temperatures breached 40C from Scandinavia to the Alps as a heatwave linked to dozens of deaths spread eastward across Europe. Lead with the death toll and the geography — records falling in Denmark and Germany, places not built for this heat. The structural why for the reader: each summer's 'unprecedented' is the new climate baseline, and northern Europe's lack of adaptation (no AC, heat-naive infrastructure) is becoming a lethal exposure.",
-      "conceptUris": []
-    },
-    {
-      "id": "potato-micronutrient-gwas-biofortification-hidden-hunger",
-      "label": "Identification of genomic regions and candidate genes for tuber micronutrient accumulation in potato through GBS-based GWAS",
-      "firstSeen": "2026-06-27T17:05:30.007Z",
-      "lastCovered": "2026-06-27T17:05:30.007Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-27-potato-micronutrient-gwas-biofortification-hidden-hunger"
-      ],
-      "eventUri": null,
-      "summary": "Researchers mapped the genomic regions controlling micronutrient levels in potato tubers, a step toward biofortifying the world's most-eaten non-grain staple. Lead with the stakes: 'hidden hunger' — micronutrient deficiency — affects nearly 2 billion people. The mechanism to highlight is GWAS-guided breeding: instead of supplements, encode iron and zinc into the crop itself. Why it matters for the Global South, where potato yields fast on short cycles and reaches the poorest plates.",
-      "conceptUris": []
-    },
-    {
-      "id": "australia-doubles-fine-teen-social-media-ban-evasion",
-      "label": "Australia to double fine on platforms for flouting teen social media ban",
-      "firstSeen": "2026-06-27T17:05:30.007Z",
-      "lastCovered": "2026-06-27T17:05:30.007Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-27-australia-doubles-fine-teen-social-media-ban-evasion"
-      ],
-      "eventUri": "eng-11775150",
-      "summary": "Australia is doubling the maximum penalty to A$99M (US$68M) for platforms that systemically breach its world-first under-16 social media ban, citing 'widespread evasion.' Lead with the enforcement gap, not the ban itself: the policy that the world is watching is already being routed around, and the state's answer is bigger fines. The structural question for the reader — can any age-verification regime actually bind global platforms, or is this a precedent in how regulators discover they can't?",
-      "conceptUris": []
-    },
-    {
-      "id": "anthropic-mythos-gated-release-trusted-us-orgs",
-      "label": "U.S. allows Anthropic to release Mythos AI to 'trusted' US organizations",
-      "firstSeen": "2026-06-27T17:05:30.007Z",
-      "lastCovered": "2026-06-27T17:05:30.007Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-26-anthropic-mythos-gated-release-trusted-us-orgs"
-      ],
-      "eventUri": null,
-      "summary": "The US government is gating the release of Anthropic's powerful Mythos model to a vetted list of 'trusted' American organizations. Lead with the precedent: a frontier AI model treated like a controlled export, with the state — not the lab — deciding who gets access. For the technically literate reader, the mechanism is the news: capability-tiered distribution is how AI governance is actually being implemented, and it draws a hard line between US-aligned institutions and everyone else.",
-      "conceptUris": []
-    },
-    {
-      "id": "laser-3d-methane-imaging-leak-detection",
-      "label": "Laser-based 3D imaging system enables precise detection and quantification of methane leakage",
-      "firstSeen": "2026-06-27T17:05:30.007Z",
-      "lastCovered": "2026-06-27T17:05:30.007Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-27-laser-3d-methane-imaging-leak-detection"
-      ],
-      "eventUri": null,
-      "summary": "A Chinese Academy of Sciences team built a laser system that images methane gas clouds in 3D — pinpointing microleaks, locating sources, and quantifying emission rates. Lead with the capability: methane is the second-biggest climate forcer and its leaks are mostly invisible and unmeasured; making them visible and quantifiable is the enabling step for enforcement. The structural why — you cannot regulate what you cannot measure, and this is measurement infrastructure built outside the West.",
       "conceptUris": []
     }
   ]
