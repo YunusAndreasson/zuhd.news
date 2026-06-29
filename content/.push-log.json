@@ -1,91 +1,5 @@
 [
   {
-    "timestamp": "2026-06-08T04:42:37.512Z",
-    "candidateCount": 9,
-    "candidates": [
-      {
-        "slug": "2026-06-08-mindanao-7-8-earthquake-tsunami-warning",
-        "title": "7.8 Quake Strikes Philippines, Kills 5",
-        "category": "science",
-        "eventCoverage": 419,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-08-trump-peace-deal-israel-iran-strikes-leverage",
-        "title": "Trump's Rebuke Defied, Deal Intact",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-08-up-police-encounter-killing-extrajudicial",
-        "title": "UP Police Kill Suspect Before Trial",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-08-ogra-pakistan-regulator-pricing-probe",
-        "title": "Pakistan Hollows Its Oil Regulator",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-08-microbial-desalination-refinery-sludge-bacterium",
-        "title": "Refinery Sludge Yields Desalination Bacterium",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-08-askap-repeating-radio-bursts-binary-star",
-        "title": "Binary Stars Explain Radio Bursts",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-08-ultrasound-forceps-delivery-maternal-outcomes",
-        "title": "Ultrasound Before Forceps Halves Injury",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-08-india-supreme-court-ai-courts-regulation",
-        "title": "India Drafts AI Court Ban",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-08-reinforcement-learning-habit-formation-model",
-        "title": "Single RL Model Explains Brain Habits",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-06-08-mindanao-7-8-earthquake-tsunami-warning",
-      "title": "7.8 Quake Strikes Philippines, Kills 5",
-      "category": "science",
-      "body": "A 7.8 earthquake struck Mindanao at",
-      "eventCoverage": 419,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "7.8 earthquake strikes Philippines, kills 5, triggers tsunami warning",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 24
-    }
-  },
-  {
     "timestamp": "2026-06-08T08:51:46.826Z",
     "candidateCount": 12,
     "candidates": [
@@ -9985,6 +9899,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "South Korea commits $519bn to chip and AI expansion, Samsung and SK Hynix to lead",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 28
+    }
+  },
+  {
+    "timestamp": "2026-06-29T13:00:17.087Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-06-29-germany-ai-labor-shortage-aging-workforce",
+        "title": "Germany Frames AI as Labor Fix",
+        "category": "tech",
+        "eventCoverage": 92,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-29-israel-incursion-southern-syria-quneitra-deraa",
+        "title": "Israel Shells Southern Syria Villages",
+        "category": "politics",
+        "eventCoverage": 51,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-29-south-africa-june-30-deadline-xenophobia-displacement",
+        "title": "Mob Deadline Empties Durban",
+        "category": "politics",
+        "eventCoverage": 42,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-29-comcast-spinoff-nbcuniversal-sky-media-unbundling",
+        "title": "Comcast Splits Broadband From Media",
+        "category": "economy",
+        "eventCoverage": 40,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-29-delhi-ev-policy-2026-clean-mobility-mandate",
+        "title": "Delhi Mandates E-Autos From 2027",
+        "category": "economy",
+        "eventCoverage": 37,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-29-russia-ai-air-defence-drone-decision-support",
+        "title": "Russia Puts AI in Defence Loop",
+        "category": "tech",
+        "eventCoverage": 37,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-29-sudan-el-obeid-siege-rsf-cairo-gold-financing",
+        "title": "RSF Drones Besiege El Obeid",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-28-pemra-geo-news-suspension-press-freedom",
+        "title": "Pemra Silences Geo News 15 Days",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-29-green-steel-ship-scrap-supply-chain",
+        "title": "Ships Feed Green Steel Ambitions",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-29-nasa-x-59-quiet-supersonic-flight-test",
+        "title": "X-59 Tests Quiet Supersonic Boom",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-29-europe-heatwave-1300-deaths-record-heat",
+        "title": "Europe Heatwave Kills 1,300",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-29-maldives-temu-china-consumer-dependence",
+        "title": "Maldives Runs on Temu",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-06-29-germany-ai-labor-shortage-aging-workforce",
+      "title": "Germany Frames AI as Labor Fix",
+      "category": "tech",
+      "body": "German firms are turning to AI rather than new hires to fill the gap from mass",
+      "eventCoverage": 92,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Germany turns to AI to replace retiring workers, firms say",
     "response": {
       "pushed": 1,
       "skipped": 0,
