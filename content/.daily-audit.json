@@ -1,27 +1,28 @@
 {
-  "date": "2026-06-29",
+  "date": "2026-06-30",
   "metrics": {
-    "articles": { "value": 56, "detail": "5 cycles completed, avg 10/cycle" },
-    "freshness": { "median": 0, "p90": 1.2, "max": 1.2, "target": 1.0, "met": true },
-    "categories": { "politics": 19, "economy": 15, "science": 11, "tech": 11 },
-    "multiSource": { "value": 17, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 17, "EU": 13, "ME": 12, "AS": 8, "AF": 4, "OC": 2 } },
-    "sciTech": { "ratio": 39, "target": 25, "met": true },
-    "topSourceShare": { "source": "Ars Technica", "pct": 9, "target": 20, "met": true },
-    "uniqueSources": 56,
+    "articles": { "value": 49, "detail": "5 cycles, avg ~10/cycle (avgPublished 10)" },
+    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
+    "categories": { "politics": 18, "economy": 13, "science": 9, "tech": 9 },
+    "multiSource": { "value": 9, "target": 4, "met": true },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 17, "ME": 9, "EU": 9, "AS": 9, "AF": 5 } },
+    "sciTech": { "ratio": 37, "target": 25, "met": true },
+    "topSourceShare": { "source": "BBC / Al Jazeera (tied)", "pct": 10, "target": 20, "met": true },
+    "uniqueSources": 46,
     "duplicates": 0,
-    "avgCycleDuration": 1618
+    "avgCycleDuration": 1450
   },
-  "experiment": "Skipped — all goal metrics within targets and no active experiment to revert. No pause gate set.",
-  "weakestArea": "No metric is below target, so the weakest area is internal regional balance: of 6 regions, the Americas (17), Europe (13) and Middle East (12) account for ~75% of output while Africa (4) and Oceania (2) trail. Region diversity clears the >=4-region bar comfortably, but the long tail is thin — worth watching, not yet actionable via a tunable parameter.",
+  "experiment": "Skipped — all metrics within targets and no active experiment. The sole queued experiment targets scripts/write-prompt.md, which is out of scope for daily tuning (prompts cannot be edited; only the listed parameter files).",
+  "weakestArea": "Regional concentration is the softest metric: the Americas supplied 17 of 49 articles (35%) while Oceania was absent entirely and Africa contributed only 5. The 5-region count still clears the >=4 target, but the AM skew and missing OC are the furthest things from comfortable diversity. This is a feed-composition pattern, not a parameter fault, and not cleanly actionable via the tunable levers without risking other metrics.",
   "watching": [
-    "Writer stage wall-time: avgWriterSeconds 1041s pushed avgCycleDuration to 1618s, well above the historical ~22-min cycle. Editor (364s) and selector (216s) are normal; the writer is the long pole. Not a goal metric, but flag if it keeps climbing toward timeout territory.",
-    "Africa (4) and Oceania (2) sit at the bottom of the regional distribution two days running — monitor for a sustained gap.",
-    "Multi-source count jumped from 7 (yesterday) to 17 (today); confirm this is genuine clustering supply and not a single news-heavy day before treating it as the new normal."
+    "Daily throughput fell from 71 (2026-06-29) to 49 — within normal day-to-day range for a lighter news day, but worth confirming it recovers next cycle rather than trending down.",
+    "Freshness today was computed on only 2 sampled articles (vs 5 yesterday); median 0 is healthy but the small sample makes the freshness read less reliable than usual.",
+    "Oceania had zero coverage today; if it stays empty across consecutive days the region count could brush the >=4 floor on a thin day."
   ],
   "coverageGaps": [
-    "Oceania reduced to 2 articles; Sub-Saharan Africa lightly covered at 4 despite available regional outlets (Premium Times, Daily Maverick, Mada Masr present but low-volume).",
-    "Science sourcing leans on a narrow set (Nature, Phys.org, STAT, Carbon Brief) — breadth of specialist science outlets remains structurally limited by RSS supply."
+    "No Oceania (OC) stories today — Australia/Pacific coverage dropped out entirely.",
+    "Africa underweight at 5/49 (10%) relative to its share of global hard news.",
+    "Americas over-concentrated at 35% of output, crowding the regional mix."
   ],
-  "context": "Five cycles ran clean today (5/5 completed, 0 duplicates, 56 unique sources across 56 articles). All four foundation goals — freshness, diversity, multi-source, educational value — are met with margin, so no experiment was proposed. No experiment is active, no pause gate is set, and the experiment slot is free for the next proposal once a clear, attributable lever (likely upstream feed/region diversity rather than the tapped selector-floor lever, per the reverted 2026-05-09 multi-source-floor experiment) presents itself."
+  "context": "Healthy steady-state day: every diversity, freshness, multi-source, and sci-tech target met with margin, zero duplicates, and top-source share at half the 20% ceiling. No active experiments are running and no pause gate is set. A prior reflection (2026-05-16 multi-source-floor revert) established that selector floors are tapped out for lifting multi-source rate — future sourcing-cluster gains must come from upstream feed coverage, not the floor lever. With metrics this clean, the correct move is to hold parameters steady rather than introduce a confounding variable."
 }
