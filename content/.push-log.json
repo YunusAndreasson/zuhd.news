@@ -1,105 +1,5 @@
 [
   {
-    "timestamp": "2026-06-09T22:41:08.995Z",
-    "candidateCount": 11,
-    "candidates": [
-      {
-        "slug": "2026-06-09-israel-intensifies-gaza-killing-yellow-line-ceasefire",
-        "title": "Israel Kills Child in Jabaliya",
-        "category": "politics",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-09-us-drug-shortages-systemic-generic-margins",
-        "title": "US Drug Shortages Still Systemic",
-        "category": "economy",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-09-egypt-state-company-profit-bill-exemptions",
-        "title": "Egypt Tax Bill Hides Exemptions",
-        "category": "economy",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-09-malawi-climate-whiplash-aid-collapse",
-        "title": "Malawi Aid Collapse Deepens",
-        "category": "science",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-09-judge-both-sides-ai-cancels-trial",
-        "title": "Both Trial Lawyers Used AI",
-        "category": "tech",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-09-ukraine-ai-drone-campaign-russian-logistics",
-        "title": "Ukraine AI Drones Hit Deep",
-        "category": "tech",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-09-amoc-monitoring-at-risk-europe-heatwave",
-        "title": "US Cuts Ocean Climate Monitor",
-        "category": "science",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-09-byd-80-percent-china-ev-electrification-bet",
-        "title": "BYD Bets on 80% Electric",
-        "category": "economy",
-        "eventCoverage": 210,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-09-nasa-artemis-iii-crew-training-moon",
-        "title": "Blue Origin Blast Clouds Artemis",
-        "category": "science",
-        "eventCoverage": 209,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-09-anthropic-mythos-safe-version-ipo-timing",
-        "title": "Anthropic Ships Its 'Dangerous' Model",
-        "category": "tech",
-        "eventCoverage": 189,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-09-house-70b-ice-border-patrol-trump",
-        "title": "Congress Funds ICE $70 Billion",
-        "category": "politics",
-        "eventCoverage": 55,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-06-09-israel-intensifies-gaza-killing-yellow-line-ceasefire",
-      "title": "Israel Kills Child in Jabaliya",
-      "category": "politics",
-      "body": "[Israel](country:IL) killed Jad Suleiman, 8, in",
-      "eventCoverage": 268,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Israeli strike kills child in Jabaliya, health officials say",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 24
-    }
-  },
-  {
     "timestamp": "2026-06-10T04:32:12.002Z",
     "candidateCount": 12,
     "candidates": [
@@ -10027,6 +9927,120 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Supreme Court upholds transgender sports bans, strikes campaign finance limits",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 28
+    }
+  },
+  {
+    "timestamp": "2026-07-01T04:14:28.693Z",
+    "candidateCount": 13,
+    "candidates": [
+      {
+        "slug": "2026-07-01-why-does-japan-pm-s-india-visit-matter-for-indian-economy-an",
+        "title": "Takaichi Courts India",
+        "category": "politics",
+        "eventCoverage": 35,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-01-commercial-lpg-cylinder-prices-get-slashed-by-rs-183-from-ju",
+        "title": "Cooking Gas Cuts Ease",
+        "category": "economy",
+        "eventCoverage": 35,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-30-china-s-ethnic-unity-cup-football-and-assimilation-in-the-uy",
+        "title": "China's Ethnic Unity Cup",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-30-moment-of-truth-the-case-against-orda-kz-editor-begins",
+        "title": "Kazakhstan Puts Editor on Trial",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-30-gripen-e-fighters-officially-ordered-by-ukraine",
+        "title": "Ukraine Orders Gripen E",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-29-a-slice-for-the-government-state-hikes-beit-al-watan-prices",
+        "title": "State Hikes Land Prices",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-01-trump-reports-over-1-4-billion-in-income-from-crypto-venture",
+        "title": "Trump Reports Billions In Crypto",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-01-physicists-and-ai-model-claude-collaborate-to-prove-a-10-yea",
+        "title": "Physicists, AI Crack Jamming Proof",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-01-de-novo-cancer-related-mortality-after-solid-organ-transplan",
+        "title": "Transplants Double Cancer Death Risk",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-30-q-a-still-hope-for-ebola-treatment-drc-s-muyembe",
+        "title": "DRC Targets Untreatable Ebola Strain",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-30-china-s-295-billion-ambitions-for-ai-will-drive-up-domestic",
+        "title": "Beijing's $295bn AI Wall",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-30-scammers-sell-seeds-for-exotic-ai-generated-flowers-that-don",
+        "title": "Fake Flower Seed Scams",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-06-30-cia-chief-highlights-major-shifts-in-agency-s-tech-approach",
+        "title": "US Spy Chief Warns",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-07-01-why-does-japan-pm-s-india-visit-matter-for-indian-economy-an",
+      "title": "Takaichi Courts India",
+      "category": "politics",
+      "body": "1,400 Japanese firms already build",
+      "eventCoverage": 35,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Japan's Takaichi arrives in India for trade, defence talks",
     "response": {
       "pushed": 1,
       "skipped": 0,
