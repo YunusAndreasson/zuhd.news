@@ -1,28 +1,29 @@
 {
-  "date": "2026-06-30",
+  "date": "2026-07-01",
   "metrics": {
-    "articles": { "value": 49, "detail": "5 cycles, avg ~10/cycle (avgPublished 10)" },
+    "articles": { "value": 38, "detail": "5 cycles, avg 10/cycle (avgPublished 10); lighter day vs 59 yesterday" },
     "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 18, "economy": 13, "science": 9, "tech": 9 },
-    "multiSource": { "value": 9, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 17, "ME": 9, "EU": 9, "AS": 9, "AF": 5 } },
+    "categories": { "politics": 14, "economy": 10, "science": 8, "tech": 6 },
+    "multiSource": { "value": 10, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 12, "EU": 9, "AS": 7, "ME": 6, "AF": 3, "OC": 1 } },
     "sciTech": { "ratio": 37, "target": 25, "met": true },
-    "topSourceShare": { "source": "BBC / Al Jazeera (tied)", "pct": 10, "target": 20, "met": true },
-    "uniqueSources": 46,
+    "topSourceShare": { "source": "CoinDesk", "pct": 13, "target": 20, "met": true },
+    "uniqueSources": 48,
     "duplicates": 0,
-    "avgCycleDuration": 1450
+    "avgCycleDuration": 678
   },
-  "experiment": "Skipped — all metrics within targets and no active experiment. The sole queued experiment targets scripts/write-prompt.md, which is out of scope for daily tuning (prompts cannot be edited; only the listed parameter files).",
-  "weakestArea": "Regional concentration is the softest metric: the Americas supplied 17 of 49 articles (35%) while Oceania was absent entirely and Africa contributed only 5. The 5-region count still clears the >=4 target, but the AM skew and missing OC are the furthest things from comfortable diversity. This is a feed-composition pattern, not a parameter fault, and not cleanly actionable via the tunable levers without risking other metrics.",
+  "experiment": "Skipped — all metrics within targets, no active experiment, no pause gate. The only queued experiment (numerical-density) targets scripts/write-prompt.md, which is out of scope for daily tuning; parameter levers are healthy and changing one now would add a confound for no diagnosed problem.",
+  "weakestArea": "Tech is the narrowest category: the 6 tech slots skew crypto, with CoinDesk alone supplying 5 articles (13% of all output, the top source). Tech clears its floor of 4 numerically but lacks topical breadth — hardware, AI, platforms, and policy tech are thin today. Not cleanly actionable via the tunable levers (source caps already sit at 3 for standalone/RSS; CoinDesk's 5 came largely through event enrichment, not the standalone path), so this is an editorial-mix note rather than a parameter fault.",
   "watching": [
-    "Daily throughput fell from 71 (2026-06-29) to 49 — within normal day-to-day range for a lighter news day, but worth confirming it recovers next cycle rather than trending down.",
-    "Freshness today was computed on only 2 sampled articles (vs 5 yesterday); median 0 is healthy but the small sample makes the freshness read less reliable than usual.",
-    "Oceania had zero coverage today; if it stays empty across consecutive days the region count could brush the >=4 floor on a thin day."
+    "Daily throughput dropped to 38 (from 59 yesterday, 49 the day before) — within normal light-news-day range, but confirm it recovers next cycle rather than trending down three days running.",
+    "Freshness today was computed on only 2 sampled articles; median 0 is healthy but the small sample makes the read less reliable than usual.",
+    "CoinDesk concentration in tech (5 of 6 tech articles) — if crypto keeps crowding out the rest of the tech category across days, the sci-tech ratio stays met but topical diversity within tech erodes.",
+    "Oceania at 1 story again — thin but non-zero today (vs zero on 2026-06-30); watch it doesn't slip back to empty on a light day and brush the region floor."
   ],
   "coverageGaps": [
-    "No Oceania (OC) stories today — Australia/Pacific coverage dropped out entirely.",
-    "Africa underweight at 5/49 (10%) relative to its share of global hard news.",
-    "Americas over-concentrated at 35% of output, crowding the regional mix."
+    "Tech breadth: crypto-heavy via CoinDesk, light on AI/hardware/platform/policy tech.",
+    "Africa underweight at 3/38 (8%) relative to its share of global hard news.",
+    "Oceania at just 1/38, persistently the thinnest region."
   ],
-  "context": "Healthy steady-state day: every diversity, freshness, multi-source, and sci-tech target met with margin, zero duplicates, and top-source share at half the 20% ceiling. No active experiments are running and no pause gate is set. A prior reflection (2026-05-16 multi-source-floor revert) established that selector floors are tapped out for lifting multi-source rate — future sourcing-cluster gains must come from upstream feed coverage, not the floor lever. With metrics this clean, the correct move is to hold parameters steady rather than introduce a confounding variable."
+  "context": "Healthy steady-state day on lighter news volume (38 articles): every freshness, diversity, multi-source, and sci-tech target met with margin, zero duplicates, and top-source share at 13% (well under the 20% ceiling). No active experiments and no pause gate. Prior reflection (2026-05-16 multi-source-floor revert) established that selector floors are tapped out for lifting multi-source rate — future sourcing gains must come from upstream feed coverage, not the floor lever. With metrics this clean, the correct move is to hold parameters steady rather than introduce a confounding variable."
 }
