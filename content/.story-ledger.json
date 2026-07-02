@@ -2,13 +2,295 @@
   "version": 1,
   "stories": [
     {
+      "id": "9-killed-in-cafe-blast-in-syria-s-damascus",
+      "label": "9 Killed In Cafe Blast In Syria's Damascus",
+      "firstSeen": "2026-07-02T22:09:08.788Z",
+      "lastCovered": "2026-07-02T22:09:08.788Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-02-9-killed-in-cafe-blast-in-syria-s-damascus"
+      ],
+      "eventUri": "eng-11797516",
+      "summary": "A bomb tore through a crowded cafe in central Damascus, killing at least nine — a major security breach in the heart of the capital under Syria's new government. Lead with the mechanism, not the blast: this is the first serious test of whether the post-Assad state can hold the centre against the many armed opponents it inherited, and the unusually wide source disagreement (sentiment divergence 0.48) flags a contested framing worth handling with precision. OIC subject; Al Jazeera (QA) is the regional voice, paired with BBC/NDTV/RT.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Damascus",
+        "http://en.wikipedia.org/wiki/Syria",
+        "http://en.wikipedia.org/wiki/Ambulance",
+        "http://en.wikipedia.org/wiki/Coffee",
+        "http://en.wikipedia.org/wiki/Bomb",
+        "http://en.wikipedia.org/wiki/Bashar_al-Assad",
+        "http://en.wikipedia.org/wiki/Civil_war",
+        "http://en.wikipedia.org/wiki/Suicide_attack"
+      ]
+    },
+    {
+      "id": "india-raises-security-concerns-over-new-whatsapp-feature",
+      "label": "India raises security concerns over new WhatsApp feature",
+      "firstSeen": "2026-07-02T22:09:08.788Z",
+      "lastCovered": "2026-07-02T22:09:08.788Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-02-india-raises-security-concerns-over-new-whatsapp-feature"
+      ],
+      "eventUri": "eng-11794964",
+      "summary": "India asked WhatsApp to pause a feature letting users chat via usernames instead of phone numbers, arguing it will fuel fraud and phishing — a rare case of a government pushing back on more privacy, not less. Lead with the tension the reader will grasp immediately: username-based contact protects users from phone-number exposure but strips the friction that identifies scammers, and India, WhatsApp's largest market at ~500m users, is where that trade-off gets decided for everyone. Named regulator, named platform, real design consequence. Multi-source (BBC/Hindustan Times/RT) with the Indian domestic read.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/WhatsApp",
+        "http://en.wikipedia.org/wiki/Meta_Platforms",
+        "http://en.wikipedia.org/wiki/Privacy",
+        "http://en.wikipedia.org/wiki/Telephone",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Instagram",
+        "http://en.wikipedia.org/wiki/Telephone_number",
+        "http://en.wikipedia.org/wiki/Username"
+      ]
+    },
+    {
+      "id": "china-ramps-up-warning-to-japan-philippines-over-maritime-ta",
+      "label": "China Ramps Up Warning to Japan, Philippines Over Maritime Talks",
+      "firstSeen": "2026-07-02T22:09:08.788Z",
+      "lastCovered": "2026-07-02T22:09:08.788Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-02-china-ramps-up-warning-to-japan-philippines-over-maritime-ta"
+      ],
+      "eventUri": "deu-2145331",
+      "summary": "Beijing issued a formal legal warning against Japan-Philippine maritime cooperation, asserting that because it claims Taiwan, the exclusive economic zone and continental shelf around the island are Chinese territory. Lead with the legal mechanism, not the diplomacy: China is using the Taiwan sovereignty claim as the load-bearing wall for a maritime-rights claim over waters two other states are trying to jointly govern — a precedent that reframes any Japan-Philippines security tie as an intrusion on 'Chinese' seas. Asia as the arena; who holds power and how legal argument becomes territorial leverage.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Taiwan",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Beijing",
+        "http://en.wikipedia.org/wiki/Wang_Yi_(politician)",
+        "http://en.wikipedia.org/wiki/Taichung",
+        "http://en.wikipedia.org/wiki/Marco_Rubio"
+      ]
+    },
+    {
+      "id": "a-third-party-breached-the-intercept-s-signal-tip-line-and-h",
+      "label": "A Third Party Breached The Intercept's Signal Tip Line and Has Been Soliciting Whistleblowers",
+      "firstSeen": "2026-07-02T22:09:08.788Z",
+      "lastCovered": "2026-07-02T22:09:08.788Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-02-a-third-party-breached-the-intercept-s-signal-tip-line-and-h"
+      ],
+      "eventUri": null,
+      "summary": "Drop Site reports that an unknown third party compromised The Intercept's Signal tip line and impersonated the outlet to solicit whistleblowers — and that The Intercept quietly changed the line without warning existing sources or the public. Lead with the accountability failure, not the hack: a newsroom's tip line is a trust contract with the most exposed people in journalism, and staying silent about a breach leaves sources who already made contact believing they reached reporters when they may have reached an adversary. Unique investigative reporting no wire carries; press-freedom and operational-security stakes the reader needs spelled out.",
+      "conceptUris": []
+    },
+    {
+      "id": "why-is-the-trump-administration-giving-a-1-000-holiday-gift",
+      "label": "Why is the Trump administration giving a $1,000 'holiday gift' on July 4 to newborns?",
+      "firstSeen": "2026-07-02T22:09:08.788Z",
+      "lastCovered": "2026-07-02T22:09:08.788Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-02-why-is-the-trump-administration-giving-a-1-000-holiday-gift"
+      ],
+      "eventUri": "eng-11789842",
+      "summary": "Every US baby born on July 4 gets a $1,000 federally seeded investment account tied to their Social Security number and parked in the stock market. Lead with the mechanism, not the patriotism: this is 'baby bonds' rebuilt as an equity subsidy — the state enrolling newborns as index-fund investors from birth, which quietly makes market performance a proxy for a child's starting wealth and hands Wall Street a captive, decades-long inflow. For the macro reader, who actually benefits when public policy routes childhood savings through the S&P rather than a bank.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/United_States_Department_of_the_Treasury",
+        "http://en.wikipedia.org/wiki/Internal_Revenue_Service",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Stock_market",
+        "http://en.wikipedia.org/wiki/Individual_retirement_account",
+        "http://en.wikipedia.org/wiki/Social_Security_number",
+        "http://en.wikipedia.org/wiki/Exchange-traded_fund"
+      ]
+    },
+    {
+      "id": "tesla-driver-using-autopilot-in-texas-crash-is-charged-with",
+      "label": "Tesla Driver Using Autopilot in Texas Crash Is Charged With Manslaughter",
+      "firstSeen": "2026-07-02T22:09:08.788Z",
+      "lastCovered": "2026-07-02T22:09:08.788Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-02-tesla-driver-using-autopilot-in-texas-crash-is-charged-with"
+      ],
+      "eventUri": "eng-11798363",
+      "summary": "A Texas driver whose Tesla was in Autopilot mode when it plowed through a driveway into a house — killing a woman inside — has been charged with manslaughter, with doorbell video capturing the crash. Lead with the liability question, not the tragedy: when a car marketed as self-driving kills, the state is prosecuting the human behind the wheel, not the automation — a choice that quietly settles who bears criminal responsibility for a system Tesla itself controls. For the reader, the accountability gap at the centre of the driver-assistance business model. Named victim, named driver, named company.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Tesla,_Inc.",
+        "http://en.wikipedia.org/wiki/Manslaughter",
+        "http://en.wikipedia.org/wiki/Autopilot",
+        "http://en.wikipedia.org/wiki/Texas",
+        "http://en.wikipedia.org/wiki/Butler_County,_Ohio"
+      ]
+    },
+    {
+      "id": "italy-s-indo-pacific-strategy-turns-toward-defense-contracts",
+      "label": "Italy's Indo-Pacific Strategy Turns Toward Defense Contracts",
+      "firstSeen": "2026-07-02T22:09:08.788Z",
+      "lastCovered": "2026-07-02T22:09:08.788Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-02-italy-s-indo-pacific-strategy-turns-toward-defense-contracts"
+      ],
+      "eventUri": null,
+      "summary": "Italy is making an assertive return to Southeast Asia — not via trade or aid but by selling weapons and defence hardware. Lead with the structural shift, not the diplomacy: a mid-tier European power is monetising the region's China-driven arms race, positioning its defence industry (Leonardo and shipbuilders) as an alternative supplier to states hedging between Washington and Beijing. For the reader tracking who profits from Asian rearmament, this is how the Indo-Pacific tension converts into an export market — and how arms sales become the currency of a 'strategy.'",
+      "conceptUris": []
+    },
+    {
+      "id": "who-declares-cruise-linked-hantavirus-outbreak-officially-ov",
+      "label": "WHO declares cruise-linked hantavirus outbreak officially over",
+      "firstSeen": "2026-07-02T22:09:08.788Z",
+      "lastCovered": "2026-07-02T22:09:08.788Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-02-who-declares-cruise-linked-hantavirus-outbreak-officially-ov"
+      ],
+      "eventUri": "spa-4254881",
+      "summary": "The WHO declared the cruise-ship hantavirus outbreak over after the last exposed contact cleared quarantine. Lead with the epidemiological mechanism, not the all-clear: an outbreak is called 'over' only after a defined interval past the last case — twice the incubation period with no new infections — and a cruise ship is a near-perfect closed experiment in how a rodent-borne virus jumps to a mobile, international population. For the curious reader, how public-health authorities actually decide an outbreak has ended, and why maritime settings concentrate zoonotic risk. Multi-source across five countries incl. Al Jazeera (QA) and news24 (ZA).",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/World_Health_Organization",
+        "http://en.wikipedia.org/wiki/Orthohantavirus",
+        "http://en.wikipedia.org/wiki/Cruise_ship",
+        "http://en.wikipedia.org/wiki/Quarantine",
+        "http://en.wikipedia.org/wiki/Tedros_Adhanom",
+        "http://en.wikipedia.org/wiki/Virus",
+        "http://en.wikipedia.org/wiki/Netherlands",
+        "http://en.wikipedia.org/wiki/Argentina"
+      ]
+    },
+    {
+      "id": "ebola-treatments-trial-begins-in-the-democratic-republic-of",
+      "label": "Ebola treatments trial begins in the Democratic Republic of Congo",
+      "firstSeen": "2026-07-02T22:09:08.788Z",
+      "lastCovered": "2026-07-02T22:09:08.788Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-02-ebola-treatments-trial-begins-in-the-democratic-republic-of"
+      ],
+      "eventUri": null,
+      "summary": "A randomised trial of candidate treatments for the strain driving the DRC's current deadly Ebola outbreak has enrolled its first patient. Lead with the science-in-a-crisis mechanism, not the announcement: running a controlled therapeutic trial inside a live, fatal outbreak is one of medicine's hardest problems — how to test drugs ethically and fast when every delay costs lives and the setting is a fragile health system. For the serious reader, what it takes to generate real evidence against Ebola in the field, and why the DRC keeps being the front line. Africa as the site of frontier medical research, not just of the disease.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Democratic_Republic_of_the_Congo",
+        "http://en.wikipedia.org/wiki/Virus",
+        "http://en.wikipedia.org/wiki/World_Health_Organization",
+        "http://en.wikipedia.org/wiki/Ebola",
+        "http://en.wikipedia.org/wiki/Western_African_Ebola_virus_epidemic"
+      ]
+    },
+    {
+      "id": "android-developer-verification-threat-masquerading-as-protec",
+      "label": "Android Developer Verification: Threat masquerading as protection",
+      "firstSeen": "2026-07-02T22:09:08.788Z",
+      "lastCovered": "2026-07-02T22:09:08.788Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-02-android-developer-verification-threat-masquerading-as-protec"
+      ],
+      "eventUri": null,
+      "summary": "F-Droid argues Google's new Android Developer Verification — requiring every app developer to register a verified identity before their apps can be installed, even outside the Play Store — is a threat dressed as anti-malware. Lead with the mechanism, not the security framing: mandatory developer identity gates who is allowed to ship software to a device the user supposedly owns, and it structurally endangers anonymous, hobbyist and F-Droid-style open-source distribution that has always been Android's escape hatch from Google. For the developer-reader, the concrete stakes of Android quietly becoming as closed as iOS. Top of Hacker News (1,500+ points).",
+      "conceptUris": []
+    },
+    {
+      "id": "new-pamstealer-macos-malware-uses-clever-tradecraft-to-remai",
+      "label": "New PamStealer macOS malware uses clever tradecraft to remain stealthy",
+      "firstSeen": "2026-07-02T22:09:08.788Z",
+      "lastCovered": "2026-07-02T22:09:08.788Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-02-new-pamstealer-macos-malware-uses-clever-tradecraft-to-remai"
+      ],
+      "eventUri": null,
+      "summary": "Researchers found never-before-seen macOS malware, PamStealer, that masquerades as a clipboard utility and uses a two-stage disk-image delivery plus abuse of macOS's pluggable authentication modules to steal credentials stealthily. Lead with the tradecraft, not the alarm: the interesting part is the mechanism — hijacking PAM, the low-level authentication layer, to harvest passwords without tripping the usual macOS defences, a technique borrowed from Unix server attacks now aimed at everyday Macs. For the technically literate reader, how the Mac 'immune by default' assumption keeps eroding. Specialist original reporting (Ars Technica).",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/MacOS",
+        "http://en.wikipedia.org/wiki/Pluggable_authentication_module",
+        "http://en.wikipedia.org/wiki/AppleScript",
+        "http://en.wikipedia.org/wiki/Disk_image",
+        "http://en.wikipedia.org/wiki/Malware"
+      ]
+    },
+    {
+      "id": "pta-says-submarine-cable-fault-may-cause-intermittent-intern",
+      "label": "PTA says submarine cable fault may cause intermittent internet disruption",
+      "firstSeen": "2026-07-02T22:09:08.788Z",
+      "lastCovered": "2026-07-02T22:09:08.788Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-02-pta-says-submarine-cable-fault-may-cause-intermittent-intern"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's telecom regulator warned of degraded connectivity nationwide after a fault in the SEA-ME-WE 5 submarine cable, one of the handful of physical lines carrying the country's internet. Lead with the infrastructure dependency, not the outage notice: a single cut in a shared subsea cable can throttle an entire nation of 240m people, exposing how thin and concentrated the physical backbone of the 'cloud' really is for the Global South. For the reader, the reminder that internet resilience is a hardware-and-geography problem, and Pakistan sits on a chokepoint it doesn't control. OIC subject; Dawn (PK) is the regional voice.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Pakistan_Telecommunication_Authority",
+        "http://en.wikipedia.org/wiki/Submarine_communications_cable",
+        "http://en.wikipedia.org/wiki/Internet_traffic",
+        "http://en.wikipedia.org/wiki/Transworld_Associates"
+      ]
+    },
+    {
+      "id": "f-b-i-assigns-scores-of-analysts-to-examine-election-records",
+      "label": "F.B.I. Assigns Scores of Analysts to Examine Election Records in Georgia",
+      "firstSeen": "2026-07-02T22:09:08.788Z",
+      "lastCovered": "2026-07-02T22:09:08.788Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-02-f-b-i-assigns-scores-of-analysts-to-examine-election-records"
+      ],
+      "eventUri": "eng-11798387",
+      "summary": "The FBI has assigned 260 analysts to a 'priority' investigation of Fulton County's 2020 election, pursuing Trump's long-debunked claim that Georgia's result was rigged. Lead with the institutional mechanism, not the politics: a federal law-enforcement agency redirecting a small army onto a settled, repeatedly audited election is the concrete face of investigative power turned toward a president's grievance — the machinery of the state being tasked to relitigate an outcome the courts already closed. For the reader, how prosecutorial resources become a political instrument, and what that does to the FBI's credibility. Named agency, named target.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/2020_United_States_presidential_election",
+        "http://en.wikipedia.org/wiki/Federal_Bureau_of_Investigation",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Georgia_(U.S._state)",
+        "http://en.wikipedia.org/wiki/Fulton_County,_Georgia"
+      ]
+    },
+    {
       "id": "flowers-and-a-raised-fist-tehran-s-grand-mosalla-readies-for",
       "label": "Flowers and a raised fist: Tehran's Grand Mosalla readies for Khamenei farewell",
       "firstSeen": "2026-07-02T17:09:44.846Z",
       "lastCovered": "2026-07-02T17:09:44.846Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-02-flowers-and-a-raised-fist-tehran-s-grand-mosalla-readies-for"
@@ -24,7 +306,7 @@
       "lastCovered": "2026-07-02T17:09:44.846Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-02-us-knows-uae-fueling-war-in-sudan-but-1-4-trillion-is-gettin"
@@ -40,7 +322,7 @@
       "lastCovered": "2026-07-02T17:09:44.846Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-02-indonesia-caning-of-unmarried-couple-for-kissing-on-tiktok-v"
@@ -56,7 +338,7 @@
       "lastCovered": "2026-07-02T17:09:44.846Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-02-pm-s-forced-adoption-apology-did-not-go-far-enough"
@@ -72,7 +354,7 @@
       "lastCovered": "2026-07-02T17:09:44.846Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-01-talks-on-cuban-medical-staff-still-ongoing-after-16-months"
@@ -88,7 +370,7 @@
       "lastCovered": "2026-07-02T17:09:44.846Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-02-us-job-growth-slows-in-june-hospitality-sheds-roles-despite"
@@ -104,7 +386,7 @@
       "lastCovered": "2026-07-02T17:09:44.846Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-02-german-coalition-agrees-on-sweeping-reform-package"
@@ -120,7 +402,7 @@
       "lastCovered": "2026-07-02T17:09:44.846Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-02-indian-uae-groups-ink-pact-for-11-5bn-aluminium-project-in-o"
@@ -136,7 +418,7 @@
       "lastCovered": "2026-07-02T17:09:44.846Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-02-june-heatwave-may-have-killed-around-20-000-people-in-europe"
@@ -152,7 +434,7 @@
       "lastCovered": "2026-07-02T17:09:44.846Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-02-astrophysicists-puzzle-over-webb-s-new-universe"
@@ -168,7 +450,7 @@
       "lastCovered": "2026-07-02T17:09:44.846Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-02-china-s-kling-ai-raises-2-billion-to-expand-ai-video-operati"
@@ -184,7 +466,7 @@
       "lastCovered": "2026-07-02T17:09:44.846Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-02-supreme-court-decision-threatens-eu-us-data-transfer-agreeme"
@@ -200,7 +482,7 @@
       "lastCovered": "2026-07-02T17:09:44.846Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-02-musk-s-x-poses-serious-risk-to-americans-privacy-advocates-w"
@@ -216,7 +498,7 @@
       "lastCovered": "2026-07-02T12:04:35.655Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-02-south-sudanese-stranded-aswan-ferry-egypt-sudan"
@@ -232,7 +514,7 @@
       "lastCovered": "2026-07-02T12:04:35.655Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-02-israeli-settlers-storm-al-aqsa-mosque"
@@ -248,7 +530,7 @@
       "lastCovered": "2026-07-02T12:04:35.655Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-02-karachi-hospital-hiv-outbreak-shc-syringes"
@@ -264,7 +546,7 @@
       "lastCovered": "2026-07-02T12:04:35.655Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-02-niger-state-land-dispute-18-killed"
@@ -280,7 +562,7 @@
       "lastCovered": "2026-07-02T12:04:35.655Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-02-mumbai-manhole-death-bmc-negligence"
@@ -302,7 +584,7 @@
       "lastCovered": "2026-07-02T12:04:35.655Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-01-japan-visa-rules-push-out-foreign-residents"
@@ -318,7 +600,7 @@
       "lastCovered": "2026-07-02T12:04:35.655Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-02-skyroot-vikram-1-india-first-private-rocket-launch"
@@ -340,7 +622,7 @@
       "lastCovered": "2026-07-02T12:04:35.655Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-02-google-ai-buildout-electricity-37-percent"
@@ -356,7 +638,7 @@
       "lastCovered": "2026-07-02T12:04:35.655Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-02-ml-interatomic-potentials-emergent-chemical-intuition"
@@ -372,7 +654,7 @@
       "lastCovered": "2026-07-02T12:04:35.655Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-02-poplar-secondary-cell-wall-architecture-ssnmr"
@@ -388,7 +670,7 @@
       "lastCovered": "2026-07-02T12:04:35.655Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-02-companies-throttling-employee-ai-use-cost"
@@ -404,7 +686,7 @@
       "lastCovered": "2026-07-02T12:04:35.655Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-02-bci-concurrent-control-natural-robotic-limbs"
@@ -420,7 +702,7 @@
       "lastCovered": "2026-07-02T12:04:35.655Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-02-india-offline-multilingual-open-source-ai-playbook"
@@ -436,7 +718,7 @@
       "lastCovered": "2026-07-02T08:07:12.368Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-07-01-amarnath-yatra-kashmir-security-economy",
@@ -462,7 +744,7 @@
       "lastCovered": "2026-07-02T08:07:12.368Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-02-russian-attack-on-kyiv-kills-at-least-13-injures-dozens"
@@ -487,7 +769,7 @@
       "lastCovered": "2026-07-02T08:07:12.368Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-02-taiwan-needs-to-become-a-hornet-s-nest-of-drones-us-diplomat"
@@ -512,7 +794,7 @@
       "lastCovered": "2026-07-02T08:07:12.368Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-02-myanmar-denies-asean-chair-s-request-for-meeting-with-aung-s"
@@ -528,7 +810,7 @@
       "lastCovered": "2026-07-02T08:07:12.368Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-01-japan-s-burial-problem"
@@ -544,7 +826,7 @@
       "lastCovered": "2026-07-02T08:07:12.368Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-02-google-loses-appeal-against-record-4-1bn-eu-competition-fine"
@@ -569,7 +851,7 @@
       "lastCovered": "2026-07-02T08:07:12.368Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-02-sam-altman-wants-to-give-trump-admin-5-stake-in-openai-and-t"
@@ -594,7 +876,7 @@
       "lastCovered": "2026-07-02T08:07:12.368Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-02-oppo-reno-16-and-16c-launched-in-india-alongside-oppo-bubble"
@@ -619,7 +901,7 @@
       "lastCovered": "2026-07-02T08:07:12.368Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-02-mr-prabowo-versus-the-market"
@@ -635,7 +917,7 @@
       "lastCovered": "2026-07-02T08:07:12.368Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-02-bitcoin-long-term-holders-have-returned-to-accumulation-glas"
@@ -651,7 +933,7 @@
       "lastCovered": "2026-07-02T08:07:12.368Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-02-beyond-the-dust-families-describe-daily-health-challenges-ne"
@@ -667,7 +949,7 @@
       "lastCovered": "2026-07-02T08:07:12.368Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-02-molybdenum-as-a-biodegradable-bone-implant-material-assessed"
@@ -683,7 +965,7 @@
       "lastCovered": "2026-07-02T08:07:12.368Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-01-cropped-1-july-2026-heatwave-scorches-europe-uk-2050-farm-pl"
@@ -699,7 +981,7 @@
       "lastCovered": "2026-07-02T04:05:45.086Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-02-massive-russian-missile-drone-barrage-kyiv"
@@ -724,7 +1006,7 @@
       "lastCovered": "2026-07-02T04:05:45.086Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-02-b-52-bombers-leave-england-iran-war"
@@ -740,7 +1022,7 @@
       "lastCovered": "2026-07-02T04:05:45.086Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-02-trump-qatari-gifted-air-force-one-first-flight"
@@ -756,7 +1038,7 @@
       "lastCovered": "2026-07-02T04:05:45.086Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-01-scattered-spider-teen-extradited-us"
@@ -772,7 +1054,7 @@
       "lastCovered": "2026-07-02T04:05:45.086Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-01-china-euv-lithography-progress"
@@ -788,7 +1070,7 @@
       "lastCovered": "2026-07-02T04:05:45.086Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-01-su-57-weapons-drone-cruise-missile-defense"
@@ -804,7 +1086,7 @@
       "lastCovered": "2026-07-02T04:05:45.086Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-02-cassava-brown-streak-disease-spread-africa"
@@ -820,7 +1102,7 @@
       "lastCovered": "2026-07-02T04:05:45.086Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-01-uk-editorials-north-sea-drilling"
@@ -836,7 +1118,7 @@
       "lastCovered": "2026-07-02T04:05:45.086Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-02-birds-cigarette-butts-nests-nicotine"
@@ -852,7 +1134,7 @@
       "lastCovered": "2026-07-02T04:05:45.086Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-02-maryam-nawaz-publicity-funds-transparency-plea"
@@ -868,7 +1150,7 @@
       "lastCovered": "2026-07-02T04:05:45.086Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-02-punjab-medical-university-vc-rules-appointments"
@@ -884,7 +1166,7 @@
       "lastCovered": "2026-07-01T22:08:23.360Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-01-eu-3-euro-duty-low-value-imports-shein-temu"
@@ -909,7 +1191,7 @@
       "lastCovered": "2026-07-01T22:08:23.360Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-01-us-blocks-usmca-long-term-renewal-sunset"
@@ -934,7 +1216,7 @@
       "lastCovered": "2026-07-01T22:08:23.360Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-06-30-iraq-5bn-deficit-oil-disruption-budget"
@@ -950,7 +1232,7 @@
       "lastCovered": "2026-07-01T22:08:23.360Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-01-telenor-pakistan-ufone-merger-ihc"
@@ -966,7 +1248,7 @@
       "lastCovered": "2026-07-01T22:08:23.360Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-01-ukraine-deep-strike-russian-refinery-dnipro-deaths"
@@ -988,7 +1270,7 @@
       "lastCovered": "2026-07-01T22:08:23.360Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-01-pakistan-jcp-no-supreme-court-judge-vetting-panels"
@@ -1004,7 +1286,7 @@
       "lastCovered": "2026-07-01T22:08:23.360Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-01-egypt-water-meter-readers-target-contracts-qalyubiya"
@@ -1020,7 +1302,7 @@
       "lastCovered": "2026-07-01T22:08:23.360Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-01-tren-de-aragua-succession-johan-petrica"
@@ -1036,7 +1318,7 @@
       "lastCovered": "2026-07-01T22:08:23.360Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-01-pollution-fish-hybridization-mexican-river"
@@ -1052,7 +1334,7 @@
       "lastCovered": "2026-07-01T22:08:23.360Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-01-solar-integrated-buildings-semi-arid-mashhad"
@@ -1068,7 +1350,7 @@
       "lastCovered": "2026-07-01T22:08:23.360Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-01-valar-advanced-reactor-powers-nvidia-ai-chip"
@@ -1089,7 +1371,7 @@
       "lastCovered": "2026-07-01T22:08:23.360Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-01-ai-impersonates-112-public-figures-study"
@@ -1105,7 +1387,7 @@
       "lastCovered": "2026-07-01T22:08:23.360Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-01-tmobile-vmware-exit-broadcom-license-lawsuit"
@@ -1113,241 +1395,6 @@
       "eventUri": "eng-11786455",
       "summary": "T-Mobile is ripping tens of thousands of VMs (across ~303,140 CPU cores) off VMware and suing to force Broadcom to honour its perpetual licenses. Lead with the lock-in mechanism, not the docket: Broadcom's post-acquisition move to subscriptions turned software enterprises had 'bought' into a rent they must keep paying, and a carrier this size fleeing at scale is the clearest signal yet of how vendor consolidation weaponises licensing. For the reader who runs infrastructure, a concrete case of what happens when perpetual really wasn't.",
       "conceptUris": []
-    },
-    {
-      "id": "us-iran-negotiations-what-s-the-latest",
-      "label": "US-Iran negotiations: What's the latest?",
-      "firstSeen": "2026-07-01T17:05:00.039Z",
-      "lastCovered": "2026-07-01T17:05:00.039Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-01-us-iran-negotiations-what-s-the-latest"
-      ],
-      "eventUri": "eng-11792108",
-      "summary": "Indirect US-Iran talks have actually begun in Doha via Qatari mediation — Witkoff and Kushner met the Qatari PM — yet no meeting with Iranian officials was even scheduled, and Trump's public optimism ('denuclearisation moving along well') sits against an unresolved sticking point: the $6bn MoU clause governing whether Tehran's frozen Qatari-held assets are released lump-sum or in tranches. Advances the Iran/Hormuz arc with a genuinely new step (talks commenced). Lead with the gap between the optimistic framing and the mechanism that actually decides durability — who controls the money. Multi-source (QA/IL/US/IN/SG) lets the writer weigh Washington's, Tehran's and Doha's accounts rather than any one capital's.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Doha",
-        "http://en.wikipedia.org/wiki/Qatar",
-        "http://en.wikipedia.org/wiki/Jared_Kushner",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Memorandum_of_understanding"
-      ]
-    },
-    {
-      "id": "500-families-displaced-to-karnoi-as-north-darfur-fighting-in",
-      "label": "500 families displaced to Karnoi as North Darfur fighting intensifies",
-      "firstSeen": "2026-07-01T17:05:00.039Z",
-      "lastCovered": "2026-07-01T17:05:00.039Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-01-500-families-displaced-to-karnoi-as-north-darfur-fighting-in"
-      ],
-      "eventUri": null,
-      "summary": "In three days 544 families fled fighting around Abu Liha, Orshi and Ambro into an already-overcrowded Karnoi in North Darfur — the RSF-army war grinding civilians into repeated displacement the world has stopped counting. Lead with the named locality and the human scale, and the mechanism: how the collapse into a two-force war turns whole districts into serial refugees. Africa/OIC as subject, filling the daily audit's flagged Africa coverage gap; Radio Dabanga (SD) is the regional ground voice no wire carries. Continuation of injustice IS the development.",
-      "conceptUris": []
-    },
-    {
-      "id": "washington-warns-of-further-sanctions-against-sudan-s-islami",
-      "label": "Washington warns of further sanctions against Sudan's Islamist movement",
-      "firstSeen": "2026-07-01T17:05:00.039Z",
-      "lastCovered": "2026-07-01T17:05:00.039Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-01-washington-warns-of-further-sanctions-against-sudan-s-islami"
-      ],
-      "eventUri": "eng-11787065",
-      "summary": "Washington has warned Sudan's Islamist movement and its fighters — whom it links to training and support from Iran's IRGC — that further sanctions could follow. Lead with the mechanism the reader will grasp: how the US is using sanctions designation to draw an Iran-Sudan proxy line inside Sudan's war, and what that reveals about how outside powers pick sides in the RSF-army conflict. Accountability and the Muslim-world lens — named actors, an external power reshaping a domestic war by fiat. Radio Dabanga (SD) is the regional voice; treat the US framing as a claim.",
-      "conceptUris": []
-    },
-    {
-      "id": "south-korea-gets-a-new-pm-as-ruling-party-leadership-race-he",
-      "label": "South Korea Gets a New PM as Ruling Party Leadership Race Heats up",
-      "firstSeen": "2026-07-01T17:05:00.039Z",
-      "lastCovered": "2026-07-01T17:05:00.039Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-01-south-korea-gets-a-new-pm-as-ruling-party-leadership-race-he"
-      ],
-      "eventUri": null,
-      "summary": "South Korea's outgoing premier is set to pivot to the ruling Democratic Party chairship as friction builds between the presidential office and the DP. Lead with the structural read, not the reshuffle: how a new PM and a contested party leadership signal where power is consolidating in Seoul, and what the office-vs-party tension means for policy direction in a pivotal US-aligned Asian democracy. Geographic diversity — East Asia as an actor with its own internal power struggle, not a backdrop to Washington.",
-      "conceptUris": []
-    },
-    {
-      "id": "kevin-warsh-vows-no-changes-to-fed-independence",
-      "label": "Kevin Warsh vows 'no changes' to Fed independence",
-      "firstSeen": "2026-07-01T17:05:00.039Z",
-      "lastCovered": "2026-07-01T17:05:00.039Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-01-kevin-warsh-vows-no-changes-to-fed-independence"
-      ],
-      "eventUri": "eng-11794000",
-      "summary": "New Fed chair Kevin Warsh insists there will be 'no changes' to central-bank independence and doubles down on the 2% inflation target — a pledge that only makes sense against the pressure he is answering to. Lead with the mechanism, not the reassurance: why a freshly installed chair has to publicly defend independence at all, what a new communications task force (chaired via ex-BoE King) signals, and how markets (bitcoin retook $60k on his inflation-risk comments) read the credibility of the promise. Multi-source (FT/Bloomberg/CoinDesk) lets the writer weigh the pledge against the market's reaction.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Inflation",
-        "http://en.wikipedia.org/wiki/Kevin_Warsh",
-        "http://en.wikipedia.org/wiki/Central_bank",
-        "http://en.wikipedia.org/wiki/Chair_of_the_Federal_Reserve",
-        "http://en.wikipedia.org/wiki/European_Central_Bank",
-        "http://en.wikipedia.org/wiki/Interest_rate",
-        "http://en.wikipedia.org/wiki/Portugal",
-        "http://en.wikipedia.org/wiki/Forward_guidance"
-      ]
-    },
-    {
-      "id": "four-groups-launches-suit-in-suit-over-totalenergies-oil-ass",
-      "label": "Four groups launch suit over TotalEnergies' oil asset divestment in Nigeria",
-      "firstSeen": "2026-07-01T17:05:00.039Z",
-      "lastCovered": "2026-07-01T17:05:00.039Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-01-four-groups-launches-suit-in-suit-over-totalenergies-oil-ass"
-      ],
-      "eventUri": "eng-11793872",
-      "summary": "Four civil-society groups are suing to force disclosure on TotalEnergies' sale of Niger Delta oil assets, testing whether the divestment complies with France's Duty of Vigilance Law — which obliges large firms to identify and prevent human-rights and environmental harm across their operations. Lead with the accountability mechanism: as Western majors offload aging, polluting onshore assets to local ventures, a French statute becomes the lever communities use to keep the seller on the hook for what it leaves behind. Global South as subject; Premium Times (NG) carries the regional voice on corporate exit and environmental liability.",
-      "conceptUris": []
-    },
-    {
-      "id": "circle-crcl-news-jefferies-wouldn-t-buy-the-dip-as-open-usd",
-      "label": "Circle (CRCL) news: Jefferies wouldn't buy the dip as Open USD heats up stablecoin race",
-      "firstSeen": "2026-07-01T17:05:00.039Z",
-      "lastCovered": "2026-07-01T17:05:00.039Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-01-circle-crcl-news-jefferies-wouldn-t-buy-the-dip-as-open-usd"
-      ],
-      "eventUri": "eng-11793558",
-      "summary": "A new consortium-backed stablecoin, Open USD, is challenging Circle's USDC — and Jefferies is warning investors off the Circle dip on competition fears. Lead with the market-structure mechanism, not the share price: stablecoins are becoming the contested rails between traditional finance and crypto, and the fight now turns on network effects and regulatory footprint (Circle's edge) versus a large consortium's reach. For the macro/crypto-literate reader, this is who controls the dollar's on-chain plumbing — and whether incumbency or coordination wins.",
-      "conceptUris": []
-    },
-    {
-      "id": "for-the-first-time-a-cell-built-from-scratch-grows-and-divid",
-      "label": "For the First Time, a Cell Built From Scratch Grows and Divides",
-      "firstSeen": "2026-07-01T17:05:00.039Z",
-      "lastCovered": "2026-07-01T17:05:00.039Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-01-for-the-first-time-a-cell-built-from-scratch-grows-and-divid"
-      ],
-      "eventUri": null,
-      "summary": "Scientists have built a synthetic cell combining more lifelike properties than ever achieved — one that both grows and divides — proof of concept that nonliving materials can be assembled into something close to life. Lead with the threshold the work crosses, not the hype: growth-plus-division is the minimal signature of life, and reproducing it from scratch reframes what 'building life' means and where the line between chemistry and biology actually sits. For the intellectually serious reader, the mechanism and the sober limits of the claim.",
-      "conceptUris": []
-    },
-    {
-      "id": "new-bioelectronic-microdevices-enable-remote-cell-stimulatio",
-      "label": "New bioelectronic microdevices enable remote cell stimulation using ultrasound",
-      "firstSeen": "2026-07-01T17:05:00.039Z",
-      "lastCovered": "2026-07-01T17:05:00.039Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-01-new-bioelectronic-microdevices-enable-remote-cell-stimulatio"
-      ],
-      "eventUri": null,
-      "summary": "Barcelona researchers (UAB and IMB-CNM-CSIC) built wireless piezoelectric microdevices that convert mechanical force — including externally applied ultrasound — into electrical signals to stimulate individual living cells, non-invasively. Lead with the mechanism and its promise: controlling cellular activity from outside the body without wires or implants opens a path to targeted therapies that don't require surgery. For the technically literate reader, how a piezoelectric micro-transducer bridges ultrasound and bioelectric signalling, and what it realistically enables next.",
-      "conceptUris": []
-    },
-    {
-      "id": "pm-shehbaz-directs-major-overhaul-of-agriculture-sector",
-      "label": "PM Shehbaz directs major overhaul of agriculture sector",
-      "firstSeen": "2026-07-01T17:05:00.039Z",
-      "lastCovered": "2026-07-01T17:05:00.039Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-06-30-pm-shehbaz-directs-major-overhaul-of-agriculture-sector"
-      ],
-      "eventUri": "eng-11787270",
-      "summary": "Pakistan's PM Shehbaz Sharif has ordered a National Agriculture Policy and a modernisation of the food-security ministry — a top-down bid to lift crop yields in a 240-million-person economy exposed to climate stress and import dependence. Lead with the mechanism and the stakes: what 'modernising' agriculture concretely means (inputs, yields, provincial coordination), and who bears the risk if a state-directed overhaul misfires in a country where food security is a national-stability issue. OIC subject; Dawn (PK) is the regional voice; a Global-South food-systems story behind a routine policy headline.",
-      "conceptUris": []
-    },
-    {
-      "id": "llms-are-stuck-in-a-groupthink-rut-this-startup-is-trying-to",
-      "label": "LLMs are stuck in a groupthink rut. This startup is trying to get them out.",
-      "firstSeen": "2026-07-01T17:05:00.039Z",
-      "lastCovered": "2026-07-01T17:05:00.039Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-01-llms-are-stuck-in-a-groupthink-rut-this-startup-is-trying-to"
-      ],
-      "eventUri": null,
-      "summary": "Large language models are far more predictable than users assume — ask several for a random number and they converge — and a startup is trying to break that homogeneity. Lead with the mechanism the reader can test themselves: why models trained on overlapping data collapse toward the same 'average' output, why that's fine for coding but fatal for genuine novelty, and what it would take to engineer diversity back in. For the AI-literate reader, a concrete window into how model training shapes the ceiling on creativity.",
-      "conceptUris": []
-    },
-    {
-      "id": "nasa-inspector-general-suggests-boeing-s-starliner-will-now",
-      "label": "NASA inspector general suggests Boeing's Starliner will now be a decade late",
-      "firstSeen": "2026-07-01T17:05:00.039Z",
-      "lastCovered": "2026-07-01T17:05:00.039Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-01-nasa-inspector-general-suggests-boeing-s-starliner-will-now"
-      ],
-      "eventUri": "eng-11794564",
-      "summary": "A NASA inspector-general audit finds Boeing's Starliner crew capsule likely won't be certified for operational ISS flights until next year — roughly a decade behind, with only about three years left before NASA retires the station. Lead with the accountability mechanism, not the delay alone: how a fixed-price commercial-crew contract meant to save money has instead exposed Boeing's engineering and program failures, and what a near-useless certification window says about the wisdom of betting a national capability on one struggling contractor. For the reader, the structural lesson in how aerospace procurement goes wrong.",
-      "conceptUris": []
-    },
-    {
-      "id": "why-playstation-is-killing-physical-games-and-what-it-means",
-      "label": "Why PlayStation is killing physical games and what it means for angry consumers",
-      "firstSeen": "2026-07-01T17:05:00.039Z",
-      "lastCovered": "2026-07-01T17:05:00.039Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-01-why-playstation-is-killing-physical-games-and-what-it-means"
-      ],
-      "eventUri": "eng-11794089",
-      "summary": "Sony is steering PlayStation decisively toward digital-only distribution, retiring physical media — and the backlash is about more than nostalgia. Lead with the ownership mechanism: when games exist only as store licences, buyers own access rights that can be revoked, not property they can keep, resell or lend, and the shift quietly transfers control from consumer to platform. For the reader, a concrete case of how digital distribution rewrites ownership itself — a preview of the same dynamic across films, books and software.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Sony",
-        "http://en.wikipedia.org/wiki/PlayStation",
-        "http://en.wikipedia.org/wiki/Video_game_console",
-        "http://en.wikipedia.org/wiki/PlayStation_(console)",
-        "http://en.wikipedia.org/wiki/PlayStation_Store",
-        "http://en.wikipedia.org/wiki/Sony_Interactive_Entertainment",
-        "http://en.wikipedia.org/wiki/Video_game",
-        "http://en.wikipedia.org/wiki/Digital_distribution"
-      ]
     }
   ]
 }
