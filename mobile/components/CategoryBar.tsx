@@ -57,7 +57,10 @@ function TabLabel({
   const animatedStyle = useAnimatedStyle(() => {
     'worklet';
     const distance = Math.abs(pagerOffset.value - index);
-    const opacity = interpolate(distance, [0, 1], [1, 0.4], 'clamp');
+    // 0.5 floor: inactive tabs must stay present as primary navigation —
+    // at the previous 0.4 they sank into the dark bg and read as chrome
+    // rather than destinations. Still clearly secondary to the active tab.
+    const opacity = interpolate(distance, [0, 1], [1, 0.5], 'clamp');
     return { color: labelStyle.color, opacity };
   });
 

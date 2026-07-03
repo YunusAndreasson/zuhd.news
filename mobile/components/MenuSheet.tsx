@@ -9,7 +9,6 @@ import {
   Linking,
   Text as RNText,
   StyleSheet,
-  Switch,
   type TextStyle,
   View,
 } from 'react-native';
@@ -40,6 +39,7 @@ import { SheetHandle } from './SheetHandle';
 import { type InfoSection, SheetInfoPage } from './SheetInfoPage';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 import { SheetSearchPage } from './SheetSearchPage';
+import { Toggle } from './Toggle';
 
 const APP_VERSION = Constants.expoConfig?.version ?? '';
 
@@ -219,24 +219,25 @@ function ToggleRow({
   onChange: (v: boolean) => void;
 }) {
   const { colors } = useTheme();
-  const handleChange = useCallback(
-    (v: boolean) => {
-      hapticTick();
-      onChange(v);
-    },
-    [onChange],
-  );
+  const handlePress = useCallback(() => {
+    hapticTick();
+    onChange(!value);
+  }, [onChange, value]);
   return (
-    <View
+    // The whole row is the tap target — a toggle-sized target alone is a
+    // reach on a full-bleed settings row, and screen readers get one
+    // focusable element carrying the complete switch semantics.
+    <Pressable
+      onPress={handlePress}
+      haptic="none"
       style={[
         styles.row,
         !first && { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: colors.rule },
       ]}
-      accessible
       accessibilityRole="switch"
-      // The merged element subsumes the inner Switch, so the on/off state must
-      // be announced here or the screen reader hears a stateless "switch".
       accessibilityState={{ checked: value }}
+      accessibilityLabel={label}
+      accessibilityHint={hint}
     >
       <View style={styles.rowText}>
         <Text variant="label" tone="default">
@@ -248,22 +249,8 @@ function ToggleRow({
           </Text>
         )}
       </View>
-      <Switch
-        value={value}
-        onValueChange={handleChange}
-        accessibilityLabel={label}
-        accessibilityHint={hint}
-        // On-state fills the track with `text` and punches a `bg`-colored
-        // thumb — the guaranteed-inverting pair reads as a high-contrast "on"
-        // in both modes. `thumbColor` is required on Android (otherwise the
-        // default Material teal thumb leaks the platform accent into a
-        // monochrome app); it also keeps the iOS thumb visible against the
-        // near-`text` on-track. Off-state stays a quiet `rule` track.
-        trackColor={{ false: colors.rule, true: colors.text }}
-        thumbColor={value ? colors.bg : colors.textSecondary}
-        ios_backgroundColor={colors.rule}
-      />
-    </View>
+      <Toggle value={value} />
+    </Pressable>
   );
 }
 

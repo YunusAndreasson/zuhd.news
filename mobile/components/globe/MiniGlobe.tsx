@@ -3239,8 +3239,14 @@ export const MiniGlobe = memo(function MiniGlobe({
               y={ty}
               text={w.name}
               font={waterFont}
-              color={colors.textSecondary}
-              opacity={(light ? 0.95 : 0.9) * w.opacity}
+              // Light mode borrows the body-text ink at reduced opacity
+              // instead of `textSecondary` at full: #666-on-cream sitting
+              // over the pale land tint washed out to near-invisible.
+              // Deeper ink + lower opacity keeps the same "lightest tier"
+              // rank against neighbour labels (0.95 × text) while making
+              // hydrography actually readable. Dark mode is untouched.
+              color={light ? colors.text : colors.textSecondary}
+              opacity={(light ? 0.78 : 0.9) * w.opacity}
             />
           );
         })}
