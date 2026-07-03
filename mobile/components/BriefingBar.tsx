@@ -3,7 +3,7 @@ import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { type LayoutChangeEvent, Platform, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
-  FadeIn,
+  FadeInDown,
   FadeOut,
   LinearTransition,
   useAnimatedStyle,
@@ -199,12 +199,10 @@ export const BriefingBar = memo(function BriefingBar({
 
   return (
     <Animated.View
-      entering={FadeIn.duration(ANIMATION.normal).withInitialValues({
+      entering={FadeInDown.duration(ANIMATION.normal).withInitialValues({
         transform: [{ translateY: 12 }],
       })}
-      exiting={FadeOut.duration(ANIMATION.fast).withInitialValues({
-        transform: [{ translateY: 0 }],
-      })}
+      exiting={FadeOut.duration(ANIMATION.fast)}
       layout={LinearTransition.duration(ANIMATION.normal)}
       style={[styles.wrapper, { paddingBottom: Math.max(insets.bottom, SPACING.sm) }]}
       pointerEvents="box-none"

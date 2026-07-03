@@ -380,7 +380,7 @@ export default function HomeScreen() {
   const onPageSelected = useCallback(
     (e: PagerViewOnPageSelectedEvent) => {
       const page = e.nativeEvent.position;
-      pagerOffset.value = page;
+      pagerOffset.set(page);
       hapticTick();
       setCurrentCategory(page);
       activeArticleRef.current = currentArticlesRef.current[page] ?? null;
@@ -390,7 +390,7 @@ export default function HomeScreen() {
 
   const onPageScroll = useCallback(
     (e: PagerViewOnPageScrollEvent) => {
-      pagerOffset.value = e.nativeEvent.position + e.nativeEvent.offset;
+      pagerOffset.set(e.nativeEvent.position + e.nativeEvent.offset);
     },
     [pagerOffset],
   );

@@ -72,7 +72,6 @@ jest.mock('react-native-reanimated', () => {
       typeof handler === 'function' ? handler : handler?.onScroll || (() => {}),
     useDerivedValue: (fn) => ({ value: fn(), get: () => fn() }),
     useReducedMotion: () => false,
-    runOnJS: (fn) => fn,
     interpolate: (value, input, output) => {
       if (input.length < 2) return output[0] || 0;
       if (value <= input[0]) return output[0];
@@ -97,6 +96,13 @@ jest.mock('react-native-reanimated', () => {
     SharedValue: {},
   };
 });
+
+// ---------------------------------------------------------------------------
+// react-native-worklets mock — scheduleOnRN runs synchronously in tests
+// ---------------------------------------------------------------------------
+jest.mock('react-native-worklets', () => ({
+  scheduleOnRN: (fn, ...args) => fn(...args),
+}));
 
 // ---------------------------------------------------------------------------
 // expo-* mocks

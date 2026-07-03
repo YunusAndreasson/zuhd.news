@@ -1,6 +1,6 @@
 import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister';
-import type { AsyncStorage } from '@tanstack/query-persist-client-core';
 import { QueryClient } from '@tanstack/react-query';
+import type { AsyncStorage } from '@tanstack/react-query-persist-client';
 import { File, Paths } from 'expo-file-system';
 import { DAY_MS } from './time';
 

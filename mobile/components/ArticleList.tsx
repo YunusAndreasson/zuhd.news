@@ -165,7 +165,7 @@ export const ArticleList = memo(function ArticleList({
   const resetOverscroll = useCallback(() => {
     if (overscrollTimer.current) clearTimeout(overscrollTimer.current);
     overscrollTimer.current = setTimeout(() => {
-      overscrollFired.value = false;
+      overscrollFired.set(false);
     }, 800);
   }, [overscrollFired, overscrollTimer]);
   const fireEndReached = useEffectEvent(() => {
@@ -212,7 +212,7 @@ export const ArticleList = memo(function ArticleList({
 
   useImperativeHandle(ref, () => ({
     scrollToTop: () => {
-      overscrollFired.value = false;
+      overscrollFired.set(false);
       listRef.current?.scrollToOffset({ offset: 0, animated: true });
     },
     scrollToSlug: (slug: string) => {
