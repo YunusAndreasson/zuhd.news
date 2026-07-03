@@ -7,9 +7,16 @@ import {
   type FontSet,
   INLINE_HIT_SLOP,
   MAX_FONT_SCALE,
+  PROSE_BREAK_PROPS,
   type Typography,
 } from '../constants/theme';
 import { openExternal } from './open-link';
+
+/** Article sentences are raw RN `Text` (not the `<Text variant>` primitive),
+ *  so the body-role breaking props ride along here: Android dictionary
+ *  hyphenation + iOS 'standard' line breaking + the body Dynamic Type ramp —
+ *  same treatment the `body` variant gets. */
+const SENTENCE_TEXT_PROPS = { ...PROSE_BREAK_PROPS, dynamicTypeRamp: 'body' } as const;
 
 export type Segment = {
   type: 'text' | 'bold' | 'italic' | 'boldItalic' | 'link' | 'entity';
@@ -425,6 +432,7 @@ export function renderSentences(
               {dateline}
             </Text>
             <Text
+              {...SENTENCE_TEXT_PROPS}
               style={[mdStyles.sentence, sizeStyle]}
               maxFontSizeMultiplier={MAX_FONT_SCALE.body}
             >
@@ -436,6 +444,7 @@ export function renderSentences(
       return (
         <Text
           key={i}
+          {...SENTENCE_TEXT_PROPS}
           style={[mdStyles.sentence, sizeStyle]}
           maxFontSizeMultiplier={MAX_FONT_SCALE.body}
         >
@@ -450,6 +459,7 @@ export function renderSentences(
     return (
       <Text
         key={i}
+        {...SENTENCE_TEXT_PROPS}
         style={[mdStyles.sentence, sizeStyle]}
         maxFontSizeMultiplier={MAX_FONT_SCALE.body}
       >

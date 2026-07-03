@@ -1,5 +1,10 @@
 import type { Category } from '@shared/types';
-import { Dimensions, StyleSheet, type TextStyle } from 'react-native';
+import {
+  Dimensions,
+  type TextProps as RNTextProps,
+  StyleSheet,
+  type TextStyle,
+} from 'react-native';
 import { Easing } from 'react-native-reanimated';
 import { ANDROID_TEXT_BASE } from './platform';
 
@@ -617,6 +622,52 @@ export const VARIANT_CAP: Record<TextVariant, number> = {
   tabularEmphasis: MAX_FONT_SCALE.tabular,
   sectionHeading: MAX_FONT_SCALE.body,
   wordmark: MAX_FONT_SCALE.chrome,
+};
+
+/** Line-breaking and Dynamic Type behavior per typographic role. Variants
+ *  (styles) say how text *looks*; these props say how it *breaks* and
+ *  *scales* — RN exposes them as props, not styles, so they ride alongside
+ *  the variant rather than inside it.
+ *
+ *  - Prose hyphenates on Android (`'normal'` = conservative dictionary
+ *    hyphenation, API 23+) and uses Apple's `'standard'` strategy on iOS 14+
+ *    — both tame the gappy right rag a 17pt column produces at phone widths.
+ *    RN defaults both to off/none.
+ *  - Headlines use Android's `'balanced'` breaker and iOS `'push-out'` so a
+ *    two-line title splits evenly instead of stranding a one-word widow.
+ *  - `dynamicTypeRamp` (iOS) maps each role onto the platform Dynamic Type
+ *    curve it corresponds to, so accessibility scaling follows Apple's
+ *    per-role ramp (titles grow less than body) rather than one linear
+ *    multiplier. `VARIANT_CAP` still clamps the extremes.
+ *
+ *  Platform-suffixed props are ignored on the other platform — safe to set
+ *  unconditionally. `wordmark` is deliberately absent: fixed chrome, never
+ *  wraps, never scales past its cap. */
+export const PROSE_BREAK_PROPS = {
+  android_hyphenationFrequency: 'normal',
+  lineBreakStrategyIOS: 'standard',
+} as const satisfies Partial<RNTextProps>;
+
+const HEADING_BREAK_PROPS = {
+  textBreakStrategy: 'balanced',
+  lineBreakStrategyIOS: 'push-out',
+} as const satisfies Partial<RNTextProps>;
+
+export const VARIANT_TEXT_PROPS: Partial<Record<TextVariant, Partial<RNTextProps>>> = {
+  display: { ...HEADING_BREAK_PROPS, dynamicTypeRamp: 'largeTitle' },
+  title: { ...HEADING_BREAK_PROPS, dynamicTypeRamp: 'title2' },
+  lead: { ...PROSE_BREAK_PROPS, dynamicTypeRamp: 'title3' },
+  body: { ...PROSE_BREAK_PROPS, dynamicTypeRamp: 'body' },
+  bodyEmphasis: { ...PROSE_BREAK_PROPS, dynamicTypeRamp: 'body' },
+  bodyItalic: { ...PROSE_BREAK_PROPS, dynamicTypeRamp: 'body' },
+  caption: { ...PROSE_BREAK_PROPS, dynamicTypeRamp: 'footnote' },
+  captionEmphasis: { dynamicTypeRamp: 'footnote' },
+  label: { dynamicTypeRamp: 'callout' },
+  labelSm: { dynamicTypeRamp: 'footnote' },
+  labelXs: { dynamicTypeRamp: 'caption1' },
+  tabular: { dynamicTypeRamp: 'caption1' },
+  tabularEmphasis: { dynamicTypeRamp: 'caption1' },
+  sectionHeading: { dynamicTypeRamp: 'footnote' },
 };
 
 /** Tone override — maps a semantic tone name to a palette color. The

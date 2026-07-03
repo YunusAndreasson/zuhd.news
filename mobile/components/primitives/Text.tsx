@@ -1,6 +1,12 @@
 import { memo } from 'react';
 import { Text as RNText, type TextProps as RNTextProps, type TextStyle } from 'react-native';
-import { type TextTone, type TextVariant, toneColor, VARIANT_CAP } from '../../constants/theme';
+import {
+  type TextTone,
+  type TextVariant,
+  toneColor,
+  VARIANT_CAP,
+  VARIANT_TEXT_PROPS,
+} from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 
 export interface TextProps extends Omit<RNTextProps, 'style'> {
@@ -33,7 +39,10 @@ export const Text = memo(function Text({
       : null;
 
   return (
+    // Variant-role line-breaking/Dynamic Type props apply first so any
+    // call-site prop can still override them.
     <RNText
+      {...VARIANT_TEXT_PROPS[variant]}
       {...rest}
       style={[baseStyle, toneStyle, scaleStyle, style]}
       maxFontSizeMultiplier={maxFontSizeMultiplier ?? VARIANT_CAP[variant]}
