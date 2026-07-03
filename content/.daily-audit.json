@@ -1,27 +1,27 @@
 {
-  "date": "2026-07-02",
+  "date": "2026-07-03",
   "metrics": {
-    "articles": { "value": 41, "detail": "5 cycles, avg 6/cycle (vs 40 yesterday)" },
+    "articles": { "value": 39, "detail": "5 cycles completed, ~7.8/cycle (down from 50 yesterday)" },
     "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 14, "economy": 8, "science": 6, "tech": 13 },
-    "multiSource": { "value": 9, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "EU": 12, "AM": 11, "AS": 8, "ME": 7, "AF": 3 } },
-    "sciTech": { "ratio": 46, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online", "pct": 15, "target": 20, "met": true },
-    "uniqueSources": 36,
+    "categories": { "politics": 18, "economy": 7, "science": 7, "tech": 7 },
+    "multiSource": { "value": 6, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "EU": 11, "AS": 7, "ME": 7, "AM": 6, "AF": 6, "OC": 2 } },
+    "sciTech": { "ratio": 36, "target": 25, "met": true },
+    "topSourceShare": { "source": "Phys.org / Dawn / Premium Times / The Diplomat / TASS (tied)", "pct": 8, "target": 20, "met": true },
+    "uniqueSources": 32,
     "duplicates": 0,
-    "avgCycleDuration": 597
+    "avgCycleDuration": 885
   },
-  "experiment": "Skipped — all metrics within targets, no active experiment to evaluate, and no pause gate. The only queued experiment (numerical-density) targets write-prompt.md, which is out of scope for daily tuning.",
-  "weakestArea": "Science at 6 articles is the only metric near its floor (target 5); everything else clears its target with wide margin. Science supply is structurally single-source and cycle-to-cycle lumpy (6 today vs 8 yesterday), so the thin margin is expected variance rather than a regression — worth watching if it dips below 5 on a lighter news day.",
+  "experiment": "Skipped — all six goal metrics are within targets and no active experiment is open. The multi-source selector-floor lever most relevant to sourcing is documented in history as tapped out: raising it just relocates rejections without lifting genuine multi-source supply, which is feed-capped at ~9/cycle.",
+  "weakestArea": "Category balance is the softest spot: politics ran 18 of 39 articles (46%) while economy, science, and tech each landed at 7. No category floor was breached and sci+tech share (36%) comfortably clears its 25% target, but the politics skew combined with lighter throughput (39 vs 50 yesterday, ~7.8/cycle vs the historical ~10-11) suggests a thinner news day where the selector leaned on abundant politics feed supply. Not actionable via a parameter change today.",
   "watching": [
-    "Science count sits just one above its floor (6 vs 5) — monitor for sub-floor days as it is the least-buffered goal.",
-    "Article throughput has settled to ~41/day for two days running, down from the 49-57 range seen earlier this spring; consistent with the tighter standalone cap trimming lighter news days.",
-    "Regions covered dropped to 5 (no OC today, vs 6 yesterday with one OC story) — still above the 4 target but the Oceania gap recurs on thin days."
+    "Throughput dipped to 39/day (7.8/cycle) from 50 yesterday — watch whether this is a single light-news day or the start of a multi-day feed-thinness trend.",
+    "Freshness instrumentation reported count:1 today (only one article with a parseable date) — median 0 still meets target, but the low sample count is a measurement quirk worth confirming next cycle rather than a freshness regression.",
+    "Economy fell to 7 (from 9 yesterday); its floor of 3 held but the category is running near the low end of its recent band."
   ],
   "coverageGaps": [
-    "No Oceania (OC) coverage today; Africa (AF) thin at 3 stories.",
-    "Economy at 8 is the lowest non-science category, below its typical 11-13 range."
+    "Oceania remains thin at 2 articles — persistent structural gap, consistent with prior days and feed composition rather than a new regression.",
+    "Politics over-concentration (46% of output) crowded the mix on a light day; no single missing region, but the balance leaned Euro-Atlantic/politics-heavy."
   ],
-  "context": "Clean day: all four goals (freshness, diversity, multi-source, educational value) met with zero duplicates and top-source share at 15%. Source concentration is healthy across 36 unique outlets. No experiments are active and no pause gate is set, so the pipeline is running at baseline — the appropriate move is to hold and keep collecting clean baseline data rather than introduce a variable while metrics are green."
+  "context": "No experiments have been active since the 2026-05-18 editor-effort experiment closed as void; the queued numerical-density experiment remains gated to write-prompt.md, which is out of scope for daily tuning. All goal metrics are green today, so the correct move is to hold parameters steady and keep watching throughput and category balance for a sustained trend before intervening."
 }
