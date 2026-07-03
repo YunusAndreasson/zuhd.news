@@ -146,20 +146,18 @@ function glowAtlas(spec: GlowSpec, points: { x: number; y: number }[]) {
 
 /** Atlas inputs for the conflict layer. Same pipeline as glowAtlas — the
  *  conflict layer reuses the ghost-pin baked texture, just at a different
- *  point set. Per-instance recency fade is intentionally not encoded via
- *  Atlas's `colors` prop: in the bundled RN-Skia version that prop's
- *  default blend mode paints the full sprite bounding box (visible as
- *  white squares) instead of multiplying by texture alpha. The
- *  client-side 1-day filter means all visible events share the same
- *  date and would render at the same recencyAlpha anyway, so the per-
- *  instance fade is not load-bearing. If we widen the window past 1
- *  day, options are (a) inline rendering with per-marker opacity, or
- *  (b) bucketing markers into N atlases by recency tier. */
-function conflictAtlas(spec: GlowSpec, marks: { x: number; y: number }[]) {
+ *  point set — plus a per-instance color carrying the recency fade.
+ *  White at `recencyAlpha` multiplied into the sprite via
+ *  `colorBlendMode="modulate"` scales the baked glow's alpha uniformly.
+ *  The explicit modulate mode is load-bearing, not stylistic: Atlas's
+ *  default colors blend is `dstOver`, which paints each color *behind*
+ *  the sprite — filling its transparent bounding box with solid squares. */
+function conflictAtlas(spec: GlowSpec, marks: { x: number; y: number; recencyAlpha: number }[]) {
   if (marks.length === 0) return null;
   return {
     sprites: marks.map(() => spec.srcRect),
     transforms: marks.map((m) => Skia.RSXform(1, 0, m.x - spec.center, m.y - spec.center)),
+    colors: marks.map((m) => Float32Array.of(1, 1, 1, m.recencyAlpha)),
   };
 }
 
@@ -284,6 +282,10 @@ const CHOKEPOINT_SATURATION_DELTA = 0.3;
 // when the country label rendered at 14pt; shrunk to track the smaller
 // secondary-tier font.
 const LABEL_LINE_HEIGHT = 14;
+// Neighbour-tier sibling of LABEL_LINE_HEIGHT — same ratio applied to the
+// 11.5pt neighborFont (14 × 11.5/12 ≈ 13.4, rounded down so the two-line
+// stack stays compact at the smaller size).
+const NEIGHBOR_LINE_HEIGHT = 13;
 // Halo stroke width for primary-tier labels (focused country, chokepoint).
 // 2.4 reads as a soft cushion behind the glyphs without becoming a visible
 // plate; 3+ starts to feel like a solid background rectangle at 14px text.
@@ -303,14 +305,22 @@ const LABEL_HALO_OPACITY_DARK_STRONG = 0.7;
 // now carries the primary-tier halo.
 const LABEL_HALO_OPACITY_LIGHT_SOFT = 0.5;
 const LABEL_HALO_OPACITY_DARK_SOFT = 0.4;
-// Floor opacity for anchor-tier neighbour labels at 1× ambient zoom. Folds
-// through the same `(light ? 0.85 : 0.7)` tier multiplier as zoomed-in
-// neighbour labels, landing at perceived ~0.32 dark / ~0.38 light — quiet
-// orientation, never competing with the focused country's primary label.
-// As the user zooms, anchors strengthen via `Math.max(this, labelOpacity)`
-// so they never dim below their ambient floor while smaller countries fade
-// in around them.
-const ANCHOR_LABEL_OPACITY = 0.45;
+// Floor opacity for anchor-tier neighbour labels at 1× ambient zoom —
+// quiet orientation, never competing with the focused country's primary
+// label. As the user zooms, anchors strengthen via `Math.max(floor,
+// labelOpacity)` so they never dim below their ambient floor while
+// smaller countries fade in around them.
+//
+// Mode-split floors: the same 0.45 floor composites to very different
+// WCAG contrast per mode — ~3.4:1 on dark-mode land (a legible whisper)
+// but ~1.9:1 on light-mode land (below every threshold; near-invisible
+// for low-vision readers). 0.75 in light restores perceptual parity
+// (~3.2–5:1, AA-large tier) while staying clearly below the focused
+// label's 5.5+:1, so the whisper hierarchy survives in both modes.
+// Audited against WCAG 2.2 SC 1.4.3 with the full layer compositing —
+// see scratch script map-contrast.mjs from the 2026-07-04 audit.
+const ANCHOR_LABEL_OPACITY_DARK = 0.45;
+const ANCHOR_LABEL_OPACITY_LIGHT = 0.75;
 
 /** Widest line in `lines`, measured by font width when loaded; otherwise
  *  approximated at `fallbackChar` pixels per character so first-paint
@@ -327,6 +337,16 @@ function measureLines(
   }
   return w;
 }
+
+// Neighbour-label lines, precomputed at module load. Display-name
+// normalization ("United States of America" → "United States") and the
+// 1–2 line wrap (word boundary nearest the middle, same convention as
+// the focused country label) are both static per name, so the per-frame
+// projection loop indexes this array instead of re-scanning strings.
+// Index-parallel to countryCentroidNames.
+const countryCentroidLabelLines: string[][] = countryCentroidNames.map((name) =>
+  wrapCountryLabel(displayCountryName(name) ?? name),
+);
 
 export interface TapResult {
   countryName: string;
@@ -458,8 +478,8 @@ interface GlobeState {
    *  (same visual register as neighbor-article pins) so the layer reads
    *  as ambient density rather than as its own pictogram vocabulary.
    *  `recencyAlpha` ∈ [0.4, 1] fades across the 14-day window relative
-   *  to the dataset's latest event; render block multiplies it into
-   *  each layer's opacity. */
+   *  to the dataset's latest event; the render side folds it in as a
+   *  per-sprite Atlas color (white × alpha, modulate blend). */
   conflictMarks: {
     x: number;
     y: number;
@@ -470,9 +490,14 @@ interface GlobeState {
    *  hemisphere EXCEPT the highlighted one. Emerges when the camera is
    *  zoomed past PLACES_APPEAR_CLIP, giving the reader geographic context
    *  ("Pakistan is bordered by Iran / Afghanistan / India / China") without
-   *  needing a second screen. `opacity` folds the zoom-band fade factor. */
+   *  needing a second screen. `opacity` folds the zoom-band fade factor.
+   *  `lines` is the precomputed 1–2 line wrap of the display name; `y` is
+   *  the vertical center of the block — render and packer splay lines
+   *  around it at NEIGHBOR_LINE_HEIGHT spacing. `name` is the raw Natural
+   *  Earth name, kept as the stable React key. */
   neighborLabels: {
     name: string;
+    lines: string[];
     x: number;
     y: number;
     opacity: number;
@@ -1002,6 +1027,11 @@ export const MiniGlobe = memo(function MiniGlobe({
   neighborFontRef.current = neighborFont;
   const waterFontRef = useRef(waterFont);
   waterFontRef.current = waterFont;
+  // Anchor-label ambient floor mirrored into a ref for the same reason as
+  // the fonts above: callReproject is a stable `[]`-deps closure and can't
+  // see the theme, but the floor is mode-dependent (see the constant pair).
+  const anchorFloorRef = useRef(ANCHOR_LABEL_OPACITY_DARK);
+  anchorFloorRef.current = light ? ANCHOR_LABEL_OPACITY_LIGHT : ANCHOR_LABEL_OPACITY_DARK;
 
   // Precompute per-article: coords + country feature + names (before useState so initializer can use it)
   const articleGeo = useMemo(() => {
@@ -1848,17 +1878,18 @@ export const MiniGlobe = memo(function MiniGlobe({
         if (!coords) continue;
         const pt = proj(coords);
         if (!pt) continue;
-        // Display-name normalization (e.g. "United States of America" →
-        // "United States") so labels match the focused country label and
-        // read like a real atlas. Single-line for perf — the collision
-        // packer drops long ones rather than wrapping them.
-        const display = displayCountryName(name) ?? name;
+        // Precomputed display-name wrap (1–2 lines) — long names stack like
+        // the focused country label instead of running as one wide line
+        // whose AABB evicts every neighbour it crosses in the packer.
+        const lines = countryCentroidLabelLines[i];
+        if (!lines) continue;
         // Anchor labels never dim below their ambient floor as zoom
         // increases — the larger of (floor, zoom-band ramp) wins, so a
         // continuous strengthening replaces the prior all-or-nothing gate.
-        const opacity = isAnchor ? Math.max(ANCHOR_LABEL_OPACITY, labelOpacity) : labelOpacity;
+        const opacity = isAnchor ? Math.max(anchorFloorRef.current, labelOpacity) : labelOpacity;
         (isAnchor ? anchorBuf : otherBuf).push({
-          name: display,
+          name,
+          lines,
           x: pt[0],
           y: pt[1],
           opacity,
@@ -2040,11 +2071,15 @@ export const MiniGlobe = memo(function MiniGlobe({
 
         const nkept: GlobeState['neighborLabels'] = [];
         for (const n of neighborLabels) {
-          const w = nfont ? nfont.getTextWidth(n.name) : n.name.length * 5;
+          const w = measureLines(n.lines, nfont, 5);
+          // Wrapped labels center vertically on n.y — the first baseline
+          // shifts up half the extra stack height, so the AABB here must
+          // track what the render side draws.
+          const firstY = n.y - ((n.lines.length - 1) * NEIGHBOR_LINE_HEIGHT) / 2;
           const x0 = n.x - w / 2 - pad;
           const x1 = n.x + w / 2 + pad;
-          const y0 = n.y - 10 - pad;
-          const y1 = n.y + 3 + pad;
+          const y0 = firstY - 10 - pad;
+          const y1 = firstY + (n.lines.length - 1) * NEIGHBOR_LINE_HEIGHT + 3 + pad;
           let collides = false;
           for (const o of occupied) {
             if (x0 < o.x1 && x1 > o.x0 && y0 < o.y1 && y1 > o.y0) {
@@ -2305,22 +2340,31 @@ export const MiniGlobe = memo(function MiniGlobe({
   //   override → null       : fade overrideActive to 0 (angle untouched)
   //   null      → override  : snap overrideAngle to target, fade active to 1
   //   override → override   : slide overrideAngle to new target, active stays 1
+  //
+  // The settle finalizer runs from a JS-side timer, NOT a withTiming
+  // completion callback: with reanimated 4.5.0 / worklets 0.10.0,
+  // `scheduleOnRN` from an animation-completion worklet SIGABRTs the app
+  // (JSI `isObject()` assert in libworklets on mqt_v_js) — reproduced on
+  // every zoom tap on the Android dev build, 2026-07-04. Every other
+  // scheduleOnRN in the app runs from gesture/reaction worklets and is
+  // fine. withTiming is wall-clock–based, so a timeout at duration plus
+  // one frame of slack lands after the animation deterministically; the
+  // effect cleanup mirrors the old `finished` guard by cancelling the
+  // finalize of an interrupted (re-targeted) zoom.
   useEffect(() => {
     const prev = prevOverrideRef.current;
     prevOverrideRef.current = zoomClipOverride;
-    const onDone = (finished?: boolean) => {
-      'worklet';
-      if (finished) scheduleOnRN(finalizeReproject);
-    };
     const opts = { duration: ZOOM_DURATION, easing: ZOOM_EASING };
     if (zoomClipOverride === null) {
-      overrideActive.value = withTiming(0, opts, onDone);
+      overrideActive.value = withTiming(0, opts);
     } else if (prev === null) {
       overrideAngle.value = zoomClipOverride;
-      overrideActive.value = withTiming(1, opts, onDone);
+      overrideActive.value = withTiming(1, opts);
     } else {
-      overrideAngle.value = withTiming(zoomClipOverride, opts, onDone);
+      overrideAngle.value = withTiming(zoomClipOverride, opts);
     }
+    const timer = setTimeout(finalizeReproject, ZOOM_DURATION + 50);
+    return () => clearTimeout(timer);
   }, [zoomClipOverride, overrideActive, overrideAngle, finalizeReproject]);
 
   // Re-project when hotspot data changes (e.g. heatmap fetch after app resume)
@@ -2729,8 +2773,13 @@ export const MiniGlobe = memo(function MiniGlobe({
       )}
 
       {/* Atmospheric rim — radial gradient ring just outside the globe edge.
-          Single declarative draw, no per-frame cost. */}
-      <Circle cx={cx} cy={cy} r={globeRadius * 1.25}>
+          Single declarative draw, no per-frame cost.
+          `dither` on this and every other low-alpha atmosphere gradient
+          (ocean disk, specular, limb glaze, hotspot halos, chokepoint
+          glow): these ramps span only a few 8-bit steps over the near-
+          black dark-mode bg, which quantizes into visible concentric
+          bands. Dithering distributes the error — GPU-side, free. */}
+      <Circle cx={cx} cy={cy} r={globeRadius * 1.25} dither>
         <RadialGradient
           c={vec(cx, cy)}
           r={globeRadius * 1.25}
@@ -2740,7 +2789,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       </Circle>
 
       {/* Ocean disk — subtle Fresnel gradient reads as a 3D sphere instead of a flat circle */}
-      <Circle cx={cx} cy={cy} r={globeRadius}>
+      <Circle cx={cx} cy={cy} r={globeRadius} dither>
         <RadialGradient c={vec(cx, cy)} r={globeRadius} colors={oceanColors} positions={[0, 1]} />
       </Circle>
 
@@ -2752,7 +2801,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           the globe so the spot reads at the same proportion across screen
           sizes. Single Skia draw, no per-frame allocation. */}
       {state.subsolar && (
-        <Circle cx={state.subsolar.x} cy={state.subsolar.y} r={globeRadius * 0.55}>
+        <Circle cx={state.subsolar.x} cy={state.subsolar.y} r={globeRadius * 0.55} dither>
           <RadialGradient
             c={vec(state.subsolar.x, state.subsolar.y)}
             r={globeRadius * 0.55}
@@ -2814,7 +2863,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           style="stroke"
           strokeWidth={0.7}
           strokeJoin="round"
-          opacity={light ? 0.3 : 0.3}
+          opacity={0.3}
         />
       )}
 
@@ -2901,7 +2950,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           without a doubled-line seam. Drawn AFTER the night veil so
           atmosphere reads as a continuous wrap across both hemispheres
           and BEFORE editorial markers so dots and labels paint on top. */}
-      <Circle cx={cx} cy={cy} r={globeRadius}>
+      <Circle cx={cx} cy={cy} r={globeRadius} dither>
         <RadialGradient
           c={vec(cx, cy)}
           r={globeRadius}
@@ -2932,7 +2981,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         // reuse Group children for unrelated hotspots).
         return (
           <Group key={`${z.lat.toFixed(2)},${z.lng.toFixed(2)}`}>
-            <Circle cx={z.x} cy={z.y} r={haloR}>
+            <Circle cx={z.x} cy={z.y} r={haloR} dither>
               <RadialGradient
                 c={vec(z.x, z.y)}
                 r={haloR}
@@ -2964,7 +3013,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         return (
           <Group key={c.id}>
             {c.disrupted && (
-              <Circle cx={c.x} cy={c.y} r={12}>
+              <Circle cx={c.x} cy={c.y} r={12} dither>
                 <RadialGradient
                   c={vec(c.x, c.y)}
                   r={12}
@@ -2992,9 +3041,17 @@ export const MiniGlobe = memo(function MiniGlobe({
               y={labelTy}
               text={c.label}
               font={waterFont}
-              color={c.disrupted ? colors.accent : colors.textSecondary}
+              // Baseline ink is body `text`, not `textSecondary`: chokepoint
+              // labels are steady-state text visible at every zoom, and
+              // textSecondary at whisper opacity bottomed out at 1.8–2.8:1
+              // against the night-side ocean composite (WCAG 2.2 AA needs
+              // 4.5:1 at this size; audit 2026-07-04). text at 0.55 dark /
+              // 0.7 light clears AA on all ocean surfaces while the
+              // quiet-vs-disrupted hierarchy still reads through the accent
+              // ink, glow ring, and stronger halo of the disrupted state.
+              color={c.disrupted ? colors.accent : colors.text}
               haloColor={colors.bg}
-              opacity={c.disrupted ? 0.9 : 0.55}
+              opacity={c.disrupted ? 0.9 : light ? 0.7 : 0.55}
               haloOpacity={
                 c.disrupted
                   ? light
@@ -3075,15 +3132,18 @@ export const MiniGlobe = memo(function MiniGlobe({
           place. The globe just gets quiet dots so the layer reads as
           ambient context rather than its own pictogram vocabulary. One
           Skia draw call regardless of marker count — the perf cost is
-          the same whether the layer shows 5 events or 200. Recency
-          fade is currently whole-batch (all markers share the texture's
-          baked alpha) — see conflictAtlas() for why per-instance fade
-          isn't wired today. */}
+          the same whether the layer shows 5 events or 200. Per-instance
+          recency fade rides the `colors` array (white × recencyAlpha,
+          modulate blend — see conflictAtlas() for why the explicit
+          blend mode is required), so older events whisper relative to
+          fresh ones whenever the data window spans multiple days. */}
       {conflictGlowAtlas && (
         <Atlas
           image={ghostTexture}
           sprites={conflictGlowAtlas.sprites}
           transforms={conflictGlowAtlas.transforms}
+          colors={conflictGlowAtlas.colors}
+          colorBlendMode="modulate"
         />
       )}
 
@@ -3242,11 +3302,14 @@ export const MiniGlobe = memo(function MiniGlobe({
               // Light mode borrows the body-text ink at reduced opacity
               // instead of `textSecondary` at full: #666-on-cream sitting
               // over the pale land tint washed out to near-invisible.
-              // Deeper ink + lower opacity keeps the same "lightest tier"
-              // rank against neighbour labels (0.95 × text) while making
-              // hydrography actually readable. Dark mode is untouched.
+              // 0.92 is the WCAG floor for this tier — the worst composite
+              // (river label over night-side land) sits at 4.59:1 there,
+              // clearing AA; the prior 0.78 bottomed out at 3.6:1. Still
+              // below the neighbour multiplier (0.95 × text), so the
+              // "lightest tier" rank survives alongside the italic-vs-
+              // small-caps distinction. Dark mode is untouched.
               color={light ? colors.text : colors.textSecondary}
-              opacity={(light ? 0.78 : 0.9) * w.opacity}
+              opacity={(light ? 0.92 : 0.9) * w.opacity}
             />
           );
         })}
@@ -3255,29 +3318,36 @@ export const MiniGlobe = memo(function MiniGlobe({
           opacity as zoom tightens. Small caps per atlas convention; one
           step smaller than the focused country so the hierarchy reads:
           highlighted country = primary, neighbours = secondary.
+          Long names wrap to two lines (Google Maps convention, same
+          balanced split as the focused label); the block centers
+          vertically on the centroid and each line centers independently.
           Rendered BEFORE the highlighted country label so the focused
           country's name draws on top if they collide. Halo removed for
           the same perf reason as water labels; readability comes from
           the body-text color tone + a high tier-multiplier instead. */}
       {neighborFont &&
         state.neighborLabels.map((n) => {
-          const tx = n.x - neighborFont.getTextWidth(n.name) / 2;
+          const firstY = n.y - ((n.lines.length - 1) * NEIGHBOR_LINE_HEIGHT) / 2;
           return (
-            <SkiaText
-              key={n.name}
-              x={tx}
-              y={n.y}
-              text={n.name}
-              font={neighborFont}
-              // `text` (not `textSecondary`) — the muted gray was getting
-              // eaten by the land tint, especially in dark mode where #999
-              // sits within ~1px of the terrain shade. Body-text tone keeps
-              // the hierarchy intact (focused label still owns `textEmphasis`
-              // + halo) while making neighbours legible without re-adding
-              // the per-frame halo passes that the comment above warns off.
-              color={colors.text}
-              opacity={(light ? 0.95 : 0.92) * n.opacity}
-            />
+            <Group key={n.name}>
+              {n.lines.map((line, i) => (
+                <SkiaText
+                  key={`${n.name}-${i}`}
+                  x={n.x - neighborFont.getTextWidth(line) / 2}
+                  y={firstY + i * NEIGHBOR_LINE_HEIGHT}
+                  text={line}
+                  font={neighborFont}
+                  // `text` (not `textSecondary`) — the muted gray was getting
+                  // eaten by the land tint, especially in dark mode where #999
+                  // sits within ~1px of the terrain shade. Body-text tone keeps
+                  // the hierarchy intact (focused label still owns `textEmphasis`
+                  // + halo) while making neighbours legible without re-adding
+                  // the per-frame halo passes that the comment above warns off.
+                  color={colors.text}
+                  opacity={(light ? 0.95 : 0.92) * n.opacity}
+                />
+              ))}
+            </Group>
           );
         })}
 
