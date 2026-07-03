@@ -31,7 +31,10 @@ fi
 #   Writer:   Sonnet+medium — format-constrained task; medium effort sufficient for templated writing
 #   Editor:   Sonnet+low — checklist-driven style checks; dropped medium→low on 2026-05-28 to fix the May-26 editor-time regression (repeated 1800s timeouts at medium). First low run: 201s exit 0, 10/12 edited with quality intact. Override per-run with ZUHD_EDITOR_EFFORT.
 #   Reflect:  Sonnet+medium — reflective audit, low frequency
-CLAUDE_MODEL="${ZUHD_MODEL:-claude-sonnet-4-6}"
+# 2026-07-01: writer/editor default moved sonnet-4-6 → sonnet-5. Sonnet 5 self-revises
+# just-written files with Edit, so Edit must stay in TOOLS_WRITER (missing it stalls the
+# writer on permission prompts — 43 articles lost 07-01→07-03 before this was diagnosed).
+CLAUDE_MODEL="${ZUHD_MODEL:-claude-sonnet-5}"
 CLAUDE_SELECTOR_MODEL="${ZUHD_SELECTOR_MODEL:-claude-opus-4-8}"
 export ZUHD_MODEL="$CLAUDE_MODEL"
 
@@ -39,7 +42,7 @@ export ZUHD_MODEL="$CLAUDE_MODEL"
 # Stage-specific tool sets: narrower access = fewer wrong turns
 # Selector no longer needs Bash — RSS feed is pre-fetched to /tmp/zuhd-feed.json before session starts
 TOOLS_SELECTOR="Read,Write,Glob,Grep"
-TOOLS_WRITER="Read,Write"
+TOOLS_WRITER="Read,Write,Edit"
 TOOLS_EDITOR="Read,Edit,Glob,Grep"
 # Common flags for all headless Claude CLI invocations (no --model: passed per stage).
 #   --no-session-persistence   don't write resume state for headless calls
@@ -87,7 +90,7 @@ echo "" | tee -a "$LOG_FILE"
 echo "--- Stage 0: API + RSS feed fetch ---" | tee -a "$LOG_FILE"
 T0=$SECONDS
 
-# Step 1: NewsAPI.ai event-grouped fetch (3 queries, 3 tokens)
+# Step 1: NewsAPI.ai event-grouped fetch (5 queries = 9 tokens, + up to 8 per-event calls)
 rm -f /tmp/zuhd-feed-api.json
 node scripts/fetch-news-api.js 2>>"$LOG_FILE"
 API_EXIT=$?
@@ -137,6 +140,18 @@ Do not re-select stories already covered in the last 24 hours. Here is recent co
 ${TODAY_COVERAGE}
 </recent-coverage>"
   echo "Injecting coverage map (${COVERAGE_GROUPS} topic groups) into selector prompt" | tee -a "$LOG_FILE"
+fi
+# Inject Wikipedia trending-gap signal — yesterday's most-read pages we haven't
+# covered. Free AQS call; fail-soft (empty output → no injection).
+TRENDING_GAPS=$(timeout 15 node scripts/trending-gaps.js 2>/dev/null)
+if [ -n "$TRENDING_GAPS" ]; then
+  SELECT_PROMPT="${SELECT_PROMPT}
+
+Yesterday's most-read Wikipedia articles that zuhd.news has NOT covered in the last 7 days. Most entries are entertainment noise — ignore those. But if one is verifiable hard news in our categories AND the feed carries sources for it, treat it as a public-attention signal that the story deserves selection weight:
+<trending-uncovered>
+${TRENDING_GAPS}
+</trending-uncovered>"
+  echo "Injecting trending-gaps signal ($(echo "$TRENDING_GAPS" | wc -l) titles) into selector prompt" | tee -a "$LOG_FILE"
 fi
 FALLBACK_FLAG=""
 [ "$CLAUDE_SELECTOR_MODEL" != "$CLAUDE_MODEL" ] && FALLBACK_FLAG="--fallback-model $CLAUDE_MODEL"
@@ -264,14 +279,15 @@ else
     const fs = require('fs');
     const lines = fs.readFileSync('/tmp/zuhd-new-articles.txt','utf8').trim().split('\n');
     // Count visible characters only — markdown link markup (e.g. [Iran](country:IR))
-    // is invisible to readers, so it should not eat the 350-char budget.
+    // is invisible to readers, so it should not eat the char budget.
+    // 350 is the soft target; OVER (editor must trim) fires only past the 400 hard ceiling.
     const visible = s => s.replace(/\[([^\]]+)\]\([^)]+\)/g, '\$1');
     for (const f of lines) {
       try {
         const txt = fs.readFileSync(f,'utf8');
         const body = txt.split('---').slice(2).join('---').trim();
         const len = visible(body).length;
-        const flag = len > 350 ? 'OVER' : 'ok';
+        const flag = len > 400 ? 'OVER' : 'ok';
         console.log(flag + ' ' + len + ' chars  ' + f);
       } catch {}
     }
@@ -287,9 +303,21 @@ $ARTICLE_LIST
 <body-lengths>
 $BODY_LENGTHS
 </body-lengths>"
-  timeout 1800 claude $CLAUDE_FLAGS --effort "${ZUHD_EDITOR_EFFORT:-low}" --model $CLAUDE_MODEL --allowedTools $TOOLS_EDITOR --max-turns 50 --exclude-dynamic-system-prompt-sections -p "$CHECK_PROMPT$EDITOR_ADDENDUM" 2>&1 | tee -a "$LOG_FILE"
+  run_editor() {
+    timeout 1800 claude $CLAUDE_FLAGS --effort "${ZUHD_EDITOR_EFFORT:-low}" --model $CLAUDE_MODEL --allowedTools $TOOLS_EDITOR --max-turns 50 --exclude-dynamic-system-prompt-sections -p "$CHECK_PROMPT$EDITOR_ADDENDUM" 2>&1 | tee -a "$LOG_FILE"
+  }
+  run_editor
   EDITOR_EXIT=$?
   echo "Editor exit: $EDITOR_EXIT — $((SECONDS - T3))s" | tee -a "$LOG_FILE"
+  # Retry once on timeout — parity with selector/writer. Editing is idempotent
+  # (rule-checks against files on disk), so a partial first pass is safe to redo.
+  if [ "$EDITOR_EXIT" -eq 124 ]; then
+    echo "Editor timed out — retrying once" | tee -a "$LOG_FILE"
+    T3R=$SECONDS
+    run_editor
+    EDITOR_EXIT=$?
+    echo "Editor retry exit: $EDITOR_EXIT — $((SECONDS - T3R))s" | tee -a "$LOG_FILE"
+  fi
 
   # Stage 3.4: Live trends digest — feeds the edu-context stage. Fail-soft:
   # missing keys / missing sources just shrink the offered indicator list.
@@ -743,7 +771,7 @@ if [ "$START_HOUR" = "22" ]; then
       git add content/.experiments.json content/.daily-audit.json content/.daily-audit.md 2>/dev/null
       AUDIT_DATE=$(date -u +%Y-%m-%d)
       git commit -m "Daily audit $AUDIT_DATE" 2>&1 | tee -a "$LOG_FILE"
-      git pull --rebase origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git pull --rebase failed (likely a mobile/backend file overlap — investigate)" | tee -a "$LOG_FILE"
+      git pull --rebase --autostash origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git pull --rebase failed (likely a mobile/backend file overlap — investigate)" | tee -a "$LOG_FILE"
       git push origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git push failed" | tee -a "$LOG_FILE"
     fi
   else

@@ -14,6 +14,7 @@
 import { writeFileSync, mkdirSync } from 'fs'
 import { join } from 'path'
 import { INDICATORS, SOURCES } from './lib/trends-registry.js'
+import { fetchFredReleaseCalendar } from './lib/trends-sources/fred.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const TRENDS_DIR = join(ROOT, 'content', 'trends')
@@ -82,6 +83,16 @@ for (const i of indicators) {
   seenIds.add(i.id)
 }
 
+// Upcoming major US data releases (CPI, payrolls, GDP, FOMC…) — one extra
+// FRED call, fail-soft. Concrete "what's next" dates for editorial surfaces.
+let releaseCalendar = []
+if (process.env.FRED_API_KEY) {
+  releaseCalendar = await fetchFredReleaseCalendar(process.env.FRED_API_KEY)
+  if (releaseCalendar.length > 0) {
+    console.log(`  · fred: ${releaseCalendar.length} major releases in next 10d`)
+  }
+}
+
 // ── Write snapshot ─────────────────────────────────────────────────────────
 
 mkdirSync(TRENDS_DIR, { recursive: true })
@@ -89,6 +100,7 @@ mkdirSync(TRENDS_DIR, { recursive: true })
 const snapshot = {
   fetchedAt: new Date().toISOString(),
   asOf: today,
+  releaseCalendar,
   indicators,
 }
 
@@ -106,6 +118,7 @@ console.log(`Wrote ${SNAPSHOT_PATH} — ${indicators.length} indicators`)
 
 const digest = {
   asOf: today,
+  releaseCalendar,
   indicators: indicators.map((i) => ({
     id: i.id,
     label: i.label,

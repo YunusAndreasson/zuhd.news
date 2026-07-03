@@ -3,7 +3,21 @@
 // Free, public-domain data. Key registration: https://fred.stlouisfed.org/docs/api/api_key.html
 
 const FRED_BASE = 'https://api.stlouisfed.org/fred/series/observations'
+const FRED_RELEASES_DATES = 'https://api.stlouisfed.org/fred/releases/dates'
 const USER_AGENT = 'zuhd-news/1.0 (+https://zuhd.news)'
+
+// High-signal US data releases worth an editorial "what's next" line.
+// releases/dates returns ~300 releases; anything not matching is noise here.
+const MAJOR_RELEASES = [
+  /consumer price index/i,
+  /employment situation/i,
+  /gross domestic product/i,
+  /personal income and outlays/i,
+  /advance monthly sales for retail/i,
+  /producer price index/i,
+  /fomc/i,
+  /h\.4\.1/i, // Fed balance sheet
+]
 
 /** Format a date as "YYYY-MM-DD" (FRED's expected format). */
 function ymd(d) {
@@ -67,5 +81,60 @@ export async function fetchFredSeries(indicator, apiKey) {
   } catch (err) {
     console.error(`  ✗ fred:${indicator.id}: ${err.message}`)
     return null
+  }
+}
+
+/**
+ * Upcoming major US data releases in the next `days` days — one extra call
+ * per trends run. Concrete "what's next" substrate (e.g. "CPI lands Thursday")
+ * for editorial surfaces. Fail-soft: returns [] on any error.
+ *
+ * @param {string} apiKey
+ * @param {number} [days=10]
+ * @returns {Promise<Array<{ date: string, release: string }>>}
+ */
+export async function fetchFredReleaseCalendar(apiKey, days = 10) {
+  const start = new Date()
+  const end = new Date()
+  end.setUTCDate(end.getUTCDate() + days)
+
+  const url = new URL(FRED_RELEASES_DATES)
+  url.searchParams.set('api_key', apiKey)
+  url.searchParams.set('file_type', 'json')
+  url.searchParams.set('realtime_start', ymd(start))
+  url.searchParams.set('realtime_end', ymd(end))
+  url.searchParams.set('include_release_dates_with_no_data', 'true')
+  url.searchParams.set('sort_order', 'asc')
+
+  try {
+    // releases/dates is a slow endpoint (~15-20s server-side) — needs a wider
+    // timeout than the observation calls. Trends-stage budget is 120s.
+    const res = await fetch(url, {
+      signal: AbortSignal.timeout(30000),
+      headers: { 'User-Agent': USER_AGENT },
+    })
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const data = await res.json()
+    const upcoming = (data.release_dates || [])
+      .filter((r) => r.date >= ymd(start) && r.date <= ymd(end))
+      .filter((r) => MAJOR_RELEASES.some((p) => p.test(r.release_name || '')))
+      .map((r) => ({ date: r.date, release: r.release_name }))
+    // Dedupe same release+date pairs (FRED emits one row per realtime window)
+    const seen = new Set()
+    const deduped = upcoming.filter((r) => {
+      const k = `${r.date}|${r.release}`
+      if (seen.has(k)) return false
+      seen.add(k)
+      return true
+    })
+    // Daily-cadence releases (with include_release_dates_with_no_data) list
+    // every date in the window — that's noise, not a calendar event. A real
+    // scheduled release (CPI, payrolls) lands on 1-2 dates.
+    const dateCount = {}
+    for (const r of deduped) dateCount[r.release] = (dateCount[r.release] || 0) + 1
+    return deduped.filter((r) => dateCount[r.release] <= 3)
+  } catch (err) {
+    console.error(`  ✗ fred:release-calendar: ${err.message}`)
+    return []
   }
 }

@@ -61,17 +61,15 @@ const chokepoints = rows.map((r) => {
 // chokepoint sheet: storm hovering + transits down = weather; calm seas +
 // transits down = actual disruption. Inland canals (Suez, Panama) and
 // shallow narrow straits return null/missing wave data and silently skip.
-console.log('  Fetching marine weather (open-meteo Marine API)…')
-await Promise.all(
-  chokepoints.map(async (c) => {
-    try {
-      const w = await fetchMarineWeather(c.lat, c.lng)
-      if (w) c.weather = w
-    } catch {
-      /* per-point fail-soft — snapshot ships without weather for this one */
-    }
-  }),
-)
+console.log('  Fetching marine weather (open-meteo Marine API, one batched call)…')
+try {
+  const weathers = await fetchMarineWeatherBatch(chokepoints)
+  for (let i = 0; i < chokepoints.length; i++) {
+    if (weathers[i]) chokepoints[i].weather = weathers[i]
+  }
+} catch {
+  /* fail-soft — snapshot ships without weather */
+}
 const weatherCount = chokepoints.filter((c) => c.weather).length
 const alertCount = chokepoints.filter((c) => c.weather?.alert).length
 
@@ -88,7 +86,38 @@ console.log(
   `  ✓ wrote ${chokepoints.length}/${CHOKEPOINT_CATALOG.length} chokepoints${note}, ${weatherCount} with weather${alertCount > 0 ? ` (${alertCount} alerts)` : ''} in ${((Date.now() - started) / 1000).toFixed(1)}s`,
 )
 
-async function fetchMarineWeather(lat, lng) {
+// One batched request for every chokepoint: open-meteo accepts comma-separated
+// latitude/longitude lists and returns one result object per location, in
+// order. Collapses ~10 sequential calls into 1. Returns an array aligned with
+// `points`; entries are null where wave data is unavailable (inland canals).
+async function fetchMarineWeatherBatch(points) {
+  const url = new URL('https://marine-api.open-meteo.com/v1/marine')
+  url.searchParams.set('latitude', points.map((p) => p.lat).join(','))
+  url.searchParams.set('longitude', points.map((p) => p.lng).join(','))
+  url.searchParams.set('hourly', 'wave_height')
+  url.searchParams.set('past_days', '1')
+  url.searchParams.set('forecast_days', '1')
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), MARINE_TIMEOUT_MS)
+  let res
+  try {
+    res = await fetch(url, { signal: controller.signal })
+  } finally {
+    clearTimeout(timer)
+  }
+  if (!res.ok) {
+    // A single rejected coordinate can 400 the whole batch — degrade to the
+    // old per-point calls so one bad location doesn't blank all weather.
+    console.log(`  batch marine call HTTP ${res.status} — falling back to per-point`)
+    return Promise.all(points.map((p) => fetchMarineWeatherSingle(p.lat, p.lng).catch(() => null)))
+  }
+  const json = await res.json()
+  // Multi-location responses are an array; a single location comes back bare.
+  const results = Array.isArray(json) ? json : [json]
+  return points.map((_, i) => extractWeather(results[i]))
+}
+
+async function fetchMarineWeatherSingle(lat, lng) {
   const url = new URL('https://marine-api.open-meteo.com/v1/marine')
   url.searchParams.set('latitude', String(lat))
   url.searchParams.set('longitude', String(lng))
@@ -104,8 +133,11 @@ async function fetchMarineWeather(lat, lng) {
     clearTimeout(timer)
   }
   if (!res.ok) return null
-  const json = await res.json()
-  const series = json?.hourly?.wave_height
+  return extractWeather(await res.json())
+}
+
+function extractWeather(locationJson) {
+  const series = locationJson?.hourly?.wave_height
   if (!Array.isArray(series)) return null
   // Take last 24 hours (most recent 24 entries — past_days=1 + 1 forecast
   // gives ~48 entries, we only want what's already happened/imminent).

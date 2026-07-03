@@ -40,6 +40,6 @@ entities: []
 
 Kyiv — 2 killed, 11 hurt in overnight barrage, officials said.
 
-[Russia](country:Russia) fired ballistic missiles, cruise missiles and drones across 5 Kyiv-region districts, the first strike on the capital in two weeks.
+[Russia](country:RU) fired ballistic missiles, cruise missiles and drones across 5 Kyiv-region districts, the first strike on the capital in two weeks.
 
 Poland scrambled jets to guard its airspace as rescuers dig through a collapsed nine-storey building.

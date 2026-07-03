@@ -34,8 +34,7 @@ const LIST_TIMEOUT_MS = 10_000
 const started = Date.now()
 console.log('Fetching GDACS snapshot (EVENTS4APP)')
 
-let collection
-try {
+async function fetchList() {
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), LIST_TIMEOUT_MS)
   try {
@@ -44,13 +43,26 @@ try {
       headers: { 'user-agent': 'zuhd-news/1.0 (+https://zuhd.news)' },
     })
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    collection = await res.json()
+    return await res.json()
   } finally {
     clearTimeout(timer)
   }
-} catch (err) {
-  console.error(`  ✗ list fetch failed (${err.message}) — leaving previous snapshot in place`)
-  process.exit(0)
+}
+
+let collection
+try {
+  collection = await fetchList()
+} catch (firstErr) {
+  // GDACS intermittently aborts the list fetch (~10% of cycles) — one retry
+  // after a short backoff recovers most, keeping the snapshot from going stale.
+  console.error(`  ⚠ list fetch failed (${firstErr.message}) — retrying once`)
+  await new Promise((r) => setTimeout(r, 3000))
+  try {
+    collection = await fetchList()
+  } catch (err) {
+    console.error(`  ✗ list fetch failed (${err.message}) — leaving previous snapshot in place`)
+    process.exit(0)
+  }
 }
 
 if (!isGdacsFeatureCollection(collection)) {

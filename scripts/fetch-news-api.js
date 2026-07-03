@@ -219,6 +219,7 @@ const ARTICLE_DEFAULTS = {
   includeArticleAuthors: false, // never used
   includeSourceLocation: true,
   includeSourceRanking: true,
+  includeArticleSocialScore: true, // free public-attention signal for the selector
 }
 
 // ── Source lists (used by merged Q2+Q3 query) ───────────────────────
@@ -297,6 +298,11 @@ async function fetchEvents() {
     ignoreCategoryUri: EXCLUDE_CATEGORIES,
     dateStart: new Date().toISOString().slice(0, 10),
     minArticlesInEvent: 10,
+    // Return-info flags change payload only, never token cost (ER cost model
+    // is per call/page). infoArticle = the medoid article the event title/summary
+    // came from — gives headline-only events a real URL + body for free.
+    includeEventInfoArticle: true,
+    includeEventSocialScore: true,
   }, 'events')
   return (data.events?.results || []).filter(Boolean)
 }
@@ -414,6 +420,17 @@ function avg(nums) {
   return nums.length ? +(nums.reduce((a, b) => a + b, 0) / nums.length).toFixed(2) : null
 }
 
+// Article social signal: ER returns either a numeric socialScore or a per-network
+// `shares` map depending on API vintage — normalize to one number, null if absent.
+function articleSocialScore(a) {
+  if (a.socialScore != null) return a.socialScore
+  if (a.shares && typeof a.shares === 'object') {
+    const total = Object.values(a.shares).filter(n => typeof n === 'number').reduce((x, y) => x + y, 0)
+    return total || null
+  }
+  return null
+}
+
 // Sentiment spread: max - min across sources. >0.5 = divergent framing.
 function sentimentSpread(articles) {
   const sentiments = articles.map(a => a.sentiment).filter(s => s != null)
@@ -487,6 +504,10 @@ async function main() {
       articlesLang: 'eng',
       articlesSortBy: 'sourceImportance',
       articleBodyLen: -1,
+      // Top-half sources only — same bound Q5 uses. Without it the 15-article
+      // budget fills with bottom-tier reprints of the same wire copy.
+      startSourceRankPercentile: 0,
+      endSourceRankPercentile: 50,
       includeSourceLocation: true,
       includeSourceRanking: true,
       includeArticleSentiment: true,
@@ -536,20 +557,34 @@ async function main() {
     usedEventUris.add(uri)
 
     if (matchedArticles.length === 0) {
-      // Event with no matched articles — include as headline-only for the selector
+      // Event with no matched articles. The medoid article (includeEventInfoArticle,
+      // free) gives these a real URL — and, when its body came back with substance,
+      // a writable single-source panel instead of a headline-only stub the writer
+      // must skip.
+      const medoid = event.infoArticle || null
+      const medoidBody = (medoid?.body || '').slice(0, MAX_BODY)
+      const medoidSources = medoid && medoidBody.length >= 500 ? [{
+        name: medoid.source?.title || '',
+        url: medoid.url || '',
+        country: getCountryCode(medoid.source) || null,
+        body: medoidBody,
+        importanceRank: medoid.source?.ranking?.importanceRank || null,
+        sentiment: medoid.sentiment != null ? +medoid.sentiment.toFixed(2) : null,
+        image: medoid.image || null,
+      }] : []
       stories.push({
         title,
-        description: event.summary?.eng || '',
-        link: '',
-        pubDate: eventDate + 'T00:00:00Z',
+        description: event.summary?.eng || (medoid?.body || '').slice(0, 300),
+        link: medoid?.url || '',
+        pubDate: medoid?.dateTimePub || medoid?.dateTime || eventDate + 'T00:00:00Z',
         category: mapCategory(eventCategories),
-        source: '',
+        source: medoid?.source?.title || '',
         suggestedSlug: slugify(title, eventDate),
         eventUri: uri,
         eventDate: eventDate,
-        panelMaxPubDate: null,
         eventCoverage: totalArticles,
-        sources: [],
+        socialScore: event.socialScore ?? null,
+        sources: medoidSources,
         concepts: eventConcepts,
         location: eventLoc?.type === 'place' ? eventLoc.label?.eng : (eventLoc?.label?.eng || null),
         sentiment: null,
@@ -567,21 +602,13 @@ async function main() {
       : (eventLoc?.label?.eng || primary.location?.label?.eng || null)
 
     const storyTitle = panel.length > 1 ? bestTitle(panel, primary.title || title) : (primary.title || title)
-    // Compute panelMaxPubDate — most-recent dateTimePub across all panel members.
-    // Reserved for merge-feeds freshness gating experiments (see 2026-04-19 analysis):
-    // primary pubDate follows source importance, not recency, so a live event with a
-    // stale high-rank primary gets filtered incorrectly. panelMaxPubDate + eventDate
-    // are persisted here so future merge-feeds filters can key on them without re-fetching.
-    // Currently: passthrough only — no downstream consumer reads these fields yet.
-    const panelDates = panel.map(a => a.dateTimePub || a.dateTime).filter(Boolean)
-    const panelMaxPubDate = panelDates.length ? panelDates.sort().at(-1) : null
     stories.push({
       title: storyTitle,
       description: (primary.body || '').slice(0, 300),
       link: primary.url || '',
       pubDate: primary.dateTimePub || primary.dateTime || eventDate + 'T00:00:00Z',
       eventDate: eventDate,
-      panelMaxPubDate,
+      socialScore: event.socialScore ?? null,
       category: mapCategory(primary.categories || eventCategories),
       source: primary.source?.title || '',
       suggestedSlug: slugify(storyTitle, primary.dateTimePub || eventDate),
@@ -660,6 +687,7 @@ async function main() {
       suggestedSlug: slugify(a.title, a.dateTimePub || a.dateTime),
       eventUri: a.eventUri || null,
       eventCoverage: null,
+      socialScore: articleSocialScore(a),
       sources: [{
         name: a.source?.title || '',
         url: a.url || '',
@@ -703,7 +731,7 @@ async function main() {
         title: s.title,
         pubDate: s.pubDate,
         eventDate: s.eventDate,
-        panelMaxPubDate: s.panelMaxPubDate,
+        socialScore: s.socialScore ?? null,
         category: s.category,
         source: s.source,
         suggestedSlug: s.suggestedSlug,

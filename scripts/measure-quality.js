@@ -49,6 +49,11 @@ const hookOf = body => afterDateline(body).split(/\.\s+/)[0]
 
 // ── Metric 1: character & word length ───────────────────────
 const charLengths = articles.map(a => a.body.length)
+// Visible length matches the editor rule: link markup ([Iran](country:IR)) doesn't
+// count against the budget. 350 is the soft target (informational, kept on the raw
+// basis for trend continuity); 400 is the hard ceiling (actionable).
+const visibleLen = s => s.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').length
+const visibleLengths = articles.map(a => visibleLen(a.body))
 const wordCounts = articles.map(a => a.body.split(/\s+/).filter(Boolean).length)
 
 // ── Metric 2: title-echo rate ──────────────────────────────
@@ -143,8 +148,9 @@ const snapshot = {
   metrics: {
     charLengthAvg: avg(charLengths),
     charOver350Pct: pct(charLengths.filter(c => c > 350).length, articles.length),
+    charOver400Pct: pct(visibleLengths.filter(c => c > 400).length, articles.length),
     wordCountAvg: avg(wordCounts),
-    wordInRangePct: pct(wordCounts.filter(w => w >= 40 && w <= 50).length, articles.length),
+    wordInRangePct: pct(wordCounts.filter(w => w >= 40 && w <= 55).length, articles.length),
     titleEchoRatePct: pct(echoHits, articles.length),
     passiveHookRatePct: pct(passiveHookHits, articles.length),
     causalClaimHits,
@@ -175,7 +181,7 @@ writeFileSync(TREND_PATH, JSON.stringify(trend, null, 2))
 // ── Summary to stdout ─────────────────────────────────────
 const m = snapshot.metrics
 console.log(`Quality metrics: ${articles.length} articles in last ${WINDOW_DAYS}d`)
-console.log(`  length: charAvg=${m.charLengthAvg} over350=${m.charOver350Pct}%  wordAvg=${m.wordCountAvg} inRange=${m.wordInRangePct}%`)
+console.log(`  length: charAvg=${m.charLengthAvg} over350=${m.charOver350Pct}% over400=${m.charOver400Pct}%  wordAvg=${m.wordCountAvg} inRange=${m.wordInRangePct}%`)
 console.log(`  style:  titleEcho=${m.titleEchoRatePct}% passiveHook=${m.passiveHookRatePct}% hedge=${m.hedgeRatePct}%`)
 console.log(`  rules:  causal=${m.causalClaimHits} pressEra=${m.pressEraHits} acronymViol=${m.acronymViolations} countryNull=${m.countryNullCount}`)
 console.log(`  source: top3Share=${m.topOutletSharePct}% multiSrc=${m.multiSourceRatePct}%`)

@@ -231,6 +231,12 @@ export async function fetchPolymarketTop() {
 
   const results = []
   for (const m of filtered) {
+    // Decided markets pre-filter: lastTradePrice pinned to an extreme means the
+    // chart is a flat line — skip BEFORE paying for the CLOB history call.
+    // isDecidedSeries() below still catches tail-decided markets this misses.
+    const ltp = Number(m.lastTradePrice)
+    if (Number.isFinite(ltp) && (ltp >= 0.97 || ltp <= 0.03)) continue
+
     const tokens = parseOutcomeTokens(m)
     if (!tokens) continue
 
@@ -271,6 +277,9 @@ export async function fetchPolymarketTop() {
       asOf,
       marketUrl: eventUrl,
       outcomeLabel: tokens.label,
+      // 24h movement in percentage points, straight from the list response
+      // (zero extra calls) — lets consumers rank "biggest movers".
+      change24h: Number.isFinite(Number(m.oneDayPriceChange)) ? Math.round(Number(m.oneDayPriceChange) * 100) : null,
       // Internal — used for event-level dedupe below, not persisted.
       _eventSlug: eventSlug,
       _volume24hr: Number(m.volume24hr) || 0,
@@ -303,16 +312,17 @@ export async function fetchPolymarketTop() {
   }
 
   // Batch-shorten titles via Haiku in one call. Kept after dedup to avoid
-  // spending tokens on labels we'd drop anyway.
-  if (deduped.length > 0) {
-    const rawTitles = deduped.map((r) => r.rawTitle)
-    const shortened = await shortenTitlesViaHaiku(rawTitles)
-    for (let i = 0; i < deduped.length; i++) {
-      deduped[i].label = shortened[i]
-      delete deduped[i].rawTitle
-    }
-    console.log(`  · polymarket: ${deduped.length} labels shortened via Haiku`)
+  // spending tokens on labels we'd drop anyway. Titles already within the
+  // 42-char header budget skip the call — smaller batches finish inside the
+  // 40s spawn timeout that used to SIGTERM full batches (exit 143), and a
+  // cycle where every title fits skips the Haiku call entirely.
+  const needShorten = deduped.filter((r) => r.rawTitle.length > 42)
+  if (needShorten.length > 0) {
+    const shortened = await shortenTitlesViaHaiku(needShorten.map((r) => r.rawTitle))
+    for (let i = 0; i < needShorten.length; i++) needShorten[i].label = shortened[i]
+    console.log(`  · polymarket: ${needShorten.length}/${deduped.length} labels shortened via Haiku`)
   }
+  for (const r of deduped) delete r.rawTitle
 
   return deduped
 }

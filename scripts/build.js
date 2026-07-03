@@ -435,13 +435,17 @@ if (eduCount > 0) console.log(`  Edu context: ${eduCount} articles with educatio
 const BUILD_WINDOW_DAYS = 14
 const buildCutoffDate = new Date(Date.now() - BUILD_WINDOW_DAYS * 24 * 60 * 60 * 1000).toISOString().slice(0, 10)
 
+// Per-article "Built:" lines are ~800 lines of noise per cycle log — opt in
+// with ZUHD_BUILD_VERBOSE=1 when debugging a specific article's build.
+const BUILD_VERBOSE = process.env.ZUHD_BUILD_VERBOSE === '1'
 const articles = readdirSync(CONTENT_DIR)
   .filter(f => f.endsWith('.md') && f !== 'example.md' && f.slice(0, 10) >= buildCutoffDate)
   .map(file => {
     const article = buildArticle(file)
-    console.log(`  Built: ${article.slug}`)
+    if (BUILD_VERBOSE) console.log(`  Built: ${article.slug}`)
     return { ...article, addedAt: statSync(join(CONTENT_DIR, file)).mtimeMs }
   })
+console.log(`  Built: ${articles.length} articles (last ${BUILD_WINDOW_DAYS}d window)`)
 
 // Sort once, compute cutoff once — shared by homepage and API
 const sorted = articles.sort((a, b) => b.addedAt - a.addedAt)

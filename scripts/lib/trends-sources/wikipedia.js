@@ -115,6 +115,24 @@ function rankConceptsFromArticles(rootDir, windowDays) {
   return ranked.map(([label, count]) => ({ label, count }))
 }
 
+/** Resolve a title through Wikipedia's summary endpoint to its canonical
+ *  form. Pageviews count redirect titles separately — "Recep_Erdogan" 404s
+ *  or undercounts while "Recep_Tayyip_Erdoğan" carries the real series.
+ *  Returns null when the page doesn't exist at all. */
+async function resolveCanonicalTitle(title) {
+  try {
+    const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`, {
+      signal: AbortSignal.timeout(10000),
+      headers: { 'User-Agent': USER_AGENT, accept: 'application/json' },
+    })
+    if (!res.ok) return null
+    const data = await res.json()
+    return data?.titles?.canonical || null
+  } catch {
+    return null
+  }
+}
+
 /** Fetch 30 days of daily pageviews for one Wikipedia article.
  *  Returns null on 404 or any error; the orchestrator skips nulls. */
 async function fetchOnePageview(title) {
@@ -158,9 +176,18 @@ export async function fetchWikipediaTrendingConcepts() {
 
   const results = []
   for (const { label, count } of concepts) {
-    const slug = toWikiSlug(label)
-    const pv = await fetchOnePageview(slug)
-    if (!pv) continue // 404 or no data — skip, common for proper names that lack Wiki articles
+    let slug = toWikiSlug(label)
+    let pv = await fetchOnePageview(slug)
+    if (!pv) {
+      // The naive slug may be a redirect (pageviews tracks redirects as
+      // separate, near-empty titles) — resolve to canonical and retry once.
+      const canonical = await resolveCanonicalTitle(slug)
+      if (canonical && canonical !== slug) {
+        pv = await fetchOnePageview(canonical)
+        if (pv) slug = canonical
+      }
+    }
+    if (!pv) continue // page genuinely absent — common for proper names that lack Wiki articles
     results.push({
       id: toIndicatorId(slug),
       label: `${label} — Wikipedia views`,

@@ -33,7 +33,7 @@ Accountability (amānah): power is a trust. Those who wield it — states, corpo
 
 Note: The story ledger and editorial notes are updated by a separate pipeline step after selection. You only need to read them for context — do not write to them.
 
-Each story has: `title`, `description`, `link`, `pubDate`, `category`, `source`, `suggestedSlug`, `sources` (array with `name`, `url`, `country`), `eventUri`, `eventCoverage`, `concepts` (array of strings or `{label, uri}` objects), `sentimentDivergence`, `origin` ('api' or 'rss').
+Each story has: `title`, `description`, `link`, `pubDate`, `category`, `source`, `suggestedSlug`, `sources` (array with `name`, `url`, `country`), `eventUri`, `eventCoverage`, `concepts` (array of strings or `{label, uri}` objects), `sentimentDivergence`, `socialScore` (social-media shares — public attention independent of outlet count; high socialScore with low eventCoverage can flag an under-covered story readers care about), `origin` ('api' or 'rss').
 
 **Critical: copy `sources`, `eventUri`, `eventCoverage`, `sentimentDivergence`, and `concepts` from the feed entry to the selection entry exactly as they appear.**
 </task>

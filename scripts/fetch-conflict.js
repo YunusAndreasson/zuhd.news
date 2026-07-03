@@ -27,7 +27,16 @@ import { filterRecentWindow, mapUcdpRow, parseCsv, rowsToObjects } from './lib/c
 
 const ROOT = new URL('..', import.meta.url).pathname
 const OUTPUT_PATH = join(ROOT, 'content', '.conflict.json')
-const UCDP_URL = 'https://ucdp.uu.se/downloads/candidateged/GEDEvent_v26_0_3.csv'
+// UCDP candidate release version — bump monthly when UCDP publishes the next
+// candidate (26.0.1 … 26.0.5 monthly, 26.01.26.03 quarterly). One constant
+// drives both the JSON API path and the legacy CSV fallback URL.
+const UCDP_VERSION = '26.0.3'
+const UCDP_API_URL = `https://ucdpapi.pcr.uu.se/api/gedevents/${UCDP_VERSION}`
+const UCDP_URL = `https://ucdp.uu.se/downloads/candidateged/GEDEvent_v${UCDP_VERSION.replace(/\./g, '_')}.csv`
+// The JSON API (a few hundred KB paginated vs the ~50 MB CSV) requires a free
+// access token since 2026 (header x-ucdp-access-token; register at ucdp.uu.se).
+// Without UCDP_ACCESS_TOKEN in the env we skip straight to the CSV.
+const UCDP_TOKEN = process.env.UCDP_ACCESS_TOKEN || ''
 
 // UCDP candidate is a daily-precision dataset trailing real-time by 1-3
 // months — narrow windows (1-2d) collapse to whatever the dataset's max
@@ -61,35 +70,82 @@ if (cacheFresh()) {
   process.exit(0)
 }
 
-console.log(`Fetching UCDP candidate GED from ${UCDP_URL}`)
-
-let csv
-try {
+async function fetchWithTimeout(url, extraHeaders = {}) {
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS)
   try {
-    const res = await fetch(UCDP_URL, {
+    const res = await fetch(url, {
       signal: controller.signal,
-      headers: { 'user-agent': 'zuhd-news/1.0 (+https://zuhd.news)' },
+      headers: { 'user-agent': 'zuhd-news/1.0 (+https://zuhd.news)', ...extraHeaders },
     })
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    csv = await res.text()
+    return res
   } finally {
     clearTimeout(timer)
   }
-} catch (err) {
-  console.error(`  ✗ UCDP fetch failed (${err.message}) — leaving previous snapshot in place`)
-  process.exit(0)
 }
 
-console.log(`Downloaded ${csv.length.toLocaleString('en-US')} bytes`)
+// Primary: UCDP JSON API — paginated, a few hundred KB total vs the ~50 MB CSV.
+// The candidate release is one bounded month, so we paginate the whole version
+// with NO server-side date filter: the dataset trails real-time by 1-3 months,
+// and filterRecentWindow anchors on the dataset's own max date, not on today.
+// Response shape: { TotalCount, TotalPages, Result: [...] } with the same
+// lowercase field names as the CSV, so mapUcdpRow consumes rows unchanged.
+async function fetchRowsFromApi() {
+  const PAGE_SIZE = 1000
+  const MAX_PAGES = 40 // defensive cap: a candidate month is a few thousand rows
+  const rows = []
+  let page = 0
+  let totalPages = 1
+  while (page < totalPages && page < MAX_PAGES) {
+    const res = await fetchWithTimeout(
+      `${UCDP_API_URL}?pagesize=${PAGE_SIZE}&page=${page}`,
+      { 'x-ucdp-access-token': UCDP_TOKEN },
+    )
+    const data = await res.json()
+    if (!Array.isArray(data.Result)) throw new Error('unexpected API shape (no Result array)')
+    // Stringify all values: the CSV path delivers strings, and mapUcdpRow's
+    // comparisons (e.g. type_of_violence === '3') depend on that.
+    for (const r of data.Result) {
+      rows.push(Object.fromEntries(Object.entries(r).map(([k, v]) => [k, v == null ? '' : String(v)])))
+    }
+    totalPages = Number(data.TotalPages) || 1
+    page++
+  }
+  if (page >= MAX_PAGES && totalPages > MAX_PAGES) {
+    console.error(`  ⚠ UCDP API pagination capped at ${MAX_PAGES} pages (${totalPages} reported) — window may be partial`)
+  }
+  console.log(`Fetched ${rows.length.toLocaleString('en-US')} rows from UCDP API (${page} pages)`)
+  return rows
+}
+
+// Fallback: the legacy multi-MB CSV download.
+async function fetchRowsFromCsv() {
+  console.log(`Falling back to CSV: ${UCDP_URL}`)
+  const res = await fetchWithTimeout(UCDP_URL)
+  const csv = await res.text()
+  console.log(`Downloaded ${csv.length.toLocaleString('en-US')} bytes`)
+  return rowsToObjects(parseCsv(csv))
+}
 
 let rows
-try {
-  rows = rowsToObjects(parseCsv(csv))
-} catch (err) {
-  console.error(`  ✗ UCDP parse failed (${err.message}) — leaving previous snapshot in place`)
-  process.exit(0)
+if (UCDP_TOKEN) {
+  try {
+    console.log(`Fetching UCDP candidate GED from ${UCDP_API_URL}`)
+    rows = await fetchRowsFromApi()
+  } catch (apiErr) {
+    console.error(`  ✗ UCDP API fetch failed (${apiErr.message}) — trying CSV fallback`)
+  }
+} else {
+  console.log('No UCDP_ACCESS_TOKEN — using CSV download (register a free token at ucdp.uu.se to switch to the ~KB JSON API)')
+}
+if (!rows) {
+  try {
+    rows = await fetchRowsFromCsv()
+  } catch (err) {
+    console.error(`  ✗ UCDP fetch failed (${err.message}) — leaving previous snapshot in place`)
+    process.exit(0)
+  }
 }
 console.log(`Parsed ${rows.length.toLocaleString('en-US')} rows`)
 

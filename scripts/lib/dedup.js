@@ -4,7 +4,9 @@ import { readdirSync, readFileSync, existsSync } from 'fs'
 import { join } from 'path'
 import { parseFrontmatter } from './frontmatter.js'
 
-export const CATEGORY_FLOORS = { politics: 3, economy: 3, science: 2, tech: 2 }
+// Must mirror the category-floor lines in select-prompt.md (tech raised 2→3 by
+// experiment 2026-04-12-tech-floor-3; this constant lagged until 2026-07-03).
+export const CATEGORY_FLOORS = { politics: 3, economy: 3, science: 2, tech: 3 }
 
 const ARTICLES_DIR = 'content/articles'
 const LEDGER_PATH = 'content/.story-ledger.json'

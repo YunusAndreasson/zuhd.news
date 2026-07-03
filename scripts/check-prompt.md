@@ -43,11 +43,11 @@ Check first, before any style rules.
 
 <structure>
 - Title: 3-5 words. Subject + verb. No articles, no filler, no abbreviations unless globally recognised (US, UK, EU, UN, WHO, NATO, ISIS, IDF, IMF, ICC, ICJ) — same list as the body rule. Copy-desk check: commas present where needed ("Apple, Google" not "Apple Google"); singular/plural agreement correct ("Alumnus" for one person, "Alumni" for more); no typos.
-- Body: one paragraph, exactly 3 sentences, 40-50 words total. Hook (≤8 words) → Context (≤22 words) → Future (≤18 words). If out of order, reorder. If 4+ sentences, cut to 3.
+- Body: one paragraph, exactly 3 sentences, 40-55 words total. Hook (≤8 words) → Context (≤22 words) → Future (≤18 words). If out of order, reorder. If 4+ sentences, cut to 3.
 - Every sentence serves the headline. Cut unrelated facts, people, or asides.
 - No **news-outlet** citations in the body — never "BBC said," "according to Reuters," "Al Jazeera reported." Outlet names live in the frontmatter `sources` array only. This is separate from institutional attribution ("the central bank said," "DoD figures show," "WHO warned"), which is *required* for load-bearing numbers per `<editorial>`.
 - `location` in frontmatter must match the dateline. Can be a city or country. Coordinates (`lat`/`lng`) must fall on land inside a country — not in a body of water or ocean.
-- **Length (CRITICAL):** Body text (everything after the closing `---`) must be ≤350 characters. If a `<body-lengths>` block is appended below, every article flagged OVER **must** be rewritten shorter. Cut adjectives, compress clauses, shorten proper nouns ("the US health department" → "HHS"), drop the weakest detail. Never drop a whole sentence. After trimming, verify the result still has exactly 3 sentences and reads naturally.
+- **Length:** Body text (everything after the closing `---`) targets ≤350 characters with a hard ceiling of 400. Do not rewrite a body just because it sits between 350 and 400 — only articles flagged OVER in the `<body-lengths>` block appended below (>400 chars) **must** be rewritten shorter. Cut adjectives, compress clauses, shorten proper nouns ("the US health department" → "HHS"), drop the weakest detail. Never drop a whole sentence. After trimming, verify the result still has exactly 3 sentences and reads naturally.
 </structure>
 
 <clarity>

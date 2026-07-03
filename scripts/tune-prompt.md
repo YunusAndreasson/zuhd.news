@@ -28,10 +28,10 @@ Parameters in `scripts/fetch-news-api.js`:
 |-----------|----------|---------|-----|-----|---------|
 | eventsCount | Q1 fetchEvents | 50 | 30 | 50 | Number of events discovered |
 | minArticlesInEvent | Q1 fetchEvents | 10 | 5 | 20 | Minimum articles for event to qualify |
-| TOP_EVENTS_TO_FETCH | Per-event fetch | 5 | 3 | 10 | Events enriched with direct article fetch |
+| TOP_EVENTS_TO_FETCH | Per-event fetch | 8 | 3 | 10 | Events enriched with direct article fetch. NOTE: each unit is one NewsAPI token/cycle — raising this raises API spend, which is capped; treat 8 as the ceiling in practice |
 | MAX_BODY | Output truncation | 10000 | 3000 | 15000 | Article body chars per source |
 | MAX_PER_SOURCE (standalone) | Standalone cap | 3 | 1 | 5 | Max standalone articles per source |
-| Standalone total cap | Added standalone | 25 | 15 | 35 | Total standalone articles in feed |
+| Standalone total cap | Added standalone | 22 | 15 | 35 | Total standalone articles in feed (kept at 22 by experiment 2026-04-26-standalone-cap-22) |
 
 Parameters in `scripts/fetch-news.js`:
 

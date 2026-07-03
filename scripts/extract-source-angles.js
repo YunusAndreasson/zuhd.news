@@ -296,6 +296,20 @@ for (let i = 0; i < tasks.length; i++) {
 const fetchSuccessPct = tasks.length > 0 ? Math.round((haikuItems.length / tasks.length) * 100) : 0
 console.log(`  · source-angles: ${haikuItems.length}/${tasks.length} fetched (${fetchSuccessPct}%)`)
 
+// Per-domain failure tally — ~25% of URLs fail consistently, and without this
+// line there is no way to attribute which outlets block/paywall us.
+const failedByDomain = {}
+for (let i = 0; i < tasks.length; i++) {
+  if (texts[i]) continue
+  let domain = 'unknown'
+  try { domain = new URL(tasks[i].url).hostname.replace(/^www\./, '') } catch {}
+  failedByDomain[domain] = (failedByDomain[domain] || 0) + 1
+}
+const failedList = Object.entries(failedByDomain).sort((a, b) => b[1] - a[1])
+if (failedList.length > 0) {
+  console.log(`  · source-angles: failed domains: ${failedList.map(([d, n]) => `${d}×${n}`).join(' ')}`)
+}
+
 const angles = haikuItems.length > 0 ? extractAnglesViaHaiku(haikuItems) : new Map()
 
 // Pass 3: merge Haiku output back into each file's sources + write frontmatter.

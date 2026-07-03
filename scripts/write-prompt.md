@@ -23,9 +23,10 @@ Accountability (amānah): power is a trust. Those who wield it — states, corpo
    - Center the perspective of the affected population. Use their sources for ground truth (what happened to people) and wire sources for verification (official responses, institutional context).
    - **Do not cite news outlets in the body.** Never write "BBC reported," "according to Reuters," "Al Jazeera said." The sources array in frontmatter is where news outlets go. This is different from **institutional attribution** — naming the body of authority behind a figure or claim ("the central bank said," "DoD figures show," "WHO warned," "according to the study") is required for load-bearing numbers and contested claims, per `<principles>`.
 4. Use the `angle` field to guide framing.
-5. Save to `content/articles/{suggestedSlug}.md`. Do not modify existing articles.
+5. Save to `content/articles/{suggestedSlug}.md`. Do not modify existing articles. Revising an article you wrote *this session* with the Edit tool is fine.
+6. Before saving each article, one quick self-check: title is 3-5 words with no leading article ("a"/"the"), and the hook does not restate the title (see `<antipatterns>`).
 
-A separate editor reviews output — focus on writing, not checking.
+A separate editor reviews output — focus on writing, not checking. Do not create helper scripts or temp files, and do not attempt to run validation or builds — the pipeline does that after you.
 </task>
 
 <format>
@@ -58,7 +59,7 @@ The body is **three markdown paragraphs (blocks), separated by a blank line**. T
 
 40-55 words total across the three blocks (body text only, excluding frontmatter). Follow the per-block word limits in `<rhythm>`.
 
-**Hard limit: body text (everything after the closing `---`) must be ≤350 characters.** This is enforced downstream — articles that overshoot get rewritten shorter before publish, wasting cycle time. Aim for 280-330 characters; under-spending is better than overspending. A rough check: 50 words at ~6 chars/word ≈ 300 characters. Markdown link markup (`[text](url)` brackets and URLs) does **not** count against this budget — only the visible text does, so country tags and inline source links are free against the limit. The two blank-line separators between blocks count for ~4 characters total — negligible.
+**Body text (everything after the closing `---`): target ≤350 characters, hard ceiling 400.** Bodies over 400 get rewritten shorter before publish, wasting cycle time. Aim for 280-330 characters; under-spending is better than overspending. A rough check: 50 words at ~6 chars/word ≈ 300 characters. Markdown link markup (`[text](url)` brackets and URLs) does **not** count against this budget — only the visible text does, so country tags and inline source links are free against the limit. The two blank-line separators between blocks count for ~4 characters total — negligible.
 
 List every source from the selection's `sources` array (see task step 2). `eventCoverage` and `concepts` are filled automatically by a post-writer script if missing.
 
