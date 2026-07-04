@@ -53,7 +53,7 @@ interface SheetSearchPageProps {
 }
 
 export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: SheetSearchPageProps) {
-  const { colors, textVariants } = useTheme();
+  const { colors, textVariants, resolvedAppearance } = useTheme();
   const [query, setQuery] = useState('');
   const deferredQuery = useDeferredValue(query.trim());
   const inputRef = useRef<TextInput>(null);
@@ -108,6 +108,9 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
           onChangeText={setQuery}
           placeholder="search articles…"
           placeholderTextColor={colors.textSecondary}
+          // Default caret is iOS system blue — the one off-brand pixel in a
+          // monochrome-plus-gold app. Tint it to the single brand accent.
+          selectionColor={colors.dome}
           style={[styles.input, textVariants.body]}
           accessibilityRole="search"
           accessibilityLabel="Search articles"
@@ -120,6 +123,9 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
           clearButtonMode="while-editing"
           textContentType="none"
           enablesReturnKeyAutomatically
+          // Match the iOS keyboard chrome to the app theme — a light keyboard
+          // over the dark search sheet is the giveaway that breaks the illusion.
+          keyboardAppearance={resolvedAppearance}
         />
         {showAndroidClear && (
           <Pressable
@@ -148,6 +154,7 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
           renderItem={renderItem}
           keyExtractor={keyExtractor}
           contentContainerStyle={[styles.listContent, { paddingBottom: bottomInset + SPACING.lg }]}
+          indicatorStyle={resolvedAppearance === 'dark' ? 'white' : 'black'}
           keyboardShouldPersistTaps="handled"
           keyboardDismissMode="on-drag"
           ListHeaderComponent={

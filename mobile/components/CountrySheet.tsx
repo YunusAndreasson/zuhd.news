@@ -223,7 +223,7 @@ export const CountrySheet = memo(function CountrySheet({
   renderBackdrop,
   onDismiss,
 }: CountrySheetProps) {
-  const { sheetStyles } = useTheme();
+  const { sheetStyles, resolvedAppearance } = useTheme();
   const [activeRanking, setActiveRanking] = useState<MetricKey | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const snapProps = useSheetSnaps(activeRanking !== null);
@@ -379,6 +379,7 @@ export const CountrySheet = memo(function CountrySheet({
       ) : (
         <BottomSheetScrollView
           contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}
+          indicatorStyle={resolvedAppearance === 'dark' ? 'white' : 'black'}
         >
           {country?.countryName && (
             <Animated.View entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(0))}>
