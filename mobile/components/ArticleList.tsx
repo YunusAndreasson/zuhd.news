@@ -6,6 +6,7 @@ import type {
   GdacsAlert,
   HeatmapPoint,
 } from '@shared/types';
+import { Canvas, LinearGradient, Rect, vec } from '@shopify/react-native-skia';
 import {
   memo,
   useCallback,
@@ -27,7 +28,6 @@ import {
 } from 'react-native';
 import Animated, {
   Extrapolation,
-  FadeIn,
   interpolate,
   type SharedValue,
   useAnimatedRef,
@@ -36,7 +36,6 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
-import { ANIMATION } from '../constants/theme';
 import { useScrollState } from '../hooks/useScrollState';
 import { useTheme } from '../hooks/useTheme';
 import { formatTimeAgo } from '../lib/article-utils';
@@ -49,9 +48,9 @@ import { MiniGlobe, type MiniGlobeRef, type TapResult } from './globe/MiniGlobe'
 const BREAKING_THRESHOLD = 100;
 
 // Article backdrop gradient stops. Hoisted to the list container so a single
-// LinearGradient view is rendered per category — cells scroll through a
-// fixed fade pattern rather than each cell carrying its own.
-const BG_FADE_LOCATIONS = [0, 0.02, 0.14, 0.28, 0.48, 0.72, 1] as const;
+// gradient view is rendered per category — cells scroll through a fixed
+// fade pattern rather than each cell carrying its own.
+const BG_FADE_LOCATIONS: number[] = [0, 0.02, 0.14, 0.28, 0.48, 0.72, 1];
 
 export interface ArticleListRef {
   scrollToTop: () => void;
@@ -107,13 +106,27 @@ export const ArticleList = memo(function ArticleList({
 }: ArticleListProps) {
   const { colors, bgAlpha } = useTheme();
   const insets = useSafeAreaInsets();
-  const bgFadeGradient = useMemo(() => {
-    const stops = BG_FADE_LOCATIONS.map(
-      (loc, i) =>
-        `${[bgAlpha(0), bgAlpha(1), bgAlpha(1), bgAlpha(0.92), bgAlpha(0.65), bgAlpha(0.28), bgAlpha(0)][i]} ${loc * 100}%`,
-    ).join(', ');
-    return `linear-gradient(to bottom, ${stops})`;
-  }, [bgAlpha]);
+  // Backdrop stop colors for the Skia gradient below. Skia (not RN's
+  // experimental_backgroundImage CSS gradient) is deliberate: the CSS
+  // gradient rendered fine on Android but silently failed on iOS release
+  // builds (RN 0.86 new-arch — the gradient layer races layout and pairs
+  // badly with Reanimated updates on the same view; see reanimated #8297),
+  // leaving the article column sitting naked on the map with no bg wash —
+  // "grey articles" in both themes. Skia is the one gradient path this app
+  // has proven on both platforms (the entire globe renders through it),
+  // and it OTA-deploys since the native module is already in every build.
+  const bgFadeColors = useMemo(
+    () => [
+      bgAlpha(0),
+      bgAlpha(1),
+      bgAlpha(1),
+      bgAlpha(0.92),
+      bgAlpha(0.65),
+      bgAlpha(0.28),
+      bgAlpha(0),
+    ],
+    [bgAlpha],
+  );
   const { width: screenWidth } = useWindowDimensions();
   // Chronological sort, but within the same time bucket (e.g. all "1h ago")
   // breaking stories (eventCoverage >= 100) float to top of their bucket.
@@ -353,13 +366,25 @@ export const ArticleList = memo(function ArticleList({
       {/* Single article backdrop fade — sits between MiniGlobe and the
           FlatList so cells scroll through a fixed fade pattern instead of
           each cell carrying its own. pointerEvents:none keeps the per-cell
-          GlobeTapZone reachable through it. */}
-      <Animated.View
-        style={[styles.bgFade, { experimental_backgroundImage: bgFadeGradient }, bgFadeStyle]}
-        pointerEvents="none"
-      />
+          GlobeTapZone reachable through it. Scroll-driven opacity stays on
+          the wrapper view (plain layer opacity, reliable everywhere); the
+          gradient itself is a static Skia draw — see bgFadeColors above
+          for why Skia rather than a CSS background. `dither` for the same
+          reason as the globe gradients: a long alpha ramp over the dark bg
+          quantizes into visible bands without it. */}
+      <Animated.View style={[styles.bgFade, bgFadeStyle]} pointerEvents="none">
+        <Canvas style={styles.bgFadeCanvas}>
+          <Rect x={0} y={0} width={screenWidth} height={viewportHeight} dither>
+            <LinearGradient
+              start={vec(0, 0)}
+              end={vec(0, viewportHeight)}
+              colors={bgFadeColors}
+              positions={BG_FADE_LOCATIONS}
+            />
+          </Rect>
+        </Canvas>
+      </Animated.View>
       <Animated.FlatList
-        entering={FadeIn.duration(ANIMATION.normal)}
         ref={listRef}
         data={sortedArticles}
         extraData={tick}
@@ -393,4 +418,5 @@ export const ArticleList = memo(function ArticleList({
 const styles = StyleSheet.create({
   container: { flex: 1 },
   bgFade: { position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 },
+  bgFadeCanvas: { flex: 1 },
 });
