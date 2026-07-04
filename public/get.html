@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get the zuhd.news app</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="dark">
+<!-- iOS Smart App Banner -->
+<meta name="apple-itunes-app" content="app-id=6760964753">
+<meta property="og:title" content="Get the zuhd.news app">
+<meta property="og:description" content="Global hard news in plain language. No ads, no tracking, no accounts.">
+<meta property="og:url" content="https://zuhd.news/get">
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: #141414;
+    color: #f2f2f2;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  main { width: 100%; max-width: 420px; text-align: center; }
+  .wordmark { font-size: 34px; font-weight: 800; letter-spacing: -0.02em; margin: 0; }
+  .tag { color: #9a9a9a; font-size: 16px; line-height: 1.5; margin: 14px 0 34px; }
+  .stores { display: flex; flex-direction: column; gap: 12px; }
+  .btn {
+    display: block; text-decoration: none;
+    color: #141414; background: #f2f2f2;
+    font-size: 16px; font-weight: 700;
+    padding: 15px 18px; border-radius: 12px;
+    border: 1px solid #f2f2f2;
+  }
+  .btn.secondary { color: #f2f2f2; background: transparent; border-color: #333; }
+  .note { color: #6a6a6a; font-size: 13px; margin-top: 26px; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+  <main>
+    <h1 class="wordmark">zuhd.news</h1>
+    <p class="tag">Global hard news in plain language.<br>No ads, no tracking, no accounts.</p>
+    <div class="stores">
+      <a id="play" class="btn" href="https://play.google.com/store/apps/details?id=news.zuhd.app" rel="noopener">Get it on Google Play</a>
+      <a id="ios" class="btn secondary" href="https://apps.apple.com/app/id6760964753" rel="noopener">Download on the App Store</a>
+    </div>
+    <p id="note" class="note hidden">Opening your app store…</p>
+  </main>
+  <script>
+  (function () {
+    var PLAY = "https://play.google.com/store/apps/details?id=news.zuhd.app";
+    var IOS = "https://apps.apple.com/app/id6760964753";
+    var ua = navigator.userAgent || "";
+    var qs = (location.search || "").replace(/^\?/, "");
+
+    // Pass campaign params through so store-side acquisition reports can attribute the visit.
+    function playUrl() {
+      return qs ? PLAY + "&referrer=" + encodeURIComponent(qs) : PLAY;
+    }
+    function iosUrl() {
+      return qs ? IOS + "?" + qs : IOS;
+    }
+
+    var play = document.getElementById("play");
+    var ios = document.getElementById("ios");
+    play.href = playUrl();
+    ios.href = iosUrl();
+
+    var isAndroid = /Android/i.test(ua);
+    var isIOS = /iPhone|iPad|iPod/i.test(ua) ||
+      (/Macintosh/.test(ua) && typeof document.ontouchend !== "undefined"); // iPadOS desktop-mode
+
+    if (isAndroid || isIOS) {
+      document.getElementById("note").className = "note";      // reveal "Opening…" for the brief flash
+      // Reorder so the user's own store is the primary button, in case the redirect is blocked.
+      if (isIOS) { ios.className = "btn"; play.className = "btn secondary"; }
+      location.replace(isAndroid ? playUrl() : iosUrl());
+    }
+    // Desktop / unknown: stay on the page and show both store buttons.
+  })();
+  </script>
+</body>
+</html>
