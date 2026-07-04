@@ -1,0 +1,2518 @@
+{
+  "fetchedAt": "2026-06-20T12:10:35.208Z",
+  "apiStories": 72,
+  "rssStories": 74,
+  "multiSourceStories": [
+    {
+      "title": "Bedford train crash: King sends sympathies to people affected",
+      "description": "The King has sent his \"thoughts and sympathies\" to those affected by a train crash in Bedford on Friday.\n\nIt happened when two trains, one from Corby and another from Nottingham, collided in Bedford on their way to London St Pancras.\n\nEmergency response teams are still there working hard to help.\n\nT",
+      "link": "https://www.bbc.co.uk/newsround/articles/c1dyne7r6lro",
+      "pubDate": "2026-06-20T11:41:28Z",
+      "eventDate": "2026-06-20",
+      "panelMaxPubDate": "2026-06-20T11:41:28Z",
+      "category": "politics",
+      "source": "BBC",
+      "suggestedSlug": "2026-06-20-bedford-train-crash-king-sends-sympathies-to-people-affected",
+      "eventUri": "eng-11760639",
+      "eventCoverage": 402,
+      "sources": [
+        {
+          "name": "BBC",
+          "url": "https://www.bbc.co.uk/newsround/articles/c1dyne7r6lro",
+          "country": "GB",
+          "importanceRank": 470,
+          "sentiment": -0.19,
+          "image": "https://ichef.bbci.co.uk/ace/branded_newsround/1200/cpsprodpb/ee23/live/1e782960-6c9e-11f1-9c69-eb6435da1435.jpg"
+        },
+        {
+          "name": "The New York Times",
+          "url": "https://www.nytimes.com/2026/06/19/world/europe/uk-trains-collide-bedford-england.html",
+          "country": "US",
+          "importanceRank": 350,
+          "sentiment": -0.49,
+          "image": "https://static01.nyt.com/images/2026/06/19/multimedia/19int-uk-train-collision-qgjf/19int-uk-train-collision-qgjf-videoSixteenByNine3000.jpg"
+        },
+        {
+          "name": "NDTV",
+          "url": "https://www.ndtv.com/world-news/bedford-train-accident-lot-of-people-had-broken-legs-passenger-recounts-uk-train-collision-horror-11662023",
+          "country": "IN",
+          "importanceRank": 1121,
+          "sentiment": -0.51,
+          "image": "https://c.ndtvimg.com/2026-06/giti7mm4_london-train-accident_625x300_20_June_26.jpeg"
+        },
+        {
+          "name": "RT",
+          "url": "https://www.rt.com/news/641891-uk-train-collision-victims/",
+          "country": "RU",
+          "importanceRank": 3583,
+          "sentiment": -0.61,
+          "image": "https://mf.b37mrtl.ru/files/2026.06/article/6a35ddbe85f5407b2f326f99.jpg"
+        }
+      ],
+      "concepts": [
+        {
+          "label": "Bedford",
+          "uri": "http://en.wikipedia.org/wiki/Bedford"
+        },
+        {
+          "label": "London",
+          "uri": "http://en.wikipedia.org/wiki/London"
+        },
+        {
+          "label": "United Kingdom",
+          "uri": "http://en.wikipedia.org/wiki/United_Kingdom"
+        },
+        {
+          "label": "England",
+          "uri": "http://en.wikipedia.org/wiki/England"
+        },
+        {
+          "label": "Police",
+          "uri": "http://en.wikipedia.org/wiki/Police"
+        },
+        {
+          "label": "East Midlands",
+          "uri": "http://en.wikipedia.org/wiki/East_Midlands"
+        },
+        {
+          "label": "East Midlands Railway",
+          "uri": "http://en.wikipedia.org/wiki/East_Midlands_Railway"
+        },
+        {
+          "label": "Nottingham",
+          "uri": "http://en.wikipedia.org/wiki/Nottingham"
+        }
+      ],
+      "location": "Bedford",
+      "sentiment": -0.45,
+      "sentimentDivergence": 0.42,
+      "origin": "api"
+    },
+    {
+      "title": "Israel continues Lebanon strikes despite fresh ceasefire",
+      "description": "Israeli strikes across southern Lebanon on Saturday morning killed at least 16 people, including two children, according to Lebanese civil defense and media, one day after the U.S. said Israel and Hezbollah had implemented a fresh ceasefire at President Donald Trump's request.\n\nA series of towns acr",
+      "link": "https://www.nbcnews.com/world/iran/israel-continues-lebanon-strikes-fresh-ceasefire-rcna350952",
+      "pubDate": "2026-06-20T11:54:36Z",
+      "eventDate": "2026-06-20",
+      "panelMaxPubDate": "2026-06-20T11:54:36Z",
+      "category": "politics",
+      "source": "NBC News",
+      "suggestedSlug": "2026-06-20-israel-continues-lebanon-strikes-despite-fresh-ceasefire",
+      "eventUri": "eng-11760835",
+      "eventCoverage": 322,
+      "sources": [
+        {
+          "name": "NBC News",
+          "url": "https://www.nbcnews.com/world/iran/israel-continues-lebanon-strikes-fresh-ceasefire-rcna350952",
+          "country": "US",
+          "importanceRank": 2442,
+          "sentiment": -0.39,
+          "image": "https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1024-512,f_auto,q_auto:best/rockcms/2026-06/260620-lebanon-nd-20711a.jpg"
+        },
+        {
+          "name": "The Guardian",
+          "url": "https://www.theguardian.com/world/2026/jun/20/israeli-strikes-southern-lebanon-reports-renewed-ceasefire",
+          "country": "GB",
+          "importanceRank": 691,
+          "sentiment": -0.58,
+          "image": "https://i.guim.co.uk/img/media/52db905d7fe5136887b0339a32b14ce832b0cf7c/323_0_3280_2624/master/3280.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&s=0f944f5291c4393e7fd5d19cdafea5a5"
+        },
+        {
+          "name": "RT",
+          "url": "https://www.rt.com/news/641898-israeli-minister-x-burn-lebanon/",
+          "country": "RU",
+          "importanceRank": 3583,
+          "sentiment": -0.04,
+          "image": "https://mf.b37mrtl.ru/files/2026.06/article/6a3666b720302743f22da99d.jpg"
+        },
+        {
+          "name": "Al Jazeera Online",
+          "url": "https://www.aljazeera.com/news/2026/6/20/us-envoy-headed-for-switzerland-israeli-strikes-on-lebanon-threaten-talks",
+          "country": "QA",
+          "importanceRank": 4213,
+          "sentiment": 0.04,
+          "image": "https://www.aljazeera.com/wp-content/uploads/2026/06/afp_6a35746530a6-1781888101.jpg?resize=1920%2C1440"
+        },
+        {
+          "name": "Rappler",
+          "url": "https://www.rappler.com/world/middle-east/usa-israel-iran-war-updates-june-20-2026/",
+          "country": "PH",
+          "importanceRank": 15492,
+          "sentiment": -0.35,
+          "image": "https://www.rappler.com/tachyon/2026/06/2026-06-15T090120Z_1373716932_RC25ULARH1P8_RTRMADP_3_IRAN-CRISIS.jpg"
+        }
+      ],
+      "concepts": [
+        {
+          "label": "Israel",
+          "uri": "http://en.wikipedia.org/wiki/Israel"
+        },
+        {
+          "label": "Lebanon",
+          "uri": "http://en.wikipedia.org/wiki/Lebanon"
+        },
+        {
+          "label": "Hezbollah",
+          "uri": "http://en.wikipedia.org/wiki/Hezbollah"
+        },
+        {
+          "label": "Iran",
+          "uri": "http://en.wikipedia.org/wiki/Iran"
+        },
+        {
+          "label": "Ceasefire",
+          "uri": "http://en.wikipedia.org/wiki/Ceasefire"
+        },
+        {
+          "label": "Donald Trump",
+          "uri": "http://en.wikipedia.org/wiki/Donald_Trump"
+        },
+        {
+          "label": "Southern Lebanon",
+          "uri": "http://en.wikipedia.org/wiki/Southern_Lebanon"
+        },
+        {
+          "label": "United States",
+          "uri": "http://en.wikipedia.org/wiki/United_States"
+        }
+      ],
+      "location": "Washington, D.C.",
+      "sentiment": -0.26,
+      "sentimentDivergence": 0.61,
+      "origin": "api"
+    },
+    {
+      "title": "NTA to conduct drill to check NEET retest preparedness",
+      "description": "NEW DELHI: With over 2.2 million candidates set to appear for the NEET-UG 2026 re-examination on June 21, authorities will conduct a full-day nationwide drill on Saturday to test security arrangements and coordination mechanisms ahead of the high-stakes test, officials said.\n\nThe exercise, scheduled",
+      "link": "https://www.hindustantimes.com/india-news/nta-to-conduct-drill-to-check-neet-retest-preparedness-101781892898937.html",
+      "pubDate": "2026-06-19T23:04:08Z",
+      "eventDate": "2026-06-21",
+      "panelMaxPubDate": "2026-06-20T06:25:49Z",
+      "category": "economy",
+      "source": "Hindustan Times",
+      "suggestedSlug": "2026-06-19-nta-to-conduct-drill-to-check-neet-retest-preparedness",
+      "eventUri": "eng-11748579",
+      "eventCoverage": 198,
+      "sources": [
+        {
+          "name": "Hindustan Times",
+          "url": "https://www.hindustantimes.com/india-news/nta-to-conduct-drill-to-check-neet-retest-preparedness-101781892898937.html",
+          "country": "IN",
+          "importanceRank": 811,
+          "sentiment": 0.13,
+          "image": "https://www.hindustantimes.com/ht-img/img/2025/08/06/550x309/Untitled_design_1754465014585_1754465103581.png"
+        },
+        {
+          "name": "NDTV",
+          "url": "https://www.ndtv.com/education/neet-re-exam-on-june-21-check-reporting-time-entry-rules-key-advisory-and-helpline-11660155",
+          "country": "IN",
+          "importanceRank": 1121,
+          "sentiment": -0.04,
+          "image": "https://c.ndtvimg.com/2026-06/2dpvpa3k_neet-reexam-on-june-21_625x300_19_June_26.jpeg"
+        },
+        {
+          "name": "India News, Breaking News, Entertainment News | India.com",
+          "url": "https://www.india.com/education/neet-ug-re-test-mock-drill-how-well-have-centres-prepared-for-the-re-exam-free-bus-special-trains-tight-security-how-are-aspirants-netizens-guardians-reacting-explained-8451809/",
+          "country": "IN",
+          "importanceRank": 1201,
+          "sentiment": 0.02,
+          "image": "https://static.india.com/wp-content/uploads/2026/06/u-67.jpg"
+        }
+      ],
+      "concepts": [
+        {
+          "label": "National Eligibility cum Entrance Test (Undergraduate)",
+          "uri": "http://en.wikipedia.org/wiki/National_Eligibility_cum_Entrance_Test_(Undergraduate)"
+        },
+        {
+          "label": "National Testing Agency",
+          "uri": "http://en.wikipedia.org/wiki/National_Testing_Agency"
+        },
+        {
+          "label": "Lakh",
+          "uri": "http://en.wikipedia.org/wiki/Lakh"
+        },
+        {
+          "label": "Closed-circuit television",
+          "uri": "http://en.wikipedia.org/wiki/Closed-circuit_television"
+        },
+        {
+          "label": "India",
+          "uri": "http://en.wikipedia.org/wiki/India"
+        },
+        {
+          "label": "The National (Abu Dhabi)",
+          "uri": "http://en.wikipedia.org/wiki/The_National_(Abu_Dhabi)"
+        },
+        {
+          "label": "Nigerian Television Authority",
+          "uri": "http://en.wikipedia.org/wiki/Nigerian_Television_Authority"
+        },
+        {
+          "label": "District",
+          "uri": "http://en.wikipedia.org/wiki/District"
+        }
+      ],
+      "location": null,
+      "sentiment": 0.04,
+      "sentimentDivergence": 0.17,
+      "origin": "api"
+    },
+    {
+      "title": "Dominican Republic resort fire: Italian tourist dies in Bayahibe fire",
+      "description": "A huge fire at a luxury beach resort in the Dominican Republic killed one woman and forced nearly 1,700 guests to be evacuated on Friday.\n\nIn a statement to local media, the DAEH emergency services said that a 46-year-old Italian tourist died, three people were taken to medical facilities and six ot",
+      "link": "https://www.bbc.com/news/articles/c932k8010j1o",
+      "pubDate": "2026-06-20T07:40:20Z",
+      "eventDate": "2026-06-20",
+      "panelMaxPubDate": "2026-06-20T07:40:20Z",
+      "category": "politics",
+      "source": "BBC",
+      "suggestedSlug": "2026-06-20-dominican-republic-resort-fire-italian-tourist-dies-in-bayah",
+      "eventUri": "spa-4239351",
+      "eventCoverage": 147,
+      "sources": [
+        {
+          "name": "BBC",
+          "url": "https://www.bbc.com/news/articles/c932k8010j1o",
+          "country": "GB",
+          "importanceRank": 470,
+          "sentiment": -0.29,
+          "image": "https://ichef.bbci.co.uk/news/1024/branded_news/76f2/live/a5bd9b80-6c7b-11f1-8546-8f19e4fe30f4.jpg"
+        },
+        {
+          "name": "Hindustan Times",
+          "url": "https://www.hindustantimes.com/world-news/dominican-republic-fire-videos-viva-dominicus-bayahibe-resort-engulfed-in-fire-as-guests-flee-to-the-beach-watch-101781913445927.html",
+          "country": "IN",
+          "importanceRank": 811,
+          "sentiment": -0.32,
+          "image": "https://www.hindustantimes.com/ht-img/img/2026/06/20/550x309/Untitled_design_1781914005733_1781914033551_7230d467-aaaf-4c43-8b73-bb77f836192d.png"
+        },
+        {
+          "name": "New York Post",
+          "url": "https://nypost.com/2026/06/19/world-news/dominican-republic-resort-fire-leaves-one-dead-nearly-1700-forced-to-evacuate/",
+          "country": "US",
+          "importanceRank": 1581,
+          "sentiment": -0.18,
+          "image": "https://nypost.com/wp-content/uploads/sites/2/2026/06/dominican-republic-fire.jpg?quality=75&strip=all&1781913102&w=1200"
+        }
+      ],
+      "concepts": [
+        {
+          "label": "Hotel",
+          "uri": "http://en.wikipedia.org/wiki/Hotel"
+        },
+        {
+          "label": "Dominican Republic",
+          "uri": "http://en.wikipedia.org/wiki/Dominican_Republic"
+        },
+        {
+          "label": "Conflagration",
+          "uri": "http://en.wikipedia.org/wiki/Conflagration"
+        },
+        {
+          "label": "Italy",
+          "uri": "http://en.wikipedia.org/wiki/Italy"
+        },
+        {
+          "label": "Bayahibe",
+          "uri": "http://en.wikipedia.org/wiki/Bayahibe"
+        },
+        {
+          "label": "Tourism",
+          "uri": "http://en.wikipedia.org/wiki/Tourism"
+        },
+        {
+          "label": "Bayahíbe",
+          "uri": "http://en.wikipedia.org/wiki/Bayahíbe"
+        },
+        {
+          "label": "Firefighter",
+          "uri": "http://en.wikipedia.org/wiki/Firefighter"
+        }
+      ],
+      "location": "Bayahibe",
+      "sentiment": -0.26,
+      "sentimentDivergence": 0.13,
+      "origin": "api"
+    },
+    {
+      "title": "Video | NEET Re-Test 2026: NTA Says Nagpur Candidate's Abu Dhabi Centre Was Chosen Through Own Login",
+      "description": "Amid criticism over the allotment of an Abu Dhabi examination centre to a Nagpur candidate for the NEET UG 2026 re-test, the National Testing Agency (NTA) on Saturday said its records show that the city change was made through the candidate's own registered login during the correction window.\n\nThe c",
+      "link": "https://www.ndtv.com/videos/neet-re-test-2026-nta-says-nagpur-candidate-s-abu-dhabi-centre-was-chosen-through-own-login-1115805",
+      "pubDate": "2026-06-20T11:08:48Z",
+      "eventDate": "2026-06-20",
+      "panelMaxPubDate": "2026-06-20T11:08:48Z",
+      "category": "tech",
+      "source": "NDTV",
+      "suggestedSlug": "2026-06-20-video-neet-re-test-2026-nta-says-nagpur-candidate-s-abu-dhab",
+      "eventUri": "eng-11760917",
+      "eventCoverage": 131,
+      "sources": [
+        {
+          "name": "NDTV",
+          "url": "https://www.ndtv.com/videos/neet-re-test-2026-nta-says-nagpur-candidate-s-abu-dhabi-centre-was-chosen-through-own-login-1115805",
+          "country": "IN",
+          "importanceRank": 1121,
+          "sentiment": -0.08,
+          "image": "https://c.ndtvimg.com/2026-06/vr1h77ms_image_160x120_20_June_26.jpg?downsize=600:315"
+        },
+        {
+          "name": "The Financial Express",
+          "url": "https://www.financialexpress.com/jobs-career/education-days-before-neet-re-test-nagpur-aspirant-gets-exam-centre-in-abu-dhabi-nta-intervenes-4272317/",
+          "country": "IN",
+          "importanceRank": 4894,
+          "sentiment": 0.08,
+          "image": "https://images.financialexpressdigital.com/2026/06/NEET-Nagpur-student.jpg"
+        }
+      ],
+      "concepts": [
+        {
+          "label": "Abu Dhabi",
+          "uri": "http://en.wikipedia.org/wiki/Abu_Dhabi"
+        },
+        {
+          "label": "Nagpur",
+          "uri": "http://en.wikipedia.org/wiki/Nagpur"
+        },
+        {
+          "label": "National Eligibility cum Entrance Test (Undergraduate)",
+          "uri": "http://en.wikipedia.org/wiki/National_Eligibility_cum_Entrance_Test_(Undergraduate)"
+        },
+        {
+          "label": "Nigerian Television Authority",
+          "uri": "http://en.wikipedia.org/wiki/Nigerian_Television_Authority"
+        },
+        {
+          "label": "National Testing Agency",
+          "uri": "http://en.wikipedia.org/wiki/National_Testing_Agency"
+        },
+        {
+          "label": "Maharashtra",
+          "uri": "http://en.wikipedia.org/wiki/Maharashtra"
+        },
+        {
+          "label": "India",
+          "uri": "http://en.wikipedia.org/wiki/India"
+        },
+        {
+          "label": "The National (Abu Dhabi)",
+          "uri": "http://en.wikipedia.org/wiki/The_National_(Abu_Dhabi)"
+        }
+      ],
+      "location": "Nagpur",
+      "sentiment": 0,
+      "sentimentDivergence": 0.16,
+      "origin": "api"
+    },
+    {
+      "title": "Bolivian president declares state of emergency after weeks of protests demanding his resignation",
+      "description": "Bolivian President Rodrigo Paz declared a state of emergency across the Latin American country on Saturday after more than six weeks of road blockades and protests demanding his resignation, saying he had exhausted \"all avenues of dialogue.\"\n\nThe decision came hours after Paz signed an agreement wit",
+      "link": "https://www.dawn.com/news/2009469",
+      "pubDate": "2026-06-20T10:05:27Z",
+      "eventDate": "2026-06-20",
+      "panelMaxPubDate": "2026-06-20T10:05:27Z",
+      "category": "politics",
+      "source": "Dawn",
+      "suggestedSlug": "2026-06-20-bolivian-president-declares-state-of-emergency-after-weeks-o",
+      "eventUri": "eng-11761171",
+      "eventCoverage": 112,
+      "sources": [
+        {
+          "name": "Dawn",
+          "url": "https://www.dawn.com/news/2009469",
+          "country": "PK",
+          "importanceRank": 6175,
+          "sentiment": -0.25,
+          "image": "https://i.dawn.com/large/2026/06/2015000368da77f.webp"
+        },
+        {
+          "name": "TRT World",
+          "url": "https://www.trtworld.com/article/5a143dda7f17",
+          "country": "TR",
+          "importanceRank": 113261,
+          "sentiment": -0.68,
+          "image": "https://d2udx5iz3h7s4h.cloudfront.net/2026/6/20/Reuters/image/2026_06_20T063816Z_1840047225_RC2XVLAE6I0M_RTRMADP_3_BOLIVIA_PROTESTS_EMERGENCY_1.JPG?width=1080&format=jpg&quality=80"
+        }
+      ],
+      "concepts": [
+        {
+          "label": "Bolivia",
+          "uri": "http://en.wikipedia.org/wiki/Bolivia"
+        },
+        {
+          "label": "State of emergency",
+          "uri": "http://en.wikipedia.org/wiki/State_of_emergency"
+        },
+        {
+          "label": "Blockade",
+          "uri": "http://en.wikipedia.org/wiki/Blockade"
+        },
+        {
+          "label": "Trade union",
+          "uri": "http://en.wikipedia.org/wiki/Trade_union"
+        },
+        {
+          "label": "Evo Morales",
+          "uri": "http://en.wikipedia.org/wiki/Evo_Morales"
+        },
+        {
+          "label": "La Paz",
+          "uri": "http://en.wikipedia.org/wiki/La_Paz"
+        },
+        {
+          "label": "President (government title)",
+          "uri": "http://en.wikipedia.org/wiki/President_(government_title)"
+        },
+        {
+          "label": "State of exception",
+          "uri": "http://en.wikipedia.org/wiki/State_of_exception"
+        }
+      ],
+      "location": "La Paz",
+      "sentiment": -0.46,
+      "sentimentDivergence": 0.43,
+      "origin": "api"
+    },
+    {
+      "title": "'Bengal Finally Freed From Shackles': PM Modi's Big Remark On Paschim Banga Diwas",
+      "description": "PM Modi said the BJP-NDA government has accelerated the pace of development in Bengal to fill the gaps left by the previous Left Front and TMC governments.\n\nPrime Minister Narendra Modi on Saturday said there was a renewed energy in West Bengal after the BJP's historic victory and the state had fina",
+      "link": "https://www.news18.com/india/bengal-finally-freed-from-shackles-pm-modis-big-remark-on-paschim-banga-diwas-ws-l-10162885.html",
+      "pubDate": "2026-06-20T11:52:10Z",
+      "eventDate": "2026-06-20",
+      "panelMaxPubDate": "2026-06-20T11:52:10Z",
+      "category": "politics",
+      "source": "News18",
+      "suggestedSlug": "2026-06-20-bengal-finally-freed-from-shackles-pm-modi-s-big-remark-on-p",
+      "eventUri": "eng-11759959",
+      "eventCoverage": 58,
+      "sources": [
+        {
+          "name": "News18",
+          "url": "https://www.news18.com/india/bengal-finally-freed-from-shackles-pm-modis-big-remark-on-paschim-banga-diwas-ws-l-10162885.html",
+          "country": "IN",
+          "importanceRank": 1221,
+          "sentiment": 0.31,
+          "image": "https://images.news18.com/ibnlive/uploads/2026/06/pm-modi-2-2026-06-de61df18c35ea2f06e5b5bdf25ceb8c8-1200x675.jpg"
+        },
+        {
+          "name": "Economic Times",
+          "url": "https://economictimes.indiatimes.com/news/india/paschimbanga-divas-revives-debate-over-bengals-birth-identity-and-historical-memory/articleshow/131875250.cms",
+          "country": "IN",
+          "importanceRank": 9003,
+          "sentiment": -0.04,
+          "image": "https://img.etimg.com/thumb/msid-131875329,width-1200,height-630,imgsize-90956,overlay-economictimes/articleshow.jpg"
+        }
+      ],
+      "concepts": [
+        {
+          "label": "West Bengal",
+          "uri": "http://en.wikipedia.org/wiki/West_Bengal"
+        },
+        {
+          "label": "Narendra Modi",
+          "uri": "http://en.wikipedia.org/wiki/Narendra_Modi"
+        },
+        {
+          "label": "India",
+          "uri": "http://en.wikipedia.org/wiki/India"
+        },
+        {
+          "label": "Kolkata",
+          "uri": "http://en.wikipedia.org/wiki/Kolkata"
+        },
+        {
+          "label": "International Day of Yoga",
+          "uri": "http://en.wikipedia.org/wiki/International_Day_of_Yoga"
+        },
+        {
+          "label": "Syama Prasad Mukherjee",
+          "uri": "http://en.wikipedia.org/wiki/Syama_Prasad_Mukherjee"
+        },
+        {
+          "label": "Bharatiya Janata Party",
+          "uri": "http://en.wikipedia.org/wiki/Bharatiya_Janata_Party"
+        },
+        {
+          "label": "Bengal",
+          "uri": "http://en.wikipedia.org/wiki/Bengal"
+        }
+      ],
+      "location": "West Bengal",
+      "sentiment": 0.13,
+      "sentimentDivergence": 0.35,
+      "origin": "api"
+    },
+    {
+      "title": "Pakistan: Roadside bombs kill 7 in northwest",
+      "description": "BANNU: Seven people were killed and three others injured in two explosions in Marka Bera, a semi-tribal mountainous area of Bannu's Wazir sub-division.\n\nBannu District Police Officer (DPO) Yasir Afridi confirmed that a total of seven people were martyred and three others were injured in the two blas",
+      "link": "https://www.dawn.com/news/2009439",
+      "pubDate": "2026-06-20T05:36:42Z",
+      "eventDate": "2026-06-20",
+      "panelMaxPubDate": "2026-06-20T10:42:43Z",
+      "category": "economy",
+      "source": "Dawn",
+      "suggestedSlug": "2026-06-20-pakistan-roadside-bombs-kill-7-in-northwest",
+      "eventUri": "eng-11761008",
+      "eventCoverage": 49,
+      "sources": [
+        {
+          "name": "Dawn",
+          "url": "https://www.dawn.com/news/2009439",
+          "country": "PK",
+          "importanceRank": 6175,
+          "sentiment": -0.26,
+          "image": "https://i.dawn.com/large/2026/06/20103316ca4c7ae.webp"
+        },
+        {
+          "name": "Deutsche Welle",
+          "url": "https://www.dw.com/en/pakistan-roadside-bombs-kill-7-in-northwest/a-77636194",
+          "country": "DE",
+          "importanceRank": 6916,
+          "sentiment": -0.44,
+          "image": "https://static.dw.com/image/77635295_6.jpg"
+        },
+        {
+          "name": "TRT World",
+          "url": "https://www.trtworld.com/article/7c614406343b",
+          "country": "TR",
+          "importanceRank": 113261,
+          "sentiment": -0.46,
+          "image": "https://d2udx5iz3h7s4h.cloudfront.net/uploads/image/1781939074870-uhqghn-cdd78aa9e5dabf9e564394f8e16686813568b490b6ffd8d07a88219863a3429e.jpg?width=1080&format=jpg&quality=80"
+        },
+        {
+          "name": "Mehr News Agency",
+          "url": "https://en.mehrnews.com/news/245461/Twin-roadside-bomb-blast-in-NW-Pakistan-7-killed",
+          "country": "IR",
+          "importanceRank": 157957,
+          "sentiment": -0.49,
+          "image": "https://media.mehrnews.com/d/2026/06/20/4/6068730.jpg?ts=1781941055409"
+        }
+      ],
+      "concepts": [
+        {
+          "label": "Pakistan",
+          "uri": "http://en.wikipedia.org/wiki/Pakistan"
+        },
+        {
+          "label": "Bannu",
+          "uri": "http://en.wikipedia.org/wiki/Bannu"
+        },
+        {
+          "label": "Khyber Pakhtunkhwa",
+          "uri": "http://en.wikipedia.org/wiki/Khyber_Pakhtunkhwa"
+        },
+        {
+          "label": "Bannu District",
+          "uri": "http://en.wikipedia.org/wiki/Bannu_District"
+        },
+        {
+          "label": "Improvised explosive device",
+          "uri": "http://en.wikipedia.org/wiki/Improvised_explosive_device"
+        },
+        {
+          "label": "Yasir Afridi",
+          "uri": "http://en.wikipedia.org/wiki/Yasir_Afridi"
+        },
+        {
+          "label": "Afridi",
+          "uri": "http://en.wikipedia.org/wiki/Afridi"
+        },
+        {
+          "label": "Districts of Pakistan",
+          "uri": "http://en.wikipedia.org/wiki/Districts_of_Pakistan"
+        }
+      ],
+      "location": "Khyber Pakhtunkhwa",
+      "sentiment": -0.41,
+      "sentimentDivergence": 0.23,
+      "origin": "api"
+    },
+    {
+      "title": "Pakistan's interior min. arrives in Mashhad for talks",
+      "description": "TEHRAN, Jun. 20 (MNA) - Pakistan's Interior Minister Syed Mohsin Naqvi arrived in Mashhad, Khorasan Razavi province, on Saturday as part of ongoing diplomatic efforts to advanced negotiations between Iran and the United States.\n\nThe aircraft carrying the Pakistani minister and his delegation touched",
+      "link": "https://en.mehrnews.com/news/245467/Pakistan-s-interior-min-arrives-in-Mashhad-for-talks",
+      "pubDate": "2026-06-20T10:14:19Z",
+      "eventDate": "2026-06-20",
+      "panelMaxPubDate": "2026-06-20T11:52:04Z",
+      "category": "politics",
+      "source": "Mehr News Agency",
+      "suggestedSlug": "2026-06-20-pakistan-s-interior-min-arrives-in-mashhad-for-talks",
+      "eventUri": "eng-11761190",
+      "eventCoverage": 38,
+      "sources": [
+        {
+          "name": "Mehr News Agency",
+          "url": "https://en.mehrnews.com/news/245467/Pakistan-s-interior-min-arrives-in-Mashhad-for-talks",
+          "country": "IR",
+          "importanceRank": 157957,
+          "sentiment": 0.17,
+          "image": "https://media.mehrnews.com/d/2026/06/20/4/6068901.jpg?ts=1781950313557"
+        },
+        {
+          "name": "NDTV",
+          "url": "https://www.ndtv.com/world-news/us-iran-talks-pakistan-interior-minister-lands-in-iran-after-switzerland-talks-postponed-11663767",
+          "country": "IN",
+          "importanceRank": 1121,
+          "sentiment": -0.21,
+          "image": "https://c.ndtvimg.com/2025-10/vcqta6cc_mohsin-naqvi-pcb-afp_625x300_24_October_25.jpg?im=FitAndFill,algorithm=dnn,width=1600,height=900"
+        }
+      ],
+      "concepts": [
+        {
+          "label": "Iran",
+          "uri": "http://en.wikipedia.org/wiki/Iran"
+        },
+        {
+          "label": "Pakistan",
+          "uri": "http://en.wikipedia.org/wiki/Pakistan"
+        },
+        {
+          "label": "Tehran",
+          "uri": "http://en.wikipedia.org/wiki/Tehran"
+        },
+        {
+          "label": "Interior minister",
+          "uri": "http://en.wikipedia.org/wiki/Interior_minister"
+        },
+        {
+          "label": "Mohsin Naqvi",
+          "uri": "http://en.wikipedia.org/wiki/Mohsin_Naqvi"
+        },
+        {
+          "label": "Memorandum of understanding",
+          "uri": "http://en.wikipedia.org/wiki/Memorandum_of_understanding"
+        },
+        {
+          "label": "United States",
+          "uri": "http://en.wikipedia.org/wiki/United_States"
+        },
+        {
+          "label": "Ministry of Foreign Affairs (Iran)",
+          "uri": "http://en.wikipedia.org/wiki/Ministry_of_Foreign_Affairs_(Iran)"
+        }
+      ],
+      "location": "Tehran",
+      "sentiment": -0.02,
+      "sentimentDivergence": 0.38,
+      "origin": "api"
+    }
+  ],
+  "nicheStories": [
+    {
+      "title": "#EkitiDecides2026: Gov Oyebanji speaks on poll, urges patience over report of glitches",
+      "description": "\"I want to appeal to our people to be patient, because everyone will vote. I have received assurances from INEC that all those who came out will be allowed to vote,\" he said.\n\nEkiti State Governor Biodun Oyebanji has expressed hope that glitches witnessed during voting across some polling units woul",
+      "link": "https://www.premiumtimesng.com/news/headlines/889311-ekitidecides2026-gov-oyebanji-speaks-on-poll-urges-patience-over-report-of-glitches.html",
+      "pubDate": "2026-06-20T11:51:40Z",
+      "eventDate": "2026-06-20",
+      "panelMaxPubDate": "2026-06-20T11:51:40Z",
+      "category": "politics",
+      "source": "Premium Times Nigeria",
+      "suggestedSlug": "2026-06-20-ekitidecides2026-gov-oyebanji-speaks-on-poll-urges-patience",
+      "eventUri": "eng-11761187",
+      "eventCoverage": 62,
+      "sources": [
+        {
+          "name": "Premium Times Nigeria",
+          "url": "https://www.premiumtimesng.com/news/headlines/889311-ekitidecides2026-gov-oyebanji-speaks-on-poll-urges-patience-over-report-of-glitches.html",
+          "country": "NG",
+          "importanceRank": 45687,
+          "sentiment": 0.26,
+          "image": "https://media.premiumtimesng.com/wp-content/files/2026/06/Oyebanji-at-his-polling-unit-.jpeg"
+        }
+      ],
+      "concepts": [
+        {
+          "label": "Ekiti State",
+          "uri": "http://en.wikipedia.org/wiki/Ekiti_State"
+        },
+        {
+          "label": "Governor",
+          "uri": "http://en.wikipedia.org/wiki/Governor"
+        },
+        {
+          "label": "Local government areas of Nigeria",
+          "uri": "http://en.wikipedia.org/wiki/Local_government_areas_of_Nigeria"
+        },
+        {
+          "label": "Independent National Electoral Commission",
+          "uri": "http://en.wikipedia.org/wiki/Independent_National_Electoral_Commission"
+        },
+        {
+          "label": "Biodun Oyebanji",
+          "uri": "http://en.wikipedia.org/wiki/Biodun_Oyebanji"
+        },
+        {
+          "label": "Ado Ekiti",
+          "uri": "http://en.wikipedia.org/wiki/Ado_Ekiti"
+        },
+        {
+          "label": "All Progressives Congress",
+          "uri": "http://en.wikipedia.org/wiki/All_Progressives_Congress"
+        },
+        {
+          "label": "Ekiti West",
+          "uri": "http://en.wikipedia.org/wiki/Ekiti_West"
+        }
+      ],
+      "location": "Ekiti State",
+      "sentiment": 0.26,
+      "sentimentDivergence": null,
+      "origin": "api"
+    },
+    {
+      "title": "Modi releases PM-Kisan instalment for 9.44 crore farmers, launches world's largest crop insurance scheme in Bengal",
+      "description": "Prime Minister Narendra Modi disbursed over Rs 18,880 crore to 9.44 crore farmers under the PM-KISAN scheme. He also launched the Pradhan Mantri Fasal Bima Yojana in West Bengal, extending the world's largest crop insurance benefits to state farmers. The Prime Minister also inaugurated and laid the ",
+      "link": "https://economictimes.indiatimes.com/news/india/pm-modi-releases-pm-kisan-instalment-for-9-44-crore-farmers-launches-worlds-largest-crop-insurance-scheme-in-bengal/articleshow/131875446.cms",
+      "pubDate": "2026-06-20T11:46:00Z",
+      "eventDate": "2026-06-20",
+      "panelMaxPubDate": "2026-06-20T11:46:00Z",
+      "category": "science",
+      "source": "Economic Times",
+      "suggestedSlug": "2026-06-20-modi-releases-pm-kisan-instalment-for-9-44-crore-farmers-lau",
+      "eventUri": "eng-11755786",
+      "eventCoverage": 56,
+      "sources": [
+        {
+          "name": "Economic Times",
+          "url": "https://economictimes.indiatimes.com/news/india/pm-modi-releases-pm-kisan-instalment-for-9-44-crore-farmers-launches-worlds-largest-crop-insurance-scheme-in-bengal/articleshow/131875446.cms",
+          "country": "IN",
+          "importanceRank": 9003,
+          "sentiment": 0.21,
+          "image": "https://img.etimg.com/thumb/msid-131875460,width-1200,height-630,imgsize-46610,overlay-economictimes/articleshow.jpg"
+        }
+      ],
+      "concepts": [
+        {
+          "label": "Narendra Modi",
+          "uri": "http://en.wikipedia.org/wiki/Narendra_Modi"
+        },
+        {
+          "label": "Crore",
+          "uri": "http://en.wikipedia.org/wiki/Crore"
+        },
+        {
+          "label": "Indian rupee",
+          "uri": "http://en.wikipedia.org/wiki/Indian_rupee"
+        },
+        {
+          "label": "West Bengal",
+          "uri": "http://en.wikipedia.org/wiki/West_Bengal"
+        },
+        {
+          "label": "Lakh",
+          "uri": "http://en.wikipedia.org/wiki/Lakh"
+        },
+        {
+          "label": "Agriculture",
+          "uri": "http://en.wikipedia.org/wiki/Agriculture"
+        },
+        {
+          "label": "Hooghly district",
+          "uri": "http://en.wikipedia.org/wiki/Hooghly_district"
+        },
+        {
+          "label": "Tarakeswar",
+          "uri": "http://en.wikipedia.org/wiki/Tarakeswar"
+        }
+      ],
+      "location": "West Bengal",
+      "sentiment": 0.21,
+      "sentimentDivergence": null,
+      "origin": "api"
+    },
+    {
+      "title": "Environmental sustainability in Somalia: the role of clean cooking energy and remittances on ecological footprints",
+      "description": "Environmental degradation in Somalia, driven primarily by reliance on biomass fuels and limited access to clean energy, poses a significant challenge to sustainability. However, the impact of clean cooking energy and remittances on environmental outcomes remains underexplored in this context. In thi",
+      "link": "https://www.nature.com/articles/s41598-026-57469-3",
+      "pubDate": "2026-06-20T00:00:00Z",
+      "category": "science",
+      "source": "Nature",
+      "suggestedSlug": "2026-06-20-environmental-sustainability-in-somalia-the-role-of-clean-co",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Nature",
+          "url": "https://www.nature.com/articles/s41598-026-57469-3",
+          "country": "GB",
+          "importanceRank": 5474,
+          "image": null
+        }
+      ],
+      "concepts": [
+        "Energy poverty and cooking",
+        "Ecological footprint",
+        "Sustainability",
+        "Remittance",
+        "Somalia"
+      ],
+      "location": null,
+      "sentiment": 0.5058823529411764,
+      "origin": "api"
+    },
+    {
+      "title": "Fas acts as a T cell co-stimulatory receptor via both death domain-independent and -dependent mechanisms - Cell Death & Differentiation",
+      "description": "T cell responses are regulated by co-stimulatory and inhibitory signalling pathways, driven by receptors and their ligands designated as immune checkpoints. These receptors belong either to the immunoglobulin superfamily or the tumour necrosis factor receptor (TNFR) superfamily. Despite their crucia",
+      "link": "https://www.nature.com/articles/s41418-026-01782-x",
+      "pubDate": "2026-06-20T00:00:00Z",
+      "category": "science",
+      "source": "Nature",
+      "suggestedSlug": "2026-06-20-fas-acts-as-a-t-cell-co-stimulatory-receptor-via-both-death",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Nature",
+          "url": "https://www.nature.com/articles/s41418-026-01782-x",
+          "country": "GB",
+          "importanceRank": 5474,
+          "image": "https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41418-026-01782-x/MediaObjects/41418_2026_1782_Fig1_HTML.png"
+        }
+      ],
+      "concepts": [
+        "Fas receptor",
+        "TNF receptor superfamily",
+        "Co-stimulation",
+        "T-cell receptor",
+        "Receptor (biochemistry)"
+      ],
+      "location": null,
+      "sentiment": -0.05882352941176472,
+      "origin": "api"
+    },
+    {
+      "title": "A chromosome-level genome assembly of the scaly osman Diptychus maculatus - Scientific Data",
+      "description": "We are providing an unedited version of this manuscript to give early access to its findings. Before final publication, the manuscript will undergo further editing. Please note there may be errors present which affect the content, and all legal disclaimers apply.\n\nDiptychus maculatus, a rare cold-wa",
+      "link": "https://www.nature.com/articles/s41597-026-07654-w",
+      "pubDate": "2026-06-20T00:00:00Z",
+      "category": "science",
+      "source": "Nature",
+      "suggestedSlug": "2026-06-20-a-chromosome-level-genome-assembly-of-the-scaly-osman-diptyc",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Nature",
+          "url": "https://www.nature.com/articles/s41597-026-07654-w",
+          "country": "GB",
+          "importanceRank": 5474,
+          "image": null
+        }
+      ],
+      "concepts": [
+        "Sequence assembly",
+        "Base pair",
+        "Cyprinidae",
+        "Conservation biology",
+        "Endemism"
+      ],
+      "location": null,
+      "sentiment": 0.02745098039215677,
+      "origin": "api"
+    },
+    {
+      "title": "Budget FY27 sets the foundation to accelerate sustainable growth seen in past 2 years: Aurangzeb",
+      "description": "Finance Minister Muhammad Aurangzeb on Saturday asserted that the proposed budget for the next fiscal year (FY27) would set the foundation for \"accelerating the sustainable growth\" recorded in the past two years.\n\nHis address follows the NA's discussions earlier in the day on 140 recommendations mad",
+      "link": "https://www.dawn.com/news/2009454",
+      "pubDate": "2026-06-20T07:23:57Z",
+      "category": "politics",
+      "source": "Dawn",
+      "suggestedSlug": "2026-06-20-budget-fy27-sets-the-foundation-to-accelerate-sustainable-gr",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Dawn",
+          "url": "https://www.dawn.com/news/2009454",
+          "country": "PK",
+          "importanceRank": 6175,
+          "image": "https://i.dawn.com/large/2026/06/201223513e0cf1c.webp"
+        }
+      ],
+      "concepts": [
+        "Aurangzeb",
+        "Sustainable development",
+        "Finance",
+        "United States Senate",
+        "North America"
+      ],
+      "location": null,
+      "sentiment": 0.4039215686274509,
+      "origin": "api"
+    },
+    {
+      "title": "Political, rights activists criticise budget, demolition of slums",
+      "description": "ISLAMABAD: Political leaders, rights activists, academics, trade union representatives and katchi abadi residents on Friday criticised the federal budget, demolition of slums and warned that growing economic inequality was alienating ordinary citizens from the state.\n\nThe concerns were voiced at a r",
+      "link": "https://www.dawn.com/news/2009289",
+      "pubDate": "2026-06-20T00:09:04Z",
+      "category": "politics",
+      "source": "Dawn",
+      "suggestedSlug": "2026-06-20-political-rights-activists-criticise-budget-demolition-of-sl",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Dawn",
+          "url": "https://www.dawn.com/news/2009289",
+          "country": "PK",
+          "importanceRank": 6175,
+          "image": "https://i.dawn.com/large/2026/06/20025308c446e52.webp"
+        }
+      ],
+      "concepts": [
+        "United States federal budget",
+        "Slum",
+        "Islamabad",
+        "Parliament",
+        "Eviction"
+      ],
+      "location": null,
+      "sentiment": -0.2156862745098039,
+      "origin": "api"
+    },
+    {
+      "title": "TRG: The company we built, and what it has delivered",
+      "description": "The Resource Group has issued a press statement in response to an article published earlier on Dawn.com, in which two of its co-founders -- Mohammed Khaishgi and Hasnain Aslam -- have presented their perspective on the company's legal saga over the last several years. The statement details the gover",
+      "link": "https://www.dawn.com/news/2006118",
+      "pubDate": "2026-06-20T05:00:03Z",
+      "category": "economy",
+      "source": "Dawn",
+      "suggestedSlug": "2026-06-20-trg-the-company-we-built-and-what-it-has-delivered",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Dawn",
+          "url": "https://www.dawn.com/news/2006118",
+          "country": "PK",
+          "importanceRank": 6175,
+          "image": "https://i.dawn.com/large/2026/06/192036408c668a1.webp"
+        }
+      ],
+      "concepts": [
+        "TRG Pakistan",
+        "Afiniti",
+        "The Racer's Group",
+        "Chishti Order",
+        "Shareholder"
+      ],
+      "location": null,
+      "sentiment": 0.1058823529411765,
+      "origin": "api"
+    },
+    {
+      "title": "#EkitiDecides2026: Police to punish offenders amid vote-buying reports, provide electoral emergency line",
+      "description": "\"Electoral offences attract sanctions. Vote buying, vote selling, ballot box snatching, violence and intimidation, destruction of electoral materials and disorderly conduct at polling units.\"\n\nThe Nigeria Police Force (NPF) has warned against vote-buying and other electoral offences in the ongoing E",
+      "link": "https://www.premiumtimesng.com/news/top-news/889306-ekitidecides2026-police-to-punish-offenders-amid-vote-buying-reports-provide-electoral-emergency-line.html",
+      "pubDate": "2026-06-20T11:41:52Z",
+      "category": "politics",
+      "source": "Premium Times Nigeria",
+      "suggestedSlug": "2026-06-20-ekitidecides2026-police-to-punish-offenders-amid-vote-buying",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Premium Times Nigeria",
+          "url": "https://www.premiumtimesng.com/news/top-news/889306-ekitidecides2026-police-to-punish-offenders-amid-vote-buying-reports-provide-electoral-emergency-line.html",
+          "country": "NG",
+          "importanceRank": 45687,
+          "image": "https://media.premiumtimesng.com/wp-content/files/2026/06/1000311171-scaled.jpg"
+        }
+      ],
+      "concepts": [
+        "Electoral fraud",
+        "Vote buying",
+        "Intimidation",
+        "International sanctions",
+        "Disorderly conduct"
+      ],
+      "location": null,
+      "sentiment": -0.6705882352941177,
+      "origin": "api"
+    },
+    {
+      "title": "#EkitiDecides2026: Accord Party candidate alleges vote-buying, faults security agents' conduct",
+      "description": "\"This doesn't reflect what a good democratic process should be. I hereby condemn this process and conclude no election in Ekiti State,\" Mr Falegan said.\n\nThe governorship candidate of the Accord Party in the ongoing Ekiti State governorship election, Opeyemi Falegan, has alleged vote-buying by the o",
+      "link": "https://www.premiumtimesng.com/news/top-news/889301-ekitidecides2026-accord-party-candidate-alleges-vote-buying-faults-security-agents-conduct.html",
+      "pubDate": "2026-06-20T11:29:26Z",
+      "category": "politics",
+      "source": "Premium Times Nigeria",
+      "suggestedSlug": "2026-06-20-ekitidecides2026-accord-party-candidate-alleges-vote-buying",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Premium Times Nigeria",
+          "url": "https://www.premiumtimesng.com/news/top-news/889301-ekitidecides2026-accord-party-candidate-alleges-vote-buying-faults-security-agents-conduct.html",
+          "country": "NG",
+          "importanceRank": 45687,
+          "image": "https://media.premiumtimesng.com/wp-content/files/2026/06/1000309736-scaled.jpg"
+        }
+      ],
+      "concepts": [
+        "Accord (Nigeria)",
+        "Electoral fraud",
+        "Governor",
+        "Ekiti State",
+        "Democracy"
+      ],
+      "location": null,
+      "sentiment": 0.0980392156862746,
+      "origin": "api"
+    },
+    {
+      "title": "Bayelsa State Monthly Wage Bill Hits ₦13 Billion: Government details expenditure",
+      "description": "The Bayelsa State Government has disclosed its financial obligations, reporting a monthly salary-related expenditure of ₦13 billion. This update comes as part of the administration's commitment to transparency regarding the state's income and expenditure for March and April 2026.Financial Transparen",
+      "link": "https://www.premiumtimesng.com/news/top-news/889289-bayelsa-state-monthly-wage-bill-hits-%E2%82%A613-billion-government-details-expenditure.html",
+      "pubDate": "2026-06-20T11:07:39Z",
+      "category": "politics",
+      "source": "Premium Times Nigeria",
+      "suggestedSlug": "2026-06-20-bayelsa-state-monthly-wage-bill-hits-13-billion-government-d",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Premium Times Nigeria",
+          "url": "https://www.premiumtimesng.com/news/top-news/889289-bayelsa-state-monthly-wage-bill-hits-%E2%82%A613-billion-government-details-expenditure.html",
+          "country": "NG",
+          "importanceRank": 45687,
+          "image": "https://media.premiumtimesng.com/wp-content/files/2025/10/G3KI4-gWMAAlVyU-e1760537741377.jpeg"
+        }
+      ],
+      "concepts": [
+        "Nigerian naira",
+        "Bayelsa State",
+        "Douye Diri",
+        "Civil service",
+        "Governor"
+      ],
+      "location": null,
+      "sentiment": 0.2862745098039217,
+      "origin": "api"
+    },
+    {
+      "title": "Ubisoft co-founder Claude Guillemot believed killed in plane crash in France",
+      "description": "The plane crash was reported yesterday by BFMTV, citing the fire service of the Loire-Atlantique department\n\nPARIS, June 20. /TASS/. Claude Guillemot, one of the founders of the video game development corporation Ubisoft, is believed to have died in a plane crash in the commune of La Baule in wester",
+      "link": "https://tass.com/world/2149297",
+      "pubDate": "2026-06-20T11:52:42Z",
+      "category": "politics",
+      "source": "TASS",
+      "suggestedSlug": "2026-06-20-ubisoft-co-founder-claude-guillemot-believed-killed-in-plane",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "TASS",
+          "url": "https://tass.com/world/2149297",
+          "country": "RU",
+          "importanceRank": 61299,
+          "image": "https://tass.com/img/blocks/common/tass_logo_share_eng.png"
+        }
+      ],
+      "concepts": [
+        "Aviation accidents and incidents",
+        "Ubisoft",
+        "France",
+        "TASS",
+        "BFM TV"
+      ],
+      "location": null,
+      "sentiment": -0.3803921568627451,
+      "origin": "api"
+    },
+    {
+      "title": "Russia liberates 94 buildings, destroys 95 Ukrainian soldiers in Konstantinovka",
+      "description": "Servicemen of Battlegroup West destroyed up to 30 Ukrainian soldiers and one Dzhura armored vehicle in the settlement of Krasny Liman in the DPR over the past day, the Russian Defense Ministry reported\n\nMOSCOW, June 20. /TASS/. Russia Battlegroup South liberated 94 buildings and destroyed up to 95 U",
+      "link": "https://tass.com/defense/2149295",
+      "pubDate": "2026-06-20T11:37:29Z",
+      "category": "science",
+      "source": "TASS",
+      "suggestedSlug": "2026-06-20-russia-liberates-94-buildings-destroys-95-ukrainian-soldiers",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "TASS",
+          "url": "https://tass.com/defense/2149295",
+          "country": "RU",
+          "importanceRank": 61299,
+          "image": "https://cdn-media.tass.ru/width/1200_4ce85301/tass/m2/en/uploads/i/20260620/1478209.jpg"
+        }
+      ],
+      "concepts": [
+        "Konstantinovka, Amur Oblast",
+        "Battlegroup (army)",
+        "Ministry of Defence (Russia)",
+        "Urban-type settlement",
+        "Ukraine"
+      ],
+      "location": null,
+      "sentiment": -0.1764705882352942,
+      "origin": "api"
+    },
+    {
+      "title": "Intel. Min. arrests 14 US-Israeli armed mercenaries in Ilam",
+      "description": "TEHRAN, Jun. 20 (MNA) - The Ministry of Intelligence has announced the identification and arrest of three field leaders and 14 mercenaries of the American-Zionist enemy's street sabotage network in Ilam Province.\n\nIn a statement issued on Saturday, the Iranian Ministry of Intelligence has stated tha",
+      "link": "https://en.mehrnews.com/news/245468/Intel-Min-arrests-14-US-Israeli-armed-mercenaries-in-Ilam",
+      "pubDate": "2026-06-20T10:31:26Z",
+      "category": "politics",
+      "source": "Mehr News Agency",
+      "suggestedSlug": "2026-06-20-intel-min-arrests-14-us-israeli-armed-mercenaries-in-ilam",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Mehr News Agency",
+          "url": "https://en.mehrnews.com/news/245468/Intel-Min-arrests-14-US-Israeli-armed-mercenaries-in-Ilam",
+          "country": "IR",
+          "importanceRank": 157957,
+          "image": "https://media.mehrnews.com/d/2026/05/10/4/6017945.jpg?ts=1778405765839"
+        }
+      ],
+      "concepts": [
+        "Ilam province",
+        "Mercenary",
+        "Ministry of Intelligence (Iran)",
+        "Sabotage",
+        "Grenade"
+      ],
+      "location": null,
+      "sentiment": -0.3254901960784313,
+      "origin": "api"
+    },
+    {
+      "title": "Refugee crisis to remain reality unless powers change course",
+      "description": "TEHRAN, Jun. 20 (MNA) - Iran's Deputy Foreign Minister for the Legal and International Affairs has said that the growing number of displaced people in the worldwide and refugee crisis will remain for millions unless major powers abandon war policies.\n\nHe made the remarks in a post on his X account o",
+      "link": "https://en.mehrnews.com/news/245466/Refugee-crisis-to-remain-reality-unless-powers-change-course",
+      "pubDate": "2026-06-20T09:36:13Z",
+      "category": "politics",
+      "source": "Mehr News Agency",
+      "suggestedSlug": "2026-06-20-refugee-crisis-to-remain-reality-unless-powers-change-course",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Mehr News Agency",
+          "url": "https://en.mehrnews.com/news/245466/Refugee-crisis-to-remain-reality-unless-powers-change-course",
+          "country": "IR",
+          "importanceRank": 157957,
+          "image": "https://media.mehrnews.com/d/2026/06/20/4/6068858.jpg?ts=1781947846062"
+        }
+      ],
+      "concepts": [
+        "Forced displacement",
+        "Refugee crisis",
+        "Great power",
+        "World Refugee Day",
+        "National Assembly of Quebec"
+      ],
+      "location": null,
+      "sentiment": -0.1764705882352942,
+      "origin": "api"
+    },
+    {
+      "title": "HCHR denounces US suggestion over Iran's blocked assets",
+      "description": "TEHRAN, Jun. 20 (MNA) -The High Council of Human Rights (HCHR) has strongly condemned remarks by the US secretary of treasury suggesting Iran's blocked assets could be used to make up for some of Washington's regional allies for damage caused in war.\n\nIn a statement released on Saturday, the HCHR sa",
+      "link": "https://en.mehrnews.com/news/245465/HCHR-denounces-US-suggestion-over-Iran-s-blocked-assets",
+      "pubDate": "2026-06-20T09:06:45Z",
+      "category": "politics",
+      "source": "Mehr News Agency",
+      "suggestedSlug": "2026-06-20-hchr-denounces-us-suggestion-over-iran-s-blocked-assets",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Mehr News Agency",
+          "url": "https://en.mehrnews.com/news/245465/HCHR-denounces-US-suggestion-over-Iran-s-blocked-assets",
+          "country": "IR",
+          "importanceRank": 157957,
+          "image": "https://media.mehrnews.com/d/2026/06/20/4/6068834.jpg?ts=1781946290268"
+        }
+      ],
+      "concepts": [
+        "Iran",
+        "National Assembly of Quebec",
+        "Sovereign immunity",
+        "Rule of law",
+        "Coercion"
+      ],
+      "location": null,
+      "sentiment": 0.03529411764705892,
+      "origin": "api"
+    },
+    {
+      "title": "World Cup 2026: The sibling rivals lining up for different teams in the US, Canada and Mexico",
+      "description": "It is the ultimate test for any parent.\n\nTwo sons playing on opposite teams in a match. Who are you rooting for?\n\nBut this is not a kickabout in the local park or a schools' match. This is a game at the World Cup.\n\nThere are four sets of siblings playing for different nations on the biggest stage of",
+      "link": "https://www.bbc.com/sport/football/articles/ce3ev0v7ge4o",
+      "pubDate": "2026-06-20T11:55:37Z",
+      "category": "politics",
+      "source": "BBC",
+      "suggestedSlug": "2026-06-20-world-cup-2026-the-sibling-rivals-lining-up-for-different-te",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "BBC",
+          "url": "https://www.bbc.com/sport/football/articles/ce3ev0v7ge4o",
+          "country": "GB",
+          "importanceRank": 470,
+          "image": "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/ce42/live/9ffa7e10-6b2d-11f1-858e-3f275ac14006.jpg"
+        }
+      ],
+      "concepts": [
+        "Ivory Coast",
+        "France",
+        "FIFA World Cup",
+        "Paris Saint-Germain F.C.",
+        "Mexico"
+      ],
+      "location": null,
+      "sentiment": 0.1607843137254903,
+      "origin": "api"
+    },
+    {
+      "title": "World Cup 2026: Why late goals are becoming more common than ever",
+      "description": "As the clock ticked towards the final quarter hour of Switzerland's match against Bosnia and Herzegovina, the two teams were locked in a stalemate.\n\nThen everything changed. Substitute Johan Manzambi came off the bench and needed only three minutes to score.\n\nBy the final whistle he had two goals, S",
+      "link": "https://www.bbc.com/sport/football/articles/cly9q9nrgdxo",
+      "pubDate": "2026-06-20T11:39:00Z",
+      "category": "economy",
+      "source": "BBC",
+      "suggestedSlug": "2026-06-20-world-cup-2026-why-late-goals-are-becoming-more-common-than",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "BBC",
+          "url": "https://www.bbc.com/sport/football/articles/cly9q9nrgdxo",
+          "country": "GB",
+          "importanceRank": 470,
+          "image": "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/8110/live/ca9c98b0-6be1-11f1-95c7-b58617a2924f.jpg"
+        }
+      ],
+      "concepts": [
+        "FIFA World Cup",
+        "Switzerland",
+        "Bosnia and Herzegovina",
+        "Neftali Manzambi",
+        "Substitute (association football)"
+      ],
+      "location": null,
+      "sentiment": 0.003921568627450966,
+      "origin": "api"
+    },
+    {
+      "title": "Nottingham Forest: Will James McAtee step up if Elliot Anderson leaves?",
+      "description": "There is belief at the City Ground it is only a matter of time before it comes together for McAtee, despite his struggles.\n\nHe remains part of Vitor Pereira's plans for next season and one source believes he will \"explode\", such is his natural talent.\n\nTo much excitement from supporters, McAtee arri",
+      "link": "https://www.bbc.com/sport/football/articles/c20yxg90yv2o",
+      "pubDate": "2026-06-20T11:26:59Z",
+      "category": "science",
+      "source": "BBC",
+      "suggestedSlug": "2026-06-20-nottingham-forest-will-james-mcatee-step-up-if-elliot-anders",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "BBC",
+          "url": "https://www.bbc.com/sport/football/articles/c20yxg90yv2o",
+          "country": "GB",
+          "importanceRank": 470,
+          "image": "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/219d/live/659529e0-6a48-11f1-9742-4f68b41a569d.jpg"
+        }
+      ],
+      "concepts": [
+        "James McAtee",
+        "Morgan Gibbs-White",
+        "Andreas Pereira",
+        "City Ground",
+        "Portugal national under-21 football team"
+      ],
+      "location": null,
+      "sentiment": 0.2941176470588236,
+      "origin": "api"
+    },
+    {
+      "title": "Ghost of far-right paramilitaries hovers over Colombia's presidential runoff vote",
+      "description": "Colombians will choose on Sunday between two men whose lives have been very differently shaped by the militias, and whose visions for the country are poles apart\n\nWhoever wins Sunday's presidential runoff vote in Colombia, the country's next leader will have a personal history intertwined with one o",
+      "link": "https://www.theguardian.com/world/2026/jun/20/colombia-presidential-election-paramilitary-militia-runoff",
+      "pubDate": "2026-06-20T12:00:01Z",
+      "category": "politics",
+      "source": "The Guardian",
+      "suggestedSlug": "2026-06-20-ghost-of-far-right-paramilitaries-hovers-over-colombia-s-pre",
+      "eventUri": "por-1281278",
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "The Guardian",
+          "url": "https://www.theguardian.com/world/2026/jun/20/colombia-presidential-election-paramilitary-militia-runoff",
+          "country": "GB",
+          "importanceRank": 691,
+          "image": "https://i.guim.co.uk/img/media/f582edc18880a8e1e14582718c9b69dd07cb29b1/0_0_5000_4000/master/5000.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&s=dbded071e0dcab5655957cddc886f015"
+        }
+      ],
+      "concepts": [
+        "United Self-Defense Forces of Colombia",
+        "Two-round system",
+        "Guerrilla warfare",
+        "Paramilitary",
+        "Far-right politics"
+      ],
+      "location": null,
+      "sentiment": -0.1607843137254902,
+      "origin": "api"
+    },
+    {
+      "title": "DC's 'renovated' pool reflects the Trump administration's dangerous hubris",
+      "description": "When asked what his takeaways from the Iran war were, Trump said he believed there were no limits to his power\n\nTrump has spent millions creating a giant swamp in DC\n\nIt's been a busy week for the US's birthday boy. First, there was the cage fight on the White House lawn, in honour of the United Sta",
+      "link": "https://www.theguardian.com/commentisfree/2026/jun/20/trump-renovated-pool-hubris",
+      "pubDate": "2026-06-20T12:00:02Z",
+      "category": "politics",
+      "source": "The Guardian",
+      "suggestedSlug": "2026-06-20-dc-s-renovated-pool-reflects-the-trump-administration-s-dang",
+      "eventUri": "eng-11757972",
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "The Guardian",
+          "url": "https://www.theguardian.com/commentisfree/2026/jun/20/trump-renovated-pool-hubris",
+          "country": "GB",
+          "importanceRank": 691,
+          "image": "https://i.guim.co.uk/img/media/86f08f36084437a6a8945557fe79614a373a1e2c/547_0_4906_3925/master/4906.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctb3BpbmlvbnMucG5n&s=4bc7016bc3f998f42aee238e47e4ec1c"
+        }
+      ],
+      "concepts": [
+        "Reflecting pool",
+        "Algae",
+        "Swimming pool",
+        "Donald Trump",
+        "Iran"
+      ],
+      "location": null,
+      "sentiment": -0.3176470588235294,
+      "origin": "api"
+    },
+    {
+      "title": "Key Trump allies and Musk on leaked list for secretive Peter Thiel retreat",
+      "description": "Figures including Jared Kushner and Scott Bessent named in directory of Dialog participants that was exposed online\n\nA website leak has exposed participants in the secretive, Peter Thiel-founded Dialog retreats which includes top politicians from across the American divide, officials from foreign co",
+      "link": "https://www.theguardian.com/technology/2026/jun/20/trump-elon-musk-peter-thiel-retreat",
+      "pubDate": "2026-06-20T12:00:00Z",
+      "category": "politics",
+      "source": "The Guardian",
+      "suggestedSlug": "2026-06-20-key-trump-allies-and-musk-on-leaked-list-for-secretive-peter",
+      "eventUri": "eng-11751259",
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "The Guardian",
+          "url": "https://www.theguardian.com/technology/2026/jun/20/trump-elon-musk-peter-thiel-retreat",
+          "country": "GB",
+          "importanceRank": 691,
+          "image": "https://i.guim.co.uk/img/media/f6b73239d2dfde6cee8a23f1baf14a6422ae48cc/414_0_3258_2606/master/3258.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&s=f0382f77d62adab5a8f890ee9dc34360"
+        }
+      ],
+      "concepts": [
+        "Presidency of Donald Trump",
+        "Jim Himes",
+        "Stanley A. McChrystal",
+        "Peter Thiel",
+        "Internet Archive"
+      ],
+      "location": null,
+      "sentiment": 0.1137254901960785,
+      "origin": "api"
+    },
+    {
+      "title": "A look back at Shiv Sena's 60-year political journey: Bal Thackeray's rise, Uddhav takes over and then a split",
+      "description": "Just four years after Eknath Shinde's revolt split the party and wrested control of its name and symbol, now, six of Shiv Sena (UBT) chief Uddhav Thackeray's nine Lok Sabha MPs are likely to call it quits, to align with the Shinde-led faction.\n\nThe latest turmoil is the newest chapter in a six-decad",
+      "link": "https://www.hindustantimes.com/india-news/a-look-back-at-shiv-senas-60-year-political-journey-bal-thackerays-rise-uddhav-takes-over-and-then-a-split-101781948911340.html",
+      "pubDate": "2026-06-20T12:03:16Z",
+      "category": "politics",
+      "source": "Hindustan Times",
+      "suggestedSlug": "2026-06-20-a-look-back-at-shiv-sena-s-60-year-political-journey-bal-tha",
+      "eventUri": "eng-11760707",
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Hindustan Times",
+          "url": "https://www.hindustantimes.com/india-news/a-look-back-at-shiv-senas-60-year-political-journey-bal-thackerays-rise-uddhav-takes-over-and-then-a-split-101781948911340.html",
+          "country": "IN",
+          "importanceRank": 811,
+          "image": "https://www.hindustantimes.com/ht-img/img/2026/06/20/550x309/ANI-20260619445-0_1781949998047_1781950025410_9f3603ea-41e3-4250-91c6-66c48c3862d7.jpg"
+        }
+      ],
+      "concepts": [
+        "Uddhav Thackeray",
+        "Bal Thackeray",
+        "Shiv Sena",
+        "Maharashtra",
+        "Shiv Sena (Uddhav Balasaheb Thackeray)"
+      ],
+      "location": null,
+      "sentiment": 0.2313725490196079,
+      "origin": "api"
+    },
+    {
+      "title": "'Lost motivation, no accountability': What protestors said at CJP protest at Jantar Mantar",
+      "description": "A judicial aspirant from Bihar, a protestor from Mumbai and a friend protesting on behalf of a NEET aspirant were among those who joined the Cockroach Janta Party protest at Jantar Mantar in the national capital on Saturday.\n\nA large gathering of students and supporters gathered at the protest site ",
+      "link": "https://www.hindustantimes.com/india-news/lost-motivation-no-accountability-what-protestors-said-at-cjp-protest-at-jantar-mantar-101781953137376.html",
+      "pubDate": "2026-06-20T11:50:54Z",
+      "category": "economy",
+      "source": "Hindustan Times",
+      "suggestedSlug": "2026-06-20-lost-motivation-no-accountability-what-protestors-said-at-cj",
+      "eventUri": "eng-11754583",
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Hindustan Times",
+          "url": "https://www.hindustantimes.com/india-news/lost-motivation-no-accountability-what-protestors-said-at-cjp-protest-at-jantar-mantar-101781953137376.html",
+          "country": "IN",
+          "importanceRank": 811,
+          "image": "https://www.hindustantimes.com/ht-img/img/2026/06/20/550x309/CJP_protest_Jantar_Mantar_1781953312787_1781953312956_727e0975-e201-4137-9ba4-3784bf95f9d9.jpeg"
+        }
+      ],
+      "concepts": [
+        "Jantar Mantar",
+        "NEET",
+        "Undergraduate education",
+        "Mumbai",
+        "National Testing Agency"
+      ],
+      "location": null,
+      "sentiment": 0.003921568627450966,
+      "origin": "api"
+    },
+    {
+      "title": "Behind the Blog: Landfillcore and Go Knicks",
+      "description": "This week, we discuss questionable analysis, mysterious parcels, and the Knicks (sorta).",
+      "link": "https://www.404media.co/behind-the-blog-landfillcore-and-go-knicks/",
+      "pubDate": "Fri, 19 Jun 2026 16:07:48 GMT",
+      "category": "tech",
+      "source": "404 Media",
+      "suggestedSlug": "2026-06-19-behind-the-blog-landfillcore-and-go-knicks",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "404 Media",
+          "url": "https://www.404media.co/behind-the-blog-landfillcore-and-go-knicks/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "A New Fossil Discovery Just Rewrote 150 Years of Evolutionary Theory",
+      "description": "For 150 years, paleontologists assumed that the first vertebrates to leave the sea for land evolved a tadpole phase, similar to modern frogs. Immaculately-preserved fossils disprove that, scientists say.",
+      "link": "https://www.404media.co/a-new-fossil-discovery-just-rewrote-150-years-of-evolutionary-theory/",
+      "pubDate": "Thu, 18 Jun 2026 18:00:35 GMT",
+      "category": "tech",
+      "source": "404 Media",
+      "suggestedSlug": "2026-06-18-a-new-fossil-discovery-just-rewrote-150-years-of-evolutionar",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "404 Media",
+          "url": "https://www.404media.co/a-new-fossil-discovery-just-rewrote-150-years-of-evolutionary-theory/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "If AI Is Sentient Then So Is ‘Age of Empires II’",
+      "description": "“The point of the paper is to formally show that we anthropomorphise too readily.\"",
+      "link": "https://www.404media.co/if-ai-is-sentient-then-so-is-age-of-empires-ii/",
+      "pubDate": "Thu, 18 Jun 2026 14:22:58 GMT",
+      "category": "tech",
+      "source": "404 Media",
+      "suggestedSlug": "2026-06-18-if-ai-is-sentient-then-so-is-age-of-empires-ii",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "404 Media",
+          "url": "https://www.404media.co/if-ai-is-sentient-then-so-is-age-of-empires-ii/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "The care that’s missing from Egypt’s maternity wards",
+      "description": "Women and patient advocates break the silence on rampant obstetric abuse in public hospitals.\nThe post The care that’s missing from Egypt’s maternity wards first appeared on Mada Masr.",
+      "link": "https://www.madamasr.com/en/2026/06/18/feature/politics/the-care-thats-missing-from-egypts-maternity-wards/",
+      "pubDate": "Thu, 18 Jun 2026 20:23:32 +0000",
+      "category": "politics",
+      "source": "Mada Masr",
+      "suggestedSlug": "2026-06-18-the-care-that-s-missing-from-egypt-s-maternity-wards",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Mada Masr",
+          "url": "https://www.madamasr.com/en/2026/06/18/feature/politics/the-care-thats-missing-from-egypts-maternity-wards/",
+          "country": "EG"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "GCC economies to grow 8.1% in 2027 as conflict disruptions subside",
+      "description": "No summary provided",
+      "link": "https://salaamgateway.com/story/gcc-economies-to-grow-81-in-2027-as-conflict-disruptions-subside",
+      "pubDate": "Thu, 18 Jun 2026 13:33:19 +0000",
+      "category": "economy",
+      "source": "Salaam Gateway",
+      "suggestedSlug": "2026-06-18-gcc-economies-to-grow-8-1-in-2027-as-conflict-disruptions-su",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Salaam Gateway",
+          "url": "https://salaamgateway.com/story/gcc-economies-to-grow-81-in-2027-as-conflict-disruptions-subside",
+          "country": "AE"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "SGIE Report 2026: Top 10 Islamic economy ecosystems in the world",
+      "description": "No summary provided",
+      "link": "https://salaamgateway.com/story/top-10-islamic-economy-ecosystems-in-the-world",
+      "pubDate": "Thu, 18 Jun 2026 16:14:08 +0000",
+      "category": "economy",
+      "source": "Salaam Gateway",
+      "suggestedSlug": "2026-06-18-sgie-report-2026-top-10-islamic-economy-ecosystems-in-the-wo",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Salaam Gateway",
+          "url": "https://salaamgateway.com/story/top-10-islamic-economy-ecosystems-in-the-world",
+          "country": "AE"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Two Extremes: The Security Choices Facing Colombian Voters",
+      "description": "Two Extremes: The Security Choices Facing Colombian Voters\n\nIván Cepeda and Abelardo de la Espriella, two candidates with opposing visions for Colombia’s future on security, drugs, and peace, are set to face off in the presidential runoff this weekend. Voters have been left with two extreme options.\nThe post Two Extremes: The Security Choices Facing Colombian Voters appeared first on InSight Crime.",
+      "link": "https://insightcrime.org/news/two-extremes-the-security-choices-facing-colombian-voters/",
+      "pubDate": "Fri, 19 Jun 2026 16:59:27 +0000",
+      "category": "politics",
+      "source": "InSight Crime",
+      "suggestedSlug": "2026-06-19-two-extremes-the-security-choices-facing-colombian-voters",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "InSight Crime",
+          "url": "https://insightcrime.org/news/two-extremes-the-security-choices-facing-colombian-voters/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Influencers and Organized Crime: Identifying Patterns in Their Relationship",
+      "description": "Influencers and Organized Crime: Identifying Patterns in Their Relationship \n\nNelson highlighted the gap between reporting and social media news around influencers and hard, verifiable data, and was clear about its own shortcomings there, not representing open-source information as over-reliable, and cautioning against being too reliant on existing information. \nThe post Influencers and Organized Crime: Identifying Patterns in Their Relationship  appeared first on InSight Crime.",
+      "link": "https://insightcrime.org/news/influencers-and-organized-crime-identifying-patterns-in-their-relationship/",
+      "pubDate": "Fri, 19 Jun 2026 16:27:42 +0000",
+      "category": "politics",
+      "source": "InSight Crime",
+      "suggestedSlug": "2026-06-19-influencers-and-organized-crime-identifying-patterns-in-thei",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "InSight Crime",
+          "url": "https://insightcrime.org/news/influencers-and-organized-crime-identifying-patterns-in-their-relationship/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Pure Third Command",
+      "description": "Pure Third Command\n\nThe Pure Third Command (Terceiro Comando Puro) is one of the most powerful criminal groups in Brazil’s second-largest city, Rio de Janeiro.\nThe post Pure Third Command appeared first on InSight Crime.",
+      "link": "https://insightcrime.org/brazil-organized-crime-news/pure-third-command/",
+      "pubDate": "Thu, 18 Jun 2026 21:08:01 +0000",
+      "category": "politics",
+      "source": "InSight Crime",
+      "suggestedSlug": "2026-06-18-pure-third-command",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "InSight Crime",
+          "url": "https://insightcrime.org/brazil-organized-crime-news/pure-third-command/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Jury refuses to convict four Palestine activists accused of arms firm raid",
+      "description": "Hung jury in case of four protesters who raided Wolverhampton arms factory said to produce “military aircraft parts for Israel”\nThe post Jury refuses to convict four Palestine activists accused of arms firm raid appeared first on Declassified UK.",
+      "link": "https://www.declassifieduk.org/jury-fails-to-convict-four-palestine-activists-accused-of-arms-firm-raid/",
+      "pubDate": "Thu, 18 Jun 2026 14:40:52 +0000",
+      "category": "politics",
+      "source": "Declassified UK",
+      "suggestedSlug": "2026-06-18-jury-refuses-to-convict-four-palestine-activists-accused-of",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Declassified UK",
+          "url": "https://www.declassifieduk.org/jury-fails-to-convict-four-palestine-activists-accused-of-arms-firm-raid/",
+          "country": "GB"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Don't be fooled by the new China-North Korea love fest",
+      "description": "Chinese President Xi Jinping’s summit with North Korean leader Kim Jong Un in Pyongyang earlier this month celebrated their decades-long alliance, with both sides vowing to elevate their ties to “new heights.” However, the summit reflected a marriage of convenience with clear limitations.The Xi-Kim summit was a meaningful indication that China-North Korea bilateral ties have returned to pre-COVID-19 levels. At the working level, China and North Korea have gradually expanded practical cooperation in areas such as trade, tourism, construction, and civilian exchanges, but leader-level meetings were put on pause. Xi’s trip to Pyongyang, alongside Kim’s trip to Beijing last September, fully restores the structure of bilateral diplomacy between Beijing and Pyongyang.Against the backdrop of reinvigorated China-North Korea ties, both sides aim to rebalance their respective positions with regard to Russia. In recent years, North Korea has tilted toward Russia and drifted away from China. Pyongyang formed a military alliance with Moscow and aided its war against Ukraine as an arms supplier and a co-belligerent on the battlefield. In the process, Pyongyang reduced its strategic dependence on Beijing and also gained greater Russian support for its nuclear and missile programs. Moscow now openly helps Pyongyang evade international sanctions and defends North Korea’s nuclear buildup. Russia might also be sharing advanced military technologies with the regime.These developments have greatly emboldened North Korea, and China cannot be comfortable with the situation. Beijing has long prioritized stability and predictability on China’s periphery. In that sense, North Korea’s aggressive nuclear buildup and military posture, backed by Russia, have been worrisome. Improved bilateral ties and strategic communications with Pyongyang would put Beijing in a better position to manage the risk. Pyongyang also has an interest in strengthening its ties with Beijing as part of a broader effort to dual-hedge vis-à-vis Russia and China. Pyongyang wants to avoid overdependence on either Moscow or Beijing, while leveraging both sides to extract strategic benefits. Ultimately, China offers North Korea incentives that Russia cannot. The financial gains North Korea has enjoyed from its wartime transactions with Russia are unlikely to last after hostilities in Ukraine end at some point, and broader North Korea-Russia economic cooperation is limited by international sanctions on both countries. For boosting North Korea’s economy, Chinese support is essential. Despite the overall positive spirit, the Xi-Kim summit still raised more questions than it answered regarding the future of strategic relations between China and North Korea.The summit readouts on regional security lacked clarity and substance compared to the language on economic cooperation and civilian engagement. Beijing and Pyongyang broadly agreed to “strengthen strategic coordination, firmly safeguard their respective sovereignty, security, and development interests, and jointly uphold regional peace and development,” but there was no mention of specific regional issues. Another potentially noteworthy point was that, while the North Korean readout stated that both sides “reached a satisfactory consensus of views” on regional issues, that phrase was excluded from the Chinese readout.The overall weak language and substance on regional security make sense. Beijing and Pyongyang have divergent geopolitical and security interests. Some analysts might suspect that the two countries are consolidating their alliance for military confrontation with the United States and its regional allies. Pyongyang may want to move in that direction, but Beijing has good reasons to be reluctant. China and North Korea have quite different grand strategic outlooks. North Korea has openly characterized the regional security landscape in Northeast Asia as a “new Cold War,” stressing the need to prepare for bloc confrontation. In contrast, China has consistently rejected such a notion. The optics of the September 2025 Tiananmen military parade — where Xi stood next to Putin and Kim — left an impression of an emerging “authoritarian axis.” In reality, such an arrangement can conflict with China’s interests, and Beijing has therefore maintained some distance from Moscow and Pyongyang. China’s growth remains dependent on global and regional integration, and forming a rigid security bloc with North Korea and Russia to wage a “new Cold War” will have the opposite effect, encouraging more regional actors to decouple from Beijing and align with Washington. Continued integration and interdependence with the West are also valuable deterrent tools for China. For instance, Washington and countries in Asia and Europe have had to worry about how Beijing could weaponize its rare-earth dominance and other supply-chain advantages if they escalate against China in security and economic disputes.Moreover, a China-Russia-North Korea security bloc could further undermine China’s regional deterrence posture. Over the years, North Korea’s escalatory behavior has created pretexts for U.S. military buildup in Northeast Asia, as seen in the U.S. deployment of the THAAD system in South Korea and the institutionalization of U.S.-Japan-South Korea military cooperation. North Korea’s participation in the Ukraine war has also invited more European military engagement in Northeast Asia. European naval vessels now routinely travel to Northeast Asian waters in support of missions to monitor and contain North Korea’s illicit economic activities at sea. Given this track record, the consequences will predictably be counterproductive if China expands its cooperation with North Korea to the military realm.Overall, North Korea is strategically valuable enough for China to maintain its alliance, as a buffer between China's border and Washington’s forward presence in Northeast Asia and as a regional distraction that diverts U.S. strategic resources and attention. However, it is also a strategic burden that requires avoiding overcommitment and overalignment. The Xi-Kim summit’s relative lack of substance on regional security can be understood in this context.One development at the Xi-Kim summit that raised concerns in Washington, Seoul, and Tokyo was Beijing's silence on the North Korean nuclear issue. Some observers view Beijing’s silence as an unspoken acceptance of Pyongyang’s nuclear status. While the suspicion is valid, China’s stance may remain that of passive opposition rather than acceptance. In recent years, as Pyongyang has shifted toward a non-negotiable position on its nuclear arsenal, Beijing has also reduced rhetorical support for North Korean denuclearization, while upholding it as a security interest in principle. This passivity was observed at Xi’s summit with President Donald Trump last month, where both sides “confirmed their shared goal to denuclearize North Korea,” according to the U.S. readout. The phrase was omitted from the Chinese readout, but Beijing did not deny the U.S. statement.China’s ambiguous stance is disappointing to the United States, South Korea, and Japan, but it is also not ideal for North Korea. Pyongyang appeared clearly disturbed by Xi and Trump’s reported discussion of denuclearization, accusing Washington of lying. Days before Xi’s arrival, Kim inspected a new nuclear plant and pledged an \"exponential\" nuclear expansion. Pyongyang ideally wants to see a Russia-China-North Korea coalition in support of recognition of its nuclear status. Russian officials now publicly endorse North Korea’s nuclear status, calling denuclearization “a closed issue” and nuclear weapons “the key to North Korea’s prosperity.” Beijing, for its part, has yet to show any willingness to follow Moscow’s path. Ultimately, the Xi-Kim summit portended continued strategic gaps in the China-North Korea alliance. The United States, South Korea, and Japan can exploit these gaps by pursuing more proactive diplomacy with China. To prevent the militarization of the China-North Korea alliance, or, more precisely, to avoid driving Beijing toward that path, Washington, Seoul, and Tokyo can collectively work to reassure Beijing that they do not aim to undermine China’s core security interests. Simultaneously, they can seek Beijing’s reassurance that it will not pursue military cooperation with Pyongyang.Improving China-North Korea ties also presents an opportunity for the United States, South Korea, and Japan to increase regional communication in dealing with North Korea. Beijing will not pressure Pyongyang to denuclearize; that era is over. Nonetheless, Beijing, Washington, Seoul, and Tokyo all share an interest in reducing instability on the Korean Peninsula and preventing an emboldened Pyongyang from creating a crisis. Beijing could play a positive role here, and Washington, Seoul, and Tokyo could benefit from stepping up engagement with Beijing. ",
+      "link": "https://responsiblestatecraft.org/russia-china-north-korea/",
+      "pubDate": "Fri, 19 Jun 2026 04:05:01 +0000",
+      "category": "economy",
+      "source": "Responsible Statecraft",
+      "suggestedSlug": "2026-06-19-don-t-be-fooled-by-the-new-china-north-korea-love-fest",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Responsible Statecraft",
+          "url": "https://responsiblestatecraft.org/russia-china-north-korea/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "The forgotten fugitives of US forever wars",
+      "description": "To commemorate World Refugee Day (June 20) without confronting the American militarism driving the crisis is just plain hypocrisy. Data from the United Nations High Commissioner for Refugees shows global displacement has reached record highs, with more than 117 million people forcibly displaced worldwide, including 42.5 million refugees. As this crisis grows, it is too often framed as an unavoidable, organic tragedy. In reality, the crisis is man-made. We must squarely address one of its primary root causes: decades of interventionist foreign policy and a sprawling military-industrial complex that profits from conflict. We see this pattern vividly in the wake of the post-9/11 wars, during which U.S. military involvement in nations like Afghanistan and Iraq displaced millions. American interventions consistently leave behind shattered infrastructures, forcing generations to flee.This cycle of destruction extends far beyond Afghanistan and Iraq. In Libya, the 2011 NATO intervention, championed largely by the U.S., toppled Muammar Gaddafi and left in its wake a fractured state consumed by civil war, instability, and rampant human trafficking. The total collapse of public institutions transformed Libya into a source of immense displacement and a perilous transit corridor for migrants fleeing violence across Africa and the Middle East. U.S. involvement in Syria, including military operations against ISIS and extensive support for armed opposition groups, took an equally devastating form. The war has generated one of the largest displacement crises in modern history. Prior to the fall of the Assad government in 2024, more than 13 years of conflict had already displaced over 12 million Syrians. Today, over 16.5 million people remain in dire need of humanitarian assistance, caught in the crosshairs of localized violence, severe drought, and economic ruin. Relentless warfare has also left the Syrian landscape heavily contaminated with unexploded ordnance and landmines that will pose intergenerational threats to civilians and paralyze long-term recovery efforts, ensuring the war continues to claim lives long after the guns fell silent.This pattern of military adventurism, subsequent displacement, and deferred moral responsibility is not a new phenomenon in American statecraft. Following the violence that ravaged Laos, Cambodia, and Vietnam in 1975, millions fled, culminating in the largest refugee resettlement in American history. At the time, President Gerald Ford said we have a \"profound moral obligation\" to those that stood by the U.S. during the war. Refugees arrived first through sponsorship programs and later through the Refugee Act of 1980. Today, 3.2 million Americans trace their origins back to Laos, Cambodia, and Vietnam. During the 1960s and 1970s the U.S. dropped at least 12.7 million tons of ordnance on Laos, Cambodia and Vietnam killing millions of innocent people and leaving destruction on their land. While over fifty years have passed, the physical legacies of that war remain as 10-30% of the ordnance dropped failed to detonate leaving millions of unexploded ordnance scattered across the region. The devastating health impacts of the more than 12 million gallons of Agent Orange and other dioxin contaminated herbicides sprayed by the U.S. also still poison the land and its people in Southeast Asia. Deporting vulnerable people to regions still recovering from America’s historical military campaigns is a direct extension of U.S. aggression. Today, we are witnessing Washington fuel this very cycle of displacement in real time. In early 2026, joint U.S. and Israeli military strikes on Iran, and the ensuing escalation of war across the region, ignited a catastrophic new humanitarian crisis. The consequences are most acutely devastating in Lebanon, a nation already burdened by overlapping economic collapses and tasked with hosting the highest number of refugees per capita globally. Since the resumption of large-scale hostilities and Israeli ground invasions in March 2026, over 1.2 million people — more than 20% of Lebanon's entire population — have been forcibly displaced in a matter of weeks. As bombs decimate civilian infrastructure, Washington continues to provide the weapons and political cover driving this multi-front war. Rather than pursuing de-escalation, the U.S. is actively stoking a massive new displacement crisis that mirrors the tragic fallout of past historical interventions. This devastating cycle extends far beyond direct U.S. military involvement, reflecting a broader global system that relentlessly prioritizes arms proliferation over humanity, exacerbated by U.S. arms sales and military assistance to allies in the Middle East. The number of people impacted is astounding. In Sudan, we are witnessing the largest current displacement crisis on the planet. Since the conflict erupted in 2023, nearly 15 million people have been forcibly driven from their homes. The staggering civilian toll — particularly the escalating horrors and systemic sexual violence inflicted upon women and girls amidst the instability — is a glaring symptom of unchecked global militarism.In Yemen, more than 22 million people — nearly half of the population — are in need of humanitarian support, including over 18 million that face acute food shortages and 5.2 million that are internally displaced. The impacts of U.S. military support to Israel, totaling $38 billion over the current 10-Year Defense Memorandum of Understanding, is most vividly seen in Gaza, where more than 90% of the population is internally displaced, many multiple times, and in desperate need of humanitarian assistance. Meanwhile, President Donald Trump has cut the number of refugees the U.S. will admit into the country in 2026 down to 7,500 from a cap of 125,000 the previous year. This is the lowest level since the federal refugee program was established in 1980.As the United States marks its 250th birthday, we must ask ourselves what kind of legacy we are choosing to leave. This nation was forged by those seeking sanctuary — a revolutionary promise embodied by our \"Mother of Exiles\" standing proudly in our harbor. Refugees are not a political liability; they are the unyielding bedrock of the American story. If we are to truly honor two and a half centuries of our founding ideals, performative patriotism is not enough. Washington must decisively break the endless cycle of militarism, and take full, unflinching accountability for the deadly remnants of our past wars. True American greatness lies not in the violence we export, but in the sanctuary we fiercely defend and the justice we uphold.",
+      "link": "https://responsiblestatecraft.org/refugees-displacement-us-wars/",
+      "pubDate": "Fri, 19 Jun 2026 04:05:01 +0000",
+      "category": "politics",
+      "source": "Responsible Statecraft",
+      "suggestedSlug": "2026-06-19-the-forgotten-fugitives-of-us-forever-wars",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Responsible Statecraft",
+          "url": "https://responsiblestatecraft.org/refugees-displacement-us-wars/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Hyper-militarized 'war on narco-terror' is not stopping drug flows",
+      "description": "For the past year, the Trump administration has undertaken a lethal campaign of strikes on alleged drug boats in the Caribbean and Eastern Pacific, killing at least 200 people. It could soon gain a major new ally in this fight in Colombia, where the leading candidate in Sunday's presidential elections has promised to break with his dovish predecessor and wage an all-out war on drug trafficking.As a regional war on drugs takes shape, there is no better time to ask the question: is a military campaign really the most effective way to stop the flow of narcotics from Latin America?My new Quincy Institute brief addresses this question head-on, finding that the White House’s militarized “war on narco-terror” across the hemisphere is unlikely to produce durable results. In its place, I recommend a concrete road map for sustainably reducing Colombian coca production and cocaine trafficking to the U.S.An analysis of 25 years of evidence since the the passage of the multi-billion dollar Plan Colombia aid package reveals that a winning strategy for fighting drug trafficking must bolster state presence, rural development, and the rule of law in drug-producing areas; sequence manual eradication campaigns alongside legally enforceable negotiations with some armed groups; and tackle more profitable nodes of drug supply chains while countering illicit financial flows.Colombia — where over two-thirds of the world’s cocaine, and 90% of cocaine that enters the U.S., is produced — forms the nucleus of the Andean drug trade and is by far Washington’s’ most important counternarcotics partner in the Western Hemisphere. Yet nearly $15 billion in U.S. security, counternarcotics and development assistance over the past quarter century has largely failed to curtail Colombia’s cocaine economy, which is now witnessing all-time highs in hectares under cultivation and potential production.Past strategies, such as aerial fumigation with glyphosate, which was banned in Colombia in 2015, significantly reduced coca crop coverage in the early 2000s but failed to halt production. As farmers became more productive and adaptive, cultivation shifted to Peru, and the chemicals sprayed left indelible harm on the environment and public health.Surges in U.S. military aid, particularly under the aegis of Plan Patriota, led to the professionalization of Colombian security forces, improved their aerial and intelligence capabilities, and brought the FARC guerillas to the negotiating table. But this approach also fueled instability near military bases — as extrajudicial killings by security forces and paramilitary violence rose to unprecedented levels — and failed to meet its counternarcotics objectives.The “kingpin strategy,” meanwhile, focused on extraditions of drug bosses. This tactic, which soared under President Alvaro Uribe as he sought to demobilize Colombia’s largest paramilitary organization and has continued to this day, has produced the fragmentation, expansion and specialization of newer criminal outfits, contributing to increased cocaine production as groups devised new trafficking routes and illicit rents to exploit, from gold mining to extortion, kidnapping, wildlife trafficking, and human smuggling. Other approaches, however, have proved more successful and are correlated with modest declines in coca cultivation, potential cocaine production, and trafficking to the U.S., particularly in the late 2000s and following the signing of the 2016 peace accords between the government and the FARC. The strongest recipe for slowing the drug trade has focused on incentivizing viable economic alternatives to coca and reducing the power and influence of illicit armed actors. Under initiatives like the Plan de Consolidación Integral de la Macarena, Familias Guardabosques, and Colombia Transforma, Colombian authorities have boosted state presence, invested in rural development, and bolstered rule of law in drug-producing areas, all while maintaining a credible security posture focused on improving public safety.A complementary approach involves manual coca eradication campaigns. While time consuming and sometimes risky for communities and security forces alike, these efforts have proven effective when sequenced by first establishing police presence and investing in productive infrastructure and services before forcibly — or, ideally, voluntarily — uprooting coca plants. When combined with strategically designed and legally binding, enforceable negotiations with some armed actors in localized settings — as the administration of President Gustavo Petro has pursued more recently as its Total Peace plan flounders — this approach can incentivize armed groups to pursue industrial-scale eradication themselves. They do this by tying non-compliance to credible threats of targeted offensives. Lastly, later-stage drug interdictions, increased inspections of larger vessels, and enhanced regulatory integration and coordination against money laundering and other illicit financial flows are essential for stemming cocaine trafficking to the U.S. and disrupting the global networks underpinning it. Fortunately, this approach continues to occur alongside the expensive, legally questionable, and likely ineffective boat strike campaign, which could explain why even top administration officials admit it’s “not the answer … [or] the most effective tool.\"These lessons have clear implications for Colombia’s next president and U.S. drug policy moving forward. A balanced strategy is bound to yield more favorable outcomes for both left-wing candidate Iván Cepeda, who seeks to follow Petro’s negotiations with armed actors and voluntary illicit crop substitution programs, and right-wing candidate Abelardo de la Espriella, who seeks to accelerate low-level arrests and increase the military’s role in targeting drug production and trafficking.To date, neither the left’s hesitation to implement a credible supply-side counternarcotics agenda nor the right’s militarized approach to curbing coca cultivation has led to durable results. In fact, the lack of a viable, well-articulated strategy strengthens the hand of irregular armed actors, exacerbates a deteriorating security landscape across the country, and gives the Trump administration greater leverage to dictate its preferred approaches, regardless of their empirically poor outcomes. Despite the U.S. administration’s insistence on applying “systemic friction” to designated foreign terrorist organizations across the hemisphere, this overly militarized strategy is already leading groups to adapt to new illicit industries, divert trafficking routes, diversify economic portfolios, and expand operations to new subregions, resorting to more covert and asymmetrical forms of violence against states and competitors, as a recent surge in drone activity in Colombia has shown.Aside from proving woefully ineffective at reducing drug production and trafficking, Washington’s militarized campaign, carried out in conjunction with regional governments, also risks increasing extrajudicial killings of unarmed civilians, fueling insurrectionary and anti-U.S. sentiment, undermining the rule of law across the hemisphere, and reversing years of progress in Latin America’s fraught civil-military relations.Ultimately, without credible government presence, viable economic opportunities, and even rudimentary judicial institutions in drug-producing subregions throughout Colombia and elsewhere in Latin America, illicit economies and the irregular armed actors feeding off them will persist, regardless of military pressure. Raiding artisanal drug labs, fumigating small-scale farmers or extraditing kingpins have not proved particularly significant in advancing durable policy outcomes. And there’s little evidence to show that bombing alleged drug-trafficking boats in the Caribbean or Eastern Pacific will work either, despite some Trump administration officials’ claims. Assisting our Colombian partners in formulating a credible security posture against armed non-state actors is crucial to U.S. counternarcotics goals. But in tandem with this approach, we must seek to safeguard development assistance for coca-growing communities; sequence manual eradication campaigns with prior investment in infrastructure; boost interdictions of more valuable drug supply; and counter impunity and corruption by political and business elites.Colombia’s high-stakes presidential elections could well accelerate a remilitarization of the regional drug war. It is therefore urgent that analysts and officials evaluate the effectiveness of diverse counternarcotics strategies in Colombia over the past quarter century. If reducing the flow of drugs to the U.S. is truly the Trump administration’s objective, then U.S. officials must learn from decades of failure and chart a new course.",
+      "link": "https://responsiblestatecraft.org/colombia-narco-terror/",
+      "pubDate": "Fri, 19 Jun 2026 04:05:01 +0000",
+      "category": "economy",
+      "source": "Responsible Statecraft",
+      "suggestedSlug": "2026-06-19-hyper-militarized-war-on-narco-terror-is-not-stopping-drug-f",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Responsible Statecraft",
+          "url": "https://responsiblestatecraft.org/colombia-narco-terror/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Iran Warned Trump: If You Do Not End War on Lebanon, We May Strike Israel Without Warning",
+      "description": "Tehran believes it won a historic victory over the U.S., but is prepared for the deal to fall apart, a senior Iranian official tells Drop Site.",
+      "link": "https://www.dropsitenews.com/p/iran-trump-lebanon-israel-war-mou",
+      "pubDate": "Fri, 19 Jun 2026 14:08:30 GMT",
+      "category": "politics",
+      "source": "Drop Site News",
+      "suggestedSlug": "2026-06-19-iran-warned-trump-if-you-do-not-end-war-on-lebanon-we-may-st",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Drop Site News",
+          "url": "https://www.dropsitenews.com/p/iran-trump-lebanon-israel-war-mou",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Internal Debate Rages in Tehran Over Deal with Trump",
+      "description": "Some political insiders in Iran oppose the memorandum of understanding with the U.S., calling it a strategic mistake.",
+      "link": "https://www.dropsitenews.com/p/iran-trump-deal-critics-mojtaba-khamenei",
+      "pubDate": "Thu, 18 Jun 2026 20:48:28 GMT",
+      "category": "politics",
+      "source": "Drop Site News",
+      "suggestedSlug": "2026-06-18-internal-debate-rages-in-tehran-over-deal-with-trump",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Drop Site News",
+          "url": "https://www.dropsitenews.com/p/iran-trump-deal-critics-mojtaba-khamenei",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Iran wins concessions from U.S.; Ukraine strikes critical Moscow refinery; Israel refuses to withdraw from Lebanon",
+      "description": "Drop Site Daily: June 18, 2026",
+      "link": "https://www.dropsitenews.com/p/iran-concessions-us-mou-ukraine-russia-moscow-refinery-israel-lebanon-withdrawal",
+      "pubDate": "Thu, 18 Jun 2026 14:59:03 GMT",
+      "category": "politics",
+      "source": "Drop Site News",
+      "suggestedSlug": "2026-06-18-iran-wins-concessions-from-u-s-ukraine-strikes-critical-mosc",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Drop Site News",
+          "url": "https://www.dropsitenews.com/p/iran-concessions-us-mou-ukraine-russia-moscow-refinery-israel-lebanon-withdrawal",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Police raid malware network tied to Russia's Evil Corp hacker group",
+      "description": "An international operation targeted the SocGholish botnet, which has been linked to the Russia-based cybercrime group Evil Corp.",
+      "link": "https://therecord.media/socgholish-botnet-disrupted",
+      "pubDate": "Fri, 19 Jun 2026 12:57:00 GMT",
+      "category": "tech",
+      "source": "The Record",
+      "suggestedSlug": "2026-06-19-police-raid-malware-network-tied-to-russia-s-evil-corp-hacke",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "The Record",
+          "url": "https://therecord.media/socgholish-botnet-disrupted",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Infrared navigation lets magnetic nanorobots deliver drugs with real-time precision tracking",
+      "description": "Nanorobots have shown great promise in precision medicine over the past few decades. Yet one key challenge remains: how to track and guide these tiny devices in real time as they move through complex physiological environments. Existing imaging approaches often require long exposure times to detect ionizing radiation or suffer from blurred images because of strong light scattering in living tissues.",
+      "link": "https://phys.org/news/2026-06-infrared-magnetic-nanorobots-drugs-real.html",
+      "pubDate": "Sat, 20 Jun 2026 08:00:03 EDT",
+      "category": "science",
+      "source": "Phys.org",
+      "suggestedSlug": "2026-06-20-infrared-navigation-lets-magnetic-nanorobots-deliver-drugs-w",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Phys.org",
+          "url": "https://phys.org/news/2026-06-infrared-magnetic-nanorobots-drugs-real.html",
+          "country": "GB"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Why the Human Genome’s Tangled Physicality May Confound AI",
+      "description": "Our genetic heritage is not a blueprint or an algorithm, as many biologists have imagined, but something else entirely.            The post Why the Human Genome’s Tangled Physicality May Confound AI first appeared on Quanta Magazine",
+      "link": "https://www.quantamagazine.org/why-the-human-genomes-tangled-physicality-may-confound-ai-20260618/",
+      "pubDate": "Thu, 18 Jun 2026 14:12:26 +0000",
+      "category": "science",
+      "source": "Quanta Magazine",
+      "suggestedSlug": "2026-06-18-why-the-human-genome-s-tangled-physicality-may-confound-ai",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Quanta Magazine",
+          "url": "https://www.quantamagazine.org/why-the-human-genomes-tangled-physicality-may-confound-ai-20260618/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "DeBriefed 19 June 2026: Bonn talks end in ‘gridlock’ | Energy’s ‘new era’ | Oceans in climate negotiations",
+      "description": "Welcome to Carbon Brief’s DeBriefed. An essential guide to the week’s key developments relating to climate...\nThe post DeBriefed 19 June 2026: Bonn talks end in ‘gridlock’ | Energy’s ‘new era’ | Oceans in climate negotiations appeared first on Carbon Brief.",
+      "link": "https://www.carbonbrief.org/debriefed-19-june-2026-bonn-talks-end-in-gridlock-energys-new-era-oceans-in-climate-negotiations/",
+      "pubDate": "Fri, 19 Jun 2026 15:39:05 +0000",
+      "category": "science",
+      "source": "Carbon Brief",
+      "suggestedSlug": "2026-06-19-debriefed-19-june-2026-bonn-talks-end-in-gridlock-energy-s-n",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Carbon Brief",
+          "url": "https://www.carbonbrief.org/debriefed-19-june-2026-bonn-talks-end-in-gridlock-energys-new-era-oceans-in-climate-negotiations/",
+          "country": "GB"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Bonn climate talks: Key outcomes from the June 2026 UN climate conference",
+      "description": "Two weeks of tense UN climate talks in Bonn, Germany, have produced few tangible outcomes...\nThe post Bonn climate talks: Key outcomes from the June 2026 UN climate conference appeared first on Carbon Brief.",
+      "link": "https://www.carbonbrief.org/bonn-climate-talks-key-outcomes-from-the-june-2026-un-climate-conference/",
+      "pubDate": "Fri, 19 Jun 2026 15:16:42 +0000",
+      "category": "science",
+      "source": "Carbon Brief",
+      "suggestedSlug": "2026-06-19-bonn-climate-talks-key-outcomes-from-the-june-2026-un-climat",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Carbon Brief",
+          "url": "https://www.carbonbrief.org/bonn-climate-talks-key-outcomes-from-the-june-2026-un-climate-conference/",
+          "country": "GB"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Experts: Why carbon removal needs a ‘major scale up’ to return warming to 1.5C",
+      "description": "Last week, more than 260 researchers convened in Milan to discuss the opportunities, challenges and...\nThe post Experts: Why carbon removal needs a ‘major scale up’ to return warming to 1.5C appeared first on Carbon Brief.",
+      "link": "https://www.carbonbrief.org/experts-why-carbon-removal-needs-a-major-scale-up-to-return-warming-to-1-5c/",
+      "pubDate": "Fri, 19 Jun 2026 10:02:15 +0000",
+      "category": "science",
+      "source": "Carbon Brief",
+      "suggestedSlug": "2026-06-19-experts-why-carbon-removal-needs-a-major-scale-up-to-return",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Carbon Brief",
+          "url": "https://www.carbonbrief.org/experts-why-carbon-removal-needs-a-major-scale-up-to-return-warming-to-1-5c/",
+          "country": "GB"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "What a Pocketful of Metal Reveals About Afghanistan’s Forgotten Empires",
+      "description": "\nNearly 200 years ago, an East India Company agent in Central Asia started collecting ancient coins. Now kept in the British Museum, they reveal a time when Afghanistan was wealthy, cosmopolitan and culturally confident.\nThe post What a Pocketful of Metal Reveals About Afghanistan’s Forgotten Empires appeared first on New Lines Magazine.",
+      "link": "https://newlinesmag.com/essays/what-a-pocketful-of-metal-reveals-about-afghanistans-forgotten-empires/",
+      "pubDate": "Fri, 19 Jun 2026 10:10:33 +0000",
+      "category": "politics",
+      "source": "New Lines Magazine",
+      "suggestedSlug": "2026-06-19-what-a-pocketful-of-metal-reveals-about-afghanistan-s-forgot",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "New Lines Magazine",
+          "url": "https://newlinesmag.com/essays/what-a-pocketful-of-metal-reveals-about-afghanistans-forgotten-empires/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "New Air Force VC-25B “Bridge” Jet Has Joined The Presidential Airlift Group (Updated)",
+      "description": "The new Air Force One jet will undergo a final round of tests before ferrying President Donald Trump.\nThe post New Air Force VC-25B “Bridge” Jet Has Joined The Presidential Airlift Group (Updated) appeared first on The War Zone.",
+      "link": "https://www.twz.com/air/new-air-force-vc-25b-bridge-jet-has-joined-the-presidential-airlift-group",
+      "pubDate": "Fri, 19 Jun 2026 17:27:19 -0400",
+      "category": "politics",
+      "source": "The War Zone",
+      "suggestedSlug": "2026-06-19-new-air-force-vc-25b-bridge-jet-has-joined-the-presidential",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "The War Zone",
+          "url": "https://www.twz.com/air/new-air-force-vc-25b-bridge-jet-has-joined-the-presidential-airlift-group",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Bunker Talk: Let’s Talk About All The Things We Did And Didn’t Cover This Week",
+      "description": "Holy s&*t... the Playstation just broke.\nThe post Bunker Talk: Let’s Talk About All The Things We Did And Didn’t Cover This Week appeared first on The War Zone.",
+      "link": "https://www.twz.com/news-features/bunker-talk-lets-talk-about-all-the-things-we-did-and-didnt-cover-this-week-196",
+      "pubDate": "Fri, 19 Jun 2026 16:41:31 -0400",
+      "category": "politics",
+      "source": "The War Zone",
+      "suggestedSlug": "2026-06-19-bunker-talk-let-s-talk-about-all-the-things-we-did-and-didn",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "The War Zone",
+          "url": "https://www.twz.com/news-features/bunker-talk-lets-talk-about-all-the-things-we-did-and-didnt-cover-this-week-196",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "RC-135 Rivet Joints Could Control Drones To Drastically Expand Collection Capabilities",
+      "description": "Teaming with drones could be a path to new operational possibilities for the Rivet Joint, and other developments are on the horizon.\nThe post RC-135 Rivet Joints Could Control Drones To Drastically Expand Collection Capabilities appeared first on The War Zone.",
+      "link": "https://www.twz.com/air/rc-135-rivet-joints-could-control-drones-to-drastically-expand-collection-capabilities",
+      "pubDate": "Fri, 19 Jun 2026 14:51:03 -0400",
+      "category": "politics",
+      "source": "The War Zone",
+      "suggestedSlug": "2026-06-19-rc-135-rivet-joints-could-control-drones-to-drastically-expa",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "The War Zone",
+          "url": "https://www.twz.com/air/rc-135-rivet-joints-could-control-drones-to-drastically-expand-collection-capabilities",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Anomaly Delays Full-Scale Space Rider Drop Test Until October",
+      "description": "A full-scale drop test of ESA’s Space Rider spaceplane in early May was aborted after an anomaly during the captive ascent phase, the agency told European Spaceflight. In August 2024 and June 2025, ESA completed Space Rider drop test campaigns using a 3,000-kilogram mass simulator. In early 2026, the agency planned to move forward with […]\nThe post Anomaly Delays Full-Scale Space Rider Drop Test Until October appeared first on European Spaceflight.",
+      "link": "https://europeanspaceflight.com/anomaly-delays-full-scale-space-rider-drop-test-until-october/",
+      "pubDate": "Fri, 19 Jun 2026 09:24:49 +0000",
+      "category": "science",
+      "source": "European Spaceflight",
+      "suggestedSlug": "2026-06-19-anomaly-delays-full-scale-space-rider-drop-test-until-octobe",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "European Spaceflight",
+          "url": "https://europeanspaceflight.com/anomaly-delays-full-scale-space-rider-drop-test-until-october/",
+          "country": "FR"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Germany Breaks Ground on One of Two GOVSATCOM Hub Locations",
+      "description": "Germany has broken ground on a GOVSATCOM Hub facility in Cologne, with the state of North Rhine-Westphalia committing to investing up to €50 million in the project. The European Union’s GOVSATCOM system officially became operational in January 2026 and is designed to provide sovereign, reliable, secure, and cost-effective satellite communications services for European government and […]\nThe post Germany Breaks Ground on One of Two GOVSATCOM Hub Locations appeared first on European Spaceflight.",
+      "link": "https://europeanspaceflight.com/germany-breaks-ground-on-one-of-two-govsatcom-hub-locations/",
+      "pubDate": "Thu, 18 Jun 2026 20:34:50 +0000",
+      "category": "science",
+      "source": "European Spaceflight",
+      "suggestedSlug": "2026-06-18-germany-breaks-ground-on-one-of-two-govsatcom-hub-locations",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "European Spaceflight",
+          "url": "https://europeanspaceflight.com/germany-breaks-ground-on-one-of-two-govsatcom-hub-locations/",
+          "country": "FR"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Interview: California Lawmaker Calls for a Peptide Working Group",
+      "description": "Amid a national push to ease restrictions on certain peptides, California legislator Joe Patterson has introduced a state-level bill that would to establish a working group tasked with making recommendations to allow physicians and hospitals, among others, to prescribe and study promising peptides.",
+      "link": "https://undark.org/2026/06/19/interview-joe-patterson-peptides/",
+      "pubDate": "Fri, 19 Jun 2026 07:43:00 +0000",
+      "category": "science",
+      "source": "Undark",
+      "suggestedSlug": "2026-06-19-interview-california-lawmaker-calls-for-a-peptide-working-gr",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Undark",
+          "url": "https://undark.org/2026/06/19/interview-joe-patterson-peptides/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Deep Dive: Breaking Down US-Israeli Defense Industry ‘Integration’",
+      "description": "A provision buried in House legislation would likely reshape the US-Israeli relationship in ways that would be tough to undo. \nThe post Deep Dive: Breaking Down US-Israeli Defense Industry ‘Integration’ appeared first on Inkstick.",
+      "link": "https://inkstickmedia.com/deep-dive-breaking-down-us-israeli-defense-industry-integration/",
+      "pubDate": "Fri, 19 Jun 2026 10:00:00 +0000",
+      "category": "politics",
+      "source": "Inkstick",
+      "suggestedSlug": "2026-06-19-deep-dive-breaking-down-us-israeli-defense-industry-integrat",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Inkstick",
+          "url": "https://inkstickmedia.com/deep-dive-breaking-down-us-israeli-defense-industry-integration/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "The Mars Delusion",
+      "description": "The post The Mars Delusion appeared first on NOEMA.",
+      "link": "https://www.noemamag.com/the-mars-delusion",
+      "pubDate": "Thu, 18 Jun 2026 13:07:43 +0000",
+      "category": "politics",
+      "source": "Noema",
+      "suggestedSlug": "2026-06-18-the-mars-delusion",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Noema",
+          "url": "https://www.noemamag.com/the-mars-delusion",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "GoPro and Roomba were U.S. pioneers. Chinese rivals now dominate",
+      "description": "China's consumer-tech brands keep gaining ground.",
+      "link": "https://restofworld.org/2026/chinese-consumer-tech-brands/?utm_source=rss&utm_medium=rss&utm_campaign=feeds",
+      "pubDate": "Fri, 19 Jun 2026 13:00:00 +0000",
+      "category": "tech",
+      "source": "Rest of World",
+      "suggestedSlug": "2026-06-19-gopro-and-roomba-were-u-s-pioneers-chinese-rivals-now-domina",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Rest of World",
+          "url": "https://restofworld.org/2026/chinese-consumer-tech-brands/?utm_source=rss&utm_medium=rss&utm_campaign=feeds",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "The ‘Tibet Aid’ Cadres System as a Mechanism for Political Control in Tibet",
+      "description": "The system, supposedly meant to aid Tibet, actually serves to sideline local Tibetan personnel while boosting the careers of Han Chinese cadres from other regions.",
+      "link": "https://thediplomat.com/2026/06/the-tibet-aid-cadres-system-as-a-mechanism-for-political-control-in-tibet/",
+      "pubDate": "Sat, 20 Jun 2026 00:12:00 +0900",
+      "category": "politics",
+      "source": "The Diplomat",
+      "suggestedSlug": "2026-06-19-the-tibet-aid-cadres-system-as-a-mechanism-for-political-con",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "The Diplomat",
+          "url": "https://thediplomat.com/2026/06/the-tibet-aid-cadres-system-as-a-mechanism-for-political-control-in-tibet/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Why Bangladesh Is Fencing Its Border With Myanmar",
+      "description": "A non-state actor – the Arakan Army – now controls Myanmar’s side of the border. That forces Bangladesh to rely more on unilateral forms of border management.",
+      "link": "https://thediplomat.com/2026/06/why-bangladesh-is-fencing-its-border-with-myanmar/",
+      "pubDate": "Fri, 19 Jun 2026 23:56:00 +0900",
+      "category": "politics",
+      "source": "The Diplomat",
+      "suggestedSlug": "2026-06-19-why-bangladesh-is-fencing-its-border-with-myanmar",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "The Diplomat",
+          "url": "https://thediplomat.com/2026/06/why-bangladesh-is-fencing-its-border-with-myanmar/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "What Will the End of the Iran-US War Mean for Pakistan?",
+      "description": "Pakistanis are hoping that their role in providing Trump with an offramp to end the war will lead to investment flows.",
+      "link": "https://thediplomat.com/2026/06/what-will-the-end-of-the-iran-us-war-mean-for-pakistan/",
+      "pubDate": "Fri, 19 Jun 2026 23:41:00 +0900",
+      "category": "politics",
+      "source": "The Diplomat",
+      "suggestedSlug": "2026-06-19-what-will-the-end-of-the-iran-us-war-mean-for-pakistan",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "The Diplomat",
+          "url": "https://thediplomat.com/2026/06/what-will-the-end-of-the-iran-us-war-mean-for-pakistan/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Drones, cables, and the Indonesia–Australia maritime frontier",
+      "description": "Closing maritime technology gaps has been the focus of a series of recent exchanges.",
+      "link": "https://www.lowyinstitute.org/the-interpreter/drones-cables-and-the-indonesia-australia-maritime-frontier",
+      "pubDate": "Fri, 19 Jun 2026 00:00:00 +1000",
+      "category": "politics",
+      "source": "Lowy Interpreter",
+      "suggestedSlug": "2026-06-18-drones-cables-and-the-indonesia-australia-maritime-frontier",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Lowy Interpreter",
+          "url": "https://www.lowyinstitute.org/the-interpreter/drones-cables-and-the-indonesia-australia-maritime-frontier",
+          "country": "AU"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "China and the sleeping giant theory of American power",
+      "description": "China’s rise may prove less a verdict on American decline than the jolt that forces democratic renewal – if history is any guide.",
+      "link": "https://www.lowyinstitute.org/the-interpreter/china-and-the-sleeping-giant-theory-of-american-power",
+      "pubDate": "Fri, 19 Jun 2026 00:00:00 +1000",
+      "category": "politics",
+      "source": "Lowy Interpreter",
+      "suggestedSlug": "2026-06-18-china-and-the-sleeping-giant-theory-of-american-power",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Lowy Interpreter",
+          "url": "https://www.lowyinstitute.org/the-interpreter/china-and-the-sleeping-giant-theory-of-american-power",
+          "country": "AU"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "ASEAN minus X: the fix for a region that can’t agree",
+      "description": "ASEAN’s crisis mechanisms exist on paper – what’s missing is the will to act without full consensus.",
+      "link": "https://www.lowyinstitute.org/the-interpreter/asean-minus-x-the-fix-for-a-region-that-can-t-agree",
+      "pubDate": "Fri, 19 Jun 2026 00:00:00 +1000",
+      "category": "politics",
+      "source": "Lowy Interpreter",
+      "suggestedSlug": "2026-06-18-asean-minus-x-the-fix-for-a-region-that-can-t-agree",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Lowy Interpreter",
+          "url": "https://www.lowyinstitute.org/the-interpreter/asean-minus-x-the-fix-for-a-region-that-can-t-agree",
+          "country": "AU"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Q&A: Why climate politics cannot be separated from Indigenous sovereignty and justice",
+      "description": "Dwayne Mamo, lead editor of The Indigenous World report, on this year’s 40th edition and the current state of Indigenous rights\nThe post Q&A: Why climate politics cannot be separated from Indigenous sovereignty and justice appeared first on Dialogue Earth.",
+      "link": "https://dialogue.earth/en/energy/qa-indigenous-peoples-are-not-resisting-the-future-they-are-asserting-their-right-to-shape-it/",
+      "pubDate": "Fri, 19 Jun 2026 18:16:07 +0000",
+      "category": "science",
+      "source": "Dialogue Earth",
+      "suggestedSlug": "2026-06-19-q-a-why-climate-politics-cannot-be-separated-from-indigenous",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Dialogue Earth",
+          "url": "https://dialogue.earth/en/energy/qa-indigenous-peoples-are-not-resisting-the-future-they-are-asserting-their-right-to-shape-it/",
+          "country": "GB"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Colombia elections: a litmus test for fossil fuel phaseout",
+      "description": "Far-right firebrand Abelardo de la Espriella wants to double down on fossil fuels and extinguish a new global movement born in Colombia\nThe post Colombia elections: a litmus test for fossil fuel phaseout appeared first on Dialogue Earth.",
+      "link": "https://dialogue.earth/en/energy/colombia-elections-a-litmus-test-for-fossil-fuel-phaseout/",
+      "pubDate": "Fri, 19 Jun 2026 16:52:29 +0000",
+      "category": "science",
+      "source": "Dialogue Earth",
+      "suggestedSlug": "2026-06-19-colombia-elections-a-litmus-test-for-fossil-fuel-phaseout",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Dialogue Earth",
+          "url": "https://dialogue.earth/en/energy/colombia-elections-a-litmus-test-for-fossil-fuel-phaseout/",
+          "country": "GB"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Q&A: ‘Being out in nature is a small but significant act of resistance’",
+      "description": "Neha Sinha, author of Wild Capital: Discovering Nature in Delhi, on the megacity’s ecological richness and developing a meaningful relationship with it\nThe post Q&A: ‘Being out in nature is a small but significant act of resistance’ appeared first on Dialogue Earth.",
+      "link": "https://dialogue.earth/en/nature/qa-being-out-in-nature-is-a-small-but-significant-act-of-resistance/",
+      "pubDate": "Thu, 18 Jun 2026 20:46:14 +0000",
+      "category": "science",
+      "source": "Dialogue Earth",
+      "suggestedSlug": "2026-06-18-q-a-being-out-in-nature-is-a-small-but-significant-act-of-re",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Dialogue Earth",
+          "url": "https://dialogue.earth/en/nature/qa-being-out-in-nature-is-a-small-but-significant-act-of-resistance/",
+          "country": "GB"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Planes don't fly on masculinity: Why society views women in transportation as an anomaly",
+      "description": "Society trusts women to raise children, support households, hold families together emotionally but put a woman behind the controls of a plane and suddenly people become nervous.",
+      "link": "https://globalvoices.org/2026/06/19/planes-dont-fly-on-masculinity-why-society-views-women-in-transportation-as-an-anomaly/",
+      "pubDate": "Fri, 19 Jun 2026 12:00:15 +0000",
+      "category": "politics",
+      "source": "Global Voices",
+      "suggestedSlug": "2026-06-19-planes-don-t-fly-on-masculinity-why-society-views-women-in-t",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Global Voices",
+          "url": "https://globalvoices.org/2026/06/19/planes-dont-fly-on-masculinity-why-society-views-women-in-transportation-as-an-anomaly/",
+          "country": "NL"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "The case of Shakira Galíndez highlights a growing crisis for trans Venezuelan asylum seekers in the U.S.",
+      "description": "Shakira Galíndez fled Venezuela due to her vulnerability as a trans woman. Today, she is in a men’s detention facility, exposed to further discrimination, violence and deportation.",
+      "link": "https://globalvoices.org/2026/06/19/the-case-of-shakira-galindez-highlights-a-growing-crisis-for-trans-venezuelan-asylum-seekers-in-the-u-s/",
+      "pubDate": "Fri, 19 Jun 2026 08:00:40 +0000",
+      "category": "politics",
+      "source": "Global Voices",
+      "suggestedSlug": "2026-06-19-the-case-of-shakira-gal-ndez-highlights-a-growing-crisis-for",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Global Voices",
+          "url": "https://globalvoices.org/2026/06/19/the-case-of-shakira-galindez-highlights-a-growing-crisis-for-trans-venezuelan-asylum-seekers-in-the-u-s/",
+          "country": "NL"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Can the Special Seats Bill deliver the gender parity Nigeria needs?",
+      "description": "Despite comprising 50 percent of the population, women hold just 4.5 percent of seats in the National Assembly. Nigeria consistently ranks near the bottom globally and in Africa on women’s parliamentary representation.",
+      "link": "https://globalvoices.org/2026/06/18/can-the-special-seats-bill-deliver-the-gender-parity-nigeria-needs/",
+      "pubDate": "Thu, 18 Jun 2026 20:00:25 +0000",
+      "category": "politics",
+      "source": "Global Voices",
+      "suggestedSlug": "2026-06-18-can-the-special-seats-bill-deliver-the-gender-parity-nigeria",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Global Voices",
+          "url": "https://globalvoices.org/2026/06/18/can-the-special-seats-bill-deliver-the-gender-parity-nigeria-needs/",
+          "country": "NL"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Swiss parliament lifts ban on new nuclear power plants",
+      "description": "797 points, 938 comments on Hacker News",
+      "link": "https://www.bluewin.ch/en/news/switzerland/parliament-lifts-ban-on-new-nuclear-power-plants-3257535.html",
+      "pubDate": "2026-06-18T14:17:07.000Z",
+      "category": "tech",
+      "source": "Hacker News",
+      "suggestedSlug": "2026-06-18-swiss-parliament-lifts-ban-on-new-nuclear-power-plants",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Hacker News",
+          "url": "https://www.bluewin.ch/en/news/switzerland/parliament-lifts-ban-on-new-nuclear-power-plants-3257535.html",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "The AirPods Effect",
+      "description": "425 points, 731 comments on Hacker News",
+      "link": "https://www.theescapenewsletter.com/p/the-airpods-effect",
+      "pubDate": "2026-06-18T23:08:35.000Z",
+      "category": "tech",
+      "source": "Hacker News",
+      "suggestedSlug": "2026-06-18-the-airpods-effect",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Hacker News",
+          "url": "https://www.theescapenewsletter.com/p/the-airpods-effect",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Microsoft new Outlook takes 10 seconds to do what Outlook Classic does instantly",
+      "description": "733 points, 515 comments on Hacker News",
+      "link": "https://www.windowslatest.com/2026/06/15/microsofts-new-outlook-takes-10-seconds-to-do-what-outlook-classic-does-instantly-on-windows/",
+      "pubDate": "2026-06-18T12:19:05.000Z",
+      "category": "tech",
+      "source": "Hacker News",
+      "suggestedSlug": "2026-06-18-microsoft-new-outlook-takes-10-seconds-to-do-what-outlook-cl",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Hacker News",
+          "url": "https://www.windowslatest.com/2026/06/15/microsofts-new-outlook-takes-10-seconds-to-do-what-outlook-classic-does-instantly-on-windows/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    }
+  ]
+}

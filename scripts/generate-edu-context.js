@@ -189,7 +189,7 @@ Generate the educational context brief for this article. Output ONLY the JSON ob
 
   const t0 = Date.now()
   const result = spawnSync('claude', [
-    '--model', 'claude-sonnet-4-6',
+    '--model', 'claude-sonnet-5',
     '--effort', 'medium',
     '--no-session-persistence',
     '--max-turns', '3',

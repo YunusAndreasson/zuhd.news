@@ -93,7 +93,7 @@ const res = spawnSync(
   [
     '--no-session-persistence',
     '--effort', 'medium',
-    '--model', 'claude-opus-4-7',
+    '--model', 'claude-opus-4-8',
     '--max-turns', '1',
     '--tools', '',
     '-p', fullPrompt,

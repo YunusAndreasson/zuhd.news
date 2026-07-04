@@ -24,11 +24,11 @@ export const SANDBOX_ROOT = '/tmp/zuhd-autoresearch'
 
 // --- Pinned model IDs (do not use aliases — see CLAUDE.md memory) ---
 export const MODELS = {
-  selector: 'claude-opus-4-7',
-  writer: 'claude-sonnet-4-6',
-  editor: 'claude-sonnet-4-6',
-  judgeOpus: 'claude-opus-4-7',
-  judgeSonnet: 'claude-sonnet-4-6',
+  selector: 'claude-opus-4-8',
+  writer: 'claude-sonnet-5',
+  editor: 'claude-sonnet-5',
+  judgeOpus: 'claude-opus-4-8',
+  judgeSonnet: 'claude-sonnet-5',
 }
 
 // --- Worktree lifecycle ---

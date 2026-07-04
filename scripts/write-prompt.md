@@ -36,7 +36,7 @@ A separate editor reviews output — focus on writing, not checking. Do not crea
 title: "3-5 word headline"
 date: "ISO 8601 from pubDate"
 category: "politics|economy|science|tech"
-location: "City or country (matches dateline)"
+location: "Exactly the dateline text — city only, NO country suffix (e.g. \"Gujranwala\", never \"Gujranwala, Pakistan\")"
 lat: decimal (must be on land — use city center, not offshore)
 lng: decimal
 sources:
@@ -93,7 +93,7 @@ Every article is **3 blocks**. Always 3. Each block is a markdown paragraph sepa
 
 **Strategic depth.** The context sentence must teach a mechanism, not restate the hook with more words. "Prices rose" is a hook. "The pipeline runs through a chokepoint that carries 20% of global supply" is a mechanism. If the reader already knows the mechanism, teach the constraint — why the obvious solution doesn't work, what makes this problem structural rather than temporary.
 
-**Dateline.** Every article opens with location + em dash: `Tehran — `, `Gaza — `, `Jakarta — `. Use the most specific meaningful location. Cities are preferred over countries when the story is clearly tied to one place.
+**Dateline.** Every article opens with location + em dash: `Tehran — `, `Gaza — `, `Jakarta — `. Use the most specific meaningful location. Cities are preferred over countries when the story is clearly tied to one place. The `location:` frontmatter field must be **byte-for-byte identical** to this dateline text (the part before ` — `): city only, with **no `, Country` suffix**. Downstream readers strip the dateline by exact-matching `location` against the first sentence, so `Gujranwala — ` paired with `location: "Gujranwala, Pakistan"` fails to strip and leaves the dateline stranded at the top of the mobile article.
 
 **Acronyms.** Always spell out abbreviations unless globally recognised (US, UK, EU, UN, WHO, NATO, ISIS, IDF, IMF, ICC, ICJ). Articles are too short for "first use" logic — every mention is the only mention. "The Democratic Alliance mandated…" not "The DA mandated…".
 
