@@ -2,13 +2,238 @@
   "version": 1,
   "stories": [
     {
+      "id": "the-bottleneck-might-be-the-air-in-the-room",
+      "label": "The bottleneck might be the air in the room",
+      "firstSeen": "2026-07-05T08:04:48.874Z",
+      "lastCovered": "2026-07-05T12:05:55.262Z",
+      "coverageCount": 2,
+      "category": "tech",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-07-04-the-bottleneck-might-be-the-air-in-the-room"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for tech floor] 780 points, 450 comments on Hacker News",
+      "conceptUris": []
+    },
+    {
+      "id": "khamenei-funeral-mojtaba-succession-absence",
+      "label": "3 of Khamenei's sons join top leaders at Tehran funeral, but not his successor Mojtaba",
+      "firstSeen": "2026-07-05T12:05:55.262Z",
+      "lastCovered": "2026-07-05T12:05:55.262Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-05-khamenei-funeral-mojtaba-succession-absence"
+      ],
+      "eventUri": "eng-11803938",
+      "summary": "Three of the slain Ayatollah's sons prayed over his coffin at Sunday's funeral, but Mojtaba — the son who has succeeded him as supreme leader — stayed out of sight. Lead with the absence, not the ceremony: a new supreme leader too exposed to appear at his own predecessor's funeral is the real signal of Iran's post-war security paralysis at the very top. Note the funeral-stage calls for Trump's death against the four sources' divergent framings (IL, GB, IN, HK). Consolidates the AOL 'three sons' wire.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Ali_Khamenei",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Supreme_Leader_of_Iran",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/Death_to_America",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Israel"
+      ]
+    },
+    {
+      "id": "china-releases-pastor-jin-mingri-trump-xi",
+      "label": "China releases underground church pastor after months in detention",
+      "firstSeen": "2026-07-05T12:05:55.262Z",
+      "lastCovered": "2026-07-05T12:05:55.262Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-05-china-releases-pastor-jin-mingri-trump-xi"
+      ],
+      "eventUri": "eng-11803864",
+      "summary": "Pastor Jin Mingri, founder of a prominent Beijing underground church, landed in Los Angeles on July 4 after months in detention — freed only after Trump personally raised his case with Xi. Lead with the mechanism, not the reunion: religious-freedom prisoners in China are now bargaining chips in a bilateral relationship, released when a foreign leader spends capital, not when law requires it. Read the QA/DE/US framings against each other on whether this is clemency or transaction.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Pastor",
+        "http://en.wikipedia.org/wiki/Beijing",
+        "http://en.wikipedia.org/wiki/Xi_Jinping",
+        "http://en.wikipedia.org/wiki/Los_Angeles",
+        "http://en.wikipedia.org/wiki/Jin_Mingri"
+      ]
+    },
+    {
+      "id": "lahore-abduction-minister-linked-suspect-impunity",
+      "label": "Foreign women abduction case: Police ordered to treat 'minister-linked suspect' like any other criminal",
+      "firstSeen": "2026-07-05T12:05:55.262Z",
+      "lastCovered": "2026-07-05T12:05:55.262Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-05-lahore-abduction-minister-linked-suspect-impunity"
+      ],
+      "eventUri": null,
+      "summary": "Lahore's DIG Operations felt compelled to publicly promise that a suspect reportedly tied to a senior minister — in the alleged abduction and assault of two foreign women — would be treated 'like any other criminal.' Lead with what the promise reveals: in Pakistan the default assumption is that proximity to power buys impunity, and a police chief's reassurance is itself evidence of the two-tier justice it denies. Attribute the allegations; case is early. Regional voice (Dawn, PK).",
+      "conceptUris": []
+    },
+    {
+      "id": "niger-kagara-farmer-herder-curfew-hospital",
+      "label": "Curfew imposed as fighting escalates in Niger LGA",
+      "firstSeen": "2026-07-05T12:05:55.262Z",
+      "lastCovered": "2026-07-05T12:05:55.262Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-05-niger-kagara-farmer-herder-curfew-hospital"
+      ],
+      "eventUri": "eng-11797712",
+      "summary": "A curfew has been clamped on Kagara after a mob tried to storm the general hospital to attack wounded herders admitted there, as Kamuku farmer–Fulani herder fighting spreads. Lead with the hospital, not the curfew: when a crowd targets injured patients, communal violence has crossed into the collapse of the last neutral space, and the state's only tool is to freeze the town rather than protect it. A concrete measure of how resource conflict in Nigeria's middle belt outruns governance. Regional outlet (Premium Times, NG).",
+      "conceptUris": []
+    },
+    {
+      "id": "iran-nicaragua-energy-sanctions-axis",
+      "label": "Iran's oil minister offers energy support to Nicaragua",
+      "firstSeen": "2026-07-05T12:05:55.262Z",
+      "lastCovered": "2026-07-05T12:05:55.262Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-05-iran-nicaragua-energy-sanctions-axis"
+      ],
+      "eventUri": null,
+      "summary": "Iran's oil minister offered to supply Nicaragua's crude and gas-oil needs, thanking Managua for its 'solidarity.' Lead with the sanctions logic, not the handshake: two heavily-sanctioned states are stitching a parallel energy-trade axis that routes around the dollar system, converting shared isolation into a supply relationship. For the macro reader, a concrete data point on how sanctions manufacture their own counter-economy rather than simply cutting a state off. Iranian state source (Mehr) — attribute the framing.",
+      "conceptUris": []
+    },
+    {
+      "id": "iran-qatar-trade-resumed-ruwais-port",
+      "label": "Trade between Iran, Qatar resumed: official",
+      "firstSeen": "2026-07-05T12:05:55.262Z",
+      "lastCovered": "2026-07-05T12:05:55.262Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-05-iran-qatar-trade-resumed-ruwais-port"
+      ],
+      "eventUri": null,
+      "summary": "Qatar has reopened Al Ruwais port to Iranian goods, restarting maritime trade the war had frozen. Lead with the reopening as a barometer: the first Gulf trade artery to switch back on is the clearest market signal that regional actors are pricing the Iran war as over, even as tankers still U-turn at Hormuz. For the macro reader, watch which corridors normalize first — they map who bets on de-escalation with real cargo, not communiqués. Iranian state source (Mehr) — attribute; corroborate the port claim.",
+      "conceptUris": []
+    },
+    {
+      "id": "earth-first-crust-cosmic-bombardment-continents",
+      "label": "The missing 500 million: Cosmic bombardment melted Earth's first crust",
+      "firstSeen": "2026-07-05T12:05:55.262Z",
+      "lastCovered": "2026-07-05T12:05:55.262Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-05-earth-first-crust-cosmic-bombardment-continents"
+      ],
+      "eventUri": null,
+      "summary": "Earth is the only known planet with buoyant, silica-rich continents — and new work argues a half-billion-year window of missing rock is explained by cosmic bombardment repeatedly melting the first crust. Lead with the puzzle, not the impacts: the oldest continental rock is ~4 billion years old, and the gap before it is not absence of history but erasure, remelted away. For the curious reader, a clean case of how planetary scientists read a missing record as evidence of the process that destroyed it.",
+      "conceptUris": []
+    },
+    {
+      "id": "maharashtra-mercury-fairness-creams-ban",
+      "label": "Maharashtra Bans 3 Beauty Products, Including Pak-Made Fairness Cream, Over Toxic Mercury",
+      "firstSeen": "2026-07-05T12:05:55.262Z",
+      "lastCovered": "2026-07-05T12:05:55.262Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-05-maharashtra-mercury-fairness-creams-ban"
+      ],
+      "eventUri": "eng-11804113",
+      "summary": "Maharashtra's FDA banned three skin creams after finding high mercury and lead — one Pakistani-made fairness cream linked to kidney damage in 18 women. Lead with the toxicology, not the ban: mercury suppresses melanin to lighten skin within days, which is exactly why an unregulated colourism market keeps putting a nephrotoxic heavy metal on people's faces. For the reader, the mechanism to highlight is how a beauty ideal creates sustained chemical-exposure demand that outpaces cross-border regulation.",
+      "conceptUris": []
+    },
+    {
+      "id": "songbird-neo-sex-chromosomes-recombination",
+      "label": "Evolutionary dynamics of enlarged neo-sex chromosomes and novel pseudoautosomal regions in Sylvioidea songbirds",
+      "firstSeen": "2026-07-05T12:05:55.262Z",
+      "lastCovered": "2026-07-05T12:05:55.262Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-04-songbird-neo-sex-chromosomes-recombination"
+      ],
+      "eventUri": null,
+      "summary": "Across 14 Sylvioidea songbird species, researchers map repeatedly enlarged neo-sex chromosomes and newly evolved pseudoautosomal regions where sex chromosomes still recombine. Lead with why it matters beyond birds: sex chromosomes are usually treated as fixed, degenerating relics, but this lineage shows them actively rebuilt and re-fused — a live view of how the genetic machinery of sex is not a one-way decay but an ongoing evolutionary experiment. For the technically curious reader, a window into chromosome evolution caught in motion.",
+      "conceptUris": []
+    },
+    {
+      "id": "youtube-private-video-leak-access-control",
+      "label": "Leaking YouTube creators' private videos",
+      "firstSeen": "2026-07-05T12:05:55.262Z",
+      "lastCovered": "2026-07-05T12:05:55.262Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-04-youtube-private-video-leak-access-control"
+      ],
+      "eventUri": null,
+      "summary": "A security researcher (633 points on HN) documents how a flaw let private, unlisted YouTube videos be enumerated and leaked — content creators believed was walled off. Lead with the trust assumption, not the bug: 'private' and 'unlisted' are product promises millions rely on to stage unreleased work, and this shows those states were an access-control boundary thinner than the UI implies. For the developer reader, the mechanism to highlight is how object-ID predictability and weak authorization defeat privacy labels on the largest video platform on Earth.",
+      "conceptUris": []
+    },
+    {
+      "id": "wild-yeast-ornithine-non-gm-brewing",
+      "label": "Wild yeast discovery enables non-GM brewing of ornithine-enriched craft beer",
+      "firstSeen": "2026-07-05T12:05:55.262Z",
+      "lastCovered": "2026-07-05T12:05:55.262Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-05-wild-yeast-ornithine-non-gm-brewing"
+      ],
+      "eventUri": null,
+      "summary": "Researchers found a wild yeast strain that overproduces ornithine — an amino acid tied to health claims — letting brewers enrich beer during fermentation without genetic modification. Lead with the metabolic constraint, not the beverage: ornithine sits behind a tightly self-regulated pathway that normally throttles its own output, so finding a natural variant that escapes that brake is the real advance. For the technically curious reader, a concrete example of how strain discovery substitutes for genetic engineering to route around a regulatory and consumer-acceptance wall.",
+      "conceptUris": []
+    },
+    {
+      "id": "resigning-shortly-before-retiring-several-factors-to-keep-in",
+      "label": "Resigning shortly before retiring: Several factors to keep in mind",
+      "firstSeen": "2026-07-05T12:05:55.262Z",
+      "lastCovered": "2026-07-05T12:05:55.262Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-05-resigning-shortly-before-retiring-several-factors-to-keep-in"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for economy floor] I will be retiring at the end of the year after 40 years of service. My pension fund will pay me 2% of my final pensionable salary for each year of service.\n\nOne of my colleagues told me that I would be better off resigning a month before retirement, transferring the proceeds to a preservation fund ",
+      "conceptUris": []
+    },
+    {
       "id": "islamabad-frontrunner-us-iran-talks",
       "label": "Islamabad frontrunner to host US-Iran talks",
       "firstSeen": "2026-07-05T08:04:48.874Z",
       "lastCovered": "2026-07-05T08:04:48.874Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-05-islamabad-frontrunner-us-iran-talks"
@@ -31,7 +256,7 @@
       "lastCovered": "2026-07-05T08:04:48.874Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-05-north-korea-kim-nuclear-destroyer-tests"
@@ -54,7 +279,7 @@
       "lastCovered": "2026-07-05T08:04:48.874Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-05-china-russia-joint-naval-drills-qingdao"
@@ -76,7 +301,7 @@
       "lastCovered": "2026-07-05T08:04:48.874Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-05-dr-congo-ebola-toll-490"
@@ -92,7 +317,7 @@
       "lastCovered": "2026-07-05T08:04:48.874Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-03-cambodia-grid-last-mile-affordability"
@@ -108,7 +333,7 @@
       "lastCovered": "2026-07-05T08:04:48.874Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-05-oyo-kidnapped-students-rescue"
@@ -124,7 +349,7 @@
       "lastCovered": "2026-07-05T08:04:48.874Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-05-wana-mosque-boy-killed-waziristan"
@@ -140,7 +365,7 @@
       "lastCovered": "2026-07-05T08:04:48.874Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-05-karachi-yellow-line-brt-graft-bail"
@@ -156,7 +381,7 @@
       "lastCovered": "2026-07-05T08:04:48.874Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-05-maricopa-election-control-midterms"
@@ -172,7 +397,7 @@
       "lastCovered": "2026-07-05T08:04:48.874Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-05-cameroon-online-visibility-income"
@@ -188,7 +413,7 @@
       "lastCovered": "2026-07-05T08:04:48.874Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-03-half-baked-product-scope-discipline"
@@ -204,7 +429,7 @@
       "lastCovered": "2026-07-05T08:04:48.874Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-03-404-media-behind-the-blog-tech-power"
@@ -214,29 +439,13 @@
       "conceptUris": []
     },
     {
-      "id": "the-bottleneck-might-be-the-air-in-the-room",
-      "label": "The bottleneck might be the air in the room",
-      "firstSeen": "2026-07-05T08:04:48.874Z",
-      "lastCovered": "2026-07-05T08:04:48.874Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-04-the-bottleneck-might-be-the-air-in-the-room"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for tech floor] 780 points, 450 comments on Hacker News",
-      "conceptUris": []
-    },
-    {
       "id": "putin-trump-phone-call-ukraine-iran",
       "label": "Putin and Trump hold phone call - Kremlin",
       "firstSeen": "2026-07-05T04:09:04.892Z",
       "lastCovered": "2026-07-05T04:09:04.892Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-04-putin-trump-phone-call-ukraine-iran"
@@ -261,7 +470,7 @@
       "lastCovered": "2026-07-05T04:09:04.892Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-05-gwadar-five-bodies-balochistan"
@@ -277,7 +486,7 @@
       "lastCovered": "2026-07-05T04:09:04.892Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-05-araghchi-yemen-siege-diplomatic-push"
@@ -293,7 +502,7 @@
       "lastCovered": "2026-07-05T04:09:04.892Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-03-uk-britons-fighting-israel-minister-questions"
@@ -309,7 +518,7 @@
       "lastCovered": "2026-07-05T04:09:04.892Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-04-nigeria-alake-mining-host-community-licences"
@@ -325,7 +534,7 @@
       "lastCovered": "2026-07-05T04:09:04.892Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-03-switzerland-fibre-broadband-open-access"
@@ -341,7 +550,7 @@
       "lastCovered": "2026-07-05T04:09:04.892Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-05-india-opposition-inflation-neet-monsoon-session"
@@ -365,7 +574,7 @@
       "lastCovered": "2026-07-05T04:09:04.892Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-05-greenland-wildfires-arctic-warming"
@@ -381,7 +590,7 @@
       "lastCovered": "2026-07-05T04:09:04.892Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-05-trypanosoma-nusap1-spindle-sleeping-sickness"
@@ -397,7 +606,7 @@
       "lastCovered": "2026-07-05T04:09:04.892Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-04-indoor-co2-cognition-ventilation"
@@ -413,7 +622,7 @@
       "lastCovered": "2026-07-05T04:09:04.892Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-04-digital-literacy-rural-wellbeing-isolation"
@@ -429,7 +638,7 @@
       "lastCovered": "2026-07-05T04:09:04.892Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-04-middle-east-censorship-citizen-journalists"
@@ -445,7 +654,7 @@
       "lastCovered": "2026-07-04T22:08:24.186Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-04-xenophobia-two-more-nigerians-killed-south-africa"
@@ -461,7 +670,7 @@
       "lastCovered": "2026-07-04T22:08:24.186Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-04-ukraine-st-petersburg-refinery-drone-strike"
@@ -485,7 +694,7 @@
       "lastCovered": "2026-07-04T22:08:24.186Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-04-trinamool-chandrima-resigns-meets-rebels"
@@ -507,7 +716,7 @@
       "lastCovered": "2026-07-04T22:08:24.186Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-04-katsina-road-bandits-abduct-nine-travellers"
@@ -523,7 +732,7 @@
       "lastCovered": "2026-07-04T22:08:24.186Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-04-ships-u-turn-strait-of-hormuz-irgc"
@@ -545,7 +754,7 @@
       "lastCovered": "2026-07-04T22:08:24.186Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-04-india-refining-capacity-energy-security-modi"
@@ -567,7 +776,7 @@
       "lastCovered": "2026-07-04T22:08:24.186Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-04-hostile-takeover-esg-defense-community"
@@ -583,7 +792,7 @@
       "lastCovered": "2026-07-04T22:08:24.186Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-04-venezuela-twin-earthquake-toll-3000"
@@ -605,7 +814,7 @@
       "lastCovered": "2026-07-04T22:08:24.186Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-04-biofilm-shear-engineered-water-systems"
@@ -621,7 +830,7 @@
       "lastCovered": "2026-07-04T22:08:24.186Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-04-white-hat-70-billion-crypto-flaw"
@@ -637,7 +846,7 @@
       "lastCovered": "2026-07-04T22:08:24.186Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-04-interpretable-deep-learning-type1-diabetes"
@@ -653,7 +862,7 @@
       "lastCovered": "2026-07-04T22:08:24.186Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-04-tokenization-personalized-portfolios-defi"
@@ -669,7 +878,7 @@
       "lastCovered": "2026-07-04T17:06:20.089Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-04-turkey-s-erdogan-says-israel-must-not-scupper-us-iran-deal"
@@ -694,7 +903,7 @@
       "lastCovered": "2026-07-04T17:06:20.089Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-04-putin-hails-glorious-chapters-in-us-russia-ties-on-independe"
@@ -719,7 +928,7 @@
       "lastCovered": "2026-07-04T17:06:20.089Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-04-trump-praises-army-rails-against-communism-on-eve-of-us-250t"
@@ -744,7 +953,7 @@
       "lastCovered": "2026-07-04T17:06:20.089Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-04-e20-opponents-to-begin-sit-in-at-jantar-mantar-on-sunday-aga"
@@ -769,7 +978,7 @@
       "lastCovered": "2026-07-04T17:06:20.089Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-04-uk-s-bold-new-crypto-rules-promise-to-unlock-global-trading"
@@ -785,7 +994,7 @@
       "lastCovered": "2026-07-04T17:06:20.089Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-04-digital-pizzas-corporations-ridicule-playstation-over-ending"
@@ -801,7 +1010,7 @@
       "lastCovered": "2026-07-04T17:06:20.089Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-04-on-the-euclidean-random-matrix-model-of-vibrations-in-glass"
@@ -817,7 +1026,7 @@
       "lastCovered": "2026-07-04T17:06:20.089Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-04-bc-and-alberta-fall-behind-on-fracking-safety-distances-for"
@@ -833,7 +1042,7 @@
       "lastCovered": "2026-07-04T17:06:20.089Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-02-inside-the-energy-transition-s-new-scientific-advice-panel"
@@ -849,7 +1058,7 @@
       "lastCovered": "2026-07-04T17:06:20.089Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-03-spyware-found-on-phone-of-european-parliament-member-probing"
@@ -865,7 +1074,7 @@
       "lastCovered": "2026-07-04T17:06:20.089Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-04-llm-research-on-public-biosignals-data-is-needed-to-protect"
@@ -881,7 +1090,7 @@
       "lastCovered": "2026-07-04T17:06:20.089Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-04-selective-state-space-u-net-for-linear-complexity-globally-c"
@@ -897,7 +1106,7 @@
       "lastCovered": "2026-07-04T12:07:02.187Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-04-germany-afd-conference-erfurt-protests"
@@ -922,7 +1131,7 @@
       "lastCovered": "2026-07-04T12:07:02.187Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-04-sara-duterte-senate-impeachment-trial-opens"
@@ -945,7 +1154,7 @@
       "lastCovered": "2026-07-04T12:07:02.187Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-04-mali-coordinated-attacks-five-towns-junta-russia"
@@ -970,7 +1179,7 @@
       "lastCovered": "2026-07-04T12:07:02.187Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-04-delhi-riots-umar-khalid-sharjeel-imam-bail-denied"
@@ -993,7 +1202,7 @@
       "lastCovered": "2026-07-04T12:07:02.187Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-04-bitcoin-cycle-diminishing-returns-trillion-dollar-catch"
@@ -1009,7 +1218,7 @@
       "lastCovered": "2026-07-04T12:07:02.187Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-04-europe-lng-imports-20-month-low-demand"
@@ -1025,7 +1234,7 @@
       "lastCovered": "2026-07-04T12:07:02.187Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-04-pakistan-turkey-shehbaz-investment-courtship"
@@ -1041,7 +1250,7 @@
       "lastCovered": "2026-07-04T12:07:02.187Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-04-perseverance-mars-surface-carbon-jezero"
@@ -1057,7 +1266,7 @@
       "lastCovered": "2026-07-04T12:07:02.187Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-04-anosmia-loss-of-smell-research-olfaction"
@@ -1073,7 +1282,7 @@
       "lastCovered": "2026-07-04T12:07:02.187Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-04-homo-floresiensis-flores-island-ecology-fossils"
@@ -1089,7 +1298,7 @@
       "lastCovered": "2026-07-04T12:07:02.187Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-03-costco-anti-amazon-retail-platform-model"
@@ -1105,247 +1314,13 @@
       "lastCovered": "2026-07-04T12:07:02.187Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-04-polyenamine-membranes-lithium-extraction-nanofiltration"
       ],
       "eventUri": null,
       "summary": "Researchers built nanofiltration membranes from click-polymerized polyenamine that selectively extract lithium far more durably than conventional polyamide membranes, which hydrolyze and degrade. Lead with the supply-chain stakes, not the chemistry alone: better lithium-selective membranes cut the cost and water footprint of extracting the metal at the heart of every battery, and whoever controls the extraction tech controls a chokepoint in the energy transition. Highlight the mechanism — how a more hydrolysis-resistant membrane changes the economics of pulling lithium from brine. For the tech reader, a concrete materials advance with direct bearing on who can cheaply mine the resource the electric future runs on.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-designates-23-pakistan-based-operatives-as-terrorists",
-      "label": "India designates 23 Pakistan-based operatives as terrorists under UAPA",
-      "firstSeen": "2026-07-04T08:07:33.711Z",
-      "lastCovered": "2026-07-04T08:07:33.711Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-04-india-designates-23-pakistan-based-operatives-as-terrorists"
-      ],
-      "eventUri": "eng-11802420",
-      "summary": "New Delhi named 23 Pakistan-based Jaish-e-Mohammed and Lashkar-e-Taiba operatives as individual terrorists under the UAPA in one crackdown. Lead with the mechanism, not the list: individual designation lets India freeze assets and prosecute handlers by name without charging the state — a legal escalation in the India-Pakistan proxy conflict that hardens the cross-border infiltration narrative. Feed carried only Indian outlets; note the absence of any Pakistani source on a story that names Pakistani citizens.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Terrorism",
-        "http://en.wikipedia.org/wiki/Unlawful_Activities_(Prevention)_Act",
-        "http://en.wikipedia.org/wiki/Jaish-e-Mohammed",
-        "http://en.wikipedia.org/wiki/Lashkar-e-Taiba",
-        "http://en.wikipedia.org/wiki/Ministry_of_Home_Affairs_(India)",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Espionage",
-        "http://en.wikipedia.org/wiki/Pakistan"
-      ]
-    },
-    {
-      "id": "trump-says-us-iran-talks-delayed-until-after-khamenei-s-fune",
-      "label": "Trump Says US-Iran Talks Delayed Until After Khamenei's Funeral",
-      "firstSeen": "2026-07-04T08:07:33.711Z",
-      "lastCovered": "2026-07-04T08:07:33.711Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-04-trump-says-us-iran-talks-delayed-until-after-khamenei-s-fune"
-      ],
-      "eventUri": "eng-11802428",
-      "summary": "Trump says Washington briefly paused negotiations with Tehran around Khamenei's funeral and claims Iran is eager for a deal. Lead with the leverage question: with a supreme-leader succession under way, who in Tehran actually holds authority to negotiate, and whether a 'deal' framed from Mount Rushmore is diplomacy or a domestic victory lap. Continues the Iran war/succession arc — pair the negotiation claim against Iran's own hardline signaling this cycle (Hormuz warning).",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Ali_Khamenei",
-        "http://en.wikipedia.org/wiki/Supreme_Leader_of_Iran",
-        "http://en.wikipedia.org/wiki/Tehran"
-      ]
-    },
-    {
-      "id": "gaza-1000-days-siege-continuation",
-      "label": "1,000 days of genocide in Gaza; Russian strikes kill 21 in Kyiv; 900 arrested in South African anti-migrant protests",
-      "firstSeen": "2026-07-04T08:07:33.711Z",
-      "lastCovered": "2026-07-04T08:07:33.711Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-02-gaza-1000-days-siege-continuation"
-      ],
-      "eventUri": null,
-      "summary": "Lead with the Gaza milestone: 1,000 days marks a duration, not an event, and continuation of the siege is itself the story. Anchor the day-count against the named toll and the collapse of aid access, then carry the second thread — 900 arrested in South Africa's anti-migrant sweeps — as a parallel accountability story about who bears the cost when states criminalize the displaced. Count Palestinian dead precisely; the number is the lead.",
-      "conceptUris": []
-    },
-    {
-      "id": "haiti-tps-ending-supreme-court-deportation",
-      "label": "What the ending of the U.S.' Temporary Protection Status could mean for Haiti",
-      "firstSeen": "2026-07-04T08:07:33.711Z",
-      "lastCovered": "2026-07-04T08:07:33.711Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-04-haiti-tps-ending-supreme-court-deportation"
-      ],
-      "eventUri": null,
-      "summary": "The US Supreme Court cleared the way to end Temporary Protected Status for hundreds of thousands of Haitians even as Haiti remains gripped by armed violence and humanitarian collapse. Lead with the contradiction: the legal machinery treats Haitian families as 'temporary' precisely when return is most lethal. The mechanism to highlight — how a designation meant to shield people from deportation becomes, once revoked, an instrument that forces them back into a war zone.",
-      "conceptUris": []
-    },
-    {
-      "id": "trump-accounts-children-low-uptake",
-      "label": "Less Than 10 Percent of Eligible Children Have Trump Accounts",
-      "firstSeen": "2026-07-04T08:07:33.711Z",
-      "lastCovered": "2026-07-04T08:07:33.711Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-02-trump-accounts-children-low-uptake"
-      ],
-      "eventUri": "eng-11789842",
-      "summary": "The child investment accounts from last year's tax law open for contributions July 4, but fewer than 10% of eligible children are enrolled despite six million auto-signups. Lead with the uptake gap: a policy sold as universal wealth-building is failing at the enrollment step, and the barriers — paperwork, banking access, awareness — fall hardest on the low-income families it was meant to lift. The mechanism to highlight is who actually captures a subsidy when access is unequal.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/United_States_Department_of_the_Treasury",
-        "http://en.wikipedia.org/wiki/Internal_Revenue_Service",
-        "http://en.wikipedia.org/wiki/Stock_market"
-      ]
-    },
-    {
-      "id": "st-petersburg-drone-attack-baltic-oil-port",
-      "label": "St Petersburg region hit by major Ukrainian drone attack, Russian officials say",
-      "firstSeen": "2026-07-04T08:07:33.711Z",
-      "lastCovered": "2026-07-04T08:07:33.711Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-04-st-petersburg-drone-attack-baltic-oil-port"
-      ],
-      "eventUri": "deu-2146273",
-      "summary": "A large overnight Ukrainian drone strike on the St Petersburg and Leningrad region reportedly hit a Baltic Sea oil-export port, forcing residents indoors. Lead with the target logic, not the light show: Ukraine is systematically reaching Russia's petroleum export infrastructure far from the front, and each strike on a loading terminal is aimed at the revenue funding the war. The mechanism — how far-rear energy logistics have become the real battlefield of the economic war.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Saint_Petersburg",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Port",
-        "http://en.wikipedia.org/wiki/Leningrad_Oblast",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Vysotsk"
-      ]
-    },
-    {
-      "id": "iran-warns-military-moves-strait-of-hormuz",
-      "label": "Iran warns against military moves in Strait of Hormuz",
-      "firstSeen": "2026-07-04T08:07:33.711Z",
-      "lastCovered": "2026-07-04T08:07:33.711Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-04-iran-warns-military-moves-strait-of-hormuz"
-      ],
-      "eventUri": null,
-      "summary": "Iran's deputy foreign minister warned France and Britain that the Strait of Hormuz is 'not a military theatre for extra-regional powers.' Lead with the chokepoint economics: roughly a fifth of the world's oil moves through Hormuz, so Tehran's warning is less about ships than about signaling it can still price global energy through the threat of closure — days after Trump claimed Iran wants a deal. The mechanism to highlight is how a single strait converts military posture into market leverage.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Ministry_for_Europe_and_Foreign_Affairs_(France)",
-        "http://en.wikipedia.org/wiki/United_Kingdom"
-      ]
-    },
-    {
-      "id": "iceman-gut-yeast-ancient-sourdough",
-      "label": "Scientists find yeast in ancient Iceman's guts—and make bread",
-      "firstSeen": "2026-07-04T08:07:33.711Z",
-      "lastCovered": "2026-07-04T08:07:33.711Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-04-iceman-gut-yeast-ancient-sourdough"
-      ],
-      "eventUri": null,
-      "summary": "Researchers recovered viable yeast lineages from the gut of Ötzi the 5,300-year-old Iceman and used them to bake sourdough. Lead with what the survival implies: microbial communities can persist in a frozen human gut across millennia, opening a window into ancient diet and the deep history of the microbes we still live with. The surprising detail is the edible result — a loaf raised by Neolithic yeast — but the real payload is what preserved gut microbiomes reveal about human evolution.",
-      "conceptUris": []
-    },
-    {
-      "id": "record-ocean-temperatures-vietnam-ev-surge",
-      "label": "DeBriefed 3 July 2026: Record ocean temperatures | Vietnam's EV surge",
-      "firstSeen": "2026-07-04T08:07:33.711Z",
-      "lastCovered": "2026-07-04T08:07:33.711Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-03-record-ocean-temperatures-vietnam-ev-surge"
-      ],
-      "eventUri": null,
-      "summary": "Two threads worth pulling: record global ocean surface temperatures this season, and Vietnam's rapid electric-vehicle surge. Lead with the ocean heat as the systemic signal — warmer seas hold less oxygen, drive stronger storms and bleach reefs, so a temperature record is a forecast of compounding damage. Carry Vietnam's EV adoption as the counterweight: a Global South economy electrifying transport faster than most of the West, reframing who leads decarbonization.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-telegram-piracy-15-day-deadline",
-      "label": "Government sends notice to Telegram, sets 15-day deadline over piracy",
-      "firstSeen": "2026-07-04T08:07:33.711Z",
-      "lastCovered": "2026-07-04T08:07:33.711Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-04-india-telegram-piracy-15-day-deadline"
-      ],
-      "eventUri": "eng-11802546",
-      "summary": "India gave Telegram 15 days to report what it has done about widespread film and OTT piracy on the platform. Lead with the governance mechanism: a state using a compliance deadline as leverage over an encrypted, offshore messaging service that has resisted content control worldwide — the same platform tied to exam-paper leaks. The tech reader's stake is the precedent: whether national deadlines can bend a company built to be un-governable, and what that means for platform sovereignty.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Telegram_(messaging_service)",
-        "http://en.wikipedia.org/wiki/Copyright_infringement",
-        "http://en.wikipedia.org/wiki/Over-the-top_media_service",
-        "http://en.wikipedia.org/wiki/Ministry_of_Information_and_Broadcasting_(India)",
-        "http://en.wikipedia.org/wiki/Government_of_India",
-        "http://en.wikipedia.org/wiki/India"
-      ]
-    },
-    {
-      "id": "nigeria-intelligence-led-policing-dpi-failure",
-      "label": "ANALYSIS: What Nigeria's intelligence-led policing experiment reveals about building DPI",
-      "firstSeen": "2026-07-04T08:07:33.711Z",
-      "lastCovered": "2026-07-04T08:07:33.711Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-04-nigeria-intelligence-led-policing-dpi-failure"
-      ],
-      "eventUri": null,
-      "summary": "A decade after Nigeria launched an intelligence-led policing initiative to fight kidnapping, the crisis has only deepened — and Premium Times uses that failure to dissect how government digital public infrastructure falters. Lead with the accountability gap: expensive data systems don't reduce crime when the institutional plumbing (funding, maintenance, inter-agency trust) rots underneath. The mechanism for the tech reader — why DPI projects across the Global South collapse at the operations layer, not the software layer.",
-      "conceptUris": []
-    },
-    {
-      "id": "ml-model-bladder-cancer-lymphovascular-invasion",
-      "label": "AI-powered risk factor analysis and development of a predictive model for lymphovascular invasion in bladder urothelial carcinoma",
-      "firstSeen": "2026-07-04T08:07:33.711Z",
-      "lastCovered": "2026-07-04T08:07:33.711Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-04-ml-model-bladder-cancer-lymphovascular-invasion"
-      ],
-      "eventUri": null,
-      "summary": "Researchers built a machine-learning model that predicts lymphovascular invasion in bladder cancer — a key prognostic marker — from routine clinical data, aiming to replace an invasive post-surgical biopsy. Lead with the substitution: the model turns data hospitals already collect into a risk estimate that today requires cutting into the patient. The tech reader's angle is the trade-off — where a logistic-regression-plus-ML pipeline earns clinical trust, and where a black-box prediction of who needs aggressive treatment must still be validated before it guides a scalpel.",
       "conceptUris": []
     }
   ]
