@@ -1,77 +1,5 @@
 [
   {
-    "timestamp": "2026-06-14T04:34:04.576Z",
-    "candidateCount": 7,
-    "candidates": [
-      {
-        "slug": "2026-06-13-khamenei-funeral-dates-mashhad-burial",
-        "title": "Iran Sets Khamenei Burial Date",
-        "category": "politics",
-        "eventCoverage": 210,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-14-ajk-internet-shutdown-jaac-crackdown",
-        "title": "Pakistan Blacks Out Kashmir Web",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-14-australia-ndis-cuts-disability-scheme",
-        "title": "Australia Fast-Tracks Disability Cuts",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-14-tongaat-hulett-rescue-elite-capture",
-        "title": "Zimbabwe Creditors Target South Africa",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-14-russia-china-payments-de-dollarization",
-        "title": "Russia-China Payments Bypass Sanctions",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-13-us-directive-suspend-fable-mythos-access",
-        "title": "US Suspends Frontier AI Model",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-13-census-bureau-noise-infusion-ban-privacy",
-        "title": "Commerce Bans Census Privacy Technique",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-06-13-khamenei-funeral-dates-mashhad-burial",
-      "title": "Iran Sets Khamenei Burial Date",
-      "category": "politics",
-      "body": "[Iran](country:IR) set Khamenei's burial for July",
-      "eventCoverage": 210,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Iran sets burial date for Supreme Leader Khamenei for July 9",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 24
-    }
-  },
-  {
     "timestamp": "2026-06-14T08:39:32.428Z",
     "candidateCount": 12,
     "candidates": [
@@ -9831,6 +9759,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Putin, Trump discuss Ukraine, Iran in call ahead of NATO summit",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 25
+    }
+  },
+  {
+    "timestamp": "2026-07-05T08:11:58.876Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-07-05-north-korea-kim-nuclear-destroyer-tests",
+        "title": "Kim Tests Destroyer's Missiles",
+        "category": "economy",
+        "eventCoverage": 73,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-05-islamabad-frontrunner-us-iran-talks",
+        "title": "Islamabad To Host Iran Talks",
+        "category": "politics",
+        "eventCoverage": 33,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-05-china-russia-joint-naval-drills-qingdao",
+        "title": "China, Russia Plan Pacific Patrols",
+        "category": "economy",
+        "eventCoverage": 33,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-05-dr-congo-ebola-toll-490",
+        "title": "Ebola Toll Passes 490",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-03-cambodia-grid-last-mile-affordability",
+        "title": "Cambodia's Grid Prices Out Poor",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-05-oyo-kidnapped-students-rescue",
+        "title": "Oyo Captives Enter Eighth Week",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-05-wana-mosque-boy-killed-waziristan",
+        "title": "Boy Killed Inside Mosque",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-05-karachi-yellow-line-brt-graft-bail",
+        "title": "Transit Graft Suspect Seeks Bail",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-05-maricopa-election-control-midterms",
+        "title": "Maricopa Officials Feud Over Ballots",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-05-cameroon-online-visibility-income",
+        "title": "Cameroonians Turn Content Into Income",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-03-half-baked-product-scope-discipline",
+        "title": "Essay Defends Shipping Unfinished",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-03-404-media-behind-the-blog-tech-power",
+        "title": "Court Limits Location Tracking",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-07-05-north-korea-kim-nuclear-destroyer-tests",
+      "title": "Kim Tests Destroyer's Missiles",
+      "category": "economy",
+      "body": "Kim ordered the Kang Kon into service within two",
+      "eventCoverage": 73,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Kim Jong Un oversees cruise missile launch from new naval destroyer",
     "response": {
       "pushed": 1,
       "skipped": 0,
