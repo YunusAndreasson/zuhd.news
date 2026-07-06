@@ -1,27 +1,26 @@
 {
-  "date": "2026-07-05",
+  "date": "2026-07-06",
   "metrics": {
-    "articles": { "value": 45, "detail": "5 cycles, avg 10/cycle (yesterday 57)" },
+    "articles": { "value": 61, "detail": "5 cycles, avg 12/cycle" },
     "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 16, "economy": 13, "science": 12, "tech": 4 },
+    "categories": { "politics": 21, "economy": 16, "science": 11, "tech": 13 },
     "multiSource": { "value": 9, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "ME": 15, "AF": 8, "AM": 8, "AS": 7, "EU": 6, "OC": 1 } },
-    "sciTech": { "ratio": 36, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 16, "target": 20, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 17, "EU": 15, "ME": 13, "AS": 12, "AF": 2, "OC": 2 } },
+    "sciTech": { "ratio": 39, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 11, "target": 20, "met": true },
     "uniqueSources": 39,
     "duplicates": 0,
-    "avgCycleDuration": 629
+    "avgCycleDuration": 745
   },
-  "experiment": "Skipped — all metrics within targets, no active experiments, and no pause gate.",
-  "weakestArea": "Tech sits at 4 articles, only one above the ≥4 floor and down sharply from yesterday's 16. The swing tracks feed composition rather than a selector regression (tech floor is already 3, and sci-tech still cleared its bar at 36% on science strength), but a repeat sub-5 tech day would be the first metric to breach.",
+  "experiment": "Skipped — all goal metrics within targets and no active experiment to evaluate. No pause gate set.",
+  "weakestArea": "Regional depth outside the core blocs: Africa and Oceania each drew only 2 of 61 articles, versus 12-17 apiece for the Americas, Europe, Middle East, and Asia. The 6-region count clears the >=4 target, so this is a distribution skew rather than a target miss — the feed simply surfaced little AF/OC hard news today, and it is not a tunable-parameter problem.",
   "watching": [
-    "Tech volume collapsed 16 → 4 day-over-day; watch whether this is single-day feed thinness or a sustained slump that would eventually pull sci-tech below 25%.",
-    "Middle East holds 15 of 45 articles (33% of output); the region count is fine at 6 but ME concentration is worth monitoring for over-rotation.",
-    "Throughput dipped to 45 from 57 the prior day — within normal weekend feed variation but at the low end of the recent range."
+    "Africa/Oceania coverage thinness (2 each) — watch whether it persists across cycles or is a one-day feed artifact.",
+    "Throughput ran high at 61 articles (12/cycle) versus the recent ~44-47/day norm — confirm this is genuine news volume, not dedup slippage."
   ],
   "coverageGaps": [
-    "Oceania represented by a single article again (OC: 1), a persistent structural thinness in the feed.",
-    "Tech sourcing is narrow today — CoinDesk is the only pure-tech source flagged, so tech breadth leans on crypto/markets coverage."
+    "Sub-Saharan Africa: only Premium Times Nigeria (2) and InSight Crime carried African-adjacent stories; no East/Southern Africa desk representation today.",
+    "Oceania limited to 2 pieces — Pacific/Australia hard news underrepresented relative to available bandwidth."
   ],
-  "context": "No experiment active and no pause gate in .experiments.json. The last two selector-floor experiments targeting multi-source rate both showed the feed's ~9-multi-source-stories-per-cycle supply caps published multi-source rate near 22%, so the selector-floor lever is considered tapped; future sourcing gains should target upstream feed clustering rather than selector floors. All four goal areas (freshness, diversity, multi-source, educational value) are green today, so the correct action is to hold parameters steady and let the current model/prompt lineup keep baselining."
+  "context": "Healthy day across every goal metric: freshness pinned at 0, multi-source at 9 (2.25x target), sci+tech at 39%, and top-source share at 11.5% — all comfortably clear. No experiment is active and no noNewExperimentsUntil gate is set, but with all metrics in range the correct move is to hold rather than introduce a variable. History shows the selector-floor lever for multi-source is tapped out (2026-05-09 revert), so the remaining sourcing headroom lives upstream in feed clustering, not in tunable params."
 }
