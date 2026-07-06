@@ -1,84 +1,5 @@
 [
   {
-    "timestamp": "2026-06-15T04:45:51.758Z",
-    "candidateCount": 8,
-    "candidates": [
-      {
-        "slug": "2026-06-15-kyiv-pechersk-lavra-fire-russian-strike-ukraine",
-        "title": "Russia Strikes Kyiv Monastery",
-        "category": "politics",
-        "eventCoverage": 42,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-15-south-africa-sacr-constitutional-campaign-ngos",
-        "title": "South Africa Hides Civic-Group Clause",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-15-pakistan-pti-rejects-charter-of-economy",
-        "title": "Khan's Party Rejects Economy Charter",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-15-pakistan-monsoon-rains-kp-punjab-deaths",
-        "title": "Pakistan Monsoon Kills 10",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-15-harvestmen-paternal-care-citizen-science",
-        "title": "iNaturalist Traces Harvestmen Fatherhood",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-15-uk-under-16-social-media-restrictions",
-        "title": "Britain Limits Under-16 Social Media",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-15-deep-learning-rice-nutrient-multispectral",
-        "title": "Drones Read Rice Leaf Nutrients",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-15-electrochemical-vector-hydrophone-low-frequency",
-        "title": "Horn Hydrophone Hears 10 Hz",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-06-15-kyiv-pechersk-lavra-fire-russian-strike-ukraine",
-      "title": "Russia Strikes Kyiv Monastery",
-      "category": "politics",
-      "body": "[Russia](country:RU) shelled the Kyiv Pechersk Lavra, killing",
-      "eventCoverage": 42,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Russia missiles strike Kyiv Pechersk Lavra UNESCO monastery, killing 9",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 24
-    }
-  },
-  {
     "timestamp": "2026-06-15T08:49:13.745Z",
     "candidateCount": 10,
     "candidates": [
@@ -9838,6 +9759,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Mumbai shuts expressway, suspends trains after landslides hit Bhor Ghat tracks",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 25
+    }
+  },
+  {
+    "timestamp": "2026-07-06T08:17:50.189Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-07-06-china-sub-launched-ballistic-missile-pacific-test",
+        "title": "China Tests Sub Missile",
+        "category": "economy",
+        "eventCoverage": 137,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-06-novartis-myricx-bio-uk-biotech-acquisition",
+        "title": "Novartis Buys UK Biotech",
+        "category": "economy",
+        "eventCoverage": 25,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-06-colombia-first-latin-america-fgm-ban-embera",
+        "title": "Colombia Bans Genital Mutilation",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-06-tinubu-ex-minister-icpc-certificate-forgery-probe",
+        "title": "Lawyers Press Tinubu On Forgery",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-06-swat-anp-leader-house-attack-ambulance-fired",
+        "title": "Swat Attackers Target Ambulance",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-06-bitcoin-gold-ratio-macro-cycle-brandt",
+        "title": "Trader Weighs Bitcoin Exit",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-06-euclid-most-ancient-quasars-early-black-holes",
+        "title": "Euclid Finds Ancient Quasars",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-06-plastic-mulch-soil-microplastics-overestimated",
+        "title": "Farm Plastic Blame Overstated",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-06-coulomb-explosion-imaging-filming-reaction",
+        "title": "Physicists Film Bond Breaking",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-06-microwave-free-nv-quantum-magnetometry-sensing",
+        "title": "Diamond Sensor Drops Microwaves",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-05-digital-games-ownership-license-not-property",
+        "title": "Sony Ends Game Discs",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-06-pakistan-sc-imaan-mazari-social-media-speech-case",
+        "title": "SC Delays Mazari Appeal",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-07-06-china-sub-launched-ballistic-missile-pacific-test",
+      "title": "China Tests Sub Missile",
+      "category": "economy",
+      "body": "Monday's launch was China's second strategic missile test since",
+      "eventCoverage": 137,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "China tests submarine-launched ballistic missile in Pacific Ocean",
     "response": {
       "pushed": 1,
       "skipped": 0,
