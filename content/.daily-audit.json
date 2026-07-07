@@ -1,26 +1,26 @@
 {
-  "date": "2026-07-06",
+  "date": "2026-07-07",
   "metrics": {
-    "articles": { "value": 61, "detail": "5 cycles, avg 12/cycle" },
+    "articles": { "value": 46, "detail": "5 cycles completed, avg ~9/cycle" },
     "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 21, "economy": 16, "science": 11, "tech": 13 },
-    "multiSource": { "value": 9, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 17, "EU": 15, "ME": 13, "AS": 12, "AF": 2, "OC": 2 } },
+    "categories": { "politics": 16, "economy": 12, "science": 10, "tech": 8 },
+    "multiSource": { "value": 15, "target": 4, "met": true },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 11, "ME": 11, "AS": 11, "EU": 9, "AF": 4, "OC": 0 } },
     "sciTech": { "ratio": 39, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 11, "target": 20, "met": true },
-    "uniqueSources": 39,
+    "topSourceShare": { "source": "Ars Technica", "pct": 11, "target": 20, "met": true },
+    "uniqueSources": 56,
     "duplicates": 0,
-    "avgCycleDuration": 745
+    "avgCycleDuration": 722
   },
-  "experiment": "Skipped — all goal metrics within targets and no active experiment to evaluate. No pause gate set.",
-  "weakestArea": "Regional depth outside the core blocs: Africa and Oceania each drew only 2 of 61 articles, versus 12-17 apiece for the Americas, Europe, Middle East, and Asia. The 6-region count clears the >=4 target, so this is a distribution skew rather than a target miss — the feed simply surfaced little AF/OC hard news today, and it is not a tunable-parameter problem.",
+  "experiment": "Skipped — all goal metrics are within targets and no experiment is active. Nothing to revert, and the healthy signals leave no clear single-variable lever worth spending a slot on.",
+  "weakestArea": "Regional spread is the softest area despite meeting its count target (5 regions >= 4). Oceania had zero coverage today and Africa only 4 articles, versus 11 each for the Americas, Middle East, and Asia. This is a coverage-shape skew, not a tunable-parameter miss: no floor lever targets OC/AF, and forcing it via source-list edits risks throughput on a light-news day.",
   "watching": [
-    "Africa/Oceania coverage thinness (2 each) — watch whether it persists across cycles or is a one-day feed artifact.",
-    "Throughput ran high at 61 articles (12/cycle) versus the recent ~44-47/day norm — confirm this is genuine news volume, not dedup slippage."
+    "Ars Technica is today's top source at 5/46 (11%) — well under the 20% cap, but the highest single-source concentration this cycle-day; watch it does not compound if tech throughput stays high.",
+    "Freshness reported median/p90/max all 0 on a small sample (count 3 today, 6 yesterday) — the lag distribution is excellent, but the low datapoint count means one stale standalone could swing the median."
   ],
   "coverageGaps": [
-    "Sub-Saharan Africa: only Premium Times Nigeria (2) and InSight Crime carried African-adjacent stories; no East/Southern Africa desk representation today.",
-    "Oceania limited to 2 pieces — Pacific/Australia hard news underrepresented relative to available bandwidth."
+    "Oceania (OC): zero articles today and only 2 yesterday — the persistently thinnest region.",
+    "Africa (AF): 4 articles today, materially below the AM/ME/AS band of 11 each."
   ],
-  "context": "Healthy day across every goal metric: freshness pinned at 0, multi-source at 9 (2.25x target), sci+tech at 39%, and top-source share at 11.5% — all comfortably clear. No experiment is active and no noNewExperimentsUntil gate is set, but with all metrics in range the correct move is to hold rather than introduce a variable. History shows the selector-floor lever for multi-source is tapped out (2026-05-09 revert), so the remaining sourcing headroom lives upstream in feed clustering, not in tunable params."
+  "context": "No active experiments and no top-level pause gate. All four goal areas are met: freshness (median 0 <= 1.0); diversity (science 10 >= 5, tech 8 >= 4, 5 regions >= 4, top source 11% < 20%); multi-source (15 >= 4); educational value (39% sci+tech >= 25%). Zero duplicates across 56 unique sources. History shows the selector multi-source floor lever is tapped out (2026-05-09 reverted: feed supplies ~9 multi/cycle, capping published rate near ~22%), so future sourcing gains must come from upstream feed clustering, not floors. The queued numerical-density experiment targets write-prompt.md, which is out of scope for daily parameter tuning."
 }
