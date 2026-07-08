@@ -1,26 +1,27 @@
 {
-  "date": "2026-07-07",
+  "date": "2026-07-08",
   "metrics": {
-    "articles": { "value": 46, "detail": "5 cycles completed, avg ~9/cycle" },
+    "articles": { "value": 49, "detail": "5 cycles, avg 9/cycle" },
     "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 16, "economy": 12, "science": 10, "tech": 8 },
-    "multiSource": { "value": 15, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 11, "ME": 11, "AS": 11, "EU": 9, "AF": 4, "OC": 0 } },
-    "sciTech": { "ratio": 39, "target": 25, "met": true },
-    "topSourceShare": { "source": "Ars Technica", "pct": 11, "target": 20, "met": true },
-    "uniqueSources": 56,
+    "categories": { "politics": 16, "economy": 13, "science": 10, "tech": 10 },
+    "multiSource": { "value": 12, "target": 4, "met": true },
+    "regions": { "count": 7, "target": 4, "met": true, "breakdown": { "AM": 14, "ME": 13, "EU": 8, "AS": 6, "AF": 5, "OC": 2, "GL": 1 } },
+    "sciTech": { "ratio": 41, "target": 25, "met": true },
+    "topSourceShare": { "source": "Nature", "pct": 10, "target": 20, "met": true },
+    "uniqueSources": 45,
     "duplicates": 0,
-    "avgCycleDuration": 722
+    "avgCycleDuration": 778
   },
-  "experiment": "Skipped — all goal metrics are within targets and no experiment is active. Nothing to revert, and the healthy signals leave no clear single-variable lever worth spending a slot on.",
-  "weakestArea": "Regional spread is the softest area despite meeting its count target (5 regions >= 4). Oceania had zero coverage today and Africa only 4 articles, versus 11 each for the Americas, Middle East, and Asia. This is a coverage-shape skew, not a tunable-parameter miss: no floor lever targets OC/AF, and forcing it via source-list edits risks throughput on a light-news day.",
+  "experiment": "Skipped — all goal metrics are within targets, no active experiment to evaluate, and no pause gate is set.",
+  "weakestArea": "No metric is below target. The softest qualitative point is regional balance: while region count (7) clears the target, the Americas (14) and Middle East (13) account for 27 of 49 articles, and Oceania (2) plus the lone global tag (1) are thin. This is distribution skew within a passing metric, not a floor breach — and no tunable floor targets OC.",
   "watching": [
-    "Ars Technica is today's top source at 5/46 (11%) — well under the 20% cap, but the highest single-source concentration this cycle-day; watch it does not compound if tech throughput stays high.",
-    "Freshness reported median/p90/max all 0 on a small sample (count 3 today, 6 yesterday) — the lag distribution is excellent, but the low datapoint count means one stale standalone could swing the median."
+    "Throughput settled at 49/day (avg 9/cycle) vs 53 yesterday — normal light-news variance, comfortably above the 8/cycle guardrail.",
+    "Freshness pinned at 0 median for a second consecutive day (count 5 today); the standalone-cap-22 lever appears to be holding the oldest tail out cleanly.",
+    "Multi-source count (12) stays strong and stable (15 yesterday), far above the 4/day floor without any active selector-floor experiment."
   ],
   "coverageGaps": [
-    "Oceania (OC): zero articles today and only 2 yesterday — the persistently thinnest region.",
-    "Africa (AF): 4 articles today, materially below the AM/ME/AS band of 11 each."
+    "Oceania coverage is thin (2 today, 2 yesterday) — the persistently softest region, worth watching on AM/ME-heavy days.",
+    "Science outlet breadth is narrow (Nature 5 of 10 science pieces); category depth is fine but sourced from few outlets."
   ],
-  "context": "No active experiments and no top-level pause gate. All four goal areas are met: freshness (median 0 <= 1.0); diversity (science 10 >= 5, tech 8 >= 4, 5 regions >= 4, top source 11% < 20%); multi-source (15 >= 4); educational value (39% sci+tech >= 25%). Zero duplicates across 56 unique sources. History shows the selector multi-source floor lever is tapped out (2026-05-09 reverted: feed supplies ~9 multi/cycle, capping published rate near ~22%), so future sourcing gains must come from upstream feed clustering, not floors. The queued numerical-density experiment targets write-prompt.md, which is out of scope for daily parameter tuning."
+  "context": "No active experiments and no top-level pause gate. All four goal areas are met: freshness (median 0 <= 1.0); diversity (science 10 >= 5, tech 10 >= 4, 7 regions >= 4, top source 10% < 20%); multi-source (12 >= 4); educational value (41% sci+tech >= 25%). Zero duplicates across 45 unique sources. History (2026-05-09 revert) shows the selector multi-source floor lever is tapped out — feed supplies ~9 multi/cycle, capping published rate near ~22% — so future sourcing gains must come from upstream feed clustering, not floors. The queued numerical-density experiment targets write-prompt.md, out of scope for daily parameter tuning."
 }
