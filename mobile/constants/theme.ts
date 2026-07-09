@@ -683,7 +683,11 @@ export type TextTone =
   | 'dome'
   | 'favorable'
   | 'unfavorable'
-  | 'neutral';
+  | 'neutral'
+  /** Text sitting on an inverted (colors.text-filled) surface — resolves to
+   *  `colors.bg`. Used by high-visibility chrome like the onboarding hint
+   *  pill; still monochrome, so "color carries meaning" holds. */
+  | 'inverse';
 
 export function toneColor(tone: TextTone, colors: ColorPalette): string | undefined {
   switch (tone) {
@@ -703,6 +707,8 @@ export function toneColor(tone: TextTone, colors: ColorPalette): string | undefi
       return colors.toneUnfavorableText;
     case 'neutral':
       return colors.toneNeutralText;
+    case 'inverse':
+      return colors.bg;
   }
 }
 

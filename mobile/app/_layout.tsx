@@ -3,7 +3,6 @@ import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client
 import { useFonts } from 'expo-font';
 import * as Notifications from 'expo-notifications';
 import { Slot } from 'expo-router';
-import * as SecureStore from 'expo-secure-store';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { Suspense, useEffect } from 'react';
@@ -14,18 +13,12 @@ import { ErrorBoundary } from '../components/ErrorBoundary';
 import { DARK_COLORS } from '../constants/theme';
 import { ThemeProvider, useTheme } from '../hooks/useTheme';
 import { registerBackgroundTask } from '../lib/background-fetch';
-import {
-  clearLegacyScheduledNotifications,
-  enableNotifications,
-  registerPushToken,
-  setupNotificationChannels,
-} from '../lib/notifications';
+import { clearLegacyScheduledNotifications, setupNotificationChannels } from '../lib/notifications';
 import {
   setBriefing as setPendingBriefing,
   set as setPendingSlug,
 } from '../lib/pending-notification';
 import { PERSIST_MAX_AGE_MS, persister, queryClient } from '../lib/query-client';
-import { getPreferences, savePreferences } from '../lib/storage';
 
 configureReanimatedLogger({ level: ReanimatedLogLevel.warn, strict: false });
 
@@ -130,32 +123,15 @@ export default function RootLayout() {
       SplashScreen.hideAsync().catch(() => {});
     }, SPLASH_FALLBACK_MS);
 
-    // Prompt notification permission on first launch so reviewers see native dialog
-    const ASKED_KEY = 'zuhd_notif_asked';
-    let promptTimer: ReturnType<typeof setTimeout> | null = null;
-    let cancelled = false;
-    (async () => {
-      try {
-        const asked = await SecureStore.getItemAsync(ASKED_KEY);
-        if (asked || cancelled) return;
-        await SecureStore.setItemAsync(ASKED_KEY, '1');
-        // Small delay so the app is visible before the dialog appears
-        await new Promise<void>((resolve) => {
-          promptTimer = setTimeout(resolve, 1500);
-        });
-        if (cancelled) return;
-        const granted = await enableNotifications();
-        if (granted) {
-          registerPushToken();
-          const prefs = await getPreferences();
-          await savePreferences({ ...prefs, notifications: true });
-        }
-      } catch {}
-    })();
+    // Notification permission is no longer requested here. The onboarding
+    // flow owns the ask: the one-time primer sheet (see lib/onboarding-store.ts
+    // and NotificationPrimerSheet) fires the OS dialog only after the user
+    // opts in. The legacy `zuhd_notif_asked` SecureStore key this block used
+    // to write is still read at onboarding-store seed (so devices that
+    // answered the old cold prompt are never re-asked) and re-written when
+    // the primer spends the dialog (rollback insurance).
 
     return () => {
-      cancelled = true;
-      if (promptTimer) clearTimeout(promptTimer);
       clearTimeout(splashFallback);
       sub.remove();
     };

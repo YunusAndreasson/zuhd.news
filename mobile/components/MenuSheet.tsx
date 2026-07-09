@@ -32,6 +32,7 @@ import { useSheetNavigation } from '../hooks/useSheetNavigation';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { type PreferencesApi, usePreferences, useTheme } from '../hooks/useTheme';
 import { hapticTick } from '../lib/haptics';
+import { resetOnboarding } from '../lib/onboarding-store';
 import { Icon, Pressable, Text } from './primitives';
 import { SheetAboutPage } from './SheetAboutPage';
 import { SheetBookmarksPage } from './SheetBookmarksPage';
@@ -577,6 +578,23 @@ export const MenuSheet = memo(function MenuSheet({
               </Animated.View>
             );
           })}
+          <Animated.View
+            entering={
+              reduceMotion
+                ? undefined
+                : FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(SETTINGS.length))
+            }
+          >
+            <NavRow
+              label="show tips again"
+              hint="Replays the one-time reading hints"
+              onPress={() => {
+                resetOnboarding();
+                onToast?.('Tips will reappear as you read');
+                sheetRef.current?.dismiss();
+              }}
+            />
+          </Animated.View>
           {APP_VERSION ? (
             <Text variant="caption" style={styles.versionFooter}>
               {APP_VERSION}

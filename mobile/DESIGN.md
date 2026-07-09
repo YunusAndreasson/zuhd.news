@@ -27,7 +27,7 @@ All design tokens live in one file. Components consume via `useTheme()`.
 | Animation         | `ANIMATION`, `EASING`                           | Durations, spring configs, Reanimated easings |
 | Opacity           | `OPACITY`                                       | Named tiers — never inline decimals           |
 | Hit slop          | `HIT_SLOP`                                      | Standard expanded tap target                  |
-| Tones             | `TextTone` + `toneColor(tone, colors)`          | Semantic color override (`default`, `secondary`, `accent`, `emphasis`, `dome`, `favorable`, `unfavorable`, `neutral`) |
+| Tones             | `TextTone` + `toneColor(tone, colors)`          | Semantic color override (`default`, `secondary`, `accent`, `emphasis`, `dome`, `favorable`, `unfavorable`, `neutral`, `inverse` — text on a `colors.text`-filled surface) |
 | Title scale       | `titleFontScale(length)`                        | Encapsulates "shrink long titles"             |
 
 ### Rules
@@ -110,6 +110,12 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 ### Screens
 - Root `app/index.tsx` is the only route. Overlays use sheets, not pushed routes.
 - For new screens, wrap in `<Screen edges={...} padded>` to get bg + safe-area + padding for free.
+
+### Onboarding (contextual hint pills + notification primer)
+- **No tutorial mode, no synthetic content.** Never inject fake/self-referential content (welcome articles, sample data) into the feed — teaching happens on REAL articles the reader is already looking at. This was tried and rejected.
+- **Hint pills** (`components/HintOverlay.tsx`): one small-caps `labelSm` line on an INVERTED pill (`colors.text` fill + `tone="inverse"` text — monochrome flipped for maximum visibility; the quiet `pillBg` recipe was tried and got overlooked), bottom-centered, ONE at a time, ever. Triggered one per article read (`hooks/useOnboardingHints.ts`: swipe after ~8s on the first article, sources on the 2nd, bookmark on the 3rd, globe on the 4th — sparser gates were tried and read as "no tips at all"), retired forever by performing the action or tapping the pill, expired after 3 ignored sessions. State in `lib/onboarding-store.ts` (bookmark-store pattern). No icon, no dome gold — a hint is chrome whispering, not the accent speaking. Don't add new always-on chrome for teaching; extend this system.
+- **Notification primer** (`components/NotificationPrimerSheet.tsx`): the OS permission dialog is never fired cold. The one-time primer sheet (presented at the first "caught up" moment, session 2+) is the only ask path; the MenuSheet toggle is the durable control. Any new permission ask must follow this soft-primer shape.
+- **Replay**: settings has a "show tips again" row → `resetOnboarding()` (re-arms hints + reading depth; never re-arms the primer).
 
 ## Anti-patterns (don't)
 

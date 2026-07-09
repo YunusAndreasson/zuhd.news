@@ -1,4 +1,4 @@
-import { parseInline, smartTypography } from '../lib/markdown';
+import { COUNTRY_URL_SCHEME, parseInline, smartTypography } from '../lib/markdown';
 
 describe('smartTypography', () => {
   it('converts straight double quotes to curly quotes', () => {
@@ -152,5 +152,13 @@ describe('parseInline', () => {
     const result = parseInline('He said, "hello"');
     expect(result[0]!.text).toContain('\u201c');
     expect(result[0]!.text).toContain('\u201d');
+  });
+
+  it('parses country-scheme links as link segments with the url intact', () => {
+    // Country links ride the ordinary link syntax; the scheme is intercepted
+    // downstream in ArticlePage's openLink wrapper.
+    const country = parseInline('tap [Japan](country:JP) now');
+    expect(country[1]).toEqual({ type: 'link', text: 'Japan', url: 'country:JP' });
+    expect(country[1]!.url!.startsWith(COUNTRY_URL_SCHEME)).toBe(true);
   });
 });
