@@ -2,13 +2,246 @@
   "version": 1,
   "stories": [
     {
+      "id": "dprk-premier-china-visit-treaty-anniversary",
+      "label": "DPRK's premier of the cabinet to visit China",
+      "firstSeen": "2026-07-10T17:10:22.437Z",
+      "lastCovered": "2026-07-10T17:10:22.437Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-09-dprk-premier-china-visit-treaty-anniversary"
+      ],
+      "eventUri": "eng-11816320",
+      "summary": "Xi Jinping received North Korea's cabinet premier Pak Thae-song in Beijing ahead of the anniversary of their mutual-defense treaty. Lead with the timing, not the protocol: the highest-profile DPRK-China exchange in months signals Pyongyang re-anchoring to Beijing as Washington's Asia-Pacific alliance architecture hardens. Who holds power: the two governments consolidating a bloc; what to highlight for the reader is the treaty anniversary as the real subtext of a routine-looking visit.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/North_Korea",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Korean_Central_News_Agency",
+        "http://en.wikipedia.org/wiki/Kim_Jong-un",
+        "http://en.wikipedia.org/wiki/Beijing",
+        "http://en.wikipedia.org/wiki/Pyongyang",
+        "http://en.wikipedia.org/wiki/Workers'_Party_of_Korea",
+        "http://en.wikipedia.org/wiki/Premier_of_the_People's_Republic_of_China"
+      ]
+    },
+    {
+      "id": "unclaimed-airstrikes-iran-post-khamenei",
+      "label": "Who launched the latest airstrikes against Iran? Right now it's a mystery",
+      "firstSeen": "2026-07-10T17:10:22.437Z",
+      "lastCovered": "2026-07-10T17:10:22.437Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-unclaimed-airstrikes-iran-post-khamenei"
+      ],
+      "eventUri": "eng-11820314",
+      "summary": "No one has claimed the airstrikes that hit Iran on Thursday — after the US said its own attacks were finished and as Iran buried Khamenei. Lead with the vacuum of accountability: strikes on a nuclear-power state with no claimant is itself the story, opening the possibility of a third actor operating in a post-succession Iran. Advances the Iran war arc; highlight for the reader that ambiguity over who is bombing Tehran is a dangerous new phase, not a lull. Note: feed carried only a US wire (AP via PBS); no regional outlet covered the unclaimed strikes.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Airstrike",
+        "http://en.wikipedia.org/wiki/United_Arab_Emirates",
+        "http://en.wikipedia.org/wiki/Arab_states_of_the_Persian_Gulf",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/Islam",
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Supreme_Leader_of_Iran"
+      ]
+    },
+    {
+      "id": "cjng-el-mencho-successor-us-naming",
+      "label": "US Names El Mencho's Successor—CJNG May Have Other Plans",
+      "firstSeen": "2026-07-10T17:10:22.437Z",
+      "lastCovered": "2026-07-10T17:10:22.437Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-cjng-el-mencho-successor-us-naming"
+      ],
+      "eventUri": null,
+      "summary": "Washington has declared Juan Carlos Valencia González, 'El 03,' the next boss of Mexico's Jalisco cartel (CJNG) — but on the ground the succession is far messier than the US wanted list implies. Lead with the gap between the DEA's org-chart and cartel reality: naming a single heir to a decentralized criminal network is a US framing that can reshape bounties, extraditions and violence without matching how power actually moves inside CJNG. Latin America as an actor with its own logic, not a backdrop for US drug policy.",
+      "conceptUris": []
+    },
+    {
+      "id": "nigeria-court-police-killing-damages-calabar",
+      "label": "Court awards N100m against police over 22-year-old boy murder",
+      "firstSeen": "2026-07-10T17:10:22.437Z",
+      "lastCovered": "2026-07-10T17:10:22.437Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-nigeria-court-police-killing-damages-calabar"
+      ],
+      "eventUri": "eng-11819623",
+      "summary": "A Federal High Court in Calabar ordered the Nigeria Police Force to pay N100m over the torture and shooting of 22-year-old Onyekachi Mba by security personnel at the Cross River Government House. Lead with the accountability chain: a named victim, a named institution, and a court putting a price on a police killing in a country where such deaths rarely reach judgment. Highlight for the reader that a damages ruling is a rare instance of Nigerian courts holding state force to account — the precedent, not the naira figure, is the story.",
+      "conceptUris": []
+    },
+    {
+      "id": "us-cbdc-ban-housing-law-stablecoins",
+      "label": "U.S. government digital dollar set to be banned tonight under housing law's CBDC limit",
+      "firstSeen": "2026-07-10T17:10:22.437Z",
+      "lastCovered": "2026-07-10T17:10:22.437Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-us-cbdc-ban-housing-law-stablecoins"
+      ],
+      "eventUri": "eng-11811621",
+      "summary": "A CBDC prohibition tucked into a housing law takes effect tonight, barring the Federal Reserve from ever issuing a retail digital dollar. Lead with the mechanism and the beneficiary: legislation forecloses a public digital currency the Fed wasn't even building, clearing the field for private stablecoins to become the de facto digital dollar. Highlight for the reader the structural choice being locked in — the US is choosing privately issued dollar-substitutes over a state one, ceding monetary rails to firms like Circle and Tether. Reader-aligned CoinDesk policy desk.",
+      "conceptUris": []
+    },
+    {
+      "id": "frame-dragging-satellite-laser-einstein-test",
+      "label": "An orbiting disco ball gave Einstein's theory its most precise test yet",
+      "firstSeen": "2026-07-10T17:10:22.437Z",
+      "lastCovered": "2026-07-10T17:10:22.437Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-frame-dragging-satellite-laser-einstein-test"
+      ],
+      "eventUri": null,
+      "summary": "Laser-ranging off a mirror-studded satellite has delivered the most precise confirmation yet of frame dragging — Einstein's prediction that a spinning Earth drags spacetime around with it. Lead with the method: bouncing lasers off an orbiting 'disco ball' to measure a swirl in spacetime first modeled in 1918 is elegant experimental physics the technically literate reader will savor. Highlight what precision at this level buys — tighter constraints on any deviation from general relativity, the framework underpinning GPS and cosmology.",
+      "conceptUris": []
+    },
+    {
+      "id": "simple-fluids-can-fracture-physics",
+      "label": "We Know Simple Fluids Can Flow. Turns Out, Some Can Fracture.",
+      "firstSeen": "2026-07-10T17:10:22.437Z",
+      "lastCovered": "2026-07-10T17:10:22.437Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-simple-fluids-can-fracture-physics"
+      ],
+      "eventUri": null,
+      "summary": "Physicists have observed a crack propagate through a simple, non-elastic fluid — behavior everyone assumed required elasticity. Lead with the overturned assumption: if a plain fluid can fracture like a solid, the textbook line between how liquids flow and how solids break is wrong, and the models used across materials science and geophysics need revisiting. Highlight for the reader that the surprise is conceptual, not incremental — a phenomenon thought impossible turning out to be real.",
+      "conceptUris": []
+    },
+    {
+      "id": "china-seniors-generative-ai-companionship",
+      "label": "Older adults know AI is slop. They just like it",
+      "firstSeen": "2026-07-10T17:10:22.437Z",
+      "lastCovered": "2026-07-10T17:10:22.437Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-china-seniors-generative-ai-companionship"
+      ],
+      "eventUri": null,
+      "summary": "In China, AI-generated singers, virtual children and even synthetic lovers are becoming a source of comfort for seniors who know full well the content is machine-made. Lead with the paradox, not the novelty: users who recognize 'slop' and consume it anyway upend the assumption that AI's social harm hinges on deception. Highlight for the reader the structural read — where an aging, digitally-served population meets generative AI, companionship becomes a product, and China is the first mass market for it. Unique Rest of World ground reporting.",
+      "conceptUris": []
+    },
+    {
+      "id": "china-open-ai-models-soft-power",
+      "label": "China's Open AI Models Are Advancing Its Global Soft Power",
+      "firstSeen": "2026-07-10T17:10:22.437Z",
+      "lastCovered": "2026-07-10T17:10:22.437Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-china-open-ai-models-soft-power"
+      ],
+      "eventUri": null,
+      "summary": "China's strategy of releasing open-weight AI models is winning it developers, dependencies and influence across the Global South while US labs keep their frontier models closed. Lead with the mechanism of soft power: giving away capable models seeds an ecosystem that runs on Chinese architectures and standards, converting open-source generosity into long-term strategic leverage. Highlight for the reader that the open-vs-closed divide is now geopolitical — who controls the default AI substrate of developing economies is the real contest.",
+      "conceptUris": []
+    },
+    {
+      "id": "physiological-arousal-as-a-predominant-source-of-individual",
+      "label": "Physiological arousal as a predominant source of individual differences in functional brain networks",
+      "firstSeen": "2026-07-10T17:10:22.437Z",
+      "lastCovered": "2026-07-10T17:10:22.437Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-physiological-arousal-as-a-predominant-source-of-individual"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for tech floor] Characterizing individual variation in brain network organization is essential for developing fMRI-based biomarkers in precision psychiatry. We show that arousal, assessed by systemic low-frequency oscillation (sLFO) amplitude in the fMRI signal, is strongly associated with interindividual variabili",
+      "conceptUris": []
+    },
+    {
+      "id": "apollo-easyjet-takeover-private-equity",
+      "label": "Apollo trumps Castlelake to reach £5.7bn deal to buy easyJet",
+      "firstSeen": "2026-07-10T08:10:08.163Z",
+      "lastCovered": "2026-07-10T17:10:22.437Z",
+      "coverageCount": 2,
+      "category": "economy",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-07-10-apollo-easyjet-takeover-private-equity",
+        "2026-07-10-easyjet-apollo-takeover-london-market"
+      ],
+      "eventUri": "eng-11819586",
+      "summary": "US private-equity firm Apollo outbid rival Castlelake — which easyJet had agreed to just days earlier — in a £5.7bn takeover of the no-frills carrier. Lead with the bidding war: two American PE firms fighting over a European budget airline in the same week signals how private capital now prices essential mobility infrastructure. Highlight what changes for passengers and workers when a low-cost airline goes private.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/EasyJet",
+        "http://en.wikipedia.org/wiki/Pound_sterling",
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/Airline",
+        "http://en.wikipedia.org/wiki/Low-cost_carrier",
+        "http://en.wikipedia.org/wiki/Shareholder",
+        "http://en.wikipedia.org/wiki/Apollo",
+        "http://en.wikipedia.org/wiki/Apollo_program",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Euro"
+      ]
+    },
+    {
+      "id": "xavier-niel-vodafone-uae-stake",
+      "label": "Xavier Niel becomes largest Vodafone shareholder",
+      "firstSeen": "2026-07-10T08:10:08.163Z",
+      "lastCovered": "2026-07-10T17:10:22.437Z",
+      "coverageCount": 2,
+      "category": "economy",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-07-10-xavier-niel-vodafone-uae-stake",
+        "2026-07-10-vodafone-eand-stake-xavier-niel"
+      ],
+      "eventUri": "eng-11819577",
+      "summary": "French billionaire Xavier Niel bought a 16.21% stake in Vodafone for $5.95bn — the entire holding the UAE's e& just sold at a 15% premium. Lead with the swap: an Emirati state telecom exits its European bet as a French disruptor takes the FTSE 100 group's top-shareholder seat. The mechanism to highlight is how Gulf sovereign capital and European telecom consolidation are being repriced in real time.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Vodafone",
+        "http://en.wikipedia.org/wiki/Xavier_Niel",
+        "http://en.wikipedia.org/wiki/Telecommunications",
+        "http://en.wikipedia.org/wiki/United_Arab_Emirates",
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/France",
+        "http://en.wikipedia.org/wiki/Penny",
+        "http://en.wikipedia.org/wiki/Shareholder",
+        "http://en.wikipedia.org/wiki/Telecommunication"
+      ]
+    },
+    {
       "id": "eu-meta-addictive-design-order-minors",
       "label": "EU: Instagram and Facebook Pose Too Great a Risk of Addiction",
       "firstSeen": "2026-07-10T12:10:53.376Z",
       "lastCovered": "2026-07-10T12:10:53.376Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-10-eu-meta-addictive-design-order-minors"
@@ -31,7 +264,7 @@
       "lastCovered": "2026-07-10T12:10:53.376Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-10-hasina-december-surrender-return-bangladesh"
@@ -54,7 +287,7 @@
       "lastCovered": "2026-07-10T12:10:53.376Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-10-un-women-funding-collapse-us-aid-cuts"
@@ -77,7 +310,7 @@
       "lastCovered": "2026-07-10T12:10:53.376Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-10-circle-usdc-trust-bank-charter-occ"
@@ -97,7 +330,7 @@
       "lastCovered": "2026-07-10T12:10:53.376Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-10-gaza-tech-shortage-connectivity-workarounds"
@@ -113,7 +346,7 @@
       "lastCovered": "2026-07-10T12:10:53.376Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-10-china-long-march-10b-booster-sea-net"
@@ -136,7 +369,7 @@
       "lastCovered": "2026-07-10T12:10:53.376Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-10-fda-electric-shock-device-ban-delay"
@@ -155,7 +388,7 @@
       "lastCovered": "2026-07-10T12:10:53.376Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-10-ecu-tuning-car-firmware-aftermarket"
@@ -175,7 +408,7 @@
       "lastCovered": "2026-07-10T12:10:53.376Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-10-vision-transformer-pediatric-intussusception-ultrasound"
@@ -191,7 +424,7 @@
       "lastCovered": "2026-07-10T12:10:53.376Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-10-pregmednet-maternal-medication-neonatal-risk"
@@ -207,7 +440,7 @@
       "lastCovered": "2026-07-10T08:10:08.163Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-10-modi-new-zealand-fta-migration"
@@ -226,63 +459,13 @@
       ]
     },
     {
-      "id": "apollo-easyjet-takeover-private-equity",
-      "label": "Apollo trumps Castlelake to reach £5.7bn deal to buy easyJet",
-      "firstSeen": "2026-07-10T08:10:08.163Z",
-      "lastCovered": "2026-07-10T08:10:08.163Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-10-apollo-easyjet-takeover-private-equity"
-      ],
-      "eventUri": "eng-11819586",
-      "summary": "US private-equity firm Apollo outbid rival Castlelake — which easyJet had agreed to just days earlier — in a £5.7bn takeover of the no-frills carrier. Lead with the bidding war: two American PE firms fighting over a European budget airline in the same week signals how private capital now prices essential mobility infrastructure. Highlight what changes for passengers and workers when a low-cost airline goes private.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/EasyJet",
-        "http://en.wikipedia.org/wiki/Pound_sterling",
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/Airline",
-        "http://en.wikipedia.org/wiki/Low-cost_carrier",
-        "http://en.wikipedia.org/wiki/Shareholder",
-        "http://en.wikipedia.org/wiki/Apollo",
-        "http://en.wikipedia.org/wiki/Apollo_program"
-      ]
-    },
-    {
-      "id": "xavier-niel-vodafone-uae-stake",
-      "label": "Xavier Niel becomes largest Vodafone shareholder",
-      "firstSeen": "2026-07-10T08:10:08.163Z",
-      "lastCovered": "2026-07-10T08:10:08.163Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-10-xavier-niel-vodafone-uae-stake"
-      ],
-      "eventUri": "eng-11819577",
-      "summary": "French billionaire Xavier Niel bought a 16.21% stake in Vodafone for $5.95bn — the entire holding the UAE's e& just sold at a 15% premium. Lead with the swap: an Emirati state telecom exits its European bet as a French disruptor takes the FTSE 100 group's top-shareholder seat. The mechanism to highlight is how Gulf sovereign capital and European telecom consolidation are being repriced in real time.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Vodafone",
-        "http://en.wikipedia.org/wiki/Xavier_Niel",
-        "http://en.wikipedia.org/wiki/Telecommunications",
-        "http://en.wikipedia.org/wiki/United_Arab_Emirates",
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/France",
-        "http://en.wikipedia.org/wiki/Penny",
-        "http://en.wikipedia.org/wiki/Shareholder"
-      ]
-    },
-    {
       "id": "yen-japan-pension-repatriation-rally",
       "label": "Yen Traders Question How Japan Pension Money Can Sustain Rally",
       "firstSeen": "2026-07-10T08:10:08.163Z",
       "lastCovered": "2026-07-10T08:10:08.163Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-10-yen-japan-pension-repatriation-rally"
@@ -307,7 +490,7 @@
       "lastCovered": "2026-07-10T08:10:08.163Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-10-india-ntpc-uranium-nuclear-fuel-security"
@@ -332,7 +515,7 @@
       "lastCovered": "2026-07-10T08:10:08.163Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-10-south-asia-fuel-import-energy-resilience"
@@ -348,7 +531,7 @@
       "lastCovered": "2026-07-10T08:10:08.163Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-10-eu-chat-control-encryption-scanning"
@@ -364,7 +547,7 @@
       "lastCovered": "2026-07-10T08:10:08.163Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-10-china-j15-fujian-carrier-anti-ship-missiles"
@@ -380,7 +563,7 @@
       "lastCovered": "2026-07-10T08:10:08.163Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-10-former-tory-minister-ann-widdecombe-dies-at-78"
@@ -405,7 +588,7 @@
       "lastCovered": "2026-07-10T08:10:08.163Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-10-the-agent-that-infiltrated-pakistan-s-red-hot-chilli-peppers"
@@ -421,7 +604,7 @@
       "lastCovered": "2026-07-10T08:10:08.163Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-10-a-robust-high-content-nam-for-repeatable-and-predictive-deve"
@@ -437,7 +620,7 @@
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-10-trump-fires-election-assistance-commission"
@@ -462,7 +645,7 @@
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-10-khamenei-buried-iran-succession-vacuum"
@@ -478,7 +661,7 @@
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-10-telstra-outage-executive-bonuses-triple-zero"
@@ -494,7 +677,7 @@
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-10-maharashtra-stamp-duty-mumbai-housing-leases"
@@ -510,7 +693,7 @@
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-10-typhoon-bavi-japan-sakishima-islands"
@@ -526,7 +709,7 @@
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-10-tess-microlensing-super-jupiter-gaia23bra-b"
@@ -542,7 +725,7 @@
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-10-sperm-whale-mediterranean-dialects"
@@ -558,7 +741,7 @@
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-09-south-africa-nanotech-biosensors-tb-cancer"
@@ -574,7 +757,7 @@
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-09-bun-rust-rewrite-kelley-zig"
@@ -590,7 +773,7 @@
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-09-trump-defense-stocks-iran-war-disclosure"
@@ -606,7 +789,7 @@
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-10-man-axes-father-to-death-over-snub-in-bahawalpur"
@@ -622,7 +805,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-china-maysak-flooding-liulan-reservoir-breach"
@@ -647,7 +830,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-08-gaza-israeli-strikes-hamas-admin-dissolution"
@@ -663,7 +846,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-south-africa-vigilante-labour-inspectors-migrants"
@@ -679,7 +862,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-08-hormuz-lng-tanker-explosion-risk-qatar"
@@ -695,7 +878,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-bitcoin-etf-private-credit-outflows-liquidity-risk"
@@ -711,7 +894,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-warsh-fed-task-forces-regime-change"
@@ -734,7 +917,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-nhs-germline-testing-brca-direct-mainstreaming"
@@ -750,7 +933,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-drc-ebola-outbreak-outpacing-response-africa-cdc"
@@ -766,7 +949,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-ladakh-apricot-climate-precipitation-harvest"
@@ -782,7 +965,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-openai-gpt-5-6-release-shipping-cadence"
@@ -798,7 +981,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-windows-defender-0day-patch-disk-fill-dos"
@@ -814,7 +997,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-patreon-cloudflare-block-ai-crawlers-creators"
@@ -830,7 +1013,7 @@
       "lastCovered": "2026-07-10T12:10:53.376Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-07-09-sk-hynix-nasdaq-adr-oversubscribed-memory-ai",
@@ -855,7 +1038,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-china-jinjiang-shoe-factory-fire-workers-killed"
@@ -880,7 +1063,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-australia-india-uranium-npt-exception-deal"
@@ -905,7 +1088,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-germany-ground-launched-tomahawk-inf-posture"
@@ -921,7 +1104,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-bahria-town-illegal-funds-transfer-conviction"
@@ -937,7 +1120,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-pepsico-us-consumer-pullback-snacks-soda"
@@ -962,7 +1145,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-pakistan-sui-gas-utilities-ifrs-insolvency"
@@ -978,7 +1161,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-bitcoin-miners-ai-data-centers-contract-value"
@@ -994,7 +1177,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-singapore-coe-car-ownership-record-quota"
@@ -1010,7 +1193,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-fossils-earliest-animal-handedness-spriggina"
@@ -1026,7 +1209,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-sand-tiger-shark-aquarium-trade-endangered"
@@ -1042,7 +1225,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-john-deere-ftc-right-to-repair-settlement"
@@ -1058,7 +1241,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-latvia-lvm-forestry-ransomware-recovery"
@@ -1074,239 +1257,13 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-linkedin-and-x-are-flooded-with-ai-spam-browsing-data-sugges"
       ],
       "eventUri": null,
       "summary": "[Auto-backfill for tech floor] An AI detection company found that amount of AI content that users actually see in their day-to-day browsing is shockingly high.",
-      "conceptUris": []
-    },
-    {
-      "id": "grok-4-5-xai-model-release-capability-safety",
-      "label": "Grok 4.5",
-      "firstSeen": "2026-07-09T08:07:33.313Z",
-      "lastCovered": "2026-07-10T04:06:19.983Z",
-      "coverageCount": 2,
-      "category": "tech",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-07-08-grok-4-5-xai-model-release-capability-safety",
-        "2026-07-08-grok-4-5-release"
-      ],
-      "eventUri": null,
-      "summary": "xAI released Grok 4.5, drawing heavy developer scrutiny on Hacker News. Lead with capability-versus-accountability, not the benchmark scores: the same company facing a class action over 7,000 CSAM images its model generated is shipping a more powerful successor, so the question for the technically literate reader is whether frontier capability gains are outrunning the safety and reporting failures already documented. What actually changed in the model, and what the release signals about the pace at which xAI ships versus the guardrails it maintains.",
-      "conceptUris": []
-    },
-    {
-      "id": "italy-expels-russian-embassy-officials-espionage",
-      "label": "Italy expels two Russian embassy officials for espionage",
-      "firstSeen": "2026-07-09T12:08:07.111Z",
-      "lastCovered": "2026-07-09T12:08:07.111Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-italy-expels-russian-embassy-officials-espionage"
-      ],
-      "eventUri": "rus-2092359",
-      "summary": "Italy expelled two Russian embassy officials days after arresting two former Italian intelligence officers for spying. Lead with the mechanism, not the diplomatic tit-for-tat: the expulsion follows an insider-recruitment case, so the story is how a foreign service turns a target state's own former officials into assets, and how the counter-move (expulsion of the officials' likely handlers) exposes the network. Strong five-country spread (IT, UA, GB, SG, plus Meduza) with sentiment divergence over how much the case matters.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Italy",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Espionage",
-        "http://en.wikipedia.org/wiki/Military_attaché",
-        "http://en.wikipedia.org/wiki/Antonio_Tajani"
-      ]
-    },
-    {
-      "id": "farage-clacton-by-election-confirmed",
-      "label": "Farage's by-election in Clacton officially confirmed",
-      "firstSeen": "2026-07-09T12:08:07.111Z",
-      "lastCovered": "2026-07-09T12:08:07.111Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-farage-clacton-by-election-confirmed"
-      ],
-      "eventUri": "eng-11815861",
-      "summary": "Reform UK leader Nigel Farage has resigned his Clacton seat, formally triggering an August 13 by-election. Lead with the calculated gamble, not the ceremony: a populist party leader vacating a safe seat to re-contest it is a deliberate mobilisation and media play, and the mechanism to teach is how a by-election becomes a referendum on Reform's momentum against Labour and the Tories. High public attention (Clacton and its novelty candidates are among yesterday's most-read Wikipedia pages). Multi-source across BBC, CNN/Yahoo and the Mirror.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Nigel_Farage",
-        "http://en.wikipedia.org/wiki/By-election",
-        "http://en.wikipedia.org/wiki/Clacton-on-Sea",
-        "http://en.wikipedia.org/wiki/Reform_UK",
-        "http://en.wikipedia.org/wiki/Labour_Party_(UK)"
-      ]
-    },
-    {
-      "id": "maharashtra-uniform-civil-code-draft-panel",
-      "label": "Maharashtra sets up 7-member panel, headed by Justice Desai, to prepare UCC draft",
-      "firstSeen": "2026-07-09T12:08:07.111Z",
-      "lastCovered": "2026-07-09T12:08:07.111Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-maharashtra-uniform-civil-code-draft-panel"
-      ],
-      "eventUri": "eng-11816261",
-      "summary": "Maharashtra has formed a seven-member committee under retired Justice Ranjana Desai to draft a Uniform Civil Code, giving it six months. Lead with the stakes for religious-minority personal law, not the process: a UCC replaces community-specific family law (Muslim, Christian, tribal) with a single code, so the mechanism to teach the reader is how India's second-most-populous state advancing a draft turns a national BJP promise into a concrete legal instrument — and who stands to lose autonomy over marriage, inheritance and adoption. Directly relevant to Muslim readers watching where personal law is contested.",
-      "conceptUris": []
-    },
-    {
-      "id": "balochistan-multi-party-moot-enforced-disappearances",
-      "label": "Use of force not a solution for Balochistan's issues, multi-party moot observes",
-      "firstSeen": "2026-07-09T12:08:07.111Z",
-      "lastCovered": "2026-07-09T12:08:07.111Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-balochistan-multi-party-moot-enforced-disappearances"
-      ],
-      "eventUri": "eng-11815966",
-      "summary": "A PTI-organised multi-party conference on Balochistan called for political dialogue, an end to enforced disappearances, and a truth-and-reconciliation commission. Lead with the accountability demand, not the conference: named political actors are publicly indicting the state's use of force and disappearances in a province run largely by security fiat, so the mechanism is how opposition forums build the domestic political record against a militarised counter-insurgency. Who bears the cost — Baloch families of the disappeared. OIC-region reporting from Dawn (PK) that Western wires ignore.",
-      "conceptUris": []
-    },
-    {
-      "id": "cambodia-usaid-demise-one-year-impact",
-      "label": "1 Year On, Cambodia Is Still Feeling the Impact of USAID's Demise",
-      "firstSeen": "2026-07-09T12:08:07.111Z",
-      "lastCovered": "2026-07-09T12:08:07.111Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-cambodia-usaid-demise-one-year-impact"
-      ],
-      "eventUri": null,
-      "summary": "A year after the sudden shutdown of USAID, Cambodia's development sector is still reeling — described as 'like an earthquake.' Lead with the consequence and the vacuum, not the anniversary: when a superpower abruptly withdraws aid infrastructure, the programmes (health, demining, governance) collapse and someone fills the gap — often Beijing. Teach the reader the dependency mechanism and who inherits the leverage a departed donor leaves behind. Global South consequence story, non-Western nation as the subject.",
-      "conceptUris": []
-    },
-    {
-      "id": "south-korea-mongolia-cepa-minerals-diversification",
-      "label": "S. Korea, Mongolia reach agreement in principle on CEPA",
-      "firstSeen": "2026-07-09T12:08:07.111Z",
-      "lastCovered": "2026-07-09T12:08:07.111Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-south-korea-mongolia-cepa-minerals-diversification"
-      ],
-      "eventUri": "eng-11815443",
-      "summary": "Seoul and Ulaanbaatar reached an in-principle Comprehensive Economic Partnership Agreement during a Mongolian state visit. Lead with the resource logic, not the diplomacy: landlocked, mineral-rich Mongolia is diversifying beyond its dependence on China and Russia for market access, and a CEPA with Korea is the mechanism by which a small state trades resource access for a route to capital and technology. Mongolia as an actor with agency playing larger powers off each other — geographic diversity beyond the usual capitals.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Mongolia",
-        "http://en.wikipedia.org/wiki/South_Korea",
-        "http://en.wikipedia.org/wiki/Ukhnaagiin_Khürelsükh",
-        "http://en.wikipedia.org/wiki/Mineral"
-      ]
-    },
-    {
-      "id": "vietnam-lng-gas-projects-unbankable-renewables",
-      "label": "Vietnam's gas projects stall amid investor claims of unbankability and a renewables pivot",
-      "firstSeen": "2026-07-09T12:08:07.111Z",
-      "lastCovered": "2026-07-09T12:08:07.111Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-vietnam-lng-gas-projects-unbankable-renewables"
-      ],
-      "eventUri": null,
-      "summary": "Vietnam bet on 22.5 GW of LNG by 2030, but unbankable contracts and policy gaps have stalled the projects with four years left. Lead with the financing mechanism, not the target: gas plants die when lenders won't underwrite power-purchase terms, and Vietnam's stalled LNG pipeline shows how a developing economy's energy transition is decided in contract clauses over who bears price and demand risk — pushing it, by default, toward renewables. Teach the reader why 'unbankable' is the word that reshapes a national energy map.",
-      "conceptUris": []
-    },
-    {
-      "id": "synthetic-cell-36-genes-minimal-replication",
-      "label": "Breakthrough Synthetic Cell Has Just Reproduced - But Is It Alive?",
-      "firstSeen": "2026-07-09T12:08:07.111Z",
-      "lastCovered": "2026-07-09T12:08:07.111Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-synthetic-cell-36-genes-minimal-replication"
-      ],
-      "eventUri": "eng-11806547",
-      "summary": "A team led by Kate Adamala built 'SpudCell,' a synthetic cell with just 36 genes assembled from non-living components that can copy DNA and replicate. Lead with the minimal-genome threshold, not the 'is it alive' framing alone: reducing a self-replicating cell to 36 genes maps the irreducible core of life and hands synthetic biology a programmable chassis — with the dual-use risk that comes with building life from scratch. Teach the technically literate reader what 'minimal cell' means and why replication from non-living parts is the line the field just crossed.",
-      "conceptUris": []
-    },
-    {
-      "id": "phylo-plex-genomic-outbreak-tracking-low-resource",
-      "label": "New genomic method to track disease outbreaks globally",
-      "firstSeen": "2026-07-09T12:08:07.111Z",
-      "lastCovered": "2026-07-09T12:08:07.111Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-phylo-plex-genomic-outbreak-tracking-low-resource"
-      ],
-      "eventUri": null,
-      "summary": "Wellcome Sanger scientists built Phylo-Plex, a cheap, scalable pathogen-sequencing method designed for labs with limited resources. Lead with the accessibility mechanism, not the tool: outbreak genomics has been gated by expensive equipment concentrated in the global north, and a method that runs in under-resourced labs redistributes who can detect a new variant or track antibiotic resistance where outbreaks actually start. Teach the reader why the bottleneck in pandemic surveillance is cost and capacity, not science — and why closing it changes the map of who sees an outbreak first. Global South science.",
-      "conceptUris": []
-    },
-    {
-      "id": "philippines-remote-nurses-us-hospitals-labor",
-      "label": "Your next nurse may monitor you from the Philippines",
-      "firstSeen": "2026-07-09T12:08:07.111Z",
-      "lastCovered": "2026-07-09T12:08:07.111Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-philippines-remote-nurses-us-hospitals-labor"
-      ],
-      "eventUri": null,
-      "summary": "US hospitals are hiring Filipino nurses for remote monitoring roles to plug staffing gaps and cut costs — while worsening the Philippines' own nursing shortage. Lead with the extraction mechanism, not the telehealth novelty: remote work lets a rich health system draw on a poorer country's trained labour without the nurse ever emigrating, so the same technology that fills a US gap deepens a Philippine one. Who is affected — Filipino patients losing nurses to a screen abroad. Reader-aligned Rest of World reporting on Global South labour and the tech that reroutes it.",
-      "conceptUris": []
-    },
-    {
-      "id": "chatgpt-flyer-pandemic-ai-slop-trust",
-      "label": "We Are Living in a 'ChatGPT Flyer Pandemic'",
-      "firstSeen": "2026-07-09T12:08:07.111Z",
-      "lastCovered": "2026-07-09T12:08:07.111Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-08-chatgpt-flyer-pandemic-ai-slop-trust"
-      ],
-      "eventUri": null,
-      "summary": "AI-generated flyers are flooding community bulletin boards, group chats and local organising — indistinguishable slop that people are starting to reflexively distrust. Lead with the trust erosion, not the aesthetics: when generative tools make it costless to produce plausible-looking event and fundraising flyers, the signal that once told you a real person put in effort collapses, and communities respond by discounting everything. Teach the reader how cheap generation degrades a shared visual-trust commons. Unique 404 Media culture-of-tech reporting no wire will carry.",
-      "conceptUris": []
-    },
-    {
-      "id": "foreigners-helped-kiev-make-drone-for-attempt-on-life-of-sen",
-      "label": "Foreigners helped Kiev make drone for attempt on life of senior Russian officer -- FSB",
-      "firstSeen": "2026-07-09T12:08:07.111Z",
-      "lastCovered": "2026-07-09T12:08:07.111Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-foreigners-helped-kiev-make-drone-for-attempt-on-life-of-sen"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for tech floor] This follows from an audio recording of a telephone conversation between a Russian detained in Krasnodar and his Ukrainian handler\n\nMOSCOW, July 9. /TASS/. The drone armed with explosives, which Ukrainian secret services hoped to use to kill a high-ranking Russian Defense Ministry official, was prod",
       "conceptUris": []
     }
   ]
