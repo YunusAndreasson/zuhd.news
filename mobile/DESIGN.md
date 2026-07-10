@@ -15,7 +15,7 @@ All design tokens live in one file. Components consume via `useTheme()`.
 | Token group       | Export                                          | What it is                                    |
 |-------------------|-------------------------------------------------|-----------------------------------------------|
 | Colors            | `DARK_COLORS`, `LIGHT_COLORS` (via theme hook)  | Semantic keys — never inline a hex. Brand accent is `dome` (gold); `accent` is a soft text tier, not a brand color. |
-| Typography        | `makeTypography` → `sizeBase`, `sizeLg`, etc.   | Responsive scale + leading + `trackingCaps` / `trackingHeading` / `trackingWordmark` |
+| Typography        | `makeTypography` → `sizeBase`, `sizeLg`, etc.   | Responsive scale + leading (`leadingBody` / `leadingHeading` / `leadingTight`) + `trackingCaps` / `trackingHeading` / `trackingWordmark`. `leadingTight` (1.1) is the single tight single-line leading for small-caps labels/captions — use it instead of an ad-hoc `× 1.1`. |
 | Variants          | `makeTextVariants` → 13 roles                   | The `<Text variant>` catalog (see below)      |
 | Variant caps      | `VARIANT_CAP`                                   | Dynamic Type ceiling per variant              |
 | Variant breaking  | `VARIANT_TEXT_PROPS`, `PROSE_BREAK_PROPS`       | Per-role line-breaking + iOS Dynamic Type ramp props, auto-applied by `<Text>`: prose hyphenates (Android) and uses iOS `standard` breaking; display/title use `balanced`/`push-out` widow control. Article sentences in `lib/markdown.tsx` get the body set via `PROSE_BREAK_PROPS`. |
@@ -38,6 +38,8 @@ All design tokens live in one file. Components consume via `useTheme()`.
 - **Never import `@expo/vector-icons` directly**. Go through `<Icon>`.
 - **Never set decorative `fontFamily`** (bold/semibold/italic) in a component for a role that exists as a variant. Font overrides via `font.X` are an escape hatch, documented with a comment when used.
 - `fontVariant: ['oldstyle-nums']` / `['tabular-nums']` as style overrides are allowed — they're orthogonal to typography size/weight and some variants need them situationally.
+
+**One documented exception to all of the above:** `ErrorBoundary` renders *above* `ThemeProvider` (it has to catch errors thrown inside the provider itself), so it genuinely cannot call `useTheme()` or use the `<Text>` / `Pressable` primitives. Its inline dark-mode styles are intentional — don't "fix" them to tokens.
 
 ### Sentiment / severity color
 
@@ -99,7 +101,9 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 
 ### Sheets
 - Use `SheetLayout` (wraps `BottomSheetModal` with theme-styled background) + a `SheetHandle` for the drag indicator. `MenuSheet`, `ContextSheet`, `CountrySheet`, `ChokepointSheet`, `SourcesSheet` are the references.
-- Content wraps in `BottomSheetScrollView` with `sheetStyles.content` padding.
+- Content wraps in `SheetScrollView` (`components/SheetContent.tsx`) — a `BottomSheetScrollView` pre-wired with `sheetStyles.content` + the `bottomInset + SPACING.lg` safe-area tail. Don't re-inline that padding recipe; extra props (`indicatorStyle`, more `contentContainerStyle`) pass through.
+- Event sheets (`ConflictSheet`, `DisasterSheet`) share `SheetHero` / `SheetFlagRow` / `SheetSourceFooter` from `SheetContent.tsx` so the "one family" hero/flags/footer read identically. The severity → focal-tint decision routes through `severityTint` (`lib/severity.ts`) — the "only Red / fatal earns the rose hue" rule lives there, never inline.
+- Staggered row entrances use `staggerEnter(i)` / `makeStaggerEnter()` (drop-in `FadeInDown`) or `staggerFadeIn(i)` (opacity-only, for in-place block rows) from `lib/stagger.ts` — never re-inline `FadeInDown.duration(...).delay(staggerDelay(...))`.
 - Swipe-back and Android hardware back are already wired in `MenuSheet` — copy that pattern for multi-page sheets.
 
 ### Blocks (`components/blocks/`)
@@ -173,4 +177,7 @@ Add it only if it's a distinct editorial/interaction role, not a one-off size tw
 - Primitives — `mobile/components/primitives/`
 - `useTheme` hook — `mobile/hooks/useTheme.tsx`
 - Shared press animation — `mobile/hooks/useSpringPress.ts`
+- Shared sheet content (scroll/hero/flags/footer) — `mobile/components/SheetContent.tsx`
+- Stagger entrances — `mobile/lib/stagger.ts`
+- Severity → tint rule — `mobile/lib/severity.ts`
 - Haptics — `mobile/lib/haptics.ts`

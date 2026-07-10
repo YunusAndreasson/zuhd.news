@@ -1,18 +1,19 @@
-import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { COUNTRY_DATA } from '@shared/countries/country-data';
 import type { GdacsAlert, GdacsDetail } from '@shared/types';
 import { memo, useCallback, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, HIT_SLOP, SPACING, staggerDelay } from '../constants/theme';
+import Animated from 'react-native-reanimated';
+import { SPACING } from '../constants/theme';
 import { useGdacsDetail } from '../hooks/useGdacsDetail';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import { relativeTime } from '../lib/date-format';
 import { displaySourceName, EVENT_TYPE_EYEBROW, parseSeverityHero } from '../lib/gdacs';
 import { useOpenLink } from '../lib/open-link';
-import { FlagChip } from './FlagChip';
-import { Markdown, Pressable, Text } from './primitives';
+import { severityTint } from '../lib/severity';
+import { makeStaggerEnter } from '../lib/stagger';
+import { Markdown, Text } from './primitives';
+import { SheetFlagRow, SheetHero, SheetScrollView, SheetSourceFooter } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
 interface DisasterSheetProps extends BaseSheetProps {
@@ -77,7 +78,7 @@ export const DisasterSheet = memo(function DisasterSheet({
   onDismiss,
   onCountryPress,
 }: DisasterSheetProps) {
-  const { colors, sheetStyles } = useTheme();
+  const { colors } = useTheme();
   const snapProps = useSheetSnaps(false);
   const openLink = useOpenLink();
   const handleReportPress = useCallback(() => {
@@ -106,7 +107,7 @@ export const DisasterSheet = memo(function DisasterSheet({
   // 3-tier ladder competing with the focal number's typographic weight.
   // Severity is still legible from the metadata line and the focal
   // number itself (magnitude, wind speed, burn area).
-  const tint = alert?.alertlevel === 'Red' ? colors.toneUnfavorableText : undefined;
+  const tint = severityTint(colors, { alertLevel: alert?.alertlevel }, undefined);
 
   const hero = useMemo(() => (alert ? parseSeverityHero(alert) : null), [alert]);
 
@@ -125,8 +126,7 @@ export const DisasterSheet = memo(function DisasterSheet({
     return out;
   }, [alert]);
 
-  let blockIndex = 0;
-  const enter = () => FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(blockIndex++));
+  const enter = makeStaggerEnter();
 
   return (
     <SheetLayout
@@ -136,9 +136,7 @@ export const DisasterSheet = memo(function DisasterSheet({
       onDismiss={onDismiss}
       handleTitle={alert?.name ?? ''}
     >
-      <BottomSheetScrollView
-        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}
-      >
+      <SheetScrollView bottomInset={bottomInset}>
         {alert && (
           <>
             {/* Hero — eyebrow + focal severity number + supporting clause.
@@ -150,24 +148,13 @@ export const DisasterSheet = memo(function DisasterSheet({
                 alert-level word. The 44px glyph that used to sit here
                 was redundant — the reader just tapped the same shape
                 on the globe. */}
-            <Animated.View entering={enter()}>
-              <Text variant="labelXs" tone="secondary" style={styles.eyebrow}>
-                {EVENT_TYPE_EYEBROW[alert.eventtype]}
-              </Text>
-              <Text
-                variant="display"
-                style={tint ? [styles.focal, { color: tint }] : styles.focal}
-                numberOfLines={2}
-                selectable
-              >
-                {hero?.focal ?? ''}
-              </Text>
-              {hero?.secondary && hero.secondary.length > 0 && (
-                <Text variant="caption" tone="secondary" style={styles.heroSecondary}>
-                  {hero.secondary}
-                </Text>
-              )}
-            </Animated.View>
+            <SheetHero
+              entering={enter()}
+              eyebrow={EVENT_TYPE_EYEBROW[alert.eventtype]}
+              focal={hero?.focal ?? ''}
+              tint={tint}
+              secondary={hero?.secondary}
+            />
 
             {/* Population sentence — plain-English form of the human
                 stake. Renders only when GDACS publishes a meaningful
@@ -209,17 +196,12 @@ export const DisasterSheet = memo(function DisasterSheet({
             </Animated.View>
 
             {flags.length > 0 && (
-              <Animated.View entering={enter()} style={styles.flagsRow}>
-                {flags.map((f) => (
-                  <FlagChip
-                    key={f.name}
-                    name={f.name}
-                    flag={f.flag}
-                    borderColor={colors.rule}
-                    onPress={onCountryPress}
-                  />
-                ))}
-              </Animated.View>
+              <SheetFlagRow
+                entering={enter()}
+                flags={flags}
+                borderColor={colors.rule}
+                onPress={onCountryPress}
+              />
             )}
 
             {alert.description.length > 0 && (
@@ -234,45 +216,21 @@ export const DisasterSheet = memo(function DisasterSheet({
                 The acronym alone ("NEIC", "JTWC") forces the reader to
                 either know the org or read the line as opaque chrome;
                 the spelled-out name carries the trust signal directly. */}
-            <Animated.View entering={enter()} style={styles.sourceLine}>
-              <Text variant="caption" tone="secondary">
-                {displaySourceName(alert.source)}
-              </Text>
-              {alert.reportUrl && (
-                <Pressable
-                  haptic="tick"
-                  onPress={handleReportPress}
-                  accessibilityRole="link"
-                  accessibilityLabel="Open the GDACS event report"
-                  hitSlop={HIT_SLOP}
-                  style={styles.reportLink}
-                >
-                  <Text variant="caption" tone="accent">
-                    GDACS report →
-                  </Text>
-                </Pressable>
-              )}
-            </Animated.View>
+            <SheetSourceFooter
+              entering={enter()}
+              source={displaySourceName(alert.source)}
+              linkLabel="GDACS report →"
+              linkAccessibilityLabel="Open the GDACS event report"
+              onLinkPress={alert.reportUrl ? handleReportPress : undefined}
+            />
           </>
         )}
-      </BottomSheetScrollView>
+      </SheetScrollView>
     </SheetLayout>
   );
 });
 
 const styles = StyleSheet.create({
-  eyebrow: {
-    marginBottom: SPACING.xs,
-  },
-  focal: {
-    // The hero pre-attentive cue — large, severity-tinted, single-line
-    // first scan target. `display` variant is 28pt bold; we keep that
-    // and override only the colour via the inline tint so the variant's
-    // tracking + line-height stay intact.
-  },
-  heroSecondary: {
-    marginTop: SPACING.xxs,
-  },
   populationRow: {
     marginTop: SPACING.md,
   },
@@ -282,24 +240,7 @@ const styles = StyleSheet.create({
   metaRow: {
     marginTop: SPACING.sm,
   },
-  flagsRow: {
-    marginTop: SPACING.lg,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: SPACING.sm,
-  },
   description: {
     marginTop: SPACING.lg,
-  },
-  sourceLine: {
-    marginTop: SPACING.xl,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'baseline',
-  },
-  reportLink: {
-    // Report link sits on the right of the source line baseline-aligned
-    // with the source name on the left, so the sheet's last row reads
-    // as one balanced footer rather than a stacked block.
   },
 });

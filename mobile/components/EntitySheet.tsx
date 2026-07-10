@@ -1,15 +1,15 @@
-import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import type { Article, Category, Entity, Indicator } from '@shared/types';
 import { memo, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
+import Animated from 'react-native-reanimated';
+import { SPACING } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
-import { useTheme } from '../hooks/useTheme';
+import { makeStaggerEnter } from '../lib/stagger';
 import { SourceCaption } from './blocks/SourceCaption';
 import { TrendBlock } from './blocks/TrendBlock';
 import { Text } from './primitives';
 import { MAX_RELATED, RelatedStories } from './RelatedStories';
+import { SheetScrollView } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
 interface EntitySheetProps extends BaseSheetProps {
@@ -83,7 +83,6 @@ export const EntitySheet = memo(function EntitySheet({
   onDismiss,
   onArticlePress,
 }: EntitySheetProps) {
-  const { sheetStyles } = useTheme();
   const snapProps = useSheetSnaps(false);
 
   const related = useMemo(
@@ -91,8 +90,7 @@ export const EntitySheet = memo(function EntitySheet({
     [indicator, articles],
   );
 
-  let blockIndex = 0;
-  const enter = () => FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(blockIndex++));
+  const enter = makeStaggerEnter();
 
   const latest = indicator?.latest ?? indicator?.values[indicator.values.length - 1];
   const previous = indicator?.previous ?? indicator?.values[indicator.values.length - 2];
@@ -107,9 +105,7 @@ export const EntitySheet = memo(function EntitySheet({
       onDismiss={onDismiss}
       handleTitle={handleTitle}
     >
-      <BottomSheetScrollView
-        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}
-      >
+      <SheetScrollView bottomInset={bottomInset}>
         {indicator && (
           <>
             {latest != null && (
@@ -150,7 +146,7 @@ export const EntitySheet = memo(function EntitySheet({
             </Animated.View>
           </>
         )}
-      </BottomSheetScrollView>
+      </SheetScrollView>
     </SheetLayout>
   );
 });

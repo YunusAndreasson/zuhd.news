@@ -252,6 +252,11 @@ export function makeTypography(sizeScale: number = 1) {
 
     leadingBody: 1.55,
     leadingHeading: 1.2,
+    /** Tight single-line leading for small-caps labels/captions that must not
+     *  eat vertical space between adjacent rows. Replaces the ad-hoc `× 1.1`
+     *  multipliers that had drifted across SourceCaption and LocationsBlock —
+     *  one auditable value so the label-to-neighbour rhythm stays consistent. */
+    leadingTight: 1.1,
     trackingCaps: 1.2,
     trackingWordmark: -0.3,
     /** Editorial H1 tracking — slight negative letterspacing tightens bold

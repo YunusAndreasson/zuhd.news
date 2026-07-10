@@ -1,9 +1,9 @@
 import type { Category } from '@shared/types';
 import { useCallback, useRef, useSyncExternalStore } from 'react';
-import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, staggerDelay } from '../constants/theme';
+import Animated from 'react-native-reanimated';
 import { getSnapshot, subscribe, toggle } from '../lib/bookmark-store';
 import { hapticNotification } from '../lib/haptics';
+import { staggerEnter } from '../lib/stagger';
 import { ArticleRow } from './ArticleRow';
 import { EmptyState } from './EmptyState';
 import { SwipeableRow } from './SwipeableRow';
@@ -32,10 +32,7 @@ export function SheetBookmarksPage({ onSelectArticle }: SheetBookmarksPageProps)
   return (
     <>
       {bookmarks.map((b, i) => (
-        <Animated.View
-          key={b.article.slug}
-          entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(i))}
-        >
+        <Animated.View key={b.article.slug} entering={staggerEnter(i)}>
           <SwipeableRow onSwipeAction={() => handleRemove(b.article.slug)}>
             <ArticleRow
               slug={b.article.slug}

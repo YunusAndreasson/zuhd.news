@@ -97,7 +97,12 @@ interface ChartProps {
   scale: 'linear' | 'log';
 }
 
-function Chart({
+// Memoized: an active scrub gesture re-renders the parent TrendBlock on every
+// pointer move (to update the JS-side scrub readout), but Chart's own props are
+// stable across those renders (normalizedSeries/defaultHighlightIdx are
+// memoized, progress/scrubIdx are shared values, colors is theme-stable). Memo
+// lets the whole Skia canvas subtree skip reconciliation during a scrub.
+const Chart = memo(function Chart({
   series,
   band,
   width,
@@ -201,8 +206,10 @@ function Chart({
     return vec(x, height - CHART_BOTTOM_PAD);
   });
 
+  const canvasStyle = useMemo(() => ({ width, height }), [width, height]);
+
   return (
-    <Canvas style={{ width, height }}>
+    <Canvas style={canvasStyle}>
       {bandPath ? (
         <Path
           path={bandPath}
@@ -275,7 +282,7 @@ function Chart({
       <Circle cx={activeCx} cy={activeCy} r={ENDPOINT_DOT_R} color={colors.accent} />
     </Canvas>
   );
-}
+});
 
 interface TrendBlockProps {
   values?: number[];

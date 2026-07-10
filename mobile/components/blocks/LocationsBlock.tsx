@@ -868,7 +868,10 @@ export const LocationsBlock = memo(function LocationsBlock({
       {label ? (
         <Text
           variant="labelSm"
-          style={[blockSharedStyles.label, { lineHeight: typography.sizeSm * 1.1 }]}
+          style={[
+            blockSharedStyles.label,
+            { lineHeight: typography.sizeSm * typography.leadingTight },
+          ]}
         >
           {label}
         </Text>

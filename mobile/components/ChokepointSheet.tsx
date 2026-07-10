@@ -1,16 +1,17 @@
-import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import type { Article, Category, Chokepoint, CompareRow, VesselField } from '@shared/types';
 import { memo, useMemo } from 'react';
 import { Text as RNText, StyleSheet } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
+import Animated from 'react-native-reanimated';
+import { SPACING } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
+import { makeStaggerEnter } from '../lib/stagger';
 import { CompareBlock } from './blocks/CompareBlock';
 import { SourceCaption } from './blocks/SourceCaption';
 import { TrendBlock } from './blocks/TrendBlock';
 import { Text } from './primitives';
 import { MAX_RELATED, RelatedStories } from './RelatedStories';
+import { SheetScrollView } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
 interface ChokepointSheetProps extends BaseSheetProps {
@@ -64,7 +65,7 @@ export const ChokepointSheet = memo(function ChokepointSheet({
   onDismiss,
   onArticlePress,
 }: ChokepointSheetProps) {
-  const { colors, font, sheetStyles } = useTheme();
+  const { colors, font } = useTheme();
   const snapProps = useSheetSnaps(false);
 
   const related = useMemo(
@@ -91,8 +92,7 @@ export const ChokepointSheet = memo(function ChokepointSheet({
     });
   }, [chokepoint]);
 
-  let blockIndex = 0;
-  const enter = () => FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(blockIndex++));
+  const enter = makeStaggerEnter();
 
   const primary = chokepoint?.primaryField;
   const primaryLabel =
@@ -110,9 +110,7 @@ export const ChokepointSheet = memo(function ChokepointSheet({
       onDismiss={onDismiss}
       handleTitle={chokepoint?.name}
     >
-      <BottomSheetScrollView
-        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}
-      >
+      <SheetScrollView bottomInset={bottomInset}>
         {chokepoint && (
           <>
             <Animated.View entering={enter()}>
@@ -195,7 +193,7 @@ export const ChokepointSheet = memo(function ChokepointSheet({
             </Animated.View>
           </>
         )}
-      </BottomSheetScrollView>
+      </SheetScrollView>
     </SheetLayout>
   );
 });

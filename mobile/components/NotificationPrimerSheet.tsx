@@ -1,4 +1,3 @@
-import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { memo, useCallback, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { HIT_SLOP, RADIUS, SPACING } from '../constants/theme';
@@ -10,6 +9,7 @@ import {
   setPrimerStatus,
 } from '../lib/onboarding-store';
 import { Pressable, Text } from './primitives';
+import { SheetScrollView } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
 interface NotificationPrimerSheetProps extends BaseSheetProps {
@@ -28,7 +28,7 @@ export const NotificationPrimerSheet = memo(function NotificationPrimerSheet({
   onDismiss,
   onToast,
 }: NotificationPrimerSheetProps) {
-  const { colors, sheetStyles } = useTheme();
+  const { colors } = useTheme();
   const { setNotifications } = usePreferences();
   const snapProps = useSheetSnaps(false);
   const busyRef = useRef(false);
@@ -69,9 +69,7 @@ export const NotificationPrimerSheet = memo(function NotificationPrimerSheet({
       onDismiss={handleDismiss}
       handleTitle="briefings"
     >
-      <BottomSheetScrollView
-        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}
-      >
+      <SheetScrollView bottomInset={bottomInset}>
         <Text variant="label">two briefings a day</Text>
         <Text variant="body" style={styles.body}>
           A morning and an evening briefing — the day’s stories, said once. Breaking news only when
@@ -106,7 +104,7 @@ export const NotificationPrimerSheet = memo(function NotificationPrimerSheet({
             </Text>
           </Pressable>
         </View>
-      </BottomSheetScrollView>
+      </SheetScrollView>
     </SheetLayout>
   );
 });

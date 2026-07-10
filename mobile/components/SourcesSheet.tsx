@@ -1,12 +1,12 @@
-import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import type { ArticleSource } from '@shared/types';
 import { memo, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
+import Animated from 'react-native-reanimated';
+import { SPACING } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
-import { useTheme } from '../hooks/useTheme';
+import { staggerEnter } from '../lib/stagger';
 import { Text } from './primitives';
+import { SheetScrollView } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 import { SourceRow } from './SourceRow';
 
@@ -24,7 +24,6 @@ export const SourcesSheet = memo(function SourcesSheet({
   renderBackdrop,
   onDismiss,
 }: SourcesSheetProps) {
-  const { sheetStyles, textVariants } = useTheme();
   const snapProps = useSheetSnaps(false);
 
   const [expandedSource, setExpandedSource] = useState<number | null>(null);
@@ -40,9 +39,7 @@ export const SourcesSheet = memo(function SourcesSheet({
       renderBackdrop={renderBackdrop}
       onDismiss={onDismiss}
     >
-      <BottomSheetScrollView
-        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}
-      >
+      <SheetScrollView bottomInset={bottomInset}>
         {sources.length > 0 && (
           <>
             <Text variant="labelSm">
@@ -52,23 +49,11 @@ export const SourcesSheet = memo(function SourcesSheet({
              *  analysis, not a verdict. One line, italic, then a breath.
              *  Uses the sectionHeading font family at an xs size so it visually
              *  reads as smaller than a normal italic body line. */}
-            <Text
-              variant="sectionHeading"
-              style={[
-                styles.explainer,
-                {
-                  fontSize: textVariants.labelXs.fontSize,
-                  lineHeight: textVariants.labelXs.lineHeight,
-                },
-              ]}
-            >
+            <Text variant="sectionHeading" scale={0.85} style={styles.explainer}>
               How each outlet framed this story.
             </Text>
             {sources.map((s, i) => (
-              <Animated.View
-                key={s.name}
-                entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(i))}
-              >
+              <Animated.View key={s.name} entering={staggerEnter(i)}>
                 <SourceRow
                   source={s}
                   isExpanded={expandedSource === i}
@@ -79,7 +64,7 @@ export const SourcesSheet = memo(function SourcesSheet({
             ))}
           </>
         )}
-      </BottomSheetScrollView>
+      </SheetScrollView>
     </SheetLayout>
   );
 });

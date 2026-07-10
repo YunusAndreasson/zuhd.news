@@ -1,9 +1,10 @@
 import type { Article } from '@shared/types';
 import { useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
+import Animated from 'react-native-reanimated';
+import { ANIMATION, SPACING } from '../constants/theme';
 import { useOpenLink } from '../lib/open-link';
+import { makeStaggerEnter, staggerEnter } from '../lib/stagger';
 import { Pressable, Text } from './primitives';
 
 // Copy lives with the component; the About page is one-of-a-kind and doesn't
@@ -116,8 +117,7 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
   const visibleSources = recentSources.slice(0, 10);
   const extraCount = Math.max(0, recentSources.length - visibleSources.length);
 
-  let blockIndex = 0;
-  const enter = () => FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(blockIndex++));
+  const enter = makeStaggerEnter();
 
   return (
     <>
@@ -204,10 +204,7 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
         {providersOpen && (
           <View style={styles.linkList}>
             {DATA_SOURCES.map((l, idx) => (
-              <Animated.View
-                key={l.url}
-                entering={FadeInDown.duration(ANIMATION.fast).delay(staggerDelay(idx))}
-              >
+              <Animated.View key={l.url} entering={staggerEnter(idx, ANIMATION.fast)}>
                 <Pressable
                   onPress={() => openLink(l.url)}
                   style={styles.link}
