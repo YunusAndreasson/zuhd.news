@@ -1,35 +1,5 @@
 [
   {
-    "timestamp": "2026-06-20T04:27:54.163Z",
-    "candidateCount": 3,
-    "candidates": [
-      {
-        "slug": "2026-06-19-influencers-and-organized-crime-identifying-patterns-in-thei",
-        "title": "Cartels Recruit Through Influencers",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-18-why-the-human-genome-s-tangled-physicality-may-confound-ai",
-        "title": "AI Cannot Map Genome Folds",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-20-nanobubbles-for-algae-cleanup-q-a-with-researcher-wen-zhang",
-        "title": "Nanobubbles Scour Algae Without Floating",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": null,
-    "skipReason": "all 3 candidates below coverage threshold 1",
-    "sent": false
-  },
-  {
     "timestamp": "2026-06-20T17:19:58.575Z",
     "candidateCount": 11,
     "candidates": [
@@ -9962,6 +9932,99 @@
       "pushed": 1,
       "skipped": 0,
       "tokens": 23
+    }
+  },
+  {
+    "timestamp": "2026-07-10T17:18:13.883Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-07-09-dprk-premier-china-visit-treaty-anniversary",
+        "title": "Pak Visits Beijing",
+        "category": "politics",
+        "eventCoverage": 123,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-10-unclaimed-airstrikes-iran-post-khamenei",
+        "title": "Unclaimed Strikes Hit Iran",
+        "category": "politics",
+        "eventCoverage": 39,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-10-cjng-el-mencho-successor-us-naming",
+        "title": "US Names Cartel Heir",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-10-nigeria-court-police-killing-damages-calabar",
+        "title": "Court Fines Police Over Killing",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-10-us-cbdc-ban-housing-law-stablecoins",
+        "title": "Housing Law Bans Digital Dollar",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-10-frame-dragging-satellite-laser-einstein-test",
+        "title": "Satellite Confirms Spacetime Swirl",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-10-simple-fluids-can-fracture-physics",
+        "title": "Simple Fluids Can Fracture",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-10-china-seniors-generative-ai-companionship",
+        "title": "Seniors Embrace AI Slop",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-10-china-open-ai-models-soft-power",
+        "title": "Open Models Extend China's Reach",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-10-physiological-arousal-as-a-predominant-source-of-individual",
+        "title": "Arousal Drives Brain Scan Variation",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-07-09-dprk-premier-china-visit-treaty-anniversary",
+      "title": "Pak Visits Beijing",
+      "category": "politics",
+      "body": "Pak Thae-song is North Korea's first solo premier visit since",
+      "eventCoverage": 123,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Xi meets North Korea's Pak ahead of mutual defense treaty anniversary",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 21
     }
   }
 ]
