@@ -1,27 +1,26 @@
 {
-  "date": "2026-07-09",
+  "date": "2026-07-10",
   "metrics": {
-    "articles": { "value": 48, "detail": "5 cycles completed, avg ~10/cycle" },
-    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 14, "economy": 13, "science": 11, "tech": 10 },
-    "multiSource": { "value": 7, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "EU": 12, "AM": 12, "AS": 10, "ME": 6, "OC": 4, "AF": 4 } },
-    "sciTech": { "ratio": 44, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn / Phys.org (tied)", "pct": 8, "target": 20, "met": true },
-    "uniqueSources": 37,
+    "articles": { "value": 37, "detail": "5 cycles (4 completed), avg 7/cycle" },
+    "freshness": { "median": 0.0, "p90": 0.0, "max": 0.0, "target": 1.0, "met": true },
+    "categories": { "politics": 14, "economy": 10, "science": 6, "tech": 7 },
+    "multiSource": { "value": 12, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 13, "AS": 7, "EU": 7, "ME": 5, "AF": 4, "OC": 1 } },
+    "sciTech": { "ratio": 35, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 11, "target": 20, "met": true },
+    "uniqueSources": 39,
     "duplicates": 0,
-    "avgCycleDuration": 723
+    "avgCycleDuration": 656
   },
-  "experiment": "Skipped — all metrics within targets, no active experiments, and the only queued experiment (numerical-density) edits scripts/write-prompt.md, which is out of scope for parameter tuning.",
-  "weakestArea": "No metric is below target. The tightest area is region diversity in the tail: AF and OC each contributed only 4 articles, with EU/AM/AS carrying the bulk — coverage remains Euro-American-Asian weighted even though the unique-region count (6) clears the target of 4. Secondary flag: freshness was computed on only 2 datelined articles today (vs 5 yesterday), so the median-0 reading, while healthy, rests on a thin sample.",
+  "experiment": "Skipped — all metrics within targets, no active experiment to evaluate, and no pause gate set. The one queued experiment (numerical-density) targets write-prompt.md, which is out of scope for daily tuning.",
+  "weakestArea": "Science, at 6/day, sits closest to its floor (5) and fell from 12 yesterday; sci+tech ratio dropped 46% -> 35% correspondingly. Both still clear their targets comfortably, and the swing tracks a lighter overall output day (37 vs 52) rather than a selector-floor problem, so no parameter change is warranted.",
   "watching": [
-    "Africa and Oceania coverage sitting at the 4-article floor two categories below EU/AM/AS — no target breach yet, but the thinnest legs of the region distribution.",
-    "Freshness sample size dropped to 2 datelined articles; worth confirming next cycle whether this is a dateline-extraction gap or genuinely few time-sensitive stories.",
-    "Multi-source at 7 today vs 13 yesterday — normal cycle-to-cycle variance, but the lower end of recent range; the feed's ~9/cycle multi-source supply remains the structural ceiling per the 2026-05-09 floor experiment."
+    "Throughput dipped to 37 (from 52 yesterday) with only 4 of 5 cycles completed — worth confirming the 22:00 cycle closes cleanly and this is feed thinness, not a stalled stage.",
+    "Science volume halved day-over-day (12 -> 6); if it stays near the floor for 2-3 more days it would justify revisiting the science category floor (currently 2)."
   ],
   "coverageGaps": [
-    "Latin America proper (as distinct from North America inside the AM bucket) is not separately visible in the region breakdown — worth verifying it is not being masked by US-heavy AM counts.",
-    "Oceania represented by only 4 articles, largely Australia-centric; Pacific and SE-Asia-Pacific stories under-covered."
+    "Oceania (OC) had just 1 article — persistent thinnest region; watch for a multi-day zero.",
+    "Africa (AF) at 4 is the second-lightest region and skews to a few outlets (Daily Maverick 3)."
   ],
-  "context": "All four editorial goals (freshness, diversity, multi-source, educational value) are met with margin: sci-tech at 44% is well above the 25% floor, top-source concentration is low at ~8%, and duplicates are zero across 5 clean cycles averaging 723s. No experiment is proposed: there is no pause gate, but metrics are healthy and the sole queued experiment lives in a prompt file outside the tunable-parameter scope. The prior sourcing-floor experiments established that the selector's multi-source lever is tapped out against the feed's ~9/cycle supply, so future sourcing gains must come from upstream feed changes rather than selector floors."
+  "context": "Healthy, unremarkable day: freshness at 0, zero duplicates, top-source share 11% (Al Jazeera Online and Ars Technica tied at 4 of 37), 39 unique sources. No experiments active and no history entries pending evaluation, so the tuner is idle by design. Lower throughput and a science dip are the only movements, both within tolerance and attributable to a lighter news day rather than any tunable lever."
 }
