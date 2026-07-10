@@ -6103,5 +6103,26 @@
     "briefCount": 0,
     "guardrailFailures": [],
     "degenerate": false
+  },
+  {
+    "ts": "2026-07-10T22:16:11.822Z",
+    "cycleId": "2026-07-10T22-16",
+    "cycleHour": "22",
+    "schema": 2,
+    "rvs": 67.98,
+    "clusters": {
+      "picking": null,
+      "writing": 77.78,
+      "briefing": null,
+      "sourcing": 49.17,
+      "coverage": 73.73
+    },
+    "articleCount": 9,
+    "briefCount": 0,
+    "guardrailFailures": [
+      "category economy below floor 3 (got 2)",
+      "category science below floor 2 (got 0)"
+    ],
+    "degenerate": false
   }
 ]
