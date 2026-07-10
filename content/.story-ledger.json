@@ -2,13 +2,442 @@
   "version": 1,
   "stories": [
     {
+      "id": "eu-meta-addictive-design-order-minors",
+      "label": "EU: Instagram and Facebook Pose Too Great a Risk of Addiction",
+      "firstSeen": "2026-07-10T12:10:53.376Z",
+      "lastCovered": "2026-07-10T12:10:53.376Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-eu-meta-addictive-design-order-minors"
+      ],
+      "eventUri": "spa-4264670",
+      "summary": "The European Commission's preliminary DSA findings order Meta to dismantle infinite scroll and autoplay for minors or face fines up to 6% of global revenue. Lead with the mechanism, not the moral panic: for the first time a regulator names specific engagement-engineering features — endless feeds, personalized recommendation loops — as the harm, shifting liability from content to design. Who holds power: Brussels vs Meta; who is affected: every EU child, and every platform that copies the playbook. The structural why is that this reframes 'addictive by design' as a legal, not rhetorical, category.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Instagram",
+        "http://en.wikipedia.org/wiki/Facebook",
+        "http://en.wikipedia.org/wiki/European_Commission",
+        "http://en.wikipedia.org/wiki/Meta_Platforms",
+        "http://en.wikipedia.org/wiki/Brussels",
+        "http://en.wikipedia.org/wiki/European_Union"
+      ]
+    },
+    {
+      "id": "hasina-december-surrender-return-bangladesh",
+      "label": "Condemned ex-PM Hasina plans December return to Bangladesh",
+      "firstSeen": "2026-07-10T12:10:53.376Z",
+      "lastCovered": "2026-07-10T12:10:53.376Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-hasina-december-surrender-return-bangladesh"
+      ],
+      "eventUri": "eng-11819711",
+      "summary": "Sheikh Hasina — ousted in last year's uprising, sentenced in absentia, and now in Indian exile — says she and her Awami League leadership will fly home in December to surrender before a court, while warning she could be killed. Lead with the calculus, not the drama: a condemned leader choosing return-and-surrender is a bet that a courtroom is safer than exile and that her party's political survival needs her physically present. Highlight who holds power in Dhaka's interim order and what a mass Awami surrender does to Bangladesh's fragile post-uprising politics. OIC-region story; feed carried only RT/Hindu/Yahoo — no Bangladeshi outlet, worth a feed-side note.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Sheikh_Hasina",
+        "http://en.wikipedia.org/wiki/Bangladesh",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Awami_League",
+        "http://en.wikipedia.org/wiki/Capital_punishment",
+        "http://en.wikipedia.org/wiki/Dhaka"
+      ]
+    },
+    {
+      "id": "un-women-funding-collapse-us-aid-cuts",
+      "label": "Fall in funding cuts aid to 1 million women: UN",
+      "firstSeen": "2026-07-10T12:10:53.376Z",
+      "lastCovered": "2026-07-10T12:10:53.376Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-un-women-funding-collapse-us-aid-cuts"
+      ],
+      "eventUri": "eng-11819792",
+      "summary": "UN Women warns that a collapse in donor funding — driven largely by Trump's foreign-aid cuts — will strip at least a million women and girls of shelter, gender-based-violence support and reproductive care just as needs are soaring. Lead with the accountability chain, not the aggregate number: a policy decision in Washington maps directly onto named consequences in displacement camps and crisis zones, where women's organizations are the first to lose funding and the last to be replaced. Who bears the cost — the most exposed people in the most exposed places. Al Jazeera (QA) carries the regional voice alongside MEE.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/UN_Women",
+        "http://en.wikipedia.org/wiki/United_Nations",
+        "http://en.wikipedia.org/wiki/Humanitarian_aid",
+        "http://en.wikipedia.org/wiki/Sexual_violence",
+        "http://en.wikipedia.org/wiki/Presidency_of_Donald_Trump",
+        "http://en.wikipedia.org/wiki/Internally_displaced_person"
+      ]
+    },
+    {
+      "id": "circle-usdc-trust-bank-charter-occ",
+      "label": "Circle takes banking step with U.S. trust bank approval",
+      "firstSeen": "2026-07-10T12:10:53.376Z",
+      "lastCovered": "2026-07-10T12:10:53.376Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-circle-usdc-trust-bank-charter-occ"
+      ],
+      "eventUri": "eng-11816073",
+      "summary": "Circle, issuer of the $73bn USDC stablecoin, won a US national trust bank charter, letting it hold the reserves backing USDC directly under OCC supervision. Lead with the structural shift, not the milestone: a stablecoin issuer becoming a federally chartered bank folds dollar-pegged crypto into the regulated banking perimeter, blurring the line between 'crypto firm' and 'bank' and giving USDC a federal legitimacy its rivals lack. Highlight who gains oversight power (the OCC) and why federal integration of a private dollar-substitute matters for monetary control. Reader-aligned CoinDesk macro.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/USD_Coin",
+        "http://en.wikipedia.org/wiki/Stablecoin",
+        "http://en.wikipedia.org/wiki/Cryptocurrency"
+      ]
+    },
+    {
+      "id": "gaza-tech-shortage-connectivity-workarounds",
+      "label": "How Gazans are navigating the tech shortage crisis with creative solutions",
+      "firstSeen": "2026-07-10T12:10:53.376Z",
+      "lastCovered": "2026-07-10T12:10:53.376Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-gaza-tech-shortage-connectivity-workarounds"
+      ],
+      "eventUri": null,
+      "summary": "Under blockade and repeated infrastructure destruction, Gazans are improvising ways to stay connected — jury-rigged power, shared devices, workaround networks — turning a tech shortage into a daily engineering problem. Lead with the mechanism of survival, not the hardship in the abstract: when siege makes electricity, devices and connectivity scarce, the cost is borne through the informal systems people build to replace what was destroyed, and those systems are both ingenuity and evidence of deprivation. Who holds power over the shortage, and who improvises around it. Unique Salaam Gateway (AE) reporting on the ground.",
+      "conceptUris": []
+    },
+    {
+      "id": "china-long-march-10b-booster-sea-net",
+      "label": "China claims rocket first as it catches booster in floating sea net",
+      "firstSeen": "2026-07-10T12:10:53.376Z",
+      "lastCovered": "2026-07-10T12:10:53.376Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-china-long-march-10b-booster-sea-net"
+      ],
+      "eventUri": "eng-11819598",
+      "summary": "Chinese engineers recovered a Long March 10B booster by catching it in a giant floating net mounted on a sea platform — a reusable-rocket first that sidesteps the precision propulsive landing SpaceX pioneered. Lead with the engineering choice, not the flag: net-capture-at-sea is a different, arguably cheaper path to reusability than a landing burn, and China clearing it materially narrows the launch-cost gap that underpins US space dominance. Highlight what reusability actually buys (launch cadence, cost-per-kg) and why the method — not just the milestone — is the story for the technically literate reader.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Booster_(rocketry)",
+        "http://en.wikipedia.org/wiki/Reusable_launch_vehicle",
+        "http://en.wikipedia.org/wiki/Long_March",
+        "http://en.wikipedia.org/wiki/SpaceX",
+        "http://en.wikipedia.org/wiki/Hainan"
+      ]
+    },
+    {
+      "id": "fda-electric-shock-device-ban-delay",
+      "label": "FDA quietly pushes back deadline on electric shock ban",
+      "firstSeen": "2026-07-10T12:10:53.376Z",
+      "lastCovered": "2026-07-10T12:10:53.376Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-fda-electric-shock-device-ban-delay"
+      ],
+      "eventUri": null,
+      "summary": "The FDA has quietly delayed the deadline on its ban of electrical stimulation devices — the shock 'aversion therapy' used on people with disabilities at one Massachusetts facility, the only place in the US still using them. Lead with the accountability gap, not the regulatory calendar: a ban the agency already justified on scientific and ethical grounds keeps slipping, so the quiet deadline extension is itself the decision that lets a contested practice continue. Who is affected — disabled residents subjected to aversive shocks; who holds power — an FDA that finalized the rule then let it stall. Teach the reader how a 'ban' can be functionally suspended by moving a date.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Food_and_Drug_Administration",
+        "http://en.wikipedia.org/wiki/Electrical_injury"
+      ]
+    },
+    {
+      "id": "ecu-tuning-car-firmware-aftermarket",
+      "label": "Like a cheat code for your car: We investigate ECU tuning",
+      "firstSeen": "2026-07-10T12:10:53.376Z",
+      "lastCovered": "2026-07-10T12:10:53.376Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-ecu-tuning-car-firmware-aftermarket"
+      ],
+      "eventUri": null,
+      "summary": "Aftermarket ECU tuning now unlocks major performance gains in minutes by rewriting the engine control unit's software — no wrench required. Lead with the software-eats-hardware shift, not the horsepower: a modern car's behavior is defined by firmware, so 'tuning' is really editing a manufacturer's calibration, which raises the same questions developers know well — warranty, safety margins, emissions compliance, and who owns the code running the machine you bought. For the technically literate reader, the mechanism is that performance, emissions, and reliability are now a settings file, and control over that file is contested.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Engine_control_unit",
+        "http://en.wikipedia.org/wiki/Automotive_aftermarket",
+        "http://en.wikipedia.org/wiki/Ignition_timing"
+      ]
+    },
+    {
+      "id": "vision-transformer-pediatric-intussusception-ultrasound",
+      "label": "A vision transformer deep learning model for assessing pediatric ileocolic intussusception severity using ultrasound images",
+      "firstSeen": "2026-07-10T12:10:53.376Z",
+      "lastCovered": "2026-07-10T12:10:53.376Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-vision-transformer-pediatric-intussusception-ultrasound"
+      ],
+      "eventUri": null,
+      "summary": "Researchers trained a vision-transformer model to grade the severity of ileocolic intussusception — a time-critical pediatric emergency — directly from ultrasound images. Lead with the deployment logic, not the accuracy figure: intussusception outcomes hinge on how fast severity is recognized, and ultrasound is operator-dependent, so an image model that standardizes triage targets exactly the bottleneck where expertise is scarce. For the reader who follows applied AI, the mechanism to highlight is transformers moving from language into diagnostic imaging where the payoff is speed and consistency in settings without a pediatric radiologist on call — and the open question of validation before clinical trust.",
+      "conceptUris": []
+    },
+    {
+      "id": "pregmednet-maternal-medication-neonatal-risk",
+      "label": "PregMedNet: Multifaceted maternal medication impacts on neonatal complications",
+      "firstSeen": "2026-07-10T12:10:53.376Z",
+      "lastCovered": "2026-07-10T12:10:53.376Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-pregmednet-maternal-medication-neonatal-risk"
+      ],
+      "eventUri": null,
+      "summary": "PregMedNet mines large-scale clinical data to map how medications taken during pregnancy correlate with specific neonatal complications — a systematic read on drug safety in a population that clinical trials routinely exclude. Lead with the evidence gap it fills, not the model name: pregnant patients are the least-studied group in pharmacology, so a data-driven map of maternal-drug-to-newborn-outcome links surfaces risks and reassurances that trial-based labeling never captured. Highlight the mechanism — computational pharmacovigilance replacing the absence of trials — and the caveat that correlation from records needs careful confounding control before it guides prescribing.",
+      "conceptUris": []
+    },
+    {
+      "id": "modi-new-zealand-fta-migration",
+      "label": "India news: PM Modi embarks on maiden trip to New Zealand",
+      "firstSeen": "2026-07-10T08:10:08.163Z",
+      "lastCovered": "2026-07-10T08:10:08.163Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-modi-new-zealand-fta-migration"
+      ],
+      "eventUri": "eng-11819278",
+      "summary": "Modi lands in New Zealand touting a new India-NZ free trade deal, but the trip unfolds amid a heated domestic debate over migration and anti-Indian rhetoric. The angle: a trade-diplomacy visit colliding with the politics of the Indian diaspora abroad. Lead with the FTA's substance, then the friction it exposes over who India's global mobility serves.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/New_Zealand",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Narendra_Modi",
+        "http://en.wikipedia.org/wiki/Free_trade_agreement",
+        "http://en.wikipedia.org/wiki/Auckland",
+        "http://en.wikipedia.org/wiki/Christopher_Luxon",
+        "http://en.wikipedia.org/wiki/Prime_Minister_of_India",
+        "http://en.wikipedia.org/wiki/Bilateralism"
+      ]
+    },
+    {
+      "id": "apollo-easyjet-takeover-private-equity",
+      "label": "Apollo trumps Castlelake to reach £5.7bn deal to buy easyJet",
+      "firstSeen": "2026-07-10T08:10:08.163Z",
+      "lastCovered": "2026-07-10T08:10:08.163Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-apollo-easyjet-takeover-private-equity"
+      ],
+      "eventUri": "eng-11819586",
+      "summary": "US private-equity firm Apollo outbid rival Castlelake — which easyJet had agreed to just days earlier — in a £5.7bn takeover of the no-frills carrier. Lead with the bidding war: two American PE firms fighting over a European budget airline in the same week signals how private capital now prices essential mobility infrastructure. Highlight what changes for passengers and workers when a low-cost airline goes private.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/EasyJet",
+        "http://en.wikipedia.org/wiki/Pound_sterling",
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/Airline",
+        "http://en.wikipedia.org/wiki/Low-cost_carrier",
+        "http://en.wikipedia.org/wiki/Shareholder",
+        "http://en.wikipedia.org/wiki/Apollo",
+        "http://en.wikipedia.org/wiki/Apollo_program"
+      ]
+    },
+    {
+      "id": "xavier-niel-vodafone-uae-stake",
+      "label": "Xavier Niel becomes largest Vodafone shareholder",
+      "firstSeen": "2026-07-10T08:10:08.163Z",
+      "lastCovered": "2026-07-10T08:10:08.163Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-xavier-niel-vodafone-uae-stake"
+      ],
+      "eventUri": "eng-11819577",
+      "summary": "French billionaire Xavier Niel bought a 16.21% stake in Vodafone for $5.95bn — the entire holding the UAE's e& just sold at a 15% premium. Lead with the swap: an Emirati state telecom exits its European bet as a French disruptor takes the FTSE 100 group's top-shareholder seat. The mechanism to highlight is how Gulf sovereign capital and European telecom consolidation are being repriced in real time.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Vodafone",
+        "http://en.wikipedia.org/wiki/Xavier_Niel",
+        "http://en.wikipedia.org/wiki/Telecommunications",
+        "http://en.wikipedia.org/wiki/United_Arab_Emirates",
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/France",
+        "http://en.wikipedia.org/wiki/Penny",
+        "http://en.wikipedia.org/wiki/Shareholder"
+      ]
+    },
+    {
+      "id": "yen-japan-pension-repatriation-rally",
+      "label": "Yen Traders Question How Japan Pension Money Can Sustain Rally",
+      "firstSeen": "2026-07-10T08:10:08.163Z",
+      "lastCovered": "2026-07-10T08:10:08.163Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-yen-japan-pension-repatriation-rally"
+      ],
+      "eventUri": "eng-11819275",
+      "summary": "The yen's sudden Friday rally hinges on whether Tokyo will actually pull its vast pension chest back into domestic assets — without which the currency risks a fresh four-decade low. Lead with the mechanism: a nation trying to defend its currency by repatriating retirement savings, and what breaks if the government blinks. The reader wants the structural stakes of the yen carry unwind, not the tick-by-tick.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Japan",
+        "http://en.wikipedia.org/wiki/Japanese_yen",
+        "http://en.wikipedia.org/wiki/Pension_fund",
+        "http://en.wikipedia.org/wiki/Bond_(finance)",
+        "http://en.wikipedia.org/wiki/Currency",
+        "http://en.wikipedia.org/wiki/Satsuki_Katayama",
+        "http://en.wikipedia.org/wiki/Stock",
+        "http://en.wikipedia.org/wiki/Government_Pension_Investment_Fund"
+      ]
+    },
+    {
+      "id": "india-ntpc-uranium-nuclear-fuel-security",
+      "label": "India Power Giant Seeks Uranium Assets Overseas in Nuclear Push",
+      "firstSeen": "2026-07-10T08:10:08.163Z",
+      "lastCovered": "2026-07-10T08:10:08.163Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-india-ntpc-uranium-nuclear-fuel-security"
+      ],
+      "eventUri": "eng-11819468",
+      "summary": "State-controlled NTPC is hunting overseas uranium mines to fuel the 30 gigawatts of nuclear capacity India plans over two decades. Lead with the resource-security logic: a country going all-in on nuclear discovers it cannot source the fuel domestically and must lock up mines abroad. Highlight who controls the world's uranium (Australia, Kazakhstan, Africa) and what India's tender means for the geopolitics of the fuel cycle.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Australia",
+        "http://en.wikipedia.org/wiki/Narendra_Modi",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Uranium",
+        "http://en.wikipedia.org/wiki/Nuclear_power",
+        "http://en.wikipedia.org/wiki/Prime_Minister_of_India",
+        "http://en.wikipedia.org/wiki/Export",
+        "http://en.wikipedia.org/wiki/New_Delhi"
+      ]
+    },
+    {
+      "id": "south-asia-fuel-import-energy-resilience",
+      "label": "How fuel-importing countries in South Asia can survive the next global conflict",
+      "firstSeen": "2026-07-10T08:10:08.163Z",
+      "lastCovered": "2026-07-10T08:10:08.163Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-south-asia-fuel-import-energy-resilience"
+      ],
+      "eventUri": null,
+      "summary": "As the Iran crisis winds down, energy experts ask how Bangladesh, Pakistan and Sri Lanka — utterly dependent on imported fuel through chokepoints like Hormuz — can insulate themselves from the next shock. Lead with the vulnerability: three South Asian economies whose lights stay on only if a strait 2,000km away stays open. Highlight the concrete resilience levers (storage, supplier diversification, renewables) and who pays when they're absent.",
+      "conceptUris": []
+    },
+    {
+      "id": "eu-chat-control-encryption-scanning",
+      "label": "EU Parliament greenlights Chat Control 1.0",
+      "firstSeen": "2026-07-10T08:10:08.163Z",
+      "lastCovered": "2026-07-10T08:10:08.163Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-eu-chat-control-encryption-scanning"
+      ],
+      "eventUri": null,
+      "summary": "The European Parliament approved 'Chat Control 1.0,' opening the door to mandatory scanning of private messages under a child-protection banner. Lead with the mechanism developers grasp instantly: client-side scanning breaks end-to-end encryption for everyone, not just suspects. Name who wins (surveillance vendors, law enforcement) and who loses (every EU citizen's private communication). This is the surveillance precedent the reader needs to understand now, before national implementations follow.",
+      "conceptUris": []
+    },
+    {
+      "id": "china-j15-fujian-carrier-anti-ship-missiles",
+      "label": "Chinese J-15 Fighter Seen Launching From A Carrier With Four Anti-Ship Missiles For First Time",
+      "firstSeen": "2026-07-10T08:10:08.163Z",
+      "lastCovered": "2026-07-10T08:10:08.163Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-china-j15-fujian-carrier-anti-ship-missiles"
+      ],
+      "eventUri": null,
+      "summary": "A J-15T was photographed catapulting off China's Fujian carrier carrying four anti-ship missiles for the first time — a capability its older ski-jump carriers could never launch. Lead with why the catapult matters: it converts the J-15 from a light-loaded defensive fighter into a heavy maritime strike aircraft, materially shifting the naval balance in the western Pacific. This is a concrete power-projection milestone, not a rendering — highlight what four missiles per sortie changes for regional deterrence.",
+      "conceptUris": []
+    },
+    {
+      "id": "former-tory-minister-ann-widdecombe-dies-at-78",
+      "label": "Former Tory minister Ann Widdecombe dies at 78",
+      "firstSeen": "2026-07-10T08:10:08.163Z",
+      "lastCovered": "2026-07-10T08:10:08.163Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-former-tory-minister-ann-widdecombe-dies-at-78"
+      ],
+      "eventUri": "eng-11819480",
+      "summary": "[Auto-backfill for politics floor] Former Conservative minister turned Reform UK spokeswoman Ann Widdecombe has died aged 78.\n\n\"It is with great sadness that today we announce the death of The Right Honourable Ann Widdecombe, DSG,\" a statement from her agents, Cloud 9 Management, said.\n\n\"We send our deepest condolences to Ann's famil",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Ann_Widdecombe",
+        "http://en.wikipedia.org/wiki/Member_of_parliament",
+        "http://en.wikipedia.org/wiki/Conservative_Party_(UK)",
+        "http://en.wikipedia.org/wiki/Reform_UK",
+        "http://en.wikipedia.org/wiki/Strictly_Come_Dancing",
+        "http://en.wikipedia.org/wiki/The_Right_Honourable",
+        "http://en.wikipedia.org/wiki/John_Major",
+        "http://en.wikipedia.org/wiki/Member_of_the_European_Parliament"
+      ]
+    },
+    {
+      "id": "the-agent-that-infiltrated-pakistan-s-red-hot-chilli-peppers",
+      "label": "The agent that infiltrated Pakistan's red hot chilli peppers",
+      "firstSeen": "2026-07-10T08:10:08.163Z",
+      "lastCovered": "2026-07-10T08:10:08.163Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-the-agent-that-infiltrated-pakistan-s-red-hot-chilli-peppers"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for politics floor] Name: Kunri, Umerkot\n\nPop.: 26,600\n\nArea: 585 km²\n\nThe farmers say the origin story goes something like this. In the sixties, a handful of chilli seeds travelled south from Radha Ram in Punjab to Kunri in Sindh. Harvest after hot harvest proved so successful that within two decades the town shot to ",
+      "conceptUris": []
+    },
+    {
+      "id": "a-robust-high-content-nam-for-repeatable-and-predictive-deve",
+      "label": "A robust, high-content NAM for repeatable and predictive developmental and reproductive toxicity assessment in C. elegans",
+      "firstSeen": "2026-07-10T08:10:08.163Z",
+      "lastCovered": "2026-07-10T08:10:08.163Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-a-robust-high-content-nam-for-repeatable-and-predictive-deve"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for tech floor] Developmental and reproductive toxicity (DART) assessment is essential for product safety evaluation but relies heavily on vertebrate models that are costly, time consuming, and resource intensive. Although Caenorhabditis elegans has emerged as a promising new approach methodology (NAM) for rapid, c",
+      "conceptUris": []
+    },
+    {
       "id": "trump-fires-election-assistance-commission",
       "label": "Trump fires Election Assistance Commission members ahead of midterms",
       "firstSeen": "2026-07-10T04:06:19.983Z",
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-10-trump-fires-election-assistance-commission"
@@ -33,7 +462,7 @@
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-10-khamenei-buried-iran-succession-vacuum"
@@ -49,7 +478,7 @@
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-10-telstra-outage-executive-bonuses-triple-zero"
@@ -65,7 +494,7 @@
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-10-maharashtra-stamp-duty-mumbai-housing-leases"
@@ -81,7 +510,7 @@
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-10-typhoon-bavi-japan-sakishima-islands"
@@ -97,7 +526,7 @@
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-10-tess-microlensing-super-jupiter-gaia23bra-b"
@@ -113,7 +542,7 @@
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-10-sperm-whale-mediterranean-dialects"
@@ -129,7 +558,7 @@
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-09-south-africa-nanotech-biosensors-tb-cancer"
@@ -145,7 +574,7 @@
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-09-bun-rust-rewrite-kelley-zig"
@@ -161,7 +590,7 @@
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-09-trump-defense-stocks-iran-war-disclosure"
@@ -177,7 +606,7 @@
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-10-man-axes-father-to-death-over-snub-in-bahawalpur"
@@ -193,7 +622,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-09-china-maysak-flooding-liulan-reservoir-breach"
@@ -218,7 +647,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-08-gaza-israeli-strikes-hamas-admin-dissolution"
@@ -234,7 +663,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-09-south-africa-vigilante-labour-inspectors-migrants"
@@ -250,7 +679,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-08-hormuz-lng-tanker-explosion-risk-qatar"
@@ -266,7 +695,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-09-bitcoin-etf-private-credit-outflows-liquidity-risk"
@@ -282,7 +711,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-09-warsh-fed-task-forces-regime-change"
@@ -305,7 +734,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-09-nhs-germline-testing-brca-direct-mainstreaming"
@@ -321,7 +750,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-09-drc-ebola-outbreak-outpacing-response-africa-cdc"
@@ -337,7 +766,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-09-ladakh-apricot-climate-precipitation-harvest"
@@ -353,7 +782,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-09-openai-gpt-5-6-release-shipping-cadence"
@@ -369,7 +798,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-09-windows-defender-0day-patch-disk-fill-dos"
@@ -385,7 +814,7 @@
       "lastCovered": "2026-07-09T22:08:36.814Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-09-patreon-cloudflare-block-ai-crawlers-creators"
@@ -395,13 +824,38 @@
       "conceptUris": []
     },
     {
+      "id": "sk-hynix-nasdaq-adr-oversubscribed-memory-ai",
+      "label": "SK Hynix Nasdaq ADR offering more than 7 times oversubscribed",
+      "firstSeen": "2026-07-09T12:08:07.111Z",
+      "lastCovered": "2026-07-10T12:10:53.376Z",
+      "coverageCount": 2,
+      "category": "economy",
+      "importance": 2,
+      "arc": "developing",
+      "articles": [
+        "2026-07-09-sk-hynix-nasdaq-adr-oversubscribed-memory-ai",
+        "2026-07-10-sk-hynix-us-listing-ai-memory-bet"
+      ],
+      "eventUri": "eng-11815973",
+      "summary": "SK Hynix's US listing drew orders more than seven times the 177.9 million shares on offer ahead of its Nasdaq debut. Lead with what the oversubscription signals, not the ticker: institutional investors are paying a premium for direct exposure to high-bandwidth memory, the chip that gates AI training, so the mechanism to teach is how the AI build-out reprices a South Korean memory maker as strategic infrastructure — and why a Korean champion chose New York capital markets. Multi-source (US).",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/SK_Hynix",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Nasdaq",
+        "http://en.wikipedia.org/wiki/South_Korea",
+        "http://en.wikipedia.org/wiki/Semiconductor",
+        "http://en.wikipedia.org/wiki/American_depositary_receipt",
+        "http://en.wikipedia.org/wiki/Micron_Technology"
+      ]
+    },
+    {
       "id": "china-jinjiang-shoe-factory-fire-workers-killed",
       "label": "At least 28 people killed as fire engulfs shoe factory in China",
       "firstSeen": "2026-07-09T17:08:05.227Z",
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-china-jinjiang-shoe-factory-fire-workers-killed"
@@ -426,7 +880,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-australia-india-uranium-npt-exception-deal"
@@ -451,7 +905,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-germany-ground-launched-tomahawk-inf-posture"
@@ -467,7 +921,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-bahria-town-illegal-funds-transfer-conviction"
@@ -483,7 +937,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-pepsico-us-consumer-pullback-snacks-soda"
@@ -508,7 +962,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-pakistan-sui-gas-utilities-ifrs-insolvency"
@@ -524,7 +978,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-bitcoin-miners-ai-data-centers-contract-value"
@@ -540,7 +994,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-singapore-coe-car-ownership-record-quota"
@@ -556,7 +1010,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-fossils-earliest-animal-handedness-spriggina"
@@ -572,7 +1026,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-sand-tiger-shark-aquarium-trade-endangered"
@@ -588,7 +1042,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-john-deere-ftc-right-to-repair-settlement"
@@ -604,7 +1058,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-latvia-lvm-forestry-ransomware-recovery"
@@ -620,7 +1074,7 @@
       "lastCovered": "2026-07-09T17:08:05.227Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-linkedin-and-x-are-flooded-with-ai-spam-browsing-data-sugges"
@@ -636,7 +1090,7 @@
       "lastCovered": "2026-07-10T04:06:19.983Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 3,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-07-08-grok-4-5-xai-model-release-capability-safety",
@@ -653,7 +1107,7 @@
       "lastCovered": "2026-07-09T12:08:07.111Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-italy-expels-russian-embassy-officials-espionage"
@@ -675,7 +1129,7 @@
       "lastCovered": "2026-07-09T12:08:07.111Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-farage-clacton-by-election-confirmed"
@@ -697,7 +1151,7 @@
       "lastCovered": "2026-07-09T12:08:07.111Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-maharashtra-uniform-civil-code-draft-panel"
@@ -713,7 +1167,7 @@
       "lastCovered": "2026-07-09T12:08:07.111Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-balochistan-multi-party-moot-enforced-disappearances"
@@ -729,7 +1183,7 @@
       "lastCovered": "2026-07-09T12:08:07.111Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-cambodia-usaid-demise-one-year-impact"
@@ -739,35 +1193,13 @@
       "conceptUris": []
     },
     {
-      "id": "sk-hynix-nasdaq-adr-oversubscribed-memory-ai",
-      "label": "SK Hynix Nasdaq ADR offering more than 7 times oversubscribed",
-      "firstSeen": "2026-07-09T12:08:07.111Z",
-      "lastCovered": "2026-07-09T12:08:07.111Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-sk-hynix-nasdaq-adr-oversubscribed-memory-ai"
-      ],
-      "eventUri": "eng-11815973",
-      "summary": "SK Hynix's US listing drew orders more than seven times the 177.9 million shares on offer ahead of its Nasdaq debut. Lead with what the oversubscription signals, not the ticker: institutional investors are paying a premium for direct exposure to high-bandwidth memory, the chip that gates AI training, so the mechanism to teach is how the AI build-out reprices a South Korean memory maker as strategic infrastructure — and why a Korean champion chose New York capital markets. Multi-source (US).",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/SK_Hynix",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Nasdaq",
-        "http://en.wikipedia.org/wiki/South_Korea",
-        "http://en.wikipedia.org/wiki/Semiconductor"
-      ]
-    },
-    {
       "id": "south-korea-mongolia-cepa-minerals-diversification",
       "label": "S. Korea, Mongolia reach agreement in principle on CEPA",
       "firstSeen": "2026-07-09T12:08:07.111Z",
       "lastCovered": "2026-07-09T12:08:07.111Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-south-korea-mongolia-cepa-minerals-diversification"
@@ -788,7 +1220,7 @@
       "lastCovered": "2026-07-09T12:08:07.111Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-vietnam-lng-gas-projects-unbankable-renewables"
@@ -804,7 +1236,7 @@
       "lastCovered": "2026-07-09T12:08:07.111Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-synthetic-cell-36-genes-minimal-replication"
@@ -820,7 +1252,7 @@
       "lastCovered": "2026-07-09T12:08:07.111Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-phylo-plex-genomic-outbreak-tracking-low-resource"
@@ -836,7 +1268,7 @@
       "lastCovered": "2026-07-09T12:08:07.111Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-philippines-remote-nurses-us-hospitals-labor"
@@ -852,7 +1284,7 @@
       "lastCovered": "2026-07-09T12:08:07.111Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-08-chatgpt-flyer-pandemic-ai-slop-trust"
@@ -868,380 +1300,13 @@
       "lastCovered": "2026-07-09T12:08:07.111Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-09-foreigners-helped-kiev-make-drone-for-attempt-on-life-of-sen"
       ],
       "eventUri": null,
       "summary": "[Auto-backfill for tech floor] This follows from an audio recording of a telephone conversation between a Russian detained in Krasnodar and his Ukrainian handler\n\nMOSCOW, July 9. /TASS/. The drone armed with explosives, which Ukrainian secret services hoped to use to kill a high-ranking Russian Defense Ministry official, was prod",
-      "conceptUris": []
-    },
-    {
-      "id": "venezuela-frozen-assets-un-appeal-quake-recovery",
-      "label": "Venezuela, UN seek funds as quake toll climbs",
-      "firstSeen": "2026-07-09T08:07:33.313Z",
-      "lastCovered": "2026-07-09T08:07:33.313Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-08-venezuela-frozen-assets-un-appeal-quake-recovery"
-      ],
-      "eventUri": "spa-4262907",
-      "summary": "The toll from last month's twin quakes has passed 3,600, and Caracas is demanding the UK release its frozen gold to fund recovery while the UN begs for €259m. Lead with the mechanism the wires bury: a sanctioned state's own reserves are sitting immobilized in the Bank of England precisely when it needs them for disaster relief, so who controls frozen assets becomes a life-and-death question. Who bears the cost — quake survivors, not the government being punished. Strong multi-perspective spread (FR, PK, IN, SG, MY) with sharp sentiment divergence over whether the freeze is justified.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Venezuela",
-        "http://en.wikipedia.org/wiki/Earthquake",
-        "http://en.wikipedia.org/wiki/Gold",
-        "http://en.wikipedia.org/wiki/Delcy_Rodríguez",
-        "http://en.wikipedia.org/wiki/Bank_of_England",
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/United_Nations"
-      ]
-    },
-    {
-      "id": "india-australia-critical-minerals-nuclear-defence-pacts",
-      "label": "India, Australia sign civil nuclear, defence and critical minerals pacts",
-      "firstSeen": "2026-07-09T08:07:33.313Z",
-      "lastCovered": "2026-07-09T08:07:33.313Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-india-australia-critical-minerals-nuclear-defence-pacts"
-      ],
-      "eventUri": "eng-11815897",
-      "summary": "Modi and Albanese signed a bundle of pacts — civil nuclear cooperation, maritime security, and critical minerals — reordering the Indo-Pacific supply map. Lead with critical minerals, not the cricket banter: Australia holds the lithium, cobalt and rare earths India needs to escape Chinese processing dependence, and this deal is the mechanism by which two mid-tier powers try to build a minerals-and-defence axis outside Beijing's chokehold. Who gains leverage and who is being routed around. Multi-source, though carried only by Indian outlets — a regional-balance gap to note.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Australia",
-        "http://en.wikipedia.org/wiki/Indo-Pacific",
-        "http://en.wikipedia.org/wiki/Narendra_Modi",
-        "http://en.wikipedia.org/wiki/Maritime_security",
-        "http://en.wikipedia.org/wiki/Anthony_Albanese"
-      ]
-    },
-    {
-      "id": "iran-europe-complicity-unsc-letter-diplomatic-front",
-      "label": "Europe must be held accountable for complicity: Iran FM spox",
-      "firstSeen": "2026-07-09T08:07:33.313Z",
-      "lastCovered": "2026-07-09T08:07:33.313Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-iran-europe-complicity-unsc-letter-diplomatic-front"
-      ],
-      "eventUri": null,
-      "summary": "As the US-Iran war reignites, Tehran opens a legal-diplomatic front: summoning the UK ambassador, writing to the UN Security Council that Washington bears 'full responsibility,' and demanding European states answer for complicity in the strikes. Lead with the mechanism, not the rhetoric — a state under attack converting its grievance into formal accountability claims (UNSC letters, envoy summons) is how the legal record of a war gets built in real time, and who is named matters. This is the Iranian voice and agency the Western wires covering the same strikes omit; distinct from the military/oil/market angles already run.",
-      "conceptUris": []
-    },
-    {
-      "id": "northern-nigeria-security-trust-fund-state-police",
-      "label": "Northern governors launch security trust fund, commit N1bn monthly",
-      "firstSeen": "2026-07-09T08:07:33.313Z",
-      "lastCovered": "2026-07-09T08:07:33.313Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-northern-nigeria-security-trust-fund-state-police"
-      ],
-      "eventUri": null,
-      "summary": "The 19 northern Nigerian states have pooled a self-funded security trust — N1bn a month — and are backing state police, an implicit verdict that the federal security apparatus has failed them. Lead with the structural shift, not the launch ceremony: sub-national governments financing their own armed response is how a state's monopoly on force quietly fragments, and northern Nigeria's banditry crisis is now driving a parallel security economy. Who holds power and who pays for the vacuum. Original NG regional reporting; fills the audit's flagged Africa gap.",
-      "conceptUris": []
-    },
-    {
-      "id": "adb-pakistan-growth-inflation-forecast-gap",
-      "label": "ADB keeps Pakistan's growth outlook unchanged at 3.7pc for current fiscal year",
-      "firstSeen": "2026-07-09T08:07:33.313Z",
-      "lastCovered": "2026-07-09T08:07:33.313Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-adb-pakistan-growth-inflation-forecast-gap"
-      ],
-      "eventUri": "eng-11812387",
-      "summary": "The Asian Development Bank held Pakistan's growth at 3.7% but pegged inflation at 8.3% — above the government's own estimate. Lead with the gap between the two forecasts, not the headline number: when a multilateral lender publicly prices inflation higher than the finance ministry, it signals distrust of official projections and shapes the terms on which Islamabad borrows next. Who is affected — a population whose cost of living the state and the bank quietly disagree about. Dawn (PK) regional reporting on an OIC economy.",
-      "conceptUris": []
-    },
-    {
-      "id": "australiansuper-india-niif-infrastructure-investment",
-      "label": "Australia's largest pension fund invests 500 million Australian Dollars in India's infrastructure fund",
-      "firstSeen": "2026-07-09T08:07:33.313Z",
-      "lastCovered": "2026-07-09T08:07:33.313Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-australiansuper-india-niif-infrastructure-investment"
-      ],
-      "eventUri": "eng-11815723",
-      "summary": "Timed to Modi's visit, AustralianSuper is putting a further A$500m into India's National Investment and Infrastructure Fund. Lead with the capital-flow mechanism, not the sum: Australian retirees' pension savings are now underwriting Indian roads and ports, a concrete example of how the India-Australia partnership is being financed from below by institutional money seeking growth the West can't offer. Who owns the infrastructure of a rising economy, and whose savings carry the risk. Ties the diplomatic pacts to the money that actually moves.",
-      "conceptUris": []
-    },
-    {
-      "id": "robinhood-blockchain-cashcat-memecoin-tokenization",
-      "label": "'CASHCAT' trader turns $800 into over $1 million on Robinhood's brand new blockchain",
-      "firstSeen": "2026-07-09T08:07:33.313Z",
-      "lastCovered": "2026-07-09T08:07:33.313Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-robinhood-blockchain-cashcat-memecoin-tokenization"
-      ],
-      "eventUri": "eng-11815102",
-      "summary": "Days after Robinhood launched its own blockchain — pitched as infrastructure for tokenized real-world assets — the first breakout hit was a memecoin that turned $800 into $1m on thin liquidity. Lead with the contradiction, not the jackpot: a mainstream broker built a chain to legitimize tokenized stocks and bonds, and the market immediately used it for exactly the speculative churn regulators fear. The mechanism to teach the reader is how a memecoin's thin liquidity manufactures a viral windfall while exposing the platform's real risk. Who gains and who is left holding the token.",
-      "conceptUris": []
-    },
-    {
-      "id": "beta-pictoris-b-planet-formation-origin-puzzle",
-      "label": "Young giant gas planet Beta Pic b refuses to reveal its origin",
-      "firstSeen": "2026-07-09T08:07:33.313Z",
-      "lastCovered": "2026-07-09T08:07:33.313Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-beta-pictoris-b-planet-formation-origin-puzzle"
-      ],
-      "eventUri": null,
-      "summary": "Beta Pictoris b — an 11-Jupiter-mass planet orbiting a 23-million-year-old star — is defying astronomers' two competing models of how giant planets form. Lead with the puzzle, not the object: the planet's composition doesn't cleanly match either 'core accretion' or 'gravitational collapse,' and a directly imaged young world that fits neither is exactly the kind of anomaly that forces planet-formation theory to change. Teach the technically literate reader the two mechanisms and why measuring a single young planet's chemistry can adjudicate between them.",
-      "conceptUris": []
-    },
-    {
-      "id": "mintstars-creator-equity-platform-ownership",
-      "label": "Porn Platform Gives Sex Workers Stake in the Company's Profits",
-      "firstSeen": "2026-07-09T08:07:33.313Z",
-      "lastCovered": "2026-07-09T08:07:33.313Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-08-mintstars-creator-equity-platform-ownership"
-      ],
-      "eventUri": null,
-      "summary": "A co-founder of the adult subscription site MintStars is handing her entire equity stake to a pool for the platform's creators and a sex-worker nonprofit. Lead with the ownership mechanism, not the shock value: platforms extract value from the creators who supply all the content, and voluntarily transferring equity to those workers is a rare, concrete counter-model to the standard creator-economy split. For the reader who values dignity and labor, the story is who owns the platforms built on others' work — and whether creator-ownership can be more than a slogan. Unique 404 Media reporting no wire will carry.",
-      "conceptUris": []
-    },
-    {
-      "id": "machine-learning-titanium-alloys-implant-stress-shielding",
-      "label": "Predicting the Young's Modulus of biomedical titanium alloys using machine learning",
-      "firstSeen": "2026-07-09T08:07:33.313Z",
-      "lastCovered": "2026-07-09T08:07:33.313Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-machine-learning-titanium-alloys-implant-stress-shielding"
-      ],
-      "eventUri": null,
-      "summary": "Researchers built a deep neural network that predicts the stiffness of biomedical titanium alloys from their composition, aimed at solving 'stress shielding' in implants. Lead with the clinical mechanism, not the model: bone loses density when a metal implant is stiffer than the bone it replaces, so tuning an alloy's Young's modulus to match bone is a genuine engineering fix — and ML lets designers search the composition space without a lab for every candidate. Teach the reader the stress-shielding problem and why data-driven materials design is reshaping how implants get made.",
-      "conceptUris": []
-    },
-    {
-      "id": "burnham-labour-leadership-starmer-resignation",
-      "label": "Andy Burnham's path to becoming prime minister",
-      "firstSeen": "2026-07-09T04:06:30.784Z",
-      "lastCovered": "2026-07-09T04:06:30.784Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-burnham-labour-leadership-starmer-resignation"
-      ],
-      "eventUri": null,
-      "summary": "Keir Starmer has resigned and Labour MPs are opening nominations for his successor — Greater Manchester mayor Andy Burnham is so far the only declared candidate and is widely expected to become PM within weeks. Lead with the mechanism: a UK prime ministership decided by an internal Labour nomination process, not a general election, and what a Burnham premiership signals about the party's direction.",
-      "conceptUris": []
-    },
-    {
-      "id": "korea-democratic-party-leadership-race-lee-jae-myung",
-      "label": "4-Way Race for Democratic Party Leadership Tests Lee Jae-myung's Influence",
-      "firstSeen": "2026-07-09T04:06:30.784Z",
-      "lastCovered": "2026-07-09T04:06:30.784Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-08-korea-democratic-party-leadership-race-lee-jae-myung"
-      ],
-      "eventUri": null,
-      "summary": "Former PM Kim Min-seok's confirmed bid opens a four-way contest for South Korea's ruling Democratic Party leadership, pitting pro-Lee against pro-Jung factions. Lead with the test of President Lee Jae-myung's grip on his own party — whether the presidency can still dictate the party machine, and what a factional split would mean for his agenda.",
-      "conceptUris": []
-    },
-    {
-      "id": "mexico-cartels-illegal-logging-monarch-butterflies",
-      "label": "The Butterfly Effect of Mexico's Cartel Violence",
-      "firstSeen": "2026-07-09T04:06:30.784Z",
-      "lastCovered": "2026-07-09T04:06:30.784Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-08-mexico-cartels-illegal-logging-monarch-butterflies"
-      ],
-      "eventUri": null,
-      "summary": "Cartels in northern Mexico are extorting locals and driving illegal logging and avocado plantations — and one casualty is the monarch butterfly, whose overwintering forest is being cleared. Lead with the mechanism: organized crime as an environmental actor, converting protected habitat into cash crops with impunity. Unique ground reportage linking accountability, ecology, and rural extortion.",
-      "conceptUris": []
-    },
-    {
-      "id": "electric-car-insurance-battery-repair-cost",
-      "label": "Why electric cars cost more to insure - and what's being done about it",
-      "firstSeen": "2026-07-09T04:06:30.784Z",
-      "lastCovered": "2026-07-09T04:06:30.784Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-08-electric-car-insurance-battery-repair-cost"
-      ],
-      "eventUri": null,
-      "summary": "EVs cost more to insure because minor crashes can write off an entire battery pack — and insurers can't cheaply assess or repair them. Lead with the structural mechanism: battery replacement economics, not risk of accidents, drive premiums, and why repairability standards are the lever regulators and manufacturers are now pulling.",
-      "conceptUris": []
-    },
-    {
-      "id": "east-asia-youth-neet-employment-crisis",
-      "label": "More and More of East Asia's Youth Have Given up on Finding Jobs",
-      "firstSeen": "2026-07-09T04:06:30.784Z",
-      "lastCovered": "2026-07-09T04:06:30.784Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-08-east-asia-youth-neet-employment-crisis"
-      ],
-      "eventUri": null,
-      "summary": "A rising share of young people across East Asia have stopped looking for work entirely — the NEET phenomenon signalling a broken social bargain between education and employment. Lead with the structural why: credential inflation and shrinking career-track jobs, and why conventional labor-market stats miss the discouraged who have exited the count altogether.",
-      "conceptUris": []
-    },
-    {
-      "id": "lavrov-mozambique-russia-africa-tour",
-      "label": "Lavrov arrives in Mozambique as part of his African tour",
-      "firstSeen": "2026-07-09T04:06:30.784Z",
-      "lastCovered": "2026-07-09T04:06:30.784Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-lavrov-mozambique-russia-africa-tour"
-      ],
-      "eventUri": null,
-      "summary": "Lavrov's stop in Maputo — his third after Ethiopia and Niger — extends Russia's push to lock in resource and security ties across Africa. Lead with the pattern, not the visit: which minerals, arms deals, and debt relationships Moscow is trading for African diplomatic cover, and how the continent is playing great powers against each other for leverage.",
-      "conceptUris": []
-    },
-    {
-      "id": "western-europe-hottest-june-record-copernicus",
-      "label": "Western Europe records hottest June on record, EU scientists say",
-      "firstSeen": "2026-07-09T04:06:30.784Z",
-      "lastCovered": "2026-07-09T04:06:30.784Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-western-europe-hottest-june-record-copernicus"
-      ],
-      "eventUri": "eng-11815721",
-      "summary": "Copernicus confirms Western Europe's warmest June on record, the second-warmest June globally, after a late-month heatwave that shut schools and strained power grids. Lead with the number and the systemic strain — record heat is now colliding with fixed infrastructure (grids, water, transport) built for a cooler climate, making the consequence about failure of systems, not weather.",
-      "conceptUris": []
-    },
-    {
-      "id": "typhoon-bavi-taiwan-china-fujian-landfall",
-      "label": "Typhoon Bavi churns towards Taiwan as China braces for landfall",
-      "firstSeen": "2026-07-09T04:06:30.784Z",
-      "lastCovered": "2026-07-09T04:06:30.784Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-typhoon-bavi-taiwan-china-fujian-landfall"
-      ],
-      "eventUri": "eng-11814045",
-      "summary": "Bavi — roughly the width of France at ~1,000km — is set to be the largest storm to threaten the region, skirting northern Taiwan before landfall in Fujian on Saturday. Lead with scale and exposure: tens of millions in the storm's path, and how record-warm sea-surface temperatures are supercharging storm size, linking this to the same heat signal driving Europe's records.",
-      "conceptUris": []
-    },
-    {
-      "id": "varroa-mite-tasmania-crop-pollination-risk",
-      "label": "Varroa risk to Tasmanian crop pollination",
-      "firstSeen": "2026-07-09T04:06:30.784Z",
-      "lastCovered": "2026-07-09T04:06:30.784Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-varroa-mite-tasmania-crop-pollination-risk"
-      ],
-      "eventUri": null,
-      "summary": "A Tasmanian Institute of Agriculture study models the pollination collapse that would follow if Varroa mites — already devastating mainland Australian hives — reach the island. Lead with the dependency: unmanaged feral bee colonies, which quietly do much of the pollination, can't be treated, so a mite incursion would hit crops through a route farmers can't defend. Fills thin Oceania coverage with a concrete food-security mechanism.",
-      "conceptUris": []
-    },
-    {
-      "id": "china-ai-boom-state-backed-entrepreneurs",
-      "label": "China's AI boom is creating a different kind of entrepreneur",
-      "firstSeen": "2026-07-09T04:06:30.784Z",
-      "lastCovered": "2026-07-09T04:06:30.784Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-07-china-ai-boom-state-backed-entrepreneurs"
-      ],
-      "eventUri": null,
-      "summary": "State-backed Chinese workers are using AI to route around resource and capital constraints, producing a founder model distinct from Silicon Valley's venture-driven one. Lead with the mechanism: how state direction plus cheap AI tooling is reshaping who gets to build, and why this bottom-up-under-top-down hybrid is a genuine competitive alternative rather than a copy.",
-      "conceptUris": []
-    },
-    {
-      "id": "taiwan-skyguard-anti-drone-nets",
-      "label": "Taiwan's Skyguard Anti-Aircraft Guns Now Equipped With Anti-Drone Nets",
-      "firstSeen": "2026-07-09T04:06:30.784Z",
-      "lastCovered": "2026-07-09T04:06:30.784Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-08-taiwan-skyguard-anti-drone-nets"
-      ],
-      "eventUri": null,
-      "summary": "Taiwan has draped anti-drone netting over its Skyguard air-defense guns — the systems meant to shoot drones down now need physical shields against them. Lead with the inversion: cheap drones now threaten the expensive weapons designed to counter them, a telling data point on how the drone-warfare cost curve is forcing improvised, low-tech countermeasures.",
-      "conceptUris": []
-    },
-    {
-      "id": "durov-telegram-paris-questioning-platform-liability",
-      "label": "Durov questioned in Paris for six hours -- agency",
-      "firstSeen": "2026-07-09T04:06:30.784Z",
-      "lastCovered": "2026-07-09T04:06:30.784Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-09-durov-telegram-paris-questioning-platform-liability"
-      ],
-      "eventUri": null,
-      "summary": "Telegram co-founder Pavel Durov was questioned again by French investigators nearly two years into a probe his lawyers say still lacks supporting evidence. Lead with the precedent: holding a platform founder personally criminally liable for what users do on an encrypted service — a legal theory with sweeping implications for messaging, moderation, and where accountability for a network sits.",
       "conceptUris": []
     }
   ]
