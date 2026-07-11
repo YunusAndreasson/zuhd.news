@@ -37,7 +37,7 @@ const PAD = 72
  * @param {Object} [size=IG_FEED] — { width, height }
  * @param {'light'|'dark'} [variant='light']
  */
-export const buildIgSvg = (article, size = IG_FEED, variant = 'light') => {
+export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
   const { width: W, height: H } = size
   const theme = themeFor(variant)
   const inner = W - PAD * 2
@@ -52,11 +52,15 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'light') => {
     r: W * 0.6,
     scaleMul: 2.0,
     clipId: 'ig-globe-clip',
+    // A touch more presence than the flat theme greys so the globe reads on
+    // the dark card without competing with the type.
+    ocean: variant === 'dark' ? '#1e1e1e' : theme.soft,
+    land: variant === 'dark' ? '#383838' : theme.land,
     landStroke: null, // no outline — keeps the backdrop soft
     rim: null, // bleed, no bounding ring
     showCross: true,
   })
-  const globeLayer = globe ? `<g opacity="0.85">${globe}</g>` : ''
+  const globeLayer = globe ? `<g opacity="0.95">${globe}</g>` : ''
 
   const kicker = `${(article.category || 'news').toUpperCase()}  ·  ${formatLongDate(article.date)}`
   const location = article.location ? String(article.location).toUpperCase() : null
@@ -64,7 +68,7 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'light') => {
   // Headline (article title), bold. resvg renders Source Sans 3 with wide,
   // near-uniform advances (~0.62em) — size the wrap to that so it never clips.
   const headline = article.headline || article.title || 'Breaking News'
-  const titleFontSize = headline.length > 38 ? 62 : 74
+  const titleFontSize = headline.length > 38 ? 68 : 80
   const titleLineHeight = Math.round(titleFontSize * 1.12)
   const titleLines = wrapTitle(headline, Math.floor(inner / (titleFontSize * 0.62)), 3)
   const titleStartY = Math.round(H * 0.13) + titleFontSize
@@ -72,7 +76,7 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'light') => {
   // Dek: the story lead/summary rendered on the card in regular weight. Regular
   // Source Sans advances are narrower (~0.53em). Sits just under the headline.
   const summary = String(article.summary || '').trim()
-  const dekFontSize = 37
+  const dekFontSize = 41
   const dekLineHeight = Math.round(dekFontSize * 1.34)
   const dekLines = summary ? wrapTitle(summary, Math.floor(inner / (dekFontSize * 0.53)), 7) : []
   const dekStartY = titleStartY + (titleLines.length - 1) * titleLineHeight + titleLineHeight + dekFontSize
@@ -109,12 +113,11 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'light') => {
  * Rasterize an Instagram card SVG to a JPEG Buffer (Instagram rejects PNG).
  * resvg gives us the RGBA pixel buffer; jpeg-js encodes it to JPEG.
  */
-export const rasterizeIgJpeg = (svgString, size = IG_FEED, quality = 92) => {
-  const theme = themeFor('light')
+export const rasterizeIgJpeg = (svgString, size = IG_FEED, variant = 'dark', quality = 92) => {
   const resvg = new Resvg(svgString, {
     font: { fontFiles: FONT_FILES, loadSystemFonts: false, defaultFontFamily: 'Source Sans 3' },
     fitTo: { mode: 'width', value: size.width },
-    background: theme.bg, // opaque — JPEG has no alpha channel
+    background: themeFor(variant).bg, // opaque — JPEG has no alpha channel
   })
   const rendered = resvg.render()
   const { data } = jpeg.encode({ data: rendered.pixels, width: rendered.width, height: rendered.height }, quality)
@@ -122,5 +125,5 @@ export const rasterizeIgJpeg = (svgString, size = IG_FEED, quality = 92) => {
 }
 
 /** Convenience: build + rasterize in one call. Returns a JPEG Buffer. */
-export const buildIgJpeg = (article, size = IG_FEED, variant = 'light') =>
-  rasterizeIgJpeg(buildIgSvg(article, size, variant), size)
+export const buildIgJpeg = (article, size = IG_FEED, variant = 'dark') =>
+  rasterizeIgJpeg(buildIgSvg(article, size, variant), size, variant)
