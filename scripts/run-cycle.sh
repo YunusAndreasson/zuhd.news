@@ -434,6 +434,9 @@ $BODY_LENGTHS
     # subsequent push fail non-fast-forward (2026-05-22→27 divergence). Autostash reconciles
     # regardless. The remote's only parallel writer is mobile/ work — disjoint from content/.
     git pull --rebase --autostash origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git pull --rebase failed (likely a mobile/backend file overlap — investigate)" | tee -a "$LOG_FILE"
+    # Install any new build deps the pull may have added (fast no-op when
+    # unchanged) so the next build.js doesn't crash on a missing module.
+    npm install --no-audit --no-fund 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: npm install after pull failed" | tee -a "$LOG_FILE"
     git push origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git push failed" | tee -a "$LOG_FILE"
 
     # Deploy
@@ -650,6 +653,9 @@ if [ "${START_HOUR:-$HOUR_UTC}" = "04" ]; then
     git add content/audio/ 2>&1 | tee -a "$LOG_FILE"
     git commit -m "Audio briefing $(date -u +%Y-%m-%d)" 2>&1 | tee -a "$LOG_FILE"
     git pull --rebase --autostash origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git pull --rebase failed (likely a mobile/backend file overlap — investigate)" | tee -a "$LOG_FILE"
+    # Install any new build deps the pull may have added (fast no-op when
+    # unchanged) so the next build.js doesn't crash on a missing module.
+    npm install --no-audit --no-fund 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: npm install after pull failed" | tee -a "$LOG_FILE"
     git push origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git push failed" | tee -a "$LOG_FILE"
     npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true 2>&1 | tee -a "$LOG_FILE"
     DEPLOY_EXIT=$?
@@ -787,6 +793,11 @@ if [ "$START_HOUR" = "22" ]; then
       AUDIT_DATE=$(date -u +%Y-%m-%d)
       git commit -m "Daily audit $AUDIT_DATE" 2>&1 | tee -a "$LOG_FILE"
       git pull --rebase --autostash origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git pull --rebase failed (likely a mobile/backend file overlap — investigate)" | tee -a "$LOG_FILE"
+      # Install any new build deps the pull may have added (fast no-op when unchanged).
+      npm install --no-audit --no-fund 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: npm install after pull failed" | tee -a "$LOG_FILE"
+    # Install any new build deps the pull may have added (fast no-op when
+    # unchanged) so the next build.js doesn't crash on a missing module.
+    npm install --no-audit --no-fund 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: npm install after pull failed" | tee -a "$LOG_FILE"
       git push origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git push failed" | tee -a "$LOG_FILE"
     fi
   else

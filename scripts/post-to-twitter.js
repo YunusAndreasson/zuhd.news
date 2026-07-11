@@ -3,16 +3,16 @@
 //
 // The cycle already sends a breaking-news push once per cycle (the single top
 // validated breaking story, see run-cycle.sh). This mirrors that same story to
-// the zuhd.news X account as ONE plain-text tweet, so the X audience gets the
-// same alert app users get.
+// the zuhd.news X account as a single image tweet — the breaking card rendered
+// as a 16:9 landscape (lib/ig-image.js), uploaded and posted image-only.
 //
-// Design decisions (see plan):
+// Design decisions:
 //   - Breaking pushes only. run-cycle.sh calls this with the pushed slug.
-//   - No link in the tweet — plain text is ~$0.015 on X's pay-per-use API,
-//     a tweet with a URL is ~$0.20 (13×). The app link lives in the X bio +
-//     a pinned tweet instead.
-//   - The tweet text is condensed by the `claude` CLI (ambient OAuth, no API
-//     key, so free), unless --text is passed.
+//   - Image-only: the card carries the headline + story lead, so the tweet has
+//     no text. The app link lives in the X bio (no per-tweet URL).
+//   - The card is rendered here and its bytes uploaded via v1.1 media/upload; a
+//     `claude`-condensed text tweet is used only as a fallback if the image
+//     can't be posted.
 //   - Posting uses OAuth 1.0a User Context (4 static keys) — signed by hand
 //     with node:crypto, no dependency.
 //   - Non-fatal: any operational failure logs a warning and exits 0 so the
