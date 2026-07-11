@@ -90,25 +90,29 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
 
   const inner = W - PAD * 2
 
-  // The globe sits low and oversized so it bleeds off the sides and bottom,
-  // reading as an atmospheric backdrop under the type rather than a bounded
-  // inset. Faint (soft ocean, light land, no rim) with the gold anchor
-  // crosshair marking the story's location — the one deliberate accent.
+  // A large orthographic earth that bleeds full-width across the lower half of
+  // the card — grounded, edge-to-edge, not a small disc floating over empty
+  // space. The gold anchor (its center) marks the story's location. A scrim
+  // (below) fades the earth out under the type so the upper half stays a clean
+  // field for the headline + dek, and the two halves read in balance.
+  const globeR = Math.round(W * 0.56)
+  const globeCy = Math.round(H * 0.74)
   const globe = buildGlobe(article.lat, article.lng, theme, {
     cx: W / 2,
-    cy: H * 0.8,
-    r: W * 0.6,
-    scaleMul: 2.0,
+    cy: globeCy,
+    r: globeR,
+    scaleMul: 1.9,
     clipId: 'ig-globe-clip',
     // A touch more presence than the flat theme greys so the globe reads on
     // the dark card without competing with the type.
-    ocean: variant === 'dark' ? '#1e1e1e' : theme.soft,
-    land: variant === 'dark' ? '#383838' : theme.land,
-    landStroke: null, // no outline — keeps the backdrop soft
-    rim: null, // bleed, no bounding ring
+    ocean: variant === 'dark' ? '#1c1c1c' : theme.soft,
+    land: variant === 'dark' ? '#3d3d3d' : theme.land,
+    landStroke: variant === 'dark' ? '#484848' : theme.rule,
+    landStrokeWidth: 0.5,
+    rim: null, // full-width bleed in the lower half — grounded, no bounding disc
     showCross: true,
   })
-  const globeLayer = globe ? `<g opacity="0.95">${globe}</g>` : ''
+  const globeLayer = globe ? `<g opacity="0.98">${globe}</g>` : ''
 
   const kicker = `${(article.category || 'news').toUpperCase()}  ·  ${formatLongDate(article.date)}`
   const location = article.location ? String(article.location).toUpperCase() : null
@@ -116,20 +120,20 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
   // Headline (article title), bold. resvg renders Source Sans 3 with wide,
   // near-uniform advances (~0.62em) — size the wrap to that so it never clips.
   const headline = article.headline || article.title || 'Breaking News'
-  const titleFontSize = headline.length > 38 ? 72 : 84
-  const titleLineHeight = Math.round(titleFontSize * 1.12)
+  const titleFontSize = headline.length > 38 ? 82 : 94
+  const titleLineHeight = Math.round(titleFontSize * 1.1)
   const titleLines = wrapTitle(headline, Math.floor(inner / (titleFontSize * 0.62)), 3)
-  const titleStartY = Math.round(H * 0.13) + titleFontSize
+  const titleStartY = Math.round(H * 0.135) + titleFontSize
 
   // Dek: the story lead/summary rendered on the card in regular weight. Regular
   // Source Sans advances are narrower (~0.53em). Sits just under the headline.
   const summary = String(article.summary || '').trim()
-  const dekFontSize = 45
-  const dekLineHeight = Math.round(dekFontSize * 1.46)
+  const dekFontSize = 46
+  const dekLineHeight = Math.round(dekFontSize * 1.42)
   // Brighter than the dim label grey so the dek stays legible over the globe on
   // the dark card; weight (400 vs the 700 headline) still carries the hierarchy.
   const dekColor = variant === 'dark' ? '#cfcfcf' : theme.dim
-  const dekLines = summary ? wrapTitle(summary, Math.floor(inner / (dekFontSize * 0.53)), 7) : []
+  const dekLines = summary ? wrapTitle(summary, Math.floor(inner / (dekFontSize * 0.53)), 6) : []
   const dekStartY = titleStartY + (titleLines.length - 1) * titleLineHeight + titleLineHeight + dekFontSize
 
   // Soft shadow behind the type so it stays crisp where it crosses the globe.
@@ -141,10 +145,18 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
     <filter id="ig-text-shadow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
       <feDropShadow dx="0" dy="2" stdDeviation="8" flood-color="${shadowColor}" flood-opacity="0.55"/>
     </filter>
+    <linearGradient id="ig-scrim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="${theme.bg}" stop-opacity="1"/>
+      <stop offset="0.50" stop-color="${theme.bg}" stop-opacity="1"/>
+      <stop offset="0.60" stop-color="${theme.bg}" stop-opacity="0"/>
+      <stop offset="0.88" stop-color="${theme.bg}" stop-opacity="0"/>
+      <stop offset="1" stop-color="${theme.bg}" stop-opacity="0.72"/>
+    </linearGradient>
   </defs>
   <rect width="${W}" height="${H}" fill="${theme.bg}"/>
 
   ${globeLayer}
+  <rect width="${W}" height="${H}" fill="url(#ig-scrim)"/>
 
   <g filter="url(#ig-text-shadow)">
   <text x="${PAD}" y="${PAD + 48}" font-family="Source Sans 3" font-size="26" font-weight="600" fill="${theme.dim}" letter-spacing="3">${escXml(kicker)}</text>

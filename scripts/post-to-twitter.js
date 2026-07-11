@@ -4,7 +4,7 @@
 // The cycle already sends a breaking-news push once per cycle (the single top
 // validated breaking story, see run-cycle.sh). This mirrors that same story to
 // the zuhd.news X account as a single image tweet — the breaking card rendered
-// as a 16:9 landscape (lib/ig-image.js), uploaded and posted image-only.
+// as a 4:5 portrait card (lib/ig-image.js), uploaded and posted image-only.
 //
 // Design decisions:
 //   - Breaking pushes only. run-cycle.sh calls this with the pushed slug.
@@ -25,7 +25,7 @@ import { join } from 'path'
 import { spawnSync } from 'child_process'
 import { createHmac, randomBytes } from 'crypto'
 import { parseFrontmatter } from './lib/frontmatter.js'
-import { buildIgJpeg, IG_X } from './lib/ig-image.js'
+import { buildIgJpeg, IG_FEED } from './lib/ig-image.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const TWEET_LOG = join(ROOT, 'content/.tweet-log.json')
@@ -205,11 +205,12 @@ function authHeader(method, url) {
   )
 }
 
-// --- media: the breaking card, rendered here as a 16:9 landscape (fills the X
-// timeline, no crop) and uploaded directly — no dependence on build/deploy. ---
+// --- media: the breaking card, rendered here as a 4:5 portrait card (bigger
+// type than the old 16:9 landscape) and uploaded directly — no dependence on
+// build/deploy. ---
 function makeCard() {
   try {
-    return buildIgJpeg(cardArticle, IG_X)
+    return buildIgJpeg(cardArticle, IG_FEED)
   } catch (e) {
     console.error(`post-to-twitter: card render failed — ${e.message}`)
     return null
