@@ -26,6 +26,7 @@ const FONT_FILES = ['SourceSans3-Regular.ttf', 'SourceSans3-SemiBold.ttf', 'Sour
 // composer with a taller canvas so it fills a 9:16 screen natively.
 export const IG_FEED = { width: 1080, height: 1350 }
 export const IG_STORY = { width: 1080, height: 1920 }
+export const IG_X = { width: 1600, height: 900 } // 16:9 landscape for X — fills the timeline
 
 const PAD = 72
 
@@ -40,6 +41,53 @@ const PAD = 72
 export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
   const { width: W, height: H } = size
   const theme = themeFor(variant)
+
+  // Landscape card (X): text column on the left, the globe large on the right.
+  // X's native single-image aspect, so it fills the timeline with no crop.
+  if (W > H) {
+    const PADL = 90
+    const colW = W * 0.6 - PADL
+    const shadow = variant === 'dark' ? '#000000' : '#ffffff'
+    const dek = variant === 'dark' ? '#cfcfcf' : theme.dim
+    const kickerL = `${(article.category || 'news').toUpperCase()}  ·  ${formatLongDate(article.date)}`
+    const locL = article.location ? String(article.location).toUpperCase() : null
+    const headL = article.headline || article.title || 'Breaking News'
+    const sumL = String(article.summary || '').trim()
+    const gl = buildGlobe(article.lat, article.lng, theme, {
+      cx: W * 0.8,
+      cy: H * 0.52,
+      r: H * 0.62,
+      scaleMul: 2.0,
+      clipId: 'ig-globe-clip',
+      ocean: variant === 'dark' ? '#1e1e1e' : theme.soft,
+      land: variant === 'dark' ? '#383838' : theme.land,
+      landStroke: null,
+      rim: null,
+      showCross: true,
+    })
+    const tf = headL.length > 34 ? 64 : 72
+    const tlh = Math.round(tf * 1.14)
+    const tl = wrapTitle(headL, Math.floor(colW / (tf * 0.62)), 3)
+    const ty = Math.round(H * 0.24) + tf
+    const df = 40
+    const dlh = Math.round(df * 1.45)
+    const dl = sumL ? wrapTitle(sumL, Math.floor(colW / (df * 0.53)), 5) : []
+    const dy = ty + (tl.length - 1) * tlh + tlh + df
+    return `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
+  <defs><filter id="ig-text-shadow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feDropShadow dx="0" dy="2" stdDeviation="8" flood-color="${shadow}" flood-opacity="0.55"/></filter></defs>
+  <rect width="${W}" height="${H}" fill="${theme.bg}"/>
+  ${gl ? `<g opacity="0.95">${gl}</g>` : ''}
+  <g filter="url(#ig-text-shadow)">
+  <text x="${PADL}" y="${PADL + 40}" font-family="Source Sans 3" font-size="26" font-weight="600" fill="${theme.dim}" letter-spacing="3">${escXml(kickerL)}</text>
+  ${tl.map((l, i) => `<text x="${PADL}" y="${ty + i * tlh}" font-family="Source Sans 3" font-size="${tf}" font-weight="700" fill="${theme.fg}" letter-spacing="-0.01em">${escXml(l)}</text>`).join('\n  ')}
+  ${dl.map((l, i) => `<text x="${PADL}" y="${dy + i * dlh}" font-family="Source Sans 3" font-size="${df}" font-weight="400" fill="${dek}">${escXml(l)}</text>`).join('\n  ')}
+  ${locL ? `<text x="${PADL}" y="${H - 120}" font-family="Source Sans 3" font-size="26" font-weight="600" fill="${theme.dim}" letter-spacing="3">${escXml(locL)}</text>` : ''}
+  <text x="${PADL}" y="${H - 64}" font-family="Source Sans 3" font-size="34" font-weight="700" fill="${theme.fg}" letter-spacing="-0.01em">zuhd<tspan fill="${theme.dim}">.</tspan>news</text>
+  </g>
+</svg>`
+  }
+
   const inner = W - PAD * 2
 
   // The globe sits low and oversized so it bleeds off the sides and bottom,

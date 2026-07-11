@@ -25,13 +25,13 @@ import { join } from 'path'
 import { spawnSync } from 'child_process'
 import { createHmac, randomBytes } from 'crypto'
 import { parseFrontmatter } from './lib/frontmatter.js'
+import { buildIgJpeg, IG_X } from './lib/ig-image.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const TWEET_LOG = join(ROOT, 'content/.tweet-log.json')
 const PROMPT_PATH = join(ROOT, 'scripts/tweet-prompt.md')
 const API_URL = 'https://api.twitter.com/2/tweets'
 const MEDIA_UPLOAD_URL = 'https://upload.twitter.com/1.1/media/upload.json'
-const SITE = 'https://zuhd.news'
 // X counts weighted length (URLs=23, emoji/CJK=2). Our tweets are plain English
 // with no link, so code-unit length is a safe proxy; 275 leaves headroom < 280.
 const MAX_LEN = 275
@@ -128,24 +128,51 @@ function condenseViaClaude(articleText) {
   return line || null
 }
 
-let text = explicitText
-if (!text) {
-  const path = join(ROOT, 'content/articles', `${slug}.md`)
-  if (!existsSync(path)) {
-    console.error(`post-to-twitter: article not found (${path}) — skipping.`)
-    process.exit(0)
-  }
-  const { meta, body } = parseFrontmatter(readFileSync(path, 'utf8'))
-  const articleText = `${meta.title || ''}\n\n${body}`.trim()
-  text = condenseViaClaude(articleText)
-  if (!text) {
-    console.error('post-to-twitter: could not generate tweet text — skipping.')
-    process.exit(0)
-  }
+// Parse the article once. The card image is the tweet; the condensed text is
+// only a fallback if the image can't be posted.
+const articlePath = join(ROOT, 'content/articles', `${slug}.md`)
+if (!existsSync(articlePath)) {
+  console.error(`post-to-twitter: article not found (${articlePath}) — skipping.`)
+  process.exit(0)
 }
-// Strip any wrapping quotes/fences the model may add despite the prompt rules.
-text = text.replace(/^\s*["'“”]+|["'“”]+\s*$/g, '').trim()
-text = truncate(text, MAX_LEN)
+const { meta, body } = parseFrontmatter(readFileSync(articlePath, 'utf8'))
+
+// Story lead → the card's dek (same extraction as the IG poster / build.js).
+const igLead = (b) => {
+  let t = String(b || '')
+    .trim()
+    .split(/\n\n+/)
+    .slice(0, 2)
+    .join(' ')
+    .replace(/^[A-Z][\w .,'-]{0,28}\s—\s/, '')
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/[*_`]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+  if (t.length > 260) {
+    const cut = t.slice(0, 260)
+    const end = cut.lastIndexOf('. ')
+    t = end > 130 ? cut.slice(0, end + 1) : cut.replace(/\s+\S*$/, '') + '…'
+  }
+  return t
+}
+const cardArticle = {
+  headline: meta.title || 'Breaking News',
+  summary: igLead(body),
+  category: meta.category || null,
+  date: meta.date,
+  location: meta.location || null,
+  lat: meta.lat != null ? Number(meta.lat) : null,
+  lng: meta.lng != null ? Number(meta.lng) : null,
+}
+
+// Lazy: only spend a Claude call on tweet text if we need the fallback.
+function tweetText() {
+  let t = explicitText || condenseViaClaude(`${meta.title || ''}\n\n${body}`.trim())
+  if (!t) return null
+  t = t.replace(/^\s*["'“”]+|["'“”]+\s*$/g, '').trim()
+  return truncate(t, MAX_LEN)
+}
 
 // --- OAuth 1.0a signing ---
 const rfc3986 = (str) =>
@@ -178,18 +205,15 @@ function authHeader(method, url) {
   )
 }
 
-// --- media: attach the breaking card (the same 4:5 image the IG post uses) ---
-async function loadCardImage() {
-  // Prefer the freshly-built local artifact; fall back to the public URL.
-  const localPath = join(ROOT, 'dist', 'api', 'ig', `${slug}.jpg`)
-  if (existsSync(localPath)) return readFileSync(localPath)
+// --- media: the breaking card, rendered here as a 16:9 landscape (fills the X
+// timeline, no crop) and uploaded directly — no dependence on build/deploy. ---
+function makeCard() {
   try {
-    const res = await fetch(`${SITE}/api/ig/${slug}.jpg`)
-    if (res.ok) return Buffer.from(await res.arrayBuffer())
-  } catch {
-    /* offline / not deployed yet — tweet text-only */
+    return buildIgJpeg(cardArticle, IG_X)
+  } catch (e) {
+    console.error(`post-to-twitter: card render failed — ${e.message}`)
+    return null
   }
-  return null
 }
 
 async function uploadMedia(buffer) {
@@ -211,27 +235,28 @@ async function uploadMedia(buffer) {
 
 // --- post ---
 async function post() {
-  // Upload the breaking card so the tweet leads with the image, not just text.
+  // The card image IS the tweet — no text above it.
+  const img = makeCard()
   let mediaIds = []
-  const img = await loadCardImage()
   if (img && haveCreds && !dryRun) {
     try {
       mediaIds = [await uploadMedia(img)]
     } catch (e) {
-      console.error(`post-to-twitter: media upload failed, tweeting text-only — ${e.message}`)
+      console.error(`post-to-twitter: media upload failed — ${e.message}`)
     }
   }
+  // Fall back to a text tweet only if the image couldn't be posted.
+  const text = mediaIds.length ? null : tweetText()
 
   if (dryRun || !haveCreds) {
-    console.log(`[dry-run] tweet (${text.length} chars):\n${text}`)
-    console.log(`[dry-run] card image: ${img ? `${img.length} bytes (would attach)` : 'not found — text-only'}`)
-    if (!haveCreds) {
-      console.log('[dry-run] X_* creds not set — signing/POST skipped.')
-    } else {
-      // Exercise the signing path so a broken header surfaces in dry-run.
-      const header = authHeader('POST', API_URL)
-      console.log(`[dry-run] would POST ${API_URL} — auth header OK (${header.length} chars).`)
-    }
+    console.log(`[dry-run] card image: ${img ? `${img.length} bytes (image-only tweet)` : 'render failed'}`)
+    if (!img) console.log(`[dry-run] fallback text: ${text || '(none)'}`)
+    if (!haveCreds) console.log('[dry-run] X_* creds not set — signing/POST skipped.')
+    else console.log(`[dry-run] would POST ${API_URL} — auth header OK (${authHeader('POST', API_URL).length} chars).`)
+    return
+  }
+  if (!mediaIds.length && !text) {
+    console.error('post-to-twitter: no image and no fallback text — skipping.')
     return
   }
   const res = await fetch(API_URL, {
@@ -240,24 +265,24 @@ async function post() {
       Authorization: authHeader('POST', API_URL),
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(mediaIds.length ? { text, media: { media_ids: mediaIds } } : { text }),
+    body: JSON.stringify(mediaIds.length ? { media: { media_ids: mediaIds } } : { text }),
   })
   const json = await res.json().catch(() => ({}))
   if (res.ok && json?.data?.id) {
-    console.log(`post-to-twitter: posted ${json.data.id}${mediaIds.length ? ' (with card image)' : ''} — ${text}`)
+    console.log(`post-to-twitter: posted ${json.data.id} (${mediaIds.length ? 'card image' : 'text'})`)
     log.push({
       timestamp: new Date().toISOString(),
       slug,
-      text,
       tweetId: json.data.id,
       media: mediaIds.length > 0,
+      ...(text ? { text } : {}),
       sent: true,
     })
     writeLog(log)
   } else {
     const err = json?.detail || json?.title || `HTTP ${res.status}`
     console.error(`post-to-twitter: X API error — ${err}`)
-    log.push({ timestamp: new Date().toISOString(), slug, text, sent: false, error: String(err) })
+    log.push({ timestamp: new Date().toISOString(), slug, sent: false, error: String(err) })
     writeLog(log)
   }
 }
