@@ -159,6 +159,21 @@ __HEAD__
     <nav class="footer-links">
       <a href="/about">about</a> <a href="/contact">contact</a> <a href="/privacy">privacy</a>
     </nav>
+    <nav class="footer-maker" aria-label="Maker">
+      <a class="footer-byline" href="https://andreassonphoto.com/about" target="_blank" rel="me noopener noreferrer">made by yunus andreasson</a>
+      <span class="footer-maker-links">
+        <a href="https://github.com/YunusAndreasson" target="_blank" rel="me noopener noreferrer">github</a>
+        <a href="https://x.com/YunusAndreasson" target="_blank" rel="me noopener noreferrer">x</a>
+        <a href="https://www.instagram.com/andreasson.photo/" target="_blank" rel="me noopener noreferrer">instagram</a>
+        <a href="https://www.linkedin.com/in/yunusandreasson/" target="_blank" rel="me noopener noreferrer">linkedin</a>
+      </span>
+      <span class="footer-maker-links footer-other-apps">
+        <a href="https://islam.se" target="_blank" rel="noopener noreferrer">islam.se</a>
+        <a href="https://openarabic.io" target="_blank" rel="noopener noreferrer">open-arabic</a>
+        <a href="https://al-ibadah.com" target="_blank" rel="noopener noreferrer">al-ibadah</a>
+        <a href="https://qamar360.com" target="_blank" rel="noopener noreferrer">qamar360</a>
+      </span>
+    </nav>
   </footer>
   <script type="module" src="/island-loader.js" defer></script>
 </body>

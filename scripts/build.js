@@ -316,6 +316,10 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap) =
     isAccessibleForFree: true,
     author: publisher,
     publisher,
+    // Links the article to the maker's Person entity (defined in full on the
+    // homepage @graph); an @id reference keeps the NewsArticle block — which
+    // gates Top Stories eligibility — otherwise untouched.
+    creator: { '@id': 'https://andreassonphoto.com/#person' },
   }).replace(/<\//g, '<\\/')}</script>`
 
   return template
@@ -360,6 +364,8 @@ const cssContent = transformSync(readFileSync(join(ROOT, 'public', 'style.css'),
 const jsContent = readFileSync(join(ROOT, 'public', 'reader.js'), 'utf-8')
 const headCommon = `<meta charset="utf-8">
   <meta name="google-site-verification" content="wE52hhFpRSdZ0DSAJM4Z57wM4AXTQ68eLrlo-zk_xLw">
+  <meta name="author" content="Yunus Andreasson">
+  <meta name="twitter:creator" content="@YunusAndreasson">
   <meta name="color-scheme" content="light dark">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)">
@@ -884,6 +890,21 @@ const categoryPageTemplate = `<!-- بسم الله الرحمن الرحيم -->
     <nav class="footer-links">
       <a href="/about">about</a> <a href="/contact">contact</a> <a href="/mcp">mcp</a> <a href="/privacy">privacy</a>
     </nav>
+    <nav class="footer-maker" aria-label="Maker">
+      <a class="footer-byline" href="https://andreassonphoto.com/about" target="_blank" rel="me noopener noreferrer">made by yunus andreasson</a>
+      <span class="footer-maker-links">
+        <a href="https://github.com/YunusAndreasson" target="_blank" rel="me noopener noreferrer">github</a>
+        <a href="https://x.com/YunusAndreasson" target="_blank" rel="me noopener noreferrer">x</a>
+        <a href="https://www.instagram.com/andreasson.photo/" target="_blank" rel="me noopener noreferrer">instagram</a>
+        <a href="https://www.linkedin.com/in/yunusandreasson/" target="_blank" rel="me noopener noreferrer">linkedin</a>
+      </span>
+      <span class="footer-maker-links footer-other-apps">
+        <a href="https://islam.se" target="_blank" rel="noopener noreferrer">islam.se</a>
+        <a href="https://openarabic.io" target="_blank" rel="noopener noreferrer">open-arabic</a>
+        <a href="https://al-ibadah.com" target="_blank" rel="noopener noreferrer">al-ibadah</a>
+        <a href="https://qamar360.com" target="_blank" rel="noopener noreferrer">qamar360</a>
+      </span>
+    </nav>
   </footer>
   <script type="module" src="/island-loader.js" defer></script>
 </body>
@@ -986,6 +1007,40 @@ ${sitemapEntries.join('\n')}
 </urlset>
 `)
 console.log(`  Built: sitemap.xml (${sitemapEntries.length} URLs)`)
+
+// Google News sitemap — a separate feed that lists ONLY articles published in
+// the last 48 hours, per the Google News sitemap spec (older items are dropped
+// automatically). Each <url> carries a <news:news> block with publication name
+// + language, the ISO 8601 publication date, and the headline. Publication date
+// reuses the same field the NewsArticle JSON-LD emits (meta.date, falling back
+// to the file mtime). Empty is valid: when no article is fresh enough the feed
+// renders an empty <urlset>.
+const NEWS_SITEMAP_WINDOW_MS = 48 * 60 * 60 * 1000
+const newsCutoff = Date.now() - NEWS_SITEMAP_WINDOW_MS
+const newsArticles = sorted.filter((a) => {
+  const pubMs = a.meta.date ? new Date(a.meta.date).getTime() : a.addedAt
+  return Number.isFinite(pubMs) && pubMs >= newsCutoff
+})
+const newsEntries = newsArticles.map((a) => {
+  const pubDate = new Date(a.meta.date || a.addedAt).toISOString()
+  return `  <url>
+    <loc>https://zuhd.news/a/${a.slug}</loc>
+    <news:news>
+      <news:publication>
+        <news:name>zuhd.news</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>${pubDate}</news:publication_date>
+      <news:title>${escXml(a.title)}</news:title>
+    </news:news>
+  </url>`
+})
+writeFileSync(join(DIST_DIR, 'news-sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+${newsEntries.join('\n')}
+</urlset>
+`)
+console.log(`  Built: news-sitemap.xml (${newsEntries.length} articles, last 48h)`)
 
 for (const page of staticPages) {
   const pagePath = join(ROOT, 'content', `${page}.md`)
