@@ -2,13 +2,241 @@
   "version": 1,
   "stories": [
     {
+      "id": "phu-quoc-boat-capsize-indian-tourists",
+      "label": "Boat carrying tourists capsizes off Vietnam's Phu Quoc island, killing 15",
+      "firstSeen": "2026-07-11T12:07:55.502Z",
+      "lastCovered": "2026-07-11T12:07:55.502Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-11-phu-quoc-boat-capsize-indian-tourists"
+      ],
+      "eventUri": "eng-11822796",
+      "summary": "At least 15 of 36 aboard — 32 of them Indian tourists — died when a vessel capsized off Phu Quoc; 21 survived. Lead with the toll and the who: a leisure-tourism disaster that becomes a cross-border consular event, with Indian missions in Hanoi and Ho Chi Minh City mobilising. For the reader, the mechanism worth flagging is how thin marine-safety enforcement on tourist boats turns routine crossings into mass-casualty events. Merge the Reuters, Hindustan Times and NDTV accounts.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Vietnam",
+        "http://en.wikipedia.org/wiki/Phú_Quốc",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/India_national_cricket_team",
+        "http://en.wikipedia.org/wiki/Search_and_rescue",
+        "http://en.wikipedia.org/wiki/Hanoi",
+        "http://en.wikipedia.org/wiki/Diplomatic_mission",
+        "http://en.wikipedia.org/wiki/Ho_Chi_Minh_City"
+      ]
+    },
+    {
+      "id": "omar-abdullah-jk-statehood-restoration-warning",
+      "label": "Omar Abdullah warns Centre not to test patience on J&K statehood",
+      "firstSeen": "2026-07-11T12:07:55.502Z",
+      "lastCovered": "2026-07-11T12:07:55.502Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-11-omar-abdullah-jk-statehood-restoration-warning"
+      ],
+      "eventUri": "eng-11817856",
+      "summary": "J&K Chief Minister Omar Abdullah demands the Centre define the 'appropriate time' it keeps citing for restoring statehood, warning that his patience is not weakness. Lead with the structural stakes for 13 million Kashmiris: an elected chief minister running a downgraded union territory where New Delhi still holds the levers of policing and land. For the reader, the mechanism is how indefinite deferral of restored statehood keeps a population under central administration years after elections — the promise, not the personality, is the story.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Jammu_and_Kashmir_(union_territory)",
+        "http://en.wikipedia.org/wiki/Sovereign_state",
+        "http://en.wikipedia.org/wiki/Jantar_Mantar",
+        "http://en.wikipedia.org/wiki/Chief_minister",
+        "http://en.wikipedia.org/wiki/Omar_Abdullah",
+        "http://en.wikipedia.org/wiki/Bharatiya_Janata_Party",
+        "http://en.wikipedia.org/wiki/Srinagar",
+        "http://en.wikipedia.org/wiki/Delhi"
+      ]
+    },
+    {
+      "id": "public-lands-grazing-rules-cut-public-involvement",
+      "label": "Overhaul of public lands grazing regulations seeks to cut public involvement",
+      "firstSeen": "2026-07-11T12:07:55.502Z",
+      "lastCovered": "2026-07-11T12:07:55.502Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-11-public-lands-grazing-rules-cut-public-involvement"
+      ],
+      "eventUri": "eng-11822934",
+      "summary": "The federal government is rewriting century-old rules to put more cattle and sheep on 155 million acres of Western public land — an area twice the size of New Mexico — while stripping out the public-comment steps that let citizens contest grazing decisions. Lead with the accountability mechanism: the change is procedural, not just numerical, quietly removing the public from decisions over commonly-owned land. For the reader, the structural point is how deregulation is done by deleting the process, not announcing the outcome.",
+      "conceptUris": []
+    },
+    {
+      "id": "cross-river-seals-private-health-facilities-quackery",
+      "label": "Cross River seals three private health facilities",
+      "firstSeen": "2026-07-11T12:07:55.502Z",
+      "lastCovered": "2026-07-11T12:07:55.502Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-11-cross-river-seals-private-health-facilities-quackery"
+      ],
+      "eventUri": null,
+      "summary": "Cross River state sealed three private clinics for quackery and non-registration — one of them run by a teacher with no medical training. Lead with that detail and what it exposes: an informal private-health market where unlicensed operators fill the gap left by weak public provision, and patients bear the risk. For the reader, the mechanism is how thin regulatory capacity lets an unqualified provider run a clinic until an inspection, not a harm, shuts it down. Regional accountability reporting from a Nigerian outlet.",
+      "conceptUris": []
+    },
+    {
+      "id": "fubara-rivers-state-1-85-trillion-budget",
+      "label": "Fubara presents N1.85 trillion budget for 2026 fiscal year",
+      "firstSeen": "2026-07-11T12:07:55.502Z",
+      "lastCovered": "2026-07-11T12:07:55.502Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-11-fubara-rivers-state-1-85-trillion-budget"
+      ],
+      "eventUri": "eng-11821205",
+      "summary": "Rivers State Governor Siminalayi Fubara laid a N1.85 trillion 2026 budget before the state assembly, months after the political crisis that saw the state's governance contested. Lead with the fiscal substance and the subtext: an oil-producing state's spending plan is also a marker of who controls its FAAC-fed treasury after a bruising power struggle. For the reader, the mechanism is how Nigeria's oil-revenue sharing funnels national petro-income into state budgets, and what a 'resilience' budget signals about spending priorities in the Niger Delta.",
+      "conceptUris": []
+    },
+    {
+      "id": "erbium-quantum-dots-1550nm-telecom-electroluminescence",
+      "label": "Mesoscale ordered assembly of Er3+-doped quantum dots enables efficient 1.55 µm electroluminescence",
+      "firstSeen": "2026-07-11T12:07:55.502Z",
+      "lastCovered": "2026-07-11T12:07:55.502Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-11-erbium-quantum-dots-1550nm-telecom-electroluminescence"
+      ],
+      "eventUri": null,
+      "summary": "Researchers built erbium-doped quantum dots into an ordered mesoscale assembly that emits efficiently at 1.55 µm — the exact wavelength fibre-optic telecom runs on. Lead with the industrial stake, not just the chemistry: an electrically-driven, silicon-compatible emitter at the telecom band is a long-sought piece for on-chip optical interconnects, where data-centre bandwidth economics increasingly hinge on moving light instead of electrons. For the technically literate reader, the payoff is why hitting 1.55 µm from a solution-processed material matters for the cost curve of photonic hardware.",
+      "conceptUris": []
+    },
+    {
+      "id": "japan-jaxa-first-reusable-rocket-landing-test",
+      "label": "Japan completes its first successful reusable rocket landing test",
+      "firstSeen": "2026-07-11T12:07:55.502Z",
+      "lastCovered": "2026-07-11T12:07:55.502Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-11-japan-jaxa-first-reusable-rocket-landing-test"
+      ],
+      "eventUri": "eng-11822354",
+      "summary": "JAXA's prototype lifted off and landed safely from 10 metres — Japan's first successful reusable-rocket landing test. Lead with the milestone and the economics behind it: reusability is the lever that collapsed launch costs for SpaceX, and Japan is now buying into that same bet after years of expendable H-series flights. For the reader, the stake is a fourth serious spacefaring economy committing to recoverable boosters, and what that does to who can afford routine orbital access. OIC-region outlet (TRT, TR) carries the story.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Japan",
+        "http://en.wikipedia.org/wiki/Reusable_launch_vehicle",
+        "http://en.wikipedia.org/wiki/JAXA",
+        "http://en.wikipedia.org/wiki/Rocket",
+        "http://en.wikipedia.org/wiki/Prototype",
+        "http://en.wikipedia.org/wiki/SpaceX",
+        "http://en.wikipedia.org/wiki/Noshiro,_Akita",
+        "http://en.wikipedia.org/wiki/H3_(rocket)"
+      ]
+    },
+    {
+      "id": "pakistan-glof-alert-gilgit-baltistan-kp-glaciers",
+      "label": "PMD issues Glof alert for GB, KP as fresh westerly wave approaches",
+      "firstSeen": "2026-07-11T12:07:55.502Z",
+      "lastCovered": "2026-07-11T12:07:55.502Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-11-pakistan-glof-alert-gilgit-baltistan-kp-glaciers"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's met department warned of glacial lake outburst floods across Gilgit-Baltistan and Khyber Pakhtunkhwa as a westerly wave hits already-melting high country. Lead with the mechanism a warming reader needs: GLOFs are the sharp edge of glacier retreat — meltwater pools behind unstable ice and moraine, then releases in a sudden wall downstream. For the reader, the stake is how a country that emits little is on the front line of climate-driven mountain hazards, with warnings substituting for the defences it can't afford. Regional coverage from Dawn (PK).",
+      "conceptUris": []
+    },
+    {
+      "id": "gonorrhea-bacteria-immune-evasion-mechanism",
+      "label": "Intricate molecular mechanisms help bacteria evade immune detection",
+      "firstSeen": "2026-07-11T12:07:55.502Z",
+      "lastCovered": "2026-07-11T12:07:55.502Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-11-gonorrhea-bacteria-immune-evasion-mechanism"
+      ],
+      "eventUri": null,
+      "summary": "Northwestern scientists mapped a novel trick Neisseria gonorrhoeae uses to hide from the immune system, published in PNAS. Lead with the stakes behind the mechanism: gonorrhea is one of the most common STIs and is racing toward antibiotic resistance, so understanding exactly how it dodges immune detection is a lead on new treatment and vaccine targets. For the technically literate reader, the payoff is the specific evasion pathway — the kind of molecular detail that turns a rising public-health threat into a druggable one.",
+      "conceptUris": []
+    },
+    {
+      "id": "spacex-starlink-100k-satellites-bandwidth",
+      "label": "SpaceX wants to launch 100k more Starlink satellites for 100x the bandwidth",
+      "firstSeen": "2026-07-11T12:07:55.502Z",
+      "lastCovered": "2026-07-11T12:07:55.502Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-10-spacex-starlink-100k-satellites-bandwidth"
+      ],
+      "eventUri": null,
+      "summary": "SpaceX is asking regulators to clear roughly 100,000 additional Starlink satellites for a claimed 100x bandwidth jump. Lead with the scale and what it concentrates: one private firm seeking to place more objects in orbit than humanity has launched in all of history, converting low-Earth orbit into privately-run broadband infrastructure. For the reader, the mechanism to weigh is orbital-spectrum and collision-risk governance — who controls the shared commons of near-Earth space when a single company's constellation dwarfs everyone else's.",
+      "conceptUris": []
+    },
+    {
+      "id": "physics-informed-neural-networks-hidden-physics",
+      "label": "Enforcing hidden physics in physics-informed neural networks",
+      "firstSeen": "2026-07-11T12:07:55.502Z",
+      "lastCovered": "2026-07-11T12:07:55.502Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-11-physics-informed-neural-networks-hidden-physics"
+      ],
+      "eventUri": null,
+      "summary": "A new method forces physics-informed neural networks (PINNs) to obey the governing equations they're supposed to respect, tackling a known failure where these models quietly violate the very physics they encode. Lead with the practical problem, not the math: PINNs are being adopted to solve PDEs in fluid dynamics, materials and engineering because they're cheaper than brute-force simulation — but only if they don't drift off the physical laws. For the technically literate reader, the payoff is a concrete fix for a trust gap that has limited where scientific ML can actually be deployed.",
+      "conceptUris": []
+    },
+    {
+      "id": "samsung-s-galaxy-xr-headset-finally-lands-in-the-uk",
+      "label": "Samsung's Galaxy XR headset finally lands in the UK",
+      "firstSeen": "2026-07-11T12:07:55.502Z",
+      "lastCovered": "2026-07-11T12:07:55.502Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-11-samsung-s-galaxy-xr-headset-finally-lands-in-the-uk"
+      ],
+      "eventUri": "spa-4262187",
+      "summary": "[Auto-backfill for tech floor] After initially launching in Korea and the US, Samsung's Galaxy XR headset is now finally available in the UK as well, from Samsung's online store. It's been up for pre-order over there since mid-June.\n\nYou can buy one for a recommended retail price of £1,699. For a limited time (that isn't actually",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Samsung",
+        "http://en.wikipedia.org/wiki/Smartphone",
+        "http://en.wikipedia.org/wiki/Samsung_Galaxy",
+        "http://en.wikipedia.org/wiki/Samsung_Electronics",
+        "http://en.wikipedia.org/wiki/South_Korea",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Android_(operating_system)",
+        "http://en.wikipedia.org/wiki/London"
+      ]
+    },
+    {
       "id": "trump-1000-missiles-decimate-iran-threat",
       "label": "Trump says US ready to 'completely decimate' Iran if he is targeted",
       "firstSeen": "2026-07-11T08:12:21.563Z",
       "lastCovered": "2026-07-11T08:12:21.563Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-11-trump-1000-missiles-decimate-iran-threat"
@@ -33,7 +261,7 @@
       "lastCovered": "2026-07-11T08:12:21.563Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-11-bjp-datia-ticket-snub-violence-narottam-mishra"
@@ -58,7 +286,7 @@
       "lastCovered": "2026-07-11T08:12:21.563Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-11-le-pen-conviction-upheld-presidential-bid"
@@ -80,7 +308,7 @@
       "lastCovered": "2026-07-11T08:12:21.563Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-11-trump-accounts-child-savings-scheme"
@@ -102,7 +330,7 @@
       "lastCovered": "2026-07-11T08:12:21.563Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-09-alien-civilizations-statistical-search-kipping"
@@ -118,7 +346,7 @@
       "lastCovered": "2026-07-11T08:12:21.563Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-11-isro-reusable-rocket-recovery-methods"
@@ -140,7 +368,7 @@
       "lastCovered": "2026-07-11T08:12:21.563Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-11-iran-math-team-imsc-2026-gold"
@@ -160,7 +388,7 @@
       "lastCovered": "2026-07-11T08:12:21.563Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-10-pentagon-cmc-list-tencent-alibaba-dji"
@@ -176,7 +404,7 @@
       "lastCovered": "2026-07-11T08:12:21.563Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-11-cctv-footage-keyamo-demands-apology-n25-000-fine-from-peter"
@@ -201,7 +429,7 @@
       "lastCovered": "2026-07-11T08:12:21.563Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-11-skeleton-based-abnormal-behavior-detection-via-bidirectional"
@@ -217,7 +445,7 @@
       "lastCovered": "2026-07-11T08:12:21.563Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-10-behind-the-blog-the-promise-of-the-internet"
@@ -227,13 +455,41 @@
       "conceptUris": []
     },
     {
+      "id": "russia-fuel-shortage-ukraine-refinery-strikes",
+      "label": "Russian deputy PM names reason behind fuel shortages",
+      "firstSeen": "2026-07-10T22:08:53.508Z",
+      "lastCovered": "2026-07-11T12:07:55.502Z",
+      "coverageCount": 2,
+      "category": "economy",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-07-10-russia-fuel-shortage-ukraine-refinery-strikes",
+        "2026-07-11-russia-kyiv-odesa-strikes-air-defence-shortage"
+      ],
+      "eventUri": "rus-2092910",
+      "summary": "Deputy PM Aleksandr Novak concedes Russia is short of fuel because Ukrainian drone strikes have degraded its refining capacity. Lead with the admission itself: the Kremlin naming Ukrainian strikes as the cause is a rare official acknowledgment that the war has reached Russian pumps. Highlight the mechanism — attacks on refineries, not oilfields, hit domestic diesel and gasoline supply — and read it against the US sanctions push squeezing the same revenue stream.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Export",
+        "http://en.wikipedia.org/wiki/Oil_refinery",
+        "http://en.wikipedia.org/wiki/Diesel_fuel",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Gasoline",
+        "http://en.wikipedia.org/wiki/Vladimir_Putin",
+        "http://en.wikipedia.org/wiki/Alexander_Novak",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Taganrog_Bay"
+      ]
+    },
+    {
       "id": "iran-oman-hormuz-transit-talks",
       "label": "Araghchi heads to Oman for talks on Strait of Hormuz",
       "firstSeen": "2026-07-11T04:10:26.461Z",
       "lastCovered": "2026-07-11T04:10:26.461Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-11-iran-oman-hormuz-transit-talks"
@@ -255,7 +511,7 @@
       "lastCovered": "2026-07-11T04:10:26.461Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-10-palestine-action-elbit-old-bailey-trial"
@@ -271,7 +527,7 @@
       "lastCovered": "2026-07-11T04:10:26.461Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-10-us-cities-drone-surveillance-fireworks"
@@ -292,7 +548,7 @@
       "lastCovered": "2026-07-11T04:10:26.461Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-11-india-ed-mahadev-betting-asset-seizure"
@@ -312,7 +568,7 @@
       "lastCovered": "2026-07-11T04:10:26.461Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-11-bitcoin-halving-cycle-flattening-returns"
@@ -332,7 +588,7 @@
       "lastCovered": "2026-07-11T04:10:26.461Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-11-india-ins-mahendragiri-indigenous-frigate"
@@ -353,7 +609,7 @@
       "lastCovered": "2026-07-11T04:10:26.461Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-10-quantum-error-correction-self-recalibration"
@@ -373,7 +629,7 @@
       "lastCovered": "2026-07-11T04:10:26.461Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-10-air-conditioning-heat-emissions-feedback"
@@ -389,7 +645,7 @@
       "lastCovered": "2026-07-11T04:10:26.461Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-10-ai-fiction-detectable-model-tells"
@@ -405,7 +661,7 @@
       "lastCovered": "2026-07-11T04:10:26.461Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-11-peira-okays-regulatory-framework-for-virtual-schools-in-isla"
@@ -421,7 +677,7 @@
       "lastCovered": "2026-07-10T22:08:53.508Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-10-us-strikes-iran-ceasefire-over-talks-continue"
@@ -446,7 +702,7 @@
       "lastCovered": "2026-07-10T22:08:53.508Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-10-almeria-spain-wildfire-12-dead-heatwave"
@@ -471,7 +727,7 @@
       "lastCovered": "2026-07-10T22:08:53.508Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-10-sudan-army-retakes-kurmuk-rsf-darfur-kulbus"
@@ -487,7 +743,7 @@
       "lastCovered": "2026-07-10T22:08:53.508Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-10-texas-ice-killing-witnesses-contest-account"
@@ -512,7 +768,7 @@
       "lastCovered": "2026-07-10T22:08:53.508Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-10-rfk-mmrv-vaccine-rollback-toddlers-study"
@@ -528,7 +784,7 @@
       "lastCovered": "2026-07-10T22:08:53.508Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-10-senate-trump-russia-oil-sanctions-deal"
@@ -553,7 +809,7 @@
       "lastCovered": "2026-07-10T22:08:53.508Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-10-mena-economies-contract-2026-rebound-2027"
@@ -563,38 +819,13 @@
       "conceptUris": []
     },
     {
-      "id": "russia-fuel-shortage-ukraine-refinery-strikes",
-      "label": "Russian deputy PM names reason behind fuel shortages",
-      "firstSeen": "2026-07-10T22:08:53.508Z",
-      "lastCovered": "2026-07-10T22:08:53.508Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-10-russia-fuel-shortage-ukraine-refinery-strikes"
-      ],
-      "eventUri": "rus-2092910",
-      "summary": "Deputy PM Aleksandr Novak concedes Russia is short of fuel because Ukrainian drone strikes have degraded its refining capacity. Lead with the admission itself: the Kremlin naming Ukrainian strikes as the cause is a rare official acknowledgment that the war has reached Russian pumps. Highlight the mechanism — attacks on refineries, not oilfields, hit domestic diesel and gasoline supply — and read it against the US sanctions push squeezing the same revenue stream.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Export",
-        "http://en.wikipedia.org/wiki/Oil_refinery",
-        "http://en.wikipedia.org/wiki/Diesel_fuel",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Gasoline",
-        "http://en.wikipedia.org/wiki/Vladimir_Putin",
-        "http://en.wikipedia.org/wiki/Alexander_Novak"
-      ]
-    },
-    {
       "id": "dark-energy-sign-flip-hubble-tension-lcdm",
       "label": "Dark energy flips its sign, but the Hubble tension refuses to budge",
       "firstSeen": "2026-07-10T22:08:53.508Z",
       "lastCovered": "2026-07-10T22:08:53.508Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-10-dark-energy-sign-flip-hubble-tension-lcdm"
@@ -610,7 +841,7 @@
       "lastCovered": "2026-07-10T22:08:53.508Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-10-prostate-cancer-racial-disparity-access-not-biology"
@@ -626,7 +857,7 @@
       "lastCovered": "2026-07-10T22:08:53.508Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-10-apple-sues-openai-trade-secrets-hardware"
@@ -651,7 +882,7 @@
       "lastCovered": "2026-07-10T22:08:53.508Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-10-ransomware-negotiator-extorted-clients-sentenced"
@@ -667,7 +898,7 @@
       "lastCovered": "2026-07-10T22:08:53.508Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-10-bbc-radio-4-operation-rex-by-damian-barr-friday-october-12th"
@@ -683,7 +914,7 @@
       "lastCovered": "2026-07-10T17:10:22.437Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-09-dprk-premier-china-visit-treaty-anniversary"
@@ -708,7 +939,7 @@
       "lastCovered": "2026-07-10T17:10:22.437Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-10-unclaimed-airstrikes-iran-post-khamenei"
@@ -733,7 +964,7 @@
       "lastCovered": "2026-07-10T17:10:22.437Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-10-cjng-el-mencho-successor-us-naming"
@@ -749,7 +980,7 @@
       "lastCovered": "2026-07-10T17:10:22.437Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-10-nigeria-court-police-killing-damages-calabar"
@@ -765,7 +996,7 @@
       "lastCovered": "2026-07-10T17:10:22.437Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-10-us-cbdc-ban-housing-law-stablecoins"
@@ -781,7 +1012,7 @@
       "lastCovered": "2026-07-10T17:10:22.437Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-10-frame-dragging-satellite-laser-einstein-test"
@@ -797,7 +1028,7 @@
       "lastCovered": "2026-07-10T17:10:22.437Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-10-simple-fluids-can-fracture-physics"
@@ -813,7 +1044,7 @@
       "lastCovered": "2026-07-10T17:10:22.437Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-10-china-seniors-generative-ai-companionship"
@@ -829,7 +1060,7 @@
       "lastCovered": "2026-07-10T17:10:22.437Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-10-china-open-ai-models-soft-power"
@@ -845,7 +1076,7 @@
       "lastCovered": "2026-07-10T17:10:22.437Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-10-physiological-arousal-as-a-predominant-source-of-individual"
@@ -861,7 +1092,7 @@
       "lastCovered": "2026-07-11T08:12:21.563Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-07-10-modi-new-zealand-fta-migration",
@@ -889,7 +1120,7 @@
       "lastCovered": "2026-07-11T04:10:26.461Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-07-10-eu-chat-control-encryption-scanning",
@@ -906,7 +1137,7 @@
       "lastCovered": "2026-07-10T17:10:22.437Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-07-10-apollo-easyjet-takeover-private-equity",
@@ -934,7 +1165,7 @@
       "lastCovered": "2026-07-10T17:10:22.437Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-07-10-xavier-niel-vodafone-uae-stake",
@@ -961,7 +1192,7 @@
       "lastCovered": "2026-07-10T12:10:53.376Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-10-eu-meta-addictive-design-order-minors"
@@ -984,7 +1215,7 @@
       "lastCovered": "2026-07-10T12:10:53.376Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-10-hasina-december-surrender-return-bangladesh"
@@ -1007,7 +1238,7 @@
       "lastCovered": "2026-07-10T12:10:53.376Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-10-un-women-funding-collapse-us-aid-cuts"
@@ -1030,7 +1261,7 @@
       "lastCovered": "2026-07-10T12:10:53.376Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-10-circle-usdc-trust-bank-charter-occ"
@@ -1050,7 +1281,7 @@
       "lastCovered": "2026-07-10T12:10:53.376Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-10-gaza-tech-shortage-connectivity-workarounds"
@@ -1066,7 +1297,7 @@
       "lastCovered": "2026-07-10T12:10:53.376Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-10-china-long-march-10b-booster-sea-net"
@@ -1089,7 +1320,7 @@
       "lastCovered": "2026-07-10T12:10:53.376Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-10-fda-electric-shock-device-ban-delay"
@@ -1108,7 +1339,7 @@
       "lastCovered": "2026-07-10T12:10:53.376Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-10-ecu-tuning-car-firmware-aftermarket"
@@ -1128,7 +1359,7 @@
       "lastCovered": "2026-07-10T12:10:53.376Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-10-vision-transformer-pediatric-intussusception-ultrasound"
@@ -1144,152 +1375,13 @@
       "lastCovered": "2026-07-10T12:10:53.376Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-10-pregmednet-maternal-medication-neonatal-risk"
       ],
       "eventUri": null,
       "summary": "PregMedNet mines large-scale clinical data to map how medications taken during pregnancy correlate with specific neonatal complications — a systematic read on drug safety in a population that clinical trials routinely exclude. Lead with the evidence gap it fills, not the model name: pregnant patients are the least-studied group in pharmacology, so a data-driven map of maternal-drug-to-newborn-outcome links surfaces risks and reassurances that trial-based labeling never captured. Highlight the mechanism — computational pharmacovigilance replacing the absence of trials — and the caveat that correlation from records needs careful confounding control before it guides prescribing.",
-      "conceptUris": []
-    },
-    {
-      "id": "yen-japan-pension-repatriation-rally",
-      "label": "Yen Traders Question How Japan Pension Money Can Sustain Rally",
-      "firstSeen": "2026-07-10T08:10:08.163Z",
-      "lastCovered": "2026-07-10T08:10:08.163Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-10-yen-japan-pension-repatriation-rally"
-      ],
-      "eventUri": "eng-11819275",
-      "summary": "The yen's sudden Friday rally hinges on whether Tokyo will actually pull its vast pension chest back into domestic assets — without which the currency risks a fresh four-decade low. Lead with the mechanism: a nation trying to defend its currency by repatriating retirement savings, and what breaks if the government blinks. The reader wants the structural stakes of the yen carry unwind, not the tick-by-tick.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Japan",
-        "http://en.wikipedia.org/wiki/Japanese_yen",
-        "http://en.wikipedia.org/wiki/Pension_fund",
-        "http://en.wikipedia.org/wiki/Bond_(finance)",
-        "http://en.wikipedia.org/wiki/Currency",
-        "http://en.wikipedia.org/wiki/Satsuki_Katayama",
-        "http://en.wikipedia.org/wiki/Stock",
-        "http://en.wikipedia.org/wiki/Government_Pension_Investment_Fund"
-      ]
-    },
-    {
-      "id": "india-ntpc-uranium-nuclear-fuel-security",
-      "label": "India Power Giant Seeks Uranium Assets Overseas in Nuclear Push",
-      "firstSeen": "2026-07-10T08:10:08.163Z",
-      "lastCovered": "2026-07-10T08:10:08.163Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-10-india-ntpc-uranium-nuclear-fuel-security"
-      ],
-      "eventUri": "eng-11819468",
-      "summary": "State-controlled NTPC is hunting overseas uranium mines to fuel the 30 gigawatts of nuclear capacity India plans over two decades. Lead with the resource-security logic: a country going all-in on nuclear discovers it cannot source the fuel domestically and must lock up mines abroad. Highlight who controls the world's uranium (Australia, Kazakhstan, Africa) and what India's tender means for the geopolitics of the fuel cycle.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Australia",
-        "http://en.wikipedia.org/wiki/Narendra_Modi",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Uranium",
-        "http://en.wikipedia.org/wiki/Nuclear_power",
-        "http://en.wikipedia.org/wiki/Prime_Minister_of_India",
-        "http://en.wikipedia.org/wiki/Export",
-        "http://en.wikipedia.org/wiki/New_Delhi"
-      ]
-    },
-    {
-      "id": "south-asia-fuel-import-energy-resilience",
-      "label": "How fuel-importing countries in South Asia can survive the next global conflict",
-      "firstSeen": "2026-07-10T08:10:08.163Z",
-      "lastCovered": "2026-07-10T08:10:08.163Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-10-south-asia-fuel-import-energy-resilience"
-      ],
-      "eventUri": null,
-      "summary": "As the Iran crisis winds down, energy experts ask how Bangladesh, Pakistan and Sri Lanka — utterly dependent on imported fuel through chokepoints like Hormuz — can insulate themselves from the next shock. Lead with the vulnerability: three South Asian economies whose lights stay on only if a strait 2,000km away stays open. Highlight the concrete resilience levers (storage, supplier diversification, renewables) and who pays when they're absent.",
-      "conceptUris": []
-    },
-    {
-      "id": "china-j15-fujian-carrier-anti-ship-missiles",
-      "label": "Chinese J-15 Fighter Seen Launching From A Carrier With Four Anti-Ship Missiles For First Time",
-      "firstSeen": "2026-07-10T08:10:08.163Z",
-      "lastCovered": "2026-07-10T08:10:08.163Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-10-china-j15-fujian-carrier-anti-ship-missiles"
-      ],
-      "eventUri": null,
-      "summary": "A J-15T was photographed catapulting off China's Fujian carrier carrying four anti-ship missiles for the first time — a capability its older ski-jump carriers could never launch. Lead with why the catapult matters: it converts the J-15 from a light-loaded defensive fighter into a heavy maritime strike aircraft, materially shifting the naval balance in the western Pacific. This is a concrete power-projection milestone, not a rendering — highlight what four missiles per sortie changes for regional deterrence.",
-      "conceptUris": []
-    },
-    {
-      "id": "former-tory-minister-ann-widdecombe-dies-at-78",
-      "label": "Former Tory minister Ann Widdecombe dies at 78",
-      "firstSeen": "2026-07-10T08:10:08.163Z",
-      "lastCovered": "2026-07-10T08:10:08.163Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-10-former-tory-minister-ann-widdecombe-dies-at-78"
-      ],
-      "eventUri": "eng-11819480",
-      "summary": "[Auto-backfill for politics floor] Former Conservative minister turned Reform UK spokeswoman Ann Widdecombe has died aged 78.\n\n\"It is with great sadness that today we announce the death of The Right Honourable Ann Widdecombe, DSG,\" a statement from her agents, Cloud 9 Management, said.\n\n\"We send our deepest condolences to Ann's famil",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Ann_Widdecombe",
-        "http://en.wikipedia.org/wiki/Member_of_parliament",
-        "http://en.wikipedia.org/wiki/Conservative_Party_(UK)",
-        "http://en.wikipedia.org/wiki/Reform_UK",
-        "http://en.wikipedia.org/wiki/Strictly_Come_Dancing",
-        "http://en.wikipedia.org/wiki/The_Right_Honourable",
-        "http://en.wikipedia.org/wiki/John_Major",
-        "http://en.wikipedia.org/wiki/Member_of_the_European_Parliament"
-      ]
-    },
-    {
-      "id": "the-agent-that-infiltrated-pakistan-s-red-hot-chilli-peppers",
-      "label": "The agent that infiltrated Pakistan's red hot chilli peppers",
-      "firstSeen": "2026-07-10T08:10:08.163Z",
-      "lastCovered": "2026-07-10T08:10:08.163Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-10-the-agent-that-infiltrated-pakistan-s-red-hot-chilli-peppers"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for politics floor] Name: Kunri, Umerkot\n\nPop.: 26,600\n\nArea: 585 km²\n\nThe farmers say the origin story goes something like this. In the sixties, a handful of chilli seeds travelled south from Radha Ram in Punjab to Kunri in Sindh. Harvest after hot harvest proved so successful that within two decades the town shot to ",
-      "conceptUris": []
-    },
-    {
-      "id": "a-robust-high-content-nam-for-repeatable-and-predictive-deve",
-      "label": "A robust, high-content NAM for repeatable and predictive developmental and reproductive toxicity assessment in C. elegans",
-      "firstSeen": "2026-07-10T08:10:08.163Z",
-      "lastCovered": "2026-07-10T08:10:08.163Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-10-a-robust-high-content-nam-for-repeatable-and-predictive-deve"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for tech floor] Developmental and reproductive toxicity (DART) assessment is essential for product safety evaluation but relies heavily on vertebrate models that are costly, time consuming, and resource intensive. Although Caenorhabditis elegans has emerged as a promising new approach methodology (NAM) for rapid, c",
       "conceptUris": []
     }
   ]
