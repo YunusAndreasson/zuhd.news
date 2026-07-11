@@ -1,98 +1,5 @@
 [
   {
-    "timestamp": "2026-06-21T17:27:42.908Z",
-    "candidateCount": 10,
-    "candidates": [
-      {
-        "slug": "2026-06-21-omnia-sweidan-egypt-false-news-trial-medical-abuse",
-        "title": "Egypt Charges Abuse Witness",
-        "category": "politics",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-21-west-bank-gaza-ceasefire-illusion-palestinian-toll",
-        "title": "1,000 Palestinians Killed Under Ceasefire",
-        "category": "politics",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-21-hormuz-shipping-recovers-gasoline-prices-sticky",
-        "title": "Hormuz Ships Flow, Prices Lag",
-        "category": "economy",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-21-iran-steel-industry-sanctions-industrial-resilience",
-        "title": "Sanctions Built Iran Green Steel",
-        "category": "economy",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-21-fosfomycin-revival-fluorinated-analogues-antibiotic-resistance",
-        "title": "Molecule Revives Old Antibiotic",
-        "category": "science",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-21-nasa-ernest-rover-autonomy-extreme-terrain",
-        "title": "NASA Rover Proves Terrain Autonomy",
-        "category": "science",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-21-google-ipv6-50-percent-adoption-milestone",
-        "title": "Half Google Traffic Now IPv6",
-        "category": "tech",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-21-ginkgosense-net-field-computer-vision-fruit-detection",
-        "title": "Ginkgo Robot Sees Through Clutter",
-        "category": "tech",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-21-russian-geran-drones-wipes-out-ukrainian-fuel-depot-in-dnepr",
-        "title": "Russia Strikes Ukraine Fuel Depot",
-        "category": "economy",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-21-trump-threatens-iran-strikes-lebanon-amid-switzerland-talks",
-        "title": "Iran Halts Talks, Trump Threatens",
-        "category": "politics",
-        "eventCoverage": 71,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-06-21-omnia-sweidan-egypt-false-news-trial-medical-abuse",
-      "title": "Egypt Charges Abuse Witness",
-      "category": "politics",
-      "body": "[Egypt](country:EG) charged the woman who reported hospital",
-      "eventCoverage": 268,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Egypt charges woman who reported hospital abuse with spreading false news",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 26
-    }
-  },
-  {
     "timestamp": "2026-06-21T22:45:21.690Z",
     "candidateCount": 2,
     "candidates": [
@@ -9986,6 +9893,106 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Small plane crashes in Bahamas, killing 10, officials say",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 21
+    }
+  },
+  {
+    "timestamp": "2026-07-11T22:22:02.790Z",
+    "candidateCount": 11,
+    "candidates": [
+      {
+        "slug": "2026-07-11-venezuela-earthquake-toll-4333-homeless-frozen-gold",
+        "title": "Venezuela Toll Tops 4,300",
+        "category": "science",
+        "eventCoverage": 270,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-11-ukraine-drones-russian-tankers-azov-fuel-war-escalation",
+        "title": "Ukraine Strikes Russian Tankers",
+        "category": "politics",
+        "eventCoverage": 179,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-11-poland-tusk-volyn-massacre-genocide-memorial-ukraine",
+        "title": "Poland Names Volyn Genocide",
+        "category": "politics",
+        "eventCoverage": 128,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-11-gordie-howe-bridge-trump-canada-trade-leverage",
+        "title": "Trump Clears Bridge Deal",
+        "category": "economy",
+        "eventCoverage": 102,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-11-iran-rebuilt-nuclear-sites-satellite-mou-isis-report",
+        "title": "Iran Rebuilds Nuclear Sites",
+        "category": "politics",
+        "eventCoverage": 66,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-11-pakistan-pemra-geo-news-suspension-licence-threat",
+        "title": "Pemra Threatens Geo License",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-11-gwadar-port-first-commercial-bunkering-cpec",
+        "title": "Gwadar Port Bunkers Tanker",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-10-cop31-electrification-35-percent-target-kurum",
+        "title": "COP31 Sets Electrification Target",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-11-aurora-kinase-a-synthetic-lethal-fanca-cancer",
+        "title": "Cancer Gene Flaw Turns Lethal",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-11-bonzo-lend-oracle-exploit-hedera-defi-tvl",
+        "title": "Oracle Flaw Drains Bonzo",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-11-eis-equivalent-circuit-cnn-battery-materials",
+        "title": "AI Automates Battery Diagnostics",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-07-11-venezuela-earthquake-toll-4333-homeless-frozen-gold",
+      "title": "Venezuela Toll Tops 4,300",
+      "category": "science",
+      "body": "4,333 people are confirmed dead in",
+      "eventCoverage": 270,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Venezuela earthquake death toll surpasses 4,300, officials say",
     "response": {
       "pushed": 1,
       "skipped": 0,
