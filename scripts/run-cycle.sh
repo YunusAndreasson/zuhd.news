@@ -590,11 +590,18 @@ $ARTICLE_TEXT" 2>/dev/null)
               fs.writeFileSync(logPath, JSON.stringify(log, null, 2));
             } catch (e) { process.stderr.write('push-log update failed: ' + e.message + '\n'); }
           " 2>>"$LOG_FILE"
+          # Mirror the same breaking story to X/Twitter as one plain-text tweet.
+          # Non-fatal: the tweet step condenses via Claude, signs OAuth 1.0a, and
+          # dedups via content/.tweet-log.json; any failure must not abort the cycle.
+          if [ -n "$PUSH_SLUG" ]; then
+            timeout 60 node scripts/post-to-twitter.js --slug "$PUSH_SLUG" 2>&1 | tee -a "$LOG_FILE" \
+              || echo "⚠ tweet step failed (non-fatal)" | tee -a "$LOG_FILE"
+          fi
         fi
       fi
-      # Commit push log
-      git add content/.push-log.json 2>/dev/null
-      git diff --cached --quiet content/.push-log.json || git commit -m "Push log $(date -u +%Y-%m-%dT%H:%M)" 2>&1 | tee -a "$LOG_FILE"
+      # Commit push + tweet logs
+      git add content/.push-log.json content/.tweet-log.json 2>/dev/null
+      git diff --cached --quiet content/.push-log.json content/.tweet-log.json || git commit -m "Push log $(date -u +%Y-%m-%dT%H:%M)" 2>&1 | tee -a "$LOG_FILE"
 
       # Stage 3c: Production RVS — score this cycle's output against the
       # autoresearch rubric (deterministic clusters only, zero token cost),
