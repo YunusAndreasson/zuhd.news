@@ -47,6 +47,7 @@ Al Jazeera, BBC World, BBC Business, France 24, Deutsche Welle, AllAfrica, Al Mo
 - **Manual run:** `env -u CLAUDECODE bash scripts/run-cycle.sh`
 - **Design:** Source Sans 3, 20px base, 80ch measure, no decoration
 - **Logs:** `logs/cycle-YYYY-MM-DD_HHMM.log` (kept 7 days)
+- **Social (X/Twitter):** after the breaking-news push, `scripts/post-to-twitter.js` posts the same story as one plain-text tweet (Claude-condensed, OAuth 1.0a, no link → pay-per-use ~$0.015/tweet). Requires `X_API_KEY`, `X_API_SECRET`, `X_ACCESS_TOKEN`, `X_ACCESS_SECRET` in server-side `.env` (git-ignored); skips silently if unset. Deduped via committed `content/.tweet-log.json`. The X app must have **Read+Write** permission and access tokens regenerated *after* enabling write.
 
 ## Working With Notion
 
