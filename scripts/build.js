@@ -863,8 +863,29 @@ if (process.env.SKIP_OG === '1') {
   console.log('  Skipped: api/ig/ (SKIP_OG=1)')
 } else {
   const IG_CACHE_DIR = join(ROOT, '.cache', 'ig')
-  const IG_VERSION = 'v1' // bump when ig-image.js rendering changes
+  const IG_VERSION = 'v2' // bump when ig-image.js rendering changes
   const IG_RECENT = 20 // dev/manual fallback window
+  // The card renders a dek — the story lead (first 1-2 sentences) with the
+  // dateline prefix and markdown links stripped, cut to ~200 chars on a
+  // sentence boundary.
+  const igLead = (body) => {
+    let t = String(body || '')
+      .trim()
+      .split(/\n\n+/)
+      .slice(0, 2)
+      .join(' ')
+      .replace(/^[A-Z][\w .,'-]{0,28}\s—\s/, '') // strip 'Washington — ' dateline
+      .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1') // markdown links -> text
+      .replace(/[*_`]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim()
+    if (t.length > 260) {
+      const cut = t.slice(0, 260)
+      const end = cut.lastIndexOf('. ')
+      t = end > 130 ? cut.slice(0, end + 1) : cut.replace(/\s+\S*$/, '') + '…'
+    }
+    return t
+  }
   mkdirSync(IG_CACHE_DIR, { recursive: true })
   let cycleSlugs = null
   try {
@@ -882,6 +903,7 @@ if (process.env.SKIP_OG === '1') {
     const inputs = {
       v: IG_VERSION,
       headline: article.title,
+      summary: igLead(article.body),
       category: article.meta.category || null,
       date: article.meta.date,
       location: article.meta.location || null,

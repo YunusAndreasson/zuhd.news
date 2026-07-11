@@ -95,8 +95,31 @@ const { meta, body } = parseFrontmatter(readFileSync(articlePath, 'utf8'))
 // the dry-run preview below renders from it too and matches exactly.
 const headline = meta.title || 'Breaking News'
 
+// Story lead (first 1-2 sentences) rendered as the card's dek — dateline and
+// markdown links stripped, cut to ~200 chars. Only used for the --dry-run
+// preview; the published card is the build artifact (build.js does the same).
+const igLead = (b) => {
+  let t = String(b || '')
+    .trim()
+    .split(/\n\n+/)
+    .slice(0, 2)
+    .join(' ')
+    .replace(/^[A-Z][\w .,'-]{0,28}\s—\s/, '')
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/[*_`]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+  if (t.length > 260) {
+    const cut = t.slice(0, 260)
+    const end = cut.lastIndexOf('. ')
+    t = end > 130 ? cut.slice(0, end + 1) : cut.replace(/\s+\S*$/, '') + '…'
+  }
+  return t
+}
+
 const article = {
   headline,
+  summary: igLead(body),
   category: meta.category || null,
   date: meta.date,
   location: meta.location || null,

@@ -30,47 +30,52 @@ export const IG_STORY = { width: 1080, height: 1920 }
 const PAD = 72
 
 /**
- * Compose the Instagram card SVG.
- * @param {Object} article — { headline, category, date, location, lat, lng }
- *   headline is the wire alert we push (falls back to the article title).
+ * Compose the Instagram card SVG: kicker, headline, a story dek (summary text
+ * rendered ON the card), a delicate full-bleed globe, and location + wordmark.
+ * @param {Object} article — { headline, summary, category, date, location, lat, lng }
+ *   headline is the article title; summary is the lead/first sentences of the story.
  * @param {Object} [size=IG_FEED] — { width, height }
  * @param {'light'|'dark'} [variant='light']
  */
 export const buildIgSvg = (article, size = IG_FEED, variant = 'light') => {
   const { width: W, height: H } = size
   const theme = themeFor(variant)
+  const inner = W - PAD * 2
 
   // The globe sits low and oversized so it bleeds off the sides and bottom,
-  // reading as an atmospheric backdrop rather than a bounded inset. Rendered
-  // faint (soft ocean, light land, no hard rim) with the gold anchor crosshair
-  // marking the story's location — the one deliberate accent.
+  // reading as an atmospheric backdrop under the type rather than a bounded
+  // inset. Faint (soft ocean, light land, no rim) with the gold anchor
+  // crosshair marking the story's location — the one deliberate accent.
   const globe = buildGlobe(article.lat, article.lng, theme, {
     cx: W / 2,
-    cy: H * 0.72,
-    r: W * 0.62,
+    cy: H * 0.8,
+    r: W * 0.6,
     scaleMul: 2.0,
     clipId: 'ig-globe-clip',
     landStroke: null, // no outline — keeps the backdrop soft
     rim: null, // bleed, no bounding ring
     showCross: true,
   })
-  // Drop the whole globe layer to a low opacity so headline type stays crisp.
   const globeLayer = globe ? `<g opacity="0.85">${globe}</g>` : ''
 
   const kicker = `${(article.category || 'news').toUpperCase()}  ·  ${formatLongDate(article.date)}`
   const location = article.location ? String(article.location).toUpperCase() : null
 
-  // Headline = the wire alert. Size steps down as the alert gets longer so it
-  // always fits the upper band above the globe's midline.
+  // Headline (article title), bold. resvg renders Source Sans 3 with wide,
+  // near-uniform advances (~0.62em) — size the wrap to that so it never clips.
   const headline = article.headline || article.title || 'Breaking News'
-  const len = headline.length
-  const titleFontSize = len > 64 ? 66 : len > 40 ? 76 : 88
-  const titleLineHeight = Math.round(titleFontSize * 1.15)
-  // Source Sans 3 renders through resvg with wide, near-uniform advances
-  // (~0.62em) — size the wrap to that so long alerts never clip the edge.
-  const maxCharsPerLine = Math.floor((W - PAD * 2) / (titleFontSize * 0.62))
-  const titleLines = wrapTitle(headline, maxCharsPerLine, 6)
-  const titleStartY = Math.round(H * 0.2) + titleFontSize
+  const titleFontSize = headline.length > 38 ? 62 : 74
+  const titleLineHeight = Math.round(titleFontSize * 1.12)
+  const titleLines = wrapTitle(headline, Math.floor(inner / (titleFontSize * 0.62)), 3)
+  const titleStartY = Math.round(H * 0.13) + titleFontSize
+
+  // Dek: the story lead/summary rendered on the card in regular weight. Regular
+  // Source Sans advances are narrower (~0.53em). Sits just under the headline.
+  const summary = String(article.summary || '').trim()
+  const dekFontSize = 37
+  const dekLineHeight = Math.round(dekFontSize * 1.34)
+  const dekLines = summary ? wrapTitle(summary, Math.floor(inner / (dekFontSize * 0.53)), 7) : []
+  const dekStartY = titleStartY + (titleLines.length - 1) * titleLineHeight + titleLineHeight + dekFontSize
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
@@ -84,6 +89,13 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'light') => {
     .map(
       (line, i) =>
         `<text x="${PAD}" y="${titleStartY + i * titleLineHeight}" font-family="Source Sans 3" font-size="${titleFontSize}" font-weight="700" fill="${theme.fg}" letter-spacing="-0.01em">${escXml(line)}</text>`,
+    )
+    .join('\n  ')}
+
+  ${dekLines
+    .map(
+      (line, i) =>
+        `<text x="${PAD}" y="${dekStartY + i * dekLineHeight}" font-family="Source Sans 3" font-size="${dekFontSize}" font-weight="400" fill="${theme.dim}">${escXml(line)}</text>`,
     )
     .join('\n  ')}
 
