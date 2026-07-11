@@ -16,7 +16,12 @@ import { feature } from 'topojson-client'
 const ROOT = new URL('../..', import.meta.url).pathname
 
 let _assets = null
-const getAssets = () => {
+/**
+ * Load + memoize the shared render assets: the Source Sans 3 variable-font
+ * buffer (also shipped to /fonts/, so renders match the site) and the
+ * 110m country features from shared/data. Reused by ig-image.js.
+ */
+export const getAssets = () => {
   if (_assets) return _assets
   const fontRegular = readFileSync(join(ROOT, 'public', 'fonts', 'source-sans-3-var.woff2'))
   const topo = JSON.parse(readFileSync(join(ROOT, 'shared', 'data', 'countries-110m.json'), 'utf8'))
@@ -24,6 +29,12 @@ const getAssets = () => {
   _assets = { fontRegular, countries }
   return _assets
 }
+
+/** The two-tone palette shared by every share card. */
+export const themeFor = (variant = 'light') =>
+  variant === 'dark'
+    ? { bg: '#141414', fg: '#d4d4d4', soft: '#1a1a1a', rule: '#2a2a2a', dim: '#a3a3a3', dot: '#e8b84c', land: '#2a2a2a' }
+    : { bg: '#ffffff', fg: '#1a1a1a', soft: '#f6f6f6', rule: '#e2e2e2', dim: '#555555', dot: '#c9a84c', land: '#ececec' }
 
 const W = 1200
 const H = 630
@@ -35,7 +46,7 @@ const MAP_R = 210
 const MAP_CX = W - PAD_X - MAP_R
 const MAP_CY = H / 2
 
-const escXml = (s) =>
+export const escXml = (s) =>
   String(s ?? '')
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
@@ -43,13 +54,13 @@ const escXml = (s) =>
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&apos;')
 
-const clipText = (text, max) => {
+export const clipText = (text, max) => {
   const t = String(text ?? '').trim()
   if (t.length <= max) return t
   return t.slice(0, max - 1).replace(/\s+\S*$/, '') + '…'
 }
 
-const wrapTitle = (text, maxCharsPerLine, maxLines) => {
+export const wrapTitle = (text, maxCharsPerLine, maxLines) => {
   const words = String(text ?? '').trim().split(/\s+/)
   const lines = []
   let current = ''
@@ -71,48 +82,93 @@ const wrapTitle = (text, maxCharsPerLine, maxLines) => {
   return lines
 }
 
-const formatLongDate = (iso) => {
+export const formatLongDate = (iso) => {
   const d = new Date(iso)
   return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).toUpperCase()
 }
 
-// Build the map inset SVG fragment. Returns '' if lat/lng missing.
-const buildMapInset = (lat, lng, theme) => {
+/**
+ * Build a circular orthographic globe SVG fragment centered on lat/lng.
+ * Returns '' if lat/lng missing. Generalized from the OG map inset so the
+ * Instagram card can reuse the exact projection + land geometry with a
+ * different size/position/palette (e.g. a faint full-bleed backdrop).
+ *
+ * @param {number} lat
+ * @param {number} lng
+ * @param {Object} theme — palette (see themeFor)
+ * @param {Object} opts
+ * @param {number} opts.cx — disc center x
+ * @param {number} opts.cy — disc center y
+ * @param {number} opts.r  — disc radius
+ * @param {number} [opts.scaleMul=2.2] — projection.scale = r * scaleMul (zoom)
+ * @param {string} [opts.clipId='globe-clip'] — must be unique within the SVG
+ * @param {string} [opts.ocean=theme.soft] — disc (water) fill
+ * @param {string} [opts.land=theme.land] — landmass fill
+ * @param {string|null} [opts.landStroke=theme.rule] — land outline (null = none)
+ * @param {number} [opts.landStrokeWidth=0.6]
+ * @param {string|null} [opts.rim=theme.rule] — disc rim stroke (null = none)
+ * @param {number} [opts.rimWidth=1]
+ * @param {boolean} [opts.showCross=true] — gold anchor crosshair at center
+ */
+export const buildGlobe = (lat, lng, theme, opts = {}) => {
   if (lat == null || lng == null || Number.isNaN(lat) || Number.isNaN(lng)) return ''
+  const {
+    cx,
+    cy,
+    r,
+    scaleMul = 2.2,
+    clipId = 'globe-clip',
+    ocean = theme.soft,
+    land = theme.land,
+    landStroke = theme.rule,
+    landStrokeWidth = 0.6,
+    rim = theme.rule,
+    rimWidth = 1,
+    showCross = true,
+    crossColor = theme.dot,
+  } = opts
   const { countries } = getAssets()
   const projection = geoOrthographic()
     .rotate([-lng, -lat])
-    .scale(MAP_R * 2.2)
-    .translate([MAP_CX, MAP_CY])
+    .scale(r * scaleMul)
+    .translate([cx, cy])
     .clipAngle(90)
   const path = geoPath(projection)
 
-  // Visible-hemisphere disc (water) and land paths rendered within a
-  // clipPath so continents that cross the horizon don't bleed past the
-  // circular mask.
-  const clipId = `og-map-clip`
+  // Land paths rendered within a clipPath so continents that cross the
+  // horizon don't bleed past the circular mask.
   const landPaths = countries
     .map((c) => path(c))
     .filter(Boolean)
-    .map((d) => `<path d="${d}" fill="${theme.land}" stroke="${theme.rule}" stroke-width="0.6"/>`)
+    .map(
+      (d) =>
+        `<path d="${d}" fill="${land}"${landStroke ? ` stroke="${landStroke}" stroke-width="${landStrokeWidth}"` : ''}/>`,
+    )
     .join('')
 
   // Center crosshair — marks the article's anchor.
-  const cross = `
-    <circle cx="${MAP_CX}" cy="${MAP_CY}" r="4" fill="${theme.dot}"/>
-    <circle cx="${MAP_CX}" cy="${MAP_CY}" r="12" fill="none" stroke="${theme.dot}" stroke-width="1.2"/>`
+  const cross = showCross
+    ? `
+    <circle cx="${cx}" cy="${cy}" r="4" fill="${crossColor}"/>
+    <circle cx="${cx}" cy="${cy}" r="12" fill="none" stroke="${crossColor}" stroke-width="1.2"/>`
+    : ''
 
   return `
   <defs>
     <clipPath id="${clipId}">
-      <circle cx="${MAP_CX}" cy="${MAP_CY}" r="${MAP_R}"/>
+      <circle cx="${cx}" cy="${cy}" r="${r}"/>
     </clipPath>
   </defs>
-  <circle cx="${MAP_CX}" cy="${MAP_CY}" r="${MAP_R}" fill="${theme.soft}"/>
+  <circle cx="${cx}" cy="${cy}" r="${r}" fill="${ocean}"/>
   <g clip-path="url(#${clipId})">${landPaths}</g>
-  <circle cx="${MAP_CX}" cy="${MAP_CY}" r="${MAP_R}" fill="none" stroke="${theme.rule}" stroke-width="1"/>
+  ${rim ? `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${rim}" stroke-width="${rimWidth}"/>` : ''}
   ${cross}`
 }
+
+// OG map inset: circular globe on the right of the 1200×630 card. Thin
+// wrapper over buildGlobe preserving the original geometry + palette.
+const buildMapInset = (lat, lng, theme) =>
+  buildGlobe(lat, lng, theme, { cx: MAP_CX, cy: MAP_CY, r: MAP_R, clipId: 'og-map-clip' })
 
 /**
  * Build an SVG string for an article's OG card.
@@ -120,9 +176,7 @@ const buildMapInset = (lat, lng, theme) => {
  * @param {'light'|'dark'} variant
  */
 export const buildOgSvg = (article, variant = 'light') => {
-  const theme = variant === 'dark'
-    ? { bg: '#141414', fg: '#d4d4d4', soft: '#1a1a1a', rule: '#2a2a2a', dim: '#a3a3a3', dot: '#e8b84c', land: '#2a2a2a' }
-    : { bg: '#ffffff', fg: '#1a1a1a', soft: '#f6f6f6', rule: '#e2e2e2', dim: '#555555', dot: '#c9a84c', land: '#ececec' }
+  const theme = themeFor(variant)
 
   const hasMap = article.lat != null && article.lng != null
   // When the map is present, title wraps narrower (left column only).

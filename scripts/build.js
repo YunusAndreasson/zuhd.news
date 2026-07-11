@@ -5,6 +5,7 @@ import { createHash } from 'crypto'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { splitBlocks } from './lib/blocks.js'
 import { buildOgPng } from './lib/og-image.js'
+import { buildIgJpeg, IG_FEED, IG_STORY } from './lib/ig-image.js'
 import { buildIslands } from './build/islands.js'
 import { buildCountryPages } from './build/country-pages.js'
 import { buildEntityPages } from './build/entity-pages.js'
@@ -845,6 +846,69 @@ if (process.env.SKIP_OG === '1') {
   }
   console.log(
     `  Built: api/og/ (${sorted.length} OG images · ${cached} cached + ${rendered} rendered in ${((Date.now() - ogStart) / 1000).toFixed(1)}s)`,
+  )
+}
+
+// Instagram share cards at /api/ig/{slug}.jpg (+ .story.jpg) — the "headline
+// over a delicate globe" card the auto-poster publishes. The breaking post is
+// only ever drawn from THIS cycle's articles (content/.last-cycle.json, written
+// just before this build), so we render exactly that set — the minimal work
+// that still guarantees the breaking slug's card exists, whatever the cycle
+// size. Manual/dev builds without a fresh cycle file fall back to the most
+// recent IG_RECENT. Same content-hash disk cache as OG. Instagram's publish API
+// needs a public JPEG URL, hence .jpg alongside the PNG OG cards. SKIP_OG
+// bypasses both.
+mkdirSync(join(DIST_DIR, 'api', 'ig'), { recursive: true })
+if (process.env.SKIP_OG === '1') {
+  console.log('  Skipped: api/ig/ (SKIP_OG=1)')
+} else {
+  const IG_CACHE_DIR = join(ROOT, '.cache', 'ig')
+  const IG_VERSION = 'v1' // bump when ig-image.js rendering changes
+  const IG_RECENT = 20 // dev/manual fallback window
+  mkdirSync(IG_CACHE_DIR, { recursive: true })
+  let cycleSlugs = null
+  try {
+    const cycle = JSON.parse(readFileSync(join(ROOT, 'content', '.last-cycle.json'), 'utf8'))
+    const s = new Set((cycle.articles || []).map((a) => a.slug))
+    if (s.size) cycleSlugs = s
+  } catch {
+    /* no cycle file — use the recent-window fallback below */
+  }
+  const igArticles = cycleSlugs ? sorted.filter((a) => cycleSlugs.has(a.slug)) : sorted.slice(0, IG_RECENT)
+  const igStart = Date.now()
+  let igCached = 0
+  let igRendered = 0
+  for (const article of igArticles) {
+    const inputs = {
+      v: IG_VERSION,
+      headline: article.title,
+      category: article.meta.category || null,
+      date: article.meta.date,
+      location: article.meta.location || null,
+      lat: article.meta.lat != null ? Number(article.meta.lat) : null,
+      lng: article.meta.lng != null ? Number(article.meta.lng) : null,
+    }
+    for (const [suffix, size] of [
+      ['jpg', IG_FEED],
+      ['story.jpg', IG_STORY],
+    ]) {
+      const key = createHash('sha1').update(JSON.stringify({ ...inputs, size: suffix })).digest('hex')
+      const cachePath = join(IG_CACHE_DIR, `${key}.jpg`)
+      const dstPath = join(DIST_DIR, 'api', 'ig', `${article.slug}.${suffix}`)
+      let jpg
+      if (existsSync(cachePath)) {
+        jpg = readFileSync(cachePath)
+        igCached++
+      } else {
+        jpg = buildIgJpeg(inputs, size)
+        writeFileSync(cachePath, jpg)
+        igRendered++
+      }
+      writeFileSync(dstPath, jpg)
+    }
+  }
+  console.log(
+    `  Built: api/ig/ (${igArticles.length} IG cards × 2 · ${igCached} cached + ${igRendered} rendered in ${((Date.now() - igStart) / 1000).toFixed(1)}s)`,
   )
 }
 

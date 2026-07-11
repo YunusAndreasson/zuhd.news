@@ -597,11 +597,19 @@ $ARTICLE_TEXT" 2>/dev/null)
             timeout 60 node scripts/post-to-twitter.js --slug "$PUSH_SLUG" 2>&1 | tee -a "$LOG_FILE" \
               || echo "⚠ tweet step failed (non-fatal)" | tee -a "$LOG_FILE"
           fi
+          # Mirror the same breaking story to Instagram: the /api/ig/{slug}.jpg
+          # card (deployed above) plus a Claude-written caption, a first-comment
+          # article link, and a Story cross-post. Non-fatal, deduped via
+          # content/.instagram-log.json; any failure must not abort the cycle.
+          if [ -n "$PUSH_SLUG" ]; then
+            timeout 90 node scripts/post-to-instagram.js --slug "$PUSH_SLUG" 2>&1 | tee -a "$LOG_FILE" \
+              || echo "⚠ instagram step failed (non-fatal)" | tee -a "$LOG_FILE"
+          fi
         fi
       fi
-      # Commit push + tweet logs
-      git add content/.push-log.json content/.tweet-log.json 2>/dev/null
-      git diff --cached --quiet content/.push-log.json content/.tweet-log.json || git commit -m "Push log $(date -u +%Y-%m-%dT%H:%M)" 2>&1 | tee -a "$LOG_FILE"
+      # Commit push + social logs
+      git add content/.push-log.json content/.tweet-log.json content/.instagram-log.json 2>/dev/null
+      git diff --cached --quiet content/.push-log.json content/.tweet-log.json content/.instagram-log.json || git commit -m "Push log $(date -u +%Y-%m-%dT%H:%M)" 2>&1 | tee -a "$LOG_FILE"
 
       # Stage 3c: Production RVS — score this cycle's output against the
       # autoresearch rubric (deterministic clusters only, zero token cost),
