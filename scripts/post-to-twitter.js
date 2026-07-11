@@ -30,6 +30,8 @@ const ROOT = new URL('..', import.meta.url).pathname
 const TWEET_LOG = join(ROOT, 'content/.tweet-log.json')
 const PROMPT_PATH = join(ROOT, 'scripts/tweet-prompt.md')
 const API_URL = 'https://api.twitter.com/2/tweets'
+const MEDIA_UPLOAD_URL = 'https://upload.twitter.com/1.1/media/upload.json'
+const SITE = 'https://zuhd.news'
 // X counts weighted length (URLs=23, emoji/CJK=2). Our tweets are plain English
 // with no link, so code-unit length is a safe proxy; 275 leaves headroom < 280.
 const MAX_LEN = 275
@@ -176,10 +178,53 @@ function authHeader(method, url) {
   )
 }
 
+// --- media: attach the breaking card (the same 4:5 image the IG post uses) ---
+async function loadCardImage() {
+  // Prefer the freshly-built local artifact; fall back to the public URL.
+  const localPath = join(ROOT, 'dist', 'api', 'ig', `${slug}.jpg`)
+  if (existsSync(localPath)) return readFileSync(localPath)
+  try {
+    const res = await fetch(`${SITE}/api/ig/${slug}.jpg`)
+    if (res.ok) return Buffer.from(await res.arrayBuffer())
+  } catch {
+    /* offline / not deployed yet — tweet text-only */
+  }
+  return null
+}
+
+async function uploadMedia(buffer) {
+  // v1.1 media/upload, multipart. Like the JSON tweet, the body is not part of
+  // the OAuth signature base, so authHeader('POST', url) is sufficient.
+  const fd = new FormData()
+  fd.append('media', new Blob([buffer], { type: 'image/jpeg' }), 'card.jpg')
+  const res = await fetch(MEDIA_UPLOAD_URL, {
+    method: 'POST',
+    headers: { Authorization: authHeader('POST', MEDIA_UPLOAD_URL) },
+    body: fd,
+  })
+  const json = await res.json().catch(() => ({}))
+  if (!res.ok || !json?.media_id_string) {
+    throw new Error(json?.errors?.[0]?.message || json?.error || `HTTP ${res.status}`)
+  }
+  return json.media_id_string
+}
+
 // --- post ---
 async function post() {
+  // Upload the breaking card so the tweet leads with the image, not just text.
+  let mediaIds = []
+  const img = await loadCardImage()
+  if (img && haveCreds && !dryRun) {
+    try {
+      mediaIds = [await uploadMedia(img)]
+    } catch (e) {
+      console.error(`post-to-twitter: media upload failed, tweeting text-only — ${e.message}`)
+    }
+  }
+
   if (dryRun || !haveCreds) {
     console.log(`[dry-run] tweet (${text.length} chars):\n${text}`)
+    console.log(`[dry-run] card image: ${img ? `${img.length} bytes (would attach)` : 'not found — text-only'}`)
     if (!haveCreds) {
       console.log('[dry-run] X_* creds not set — signing/POST skipped.')
     } else {
@@ -195,12 +240,19 @@ async function post() {
       Authorization: authHeader('POST', API_URL),
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ text }),
+    body: JSON.stringify(mediaIds.length ? { text, media: { media_ids: mediaIds } } : { text }),
   })
   const json = await res.json().catch(() => ({}))
   if (res.ok && json?.data?.id) {
-    console.log(`post-to-twitter: posted ${json.data.id} — ${text}`)
-    log.push({ timestamp: new Date().toISOString(), slug, text, tweetId: json.data.id, sent: true })
+    console.log(`post-to-twitter: posted ${json.data.id}${mediaIds.length ? ' (with card image)' : ''} — ${text}`)
+    log.push({
+      timestamp: new Date().toISOString(),
+      slug,
+      text,
+      tweetId: json.data.id,
+      media: mediaIds.length > 0,
+      sent: true,
+    })
     writeLog(log)
   } else {
     const err = json?.detail || json?.title || `HTTP ${res.status}`

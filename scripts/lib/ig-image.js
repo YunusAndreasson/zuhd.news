@@ -84,12 +84,21 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
   const dekLines = summary ? wrapTitle(summary, Math.floor(inner / (dekFontSize * 0.53)), 7) : []
   const dekStartY = titleStartY + (titleLines.length - 1) * titleLineHeight + titleLineHeight + dekFontSize
 
+  // Soft shadow behind the type so it stays crisp where it crosses the globe.
+  const shadowColor = variant === 'dark' ? '#000000' : '#ffffff'
+
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
+  <defs>
+    <filter id="ig-text-shadow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="2" stdDeviation="8" flood-color="${shadowColor}" flood-opacity="0.55"/>
+    </filter>
+  </defs>
   <rect width="${W}" height="${H}" fill="${theme.bg}"/>
 
   ${globeLayer}
 
+  <g filter="url(#ig-text-shadow)">
   <text x="${PAD}" y="${PAD + 48}" font-family="Source Sans 3" font-size="26" font-weight="600" fill="${theme.dim}" letter-spacing="3">${escXml(kicker)}</text>
 
   ${titleLines
@@ -109,6 +118,7 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
   ${location ? `<text x="${PAD}" y="${H - 112}" font-family="Source Sans 3" font-size="26" font-weight="600" fill="${theme.dim}" letter-spacing="3">${escXml(location)}</text>` : ''}
 
   <text x="${PAD}" y="${H - 60}" font-family="Source Sans 3" font-size="34" font-weight="700" fill="${theme.fg}" letter-spacing="-0.01em">zuhd<tspan fill="${theme.dim}">.</tspan>news</text>
+  </g>
 </svg>`
 }
 

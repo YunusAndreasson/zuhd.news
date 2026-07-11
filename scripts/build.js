@@ -863,7 +863,7 @@ if (process.env.SKIP_OG === '1') {
   console.log('  Skipped: api/ig/ (SKIP_OG=1)')
 } else {
   const IG_CACHE_DIR = join(ROOT, '.cache', 'ig')
-  const IG_VERSION = 'v4' // bump when ig-image.js rendering changes
+  const IG_VERSION = 'v5' // bump when ig-image.js rendering changes
   const IG_RECENT = 20 // dev/manual fallback window
   // The card renders a dek — the story lead (first 1-2 sentences) with the
   // dateline prefix and markdown links stripped, cut to ~200 chars on a
