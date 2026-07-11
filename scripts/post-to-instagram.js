@@ -205,8 +205,8 @@ async function run() {
     return
   }
 
-  // 1. Feed post.
-  const mediaId = await publishImage({ imageUrl: feedUrl })
+  // 1. Feed post (the caption rides on the container, not media_publish).
+  const mediaId = await publishImage({ imageUrl: feedUrl, extra: { caption } })
   console.log(`post-to-instagram: posted feed ${mediaId}`)
 
   // 2. First comment: the article URL (feed captions can't carry a live link).
