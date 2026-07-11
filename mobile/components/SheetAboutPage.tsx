@@ -81,6 +81,28 @@ const PRINCIPLES: { term: string; gloss: string }[] = [
   { term: 'haqq', gloss: 'Truth is published without regard to power.' },
 ];
 
+// The colophon in content/about.md ("created by Yunus Andreasson") is dropped
+// by the hand-maintained copy above; re-add the maker credit here. The byline
+// links to the hub; the socials tie the identity.
+const MAKER_HUB = 'https://andreassonphoto.com/about';
+const MAKER_BYLINE = 'Made by Yunus Andreasson';
+
+const SOCIALS: { label: string; url: string }[] = [
+  { label: 'github', url: 'https://github.com/YunusAndreasson' },
+  { label: 'x', url: 'https://x.com/YunusAndreasson' },
+  { label: 'instagram', url: 'https://www.instagram.com/andreasson.photo/' },
+  { label: 'linkedin', url: 'https://www.linkedin.com/in/yunusandreasson/' },
+];
+
+// Sibling apps in the same cluster (this app excluded) \u2014 discovery links so a
+// reader who found zuhd.news can find the maker's other work.
+const OTHER_APPS: { label: string; url: string }[] = [
+  { label: 'islam.se', url: 'https://islam.se' },
+  { label: 'open-arabic', url: 'https://openarabic.io' },
+  { label: 'al-ibadah', url: 'https://al-ibadah.com' },
+  { label: 'qamar360', url: 'https://qamar360.com' },
+];
+
 const SUPPRESS_SOURCES = new Set(['Hacker News']);
 
 function aggregateSources(articles: Article[]): string[] {
@@ -236,6 +258,54 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
                 {p.gloss}
               </Text>
             </View>
+          ))}
+        </View>
+      </Animated.View>
+
+      <Animated.View entering={enter()} style={styles.section}>
+        <Text variant="labelSm">colophon</Text>
+        <Pressable
+          onPress={() => openLink(MAKER_HUB)}
+          style={styles.link}
+          accessibilityRole="link"
+          accessibilityLabel={MAKER_BYLINE}
+        >
+          <Text variant="captionEmphasis" tone="accent" style={styles.linkText}>
+            {MAKER_BYLINE}
+          </Text>
+        </Pressable>
+        <View style={styles.linkList}>
+          {SOCIALS.map((l) => (
+            <Pressable
+              key={l.url}
+              onPress={() => openLink(l.url)}
+              style={styles.link}
+              accessibilityRole="link"
+              accessibilityLabel={l.label}
+            >
+              <Text variant="captionEmphasis" tone="accent" style={styles.linkText}>
+                {l.label}
+              </Text>
+            </Pressable>
+          ))}
+        </View>
+      </Animated.View>
+
+      <Animated.View entering={enter()} style={styles.section}>
+        <Text variant="labelSm">other apps</Text>
+        <View style={styles.linkList}>
+          {OTHER_APPS.map((l) => (
+            <Pressable
+              key={l.url}
+              onPress={() => openLink(l.url)}
+              style={styles.link}
+              accessibilityRole="link"
+              accessibilityLabel={l.label}
+            >
+              <Text variant="captionEmphasis" tone="accent" style={styles.linkText}>
+                {l.label}
+              </Text>
+            </Pressable>
           ))}
         </View>
       </Animated.View>
