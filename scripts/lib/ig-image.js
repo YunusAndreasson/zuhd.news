@@ -68,7 +68,7 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
   // Headline (article title), bold. resvg renders Source Sans 3 with wide,
   // near-uniform advances (~0.62em) — size the wrap to that so it never clips.
   const headline = article.headline || article.title || 'Breaking News'
-  const titleFontSize = headline.length > 38 ? 68 : 80
+  const titleFontSize = headline.length > 38 ? 72 : 84
   const titleLineHeight = Math.round(titleFontSize * 1.12)
   const titleLines = wrapTitle(headline, Math.floor(inner / (titleFontSize * 0.62)), 3)
   const titleStartY = Math.round(H * 0.13) + titleFontSize
@@ -76,8 +76,11 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
   // Dek: the story lead/summary rendered on the card in regular weight. Regular
   // Source Sans advances are narrower (~0.53em). Sits just under the headline.
   const summary = String(article.summary || '').trim()
-  const dekFontSize = 41
-  const dekLineHeight = Math.round(dekFontSize * 1.34)
+  const dekFontSize = 45
+  const dekLineHeight = Math.round(dekFontSize * 1.46)
+  // Brighter than the dim label grey so the dek stays legible over the globe on
+  // the dark card; weight (400 vs the 700 headline) still carries the hierarchy.
+  const dekColor = variant === 'dark' ? '#cfcfcf' : theme.dim
   const dekLines = summary ? wrapTitle(summary, Math.floor(inner / (dekFontSize * 0.53)), 7) : []
   const dekStartY = titleStartY + (titleLines.length - 1) * titleLineHeight + titleLineHeight + dekFontSize
 
@@ -99,7 +102,7 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
   ${dekLines
     .map(
       (line, i) =>
-        `<text x="${PAD}" y="${dekStartY + i * dekLineHeight}" font-family="Source Sans 3" font-size="${dekFontSize}" font-weight="400" fill="${theme.dim}">${escXml(line)}</text>`,
+        `<text x="${PAD}" y="${dekStartY + i * dekLineHeight}" font-family="Source Sans 3" font-size="${dekFontSize}" font-weight="400" fill="${dekColor}">${escXml(line)}</text>`,
     )
     .join('\n  ')}
 
