@@ -9,20 +9,31 @@ zuhd.news
 Global news without the noise
 
 ## Short Description (Play Store, 80 chars)
-Global hard news in plain language. No ads, no tracking, no accounts.
+Global hard news that barely uses data. Works on slow connections.
+
+<!-- Message-match with the winning Meta creative (2026-07 "data" concept: CTR 10.7%
+     vs 1.3% for the identity angle; Meta funnelled ~65% of spend to India). The paid
+     audience responds to the low-data / lightweight utility hook, not privacy alone.
+     NOTE: keep price/promotion claims ("no ads, no tracking") OUT of the short
+     description — Play rejects them as promotional keywords. They live in the full
+     description as features instead.
+     Previous: "Global hard news in plain language. No ads, no tracking, no accounts." -->
 
 ## Full Description
-Zuhd — the discipline of doing without what you do not need.
+A news app that barely uses data. Text-first and lightweight — it works on slow and unreliable connections, without the weight of a typical news app.
 
-Each article says what happened, why it matters, and what comes next. Then it stops.
+Global hard news — politics, economy, science, technology — from sources across six continents, updated five times daily. Each article says what happened, why it matters, and what comes next. Then it stops.
 
-Forty sources across six continents, because where a story is told from determines who is a person and who is a number.
+Where a story is told from determines who counts as a person and who becomes a number. Every article cites its sources and shows how each one framed the story.
 
 Features:
-• Politics, economy, science, and tech — updated five times daily
+• Barely uses data — built for slow and costly connections
 • Smart Brevity format: lead, context, details, what's next
-• Audio briefings each morning
+• Thread timelines for developing stories
+• Daily audio briefings
 • No ads. No tracking. No accounts. No data collected.
+
+Zuhd — the discipline of doing without what you do not need.
 
 ## Keywords (App Store, 100 chars)
 news,world,global,politics,economy,science,tech,briefing,minimal,privacy

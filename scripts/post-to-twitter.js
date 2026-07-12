@@ -30,6 +30,7 @@ const ROOT = new URL('..', import.meta.url).pathname
 const TWEET_LOG = join(ROOT, 'content/.tweet-log.json')
 const PROMPT_PATH = join(ROOT, 'scripts/tweet-prompt.md')
 const API_URL = 'https://api.twitter.com/2/tweets'
+const UPLOAD_URL = 'https://upload.twitter.com/1.1/media/upload.json'
 // X counts weighted length (URLs=23, emoji/CJK=2). Our tweets are plain English
 // with no link, so code-unit length is a safe proxy; 275 leaves headroom < 280.
 const MAX_LEN = 275
@@ -42,6 +43,8 @@ const argAt = (name) => {
 const hasFlag = (name) => process.argv.includes(`--${name}`)
 const slug = argAt('slug')
 const explicitText = argAt('text')
+const imagePath = argAt('image') // optional: attach a pre-rendered card (JPEG/PNG)
+const noText = hasFlag('no-text') // image-only tweet (requires --image; caption carried by the card)
 const dryRun = hasFlag('dry-run')
 
 if (!slug) {
@@ -126,24 +129,33 @@ function condenseViaClaude(articleText) {
   return line || null
 }
 
-let text = explicitText
-if (!text) {
-  const path = join(ROOT, 'content/articles', `${slug}.md`)
-  if (!existsSync(path)) {
-    console.error(`post-to-twitter: article not found (${path}) — skipping.`)
-    process.exit(0)
+let text = ''
+if (noText) {
+  // Image-only tweet: the card carries the headline/dek, so no caption above it.
+  if (!imagePath) {
+    console.error('post-to-twitter: --no-text requires --image — nothing to post.')
+    process.exit(2)
   }
-  const { meta, body } = parseFrontmatter(readFileSync(path, 'utf8'))
-  const articleText = `${meta.title || ''}\n\n${body}`.trim()
-  text = condenseViaClaude(articleText)
+} else {
+  text = explicitText
   if (!text) {
-    console.error('post-to-twitter: could not generate tweet text — skipping.')
-    process.exit(0)
+    const path = join(ROOT, 'content/articles', `${slug}.md`)
+    if (!existsSync(path)) {
+      console.error(`post-to-twitter: article not found (${path}) — skipping.`)
+      process.exit(0)
+    }
+    const { meta, body } = parseFrontmatter(readFileSync(path, 'utf8'))
+    const articleText = `${meta.title || ''}\n\n${body}`.trim()
+    text = condenseViaClaude(articleText)
+    if (!text) {
+      console.error('post-to-twitter: could not generate tweet text — skipping.')
+      process.exit(0)
+    }
   }
+  // Strip any wrapping quotes/fences the model may add despite the prompt rules.
+  text = text.replace(/^\s*["'“”]+|["'“”]+\s*$/g, '').trim()
+  text = truncate(text, MAX_LEN)
 }
-// Strip any wrapping quotes/fences the model may add despite the prompt rules.
-text = text.replace(/^\s*["'“”]+|["'“”]+\s*$/g, '').trim()
-text = truncate(text, MAX_LEN)
 
 // --- OAuth 1.0a signing ---
 const rfc3986 = (str) =>
@@ -176,26 +188,75 @@ function authHeader(method, url) {
   )
 }
 
+// --- media upload (v1.1, OAuth 1.0a) ---
+// Staging a media_id does NOT publish anything — it only becomes visible once
+// attached to a created tweet — so this is safe to run in --dry-run to validate
+// end-to-end. Multipart bodies are excluded from the OAuth base string, so
+// authHeader() (which signs only the oauth_* params) is correct as-is.
+async function uploadMedia(buf) {
+  const form = new FormData()
+  form.append('media', new Blob([buf], { type: 'image/jpeg' }), 'card.jpg')
+  const res = await fetch(UPLOAD_URL, {
+    method: 'POST',
+    headers: { Authorization: authHeader('POST', UPLOAD_URL) },
+    body: form,
+  })
+  const json = await res.json().catch(() => ({}))
+  if (!res.ok || !json.media_id_string) {
+    throw new Error(json?.errors?.[0]?.message || json?.error || `media upload HTTP ${res.status}`)
+  }
+  return json.media_id_string
+}
+
 // --- post ---
 async function post() {
+  // Stage the image first (non-public). Do it even in dry-run so a bad
+  // endpoint/permission surfaces before the live post.
+  let mediaId = null
+  if (imagePath && haveCreds) {
+    if (!existsSync(imagePath)) {
+      console.error(`post-to-twitter: --image not found (${imagePath}) — not posting.`)
+      process.exit(1)
+    }
+    try {
+      mediaId = await uploadMedia(readFileSync(imagePath))
+      console.log(`post-to-twitter: media staged ${mediaId}`)
+    } catch (e) {
+      console.error(`post-to-twitter: media upload failed — ${e.message}`)
+      // An image was explicitly requested; do NOT silently fall back to a
+      // text-only tweet.
+      if (!dryRun) process.exit(1)
+    }
+  }
+
   if (dryRun || !haveCreds) {
-    console.log(`[dry-run] tweet (${text.length} chars):\n${text}`)
+    console.log(noText ? '[dry-run] image-only tweet (no caption text)' : `[dry-run] tweet (${text.length} chars):\n${text}`)
     if (!haveCreds) {
       console.log('[dry-run] X_* creds not set — signing/POST skipped.')
     } else {
       // Exercise the signing path so a broken header surfaces in dry-run.
       const header = authHeader('POST', API_URL)
       console.log(`[dry-run] would POST ${API_URL} — auth header OK (${header.length} chars).`)
+      console.log(imagePath ? `[dry-run] image ${mediaId ? `staged as ${mediaId}` : 'NOT staged'}.` : '[dry-run] no image.')
     }
     return
   }
+  if (noText && !mediaId) {
+    console.error('post-to-twitter: image-only requested but no media staged — not posting.')
+    process.exit(1)
+  }
+  const body = noText
+    ? { media: { media_ids: [mediaId] } }
+    : mediaId
+      ? { text, media: { media_ids: [mediaId] } }
+      : { text }
   const res = await fetch(API_URL, {
     method: 'POST',
     headers: {
       Authorization: authHeader('POST', API_URL),
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ text }),
+    body: JSON.stringify(body),
   })
   const json = await res.json().catch(() => ({}))
   if (res.ok && json?.data?.id) {

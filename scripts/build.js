@@ -5,6 +5,7 @@ import { createHash } from 'crypto'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { splitBlocks } from './lib/blocks.js'
 import { buildOgPng } from './lib/og-image.js'
+import { buildIgJpeg, IG_FEED, IG_STORY } from './lib/ig-image.js'
 import { buildIslands } from './build/islands.js'
 import { buildCountryPages } from './build/country-pages.js'
 import { buildEntityPages } from './build/entity-pages.js'
@@ -316,6 +317,10 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap) =
     isAccessibleForFree: true,
     author: publisher,
     publisher,
+    // Links the article to the maker's Person entity (defined in full on the
+    // homepage @graph); an @id reference keeps the NewsArticle block — which
+    // gates Top Stories eligibility — otherwise untouched.
+    creator: { '@id': 'https://andreassonphoto.com/#person' },
   }).replace(/<\//g, '<\\/')}</script>`
 
   return template
@@ -360,6 +365,8 @@ const cssContent = transformSync(readFileSync(join(ROOT, 'public', 'style.css'),
 const jsContent = readFileSync(join(ROOT, 'public', 'reader.js'), 'utf-8')
 const headCommon = `<meta charset="utf-8">
   <meta name="google-site-verification" content="wE52hhFpRSdZ0DSAJM4Z57wM4AXTQ68eLrlo-zk_xLw">
+  <meta name="author" content="Yunus Andreasson">
+  <meta name="twitter:creator" content="@YunusAndreasson">
   <meta name="color-scheme" content="light dark">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)">
@@ -842,6 +849,69 @@ if (process.env.SKIP_OG === '1') {
   )
 }
 
+// Instagram share cards at /api/ig/{slug}.jpg (+ .story.jpg) — the "headline
+// over a delicate globe" card the auto-poster publishes. The breaking post is
+// only ever drawn from THIS cycle's articles (content/.last-cycle.json, written
+// just before this build), so we render exactly that set — the minimal work
+// that still guarantees the breaking slug's card exists, whatever the cycle
+// size. Manual/dev builds without a fresh cycle file fall back to the most
+// recent IG_RECENT. Same content-hash disk cache as OG. Instagram's publish API
+// needs a public JPEG URL, hence .jpg alongside the PNG OG cards. SKIP_OG
+// bypasses both.
+mkdirSync(join(DIST_DIR, 'api', 'ig'), { recursive: true })
+if (process.env.SKIP_OG === '1') {
+  console.log('  Skipped: api/ig/ (SKIP_OG=1)')
+} else {
+  const IG_CACHE_DIR = join(ROOT, '.cache', 'ig')
+  const IG_VERSION = 'v1' // bump when ig-image.js rendering changes
+  const IG_RECENT = 20 // dev/manual fallback window
+  mkdirSync(IG_CACHE_DIR, { recursive: true })
+  let cycleSlugs = null
+  try {
+    const cycle = JSON.parse(readFileSync(join(ROOT, 'content', '.last-cycle.json'), 'utf8'))
+    const s = new Set((cycle.articles || []).map((a) => a.slug))
+    if (s.size) cycleSlugs = s
+  } catch {
+    /* no cycle file — use the recent-window fallback below */
+  }
+  const igArticles = cycleSlugs ? sorted.filter((a) => cycleSlugs.has(a.slug)) : sorted.slice(0, IG_RECENT)
+  const igStart = Date.now()
+  let igCached = 0
+  let igRendered = 0
+  for (const article of igArticles) {
+    const inputs = {
+      v: IG_VERSION,
+      headline: article.title,
+      category: article.meta.category || null,
+      date: article.meta.date,
+      location: article.meta.location || null,
+      lat: article.meta.lat != null ? Number(article.meta.lat) : null,
+      lng: article.meta.lng != null ? Number(article.meta.lng) : null,
+    }
+    for (const [suffix, size] of [
+      ['jpg', IG_FEED],
+      ['story.jpg', IG_STORY],
+    ]) {
+      const key = createHash('sha1').update(JSON.stringify({ ...inputs, size: suffix })).digest('hex')
+      const cachePath = join(IG_CACHE_DIR, `${key}.jpg`)
+      const dstPath = join(DIST_DIR, 'api', 'ig', `${article.slug}.${suffix}`)
+      let jpg
+      if (existsSync(cachePath)) {
+        jpg = readFileSync(cachePath)
+        igCached++
+      } else {
+        jpg = buildIgJpeg(inputs, size)
+        writeFileSync(cachePath, jpg)
+        igRendered++
+      }
+      writeFileSync(dstPath, jpg)
+    }
+  }
+  console.log(
+    `  Built: api/ig/ (${igArticles.length} IG cards × 2 · ${igCached} cached + ${igRendered} rendered in ${((Date.now() - igStart) / 1000).toFixed(1)}s)`,
+  )
+}
+
 // Per-category pages at /c/{category}.html — chronological list of
 // every article in the category within the build window. Each category
 // page is a simple archetype: header + headline list, no reader chrome.
@@ -883,6 +953,9 @@ const categoryPageTemplate = `<!-- بسم الله الرحمن الرحيم -->
   <footer>
     <nav class="footer-links">
       <a href="/about">about</a> <a href="/contact">contact</a> <a href="/mcp">mcp</a> <a href="/privacy">privacy</a>
+    </nav>
+    <nav class="footer-maker" aria-label="Maker">
+      <a class="footer-byline" href="https://andreassonphoto.com/projects" target="_blank" rel="me noopener noreferrer">made by yunus andreasson</a>
     </nav>
   </footer>
   <script type="module" src="/island-loader.js" defer></script>
@@ -986,6 +1059,40 @@ ${sitemapEntries.join('\n')}
 </urlset>
 `)
 console.log(`  Built: sitemap.xml (${sitemapEntries.length} URLs)`)
+
+// Google News sitemap — a separate feed that lists ONLY articles published in
+// the last 48 hours, per the Google News sitemap spec (older items are dropped
+// automatically). Each <url> carries a <news:news> block with publication name
+// + language, the ISO 8601 publication date, and the headline. Publication date
+// reuses the same field the NewsArticle JSON-LD emits (meta.date, falling back
+// to the file mtime). Empty is valid: when no article is fresh enough the feed
+// renders an empty <urlset>.
+const NEWS_SITEMAP_WINDOW_MS = 48 * 60 * 60 * 1000
+const newsCutoff = Date.now() - NEWS_SITEMAP_WINDOW_MS
+const newsArticles = sorted.filter((a) => {
+  const pubMs = a.meta.date ? new Date(a.meta.date).getTime() : a.addedAt
+  return Number.isFinite(pubMs) && pubMs >= newsCutoff
+})
+const newsEntries = newsArticles.map((a) => {
+  const pubDate = new Date(a.meta.date || a.addedAt).toISOString()
+  return `  <url>
+    <loc>https://zuhd.news/a/${a.slug}</loc>
+    <news:news>
+      <news:publication>
+        <news:name>zuhd.news</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>${pubDate}</news:publication_date>
+      <news:title>${escXml(a.title)}</news:title>
+    </news:news>
+  </url>`
+})
+writeFileSync(join(DIST_DIR, 'news-sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+${newsEntries.join('\n')}
+</urlset>
+`)
+console.log(`  Built: news-sitemap.xml (${newsEntries.length} articles, last 48h)`)
 
 for (const page of staticPages) {
   const pagePath = join(ROOT, 'content', `${page}.md`)

@@ -159,6 +159,9 @@ __HEAD__
     <nav class="footer-links">
       <a href="/about">about</a> <a href="/contact">contact</a> <a href="/privacy">privacy</a>
     </nav>
+    <nav class="footer-maker" aria-label="Maker">
+      <a class="footer-byline" href="https://andreassonphoto.com/projects" target="_blank" rel="me noopener noreferrer">made by yunus andreasson</a>
+    </nav>
   </footer>
   <script type="module" src="/island-loader.js" defer></script>
 </body>

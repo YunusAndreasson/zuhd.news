@@ -82,6 +82,13 @@ const PRINCIPLES: { term: string; gloss: string }[] = [
   { term: 'haqq', gloss: 'Truth is published without regard to power.' },
 ];
 
+// The colophon in content/about.md ("created by Yunus Andreasson") is dropped
+// by the hand-maintained copy above; re-add the maker credit here as a single
+// quiet byline. It links to the maker's projects page, which lists his other
+// work \u2014 so this app doesn't carry a socials/other-apps billboard of its own.
+const MAKER_PROJECTS = 'https://andreassonphoto.com/projects';
+const MAKER_BYLINE = 'Made by Yunus Andreasson';
+
 const SUPPRESS_SOURCES = new Set(['Hacker News']);
 
 function aggregateSources(articles: Article[]): string[] {
@@ -235,6 +242,20 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
             </View>
           ))}
         </View>
+      </Animated.View>
+
+      <Animated.View entering={enter()} style={styles.section}>
+        <Text variant="labelSm">colophon</Text>
+        <Pressable
+          onPress={() => openLink(MAKER_PROJECTS)}
+          style={styles.link}
+          accessibilityRole="link"
+          accessibilityLabel={MAKER_BYLINE}
+        >
+          <Text variant="captionEmphasis" tone="accent" style={styles.linkText}>
+            {MAKER_BYLINE}
+          </Text>
+        </Pressable>
       </Animated.View>
     </>
   );

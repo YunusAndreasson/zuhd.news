@@ -9,8 +9,28 @@
 <!-- iOS Smart App Banner -->
 <meta name="apple-itunes-app" content="app-id=6760964753">
 <meta property="og:title" content="Get the zuhd.news app">
-<meta property="og:description" content="Global hard news in plain language. No ads, no tracking, no accounts.">
+<meta property="og:description" content="Global news that barely uses data. No ads, no tracking, no accounts.">
 <meta property="og:url" content="https://zuhd.news/get">
+<script>
+// Fast path: redirect mobile visitors to their store from <head>, BEFORE the body
+// paints, so Android/iOS don't pay for rendering a page they never see. Desktop /
+// unknown clients fall through to the rendered page with both store buttons.
+(function () {
+  var PLAY = "https://play.google.com/store/apps/details?id=news.zuhd.app";
+  var IOS = "https://apps.apple.com/app/id6760964753";
+  var ua = navigator.userAgent || "";
+  var qs = (location.search || "").replace(/^\?/, "");
+  // Paid-only landing page (noindex): if the ad link carried no params, still
+  // attribute the store visit to paid so Play's Install Referrer can read it
+  // (control arm of the bridge-vs-direct destination test).
+  if (!qs) qs = "utm_source=facebook&utm_medium=paid&utm_content=bridge";
+  var isAndroid = /Android/i.test(ua);
+  var isIOS = /iPhone|iPad|iPod/i.test(ua) ||
+    (/Macintosh/.test(ua) && "ontouchend" in document); // iPadOS desktop-mode
+  if (isAndroid) location.replace(PLAY + "&referrer=" + encodeURIComponent(qs));
+  else if (isIOS) location.replace(IOS + "?" + qs);
+})();
+</script>
 <style>
   :root { color-scheme: dark; }
   * { box-sizing: border-box; }
@@ -36,50 +56,28 @@
   }
   .btn.secondary { color: #f2f2f2; background: transparent; border-color: #333; }
   .note { color: #6a6a6a; font-size: 13px; margin-top: 26px; }
-  .hidden { display: none; }
 </style>
 </head>
 <body>
   <main>
     <h1 class="wordmark">zuhd.news</h1>
-    <p class="tag">Global hard news in plain language.<br>No ads, no tracking, no accounts.</p>
+    <p class="tag">Global news that barely uses data.<br>No ads, no tracking, no accounts.</p>
     <div class="stores">
       <a id="play" class="btn" href="https://play.google.com/store/apps/details?id=news.zuhd.app" rel="noopener">Get it on Google Play</a>
       <a id="ios" class="btn secondary" href="https://apps.apple.com/app/id6760964753" rel="noopener">Download on the App Store</a>
     </div>
-    <p id="note" class="note hidden">Opening your app store…</p>
+    <p class="note">Text-first and lightweight — it works on slow connections.</p>
   </main>
   <script>
+  // Desktop / unknown visitors stay here — wire both buttons with the same params
+  // so a manual click-through is still attributed store-side.
   (function () {
     var PLAY = "https://play.google.com/store/apps/details?id=news.zuhd.app";
     var IOS = "https://apps.apple.com/app/id6760964753";
-    var ua = navigator.userAgent || "";
     var qs = (location.search || "").replace(/^\?/, "");
-
-    // Pass campaign params through so store-side acquisition reports can attribute the visit.
-    function playUrl() {
-      return qs ? PLAY + "&referrer=" + encodeURIComponent(qs) : PLAY;
-    }
-    function iosUrl() {
-      return qs ? IOS + "?" + qs : IOS;
-    }
-
-    var play = document.getElementById("play");
-    var ios = document.getElementById("ios");
-    play.href = playUrl();
-    ios.href = iosUrl();
-
-    var isAndroid = /Android/i.test(ua);
-    var isIOS = /iPhone|iPad|iPod/i.test(ua) ||
-      (/Macintosh/.test(ua) && typeof document.ontouchend !== "undefined"); // iPadOS desktop-mode
-
-    if (isAndroid || isIOS) {
-      document.getElementById("note").className = "note";      // reveal "Opening…" for the brief flash
-      // Reorder so the user's own store is the primary button, in case the redirect is blocked.
-      if (isIOS) { ios.className = "btn"; play.className = "btn secondary"; }
-      location.replace(isAndroid ? playUrl() : iosUrl());
-    }
-    // Desktop / unknown: stay on the page and show both store buttons.
+    if (!qs) qs = "utm_source=facebook&utm_medium=paid&utm_content=bridge";
+    document.getElementById("play").href = PLAY + "&referrer=" + encodeURIComponent(qs);
+    document.getElementById("ios").href = IOS + "?" + qs;
   })();
   </script>
 </body>
