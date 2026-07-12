@@ -1,42 +1,5 @@
 [
   {
-    "timestamp": "2026-06-21T22:45:21.690Z",
-    "candidateCount": 2,
-    "candidates": [
-      {
-        "slug": "2026-06-21-several-reported-injured-after-explosion-at-factory-in-qatar",
-        "title": "Explosion Hits Qatar LNG Facility",
-        "category": "economy",
-        "eventCoverage": 268,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-21-coronary-artery-stenosis-segmentation-using-u-net-architectu",
-        "title": "Deep Learning Advances Stenosis Detection",
-        "category": "science",
-        "eventCoverage": 268,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-06-21-several-reported-injured-after-explosion-at-factory-in-qatar",
-      "title": "Explosion Hits Qatar LNG Facility",
-      "category": "economy",
-      "body": "An explosion hit [Qatar](country:QA)'s Barzan gas facility",
-      "eventCoverage": 268,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Explosion hits Qatar Barzan gas facility, fire contained, QatarEnergy says",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 26
-    }
-  },
-  {
     "timestamp": "2026-06-22T04:37:47.493Z",
     "candidateCount": 11,
     "candidates": [
@@ -9993,6 +9956,120 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Venezuela earthquake death toll surpasses 4,300, officials say",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 21
+    }
+  },
+  {
+    "timestamp": "2026-07-12T04:14:51.896Z",
+    "candidateCount": 13,
+    "candidates": [
+      {
+        "slug": "2026-07-12-us-strikes-iran-hormuz-ship-attack-gulf",
+        "title": "US Strikes Reopen Hormuz War",
+        "category": "politics",
+        "eventCoverage": 25,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-12-ajk-poonch-clashes-one-killed",
+        "title": "Kashmir Road Clash Kills One",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-12-pune-garbage-dump-collapse-eight-dead",
+        "title": "Pune Landfill Collapse Kills 8",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-10-gao-pentagon-weapons-cost-overruns",
+        "title": "Pentagon Weapons Slip 12 Years",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-12-uganda-ebola-outbreak-stabilizes",
+        "title": "Uganda Ebola Streak Hits 3 Weeks",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-12-dutch-bee-colony-winter-losses",
+        "title": "Dutch Bee Losses Hit 24%",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-12-thailand-jurassic-sauropod-new-species",
+        "title": "Thailand Yields New Sauropod",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-10-gpt-cycle-double-cover-conjecture-proof",
+        "title": "AI Claims Graph Theory Proof",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-10-b-21-raider-two-pilot-crew-decision",
+        "title": "Air Force Keeps B-21 Two-Pilot",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-12-co2-to-acetaldehyde-artificial-photosynthesis",
+        "title": "Sunlight Turns Air Into Chemical",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-10-panama-colon-free-zone-illicit-finance",
+        "title": "Panama's Free Zone Launders Cash",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-12-one-civilian-killed-15-more-wounded-in-ukraine-s-attacks-on",
+        "title": "Drone Strike Kills Donetsk Driver",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-10-older-adults-know-ai-is-slop-they-just-like-it",
+        "title": "Chinese Seniors Embrace AI Slop",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-07-12-us-strikes-iran-hormuz-ship-attack-gulf",
+      "title": "US Strikes Reopen Hormuz War",
+      "category": "politics",
+      "body": "140 targets hit; Iran declared the strait",
+      "eventCoverage": 25,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "US strikes Iran, hits 140 targets after Hormuz tanker attack",
     "response": {
       "pushed": 1,
       "skipped": 0,
