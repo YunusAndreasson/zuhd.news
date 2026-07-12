@@ -6276,5 +6276,23 @@
       "category politics below floor 3 (got 2)"
     ],
     "degenerate": false
+  },
+  {
+    "ts": "2026-07-12T22:20:43.416Z",
+    "cycleId": "2026-07-12T22-20",
+    "cycleHour": "22",
+    "schema": 2,
+    "rvs": 80.62,
+    "clusters": {
+      "picking": null,
+      "writing": 93.75,
+      "briefing": null,
+      "sourcing": 51.15,
+      "coverage": 92.59
+    },
+    "articleCount": 12,
+    "briefCount": 0,
+    "guardrailFailures": [],
+    "degenerate": false
   }
 ]
