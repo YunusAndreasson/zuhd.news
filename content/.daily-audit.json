@@ -1,26 +1,27 @@
 {
-  "date": "2026-07-11",
+  "date": "2026-07-12",
   "metrics": {
-    "articles": { "value": 47, "detail": "5 cycles, avg 9/cycle" },
+    "articles": { "value": 38, "detail": "5 cycles (4 completed), avg 7/cycle — down from 49 yesterday" },
     "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 16, "economy": 14, "science": 9, "tech": 8 },
+    "categories": { "politics": 12, "economy": 10, "science": 10, "tech": 6 },
     "multiSource": { "value": 9, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 13, "EU": 12, "ME": 11, "AS": 7, "AF": 3, "OC": 1 } },
-    "sciTech": { "ratio": 36, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 13, "target": 20, "met": true },
-    "uniqueSources": 39,
-    "duplicates": 1,
-    "avgCycleDuration": 753
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "ME": 11, "EU": 8, "AS": 8, "AM": 7, "AF": 3, "GL": 1 } },
+    "sciTech": { "ratio": 42, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 11, "target": 20, "met": true },
+    "uniqueSources": 36,
+    "duplicates": 0,
+    "avgCycleDuration": 776
   },
-  "experiment": "Skipped — all four goals (freshness, diversity, multi-source, educational value) are within targets and no experiment is active. Queued numerical-density experiment touches write-prompt.md, which is out of scope for daily tuning.",
-  "weakestArea": "Regional depth in Africa (3) and Oceania (1) is thin — the six-region diversity target is met, but coverage concentrates in AM/EU/ME (36 of 47). This reflects the day's news gravity (Ukraine strikes, Middle East) rather than a pipeline defect, and is not a tunable-parameter issue.",
+  "experiment": "Skipped — all four goals (freshness, diversity, multi-source, educational value) are within targets, no experiment is active, and no pause gate is set. The queued numerical-density experiment targets scripts/write-prompt.md, which is out of scope for daily parameter tuning.",
+  "weakestArea": "No metric is below target; the thinnest margin is tech at 6 articles against the ≥4 floor. Day throughput fell to 38 (from 49) because one of five cycles did not complete — a pipeline-reliability signal, not a tunable-parameter issue.",
   "watching": [
-    "Ukraine strikes on Kyiv/Odesa and Ukrainian drone attacks on Russian Azov tankers — an active escalation cluster that produced today's single duplicate.",
-    "Sci-tech ratio eased from 43% (yesterday) to 36% as tech dropped 11 to 8; still well above the 25% floor but worth tracking for a sustained slide."
+    "One of five cycles failed to complete, cutting throughput to 38 (avg 7/cycle); if incomplete cycles recur, investigate the failing stage in the logs rather than tuning feed params.",
+    "Middle East is again the heaviest region (ME 11 of 38); confirm it reflects genuine event volume rather than source concentration.",
+    "Tech (6) is the lowest-count category — above its ≥4 floor but the least-cushioned diversity metric, and sci-tech share held strong at 42%."
   ],
   "coverageGaps": [
-    "Oceania represented by a single article; Sub-Saharan Africa limited to 3 despite curated regional sources (Premium Times, Daily Maverick, The Star).",
-    "Tech mix leans crypto/consumer (CoinDesk 4, GSM Arena) over deep research tech; science carried by Nature/Phys.org."
+    "Oceania (OC) had zero articles today after 1 yesterday — no structural gap, but worth confirming next cycle.",
+    "Sub-Saharan Africa (AF) remains thin at 3, the lowest of the six regions despite curated regional sources."
   ],
-  "context": "One same-URL overlap: two articles (russia-kyiv-odesa-strikes and ukraine-drones-russian-tankers) both cited the same DW report. They are distinct stories (Russian strikes vs Ukrainian counter-strikes) that legitimately share one corroborating source, so this is a benign overlap rather than a true dup, and layer-4 recap dedup correctly did not fire. No parameter change warranted."
+  "context": "All six goal metrics (freshness, science/tech/region diversity, multi-source, sci-tech share, source concentration) are met with healthy margins and zero duplicates; top source share sits at ~11% with three outlets tied at 4. No experiment is active and no gate is set, so this is a hold day with no parameter change. The single operational note is the incomplete cycle that reduced volume — reliability to watch, not a lever to tune."
 }
