@@ -1,27 +1,27 @@
 {
-  "date": "2026-07-12",
+  "date": "2026-07-13",
   "metrics": {
-    "articles": { "value": 38, "detail": "5 cycles (4 completed), avg 7/cycle — down from 49 yesterday" },
-    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 12, "economy": 10, "science": 10, "tech": 6 },
-    "multiSource": { "value": 9, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "ME": 11, "EU": 8, "AS": 8, "AM": 7, "AF": 3, "GL": 1 } },
-    "sciTech": { "ratio": 42, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 11, "target": 20, "met": true },
-    "uniqueSources": 36,
+    "articles": { "value": 50, "detail": "5 cycles, all completed, avg 10/cycle — up from 41 yesterday" },
+    "freshness": { "median": 0, "p90": 1.2, "max": 1.2, "target": 1.0, "met": true },
+    "categories": { "politics": 19, "economy": 14, "science": 7, "tech": 10 },
+    "multiSource": { "value": 16, "target": 4, "met": true },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "EU": 13, "AM": 12, "AS": 12, "ME": 10, "AF": 3 } },
+    "sciTech": { "ratio": 34, "target": 25, "met": true },
+    "topSourceShare": { "source": "Ars Technica / Nature / Dawn / Al Jazeera / Hindustan Times (tied)", "pct": 8, "target": 20, "met": true },
+    "uniqueSources": 55,
     "duplicates": 0,
-    "avgCycleDuration": 776
+    "avgCycleDuration": 848
   },
-  "experiment": "Skipped — all four goals (freshness, diversity, multi-source, educational value) are within targets, no experiment is active, and no pause gate is set. The queued numerical-density experiment targets scripts/write-prompt.md, which is out of scope for daily parameter tuning.",
-  "weakestArea": "No metric is below target; the thinnest margin is tech at 6 articles against the ≥4 floor. Day throughput fell to 38 (from 49) because one of five cycles did not complete — a pipeline-reliability signal, not a tunable-parameter issue.",
+  "experiment": "Skipped — all four goals (freshness, diversity, multi-source, educational value) are within targets, no experiment is active, and no pause gate is set. The one queued experiment (numerical-density) targets scripts/write-prompt.md, which is out of scope for daily parameter tuning.",
+  "weakestArea": "No metric is below target. The thinnest margin is regional spread: five regions ship (≥4 floor met) but Oceania is absent and sub-Saharan Africa sits at just 3 of 50; the top four regions (EU/AM/AS/ME) are evenly balanced at 10-13 each with no concentration problem. Sci-tech share also eased from 42% to 34% as science fell 11→7, still comfortably above the 25% floor.",
   "watching": [
-    "One of five cycles failed to complete, cutting throughput to 38 (avg 7/cycle); if incomplete cycles recur, investigate the failing stage in the logs rather than tuning feed params.",
-    "Middle East is again the heaviest region (ME 11 of 38); confirm it reflects genuine event volume rather than source concentration.",
-    "Tech (6) is the lowest-count category — above its ≥4 floor but the least-cushioned diversity metric, and sci-tech share held strong at 42%."
+    "Science dropped to 7 (from 11 yesterday) — above its ≥5 floor but the softest educational input; watch that it doesn't slide under the floor on a light-news day.",
+    "Throughput rebounded to 50 with all five cycles completing, versus 38 yesterday when one cycle failed — reliability looks recovered, confirm it holds.",
+    "Multi-source count is unusually high at 16 (vs 9 yesterday), reflecting a heavy politics/economy day (33 of 50) with strong event clustering."
   ],
   "coverageGaps": [
-    "Oceania (OC) had zero articles today after 1 yesterday — no structural gap, but worth confirming next cycle.",
-    "Sub-Saharan Africa (AF) remains thin at 3, the lowest of the six regions despite curated regional sources."
+    "Oceania (OC) had zero articles today, the second consecutive thin day for the region.",
+    "Sub-Saharan Africa (AF) remains the lowest region at 3 despite curated regional sources — a persistent structural thinness, not a one-day dip."
   ],
-  "context": "All six goal metrics (freshness, science/tech/region diversity, multi-source, sci-tech share, source concentration) are met with healthy margins and zero duplicates; top source share sits at ~11% with three outlets tied at 4. No experiment is active and no gate is set, so this is a hold day with no parameter change. The single operational note is the incomplete cycle that reduced volume — reliability to watch, not a lever to tune."
+  "context": "All six goal metrics are met with healthy margins and zero duplicates; top source share is only 8% with five outlets tied at 4, so source concentration is a non-issue. This was a high-volume, politics-heavy day (politics 19, economy 14) with 55 unique sources and 16 multi-source articles. No experiment is active, no gate is set, and no tunable parameter is out of range, so this is a hold day with no change. The only recurring editorial note — thin Africa/Oceania coverage — is a feed-composition/source-list matter to revisit deliberately, not something to move on a single day's data."
 }
