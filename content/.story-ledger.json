@@ -2,13 +2,209 @@
   "version": 1,
   "stories": [
     {
+      "id": "spanish-pm-brother-nepotism-conviction-ban",
+      "label": "Spanish PM's brother banned from public office for nine years",
+      "firstSeen": "2026-07-14T17:11:35.641Z",
+      "lastCovered": "2026-07-14T17:11:35.641Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-14-spanish-pm-brother-nepotism-conviction-ban"
+      ],
+      "eventUri": "spa-4268712",
+      "summary": "A Spanish court convicted and barred the sitting prime minister's brother, David Sánchez, from public office for nine years in a nepotism case. Lead with the accountability mechanism, not the family drama: a court reaching a head of government's inner circle over a rigged provincial post shows judicial independence biting the powerful even at the top. Note the sentiment split across sources (Anadolu most negative) — the case is a live weapon in Spain's polarized politics.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/David_Sánchez_(tennis)",
+        "http://en.wikipedia.org/wiki/Perverting_the_course_of_justice",
+        "http://en.wikipedia.org/wiki/Prime_Minister_of_Spain",
+        "http://en.wikipedia.org/wiki/Pedro_Sánchez_(politician)",
+        "http://en.wikipedia.org/wiki/Badajoz"
+      ]
+    },
+    {
+      "id": "warsh-fed-inflation-testimony-rate-signal",
+      "label": "Warsh to Reiterate Fed's Pledge to Get Inflation Down",
+      "firstSeen": "2026-07-14T17:11:35.641Z",
+      "lastCovered": "2026-07-14T17:11:35.641Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-14-warsh-fed-inflation-testimony-rate-signal"
+      ],
+      "eventUri": "eng-11830510",
+      "summary": "New Fed Chair Kevin Warsh's first congressional testimony is the pivot global markets are watching: he vows to bring inflation down but won't yet say whether he'll raise rates to do it — just as Gulf-war oil feeds straight into the US price data. Lead with the stakes of the ambiguity, not the pledge: a single new chair's tone reprices borrowing costs, currencies and risk assets worldwide, and emerging-market importers pay for a hawkish turn they don't vote on.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Inflation",
+        "http://en.wikipedia.org/wiki/Kevin_Warsh",
+        "http://en.wikipedia.org/wiki/Central_bank",
+        "http://en.wikipedia.org/wiki/Monetary_policy",
+        "http://en.wikipedia.org/wiki/Chair_of_the_Federal_Reserve"
+      ]
+    },
+    {
+      "id": "mexico-legal-action-us-ice-custody-deaths",
+      "label": "Mexico begins legal action in US over deaths of its citizens in ICE custody",
+      "firstSeen": "2026-07-14T17:11:35.641Z",
+      "lastCovered": "2026-07-14T17:11:35.641Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-14-mexico-legal-action-us-ice-custody-deaths"
+      ],
+      "eventUri": "spa-4269072",
+      "summary": "Mexico has begun filing complaints with US state prosecutors over Mexican citizens who died in ICE detention and during enforcement raids — its strongest response yet to Trump's immigration crackdown. Lead with the named victims and the accountability move, not the diplomacy: a Global South state is using US courts to hold a superpower's detention machine to account for deaths on its own soil. The mechanism for the reader is how sovereign legal pressure becomes a check when a government weaponizes deportation.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Mexico",
+        "http://en.wikipedia.org/wiki/U.S._Immigration_and_Customs_Enforcement",
+        "http://en.wikipedia.org/wiki/Secretariat_of_Foreign_Affairs_(Mexico)",
+        "http://en.wikipedia.org/wiki/Claudia_Sheinbaum",
+        "http://en.wikipedia.org/wiki/Human_rights"
+      ]
+    },
+    {
+      "id": "burnham-uk-next-prime-minister-union-backing",
+      "label": "Burnham in sight of Downing Street wins top UK union support",
+      "firstSeen": "2026-07-14T17:11:35.641Z",
+      "lastCovered": "2026-07-14T17:11:35.641Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-14-burnham-uk-next-prime-minister-union-backing"
+      ],
+      "eventUri": "eng-11830919",
+      "summary": "Andy Burnham, the former Manchester mayor, is now all but certain to become the UK's next prime minister after the country's largest union backed him in an uncontested Labour leadership race. Lead with how the succession is being decided, not the coronation: a change of national leadership is being settled by union endorsement and an unopposed field rather than a public vote, and the Lib Dems are already pressing him to change the electoral system before anyone gets to weigh in.",
+      "conceptUris": []
+    },
+    {
+      "id": "ibm-mainframe-slump-ai-hardware-panic",
+      "label": "Dell Gains as Tech Spending Shifts",
+      "firstSeen": "2026-07-14T17:11:35.641Z",
+      "lastCovered": "2026-07-14T17:11:35.641Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-14-ibm-mainframe-slump-ai-hardware-panic"
+      ],
+      "eventUri": "eng-11830232",
+      "summary": "IBM's flagship Z mainframe business cratered — the stock lost over a quarter of its value — because customers raided their mainframe budgets to stockpile servers, storage and memory ahead of AI-driven price spikes. Lead with the mechanism, not the earnings miss: an AI hardware panic is now distorting corporate IT spending so violently that it can gut a legacy giant's quarter while lifting Dell. Teach the technically literate reader how a scramble for compute and memory ripples through the whole hardware supply chain.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/IBM",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Server_(computing)",
+        "http://en.wikipedia.org/wiki/Mainframe_computer",
+        "http://en.wikipedia.org/wiki/Arvind_Krishna"
+      ]
+    },
+    {
+      "id": "darfur-kordofan-dialysis-war-health-collapse",
+      "label": "Waiting for life: Kidney dialysis in Darfur, Kordofan a journey through illness and poverty",
+      "firstSeen": "2026-07-14T17:11:35.641Z",
+      "lastCovered": "2026-07-14T17:11:35.641Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-14-darfur-kordofan-dialysis-war-health-collapse"
+      ],
+      "eventUri": "eng-11829732",
+      "summary": "In war-shattered Darfur, a 14-year-old with kidney failure travels for hours to a barely-functioning dialysis unit her family can scarcely afford — one story standing for a collapsed health system where treatment now depends on distance and money. Lead with the human cost of Sudan's war, not the medical detail: siege and displacement have turned a routine chronic-care regimen into a life-or-death lottery. The mechanism for the reader is how conflict destroys the mundane infrastructure — clinics, machines, supply chains — that keeps the chronically ill alive. Rare sub-Saharan Africa coverage (a persistent feed gap) via regional outlet Radio Dabanga (SD).",
+      "conceptUris": []
+    },
+    {
+      "id": "cyanide-free-ptfe-silver-composite-plating",
+      "label": "Researchers develop harder, longer-lasting silver plating",
+      "firstSeen": "2026-07-14T17:11:35.641Z",
+      "lastCovered": "2026-07-14T17:11:35.641Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-14-cyanide-free-ptfe-silver-composite-plating"
+      ],
+      "eventUri": null,
+      "summary": "A Korean materials team dispersed PTFE nanoparticles into a cyanide-free acidic silver bath to make silver coatings markedly harder and more wear-resistant than conventional plating. Lead with the two-in-one advance, not the lab press release: the composite is both tougher and free of toxic cyanide, addressing durability and worker/environmental safety at once. Teach the technically literate reader how embedding a slippery polymer in a metal matrix changes its mechanical behavior — and why plating chemistry quietly underpins electronics, contacts and connectors.",
+      "conceptUris": []
+    },
+    {
+      "id": "russian-intelligence-hacked-cameras-nato-ukraine",
+      "label": "NATO logistics, Ukrainian troops are top subjects of Russian camera hacks, advisory says",
+      "firstSeen": "2026-07-14T17:11:35.641Z",
+      "lastCovered": "2026-07-14T17:11:35.641Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-14-russian-intelligence-hacked-cameras-nato-ukraine"
+      ],
+      "eventUri": null,
+      "summary": "Dutch intelligence says at least one Russian agency is hijacking internet-connected cameras across Europe to watch military logistics and Ukrainian personnel. Lead with the surveillance mechanism, not the alarm: cheap, ubiquitous IoT cameras — traffic cams, doorbells, business CCTV — have become a passive intelligence grid a hostile state can quietly tap. Teach the technically literate reader how insecure connected devices turn a continent into a sensor network for espionage, and why the attack surface is the everyday internet, not classified systems.",
+      "conceptUris": []
+    },
+    {
+      "id": "deepseek-1-5b-raise-ipo-china-ai",
+      "label": "DeepSeek reportedly in talks to raise $1.5B, then IPO",
+      "firstSeen": "2026-07-14T17:11:35.641Z",
+      "lastCovered": "2026-07-14T17:11:35.641Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-14-deepseek-1-5b-raise-ipo-china-ai"
+      ],
+      "eventUri": "rus-2094547",
+      "summary": "China's DeepSeek is reportedly raising about $1.5B at a ~$71B valuation and eyeing an IPO as soon as this year. Lead with what the numbers signal, not the funding round: the open-weight challenger that shook Western AI labs is now converting technical credibility into capital-markets muscle, and a Chinese LLM maker going public reframes the AI race as a financing contest as much as a research one. The mechanism for the reader is how a lean model developer scales — and what a Chinese AI IPO means amid US export controls on the chips it needs.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/OpenAI",
+        "http://en.wikipedia.org/wiki/Startup_company",
+        "http://en.wikipedia.org/wiki/Investment"
+      ]
+    },
+    {
+      "id": "apple-huawei-china-premium-smartphone-lead",
+      "label": "Apple Widens China Smartphone Lead",
+      "firstSeen": "2026-07-14T17:11:35.641Z",
+      "lastCovered": "2026-07-14T17:11:35.641Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-14-apple-huawei-china-premium-smartphone-lead"
+      ],
+      "eventUri": "eng-11830147",
+      "summary": "Apple and Huawei widened their grip on China's premium smartphone tier last quarter even as the overall market shrank 4.3%, because higher component costs squeezed cheaper Android rivals hardest. Lead with the mechanism, not the market-share headline: rising chip and memory costs — the same AI-driven hardware crunch hitting servers — are hollowing out the budget end while the premium brands hold firm. Teach the reader how component-price inflation reshapes a consumer market from the bottom up, entrenching the incumbents who can absorb it.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Smartphone",
+        "http://en.wikipedia.org/wiki/Apple_Inc.",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Integrated_circuit",
+        "http://en.wikipedia.org/wiki/IPhone"
+      ]
+    },
+    {
       "id": "india-protests-iran-hormuz-seafarer-killing",
       "label": "India Protests to Iran Over Killing of Seafarer in Hormuz",
       "firstSeen": "2026-07-14T12:10:17.829Z",
       "lastCovered": "2026-07-14T12:10:17.829Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-14-india-protests-iran-hormuz-seafarer-killing"
@@ -33,7 +229,7 @@
       "lastCovered": "2026-07-14T12:10:17.829Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-14-syria-northeast-sdf-detainees-torture-testimony"
@@ -49,7 +245,7 @@
       "lastCovered": "2026-07-14T12:10:17.829Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-14-ghana-tarkwa-africa-mining-bargain"
@@ -65,7 +261,7 @@
       "lastCovered": "2026-07-14T12:10:17.829Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-14-prediction-markets-50-billion-world-cup-sportsbooks"
@@ -81,7 +277,7 @@
       "lastCovered": "2026-07-14T12:10:17.829Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-14-pakistan-remittances-digitised-cashless-economy"
@@ -97,7 +293,7 @@
       "lastCovered": "2026-07-14T12:10:17.829Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-14-indonesia-credit-rating-prabowo-recovery"
@@ -113,7 +309,7 @@
       "lastCovered": "2026-07-14T12:10:17.829Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-14-hawaiian-hotspot-mantle-plume-getting-hotter"
@@ -129,7 +325,7 @@
       "lastCovered": "2026-07-14T12:10:17.829Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-14-france-fontainebleau-wildfires-heat-arson"
@@ -154,7 +350,7 @@
       "lastCovered": "2026-07-14T12:10:17.829Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-14-assortative-mating-co-inheritance-traits-preferences"
@@ -170,7 +366,7 @@
       "lastCovered": "2026-07-14T12:10:17.829Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-14-new-york-data-center-moratorium-ai-grid"
@@ -195,7 +391,7 @@
       "lastCovered": "2026-07-14T12:10:17.829Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-14-gulf-ai-investment-nvidia-dependency"
@@ -211,7 +407,7 @@
       "lastCovered": "2026-07-14T12:10:17.829Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-14-us-sea-drones-first-combat-bandar-abbas"
@@ -233,7 +429,7 @@
       "lastCovered": "2026-07-14T12:10:17.829Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-13-lidl-customer-data-breach-third-party-provider"
@@ -249,7 +445,7 @@
       "lastCovered": "2026-07-14T12:10:17.829Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-14-trump-s-plan-to-impose-fees-on-ships-at-hormuz-piracy"
@@ -268,13 +464,30 @@
       ]
     },
     {
+      "id": "egypt-law-future-of-egypt-authority-special-nature",
+      "label": "A law to formalize the 'special nature' of the Future of Egypt authority",
+      "firstSeen": "2026-07-14T04:07:43.700Z",
+      "lastCovered": "2026-07-14T17:11:35.641Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-07-13-egypt-law-future-of-egypt-authority-special-nature",
+        "2026-07-14-future-of-egypt-authority-fertilizer-retail-expansion"
+      ],
+      "eventUri": null,
+      "summary": "Egypt's parliament raced a bill through committee in two days that would grant the military-linked Future of Egypt authority an 'exceptional' statutory role over food security, agriculture, land management and state supply — powers stripped from civilian ministries. Lead with the transfer of state functions to an opaque body outside normal oversight: this is how a sprawling parastatal is legally insulated from accountability while it absorbs the levers of the food economy. Unique regional reporting from Mada Masr (EG) that no Western wire is carrying; the mechanism for the reader is the quiet legislative consolidation of economic power under Egypt's security state.",
+      "conceptUris": []
+    },
+    {
       "id": "irgc-regional-strikes-trump-gulf-hormuz-protection-fee",
       "label": "Morning update: IRGC claims regional strikes as Trump demands Gulf states pay for Hormuz 'protection'",
       "firstSeen": "2026-07-14T08:05:17.641Z",
       "lastCovered": "2026-07-14T08:05:17.641Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-14-irgc-regional-strikes-trump-gulf-hormuz-protection-fee"
@@ -299,7 +512,7 @@
       "lastCovered": "2026-07-14T08:05:17.641Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-14-karachi-rangers-attack-afghanistan-based-terrorists"
@@ -315,7 +528,7 @@
       "lastCovered": "2026-07-14T08:05:17.641Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-14-nigeria-contradicts-us-electronic-materials-captured-claim"
@@ -331,7 +544,7 @@
       "lastCovered": "2026-07-14T08:05:17.641Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-14-nigeria-court-rejects-ganduje-reporter-source-disclosure"
@@ -347,7 +560,7 @@
       "lastCovered": "2026-07-14T08:05:17.641Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-14-sas-afghanistan-inquiry-detainee-abuse-testimony"
@@ -363,7 +576,7 @@
       "lastCovered": "2026-07-14T08:05:17.641Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-14-russia-afipsky-refinery-fire-ukraine-energy-strikes"
@@ -379,7 +592,7 @@
       "lastCovered": "2026-07-14T08:05:17.641Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-14-us-government-seized-bitcoin-coinbase-prime-treasury"
@@ -395,7 +608,7 @@
       "lastCovered": "2026-07-14T08:05:17.641Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-14-india-supreme-court-lalu-yadav-fodder-scam-bail"
@@ -411,7 +624,7 @@
       "lastCovered": "2026-07-14T08:05:17.641Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-14-brewarrina-fish-traps-oldest-human-construction"
@@ -427,7 +640,7 @@
       "lastCovered": "2026-07-14T08:05:17.641Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-14-south-africa-hiv-global-warming-cost-model"
@@ -443,7 +656,7 @@
       "lastCovered": "2026-07-14T08:05:17.641Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-13-ai-coding-claims-vendor-marketing-vs-reality"
@@ -459,7 +672,7 @@
       "lastCovered": "2026-07-14T08:05:17.641Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-13-netherlands-space-agency-defence-mandate"
@@ -475,7 +688,7 @@
       "lastCovered": "2026-07-14T08:05:17.641Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-13-rafale-laser-guided-rocket-cheap-drone-defense"
@@ -485,13 +698,30 @@
       "conceptUris": []
     },
     {
+      "id": "why-am-i-left-handed",
+      "label": "Why Am I Left-Handed?",
+      "firstSeen": "2026-07-13T22:07:37.360Z",
+      "lastCovered": "2026-07-14T17:11:35.641Z",
+      "coverageCount": 2,
+      "category": "science",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-07-13-why-am-i-left-handed",
+        "2026-07-13-why-am-i-left-handed-science-of-handedness"
+      ],
+      "eventUri": null,
+      "summary": "Handedness — the invisible difference in roughly 10% of humans — turns out to sit at the intersection of genetics, brain asymmetry and developmental biology, and no single field can fully explain it. Lead with the mystery and the number: something this common and this heritable still defies a clean causal story. Teach the reader why left-handedness is a live scientific puzzle about how the brain breaks its own symmetry, not a settled curiosity.",
+      "conceptUris": []
+    },
+    {
       "id": "iran-hormuz-strike-uae-tankers-indian-sailor-killed",
       "label": "Iran Justifies Hormuz Strike On UAE Tankers That Killed Indian Sailor: 'Ignored Warnings'",
       "firstSeen": "2026-07-14T04:07:43.700Z",
       "lastCovered": "2026-07-14T04:07:43.700Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-14-iran-hormuz-strike-uae-tankers-indian-sailor-killed"
@@ -516,7 +746,7 @@
       "lastCovered": "2026-07-14T04:07:43.700Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-14-thai-police-probe-bangkok-bar-fire-safety-lapses"
@@ -526,29 +756,13 @@
       "conceptUris": []
     },
     {
-      "id": "egypt-law-future-of-egypt-authority-special-nature",
-      "label": "A law to formalize the 'special nature' of the Future of Egypt authority",
-      "firstSeen": "2026-07-14T04:07:43.700Z",
-      "lastCovered": "2026-07-14T04:07:43.700Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-13-egypt-law-future-of-egypt-authority-special-nature"
-      ],
-      "eventUri": null,
-      "summary": "Egypt's parliament raced a bill through committee in two days that would grant the military-linked Future of Egypt authority an 'exceptional' statutory role over food security, agriculture, land management and state supply — powers stripped from civilian ministries. Lead with the transfer of state functions to an opaque body outside normal oversight: this is how a sprawling parastatal is legally insulated from accountability while it absorbs the levers of the food economy. Unique regional reporting from Mada Masr (EG) that no Western wire is carrying; the mechanism for the reader is the quiet legislative consolidation of economic power under Egypt's security state.",
-      "conceptUris": []
-    },
-    {
       "id": "un-official-hamas-obstructing-aid-gaza",
       "label": "UN official says Hamas obstructing aid in Gaza",
       "firstSeen": "2026-07-14T04:07:43.700Z",
       "lastCovered": "2026-07-14T04:07:43.700Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-14-un-official-hamas-obstructing-aid-gaza"
@@ -564,7 +778,7 @@
       "lastCovered": "2026-07-14T04:07:43.700Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-14-oil-one-month-high-us-iran-hormuz-attacks"
@@ -589,7 +803,7 @@
       "lastCovered": "2026-07-14T04:07:43.700Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-13-behind-pyongyang-boom-russia-china-illicit"
@@ -605,7 +819,7 @@
       "lastCovered": "2026-07-14T04:07:43.700Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-14-crypto-slips-cpi-warsh-fed-rate-hike-bets"
@@ -621,7 +835,7 @@
       "lastCovered": "2026-07-14T04:07:43.700Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-europe-total-solar-eclipse-first-in-30-years"
@@ -646,7 +860,7 @@
       "lastCovered": "2026-07-14T04:07:43.700Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-14-unequal-taxation-french-revolution-revolts-study"
@@ -662,7 +876,7 @@
       "lastCovered": "2026-07-14T04:07:43.700Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-13-zimbabwe-digital-tools-hiv-migrants-care"
@@ -678,7 +892,7 @@
       "lastCovered": "2026-07-14T04:07:43.700Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-14-cobot-collision-dummy-tissue-pain-safety"
@@ -694,7 +908,7 @@
       "lastCovered": "2026-07-14T04:07:43.700Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-14-spacex-starship-13th-test-flight"
@@ -710,7 +924,7 @@
       "lastCovered": "2026-07-14T04:07:43.700Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-13-openai-kalshi-prediction-market-odds-chatgpt"
@@ -726,7 +940,7 @@
       "lastCovered": "2026-07-13T22:07:37.360Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-13-hungary-parliament-votes-to-remove-president-from-office"
@@ -751,7 +965,7 @@
       "lastCovered": "2026-07-13T22:07:37.360Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-13-rubio-says-us-will-dismantle-icc-brick-by-brick"
@@ -776,7 +990,7 @@
       "lastCovered": "2026-07-13T22:07:37.360Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-13-new-saudi-yemen-fighting-threatens-to-pull-houthis-into-iran"
@@ -801,7 +1015,7 @@
       "lastCovered": "2026-07-13T22:07:37.360Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-13-the-new-israel-backed-nonprofit-feeding-lawmakers-model-legi"
@@ -817,7 +1031,7 @@
       "lastCovered": "2026-07-13T22:07:37.360Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-13-xi-jinping-s-forging-of-ethnic-unity-and-progress"
@@ -833,7 +1047,7 @@
       "lastCovered": "2026-07-13T22:07:37.360Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-13-religious-ruling-bills-crypto-based-purchases-impermissible"
@@ -849,7 +1063,7 @@
       "lastCovered": "2026-07-13T22:07:37.360Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-13-mena-economies-to-shrink-0-5-this-year-before-sharp-uptick-i"
@@ -865,7 +1079,7 @@
       "lastCovered": "2026-07-13T22:07:37.360Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-13-governance-under-fire-as-pic-suspends-ceo-patrick-dlamini-ov"
@@ -875,29 +1089,13 @@
       "conceptUris": []
     },
     {
-      "id": "why-am-i-left-handed",
-      "label": "Why Am I Left-Handed?",
-      "firstSeen": "2026-07-13T22:07:37.360Z",
-      "lastCovered": "2026-07-13T22:07:37.360Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-13-why-am-i-left-handed"
-      ],
-      "eventUri": null,
-      "summary": "Handedness — the invisible difference in roughly 10% of humans — turns out to sit at the intersection of genetics, brain asymmetry and developmental biology, and no single field can fully explain it. Lead with the mystery and the number: something this common and this heritable still defies a clean causal story. Teach the reader why left-handedness is a live scientific puzzle about how the brain breaks its own symmetry, not a settled curiosity.",
-      "conceptUris": []
-    },
-    {
       "id": "solution-to-feynman-s-reverse-sprinkler-puzzle-also-applies",
       "label": "Solution to Feynman's reverse sprinkler puzzle also applies to \"silly sprinklers\"",
       "firstSeen": "2026-07-13T22:07:37.360Z",
       "lastCovered": "2026-07-13T22:07:37.360Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-13-solution-to-feynman-s-reverse-sprinkler-puzzle-also-applies"
@@ -913,7 +1111,7 @@
       "lastCovered": "2026-07-13T22:07:37.360Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-13-lapd-regularly-pulled-over-innocent-people-because-license-p"
@@ -929,7 +1127,7 @@
       "lastCovered": "2026-07-13T22:07:37.360Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-13-the-us-government-warns-that-russia-state-hackers-are-coming"
@@ -945,7 +1143,7 @@
       "lastCovered": "2026-07-13T22:07:37.360Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-13-expanding-export-control-to-remote-access-may-backfire-on-us"
@@ -961,7 +1159,7 @@
       "lastCovered": "2026-07-13T17:04:37.203Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-13-trump-hormuz-blockade-guardian-tolls"
@@ -986,7 +1184,7 @@
       "lastCovered": "2026-07-13T17:04:37.203Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-13-yemen-strikes-sanaa-airport-iran-aircraft"
@@ -1009,7 +1207,7 @@
       "lastCovered": "2026-07-13T17:04:37.203Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-13-ice-shooting-death-maine-biddeford"
@@ -1031,7 +1229,7 @@
       "lastCovered": "2026-07-13T17:04:37.203Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-13-egypt-st-catherine-monastery-state-control"
@@ -1047,7 +1245,7 @@
       "lastCovered": "2026-07-13T17:04:37.203Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-13-sk-hynix-crash-ai-memory-chip-warning"
@@ -1069,7 +1267,7 @@
       "lastCovered": "2026-07-13T17:04:37.203Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-13-eu-fails-russia-sanctions-oil-price-cap"
@@ -1092,7 +1290,7 @@
       "lastCovered": "2026-07-13T17:04:37.203Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-13-volkswagen-100000-job-cuts-ev-transition"
@@ -1114,7 +1312,7 @@
       "lastCovered": "2026-07-13T17:04:37.203Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-13-bolivia-tether-usdt-national-payments"
@@ -1130,7 +1328,7 @@
       "lastCovered": "2026-07-13T17:04:37.203Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-13-interstellar-sugar-erythrulose-milky-way"
@@ -1153,7 +1351,7 @@
       "lastCovered": "2026-07-13T17:04:37.203Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-13-caribbean-reef-fish-tube-worm-symbiosis"
@@ -1169,7 +1367,7 @@
       "lastCovered": "2026-07-13T17:04:37.203Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-13-fsb-poland-grid-uk-eu-cyber-sanctions"
@@ -1192,7 +1390,7 @@
       "lastCovered": "2026-07-13T17:04:37.203Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-13-ai-world-models-promise-and-limits"
@@ -1208,259 +1406,13 @@
       "lastCovered": "2026-07-13T17:04:37.203Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-13-neo-geo-doom-port-impossible-proven"
       ],
       "eventUri": null,
       "summary": "Told Doom was 'functionally impossible' on the Neo Geo — no frame buffer, sprite-only hardware — hackers ported it within weeks. Lead with the engineering feat, not the nostalgia: coaxing a 3D shooter out of a console designed only to push 2D sprites is a lesson in how creative constraint-solving beats declared impossibility. The mechanism for the reader is the actual workaround — rendering Doom's world through the sprite pipeline the hardware does have — and why the demoscene/homebrew tradition keeps extracting capabilities engineers swore weren't there, a small parable about the gap between 'the spec says no' and 'no one has bothered yet.'",
-      "conceptUris": []
-    },
-    {
-      "id": "eu-eyes-social-media-curbs-for-children",
-      "label": "EU eyes social media curbs for children",
-      "firstSeen": "2026-07-13T12:11:56.537Z",
-      "lastCovered": "2026-07-13T12:11:56.537Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-13-eu-eyes-social-media-curbs-for-children"
-      ],
-      "eventUri": "eng-11826280",
-      "summary": "An expert panel commissioned by von der Leyen recommends a graduated age wall for social media — no access under 13, parental consent to 16 — for the whole EU. Lead with the mechanism, not the moral panic: Brussels is moving to make age-verification a legal duty on platforms, which forces the harder question of how you prove a child's age online without mass identity checks on everyone. The stake for the reader is that Europe is again writing the global rulebook for how tech treats minors, and enforcement design (not the age number) is where the fight will be. Multi-perspective: NYT (US), SCMP (HK), Economic Times (IN).",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Ursula_von_der_Leyen",
-        "http://en.wikipedia.org/wiki/European_Union",
-        "http://en.wikipedia.org/wiki/President_of_the_European_Commission",
-        "http://en.wikipedia.org/wiki/Brussels",
-        "http://en.wikipedia.org/wiki/European_Commission",
-        "http://en.wikipedia.org/wiki/Social_media",
-        "http://en.wikipedia.org/wiki/Germany"
-      ]
-    },
-    {
-      "id": "russia-ukraine-exchange-overnight-strikes-killing-4-injuring",
-      "label": "Russia, Ukraine exchange overnight strikes, killing 4, injuring 16",
-      "firstSeen": "2026-07-13T12:11:56.537Z",
-      "lastCovered": "2026-07-13T12:11:56.537Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-13-russia-ukraine-exchange-overnight-strikes-killing-4-injuring"
-      ],
-      "eventUri": "rus-2093911",
-      "summary": "Over 340 Ukrainian drones hit Russian regions overnight, killing civilians deep inside Moscow Oblast and Kaliningrad, as Russia struck back — the war's front now runs through both capitals' rear areas. Lead with the symmetry of the civilian toll, counted on both sides, not either government's spin: mass cheap-drone raids have erased the distinction between front line and homeland. The mechanism for the reader is how attritional drone warfare turns air defense saturation into the decisive variable, and why each side's casualty count is now a daily political weapon. Multi-perspective across the divide: RT (RU), Meduza, Anadolu (TR), India Today (IN), US News (US).",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Moscow_Oblast",
-        "http://en.wikipedia.org/wiki/Pionersky,_Kaliningrad_Oblast",
-        "http://en.wikipedia.org/wiki/Andrey_Vorobyov",
-        "http://en.wikipedia.org/wiki/Anti-aircraft_warfare"
-      ]
-    },
-    {
-      "id": "south-korean-court-sentences-ousted-president-yoon-to-2-year",
-      "label": "South Korean court sentences ousted President Yoon to 2 years over manipulated opinion polls",
-      "firstSeen": "2026-07-13T12:11:56.537Z",
-      "lastCovered": "2026-07-13T12:11:56.537Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-13-south-korean-court-sentences-ousted-president-yoon-to-2-year"
-      ],
-      "eventUri": "eng-11819763",
-      "summary": "A Seoul court handed ousted president Yoon Suk Yeol two years in prison for taking manipulated opinion polls from a political broker to help win his party's 2022 nomination. Lead with the accountability precedent, not the party drama: a court is criminalizing the machinery of how a candidacy was engineered — the free poll-rigging as an illicit favor — which reaches deeper than the martial-law scandal that already brought him down. The mechanism for the reader is how South Korea's judiciary keeps converting elite political bargains into prosecutable corruption, and what a sitting-then-jailed president signals about whether the powerful are actually held to the same law.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Opinion_poll",
-        "http://en.wikipedia.org/wiki/Yoon_Suk_Yeol",
-        "http://en.wikipedia.org/wiki/Seoul",
-        "http://en.wikipedia.org/wiki/South_Korea",
-        "http://en.wikipedia.org/wiki/Martial_law"
-      ]
-    },
-    {
-      "id": "israel-is-trying-to-extinguish-palestinian-cultural-life-in",
-      "label": "Israel Is Trying To Extinguish Palestinian Cultural Life in East Jerusalem",
-      "firstSeen": "2026-07-13T12:11:56.537Z",
-      "lastCovered": "2026-07-13T12:11:56.537Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-13-israel-is-trying-to-extinguish-palestinian-cultural-life-in"
-      ],
-      "eventUri": null,
-      "summary": "A ground report on how Israel is squeezing Arab cultural life out of East Jerusalem — laws banning Palestinian self-organization, plus raids on institutions from a historic bookstore to a theater. Lead with the mechanism of erasure, not a single raid: this is ẓulm applied slowly, through legal and policing tools that target the spaces where a community keeps its identity alive. The structural point for the reader is that occupation operates not only through land and checkpoints but through the deliberate closure of cultural infrastructure — and that documenting named institutions and named laws is how a slow erasure is made visible and accountable.",
-      "conceptUris": []
-    },
-    {
-      "id": "malaysian-pm-s-coalition-suffers-significant-defeat-in-johor",
-      "label": "Malaysian PM's Coalition Suffers Significant Defeat in Johor State Election",
-      "firstSeen": "2026-07-13T12:11:56.537Z",
-      "lastCovered": "2026-07-13T12:11:56.537Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-13-malaysian-pm-s-coalition-suffers-significant-defeat-in-johor"
-      ],
-      "eventUri": null,
-      "summary": "Anwar Ibrahim's coalition lost heavily in Johor as Barisan Nasional, the old ruling party, capitalized on disillusionment with his government and division among Malay-Muslim rivals. Lead with what the result exposes, not the seat count: a reformist PM elected on a change mandate is now losing the industrial heartland state, and the fracturing of the Malay-Muslim vote is reshaping who governs the country. The mechanism for the reader is how state elections function as a running referendum on Anwar's stalled reforms — and why a splintered opposition landscape, not any single rival, is the real threat to his majority. OIC-region politics; feed carried no Malaysian outlet on this event — flag for feed audit.",
-      "conceptUris": []
-    },
-    {
-      "id": "unprepared-for-artificial-intelligence",
-      "label": "Unprepared for artificial intelligence",
-      "firstSeen": "2026-07-13T12:11:56.537Z",
-      "lastCovered": "2026-07-13T12:11:56.537Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-13-unprepared-for-artificial-intelligence"
-      ],
-      "eventUri": "eng-11825588",
-      "summary": "New research flags a labor-market risk beyond job loss: 'never-skilling,' where workers who lean on AI from the start never develop the critical-thinking and judgment that expertise is built on. Lead with the mechanism, not the anxiety: cognitive offloading to chatbots can quietly hollow out the skill base a firm depends on, so the productivity gain now may be borrowing against capability later. The stake for the reader is structural — how AI adoption reshapes not just headcounts but the depth of human competence inside organizations, and why 'unprepared' is a workforce-development problem, not a software one. Carried into the Muslim world by Dawn (PK).",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Productivity",
-        "http://en.wikipedia.org/wiki/Generative_artificial_intelligence",
-        "http://en.wikipedia.org/wiki/ChatGPT",
-        "http://en.wikipedia.org/wiki/Workflow"
-      ]
-    },
-    {
-      "id": "blackrock-goldman-sachs-jpmorgan-morgan-stanley-join-uk-gove",
-      "label": "BlackRock, Goldman Sachs, JPMorgan, Morgan Stanley join UK government's tokenization taskforce",
-      "firstSeen": "2026-07-13T12:11:56.537Z",
-      "lastCovered": "2026-07-13T12:11:56.537Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-13-blackrock-goldman-sachs-jpmorgan-morgan-stanley-join-uk-gove"
-      ],
-      "eventUri": null,
-      "summary": "The UK put the world's largest asset managers and banks on a state taskforce to tokenize real-world assets — a market one estimate sizes at $88 trillion by 2035, dwarfing today's $3 trillion crypto and stablecoin pool. Lead with who is at the table, not the number: this is the incumbent financial establishment, not crypto insurgents, moving to put wholesale markets on blockchain rails under government blessing. The mechanism for the reader is how tokenization migrates ownership of bonds, funds and property onto programmable ledgers — and why a state-convened taskforce of the biggest players signals this is being built as core infrastructure, with the same firms writing the rules they'll trade under.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-s-retail-inflation-accelerates-to-4-38-raising-rate-hi",
-      "label": "India's retail inflation accelerates to 4.38%, raising rate hike expectations",
-      "firstSeen": "2026-07-13T12:11:56.537Z",
-      "lastCovered": "2026-07-13T12:11:56.537Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-13-india-s-retail-inflation-accelerates-to-4-38-raising-rate-hi"
-      ],
-      "eventUri": "eng-11826587",
-      "summary": "India's retail inflation rose to 4.38% in June, above the RBI's comfort zone, driven by food and fuel — even as softer gold prices masked worse. Lead with what is squeezing the poorest, not the headline print: food-and-fuel inflation is the regressive kind, hitting household budgets hardest at the bottom, and a Gulf war threatening oil supply sits directly upstream of the fuel line. The mechanism for the reader is how an external energy shock transmits into a domestic price level and then into central-bank rate decisions — tying the Hormuz crisis to the cost of a meal in an Indian kitchen, and to whether the RBI now has to choke growth to defend the target.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Inflation",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Consumer_price_index",
-        "http://en.wikipedia.org/wiki/Reserve_Bank_of_India",
-        "http://en.wikipedia.org/wiki/Food_prices"
-      ]
-    },
-    {
-      "id": "game-that-reduces-dementia-risk-clears-amyloid-from-men-s-br",
-      "label": "Game that reduces dementia risk clears amyloid from men's brains",
-      "firstSeen": "2026-07-13T12:11:56.537Z",
-      "lastCovered": "2026-07-13T12:11:56.537Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-13-game-that-reduces-dementia-risk-clears-amyloid-from-men-s-br"
-      ],
-      "eventUri": null,
-      "summary": "A cognitive 'speed training' game that cuts dementia risk by 25% is shown for the first time to lower beta-amyloid — the protein that clogs the Alzheimer's brain — but only in men, not women. Lead with the mechanistic first, not the game: this is the first evidence that a behavioral intervention can move a core neurodegenerative biomarker, which reframes brain training from vague wellness advice into something with a measurable biological handle. The mechanism for the reader is why a sex difference in the amyloid response matters — it hints the pathway is real but not universal — and the honest gap between a biomarker shift and actually preventing disease.",
-      "conceptUris": []
-    },
-    {
-      "id": "analysis-and-optimization-of-conventional-furrow-irrigation",
-      "label": "Analysis and optimization of conventional furrow irrigation systems using the WinSRFR simulation model",
-      "firstSeen": "2026-07-13T12:11:56.537Z",
-      "lastCovered": "2026-07-13T12:11:56.537Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-13-analysis-and-optimization-of-conventional-furrow-irrigation"
-      ],
-      "eventUri": null,
-      "summary": "Researchers used the WinSRFR model to redesign furrow irrigation — the world's most common and most wasteful watering method — cutting deep percolation and runoff by tuning flow rate and furrow length rather than buying new equipment. Lead with the water at stake, not the model: surface irrigation feeds much of the Global South's agriculture and loses enormous volumes to poor design, so a simulation that squeezes more crop per drop is a food-and-water security tool, not a lab curiosity. The mechanism for the reader is how cheap computational optimization lets smallholders and irrigation districts recover efficiency they already 'own' — and the gap between a validated model and adoption in the field.",
-      "conceptUris": []
-    },
-    {
-      "id": "tsmc-posts-record-revenue-in-second-quarter-on-ai-demand",
-      "label": "TSMC posts record revenue in second quarter on AI demand",
-      "firstSeen": "2026-07-13T12:11:56.537Z",
-      "lastCovered": "2026-07-13T12:11:56.537Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-13-tsmc-posts-record-revenue-in-second-quarter-on-ai-demand"
-      ],
-      "eventUri": "eng-11825961",
-      "summary": "TSMC's Q2 revenue jumped 36% to a record as AI chip demand — Nvidia above all — surged. Lead with the concentration risk, not the beat: the world's most advanced silicon flows through one company on one island in a contested strait, so a single foundry's earnings are now a proxy for the entire AI buildout's health. The mechanism for the reader is how the AI boom rests on a physical chokepoint — leading-edge fabrication only TSMC can do at scale — and why record revenue also means record dependence, with Taiwan's geopolitics sitting under every data-center expansion. Regional actor as the subject: Taipei (TW), not Silicon Valley.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/TSMC",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Taiwan",
-        "http://en.wikipedia.org/wiki/Nvidia",
-        "http://en.wikipedia.org/wiki/Semiconductor"
-      ]
-    },
-    {
-      "id": "india-s-crackdown-on-a-new-whatsapp-feature-risks-setting-a",
-      "label": "India's crackdown on a new WhatsApp feature risks setting a global precedent",
-      "firstSeen": "2026-07-13T12:11:56.537Z",
-      "lastCovered": "2026-07-13T12:11:56.537Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-13-india-s-crackdown-on-a-new-whatsapp-feature-risks-setting-a"
-      ],
-      "eventUri": null,
-      "summary": "India is moving against a new WhatsApp usernames feature on cyber-fraud grounds, and if Meta modifies the app to comply, it risks a 'slippery slope' emboldening governments everywhere to demand changes to encrypted messengers. Lead with the precedent, not the feature: the world's largest WhatsApp market bending Meta on encryption architecture is a template other states will copy. The mechanism for the technically literate reader is how a single-country compliance demand can degrade an app's security model globally — because platforms rarely maintain a weaker fork for one market without it leaking outward — making end-to-end encryption a matter of which government pushes hardest, not of math. Rest of World reports from the Global South's vantage.",
-      "conceptUris": []
-    },
-    {
-      "id": "irish-datacenters-now-guzzle-23-of-the-country-s-electricity",
-      "label": "Irish datacenters now guzzle 23% of the country's electricity",
-      "firstSeen": "2026-07-13T12:11:56.537Z",
-      "lastCovered": "2026-07-13T12:11:56.537Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-12-irish-datacenters-now-guzzle-23-of-the-country-s-electricity"
-      ],
-      "eventUri": null,
-      "summary": "Ireland's data centers now consume 23% of national electricity — more than all urban homes combined. Lead with the number and who bears it, not the trend line: a small state has quietly ceded nearly a quarter of its grid to server farms serving global cloud demand, straining supply and climate targets for everyone else on that grid. The mechanism for the technically literate reader is how hyperscale compute externalizes its energy cost onto a host country's public infrastructure — and why the AI-and-cloud buildout's real constraint is increasingly megawatts and grid politics, not chips or code. Surfaced by developer readers on Hacker News (235 points).",
       "conceptUris": []
     }
   ]
