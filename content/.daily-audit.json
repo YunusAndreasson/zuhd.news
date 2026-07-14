@@ -1,27 +1,27 @@
 {
-  "date": "2026-07-13",
+  "date": "2026-07-14",
   "metrics": {
-    "articles": { "value": 50, "detail": "5 cycles, all completed, avg 10/cycle — up from 41 yesterday" },
-    "freshness": { "median": 0, "p90": 1.2, "max": 1.2, "target": 1.0, "met": true },
-    "categories": { "politics": 19, "economy": 14, "science": 7, "tech": 10 },
-    "multiSource": { "value": 16, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "EU": 13, "AM": 12, "AS": 12, "ME": 10, "AF": 3 } },
-    "sciTech": { "ratio": 34, "target": 25, "met": true },
-    "topSourceShare": { "source": "Ars Technica / Nature / Dawn / Al Jazeera / Hindustan Times (tied)", "pct": 8, "target": 20, "met": true },
-    "uniqueSources": 55,
+    "articles": { "value": 54, "detail": "5 cycles completed, avg 10/cycle (60 yesterday)" },
+    "freshness": { "median": 0, "p90": 1, "max": 1, "target": 1.0, "met": true },
+    "categories": { "politics": 18, "economy": 16, "science": 9, "tech": 11 },
+    "multiSource": { "value": 14, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 15, "EU": 12, "AS": 9, "ME": 9, "AF": 8, "OC": 1 } },
+    "sciTech": { "ratio": 37, "target": 25, "met": true },
+    "topSourceShare": { "source": "Premium Times Nigeria / Dawn / Phys.org / Al Jazeera (tie)", "pct": 7, "target": 20, "met": true },
+    "uniqueSources": 52,
     "duplicates": 0,
-    "avgCycleDuration": 848
+    "avgCycleDuration": 828
   },
-  "experiment": "Skipped — all four goals (freshness, diversity, multi-source, educational value) are within targets, no experiment is active, and no pause gate is set. The one queued experiment (numerical-density) targets scripts/write-prompt.md, which is out of scope for daily parameter tuning.",
-  "weakestArea": "No metric is below target. The thinnest margin is regional spread: five regions ship (≥4 floor met) but Oceania is absent and sub-Saharan Africa sits at just 3 of 50; the top four regions (EU/AM/AS/ME) are evenly balanced at 10-13 each with no concentration problem. Sci-tech share also eased from 42% to 34% as science fell 11→7, still comfortably above the 25% floor.",
+  "experiment": "Skipped — all metrics within targets, no active experiment, and no pause gate set. History (2026-05-09-multi-source-floor-3) shows the selector-floor lever for sourcing is tapped; no new lever is warranted while every goal is met.",
+  "weakestArea": "Science-source breadth is the softest spot despite science count (9) clearing its floor. Only six distinct science outlets appeared and the sci-tech ratio slipped 42% -> 37% day-over-day as total output fell 60 -> 54; both remain well above target, so this is drift to watch, not a miss. Oceania (OC) drew just 1 article, the thinnest region again.",
   "watching": [
-    "Science dropped to 7 (from 11 yesterday) — above its ≥5 floor but the softest educational input; watch that it doesn't slide under the floor on a light-news day.",
-    "Throughput rebounded to 50 with all five cycles completing, versus 38 yesterday when one cycle failed — reliability looks recovered, confirm it holds.",
-    "Multi-source count is unusually high at 16 (vs 9 yesterday), reflecting a heavy politics/economy day (33 of 50) with strong event clustering."
+    "Total output eased to 54 from yesterday's 60 across the same 5 cycles (avg 10 vs earlier 10-13); watch whether this is lighter mid-week feed volume or a sustained dip.",
+    "Sci-tech ratio dipped 42% -> 37% — comfortably above the 25% floor but worth tracking if science-outlet diversity keeps narrowing.",
+    "Oceania coverage at 1 article; regional target is met on breadth (6 regions) but OC remains structurally underrepresented."
   ],
   "coverageGaps": [
-    "Oceania (OC) had zero articles today, the second consecutive thin day for the region.",
-    "Sub-Saharan Africa (AF) remains the lowest region at 3 despite curated regional sources — a persistent structural thinness, not a one-day dip."
+    "Oceania (OC) surfaced only 1 article; no Pacific/Australia-NZ depth this cycle.",
+    "Science sourcing leans on Nature and Phys.org; specialist-outlet variety was thinner than yesterday's dozen."
   ],
-  "context": "All six goal metrics are met with healthy margins and zero duplicates; top source share is only 8% with five outlets tied at 4, so source concentration is a non-issue. This was a high-volume, politics-heavy day (politics 19, economy 14) with 55 unique sources and 16 multi-source articles. No experiment is active, no gate is set, and no tunable parameter is out of range, so this is a hold day with no change. The only recurring editorial note — thin Africa/Oceania coverage — is a feed-composition/source-list matter to revisit deliberately, not something to move on a single day's data."
+  "context": "Clean day: freshness median 0 with a max of 1 day, zero duplicates, 52 unique sources, top source at ~7% share — all goals met with margin. No experiments are active and no noNewExperimentsUntil gate is set, but the healthy board plus the exhausted selector-floor lever (per 2026-05-09-multi-source-floor-3) means the right move is to hold steady rather than introduce a confounding variable."
 }
