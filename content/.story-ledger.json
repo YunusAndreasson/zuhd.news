@@ -2,13 +2,255 @@
   "version": 1,
   "stories": [
     {
+      "id": "france-assisted-dying-law-parliament",
+      "label": "France's parliament adopts assisted dying law",
+      "firstSeen": "2026-07-15T22:09:33.593Z",
+      "lastCovered": "2026-07-15T22:09:33.593Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-15-france-assisted-dying-law-parliament"
+      ],
+      "eventUri": "fra-1325253",
+      "summary": "France becomes one of the largest countries to legislate a right to assisted dying, a Macron-championed change now headed to constitutional review. The angle for our reader is the mechanism and the ethical precedent: which patients qualify, what physician safeguards exist, and how this reshapes the European debate. Note the wide sentiment divergence across the five sources (from Le Monde to CNA) — coverage frames this as either a dignity milestone or a moral rupture.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/France",
+        "http://en.wikipedia.org/wiki/National_Assembly_(France)",
+        "http://en.wikipedia.org/wiki/Euthanasia",
+        "http://en.wikipedia.org/wiki/Emmanuel_Macron",
+        "http://en.wikipedia.org/wiki/Assisted_suicide",
+        "http://en.wikipedia.org/wiki/Constitutional_Council_(France)"
+      ]
+    },
+    {
+      "id": "trump-icc-sanctions-legal-challenge-us-rights",
+      "label": "Legal challenge says Trump ICC sanctions tread on US citizens' rights",
+      "firstSeen": "2026-07-15T22:09:33.593Z",
+      "lastCovered": "2026-07-15T22:09:33.593Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-15-trump-icc-sanctions-legal-challenge-us-rights"
+      ],
+      "eventUri": "eng-11833581",
+      "summary": "Palestinian-rights advocates sued in a New York federal court to halt Trump's sanctions on anyone liaising with the ICC, arguing the order criminalizes US citizens' speech and association. The mechanism to highlight: sanctions built for foreign adversaries are now aimed at Americans who engage an international court investigating Gaza. Accountability angle — the powerful using economic-warfare tools to suppress domestic advocacy for the oppressed.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/International_Criminal_Court",
+        "http://en.wikipedia.org/wiki/Economic_sanctions",
+        "http://en.wikipedia.org/wiki/Presidency_of_Donald_Trump",
+        "http://en.wikipedia.org/wiki/Human_rights",
+        "http://en.wikipedia.org/wiki/Genocide",
+        "http://en.wikipedia.org/wiki/Israel"
+      ]
+    },
+    {
+      "id": "mexican-meth-expertise-african-labs",
+      "label": "Mexican Meth Expertise Spreads to African Labs",
+      "firstSeen": "2026-07-15T22:09:33.593Z",
+      "lastCovered": "2026-07-15T22:09:33.593Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-15-mexican-meth-expertise-african-labs"
+      ],
+      "eventUri": null,
+      "summary": "A sharp rise in meth-lab busts across Africa reflects Mexican cartel cooks exporting their expertise to local criminal networks, per AFRICOM's commander. The structural story readers won't find in wires: the transnationalization of synthetic-drug production, with Africa becoming a manufacturing node rather than just a transit corridor. Investigative-outlet exclusive; names the criminal-military dynamics reshaping the continent's illicit economy.",
+      "conceptUris": []
+    },
+    {
+      "id": "spacex-falls-to-ipo-price-starship-launch",
+      "label": "SpaceX falls to $135 IPO price ahead of Starship launch",
+      "firstSeen": "2026-07-15T22:09:33.593Z",
+      "lastCovered": "2026-07-15T22:09:33.593Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-15-spacex-falls-to-ipo-price-starship-launch"
+      ],
+      "eventUri": "eng-11833973",
+      "summary": "SpaceX slid to its $135 IPO price — briefly below — barely a month after Musk's record $86 billion offering, just as a make-or-break Starship launch looms. The mechanism: public-market discipline is finally being applied to a company long valued on narrative, and a launch failure would test a stock with no cushion. Lead with the round-trip to the IPO floor as the market's verdict on space-hype valuations.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/SpaceX",
+        "http://en.wikipedia.org/wiki/Initial_public_offering",
+        "http://en.wikipedia.org/wiki/Elon_Musk",
+        "http://en.wikipedia.org/wiki/Valuation_(finance)",
+        "http://en.wikipedia.org/wiki/Wall_Street"
+      ]
+    },
+    {
+      "id": "pakistan-crypto-regulator-seminary-tokens-fatwa",
+      "label": "Crypto czar asks Jamia Darul Uloom to distinguish between speculative crypto, asset-backed tokens",
+      "firstSeen": "2026-07-15T22:09:33.593Z",
+      "lastCovered": "2026-07-15T22:09:33.593Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-15-pakistan-crypto-regulator-seminary-tokens-fatwa"
+      ],
+      "eventUri": "eng-11832928",
+      "summary": "Pakistan's virtual-assets regulator asked a major seminary to issue a religious distinction between speculative cryptocurrencies and asset-backed tokens — seeking a fatwa to underpin state crypto policy. The mechanism our reader will grasp: a government trying to reconcile digital-asset regulation with Islamic finance principles, using scholarly authority as regulatory infrastructure. A genuinely OIC-specific story on how Muslim-majority states are localizing crypto governance.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Fatwa",
+        "http://en.wikipedia.org/wiki/Token_coin",
+        "http://en.wikipedia.org/wiki/Cryptocurrency",
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Seminary"
+      ]
+    },
+    {
+      "id": "cdc-nominee-hearing-kennedy-ouster-vaccine",
+      "label": "At key hearing, Kennedy's ouster of former CDC director looms over nominee to replace her",
+      "firstSeen": "2026-07-15T22:09:33.593Z",
+      "lastCovered": "2026-07-15T22:09:33.593Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-15-cdc-nominee-hearing-kennedy-ouster-vaccine"
+      ],
+      "eventUri": "eng-11834206",
+      "summary": "At her Senate hearing, the nominee to run the CDC backed RFK Jr.'s firing of the director he ousted — while insisting she 'won't betray science.' The accountability mechanism: how the confirmation process is being used to ratify the politicization of the nation's top public-health agency. For our reader, the stakes are institutional — vaccine policy and disease surveillance now hinge on loyalty tests, not evidence.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Centers_for_Disease_Control_and_Prevention",
+        "http://en.wikipedia.org/wiki/United_States_Senate",
+        "http://en.wikipedia.org/wiki/Vaccine",
+        "http://en.wikipedia.org/wiki/Public_health",
+        "http://en.wikipedia.org/wiki/Erica_Schwartz"
+      ]
+    },
+    {
+      "id": "nih-all-of-us-biobank-genomic-database",
+      "label": "Researcher details US biobank's value as global resource in study of roots of disease, health",
+      "firstSeen": "2026-07-15T22:09:33.593Z",
+      "lastCovered": "2026-07-15T22:09:33.593Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-15-nih-all-of-us-biobank-genomic-database"
+      ],
+      "eventUri": null,
+      "summary": "The NIH's 'All of Us' program has become the world's largest integrated health-and-genomic database, with 747,000 volunteers sharing whole genomes and lifelong records. The teach-the-reader angle: why deliberately diverse recruitment matters for genetics that has historically over-represented European ancestry, and what a million-person open resource enables — and risks — for the roots-of-disease research the whole world will draw on.",
+      "conceptUris": []
+    },
+    {
+      "id": "india-monsoon-deluge-climate-emergency",
+      "label": "India's Monsoon Deluge Reflects Intensifying Global Climate Emergency",
+      "firstSeen": "2026-07-15T22:09:33.593Z",
+      "lastCovered": "2026-07-15T22:09:33.593Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-15-india-monsoon-deluge-climate-emergency"
+      ],
+      "eventUri": null,
+      "summary": "India's extreme monsoon flooding is framed as one node in a cascade of compounding climate disasters — floods stacked on heatwaves — that outpace current adaptation. The mechanism to draw out: how intensifying wet-bulb and rainfall extremes in South Asia expose the gap between climate science and policy response, and who bears the cost when infrastructure isn't built for the new baseline.",
+      "conceptUris": []
+    },
+    {
+      "id": "sheetz-migrates-off-vmware-broadcom",
+      "label": "Sheetz moves 838 stores off VMware: Broadcom created \"too much uncertainty\"",
+      "firstSeen": "2026-07-15T22:09:33.593Z",
+      "lastCovered": "2026-07-15T22:09:33.593Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-15-sheetz-migrates-off-vmware-broadcom"
+      ],
+      "eventUri": null,
+      "summary": "A 838-store US chain is ripping VMware out of every location, citing the pricing and licensing 'uncertainty' Broadcom created after its acquisition. The structural story for our technical reader: Broadcom's aggressive monetization of VMware is triggering a real enterprise exodus, and Sheetz's per-store migration to StorMagic is a concrete data point on the cost of vendor lock-in when an acquirer changes the rules.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Broadcom_Inc.",
+        "http://en.wikipedia.org/wiki/Virtualization",
+        "http://en.wikipedia.org/wiki/VMware"
+      ]
+    },
+    {
+      "id": "gold-eagle-ai-cyber-vulnerability-clearinghouse",
+      "label": "Trump administration unveils AI-supported clearinghouse for cyber vulnerabilities",
+      "firstSeen": "2026-07-15T22:09:33.593Z",
+      "lastCovered": "2026-07-15T22:09:33.593Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-15-gold-eagle-ai-cyber-vulnerability-clearinghouse"
+      ],
+      "eventUri": null,
+      "summary": "The new 'Gold Eagle' program would let government, industry and critical-infrastructure operators use AI to detect, prioritize and patch vulnerabilities at speed. The angle: putting AI at the center of national vulnerability triage is both a defensive leap and a concentration risk — who controls prioritization, what happens to disclosure norms, and whether critical-infrastructure operators become dependent on a federal AI pipeline. Written for a reader who patches systems for a living.",
+      "conceptUris": []
+    },
+    {
+      "id": "pakistan-china-waico-ai-governance-shanghai",
+      "label": "DPM Dar to attend signing ceremony for China-led AI governance body in Shanghai: FO",
+      "firstSeen": "2026-07-15T22:09:33.593Z",
+      "lastCovered": "2026-07-15T22:09:33.593Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-15-pakistan-china-waico-ai-governance-shanghai"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's deputy PM heads to Shanghai to sign into the China-led World Artificial Intelligence Cooperation Organisation (WAICO). The structural stakes our reader will care about: a rival, Beijing-anchored bloc for AI governance is forming as an alternative to Western-led standards, and which countries sign on now shapes whose rules govern AI in the Global South. Lead with the geopolitics of AI standard-setting, not the ceremony.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Ishaq_Dar",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Shanghai",
+        "http://en.wikipedia.org/wiki/Pakistan"
+      ]
+    },
+    {
+      "id": "paypal-receives-53-billion-takeover-offer-involving-stripe",
+      "label": "PayPal Receives $53 Billion Takeover Offer Involving Stripe",
+      "firstSeen": "2026-07-15T22:09:33.593Z",
+      "lastCovered": "2026-07-15T22:09:33.593Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-15-paypal-receives-53-billion-takeover-offer-involving-stripe"
+      ],
+      "eventUri": "eng-11834445",
+      "summary": "[Auto-backfill for economy floor] PayPal, which owns Venmo, is the target of what one group of analysts described as a \"lowball\" offer from Stripe, another payment processor, and Advent, a private equity firm.\n\nThe payments company Stripe and the private equity firm Advent International have offered to acquire PayPal for about $53 b",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/PayPal",
+        "http://en.wikipedia.org/wiki/Stripe,_Inc.",
+        "http://en.wikipedia.org/wiki/United_States_dollar",
+        "http://en.wikipedia.org/wiki/Advent_International",
+        "http://en.wikipedia.org/wiki/Private_equity",
+        "http://en.wikipedia.org/wiki/Apple_Pay",
+        "http://en.wikipedia.org/wiki/Reuters",
+        "http://en.wikipedia.org/wiki/Bank"
+      ]
+    },
+    {
       "id": "lebanon-israel-rome-talks-pilot-zones-withdrawal",
       "label": "Lebanon and Israel conclude talks in Rome over 'pilot zones'",
       "firstSeen": "2026-07-15T17:10:46.360Z",
       "lastCovered": "2026-07-15T17:10:46.360Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-15-lebanon-israel-rome-talks-pilot-zones-withdrawal"
@@ -33,7 +275,7 @@
       "lastCovered": "2026-07-15T17:10:46.360Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-15-hungary-szijjarto-byd-china-revolving-door"
@@ -57,7 +299,7 @@
       "lastCovered": "2026-07-15T17:10:46.360Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-15-nyc-bar-blanche-attorney-general-unfit-doj"
@@ -80,7 +322,7 @@
       "lastCovered": "2026-07-15T17:10:46.360Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-15-ukraine-eu-drone-deal-joint-production"
@@ -103,7 +345,7 @@
       "lastCovered": "2026-07-15T17:10:46.360Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-15-nigeria-inflation-eases-food-prices-nbs"
@@ -124,7 +366,7 @@
       "lastCovered": "2026-07-15T17:10:46.360Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-15-spacex-bond-junk-status-market-discipline"
@@ -140,7 +382,7 @@
       "lastCovered": "2026-07-15T17:10:46.360Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-15-glenmark-generic-drug-price-fixing-settlement"
@@ -161,7 +403,7 @@
       "lastCovered": "2026-07-15T17:10:46.360Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-15-thermodynamic-computers-noise-energy-efficiency"
@@ -177,7 +419,7 @@
       "lastCovered": "2026-07-15T17:10:46.360Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-15-uk-cuts-congo-basin-rainforest-funding"
@@ -193,7 +435,7 @@
       "lastCovered": "2026-07-15T17:10:46.360Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-15-suno-ai-music-training-data-scraping-hack"
@@ -209,7 +451,7 @@
       "lastCovered": "2026-07-15T17:10:46.360Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-15-google-play-third-party-app-stores-epic"
@@ -229,7 +471,7 @@
       "lastCovered": "2026-07-15T17:10:46.360Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-15-dutch-police-crypto-investment-scam-callcenters"
@@ -239,13 +481,41 @@
       "conceptUris": []
     },
     {
+      "id": "us-strikes-iran-hormuz-blockade-civilian-deaths",
+      "label": "US military says it hit dozens of Iranian targets during 7-hour wave of strikes",
+      "firstSeen": "2026-07-15T08:10:50.546Z",
+      "lastCovered": "2026-07-15T22:09:33.593Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-07-15-us-strikes-iran-hormuz-blockade-civilian-deaths",
+        "2026-07-15-iran-existential-war-35-civilians-us-strikes-hormuz"
+      ],
+      "eventUri": "eng-11832516",
+      "summary": "Lead with the human cost, not the CENTCOM press release: Iran's Health Ministry reports 30+ civilians killed and 260+ wounded in the overnight wave — the injury count exceeds any prior round. Then the mechanism: the US has reimposed a naval blockade on Iranian ports with 20+ warships across the region, and Iran is threatening to halt all Middle East energy exports through Hormuz in response. The reader needs the escalation ladder — blockade, civilian deaths, energy-export threat — and who bears the cost. Iranian source (Mehr) merged for the casualty figures Western wires under-report.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/United_States_Central_Command",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Blockade",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/United_States_Armed_Forces",
+        "http://en.wikipedia.org/wiki/Port",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Tehran"
+      ]
+    },
+    {
       "id": "eu-ukrainians-stay-extension-excludes-military-age-men",
       "label": "EU extends right to stay for Ukrainians, excludes military-age men",
       "firstSeen": "2026-07-15T12:08:59.125Z",
       "lastCovered": "2026-07-15T12:08:59.125Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-15-eu-ukrainians-stay-extension-excludes-military-age-men"
@@ -270,7 +540,7 @@
       "lastCovered": "2026-07-15T12:08:59.125Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-15-gaza-missing-dead-detained-numbered-graves"
@@ -286,7 +556,7 @@
       "lastCovered": "2026-07-15T12:08:59.125Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-15-new-caledonia-pro-france-president-independence-divide"
@@ -302,7 +572,7 @@
       "lastCovered": "2026-07-15T12:08:59.125Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-15-india-mobile-manufacturing-scheme-value-addition"
@@ -327,7 +597,7 @@
       "lastCovered": "2026-07-15T12:08:59.125Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-15-asml-raises-guidance-euv-monopoly-ai-demand"
@@ -352,7 +622,7 @@
       "lastCovered": "2026-07-15T12:08:59.125Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-15-turkiye-saudi-rail-corridor-islamic-economic-map"
@@ -368,7 +638,7 @@
       "lastCovered": "2026-07-15T12:08:59.125Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-15-alzheimers-blood-test-ptau217-early-prediction"
@@ -393,7 +663,7 @@
       "lastCovered": "2026-07-15T12:08:59.125Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-15-orbital-data-centers-thermal-radiation-limits"
@@ -409,7 +679,7 @@
       "lastCovered": "2026-07-15T12:08:59.125Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-15-beta-pictoris-d-faintest-imaged-exoplanet"
@@ -425,7 +695,7 @@
       "lastCovered": "2026-07-15T12:08:59.125Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-13-lapd-flock-alpr-surveillance-contract-expire"
@@ -441,7 +711,7 @@
       "lastCovered": "2026-07-15T12:08:59.125Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-15-swana-tech-militarization-tested-deployed-smex"
@@ -457,7 +727,7 @@
       "lastCovered": "2026-07-15T12:08:59.125Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-15-venezuela-ai-citizen-disaster-relief-diaspora"
@@ -467,38 +737,13 @@
       "conceptUris": []
     },
     {
-      "id": "us-strikes-iran-hormuz-blockade-civilian-deaths",
-      "label": "US military says it hit dozens of Iranian targets during 7-hour wave of strikes",
-      "firstSeen": "2026-07-15T08:10:50.546Z",
-      "lastCovered": "2026-07-15T08:10:50.546Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-15-us-strikes-iran-hormuz-blockade-civilian-deaths"
-      ],
-      "eventUri": "eng-11832516",
-      "summary": "Lead with the human cost, not the CENTCOM press release: Iran's Health Ministry reports 30+ civilians killed and 260+ wounded in the overnight wave — the injury count exceeds any prior round. Then the mechanism: the US has reimposed a naval blockade on Iranian ports with 20+ warships across the region, and Iran is threatening to halt all Middle East energy exports through Hormuz in response. The reader needs the escalation ladder — blockade, civilian deaths, energy-export threat — and who bears the cost. Iranian source (Mehr) merged for the casualty figures Western wires under-report.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/United_States_Central_Command",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Blockade",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/United_States_Armed_Forces",
-        "http://en.wikipedia.org/wiki/Port"
-      ]
-    },
-    {
       "id": "iran-hormuz-energy-export-blockade-threat",
       "label": "Iran threatens to halt all Middle East energy exports after US reimposes blockade",
       "firstSeen": "2026-07-15T08:10:50.546Z",
       "lastCovered": "2026-07-15T08:10:50.546Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-15-iran-hormuz-energy-export-blockade-threat"
@@ -514,7 +759,7 @@
       "lastCovered": "2026-07-15T08:10:50.546Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-15-von-der-leyen-kyiv-eu-defence-industry-integration"
@@ -536,7 +781,7 @@
       "lastCovered": "2026-07-15T08:10:50.546Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-15-west-papua-rebels-catholic-church-indonesia"
@@ -552,7 +797,7 @@
       "lastCovered": "2026-07-15T08:10:50.546Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-13-mena-economies-contraction-2026-forecast"
@@ -568,7 +813,7 @@
       "lastCovered": "2026-07-15T08:10:50.546Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-14-crypto-fatwa-impermissible-muslim-market"
@@ -584,7 +829,7 @@
       "lastCovered": "2026-07-15T08:10:50.546Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-15-pakistan-agriculture-census-groundwater-solar"
@@ -600,7 +845,7 @@
       "lastCovered": "2026-07-15T08:10:50.546Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-15-un-global-immunisation-coverage-gaps"
@@ -625,7 +870,7 @@
       "lastCovered": "2026-07-15T08:10:50.546Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-15-venezuela-earthquakes-geology-structural-neglect"
@@ -641,7 +886,7 @@
       "lastCovered": "2026-07-15T08:10:50.546Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-15-ai-prior-authorization-medicare-pilot"
@@ -657,7 +902,7 @@
       "lastCovered": "2026-07-15T08:10:50.546Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-15-stripe-advent-53bn-paypal-bid"
@@ -682,7 +927,7 @@
       "lastCovered": "2026-07-15T08:10:50.546Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-15-x402-ai-agent-stablecoin-payments-standard"
@@ -698,7 +943,7 @@
       "lastCovered": "2026-07-15T08:10:50.546Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-15-irctc-website-overhaul-rail-booking"
@@ -723,7 +968,7 @@
       "lastCovered": "2026-07-15T04:09:12.915Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-15-india-uk-ceta-trade-agreement-enters-force"
@@ -748,7 +993,7 @@
       "lastCovered": "2026-07-15T04:09:12.915Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-13-gaza-tech-shortage-connectivity-siege-workarounds"
@@ -764,7 +1009,7 @@
       "lastCovered": "2026-07-15T04:09:12.915Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-15-india-e20-ethanol-fuel-mandate-consumer-cost"
@@ -780,7 +1025,7 @@
       "lastCovered": "2026-07-15T04:09:12.915Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-15-sindh-high-court-afghan-repatriation-due-process"
@@ -796,7 +1041,7 @@
       "lastCovered": "2026-07-15T04:09:12.915Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-15-nigeria-journalist-ugagbe-remanded-cyberstalking"
@@ -812,7 +1057,7 @@
       "lastCovered": "2026-07-15T04:09:12.915Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-15-central-asia-fuel-crisis-russia-refinery-strikes"
@@ -828,7 +1073,7 @@
       "lastCovered": "2026-07-15T04:09:12.915Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-15-uk-teen-social-media-midnight-curfew-design"
@@ -844,7 +1089,7 @@
       "lastCovered": "2026-07-15T04:09:12.915Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-14-ro-khanna-west-bank-settler-detention"
@@ -860,7 +1105,7 @@
       "lastCovered": "2026-07-15T04:09:12.915Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-15-elephant-seismic-bone-conduction-communication"
@@ -876,7 +1121,7 @@
       "lastCovered": "2026-07-15T04:09:12.915Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-15-azolla-biochar-wastewater-dye-removal-valorization"
@@ -892,7 +1137,7 @@
       "lastCovered": "2026-07-15T04:09:12.915Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-15-cxmt-crypto-pre-ipo-perpetual-futures-chips"
@@ -917,7 +1162,7 @@
       "lastCovered": "2026-07-15T04:09:12.915Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-14-ai-vibecoding-game-cloning-creative-moat"
@@ -933,7 +1178,7 @@
       "lastCovered": "2026-07-15T04:09:12.915Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-14-llm-lexical-tics-claude-load-bearing-rlhf"
@@ -949,7 +1194,7 @@
       "lastCovered": "2026-07-14T22:09:09.626Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-14-us-iraq-syria-oil-pipeline-bypass-hormuz"
@@ -973,7 +1218,7 @@
       "lastCovered": "2026-07-14T22:09:09.626Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-14-us-supreme-court-justices-security-threats"
@@ -995,7 +1240,7 @@
       "lastCovered": "2026-07-14T22:09:09.626Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-14-france-bastille-day-ukraine-missile-production"
@@ -1018,7 +1263,7 @@
       "lastCovered": "2026-07-14T22:09:09.626Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-14-south-africa-judicial-independence-underfunding-maya"
@@ -1034,7 +1279,7 @@
       "lastCovered": "2026-07-14T22:09:09.626Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-14-brussels-oxy-tower-fire-lift-shaft-deaths"
@@ -1056,7 +1301,7 @@
       "lastCovered": "2026-07-14T22:09:09.626Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-14-ftc-cvs-caremark-insulin-pbm-settlement"
@@ -1072,7 +1317,7 @@
       "lastCovered": "2026-07-14T22:09:09.626Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-14-africa-climate-tech-overtakes-fintech-venture-funding"
@@ -1088,7 +1333,7 @@
       "lastCovered": "2026-07-14T22:09:09.626Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-14-us-russia-astronauts-joint-mission-iss-2030"
@@ -1111,7 +1356,7 @@
       "lastCovered": "2026-07-14T22:09:09.626Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-13-michigan-cyclospora-outbreak-salad-greens"
@@ -1133,7 +1378,7 @@
       "lastCovered": "2026-07-14T22:09:09.626Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-14-meta-ai-layoff-lawsuit-discrimination"
@@ -1149,7 +1394,7 @@
       "lastCovered": "2026-07-14T22:09:09.626Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-14-us-indictment-russian-bulletproof-hosting-media-land"
@@ -1165,7 +1410,7 @@
       "lastCovered": "2026-07-14T22:09:09.626Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-14-openai-screenless-speaker-apple-trade-secret-lawsuit"
@@ -1187,7 +1432,7 @@
       "lastCovered": "2026-07-14T22:09:09.626Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-14-ocean-acidification-planetary-signal-deep-time"
@@ -1195,202 +1440,6 @@
       "eventUri": null,
       "summary": "New research reframes ocean acidification as more than a threat to reefs and shellfish: it is a planetary-scale chemical signal that ties today's carbon emissions to acidification events preserved in Earth's deep-time geological record. Lead with the reframing, not the reef: the same process attacking oysters is a fingerprint that geologists can read across millions of years, connecting the present to past mass-extinction chemistry. Teach the reader how measuring the ocean's changing pH turns seawater into a recording instrument for the planet's carbon history — and why that makes the current spike so alarming.",
       "conceptUris": []
-    },
-    {
-      "id": "spanish-pm-brother-nepotism-conviction-ban",
-      "label": "Spanish PM's brother banned from public office for nine years",
-      "firstSeen": "2026-07-14T17:11:35.641Z",
-      "lastCovered": "2026-07-14T17:11:35.641Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-14-spanish-pm-brother-nepotism-conviction-ban"
-      ],
-      "eventUri": "spa-4268712",
-      "summary": "A Spanish court convicted and barred the sitting prime minister's brother, David Sánchez, from public office for nine years in a nepotism case. Lead with the accountability mechanism, not the family drama: a court reaching a head of government's inner circle over a rigged provincial post shows judicial independence biting the powerful even at the top. Note the sentiment split across sources (Anadolu most negative) — the case is a live weapon in Spain's polarized politics.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/David_Sánchez_(tennis)",
-        "http://en.wikipedia.org/wiki/Perverting_the_course_of_justice",
-        "http://en.wikipedia.org/wiki/Prime_Minister_of_Spain",
-        "http://en.wikipedia.org/wiki/Pedro_Sánchez_(politician)",
-        "http://en.wikipedia.org/wiki/Badajoz"
-      ]
-    },
-    {
-      "id": "warsh-fed-inflation-testimony-rate-signal",
-      "label": "Warsh to Reiterate Fed's Pledge to Get Inflation Down",
-      "firstSeen": "2026-07-14T17:11:35.641Z",
-      "lastCovered": "2026-07-14T17:11:35.641Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-14-warsh-fed-inflation-testimony-rate-signal"
-      ],
-      "eventUri": "eng-11830510",
-      "summary": "New Fed Chair Kevin Warsh's first congressional testimony is the pivot global markets are watching: he vows to bring inflation down but won't yet say whether he'll raise rates to do it — just as Gulf-war oil feeds straight into the US price data. Lead with the stakes of the ambiguity, not the pledge: a single new chair's tone reprices borrowing costs, currencies and risk assets worldwide, and emerging-market importers pay for a hawkish turn they don't vote on.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Inflation",
-        "http://en.wikipedia.org/wiki/Kevin_Warsh",
-        "http://en.wikipedia.org/wiki/Central_bank",
-        "http://en.wikipedia.org/wiki/Monetary_policy",
-        "http://en.wikipedia.org/wiki/Chair_of_the_Federal_Reserve"
-      ]
-    },
-    {
-      "id": "mexico-legal-action-us-ice-custody-deaths",
-      "label": "Mexico begins legal action in US over deaths of its citizens in ICE custody",
-      "firstSeen": "2026-07-14T17:11:35.641Z",
-      "lastCovered": "2026-07-14T17:11:35.641Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-14-mexico-legal-action-us-ice-custody-deaths"
-      ],
-      "eventUri": "spa-4269072",
-      "summary": "Mexico has begun filing complaints with US state prosecutors over Mexican citizens who died in ICE detention and during enforcement raids — its strongest response yet to Trump's immigration crackdown. Lead with the named victims and the accountability move, not the diplomacy: a Global South state is using US courts to hold a superpower's detention machine to account for deaths on its own soil. The mechanism for the reader is how sovereign legal pressure becomes a check when a government weaponizes deportation.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Mexico",
-        "http://en.wikipedia.org/wiki/U.S._Immigration_and_Customs_Enforcement",
-        "http://en.wikipedia.org/wiki/Secretariat_of_Foreign_Affairs_(Mexico)",
-        "http://en.wikipedia.org/wiki/Claudia_Sheinbaum",
-        "http://en.wikipedia.org/wiki/Human_rights"
-      ]
-    },
-    {
-      "id": "burnham-uk-next-prime-minister-union-backing",
-      "label": "Burnham in sight of Downing Street wins top UK union support",
-      "firstSeen": "2026-07-14T17:11:35.641Z",
-      "lastCovered": "2026-07-14T17:11:35.641Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-14-burnham-uk-next-prime-minister-union-backing"
-      ],
-      "eventUri": "eng-11830919",
-      "summary": "Andy Burnham, the former Manchester mayor, is now all but certain to become the UK's next prime minister after the country's largest union backed him in an uncontested Labour leadership race. Lead with how the succession is being decided, not the coronation: a change of national leadership is being settled by union endorsement and an unopposed field rather than a public vote, and the Lib Dems are already pressing him to change the electoral system before anyone gets to weigh in.",
-      "conceptUris": []
-    },
-    {
-      "id": "ibm-mainframe-slump-ai-hardware-panic",
-      "label": "Dell Gains as Tech Spending Shifts",
-      "firstSeen": "2026-07-14T17:11:35.641Z",
-      "lastCovered": "2026-07-14T17:11:35.641Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-14-ibm-mainframe-slump-ai-hardware-panic"
-      ],
-      "eventUri": "eng-11830232",
-      "summary": "IBM's flagship Z mainframe business cratered — the stock lost over a quarter of its value — because customers raided their mainframe budgets to stockpile servers, storage and memory ahead of AI-driven price spikes. Lead with the mechanism, not the earnings miss: an AI hardware panic is now distorting corporate IT spending so violently that it can gut a legacy giant's quarter while lifting Dell. Teach the technically literate reader how a scramble for compute and memory ripples through the whole hardware supply chain.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/IBM",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Server_(computing)",
-        "http://en.wikipedia.org/wiki/Mainframe_computer",
-        "http://en.wikipedia.org/wiki/Arvind_Krishna"
-      ]
-    },
-    {
-      "id": "darfur-kordofan-dialysis-war-health-collapse",
-      "label": "Waiting for life: Kidney dialysis in Darfur, Kordofan a journey through illness and poverty",
-      "firstSeen": "2026-07-14T17:11:35.641Z",
-      "lastCovered": "2026-07-14T17:11:35.641Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-14-darfur-kordofan-dialysis-war-health-collapse"
-      ],
-      "eventUri": "eng-11829732",
-      "summary": "In war-shattered Darfur, a 14-year-old with kidney failure travels for hours to a barely-functioning dialysis unit her family can scarcely afford — one story standing for a collapsed health system where treatment now depends on distance and money. Lead with the human cost of Sudan's war, not the medical detail: siege and displacement have turned a routine chronic-care regimen into a life-or-death lottery. The mechanism for the reader is how conflict destroys the mundane infrastructure — clinics, machines, supply chains — that keeps the chronically ill alive. Rare sub-Saharan Africa coverage (a persistent feed gap) via regional outlet Radio Dabanga (SD).",
-      "conceptUris": []
-    },
-    {
-      "id": "cyanide-free-ptfe-silver-composite-plating",
-      "label": "Researchers develop harder, longer-lasting silver plating",
-      "firstSeen": "2026-07-14T17:11:35.641Z",
-      "lastCovered": "2026-07-14T17:11:35.641Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-14-cyanide-free-ptfe-silver-composite-plating"
-      ],
-      "eventUri": null,
-      "summary": "A Korean materials team dispersed PTFE nanoparticles into a cyanide-free acidic silver bath to make silver coatings markedly harder and more wear-resistant than conventional plating. Lead with the two-in-one advance, not the lab press release: the composite is both tougher and free of toxic cyanide, addressing durability and worker/environmental safety at once. Teach the technically literate reader how embedding a slippery polymer in a metal matrix changes its mechanical behavior — and why plating chemistry quietly underpins electronics, contacts and connectors.",
-      "conceptUris": []
-    },
-    {
-      "id": "russian-intelligence-hacked-cameras-nato-ukraine",
-      "label": "NATO logistics, Ukrainian troops are top subjects of Russian camera hacks, advisory says",
-      "firstSeen": "2026-07-14T17:11:35.641Z",
-      "lastCovered": "2026-07-14T17:11:35.641Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-14-russian-intelligence-hacked-cameras-nato-ukraine"
-      ],
-      "eventUri": null,
-      "summary": "Dutch intelligence says at least one Russian agency is hijacking internet-connected cameras across Europe to watch military logistics and Ukrainian personnel. Lead with the surveillance mechanism, not the alarm: cheap, ubiquitous IoT cameras — traffic cams, doorbells, business CCTV — have become a passive intelligence grid a hostile state can quietly tap. Teach the technically literate reader how insecure connected devices turn a continent into a sensor network for espionage, and why the attack surface is the everyday internet, not classified systems.",
-      "conceptUris": []
-    },
-    {
-      "id": "deepseek-1-5b-raise-ipo-china-ai",
-      "label": "DeepSeek reportedly in talks to raise $1.5B, then IPO",
-      "firstSeen": "2026-07-14T17:11:35.641Z",
-      "lastCovered": "2026-07-14T17:11:35.641Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-14-deepseek-1-5b-raise-ipo-china-ai"
-      ],
-      "eventUri": "rus-2094547",
-      "summary": "China's DeepSeek is reportedly raising about $1.5B at a ~$71B valuation and eyeing an IPO as soon as this year. Lead with what the numbers signal, not the funding round: the open-weight challenger that shook Western AI labs is now converting technical credibility into capital-markets muscle, and a Chinese LLM maker going public reframes the AI race as a financing contest as much as a research one. The mechanism for the reader is how a lean model developer scales — and what a Chinese AI IPO means amid US export controls on the chips it needs.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/OpenAI",
-        "http://en.wikipedia.org/wiki/Startup_company",
-        "http://en.wikipedia.org/wiki/Investment"
-      ]
-    },
-    {
-      "id": "apple-huawei-china-premium-smartphone-lead",
-      "label": "Apple Widens China Smartphone Lead",
-      "firstSeen": "2026-07-14T17:11:35.641Z",
-      "lastCovered": "2026-07-14T17:11:35.641Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-14-apple-huawei-china-premium-smartphone-lead"
-      ],
-      "eventUri": "eng-11830147",
-      "summary": "Apple and Huawei widened their grip on China's premium smartphone tier last quarter even as the overall market shrank 4.3%, because higher component costs squeezed cheaper Android rivals hardest. Lead with the mechanism, not the market-share headline: rising chip and memory costs — the same AI-driven hardware crunch hitting servers — are hollowing out the budget end while the premium brands hold firm. Teach the reader how component-price inflation reshapes a consumer market from the bottom up, entrenching the incumbents who can absorb it.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Smartphone",
-        "http://en.wikipedia.org/wiki/Apple_Inc.",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Integrated_circuit",
-        "http://en.wikipedia.org/wiki/IPhone"
-      ]
     }
   ]
 }
