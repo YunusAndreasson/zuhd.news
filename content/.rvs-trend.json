@@ -6556,5 +6556,25 @@
     "briefCount": 0,
     "guardrailFailures": [],
     "degenerate": false
+  },
+  {
+    "ts": "2026-07-15T22:20:54.205Z",
+    "cycleId": "2026-07-15T22-20",
+    "cycleHour": "22",
+    "schema": 2,
+    "rvs": 74.48,
+    "clusters": {
+      "picking": null,
+      "writing": 80,
+      "briefing": null,
+      "sourcing": 58,
+      "coverage": 83.61
+    },
+    "articleCount": 10,
+    "briefCount": 0,
+    "guardrailFailures": [
+      "category economy below floor 3 (got 2)"
+    ],
+    "degenerate": false
   }
 ]
