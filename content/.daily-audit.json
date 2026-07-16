@@ -1,27 +1,26 @@
 {
-  "date": "2026-07-15",
+  "date": "2026-07-16",
   "metrics": {
-    "articles": { "value": 50, "detail": "5 cycles completed, avg 8/cycle (54 yesterday)" },
-    "freshness": { "median": 0, "p90": 0.3, "max": 0.3, "target": 1.0, "met": true },
-    "categories": { "politics": 17, "economy": 12, "science": 10, "tech": 11 },
+    "articles": { "value": 52, "detail": "5 cycles, avg 10/cycle" },
+    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
+    "categories": { "politics": 20, "economy": 12, "science": 12, "tech": 8 },
     "multiSource": { "value": 15, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 18, "EU": 11, "ME": 10, "AS": 7, "AF": 3, "OC": 1 } },
-    "sciTech": { "ratio": 42, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 8, "target": 20, "met": true },
-    "uniqueSources": 55,
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AF": 6, "ME": 9, "AS": 12, "AM": 16, "EU": 9 } },
+    "sciTech": { "ratio": 38, "target": 25, "met": true },
+    "topSourceShare": { "source": "Hindustan Times", "pct": 10, "target": 20, "met": true },
+    "uniqueSources": 52,
     "duplicates": 0,
-    "avgCycleDuration": 861
+    "avgCycleDuration": 933
   },
-  "experiment": "Skipped — all eight goals met with margin, no active experiment, and no pause gate. The queued numerical-density experiment targets write-prompt.md, which is out of scope for daily tuning; the selector-floor lever for sourcing is documented as tapped (2026-05-09-multi-source-floor-3). No warranted change.",
-  "weakestArea": "Regional balance is the softest spot even though breadth (6 regions) clears its target. The Americas took 18 of 50 articles (36%) while Africa fell 8 -> 3 day-over-day and Oceania drew just 1; the ME/EU/AM cluster dominated. No metric misses target, so this is a distribution skew to watch, not a failure.",
+  "experiment": "Skipped — all metrics within targets and no active experiment to evaluate.",
+  "weakestArea": "Regional spread is the tightest margin: 5 regions vs a floor of 4, with Oceania absent today. Every category, source-concentration, freshness, and educational target is otherwise met with wide headroom (tech 2x floor, sci-tech ratio 38% vs 25%, top source only ~10%).",
   "watching": [
-    "Africa coverage halved-plus (8 -> 3) versus yesterday; watch whether this is one-day feed thinness or the start of a Sahel/sub-Saharan dip.",
-    "Americas share climbed to 36% of output (18/50); regional target is met on breadth but concentration is worth tracking.",
-    "Total output eased to 50 from 54 across the same 5 cycles (avg 8/cycle); consistent with a lighter mid-week feed but worth monitoring for a sustained slide."
+    "Politics ran hot at 20/52 (38% of output) — worth watching that it doesn't crowd the diversity floors on lighter news days.",
+    "Oceania had zero coverage today after 3 articles yesterday; a persistent gap would drag the region count toward the floor."
   ],
   "coverageGaps": [
-    "Oceania (OC) surfaced only 1 article; no Pacific / Australia-NZ depth this cycle.",
-    "Africa (AF) at 3 articles is thin for the region's news volume; sub-Saharan and Sahel coverage was light."
+    "No Oceania (OC) stories today — Pacific/Australasia coverage dropped to zero from 3 yesterday.",
+    "Africa relatively thin at 6/52 despite strong local sourcing (Premium Times, Daily Maverick, Mada Masr, Dawn)."
   ],
-  "context": "Clean day: freshness median 0 with a max of 0.3 days, zero duplicates, 55 unique sources, 15 multi-source articles, sci-tech at 42%, and top source (Dawn) at just 8% share — every goal met with comfortable margin. No experiments active and no noNewExperimentsUntil gate set; with the board healthy and the selector-floor lever exhausted, the correct move is to hold steady rather than introduce a confounding variable. The only live watch-item is regional distribution skewing toward the Americas as Africa and Oceania thin out."
+  "context": "Healthy day: 52 articles across 5 completed cycles, zero duplicates, 52 unique sources, and median freshness of 0 days. No experiment is running and the metrics give no reason to start one, so the pipeline is left untouched."
 }
