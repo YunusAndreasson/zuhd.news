@@ -1,26 +1,26 @@
 {
-  "date": "2026-07-16",
+  "date": "2026-07-17",
   "metrics": {
-    "articles": { "value": 52, "detail": "5 cycles, avg 10/cycle" },
+    "articles": { "value": 42, "detail": "5 cycles, avg 9/cycle (yesterday 65)" },
     "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 20, "economy": 12, "science": 12, "tech": 8 },
-    "multiSource": { "value": 15, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AF": 6, "ME": 9, "AS": 12, "AM": 16, "EU": 9 } },
-    "sciTech": { "ratio": 38, "target": 25, "met": true },
-    "topSourceShare": { "source": "Hindustan Times", "pct": 10, "target": 20, "met": true },
-    "uniqueSources": 52,
+    "categories": { "politics": 15, "economy": 10, "science": 9, "tech": 8 },
+    "multiSource": { "value": 9, "target": 4, "met": true },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 20, "ME": 10, "AS": 7, "AF": 3, "EU": 2 } },
+    "sciTech": { "ratio": 40, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 10, "target": 20, "met": true },
+    "uniqueSources": 43,
     "duplicates": 0,
-    "avgCycleDuration": 933
+    "avgCycleDuration": 849
   },
-  "experiment": "Skipped — all metrics within targets and no active experiment to evaluate.",
-  "weakestArea": "Regional spread is the tightest margin: 5 regions vs a floor of 4, with Oceania absent today. Every category, source-concentration, freshness, and educational target is otherwise met with wide headroom (tech 2x floor, sci-tech ratio 38% vs 25%, top source only ~10%).",
+  "experiment": "Skipped — all four goal areas (freshness, diversity, multi-source, educational value) are within target and no experiment is active. No pause gate set.",
+  "weakestArea": "Regional balance is the weakest area despite meeting the count target. The Americas dominated at 20/42 (48% of output) while Europe managed only 2 and Oceania had zero coverage. The 5-region count clears the ≥4 floor, but the distribution is lopsided toward AM/ME on a quiet news day.",
   "watching": [
-    "Politics ran hot at 20/52 (38% of output) — worth watching that it doesn't crowd the diversity floors on lighter news days.",
-    "Oceania had zero coverage today after 3 articles yesterday; a persistent gap would drag the region count toward the floor."
+    "Output dropped to 42 from yesterday's 65 — a lighter mid-week news day rather than a pipeline fault (all 5 cycles completed, avg 9 published/cycle).",
+    "Middle East coverage remained heavy (10 articles) across Dawn, Mada Masr, Mehr, The New Arab and Al Jazeera — worth tracking whether it stays proportionate as volume recovers."
   ],
   "coverageGaps": [
-    "No Oceania (OC) stories today — Pacific/Australasia coverage dropped to zero from 3 yesterday.",
-    "Africa relatively thin at 6/52 despite strong local sourcing (Premium Times, Daily Maverick, Mada Masr, Dawn)."
+    "Oceania had zero articles today; Europe was thin at 2 — regional spread leaned hard on the Americas.",
+    "Economy (10) and the sci/tech pair are healthy, but politics at 15 is 36% of output, the largest single category."
   ],
-  "context": "Healthy day: 52 articles across 5 completed cycles, zero duplicates, 52 unique sources, and median freshness of 0 days. No experiment is running and the metrics give no reason to start one, so the pipeline is left untouched."
+  "context": "No active or confounded experiments and no noNewExperimentsUntil gate in .experiments.json. Every goal metric is comfortably in range (freshness median 0, sci-tech 40%, multi-source 9, top source Dawn 9.5%, 0 duplicates), so proposing a new variable now would only add noise. The lone queued experiment (2026-05-08-numerical-density) targets write-prompt.md, which is out of scope for daily tuning. Holding steady."
 }
