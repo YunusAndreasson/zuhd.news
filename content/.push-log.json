@@ -1,70 +1,5 @@
 [
   {
-    "timestamp": "2026-06-27T08:21:46.533Z",
-    "candidateCount": 8,
-    "candidates": [
-      {
-        "slug": "2026-06-26-peru-fujimori-extortion-illegal-mining-congress",
-        "title": "Extortion Outlasts Peru's 8 Presidents",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-26-uk-palestine-activist-sentenced-terrorist-property-damage",
-        "title": "Britain Sentences Protesters as Terrorists",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-27-punjab-habitual-offenders-anti-social-behaviour-law",
-        "title": "Punjab Punishes Annoyance, Skips Trials",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-27-saylor-strategy-leverage-bitcoin-systemic-risk",
-        "title": "Strategy's Leverage Model Cracks",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-27-crypto-selloff-capital-rotation-ai-stocks",
-        "title": "Crypto Falls as AI Rallies",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-27-india-msmes-access-capital-markets-growth",
-        "title": "India MSMEs Lack Capital Access",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-27-surveillance-normalization-public-space-data",
-        "title": "Rio Scanned Millions Without Limits",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-27-design-and-analysis-of-modified-octagonal-ring-shaped-mimo-a",
-        "title": "4-Port Antenna Covers 5G, Wi-Fi",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": null,
-    "skipReason": "all 8 candidates below coverage threshold 1",
-    "sent": false
-  },
-  {
     "timestamp": "2026-06-27T12:22:07.917Z",
     "candidateCount": 8,
     "candidates": [
@@ -10042,6 +9977,120 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "China denies Trump's claims of election meddling, calls allegations fabricated",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 21
+    }
+  },
+  {
+    "timestamp": "2026-07-17T17:19:37.972Z",
+    "candidateCount": 13,
+    "candidates": [
+      {
+        "slug": "2026-07-17-mexico-guatemala-earthquake-tsunami-threat",
+        "title": "Chiapas Quake Triggers Tsunami Alert",
+        "category": "science",
+        "eventCoverage": 363,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-us-hong-kong-preferential-trade-status-restore",
+        "title": "US Lets Hong Kong Order Lapse",
+        "category": "economy",
+        "eventCoverage": 212,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-cyclospora-parasite-taco-bell-lettuce-outbreak",
+        "title": "Parasite Lettuce Sickens Thousands",
+        "category": "science",
+        "eventCoverage": 159,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-apple-overtakes-nvidia-most-valuable-ai-value-shift",
+        "title": "Apple Overtakes Nvidia",
+        "category": "tech",
+        "eventCoverage": 136,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-reliance-q1-petrochemicals-us-iran-war-margins",
+        "title": "Reliance Profits From Oil Chaos",
+        "category": "economy",
+        "eventCoverage": 61,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-16-myanmar-andaman-shipwrecks-migrants-drowned",
+        "title": "Andaman Sea Claims 500",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-sudan-us-truce-proposal-rsf-withdrawal-sticking-point",
+        "title": "Sudan Truce Stalls Again",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-emefiele-supreme-court-asset-forfeiture-nigeria",
+        "title": "Nigeria Seizes Emefiele Estate",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-16-pacific-islands-australia-security-pacts-agency",
+        "title": "Pacific Pacts Crowd Out Islands",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-robinhood-chain-defi-retail-rwa-memecoin-gap",
+        "title": "Robinhood Chain Chases Memecoins",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-tibetan-plateau-elevation-warming-asia-water",
+        "title": "Plateau's Highest Ice Warms Fastest",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-ice-thomson-reuters-clear-data-voter-fraud-surveillance",
+        "title": "ICE Buys Mass Surveillance Data",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-consensys-north-korea-it-worker-infiltration",
+        "title": "North Korean Coded MetaMask",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-07-17-mexico-guatemala-earthquake-tsunami-threat",
+      "title": "Chiapas Quake Triggers Tsunami Alert",
+      "category": "science",
+      "body": "A 7.3-magnitude quake struck 30 miles",
+      "eventCoverage": 363,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "7.3 magnitude quake hits Mexico, tsunami alert issued for coast",
     "response": {
       "pushed": 1,
       "skipped": 0,
