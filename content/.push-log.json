@@ -1,84 +1,5 @@
 [
   {
-    "timestamp": "2026-06-27T12:22:07.917Z",
-    "candidateCount": 8,
-    "candidates": [
-      {
-        "slug": "2026-06-26-a-large-harmless-asteroid-will-zip-past-earth-this-weekend",
-        "title": "Asteroid 1997 NC1 Passes Earth",
-        "category": "science",
-        "eventCoverage": 205,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-27-ukraine-flamingo-missile-volgograd-arms-plant-strike",
-        "title": "Ukraine Flamingo Strikes Volgograd Plant",
-        "category": "economy",
-        "eventCoverage": 153,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-27-ukraine-strikes-russian-oil-hub-40-day-campaign",
-        "title": "Ukraine Hits Moscow Oil Supply",
-        "category": "economy",
-        "eventCoverage": 50,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-27-us-india-trade-deal-trump-visit-2027-rubio",
-        "title": "US-India Trade Deal Nears",
-        "category": "economy",
-        "eventCoverage": 30,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-27-zamfara-attack-displaces-484-northwest-nigeria-idp-800000",
-        "title": "Bandits Displace 484 in Zamfara",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-26-venezuela-earthquake-us-c17-relief-airlift",
-        "title": "Quakes Kill 900 in Venezuela",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-27-scotus-roundup-glyphosate-law-vs-science",
-        "title": "Court Blocks Roundup Cancer Suits",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-27-dual-graph-transformer-molecular-property-prediction",
-        "title": "Transformer Boosts Molecular Prediction",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-06-26-a-large-harmless-asteroid-will-zip-past-earth-this-weekend",
-      "title": "Asteroid 1997 NC1 Passes Earth",
-      "category": "science",
-      "body": "A 1.6-km asteroid passes Earth Saturday.",
-      "eventCoverage": 205,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Asteroid 1997 NC1 passes Earth at closest distance in 4 centuries",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 27
-    }
-  },
-  {
     "timestamp": "2026-06-27T17:26:23.870Z",
     "candidateCount": 11,
     "candidates": [
@@ -10091,6 +10012,120 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "7.3 magnitude quake hits Mexico, tsunami alert issued for coast",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 21
+    }
+  },
+  {
+    "timestamp": "2026-07-17T22:21:48.868Z",
+    "candidateCount": 13,
+    "candidates": [
+      {
+        "slug": "2026-07-17-israeli-strikes-gaza-kill-8-palestinians-funeral",
+        "title": "Drone Hits Gaza Funeral",
+        "category": "politics",
+        "eventCoverage": 172,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-netflix-earnings-drop-guidance-miss-streaming",
+        "title": "Netflix Falls on Guidance",
+        "category": "economy",
+        "eventCoverage": 93,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-ukraine-poland-volhynia-military-honour-row",
+        "title": "Zelenskiy Mends Poland Rift",
+        "category": "politics",
+        "eventCoverage": 70,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-trump-canada-tariff-wildfire-smoke-threat",
+        "title": "Trump Ties Tariffs to Smoke",
+        "category": "economy",
+        "eventCoverage": 69,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-wildfire-smoke-air-quality-brown-carbon-health",
+        "title": "Clear Skies Hide Smoke Danger",
+        "category": "science",
+        "eventCoverage": 54,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-uaw-federal-monitor-barofsky-fain-israel-pressure",
+        "title": "Monitor Pressured UAW Chief",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-venezuela-earthquake-child-protection-system",
+        "title": "Quake Exposes Child Safety Gaps",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-pakistan-petrol-diesel-price-hike-fuel-inflation",
+        "title": "Pakistan Diesel Price Jumps",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-hegseth-military-testosterone-screening-mandate",
+        "title": "Pentagon Mandates T Screening",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-tuberculosis-drug-discovery-ai-screening",
+        "title": "AI Triages TB Drug Search",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-fairlife-dairy-cyber-incident-production-halt",
+        "title": "Cyberattack Halts Dairy Plants",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-16-sony-deletes-purchased-movies-digital-ownership",
+        "title": "Sony Erases Bought Movies",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-firesat-google-wildfire-detection-satellites-launch",
+        "title": "FireSat Satellites Reach Orbit",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-07-17-israeli-strikes-gaza-kill-8-palestinians-funeral",
+      "title": "Drone Hits Gaza Funeral",
+      "category": "politics",
+      "body": "8 mourners died as they buried their",
+      "eventCoverage": 172,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Israeli drone strikes Gaza funeral, kills 8 mourners officials say",
     "response": {
       "pushed": 1,
       "skipped": 0,
