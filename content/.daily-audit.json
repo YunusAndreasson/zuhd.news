@@ -1,26 +1,26 @@
 {
-  "date": "2026-07-17",
+  "date": "2026-07-18",
   "metrics": {
-    "articles": { "value": 42, "detail": "5 cycles, avg 9/cycle (yesterday 65)" },
-    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 15, "economy": 10, "science": 9, "tech": 8 },
-    "multiSource": { "value": 9, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 20, "ME": 10, "AS": 7, "AF": 3, "EU": 2 } },
+    "articles": { "value": 50, "detail": "5 cycles, avg 9/cycle, avg duration 915s" },
+    "freshness": { "median": 0.4, "p90": 1.4, "max": 1.4, "target": 1.0, "met": true },
+    "categories": { "politics": 18, "economy": 12, "science": 11, "tech": 9 },
+    "multiSource": { "value": 10, "target": 4, "met": true },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 14, "EU": 13, "ME": 12, "AS": 7, "AF": 4 } },
     "sciTech": { "ratio": 40, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 10, "target": 20, "met": true },
-    "uniqueSources": 43,
+    "topSourceShare": { "source": "Dawn", "pct": 12, "target": 20, "met": true },
+    "uniqueSources": 41,
     "duplicates": 0,
-    "avgCycleDuration": 849
+    "avgCycleDuration": 915
   },
-  "experiment": "Skipped — all four goal areas (freshness, diversity, multi-source, educational value) are within target and no experiment is active. No pause gate set.",
-  "weakestArea": "Regional balance is the weakest area despite meeting the count target. The Americas dominated at 20/42 (48% of output) while Europe managed only 2 and Oceania had zero coverage. The 5-region count clears the ≥4 floor, but the distribution is lopsided toward AM/ME on a quiet news day.",
+  "experiment": "Skipped — all metrics within targets and no active experiment to evaluate. No pause gate in effect.",
+  "weakestArea": "Africa is the thinnest region at 4 articles versus 12-14 for the Americas, Europe, and Middle East, and Oceania had no coverage at all. Regional diversity still clears the >=4-region target comfortably, but AF/OC depth is the recurring soft spot; it stems from feed supply, not a tunable floor, so no parameter lever applies today.",
   "watching": [
-    "Output dropped to 42 from yesterday's 65 — a lighter mid-week news day rather than a pipeline fault (all 5 cycles completed, avg 9 published/cycle).",
-    "Middle East coverage remained heavy (10 articles) across Dawn, Mada Masr, Mehr, The New Arab and Al Jazeera — worth tracking whether it stays proportionate as volume recovers."
+    "Politics ran heavy at 18/50 (36%) — highest category; worth confirming it doesn't crowd the sci-tech mix on lighter news days.",
+    "Multi-source count of 10 is well above the floor of 4 and the healthiest reading in weeks; prior history shows the feed caps published multi-source rate near ~22%, so treat this as a good-supply day rather than a new baseline."
   ],
   "coverageGaps": [
-    "Oceania had zero articles today; Europe was thin at 2 — regional spread leaned hard on the Americas.",
-    "Economy (10) and the sci/tech pair are healthy, but politics at 15 is 36% of output, the largest single category."
+    "Oceania had zero articles today; Africa only 4 — persistent underweight in the global South relative to AM/EU/ME.",
+    "Africa depth remains feed-limited (Premium Times, Daily Maverick, SciDev.Net are the main channels) rather than a selector-floor issue."
   ],
-  "context": "No active or confounded experiments and no noNewExperimentsUntil gate in .experiments.json. Every goal metric is comfortably in range (freshness median 0, sci-tech 40%, multi-source 9, top source Dawn 9.5%, 0 duplicates), so proposing a new variable now would only add noise. The lone queued experiment (2026-05-08-numerical-density) targets write-prompt.md, which is out of scope for daily tuning. Holding steady."
+  "context": "All four editorial goals (freshness, diversity, multi-source, educational value) are met with margin: freshness median 0.4 days, sci-tech 40%, top-source share 12%, zero duplicates across 5 clean cycles. No active experiments and no noNewExperimentsUntil gate, but metrics are healthy so no new experiment is warranted. Note the queued numerical-density experiment targets scripts/write-prompt.md, which is out of scope for daily tuning."
 }
