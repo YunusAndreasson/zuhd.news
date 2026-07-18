@@ -1,84 +1,5 @@
 [
   {
-    "timestamp": "2026-06-28T12:19:10.009Z",
-    "candidateCount": 8,
-    "candidates": [
-      {
-        "slug": "2026-06-28-france-heatwave-1000-excess-deaths-elderly-climate",
-        "title": "France Heatwave Kills 1,000",
-        "category": "science",
-        "eventCoverage": 135,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-28-sonam-wangchuk-hunger-strike-delhi-police-ladakh-autonomy",
-        "title": "Delhi Police Target Wangchuk Strike",
-        "category": "politics",
-        "eventCoverage": 30,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-28-modi-gold-foreign-travel-appeal-rupee-import-bill",
-        "title": "Modi Urges Gold, Travel Sacrifice",
-        "category": "economy",
-        "eventCoverage": 29,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-28-uganda-muhoozi-ntv-daily-monitor-media-shutdown",
-        "title": "Uganda General Shuts Press",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-28-kaduna-lynching-arrests-accountability-police-complicity",
-        "title": "Kaduna Lynching Draws 41 Arrests",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-28-ukraine-154-billion-western-financing-dependency",
-        "title": "Ukraine Needs $154 Billion",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-28-delipidated-adipocyte-reprogramming-regenerative-medicine",
-        "title": "Fat Cells Become Stem Cells",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-28-iran-umbilical-cord-stem-cell-therapy-osteoarthritis-royan",
-        "title": "Iran Clears Domestic Cell Therapy",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-06-28-france-heatwave-1000-excess-deaths-elderly-climate",
-      "title": "France Heatwave Kills 1,000",
-      "category": "science",
-      "body": "[France](country:FR) counted 1,000 excess deaths since June",
-      "eventCoverage": 135,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "France heatwave kills 1,000 in 4 days, mostly elderly, officials say",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 27
-    }
-  },
-  {
     "timestamp": "2026-06-28T17:19:11.070Z",
     "candidateCount": 11,
     "candidates": [
@@ -10133,6 +10054,106 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Venezuela earthquake death toll passes 5,000, officials say",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 19
+    }
+  },
+  {
+    "timestamp": "2026-07-18T22:21:42.842Z",
+    "candidateCount": 11,
+    "candidates": [
+      {
+        "slug": "2026-07-18-iran-two-us-troops-killed-jordan-desalination-strike",
+        "title": "Iran Kills Two US Troops",
+        "category": "politics",
+        "eventCoverage": 540,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-18-hungary-president-sulyok-constitutional-removal",
+        "title": "Hungary Erases Its President",
+        "category": "politics",
+        "eventCoverage": 130,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-18-lebanese-soldier-killed-explosive-mansouri-south-lebanon",
+        "title": "Blast Kills Lebanese Soldier",
+        "category": "politics",
+        "eventCoverage": 101,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-18-iraq-48-us-deals-oil-pipeline-mediterranean-corridor",
+        "title": "Iraq Bypasses Hormuz Chokepoint",
+        "category": "economy",
+        "eventCoverage": 39,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-18-trump-foreign-journalist-visa-duration-of-status-review",
+        "title": "US Caps Journalist Visas",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-indonesia-morocco-north-africa-trade-gateway",
+        "title": "Indonesia Picks Morocco Gateway",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-18-digital-wallets-super-app-bank-account-stablecoins",
+        "title": "Wallets Erode Bank Deposits",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-18-environmental-performance-index-2026-net-zero-off-track",
+        "title": "World Off Net-Zero Track",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-18-leishmaniasis-macrophage-polarization-signatures",
+        "title": "Immune Signature Predicts Disfigurement",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-18-ai-stackoverflow-questions-decline-data-commons",
+        "title": "AI Starves Its Own Data",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-17-behind-the-blog-infinite-bowl-machine",
+        "title": "AI Deepfakes Spread Unchecked",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-07-18-iran-two-us-troops-killed-jordan-desalination-strike",
+      "title": "Iran Kills Two US Troops",
+      "category": "politics",
+      "body": "Iranian missiles killed 2 [US](country:US) troops, the Pentagon",
+      "eventCoverage": 540,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Iranian missiles kill 2 US troops at base in Jordan",
     "response": {
       "pushed": 1,
       "skipped": 0,
