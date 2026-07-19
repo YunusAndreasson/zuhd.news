@@ -1,122 +1,62 @@
 #!/usr/bin/env bash
-set -euo pipefail
-cd "$(dirname "$0")/.."
-
-# Update all dependencies to latest, then pin to Expo-compatible versions.
-# Preserves version prefix style (^, ~, exact).
+# Keep dependencies current without accidentally migrating to another Expo SDK.
 #
 # Usage:
-#   ./scripts/update-deps.sh            # update everything
-#   ./scripts/update-deps.sh --dry-run  # preview only
+#   npm run deps:check          # report only (default)
+#   npm run deps:update         # update within declared semver ranges
+#   npm run deps:update:latest  # cross major versions, then re-pin Expo packages
+set -euo pipefail
 
-DRY_RUN=false
-[[ "${1:-}" == "--dry-run" ]] && DRY_RUN=true
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+APP_DIR="$(dirname "$SCRIPT_DIR")"
+APPLY=0
+LATEST=0
 
-if $DRY_RUN; then
-  echo "=== Dry run ==="
-  echo ""
-  echo "Outdated packages:"
-  npm outdated 2>/dev/null || true
-  echo ""
-  echo "Expo compatibility:"
-  npx expo install --check 2>/dev/null || true
+for arg in "$@"; do
+  case "$arg" in
+    --apply) APPLY=1 ;;
+    --latest) LATEST=1 ;;
+    --) ;;
+    -h|--help) sed -n '2,7p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+    *) echo "error: unknown argument '$arg' (try --help)" >&2; exit 1 ;;
+  esac
+done
+
+cd "$APP_DIR"
+
+echo "▸ [1/5] Checking Expo SDK compatibility…"
+npx expo install --check --npm || true
+
+echo
+echo "▸ [2/5] Checking for outdated dependencies…"
+npm outdated || true
+
+if [ "$APPLY" -eq 0 ]; then
+  echo
+  echo "▸ Dry run complete — nothing was changed."
+  echo "  Run npm run deps:update (or deps:update:latest to cross majors)."
   exit 0
 fi
 
-# Snapshot before
-BEFORE=$(jq -r '(.dependencies // {}) + (.devDependencies // {}) | to_entries[] | "\(.key) \(.value)"' package.json | sort)
+echo
+if [ "$LATEST" -eq 1 ]; then
+  echo "▸ [3/5] Updating direct dependencies to their latest releases…"
+  # The Expo SDK itself is a deliberate migration; Expo-managed packages are
+  # updated separately in the next step against the currently installed SDK.
+  npx --yes npm-check-updates --upgrade --reject expo
+  npm install
+else
+  echo "▸ [3/5] Updating dependencies within package.json semver ranges…"
+  npm update --save
+fi
 
-node -e '
-const { execSync } = require("child_process");
-const fs = require("fs");
+echo
+echo "▸ [4/5] Re-pinning Expo-managed packages to SDK-compatible versions…"
+npx expo install --fix --npm
 
-function getPrefix(spec) {
-  if (spec.startsWith("~")) return "~";
-  if (spec.startsWith("^")) return "^";
-  return "";
-}
+echo
+echo "▸ [5/5] Validating the installed dependency tree…"
+npx expo-doctor || true
 
-function latestVersion(name) {
-  try {
-    return execSync(`npm view ${name} version 2>/dev/null`, { encoding: "utf8" }).trim();
-  } catch { return null; }
-}
-
-function readPkg() {
-  return JSON.parse(fs.readFileSync("package.json", "utf8"));
-}
-
-function writePkg(pkg) {
-  fs.writeFileSync("package.json", JSON.stringify(pkg, null, 2) + "\n");
-}
-
-// Phase 1: bump everything to latest
-console.log("→ Updating to latest...");
-let pkg = readPkg();
-let changed = 0;
-for (const field of ["dependencies", "devDependencies"]) {
-  if (!pkg[field]) continue;
-  for (const [name, spec] of Object.entries(pkg[field])) {
-    const prefix = getPrefix(spec);
-    const latest = latestVersion(name);
-    if (!latest) continue;
-    const newSpec = prefix + latest;
-    if (newSpec !== spec) {
-      console.log("  %s: %s → %s", name, spec, newSpec);
-      pkg[field][name] = newSpec;
-      changed++;
-    }
-  }
-}
-if (changed === 0) console.log("  All packages already at latest.");
-writePkg(pkg);
-
-// Install so expo check sees actual versions
-console.log("\n→ Installing...");
-execSync("npm install 2>&1", { encoding: "utf8", stdio: "pipe" });
-
-// Phase 2: read expo check and pin incompatible packages
-console.log("→ Syncing with Expo...");
-let expoJson = {};
-try {
-  expoJson = JSON.parse(execSync("npx expo install --check --json 2>&1", { encoding: "utf8" }));
-} catch (e) {
-  try { expoJson = JSON.parse(e.stdout || "{}"); } catch { /* no expo issues */ }
-}
-
-let pinned = 0;
-pkg = readPkg(); // re-read (npm install may have modified)
-if (expoJson.dependencies && expoJson.dependencies.length) {
-  for (const dep of expoJson.dependencies) {
-    const field = dep.packageType || "dependencies";
-    if (pkg[field]?.[dep.packageName]) {
-      const old = pkg[field][dep.packageName];
-      const expected = dep.expectedVersionOrRange;
-      if (old !== expected) {
-        console.log("  pin %s: %s → %s", dep.packageName, old, expected);
-        pkg[field][dep.packageName] = expected;
-        pinned++;
-      }
-    }
-  }
-}
-if (pinned === 0) {
-  console.log("  All Expo-managed deps compatible.");
-} else {
-  writePkg(pkg);
-  console.log("  Pinned %d package(s).", pinned);
-  console.log("\n→ Reinstalling...");
-  execSync("npm install 2>&1", { encoding: "utf8", stdio: "pipe" });
-}
-'
-
-# Show diff
-AFTER=$(jq -r '(.dependencies // {}) + (.devDependencies // {}) | to_entries[] | "\(.key) \(.value)"' package.json | sort)
-echo ""
-echo "=== Changes ==="
-diff --color=auto <(echo "$BEFORE") <(echo "$AFTER") && echo "  (none)" || true
-
-# Verify
-echo ""
-echo "→ Expo compatibility:"
-npx expo install --check 2>&1 || true
+echo
+echo "▸ Done. Review package.json and package-lock.json before committing."
