@@ -1,10 +1,9 @@
 import type { HeatmapPoint } from '@shared/types';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useRef } from 'react';
-import { API_BASE, STALE_THRESHOLD } from '../constants/theme';
+import { API_BASE } from '../constants/theme';
 import { fetchJson } from '../lib/fetchJson';
 import { isHeatmapResponse } from '../lib/validate';
-import { useAppResume } from './useAppResume';
 
 const EMPTY_POINTS: HeatmapPoint[] = [];
 const HEATMAP_QUERY_KEY = ['heatmap'] as const;
@@ -42,10 +41,6 @@ export function useHeatmap(feedGenerated: string | null): HeatmapResult {
     lastInvalidatedRef.current = feedGenerated;
     queryClient.invalidateQueries({ queryKey: HEATMAP_QUERY_KEY });
   }, [feedGenerated, query.data?.generated, queryClient]);
-
-  useAppResume(() => {
-    queryClient.invalidateQueries({ queryKey: HEATMAP_QUERY_KEY });
-  }, STALE_THRESHOLD);
 
   return {
     points: query.data?.points ?? EMPTY_POINTS,

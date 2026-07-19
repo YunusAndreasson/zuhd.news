@@ -64,6 +64,9 @@ export function useArticles(): ArticlesState {
         timeoutMs: 10000,
         signal,
       }),
+    // The feed performs a cheap /meta.json probe on focus before deciding
+    // whether the much larger feed payload needs downloading.
+    refetchOnWindowFocus: false,
   });
 
   // Seed prevSlugsRef + lastGeneratedRef on first data arrival (either from

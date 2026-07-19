@@ -1,12 +1,15 @@
 import { File, Paths } from 'expo-file-system';
 import * as SecureStore from 'expo-secure-store';
+import Storage from 'expo-sqlite/kv-store';
 import { DEFAULT_PREFS, type Preferences } from '../constants/theme';
 import { isPreferences } from './validate';
 
-// UX state — not secrets. Lives in the document directory; SecureStore is
-// reserved for auth tokens.
+// UX state — not secrets. SQLite kv-store is the active backing store;
+// document files and SecureStore remain migration sources only.
 const LAST_SEEN_FILE = new File(Paths.document, 'zuhd-last-seen');
 const PREFS_FILE = new File(Paths.document, 'zuhd-preferences.json');
+const LAST_SEEN_KEY = 'zuhd_last_seen';
+const PREFS_KEY = 'zuhd_preferences_v2';
 
 // Legacy SecureStore keys — read once for migration, then cleared.
 const LEGACY_LAST_SEEN_KEY = 'zuhd_lastSeenAt';
@@ -26,44 +29,51 @@ async function migrateFromSecureStore(key: string, file: File): Promise<string |
 
 export async function getLastSeenAt(): Promise<number> {
   try {
+    const stored = await Storage.getItem(LAST_SEEN_KEY);
+    if (stored !== null) return parseInt(stored, 10) || 0;
     if (LAST_SEEN_FILE.exists) {
       const v = await LAST_SEEN_FILE.text();
+      await Storage.setItem(LAST_SEEN_KEY, v);
       return parseInt(v, 10) || 0;
     }
     const migrated = await migrateFromSecureStore(LEGACY_LAST_SEEN_KEY, LAST_SEEN_FILE);
+    if (migrated) await Storage.setItem(LAST_SEEN_KEY, migrated);
     return migrated ? parseInt(migrated, 10) || 0 : 0;
   } catch {
     return 0;
   }
 }
 
-// Async signature is intentional: it keeps the storage API uniformly
-// Promise-based alongside the genuinely-async getters and lets the backing
-// store swap to an async one without touching callers. `File.write` itself is
-// synchronous in expo-file-system, hence no await.
-// biome-ignore lint/suspicious/useAwait: stable async storage API; see note above
 export async function saveLastSeenAt(ts: number): Promise<void> {
   try {
-    LAST_SEEN_FILE.write(String(ts));
+    await Storage.setItem(LAST_SEEN_KEY, String(ts));
   } catch {}
 }
 
 export async function getPreferences(): Promise<Preferences> {
   try {
-    const text = PREFS_FILE.exists
-      ? await PREFS_FILE.text()
-      : await migrateFromSecureStore(LEGACY_PREFS_KEY, PREFS_FILE);
+    let text = await Storage.getItem(PREFS_KEY);
+    let shouldMigrate = false;
+    if (!text && PREFS_FILE.exists) {
+      text = await PREFS_FILE.text();
+      shouldMigrate = true;
+    }
+    if (!text) {
+      text = await migrateFromSecureStore(LEGACY_PREFS_KEY, PREFS_FILE);
+      shouldMigrate = !!text;
+    }
     if (!text) return DEFAULT_PREFS;
     const merged = { ...DEFAULT_PREFS, ...JSON.parse(text) };
-    return isPreferences(merged) ? merged : DEFAULT_PREFS;
+    if (!isPreferences(merged)) return DEFAULT_PREFS;
+    if (shouldMigrate) await Storage.setItem(PREFS_KEY, JSON.stringify(merged));
+    return merged;
   } catch {
     return DEFAULT_PREFS;
   }
 }
 
-// biome-ignore lint/suspicious/useAwait: stable async storage API; see saveLastSeenAt
 export async function savePreferences(prefs: Preferences): Promise<void> {
   try {
-    PREFS_FILE.write(JSON.stringify(prefs));
+    await Storage.setItem(PREFS_KEY, JSON.stringify(prefs));
   } catch {}
 }

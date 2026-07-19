@@ -1,6 +1,7 @@
 import { File, Paths } from 'expo-file-system';
 import * as Notifications from 'expo-notifications';
 import * as SecureStore from 'expo-secure-store';
+import Storage from 'expo-sqlite/kv-store';
 import { getPreferences } from './storage';
 
 // ---------------------------------------------------------------------------
@@ -45,6 +46,7 @@ export const MAX_HINT_SHOWS = 3;
 const NOTIF_ASKED_KEY = 'zuhd_notif_asked';
 
 const ONBOARDING_FILE = new File(Paths.document, 'zuhd-onboarding.json');
+const ONBOARDING_KEY = 'zuhd_onboarding';
 
 // ---------------------------------------------------------------------------
 // Seeding
@@ -76,7 +78,9 @@ function isExistingUser(): boolean {
   try {
     return (
       new File(Paths.document, 'zuhd-last-seen').exists ||
-      new File(Paths.document, 'zuhd-bookmarks.json').exists
+      new File(Paths.document, 'zuhd-bookmarks.json').exists ||
+      Storage.getItemSync('zuhd_last_seen') !== null ||
+      Storage.getItemSync('zuhd_bookmarks') !== null
     );
   } catch {
     return false;
@@ -108,10 +112,13 @@ let justSeeded = false;
 // flash. Corrupt/missing file → reseed via the existing-user check
 // (fail-quiet: worst case an existing user sees zero hints).
 try {
-  if (ONBOARDING_FILE.exists) {
-    const parsed: unknown = JSON.parse(ONBOARDING_FILE.textSync());
+  const stored = Storage.getItemSync(ONBOARDING_KEY);
+  const text = stored ?? (ONBOARDING_FILE.exists ? ONBOARDING_FILE.textSync() : null);
+  if (text) {
+    const parsed: unknown = JSON.parse(text);
     if (isOnboardingState(parsed)) {
       state = parsed;
+      if (stored === null) Storage.setItemSync(ONBOARDING_KEY, text);
     } else {
       state = seed(isExistingUser());
       justSeeded = true;
@@ -141,7 +148,7 @@ function persistNow() {
   if (persistTimer) clearTimeout(persistTimer);
   persistTimer = null;
   try {
-    ONBOARDING_FILE.write(JSON.stringify(state));
+    Storage.setItemSync(ONBOARDING_KEY, JSON.stringify(state));
   } catch {}
 }
 

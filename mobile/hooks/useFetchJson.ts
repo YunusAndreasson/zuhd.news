@@ -1,7 +1,5 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { STALE_THRESHOLD } from '../constants/theme';
+import { useQuery } from '@tanstack/react-query';
 import { fetchJson } from '../lib/fetchJson';
-import { useAppResume } from './useAppResume';
 
 interface Options {
   /** Re-fetch when the app returns to the foreground after STALE_THRESHOLD.
@@ -29,19 +27,14 @@ export function useFetchJson<T>(
   options?: Options,
 ): Result<T> {
   const refreshOnResume = options?.refreshOnResume ?? false;
-  const queryClient = useQueryClient();
   const query = useQuery<T, Error>({
     queryKey: ['fetch-json', url],
     queryFn: ({ signal }) => fetchJson<T>(url, validate, { signal }),
+    refetchOnWindowFocus: refreshOnResume,
+    refetchOnReconnect: refreshOnResume,
     // Persister roundtrip needs a structural-clone-safe payload; queryFn
     // returns plain JSON so no special serializer needed.
   });
-
-  useAppResume(() => {
-    if (refreshOnResume) {
-      queryClient.invalidateQueries({ queryKey: ['fetch-json', url] });
-    }
-  }, STALE_THRESHOLD);
 
   return {
     data: query.data ?? null,
