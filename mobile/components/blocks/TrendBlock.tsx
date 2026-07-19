@@ -148,7 +148,7 @@ const Chart = memo(function Chart({
     const seriesPaths: { path: SkPath; color: string }[] = series.map((s, sIdx) => {
       const pts = s.values.map((v, i) => ({ x: xFor(i), y: yScale(v) }));
       const d = lineGen(pts) ?? '';
-      const path = Skia.Path.MakeFromSVGString(d) ?? Skia.Path.Make();
+      const path = Skia.Path.MakeFromSVGString(d) ?? Skia.PathBuilder.Make().detach();
       const color =
         sIdx === 0 ? colors.textEmphasis : sIdx === 1 ? colors.accent : colors.textSecondary;
       return { path, color };
@@ -163,7 +163,7 @@ const Chart = memo(function Chart({
         .curve(curveMonotoneX);
       const bandPts = band.low.map((lo, i) => ({ idx: i, lo, hi: band.high[i] ?? lo }));
       const d = areaGen(bandPts) ?? '';
-      bandPath = Skia.Path.MakeFromSVGString(d) ?? Skia.Path.Make();
+      bandPath = Skia.Path.MakeFromSVGString(d) ?? Skia.PathBuilder.Make().detach();
     }
 
     // Use the FIRST series for scrub dots / data ticks; multi-series scrub

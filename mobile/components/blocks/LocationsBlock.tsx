@@ -414,44 +414,48 @@ export const LocationsBlock = memo(function LocationsBlock({
     const ctx = createSkiaPathContext();
     const pg = geoPath(projection).context(ctx);
 
-    const landPath = Skia.Path.Make();
-    ctx.setPath(landPath);
+    const landBuilder = Skia.PathBuilder.Make();
+    ctx.setPath(landBuilder);
     pg(getLandHiRes());
+    const landPath = landBuilder.detach();
 
-    const borderPath = Skia.Path.Make();
-    ctx.setPath(borderPath);
+    const borderBuilder = Skia.PathBuilder.Make();
+    ctx.setPath(borderBuilder);
     pg(getBordersMeshHiRes());
+    const borderPath = borderBuilder.detach();
 
-    const lakesPath = Skia.Path.Make();
-    ctx.setPath(lakesPath);
+    const lakesBuilder = Skia.PathBuilder.Make();
+    ctx.setPath(lakesBuilder);
     pg(getLakesHiRes());
+    const lakesPath = lakesBuilder.detach();
 
     // Rivers — only draw major ones (scalerank ≤ 5). At world/continent
     // zoom levels the finer ranks become visual noise without adding
     // information, and the dropped rank is what NE intends for this scale.
-    const riversPath = Skia.Path.Make();
-    ctx.setPath(riversPath);
+    const riversBuilder = Skia.PathBuilder.Make();
+    ctx.setPath(riversBuilder);
     const majorRivers: GeoJSON.Feature<GeoJSON.LineString | GeoJSON.MultiLineString>[] =
       getRiversHiRes().features.filter((f) => {
         const rank = (f.properties as { scalerank?: number } | undefined)?.scalerank;
         return typeof rank === 'number' && rank <= 5;
       });
     pg({ type: 'FeatureCollection', features: majorRivers } as never);
+    const riversPath = riversBuilder.detach();
 
     let highlightedFillPath: SkPath | null = null;
     if (highlightedFeatures.length > 0) {
-      const p = Skia.Path.Make();
-      ctx.setPath(p);
+      const builder = Skia.PathBuilder.Make();
+      ctx.setPath(builder);
       pg({ type: 'FeatureCollection', features: highlightedFeatures } as never);
-      highlightedFillPath = p;
+      highlightedFillPath = builder.detach();
     }
 
     let selectedFillPath: SkPath | null = null;
     if (selectedFeature) {
-      const p = Skia.Path.Make();
-      ctx.setPath(p);
+      const builder = Skia.PathBuilder.Make();
+      ctx.setPath(builder);
       pg(selectedFeature);
-      selectedFillPath = p;
+      selectedFillPath = builder.detach();
     }
     return {
       landPath,
@@ -536,10 +540,10 @@ export const LocationsBlock = memo(function LocationsBlock({
       if (!r.feature) continue;
       const entry = byCode.get(r.code.toUpperCase());
       if (!entry) continue;
-      const p = Skia.Path.Make();
-      ctx.setPath(p);
+      const builder = Skia.PathBuilder.Make();
+      ctx.setPath(builder);
       pg(r.feature);
-      fills.push({ code: r.code, path: p, color: entry.color, value: entry.value });
+      fills.push({ code: r.code, path: builder.detach(), color: entry.color, value: entry.value });
     }
     return { fills, domain };
   }, [values, projection, resolved, width, height]);

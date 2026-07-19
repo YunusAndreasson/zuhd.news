@@ -92,7 +92,7 @@ export const SankeyBlock = memo(function SankeyBlock({
       const linkPathBuilder = sankeyLinkHorizontal();
       const laidLinks = (out.links as LaidOutLink[]).map((l) => {
         const d = linkPathBuilder(l as never) ?? '';
-        const path = Skia.Path.MakeFromSVGString(d) ?? Skia.Path.Make();
+        const path = Skia.Path.MakeFromSVGString(d) ?? Skia.PathBuilder.Make().detach();
         return { l, path };
       });
       return {
