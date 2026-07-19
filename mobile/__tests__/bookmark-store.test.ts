@@ -84,7 +84,11 @@ describe('bookmark SQLite persistence', () => {
     mockKv.set('zuhd_bookmarks', JSON.stringify(current));
     mockFiles.set('/doc/zuhd-bookmarks.json', JSON.stringify(stale));
 
-    expect(loadStore().getSnapshot().map((entry) => entry.article.slug)).toEqual(['current']);
+    expect(
+      loadStore()
+        .getSnapshot()
+        .map((entry) => entry.article.slug),
+    ).toEqual(['current']);
   });
 
   it('rejects malformed persisted entries instead of exposing them to UI', () => {
@@ -104,7 +108,10 @@ describe('bookmark SQLite persistence', () => {
     store.flushBookmarks();
     expect(listener).toHaveBeenCalledTimes(1);
     expect(JSON.parse(mockKv.get('zuhd_bookmarks') as string)[0]).toEqual(
-      expect.objectContaining({ category: 'science', article: expect.objectContaining({ slug: 'saved' }) }),
+      expect.objectContaining({
+        category: 'science',
+        article: expect.objectContaining({ slug: 'saved' }),
+      }),
     );
 
     expect(store.toggle(article('saved'), 'science')).toBe(false);

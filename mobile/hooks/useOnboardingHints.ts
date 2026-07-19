@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import * as Notifications from 'expo-notifications';
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { AccessibilityInfo } from 'react-native';
 import {
   dismissHint,

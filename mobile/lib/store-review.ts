@@ -34,9 +34,7 @@ async function hydrate() {
       promptedStr ??= legacyPrompted;
       await Promise.all([
         legacyCount === null ? Promise.resolve() : Storage.setItem(COUNT_KEY, legacyCount),
-        legacyPrompted === null
-          ? Promise.resolve()
-          : Storage.setItem(PROMPTED_KEY, legacyPrompted),
+        legacyPrompted === null ? Promise.resolve() : Storage.setItem(PROMPTED_KEY, legacyPrompted),
       ]);
     }
     memCount = parseInt(countStr ?? '0', 10) || 0;

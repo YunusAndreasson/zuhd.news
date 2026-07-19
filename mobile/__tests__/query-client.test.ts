@@ -65,7 +65,9 @@ describe('TanStack Query native lifecycle configuration', () => {
     });
     jest.isolateModules(() => require('../lib/query-client'));
 
-    const install = mockFocusListener.mock.calls[0][0] as (setFocused: (v: boolean) => void) => () => void;
+    const install = mockFocusListener.mock.calls[0][0] as (
+      setFocused: (v: boolean) => void,
+    ) => () => void;
     const setFocused = jest.fn();
     const cleanup = install(setFocused);
     expect(setFocused).toHaveBeenCalledWith(true);
@@ -92,7 +94,9 @@ describe('TanStack Query native lifecycle configuration', () => {
     });
     jest.isolateModules(() => require('../lib/query-client'));
 
-    const install = mockOnlineListener.mock.calls[0][0] as (setOnline: (v: boolean) => void) => () => void;
+    const install = mockOnlineListener.mock.calls[0][0] as (
+      setOnline: (v: boolean) => void,
+    ) => () => void;
     const setOnline = jest.fn();
     const cleanup = install(setOnline);
     networkChange?.({ isConnected: false });

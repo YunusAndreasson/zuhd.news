@@ -438,14 +438,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       // Clean up partially-created player on failure
       teardownPlayer();
     }
-  }, [
-    effectiveDate,
-    managedPlayer,
-    savePosition,
-    activateLockScreen,
-    armGiveUp,
-    teardownPlayer,
-  ]);
+  }, [effectiveDate, managedPlayer, savePosition, activateLockScreen, armGiveUp, teardownPlayer]);
 
   const lastHapticSecRef = useRef(-1);
   const seek = useCallback((seconds: number) => {

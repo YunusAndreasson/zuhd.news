@@ -1,7 +1,7 @@
 import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister';
 import { focusManager, onlineManager, QueryClient } from '@tanstack/react-query';
-import * as Network from 'expo-network';
 import { File, Paths } from 'expo-file-system';
+import * as Network from 'expo-network';
 import Storage from 'expo-sqlite/kv-store';
 import { AppState } from 'react-native';
 import { DAY_MS } from './time';

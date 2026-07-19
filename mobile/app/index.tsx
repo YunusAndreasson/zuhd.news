@@ -16,13 +16,7 @@ import type {
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
 import { createRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import {
-  type LayoutChangeEvent,
-  Platform,
-  Share,
-  StyleSheet,
-  View,
-} from 'react-native';
+import { type LayoutChangeEvent, Platform, Share, StyleSheet, View } from 'react-native';
 import PagerView, {
   type PagerViewOnPageScrollEvent,
   type PagerViewOnPageSelectedEvent,

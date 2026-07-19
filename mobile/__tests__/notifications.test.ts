@@ -28,11 +28,7 @@ jest.mock('../lib/fetch', () => ({
   fetchWithTimeout: (...args: unknown[]) => mockFetch(...args),
 }));
 
-import {
-  addPushTokenListener,
-  registerPushToken,
-  unregisterPushToken,
-} from '../lib/notifications';
+import { addPushTokenListener, registerPushToken, unregisterPushToken } from '../lib/notifications';
 
 function http(ok: boolean, status = ok ? 200 : 500): Response {
   return { ok, status } as Response;
