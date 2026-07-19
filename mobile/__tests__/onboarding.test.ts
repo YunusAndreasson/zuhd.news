@@ -2,13 +2,14 @@
  * Onboarding store (hint pills + notification primer) + hint eligibility.
  *
  * The store loads and seeds at import time, so every test (re)loads it via
- * jest.isolateModules against an in-memory file system. Each load models one
+ * jest.isolateModules against in-memory legacy-file and SQLite stores. Each load models one
  * app session (the shown-once-per-session guard resets with the module).
  */
 
 // In-memory backing for the expo mocks. `mock` prefix required — jest.mock
 // factories may only reference out-of-scope variables with that prefix.
 let mockFiles: Map<string, string>;
+let mockKv: Map<string, string>;
 let mockSecure: Map<string, string>;
 let mockPermissions: { granted: boolean; canAskAgain: boolean };
 const mockPrefs = { notifications: false };
@@ -39,6 +40,23 @@ jest.mock('expo-secure-store', () => ({
   setItemAsync: jest.fn(async (k: string, v: string) => {
     mockSecure.set(k, v);
   }),
+}));
+
+jest.mock('expo-sqlite/kv-store', () => ({
+  __esModule: true,
+  default: {
+    getItemSync: jest.fn((k: string) => mockKv.get(k) ?? null),
+    setItemSync: jest.fn((k: string, v: string) => {
+      mockKv.set(k, v);
+    }),
+    getItem: jest.fn(async (k: string) => mockKv.get(k) ?? null),
+    setItem: jest.fn(async (k: string, v: string) => {
+      mockKv.set(k, v);
+    }),
+    removeItem: jest.fn(async (k: string) => {
+      mockKv.delete(k);
+    }),
+  },
 }));
 
 jest.mock('expo-notifications', () => ({
@@ -84,6 +102,7 @@ beforeEach(() => {
   // write in these tests goes through an explicit flushOnboarding().
   jest.useFakeTimers();
   mockFiles = new Map();
+  mockKv = new Map();
   mockSecure = new Map();
   mockPermissions = { granted: false, canAskAgain: true };
   mockPrefs.notifications = false;
@@ -116,6 +135,12 @@ describe('seeding', () => {
 
   it('existing user via bookmarks file only', () => {
     mockFiles.set('/doc/zuhd-bookmarks.json', '[]');
+    const s = loadStore();
+    expect(s.getSnapshot().hints.swipe.status).toBe('dismissed');
+  });
+
+  it('existing user via migrated SQLite state only', () => {
+    mockKv.set('zuhd_last_seen', '1751970000000');
     const s = loadStore();
     expect(s.getSnapshot().hints.swipe.status).toBe('dismissed');
   });
@@ -275,18 +300,33 @@ describe('eligibleHint', () => {
 });
 
 describe('persistence', () => {
-  it('round-trips through the file', () => {
+  it('round-trips through SQLite', () => {
     let s = loadStore();
     s.recordArticleSnap();
     s.recordArticleSnap();
     s.setPrimerStatus('declined');
     s.flushOnboarding();
-    expect(mockFiles.has(ONBOARDING_PATH)).toBe(true);
+    expect(mockKv.has('zuhd_onboarding')).toBe(true);
     s = loadStore();
     const state = s.getSnapshot();
     expect(state.snapCount).toBe(2);
     expect(state.primer.status).toBe('declined');
     expect(state.hints.swipe.status).toBe('done');
+  });
+
+  it('migrates a valid legacy file into SQLite', () => {
+    const first = loadStore();
+    first.recordArticleSnap();
+    first.flushOnboarding();
+    const serialized = mockKv.get('zuhd_onboarding');
+    expect(serialized).toBeDefined();
+
+    mockKv.clear();
+    mockFiles.set(ONBOARDING_PATH, serialized as string);
+    const migrated = loadStore();
+
+    expect(migrated.getSnapshot().snapCount).toBe(1);
+    expect(mockKv.get('zuhd_onboarding')).toBe(serialized);
   });
 
   it('markOsPromptSpent writes the legacy key', async () => {

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import * as Notifications from 'expo-notifications';
 import { AccessibilityInfo } from 'react-native';
 import {
   dismissHint,
@@ -9,7 +10,6 @@ import {
   recordHintShown,
   subscribe,
 } from '../lib/onboarding-store';
-import * as pendingNotification from '../lib/pending-notification';
 
 // Dwell before a hint appears — the reader must have settled; a hint that
 // chases a moving screen is noise. The swipe dwell is the longest: give the
@@ -84,12 +84,11 @@ export function useOnboardingHints(opts: { ready: boolean; suppressed: boolean }
   const state = useSyncExternalStore(subscribe, getSnapshot);
   const [screenReader, setScreenReader] = useState(false);
   const [activeHint, setActiveHint] = useState<HintId | null>(null);
-  // A launch that routes straight to a pushed article/briefing isn't a
-  // first-encounter moment — skip the swipe hint that session. Captured at
-  // mount, before usePendingNotification drains the intent.
-  const [launchedViaPush] = useState(
-    () => pendingNotification.get() !== null || pendingNotification.getBriefing(),
-  );
+  // Remember a notification launch even after the routing hook clears the
+  // response; it is not a first-encounter moment for the swipe lesson.
+  const lastNotificationResponse = Notifications.useLastNotificationResponse();
+  const launchedViaPushRef = useRef(false);
+  if (lastNotificationResponse) launchedViaPushRef.current = true;
 
   useEffect(() => {
     AccessibilityInfo.isScreenReaderEnabled()
@@ -112,7 +111,7 @@ export function useOnboardingHints(opts: { ready: boolean; suppressed: boolean }
 
   const eligible =
     ready && !suppressed && !activeHint ? eligibleHint(state, { screenReader }) : null;
-  const armId = eligible === 'swipe' && launchedViaPush ? null : eligible;
+  const armId = eligible === 'swipe' && launchedViaPushRef.current ? null : eligible;
 
   // Arm after the dwell. `snapCount` in the deps restarts the countdown on
   // every snap so the pill lands after the reader settles, never mid-rhythm;
