@@ -57,6 +57,17 @@ Stage 5: node measure-quality.js (Sunday 22:00 UTC only) → content/.quality-tr
 Stage 6: Claude CLI tune (tune-prompt.md) (daily 22:00 UTC) → parameter changes
 ```
 
+## Deploy
+
+- **Site (Cloudflare Pages):** `npm run publish` — builds (`scripts/build.js`)
+  then `npm run deploy` (`wrangler pages deploy dist --project-name zuhd-news
+  --branch master`). `npm run deploy` alone uploads the existing `dist/`
+  without rebuilding. Production branch is `master`; the pipeline (Stage 3b)
+  deploys automatically each cycle.
+- **MCP worker (`workers/mcp`):** `npm run deploy` inside that dir (`wrangler deploy`).
+- **`workers/share-preview`:** RETIRED (2026-06-19) — do not deploy; its routes
+  are intentionally empty (see its `wrangler.toml`).
+
 ## Dashboard
 
 Pipeline monitoring at `localhost:7777` (SSH tunnel). 6 tabs: Pipeline, Quality, Logs, Experiment, Editorial, Status. Systemd service: `zuhd-dashboard.service`. Files in `scripts/dashboard/`.
@@ -72,7 +83,7 @@ Single-variable pipeline experiments tracked in `content/.experiments.json`. One
 
 ## Tests
 
-`node --test scripts/lib/*.test.js` — corpus and log invariants. Each test pins a real bug the pipeline has had; baselines (e.g. known-bad cycle names, dup-pair counts) are observed values, not targets. If a test fails, read the diagnostic and fix the underlying issue — don't just raise the baseline to silence it.
+`npm test` (= `node --test scripts/lib/*.test.js`, also aliased as `npm run verify`) — corpus and log invariants. Each test pins a real bug the pipeline has had; baselines (e.g. known-bad cycle names, dup-pair counts) are observed values, not targets. If a test fails, read the diagnostic and fix the underlying issue — don't just raise the baseline to silence it.
 
 ## Mobile
 
