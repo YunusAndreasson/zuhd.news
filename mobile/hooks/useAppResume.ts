@@ -13,28 +13,40 @@ import { AppState } from 'react-native';
  * whole foreground session as time away and fire spuriously.
  */
 export function useAppResume(onResume: () => void, staleMs: number, onBackground?: () => void) {
-  const lastActiveRef = useRef(Date.now());
+  const previousStateRef = useRef(AppState.currentState);
+  const awayStartedAtRef = useRef<number | null>(
+    AppState.currentState === 'active' ? null : Date.now(),
+  );
 
   const handleResume = useEffectEvent(() => {
-    const away = Date.now() - lastActiveRef.current;
-    // Re-arm before firing: consecutive `active` events must not re-fire off
-    // the same stale timestamp.
-    lastActiveRef.current = Date.now();
-    if (away > staleMs) onResume();
+    const awayStartedAt = awayStartedAtRef.current;
+    // Re-arm before firing: consecutive `active` events must not re-fire from
+    // the same transition.
+    awayStartedAtRef.current = null;
+    if (awayStartedAt !== null && Date.now() - awayStartedAt > staleMs) onResume();
   });
 
-  const handleAway = useEffectEvent((toBackground: boolean) => {
-    lastActiveRef.current = Date.now();
-    if (toBackground) onBackground?.();
+  const handleBackground = useEffectEvent(() => {
+    onBackground?.();
   });
 
   useEffect(() => {
     const sub = AppState.addEventListener('change', (state) => {
-      if (state === 'background' || state === 'inactive') {
-        handleAway(state === 'background');
-      } else if (state === 'active') {
+      const previousState = previousStateRef.current;
+
+      // Start the clock only once when leaving active. iOS commonly emits
+      // active -> inactive -> background; resetting it on both transitions
+      // undercounts the actual time away.
+      if (previousState === 'active' && state !== 'active') {
+        awayStartedAtRef.current = Date.now();
+      }
+      if (state === 'background' && previousState !== 'background') {
+        handleBackground();
+      }
+      if (state === 'active' && previousState !== 'active') {
         handleResume();
       }
+      previousStateRef.current = state;
     });
     return () => sub.remove();
   }, []);
