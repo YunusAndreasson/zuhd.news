@@ -1,26 +1,27 @@
 {
-  "date": "2026-07-18",
+  "date": "2026-07-19",
   "metrics": {
-    "articles": { "value": 50, "detail": "5 cycles, avg 9/cycle, avg duration 915s" },
-    "freshness": { "median": 0.4, "p90": 1.4, "max": 1.4, "target": 1.0, "met": true },
-    "categories": { "politics": 18, "economy": 12, "science": 11, "tech": 9 },
-    "multiSource": { "value": 10, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 14, "EU": 13, "ME": 12, "AS": 7, "AF": 4 } },
+    "articles": { "value": 50, "detail": "5 cycles, avg 9/cycle" },
+    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
+    "categories": { "politics": 17, "economy": 13, "science": 11, "tech": 9 },
+    "multiSource": { "value": 16, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 13, "ME": 13, "EU": 8, "AS": 7, "AF": 7, "OC": 2 } },
     "sciTech": { "ratio": 40, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 12, "target": 20, "met": true },
-    "uniqueSources": 41,
+    "topSourceShare": { "source": "Nature", "pct": 12, "target": 20, "met": true },
+    "uniqueSources": 38,
     "duplicates": 0,
-    "avgCycleDuration": 915
+    "avgCycleDuration": 941
   },
-  "experiment": "Skipped — all metrics within targets and no active experiment to evaluate. No pause gate in effect.",
-  "weakestArea": "Africa is the thinnest region at 4 articles versus 12-14 for the Americas, Europe, and Middle East, and Oceania had no coverage at all. Regional diversity still clears the >=4-region target comfortably, but AF/OC depth is the recurring soft spot; it stems from feed supply, not a tunable floor, so no parameter lever applies today.",
+  "experiment": "Skipped — all goal metrics within targets, no active experiment to evaluate, and no pause gate. History shows the selector multi-source floor lever is tapped (2026-05-09 reverted), so no cheap sourcing experiment is available; no other metric warrants a change today.",
+  "weakestArea": "Oceania coverage is the thinnest region at 2/50 articles, but with 6 regions represented and the >=4 target met, this is a distribution nuance rather than a miss. Tech at 9 is the smallest category yet clears its floor, and the sci-tech ratio sits at 40%, well above the 25% target.",
   "watching": [
-    "Politics ran heavy at 18/50 (36%) — highest category; worth confirming it doesn't crowd the sci-tech mix on lighter news days.",
-    "Multi-source count of 10 is well above the floor of 4 and the healthiest reading in weeks; prior history shows the feed caps published multi-source rate near ~22%, so treat this as a good-supply day rather than a new baseline."
+    "Russia/Ukraine coverage remains steady via TASS, Kyiv Independent, and Ukrainska Pravda — watch source balance for skew toward Russian state outlets (TASS 3, RT 1).",
+    "Freshness sampled only 7 articles today despite 50 published — verify the freshness computation isn't undercounting datelines on this cycle's corpus.",
+    "Crypto/markets volume via CoinDesk (4) is elevated; monitor that economy stays hard-news rather than drifting to price-ticker coverage."
   ],
   "coverageGaps": [
-    "Oceania had zero articles today; Africa only 4 — persistent underweight in the global South relative to AM/EU/ME.",
-    "Africa depth remains feed-limited (Premium Times, Daily Maverick, SciDev.Net are the main channels) rather than a selector-floor issue."
+    "Oceania represented by only 2 articles — Pacific/Australia-NZ hard news underweight this cycle.",
+    "Latin America is folded into the AM bucket alongside North America; standalone South/Central American sourcing is not visibly present in today's source list."
   ],
-  "context": "All four editorial goals (freshness, diversity, multi-source, educational value) are met with margin: freshness median 0.4 days, sci-tech 40%, top-source share 12%, zero duplicates across 5 clean cycles. No active experiments and no noNewExperimentsUntil gate, but metrics are healthy so no new experiment is warranted. Note the queued numerical-density experiment targets scripts/write-prompt.md, which is out of scope for daily tuning."
+  "context": "A clean day: 50 articles across 5 completed cycles, zero duplicates, freshness at floor, and no source exceeding 12% share. All four editorial goals (freshness, diversity, multi-source, educational value) are met simultaneously, so the correct action is to hold parameters steady and bank the stable baseline rather than introduce a confounding variable."
 }
