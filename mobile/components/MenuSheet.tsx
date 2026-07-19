@@ -1,23 +1,18 @@
-import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import type { Article, Category } from '@shared/types';
 import Constants from 'expo-constants';
 import * as StoreReview from 'expo-store-review';
 import { memo, useCallback, useEffect, useState } from 'react';
 import {
   AccessibilityInfo,
-  BackHandler,
   Linking,
   Text as RNText,
   StyleSheet,
   type TextStyle,
   View,
 } from 'react-native';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, { FadeInDown, useReducedMotion } from 'react-native-reanimated';
-import { scheduleOnRN } from 'react-native-worklets';
-import { IS_ANDROID } from '../constants/platform';
+import { GestureDetector } from 'react-native-gesture-handler';
+import Animated, { useReducedMotion } from 'react-native-reanimated';
 import {
-  ANIMATION,
   type AppearanceMode,
   baseFontSize,
   FONT_SOURCE,
@@ -26,15 +21,18 @@ import {
   type FontSize,
   type Preferences,
   SPACING,
-  staggerDelay,
 } from '../constants/theme';
+import { useSheetBackNavigation } from '../hooks/useSheetBackNavigation';
 import { useSheetNavigation } from '../hooks/useSheetNavigation';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { type PreferencesApi, usePreferences, useTheme } from '../hooks/useTheme';
 import { hapticTick } from '../lib/haptics';
+import { resetOnboarding } from '../lib/onboarding-store';
+import { staggerEnter } from '../lib/stagger';
 import { Icon, Pressable, Text } from './primitives';
 import { SheetAboutPage } from './SheetAboutPage';
 import { SheetBookmarksPage } from './SheetBookmarksPage';
+import { SheetScrollView } from './SheetContent';
 import { SheetHandle } from './SheetHandle';
 import { type InfoSection, SheetInfoPage } from './SheetInfoPage';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
@@ -376,7 +374,7 @@ export const MenuSheet = memo(function MenuSheet({
   onSelectArticle,
   onToast,
 }: MenuSheetProps) {
-  const { colors, font, sheetStyles } = useTheme();
+  const { colors, font } = useTheme();
   const prefsApi = usePreferences();
   const { preferences } = prefsApi;
   const nav = useSheetNavigation<PageKey>();
@@ -422,29 +420,12 @@ export const MenuSheet = memo(function MenuSheet({
     setIsOpen(index >= 0);
   }, []);
 
-  useEffect(() => {
-    if (!IS_ANDROID || !isOpen) return;
-    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
-      if (nav.depth > 0) {
-        navPop();
-        return true;
-      }
-      sheetRef.current?.dismiss();
-      return true;
-    });
-    return () => sub.remove();
-  }, [isOpen, nav.depth, navPop, sheetRef]);
-
-  const swipeBack = Gesture.Pan()
-    .enabled(nav.depth > 0)
-    .activeOffsetX(20)
-    .failOffsetY([-10, 10])
-    .onEnd(({ translationX, velocityX }) => {
-      'worklet';
-      if (translationX > 80 || velocityX > 800) {
-        scheduleOnRN(navPop);
-      }
-    });
+  const swipeBack = useSheetBackNavigation({
+    isOpen,
+    canGoBack: nav.depth > 0,
+    onBack: navPop,
+    sheetRef,
+  });
 
   return (
     <SheetLayout
@@ -468,14 +449,7 @@ export const MenuSheet = memo(function MenuSheet({
         />
       ) : (
         <GestureDetector gesture={swipeBack}>
-          <BottomSheetScrollView
-            contentContainerStyle={[
-              sheetStyles.content,
-              { paddingBottom: bottomInset + SPACING.lg },
-            ]}
-          >
-            {renderPage()}
-          </BottomSheetScrollView>
+          <SheetScrollView bottomInset={bottomInset}>{renderPage()}</SheetScrollView>
         </GestureDetector>
       )}
     </SheetLayout>
@@ -537,9 +511,7 @@ export const MenuSheet = memo(function MenuSheet({
         <>
           {SETTINGS.map((s, i) => {
             const currentValue = s.get(preferences);
-            const entering = reduceMotion
-              ? undefined
-              : FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(i));
+            const entering = reduceMotion ? undefined : staggerEnter(i);
             const row = s.toggle ? (
               <ToggleRow
                 first={i === 0}
@@ -577,6 +549,17 @@ export const MenuSheet = memo(function MenuSheet({
               </Animated.View>
             );
           })}
+          <Animated.View entering={reduceMotion ? undefined : staggerEnter(SETTINGS.length)}>
+            <NavRow
+              label="show tips again"
+              hint="Replays the one-time reading hints"
+              onPress={() => {
+                resetOnboarding();
+                onToast?.('Tips will reappear as you read');
+                sheetRef.current?.dismiss();
+              }}
+            />
+          </Animated.View>
           {APP_VERSION ? (
             <Text variant="caption" style={styles.versionFooter}>
               {APP_VERSION}

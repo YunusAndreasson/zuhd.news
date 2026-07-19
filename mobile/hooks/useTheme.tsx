@@ -25,6 +25,7 @@ import {
 } from '../constants/theme';
 import { setHapticsEnabled } from '../lib/haptics';
 import {
+  addPushTokenListener,
   disableNotifications,
   enableNotifications,
   registerPushToken,
@@ -90,9 +91,6 @@ export function ThemeProvider({
   const initialPrefs = use(prefsPromise);
   const [prefs, setPrefs] = useState<Preferences>(() => {
     setHapticsEnabled(initialPrefs.haptics);
-    if (initialPrefs.notifications) {
-      registerPushToken();
-    }
     return initialPrefs;
   });
   const systemScheme = useColorScheme();
@@ -126,16 +124,22 @@ export function ThemeProvider({
       if (v) {
         const granted = await enableNotifications();
         if (!granted) return false;
-        registerPushToken();
       } else {
         await disableNotifications();
-        unregisterPushToken();
+        void unregisterPushToken();
       }
       persist({ ...prefs, notifications: v });
       return true;
     },
     [prefs, persist],
   );
+
+  useEffect(() => {
+    if (!prefs.notifications) return;
+    void registerPushToken();
+    const subscription = addPushTokenListener();
+    return () => subscription.remove();
+  }, [prefs.notifications]);
 
   const resolvedAppearance: 'dark' | 'light' =
     prefs.appearance === 'system'

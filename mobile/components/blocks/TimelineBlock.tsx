@@ -4,10 +4,11 @@ import { extent } from 'd3-array';
 import { scaleTime } from 'd3-scale';
 import { memo, useMemo, useState } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
-import Animated, { FadeIn, useReducedMotion } from 'react-native-reanimated';
-import { ANIMATION, RADIUS, SPACING, staggerDelay } from '../../constants/theme';
+import Animated, { useReducedMotion } from 'react-native-reanimated';
+import { RADIUS, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { parseFlexibleDate } from '../../lib/date-format';
+import { staggerFadeIn } from '../../lib/stagger';
 import { Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
 import { type BlockVariant, blockContainerStyle, blockSharedStyles, blockToneBg } from './shared';
@@ -211,9 +212,7 @@ export const TimelineBlock = memo(function TimelineBlock({
         {parsed.eventDates.map((e, i) => (
           <Animated.View
             key={`detail-event-${i}`}
-            entering={
-              reduceMotion ? undefined : FadeIn.duration(ANIMATION.normal).delay(staggerDelay(i))
-            }
+            entering={reduceMotion ? undefined : staggerFadeIn(i)}
             style={styles.listRow}
           >
             <View
@@ -235,13 +234,7 @@ export const TimelineBlock = memo(function TimelineBlock({
         {parsed.spanDates.map((s, i) => (
           <Animated.View
             key={`detail-span-${i}`}
-            entering={
-              reduceMotion
-                ? undefined
-                : FadeIn.duration(ANIMATION.normal).delay(
-                    staggerDelay(parsed.eventDates.length + i),
-                  )
-            }
+            entering={reduceMotion ? undefined : staggerFadeIn(parsed.eventDates.length + i)}
             style={styles.listRow}
           >
             <View

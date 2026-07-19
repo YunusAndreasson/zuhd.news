@@ -1,10 +1,11 @@
 import type { CompareRow } from '@shared/types';
 import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
-import Animated, { FadeIn, useReducedMotion } from 'react-native-reanimated';
-import { ANIMATION, BLACK, RADIUS, SPACING, staggerDelay } from '../../constants/theme';
+import Animated, { useReducedMotion } from 'react-native-reanimated';
+import { BLACK, RADIUS, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { ccToFlag } from '../../lib/article-utils';
+import { staggerFadeIn } from '../../lib/stagger';
 import { Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
 import { type BlockVariant, blockContainerStyle, blockSharedStyles, blockToneBg } from './shared';
@@ -82,9 +83,7 @@ export const CompareBlock = memo(function CompareBlock({
           return (
             <Animated.View
               key={`${row.label}-${i}`}
-              entering={
-                reduceMotion ? undefined : FadeIn.duration(ANIMATION.normal).delay(staggerDelay(i))
-              }
+              entering={reduceMotion ? undefined : staggerFadeIn(i)}
               style={[
                 styles.segmentedRow,
                 { paddingVertical: rowPaddingV },
@@ -124,9 +123,7 @@ export const CompareBlock = memo(function CompareBlock({
         return (
           <Animated.View
             key={`${row.label}-${i}`}
-            entering={
-              reduceMotion ? undefined : FadeIn.duration(ANIMATION.normal).delay(staggerDelay(i))
-            }
+            entering={reduceMotion ? undefined : staggerFadeIn(i)}
             style={[
               styles.row,
               { paddingVertical: rowPaddingV },

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useEffectEvent, useMemo, useRef, useState } fro
 import { API_BASE, STALE_THRESHOLD } from '../constants/theme';
 import { flushBookmarks } from '../lib/bookmark-store';
 import { fetchJson } from '../lib/fetchJson';
+import { flushOnboarding } from '../lib/onboarding-store';
 import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
 import { isFeedResponse, isMetaResponse } from '../lib/validate';
 import { useAppResume } from './useAppResume';
@@ -63,6 +64,9 @@ export function useArticles(): ArticlesState {
         timeoutMs: 10000,
         signal,
       }),
+    // The feed performs a cheap /meta.json probe on focus before deciding
+    // whether the much larger feed payload needs downloading.
+    refetchOnWindowFocus: false,
   });
 
   // Seed prevSlugsRef + lastGeneratedRef on first data arrival (either from
@@ -143,6 +147,7 @@ export function useArticles(): ArticlesState {
   const handleBackground = useEffectEvent(() => {
     saveLastSeenAt(Date.now());
     flushBookmarks();
+    flushOnboarding();
   });
 
   useAppResume(handleResume, STALE_THRESHOLD, handleBackground);

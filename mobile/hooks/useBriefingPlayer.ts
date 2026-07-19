@@ -1,16 +1,17 @@
 import { Asset } from 'expo-asset';
-// Imperative createAudioPlayer (not useAudioPlayer hook) — player is created
-// lazily on first toggle and torn down on background recovery, which the hook
-// doesn't support since it allocates immediately on mount.
+// The managed player starts with a null source; native media loading remains
+// lazy while Expo owns subscription and unmount cleanup.
 import {
   type AudioPlayer,
   type AudioStatus,
-  createAudioPlayer,
   preload,
   setAudioModeAsync,
   setIsAudioActiveAsync,
+  useAudioPlayer,
+  useAudioPlayerStatus,
 } from 'expo-audio';
-import { deleteItemAsync, getItemAsync, setItemAsync } from 'expo-secure-store';
+import { deleteItemAsync, getItemAsync } from 'expo-secure-store';
+import Storage from 'expo-sqlite/kv-store';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, type AppStateStatus } from 'react-native';
 import { API_BASE } from '../constants/theme';
@@ -58,23 +59,6 @@ interface BriefingPlayer {
   close: () => void;
 }
 
-// createAudioPlayer may throw in Expo Go when native module is outdated.
-// Wrap to return null instead of crashing.
-function safeCreatePlayer(url: string): AudioPlayer | null {
-  try {
-    // keepAudioSessionActive: pause() in expo-audio otherwise calls
-    // deactivateSession() on iOS (AudioModule.swift line 244-249). After a
-    // few play/pause cycles, repeated activate→deactivate→activate churn
-    // on the shared AVAudioSession starts failing silently and the next
-    // play() no-ops with no recovery. Keeping the session alive across
-    // pause/resume is the documented escape hatch. The cleanup effect on
-    // unmount still calls setIsAudioActiveAsync(false) explicitly.
-    return createAudioPlayer(url, { updateInterval: 500, keepAudioSessionActive: true });
-  } catch {
-    return null;
-  }
-}
-
 // Resolve once AVPlayer's currentItem has loaded enough metadata to know its
 // duration, or after `timeoutMs` regardless. Lock-screen activation must wait
 // for this — `setActiveForLockScreen` writes the first MPNowPlayingInfo entry
@@ -109,10 +93,16 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   // playback we know will fail.
   const effectiveDate = date ?? '';
   const available = !!date;
+  // A null source keeps initial mount cheap. Expo owns the native object's
+  // lifetime; toggle() installs/removes sources with replace().
+  const managedPlayer = useAudioPlayer(null, {
+    updateInterval: 500,
+    keepAudioSessionActive: true,
+  });
+  const status = useAudioPlayerStatus(managedPlayer);
   const [playing, setPlaying] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const playerRef = useRef<AudioPlayer | null>(null);
-  const subRef = useRef<{ remove(): void } | null>(null);
   const savedDate = useRef<string | null>(null);
   const lockScreenActive = useRef(false);
   const lockScreenDurationKnown = useRef(false);
@@ -155,8 +145,8 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
         const pos = playerRef.current.currentTime;
         if (pos > 0 && savedDate.current) {
           await Promise.all([
-            setItemAsync(POSITION_KEY, String(Math.floor(pos))),
-            setItemAsync(DATE_KEY, savedDate.current),
+            Storage.setItem(POSITION_KEY, String(Math.floor(pos))),
+            Storage.setItem(DATE_KEY, savedDate.current),
           ]);
         }
       } catch {}
@@ -191,15 +181,14 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       giveUpTimer.current = null;
     }
     wantsToPlayRef.current = false;
-    subRef.current?.remove();
     if (playerRef.current) {
       try {
         playerRef.current.clearLockScreenControls();
+        playerRef.current.pause();
+        playerRef.current.replace(null);
       } catch {}
-      playerRef.current.remove();
     }
     playerRef.current = null;
-    subRef.current = null;
     lockScreenActive.current = false;
     lockScreenDurationKnown.current = false;
   }, []);
@@ -209,8 +198,8 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     try {
       const pos = playerRef.current.currentTime;
       if (pos > 0) {
-        setItemAsync(POSITION_KEY, String(Math.floor(pos)));
-        setItemAsync(DATE_KEY, savedDate.current);
+        void Storage.setItem(POSITION_KEY, String(Math.floor(pos)));
+        void Storage.setItem(DATE_KEY, savedDate.current);
       }
     } catch {}
   }, []);
@@ -274,6 +263,54 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     }, PLAY_GIVE_UP_MS);
   }, [teardownPlayer]);
 
+  // Expo owns the playback-status subscription. Keep only the app-specific
+  // policy here: recovery, lock-screen metadata, cold-load retry, and UI state.
+  useEffect(() => {
+    const player = playerRef.current;
+    if (!player || player !== managedPlayer || closedRef.current) return;
+
+    if (status.mediaServicesDidReset && lockScreenActive.current) {
+      void refreshLockScreenMetadata(player);
+    }
+    if (!lockScreenDurationKnown.current && status.duration > 0) {
+      lockScreenDurationKnown.current = true;
+      void refreshLockScreenMetadata(player);
+    }
+    if (wantsToPlayRef.current && status.isLoaded && !status.playing) {
+      try {
+        player.play();
+      } catch {}
+    }
+    if (wantsToPlayRef.current && status.playing) {
+      wantsToPlayRef.current = false;
+      if (giveUpTimer.current) {
+        clearTimeout(giveUpTimer.current);
+        giveUpTimer.current = null;
+      }
+    }
+
+    const sinceToggle = Date.now() - userToggleAt.current;
+    if (sinceToggle >= 500 || status.didJustFinish) setPlaying(status.playing);
+    if (status.currentTime > 0) setElapsed(Math.floor(status.currentTime));
+
+    if (status.didJustFinish) {
+      wantsToPlayRef.current = false;
+      if (giveUpTimer.current) {
+        clearTimeout(giveUpTimer.current);
+        giveUpTimer.current = null;
+      }
+      setPlaying(false);
+      setElapsed(0);
+      void Storage.setItem(POSITION_KEY, '0');
+      player.seekTo(0).catch(() => {});
+      try {
+        player.clearLockScreenControls();
+      } catch {}
+      lockScreenActive.current = false;
+      lockScreenDurationKnown.current = false;
+    }
+  }, [managedPlayer, refreshLockScreenMetadata, status]);
+
   const toggle = useCallback(async () => {
     hapticImpact();
     userToggleAt.current = Date.now();
@@ -318,7 +355,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
         return;
       }
 
-      // First play — create player
+      // First play — configure the managed player and install its source.
       try {
         await setAudioModeAsync({
           playsInSilentMode: true,
@@ -328,9 +365,13 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
         await setIsAudioActiveAsync(true);
       } catch {} // May fail in Expo Go
 
-      const player = safeCreatePlayer(`${API_BASE}/audio/briefing-${effectiveDate}.mp3`);
-      if (!player) {
-        // Native module unavailable (Expo Go) — fake expand for UI preview
+      const player = managedPlayer;
+      savedDate.current = effectiveDate;
+      playerRef.current = player;
+      try {
+        player.replace(`${API_BASE}/audio/briefing-${effectiveDate}.mp3`);
+      } catch {
+        playerRef.current = null;
         if (__DEV__) {
           devMockActive.current = true;
           setPlaying(true);
@@ -339,87 +380,26 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
         return;
       }
 
-      // Sync play/pause state + elapsed from player events. This is also
-      // the path that drives the cold-start retry: when `isLoaded` flips
-      // true after a play() that hadn't taken yet, we re-issue play().
-      const eventSub = player.addListener(PLAYBACK_STATUS_UPDATE, (status: AudioStatus) => {
-        // Ignore status updates after user closed the player — the paused
-        // player still fires events that would flicker state back to visible.
-        if (closedRef.current) return;
-
-        // iOS media services crash → SDK auto-recovers the player itself
-        // but the lock-screen card may have been dropped. Re-write the
-        // metadata so NowPlayingInfo reappears.
-        if (status.mediaServicesDidReset && lockScreenActive.current) {
-          refreshLockScreenMetadata(player);
-        }
-
-        // Refresh NowPlayingInfo once the AVPlayer knows its duration so
-        // iOS lock-screen gets a real timing scrubber. updateLockScreenMetadata
-        // is the lighter path — no re-activation, no artwork reload.
-        if (!lockScreenDurationKnown.current && status.duration > 0) {
-          lockScreenDurationKnown.current = true;
-          refreshLockScreenMetadata(player);
-        }
-
-        // Cold-start retry: AVPlayer silently no-ops the first play() while
-        // it's still buffering. Once isLoaded flips true, call play() again
-        // to make sure it actually starts.
-        if (wantsToPlayRef.current && status.isLoaded && !status.playing) {
-          try {
-            player.play();
-          } catch {}
-        }
-        if (wantsToPlayRef.current && status.playing) {
-          wantsToPlayRef.current = false;
-          if (giveUpTimer.current) {
-            clearTimeout(giveUpTimer.current);
-            giveUpTimer.current = null;
-          }
-        }
-
-        // Skip transient playing states shortly after user tap to avoid icon flash
-        const sinceToggle = Date.now() - userToggleAt.current;
-        if (sinceToggle < 500 && !status.didJustFinish) {
-          // Still update elapsed time, just don't flip the play/pause icon
-          if (status.currentTime > 0) setElapsed(Math.floor(status.currentTime));
-          return;
-        }
-        setPlaying(status.playing);
-        if (status.currentTime > 0) {
-          setElapsed(Math.floor(status.currentTime));
-        }
-        if (status.didJustFinish) {
-          wantsToPlayRef.current = false;
-          if (giveUpTimer.current) {
-            clearTimeout(giveUpTimer.current);
-            giveUpTimer.current = null;
-          }
-          setPlaying(false);
-          setElapsed(0);
-          setItemAsync(POSITION_KEY, '0');
-          // Seek back to start so the player is ready for replay —
-          // don't destroy it or deactivate the audio session, as iOS
-          // can refuse to reactivate, requiring a force-kill.
-          player.seekTo(0).catch(() => {});
-          try {
-            player.clearLockScreenControls();
-          } catch {}
-          lockScreenActive.current = false;
-          lockScreenDurationKnown.current = false;
-        }
-      });
-
       // Restore position if same date — unless the user just closed with X,
       // in which case the one-shot guard forces a fresh 0:00 start.
       if (skipRestoreRef.current) {
         skipRestoreRef.current = false;
       } else {
         try {
-          const [savedPos, savedDateStr] = await Promise.all([
-            getItemAsync(POSITION_KEY),
-            getItemAsync(DATE_KEY),
+          let [savedPos, savedDateStr] = await Promise.all([
+            Storage.getItem(POSITION_KEY),
+            Storage.getItem(DATE_KEY),
           ]);
+          if (savedPos === null && savedDateStr === null) {
+            [savedPos, savedDateStr] = await Promise.all([
+              getItemAsync(POSITION_KEY),
+              getItemAsync(DATE_KEY),
+            ]);
+            await Promise.all([
+              savedPos === null ? Promise.resolve() : Storage.setItem(POSITION_KEY, savedPos),
+              savedDateStr === null ? Promise.resolve() : Storage.setItem(DATE_KEY, savedDateStr),
+            ]);
+          }
           if (savedDateStr === effectiveDate && savedPos) {
             const pos = parseInt(savedPos, 10);
             if (pos > 0) {
@@ -429,10 +409,6 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
           }
         } catch {}
       }
-
-      savedDate.current = effectiveDate;
-      playerRef.current = player;
-      subRef.current = eventSub;
 
       // Kick off playback immediately so the first tap is responsive. play()
       // safely no-ops if AVPlayer is still buffering — the cold-start retry
@@ -464,9 +440,9 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     }
   }, [
     effectiveDate,
+    managedPlayer,
     savePosition,
     activateLockScreen,
-    refreshLockScreenMetadata,
     armGiveUp,
     teardownPlayer,
   ]);
@@ -490,13 +466,18 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   const close = useCallback(() => {
     closedRef.current = true;
     // Consumed by the next toggle() to skip position restore synchronously.
-    // We can't rely on the async SecureStore writes below landing before
+    // We can't rely on the async storage writes below landing before
     // the user taps LISTEN again — this ref closes the race.
     skipRestoreRef.current = true;
     // Close = stop & forget. Clear both persisted keys so even after the
     // in-memory guard resets, a cold start won't resurrect an old position.
-    deleteItemAsync(POSITION_KEY).catch(() => {});
-    deleteItemAsync(DATE_KEY).catch(() => {});
+    void Promise.all([
+      Storage.removeItem(POSITION_KEY),
+      Storage.removeItem(DATE_KEY),
+      // Clear legacy copies too so a rollback cannot resurrect the position.
+      deleteItemAsync(POSITION_KEY).catch(() => {}),
+      deleteItemAsync(DATE_KEY).catch(() => {}),
+    ]);
     if (playerRef.current) {
       try {
         playerRef.current.pause();

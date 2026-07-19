@@ -2,6 +2,8 @@
 
 React Native + Expo app for zuhd.news. Voice + philosophy in root `../foundation.md`.
 
+`npm run verify` — typecheck + lint + test in one command; run before finishing.
+
 ## Before touching UI
 
 **Read `DESIGN.md`.** It defines the token system, `<Text>` variants, primitives, and anti-patterns. The rules are tight by design — don't re-litigate them.
@@ -30,3 +32,6 @@ Prefer the `scale` prop on `<Text>` over style overrides. `fontVariant` override
 
 - Globe touches a 32ms JS budget; don't regress `callReproject` throttling.
 - Reanimated animations gate on `useReducedMotion()` and battery saver — check before changing timings.
+- React Compiler is enabled in dev-client and production builds. New code should
+  default to plain functions/components; add manual `memo`, `useMemo`, or
+  `useCallback` only for effect/third-party identity or a measured hot path.

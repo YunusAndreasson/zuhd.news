@@ -1,4 +1,5 @@
-import { getItemAsync, setItemAsync } from 'expo-secure-store';
+import { getItemAsync } from 'expo-secure-store';
+import Storage from 'expo-sqlite/kv-store';
 import * as StoreReview from 'expo-store-review';
 import { DAY_MS } from './time';
 
@@ -8,8 +9,7 @@ const PROMPTED_KEY = 'zuhd_review_prompted';
 const ARTICLE_THRESHOLD = 20;
 const COOLDOWN_MS = 90 * DAY_MS; // 90 days
 
-// In-memory cache — loaded once from SecureStore, then served from RAM.
-// Avoids encrypted storage reads on every article snap.
+// In-memory cache — loaded once from SQLite kv-store, then served from RAM.
 let memCount = -1; // -1 = not yet loaded
 let memPromptedAt = 0;
 let hydrated = false;
@@ -18,10 +18,27 @@ async function hydrate() {
   if (hydrated) return;
   hydrated = true;
   try {
-    const [countStr, promptedStr] = await Promise.all([
-      getItemAsync(COUNT_KEY),
-      getItemAsync(PROMPTED_KEY),
+    let [countStr, promptedStr] = await Promise.all([
+      Storage.getItem(COUNT_KEY),
+      Storage.getItem(PROMPTED_KEY),
     ]);
+    // One-time migration from the earlier encrypted store. Migrate each key
+    // independently so a partial SQLite write cannot hide the other legacy
+    // value. These counters are UX state, not secrets.
+    if (countStr === null || promptedStr === null) {
+      const [legacyCount, legacyPrompted] = await Promise.all([
+        countStr === null ? getItemAsync(COUNT_KEY) : Promise.resolve(null),
+        promptedStr === null ? getItemAsync(PROMPTED_KEY) : Promise.resolve(null),
+      ]);
+      countStr ??= legacyCount;
+      promptedStr ??= legacyPrompted;
+      await Promise.all([
+        legacyCount === null ? Promise.resolve() : Storage.setItem(COUNT_KEY, legacyCount),
+        legacyPrompted === null
+          ? Promise.resolve()
+          : Storage.setItem(PROMPTED_KEY, legacyPrompted),
+      ]);
+    }
     memCount = parseInt(countStr ?? '0', 10) || 0;
     memPromptedAt = parseInt(promptedStr ?? '0', 10) || 0;
   } catch {
@@ -40,7 +57,7 @@ export async function maybeRequestReview(): Promise<void> {
 
     memCount += 1;
     // Write-through: fire and forget — only the in-memory value matters for gating
-    setItemAsync(COUNT_KEY, String(memCount)).catch(() => {});
+    Storage.setItem(COUNT_KEY, String(memCount)).catch(() => {});
 
     if (memCount < ARTICLE_THRESHOLD) return;
 
@@ -53,8 +70,8 @@ export async function maybeRequestReview(): Promise<void> {
     memPromptedAt = Date.now();
     memCount = 0;
     await Promise.all([
-      setItemAsync(PROMPTED_KEY, String(memPromptedAt)),
-      setItemAsync(COUNT_KEY, '0'),
+      Storage.setItem(PROMPTED_KEY, String(memPromptedAt)),
+      Storage.setItem(COUNT_KEY, '0'),
     ]);
   } catch {}
 }

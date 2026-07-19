@@ -3,6 +3,7 @@ import * as Notifications from 'expo-notifications';
 import { deleteItemAsync, getItemAsync, setItemAsync } from 'expo-secure-store';
 import { IS_ANDROID } from '../constants/platform';
 import { API_BASE } from '../constants/theme';
+import { fetchWithTimeout } from './fetch';
 
 const CHANNEL_ID = 'briefing';
 
@@ -66,20 +67,34 @@ export async function clearLegacyScheduledNotifications(): Promise<void> {
 const TOKEN_KEY = 'zuhd_pushToken';
 
 /** Register Expo push token with the backend. Idempotent. */
-export async function registerPushToken(): Promise<void> {
+export async function registerPushToken(
+  devicePushToken?: Notifications.DevicePushToken,
+): Promise<void> {
   try {
     const projectId = Constants.expoConfig?.extra?.eas?.projectId as string | undefined;
     if (!projectId) return;
-    const { data: token } = await Notifications.getExpoPushTokenAsync({ projectId });
-    await fetch(`${API_BASE}/api/tokens`, {
+    const { data: token } = await Notifications.getExpoPushTokenAsync({
+      projectId,
+      devicePushToken,
+    });
+    const response = await fetchWithTimeout(`${API_BASE}/api/tokens`, 10_000, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token }),
     });
+    if (!response.ok) throw new Error(`Push token registration failed: HTTP ${response.status}`);
     await setItemAsync(TOKEN_KEY, token);
   } catch (e) {
     console.warn('Push token registration failed:', e);
   }
+}
+
+/** Keep the backend registration current when APNs/FCM rotates a native token
+ * while the app is alive. */
+export function addPushTokenListener(): Notifications.EventSubscription {
+  return Notifications.addPushTokenListener((devicePushToken) => {
+    void registerPushToken(devicePushToken);
+  });
 }
 
 /** Unregister push token from the backend. */
@@ -87,11 +102,12 @@ export async function unregisterPushToken(): Promise<void> {
   try {
     const token = await getItemAsync(TOKEN_KEY);
     if (!token) return;
-    await fetch(`${API_BASE}/api/tokens`, {
+    const response = await fetchWithTimeout(`${API_BASE}/api/tokens`, 10_000, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token }),
     });
+    if (!response.ok) return;
     await deleteItemAsync(TOKEN_KEY);
   } catch {}
 }

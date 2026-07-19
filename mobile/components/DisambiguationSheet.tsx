@@ -1,14 +1,15 @@
-import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import type { Chokepoint, ConflictEvent, GdacsAlert } from '@shared/types';
 import { Canvas, Circle, Path } from '@shopify/react-native-skia';
 import { memo, useCallback, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
+import Animated from 'react-native-reanimated';
+import { ANIMATION, SPACING } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import { SUB_EVENT_LABEL } from '../lib/conflict';
 import { displayCountryName } from '../lib/place-names';
+import { severityTint } from '../lib/severity';
+import { staggerEnter } from '../lib/stagger';
 import {
   CHOKEPOINT_PATH,
   CONFLICT_FAMILY_LABEL,
@@ -19,6 +20,7 @@ import {
 } from './globe/disaster-glyphs';
 import type { TapResult } from './globe/MiniGlobe';
 import { Pressable, Text } from './primitives';
+import { SheetScrollView } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
 interface DisambiguationSheetProps extends BaseSheetProps {
@@ -260,14 +262,17 @@ function CandidateRow({
   // (the most editorially urgent signal). Lower-tier disasters read in
   // `textSecondary` — severity is still legible from the focal numbers
   // and labels in the row body.
-  const tint =
-    row.alertlevel === 'Red' ||
-    (row.kind === 'conflict' && row.fatalities !== undefined && row.fatalities > 0)
-      ? colors.toneUnfavorableText
-      : colors.textSecondary;
+  const tint = severityTint(
+    colors,
+    {
+      alertLevel: row.alertlevel,
+      fatalities: row.kind === 'conflict' ? row.fatalities : undefined,
+    },
+    colors.textSecondary,
+  );
   const handlePress = useCallback(() => onPress(row.result), [onPress, row.result]);
   return (
-    <Animated.View entering={FadeInDown.duration(ANIMATION.fast).delay(staggerDelay(index))}>
+    <Animated.View entering={staggerEnter(index, ANIMATION.fast)}>
       <Pressable
         haptic="tick"
         onPress={handlePress}
@@ -300,7 +305,6 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
   onDismiss,
   onSelect,
 }: DisambiguationSheetProps) {
-  const { sheetStyles } = useTheme();
   const snapProps = useSheetSnaps(false);
 
   const rows = useMemo<DisplayRow[]>(() => {
@@ -330,13 +334,11 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
       onDismiss={onDismiss}
       handleTitle="multiple items here"
     >
-      <BottomSheetScrollView
-        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}
-      >
+      <SheetScrollView bottomInset={bottomInset}>
         {rows.map((row, i) => (
           <CandidateRow key={row.key} row={row} index={i} onPress={handleSelect} />
         ))}
-      </BottomSheetScrollView>
+      </SheetScrollView>
     </SheetLayout>
   );
 });

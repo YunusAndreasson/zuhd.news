@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
+import Animated from 'react-native-reanimated';
+import { SPACING } from '../constants/theme';
 import { useOpenLink } from '../lib/open-link';
+import { staggerEnter } from '../lib/stagger';
 import { Pressable, Text } from './primitives';
 
 export interface InfoSection {
@@ -25,7 +26,7 @@ export function SheetInfoPage({ sections }: SheetInfoPageProps) {
       {sections.map((section, i) => (
         <Animated.View
           key={i}
-          entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(i))}
+          entering={staggerEnter(i)}
           style={i > 0 ? styles.section : undefined}
         >
           {section.heading && (

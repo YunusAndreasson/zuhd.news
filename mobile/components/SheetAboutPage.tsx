@@ -1,9 +1,10 @@
 import type { Article } from '@shared/types';
 import { useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
+import Animated from 'react-native-reanimated';
+import { ANIMATION, SPACING } from '../constants/theme';
 import { useOpenLink } from '../lib/open-link';
+import { makeStaggerEnter, staggerEnter } from '../lib/stagger';
 import { Pressable, Text } from './primitives';
 
 // Copy lives with the component; the About page is one-of-a-kind and doesn't
@@ -82,26 +83,11 @@ const PRINCIPLES: { term: string; gloss: string }[] = [
 ];
 
 // The colophon in content/about.md ("created by Yunus Andreasson") is dropped
-// by the hand-maintained copy above; re-add the maker credit here. The byline
-// links to the hub; the socials tie the identity.
-const MAKER_HUB = 'https://andreassonphoto.com/about';
+// by the hand-maintained copy above; re-add the maker credit here as a single
+// quiet byline. It links to the maker's projects page, which lists his other
+// work \u2014 so this app doesn't carry a socials/other-apps billboard of its own.
+const MAKER_PROJECTS = 'https://andreassonphoto.com/projects';
 const MAKER_BYLINE = 'Made by Yunus Andreasson';
-
-const SOCIALS: { label: string; url: string }[] = [
-  { label: 'github', url: 'https://github.com/YunusAndreasson' },
-  { label: 'x', url: 'https://x.com/YunusAndreasson' },
-  { label: 'instagram', url: 'https://www.instagram.com/andreasson.photo/' },
-  { label: 'linkedin', url: 'https://www.linkedin.com/in/yunusandreasson/' },
-];
-
-// Sibling apps in the same cluster (this app excluded) \u2014 discovery links so a
-// reader who found zuhd.news can find the maker's other work.
-const OTHER_APPS: { label: string; url: string }[] = [
-  { label: 'islam.se', url: 'https://islam.se' },
-  { label: 'open-arabic', url: 'https://openarabic.io' },
-  { label: 'al-ibadah', url: 'https://al-ibadah.com' },
-  { label: 'qamar360', url: 'https://qamar360.com' },
-];
 
 const SUPPRESS_SOURCES = new Set(['Hacker News']);
 
@@ -138,8 +124,7 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
   const visibleSources = recentSources.slice(0, 10);
   const extraCount = Math.max(0, recentSources.length - visibleSources.length);
 
-  let blockIndex = 0;
-  const enter = () => FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(blockIndex++));
+  const enter = makeStaggerEnter();
 
   return (
     <>
@@ -226,10 +211,7 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
         {providersOpen && (
           <View style={styles.linkList}>
             {DATA_SOURCES.map((l, idx) => (
-              <Animated.View
-                key={l.url}
-                entering={FadeInDown.duration(ANIMATION.fast).delay(staggerDelay(idx))}
-              >
+              <Animated.View key={l.url} entering={staggerEnter(idx, ANIMATION.fast)}>
                 <Pressable
                   onPress={() => openLink(l.url)}
                   style={styles.link}
@@ -265,7 +247,7 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
       <Animated.View entering={enter()} style={styles.section}>
         <Text variant="labelSm">colophon</Text>
         <Pressable
-          onPress={() => openLink(MAKER_HUB)}
+          onPress={() => openLink(MAKER_PROJECTS)}
           style={styles.link}
           accessibilityRole="link"
           accessibilityLabel={MAKER_BYLINE}
@@ -274,40 +256,6 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
             {MAKER_BYLINE}
           </Text>
         </Pressable>
-        <View style={styles.linkList}>
-          {SOCIALS.map((l) => (
-            <Pressable
-              key={l.url}
-              onPress={() => openLink(l.url)}
-              style={styles.link}
-              accessibilityRole="link"
-              accessibilityLabel={l.label}
-            >
-              <Text variant="captionEmphasis" tone="accent" style={styles.linkText}>
-                {l.label}
-              </Text>
-            </Pressable>
-          ))}
-        </View>
-      </Animated.View>
-
-      <Animated.View entering={enter()} style={styles.section}>
-        <Text variant="labelSm">other apps</Text>
-        <View style={styles.linkList}>
-          {OTHER_APPS.map((l) => (
-            <Pressable
-              key={l.url}
-              onPress={() => openLink(l.url)}
-              style={styles.link}
-              accessibilityRole="link"
-              accessibilityLabel={l.label}
-            >
-              <Text variant="captionEmphasis" tone="accent" style={styles.linkText}>
-                {l.label}
-              </Text>
-            </Pressable>
-          ))}
-        </View>
       </Animated.View>
     </>
   );

@@ -17,7 +17,6 @@ import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
 import { createRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  InteractionManager,
   type LayoutChangeEvent,
   Platform,
   Share,
@@ -42,7 +41,9 @@ import { DisasterSheet } from '../components/DisasterSheet';
 import { EntitySheet } from '../components/EntitySheet';
 import { ErrorState } from '../components/ErrorState';
 import type { TapResult } from '../components/globe/MiniGlobe';
+import { HintOverlay } from '../components/HintOverlay';
 import { MenuSheet } from '../components/MenuSheet';
+import { NotificationPrimerSheet } from '../components/NotificationPrimerSheet';
 import { SourcesSheet } from '../components/SourcesSheet';
 import { Toast, type ToastRef } from '../components/Toast';
 import { CATEGORIES, EDITORIAL, OPACITY } from '../constants/theme';
@@ -52,20 +53,29 @@ import { useChokepoints } from '../hooks/useChokepoints';
 import { useConflictEvents } from '../hooks/useConflictEvents';
 import { useGdacsAlerts } from '../hooks/useGdacsAlerts';
 import { useHeatmap } from '../hooks/useHeatmap';
+import { useOnboardingHints } from '../hooks/useOnboardingHints';
 import { usePendingNotification } from '../hooks/usePendingNotification';
-import { useTheme } from '../hooks/useTheme';
+import { usePreferences, useTheme } from '../hooks/useTheme';
 import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
 import { useZoomCycle } from '../hooks/useZoomCycle';
 import { formatExactTime } from '../lib/article-utils';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
+import { getSnapshot as getOnboarding, markHintDone } from '../lib/onboarding-store';
 
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 
+// Present the notification primer after the "Caught up" toast has cleared
+// (2s passive duration) plus a breath, so the two moments read as sequential
+// rather than stacked.
+const PRIMER_PRESENT_DELAY_MS = 2600;
+
 export default function HomeScreen() {
   const { colors } = useTheme();
+  const { preferences } = usePreferences();
   const { current: currentZoom, toggle: handleZoomToggle } = useZoomCycle();
   const menuSheetRef = useRef<BottomSheetModal>(null);
+  const primerSheetRef = useRef<BottomSheetModal>(null);
   const sourcesSheetRef = useRef<BottomSheetModal>(null);
   const countrySheetRef = useRef<BottomSheetModal>(null);
   const chokepointSheetRef = useRef<BottomSheetModal>(null);
@@ -73,6 +83,14 @@ export default function HomeScreen() {
   const conflictSheetRef = useRef<BottomSheetModal>(null);
   const disambiguationSheetRef = useRef<BottomSheetModal>(null);
   const entitySheetRef = useRef<BottomSheetModal>(null);
+  const pagerRef = useRef<PagerView>(null);
+  const pendingArticleNavigationRef = useRef<{ page: number; slug: string } | null>(null);
+  const completeArticleNavigation = useCallback((page: number) => {
+    const pending = pendingArticleNavigationRef.current;
+    if (!pending || pending.page !== page) return;
+    pendingArticleNavigationRef.current = null;
+    listRefs[page]?.current?.scrollToSlug(pending.slug);
+  }, []);
   const renderBackdrop = useCallback(
     (props: BottomSheetBackdropProps) => (
       <BottomSheetBackdrop
@@ -120,6 +138,11 @@ export default function HomeScreen() {
   const [activeConflict, setActiveConflict] = useState<ConflictEvent | null>(null);
   const [chooserCandidates, setChooserCandidates] = useState<TapResult[]>([]);
   const [activeEntity, setActiveEntity] = useState<Entity | null>(null);
+  // The two payload-less sheets need explicit open flags so the hint overlay
+  // can yield the airspace; every other sheet's openness is derived from its
+  // payload state above.
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [primerOpen, setPrimerOpen] = useState(false);
   const activeIndicator = useMemo(
     () => (activeEntity ? (indicatorsById.get(activeEntity.indicatorId) ?? null) : null),
     [activeEntity, indicatorsById],
@@ -146,19 +169,23 @@ export default function HomeScreen() {
         }
       }
 
-      pagerRef.current?.setPage(catIndex);
-      // Wait for pager animation to complete before scrolling
-      InteractionManager.runAfterInteractions(() => {
-        listRefs[catIndex]?.current?.scrollToSlug?.(slug);
-      });
+      pendingArticleNavigationRef.current = { page: catIndex, slug };
+      if (catIndex === currentCategoryRef.current) {
+        // Same-page navigation has no onPageSelected event. Defer one frame so
+        // a just-injected bookmarked article has committed to the FlatList.
+        requestAnimationFrame(() => completeArticleNavigation(catIndex));
+      } else {
+        pagerRef.current?.setPage(catIndex);
+      }
     },
-    [injectArticle],
+    [completeArticleNavigation, injectArticle],
   );
 
   const handleArticleBookmark = useCallback((article: Article) => {
     const catIndex = currentCategoryRef.current;
     const category = CATEGORIES[catIndex] ?? 'politics';
     const added = toggleBookmark(article, category);
+    markHintDone('bookmark');
     hapticNotification();
     if (added) {
       toastRef.current?.show('Saved to bookmarks');
@@ -174,6 +201,7 @@ export default function HomeScreen() {
 
   const handleMenuPress = useCallback(() => {
     hapticImpact();
+    setMenuOpen(true);
     menuSheetRef.current?.present();
   }, []);
 
@@ -191,6 +219,7 @@ export default function HomeScreen() {
 
   const handleSourcesPress = useCallback((article: Article) => {
     hapticImpact();
+    markHintDone('sources');
     setSheetSources(article.sources);
     sourcesSheetRef.current?.present();
   }, []);
@@ -292,6 +321,9 @@ export default function HomeScreen() {
   const handleCountryPress = useCallback(
     (result: TapResult) => {
       hapticImpact();
+      // Any path here — globe tap, marker tap, or inline country link — proves
+      // the reader found the map layer; the globe hint retires on all of them.
+      markHintDone('globe');
       // Multiple overlapping markers — surface a chooser instead of
       // arbitrarily picking one. The chooser fires onSelect with the
       // chosen candidate, which is dispatched back through this same
@@ -356,7 +388,6 @@ export default function HomeScreen() {
     [handleSelectArticle],
   );
 
-  const pagerRef = useRef<PagerView>(null);
   const toastRef = useRef<ToastRef>(null);
 
   const [currentCategory, setCurrentCategory] = useState(0);
@@ -384,8 +415,9 @@ export default function HomeScreen() {
       hapticTick();
       setCurrentCategory(page);
       activeArticleRef.current = currentArticlesRef.current[page] ?? null;
+      completeArticleNavigation(page);
     },
-    [pagerOffset],
+    [completeArticleNavigation, pagerOffset],
   );
 
   const onPageScroll = useCallback(
@@ -407,8 +439,43 @@ export default function HomeScreen() {
     [currentCategory],
   );
 
+  // --- Onboarding: hint pills + notification primer ---
+  const briefingVisible = briefingPlayer.playing || briefingPlayer.elapsed > 0;
+  const sheetOpen =
+    menuOpen ||
+    primerOpen ||
+    sheetSources.length > 0 ||
+    countrySheet !== null ||
+    activeChokepoint !== null ||
+    activeAlert !== null ||
+    activeConflict !== null ||
+    chooserCandidates.length > 0 ||
+    activeEntity !== null;
+  const sheetOpenRef = useRef(sheetOpen);
+  sheetOpenRef.current = sheetOpen;
+  const { activeHint, dismissActiveHint } = useOnboardingHints({
+    ready: !loading && heatmapReady,
+    suppressed: sheetOpen || briefingVisible,
+  });
+  const notificationsOnRef = useRef(preferences.notifications);
+  notificationsOnRef.current = preferences.notifications;
+  const primerTriedRef = useRef(false);
+
   const handleCaughtUp = useCallback(() => {
     toastRef.current?.show('Caught up', undefined, 'top');
+    // The "caught up" moment is the app's one demonstrated-value point — the
+    // only place the notification primer may appear. Any prior answer
+    // (primer, legacy cold prompt, OS permission state) blocks it;
+    // `earlierIndex` requires a prior lastSeenAt, so it can never fire on a
+    // cold first launch.
+    if (primerTriedRef.current) return;
+    if (getOnboarding().primer.status !== 'pending' || notificationsOnRef.current) return;
+    primerTriedRef.current = true;
+    setTimeout(() => {
+      if (sheetOpenRef.current) return;
+      setPrimerOpen(true);
+      primerSheetRef.current?.present();
+    }, PRIMER_PRESENT_DELAY_MS);
   }, []);
 
   const handleMenuToast = useCallback((message: string) => {
@@ -514,7 +581,9 @@ export default function HomeScreen() {
 
       <Toast ref={toastRef} />
 
-      {!(briefingPlayer.playing || briefingPlayer.elapsed > 0) && (
+      <HintOverlay hint={activeHint} onDismiss={dismissActiveHint} bottomInset={insets.bottom} />
+
+      {!briefingVisible && (
         <BottomActionBar
           bottomInset={insets.bottom}
           zoomLabel={currentZoom.label}
@@ -525,7 +594,7 @@ export default function HomeScreen() {
       )}
 
       {/* Briefing player — shown while playing or paused mid-listen */}
-      {(briefingPlayer.playing || briefingPlayer.elapsed > 0) && (
+      {briefingVisible && (
         <BriefingBar
           playing={briefingPlayer.playing}
           elapsed={briefingPlayer.elapsed}
@@ -541,7 +610,7 @@ export default function HomeScreen() {
         sheetRef={menuSheetRef}
         bottomInset={insets.bottom}
         renderBackdrop={renderBackdrop}
-        onDismiss={() => {}}
+        onDismiss={() => setMenuOpen(false)}
         grouped={grouped}
         onSelectArticle={handleSelectArticle}
         onToast={handleMenuToast}
@@ -638,6 +707,14 @@ export default function HomeScreen() {
         bottomInset={insets.bottom}
         renderBackdrop={renderBackdrop}
         onDismiss={() => setSheetSources([])}
+      />
+
+      <NotificationPrimerSheet
+        sheetRef={primerSheetRef}
+        bottomInset={insets.bottom}
+        renderBackdrop={renderBackdrop}
+        onDismiss={() => setPrimerOpen(false)}
+        onToast={handleMenuToast}
       />
     </View>
   );

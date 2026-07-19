@@ -9,6 +9,8 @@
     "dev:once": "SKIP_OG=1 node scripts/build.js && npx wrangler pages dev dist",
     "dev:og": "node scripts/build.js && npx wrangler pages dev dist",
     "build": "node scripts/build.js",
+    "test": "node --test scripts/lib/*.test.js",
+    "verify": "npm test",
     "fetch": "node scripts/fetch-news.js",
     "deploy": "npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true",
     "publish": "node scripts/build.js && npm run deploy",

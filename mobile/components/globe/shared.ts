@@ -1,5 +1,5 @@
 import countriesTopo from '@shared/data/countries-110m.json';
-import type { SkPath } from '@shopify/react-native-skia';
+import type { SkPathBuilder } from '@shopify/react-native-skia';
 import { type GeoContext, geoArea, geoCentroid } from 'd3-geo';
 import { feature, mesh } from 'topojson-client';
 import { presimplify, simplify } from 'topojson-simplify';
@@ -209,13 +209,13 @@ const DEG = 180 / Math.PI;
  * so `pg.context(ctx)` accepts it without a cast; `setPath` retargets writes
  * to a different Skia path between draw calls. */
 export interface SkiaGeoContext extends GeoContext {
-  setPath(p: SkPath): void;
+  setPath(p: SkPathBuilder): void;
 }
 
 export function createSkiaPathContext(): SkiaGeoContext {
-  let _path: SkPath | null = null;
+  let _path: SkPathBuilder | null = null;
   return {
-    setPath(p: SkPath) {
+    setPath(p: SkPathBuilder) {
       _path = p;
     },
     beginPath() {},

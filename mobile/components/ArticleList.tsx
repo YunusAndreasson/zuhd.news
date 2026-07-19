@@ -40,6 +40,7 @@ import { useScrollState } from '../hooks/useScrollState';
 import { useTheme } from '../hooks/useTheme';
 import { formatTimeAgo } from '../lib/article-utils';
 import { hapticNotification, hapticTick } from '../lib/haptics';
+import { recordArticleSnap } from '../lib/onboarding-store';
 import { maybeRequestReview } from '../lib/store-review';
 import { ArticlePage } from './ArticlePage';
 import { EmptyState } from './EmptyState';
@@ -278,6 +279,7 @@ export const ArticleList = memo(function ArticleList({
       }
       setCurrentIndex(idx);
       maybeRequestReview();
+      recordArticleSnap();
     },
     [earlierIndex, onCaughtUp, caughtUpFired, setCurrentIndex],
   );

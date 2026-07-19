@@ -1,5 +1,6 @@
 import type { Article, Category } from '@shared/types';
 import { File, Paths } from 'expo-file-system';
+import Storage from 'expo-sqlite/kv-store';
 import { isBookmarkArray } from './validate';
 
 // ---------------------------------------------------------------------------
@@ -17,6 +18,7 @@ export interface Bookmark {
 // ---------------------------------------------------------------------------
 
 const BOOKMARKS_FILE = new File(Paths.document, 'zuhd-bookmarks.json');
+const BOOKMARKS_KEY = 'zuhd_bookmarks';
 
 let bookmarks: Bookmark[] = [];
 const listeners = new Set<() => void>();
@@ -25,9 +27,16 @@ const listeners = new Set<() => void>();
 // bookmark (e.g. missing `sentences`) would crash on first render — validate
 // and drop the whole file if any entry is malformed.
 try {
-  if (BOOKMARKS_FILE.exists) {
-    const parsed: unknown = JSON.parse(BOOKMARKS_FILE.textSync());
-    bookmarks = isBookmarkArray(parsed) ? parsed : [];
+  const stored = Storage.getItemSync(BOOKMARKS_KEY);
+  const text = stored ?? (BOOKMARKS_FILE.exists ? BOOKMARKS_FILE.textSync() : null);
+  if (text) {
+    const parsed: unknown = JSON.parse(text);
+    if (isBookmarkArray(parsed)) {
+      bookmarks = parsed;
+      if (stored === null) Storage.setItemSync(BOOKMARKS_KEY, text);
+    } else {
+      bookmarks = [];
+    }
   }
 } catch {
   bookmarks = [];
@@ -43,7 +52,7 @@ function persistNow() {
   if (persistTimer) clearTimeout(persistTimer);
   persistTimer = null;
   try {
-    BOOKMARKS_FILE.write(JSON.stringify(bookmarks));
+    Storage.setItemSync(BOOKMARKS_KEY, JSON.stringify(bookmarks));
   } catch {}
 }
 

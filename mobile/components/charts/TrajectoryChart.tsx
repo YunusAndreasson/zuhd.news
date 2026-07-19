@@ -278,6 +278,8 @@ export const TrajectoryChart = memo(function TrajectoryChart({
     }));
   }, [startYear, endYear, innerRight]);
 
+  const canvasStyle = useMemo(() => ({ width, height }), [width, height]);
+
   return (
     <View
       accessible
@@ -288,7 +290,7 @@ export const TrajectoryChart = memo(function TrajectoryChart({
     >
       {width > 0 ? (
         <>
-          <Canvas style={{ width, height }}>
+          <Canvas style={canvasStyle}>
             {gridYs.map((gy, i) => (
               <Line
                 key={`grid-h-${i}`}

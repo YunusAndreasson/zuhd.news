@@ -20,6 +20,8 @@ import {
   Rect,
   rect,
   Skia,
+  type SkPath,
+  type SkPathBuilder,
   Text as SkiaText,
   useFont,
   useImage,
@@ -405,16 +407,16 @@ interface Hotspot {
 }
 
 interface GlobeState {
-  landPath: ReturnType<typeof Skia.Path.Make> | null;
-  icePath: ReturnType<typeof Skia.Path.Make> | null;
-  bordersPath: ReturnType<typeof Skia.Path.Make> | null;
-  countryPath: ReturnType<typeof Skia.Path.Make> | null;
+  landPath: SkPath | null;
+  icePath: SkPath | null;
+  bordersPath: SkPath | null;
+  countryPath: SkPath | null;
   countryName: string | null;
-  nightPath: ReturnType<typeof Skia.Path.Make> | null;
-  twilightPath: ReturnType<typeof Skia.Path.Make> | null;
-  graticulePath: ReturnType<typeof Skia.Path.Make> | null;
-  qiblaPath: ReturnType<typeof Skia.Path.Make> | null;
-  sourceArcs: ReturnType<typeof Skia.Path.Make> | null;
+  nightPath: SkPath | null;
+  twilightPath: SkPath | null;
+  graticulePath: SkPath | null;
+  qiblaPath: SkPath | null;
+  sourceArcs: SkPath | null;
   arcOpacity: number;
   northPole: { x: number; y: number } | null;
   southPole: { x: number; y: number } | null;
@@ -517,7 +519,7 @@ interface GlobeState {
   /** Projected major-river linestrings. Drawn as a halo + dark stroke over
    *  land when the globe is zoomed past PLACES_APPEAR_CLIP. Null at default
    *  zoom — no path projection work runs. */
-  riversPath: ReturnType<typeof Skia.Path.Make> | null;
+  riversPath: SkPath | null;
   /** Opacity for riversPath — folds the zoom-band fade factor so rivers
    *  emerge smoothly as the camera tightens. */
   riversOpacity: number;
@@ -527,11 +529,11 @@ interface GlobeState {
    *  cases. The ~190-entry input loop is two dot products per entry plus
    *  an optional proj() — fits comfortably alongside the existing GDACS /
    *  conflict / hotspot loops. */
-  cityLightsNightPath: ReturnType<typeof Skia.Path.Make> | null;
+  cityLightsNightPath: SkPath | null;
   /** Civil-twilight tier — same path family, painted at half opacity. The
    *  two-tier render gives the terminator a soft lighting-up gradient
    *  instead of a hard on/off seam. */
-  cityLightsTwilightPath: ReturnType<typeof Skia.Path.Make> | null;
+  cityLightsTwilightPath: SkPath | null;
   /** Zoom-fade multiplier for the civil-twilight tier (0 at 1× ambient → 1
    *  at full zoom). Holds the dim terminator-edge speckle out of the
    *  resting view; the deep-night tier ignores it and always paints. */
@@ -554,7 +556,7 @@ const Moon = memo(function Moon({
   r: number;
   phase: number;
   texture: ReturnType<typeof useImage>;
-  clip: ReturnType<typeof Skia.Path.Make>;
+  clip: SkPath;
   accentColor: string;
   bgAlpha: (opacity: number) => string;
 }) {
@@ -636,7 +638,7 @@ const CountryHighlight = memo(function CountryHighlight({
   countryName,
   color,
 }: {
-  path: ReturnType<typeof Skia.Path.Make>;
+  path: SkPath;
   countryName: string | null;
   color: string;
 }) {
@@ -709,8 +711,8 @@ function collectCityLights(
   camUnitY: number,
   camUnitZ: number,
   clipCos: number,
-  nightPath: ReturnType<typeof Skia.Path.Make>,
-  twilightPath: ReturnType<typeof Skia.Path.Make>,
+  nightPath: SkPathBuilder,
+  twilightPath: SkPathBuilder,
   collectTwilight: boolean,
 ): { hasNight: boolean; hasTwilight: boolean } {
   let hasNight = false;
@@ -764,47 +766,54 @@ function projectInitial(
   const pg = geoPath(proj);
   const ctx = createSkiaPathContext();
 
-  const lp = Skia.Path.Make();
-  ctx.setPath(lp);
+  const landBuilder = Skia.PathBuilder.Make();
+  ctx.setPath(landBuilder);
   pg.context(ctx)(landMedium);
+  const lp = landBuilder.detach();
 
   // Permanent ice sheets (Antarctica, Greenland) — drawn as a lighter fill
   // on top of the land silhouette so the globe reads climatologically.
-  const ip = Skia.Path.Make();
-  ctx.setPath(ip);
+  const iceBuilder = Skia.PathBuilder.Make();
+  ctx.setPath(iceBuilder);
   pg.context(ctx)(iceSheets);
+  const ip = iceBuilder.detach();
 
   // Neighbouring country borders — mesh + no resampling for speed
   proj.precision(0);
-  const bp = Skia.Path.Make();
-  ctx.setPath(bp);
+  const bordersBuilder = Skia.PathBuilder.Make();
+  ctx.setPath(bordersBuilder);
   pg.context(ctx)(bordersMeshMedium);
+  const bp = bordersBuilder.detach();
   proj.precision(8);
 
-  let cp: ReturnType<typeof Skia.Path.Make> | null = null;
+  let cp: GlobeState['countryPath'] = null;
   if (geo.country) {
-    cp = Skia.Path.Make();
-    ctx.setPath(cp);
+    const builder = Skia.PathBuilder.Make();
+    ctx.setPath(builder);
     pg.context(ctx)(geo.country);
+    cp = builder.detach();
   }
 
   const [sunLng, sunLat] = getSunPosition();
   const nightCenter: [number, number] = [sunLng + 180, -sunLat];
-  const np = Skia.Path.Make();
-  ctx.setPath(np);
+  const nightBuilder = Skia.PathBuilder.Make();
+  ctx.setPath(nightBuilder);
   pg.context(ctx)(nightCircleGen.center(nightCenter).radius(90)());
+  const np = nightBuilder.detach();
 
   // Low-sun band — softer gradient where sun is near the horizon (0–6° above)
-  const tp = Skia.Path.Make();
-  ctx.setPath(tp);
+  const twilightBuilder = Skia.PathBuilder.Make();
+  ctx.setPath(twilightBuilder);
   pg.context(ctx)(nightCircleGen.center(nightCenter).radius(96)());
+  const tp = twilightBuilder.detach();
 
   // Equator + polar circles
-  const gp = Skia.Path.Make();
-  ctx.setPath(gp);
+  const graticuleBuilder = Skia.PathBuilder.Make();
+  ctx.setPath(graticuleBuilder);
   pg.context(ctx)(graticuleLines);
   pg.context(ctx)(ARCTIC_CIRCLE);
   pg.context(ctx)(ANTARCTIC_CIRCLE);
+  const gp = graticuleBuilder.detach();
 
   // Point markers below are culled against the clip cone, not the hemisphere:
   // direct point projection ignores `.clipAngle` (d3 clips streams only), so a
@@ -869,8 +878,8 @@ function projectInitial(
           Math.max(0, (PLACES_APPEAR_CLIP - clipAngle) / (PLACES_APPEAR_CLIP - PLACES_FULL_CLIP)),
         )
       : 0;
-  const cityNight0 = Skia.Path.Make();
-  const cityTwilight0 = Skia.Path.Make();
+  const cityNightBuilder0 = Skia.PathBuilder.Make();
+  const cityTwilightBuilder0 = Skia.PathBuilder.Make();
   const cityRes0 = collectCityLights(
     proj,
     sunUnitX0,
@@ -880,8 +889,8 @@ function projectInitial(
     camUnitY0,
     camUnitZ0,
     clipCos0,
-    cityNight0,
-    cityTwilight0,
+    cityNightBuilder0,
+    cityTwilightBuilder0,
     cityTwilightOpacity0 > 0,
   );
 
@@ -889,10 +898,10 @@ function projectInitial(
   // points are culled against the clip cone explicitly (see the clipRad note
   // above): beyond-cone points would draw the arc into the sky and far-side
   // points would fold it back mirrored across the disk.
-  let qp: ReturnType<typeof Skia.Path.Make> | null = null;
+  let qp: GlobeState['qiblaPath'] = null;
   if (geoDistance([geo.lng, geo.lat], MAKKAH.coords) > 0.02) {
     const interp = geoInterpolate([geo.lng, geo.lat], MAKKAH.coords);
-    qp = Skia.Path.Make();
+    const builder = Skia.PathBuilder.Make();
     let started = false;
     for (let i = 0; i <= 30; i++) {
       const ll = interp(i / 30);
@@ -906,10 +915,11 @@ function projectInitial(
         continue;
       }
       if (!started) {
-        qp.moveTo(p[0], p[1]);
+        builder.moveTo(p[0], p[1]);
         started = true;
-      } else qp.lineTo(p[0], p[1]);
+      } else builder.lineTo(p[0], p[1]);
     }
+    qp = builder.detach();
   }
 
   return {
@@ -940,8 +950,8 @@ function projectInitial(
     waterLabels: [],
     riversPath: null,
     riversOpacity: 0,
-    cityLightsNightPath: cityRes0.hasNight ? cityNight0 : null,
-    cityLightsTwilightPath: cityRes0.hasTwilight ? cityTwilight0 : null,
+    cityLightsNightPath: cityRes0.hasNight ? cityNightBuilder0.detach() : null,
+    cityLightsTwilightPath: cityRes0.hasTwilight ? cityTwilightBuilder0.detach() : null,
     cityTwilightOpacity: cityTwilightOpacity0,
   };
 }
@@ -1176,24 +1186,23 @@ export const MiniGlobe = memo(function MiniGlobe({
   // label layer effectively free inside callReproject.
   const cachedCountryCentroidRef = useRef<[number, number] | null>(null);
 
-  // Reusable Skia path objects — rewound each frame instead of allocating new ones.
-  // setIsVolatile(true) tells Skia to skip GPU-side caching since these change every frame;
-  // rewind() (vs reset()) keeps internal storage allocated between frames.
-  const landPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
-  const icePathRef = useRef(Skia.Path.Make().setIsVolatile(true));
-  const bordersPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
-  const countryPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
-  const nightPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
-  const twilightPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
-  const graticulePathRef = useRef(Skia.Path.Make().setIsVolatile(true));
-  const qiblaPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
-  const sourceArcsRef = useRef(Skia.Path.Make().setIsVolatile(true));
-  const riversPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
-  // City-light tier paths — rewound each frame, populated by collectCityLights.
+  // Reusable mutable builders retain their internal buffers between frames;
+  // each frame publishes immutable SkPath snapshots for rendering.
+  const landPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
+  const icePathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
+  const bordersPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
+  const countryPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
+  const nightPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
+  const twilightPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
+  const graticulePathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
+  const qiblaPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
+  const sourceArcsRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
+  const riversPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
+  // City-light tier builders — reset each frame, populated by collectCityLights.
   // Two paths (deep night vs civil twilight) so each tier paints at its own
   // opacity in the JSX without needing per-instance Atlas alpha.
-  const cityLightsNightPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
-  const cityLightsTwilightPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
+  const cityLightsNightPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
+  const cityLightsTwilightPathRef = useRef(Skia.PathBuilder.Make().setIsVolatile(true));
 
   // Keep closure dependencies in refs so the reproject callback stays stable
   const articlesRef = useRef(articles);
@@ -1395,21 +1404,23 @@ export const MiniGlobe = memo(function MiniGlobe({
       const zoomInFlight = activeMid || angleChanging;
       const nearSettled = !zoomInFlight && (frac < ARC_WINDOW || frac > 1 - ARC_WINDOW);
 
-      // Land — rewind reuses the underlying buffer (vs reset which frees it).
+      // Land — reset reuses the PathBuilder's underlying buffer.
       // Mid-scroll uses the ~2k-vertex simplified topology (vs 5k full); at
       // rest we switch back to the full coastline so static reading is crisp.
-      const landPath = landPathRef.current;
-      landPath.rewind();
-      skiaCtx.setPath(landPath);
+      const landBuilder = landPathRef.current;
+      landBuilder.reset();
+      skiaCtx.setPath(landBuilder);
       pg.context(skiaCtx)(nearSettled ? landMedium : landSimplified);
+      const landPath = landBuilder.build();
 
       // Ice sheets — Antarctica + Greenland. Swapped to simplified during
       // scroll the same way land is. Projecting every frame (not gated) so
       // the ice layer tracks rotation without flicker.
-      const icePath = icePathRef.current;
-      icePath.rewind();
-      skiaCtx.setPath(icePath);
+      const iceBuilder = icePathRef.current;
+      iceBuilder.reset();
+      skiaCtx.setPath(iceBuilder);
       pg.context(skiaCtx)(nearSettled ? iceSheets : iceSheetsSimplified);
+      const icePath = iceBuilder.build();
 
       // Dot
       let dot: { x: number; y: number } | null = null;
@@ -1445,16 +1456,17 @@ export const MiniGlobe = memo(function MiniGlobe({
       // we project the simplified variant if available, otherwise fall
       // back to the full-detail feature (small countries aren't worth a
       // simplified copy). On settle, always full-detail.
-      let countryPath: ReturnType<typeof Skia.Path.Make> | null = null;
+      let countryPath: GlobeState['countryPath'] = null;
       if (cachedCountryRef.current) {
-        countryPath = countryPathRef.current;
-        countryPath.rewind();
-        skiaCtx.setPath(countryPath);
+        const countryBuilder = countryPathRef.current;
+        countryBuilder.reset();
+        skiaCtx.setPath(countryBuilder);
         const src =
           nearSettled || !cachedCountrySimplifiedRef.current
             ? cachedCountryRef.current
             : cachedCountrySimplifiedRef.current;
         pg.context(skiaCtx)(src);
+        countryPath = countryBuilder.build();
       }
 
       // Country name label — project the cached centroid onto the current
@@ -1489,10 +1501,11 @@ export const MiniGlobe = memo(function MiniGlobe({
       // (matches landMedium arcs); mid-scroll uses the 0.5-weight simplified
       // mesh (matches landSimplified). ~30% cheaper at rest, ~56% cheaper
       // during scroll vs the original full-topology mesh.
-      const bordersPath = bordersPathRef.current;
-      bordersPath.rewind();
-      skiaCtx.setPath(bordersPath);
+      const bordersBuilder = bordersPathRef.current;
+      bordersBuilder.reset();
+      skiaCtx.setPath(bordersBuilder);
       pg.context(skiaCtx)(nearSettled ? bordersMeshMedium : bordersMeshSimplified);
+      const bordersPath = bordersBuilder.build();
 
       // --- Always-on cheap layers: project every frame so they stay present
       // during scroll instead of popping in/out at the nearSettled boundary.
@@ -1506,18 +1519,18 @@ export const MiniGlobe = memo(function MiniGlobe({
       const [sunLng, sunLat] = getSunPosition();
       const nightCenter: [number, number] = [sunLng + 180, -sunLat];
       const nightGeo = nightCircleGen.center(nightCenter).radius(90)();
-      const np = nightPathRef.current;
-      np.rewind();
-      skiaCtx.setPath(np);
+      const nightBuilder = nightPathRef.current;
+      nightBuilder.reset();
+      skiaCtx.setPath(nightBuilder);
       pg.context(skiaCtx)(nightGeo);
-      const nightPath = np;
+      const nightPath = nightBuilder.build();
 
       // Low-sun band
-      const tp = twilightPathRef.current;
-      tp.rewind();
-      skiaCtx.setPath(tp);
+      const twilightBuilder = twilightPathRef.current;
+      twilightBuilder.reset();
+      skiaCtx.setPath(twilightBuilder);
       pg.context(skiaCtx)(nightCircleGen.center(nightCenter).radius(96)());
-      const twilightPath = tp;
+      const twilightPath = twilightBuilder.build();
 
       // Poles — culled against the clip cone like every other point marker:
       // proj() never nulls a far-side point, it mirrors it back inside the
@@ -1555,13 +1568,13 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       // Equator + polar circles — projected every frame; cost is small
       // (~650 verts) and the layer is barely visible at α 0.08 anyway.
-      const gp = graticulePathRef.current;
-      gp.rewind();
-      skiaCtx.setPath(gp);
+      const graticuleBuilder = graticulePathRef.current;
+      graticuleBuilder.reset();
+      skiaCtx.setPath(graticuleBuilder);
       pg.context(skiaCtx)(graticuleLines);
       pg.context(skiaCtx)(ARCTIC_CIRCLE);
       pg.context(skiaCtx)(ANTARCTIC_CIRCLE);
-      const graticulePath = gp;
+      const graticulePath = graticuleBuilder.build();
 
       // Dot label — the only remaining nearSettled gate. Two reasons:
       //   1. Intl.formatLocalTime is the single most expensive call in this
@@ -1612,8 +1625,8 @@ export const MiniGlobe = memo(function MiniGlobe({
         arcOpacity = 0;
       }
 
-      const qiblaP = qiblaPathRef.current;
-      qiblaP.rewind();
+      const qiblaBuilder = qiblaPathRef.current;
+      qiblaBuilder.reset();
       let hasQibla = false;
       if (geo) {
         const storyPt: [number, number] = [geo.lng, geo.lat];
@@ -1635,17 +1648,17 @@ export const MiniGlobe = memo(function MiniGlobe({
               continue;
             }
             if (!started) {
-              qiblaP.moveTo(p[0], p[1]);
+              qiblaBuilder.moveTo(p[0], p[1]);
               started = true;
-            } else qiblaP.lineTo(p[0], p[1]);
+            } else qiblaBuilder.lineTo(p[0], p[1]);
           }
           hasQibla = true;
         }
       }
 
       // Source arcs — great circle lines from each source's HQ to the article location
-      const srcArcs = sourceArcsRef.current;
-      srcArcs.rewind();
+      const sourceArcsBuilder = sourceArcsRef.current;
+      sourceArcsBuilder.reset();
       let hasSourceArcs = false;
       if (geo) {
         const storyPt: [number, number] = [geo.lng, geo.lat];
@@ -1676,9 +1689,9 @@ export const MiniGlobe = memo(function MiniGlobe({
                 continue;
               }
               if (!started) {
-                srcArcs.moveTo(p[0], p[1]);
+                sourceArcsBuilder.moveTo(p[0], p[1]);
                 started = true;
-              } else srcArcs.lineTo(p[0], p[1]);
+              } else sourceArcsBuilder.lineTo(p[0], p[1]);
             }
             hasSourceArcs = true;
           }
@@ -1751,10 +1764,10 @@ export const MiniGlobe = memo(function MiniGlobe({
       // is zoom-gated — held back at 1× ambient (labelOpacity 0) so the
       // terminator-edge speckle doesn't clutter the resting view, and faded
       // in via `cityTwilightOpacity` past 25°. Deep-night dots always show.
-      const cityNightPath = cityLightsNightPathRef.current;
-      cityNightPath.rewind();
-      const cityTwilightPath = cityLightsTwilightPathRef.current;
-      cityTwilightPath.rewind();
+      const cityNightBuilder = cityLightsNightPathRef.current;
+      cityNightBuilder.reset();
+      const cityTwilightBuilder = cityLightsTwilightPathRef.current;
+      cityTwilightBuilder.reset();
       const cityRes = collectCityLights(
         (p) => proj(p),
         sunUnitX,
@@ -1764,8 +1777,8 @@ export const MiniGlobe = memo(function MiniGlobe({
         camUnitY,
         camUnitZ,
         clipCos,
-        cityNightPath,
-        cityTwilightPath,
+        cityNightBuilder,
+        cityTwilightBuilder,
         labelOpacity > 0,
       );
 
@@ -1958,11 +1971,11 @@ export const MiniGlobe = memo(function MiniGlobe({
         // frames. Opacity uses its own fade band so rivers ease in
         // independently as the reader zooms past 22°.
         if (clipAngle < RIVERS_APPEAR_CLIP) {
-          const rp = riversPathRef.current;
-          rp.rewind();
-          skiaCtx.setPath(rp);
+          const riverBuilder = riversPathRef.current;
+          riverBuilder.reset();
+          skiaCtx.setPath(riverBuilder);
           pg.context(skiaCtx)(getMajorRiverFeatureCollection() as never);
-          riversPath = rp;
+          riversPath = riverBuilder.build();
           const riverSpan = RIVERS_APPEAR_CLIP - PLACES_FULL_CLIP;
           riversOpacity = Math.min(1, Math.max(0, (RIVERS_APPEAR_CLIP - clipAngle) / riverSpan));
         }
@@ -2128,8 +2141,8 @@ export const MiniGlobe = memo(function MiniGlobe({
         nightPath,
         twilightPath,
         graticulePath,
-        qiblaPath: hasQibla ? qiblaP : null,
-        sourceArcs: hasSourceArcs ? srcArcs : null,
+        qiblaPath: hasQibla ? qiblaBuilder.build() : null,
+        sourceArcs: hasSourceArcs ? sourceArcsBuilder.build() : null,
         arcOpacity,
         northPole,
         southPole,
@@ -2147,8 +2160,8 @@ export const MiniGlobe = memo(function MiniGlobe({
         waterLabels: keptWaters,
         riversPath,
         riversOpacity,
-        cityLightsNightPath: cityRes.hasNight ? cityNightPath : null,
-        cityLightsTwilightPath: cityRes.hasTwilight ? cityTwilightPath : null,
+        cityLightsNightPath: cityRes.hasNight ? cityNightBuilder.build() : null,
+        cityLightsTwilightPath: cityRes.hasTwilight ? cityTwilightBuilder.build() : null,
         cityTwilightOpacity: labelOpacity,
       });
     },
@@ -2614,9 +2627,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   }, [moonPhase, cx, cy, globeRadius, moonR]);
 
   const moonClip = useMemo(() => {
-    const p = Skia.Path.Make();
-    p.addCircle(moonPos.x, moonPos.y, moonR);
-    return p;
+    return Skia.Path.Circle(moonPos.x, moonPos.y, moonR);
   }, [moonPos.x, moonPos.y, moonR]);
 
   // Stars — recorded into an immutable Picture so Skia replays a single cached

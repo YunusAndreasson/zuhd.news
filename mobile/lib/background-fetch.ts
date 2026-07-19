@@ -26,7 +26,10 @@ async function fetchAndCacheIfNew(): Promise<boolean> {
       timeoutMs: 10000,
       cache: 'no-store',
     });
-    feedCache.write(feed);
+    // Do not report task success until the cache is actually durable. Mobile
+    // operating systems may suspend the JS runtime as soon as this task
+    // resolves, so a deferred fire-and-forget write can be lost.
+    await feedCache.write(feed);
     return true;
   } catch {
     return false;

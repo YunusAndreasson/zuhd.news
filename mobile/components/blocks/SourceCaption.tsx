@@ -14,7 +14,10 @@ export const SourceCaption = memo(function SourceCaption({ label }: { label: str
     <Text
       variant="labelXs"
       numberOfLines={1}
-      style={[styles.caption, { lineHeight: Math.round(typography.sizeXs * 1.1) }]}
+      style={[
+        styles.caption,
+        { lineHeight: Math.round(typography.sizeXs * typography.leadingTight) },
+      ]}
     >
       {label}
     </Text>

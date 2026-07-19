@@ -1,17 +1,18 @@
-import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import type { CountryData } from '@shared/countries/country-data';
 import type { ContextBrief, TimelineEntry } from '@shared/types';
 import { memo, useEffect, useMemo, useRef } from 'react';
 import { AccessibilityInfo, ActivityIndicator, StyleSheet, View } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, RADIUS, SPACING, staggerDelay } from '../constants/theme';
+import Animated from 'react-native-reanimated';
+import { RADIUS, SPACING } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import { hapticImpact } from '../lib/haptics';
 import { makeMarkdownStyles } from '../lib/markdown';
 import { useOpenLink } from '../lib/open-link';
+import { staggerEnter } from '../lib/stagger';
 import { renderBlocks } from './blocks';
 import { Markdown, Pressable, Stack, Text } from './primitives';
+import { SheetScrollView } from './SheetContent';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
 const TIMELINE_DOT = 7;
@@ -38,7 +39,7 @@ export const ContextSheet = memo(function ContextSheet({
   onRetry,
   onCountryPress,
 }: ContextSheetProps) {
-  const { colors, font, typography, sheetStyles } = useTheme();
+  const { colors, font, typography } = useTheme();
   const snapProps = useSheetSnaps(false);
 
   const timeline = brief?.timeline ?? [];
@@ -155,9 +156,7 @@ export const ContextSheet = memo(function ContextSheet({
       renderBackdrop={renderBackdrop}
       onDismiss={onDismiss}
     >
-      <BottomSheetScrollView
-        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}
-      >
+      <SheetScrollView bottomInset={bottomInset}>
         {hasThread && (
           <>
             {/* font.bold escape hatch: the brief title wants masthead weight
@@ -226,16 +225,13 @@ export const ContextSheet = memo(function ContextSheet({
         {timeline.length > 0 && (
           <View>
             {timeline.map((entry, i, arr) => (
-              <Animated.View
-                key={i}
-                entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(i))}
-              >
+              <Animated.View key={i} entering={staggerEnter(i)}>
                 {renderTimelineEntry(entry, i, arr)}
               </Animated.View>
             ))}
           </View>
         )}
-      </BottomSheetScrollView>
+      </SheetScrollView>
     </SheetLayout>
   );
 });

@@ -1,58 +1,51 @@
 import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister';
-import { QueryClient } from '@tanstack/react-query';
-import type { AsyncStorage } from '@tanstack/react-query-persist-client';
+import { focusManager, onlineManager, QueryClient } from '@tanstack/react-query';
+import * as Network from 'expo-network';
 import { File, Paths } from 'expo-file-system';
+import Storage from 'expo-sqlite/kv-store';
+import { AppState } from 'react-native';
 import { DAY_MS } from './time';
 
+// TanStack Query's browser focus/network listeners do not exist in React
+// Native. Bridge the native sources once so every query gets consistent
+// pause, retry, focus-refetch, and reconnect behavior.
+focusManager.setEventListener((setFocused) => {
+  setFocused(AppState.currentState === 'active');
+  const subscription = AppState.addEventListener('change', (state) => {
+    setFocused(state === 'active');
+  });
+  return () => subscription.remove();
+});
+
+onlineManager.setEventListener((setOnline) => {
+  let receivedEvent = false;
+  const subscription = Network.addNetworkStateListener((state) => {
+    receivedEvent = true;
+    setOnline(!!state.isConnected);
+  });
+  void Network.getNetworkStateAsync()
+    .then((state) => {
+      if (!receivedEvent) setOnline(!!state.isConnected);
+    })
+    .catch(() => {});
+  return () => subscription.remove();
+});
+
 const CACHE_FILE = new File(Paths.cache, 'query-cache.json');
+const QUERY_CACHE_KEY = 'REACT_QUERY_OFFLINE_CACHE';
 
-// AsyncStorage shim over expo-file-system: a single in-memory map mirrored
-// to one JSON file. The persister hands us the whole serialized client as a
-// single string under one key, so the working set is one file write per
-// throttle window. Swap for expo-sqlite/kv if cold-start hydration grows.
-function createFileStorage(): AsyncStorage<string> {
-  let cachePromise: Promise<Record<string, string>> | null = null;
-
-  const load = (): Promise<Record<string, string>> => {
-    if (cachePromise) return cachePromise;
-    cachePromise = (async () => {
-      try {
-        if (!CACHE_FILE.exists) return {};
-        const text = await CACHE_FILE.text();
-        const parsed: unknown = JSON.parse(text);
-        return parsed && typeof parsed === 'object' ? (parsed as Record<string, string>) : {};
-      } catch {
-        return {};
-      }
-    })();
-    return cachePromise;
-  };
-
-  // expo-file-system `File.write` is synchronous (and throws synchronously, so
-  // the try/catch is sufficient) — no await needed.
-  const flush = (data: Record<string, string>) => {
-    try {
-      CACHE_FILE.write(JSON.stringify(data));
-    } catch {}
-  };
-
-  return {
-    getItem: async (key: string) => {
-      const data = await load();
-      return data[key] ?? null;
-    },
-    setItem: async (key: string, value: string) => {
-      const data = await load();
-      data[key] = value;
-      flush(data);
-    },
-    removeItem: async (key: string) => {
-      const data = await load();
-      delete data[key];
-      flush(data);
-    },
-  };
-}
+// One-time migration from the previous file-backed AsyncStorage shim. The
+// shim stored the persister's already-serialized value inside a JSON object.
+try {
+  if (Storage.getItemSync(QUERY_CACHE_KEY) === null && CACHE_FILE.exists) {
+    const parsed: unknown = JSON.parse(CACHE_FILE.textSync());
+    const legacy =
+      parsed && typeof parsed === 'object'
+        ? (parsed as Record<string, unknown>)[QUERY_CACHE_KEY]
+        : undefined;
+    if (typeof legacy === 'string') Storage.setItemSync(QUERY_CACHE_KEY, legacy);
+  }
+} catch {}
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -66,18 +59,16 @@ export const queryClient = new QueryClient({
       // Match the prior `fetchWithTimeout(5000)` failure mode: retry a few
       // times on transient network errors, then surface the error to UI.
       retry: 2,
-      // Manual control over resume-refresh via useAppResume — disable
-      // TanStack Query's window-focus / network-reconnect refetching.
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
+      refetchOnWindowFocus: true,
+      refetchOnReconnect: true,
     },
   },
 });
 
 export const persister = createAsyncStoragePersister({
-  storage: createFileStorage(),
-  // Coalesce writes into one file flush per second. Without throttling,
-  // every query result would trigger a full client serialization to disk.
+  storage: Storage,
+  // Coalesce persistence writes. Without throttling, every query result would
+  // trigger a full client serialization into the SQLite-backed KV store.
   throttleTime: 1000,
 });
 

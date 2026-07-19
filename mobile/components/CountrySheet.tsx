@@ -1,22 +1,23 @@
-import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { getMetricValue, getRanking, type MetricKey } from '@shared/countries/country-ranking';
 import type { GdacsAlert } from '@shared/types';
 import { Canvas, Circle, Path } from '@shopify/react-native-skia';
-import { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { BackHandler, Text as RNText, StyleSheet, View } from 'react-native';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, { FadeInDown } from 'react-native-reanimated';
-import { scheduleOnRN } from 'react-native-worklets';
-import { IS_ANDROID } from '../constants/platform';
-import { ANIMATION, FLAG, SPACING, staggerDelay } from '../constants/theme';
+import { memo, useCallback, useMemo, useState } from 'react';
+import { Text as RNText, StyleSheet, View } from 'react-native';
+import { GestureDetector } from 'react-native-gesture-handler';
+import Animated from 'react-native-reanimated';
+import { FLAG, OPACITY, SPACING } from '../constants/theme';
+import { useSheetBackNavigation } from '../hooks/useSheetBackNavigation';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import { displayCountryName, displayLocation } from '../lib/place-names';
+import { severityTint } from '../lib/severity';
+import { staggerEnter } from '../lib/stagger';
 import { CountryRankingView } from './CountryRankingView';
 import { CountryCardsCarousel } from './country-cards/CountryCardsCarousel';
 import { EVENT_TYPE_LABEL, GLYPH_HALF, getGlyphPath } from './globe/disaster-glyphs';
 import type { TapResult } from './globe/MiniGlobe';
 import { Icon, Pressable, Text } from './primitives';
+import { SheetScrollView } from './SheetContent';
 import { SheetHandle } from './SheetHandle';
 import { type BaseSheetProps, SheetLayout } from './SheetLayout';
 
@@ -162,7 +163,7 @@ function AlertChip({
   const { colors } = useTheme();
   // Red gets the foreground rose tint; lower tiers read in `text` —
   // severity remains legible from the focal number on the chip itself.
-  const tint = alert.alertlevel === 'Red' ? colors.toneUnfavorableText : colors.text;
+  const tint = severityTint(colors, { alertLevel: alert.alertlevel }, colors.text);
   const handlePress = useCallback(() => onPress(alert), [alert, onPress]);
   return (
     <Pressable
@@ -223,7 +224,7 @@ export const CountrySheet = memo(function CountrySheet({
   renderBackdrop,
   onDismiss,
 }: CountrySheetProps) {
-  const { sheetStyles, resolvedAppearance } = useTheme();
+  const { resolvedAppearance } = useTheme();
   const [activeRanking, setActiveRanking] = useState<MetricKey | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const snapProps = useSheetSnaps(activeRanking !== null);
@@ -326,35 +327,15 @@ export const CountrySheet = memo(function CountrySheet({
     setIsOpen(index >= 0);
   }, []);
 
-  // Android hardware back: pop the ranking sub-page first, dismiss the sheet
-  // only at the root. Mirrors MenuSheet so every multi-page sheet honors the
-  // back button identically (DESIGN §Sheets).
-  useEffect(() => {
-    if (!IS_ANDROID || !isOpen) return;
-    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
-      if (activeRanking !== null) {
-        onBackToCountry();
-        return true;
-      }
-      sheetRef.current?.dismiss();
-      return true;
-    });
-    return () => sub.remove();
-  }, [isOpen, activeRanking, onBackToCountry, sheetRef]);
-
-  // Swipe-from-left pops the ranking sub-page back to the country detail.
-  // Same thresholds as MenuSheet; disabled on the root page so it doesn't
-  // fight the sheet's own pan-down-to-dismiss.
-  const swipeBack = Gesture.Pan()
-    .enabled(activeRanking !== null)
-    .activeOffsetX(20)
-    .failOffsetY([-10, 10])
-    .onEnd(({ translationX, velocityX }) => {
-      'worklet';
-      if (translationX > 80 || velocityX > 800) {
-        scheduleOnRN(onBackToCountry);
-      }
-    });
+  // Android hardware back + left-edge swipe: pop the ranking sub-page first,
+  // dismiss the sheet only at the root. Shared with MenuSheet so every
+  // multi-page sheet honors back identically (DESIGN §Sheets).
+  const swipeBack = useSheetBackNavigation({
+    isOpen,
+    canGoBack: activeRanking !== null,
+    onBack: onBackToCountry,
+    sheetRef,
+  });
 
   return (
     <SheetLayout
@@ -377,17 +358,17 @@ export const CountrySheet = memo(function CountrySheet({
           </View>
         </GestureDetector>
       ) : (
-        <BottomSheetScrollView
-          contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}
+        <SheetScrollView
+          bottomInset={bottomInset}
           indicatorStyle={resolvedAppearance === 'dark' ? 'white' : 'black'}
         >
           {country?.countryName && (
-            <Animated.View entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(0))}>
+            <Animated.View entering={staggerEnter(0)}>
               <CountryCardsCarousel countryName={country.countryName} />
             </Animated.View>
           )}
           {country?.data && (
-            <Animated.View entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(1))}>
+            <Animated.View entering={staggerEnter(1)}>
               {rankedRows.map((r) => (
                 <MoreRow
                   key={r.key}
@@ -401,10 +382,7 @@ export const CountrySheet = memo(function CountrySheet({
             </Animated.View>
           )}
           {activeAlerts && activeAlerts.length > 0 && onAlertPress && (
-            <Animated.View
-              entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(2))}
-              style={styles.alertsSection}
-            >
+            <Animated.View entering={staggerEnter(2)} style={styles.alertsSection}>
               <Text variant="labelXs" tone="secondary" style={styles.alertsHeading}>
                 {activeAlerts.length === 1
                   ? 'active alert'
@@ -415,7 +393,7 @@ export const CountrySheet = memo(function CountrySheet({
               ))}
             </Animated.View>
           )}
-        </BottomSheetScrollView>
+        </SheetScrollView>
       )}
     </SheetLayout>
   );
@@ -487,7 +465,7 @@ const styles = StyleSheet.create({
   },
   stripRule: {
     height: STRIP_RULE_HEIGHT,
-    opacity: 0.3,
+    opacity: OPACITY.muted,
   },
   stripFill: {
     position: 'absolute',
