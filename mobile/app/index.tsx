@@ -17,7 +17,6 @@ import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
 import { createRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  InteractionManager,
   type LayoutChangeEvent,
   Platform,
   Share,
@@ -84,6 +83,14 @@ export default function HomeScreen() {
   const conflictSheetRef = useRef<BottomSheetModal>(null);
   const disambiguationSheetRef = useRef<BottomSheetModal>(null);
   const entitySheetRef = useRef<BottomSheetModal>(null);
+  const pagerRef = useRef<PagerView>(null);
+  const pendingArticleNavigationRef = useRef<{ page: number; slug: string } | null>(null);
+  const completeArticleNavigation = useCallback((page: number) => {
+    const pending = pendingArticleNavigationRef.current;
+    if (!pending || pending.page !== page) return;
+    pendingArticleNavigationRef.current = null;
+    listRefs[page]?.current?.scrollToSlug(pending.slug);
+  }, []);
   const renderBackdrop = useCallback(
     (props: BottomSheetBackdropProps) => (
       <BottomSheetBackdrop
@@ -162,13 +169,16 @@ export default function HomeScreen() {
         }
       }
 
-      pagerRef.current?.setPage(catIndex);
-      // Wait for pager animation to complete before scrolling
-      InteractionManager.runAfterInteractions(() => {
-        listRefs[catIndex]?.current?.scrollToSlug?.(slug);
-      });
+      pendingArticleNavigationRef.current = { page: catIndex, slug };
+      if (catIndex === currentCategoryRef.current) {
+        // Same-page navigation has no onPageSelected event. Defer one frame so
+        // a just-injected bookmarked article has committed to the FlatList.
+        requestAnimationFrame(() => completeArticleNavigation(catIndex));
+      } else {
+        pagerRef.current?.setPage(catIndex);
+      }
     },
-    [injectArticle],
+    [completeArticleNavigation, injectArticle],
   );
 
   const handleArticleBookmark = useCallback((article: Article) => {
@@ -378,7 +388,6 @@ export default function HomeScreen() {
     [handleSelectArticle],
   );
 
-  const pagerRef = useRef<PagerView>(null);
   const toastRef = useRef<ToastRef>(null);
 
   const [currentCategory, setCurrentCategory] = useState(0);
@@ -406,8 +415,9 @@ export default function HomeScreen() {
       hapticTick();
       setCurrentCategory(page);
       activeArticleRef.current = currentArticlesRef.current[page] ?? null;
+      completeArticleNavigation(page);
     },
-    [pagerOffset],
+    [completeArticleNavigation, pagerOffset],
   );
 
   const onPageScroll = useCallback(
