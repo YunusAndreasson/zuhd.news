@@ -1,119 +1,5 @@
 [
   {
-    "timestamp": "2026-06-29T22:37:54.383Z",
-    "candidateCount": 13,
-    "candidates": [
-      {
-        "slug": "2026-06-29-supreme-court-upholds-mississippi-late-arriving-mail-in-ballot",
-        "title": "Court Upholds Mail-Ballot Grace Period",
-        "category": "politics",
-        "eventCoverage": 319,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-29-keiko-fujimori-narrowly-wins-peru-s-presidential-runoff",
-        "title": "Fujimori Wins Peru's Presidency",
-        "category": "politics",
-        "eventCoverage": 201,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-29-10-killed-dozens-injured-in-russian-strikes-in-ukraine",
-        "title": "Russia Kills 10 Across Ukraine",
-        "category": "politics",
-        "eventCoverage": 117,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-29-bat-cuts-5500-jobs-ai-overhaul",
-        "title": "BAT Cuts 5,500 Jobs for AI",
-        "category": "economy",
-        "eventCoverage": 116,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-29-scotus-geofence-warrants-fourth-amendment-location",
-        "title": "Court Requires Warrants for Location Data",
-        "category": "tech",
-        "eventCoverage": 82,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-29-israeli-strikes-kill-at-least-five-people-in-gaza-on-monday",
-        "title": "IDF Drone Kills 3 in Gaza Ceasefire",
-        "category": "politics",
-        "eventCoverage": 66,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-29-choneros-extraditions-to-us-will-test-ecuador-s-kingpin-strategy",
-        "title": "Ecuador Extradites Choneros Leaders",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-29-fda-gene-therapy-regulator-exit-leadership-churn",
-        "title": "FDA Gene Therapy Director Exits",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-29-mangaung-prison-g4s-guards-labour-court-standoff",
-        "title": "South Africa Prison Handover Standoff",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-29-solar-outproduced-coal-but-not-on-the-grid",
-        "title": "US Solar Tops Coal, Misses Grid",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-29-bap1-melanoma-lab-model-immunotherapy-resistance",
-        "title": "Lab Model Unlocks Resistant Melanoma",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-29-quera-error-corrected-qubits-2029-roadmap",
-        "title": "QuEra Promises 1,000 Logical Qubits",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-06-29-tidal-no-royalties-ai-generated-music",
-        "title": "Tidal Bars AI Tracks from Royalties",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-06-29-supreme-court-upholds-mississippi-late-arriving-mail-in-ballot",
-      "title": "Court Upholds Mail-Ballot Grace Period",
-      "category": "politics",
-      "body": "The [US](country:US) Supreme Court upheld Mississippi's 5-day mail-ballot grace",
-      "eventCoverage": 319,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Supreme Court upholds Mississippi mail-ballot grace period 5-4",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 28
-    }
-  },
-  {
     "timestamp": "2026-06-30T04:22:15.502Z",
     "candidateCount": 13,
     "candidates": [
@@ -10110,5 +9996,98 @@
     "selected": null,
     "skipReason": "all 13 candidates below coverage threshold 1",
     "sent": false
+  },
+  {
+    "timestamp": "2026-07-20T08:20:49.061Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-07-20-ryanair-profit-fall-jet-fuel-middle-east-war",
+        "title": "Ryanair Profit Falls On War",
+        "category": "economy",
+        "eventCoverage": 54,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-20-trump-qatari-air-force-one-missile-defense-modifications",
+        "title": "Trump's Qatari Jet Lacks Defenses",
+        "category": "economy",
+        "eventCoverage": 50,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-20-india-cockroach-movement-baton-charge-parliament-march",
+        "title": "Delhi Police Baton-Charge Marchers",
+        "category": "politics",
+        "eventCoverage": 34,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-20-bolivia-state-violence-dea-return-us-security-aid",
+        "title": "Bolivia Crackdown Echoes 2019 Ouster",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-20-china-batanes-sovereignty-claim-philippines-graytone-lawfare",
+        "title": "Scholars Claim Batanes For Taiwan",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-20-trump-brazil-25-percent-tariffs-pix-section-301-election",
+        "title": "US Tariffs Target Brazil's Pix",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-20-nigeria-icpc-el-rufai-doctor-forgery-medical-report",
+        "title": "Nigeria Charges El-Rufai's Doctor",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-20-usp32-mapk12-lung-cancer-ferroptosis-autophagy-target",
+        "title": "Enzyme Target Found In Lung Cancer",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-20-stratocumulus-super-adiabatic-evaporation-cloud-climate",
+        "title": "Cloud Models Miss Evaporation Quirk",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-20-madrid-wildfire-13000-hectares-evacuations",
+        "title": "Madrid Wildfire Burns 13,000 Hectares",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-07-20-ryanair-profit-fall-jet-fuel-middle-east-war",
+      "title": "Ryanair Profit Falls On War",
+      "category": "economy",
+      "body": "Ryanair profit fell over a third to €538",
+      "eventCoverage": 54,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Ryanair profit falls 34% as Hormuz strikes double fuel costs",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 19
+    }
   }
 ]
