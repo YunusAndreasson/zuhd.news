@@ -1,27 +1,26 @@
 {
-  "date": "2026-07-19",
+  "date": "2026-07-22",
   "metrics": {
-    "articles": { "value": 50, "detail": "5 cycles, avg 9/cycle" },
+    "articles": { "value": 46, "detail": "5 cycles, avg 10/cycle" },
     "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 17, "economy": 13, "science": 11, "tech": 9 },
-    "multiSource": { "value": 16, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 13, "ME": 13, "EU": 8, "AS": 7, "AF": 7, "OC": 2 } },
-    "sciTech": { "ratio": 40, "target": 25, "met": true },
-    "topSourceShare": { "source": "Nature", "pct": 12, "target": 20, "met": true },
-    "uniqueSources": 38,
+    "categories": { "politics": 14, "economy": 13, "science": 9, "tech": 10 },
+    "multiSource": { "value": 8, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 14, "EU": 11, "AS": 8, "ME": 7, "AF": 5, "OC": 1 } },
+    "sciTech": { "ratio": 41, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn / Nature / Hindustan Times (3-way tie)", "pct": 9, "target": 20, "met": true },
+    "uniqueSources": 45,
     "duplicates": 0,
-    "avgCycleDuration": 941
+    "avgCycleDuration": 1016
   },
-  "experiment": "Skipped — all goal metrics within targets, no active experiment to evaluate, and no pause gate. History shows the selector multi-source floor lever is tapped (2026-05-09 reverted), so no cheap sourcing experiment is available; no other metric warrants a change today.",
-  "weakestArea": "Oceania coverage is the thinnest region at 2/50 articles, but with 6 regions represented and the >=4 target met, this is a distribution nuance rather than a miss. Tech at 9 is the smallest category yet clears its floor, and the sci-tech ratio sits at 40%, well above the 25% target.",
+  "experiment": "Skipped — all metrics within targets, no active experiment, and no pause gate. No parameter lever is currently underperforming enough to justify introducing a new variable.",
+  "weakestArea": "Oceania coverage (OC=1) is the thinnest region, but region diversity as a whole (6 regions vs target 4) is healthy and OC is structurally low-volume in the global hard-news feed. Freshness is reported over only 4 dated articles today, so the median-0 reading is directional rather than a full-corpus measure — worth noting but not a concern given the standalone-cap-22 setting keeps the stale tail trimmed.",
   "watching": [
-    "Russia/Ukraine coverage remains steady via TASS, Kyiv Independent, and Ukrainska Pravda — watch source balance for skew toward Russian state outlets (TASS 3, RT 1).",
-    "Freshness sampled only 7 articles today despite 50 published — verify the freshness computation isn't undercounting datelines on this cycle's corpus.",
-    "Crypto/markets volume via CoinDesk (4) is elevated; monitor that economy stays hard-news rather than drifting to price-ticker coverage."
+    "Daily output doubled (46 today vs 23 yesterday) because yesterday only 1 of 5 cycles completed — confirm the 5x timer is running clean again.",
+    "South Asia source concentration (Hindustan Times 4, Times of India 2, Indian Express, ABP, India Today, News18, NDTV, New Indian Express) — many distinct outlets but heavy single-region weighting."
   ],
   "coverageGaps": [
-    "Oceania represented by only 2 articles — Pacific/Australia-NZ hard news underweight this cycle.",
-    "Latin America is folded into the AM bucket alongside North America; standalone South/Central American sourcing is not visibly present in today's source list."
+    "Oceania represented by a single story; no Latin America-specific outlets surfaced beyond AM-tagged wire coverage.",
+    "Science source pool is narrow (Nature, Phys.org, STAT drive most of the science volume) despite the strong 9-article count."
   ],
-  "context": "A clean day: 50 articles across 5 completed cycles, zero duplicates, freshness at floor, and no source exceeding 12% share. All four editorial goals (freshness, diversity, multi-source, educational value) are met simultaneously, so the correct action is to hold parameters steady and bank the stable baseline rather than introduce a confounding variable."
+  "context": "No experiment has been active since the 2026-05-18 editor-effort experiment closed void. Prior sourcing-cluster history (2026-04-21 and 2026-05-09 multi-source floor experiments) established that the selector floor lever is tapped out — the feed supplies ~9 multi-source stories/cycle, capping published multi-source rate near 22%, so future sourcing gains must come from upstream feed changes, not selector floors. Today all four goal areas (freshness, diversity, multi-source, educational value) are met with margin, so holding steady is correct."
 }
