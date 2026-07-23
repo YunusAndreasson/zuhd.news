@@ -1,49 +1,5 @@
 [
   {
-    "timestamp": "2026-07-02T08:11:58.785Z",
-    "candidateCount": 3,
-    "candidates": [
-      {
-        "slug": "2026-07-02-sam-altman-wants-to-give-trump-admin-5-stake-in-openai-and-t",
-        "title": "Altman Floats US Stake in OpenAI",
-        "category": "tech",
-        "eventCoverage": 65,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-02-google-loses-appeal-against-record-4-1bn-eu-competition-fine",
-        "title": "Google Loses Android Fine Appeal",
-        "category": "tech",
-        "eventCoverage": 43,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-02-taiwan-needs-to-become-a-hornet-s-nest-of-drones-us-diplomat",
-        "title": "US Urges Taiwan Drone Swarm",
-        "category": "politics",
-        "eventCoverage": 19,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-07-02-sam-altman-wants-to-give-trump-admin-5-stake-in-openai-and-t",
-      "title": "Altman Floats US Stake in OpenAI",
-      "category": "tech",
-      "body": "OpenAI's chief wants the government as",
-      "eventCoverage": 65,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Altman proposes US government take 5% stake in OpenAI",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 29
-    }
-  },
-  {
     "timestamp": "2026-07-02T12:13:13.126Z",
     "candidateCount": 13,
     "candidates": [
@@ -10210,6 +10166,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Australia clears uranium exports to India after 12-year delay",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 17
+    }
+  },
+  {
+    "timestamp": "2026-07-23T22:15:09.679Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-07-23-doj-drops-nyt-reporter-subpoenas-qatar-jet",
+        "title": "DOJ Drops NYT Subpoenas",
+        "category": "politics",
+        "eventCoverage": 113,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-23-kroger-19-million-egg-recall-salmonella",
+        "title": "Egg Recall Hits Millions",
+        "category": "science",
+        "eventCoverage": 101,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-23-google-selfie-account-recovery-biometrics",
+        "title": "Google Adds Selfie Login",
+        "category": "tech",
+        "eventCoverage": 100,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-23-trump-data-center-power-cost-pledge-ratepayers",
+        "title": "Trump Touts Data Center Pledge",
+        "category": "politics",
+        "eventCoverage": 68,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-23-ukraine-raytheon-patriot-interceptor-coproduction",
+        "title": "Ukraine To Build Patriots",
+        "category": "politics",
+        "eventCoverage": 48,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-23-ecuador-prosecutor-us-boat-strikes-murdered",
+        "title": "Ecuador Prosecutor Murdered",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-23-eu-21st-sanctions-package-russia-blacklist-3100",
+        "title": "EU Blacklist Hits 3,100",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-23-pakistan-petrol-diesel-price-gulf-war-passthrough",
+        "title": "Pakistan Fuel Prices Jump",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-23-stablecoin-reserve-concentration-small-banks",
+        "title": "Small Banks Chase Stablecoins",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-23-robinhood-ceo-x-account-hack-memecoin",
+        "title": "Robinhood CEO's Account Hacked",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-23-zimbra-zero-click-laundry-bear-webmail",
+        "title": "Hackers Breach Zimbra Webmail",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-23-ai-errors-official-court-transcript-indiana",
+        "title": "AI Errors Taint Court Record",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-07-23-kroger-19-million-egg-recall-salmonella",
+      "title": "Egg Recall Hits Millions",
+      "category": "science",
+      "body": "19 million eggs are recalled over salmonella",
+      "eventCoverage": 101,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "FDA recalls 19 million eggs over salmonella contamination risk",
     "response": {
       "pushed": 1,
       "skipped": 0,
