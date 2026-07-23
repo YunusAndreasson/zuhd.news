@@ -1,35 +1,5 @@
 [
   {
-    "timestamp": "2026-07-01T22:13:16.683Z",
-    "candidateCount": 1,
-    "candidates": [
-      {
-        "slug": "2026-07-01-eu-3-euro-duty-low-value-imports-shein-temu",
-        "title": "EU Ends Duty-Free Parcels",
-        "category": "economy",
-        "eventCoverage": 325,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-07-01-eu-3-euro-duty-low-value-imports-shein-temu",
-      "title": "EU Ends Duty-Free Parcels",
-      "category": "economy",
-      "body": "5.8 billion duty-free parcels a year, now",
-      "eventCoverage": 325,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "EU imposes €3 fee on cheap parcels from China",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 29
-    }
-  },
-  {
     "timestamp": "2026-07-02T04:09:11.987Z",
     "candidateCount": 1,
     "candidates": [
@@ -10042,6 +10012,120 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Lavrov, Rubio discuss Ukraine war in Manila meeting",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 17
+    }
+  },
+  {
+    "timestamp": "2026-07-23T12:17:11.287Z",
+    "candidateCount": 13,
+    "candidates": [
+      {
+        "slug": "2026-07-23-eu-fines-google-890-million-dma-self-preferencing",
+        "title": "EU Fines Google Again",
+        "category": "tech",
+        "eventCoverage": 253,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-21-tapestry-names-new-design-chief-for-struggling-kate-spade-la",
+        "title": "Kate Spade Gets New Designer",
+        "category": "economy",
+        "eventCoverage": 141,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-23-houthi-red-sea-strike-saudi-tanker-encelia",
+        "title": "Houthis Hit Saudi Tanker",
+        "category": "politics",
+        "eventCoverage": 125,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-23-bitmex-closes-100x-leverage-crypto-downturn",
+        "title": "BitMEX Shuts Down",
+        "category": "economy",
+        "eventCoverage": 26,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-23-met-police-reopens-war-crimes-probe-britons-israel",
+        "title": "Met Reopens War Crimes Case",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-23-turkish-coal-ship-drone-strike-black-sea-samsun",
+        "title": "Drone Hits Turkish Coal Ship",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-23-nigeria-borno-zamfara-kidnap-rescue-security-sweep",
+        "title": "Nigeria Frees Kidnap Victims",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-23-polymarket-challenges-france-isp-website-block",
+        "title": "Polymarket Fights France Block",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-23-chpe-power-line-new-york-canada-hydropower-grid",
+        "title": "Canada Power Line Falters",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-23-fda-peptide-advisory-panel-compounding-conflicts",
+        "title": "Drug Panel Weighs Peptides",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-22-stadler-rail-refuses-everest-ransomware-supplier-breach",
+        "title": "Stadler Refuses Ransom Demand",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-23-data-collectives-cooperatives-ai-big-tech-control",
+        "title": "Communities Form Data Collectives",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-23-a-multi-posture-asymmetry-aware-intelligent-bilateral-observ",
+        "title": "New Wearable Heart Dataset",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-07-23-eu-fines-google-890-million-dma-self-preferencing",
+      "title": "EU Fines Google Again",
+      "category": "tech",
+      "body": "€890 million, split across two rulings.",
+      "eventCoverage": 253,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "EU fines Google €890 million over search, Play Store rules",
     "response": {
       "pushed": 1,
       "skipped": 0,
