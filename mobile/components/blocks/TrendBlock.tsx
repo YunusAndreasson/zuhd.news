@@ -3,7 +3,7 @@ import { Canvas, Circle, Line, Path, Skia, type SkPath, vec } from '@shopify/rea
 import { extent } from 'd3-array';
 import { scaleLinear, scaleLog, scaleTime } from 'd3-scale';
 import { curveMonotoneX, area as d3Area, line as d3Line } from 'd3-shape';
-import { memo, useMemo, useState } from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
@@ -376,12 +376,23 @@ export const TrendBlock = memo(function TrendBlock({
   const scrubIdx = useSharedValue(-1);
   const [scrubIdxJs, setScrubIdxJs] = useState<number>(-1);
 
+  // One hop per change, carrying both effects. Two `scheduleOnRN` calls meant
+  // the label and the tick were queued as separate JS tasks and could land on
+  // different frames; bundling them keeps the notch and the readout together.
+  const applyScrub = useCallback((idx: number, haptic: boolean) => {
+    setScrubIdxJs(idx);
+    if (haptic) hapticTick();
+  }, []);
+
   useAnimatedReaction(
     () => scrubIdx.value,
     (current, prev) => {
       if (current === prev) return;
-      scheduleOnRN(setScrubIdxJs, current);
-      if (current >= 0 && prev !== null && prev >= 0) scheduleOnRN(hapticTick);
+      // Tick on grab (prev < 0) as well as on every step between points —
+      // landing on the chart is the moment the scrub becomes real, and going
+      // silent there made the first contact feel unregistered. Release
+      // (current < 0) stays silent: letting go is its own signal.
+      scheduleOnRN(applyScrub, current, current >= 0);
     },
   );
 

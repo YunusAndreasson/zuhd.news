@@ -1,5 +1,5 @@
 import type { BottomSheetModal } from '@gorhom/bottom-sheet';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { BackHandler } from 'react-native';
 import { Gesture } from 'react-native-gesture-handler';
 import { scheduleOnRN } from 'react-native-worklets';
@@ -40,14 +40,21 @@ export function useSheetBackNavigation({
     return () => sub.remove();
   }, [isOpen, canGoBack, onBack, sheetRef]);
 
-  return Gesture.Pan()
-    .enabled(canGoBack)
-    .activeOffsetX(20)
-    .failOffsetY([-10, 10])
-    .onEnd(({ translationX, velocityX }) => {
-      'worklet';
-      if (translationX > 80 || velocityX > 800) {
-        scheduleOnRN(onBack);
-      }
-    });
+  // Memoized so the sheet's per-page re-renders don't hand `GestureDetector` a
+  // fresh gesture object each time — only a real `canGoBack` / `onBack` change
+  // reconfigures the handler.
+  return useMemo(
+    () =>
+      Gesture.Pan()
+        .enabled(canGoBack)
+        .activeOffsetX(20)
+        .failOffsetY([-10, 10])
+        .onEnd(({ translationX, velocityX }) => {
+          'worklet';
+          if (translationX > 80 || velocityX > 800) {
+            scheduleOnRN(onBack);
+          }
+        }),
+    [canGoBack, onBack],
+  );
 }

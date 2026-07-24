@@ -412,11 +412,21 @@ export default function HomeScreen() {
   const pagerOffset = useSharedValue(0);
   const categoryProgresses = useSharedValue([0, 0, 0, 0]);
 
+  // Set when a tab tap dispatches `setPage`, so the `onPageSelected` that
+  // lands ~250ms later (once the pager transition finishes) doesn't tick a
+  // second time. A *swiped* page change has no tap to precede it, so the flag
+  // is clear and `onPageSelected` owns the haptic.
+  const programmaticPageRef = useRef(false);
+
   const onPageSelected = useCallback(
     (e: PagerViewOnPageSelectedEvent) => {
       const page = e.nativeEvent.position;
       pagerOffset.set(page);
-      hapticTick();
+      if (programmaticPageRef.current) {
+        programmaticPageRef.current = false;
+      } else {
+        hapticTick();
+      }
       setCurrentCategory(page);
       activeArticleRef.current = currentArticlesRef.current[page] ?? null;
       completeArticleNavigation(page);
@@ -436,6 +446,10 @@ export default function HomeScreen() {
       if (index === currentCategory && index < CATEGORIES.length) {
         listRefs[index]?.current?.scrollToTop();
       } else {
+        // Claim the haptic here rather than letting `onPageSelected` fire it
+        // when the transition lands — feedback belongs on the touch, not a
+        // quarter-second after it. Matches `CountryCardsCarousel.goToPage`.
+        programmaticPageRef.current = true;
         pagerRef.current?.setPage(index);
       }
       hapticTick();

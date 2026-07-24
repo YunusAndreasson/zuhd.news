@@ -438,20 +438,17 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     }
   }, [effectiveDate, managedPlayer, savePosition, activateLockScreen, armGiveUp, teardownPlayer]);
 
-  const lastHapticSecRef = useRef(-1);
+  // Pure data operation: clamp, seek, publish. No haptic — the scrub ratchet
+  // belongs to the gesture that drives it, not to the audio timeline. This
+  // used to tick once per crossed audio-second, which sounds discrete but
+  // isn't: the caller drives it per gesture frame, and on a long briefing a
+  // single frame of finger travel crosses several seconds, so the "tick"
+  // fired at frame rate. `BriefingBar` now ratchets on spatial detents.
   const seek = useCallback((seconds: number) => {
     if (!playerRef.current) return;
     const clamped = Math.max(0, Math.min(seconds, playerRef.current.duration || Infinity));
     playerRef.current.seekTo(clamped).catch(() => {});
-    const sec = Math.floor(clamped);
-    setElapsed(sec);
-    // Discrete tick per scrubbed-second boundary. hapticImpact (not Tick) —
-    // iOS's AVAudioSession in playback mode suppresses selectionAsync(), so
-    // the Light impact is the reliable choice during audio playback.
-    if (sec !== lastHapticSecRef.current) {
-      lastHapticSecRef.current = sec;
-      hapticImpact();
-    }
+    setElapsed(Math.floor(clamped));
   }, []);
 
   const close = useCallback(() => {

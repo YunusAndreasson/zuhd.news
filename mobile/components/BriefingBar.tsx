@@ -1,5 +1,5 @@
 import { BlurView } from 'expo-blur';
-import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { type LayoutChangeEvent, Platform, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
@@ -16,6 +16,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scheduleOnRN } from 'react-native-worklets';
 import { ANIMATION, OPACITY, RADIUS, SPACING, withAlpha } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
+import { hapticImpact } from '../lib/haptics';
 import { Icon, IconButton, Text } from './primitives';
 
 const BAR_MARGIN = SPACING.md;
@@ -27,6 +28,14 @@ const TRACK_INSET = 0;
 // Scrub thumb that rides the leading edge of the fill while the user is
 // dragging. Sized to read as a "handle" without crowding the 3px track.
 const SCRUB_THUMB = 9;
+// Haptic detents across the full track. The ratchet is *spatial*, not
+// temporal: a fixed number of notches per swipe regardless of how long the
+// briefing is, so a 4-minute and a 20-minute briefing feel identical under
+// the finger. Firing per audio-second instead (what `seek` used to do)
+// pegged the haptic to the frame rate — on a 12-minute briefing one point
+// of finger travel spans ~2 audio seconds, so every frame crossed a
+// boundary and the "tick per second" became a continuous buzz.
+const SCRUB_DETENTS = 40;
 
 function formatTime(seconds: number): string {
   const m = Math.floor(seconds / 60);
@@ -119,50 +128,93 @@ export const BriefingBar = memo(function BriefingBar({
     [onSeek],
   );
 
-  const panGesture = Gesture.Pan()
-    // Low threshold so the scrub engages as soon as the finger moves —
-    // vertical fail-offset still lets the parent list steal vertical pans.
-    .activeOffsetX([-2, 2])
-    .failOffsetY([-10, 10])
-    .onStart((e) => {
-      'worklet';
-      isScrubbing.value = withSpring(1, ANIMATION.springSoft);
-      tooltipScale.value = withSpring(1, { damping: 8, stiffness: 260, mass: 0.7 });
-      scrubX.value = e.x;
-      const fraction = computeScrubFraction(e.x, barWidthSV.value, durationSV.value);
-      if (fraction == null) return;
-      progressSV.value = fraction;
-      scheduleOnRN(commitSeek, fraction * durationSV.value);
-    })
-    .onChange((e) => {
-      'worklet';
-      scrubX.value = e.x;
-      const fraction = computeScrubFraction(e.x, barWidthSV.value, durationSV.value);
-      if (fraction == null) return;
-      progressSV.value = fraction;
-      scheduleOnRN(commitSeek, fraction * durationSV.value);
-    })
-    .onFinalize(() => {
-      'worklet';
-      isScrubbing.value = withTiming(0, { duration: ANIMATION.fast });
-      tooltipScale.value = withTiming(0.8, { duration: ANIMATION.fast });
-    });
+  // Ratchet + commit bookkeeping. Both live on the UI thread so the gesture
+  // worklet can decide whether a frame is worth a haptic or a JS hop without
+  // round-tripping to find out.
+  const lastDetent = useSharedValue(-1);
+  const lastCommitSec = useSharedValue(-1);
 
-  // Tap-to-seek: instant jump. No tooltip — the progress bar fill moving
-  // to the new position is feedback enough; the tooltip is reserved for
-  // drag scrubbing where the user needs a preview before committing.
-  const tapGesture = Gesture.Tap()
-    .maxDuration(400)
-    .onEnd((e, success) => {
+  const scrubGesture = useMemo(() => {
+    // Advance the visual fill every frame (UI thread, never gated), then fire
+    // the haptic and the JS-side commit only on a real detent / second change.
+    // The three used to run on independent cadences; now the notch the finger
+    // feels, the label it reads, and the audio position all land on the same
+    // frame.
+    const track = (x: number) => {
       'worklet';
-      if (!success) return;
-      const fraction = computeScrubFraction(e.x, barWidthSV.value, durationSV.value);
+      const fraction = computeScrubFraction(x, barWidthSV.value, durationSV.value);
       if (fraction == null) return;
       progressSV.value = fraction;
-      scheduleOnRN(commitSeek, fraction * durationSV.value);
-    });
 
-  const scrubGesture = Gesture.Race(panGesture, tapGesture);
+      const detent = Math.round(fraction * SCRUB_DETENTS);
+      if (detent !== lastDetent.value) {
+        lastDetent.value = detent;
+        // `hapticImpact`, not `hapticTick`: iOS suppresses `selectionAsync()`
+        // while an AVAudioSession is in playback mode, which is exactly when
+        // this bar is on screen.
+        scheduleOnRN(hapticImpact);
+      }
+
+      const seconds = fraction * durationSV.value;
+      const sec = Math.floor(seconds);
+      if (sec !== lastCommitSec.value) {
+        lastCommitSec.value = sec;
+        scheduleOnRN(commitSeek, seconds);
+      }
+    };
+
+    const panGesture = Gesture.Pan()
+      // Low threshold so the scrub engages as soon as the finger moves —
+      // vertical fail-offset still lets the parent list steal vertical pans.
+      .activeOffsetX([-2, 2])
+      .failOffsetY([-10, 10])
+      .onStart((e) => {
+        'worklet';
+        isScrubbing.value = withSpring(1, ANIMATION.springSoft);
+        tooltipScale.value = withSpring(1, { damping: 8, stiffness: 260, mass: 0.7 });
+        scrubX.value = e.x;
+        // Reset both ratchets so grabbing the bar always announces itself with
+        // one notch, then ticks per detent from there.
+        lastDetent.value = -1;
+        lastCommitSec.value = -1;
+        track(e.x);
+      })
+      .onChange((e) => {
+        'worklet';
+        scrubX.value = e.x;
+        track(e.x);
+      })
+      .onFinalize(() => {
+        'worklet';
+        isScrubbing.value = withTiming(0, { duration: ANIMATION.fast });
+        tooltipScale.value = withTiming(0.8, { duration: ANIMATION.fast });
+      });
+
+    // Tap-to-seek: instant jump. No tooltip — the progress bar fill moving
+    // to the new position is feedback enough; the tooltip is reserved for
+    // drag scrubbing where the user needs a preview before committing.
+    const tapGesture = Gesture.Tap()
+      .maxDuration(400)
+      .onEnd((e, success) => {
+        'worklet';
+        if (!success) return;
+        lastDetent.value = -1;
+        lastCommitSec.value = -1;
+        track(e.x);
+      });
+
+    return Gesture.Race(panGesture, tapGesture);
+  }, [
+    barWidthSV,
+    durationSV,
+    progressSV,
+    scrubX,
+    isScrubbing,
+    tooltipScale,
+    lastDetent,
+    lastCommitSec,
+    commitSeek,
+  ]);
 
   // Tooltip rides the finger horizontally (clamped to bar edges) and lifts
   // in/out with the scrub gesture.

@@ -185,6 +185,17 @@ export const ArticleList = memo(function ArticleList({
   const fireEndReached = useEffectEvent(() => {
     onEndReached?.(catIndex);
   });
+  // Bundled into one hop from the scroll worklet. As three separate
+  // `scheduleOnRN` calls the haptic, the toast and the debounce reset were
+  // three independent JS tasks, so the buzz could land a frame or more away
+  // from the "Back to top" toast it is supposed to accompany.
+  // `fireEndReached` is a `useEffectEvent` — stable by construction, and React
+  // requires effect events stay out of dependency lists.
+  const fireOverscroll = useCallback(() => {
+    hapticNotification();
+    fireEndReached();
+    resetOverscroll();
+  }, [resetOverscroll]);
   const [localRefreshing, setLocalRefreshing] = useState(false);
 
   const handleRefresh = useCallback(async () => {
@@ -260,10 +271,8 @@ export const ArticleList = memo(function ArticleList({
       const maxScroll = (articleCount - 1) * itemHeight;
       if (event.contentOffset.y > maxScroll + 15 && !overscrollFired.value) {
         overscrollFired.value = true;
-        scheduleOnRN(hapticNotification);
-        scheduleOnRN(fireEndReached);
-        // Reset after bounce-back settles
-        scheduleOnRN(resetOverscroll);
+        // Haptic + toast + bounce-back debounce reset, as one task.
+        scheduleOnRN(fireOverscroll);
       }
     },
   });
