@@ -374,10 +374,38 @@ const ISLAND_V = (() => {
   return h.digest('hex').slice(0, 10)
 })()
 
+/**
+ * Cache key for the basemap, stamped into every URL the map fetches it from.
+ *
+ * `/basemap/*` is served with `max-age=86400` because Natural Earth geometry
+ * does not change between deploys — but *our treatment of it* does, and when it
+ * does the reader keeps the old copy for a day. That is not academic: the map
+ * kept printing "Tel Aviv" and "Jerusalem" for a full day after the build
+ * started emitting "Yafa" and "Al-Quds", and no amount of reloading fixed it,
+ * because a reload re-requests a URL the browser is entitled to answer from
+ * disk. Hashing what goes into the basemap gives a URL that changes exactly
+ * when its contents do, which is what makes a long cache safe.
+ */
+const BASEMAP_V = (() => {
+  const inputs = [
+    join(ROOT, 'scripts', 'build', 'basemap.js'),
+    join(ROOT, 'shared', 'place-names.ts'),
+    join(ROOT, 'shared', 'countries', 'iso.ts'),
+    join(ROOT, 'shared', 'data', 'countries-110m.json'),
+    join(ROOT, 'shared', 'data', 'countries-50m.json'),
+    join(ROOT, 'shared', 'data', 'countries-10m.json'),
+    join(ROOT, 'shared', 'data', 'places-50m.geojson'),
+  ]
+  const h = createHash('sha256')
+  for (const f of inputs) if (existsSync(f)) h.update(readFileSync(f))
+  return h.digest('hex').slice(0, 10)
+})()
+
 const loadTemplate = (name) =>
   readFileSync(join(TEMPLATES_DIR, name), 'utf-8')
     .replace('{{headCommon}}', headCommon)
     .replaceAll('{{v}}', ISLAND_V)
+    .replaceAll('{{basemapV}}', BASEMAP_V)
 
 const homepageTemplate = loadTemplate('index.html')
 

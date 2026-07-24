@@ -19,7 +19,7 @@ import {
   type GeoJSONSource,
   type MapGeoJSONFeature,
 } from 'maplibre-gl'
-import { buildStyle, CATEGORY_COLOUR, CATEGORY_ORDER, MAP_COLOURS } from './_map/style'
+import { basemapUrl, buildStyle, CATEGORY_COLOUR, CATEGORY_ORDER, MAP_COLOURS } from './_map/style'
 import { createFeed, type Feed } from './_map/feed'
 import { createTimeline, type Timeline } from './_map/timeline'
 import { createSheet, type Sheet } from './_map/sheet'
@@ -232,7 +232,9 @@ const countSize = (stops: number[]): ExpressionSpecification =>
 
 const countFlip = (stops: number[]) => stops[3]
 
-export function mount(container: HTMLElement) {
+export function mount(container: HTMLElement, props: { basemap?: string } = {}) {
+  /** Cache key for the basemap files — see `basemapUrl`. */
+  const basemapV = props.basemap
   container.classList.add('map-root')
   container.removeAttribute('aria-hidden')
 
@@ -344,7 +346,7 @@ export function mount(container: HTMLElement) {
 
   const map = new MapLibreMap({
     container: mapEl,
-    style: buildStyle(),
+    style: buildStyle(basemapV),
     center: HOME_VIEW.center,
     zoom: HOME_VIEW.zoom,
     minZoom: 1,
@@ -1245,12 +1247,12 @@ export function mount(container: HTMLElement) {
       if (!ultraLoaded && z >= ULTRA_ZOOM) {
         ultraLoaded = true
         detailLoaded = true
-        src()?.setData('/basemap/countries-ultra.geojson')
+        src()?.setData(basemapUrl('countries-ultra.geojson', basemapV))
         return
       }
       if (!detailLoaded && z >= DETAIL_ZOOM) {
         detailLoaded = true
-        src()?.setData('/basemap/countries-detail.geojson')
+        src()?.setData(basemapUrl('countries-detail.geojson', basemapV))
       }
     })
 

@@ -30,14 +30,28 @@ export const CATEGORY_COLOUR: Record<string, string> = {
 
 export const CATEGORY_ORDER = ['politics', 'economy', 'science', 'tech']
 
-export function buildStyle(): StyleSpecification {
+/**
+ * `v` is a hash of what went into the basemap, from `data-basemap` on the mount
+ * element. The files are served with a day-long max-age because Natural Earth
+ * geometry does not change between deploys — but our treatment of it does, and
+ * without a versioned URL a reader keeps yesterday's copy for a full day. That
+ * is how the map went on printing "Tel Aviv" and "Jerusalem" after the build
+ * had started emitting "Yafa" and "Al-Quds": a reload re-requests a URL the
+ * browser is entitled to answer from disk.
+ */
+export const basemapUrl = (file: string, v?: string) =>
+  v ? `/basemap/${file}?v=${encodeURIComponent(v)}` : `/basemap/${file}`
+
+export function buildStyle(v?: string): StyleSpecification {
   return {
     version: 8,
+    // Glyphs are genuinely immutable — the same Noto ranges every build — so
+    // they keep their unversioned, year-long cached URL.
     glyphs: '/basemap/fonts/{fontstack}/{range}.pbf',
     sources: {
-      countries: { type: 'geojson', data: '/basemap/countries.geojson' },
-      countryLabels: { type: 'geojson', data: '/basemap/country-labels.geojson' },
-      places: { type: 'geojson', data: '/basemap/places.geojson' },
+      countries: { type: 'geojson', data: basemapUrl('countries.geojson', v) },
+      countryLabels: { type: 'geojson', data: basemapUrl('country-labels.geojson', v) },
+      places: { type: 'geojson', data: basemapUrl('places.geojson', v) },
     },
     layers: [
       {
