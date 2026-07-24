@@ -7,7 +7,7 @@
  * prevent. This file stays so the app's existing import paths keep working.
  */
 export {
-  displayLocation,
   displayCountryName,
+  displayLocation,
   wrapCountryLabel,
 } from '@shared/place-names';
