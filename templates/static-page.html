@@ -16,16 +16,19 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
 </head>
-<body>
+<body class="doc-page">
   <header>
-    <a href="/" class="wordmark"><svg class="wordmark-glyph" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4.5 4.5H12L4.5 16.25Z"/><path fill="currentColor" d="M19.5 4.5H27.5L12 27.5H4.5Z"/><path fill="currentColor" d="M27.5 16.25V27.5H20Z"/></svg><span class="wordmark-text">zuhd<span class="wordmark-dot">.</span><span class="wordmark-tld">news</span></span></a>
+    <a href="/" class="wordmark">zuhd<span class="wordmark-dot">.</span><span class="wordmark-tld">news</span></a>
+    <a href="/" class="doc-back">← map</a>
   </header>
 
   <main>
-    <h1 class="page-title">{{pageName}}</h1>
-    <div class="about-body">
-      {{content}}
-    </div>
+    <article class="doc-panel">
+      <h1 class="page-title">{{pageName}}</h1>
+      <div class="about-body">
+        {{content}}
+      </div>
+    </article>
   </main>
 
   <footer>
@@ -43,7 +46,6 @@
     </nav>
   </footer>
 
-  <div data-island-auto="spacefield" aria-hidden="true"></div>
   <script type="module" src="/island-loader.js?v={{v}}" defer></script>
 </body>
 </html>

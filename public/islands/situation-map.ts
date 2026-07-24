@@ -189,10 +189,21 @@ const clusterRadius = (stops: number[], scale = 1): ExpressionSpecification =>
     stops[6], 27 * scale,
   ] as unknown as ExpressionSpecification
 
-/** The blurred rings that give a cluster its falloff, widest first. */
+/**
+ * The blurred rings that give a cluster its falloff, widest first.
+ *
+ * Two rings read as two discs. `circle-blur` fades a circle across a band
+ * proportional to its radius, so anything below ~1.6 keeps a legible edge, and
+ * stacking a tight bright one under a wide faint one draws exactly the hard
+ * ring it was meant to avoid — most obvious over New York and London, where the
+ * counts are highest. Three rings, each blurred past its own radius and none
+ * of them opaque, sum to a gradient with no edge of its own. The real
+ * kernel-density field underneath (`story-heat`) does the rest.
+ */
 const CLUSTER_RINGS = [
-  { id: 'story-cluster-bloom', spread: 3.4, alpha: 0.16, blur: 1 },
-  { id: 'story-cluster-glow', spread: 1.9, alpha: 0.3, blur: 0.85 },
+  { id: 'story-cluster-bloom', spread: 5.2, alpha: 0.09, blur: 1 },
+  { id: 'story-cluster-mid', spread: 3.1, alpha: 0.11, blur: 1 },
+  { id: 'story-cluster-glow', spread: 1.85, alpha: 0.14, blur: 1 },
 ]
 
 /** Faint clusters barely bloom; the ramp is spent on the hot end. */
@@ -693,7 +704,7 @@ export function mount(container: HTMLElement) {
           40, 0.75,
           140, 1,
         ],
-        'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 0, 0.7, 5, 1.5],
+        'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 0, 0.9, 5, 1.6],
         // Transparent at the bottom so empty ocean stays black — a ramp that
         // starts opaque paints the whole world its coldest colour.
         'heatmap-color': [
@@ -708,8 +719,12 @@ export function mount(container: HTMLElement) {
           0.88, 'rgba(238,180,74,0.6)',
           1, 'rgba(252,226,158,0.68)',
         ],
-        'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 0, 20, 3, 38, 5, 60],
-        'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 0, 0.75, 3.5, 0.6, 5, 0],
+        // Wider than feels right on paper: a kernel narrower than the marker
+        // it sits under reads as a halo on the marker rather than as a field
+        // over the region, which is the whole distinction the layer exists to
+        // draw.
+        'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 0, 34, 3, 58, 5, 88],
+        'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 0, 0.9, 3.5, 0.75, 5, 0],
       },
     })
 
