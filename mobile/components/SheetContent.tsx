@@ -157,9 +157,49 @@ export function SheetSourceFooter({
   );
 }
 
+// ---------------------------------------------------------------------------
+// SheetLink — the external-link treatment for prose pages (About, privacy,
+// contact). Both pages had hand-rolled the identical recipe: a Pressable with
+// `marginTop: SPACING.xs` wrapping an underlined accent Text, plus their own
+// copies of the `link` / `linkText` style objects. Owning it here means a link
+// on the privacy page and a link on the About page cannot drift apart.
+//
+// Sized at `bodyEmphasis` (17) rather than the old `captionEmphasis` (13):
+// these are tap targets carrying real content — a contact address, a data
+// provider — and 13px asked too much of the reader.
+// ---------------------------------------------------------------------------
+
+interface SheetLinkProps {
+  label: string;
+  onPress: () => void;
+  /** Defaults to `label`; pass when the visible text is not a good spoken label. */
+  accessibilityLabel?: string;
+}
+
+export function SheetLink({ label, onPress, accessibilityLabel }: SheetLinkProps) {
+  return (
+    <Pressable
+      onPress={onPress}
+      style={styles.link}
+      accessibilityRole="link"
+      accessibilityLabel={accessibilityLabel ?? label}
+    >
+      <Text variant="bodyEmphasis" tone="accent" style={styles.linkText}>
+        {label}
+      </Text>
+    </Pressable>
+  );
+}
+
 const styles = StyleSheet.create({
   eyebrow: {
     marginBottom: SPACING.xs,
+  },
+  link: {
+    marginTop: SPACING.xs,
+  },
+  linkText: {
+    textDecorationLine: 'underline',
   },
   heroSecondary: {
     marginTop: SPACING.xxs,

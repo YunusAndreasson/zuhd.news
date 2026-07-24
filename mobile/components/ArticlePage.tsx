@@ -1,11 +1,13 @@
 import { COUNTRY_DATA } from '@shared/countries/country-data';
 import { displayNameFromCode } from '@shared/countries/iso';
 import type { Article, Entity } from '@shared/types';
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 import {
   type AccessibilityActionEvent,
   type GestureResponderEvent,
+  type LayoutChangeEvent,
   Pressable,
+  ScrollView,
   StyleSheet,
   View,
 } from 'react-native';
@@ -258,6 +260,79 @@ export const ArticlePage = memo(function ArticlePage({
     [article, onBookmarkPress],
   );
 
+  // Overflow rescue for large text. The reader is a fixed-height page with
+  // `overflow: 'hidden'`, and the only thing keeping an article inside it is
+  // that the pipeline caps articles at ~450 characters — `computeFontScale`
+  // therefore returns 1 for everything in the current feed and does no work.
+  // Stack the app's own `fontSize: 'large'` preference (1.15) on top of iOS/
+  // Android accessibility scaling (`MAX_FONT_SCALE.body`, 1.5) and the column
+  // outgrows the viewport, silently truncating the end of the story with no
+  // way to reach it — a WCAG 1.4.4 content loss.
+  //
+  // Measured rather than predicted: `contentHeight` is the real laid-out
+  // height of the article column, so this engages precisely when text is
+  // about to be lost and is inert otherwise. At default type nothing changes
+  // — same view tree, same tap-through to the globe underneath.
+  const [contentHeight, setContentHeight] = useState(0);
+  const onContentLayout = useCallback((e: LayoutChangeEvent) => {
+    setContentHeight(e.nativeEvent.layout.height);
+  }, []);
+  const availableHeight = itemHeight - CONTENT_PADDING_TOP - SPACING.xxl;
+  const overflows = contentHeight > 0 && availableHeight > 0 && contentHeight > availableHeight;
+
+  const content = (
+    <Animated.View style={fadeStyle} pointerEvents="box-none" onLayout={onContentLayout}>
+      {showEarlierDivider && (
+        <View
+          style={styles.earlierBoundary}
+          accessible
+          accessibilityLabel="Caught up. Everything from here you have already seen."
+        >
+          <View style={styles.earlierDivider}>
+            <View style={[styles.earlierLine, { backgroundColor: colors.rule }]} />
+            <Text variant="labelSm" tone="secondary">
+              {'caught up'}
+            </Text>
+            <View style={[styles.earlierLine, { backgroundColor: colors.rule }]} />
+          </View>
+          {/* The boundary used to be a rule and a two-word label you swiped
+              straight past, while a toast said the same two words a beat
+              earlier — the same fact in two places, which foundation.md
+              forbids. The toast is gone; this line is what's left, and it
+              says the thing the rule only implied. An app that refuses to be
+              an infinite feed should be willing to tell the reader they can
+              stop. */}
+          {/* "from here", not "below": the divider is drawn at the top of the
+              first already-seen article, so the page it sits on is itself one
+              of them. */}
+          <Text variant="caption" style={styles.earlierNote}>
+            Everything from here you've already seen.
+          </Text>
+        </View>
+      )}
+      <Pressable
+        onPress={bodyTapEnabled ? handleSourcesPress : undefined}
+        onLongPress={bookmarkEnabled ? handleLongPress : undefined}
+        delayLongPress={400}
+        accessibilityRole={isInteractive ? 'button' : undefined}
+        accessibilityHint={accessibilityHint}
+        accessibilityActions={accessibilityActions}
+        onAccessibilityAction={bookmarkEnabled ? handleAccessibilityAction : undefined}
+      >
+        <Text
+          variant="display"
+          tone="emphasis"
+          scale={readerScale}
+          numberOfLines={3}
+          style={styles.title}
+        >
+          {article.title}
+        </Text>
+        {body}
+      </Pressable>
+    </Animated.View>
+  );
+
   return (
     <View style={[styles.container, { height: itemHeight }]}>
       <GlobeTapZone
@@ -275,44 +350,28 @@ export const ArticlePage = memo(function ArticlePage({
           structure put the Pressable on the outside, which made the whole
           padded region open the sources sheet — including the strip above
           the title (felt like the globe but wasn't) and the empty space
-          below the last sentence on short articles. */}
-      <View style={styles.contentLayout} pointerEvents="box-none">
-        <Animated.View style={fadeStyle} pointerEvents="box-none">
-          {showEarlierDivider && (
-            <View
-              style={styles.earlierDivider}
-              accessible
-              accessibilityLabel="Caught up — earlier articles below"
-            >
-              <View style={[styles.earlierLine, { backgroundColor: colors.rule }]} />
-              <Text variant="labelSm" tone="secondary">
-                {'caught up'}
-              </Text>
-              <View style={[styles.earlierLine, { backgroundColor: colors.rule }]} />
-            </View>
-          )}
-          <Pressable
-            onPress={bodyTapEnabled ? handleSourcesPress : undefined}
-            onLongPress={bookmarkEnabled ? handleLongPress : undefined}
-            delayLongPress={400}
-            accessibilityRole={isInteractive ? 'button' : undefined}
-            accessibilityHint={accessibilityHint}
-            accessibilityActions={accessibilityActions}
-            onAccessibilityAction={bookmarkEnabled ? handleAccessibilityAction : undefined}
-          >
-            <Text
-              variant="display"
-              tone="emphasis"
-              scale={readerScale}
-              numberOfLines={3}
-              style={styles.title}
-            >
-              {article.title}
-            </Text>
-            {body}
-          </Pressable>
-        </Animated.View>
-      </View>
+          below the last sentence on short articles.
+
+          When the column outgrows the page it becomes a ScrollView instead.
+          That costs the tap-through in the gutters for those readers — at
+          that text size the column fills the screen anyway — and the story
+          stops being cut off, which is the trade worth making. `nestedScroll`
+          lets Android hand the gesture back to the pager at the ends; on iOS
+          the reader scrolls the text, then swipes again to page. */}
+      {overflows ? (
+        <ScrollView
+          style={styles.scrollFill}
+          contentContainerStyle={styles.contentLayout}
+          showsVerticalScrollIndicator={false}
+          nestedScrollEnabled
+        >
+          {content}
+        </ScrollView>
+      ) : (
+        <View style={styles.contentLayout} pointerEvents="box-none">
+          {content}
+        </View>
+      )}
     </View>
   );
 });
@@ -320,6 +379,11 @@ export const ArticlePage = memo(function ArticlePage({
 const styles = StyleSheet.create({
   container: {
     overflow: 'hidden',
+  },
+  // Only used in the overflow branch — bounds the ScrollView to the page so
+  // it scrolls rather than growing and breaking the pager's uniform itemHeight.
+  scrollFill: {
+    flex: 1,
   },
   contentLayout: {
     paddingHorizontal: SPACING.articlePadding,
@@ -341,15 +405,21 @@ const styles = StyleSheet.create({
   //     section break rather than a hairline divider
   //   • labelSm small caps (was labelXs) — one tier up so the milestone
   //     label carries through at glance distance without shouting
+  earlierBoundary: {
+    marginVertical: SPACING.lg,
+  },
   earlierDivider: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: SPACING.md,
-    marginVertical: SPACING.lg,
   },
   earlierLine: {
     flex: 1,
     height: 1,
+  },
+  earlierNote: {
+    marginTop: SPACING.sm,
+    textAlign: 'center',
   },
   title: {
     marginBottom: SPACING.md,

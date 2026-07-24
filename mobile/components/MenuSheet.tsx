@@ -58,7 +58,11 @@ const INFO_PAGES = {
       },
       {
         heading: 'local storage',
-        body: 'Reading history, bookmarks, and preferences are stored on-device using AsyncStorage. This data never leaves your device.',
+        // Names the guarantee, not the library. The old copy said "using
+        // AsyncStorage", which stopped being true when persistence moved to
+        // expo-sqlite/kv-store — a privacy page should not go stale because an
+        // implementation detail changed underneath it.
+        body: 'Reading history, bookmarks, and preferences are stored on your device and never uploaded.',
       },
       {
         heading: 'network requests',
@@ -154,7 +158,7 @@ const SETTINGS: readonly SettingEntry[] = [
   {
     key: 'notifications',
     label: 'notifications',
-    hint: 'Briefing ready and breaking news alerts',
+    hint: 'Briefings and breaking news',
     get: (p) => (p.notifications ? 'on' : 'off'),
     set: (api, v) => api.setNotifications(v === 'on'),
     toggle: true,
@@ -353,7 +357,15 @@ function ActionLink({
       accessibilityLabel={label}
       accessibilityHint={hint}
     >
-      <Text variant="captionEmphasis">{label}</Text>
+      {/* Matches NavRow's `label`. These two row types are structurally the
+          same control — same padding, same chevron, both push a page — and
+          rendering them at different sizes made the secondary group (about,
+          privacy, contact) read as fine print. The divider above already
+          carries the hierarchy. Also lifts the row from a ~38pt tap target to
+          ~46pt, clearing the 44pt minimum. */}
+      <Text variant="label" tone="default">
+        {label}
+      </Text>
       <Icon name="chevron-forward" size="sm" tone="secondary" />
     </Pressable>
   );
@@ -495,7 +507,8 @@ export const MenuSheet = memo(function MenuSheet({
             {canRate && (
               <ActionLink
                 label="rate"
-                hint="Rate zuhd.news in the App Store"
+                // Not "in the App Store" — this row also ships on Google Play.
+                hint="Opens the rating prompt"
                 onPress={() => {
                   StoreReview.requestReview().catch(() => {});
                 }}
@@ -552,10 +565,12 @@ export const MenuSheet = memo(function MenuSheet({
           <Animated.View entering={reduceMotion ? undefined : staggerEnter(SETTINGS.length)}>
             <NavRow
               label="show tips again"
-              hint="Replays the one-time reading hints"
+              hint="Shows the reading hints again"
               onPress={() => {
                 resetOnboarding();
-                onToast?.('Tips will reappear as you read');
+                // "hints", not "tips" — every other surface (HintId, HINT_COPY,
+                // the row above) calls them hints. One name per thing.
+                onToast?.('Hints will reappear as you read');
                 sheetRef.current?.dismiss();
               }}
             />

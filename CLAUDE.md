@@ -21,8 +21,14 @@ Minimalist typography-first global news site. Philosophy in `foundation.md`.
 - OG images (`/api/og/{slug}.png`): typography + monochrome orthographic map inset, generated build-time via `scripts/lib/og-image.js`
 - Static pages: `/about`, `/contact`, `/sources`, `/privacy`, `/support`, `/mcp`
 - Feeds: `/feed.xml` (Atom), `/sitemap.xml`
-- JSON APIs consumed by mobile: `/api/articles.json`, `/api/feed.json`, `/api/heatmap.json`, `/api/context/{id}.json`, `/api/chokepoints.json`, `/api/gdacs.json`, `/api/conflict.json`, `/api/trends.json`, `/api/meta.json`, `/api/articles/{category}.json`. **These shapes are a published contract — the app is live in both stores. Add endpoints rather than changing them.**
-- JSON APIs consumed by the web map: `/api/map.json` (14-day point set), `/api/map-leads.json` (lead sentences, idle-fetched), `/api/story/{slug}.json` (per-story reading card), plus `/basemap/*.geojson` (countries at two detail tiers, country labels, places) and `/basemap/fonts/` (SDF glyphs)
+- JSON APIs consumed by mobile: `/api/articles.json`, `/api/feed.json`, `/api/feed-lite.json`, `/api/heatmap.json`, `/api/context/{id}.json`, `/api/chokepoints.json`, `/api/gdacs.json`, `/api/conflict.json`, `/api/trends.json`, `/api/meta.json`, `/api/articles/{category}.json`. **These shapes are a published contract — the app is live in both stores. Add endpoints rather than changing them.**
+  - `feed.json` is the full payload — it carries the ~3,200-entry `contexts`
+    index and per-article `threadSummary`, and is read by `workers/mcp` and the
+    dashboard. `feed-lite.json` is the same articles without either (~15 KB
+    gzipped vs ~180 KB) and is what the mobile app fetches. Both are derived
+    from one `apiCategories` object in `build.js`, so the article shape cannot
+    drift; add a field there, not in one endpoint.
+- JSON APIs consumed by the web map: `/api/map.json` (14-day point set), `/api/map-leads.json` (lead sentences, idle-fetched), `/api/story/{slug}.json` (per-story reading card), `/api/gdacs.json` and `/api/conflict.json` (overlay layers), plus `/basemap/*.geojson` (countries at two detail tiers, country labels, places) and `/basemap/fonts/` (SDF glyphs)
 
 ## Situational map (homepage)
 
