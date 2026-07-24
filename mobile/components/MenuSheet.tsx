@@ -70,8 +70,10 @@ const INFO_PAGES = {
         body: 'The app contacts one address: zuhd-news.pages.dev. Nothing else is reached automatically — no analytics host, no ad network, no font, map, or image CDN. Source links open in your browser only when you tap them.',
       },
       {
+        // Shares its core sentence verbatim with SheetAboutPage's
+        // NO_PROFILE_LINE and the store listing. Change it in all three.
         heading: 'what we know about you',
-        body: 'Nothing. The app sends no identifier of any kind, so there is nothing for a request to be attributed to. We run no analytics and keep no record of what anyone reads. The app asks for the same files every reader gets.',
+        body: 'Nothing. There is no account to make and no profile to build. The app sends no identifier when it fetches the news, so we have no way to tell readers apart. We run no analytics and keep no record of what anyone reads.',
       },
       {
         heading: 'data used',

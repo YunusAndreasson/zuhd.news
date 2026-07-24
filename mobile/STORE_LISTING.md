@@ -34,13 +34,16 @@ Global hard news — politics, economy, science, technology — from sources acr
 
 Where a story is told from determines who counts as a person and who becomes a number. Every article cites its sources, shows how each one framed the story, and links to the original reporting.
 
+There is no account to make and no profile to build. The app sends no identifier when it fetches the news, so we have no way to tell readers apart.
+
 Features:
 • About 15 KB a day — built for slow and costly connections
 • Smart Brevity format: lead, context, details, what's next
 • Every article links out to the sources it was written from
 • Daily audio briefings, downloaded only when you press listen
 • One server, no third parties — no analytics, ad networks, or SDKs
-• No ads. No tracking. No accounts. No sign-up.
+• Nothing stored is connected to you — no account, no profile
+• No ads. No tracking. No sign-up.
 
 Settings shows exactly how much data the app has used since you opened it, and lets you erase everything it has stored.
 
@@ -57,8 +60,18 @@ Zuhd — the discipline of doing without what you do not need.
      on stores an anonymous push token server-side (90-day TTL, broadcast to
      all, nothing attached). That's disclosed on the in-app privacy page and
      must be declared truthfully in Play Data Safety / Apple's privacy label —
-     see the checklist below. "No sign-up" carries the same weight without
-     overclaiming. -->
+     see the checklist below. A description claiming "No data collected" while
+     the Data Safety form declares an identifier is a direct contradiction, on
+     the one feature we most want people to opt into.
+
+     "We have no way to tell readers apart" is not a hedge against that — it
+     is the stronger line. "No data collected" is a promise, and every app
+     makes it. This is a statement about capability: no accounts, no
+     identifier sent with content requests, and push delivered as one
+     broadcast to every token (functions/api/push.js lists the whole prefix
+     and sends all of them the same payload). It is also exactly what Apple's
+     "not linked to you" flag and Play's "not shared" answer mean, so the
+     copy and the declarations say one thing. Keep them saying it. -->
 
 ## Store privacy declarations
 
