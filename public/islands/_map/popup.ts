@@ -29,11 +29,24 @@ interface Story {
   threadLabel?: string
 }
 
+/** `/api/country/{ISO2}.json` — the same payload the inline country tags use. */
+interface CountryProfile {
+  iso2: string
+  name: string
+  flag: string
+  region: string
+  metaLine: string
+  highlights: Array<{ label: string; value: string | number; rank: number | null; total: number }>
+  coverage: Array<{ slug: string; title: string; dateFormatted: string; category: string }>
+}
+
 export interface StoryPopup {
   /** Compact card for hover — no fetch, no body. */
   preview(point: MapPoint, leads: Record<string, string>, now: number): void
   /** Full article, fetched on demand and rendered in place. */
   open(point: MapPoint, now: number): Promise<void>
+  /** Country profile, anchored where the reader clicked. */
+  openCountry(iso: string, at: [number, number]): Promise<void>
   close(): void
   isOpen(): boolean
   destroy(): void
@@ -91,6 +104,85 @@ export function createStoryPopup(map: MapLibreMap): StoryPopup {
     return root
   }
 
+  const countryCache = new Map<string, CountryProfile>()
+
+  const fetchCountry = async (iso: string): Promise<CountryProfile | null> => {
+    const hit = countryCache.get(iso)
+    if (hit) return hit
+    try {
+      const res = await fetch(`/api/country/${encodeURIComponent(iso)}.json`, {
+        cache: 'force-cache',
+      })
+      if (!res.ok) return null
+      const data = (await res.json()) as CountryProfile
+      countryCache.set(iso, data)
+      return data
+    } catch {
+      return null
+    }
+  }
+
+  /**
+   * The country card.
+   *
+   * Deliberately the same popup shell as a story rather than a centred dialog:
+   * a country profile is a statement about a *place*, and a modal that covers
+   * the map takes away the one thing that makes the statement legible. Anchored
+   * where the reader clicked, so the answer appears where the question was
+   * asked, and built from the same `/api/country/{ISO2}.json` the inline
+   * country tags already use — one payload, two surfaces.
+   */
+  const countryCard = (data: CountryProfile) => {
+    const root = el('div', 'map-popup-body map-popup-country')
+
+    const kicker = el('p', 'map-popup-kicker')
+    kicker.append(data.region || 'country')
+    root.append(kicker)
+
+    const head = el('div', 'map-country-head')
+    if (data.flag) head.append(el('span', 'map-country-flag', data.flag))
+    head.append(el('h2', 'map-popup-title', data.name))
+    root.append(head)
+
+    if (data.metaLine) root.append(el('p', 'map-popup-meta', data.metaLine))
+
+    if (data.highlights?.length) {
+      const list = el('ul', 'map-country-metrics')
+      for (const h of data.highlights) {
+        const li = el('li', 'map-country-metric')
+        li.append(
+          el('span', 'map-country-metric-label', h.label),
+          el('span', 'map-country-metric-value', String(h.value)),
+        )
+        // A rank is what turns a number into a comparison — "82 years" says
+        // little, "82 years · 6 / 145" says where that sits in the world.
+        if (h.rank != null) {
+          li.append(el('span', 'map-country-metric-rank', `${h.rank}/${h.total}`))
+        }
+        list.append(li)
+      }
+      root.append(list)
+    }
+
+    if (data.coverage?.length) {
+      root.append(el('p', 'map-country-section', 'Recent coverage'))
+      const list = el('ul', 'map-country-coverage')
+      for (const a of data.coverage.slice(0, 5)) {
+        const li = el('li')
+        const link = el('a', undefined, a.title) as HTMLAnchorElement
+        link.href = `/a/${a.slug}`
+        li.append(link, el('time', 'map-country-coverage-time', a.dateFormatted))
+        list.append(li)
+      }
+      root.append(list)
+    }
+
+    const full = el('a', 'map-popup-link', 'Full profile →') as HTMLAnchorElement
+    full.href = `/country/${data.iso2}`
+    root.append(full)
+    return root
+  }
+
   return {
     preview(p, leads, now) {
       const root = shell(p, now, 'preview')
@@ -131,6 +223,26 @@ export function createStoryPopup(map: MapLibreMap): StoryPopup {
       popup.setDOMContent(root)
     },
 
+    async openCountry(iso, at) {
+      const key = `country:${iso}`
+      pending = key
+      const loading = el('div', 'map-popup-body map-popup-country')
+      loading.append(el('p', 'map-popup-loading', 'Loading…'))
+      popup.setLngLat(at).setDOMContent(loading).addTo(map)
+
+      const data = await fetchCountry(iso)
+      // The reader may have clicked elsewhere while this was in flight.
+      if (pending !== key) return
+
+      if (!data) {
+        const miss = el('div', 'map-popup-body map-popup-country')
+        miss.append(el('p', 'map-popup-lead', 'No profile for this territory.'))
+        popup.setDOMContent(miss)
+        return
+      }
+      popup.setDOMContent(countryCard(data))
+    },
+
     close() {
       pending = null
       popup.remove()
@@ -139,6 +251,7 @@ export function createStoryPopup(map: MapLibreMap): StoryPopup {
     destroy() {
       pending = null
       cache.clear()
+      countryCache.clear()
       popup.remove()
     },
   }

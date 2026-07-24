@@ -68,6 +68,7 @@ export const buildCountryPages = async ({ sorted, distDir, templatesDir, headCom
     { COUNTRY_AUGMENTED },
     { METRICS, getMetricValue, getRanking, parseStat },
     { codeFromTopojsonName },
+    { displayCountryName },
     { geoContains },
     { feature },
   ] = await Promise.all([
@@ -75,6 +76,7 @@ export const buildCountryPages = async ({ sorted, distDir, templatesDir, headCom
     loadShared('countries/country-augmented.ts'),
     loadShared('countries/country-ranking.ts'),
     loadShared('countries/iso.ts'),
+    loadShared('place-names.ts'),
     import('d3-geo'),
     import('topojson-client'),
   ])
@@ -107,6 +109,11 @@ export const buildCountryPages = async ({ sorted, distDir, templatesDir, headCom
   let emitted = 0
   for (const [name, data] of Object.entries(COUNTRY_DATA)) {
     const iso2 = codeFromTopojsonName(name)
+    // `name` stays the raw key — it indexes COUNTRY_DATA, COUNTRY_AUGMENTED and
+    // the ranking tables. Only what the reader sees is corrected: Natural
+    // Earth's cartographic abbreviations, and the names countries have since
+    // chosen for themselves.
+    const label = displayCountryName(name) ?? name
     if (!iso2) continue // country we can't route
 
     const aug = COUNTRY_AUGMENTED[name] || {}
@@ -158,8 +165,8 @@ export const buildCountryPages = async ({ sorted, distDir, templatesDir, headCom
       : ''
 
     const html = template
-      .replace(/{{name}}/g, escHtml(name))
-      .replace(/{{description}}/g, escHtml(`${name} country profile: ${metaLine}. ${recent.length} recent articles on zuhd.news.`))
+      .replace(/{{name}}/g, escHtml(label))
+      .replace(/{{description}}/g, escHtml(`${label} country profile: ${metaLine}. ${recent.length} recent articles on zuhd.news.`))
       .replace(/{{iso2}}/g, iso2)
       .replace(/{{region}}/g, escHtml((data.region || '').toUpperCase()))
       .replace(/{{flag}}/g, data.flag || '')
@@ -174,7 +181,7 @@ export const buildCountryPages = async ({ sorted, distDir, templatesDir, headCom
     // remains the deep-dive surface.
     const previewJson = {
       iso2,
-      name,
+      name: label,
       flag: data.flag || '',
       region: data.region || '',
       metaLine,

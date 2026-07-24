@@ -45,7 +45,7 @@
   </aside>
   <script>!function(){var k='app-banner-dismissed',b=document.querySelector('[data-app-banner]');if(!b)return;var dismissed=!1;try{dismissed=!!localStorage.getItem(k)}catch(e){}if(dismissed){b.remove();return}var u=navigator.userAgent,iOS=/iP(ad|hone|od)/.test(u),Safari=/Safari/.test(u)&&!/CriOS|FxiOS|EdgiOS/.test(u);if(iOS&&Safari){b.remove();return}b.hidden=!1;document.addEventListener('click',function(e){var t=e.target;if(!t||!t.closest)return;var btn=t.closest('.app-banner-close');if(!btn)return;e.preventDefault();try{localStorage.setItem(k,'1')}catch(e){}var ban=btn.closest('[data-app-banner]');if(ban)ban.remove()},{capture:!0})}()</script>
   <header>
-    <a href="/" class="wordmark">zuhd<span class="wordmark-dot">.</span><span class="wordmark-tld">news</span></a>
+    <a href="/" class="wordmark"><svg class="wordmark-glyph" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4.5 4.5H12L4.5 16.25Z"/><path fill="currentColor" d="M19.5 4.5H27.5L12 27.5H4.5Z"/><path fill="currentColor" d="M27.5 16.25V27.5H20Z"/></svg><span class="wordmark-text">zuhd<span class="wordmark-dot">.</span><span class="wordmark-tld">news</span></span></a>
     {{audioBriefing}}
   </header>
 

@@ -1,4 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <style>path { stroke: #1a1a1a; } @media (prefers-color-scheme: dark) { path { stroke: #d4d4d4; } }</style>
-  <path d="M6 8 L26 8 L6 24 L26 24" fill="none" stroke-width="3.5" stroke-linecap="square"/>
+  <!--
+    The same mark as the mobile app icon and public/logo.svg. Browser chrome
+    sits on its own background, so this copy carries an explicit theme-aware
+    fill instead of currentColor.
+  -->
+  <style>
+    path { fill: #1a1a1a; }
+    @media (prefers-color-scheme: dark) { path { fill: #d4d4d4; } }
+  </style>
+  <path d="M4.5 4.5H12L4.5 16.25Z"/>
+  <path d="M19.5 4.5H27.5L12 27.5H4.5Z"/>
+  <path d="M27.5 16.25V27.5H20Z"/>
 </svg>

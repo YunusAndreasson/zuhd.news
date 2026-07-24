@@ -37,6 +37,8 @@ import {
 // flight per marker, short enough that a deliberate hover feels immediate.
 const HOVER_DWELL_MS = 320
 const DETAIL_ZOOM = 3.2
+/** Where the 1:10m coastline replaces 1:50m — see the zoomend handler. */
+const ULTRA_ZOOM = 5.5
 
 /** Time-range presets, in hours. `null` means the whole 14-day window. */
 const RANGES: Array<[string, number | null]> = [
@@ -267,6 +269,7 @@ export function mount(container: HTMLElement) {
   let scrubNow = Date.now()
   let mounted = true
   let detailLoaded = false
+  let ultraLoaded = false
   let layersReady = false
   const abort = new AbortController()
 
@@ -287,6 +290,8 @@ export function mount(container: HTMLElement) {
   let dwellTimer: number | null = null
   /** Which overlay marker the hover sheet is currently previewing. */
   let peekId: string | null = null
+  /** ISO2 of the country under the pointer, driving the land highlight. */
+  let hoverIso: string | null = null
   let peekCloseTimer: number | null = null
   // The map moves under a stationary pointer during a flight, which would
   // otherwise drag the cursor across other markers and chain more flights.
@@ -578,6 +583,21 @@ export function mount(container: HTMLElement) {
     map.addSource('conflict', { type: 'geojson', data: empty })
     map.addSource('night', { type: 'geojson', data: empty })
 
+    // The country under the pointer, lit just enough to say "this is a thing
+    // you can click". Driven by a filter rather than feature-state because the
+    // basemap has no promoted id, and one `setFilter` per hover change is the
+    // same cost as one state flip.
+    map.addLayer(
+      {
+        id: 'country-hover',
+        type: 'fill',
+        source: 'countries',
+        filter: ['==', ['get', 'iso2'], ''],
+        paint: { 'fill-color': MAP_COLOURS.landHi, 'fill-opacity': 0.85 },
+      },
+      'borders',
+    )
+
     // Night sits directly on the ocean and under everything else: it darkens
     // the ground, never the data.
     map.addLayer(
@@ -854,6 +874,16 @@ export function mount(container: HTMLElement) {
   const pointFor = (f: MapGeoJSONFeature): MapPoint | null =>
     pointBySlug.get(String(f.properties?.slug)) ?? null
 
+  /** ISO2 of the country under a screen point, or null over ocean/unmapped. */
+  const countryAt = (point: { x: number; y: number }): string | null => {
+    if (!layersReady) return null
+    for (const f of map.queryRenderedFeatures(point, { layers: ['land'] })) {
+      const iso = f.properties?.iso2
+      if (iso) return String(iso)
+    }
+    return null
+  }
+
   /**
    * A short hop toward the story rather than a jump to a fixed zoom: from the
    * world view it settles at a regional scale, and if you are already zoomed in
@@ -1010,10 +1040,18 @@ export function mount(container: HTMLElement) {
       setHoverSlug(null)
     })
 
-    // Only an explicit dismissal closes the card: moving off the marker usually
-    // means the pointer is travelling towards the card to read it.
+    /**
+     * Clicking the ground.
+     *
+     * Three outcomes, in order. A marker takes the click — those layers have
+     * their own handlers and this one stays out of the way. Otherwise, if
+     * something is already open, the click dismisses it: escape-first is what
+     * people expect from a click on empty space, and opening a country profile
+     * instead would feel like the map fighting back. Only from a clean slate
+     * does a click on land open that country.
+     */
     map.on('click', (e) => {
-      const hits = map.queryRenderedFeatures(e.point, {
+      const markers = map.queryRenderedFeatures(e.point, {
         layers: [
           'story-points',
           'story-clusters',
@@ -1022,11 +1060,40 @@ export function mount(container: HTMLElement) {
           'conflict-marks',
         ],
       })
-      if (hits.length === 0) {
+      if (markers.length > 0) return
+
+      if (popup?.isOpen() || sheet.isOpen()) {
         openSlug = null
         popup?.close()
+        sheet.close()
         feed.highlight(null)
+        return
       }
+
+      const iso = countryAt(e.point)
+      if (!iso) return
+      openSlug = null
+      void popup?.openCountry(iso, [e.lngLat.lng, e.lngLat.lat])
+    })
+
+    // Land is only clickable where a profile exists, so the highlight and the
+    // cursor follow the same test — nothing should look interactive and then
+    // do nothing.
+    map.on('mousemove', (e) => {
+      if (flying) return
+      const overMarker = map.queryRenderedFeatures(e.point, {
+        layers: ['story-points', 'story-clusters', 'gdacs-marks', 'chokepoint-marks', 'conflict-marks'],
+      }).length > 0
+      const iso = overMarker ? null : countryAt(e.point)
+      if (iso === hoverIso) return
+      hoverIso = iso
+      map.setFilter('country-hover', ['==', ['get', 'iso2'], iso ?? ''])
+      if (!overMarker) map.getCanvas().style.cursor = iso ? 'pointer' : ''
+    })
+
+    map.on('mouseout', () => {
+      hoverIso = null
+      map.setFilter('country-hover', ['==', ['get', 'iso2'], ''])
     })
 
     map.on('click', 'story-points', (e) => {
@@ -1117,13 +1184,28 @@ export function mount(container: HTMLElement) {
       if (!sheet.isPinned()) sheet.close()
     })
 
-    // Swap in the finer coastline once the coarse one starts to show.
+    /**
+     * Coastline detail, swapped in as the camera earns it.
+     *
+     * Three tiers, each an order of magnitude heavier than the last: 110m for
+     * first paint (70 KB), 50m once the coarse outline starts to show, 10m past
+     * regional scale. The last one is 1.4 MB and carries 255 countries against
+     * 110m's 176 — mostly islands and real inlets — so it is worth having and
+     * emphatically not worth loading for a reader who never zooms in.
+     */
     map.on('zoomend', () => {
-      if (detailLoaded || map.getZoom() < DETAIL_ZOOM) return
-      detailLoaded = true
-      ;(map.getSource('countries') as GeoJSONSource | undefined)?.setData(
-        '/basemap/countries-detail.geojson',
-      )
+      const z = map.getZoom()
+      const src = () => map.getSource('countries') as GeoJSONSource | undefined
+      if (!ultraLoaded && z >= ULTRA_ZOOM) {
+        ultraLoaded = true
+        detailLoaded = true
+        src()?.setData('/basemap/countries-ultra.geojson')
+        return
+      }
+      if (!detailLoaded && z >= DETAIL_ZOOM) {
+        detailLoaded = true
+        src()?.setData('/basemap/countries-detail.geojson')
+      }
     })
   }
 

@@ -29,6 +29,9 @@
 /basemap/countries-detail.geojson
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
+/basemap/countries-ultra.geojson
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
 /basemap/places.geojson
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 

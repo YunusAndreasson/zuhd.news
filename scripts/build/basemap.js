@@ -12,6 +12,7 @@
 
 import { readFileSync } from 'fs'
 import { join } from 'path'
+import { loadShared } from './shared-ts.js'
 
 /**
  * Makes a ring's longitudes continuous across the antimeridian.
@@ -87,6 +88,11 @@ export const thin = (geometry, dp = 4) => {
  */
 async function countryLabelPoints(fc) {
   const { geoArea, geoCentroid } = await import('d3-geo')
+  // Natural Earth ships cartographer's abbreviations ("Dem. Rep. Congo",
+  // "W. Sahara", "Fr. S. Antarctic Lands") and some names a country no longer
+  // uses for itself. The app has corrected these at its display layer for a
+  // while; the map was still printing the raw ones.
+  const { displayCountryName } = await loadShared('place-names.ts')
   return {
     type: 'FeatureCollection',
     features: fc.features
@@ -107,7 +113,10 @@ async function countryLabelPoints(fc) {
         if (!Number.isFinite(lng) || !Number.isFinite(lat)) return null
         return {
           type: 'Feature',
-          properties: { name: f.properties?.name ?? '', area: Math.round(bestArea * 1e6) / 1e6 },
+          properties: {
+            name: displayCountryName(f.properties?.name ?? '') ?? '',
+            area: Math.round(bestArea * 1e6) / 1e6,
+          },
           geometry: { type: 'Point', coordinates: [Math.round(lng * 1e3) / 1e3, Math.round(lat * 1e3) / 1e3] },
         }
       })
@@ -117,6 +126,11 @@ async function countryLabelPoints(fc) {
 
 export async function buildMapSources(root) {
   const { feature } = await import('topojson-client')
+  // Natural Earth carries only a display name, but the country profile is
+  // routed by ISO 3166-1 alpha-2 (`/api/country/{ISO2}.json`). Resolving it
+  // here — with the same lookup the country pages are generated from, so the
+  // two can never disagree — is what makes a land polygon clickable.
+  const { codeFromTopojsonName } = await loadShared('countries/iso.ts')
 
   // Two detail tiers. 110m is the first-paint basemap at 72 KB gzipped; 50m is
   // seven times heavier and only fetched once the reader zooms past the point
@@ -126,11 +140,18 @@ export async function buildMapSources(root) {
     const fc = feature(topo, topo.objects.countries)
     return {
       type: 'FeatureCollection',
-      features: fc.features.map((f) => ({
-        type: 'Feature',
-        properties: { name: f.properties?.name ?? '' },
-        geometry: thin(f.geometry, dp),
-      })),
+      features: fc.features.map((f) => {
+        const name = f.properties?.name ?? ''
+        const iso2 = codeFromTopojsonName(name)
+        return {
+          type: 'Feature',
+          // `id` is what `setFeatureState` addresses, and MapLibre requires it
+          // to be a number or a string that parses as one — so the hover state
+          // rides on the feature index rather than the code.
+          properties: iso2 ? { name, iso2 } : { name },
+          geometry: thin(f.geometry, dp),
+        }
+      }),
     }
   }
 
@@ -138,6 +159,13 @@ export async function buildMapSources(root) {
   return {
     countries,
     countriesDetail: tier('countries-50m.json', 3),
+    // Third tier, from Natural Earth 1:10m. 255 countries against 50m's 240
+    // and 110m's 176 — the difference is mostly islands and a coastline with
+    // real inlets rather than a smoothed outline, which is exactly what shows
+    // once the camera is past continental scale. Coordinates keep 3 decimals
+    // (~110 m), which is sub-pixel even at the map's maximum zoom; trimming to
+    // 2 halves the payload but starts to read as jagged up close.
+    countriesUltra: tier('countries-10m.json', 3),
     countryLabels: await countryLabelPoints(countries),
     places: JSON.parse(readFileSync(join(root, 'shared', 'data', 'places-50m.geojson'), 'utf8')),
   }

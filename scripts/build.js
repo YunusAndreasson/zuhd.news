@@ -354,6 +354,10 @@ const headCommon = `<meta charset="utf-8">
  * does: a content-only cycle rebuilds byte-identical bundles and keeps the same
  * URL, so the four-hour cache works for us instead of against us.
  */
+// Place-name display rules, shared with the app so a location never reads one
+// way in the feed and another in the app.
+const { displayLocation } = await loadShared('place-names.ts')
+
 const ISLAND_V = (() => {
   const publicDir = join(ROOT, 'public')
   const files = [join(publicDir, 'island-loader.js')]
@@ -797,7 +801,11 @@ const mapPoints = sorted
       cat: a.meta.category || 'politics',
       slug: a.slug,
       title: a.title,
-      loc: a.meta.location || '',
+      // Display layer, matching the app: locations in historic Palestine are
+      // shown under their original Arabic names. The frontmatter is untouched —
+      // `location` still has to equal the dateline city exactly, which mobile's
+      // dateline strip depends on.
+      loc: displayLocation(a.meta.location || '') || '',
       n: a.sources.length,
       ...(hasCov && coverageRanks ? { w: coverageRanks(cov) } : {}),
       ...(Number.isFinite(div) && div > 0 ? { d: Math.round(div * 100) / 100 } : {}),
@@ -865,16 +873,20 @@ console.log(`  Built: api/map-leads.json (${Object.keys(mapLeads).length} leads)
 // labels, all served from our own origin so the CSP stays `default-src 'none'`.
 {
   mkdirSync(join(DIST_DIR, 'basemap'), { recursive: true })
-  const { countries, countriesDetail, countryLabels, places } = await buildMapSources(ROOT)
+  const { countries, countriesDetail, countriesUltra, countryLabels, places } =
+    await buildMapSources(ROOT)
   const emit = (name, data) => {
     writeFileSync(join(DIST_DIR, 'basemap', name), JSON.stringify(data))
     return Math.round(statSync(join(DIST_DIR, 'basemap', name)).size / 1024)
   }
   const a = emit('countries.geojson', countries)
   const b = emit('countries-detail.geojson', countriesDetail)
+  const d = emit('countries-ultra.geojson', countriesUltra)
   emit('country-labels.geojson', countryLabels)
   const c = emit('places.geojson', places)
-  console.log(`  Built: basemap/ (countries ${a}KB, detail ${b}KB, ${places.features.length} places ${c}KB)`)
+  console.log(
+    `  Built: basemap/ (countries ${a}KB, detail ${b}KB, ultra ${d}KB, ${places.features.length} places ${c}KB)`,
+  )
 }
 
 // Atom feed for RSS readers
@@ -1132,7 +1144,7 @@ const categoryPageTemplate = `<!-- بسم الله الرحمن الرحيم -->
 </head>
 <body class="archetype-page-body">
   <header class="article-page-header">
-    <a href="/" class="wordmark">zuhd<span class="wordmark-dot">.</span><span class="wordmark-tld">news</span></a>
+    <a href="/" class="wordmark"><svg class="wordmark-glyph" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4.5 4.5H12L4.5 16.25Z"/><path fill="currentColor" d="M19.5 4.5H27.5L12 27.5H4.5Z"/><path fill="currentColor" d="M27.5 16.25V27.5H20Z"/></svg><span class="wordmark-text">zuhd<span class="wordmark-dot">.</span><span class="wordmark-tld">news</span></span></a>
     <a href="/" class="article-back-link" aria-label="All stories">All stories</a>
   </header>
   <main class="article-page-main">

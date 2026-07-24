@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="zuhd.news">
+  <!--
+    The zuhd mark, traced from the mobile app icon (mobile/assets/icon.png) so
+    the two surfaces carry the same logo rather than two drawings of the same
+    idea. A Z cut by two diagonal slashes: the top-left wedge, the bar, and the
+    bottom-right wedge. Geometry is the app icon's, normalised from its
+    1024px grid to a 32-unit box.
+
+    Fill is currentColor so the mark takes the colour of whatever it sits in —
+    header, footer, light theme or dark — without a second asset.
+  -->
+  <path fill="currentColor" d="M4.5 4.5H12L4.5 16.25Z"/>
+  <path fill="currentColor" d="M19.5 4.5H27.5L12 27.5H4.5Z"/>
+  <path fill="currentColor" d="M27.5 16.25V27.5H20Z"/>
+</svg>
