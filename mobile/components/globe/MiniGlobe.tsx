@@ -51,6 +51,7 @@ import {
   Easing,
   type SharedValue,
   useAnimatedReaction,
+  useReducedMotion,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
@@ -972,6 +973,11 @@ export const MiniGlobe = memo(function MiniGlobe({
 }: MiniGlobeProps) {
   const { colors, bgAlpha, resolvedAppearance } = useTheme();
   const light = resolvedAppearance === 'light';
+  // Gates the globe's two *discrete* animations (zoom transition, tap pulse
+  // expansion) per DESIGN.md's Reduce Motion rule. The scroll-driven rotation
+  // is deliberately NOT gated: it tracks the user's finger, and direct
+  // manipulation is exactly what Reduce Motion is not meant to suppress.
+  const reduceMotion = useReducedMotion();
 
   // Glow textures baked once per color so each glow renders as a single
   // Atlas draw instead of N concentric Circle+BlurMask draws.
@@ -2367,7 +2373,11 @@ export const MiniGlobe = memo(function MiniGlobe({
   useEffect(() => {
     const prev = prevOverrideRef.current;
     prevOverrideRef.current = zoomClipOverride;
-    const opts = { duration: ZOOM_DURATION, easing: ZOOM_EASING };
+    // Reduce Motion: land on the target immediately instead of easing the
+    // camera across. The zoom is a discrete, tap-triggered transition, so a
+    // cut is the accessible equivalent — the destination framing is identical.
+    const duration = reduceMotion ? 0 : ZOOM_DURATION;
+    const opts = { duration, easing: ZOOM_EASING };
     if (zoomClipOverride === null) {
       overrideActive.value = withTiming(0, opts);
     } else if (prev === null) {
@@ -2376,9 +2386,9 @@ export const MiniGlobe = memo(function MiniGlobe({
     } else {
       overrideAngle.value = withTiming(zoomClipOverride, opts);
     }
-    const timer = setTimeout(finalizeReproject, ZOOM_DURATION + 50);
+    const timer = setTimeout(finalizeReproject, duration + 50);
     return () => clearTimeout(timer);
-  }, [zoomClipOverride, overrideActive, overrideAngle, finalizeReproject]);
+  }, [zoomClipOverride, overrideActive, overrideAngle, finalizeReproject, reduceMotion]);
 
   // Re-project when hotspot data changes (e.g. heatmap fetch after app resume)
   // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state
@@ -2424,12 +2434,18 @@ export const MiniGlobe = memo(function MiniGlobe({
     showPulse(x: number, y: number) {
       pulseX.value = x;
       pulseY.value = y;
-      pulseR.value = 5;
       // Stroked-ring pulse (vs. the prior blurred fill) shows much less ink
       // per pixel — peak opacity bumped from 0.35 to 0.6 so the ring reads
       // as a deliberate selection cartouche rather than a faint hairline.
       pulseOpacity.value = 0.6;
-      pulseR.value = withTiming(34, { duration: 400, easing: PULSE_EASING });
+      // Reduce Motion: keep the ring — it is the only confirmation that the
+      // tap registered on a pointerEvents:none canvas — but draw it at its
+      // final radius and cross-fade it out instead of expanding it. Fading
+      // is the sanctioned substitute for scaling motion.
+      pulseR.value = reduceMotion ? 34 : 5;
+      if (!reduceMotion) {
+        pulseR.value = withTiming(34, { duration: 400, easing: PULSE_EASING });
+      }
       pulseOpacity.value = withTiming(0, { duration: 400, easing: PULSE_EASING });
     },
     hitTest(x: number, y: number): TapResult | null {

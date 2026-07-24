@@ -32,12 +32,14 @@ import { ConflictSheet } from '../components/ConflictSheet';
 import { CountrySheet } from '../components/CountrySheet';
 import { DisambiguationSheet } from '../components/DisambiguationSheet';
 import { DisasterSheet } from '../components/DisasterSheet';
+import { EmptyState } from '../components/EmptyState';
 import { EntitySheet } from '../components/EntitySheet';
 import { ErrorState } from '../components/ErrorState';
 import type { TapResult } from '../components/globe/MiniGlobe';
 import { HintOverlay } from '../components/HintOverlay';
 import { MenuSheet } from '../components/MenuSheet';
 import { NotificationPrimerSheet } from '../components/NotificationPrimerSheet';
+import { Screen } from '../components/primitives';
 import { SourcesSheet } from '../components/SourcesSheet';
 import { Toast, type ToastRef } from '../components/Toast';
 import { CATEGORIES, EDITORIAL, OPACITY } from '../constants/theme';
@@ -63,6 +65,12 @@ const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 // (2s passive duration) plus a breath, so the two moments read as sequential
 // rather than stacked.
 const PRIMER_PRESENT_DELAY_MS = 2600;
+
+// How long the splash may wait on the heatmap *after* articles are ready.
+// The heatmap degrades gracefully to an empty layer, so it must not hold a
+// launch whose content is already on screen — without this cap a slow
+// heatmap parks the user on the splash until the 8s `_layout.tsx` fallback.
+const HEATMAP_SPLASH_GRACE_MS = 1200;
 
 export default function HomeScreen() {
   const { colors } = useTheme();
@@ -479,7 +487,7 @@ export default function HomeScreen() {
   const handleEndReached = useCallback((catIndex: number) => {
     const cat = CATEGORIES[catIndex];
     if (!cat) return;
-    toastRef.current?.show('Tap for top', () => listRefs[catIndex]?.current?.scrollToTop());
+    toastRef.current?.show('Back to top', () => listRefs[catIndex]?.current?.scrollToTop());
   }, []);
 
   const handleRefresh = useCallback(async () => {
@@ -508,13 +516,42 @@ export default function HomeScreen() {
   // The mount-only globe layers (chokepoints, GDACS, conflicts, trends)
   // each cache locally, so they typically resolve before heatmap on warm
   // launches. The 8s fallback in _layout.tsx covers any stall.
+  // ...but the heatmap only gets a grace period, not a veto. Trading a brief
+  // globe pop-in for up to 7s of extra splash is the wrong deal, especially on
+  // a first launch. hideAsync() rejects if the splash is already gone (the
+  // _layout fallback may have fired), so both paths swallow that.
   useEffect(() => {
-    if (!loading && heatmapReady) SplashScreen.hideAsync();
+    if (loading) return;
+    if (heatmapReady) {
+      SplashScreen.hideAsync().catch(() => {});
+      return;
+    }
+    const timer = setTimeout(
+      () => SplashScreen.hideAsync().catch(() => {}),
+      HEATMAP_SPLASH_GRACE_MS,
+    );
+    return () => clearTimeout(timer);
   }, [loading, heatmapReady]);
 
   usePendingNotification(loading, grouped, handleSelectArticle, briefingPlayer.toggle);
 
-  if (loading) return null;
+  // The splash normally covers this whole state. But `_layout.tsx` force-hides
+  // it after SPLASH_FALLBACK_MS (8s) while the feed keeps retrying for up to
+  // ~30s (10s timeout x retry: 2) — so on a cold first launch over a slow
+  // connection there is a window where the splash is gone and we still have no
+  // articles. Returning null there paints a bare `colors.bg` void, which reads
+  // as a crashed app. Render the standard empty state instead so the launch
+  // always has content.
+  if (loading)
+    return (
+      <Screen>
+        {/* "loading" + "fetching" said the same thing twice, and foundation.md
+            is explicit that information appears exactly once. By the time this
+            is visible the splash has already run its 8s, so the useful thing to
+            say is that the wait is abnormal — not to restate the spinner. */}
+        <EmptyState message="loading" hint="This is taking longer than usual" />
+      </Screen>
+    );
 
   if (error && Object.values(grouped).every((a) => a.length === 0)) {
     return (

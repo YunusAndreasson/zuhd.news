@@ -3,7 +3,8 @@ import Animated from 'react-native-reanimated';
 import { SPACING } from '../constants/theme';
 import { useOpenLink } from '../lib/open-link';
 import { staggerEnter } from '../lib/stagger';
-import { Pressable, Text } from './primitives';
+import { Text } from './primitives';
+import { SheetLink } from './SheetContent';
 
 export interface InfoSection {
   heading?: string;
@@ -35,34 +36,24 @@ export function SheetInfoPage({ sections }: SheetInfoPageProps) {
             </Text>
           )}
           {section.body.length > 0 && (
-            <Text selectable variant="caption" tone={section.heading ? 'default' : 'accent'}>
+            // Same two-tier prose ramp the About page uses, so a reader moving
+            // between About and privacy sees one typographic voice: the opening
+            // unheaded paragraph is the page's `lead` (21), every headed section
+            // below it is `body` (17). Both were previously `caption` (13) —
+            // the smallest tier in the system, which DESIGN.md reserves for
+            // "secondary body, metadata sentences", not pages of policy prose.
+            <Text selectable variant={section.heading ? 'body' : 'lead'}>
               {section.body}
             </Text>
           )}
           {section.link && (
-            <Pressable
+            <SheetLink
+              label={section.link.label}
               onPress={() => section.link?.url && openLink(section.link.url)}
-              style={styles.link}
-              accessibilityRole="link"
-              accessibilityLabel={section.link.label}
-            >
-              <Text variant="captionEmphasis" tone="accent" style={styles.linkText}>
-                {section.link.label}
-              </Text>
-            </Pressable>
+            />
           )}
           {section.links?.map((l) => (
-            <Pressable
-              key={l.url}
-              onPress={() => openLink(l.url)}
-              style={styles.link}
-              accessibilityRole="link"
-              accessibilityLabel={l.label}
-            >
-              <Text variant="captionEmphasis" tone="accent" style={styles.linkText}>
-                {l.label}
-              </Text>
-            </Pressable>
+            <SheetLink key={l.url} label={l.label} onPress={() => openLink(l.url)} />
           ))}
         </Animated.View>
       ))}
@@ -71,16 +62,15 @@ export function SheetInfoPage({ sections }: SheetInfoPageProps) {
 }
 
 const styles = StyleSheet.create({
+  // `lg`, not `md`: the sheet rhythm has two tiers — `md` (16) separates
+  // paragraphs inside one thought, `lg` (24) separates labeled sections. Every
+  // section here carries its own heading, so it belongs to the section tier,
+  // the same one SheetAboutPage, ChokepointSheet and EntitySheet use. At `md`
+  // the privacy page sat a tier tighter than every other sheet in the app.
   section: {
-    marginTop: SPACING.md,
+    marginTop: SPACING.lg,
   },
   heading: {
     marginBottom: SPACING.xs,
-  },
-  link: {
-    marginTop: SPACING.xs,
-  },
-  linkText: {
-    textDecorationLine: 'underline',
   },
 });

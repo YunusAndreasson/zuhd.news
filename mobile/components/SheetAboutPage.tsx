@@ -6,6 +6,7 @@ import { ANIMATION, SPACING } from '../constants/theme';
 import { useOpenLink } from '../lib/open-link';
 import { makeStaggerEnter, staggerEnter } from '../lib/stagger';
 import { Pressable, Text } from './primitives';
+import { SheetLink } from './SheetContent';
 
 // Copy lives with the component; the About page is one-of-a-kind and doesn't
 // reuse the generic InfoSection schema.
@@ -13,9 +14,9 @@ import { Pressable, Text } from './primitives';
 const LEAD = 'Zuhd \u2014 the discipline of doing without what you do not need.';
 
 const MANIFESTO = [
-  'Information is no longer scarce; attention is. Attention is where information becomes fact \u2014 and without facts, no truth; without truth, no trust; without trust, no shared reality.',
-  'In 1971, Herbert Simon observed that a wealth of information creates a poverty of attention. Seven centuries earlier, Ibn Taymiyyah had named the discipline \u2014 zuhd: abandon what does not bring benefit. zuhd.news applies that discipline to the present.',
-  'Most systems that process news today are optimized for engagement, not understanding. zuhd.news is built on a different set of values: zuhd, tabayyun, isnad, adalah, haqq. The work is automated; the alignment is not.',
+  'Information is no longer scarce; attention is. Nothing becomes a shared fact until enough people stop to look at it \u2014 and without shared facts there is nothing left to trust.',
+  'In 1971, Herbert Simon observed that a wealth of information creates a poverty of attention. Six centuries earlier, Ibn Taymiyyah had named the discipline \u2014 zuhd: abandon what does not bring benefit. zuhd.news applies that discipline to the present.',
+  'Most systems that process news are optimized for engagement rather than understanding. This one runs on the principles below. The work is automated; the judgment is not.',
 ];
 
 const WHATS = ['What happened.', 'Why it matters.', 'What comes next.', 'Then stop.'];
@@ -32,7 +33,7 @@ const SUBTRACTIONS = [
 ];
 
 const NEWSROOM_LINE =
-  'zuhd.news is an automated newsroom. The intelligence lives in the system; the editors stand at the edges, where judgment belongs \u2014 what qualifies as news, how it is verified, whether a pattern is oppression, when to name power. They do not write the articles; they write the rules the newsroom follows.';
+  'zuhd.news is an automated newsroom. The editors do not write the articles; they write the rules the newsroom follows \u2014 what qualifies as news, how a claim is verified, whether a pattern is oppression, when to name power.';
 
 const FLOW_LINE =
   'Under those rules, the newsroom reads the world, verifies what it finds, drafts each article, and augments it with live data.';
@@ -212,16 +213,7 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
           <View style={styles.linkList}>
             {DATA_SOURCES.map((l, idx) => (
               <Animated.View key={l.url} entering={staggerEnter(idx, ANIMATION.fast)}>
-                <Pressable
-                  onPress={() => openLink(l.url)}
-                  style={styles.link}
-                  accessibilityRole="link"
-                  accessibilityLabel={l.label}
-                >
-                  <Text variant="captionEmphasis" tone="accent" style={styles.linkText}>
-                    {l.label}
-                  </Text>
-                </Pressable>
+                <SheetLink label={l.label} onPress={() => openLink(l.url)} />
               </Animated.View>
             ))}
           </View>
@@ -246,16 +238,7 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
 
       <Animated.View entering={enter()} style={styles.section}>
         <Text variant="labelSm">colophon</Text>
-        <Pressable
-          onPress={() => openLink(MAKER_PROJECTS)}
-          style={styles.link}
-          accessibilityRole="link"
-          accessibilityLabel={MAKER_BYLINE}
-        >
-          <Text variant="captionEmphasis" tone="accent" style={styles.linkText}>
-            {MAKER_BYLINE}
-          </Text>
-        </Pressable>
+        <SheetLink label={MAKER_BYLINE} onPress={() => openLink(MAKER_PROJECTS)} />
       </Animated.View>
     </>
   );
@@ -277,12 +260,6 @@ const styles = StyleSheet.create({
   },
   linkList: {
     marginTop: SPACING.xs,
-  },
-  link: {
-    marginTop: SPACING.xs,
-  },
-  linkText: {
-    textDecorationLine: 'underline',
   },
   discloseToggle: {
     marginTop: SPACING.sm,

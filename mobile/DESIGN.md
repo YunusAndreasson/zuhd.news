@@ -16,14 +16,14 @@ All design tokens live in one file. Components consume via `useTheme()`.
 |-------------------|-------------------------------------------------|-----------------------------------------------|
 | Colors            | `DARK_COLORS`, `LIGHT_COLORS` (via theme hook)  | Semantic keys — never inline a hex. Brand accent is `dome` (gold); `accent` is a soft text tier, not a brand color. |
 | Typography        | `makeTypography` → `sizeBase`, `sizeLg`, etc.   | Responsive scale + leading (`leadingBody` / `leadingHeading` / `leadingTight`) + `trackingCaps` / `trackingHeading` / `trackingWordmark`. `leadingTight` (1.1) is the single tight single-line leading for small-caps labels/captions — use it instead of an ad-hoc `× 1.1`. |
-| Variants          | `makeTextVariants` → 13 roles                   | The `<Text variant>` catalog (see below)      |
+| Variants          | `makeTextVariants` → 15 roles                   | The `<Text variant>` catalog (see below)      |
 | Variant caps      | `VARIANT_CAP`                                   | Dynamic Type ceiling per variant              |
 | Variant breaking  | `VARIANT_TEXT_PROPS`, `PROSE_BREAK_PROPS`       | Per-role line-breaking + iOS Dynamic Type ramp props, auto-applied by `<Text>`: prose hyphenates (Android) and uses iOS `standard` breaking; display/title use `balanced`/`push-out` widow control. Article sentences in `lib/markdown.tsx` get the body set via `PROSE_BREAK_PROPS`. |
-| Spacing           | `SPACING` (xxs → xxl + screenPadding)           | Four-pt-ish scale                             |
+| Spacing           | `SPACING` (xxs → xxl + `smPlus`, `screenPadding`, `articlePadding`) | Four-pt-ish scale. `articlePadding` (14) is the reader column inset — `CategoryBar` mirrors it so tabs align with the article body. |
 | Gap tokens        | `GAP` (none, tight, row, item, group, section)  | Named Stack gap tiers derived from SPACING    |
 | Radii             | `RADIUS` (handle, pill, floating)               | Three semantic tiers, intent-named            |
-| Icons             | `ICON` (sm=14, md=20)                           | Two-tier. Anything else is a mistake.         |
-| Flag emoji        | `FLAG` (chip=16, row=18, display=32)            | Pictogram sizing — flags aren't type          |
+| Icons             | `ICON` (sm=14, md=20, lg=26)                    | Three-tier. Anything else is a mistake.       |
+| Flag emoji        | `FLAG` (chip=16, row=18, inline=22, display=32) | Pictogram sizing — flags aren't type          |
 | Animation         | `ANIMATION`, `EASING`                           | Durations, spring configs, Reanimated easings |
 | Opacity           | `OPACITY`                                       | Named tiers — never inline decimals           |
 | Hit slop          | `HIT_SLOP`                                      | Standard expanded tap target                  |
@@ -52,7 +52,7 @@ The sentiment palette splits into background and foreground variants:
 
 ## Primitives — `components/primitives/`
 
-Seven primitives. Composition over configuration.
+Eight primitives. Composition over configuration.
 
 | Primitive    | Purpose                                  | Key props                                                                  |
 |--------------|------------------------------------------|----------------------------------------------------------------------------|
@@ -62,7 +62,8 @@ Seven primitives. Composition over configuration.
 | `Screen`     | Top-level screen scaffold                | `edges`, `padded`                                                          |
 | `Pressable`  | Full-bleed row press (spring + haptic)   | `onPress`, `haptic`, all RN Pressable props                                |
 | `IconButton` | Icon-only chrome button                  | `onPress`, `accessibilityLabel`, icon child                                |
-| `Icon`       | Ionicons wrapper — two sizes + tone      | `name`, `size` (`sm`/`md`), `tone`                                         |
+| `Icon`       | Ionicons wrapper — three sizes + tone    | `name`, `size` (`sm`/`md`/`lg`), `tone`                                    |
+| `Markdown`   | Inline markdown text (`**b**`, `*i*`, links) | `children`, `variant`, `tone`, `onLinkPress` (handles the `country:XX` scheme) |
 
 ### Don't use if…
 
@@ -102,6 +103,9 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 ### Sheets
 - Use `SheetLayout` (wraps `BottomSheetModal` with theme-styled background) + a `SheetHandle` for the drag indicator. `MenuSheet`, `ContextSheet`, `CountrySheet`, `ChokepointSheet`, `SourcesSheet` are the references.
 - Content wraps in `SheetScrollView` (`components/SheetContent.tsx`) — a `BottomSheetScrollView` pre-wired with `sheetStyles.content` + the `bottomInset + SPACING.lg` safe-area tail. Don't re-inline that padding recipe; extra props (`indicatorStyle`, more `contentContainerStyle`) pass through.
+- Prose sheet pages (About, privacy, contact) share one type ramp: an unheaded opening paragraph is `lead`, headed sections are `labelSm` + `body`. Never `caption` — that tier is for metadata sentences, not pages of prose, and it forced hawk vision on the privacy policy. External links go through `SheetLink` (`SheetContent.tsx`), which owns the underline + `bodyEmphasis` treatment so a link on About and a link on privacy cannot drift apart.
+- Vertical rhythm inside a sheet has exactly two tiers: `SPACING.md` (16) between paragraphs of one thought, `SPACING.lg` (24) between labeled sections. `SheetAboutPage`, `SheetInfoPage`, `ChokepointSheet` and `EntitySheet` all key off this — a section that carries its own heading gets `lg`, never `md`.
+- Nav rows and info rows in `MenuSheet` are the same control (padding, chevron, pushes a page) and share `label`. Don't size the secondary group down — the divider carries the hierarchy, and shrinking it drops the tap target under 44pt.
 - Event sheets (`ConflictSheet`, `DisasterSheet`) share `SheetHero` / `SheetFlagRow` / `SheetSourceFooter` from `SheetContent.tsx` so the "one family" hero/flags/footer read identically. The severity → focal-tint decision routes through `severityTint` (`lib/severity.ts`) — the "only Red / fatal earns the rose hue" rule lives there, never inline.
 - Staggered row entrances use `staggerEnter(i)` / `makeStaggerEnter()` (drop-in `FadeInDown`) or `staggerFadeIn(i)` (opacity-only, for in-place block rows) from `lib/stagger.ts` — never re-inline `FadeInDown.duration(...).delay(staggerDelay(...))`.
 - Swipe-back and Android hardware back are already wired in `MenuSheet` — copy that pattern for multi-page sheets.
@@ -147,7 +151,9 @@ Every interactive element must have:
 - `accessibilityState` — `selected`, `expanded`, `disabled` when applicable.
 - `hitSlop` — use `HIT_SLOP` default. `IconButton` applies it automatically.
 - Dynamic Type — `VARIANT_CAP` auto-applies; override via `maxFontSizeMultiplier` only with reason.
-- Reduce Motion — animations must gate on `useReducedMotion()`. Look at `Toast`, `BriefingBar`, `QuizBlock`, `LocationsBlock` for references. See also the memory note on battery saver.
+- Reduce Motion — *discrete* animations must gate on `useReducedMotion()`. Look at `Toast`, `BriefingBar`, `QuizBlock`, `LocationsBlock`, `MiniGlobe` (zoom + tap pulse) for references. See also the memory note on battery saver.
+  - **Exempt: motion that tracks direct manipulation.** The `CategoryBar` tab indicator follows `pagerOffset` under the user's finger, and `ArticleList`'s `bgFade` follows scroll position. Reduce Motion targets discrete, decorative, or unexpected motion; snapping a finger-tracked indicator reads as broken, not accessible. Gate the transition, not the tracking.
+  - Prefer a cross-fade to removing feedback entirely — `MiniGlobe.showPulse` still draws its ring under Reduce Motion, just at final radius without the expansion.
 - WCAG AA contrast — the dark and light palettes meet 4.5:1 body / 3:1 large at normal text weights.
 
 ## Adding a new component
