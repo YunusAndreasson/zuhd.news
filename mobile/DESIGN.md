@@ -101,7 +101,7 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 ## Patterns
 
 ### Sheets
-- Use `SheetLayout` (wraps `BottomSheetModal` with theme-styled background) + a `SheetHandle` for the drag indicator. `MenuSheet`, `ContextSheet`, `CountrySheet`, `ChokepointSheet`, `SourcesSheet` are the references.
+- Use `SheetLayout` (wraps `BottomSheetModal` with theme-styled background) + a `SheetHandle` for the drag indicator. `MenuSheet`, `CountrySheet`, `ChokepointSheet`, `SourcesSheet` are the references.
 - Content wraps in `SheetScrollView` (`components/SheetContent.tsx`) — a `BottomSheetScrollView` pre-wired with `sheetStyles.content` + the `bottomInset + SPACING.lg` safe-area tail. Don't re-inline that padding recipe; extra props (`indicatorStyle`, more `contentContainerStyle`) pass through.
 - Prose sheet pages (About, privacy, contact) share one type ramp: an unheaded opening paragraph is `lead`, headed sections are `labelSm` + `body`. Never `caption` — that tier is for metadata sentences, not pages of prose, and it forced hawk vision on the privacy policy. External links go through `SheetLink` (`SheetContent.tsx`), which owns the underline + `bodyEmphasis` treatment so a link on About and a link on privacy cannot drift apart.
 - Vertical rhythm inside a sheet has exactly two tiers: `SPACING.md` (16) between paragraphs of one thought, `SPACING.lg` (24) between labeled sections. `SheetAboutPage`, `SheetInfoPage`, `ChokepointSheet` and `EntitySheet` all key off this — a section that carries its own heading gets `lg`, never `md`.
@@ -111,9 +111,22 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 - Swipe-back and Android hardware back are already wired in `MenuSheet` — copy that pattern for multi-page sheets.
 
 ### Blocks (`components/blocks/`)
-- Each block type has a component. `renderBlocks(blocks, opts)` (in `blocks/index.tsx`) dispatches from data to UI.
-- Every block accepts `variant: 'article' | 'context'` — full-bleed vs embedded-in-timeline sizing.
+- Three data-display components, used directly by the sheets that need them:
+  `TrendBlock` and `SourceCaption` (`EntitySheet`, `ChokepointSheet`) and
+  `CompareBlock` (`ChokepointSheet`). Import the component; there is no
+  data-driven dispatcher.
+- Every block accepts `variant: 'article' | 'context'` — full-bleed vs embedded sizing.
 - `blockContainerStyle` (in `blocks/shared.ts`) supplies the outer margin rhythm. Use it.
+- `blocks/locations-geo.ts` is not a block — it's the hi-res lake/river/sea
+  geometry the globe's `detail-geo.ts` loads. It lives here for historical
+  reasons; don't assume the directory is UI-only.
+- **History:** this directory once held a full `ArticleBlock` renderer (a
+  `renderBlocks` dispatcher plus prose/quiz/quote/rank/actors/sankey/treemap/
+  timeline/locations components) feeding a `ContextSheet`. The sheet's entry
+  point was removed in `eeba139d` and the rest sat unreachable — still bundled,
+  still pulling `d3-sankey`/`d3-hierarchy`/`d3-scale-chromatic` — until it was
+  deleted. If context briefs come back, recover it from git rather than
+  rewriting: `git show eeba139d^:mobile/components/blocks/index.tsx`.
 
 ### Screens
 - Root `app/index.tsx` is the only route. Overlays use sheets, not pushed routes.

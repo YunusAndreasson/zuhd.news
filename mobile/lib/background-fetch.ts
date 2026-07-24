@@ -1,13 +1,11 @@
-import type { FeedResponse } from '@shared/types';
 import * as BackgroundTask from 'expo-background-task';
 import * as TaskManager from 'expo-task-manager';
 import { API_BASE } from '../constants/theme';
+import { feedCache, fetchFeed } from './feed-source';
 import { fetchJson } from './fetchJson';
-import { createJsonCache } from './json-cache';
-import { isFeedResponse, isMetaResponse } from './validate';
+import { isMetaResponse } from './validate';
 
 const TASK_NAME = 'ZUHD_BACKGROUND_FETCH';
-const feedCache = createJsonCache<FeedResponse>('zuhd-feed.json', isFeedResponse);
 
 /** Fetch feed if new content available. Returns true if cache was updated. */
 async function fetchAndCacheIfNew(): Promise<boolean> {
@@ -22,14 +20,11 @@ async function fetchAndCacheIfNew(): Promise<boolean> {
   }
 
   try {
-    const feed = await fetchJson(`${API_BASE}/api/feed.json`, isFeedResponse, {
-      timeoutMs: 10000,
-      cache: 'no-store',
-    });
-    // Do not report task success until the cache is actually durable. Mobile
-    // operating systems may suspend the JS runtime as soon as this task
-    // resolves, so a deferred fire-and-forget write can be lost.
-    await feedCache.write(feed);
+    // `fetchFeed` writes through to `feedCache` and only resolves once the
+    // write has completed. That matters here: mobile operating systems may
+    // suspend the JS runtime as soon as this task resolves, so a deferred
+    // fire-and-forget write can be lost.
+    await fetchFeed({ cache: 'no-store' });
     return true;
   } catch {
     return false;

@@ -3,10 +3,11 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useCallback, useEffect, useEffectEvent, useMemo, useRef, useState } from 'react';
 import { API_BASE, STALE_THRESHOLD } from '../constants/theme';
 import { flushBookmarks } from '../lib/bookmark-store';
+import { feedCache, fetchFeed } from '../lib/feed-source';
 import { fetchJson } from '../lib/fetchJson';
 import { flushOnboarding } from '../lib/onboarding-store';
 import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
-import { isFeedResponse, isMetaResponse } from '../lib/validate';
+import { isMetaResponse } from '../lib/validate';
 import { useAppResume } from './useAppResume';
 
 type GroupedArticles = Record<Category, Article[]>;
@@ -59,15 +60,38 @@ export function useArticles(): ArticlesState {
   // fetch. The query key is stable; refresh()/retry() drive refetches.
   const query = useQuery({
     queryKey: FEED_QUERY_KEY,
-    queryFn: ({ signal }) =>
-      fetchJson(`${API_BASE}/api/feed.json`, isFeedResponse, {
-        timeoutMs: 10000,
-        signal,
-      }),
+    queryFn: ({ signal }) => fetchFeed({ signal }),
     // The feed performs a cheap /meta.json probe on focus before deciding
     // whether the much larger feed payload needs downloading.
     refetchOnWindowFocus: false,
   });
+
+  // Seed from the on-disk feed written by the last successful fetch (including
+  // the background task, whose whole point this is). The persister's cache is
+  // dropped once it passes PERSIST_MAX_AGE_MS, so without this a launch after
+  // a day offline lands on the error screen even though a perfectly readable
+  // feed is sitting in the cache directory. Stale news beats no news.
+  //
+  // `updatedAt` is derived from the feed's own `generated` stamp rather than
+  // "now", so seeded data reports its true age: it stays instantly stale and
+  // the mount refetch still runs. Only wins if it's actually newer than
+  // whatever the persister restored.
+  useEffect(() => {
+    let cancelled = false;
+    feedCache
+      .read()
+      .then((cached) => {
+        if (cancelled || !cached) return;
+        const cachedAt = Date.parse(cached.generated) || 0;
+        const existing = queryClient.getQueryData<FeedResponse>(FEED_QUERY_KEY);
+        if (existing && (Date.parse(existing.generated) || 0) >= cachedAt) return;
+        queryClient.setQueryData(FEED_QUERY_KEY, cached, { updatedAt: cachedAt });
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [queryClient]);
 
   // Seed prevSlugsRef + lastGeneratedRef on first data arrival (either from
   // persister hydration or network). Counting first-load slugs as "added"
@@ -94,12 +118,7 @@ export function useArticles(): ArticlesState {
   const refetchAndDiff = useEffectEvent(async (): Promise<number> => {
     const fresh = await queryClient.fetchQuery({
       queryKey: FEED_QUERY_KEY,
-      queryFn: ({ signal }) =>
-        fetchJson(`${API_BASE}/api/feed.json`, isFeedResponse, {
-          timeoutMs: 10000,
-          cache: 'no-store',
-          signal,
-        }),
+      queryFn: ({ signal }) => fetchFeed({ cache: 'no-store', signal }),
       // Force the network request — refresh() bypasses staleTime.
       staleTime: 0,
     });

@@ -61,9 +61,11 @@ import { getSnapshot as getOnboarding, markHintDone } from '../lib/onboarding-st
 
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 
-// Present the notification primer after the "Caught up" toast has cleared
-// (2s passive duration) plus a breath, so the two moments read as sequential
-// rather than stacked.
+// Give the reader time to arrive at the caught-up boundary and read it before
+// anything asks them for something. The delay used to be measured against the
+// "Caught up" toast's 2s dwell; that toast is gone, but the interval is still
+// the right one — it is the pause between the app saying you can stop and the
+// app asking a favour.
 const PRIMER_PRESENT_DELAY_MS = 2600;
 
 // How long the splash may wait on the heatmap *after* articles are ready.
@@ -464,7 +466,12 @@ export default function HomeScreen() {
   const primerTriedRef = useRef(false);
 
   const handleCaughtUp = useCallback(() => {
-    toastRef.current?.show('Caught up', undefined, 'top');
+    // No toast here any more. It announced "Caught up" in floating chrome one
+    // swipe before the reader reached the divider that says the same thing in
+    // the column — one fact, two places. The divider owns the moment now
+    // (see ArticlePage's earlier-boundary); this callback is purely the
+    // primer gate.
+    //
     // The "caught up" moment is the app's one demonstrated-value point — the
     // only place the notification primer may appear. Any prior answer
     // (primer, legacy cold prompt, OS permission state) blocks it;

@@ -528,7 +528,19 @@ const apiCategories = Object.fromEntries(
         addedAt,
         source: sources[0]?.name || null,
         sourceUrl: sources[0]?.url || null,
-        sources: sources.map(s => ({ name: s.name, country: s.country || null, sentiment: s.sentiment != null ? Number(s.sentiment) : null })),
+        // `url` and `angle` were dropped here while the page-data mapping
+        // above kept them, so the mobile sources sheet had no way to reach the
+        // original reporting and no per-story framing line — it fell back to
+        // the app's hand-maintained outlet registry, which today covers only
+        // ~1/3 of the outlets the feed actually cites. Both fields exist on
+        // every article's frontmatter; forwarding them is the whole fix.
+        sources: sources.map(s => ({
+          name: s.name,
+          url: s.url || null,
+          country: s.country || null,
+          sentiment: s.sentiment != null ? Number(s.sentiment) : null,
+          ...(s.angle ? { angle: s.angle } : {}),
+        })),
         concepts: concepts.map(c => typeof c === 'object' ? c.label : c).filter(Boolean),
         eventCoverage: meta.eventCoverage != null ? Number(meta.eventCoverage) : null,
         sentimentDivergence: meta.sentimentDivergence != null ? Number(meta.sentimentDivergence) : null,
@@ -678,7 +690,8 @@ if (existsSync(apiBriefingMetaPath)) {
   }
 }
 
-// Pre-grouped endpoint for mobile
+// Pre-grouped endpoint. Full payload — consumed by workers/mcp (which reads
+// `contexts` and `threadSummary`) and by the dashboard's quality tab.
 writeFileSync(join(DIST_DIR, 'api', 'feed.json'), JSON.stringify({
   generated,
   categories: apiCategories,
@@ -686,6 +699,26 @@ writeFileSync(join(DIST_DIR, 'api', 'feed.json'), JSON.stringify({
   contexts: contextIndex
 }))
 console.log(`  Built: api/feed.json (${apiArticles.length} articles, pre-grouped)`)
+
+// Pre-grouped endpoint for mobile — same articles, none of the payload the app
+// never opens. `contexts` is a ~3,200-entry brief index (89% of feed.json's
+// bytes) and `threadSummary` another ~25 KB; the app reads neither. Shipping
+// them cost ~180 KB gzipped on every cold launch, every content-rotation
+// refresh, and every 4-hour background task, against ~15 KB of actual reading
+// material. Derived from `apiCategories` so the article shape cannot drift
+// between the two endpoints.
+const liteCategories = Object.fromEntries(
+  Object.entries(apiCategories).map(([cat, articles]) => [
+    cat,
+    articles.map(({ threadSummary, ...rest }) => rest)
+  ])
+)
+writeFileSync(join(DIST_DIR, 'api', 'feed-lite.json'), JSON.stringify({
+  generated,
+  categories: liteCategories,
+  briefing: briefingInfo
+}))
+console.log(`  Built: api/feed-lite.json (${apiArticles.length} articles, mobile)`)
 
 // Heatmap endpoint — 72h of geo-located article points for globe time-decay rendering
 const HEATMAP_WINDOW_MS = 72 * 60 * 60 * 1000

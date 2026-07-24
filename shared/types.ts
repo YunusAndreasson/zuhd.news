@@ -2,6 +2,11 @@ export type Category = 'politics' | 'economy' | 'science' | 'tech';
 
 export interface ArticleSource {
   name: string;
+  /** Link to the original reporting. Present on essentially every source in
+   *  article frontmatter; forwarded to the API so readers can verify a story
+   *  at its source rather than taking our summary on trust. Null when the
+   *  upstream feed gave us no URL. */
+  url?: string | null;
   country?: string | null;
   sentiment?: number | null;
   /** Haiku-written one-sentence summary of the distinctive framing this
