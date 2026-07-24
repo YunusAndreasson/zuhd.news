@@ -28,28 +28,36 @@ Global hard news that barely uses data. Works on slow connections.
      promotional-keyword filter that rejected "no ads, no tracking".) -->
 
 ## Full Description
-A day's news costs about 15 KB. Text-first and lightweight — it works on slow and unreliable connections, without the weight of a typical news app.
+A day's news costs about 15 KB. It works on slow and unreliable connections.
 
 Global hard news — politics, economy, science, technology — from sources across six continents, updated five times daily. Each article says what happened, why it matters, and what comes next. Then it stops.
 
 Where a story is told from determines who counts as a person and who becomes a number. Every article cites its sources, shows how each one framed the story, and links to the original reporting.
 
-There is no account to make and no profile to build. The app sends no identifier when it fetches the news, so we have no way to tell readers apart.
+There are no accounts. The app sends no identifier when it fetches the news, so we have no way to tell readers apart.
 
 Features:
-• About 15 KB a day — built for slow and costly connections
 • Smart Brevity format: lead, context, details, what's next
 • Every article links out to the sources it was written from
 • Daily audio briefings, downloaded only when you press listen
-• One server, no third parties — no analytics, ad networks, or SDKs
-• Nothing stored is connected to you — no account, no profile
-• No ads. No tracking. No sign-up.
+• One server. No analytics, ad networks, or third-party SDKs
+• No ads. No tracking.
 
-Settings shows exactly how much data the app has used since you opened it, and lets you erase everything it has stored.
+Settings shows how much data the app has used since you opened it. The same page erases everything stored on your device.
 
 Zuhd — the discipline of doing without what you do not need.
 
-<!-- Claim discipline: every line above is checkable against the app.
+<!-- Copy discipline (foundation.md, "Editorial Voice"): the description follows
+     the same rules as an article. One idea per sentence. No compound clauses
+     stitched with "and". Each fact appears once — the bullets carry what the
+     prose does not, which is why "15 KB" is in the opening line only and not
+     repeated as a feature. No rhetorical parallels ("no account to make and no
+     profile to build" was cut for exactly this); a claim that draws attention
+     to its own phrasing reads as marketing, and this one is strong enough
+     plain. No sentence explaining why a decision was made — the app doesn't
+     defend itself to the reader.
+
+     Claim discipline: every line above is checkable against the app.
      - "about 15 KB a day" — /api/feed-lite.json, gzipped, one editorial cycle.
      - "one server" — the app contacts zuhd-news.pages.dev and nothing else
        automatically; the attribution links on the About page open in the

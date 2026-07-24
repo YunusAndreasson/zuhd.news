@@ -41,7 +41,7 @@ const SUBTRACTIONS = [
 // if someone wanted to. The privacy page and the store listing use the same
 // sentence; if it changes, change it in all three.
 const NO_PROFILE_LINE =
-  'There is no account to make and no profile to build. The app sends no identifier when it fetches the news, so we have no way to tell readers apart.';
+  'There are no accounts. The app sends no identifier when it fetches the news, so we have no way to tell readers apart.';
 
 const NEWSROOM_LINE =
   'zuhd.news is an automated newsroom. The editors do not write the articles; they write the rules the newsroom follows \u2014 what qualifies as news, how a claim is verified, whether a pattern is oppression, when to name power.';

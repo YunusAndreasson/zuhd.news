@@ -73,23 +73,31 @@ const INFO_PAGES = {
         // Shares its core sentence verbatim with SheetAboutPage's
         // NO_PROFILE_LINE and the store listing. Change it in all three.
         heading: 'what we know about you',
-        body: 'Nothing. There is no account to make and no profile to build. The app sends no identifier when it fetches the news, so we have no way to tell readers apart. We run no analytics and keep no record of what anyone reads.',
+        body: 'Nothing. There are no accounts. The app sends no identifier when it fetches the news, so we have no way to tell readers apart, and no record of what anyone reads.',
       },
       {
         heading: 'data used',
-        body: "A day's news is about 15 KB — text and numbers, compressed. There are no images to load. Settings shows exactly what has been fetched since you opened the app. Audio briefings are the one large download, roughly 3 MB each, and they are fetched only when you press listen.",
+        body: "A day's news is about 15 KB — text and numbers, compressed. There are no images to load. Audio briefings are the exception: about 3 MB each, downloaded only when you press listen. Settings shows what the app has fetched since you opened it.",
       },
       {
+        // Fragments, not a sentence. Six things joined by commas read as a
+        // legal inventory; the same six as separate statements read as an
+        // answer — and match the cadence of "No ads. No tracking." above.
         heading: 'on this device',
-        body: 'Bookmarks, where the "caught up" line falls, your place in a briefing, how many articles you have read (so the rating prompt asks once, not often), your display preferences, and a cached copy of the latest articles for reading offline. None of it leaves the device. You can erase all of it below.',
+        body: 'Bookmarks. Where the "caught up" line falls. Your place in a briefing. How many articles you have read. Your display settings. A cached copy of the latest articles, so they open without a connection.\n\nNone of it leaves the device. You can erase all of it below.',
       },
       {
         // Written to make opting in feel as safe as it actually is, because it
         // is safe: tokens.js stores `token:<token>` -> '1' with a 90-day TTL,
         // and push.js sends the same payload to every key under that prefix.
         // There is no segmentation to describe because there is none.
+        // Deliberately does NOT restate "no way to tell readers apart" — the
+        // section above owns that claim, and saying it twice within one page
+        // is the kind of protesting-too-much that makes a privacy page read
+        // like a disclaimer. This section carries only what is specific to
+        // notifications.
         heading: 'notifications',
-        body: 'If you turn them on, one thing is stored on our server: the anonymous token your phone issues for push delivery. It sits on its own — no account, no email, nothing attached. Everyone who turns notifications on gets the same alert, so there is no way for us to tell readers apart or to single anyone out. The token expires by itself after 90 days, and switching notifications off deletes it.',
+        body: 'If you turn them on, one thing is stored on our server: the token your phone issues for push delivery. Nothing is attached to it — no account, no email, no history. Everyone who turns notifications on receives the same alert. The token expires after 90 days, and turning notifications off deletes it.',
       },
       {
         heading: 'audio',
@@ -419,9 +427,8 @@ function EraseControl({ onDone }: { onDone: (message: string) => void }) {
         erase local data
       </Text>
       <Text selectable variant="body">
-        Removes your bookmarks, reading position, cached articles, and the count behind the rating
-        prompt. Your display settings and notification choice are left alone — those are
-        preferences, not a record of what you read.
+        Removes your bookmarks, reading position, cached articles, and reading count. Display
+        settings and your notification choice stay.
       </Text>
       <Pressable
         onPress={handlePress}
