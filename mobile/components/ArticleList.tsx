@@ -189,12 +189,19 @@ export const ArticleList = memo(function ArticleList({
 
   const handleRefresh = useCallback(async () => {
     setLocalRefreshing(true);
+    // Deliberately try/catch and NOT try/finally: React Compiler cannot lower a
+    // finalizer ("BuildHIR::lowerStatement: Handle TryStatement with a
+    // finalizer") and silently bails out of compiling this entire file when one
+    // is present. Because the catch swallows, control always reaches the reset
+    // below, so this is equivalent to the finally it replaces.
     try {
       await onRefresh();
       hapticNotification();
-    } finally {
-      setLocalRefreshing(false);
+    } catch {
+      // Nothing to report here: the injected `onRefresh`
+      // (HomeScreen.handleRefresh) already catches and toasts its own failures.
     }
+    setLocalRefreshing(false);
   }, [onRefresh]);
 
   // Report current article to parent (initial + on snap/sort change)

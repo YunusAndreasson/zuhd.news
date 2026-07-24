@@ -32,6 +32,17 @@ Prefer the `scale` prop on `<Text>` over style overrides. `fontVariant` override
 
 - Globe touches a 32ms JS budget; don't regress `callReproject` throttling.
 - Reanimated animations gate on `useReducedMotion()` and battery saver — check before changing timings.
-- React Compiler is enabled in dev-client and production builds. New code should
-  default to plain functions/components; add manual `memo`, `useMemo`, or
-  `useCallback` only for effect/third-party identity or a measured hot path.
+- React Compiler is **installed but NOT enabled** — in any build. The only
+  switch is `app.json` → `experiments.reactCompiler`, which flows
+  CLI → Metro `customTransformOptions.reactCompiler` → babel caller
+  `supportsReactCompiler` → `babel-preset-expo`. That key is absent, so the
+  plugin is dropped (`babel-preset-expo/build/configs/expo.js:135`). The
+  `'react-compiler'` option in `babel.config.js` only *configures* or
+  *disables* (`=== false`); it can never enable.
+  Consequence: the ~320 manual `memo`/`useMemo`/`useCallback` sites are
+  load-bearing today, not redundant — do not strip them on the assumption the
+  compiler covers them. To actually turn it on, add
+  `"reactCompiler": true` to `app.json` experiments, and add a `'use no memo'`
+  directive to `components/globe/MiniGlobe.tsx` first: it relies on
+  intentionally-stale `useCallback(..., [])` closures (three `biome-ignore`
+  comments mark them) that the compiler would otherwise rewrite.
