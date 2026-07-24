@@ -1,5 +1,5 @@
 ---
-title: "Conduit PAC Funds Michigan Attack"
+title: "Group Hides Michigan Ad Funds"
 date: "2026-07-24T21:51:16Z"
 category: "politics"
 location: "Lansing"
@@ -9,13 +9,16 @@ sources:
   - name: "Drop Site News"
     url: "https://www.dropsitenews.com/p/dmfi-will-lawrence-michigan-haley-stevens-consultant-palantir"
     country: "US"
+    sentiment: -0.4
+    angle: "maps Democratic Majority for Israel's use of Rolling Sea PAC as money-wash vehicle, cites consultant 'to cloak true source'"
 concepts:
   - "Democratic Majority for Israel"
   - "Michigan"
+entities: []
 ---
 
 Lansing — A pro-Israel group is funding Michigan primary attack ads.
 
-Democratic Majority for Israel routed $899,000 through a Congressional Black Caucus-linked PAC, consultants say, to mask its source.
+Democratic Majority for Israel routed $899,000 through a Congressional Black Caucus-linked political action committee, consultants say, to mask its source.
 
-Lawrence faces two better-funded rivals as the primary nears; DMFI and the PAC did not respond to requests for comment.
+Lawrence faces two better-funded rivals as the primary nears; the group and the committee did not respond to requests for comment.

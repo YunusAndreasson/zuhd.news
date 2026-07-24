@@ -9,13 +9,14 @@ sources:
   - name: "Ars Technica"
     url: "https://arstechnica.com/ai/2026/07/anthropics-opus-5-is-about-token-efficiency-not-a-capability-leap/"
     country: "US"
-    sentiment: 0.07
-    image: "https://cdn.arstechnica.net/wp-content/uploads/2026/07/opus-5-1152x648.jpg"
+    sentiment: -0.1
+    angle: "emphasizes iterative performance gains, half Fable's cost, but deliberately undertrained on cybersecurity exploitation"
 concepts:
   - "Anthropic"
   - "Artificial intelligence"
   - "OpenAI"
 eventCoverage: 53
+entities: []
 ---
 
 San Francisco — Opus 5 costs half what Fable does.

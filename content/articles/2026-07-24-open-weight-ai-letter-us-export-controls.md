@@ -9,19 +9,32 @@ sources:
   - name: "TheRegister.com"
     url: "https://www.theregister.com/ai-and-ml/2026/07/24/tech-leaders-issue-letter-to-train-uncle-sam-about-value-of-open-weight-ai/5278533"
     country: "US"
-    sentiment: 0.23
-    image: "https://image.theregister.com/261339.jpg?imageId=261339&x=0&y=0&cropw=100&croph=100&panox=0&panoy=0&panow=100&panoh=100&width=1200&height=683"
+    sentiment: -0.1
+    angle: "highlights Anthropic/Google/OpenAI absent from signatories, quotes OpenAI's concern about open-weight-dominant future as 'AI communism'"
   - name: "South China Morning Post"
     url: "https://www.scmp.com/news/us/diplomacy/article/3361813/nvidia-palantir-meta-warn-against-premature-restrictions-open-weight-models"
     country: "HK"
-    sentiment: 0.19
-    image: "https://cdn.i-scmp.com/sites/default/files/styles/og_image_scmp_generic/public/d8/images/canvas/2026/07/25/bd490ab0-610c-4c04-99a5-4a87024d66ac_236626cd.jpg?itok=CzowxLXn&v=1784930259"
+    sentiment: 0.05
+    angle: "frames letter as US response to China's open-weight dominance amid Trump administration concerns over national security"
 concepts:
   - "Artificial intelligence"
   - "Nvidia"
   - "OpenAI"
   - "Microsoft"
 eventCoverage: 155
+entities:
+  - mention: "Nvidia"
+    indicatorId: "stocks:NVDA"
+    kind: "stock"
+  - mention: "Meta"
+    indicatorId: "stocks:META"
+    kind: "stock"
+  - mention: "Palantir"
+    indicatorId: "stocks:PLTR"
+    kind: "stock"
+  - mention: "Google"
+    indicatorId: "stocks:GOOGL"
+    kind: "stock"
 ---
 
 Washington — 25 AI firms lobbied against open-weight model restrictions.

@@ -15,6 +15,7 @@ concepts:
   - "Islamabad High Court"
   - "Judicial Commission of Pakistan"
   - "Peshawar High Court"
+entities: []
 ---
 
 Islamabad — Justice Babar Sattar has 30 days to vacate his residence.

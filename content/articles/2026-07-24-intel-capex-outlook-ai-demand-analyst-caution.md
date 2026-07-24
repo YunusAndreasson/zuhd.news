@@ -26,6 +26,10 @@ concepts:
   - "Artificial intelligence"
   - "Data center"
 eventCoverage: 230
+entities:
+  - mention: "Intel"
+    indicatorId: "stocks:INTC"
+    kind: "stock"
 ---
 
 Santa Clara — Intel doubled expected profit, but Wall Street shrugged.

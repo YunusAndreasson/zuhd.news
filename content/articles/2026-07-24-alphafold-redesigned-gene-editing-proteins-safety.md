@@ -9,11 +9,13 @@ sources:
   - name: "Ars Technica"
     url: "https://arstechnica.com/science/2026/07/team-uses-alphafold-ai-to-redesign-gene-editing-proteins-to-make-them-safer/"
     country: "US"
-    image: "https://cdn.arstechnica.net/wp-content/uploads/2026/07/GettyImages-2239702658-1152x648.jpg"
+    sentiment: 0.05
+    angle: "uses AlphaFold to identify gene-editing protein domains causing off-target effects, then modifies them"
 concepts:
   - "AlphaFold"
   - "Cas9"
   - "Genome editing"
+entities: []
 ---
 
 Beijing — AlphaFold cut CRISPR's off-target editing rate to 5%.

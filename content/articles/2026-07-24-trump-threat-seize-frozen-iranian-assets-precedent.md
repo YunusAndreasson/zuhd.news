@@ -9,13 +9,14 @@ sources:
   - name: "RT"
     url: "https://www.rt.com/news/643410-trump-threatens-seize-iranian-assets/"
     country: "RU"
-    sentiment: -0.39
-    image: "https://mf.b37mrtl.ru/files/2026.07/article/6a631ca185f540400650a634.jpg"
+    sentiment: -0.25
+    angle: "foregrounds Iran's warning of precedent-setting legal chaos, emphasizes global ramifications of asset seizure doctrine"
 concepts:
   - "Iran"
   - "Donald Trump"
   - "Strait of Hormuz"
 eventCoverage: 77
+entities: []
 ---
 
 Washington — Trump vowed to seize [Iran](country:IR)'s frozen billions.

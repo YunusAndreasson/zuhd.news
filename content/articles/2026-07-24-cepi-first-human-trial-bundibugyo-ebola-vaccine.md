@@ -9,11 +9,13 @@ sources:
   - name: "Premium Times Nigeria"
     url: "https://www.premiumtimesng.com/news/top-news/897980-cepi-begins-first-human-trial-of-bundibugyo-ebola-vaccine.html"
     country: "NG"
-    image: "https://media.premiumtimesng.com/wp-content/files/2014/08/ebola-has-killed-69-guinea-january.jpg"
+    sentiment: 0.15
+    angle: "highlights rapid Oxford/SII collaboration, 620,000 pre-manufactured doses ready before trial completion"
 concepts:
   - "Ebola"
   - "Coalition for Epidemic Preparedness Innovations"
   - "University of Oxford"
+entities: []
 ---
 
 Oxford — More than 1,000 have died in [Congo](country:CD)'s Ebola outbreak.
