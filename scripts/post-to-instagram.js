@@ -90,10 +90,11 @@ if (!existsSync(articlePath)) {
 }
 const { meta, body } = parseFrontmatter(readFileSync(articlePath, 'utf8'))
 
-// The card headline is the article title — the same source the OG share card
-// uses. The published image is the build artifact rendered from this title, so
-// the dry-run preview below renders from it too and matches exactly.
-const headline = meta.title || 'Breaking News'
+// The card headline is the social-optimized socialTitle when present (written
+// pre-build by pick-breaking-social.js), else the article title — the same
+// source the OG share card uses. The published image is the build artifact
+// rendered from this same value, so the dry-run preview below matches exactly.
+const headline = meta.socialTitle || meta.title || 'Breaking News'
 
 // Story lead (first 1-2 sentences) rendered as the card's dek — dateline and
 // markdown links stripped, cut to ~200 chars. Only used for the --dry-run
@@ -198,6 +199,27 @@ async function waitForContainer(creationId) {
   // Fall through — publish will surface a clear error if it truly isn't ready.
 }
 
+// Wait until the deployed image URL is actually live at the CDN edge before
+// asking Instagram to fetch it. post-to-instagram runs seconds after `wrangler
+// pages deploy`, and IG's fetchers frequently hit the URL before Cloudflare has
+// propagated the new file — they get a 404 HTML page and reject the container
+// with "Only photo or video can be accepted as media type" (the recurring
+// intermittent IG failure). Polling HEAD until we see a real image closes that
+// race. Capped well under run-cycle.sh's 90s timeout for this step.
+async function waitForPublicImage(url, tries = 6, delayMs = 5000) {
+  for (let i = 0; i < tries; i++) {
+    try {
+      const res = await fetch(url, { method: 'HEAD' })
+      const ct = res.headers.get('content-type') || ''
+      if (res.ok && ct.startsWith('image/')) return true
+    } catch {
+      /* transient — deploy still propagating */
+    }
+    if (i < tries - 1) await new Promise((r) => setTimeout(r, delayMs))
+  }
+  return false
+}
+
 // Publish a single image (feed or story). Returns the published media id.
 async function publishImage({ imageUrl, mediaType, extra = {} }) {
   const container = await graphPost(`${creds.userId}/media`, {
@@ -226,6 +248,11 @@ async function run() {
     console.log(`[dry-run] first comment → ${articleUrl}`)
     if (!haveCreds) console.log('[dry-run] IG creds not set — publish skipped.')
     return
+  }
+
+  // 0. Wait out CDN propagation so IG doesn't fetch the URL before it's live.
+  if (!(await waitForPublicImage(feedUrl))) {
+    console.error(`post-to-instagram: ${feedUrl} not yet a live image after wait — attempting publish anyway.`)
   }
 
   // 1. Feed post (the caption rides on the container, not media_publish).

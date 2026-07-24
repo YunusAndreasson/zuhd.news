@@ -35,7 +35,7 @@ fi
 # just-written files with Edit, so Edit must stay in TOOLS_WRITER (missing it stalls the
 # writer on permission prompts — 43 articles lost 07-01→07-03 before this was diagnosed).
 CLAUDE_MODEL="${ZUHD_MODEL:-claude-sonnet-5}"
-CLAUDE_SELECTOR_MODEL="${ZUHD_SELECTOR_MODEL:-claude-opus-4-8}"
+CLAUDE_SELECTOR_MODEL="${ZUHD_SELECTOR_MODEL:-claude-opus-5}"
 export ZUHD_MODEL="$CLAUDE_MODEL"
 
 # Tool whitelist for Claude CLI (--dangerously-skip-permissions is blocked as root)
@@ -418,6 +418,16 @@ $BODY_LENGTHS
   # This ensures the selector next cycle only skips stories that were actually published
   node scripts/write-last-cycle.js 2>&1 | tee -a "$LOG_FILE"
 
+  # Stage 3a.5: Social pick — re-rank the eligible breaking candidates for
+  # social-attention potential and write an optimized `socialTitle` into the
+  # winner's frontmatter BEFORE build, so the baked /api/ig/{slug}.jpg card and
+  # the X card render the punchier headline. Writes content/.breaking-pick.json
+  # for the push/X/IG block below. Fail-soft: on any error the block falls back
+  # to its own eventCoverage ordering, so this never blocks a push.
+  rm -f content/.breaking-pick.json
+  timeout 60 node scripts/pick-breaking-social.js 2>&1 | tee -a "$LOG_FILE" \
+    || echo "WARNING: social pick failed (non-fatal, legacy selection applies)" | tee -a "$LOG_FILE"
+
   # Build
   node scripts/build.js 2>&1 | tee -a "$LOG_FILE"
   BUILD_EXIT=$?
@@ -491,7 +501,15 @@ $BODY_LENGTHS
         // (multi-source validation). Skips pushes when top candidate is niche-only.
         const MIN_PUSH_COVERAGE = 1;
         const eligible = candidates.filter(c => c.eventCoverage >= MIN_PUSH_COVERAGE);
-        const selected = eligible.slice(0, 1)
+        // Honor the pre-build social pick (pick-breaking-social.js) when it
+        // named an eligible slug; otherwise keep the eventCoverage ordering.
+        let ordered = eligible;
+        try {
+          const pick = JSON.parse(fs.readFileSync('content/.breaking-pick.json','utf8'));
+          const idx = pick && pick.slug ? eligible.findIndex(c => c.slug === pick.slug) : -1;
+          if (idx > 0) ordered = [eligible[idx], ...eligible.slice(0, idx), ...eligible.slice(idx + 1)];
+        } catch {}
+        const selected = ordered.slice(0, 1)
           .map(({ slug, title, category, body, eventCoverage, importance }) => ({ slug, title, category, body, eventCoverage, importance }));
         const skipReason = (candidates.length > 0 && eligible.length === 0)
           ? \`all \${candidates.length} candidates below coverage threshold \${MIN_PUSH_COVERAGE}\`
@@ -777,7 +795,7 @@ if [ "$START_HOUR" = "22" ]; then
     # enough since the metric inputs are deterministic.
     # Timeout 600s (10min): Opus medium runs slower per turn than Sonnet
     # medium; doubling the budget keeps 15 max-turns comfortably in scope.
-    timeout 600 claude $CLAUDE_FLAGS --effort medium --model claude-opus-4-8 --allowedTools $TOOLS_TUNE --max-turns 15 --exclude-dynamic-system-prompt-sections -p "$TUNE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+    timeout 600 claude $CLAUDE_FLAGS --effort medium --model claude-opus-5 --allowedTools $TOOLS_TUNE --max-turns 15 --exclude-dynamic-system-prompt-sections -p "$TUNE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
     TUNE_EXIT=$?
     if [ "$TUNE_EXIT" = "124" ]; then
       echo "Tuning exit: 124 (TIMEOUT — exceeded 600s budget; bump if recurring) — $((SECONDS - T6))s" | tee -a "$LOG_FILE"

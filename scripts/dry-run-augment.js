@@ -33,7 +33,7 @@ function flag(name) {
 
 const slug = flag('article')
 const skipFetch = !!flag('skip-fetch')
-const model = flag('model') || 'claude-opus-4-8'
+const model = flag('model') || 'claude-opus-5'
 
 if (!slug) {
   console.error('Usage: node scripts/dry-run-augment.js --article <slug> [--skip-fetch] [--model <id>]')

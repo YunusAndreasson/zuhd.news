@@ -115,7 +115,7 @@ try {
   const env = { ...process.env }
   delete env.CLAUDECODE
   const result = spawnSync('claude', [
-    '--model', process.env.ZUHD_BRIEFING_MODEL || 'claude-opus-4-8',
+    '--model', process.env.ZUHD_BRIEFING_MODEL || 'claude-opus-5',
     '--effort', 'medium',
     '--no-session-persistence',
     '--max-turns', '1',
@@ -342,7 +342,23 @@ for (let si = 0; si < ssmlSections.length; si++) {
 
 const MUSIC_FILES = new Set([TRANSITION_MP3, OUTRO_MP3])
 const musicCount = audioParts.filter(p => MUSIC_FILES.has(p)).length
-console.log(`Total parts: ${audioParts.length} (${audioParts.length - musicCount} TTS, ${musicCount} music)`)
+const ttsCount = audioParts.length - musicCount
+console.log(`Total parts: ${audioParts.length} (${ttsCount} TTS, ${musicCount} music)`)
+
+// Global-failure guard. synthesizeChunk() fail-softs per chunk so a single
+// malformed-SSML rejection drops just that chunk and the briefing ships with
+// the rest. But a GLOBAL failure — TTS billing disabled, revoked credentials,
+// project-wide quota — makes EVERY chunk drop, and without this guard we'd mux
+// the music beds into a ~6s voiceless MP3, commit it, deploy it, and push a
+// briefing notification to users (2026-07-09→11: three identical 6s files
+// shipped while GCP billing was off). If nothing synthesized, there is no
+// briefing: fail loudly and skip publishing rather than ship silence.
+if (ttsCount === 0) {
+  console.error('✗ No TTS audio synthesized — every chunk was dropped (likely a')
+  console.error('  global TTS failure: billing disabled, bad credentials, or quota).')
+  console.error('  Skipping publish so no voiceless briefing ships. See errors above.')
+  process.exit(1)
+}
 
 // Append outro for the crossfade-friendly path (single ffmpeg pass below
 // folds the crossfade into the same filter graph as the concat — no

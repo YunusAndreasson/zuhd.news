@@ -4,7 +4,7 @@
 // `dist/` current.
 //
 // Watched roots:
-//   public/                   — style.css, reader.js, islands/*.ts
+//   public/                   — style.css, island-loader.js, islands/*.ts
 //   templates/                — article.html, index.html, country.html
 //   scripts/build*.js         — build.js + scripts/build/*
 //   shared/                   — country data, types, geo, fonts

@@ -157,7 +157,9 @@ const igLead = (b) => {
   return t
 }
 const cardArticle = {
-  headline: meta.title || 'Breaking News',
+  // socialTitle (the scroll-stopping card headline written by
+  // pick-breaking-social.js) wins over the article title when present.
+  headline: meta.socialTitle || meta.title || 'Breaking News',
   summary: igLead(body),
   category: meta.category || null,
   date: meta.date,

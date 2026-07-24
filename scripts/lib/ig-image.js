@@ -61,7 +61,9 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
       clipId: 'ig-globe-clip',
       ocean: variant === 'dark' ? '#1e1e1e' : theme.soft,
       land: variant === 'dark' ? '#383838' : theme.land,
-      landStroke: null,
+      // Country borders — delicate lines between nations (see feed branch).
+      landStroke: variant === 'dark' ? '#6b6b6b' : '#c4c4c4',
+      landStrokeWidth: 0.8,
       rim: null,
       showCross: true,
     })
@@ -107,8 +109,11 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
     // the dark card without competing with the type.
     ocean: variant === 'dark' ? '#1c1c1c' : theme.soft,
     land: variant === 'dark' ? '#3d3d3d' : theme.land,
-    landStroke: variant === 'dark' ? '#484848' : theme.rule,
-    landStrokeWidth: 0.5,
+    // Country borders: each country is its own stroked path, so this draws the
+    // dividing lines between nations. Kept delicate but with enough contrast
+    // over the land fill to read clearly on the card.
+    landStroke: variant === 'dark' ? '#6b6b6b' : '#c4c4c4',
+    landStrokeWidth: 0.8,
     rim: null, // full-width bleed in the lower half — grounded, no bounding disc
     showCross: true,
   })
