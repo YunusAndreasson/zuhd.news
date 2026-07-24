@@ -1,0 +1,2250 @@
+{
+  "fetchedAt": "2026-07-18T17:08:37.866Z",
+  "apiStories": 72,
+  "rssStories": 74,
+  "multiSourceStories": [
+    {
+      "title": "The weekend weather forecast for York",
+      "description": "The early forecast had suggested Belgium could be the first wet weekend of the season, but the weather can change very quickly at Spa.\n\nFriday's practice sessions are still set for drizzle and a gentle breeze, with temperatures reaching a high of 24C.\n\nSaturday's qualifying is now expected to be fre",
+      "link": "https://www.bbc.com/sport/formula1/live/cj409qd058pt",
+      "pubDate": "2026-07-17T11:16:18Z",
+      "eventDate": "2026-07-18",
+      "socialScore": 0,
+      "category": "science",
+      "source": "BBC",
+      "suggestedSlug": "2026-07-17-the-weekend-weather-forecast-for-york",
+      "eventUri": "spa-4273612",
+      "eventCoverage": 456,
+      "sources": [
+        {
+          "name": "BBC",
+          "url": "https://www.bbc.com/sport/formula1/live/cj409qd058pt",
+          "country": "GB",
+          "importanceRank": 470,
+          "sentiment": 0.55,
+          "image": "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/e99b/live/76254680-81c9-11f1-97b7-87871fc222bc.jpg"
+        },
+        {
+          "name": "The Times of India",
+          "url": "https://timesofindia.indiatimes.com/world/uk/manchester-weather-forecast-july-17-2026-sunny-skies-and-comfortable-temperatures-expected/articleshow/132453020.cms",
+          "country": "IN",
+          "importanceRank": 9128,
+          "sentiment": 0.47,
+          "image": "https://static.toiimg.com/thumb/msid-132453363,width-1280,height-720,resizemode-6,overlay-toi_sw,pt-32,y_pad-600/photo.jpg"
+        },
+        {
+          "name": "The Press, York",
+          "url": "https://www.yorkpress.co.uk/news/26288612.met-office-predicts-sunny-dry-weekend-weather-york/",
+          "country": "GB",
+          "importanceRank": 60929,
+          "sentiment": 0.45,
+          "image": "https://www.yorkpress.co.uk/resources/images/19814042.jpg?type=og-image"
+        }
+      ],
+      "concepts": [
+        {
+          "label": "Temperature",
+          "uri": "http://en.wikipedia.org/wiki/Temperature"
+        },
+        {
+          "label": "Degree (angle)",
+          "uri": "http://en.wikipedia.org/wiki/Degree_(angle)"
+        },
+        {
+          "label": "Wind",
+          "uri": "http://en.wikipedia.org/wiki/Wind"
+        },
+        {
+          "label": "Humidity",
+          "uri": "http://en.wikipedia.org/wiki/Humidity"
+        },
+        {
+          "label": "Heat",
+          "uri": "http://en.wikipedia.org/wiki/Heat"
+        },
+        {
+          "label": "Precipitation",
+          "uri": "http://en.wikipedia.org/wiki/Precipitation"
+        },
+        {
+          "label": "Rain",
+          "uri": "http://en.wikipedia.org/wiki/Rain"
+        },
+        {
+          "label": "Cloud",
+          "uri": "http://en.wikipedia.org/wiki/Cloud"
+        }
+      ],
+      "location": null,
+      "sentiment": 0.49,
+      "sentimentDivergence": 0.09,
+      "origin": "api"
+    },
+    {
+      "title": "Ukraine drones target Russian warehouses and oil sites",
+      "description": "Ukrainian drones have struck warehouses, an oil depot and other targets across Russia killing nine people and injuring over 60 more. Kyiv said its strikes targeted suppliers for Moscow's ongoing invasion of Ukraine.\n\nUkrainian drone attacks have killed seven people and wounded 51 others across Russi",
+      "link": "https://www.dw.com/en/ukraine-drones-target-russian-warehouses-and-oil-sites/a-78018446",
+      "pubDate": "2026-07-18T12:06:13Z",
+      "eventDate": "2026-07-18",
+      "socialScore": 0,
+      "category": "economy",
+      "source": "Deutsche Welle",
+      "suggestedSlug": "2026-07-18-ukraine-drones-target-russian-warehouses-and-oil-sites",
+      "eventUri": "eng-11843073",
+      "eventCoverage": 380,
+      "sources": [
+        {
+          "name": "Deutsche Welle",
+          "url": "https://www.dw.com/en/ukraine-drones-target-russian-warehouses-and-oil-sites/a-78018446",
+          "country": "DE",
+          "importanceRank": 6916,
+          "sentiment": -0.34,
+          "image": "https://static.dw.com/image/78018823_6.jpg"
+        },
+        {
+          "name": "India Today",
+          "url": "https://www.indiatoday.in/world/story/ukraine-drone-strikes-moscow-warehouses-noginsk-oil-depot-kill-nine-ptag-2951008-2026-07-18",
+          "country": "IN",
+          "importanceRank": 1992,
+          "sentiment": -0.58,
+          "image": "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202607/pti-international-3-original_182-sixteen_nine.png?VersionId=_g2TpPZtnCg5qeK5UzcfoH4OOD7ioE_."
+        },
+        {
+          "name": "RT",
+          "url": "https://www.rt.com/russia/643200-moscow-mayor-map-ukraine-drones/",
+          "country": "RU",
+          "importanceRank": 3583,
+          "sentiment": -0.35,
+          "image": "https://mf.b37mrtl.ru/files/2026.07/article/6a5b7c2c2030277f8a6798b9.png"
+        },
+        {
+          "name": "Al Jazeera Online",
+          "url": "https://www.aljazeera.com/news/2026/7/18/ukrainian-drone-attacks-on-russia-kill-at-least-8-wound-dozens",
+          "country": "QA",
+          "importanceRank": 4213,
+          "sentiment": -0.55,
+          "image": "https://www.aljazeera.com/wp-content/uploads/2026/07/2026-07-18T094243Z_508980871_RC29GMASUKSP_RTRMADP_3_UKRAINE-CRISIS-RUSSIA-ATTACKS-1784370955.jpg?resize=1200%2C630"
+        }
+      ],
+      "concepts": [
+        {
+          "label": "Russia",
+          "uri": "http://en.wikipedia.org/wiki/Russia"
+        },
+        {
+          "label": "Ukraine",
+          "uri": "http://en.wikipedia.org/wiki/Ukraine"
+        },
+        {
+          "label": "Unmanned aerial vehicle",
+          "uri": "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle"
+        },
+        {
+          "label": "Moscow",
+          "uri": "http://en.wikipedia.org/wiki/Moscow"
+        },
+        {
+          "label": "Logistics",
+          "uri": "http://en.wikipedia.org/wiki/Logistics"
+        },
+        {
+          "label": "Governor",
+          "uri": "http://en.wikipedia.org/wiki/Governor"
+        },
+        {
+          "label": "Tambov",
+          "uri": "http://en.wikipedia.org/wiki/Tambov"
+        },
+        {
+          "label": "Moscow Oblast",
+          "uri": "http://en.wikipedia.org/wiki/Moscow_Oblast"
+        }
+      ],
+      "location": null,
+      "sentiment": -0.45,
+      "sentimentDivergence": 0.24,
+      "origin": "api"
+    },
+    {
+      "title": "India's private space age takes off with Vikram-1 launch",
+      "description": "Skyroot Aerospace's Vikram-1 is designed for small satellites of up to 350 kilograms and is intended for commercial use, with the company developing \"on-demand launch vehicles\" to take satellites into space at short notice, as India's space sector undergoes important changes allowing non-state actor",
+      "link": "https://www.yahoo.com/news/science/articles/india-launches-first-privately-developed-161829388.html",
+      "pubDate": "2026-07-18T16:18:29Z",
+      "eventDate": "2026-07-18",
+      "socialScore": 0,
+      "category": "science",
+      "source": "Yahoo",
+      "suggestedSlug": "2026-07-18-india-s-private-space-age-takes-off-with-vikram-1-launch",
+      "eventUri": "eng-11843276",
+      "eventCoverage": 307,
+      "sources": [
+        {
+          "name": "Yahoo",
+          "url": "https://www.yahoo.com/news/science/articles/india-launches-first-privately-developed-161829388.html",
+          "country": "US",
+          "importanceRank": 90000,
+          "sentiment": 0.25,
+          "image": "https://s.yimg.com/lo/mysterio/api/7f5bb4bc77e68272c2f1a434c0ba6d38b6bcfd96e25e0748f434e2c1917dd8b7/lightyear_networkapi/resizefill_w1200;quality_80;format_webp/https:%2F%2Fmedia.zenfs.com%2Fen%2Fdpa_international_526%2F017d37b298d90eb028905551240524bf"
+        },
+        {
+          "name": "News18",
+          "url": "https://www.news18.com/videos/india/vikram-1-launch-successful-india-s-first-private-orbital-rocket-enters-space-skyroot-aerospace-10220732.html",
+          "country": "IN",
+          "importanceRank": 1221,
+          "sentiment": 0.45,
+          "image": "https://images.news18.com/ibnlive/uploads/2026/07/1784393231_1930667e-dce2-4d94-b27a-fca1e645f720-1200x675.jpeg"
+        },
+        {
+          "name": "Al Jazeera Online",
+          "url": "https://www.aljazeera.com/news/2026/7/18/india-achieves-milestone-with-launch-of-first-private-sector-orbital-rocket",
+          "country": "QA",
+          "importanceRank": 4213,
+          "sentiment": 0.43,
+          "image": "https://www.aljazeera.com/wp-content/uploads/2026/07/afp_6a5b49900d2f-1784367504_05b351-1784375018.jpg?resize=1200%2C630&quality=80"
+        },
+        {
+          "name": "TRT World",
+          "url": "https://www.trtworld.com/article/e04bba7b955b",
+          "country": "TR",
+          "importanceRank": 113261,
+          "sentiment": 0.24,
+          "image": "https://d341l694dl30ad.cloudfront.net/images/cms/2026/07/18/6a5b616da6378774e3c7b767/original/3bd29a59-a460-4b01-909b-2edba1204426-1784373613526.jpg?width=1080&format=jpg&quality=80"
+        }
+      ],
+      "concepts": [
+        {
+          "label": "India",
+          "uri": "http://en.wikipedia.org/wiki/India"
+        },
+        {
+          "label": "Rocket",
+          "uri": "http://en.wikipedia.org/wiki/Rocket"
+        },
+        {
+          "label": "Skyroot Aerospace",
+          "uri": "http://en.wikipedia.org/wiki/Skyroot_Aerospace"
+        },
+        {
+          "label": "Orbit",
+          "uri": "http://en.wikipedia.org/wiki/Orbit"
+        },
+        {
+          "label": "Launch vehicle",
+          "uri": "http://en.wikipedia.org/wiki/Launch_vehicle"
+        },
+        {
+          "label": "Narendra Modi",
+          "uri": "http://en.wikipedia.org/wiki/Narendra_Modi"
+        },
+        {
+          "label": "Space industry",
+          "uri": "http://en.wikipedia.org/wiki/Space_industry"
+        },
+        {
+          "label": "Satish Dhawan Space Centre",
+          "uri": "http://en.wikipedia.org/wiki/Satish_Dhawan_Space_Centre"
+        }
+      ],
+      "location": null,
+      "sentiment": 0.34,
+      "sentimentDivergence": 0.21,
+      "origin": "api"
+    },
+    {
+      "title": "Venezuela Quake Disaster Tops 5,000 Deaths As 50,000 Remain Missing",
+      "description": "Venezuela's official death toll from the twin earthquakes that struck the country on June 24 has surpassed 5,000 and could climb much higher.\n\nPoorly constructed multifamily housing complexes, built with low-quality materials under the socialist government's mass-housing programs, collapsed \"like sa",
+      "link": "https://www.zerohedge.com/geopolitical/venezuela-quake-disaster-tops-5000-deaths-50000-remain-missing",
+      "pubDate": "2026-07-18T15:05:00Z",
+      "eventDate": "2026-07-18",
+      "socialScore": 0,
+      "category": "science",
+      "source": "Zero Hedge",
+      "suggestedSlug": "2026-07-18-venezuela-quake-disaster-tops-5-000-deaths-as-50-000-remain",
+      "eventUri": "spa-4273563",
+      "eventCoverage": 213,
+      "sources": [
+        {
+          "name": "Zero Hedge",
+          "url": "https://www.zerohedge.com/geopolitical/venezuela-quake-disaster-tops-5000-deaths-50000-remain-missing",
+          "country": "US",
+          "importanceRank": 7156,
+          "sentiment": -0.15,
+          "image": "https://cms.zerohedge.com/s3/files/styles/16_9_max_700/public/2026-07/2026-07-18_08-36-13.png?h=315c9d2f&itok=KqkCfxrk"
+        },
+        {
+          "name": "RTE.ie",
+          "url": "https://www.rte.ie/news/2026/0715/1583568-death-toll-in-venezuela-twin-earthquakes-rises-past-4-800/",
+          "country": "IE",
+          "importanceRank": 8627,
+          "sentiment": -0.49,
+          "image": "https://www.rte.ie/images/0024b434-1600.jpg"
+        },
+        {
+          "name": "NDTV",
+          "url": "https://www.ndtv.com/world-news/venezuela-earthquake-death-count-rises-to-4-829-over-20-000-displaced-11777417",
+          "country": "IN",
+          "importanceRank": 1121,
+          "sentiment": -0.42,
+          "image": "https://c.ndtvimg.com/2026-07/8maucg34_venezuela-earthquake_625x300_16_July_26.jpeg"
+        },
+        {
+          "name": "Al Jazeera Online",
+          "url": "https://www.aljazeera.com/news/2026/7/18/venezuela-quake-death-toll-tops-5000-as-imf-releases-emergency-aid",
+          "country": "QA",
+          "importanceRank": 4213,
+          "sentiment": -0.37,
+          "image": "https://www.aljazeera.com/wp-content/uploads/2026/07/afp_6a5b94e5e51e-1784386789.jpg?resize=1920%2C1440"
+        },
+        {
+          "name": "B92",
+          "url": "https://www.b92.net/english/world/251030/death-toll-from-earthquakes-in-venezuela-reaches-4930/vest",
+          "country": "RS",
+          "importanceRank": 10889,
+          "sentiment": -0.24,
+          "image": "https://www.b92.net/data/images/2026-06-27/249670_tan2026-06-2704045882-4_f.jpg"
+        }
+      ],
+      "concepts": [
+        {
+          "label": "Venezuela",
+          "uri": "http://en.wikipedia.org/wiki/Venezuela"
+        },
+        {
+          "label": "Earthquake",
+          "uri": "http://en.wikipedia.org/wiki/Earthquake"
+        },
+        {
+          "label": "International Monetary Fund",
+          "uri": "http://en.wikipedia.org/wiki/International_Monetary_Fund"
+        },
+        {
+          "label": "United States dollar",
+          "uri": "http://en.wikipedia.org/wiki/United_States_dollar"
+        },
+        {
+          "label": "Delcy Rodríguez",
+          "uri": "http://en.wikipedia.org/wiki/Delcy_Rodríguez"
+        },
+        {
+          "label": "Caracas",
+          "uri": "http://en.wikipedia.org/wiki/Caracas"
+        },
+        {
+          "label": "La Guaira",
+          "uri": "http://en.wikipedia.org/wiki/La_Guaira"
+        },
+        {
+          "label": "Public service",
+          "uri": "http://en.wikipedia.org/wiki/Public_service"
+        }
+      ],
+      "location": "La Guaira",
+      "sentiment": -0.33,
+      "sentimentDivergence": 0.34,
+      "origin": "api"
+    },
+    {
+      "title": "Vikram-1: India's first private space rocket by Skyroot to carry diamond flower",
+      "description": "What if launching a satellite was as easy as calling a cab?\n\nThat's the vision behind an Indian private rocket company that will attempt its first orbital launch on Saturday.\n\nSkyroot Aerospace, which recently became India's first space tech unicorn after reaching $1.1bn valuation, is all set to lau",
+      "link": "https://www.bbc.com/news/articles/clyekv7rld3o",
+      "pubDate": "2026-07-18T00:39:18Z",
+      "eventDate": "2026-07-18",
+      "socialScore": 0,
+      "category": "science",
+      "source": "BBC",
+      "suggestedSlug": "2026-07-18-vikram-1-india-s-first-private-space-rocket-by-skyroot-to-ca",
+      "eventUri": "eng-11841514",
+      "eventCoverage": 201,
+      "sources": [
+        {
+          "name": "BBC",
+          "url": "https://www.bbc.com/news/articles/clyekv7rld3o",
+          "country": "GB",
+          "importanceRank": 470,
+          "sentiment": 0.32,
+          "image": "https://ichef.bbci.co.uk/news/1024/branded_news/d67c/live/812402b0-81c4-11f1-926f-c90d1bcfbc84.jpg"
+        },
+        {
+          "name": "Hindustan Times",
+          "url": "https://www.hindustantimes.com/india-news/vikram-1-all-about-indias-first-privately-developed-orbital-rocket-to-say-hello-to-space-3d-printed-engine-skyroot-isro-101784355583404.html",
+          "country": "IN",
+          "importanceRank": 811,
+          "sentiment": 0.15,
+          "image": "https://www.hindustantimes.com/ht-img/img/2026/07/18/550x309/INDIA-SPACE-4_1784358633677_1784358645897_6036db5a-2a35-4bd3-bce0-32a3ff124f36.jpg"
+        },
+        {
+          "name": "NDTV",
+          "url": "https://www.ndtv.com/science/skyroots-vikram-1-launch-check-where-to-catch-the-historic-liftoff-live-11787017",
+          "country": "IN",
+          "importanceRank": 1121,
+          "sentiment": 0.15,
+          "image": "https://c.ndtvimg.com/2026-07/sebhc1s8_skyroot-vikram-1-launch_625x300_18_July_26.jpeg"
+        }
+      ],
+      "concepts": [
+        {
+          "label": "India",
+          "uri": "http://en.wikipedia.org/wiki/India"
+        },
+        {
+          "label": "Skyroot Aerospace",
+          "uri": "http://en.wikipedia.org/wiki/Skyroot_Aerospace"
+        },
+        {
+          "label": "Rocket",
+          "uri": "http://en.wikipedia.org/wiki/Rocket"
+        },
+        {
+          "label": "Launch vehicle",
+          "uri": "http://en.wikipedia.org/wiki/Launch_vehicle"
+        },
+        {
+          "label": "Orbit",
+          "uri": "http://en.wikipedia.org/wiki/Orbit"
+        },
+        {
+          "label": "Satish Dhawan Space Centre",
+          "uri": "http://en.wikipedia.org/wiki/Satish_Dhawan_Space_Centre"
+        },
+        {
+          "label": "Private spaceflight",
+          "uri": "http://en.wikipedia.org/wiki/Private_spaceflight"
+        },
+        {
+          "label": "Narendra Modi",
+          "uri": "http://en.wikipedia.org/wiki/Narendra_Modi"
+        }
+      ],
+      "location": null,
+      "sentiment": 0.21,
+      "sentimentDivergence": 0.17,
+      "origin": "api"
+    },
+    {
+      "title": "Mamdani Says He May Order Netanyahu's Arrest",
+      "description": "The socialist mayor of New York is exploring legal options for arresting Benjamin Netanyahu if the Israeli prime minister sets foot in the city.\n\nBefore coming to power, Zohran Mamdani pledged to honour an arrest warrant for Mr Netanyahu issued by the International Criminal Court (ICC) for war crime",
+      "link": "https://ca.news.yahoo.com/mamdani-plotting-arrest-netanyahu-york-161004944.html",
+      "pubDate": "2026-07-18T16:10:04Z",
+      "eventDate": "2026-07-18",
+      "socialScore": 0,
+      "category": "politics",
+      "source": "Yahoo",
+      "suggestedSlug": "2026-07-18-mamdani-says-he-may-order-netanyahu-s-arrest",
+      "eventUri": "ita-927293",
+      "eventCoverage": 65,
+      "sources": [
+        {
+          "name": "Yahoo",
+          "url": "https://ca.news.yahoo.com/mamdani-plotting-arrest-netanyahu-york-161004944.html",
+          "country": "US",
+          "importanceRank": 90000,
+          "sentiment": -0.15,
+          "image": "https://s.yimg.com/lo/mysterio/api/2559a1f1c451f4b38687b1b94925fa28fa9ad06da2d47081ddf48dca4c8e4642/lightyear_networkapi/resizefill_w1200;quality_80;format_webp/https:%2F%2Fmedia.zenfs.com%2Fen%2Fthe_telegraph_818%2F3e43b6d810235e17223f2df4c3b26653"
+        },
+        {
+          "name": "Asharq Al-Awsat English",
+          "url": "https://english.aawsat.com/node/5297485",
+          "country": "GB",
+          "importanceRank": 187224,
+          "sentiment": -0.1,
+          "image": "https://english.aawsat.com/s3/files/styles/1200x600/public/2026-07/1674665_0.jpeg.webp"
+        },
+        {
+          "name": "Hindustan Times",
+          "url": "https://www.hindustantimes.com/world-news/us-news/zohran-mamdani-to-arrest-israel-pm-benjamin-netanyahu-nyc-mayor-reveals-active-conversation-with-legal-officials-101784392911678.html",
+          "country": "IN",
+          "importanceRank": 811,
+          "sentiment": -0.11,
+          "image": "https://www.hindustantimes.com/ht-img/img/2026/07/18/550x309/MIDTOWN-BUILDING-EVACUATION-33_1784393249834_1784393273443_f4a3af66-c11b-41dd-a070-f2b54617a80b.jpg"
+        },
+        {
+          "name": "Dawn",
+          "url": "https://www.dawn.com/news/2016505",
+          "country": "PK",
+          "importanceRank": 6175,
+          "sentiment": -0.26,
+          "image": "https://i.dawn.com/large/2026/07/1820150083882a2.webp"
+        }
+      ],
+      "concepts": [
+        {
+          "label": "Benjamin Netanyahu",
+          "uri": "http://en.wikipedia.org/wiki/Benjamin_Netanyahu"
+        },
+        {
+          "label": "New York City",
+          "uri": "http://en.wikipedia.org/wiki/New_York_City"
+        },
+        {
+          "label": "War crime",
+          "uri": "http://en.wikipedia.org/wiki/War_crime"
+        },
+        {
+          "label": "Israel",
+          "uri": "http://en.wikipedia.org/wiki/Israel"
+        },
+        {
+          "label": "International Criminal Court",
+          "uri": "http://en.wikipedia.org/wiki/International_Criminal_Court"
+        },
+        {
+          "label": "United Nations",
+          "uri": "http://en.wikipedia.org/wiki/United_Nations"
+        },
+        {
+          "label": "The New York Times",
+          "uri": "http://en.wikipedia.org/wiki/The_New_York_Times"
+        },
+        {
+          "label": "Prime Minister of Israel",
+          "uri": "http://en.wikipedia.org/wiki/Prime_Minister_of_Israel"
+        }
+      ],
+      "location": "New York City",
+      "sentiment": -0.16,
+      "sentimentDivergence": 0.16,
+      "origin": "api"
+    },
+    {
+      "title": "Iran suspends commitments under Islamabad MoU over US acts",
+      "description": "Iran said on Saturday that it had suspended all of its commitments under the Islamabad Memorandum of Understanding (MoU), accusing the United States of violating the agreement as military exchanges between the two countries continued.\n\nThe announcement by Deputy Foreign Minister Kazem Gharibabadi ma",
+      "link": "https://www.middleeasteye.net/live-blog/live-blog-update/iran-declares-islamabad-agreement-suspended-blames-us-violations",
+      "pubDate": "2026-07-18T15:47:55Z",
+      "eventDate": "2026-07-18",
+      "socialScore": 0,
+      "category": "politics",
+      "source": "Middle East Eye",
+      "suggestedSlug": "2026-07-18-iran-suspends-commitments-under-islamabad-mou-over-us-acts",
+      "eventUri": "eng-11843824",
+      "eventCoverage": 64,
+      "sources": [
+        {
+          "name": "Middle East Eye",
+          "url": "https://www.middleeasteye.net/live-blog/live-blog-update/iran-declares-islamabad-agreement-suspended-blames-us-violations",
+          "country": "US",
+          "importanceRank": 44105,
+          "sentiment": -0.47,
+          "image": "https://www.middleeasteye.net/sites/default/files/2026-07/billboard-tehran-donald-trump-coffin-july-2026-reuters%23.JPG"
+        },
+        {
+          "name": "Mehr News Agency",
+          "url": "https://en.mehrnews.com/news/246315/Iran-suspends-commitments-under-Islamabad-MoU-over-US-acts",
+          "country": "IR",
+          "importanceRank": 157957,
+          "sentiment": 0.09,
+          "image": "https://media.mehrnews.com/d/2026/03/27/4/5963695.jpg?ts=1774601601453"
+        }
+      ],
+      "concepts": [
+        {
+          "label": "Iran",
+          "uri": "http://en.wikipedia.org/wiki/Iran"
+        },
+        {
+          "label": "Tehran",
+          "uri": "http://en.wikipedia.org/wiki/Tehran"
+        },
+        {
+          "label": "Memorandum of understanding",
+          "uri": "http://en.wikipedia.org/wiki/Memorandum_of_understanding"
+        },
+        {
+          "label": "Islamabad",
+          "uri": "http://en.wikipedia.org/wiki/Islamabad"
+        },
+        {
+          "label": "United States",
+          "uri": "http://en.wikipedia.org/wiki/United_States"
+        },
+        {
+          "label": "Minister for Foreign Affairs (Germany)",
+          "uri": "http://en.wikipedia.org/wiki/Minister_for_Foreign_Affairs_(Germany)"
+        },
+        {
+          "label": "Washington, D.C.",
+          "uri": "http://en.wikipedia.org/wiki/Washington,_D.C."
+        },
+        {
+          "label": "Strait of Hormuz",
+          "uri": "http://en.wikipedia.org/wiki/Strait_of_Hormuz"
+        }
+      ],
+      "location": null,
+      "sentiment": -0.19,
+      "sentimentDivergence": 0.56,
+      "origin": "api"
+    },
+    {
+      "title": "Birla approves 6 Sena-UBT MPs' merger; rebel TMC MPs get separate seats",
+      "description": "Lok Sabha Speaker Om Birla approved the merger of six Shiv Sena (UBT) lawmakers with Maharashtra deputy chief minister Eknath Shinde-led Sena and allotted a separate seating arrangement for the 20 rebel Trinamool Congress MPs ahead of the monsoon session of Parliament.\n\nThe rebels' plan to secure re",
+      "link": "https://www.hindustantimes.com/india-news/om-birla-gives-nod-to-merger-of-uddhav-rebels-with-shinde-sena-tmc-rebels-with-ncpi-101784392247459.html",
+      "pubDate": "2026-07-18T16:58:16Z",
+      "eventDate": "2026-07-18",
+      "socialScore": 0,
+      "category": "politics",
+      "source": "Hindustan Times",
+      "suggestedSlug": "2026-07-18-birla-approves-6-sena-ubt-mps-merger-rebel-tmc-mps-get-separ",
+      "eventUri": "eng-11843826",
+      "eventCoverage": 42,
+      "sources": [
+        {
+          "name": "Hindustan Times",
+          "url": "https://www.hindustantimes.com/india-news/om-birla-gives-nod-to-merger-of-uddhav-rebels-with-shinde-sena-tmc-rebels-with-ncpi-101784392247459.html",
+          "country": "IN",
+          "importanceRank": 811,
+          "sentiment": 0.18,
+          "image": "https://www.hindustantimes.com/ht-img/img/2026/07/18/550x309/ANI-20260706092-0_1784392594813_1784392604743_c7f1f152-5fbd-41c5-9ba8-3f7c8c95f307.jpg"
+        },
+        {
+          "name": "Rediff.com India Ltd.",
+          "url": "https://www.rediff.com/news/report/birla-approves-6-sena-ubt-mps-merger-rebel-tmc-mps-get-separate-seats/20260718.htm",
+          "country": "IN",
+          "importanceRank": 2702,
+          "sentiment": 0.34,
+          "image": "https://im.rediff.com/1200-630/news/2026/jul/18shiv-sena-ubt-mps-join-shinde-sena.jpg"
+        }
+      ],
+      "concepts": [
+        {
+          "label": "Speaker of the Lok Sabha",
+          "uri": "http://en.wikipedia.org/wiki/Speaker_of_the_Lok_Sabha"
+        },
+        {
+          "label": "Shiv Sena",
+          "uri": "http://en.wikipedia.org/wiki/Shiv_Sena"
+        },
+        {
+          "label": "Om Birla",
+          "uri": "http://en.wikipedia.org/wiki/Om_Birla"
+        },
+        {
+          "label": "Shiv Sena (Uddhav Balasaheb Thackeray)",
+          "uri": "http://en.wikipedia.org/wiki/Shiv_Sena_(Uddhav_Balasaheb_Thackeray)"
+        },
+        {
+          "label": "Lok Sabha",
+          "uri": "http://en.wikipedia.org/wiki/Lok_Sabha"
+        },
+        {
+          "label": "Trinamool Congress",
+          "uri": "http://en.wikipedia.org/wiki/Trinamool_Congress"
+        },
+        {
+          "label": "Speaker (politics)",
+          "uri": "http://en.wikipedia.org/wiki/Speaker_(politics)"
+        },
+        {
+          "label": "India",
+          "uri": "http://en.wikipedia.org/wiki/India"
+        }
+      ],
+      "location": "Maharashtra",
+      "sentiment": 0.26,
+      "sentimentDivergence": 0.16,
+      "origin": "api"
+    }
+  ],
+  "nicheStories": [
+    {
+      "title": "Mandela Day: What his legacy means in today's South Africa",
+      "description": "Johannesburg, South Africa - Nelson Mandela Day has become the backdrop for a wider debate in South Africa over the values the former president represented, as the country grapples with inequality, economic frustration and growing divisions over how to address social problems.\n\nThat debate has been ",
+      "link": "https://www.aljazeera.com/news/2026/7/18/mandela-day-what-his-legacy-means-in-todays-south-africa",
+      "pubDate": "2026-07-18T04:05:32Z",
+      "eventDate": "2026-07-18",
+      "socialScore": 0,
+      "category": "politics",
+      "source": "Al Jazeera Online",
+      "suggestedSlug": "2026-07-18-mandela-day-what-his-legacy-means-in-today-s-south-africa",
+      "eventUri": "eng-11837864",
+      "eventCoverage": 101,
+      "sources": [
+        {
+          "name": "Al Jazeera Online",
+          "url": "https://www.aljazeera.com/news/2026/7/18/mandela-day-what-his-legacy-means-in-todays-south-africa",
+          "country": "QA",
+          "importanceRank": 4213,
+          "sentiment": -0.07,
+          "image": "https://www.aljazeera.com/wp-content/uploads/2013/06/2013628181543472734_20.jpeg?resize=1200%2C675"
+        }
+      ],
+      "concepts": [
+        {
+          "label": "Nelson Mandela",
+          "uri": "http://en.wikipedia.org/wiki/Nelson_Mandela"
+        },
+        {
+          "label": "Mandela Day",
+          "uri": "http://en.wikipedia.org/wiki/Mandela_Day"
+        },
+        {
+          "label": "South Africa",
+          "uri": "http://en.wikipedia.org/wiki/South_Africa"
+        },
+        {
+          "label": "Apartheid",
+          "uri": "http://en.wikipedia.org/wiki/Apartheid"
+        },
+        {
+          "label": "Democracy",
+          "uri": "http://en.wikipedia.org/wiki/Democracy"
+        },
+        {
+          "label": "Poverty",
+          "uri": "http://en.wikipedia.org/wiki/Poverty"
+        },
+        {
+          "label": "Human rights",
+          "uri": "http://en.wikipedia.org/wiki/Human_rights"
+        },
+        {
+          "label": "Johannesburg",
+          "uri": "http://en.wikipedia.org/wiki/Johannesburg"
+        }
+      ],
+      "location": null,
+      "sentiment": -0.07,
+      "sentimentDivergence": null,
+      "origin": "api"
+    },
+    {
+      "title": "Age-related differences in extubation time following propofol-based target-controlled infusion in pediatric medium-duration surgery: A prospective cohort study",
+      "description": "We are providing an unedited version of this manuscript to give early access to its findings. Before final publication, the manuscript will undergo further editing. Please note there may be errors present which affect the content, and all legal disclaimers apply.\n\nPropofol total intravenous anesthes",
+      "link": "https://www.nature.com/articles/s41598-026-62636-7",
+      "pubDate": "2026-07-18T00:00:00Z",
+      "category": "science",
+      "source": "Nature",
+      "suggestedSlug": "2026-07-18-age-related-differences-in-extubation-time-following-propofo",
+      "eventUri": null,
+      "eventCoverage": null,
+      "socialScore": null,
+      "sources": [
+        {
+          "name": "Nature",
+          "url": "https://www.nature.com/articles/s41598-026-62636-7",
+          "country": "GB",
+          "importanceRank": 5474,
+          "image": null
+        }
+      ],
+      "concepts": [
+        "Intravenous therapy",
+        "Propofol",
+        "Pediatrics",
+        "Early access",
+        "Tracheal intubation"
+      ],
+      "location": null,
+      "sentiment": -0.01960784313725494,
+      "origin": "api"
+    },
+    {
+      "title": "Exploring team situation awareness among operating room staff",
+      "description": "We are providing an unedited version of this manuscript to give early access to its findings. Before final publication, the manuscript will undergo further editing. Please note there may be errors present which affect the content, and all legal disclaimers apply.\n\nTeam situation awareness is a criti",
+      "link": "https://www.nature.com/articles/s41598-026-62782-y",
+      "pubDate": "2026-07-18T00:00:00Z",
+      "category": "science",
+      "source": "Nature",
+      "suggestedSlug": "2026-07-18-exploring-team-situation-awareness-among-operating-room-staf",
+      "eventUri": null,
+      "eventCoverage": null,
+      "socialScore": null,
+      "sources": [
+        {
+          "name": "Nature",
+          "url": "https://www.nature.com/articles/s41598-026-62782-y",
+          "country": "GB",
+          "importanceRank": 5474,
+          "image": null
+        }
+      ],
+      "concepts": [
+        "Situation awareness",
+        "Manuscript",
+        "Cognitive skill",
+        "Early access",
+        "Health care"
+      ],
+      "location": null,
+      "sentiment": 0.1764705882352942,
+      "origin": "api"
+    },
+    {
+      "title": "Knowledge, attitude, practice, and self-efficacy in pap smear adherence intent: a cross-sectional study",
+      "description": "We are providing an unedited version of this manuscript to give early access to its findings. Before final publication, the manuscript will undergo further editing. Please note there may be errors present which affect the content, and all legal disclaimers apply.\n\nAlthough knowledge, attitude, pract",
+      "link": "https://www.nature.com/articles/s41598-026-62735-5",
+      "pubDate": "2026-07-18T00:00:00Z",
+      "category": "science",
+      "source": "Nature",
+      "suggestedSlug": "2026-07-18-knowledge-attitude-practice-and-self-efficacy-in-pap-smear-a",
+      "eventUri": null,
+      "eventCoverage": null,
+      "socialScore": null,
+      "sources": [
+        {
+          "name": "Nature",
+          "url": "https://www.nature.com/articles/s41598-026-62735-5",
+          "country": "GB",
+          "importanceRank": 5474,
+          "image": null
+        }
+      ],
+      "concepts": [
+        "Self-efficacy",
+        "Pap test",
+        "Cross-sectional study",
+        "Correlation",
+        "Interquartile range"
+      ],
+      "location": null,
+      "sentiment": -0.08235294117647063,
+      "origin": "api"
+    },
+    {
+      "title": "Lawyers Action Committee terms JCP judge appointment process 'horse trading', announces nationwide movement",
+      "description": "ISLAMABAD: The Lawyers Action Committee (LAC) on Saturday rejected the Judicial Commission of Pakistan's (JCP) process for appointing judges to the country's high courts, describing it as \"horse trading\" and a \"horrific\" appointment process.\n\n\"While the adverse fallout of the 26th and 27th constitut",
+      "link": "https://www.dawn.com/news/2016484",
+      "pubDate": "2026-07-18T13:54:14Z",
+      "category": "politics",
+      "source": "Dawn",
+      "suggestedSlug": "2026-07-18-lawyers-action-committee-terms-jcp-judge-appointment-process",
+      "eventUri": null,
+      "eventCoverage": null,
+      "socialScore": null,
+      "sources": [
+        {
+          "name": "Dawn",
+          "url": "https://www.dawn.com/news/2016484",
+          "country": "PK",
+          "importanceRank": 6175,
+          "image": "https://i.dawn.com/large/2026/07/1817492894fda49.webp"
+        }
+      ],
+      "concepts": [
+        "High courts of Pakistan",
+        "Kurds",
+        "Japanese Communist Party",
+        "Islamabad",
+        "Judicial Commission of Pakistan"
+      ],
+      "location": null,
+      "sentiment": 0.1450980392156862,
+      "origin": "api"
+    },
+    {
+      "title": "Police register FIR after foreign woman residing in Karachi's DHA alleges sexual assault",
+      "description": "KARACHI: Police on Saturday said they have arrested a man over the alleged rape of a foreign woman in the city's Defence Housing Authority (DHA).\n\nSouth Deputy Inspector General (DIG) Syed Asad Raza told Dawn that the suspect has been arrested, a day after the Darakhshan police registered a first in",
+      "link": "https://www.dawn.com/news/2016462",
+      "pubDate": "2026-07-18T12:23:18Z",
+      "category": "politics",
+      "source": "Dawn",
+      "suggestedSlug": "2026-07-18-police-register-fir-after-foreign-woman-residing-in-karachi",
+      "eventUri": null,
+      "eventCoverage": null,
+      "socialScore": null,
+      "sources": [
+        {
+          "name": "Dawn",
+          "url": "https://www.dawn.com/news/2016462",
+          "country": "PK",
+          "importanceRank": 6175,
+          "image": "https://i.dawn.com/large/2026/07/181454052f994de.webp"
+        }
+      ],
+      "concepts": [
+        "First information report",
+        "Deputy inspector general of police",
+        "Rape",
+        "Karachi",
+        "Dawn (newspaper)"
+      ],
+      "location": null,
+      "sentiment": -0.2549019607843137,
+      "origin": "api"
+    },
+    {
+      "title": "Daily fuel price adjustments to curb market abuse, ensure fair prices: petroleum minister",
+      "description": "Petroleum Minister Ali Pervaiz Malik on Saturday said the introduction of daily fuel price adjustments would help curb market abuse, eliminate opportunities for windfall gains and ensure greater transparency and fair pricing for consumers.\n\nThe minister made the remarks during a meeting with key pet",
+      "link": "https://www.dawn.com/news/2016504",
+      "pubDate": "2026-07-18T15:37:09Z",
+      "category": "economy",
+      "source": "Dawn",
+      "suggestedSlug": "2026-07-18-daily-fuel-price-adjustments-to-curb-market-abuse-ensure-fai",
+      "eventUri": "eng-11841506",
+      "eventCoverage": null,
+      "socialScore": null,
+      "sources": [
+        {
+          "name": "Dawn",
+          "url": "https://www.dawn.com/news/2016504",
+          "country": "PK",
+          "importanceRank": 6175,
+          "image": "https://i.dawn.com/large/2026/07/182016254a5e605.webp"
+        }
+      ],
+      "concepts": [
+        "Transparency (behavior)",
+        "Stakeholder (corporate)",
+        "Petroleum",
+        "Petroleum industry",
+        "Price of oil"
+      ],
+      "location": null,
+      "sentiment": 0.4039215686274509,
+      "origin": "api"
+    },
+    {
+      "title": "Will AI fix prior authorization -- or make it worse?",
+      "description": "If you're like me, you or a loved one has struggled through the process of gaining pre-approval for the medical care that your physician has recommended. Personal stories abound regarding the tribulations of patients as they go through hoops to get their health insurer to pay for certain prescriptio",
+      "link": "https://arstechnica.com/ai/2026/07/will-ai-fix-prior-authorization-or-make-it-worse/",
+      "pubDate": "2026-07-18T11:18:25Z",
+      "category": "science",
+      "source": "Ars Technica",
+      "suggestedSlug": "2026-07-18-will-ai-fix-prior-authorization-or-make-it-worse",
+      "eventUri": "eng-11842533",
+      "eventCoverage": null,
+      "socialScore": null,
+      "sources": [
+        {
+          "name": "Ars Technica",
+          "url": "https://arstechnica.com/ai/2026/07/will-ai-fix-prior-authorization-or-make-it-worse/",
+          "country": "US",
+          "importanceRank": 16924,
+          "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/07/GettyImages-2264310821-2560x1440.jpg"
+        }
+      ],
+      "concepts": [
+        "Prior authorization",
+        "Artificial intelligence",
+        "Physician",
+        "Insurance",
+        "Centers for Medicare & Medicaid Services"
+      ],
+      "location": null,
+      "sentiment": 0.2470588235294118,
+      "origin": "api"
+    },
+    {
+      "title": "Trump targets Brazil's payments system while dollar stablecoins are quietly overtaking country's payments",
+      "description": "The move comes as U.S. is trying to protect the dollar; however, the U.S. dollar already circulates widely in Brazil's digital economy via stablecoins.\n\nThe U.S. will impose a 25% tariff on most Brazilian goods on July 22, its first tariff under a Section 301 strategy the Trump administration revive",
+      "link": "https://www.coindesk.com/business/2026/07/18/trump-targets-brazil-s-payments-system-while-dollar-stablecoins-quietly-dominate-country-s-payments",
+      "pubDate": "2026-07-18T16:09:59Z",
+      "category": "politics",
+      "source": "CoinDesk",
+      "suggestedSlug": "2026-07-18-trump-targets-brazil-s-payments-system-while-dollar-stableco",
+      "eventUri": null,
+      "eventCoverage": null,
+      "socialScore": null,
+      "sources": [
+        {
+          "name": "CoinDesk",
+          "url": "https://www.coindesk.com/business/2026/07/18/trump-targets-brazil-s-payments-system-while-dollar-stablecoins-quietly-dominate-country-s-payments",
+          "country": "US",
+          "importanceRank": 34448,
+          "image": "https://cdn.sanity.io/images/s3y3vcno/production/65bd684b67415bb4f57438bede69bae09f26621d-5031x3354.jpg?auto=format&w=960&h=540&crop=focalpoint&fit=clip&q=75&fm=jpg"
+        }
+      ],
+      "concepts": [
+        "Stablecoin",
+        "Tariff",
+        "Brazil",
+        "Payment system",
+        "Donald Trump"
+      ],
+      "location": "Brazil",
+      "sentiment": 0.2862745098039217,
+      "origin": "api"
+    },
+    {
+      "title": "$2.5 billion in BTC call spreads target $72,000 by the month end when the Fed meets",
+      "description": "The timing aligns with the Fed's July 29 interest rate decision, with markets currently favoring a hold.\n\nBitcoin BTC$64,080.36 traders are betting billions that the cryptocurrency's spot price will climb to $72,000 by the month's end, a timeline that lines up with the July Federal Reserve meeting.\n",
+      "link": "https://www.coindesk.com/markets/2026/07/18/massive-bitcoin-call-spreads-target-usd72-000-by-month-end-right-when-the-fed-meets",
+      "pubDate": "2026-07-18T14:15:15Z",
+      "category": "economy",
+      "source": "CoinDesk",
+      "suggestedSlug": "2026-07-18-2-5-billion-in-btc-call-spreads-target-72-000-by-the-month-e",
+      "eventUri": null,
+      "eventCoverage": null,
+      "socialScore": null,
+      "sources": [
+        {
+          "name": "CoinDesk",
+          "url": "https://www.coindesk.com/markets/2026/07/18/massive-bitcoin-call-spreads-target-usd72-000-by-month-end-right-when-the-fed-meets",
+          "country": "US",
+          "importanceRank": 34448,
+          "image": "https://cdn.sanity.io/images/s3y3vcno/production/03792fc9d1555286ba718334a78aecdfd1914d58-6000x4000.jpg?auto=format&w=960&h=540&crop=focalpoint&fit=clip&q=75&fm=jpg"
+        }
+      ],
+      "concepts": [
+        "Bitcoin",
+        "Spot contract",
+        "Cryptocurrency",
+        "Interest rate",
+        "Federal Reserve"
+      ],
+      "location": null,
+      "sentiment": 0.3411764705882352,
+      "origin": "api"
+    },
+    {
+      "title": "DOG Mode explains Bitcoin's next governance fight",
+      "description": "The proposal represents the philosophical opposite of BIP-110, which sought to tighten Bitcoin's rules to curb on-chain data.\n\nDebates and disputes about Bitcoin's governance often pivot on the rules baked into the world's original blockchain network's code. The latest dispute suggests the reality i",
+      "link": "https://www.coindesk.com/tech/2026/07/18/dog-mode-explains-bitcoin-s-next-governance-fight",
+      "pubDate": "2026-07-18T17:00:00Z",
+      "category": "tech",
+      "source": "CoinDesk",
+      "suggestedSlug": "2026-07-18-dog-mode-explains-bitcoin-s-next-governance-fight",
+      "eventUri": "eng-11840288",
+      "eventCoverage": null,
+      "socialScore": null,
+      "sources": [
+        {
+          "name": "CoinDesk",
+          "url": "https://www.coindesk.com/tech/2026/07/18/dog-mode-explains-bitcoin-s-next-governance-fight",
+          "country": "US",
+          "importanceRank": 34448,
+          "image": "https://cdn.sanity.io/images/s3y3vcno/production/1d7fa246e46362389d78474910933c67a424a500-1920x1080.jpg?auto=format&w=960&h=540&crop=focalpoint&fit=clip&q=75&fm=jpg"
+        }
+      ],
+      "concepts": [
+        "Bitcoin",
+        "Blockchain",
+        "Philosophy",
+        "Node (networking)",
+        "Software"
+      ],
+      "location": null,
+      "sentiment": -0.09019607843137256,
+      "origin": "api"
+    },
+    {
+      "title": "Why there is blackout in Enugu - Electricity company",
+      "description": "The electricity company said that the explosion at its substation occurred at about 7:30 p.m. on Friday.\n\nThe MainPower Electricity Distribution Company (MEDL) has announced that an ongoing power outage in some parts of the Enugu State metropolis was caused by an explosion at the firm's injection su",
+      "link": "https://www.premiumtimesng.com/news/top-news/896359-why-there-is-blackout-in-enugu-electricity-company.html",
+      "pubDate": "2026-07-18T16:53:17Z",
+      "category": "economy",
+      "source": "Premium Times Nigeria",
+      "suggestedSlug": "2026-07-18-why-there-is-blackout-in-enugu-electricity-company",
+      "eventUri": null,
+      "eventCoverage": null,
+      "socialScore": null,
+      "sources": [
+        {
+          "name": "Premium Times Nigeria",
+          "url": "https://www.premiumtimesng.com/news/top-news/896359-why-there-is-blackout-in-enugu-electricity-company.html",
+          "country": "NG",
+          "importanceRank": 45687,
+          "image": "https://media.premiumtimesng.com/wp-content/files/2021/07/Enugu-Electricity-Distribution-Company-EEDC.jpg"
+        }
+      ],
+      "concepts": [
+        "Electric power distribution",
+        "Power outage",
+        "Electrical substation",
+        "Electricity",
+        "Enugu"
+      ],
+      "location": null,
+      "sentiment": -0.05098039215686279,
+      "origin": "api"
+    },
+    {
+      "title": "Governor suspends N1.3 billion hospital renovation project on poor implementation",
+      "description": "The governor's visit to Gumel General Hospital has sparked widespread social media reactions, with commentators calling for similar oversight visits to other ongoing hospital renovation projects across Jigawa State.\n\nGovernor Umar Namadi of Jigawa State on Friday suspended a N1.3 billion hospital re",
+      "link": "https://www.premiumtimesng.com/news/top-news/896337-governor-suspends-n1-3-billion-hospital-renovation-project-on-poor-implementation.html",
+      "pubDate": "2026-07-18T15:31:43Z",
+      "category": "economy",
+      "source": "Premium Times Nigeria",
+      "suggestedSlug": "2026-07-18-governor-suspends-n1-3-billion-hospital-renovation-project-o",
+      "eventUri": null,
+      "eventCoverage": null,
+      "socialScore": null,
+      "sources": [
+        {
+          "name": "Premium Times Nigeria",
+          "url": "https://www.premiumtimesng.com/news/top-news/896337-governor-suspends-n1-3-billion-hospital-renovation-project-on-poor-implementation.html",
+          "country": "NG",
+          "importanceRank": 45687,
+          "image": "https://media.premiumtimesng.com/wp-content/files/2026/07/1002404352-e1784388340625.jpg"
+        }
+      ],
+      "concepts": [
+        "Governor",
+        "Gumel",
+        "Jigawa State",
+        "Umar Namadi",
+        "Local government areas of Nigeria"
+      ],
+      "location": null,
+      "sentiment": -0.207843137254902,
+      "origin": "api"
+    },
+    {
+      "title": "Teacher accused of flogging student to death surrenders to police",
+      "description": "The police announced on Friday that they had launched a manhunt for the teacher for allegedly flogging a 12-year-old boy to death in Adazi-Ani, a community in Anaocha Local Government Area of Anambra State.\n\nA female teacher in Anambra State accused of flogging a student to death has surrendered to ",
+      "link": "https://www.premiumtimesng.com/news/top-news/896358-teacher-accused-of-flogging-student-to-death-surrenders-to-police.html",
+      "pubDate": "2026-07-18T16:48:46Z",
+      "category": "politics",
+      "source": "Premium Times Nigeria",
+      "suggestedSlug": "2026-07-18-teacher-accused-of-flogging-student-to-death-surrenders-to-p",
+      "eventUri": "eng-11842421",
+      "eventCoverage": null,
+      "socialScore": null,
+      "sources": [
+        {
+          "name": "Premium Times Nigeria",
+          "url": "https://www.premiumtimesng.com/news/top-news/896358-teacher-accused-of-flogging-student-to-death-surrenders-to-police.html",
+          "country": "NG",
+          "importanceRank": 45687,
+          "image": "https://media.premiumtimesng.com/wp-content/files/2023/09/recall-our-husbands-posted-to-niger-drama-as-police-officers-wives-protest-in-lagos-600x420-1-e1694249749358.jpg"
+        }
+      ],
+      "concepts": [
+        "Anambra State",
+        "Neni, Anambra",
+        "Ikenga",
+        "Anaocha",
+        "States of Nigeria"
+      ],
+      "location": null,
+      "sentiment": 0.02745098039215677,
+      "origin": "api"
+    },
+    {
+      "title": "Hungary hopes to avoid US sanctions against Russian oil, gas buyers",
+      "description": "Marton Hajdu, Chairman of the Hungarian Parliament's Foreign Affairs Committee, revealed that he discussed this pressing issue with colleagues in the US Congress during a recent visit to Washington\n\nBUDAPEST, July 18. /TASS/. The newly formed Hungarian government is actively seeking to avoid US sanc",
+      "link": "https://tass.com/economy/2162003",
+      "pubDate": "2026-07-18T14:58:37Z",
+      "category": "economy",
+      "source": "TASS",
+      "suggestedSlug": "2026-07-18-hungary-hopes-to-avoid-us-sanctions-against-russian-oil-gas",
+      "eventUri": null,
+      "eventCoverage": null,
+      "socialScore": null,
+      "sources": [
+        {
+          "name": "TASS",
+          "url": "https://tass.com/economy/2162003",
+          "country": "RU",
+          "importanceRank": 61299,
+          "image": "https://tass.com/img/blocks/common/tass_logo_share_eng.png"
+        }
+      ],
+      "concepts": [
+        "Russia",
+        "Hungary",
+        "National Assembly (Hungary)",
+        "United States House Committee on Foreign Affairs",
+        "Economic sanctions"
+      ],
+      "location": null,
+      "sentiment": 0.1137254901960785,
+      "origin": "api"
+    },
+    {
+      "title": "Ukrainians have awakened Poles' 'age-old hatred' -- head of Crimea's State Council",
+      "description": "Recent reports from the Polish newspaper Rzeczpospolita indicate a troubling increase in hate crimes targeting Ukrainian citizens in Poland\n\nSIMFEROPOL, July 18. /TASS/. Ukrainian nationalism and the glorification of the Banderite movement have become deeply ingrained in Ukraine's state ideology, pr",
+      "link": "https://tass.com/politics/2162005",
+      "pubDate": "2026-07-18T16:15:29Z",
+      "category": "politics",
+      "source": "TASS",
+      "suggestedSlug": "2026-07-18-ukrainians-have-awakened-poles-age-old-hatred-head-of-crimea",
+      "eventUri": "eng-11837190",
+      "eventCoverage": null,
+      "socialScore": null,
+      "sources": [
+        {
+          "name": "TASS",
+          "url": "https://tass.com/politics/2162005",
+          "country": "RU",
+          "importanceRank": 61299,
+          "image": "https://tass.com/img/blocks/common/tass_logo_share_eng.png"
+        }
+      ],
+      "concepts": [
+        "Polish people",
+        "Ukraine",
+        "Poland",
+        "TASS",
+        "Rzeczpospolita (newspaper)"
+      ],
+      "location": null,
+      "sentiment": -0.4823529411764705,
+      "origin": "api"
+    },
+    {
+      "title": "Iranian envoy accuses US of violating Pakistan-mediated MoU",
+      "description": "TEHRAN, Jul. 18 (MNA) - Iran's ambassador to Pakistan Reza Amiri Moghadam on Saturday accused the United States of violating a Pakistan-mediated memorandum of understanding (MOU), saying Washington resumed military action contrary to the agreement.\n\nIn a post on his X account on Saturday, the envoy ",
+      "link": "https://en.mehrnews.com/news/246313/Iranian-envoy-accuses-US-of-violating-Pakistan-mediated-MoU",
+      "pubDate": "2026-07-18T12:34:26Z",
+      "category": "politics",
+      "source": "Mehr News Agency",
+      "suggestedSlug": "2026-07-18-iranian-envoy-accuses-us-of-violating-pakistan-mediated-mou",
+      "eventUri": null,
+      "eventCoverage": null,
+      "socialScore": null,
+      "sources": [
+        {
+          "name": "Mehr News Agency",
+          "url": "https://en.mehrnews.com/news/246313/Iranian-envoy-accuses-US-of-violating-Pakistan-mediated-MoU",
+          "country": "IR",
+          "importanceRank": 157957,
+          "image": "https://media.mehrnews.com/d/2024/11/09/4/5241790.jpg?ts=1731144987706"
+        }
+      ],
+      "concepts": [
+        "Memorandum of understanding",
+        "Pakistan",
+        "Iran",
+        "United States",
+        "National Assembly of Quebec"
+      ],
+      "location": "Iran",
+      "sentiment": -0.1137254901960785,
+      "origin": "api"
+    },
+    {
+      "title": "4th news conf. of \"Muharram Shahr\" mourning rituals in Tehran",
+      "description": "TEHRAN, Jul. 18 (MNA) - The 4th news conference of Muharram-Shahr (Muharram City) was held at Social-Cultural Deputy Office of Tehran Municipality on Sat., attended by Director General of Tehran Municipality for Cultural Affairs Mostafa Zibaeinejad.\n\nAs the first decade of Safar begins, Azadi Square",
+      "link": "https://en.mehrnews.com/photo/246312/4th-news-conf-of-Muharram-Shahr-mourning-rituals-in-Tehran",
+      "pubDate": "2026-07-18T12:13:23Z",
+      "category": "politics",
+      "source": "Mehr News Agency",
+      "suggestedSlug": "2026-07-18-4th-news-conf-of-muharram-shahr-mourning-rituals-in-tehran",
+      "eventUri": null,
+      "eventCoverage": null,
+      "socialScore": null,
+      "sources": [
+        {
+          "name": "Mehr News Agency",
+          "url": "https://en.mehrnews.com/photo/246312/4th-news-conf-of-Muharram-Shahr-mourning-rituals-in-Tehran",
+          "country": "IR",
+          "importanceRank": 157957,
+          "image": "https://media.mehrnews.com/d/2026/07/18/4/6103354.jpg?ts=1784371147871"
+        }
+      ],
+      "concepts": [
+        "Muharram",
+        "Tehran",
+        "Azadi Square",
+        "Jalal Hosseini",
+        "Ashura"
+      ],
+      "location": null,
+      "sentiment": -0.1764705882352942,
+      "origin": "api"
+    },
+    {
+      "title": "Google darkens satellite imagery of sites hit in Kuwait",
+      "description": "TEHRAN, Jul. 18 (MNA) - Google has heavily blurred and downgraded the quality of satellite imagery covering several sensitive installations in Kuwait that were recently targeted during Iran's retaliatory strikes against U.S. operations.\n\nAccording to an analysis of updated Google satellite data prov",
+      "link": "https://en.mehrnews.com/news/246311/Google-darkens-satellite-imagery-of-sites-hit-in-Kuwait",
+      "pubDate": "2026-07-18T12:09:57Z",
+      "category": "science",
+      "source": "Mehr News Agency",
+      "suggestedSlug": "2026-07-18-google-darkens-satellite-imagery-of-sites-hit-in-kuwait",
+      "eventUri": null,
+      "eventCoverage": null,
+      "socialScore": null,
+      "sources": [
+        {
+          "name": "Mehr News Agency",
+          "url": "https://en.mehrnews.com/news/246311/Google-darkens-satellite-imagery-of-sites-hit-in-Kuwait",
+          "country": "IR",
+          "importanceRank": 157957,
+          "image": "https://media.mehrnews.com/d/2026/07/17/4/6102182.jpg?ts=1784283668369"
+        }
+      ],
+      "concepts": [
+        "Satellite imagery",
+        "Google",
+        "Kuwait",
+        "Iran",
+        "Guerrilla warfare"
+      ],
+      "location": null,
+      "sentiment": -0.2392156862745098,
+      "origin": "api"
+    },
+    {
+      "title": "U.S. Strikes Leave Iranians Isolated and Scared",
+      "description": "Overnight strikes damaged a tunnel and three bridges in Hormozgan Province, the governor's office said.\n\nU.S. airstrikes targeting parts of southern Iran have rattled Iranians' nerves this week, they said in interviews, and destroyed key links between one province and the rest of the country.\n\nMarzi",
+      "link": "https://www.nytimes.com/2026/07/18/world/middleeast/us-iran-war-strikes-bridges-bandar-abbas.html",
+      "pubDate": "2026-07-18T16:02:40Z",
+      "category": "politics",
+      "source": "The New York Times",
+      "suggestedSlug": "2026-07-18-u-s-strikes-leave-iranians-isolated-and-scared",
+      "eventUri": "eng-11843652",
+      "eventCoverage": null,
+      "socialScore": null,
+      "sources": [
+        {
+          "name": "The New York Times",
+          "url": "https://www.nytimes.com/2026/07/18/world/middleeast/us-iran-war-strikes-bridges-bandar-abbas.html",
+          "country": "US",
+          "importanceRank": 350,
+          "image": "https://static01.nyt.com/images/2026/07/18/multimedia/18mideast-live-iran-voices-topart-bwfh/18mideast-live-iran-voices-topart-bwfh-videoSixteenByNine3000.jpg"
+        }
+      ],
+      "concepts": [
+        "Hormozgan province",
+        "Iran",
+        "Bandar Abbas",
+        "Province",
+        "Port"
+      ],
+      "location": null,
+      "sentiment": -0.3411764705882353,
+      "origin": "api"
+    },
+    {
+      "title": "Chipotle Is Giving Away Free Burritos & The Internet Has Stomach Concerns: 'Questionable Timing' - AOL",
+      "description": "I'm generally very supportive of free food, but even a good giveaway can arrive at a very awkward time. Chipotle is moving ahead with a $1 million free burrito promotion tied to the FIFA World Cup final on July 19, giving fans a chance to score free food during the match's second hydration break.\n\nT",
+      "link": "https://www.aol.com/articles/chipotle-giving-away-free-burritos-130000000.html",
+      "pubDate": "2026-07-18T13:00:00Z",
+      "category": "science",
+      "source": "Aol",
+      "suggestedSlug": "2026-07-18-chipotle-is-giving-away-free-burritos-the-internet-has-stoma",
+      "eventUri": "eng-11840284",
+      "eventCoverage": null,
+      "socialScore": null,
+      "sources": [
+        {
+          "name": "Aol",
+          "url": "https://www.aol.com/articles/chipotle-giving-away-free-burritos-130000000.html",
+          "country": "US",
+          "importanceRank": 460,
+          "image": "https://s.yimg.com/cv/apiv2/aolfp/images/og-image.png"
+        }
+      ],
+      "concepts": [
+        "Chipotle Mexican Grill",
+        "Burrito",
+        "Lemonade",
+        "Stomach",
+        "Internet"
+      ],
+      "location": null,
+      "sentiment": 0.2,
+      "origin": "api"
+    },
+    {
+      "title": "British Superbikes: Northern Ireland rider Allingham takes Superstock 1000cc success",
+      "description": "Northern Ireland rider David Allingham claimed his fifth win of the season in the National Superstock 1000cc season by taking victory in the opening race of the weekend in the class at Brands Hatch on Saturday.\n\nThe SMS/Nicholl Oils BMW rider from Eglinton had two tenths of a second to spare over ru",
+      "link": "https://www.bbc.co.uk/sport/motorsport/articles/cre4j4z2r2yo",
+      "pubDate": "2026-07-18T16:56:31Z",
+      "category": "politics",
+      "source": "BBC",
+      "suggestedSlug": "2026-07-18-british-superbikes-northern-ireland-rider-allingham-takes-su",
+      "eventUri": null,
+      "eventCoverage": null,
+      "socialScore": null,
+      "sources": [
+        {
+          "name": "BBC",
+          "url": "https://www.bbc.co.uk/sport/motorsport/articles/cre4j4z2r2yo",
+          "country": "GB",
+          "importanceRank": 470,
+          "image": "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/0d65/live/0f37c7e0-82c8-11f1-bee8-53ce494e1abc.jpg"
+        }
+      ],
+      "concepts": [
+        "Northern Ireland",
+        "British Superbike Championship",
+        "Luke Mossey",
+        "Brands Hatch",
+        "Scott Redding"
+      ],
+      "location": null,
+      "sentiment": 0.07450980392156858,
+      "origin": "api"
+    },
+    {
+      "title": "Janus kitten born with two mouths leaves Llangedwyn cat rescue 'speechless'",
+      "description": "Warning: This story contains an image that some readers may find upsetting\n\nA cat rescue has been left \"speechless\" after a cat in their care gave birth to a kitten with two noses and two mouths.\n\nPurrfectlyFeral in Llangedwyn, Powys, shared the discovery after the kitten was born with a rare congen",
+      "link": "https://www.bbc.co.uk/news/articles/c78g10l2y92o",
+      "pubDate": "2026-07-18T16:31:21Z",
+      "category": "science",
+      "source": "BBC",
+      "suggestedSlug": "2026-07-18-janus-kitten-born-with-two-mouths-leaves-llangedwyn-cat-resc",
+      "eventUri": null,
+      "eventCoverage": null,
+      "socialScore": null,
+      "sources": [
+        {
+          "name": "BBC",
+          "url": "https://www.bbc.co.uk/news/articles/c78g10l2y92o",
+          "country": "GB",
+          "importanceRank": 470,
+          "image": "https://ichef.bbci.co.uk/ace/branded_news/1200/cpsprodpb/fc63/live/3c893f90-82c2-11f1-adf9-c14531781464.jpg"
+        }
+      ],
+      "concepts": [
+        "Kitten",
+        "Cat",
+        "Llangedwyn",
+        "Diprosopus",
+        "Janus"
+      ],
+      "location": null,
+      "sentiment": 0.2549019607843137,
+      "origin": "api"
+    },
+    {
+      "title": "Ancient Princesses Were Weapon-Wielding Badasses, Scientists Discover",
+      "description": "The mummified remains of 4,000-year-old Egyptian royals suggest that they were buried with weapons because they could use them, not for symbolic reasons.",
+      "link": "https://www.404media.co/ancient-princesses-were-weapon-wielding-badasses-scientists-discover/",
+      "pubDate": "Sat, 18 Jul 2026 10:00:29 GMT",
+      "category": "tech",
+      "source": "404 Media",
+      "suggestedSlug": "2026-07-18-ancient-princesses-were-weapon-wielding-badasses-scientists",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "404 Media",
+          "url": "https://www.404media.co/ancient-princesses-were-weapon-wielding-badasses-scientists-discover/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Behind the Blog: Infinite Bowl Machine",
+      "description": "This week, we discuss AI music, slop bowls, and the endless quest for optimization.",
+      "link": "https://www.404media.co/behind-the-blog-infinite-bowl-machine/",
+      "pubDate": "Fri, 17 Jul 2026 16:07:19 GMT",
+      "category": "tech",
+      "source": "404 Media",
+      "suggestedSlug": "2026-07-17-behind-the-blog-infinite-bowl-machine",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "404 Media",
+          "url": "https://www.404media.co/behind-the-blog-infinite-bowl-machine/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "ICE to Pay Thomson Reuters $125 Million to Find ‘Voter Fraud’",
+      "description": "A new procurement record says ICE wants access to personal data, including names, Social Security numbers, and ethnicity, to investigate in part what the agency calls “voters fraud.” It also plans to use the data to investigate immigration fraud.",
+      "link": "https://www.404media.co/ice-to-pay-thomson-reuters-125-million-to-find-voter-fraud/",
+      "pubDate": "Fri, 17 Jul 2026 15:35:37 GMT",
+      "category": "tech",
+      "source": "404 Media",
+      "suggestedSlug": "2026-07-17-ice-to-pay-thomson-reuters-125-million-to-find-voter-fraud",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "404 Media",
+          "url": "https://www.404media.co/ice-to-pay-thomson-reuters-125-million-to-find-voter-fraud/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Sudan Nashra: US truce proposal reaches Khartoum after Saudi-influenced revisions, RSF withdrawals a sticking point | Military blocks RSF push for new supply line in Blue Nile | Military, allies launch renewed campaign in North Darfur | RSF retakes West Darfur’s Kulbus after ‘tactical’ joint force withdrawal",
+      "description": "Subscribe to our Lens on Sudan newsletter here. A new ceasefire proposal has reached Sudan’s Security and Defense Council. Following a meeting chaired on Sunday by Transitional Sovereignty Council head and military chief Abdel Fattah al-Burhan, the council said it prepared a response. The proposal is the same one US Senior Advisor for Arab and African Affairs Massad Boulos brought to Cairo in late June for discussions with senior Sudanese […]\nThe post Sudan Nashra: US truce proposal reaches Khartoum after Saudi-influenced revisions, RSF withdrawals a sticking point | Military blocks RSF push for new supply line in Blue Nile | Military, allies launch renewed campaign in North Darfur | RSF retakes West Darfur’s Kulbus after ‘tactical’ joint force withdrawal first appeared on Mada Masr.",
+      "link": "https://www.madamasr.com/en/2026/07/17/news/u/sudan-nashra-us-truce-proposal-reaches-khartoum-after-saudi-influenced-revisions-rsf-withdrawals-a-sticking-point-military-blocks-rsf-push-for-new-supply-line-in-blue-nile-military-allies-launc/",
+      "pubDate": "Fri, 17 Jul 2026 15:40:18 +0000",
+      "category": "politics",
+      "source": "Mada Masr",
+      "suggestedSlug": "2026-07-17-sudan-nashra-us-truce-proposal-reaches-khartoum-after-saudi",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Mada Masr",
+          "url": "https://www.madamasr.com/en/2026/07/17/news/u/sudan-nashra-us-truce-proposal-reaches-khartoum-after-saudi-influenced-revisions-rsf-withdrawals-a-sticking-point-military-blocks-rsf-push-for-new-supply-line-in-blue-nile-military-allies-launc/",
+          "country": "EG"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Indonesia selects Morocco as gateway to North African markets",
+      "description": "No summary provided",
+      "link": "https://salaamgateway.com/story/indonesia-selects-morocco-as-gateway-to-north-african-markets",
+      "pubDate": "Fri, 17 Jul 2026 10:34:13 +0000",
+      "category": "economy",
+      "source": "Salaam Gateway",
+      "suggestedSlug": "2026-07-17-indonesia-selects-morocco-as-gateway-to-north-african-market",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Salaam Gateway",
+          "url": "https://salaamgateway.com/story/indonesia-selects-morocco-as-gateway-to-north-african-markets",
+          "country": "AE"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "GCC banks to witness 5-6% credit growth in 2026, says S&P",
+      "description": "No summary provided",
+      "link": "https://salaamgateway.com/story/gcc-banks-to-witness-5-6-credit-growth-in-2026-says-sp",
+      "pubDate": "Thu, 16 Jul 2026 18:08:35 +0000",
+      "category": "economy",
+      "source": "Salaam Gateway",
+      "suggestedSlug": "2026-07-16-gcc-banks-to-witness-5-6-credit-growth-in-2026-says-s-p",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Salaam Gateway",
+          "url": "https://salaamgateway.com/story/gcc-banks-to-witness-5-6-credit-growth-in-2026-says-sp",
+          "country": "AE"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "The Final Chapter for Tren de Aragua Founder Larry Changa?",
+      "description": "The Final Chapter for Tren de Aragua Founder Larry Changa?\n\nLarry Amaury Álvarez Núñez, alias \"Larry Changa,\" is set to be tried on charges of criminal association and kidnapping in Chile after Colombia’s President Gustavo Petro greenlit his extradition. If convicted, it could be the final chapter in the criminal history of one of the three founding members of Tren de Aragua, Venezuela's most infamous criminal export.\nThe post The Final Chapter for Tren de Aragua Founder Larry Changa? appeared first on InSight Crime.",
+      "link": "https://insightcrime.org/news/the-final-chapter-for-tren-de-aragua-founder-larry-changa/",
+      "pubDate": "Thu, 16 Jul 2026 19:19:05 +0000",
+      "category": "politics",
+      "source": "InSight Crime",
+      "suggestedSlug": "2026-07-16-the-final-chapter-for-tren-de-aragua-founder-larry-changa",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "InSight Crime",
+          "url": "https://insightcrime.org/news/the-final-chapter-for-tren-de-aragua-founder-larry-changa/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "On the Radar: The Rise of Liquid Cocaine",
+      "description": "On the Radar: The Rise of Liquid Cocaine\n\nCould liquid cocaine become the go-to trick for traffickers across the region?\nWill \"El Mayo\" Zambada spend his final years in a hospital wing instead of a supermax cell like El Chapo?\nIs Ecuador's most notorious criminal family being picked off one by one?\nThis week's top three organized crime stories in On the Radar.\nThe post On the Radar: The Rise of Liquid Cocaine appeared first on InSight Crime.",
+      "link": "https://insightcrime.org/news/on-the-radar-the-rise-liquid-cocaine/",
+      "pubDate": "Thu, 16 Jul 2026 17:46:31 +0000",
+      "category": "politics",
+      "source": "InSight Crime",
+      "suggestedSlug": "2026-07-16-on-the-radar-the-rise-of-liquid-cocaine",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "InSight Crime",
+          "url": "https://insightcrime.org/news/on-the-radar-the-rise-liquid-cocaine/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "African leader’s grandson reveals why he helped Palestine Action",
+      "description": "Descendant of Tanzania’s first president tells Old Bailey he wanted to stop Gaza genocide\nThe post African leader’s grandson reveals why he helped Palestine Action appeared first on Declassified UK.",
+      "link": "https://www.declassifieduk.org/african-leaders-grandson-reveals-why-he-helped-palestine-action/",
+      "pubDate": "Fri, 17 Jul 2026 07:53:17 +0000",
+      "category": "politics",
+      "source": "Declassified UK",
+      "suggestedSlug": "2026-07-17-african-leader-s-grandson-reveals-why-he-helped-palestine-ac",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Declassified UK",
+          "url": "https://www.declassifieduk.org/african-leaders-grandson-reveals-why-he-helped-palestine-action/",
+          "country": "GB"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Ukraine's defense minister walked into Zelensky corruption buzzsaw",
+      "description": "Ukrainian President Volodymyr Zelensky has fired Defense Minister Mykhailo Fedorov as part of a larger government shakeup, setting the stage for an ugly political fight from which Zelensky will likely emerge victorious but not unbruised. Of all the things that have been labeled — for the most part, inaccurately — by Western observers as a “gift to Russia,” Fedorov’s ouster is one that actually meets the mark. Fedorov, unlike much of Ukraine’s top military and political leadership, grasped the extent of Ukraine’s colossal structural disadvantages vis-a-vis Russia and worked toward a strategy that put Kyiv in the best possible position to maneuver within them. Whereas a prominent strain of senior Ukrainian leadership found solace in gauging battlefield success by some variation of General Westmoreland’s infamous Vietnam-era bodycount metric, Fedorov understood that Ukraine cannot prevail in a war of attrition against its much larger, better-resourced foe. Ukraine’s erstwhile defense minister sought instead to leverage his country’s comparative advantages in drone innovation and automation in service of a “middle strike” strategy that shifts the locus of the war from the frontlines in Ukraine’s east and southeast to Russia’s rear. The ensuing Ukrainian strike campaign on targets inside Russia exacted an economic, political, and psychological toll on Moscow that, though it doesn’t change the underlying dynamics of a conflict in which Russia maintains an overall edge in manpower and firepower, has given Ukraine a degree of breathing room and provides a vector for pressuring Moscow. Zelensky has already tapped the acting head of the Security Service of Ukraine, Yevhenii Khmara, to serve in Fedorov’s stead. Yet it appears unlikely that the middle strike strategy can be sustained without Fedorov, who not only masterminded it but was willing to accept the political sacrifices necessary to make it work. Executing a strike program along these lines requires prodigious investments and a recalibration of Ukrainian logistics structures, which is where Fedorov ran into trouble. Fedorov understood that he cannot hit the procurement and sustainment targets needed for a middle strike strategy without rolling back the graft, embezzlement, and cronyism that has become endemic to Ukraine’s war effort. This meant, in practice, cutting out politically well-connected suppliers with profit margins well outside what can be achieved under normal market conditions and enforcing a system of competitive tenders designed to aggressively drive down per unit prices of munitions and other equipment. “We acted harshly as a state by breaking some companies’ business strategies. But how can I justify buying shells we already have in surplus when we have shortages of other types of ammunition?” Fedorov said. This procurement mentality, coupled with Fedorov’s efforts to reform the AFU’s bloated and overstretched corps system, did not make him many friends in Ukraine’s powerful defense-industrial sector and military bureaucracy. Fedorov reportedly sought the dismissal of the AFU’s Commander-in-Chief, Oleksandr Syrskyi, whom he saw as emblematic of a Soviet-era mindset standing athwart the deep structural changes needed to keep Ukraine’s war effort alive. But the much more experienced Syrskyi has proven himself a deft political operator — then again, it may not have taken much convincing to align the numerous elites that stand to lose from Fedorov’s reforms into a bloc against him. Meanwhile, Fedorov evidently had not succeeded in shaping a countervailing coalition of stakeholders willing to expend capital on shielding him from political attacks. These forces came to a head with Zelensky’s decision earlier this week to remove Fedorov, a move so unpopular so as to draw rebuke even from his own state media apparatus. There are protest actions planned across Ukraine that may reach the scale of last year’s demonstrations over Zelensky’s moves to gut the National Anti-Corruption Bureau of Ukraine, or NABU. As with the protests last year, which were also brought by the ides of July, the demonstrations over Fedorov’s ouster will provide Ukrainians with a rare outlet to express public disapproval with the government’s handling of the war effort. How will this scandal reflect on Zelensky? It is often said, not without some justification, that Russian President Vladimir Putin enjoys a level of authority and control that offers him substantial, even if not absolute, decisionmaking power. It’s not fully appreciated in Western commentary that Zelensky, though he presides over a very different system, maintains a degree of influence over key Ukrainian institutions, patronage networks, and stakeholder relationships that allows him to weather even the harshest political tides. The events of the past year speak to his remarkable political resilience. Zelensky backtracked on his NABU legislation and managed to emerge from last year’s protests largely unscathed. Some months later, he fired Andriy Yermak —a close ally who was widely seen as the second most powerful man in Ukraine — on the heels of serious corruption allegations. Though it was widely believed that the two are joined at the hip, Zelensky managed to decouple himself from Yermak and went on with the business of governing. The reasons for this are fairly straightforward. Zelensky continues to benefit from the near total backing of European leaders who have increasingly assumed the primary burden of supporting Ukraine. The Trump administration, though it has been far more willing to criticize Zelensky than the Europeans, concluded in the aftermath of the pugilistic February 2025 Oval Office confrontation that replacing Zelensky would not necessarily resolve the structural issues holding up a Russia-Ukraine peace deal. There is no reason to assume Fedorov’s firing, unpopular as it is, will go over any differently — at least not in the short term. Zelensky’s recent challenges, though nowhere near politically fatal in isolation, have had the cumulative effect of dispelling the sheen of near-inviolability that he enjoyed from 2022 through the Biden period. Zelensky is now running on a surplus of political goodwill — ironically, generated in large part by the successes of the man he has just fired — that insulates him against immediate consequences. But if the past five years of the Russia-Ukraine war have shown anything, it’s that hot streaks tend to be short-lived. While no one can predict when exactly the cup of Zelensky’s political fortunes will run over, there is little question that Fedorov’s ouster further wounds his standing as a wartime leader. ",
+      "link": "https://responsiblestatecraft.org/mykhailo-fedorov-ukraine-zelensky/",
+      "pubDate": "Fri, 17 Jul 2026 10:58:19 +0000",
+      "category": "economy",
+      "source": "Responsible Statecraft",
+      "suggestedSlug": "2026-07-17-ukraine-s-defense-minister-walked-into-zelensky-corruption-b",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Responsible Statecraft",
+          "url": "https://responsiblestatecraft.org/mykhailo-fedorov-ukraine-zelensky/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Gunboat or showboat: Can the Navy truly sustain a long war with Iran?",
+      "description": "A powerful naval force is now concentrated from the Mediterranean Sea to the Indian Ocean in support of continuing operations against the Islamic Republic of Iran — including two aircraft carriers, six amphibious assault ships, and 19 cruisers and destroyers. Just this week, President Donald Trump declared he would re-impose a blockade on Iranian ports, while U.S. attacks against coastal and island targets continued unabated.How long can the U.S. Navy keep this armada forward deployed?That we even ask this question highlights the visible decline of American Seapower. In 1945, with over 6,000 ships, the United States Navy was a truly global seapower. Today, some 80 years later, the fleet is so diminished that Americans quietly doubt if it can sustain operations against Iran — which have once again been renewed. A renewed naval blockade — even a distant barrier in the Arabian Sea — means prolonged operating tempo for ships and personnel. Ships that have been in-theater since February that have been deployed for a total 10 months and more, must be rotated out and replaced. Keeping so many ships in the CENTCOM Area of Responsibility means a Navy that can only focus on one region, effectively abandoning its global reach.What happened? Three things.First, the fleet lost its ships. The U.S. Navy listed 6,768 ships in 1945, enough to last for several decades. Even during Vietnam, the fleet still numbered over 900 ships. Yet by the later 1970s, it had fallen to something like 450. With the Reagan resurgence, fleet size rebounded to nearly 600 ships. With the Cold War’s end, however, a long shrinkage began.Today, the Navy’s useful order-of-battle stands at around 180 ships: Carriers (CVN), “large-deck amphibs” (LHA/LHD, LSD/LPH), attack submarines (SSN), and guided missile destroyers (DDG). As a critical counterpoint, China’s People’s Liberation Army Navy (PLAN) now has more battle force ships than the U.S.America’s battle force ships are big and powerful, yet they are not adequately supplemented by ships for necessary subsidiary missions, like patrol, escort, and minesweeping. The now-infamous Littoral Combat Ship (LCS) was designed to meet this need, and in the last 20 years, 35 were built. They are now being retired — some brand new. In the words of Rep. Adam Smith (D-Wash.) then-chair of the House Armed Services Committee in 2022, “We can’t use them, number one because they’re not ready to do anything. Number two, when they are, they still break down.”Hence, the U.S. Navy is no longer a balanced fleet.Second, a shrinking fleet means fewer ships at sea. It is a standard rule of thumb that you need three hulls to keep one deployed overseas. In times of high tension and crisis, ships are kept at sea as long as humanly possible to make sure enough seaborne firepower is at hand to satisfy a demanding commander-in-chief, mollify queasy allies, and allegedly “deter” evil adversaries. The USS Abraham Lincoln, for example, was deployed in November 2025 and is now in the Arabian Sea, over 210 days without a port visit — a Navy record.The result: precious ships get worn out, and then sent to put out more fires, until they break. Moreover, when worn out and broken they finally return home, there are simply not enough places to fix them and get them back into working order. Maintenance facilities are so limited that recent submarine overhauls have taken as many as eight years to complete; one nuclear boat, the USS Boise, was scrapped after 10 years of repairs. $800 million was spent, and the job was only 25% complete! The situation is so bad that 40% of the Navy submarine force cannot be deployed because of maintenance bottlenecks and contractor incompetence. Yet submarines get highest priority. Things are much worse for the surface fleet.A broken maintenance and repair system makes an already small fleet even smaller.The third factor quietly undermining the Navy is the easiest to overlook. It is also the biggest threat to the Navy’s future: the fatigue and demoralization of its sailors. Long overseas deployments, especially those that keep getting extended, break the morale of both the sailor and of the family waiting back home.Vice Admiral Phil Wisecup (ret.) knows. When he was Navy Scheduler in the 1990s, he co-authored a study that recommended Navy deployments be limited to six months — with only urgent exceptions. The Navy adopted this standard. Then, in the crisis atmosphere that swept Washington after 9/11, it was just thrown away.For a quarter-century now, the U.S. Navy has been operating under wartime conditions — at least as far as ship deployments are concerned. It's like World War II again, when ships were sent across the Pacific, not to return home until war’s end; or Vietnam, when carriers were kept in the Gulf of Tonkin until exhausted, when they would return home for a month of R&R, only to go right back again to Yankee Station.Yet those examples of sustained high intensity combat lasted just a few years. Pushing sailors like that for 25 years straight is to push them so hard as to push them out. As with destroyers and Amphibs on blockade duty in the Arabian Sea, 10-month deployments are the Navy norm.The poster child for this is America’s latest and greatest nuclear aircraft carrier: the USS Gerald Ford. It became the quintessential example of crew exhaustion and demoralization before ending its record-breaking, 11 month deployment in the Middle East (June 2025 to May 2026).The $3 billion Ford is the first ship of a new class, with new systems (electromagnetic catapults and arrestor gear, new radar arrays, new ordnance elevators, etc.), including a new vacuum human waste disposal system. To pack so many premature systems into one ship has meant 20 bleeding edge technologies and 20 potential points of failure. It has been called “a monument to everything wrong with the US Navy.” When the toilets broke, so did the crew. There was a huge fire in the ship’s laundry on March 12 of this year — which many believe was deliberately set — that ended the ordeal. From the Red Sea, where it had been stationed for so many months during the Iran and Houthi wars, it limped to Crete for repairs, then on home.What can be done? No matter how much money is spent (in 2017 it was estimated that a 355-ship fleet would cost more than $3 trillion to build and maintain; that would be much more today), there is no path ahead to grow the fleet in less than three decades. The lofty “Golden Fleet” modernization plan, which aims to swell the number to 450 ships, is seeking at least $267 billion just to get started, according to the Navy in May. A hortatory start is not a solution.Yet analysts note that, “despite a doubling of the shipbuilding budget over two decades, fleet size has not meaningfully increased.” The 2026 Shipbuilding Plan talks big about “changing how we do business” and “delivering accountability” — yet talk faces 50 entrenched years of doing things the old way, with zero accountability. Moreover, America’s rancorous politics is not conducive to sustained, and ruinously expensive, fleet expansion. The likelihood is that the Navy will shoulder on with its rusty, overstretched fleet, and with luck avoid a further decline in ship numbers. Perhaps, over time, shipyard modernization will boost maintenance and repair schedules. Yet the Navy must eventually face the reality of seapower limitation.So as to the question: Can we sustain the fleet off Iran? The short answer is, yes, but. The U.S. Navy is fully capable of putting a hefty group of high-end warships anywhere on the world ocean, and keeping it there, through rotation, for as long as it is ordered to do so. Yet understand: This is the new Navy maximum-norm. The service, as in the 1920s and 1930s, is once again a single-mission force; it can go to one place and do something. Yet it is no longer the truly global seapower it was during World War II and the Cold War. Furthermore, the “something” it can do is also limited. That high-end armada in the CENTCOM AOR — all 27 big ships — is in no position to go “in harm’s way.” Whatever it does, it cannot afford to lose precious ships. There are simply not enough of them, and not near enough capacity to expeditiously repair them if battle-damaged.The iron reality of limited American Seapower is stark. It can put a modest armada off a foreign shore, and keep it there. It just cannot afford to get into a real fight.",
+      "link": "https://responsiblestatecraft.org/navy-blockade-iran/",
+      "pubDate": "Fri, 17 Jul 2026 04:05:01 +0000",
+      "category": "science",
+      "source": "Responsible Statecraft",
+      "suggestedSlug": "2026-07-17-gunboat-or-showboat-can-the-navy-truly-sustain-a-long-war-wi",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Responsible Statecraft",
+          "url": "https://responsiblestatecraft.org/navy-blockade-iran/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "They pressured Carter to invade Kharg Island too. He didn't.",
+      "description": "The president was in a humiliating bind. The American people were obsessed with the harrowing images of blindfolded and bound hostages beamed into their homes by the nightly newscasts, and they prayed their government would find a way to free them. Desperate for a way out, some White House advisers prodded the president to go to war.This is not the story of the Trump administration, which is trapped in a quagmire of the president’s own creation. It is the dilemma that swallowed President Jimmy Carter from November 4, 1979, when hundreds of militant Iranian students overran the U.S. embassy in Tehran and took 63 hostages. Three more were seized at a nearby building.Of the many possible parallels between then and now, one is the importance of a small coral island in the northern Persian Gulf about 20 miles from the Iranian coast. Kharg Island is home to a major oil terminal through which nearly all Iranian oil exports pass. President Donald Trump says he’s thinking about seizing it, a threat he has made numerous times since he launched a war with Iran on February 28. But Trump is not the first president to mull such an operation. In a largely forgotten footnote to his presidency, Jimmy Carter was presented with plans to capture the island but rejected them. The reasons for his restraint still hold force today.In a top-secret memo in late December 1979, national security adviser Zbigniew Brzezinski asked Carter “to consider military actions which contribute to [Ayatollah Khomeini’s] downfall, and thus secure the release of the hostages.”Seizing Kharg and two other islands near the Strait of Hormuz’s entrance could, in Brzezinski’s estimation, impose “a protracted humiliation on Khomeini, which could only be terminated through the release of the hostages.” He hoped to “mesh” military action “with covert political action designed to create an alternative to Khomeini.” In other words, regime change. As the Washington Post revealed the following March, the risky plan called for amphibious assault ships to steam up the Persian Gulf and disembark U.S. Marines. “Once on the island, they or technicians with them would take over the oil lines,” the Post reported, noting that backers of the plan hoped that cutting off oil revenue “would put tremendous pressure on the Iranian leader without reaping the whirlwind of criticism” that would result from bombing mainland Iran.As Edward Luce wrote in his 2025 biography of Brzezinski, Carter dismissed the idea of deploying military force to pressure the ayatollah to free the hostages: “Such actions would only rally Iranians around Khomeini, he said.” Brzezinski grew frustrated at Carter’s “stubborn instinct to do what he thought was right, even if it damaged his reelection prospects,” Luce noted.Four months later, on April 10, 1980, with the hostages still in captivity and Americans obsessing over their fate, Brzezinski wrote another memo to Carter lamenting the lack of diplomatic progress and proposing military strikes. In Brzezinski’s six-step plan to save the hostages, step 5 was “Closure of Kharg Island and/or occupation of the Tunbs and Abu Musa at the mouth of the Persian Gulf.” Once again, Carter chose restraint.“President Carter recognized that military action in the Persian Gulf was too risky and could trigger a wider war,” University of Texas historian Jeremi Suri tells RS. “The best leverage Carter had was to try to work with the new government behind the scenes to protect and release American personnel.”Luce tells RS that Carter had a “radically different” view of military force than Brzezinski. “In spite of the latter's ceaseless efforts to get Carter to take kinetic action — seizing Kharg Island, imposing a naval blockade, bombing Iranian oil refineries, and various other proposals — Carter did not come close to approving military action, except for Operation Eagle Claw. No US president before or since has been so reluctant to deploy the Pentagon.”Under withering pressure to do something to save the American captives, Carter authorized on April 24, 1980, the long-planned Eagle Claw rescue mission that crashed and burned in a desert 200 miles from Tehran, another humiliation piled upon a seemingly impotent administration. Eagle Claw’s failure led to the same consequence that bombing Iran or seizing Kharg Island might have produced, according to historian John Ghazvinian. “If there had been any possibility of a diplomatic breakthrough in the hostage crisis, it was now gone,” Ghazvinian wrote in his history of U.S.-Iran relations.There are no hostages to rescue in Iran today. President Trump is hostage instead to his judgment, having attacked Iran twice in eight months during negotiations. Trump may be desperate to reopen the Strait of Hormuz, but Iran’s new hardline leadership cadre has proven itself capable of withstanding immense pressure. Seizing Kharg Island as leverage, therefore, seems destined to fail. This won’t stop some in Washington from supporting it.Appearing on CBS’ “Face the Nation” on July 12, Former CENTCOM Commander Ret. Gen. Frank McKenzie echoed Brzezinski’s long-discarded advice. “What we're talking about is modifying the views and actions of an extreme hardline regime,” and seizing Kharg Island could well do the trick, McKenzie argued. “Possession of Iranian soil would be a significant factor in future negotiations with Iran.”National security analysts agree that the U.S. military can capture the island, but doing so would create more military and diplomatic problems — and many more American casualties.“An invasion of Kharg would be fraught with danger, no matter what kind of forces are used. An amphibious landing would include a good deal of immediate support in the form of naval fire and aviation. But that also means there would be a flotilla of ships parked well within range of Iranian missiles and drones based on the mainland,” said Dan Grazier of the Stimson Center. “The American ground forces would be under constant threat from the same Iranian assets.”Harrison Mann, a former U.S. Army major and Defense Intelligence Agency official who now works at the progressive group Win Without War, says McKenzie’s reasoning is divorced from reality. “He’s imagining that if the U.S. takes an Iranian island, it becomes a bargaining chip. That idea is predicated on the assumption that taking an island is less costly for the U.S. than for Iran. Putting a bunch of U.S. troops on an island next to Iran becomes a casualty-generating machine.”It took until the last day of Carter’s presidency, with the help of Algerian intermediaries and a deal to unfreeze nearly $8 billion in Iranian assets, to free the 52 remaining hostages. Carter had been, Ghazvinian wrote, seemingly prepared to stake his entire presidency on his ability to get them released. Through it all, he avoided war even as his political career imploded.We might contrast Carter’s attitude with that of Trump and Defense Secretary Pete Hegseth, who never miss an opportunity to remind us of their toughness and willingness to use massive violence to bend Iran to their will. Their delusions are no match for geography.“The parallel with today is that neither Brzezinski nor Carter — nor anyone in the administration — understood the ayatollah's psychology, let alone the blood and martyrdom that suffused Shiite fundamentalist ideology. They kept misreading Khomeini's resolve,” Luce tells RS. “Seizing Kharg Island, as Brzezinski kept urging, and Trump keeps being tempted to do (he has repeatedly raised it in several phone calls with me), would not be the Hail Mary of their dreams. The continuity here is in U.S. misreading of Iran.”Trump has threatened to destroy Iran’s power plants and other civilian infrastructure nine times, only to step back from the precipice while blustering about imminent deals to restore peace and commerce. Any prudent minds left in Trump’s inner circle might take a cue from Carter and tell him to avoid Kharg Island at all costs. ",
+      "link": "https://responsiblestatecraft.org/kharg-island-trump/",
+      "pubDate": "Fri, 17 Jul 2026 04:05:01 +0000",
+      "category": "politics",
+      "source": "Responsible Statecraft",
+      "suggestedSlug": "2026-07-17-they-pressured-carter-to-invade-kharg-island-too-he-didn-t",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Responsible Statecraft",
+          "url": "https://responsiblestatecraft.org/kharg-island-trump/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "U.S. bombs civilian infrastructure in Iran; Israeli attacks in Gaza at highest level since “ceasefire”; Rubio urges crackdown on “far-left terrorists”",
+      "description": "Drop Site Daily: July 17, 2026",
+      "link": "https://www.dropsitenews.com/p/us-iran-civilian-infrastructure-israel-gaza-rubio-crackdown-left",
+      "pubDate": "Fri, 17 Jul 2026 15:48:28 GMT",
+      "category": "politics",
+      "source": "Drop Site News",
+      "suggestedSlug": "2026-07-17-u-s-bombs-civilian-infrastructure-in-iran-israeli-attacks-in",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Drop Site News",
+          "url": "https://www.dropsitenews.com/p/us-iran-civilian-infrastructure-israel-gaza-rubio-crackdown-left",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Recording Shows UAW Federal Monitor Pressured Union President Over Israel",
+      "description": "Tlaib calls for UAW federal monitor Neil Barofsky to resign after recording undercuts his claims about interactions with union President Shawn Fain",
+      "link": "https://www.dropsitenews.com/p/uaw-shawn-fain-neil-barofsky-recording-israel-gaza",
+      "pubDate": "Fri, 17 Jul 2026 13:33:50 GMT",
+      "category": "politics",
+      "source": "Drop Site News",
+      "suggestedSlug": "2026-07-17-recording-shows-uaw-federal-monitor-pressured-union-presiden",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Drop Site News",
+          "url": "https://www.dropsitenews.com/p/uaw-shawn-fain-neil-barofsky-recording-israel-gaza",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Major Blockchain Firm Consensys Accidentally Hired a North Korean Hacker",
+      "description": "An engineer under the alias “Tyler Knapp” managed to be brought on as a software developer at the Ethereum-based firm.",
+      "link": "https://www.dropsitenews.com/p/consensys-metamask-crypto-wallet-hired-north-korean-hacker",
+      "pubDate": "Fri, 17 Jul 2026 13:07:25 GMT",
+      "category": "tech",
+      "source": "Drop Site News",
+      "suggestedSlug": "2026-07-17-major-blockchain-firm-consensys-accidentally-hired-a-north-k",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Drop Site News",
+          "url": "https://www.dropsitenews.com/p/consensys-metamask-crypto-wallet-hired-north-korean-hacker",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Why Oman’s new cybercrime law has little to do with cybercrime",
+      "description": "Every time a new cybercrime law is introduced somewhere in the SWANA region, it is often explained using the same premise. Governments present these laws as necessary to fight hackers, protect national security, and curb online fraud. But upon a closer look at the law itself, and not the government’s statement around it, you notice […]\nThe post Why Oman’s new cybercrime law has little to do with cybercrime appeared first on SMEX.",
+      "link": "https://smex.org/why-omans-new-cybercrime-law-has-little-to-do-with-cybercrime/",
+      "pubDate": "Fri, 17 Jul 2026 10:23:01 +0000",
+      "category": "tech",
+      "source": "SMEX",
+      "suggestedSlug": "2026-07-17-why-oman-s-new-cybercrime-law-has-little-to-do-with-cybercri",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "SMEX",
+          "url": "https://smex.org/why-omans-new-cybercrime-law-has-little-to-do-with-cybercrime/",
+          "country": "LB"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "El Niño early action urged as extreme weather looms",
+      "description": "Forecasters warn rapidly intensifying El Niño could be among strongest yet as regions worldwide brace for impacts.",
+      "link": "https://www.scidev.net/global/scidev-net-investigates/el-nino-early-action-urged-as-extreme-weather-looms/",
+      "pubDate": "Fri, 17 Jul 2026 03:01:23 GMT+0000",
+      "category": "science",
+      "source": "SciDev.Net",
+      "suggestedSlug": "2026-07-17-el-ni-o-early-action-urged-as-extreme-weather-looms",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "SciDev.Net",
+          "url": "https://www.scidev.net/global/scidev-net-investigates/el-nino-early-action-urged-as-extreme-weather-looms/",
+          "country": "GB"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Dairy company Fairlife suspends production in US after cyber incident",
+      "description": "Fairlife’s U.S. operation includes plants in Michigan, New York and Arizona, and the company's retail sales passed $1 billion in 2022.",
+      "link": "https://therecord.media/dairy-company-fairlife-suspends-production-us-cyber-incident",
+      "pubDate": "Fri, 17 Jul 2026 13:40:00 GMT",
+      "category": "tech",
+      "source": "The Record",
+      "suggestedSlug": "2026-07-17-dairy-company-fairlife-suspends-production-in-us-after-cyber",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "The Record",
+          "url": "https://therecord.media/dairy-company-fairlife-suspends-production-us-cyber-incident",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "More than 2,700 excess deaths estimated in England and Wales during May and June",
+      "description": "More than 2,700 people are estimated to have died from heat-related causes during the record-breaking May and June 2026 heat waves in England and Wales, according to a new rapid analysis report led by researchers from the London School of Hygiene & Tropical Medicine (LSHTM), Imperial College London and the Met Office.",
+      "link": "https://phys.org/news/2026-07-excess-deaths-england-wales-june.html",
+      "pubDate": "Sat, 18 Jul 2026 12:20:01 EDT",
+      "category": "science",
+      "source": "Phys.org",
+      "suggestedSlug": "2026-07-18-more-than-2-700-excess-deaths-estimated-in-england-and-wales",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Phys.org",
+          "url": "https://phys.org/news/2026-07-excess-deaths-england-wales-june.html",
+          "country": "GB"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Martin Picard’s Mitochondrial Theory of Mind",
+      "description": "The biologist’s bold “energetic view of life” looks to the body’s strangest organelles as the link between cells, health, and mind and the foundation of our experience of being alive.            The post Martin Picard’s Mitochondrial Theory of Mind first appeared on Quanta Magazine",
+      "link": "https://www.quantamagazine.org/martin-picards-mitochondrial-theory-of-mind-20260717/",
+      "pubDate": "Fri, 17 Jul 2026 14:31:05 +0000",
+      "category": "science",
+      "source": "Quanta Magazine",
+      "suggestedSlug": "2026-07-17-martin-picard-s-mitochondrial-theory-of-mind",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Quanta Magazine",
+          "url": "https://www.quantamagazine.org/martin-picards-mitochondrial-theory-of-mind-20260717/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Debriefed 17 July 2026: UK ‘firewave’ | Fossil-fuelled heat deaths | London’s Natural History Museum spotlights climate",
+      "description": "Welcome to Carbon Brief’s DeBriefed. An essential guide to the week’s key developments relating to climate...\nThe post Debriefed 17 July 2026: UK ‘firewave’ | Fossil-fuelled heat deaths | London’s Natural History Museum spotlights climate appeared first on Carbon Brief.",
+      "link": "https://www.carbonbrief.org/debriefed-17-july-2026-uk-firewave-fossil-fuelled-heat-deaths-londons-natural-history-museum-spotlights-climate/",
+      "pubDate": "Fri, 17 Jul 2026 12:38:43 +0000",
+      "category": "science",
+      "source": "Carbon Brief",
+      "suggestedSlug": "2026-07-17-debriefed-17-july-2026-uk-firewave-fossil-fuelled-heat-death",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Carbon Brief",
+          "url": "https://www.carbonbrief.org/debriefed-17-july-2026-uk-firewave-fossil-fuelled-heat-deaths-londons-natural-history-museum-spotlights-climate/",
+          "country": "GB"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Q&A: Europe’s May and June heatwave deaths – and how they were counted",
+      "description": "Recent weeks have seen a flurry of reports from public health authorities and scientists that...\nThe post Q&A: Europe’s May and June heatwave deaths – and how they were counted appeared first on Carbon Brief.",
+      "link": "https://www.carbonbrief.org/qa-europes-may-and-june-heatwave-deaths-and-how-they-were-counted/",
+      "pubDate": "Fri, 17 Jul 2026 11:17:09 +0000",
+      "category": "science",
+      "source": "Carbon Brief",
+      "suggestedSlug": "2026-07-17-q-a-europe-s-may-and-june-heatwave-deaths-and-how-they-were",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Carbon Brief",
+          "url": "https://www.carbonbrief.org/qa-europes-may-and-june-heatwave-deaths-and-how-they-were-counted/",
+          "country": "GB"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Parapsychology Is Coming in From the Cold",
+      "description": "\nFrom experiments with psychedelics to Nobel Prize winners interested in fitting consciousness into physical theories, research into the inexplicable is gaining ground in the academy.\nThe post Parapsychology Is Coming in From the Cold appeared first on New Lines Magazine.",
+      "link": "https://newlinesmag.com/essays/parapsychology-is-coming-in-from-the-cold/",
+      "pubDate": "Fri, 17 Jul 2026 10:18:10 +0000",
+      "category": "science",
+      "source": "New Lines Magazine",
+      "suggestedSlug": "2026-07-17-parapsychology-is-coming-in-from-the-cold",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "New Lines Magazine",
+          "url": "https://newlinesmag.com/essays/parapsychology-is-coming-in-from-the-cold/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Bunker Talk: Let’s Talk About All The Things We Did And Didn’t Cover This Week",
+      "description": "Is it getting more humid in here?\nThe post Bunker Talk: Let’s Talk About All The Things We Did And Didn’t Cover This Week appeared first on TWZ.",
+      "link": "https://www.twz.com/news-features/bunker-talk-lets-talk-about-all-the-things-we-did-and-didnt-cover-this-week-199",
+      "pubDate": "Fri, 17 Jul 2026 18:18:00 -0400",
+      "category": "politics",
+      "source": "The War Zone",
+      "suggestedSlug": "2026-07-17-bunker-talk-let-s-talk-about-all-the-things-we-did-and-didn",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "The War Zone",
+          "url": "https://www.twz.com/news-features/bunker-talk-lets-talk-about-all-the-things-we-did-and-didnt-cover-this-week-199",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "U.S.-Iran Fight Heats Up With Mutual Strikes On Infrastructure Targets",
+      "description": "More U.S. Air Force tankers and fighters head to the Middle East as the conflict intensifies.\nThe post U.S.-Iran Fight Heats Up With Mutual Strikes On Infrastructure Targets appeared first on TWZ.",
+      "link": "https://www.twz.com/news-features/u-s-iran-fight-heats-up-with-mutual-strikes-on-infrastructure-targets",
+      "pubDate": "Fri, 17 Jul 2026 17:07:57 -0400",
+      "category": "politics",
+      "source": "The War Zone",
+      "suggestedSlug": "2026-07-17-u-s-iran-fight-heats-up-with-mutual-strikes-on-infrastructur",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "The War Zone",
+          "url": "https://www.twz.com/news-features/u-s-iran-fight-heats-up-with-mutual-strikes-on-infrastructure-targets",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "USS Zumwalt Set To Return To Fleet After Long Anticipated Hypersonic Missile Upgrade",
+      "description": "Issues tied to Zumwalt's hugely powerful hybrid-electric power plant and other factors have set back its return to the fleet.\nThe post USS Zumwalt Set To Return To Fleet After Long Anticipated Hypersonic Missile Upgrade appeared first on TWZ.",
+      "link": "https://www.twz.com/sea/uss-zumwalt-set-to-return-to-fleet-after-long-anticipated-hypersonic-missile-upgrade",
+      "pubDate": "Fri, 17 Jul 2026 15:51:15 -0400",
+      "category": "politics",
+      "source": "The War Zone",
+      "suggestedSlug": "2026-07-17-uss-zumwalt-set-to-return-to-fleet-after-long-anticipated-hy",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "The War Zone",
+          "url": "https://www.twz.com/sea/uss-zumwalt-set-to-return-to-fleet-after-long-anticipated-hypersonic-missile-upgrade",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Arianespace CEO Urges the EU to Procure Large Blocks of Ariane 6 Flights",
+      "description": "Arianespace CEO David Cavaillolès has called on either the European Commission or the German government to place block orders for 10 to 20 Ariane 6 launches, arguing that such a commitment would transform how the company approaches its supply chain. Speaking to German defence publication Hartpunkt, Cavaillolès made the comments amid a broader discussion of […]\nThe post Arianespace CEO Urges the EU to Procure Large Blocks of Ariane 6 Flights appeared first on European Spaceflight.",
+      "link": "https://europeanspaceflight.com/arianespace-ceo-urges-the-eu-to-procure-large-blocks-of-ariane-6-flights/",
+      "pubDate": "Fri, 17 Jul 2026 14:29:37 +0000",
+      "category": "science",
+      "source": "European Spaceflight",
+      "suggestedSlug": "2026-07-17-arianespace-ceo-urges-the-eu-to-procure-large-blocks-of-aria",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "European Spaceflight",
+          "url": "https://europeanspaceflight.com/arianespace-ceo-urges-the-eu-to-procure-large-blocks-of-ariane-6-flights/",
+          "country": "FR"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Deep Dive: The Weapons Used on Anti-ICE Protesters",
+      "description": "A new report details the devastating impact of chemical irritants and other 'crowd-control weapons' during anti-ICE rallies.\nThe post Deep Dive: The Weapons Used on Anti-ICE Protesters appeared first on Inkstick.",
+      "link": "https://inkstickmedia.com/deep-dive-the-weapons-used-on-anti-ice-protesters/",
+      "pubDate": "Fri, 17 Jul 2026 09:50:00 +0000",
+      "category": "politics",
+      "source": "Inkstick",
+      "suggestedSlug": "2026-07-17-deep-dive-the-weapons-used-on-anti-ice-protesters",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Inkstick",
+          "url": "https://inkstickmedia.com/deep-dive-the-weapons-used-on-anti-ice-protesters/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "The Heated Debate In Europe Over Air Conditioning",
+      "description": "The post The Heated Debate In Europe Over Air Conditioning appeared first on NOEMA.",
+      "link": "https://www.noemamag.com/the-heated-debate-in-europe-over-air-conditioning",
+      "pubDate": "Fri, 17 Jul 2026 16:27:39 +0000",
+      "category": "politics",
+      "source": "Noema",
+      "suggestedSlug": "2026-07-17-the-heated-debate-in-europe-over-air-conditioning",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Noema",
+          "url": "https://www.noemamag.com/the-heated-debate-in-europe-over-air-conditioning",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Can AI beat a goldfish at calling the World Cup?",
+      "description": "As chatbots compete to forecast the tournament, an unlikely rival from a Toronto fish tank continues to outperform them.",
+      "link": "https://restofworld.org/2026/world-cup-ai-prediction/?utm_source=rss&utm_medium=rss&utm_campaign=feeds",
+      "pubDate": "Fri, 17 Jul 2026 13:00:00 +0000",
+      "category": "tech",
+      "source": "Rest of World",
+      "suggestedSlug": "2026-07-17-can-ai-beat-a-goldfish-at-calling-the-world-cup",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Rest of World",
+          "url": "https://restofworld.org/2026/world-cup-ai-prediction/?utm_source=rss&utm_medium=rss&utm_campaign=feeds",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "China, the US, and Nuclear Energy Geopolitics in Southeast Asia",
+      "description": "Nuclear reactor exports are becoming an increasingly important arena of strategic competition.",
+      "link": "https://thediplomat.com/2026/07/china-the-us-and-nuclear-energy-geopolitics-in-southeast-asia/",
+      "pubDate": "Sat, 18 Jul 2026 01:09:00 +0900",
+      "category": "politics",
+      "source": "The Diplomat",
+      "suggestedSlug": "2026-07-17-china-the-us-and-nuclear-energy-geopolitics-in-southeast-asi",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "The Diplomat",
+          "url": "https://thediplomat.com/2026/07/china-the-us-and-nuclear-energy-geopolitics-in-southeast-asia/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "A Conversation With Mahabat Sadyrbek About the Kyrgyz Language",
+      "description": "“When a language becomes accessible, it becomes visible. And when it becomes visible, it becomes part of international scholarship and global dialogue.\"",
+      "link": "https://thediplomat.com/2026/07/a-conversation-with-mahabat-sadyrbek-about-the-kyrgyz-language/",
+      "pubDate": "Fri, 17 Jul 2026 23:30:00 +0900",
+      "category": "politics",
+      "source": "The Diplomat",
+      "suggestedSlug": "2026-07-17-a-conversation-with-mahabat-sadyrbek-about-the-kyrgyz-langua",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "The Diplomat",
+          "url": "https://thediplomat.com/2026/07/a-conversation-with-mahabat-sadyrbek-about-the-kyrgyz-language/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "The EU’s Contradictory Narratives on China",
+      "description": "Both sides are trying to sustain trade talks and practical cooperation, but the EU’s new security definition of China may complicate this progress.",
+      "link": "https://thediplomat.com/2026/07/the-eus-contradictory-narratives-on-china/",
+      "pubDate": "Fri, 17 Jul 2026 23:55:00 +0900",
+      "category": "economy",
+      "source": "The Diplomat",
+      "suggestedSlug": "2026-07-17-the-eu-s-contradictory-narratives-on-china",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "The Diplomat",
+          "url": "https://thediplomat.com/2026/07/the-eus-contradictory-narratives-on-china/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Cricket’s greatest all-rounder, Barbados’ Sir Garfield Sobers, dies at 89",
+      "description": "“Sobers became an example of the West Indian’s claim to [...] full participation, on merit, in a world that had long assumed such mastery was the preserve of the coloniser.”",
+      "link": "https://globalvoices.org/2026/07/18/crickets-greatest-all-rounder-barbados-sir-garfield-sobers-dies-at-89/",
+      "pubDate": "Sat, 18 Jul 2026 15:00:41 +0000",
+      "category": "politics",
+      "source": "Global Voices",
+      "suggestedSlug": "2026-07-18-cricket-s-greatest-all-rounder-barbados-sir-garfield-sobers",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Global Voices",
+          "url": "https://globalvoices.org/2026/07/18/crickets-greatest-all-rounder-barbados-sir-garfield-sobers-dies-at-89/",
+          "country": "NL"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Venezuela earthquakes reveal a child protection system unprepared for disaster",
+      "description": "After Venezuela’s earthquakes, families searched for missing children within a strained protection system that struggled to respond amid collapsed buildings, scarce resources, and institutional gaps.",
+      "link": "https://globalvoices.org/2026/07/17/venezuela-earthquakes-reveal-a-child-protection-system-unprepared-for-disaster/",
+      "pubDate": "Fri, 17 Jul 2026 17:00:13 +0000",
+      "category": "politics",
+      "source": "Global Voices",
+      "suggestedSlug": "2026-07-17-venezuela-earthquakes-reveal-a-child-protection-system-unpre",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Global Voices",
+          "url": "https://globalvoices.org/2026/07/17/venezuela-earthquakes-reveal-a-child-protection-system-unprepared-for-disaster/",
+          "country": "NL"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Nowhere to belong: After the USSR collapsed, I became stateless in Estonia",
+      "description": "Stateless people are not political abstractions. They are not legal anomalies. They are not clerical problems waiting for administrative correction. They are people.",
+      "link": "https://globalvoices.org/2026/07/17/nowhere-to-belong-after-the-ussr-collapsed-i-became-stateless-in-estonia/",
+      "pubDate": "Fri, 17 Jul 2026 06:02:10 +0000",
+      "category": "politics",
+      "source": "Global Voices",
+      "suggestedSlug": "2026-07-17-nowhere-to-belong-after-the-ussr-collapsed-i-became-stateles",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Global Voices",
+          "url": "https://globalvoices.org/2026/07/17/nowhere-to-belong-after-the-ussr-collapsed-i-became-stateless-in-estonia/",
+          "country": "NL"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Kaiser nurses say AI, surveillance are making their jobs and patient care worse",
+      "description": "533 points, 358 comments on Hacker News",
+      "link": "https://localnewsmatters.org/2026/07/15/kaiser-nurses-say-ai-workplace-surveillance-are-making-their-jobs-and-patient-care-worse/",
+      "pubDate": "2026-07-17T22:26:30.000Z",
+      "category": "tech",
+      "source": "Hacker News",
+      "suggestedSlug": "2026-07-17-kaiser-nurses-say-ai-surveillance-are-making-their-jobs-and",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Hacker News",
+          "url": "https://localnewsmatters.org/2026/07/15/kaiser-nurses-say-ai-workplace-surveillance-are-making-their-jobs-and-patient-care-worse/",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "Apple targets dozens of OpenAI employees with legal letters",
+      "description": "398 points, 357 comments on Hacker News",
+      "link": "https://www.ft.com/content/1b8c9d52-88a9-426b-ba47-f1811f859166",
+      "pubDate": "2026-07-17T12:02:39.000Z",
+      "category": "tech",
+      "source": "Hacker News",
+      "suggestedSlug": "2026-07-17-apple-targets-dozens-of-openai-employees-with-legal-letters",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Hacker News",
+          "url": "https://www.ft.com/content/1b8c9d52-88a9-426b-ba47-f1811f859166",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    },
+    {
+      "title": "LG monitors silently install software through Windows Update without consent",
+      "description": "686 points, 343 comments on Hacker News",
+      "link": "https://videocardz.com/newz/lg-monitors-silently-install-software-through-windows-update-without-user-consent",
+      "pubDate": "2026-07-18T10:21:19.000Z",
+      "category": "tech",
+      "source": "Hacker News",
+      "suggestedSlug": "2026-07-18-lg-monitors-silently-install-software-through-windows-update",
+      "eventUri": null,
+      "eventCoverage": null,
+      "sources": [
+        {
+          "name": "Hacker News",
+          "url": "https://videocardz.com/newz/lg-monitors-silently-install-software-through-windows-update-without-user-consent",
+          "country": "US"
+        }
+      ],
+      "concepts": [],
+      "location": null,
+      "sentiment": null,
+      "origin": "rss"
+    }
+  ]
+}

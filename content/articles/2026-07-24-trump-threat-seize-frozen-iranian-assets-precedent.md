@@ -1,0 +1,25 @@
+---
+title: "Trump Threatens Iranian Assets"
+date: "2026-07-24T08:53:58Z"
+category: "economy"
+location: "Washington"
+lat: 38.90
+lng: -77.04
+sources:
+  - name: "RT"
+    url: "https://www.rt.com/news/643410-trump-threatens-seize-iranian-assets/"
+    country: "RU"
+    sentiment: -0.39
+    image: "https://mf.b37mrtl.ru/files/2026.07/article/6a631ca185f540400650a634.jpg"
+concepts:
+  - "Iran"
+  - "Donald Trump"
+  - "Strait of Hormuz"
+eventCoverage: 77
+---
+
+Washington — Trump vowed to seize [Iran](country:IR)'s frozen billions.
+
+The US holds roughly $2 billion in frozen Iranian funds, with billions more frozen in Iraq, Qatar, Japan and Luxembourg.
+
+Iran's Araghchi called it an "incendiary precedent"; Trump named no legal authority for the seizure.

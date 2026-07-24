@@ -742,5 +742,194 @@
         "politics": 136
       }
     }
+  },
+  {
+    "week": "2026-07-05",
+    "windowDays": 7,
+    "articleCount": 385,
+    "metrics": {
+      "charLengthAvg": 323,
+      "charOver350Pct": 14.8,
+      "charOver400Pct": 0,
+      "wordCountAvg": 47,
+      "wordInRangePct": 94.5,
+      "titleEchoRatePct": 28.6,
+      "passiveHookRatePct": 0,
+      "causalClaimHits": 0,
+      "pressEraHits": 1,
+      "hedgeRatePct": 0.8,
+      "acronymViolations": 383,
+      "topAcronymViolators": [
+        [
+          "CN",
+          27
+        ],
+        [
+          "IN",
+          27
+        ],
+        [
+          "RU",
+          19
+        ],
+        [
+          "PK",
+          18
+        ],
+        [
+          "IR",
+          17
+        ]
+      ],
+      "countryNullCount": 0,
+      "topOutletSharePct": 14.3,
+      "top3Outlets": [
+        {
+          "name": "Dawn",
+          "count": 27
+        },
+        {
+          "name": "Nature",
+          "count": 26
+        },
+        {
+          "name": "Al Jazeera Online",
+          "count": 24
+        }
+      ],
+      "multiSourceRatePct": 19,
+      "categoryBalance": {
+        "science": 77,
+        "politics": 130,
+        "economy": 90,
+        "tech": 88
+      }
+    }
+  },
+  {
+    "week": "2026-07-12",
+    "windowDays": 7,
+    "articleCount": 379,
+    "metrics": {
+      "charLengthAvg": 306,
+      "charOver350Pct": 7.4,
+      "charOver400Pct": 0,
+      "wordCountAvg": 45,
+      "wordInRangePct": 94.2,
+      "titleEchoRatePct": 21.6,
+      "passiveHookRatePct": 0.8,
+      "causalClaimHits": 0,
+      "pressEraHits": 7,
+      "hedgeRatePct": 1.1,
+      "acronymViolations": 384,
+      "topAcronymViolators": [
+        [
+          "IR",
+          28
+        ],
+        [
+          "CN",
+          27
+        ],
+        [
+          "IN",
+          20
+        ],
+        [
+          "PK",
+          19
+        ],
+        [
+          "RU",
+          13
+        ]
+      ],
+      "countryNullCount": 0,
+      "topOutletSharePct": 14.4,
+      "top3Outlets": [
+        {
+          "name": "Dawn",
+          "count": 31
+        },
+        {
+          "name": "Nature",
+          "count": 27
+        },
+        {
+          "name": "Ars Technica",
+          "count": 22
+        }
+      ],
+      "multiSourceRatePct": 20.1,
+      "categoryBalance": {
+        "science": 75,
+        "tech": 86,
+        "politics": 126,
+        "economy": 92
+      }
+    }
+  },
+  {
+    "week": "2026-07-19",
+    "windowDays": 7,
+    "articleCount": 399,
+    "metrics": {
+      "charLengthAvg": 314,
+      "charOver350Pct": 13.8,
+      "charOver400Pct": 0,
+      "wordCountAvg": 46,
+      "wordInRangePct": 89.7,
+      "titleEchoRatePct": 20.6,
+      "passiveHookRatePct": 0.3,
+      "causalClaimHits": 0,
+      "pressEraHits": 6,
+      "hedgeRatePct": 0.5,
+      "acronymViolations": 375,
+      "topAcronymViolators": [
+        [
+          "IN",
+          24
+        ],
+        [
+          "IR",
+          23
+        ],
+        [
+          "PK",
+          20
+        ],
+        [
+          "CN",
+          19
+        ],
+        [
+          "RU",
+          15
+        ]
+      ],
+      "countryNullCount": 0,
+      "topOutletSharePct": 13.6,
+      "top3Outlets": [
+        {
+          "name": "Dawn",
+          "count": 32
+        },
+        {
+          "name": "Nature",
+          "count": 25
+        },
+        {
+          "name": "Al Jazeera Online",
+          "count": 23
+        }
+      ],
+      "multiSourceRatePct": 24.3,
+      "categoryBalance": {
+        "science": 76,
+        "tech": 88,
+        "economy": 101,
+        "politics": 134
+      }
+    }
   }
 ]
