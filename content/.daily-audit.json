@@ -1,26 +1,28 @@
 {
-  "date": "2026-07-22",
+  "date": "2026-07-24",
   "metrics": {
-    "articles": { "value": 46, "detail": "5 cycles, avg 10/cycle" },
+    "articles": { "value": 53, "detail": "5 cycles, all completed, avg 10/cycle" },
     "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 14, "economy": 13, "science": 9, "tech": 10 },
-    "multiSource": { "value": 8, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 14, "EU": 11, "AS": 8, "ME": 7, "AF": 5, "OC": 1 } },
-    "sciTech": { "ratio": 41, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn / Nature / Hindustan Times (3-way tie)", "pct": 9, "target": 20, "met": true },
-    "uniqueSources": 45,
+    "categories": { "politics": 20, "economy": 13, "science": 10, "tech": 10 },
+    "multiSource": { "value": 11, "target": 4, "met": true },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "EU": 16, "AM": 14, "AS": 9, "ME": 9, "AF": 5 } },
+    "sciTech": { "ratio": 38, "target": 25, "met": true },
+    "topSourceShare": { "source": "CoinDesk / Dawn (tie, 5 each)", "pct": 9, "target": 20, "met": true },
+    "uniqueSources": 47,
     "duplicates": 0,
-    "avgCycleDuration": 1016
+    "avgCycleDuration": 900
   },
-  "experiment": "Skipped — all metrics within targets, no active experiment, and no pause gate. No parameter lever is currently underperforming enough to justify introducing a new variable.",
-  "weakestArea": "Oceania coverage (OC=1) is the thinnest region, but region diversity as a whole (6 regions vs target 4) is healthy and OC is structurally low-volume in the global hard-news feed. Freshness is reported over only 4 dated articles today, so the median-0 reading is directional rather than a full-corpus measure — worth noting but not a concern given the standalone-cap-22 setting keeps the stale tail trimmed.",
+  "experiment": "Skipped and gated. No experiment was active to evaluate, and a pause gate (noNewExperimentsUntil 2026-07-28) was set in .experiments.json because today's Opus 4.8 → Opus 5 migration (commit af5e869b) rewrote the selector model — the stage that drives category mix, multi-source rate and region spread. Any new parameter would be confounded with the swap.",
+  "weakestArea": "Region spread is the softest metric: 5 regions vs 6 on 2026-07-22, with Oceania dropping to zero and Africa thin at 5 of 53. Still above the target of 4, and OC is structurally low-volume in global hard news, but the AM+EU pair now carries 30 of 53 stories (57%). Freshness again reports over only 4 dated articles, so the median-0 reading is directional rather than a corpus measure.",
   "watching": [
-    "Daily output doubled (46 today vs 23 yesterday) because yesterday only 1 of 5 cycles completed — confirm the 5x timer is running clean again.",
-    "South Asia source concentration (Hindustan Times 4, Times of India 2, Indian Express, ABP, India Today, News18, NDTV, New Indian Express) — many distinct outlets but heavy single-region weighting."
+    "First full day on Opus 5 for the selector — throughput held at 53 articles across 5 clean cycles and avg cycle duration fell to 900s from 1016s, but category mix tilted to politics (20 of 53, 38%) versus 14 on 2026-07-22; watch whether that persists or was news-driven.",
+    "Multi-source count reached 11, the highest in recent audits, and sits well clear of the 4/day target — if it holds through the model baseline it would be the first movement on the sourcing cluster since the selector-floor lever was declared tapped out in May.",
+    "Crypto concentration: CoinDesk is joint top source at 5 stories two days running, all economy/tech — worth confirming it is not crowding out broader economy coverage."
   ],
   "coverageGaps": [
-    "Oceania represented by a single story; no Latin America-specific outlets surfaced beyond AM-tagged wire coverage.",
-    "Science source pool is narrow (Nature, Phys.org, STAT drive most of the science volume) despite the strong 9-article count."
+    "Oceania had no coverage at all today, down from 1 story on 2026-07-22.",
+    "Latin America surfaces only through AM-tagged wire copy; no regional Latin American outlet appeared in the 47-source pool.",
+    "Science volume (10) rests on a narrow pool — Nature, Phys.org, Carbon Brief and New Scientist supply most of it."
   ],
-  "context": "No experiment has been active since the 2026-05-18 editor-effort experiment closed void. Prior sourcing-cluster history (2026-04-21 and 2026-05-09 multi-source floor experiments) established that the selector floor lever is tapped out — the feed supplies ~9 multi-source stories/cycle, capping published multi-source rate near 22%, so future sourcing gains must come from upstream feed changes, not selector floors. Today all four goal areas (freshness, diversity, multi-source, educational value) are met with margin, so holding steady is correct."
+  "context": "All four goal areas — freshness, diversity, multi-source and educational value — are met with margin, so no parameter is underperforming enough to warrant a change even absent the gate. Standing constraint from the May experiments: the selector multi-source floor lever is exhausted (feed supplies ~9 multi-source stories/cycle, capping the published rate near 22%), so future sourcing gains must come from upstream feed composition. TOP_EVENTS_TO_FETCH stays at 8 regardless — each unit is one NewsAPI token per cycle and spend is capped."
 }
