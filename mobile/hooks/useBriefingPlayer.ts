@@ -4,7 +4,6 @@ import { Asset } from 'expo-asset';
 import {
   type AudioPlayer,
   type AudioStatus,
-  preload,
   setAudioModeAsync,
   setIsAudioActiveAsync,
   useAudioPlayer,
@@ -106,7 +105,6 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   const savedDate = useRef<string | null>(null);
   const lockScreenActive = useRef(false);
   const lockScreenDurationKnown = useRef(false);
-  const preloadedUrl = useRef<string | null>(null);
   // Suppress listener-driven setPlaying briefly after user taps toggle
   const userToggleAt = useRef(0);
   const backgroundAt = useRef<number>(0);
@@ -161,19 +159,19 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     return () => sub.remove();
   }, []);
 
-  // Preload audio for the latest briefing date — only when the feed has
-  // surfaced one. Preloading a URL we know doesn't exist would just queue
-  // a 404 round-trip on every launch.
-  useEffect(() => {
-    if (!effectiveDate) return;
-    const url = `${API_BASE}/audio/briefing-${effectiveDate}.mp3`;
-    if (preloadedUrl.current !== url) {
-      try {
-        preload(url, { preferredForwardBufferDuration: 30 });
-      } catch {}
-      preloadedUrl.current = url;
-    }
-  }, [effectiveDate]);
+  // Audio is fetched when the reader presses listen — never before.
+  //
+  // This used to `preload(url, { preferredForwardBufferDuration: 30 })` on
+  // every launch that had a briefing. A briefing mp3 is ~3 MB at 64 kbps, so
+  // a 30-second buffer is ~234 KB — against ~15 KB for the entire day's news.
+  // That put ~94% of a typical launch's data into audio the reader had not
+  // asked for, on a plan they may be paying for by the megabyte, to save a
+  // second of buffering for the minority who tap listen. `toggle()` already
+  // installs the source via `player.replace(...)`, so removing this costs
+  // listeners a brief spin-up and costs everyone else nothing at all.
+  //
+  // Keep it that way: "audio downloads only when you press listen" is a claim
+  // the privacy page now makes in those words.
 
   const teardownPlayer = useCallback(() => {
     if (giveUpTimer.current) {

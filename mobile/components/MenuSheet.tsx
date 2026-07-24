@@ -1,7 +1,7 @@
 import type { Article, Category } from '@shared/types';
 import Constants from 'expo-constants';
 import * as StoreReview from 'expo-store-review';
-import { memo, useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState, useSyncExternalStore } from 'react';
 import {
   AccessibilityInfo,
   Linking,
@@ -20,15 +20,22 @@ import {
   type FontFamily,
   type FontSize,
   type Preferences,
+  RADIUS,
   SPACING,
 } from '../constants/theme';
 import { useSheetBackNavigation } from '../hooks/useSheetBackNavigation';
 import { useSheetNavigation } from '../hooks/useSheetNavigation';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { type PreferencesApi, usePreferences, useTheme } from '../hooks/useTheme';
+import {
+  formatBytes,
+  getSnapshot as getDataUsage,
+  subscribe as subscribeDataUsage,
+} from '../lib/data-usage';
 import { hapticTick } from '../lib/haptics';
 import { resetOnboarding } from '../lib/onboarding-store';
 import { staggerEnter } from '../lib/stagger';
+import { eraseLocalData } from '../lib/wipe';
 import { Icon, Pressable, Text } from './primitives';
 import { SheetAboutPage } from './SheetAboutPage';
 import { SheetBookmarksPage } from './SheetBookmarksPage';
@@ -47,34 +54,44 @@ const APP_VERSION = Constants.expoConfig?.version ?? '';
 // ---------------------------------------------------------------------------
 
 const INFO_PAGES = {
+  // Every sentence here has to survive someone reading the source. The page
+  // previously claimed "No device identifiers, IP addresses, or usage data are
+  // logged server-side" while a Pages middleware logged country + path on every
+  // app open; the middleware is gone, and the wording below is now scoped to
+  // what we actually control rather than to what a CDN does with a TCP
+  // connection. Anything added here must be checkable from the repo.
   privacy: {
     sections: [
       {
         body: 'No accounts. No analytics. No telemetry. No advertising. No crash reporting. No third-party SDKs.',
       },
       {
-        heading: 'data collection',
-        body: 'None. The app makes HTTPS requests to zuhd-news.pages.dev and receives JSON. No device identifiers, IP addresses, or usage data are logged server-side.',
+        heading: 'one server',
+        body: 'The app contacts one address: zuhd-news.pages.dev. Nothing else is reached automatically — no analytics host, no ad network, no font, map, or image CDN. Source links open in your browser only when you tap them.',
       },
       {
-        heading: 'local storage',
-        // Names the guarantee, not the library. The old copy said "using
-        // AsyncStorage", which stopped being true when persistence moved to
-        // expo-sqlite/kv-store — a privacy page should not go stale because an
-        // implementation detail changed underneath it.
-        body: 'Reading history, bookmarks, and preferences are stored on your device and never uploaded.',
+        heading: 'what we know about you',
+        body: 'Nothing. The app sends no identifier of any kind, so there is nothing for a request to be attributed to. We run no analytics and keep no record of what anyone reads. The app asks for the same files every reader gets.',
       },
       {
-        heading: 'network requests',
-        body: 'Content fetches, context briefs, and audio downloads go to Cloudflare Pages. No third-party endpoints are contacted.',
+        heading: 'data used',
+        body: "A day's news is about 15 KB — text and numbers, compressed. There are no images to load. Settings shows exactly what has been fetched since you opened the app. Audio briefings are the one large download, roughly 3 MB each, and they are fetched only when you press listen.",
+      },
+      {
+        heading: 'on this device',
+        body: 'Bookmarks, where the "caught up" line falls, your place in a briefing, how many articles you have read (so the rating prompt asks once, not often), your display preferences, and a cached copy of the latest articles for reading offline. None of it leaves the device. You can erase all of it below.',
+      },
+      {
+        // Written to make opting in feel as safe as it actually is, because it
+        // is safe: tokens.js stores `token:<token>` -> '1' with a 90-day TTL,
+        // and push.js sends the same payload to every key under that prefix.
+        // There is no segmentation to describe because there is none.
+        heading: 'notifications',
+        body: 'If you turn them on, one thing is stored on our server: the anonymous token your phone issues for push delivery. It sits on its own — no account, no email, nothing attached. Everyone who turns notifications on gets the same alert, so there is no way for us to tell readers apart or to single anyone out. The token expires by itself after 90 days, and switching notifications off deletes it.',
       },
       {
         heading: 'audio',
-        body: 'Briefing audio is generated via Google Cloud TTS and hosted on our infrastructure. Google receives the text to synthesize; it does not receive any user data.',
-      },
-      {
-        heading: 'notifications',
-        body: 'Push tokens are stored on our server to deliver alerts. No other identifying information is collected alongside the token.',
+        body: 'Briefing audio is generated with Google Cloud text-to-speech and hosted on our own infrastructure. Google receives the text to read aloud. It receives nothing about you.',
       },
     ],
   },
@@ -334,6 +351,92 @@ function InlineOptionRow<T extends string>({
   );
 }
 
+/** Read-only settings row — a fact, not a control. */
+function ReadoutRow({ label, value, hint }: { label: string; value: string; hint?: string }) {
+  const { colors } = useTheme();
+  return (
+    <View
+      style={[
+        styles.row,
+        { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: colors.rule },
+      ]}
+      accessible
+      accessibilityLabel={`${label}, ${value}`}
+      accessibilityHint={hint}
+    >
+      <View style={styles.rowText}>
+        <Text variant="label" tone="default">
+          {label}
+        </Text>
+        {hint && (
+          <Text variant="caption" style={styles.hint}>
+            {hint}
+          </Text>
+        )}
+      </View>
+      <Text variant="caption">{value}</Text>
+    </View>
+  );
+}
+
+/**
+ * Erase control for the privacy page. Two taps, not a native Alert: the app
+ * has no other modal chrome and a system dialog would be the one piece of
+ * borrowed UI in it. The armed state disarms itself after a few seconds so an
+ * abandoned first tap can't be completed by a stray second one later.
+ */
+function EraseControl({ onDone }: { onDone: (message: string) => void }) {
+  const { colors } = useTheme();
+  const [armed, setArmed] = useState(false);
+  const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    if (!armed) return;
+    const t = setTimeout(() => setArmed(false), 5000);
+    return () => clearTimeout(t);
+  }, [armed]);
+
+  const handlePress = useCallback(() => {
+    if (busy) return;
+    if (!armed) {
+      hapticTick();
+      setArmed(true);
+      return;
+    }
+    setBusy(true);
+    setArmed(false);
+    eraseLocalData()
+      .then(() => onDone('Erased'))
+      .catch(() => onDone('Could not erase'))
+      .finally(() => setBusy(false));
+  }, [armed, busy, onDone]);
+
+  return (
+    <>
+      <Text variant="labelSm" style={styles.eraseHeading}>
+        erase local data
+      </Text>
+      <Text selectable variant="body">
+        Removes your bookmarks, reading position, cached articles, and the count behind the rating
+        prompt. Your display settings and notification choice are left alone — those are
+        preferences, not a record of what you read.
+      </Text>
+      <Pressable
+        onPress={handlePress}
+        haptic="none"
+        style={[styles.erasePill, { borderColor: colors.rule }]}
+        accessibilityRole="button"
+        accessibilityLabel={armed ? 'Confirm erase local data' : 'Erase local data'}
+        accessibilityHint={armed ? undefined : 'Asks for confirmation before erasing'}
+      >
+        <Text variant="captionEmphasis" tone={armed ? 'unfavorable' : 'default'}>
+          {busy ? 'erasing…' : armed ? 'tap again to erase' : 'erase'}
+        </Text>
+      </Pressable>
+    </>
+  );
+}
+
 function ActionLink({
   label,
   hint,
@@ -393,6 +496,7 @@ export const MenuSheet = memo(function MenuSheet({
   const [canRate, setCanRate] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const reduceMotion = useReducedMotion();
+  const dataUsed = useSyncExternalStore(subscribeDataUsage, getDataUsage);
 
   const navPush = useCallback(
     (page: PageKey) => {
@@ -562,7 +666,17 @@ export const MenuSheet = memo(function MenuSheet({
               </Animated.View>
             );
           })}
+          {/* A number the reader can watch, rather than a claim they have to
+              accept. This is the app's central promise made checkable — see
+              lib/data-usage.ts for what it counts and why it counts high. */}
           <Animated.View entering={reduceMotion ? undefined : staggerEnter(SETTINGS.length)}>
+            <ReadoutRow
+              label="data used"
+              value={formatBytes(dataUsed)}
+              hint="Articles fetched since you opened the app"
+            />
+          </Animated.View>
+          <Animated.View entering={reduceMotion ? undefined : staggerEnter(SETTINGS.length + 1)}>
             <NavRow
               label="show tips again"
               hint="Shows the reading hints again"
@@ -601,7 +715,12 @@ export const MenuSheet = memo(function MenuSheet({
     }
 
     if (isInfoKey(current)) {
-      return <SheetInfoPage sections={INFO_PAGES[current].sections} />;
+      return (
+        <SheetInfoPage
+          sections={INFO_PAGES[current].sections}
+          footer={current === 'privacy' ? <EraseControl onDone={(m) => onToast?.(m)} /> : undefined}
+        />
+      );
     }
 
     return null;
@@ -657,5 +776,18 @@ const styles = StyleSheet.create({
   versionFooter: {
     marginTop: SPACING.lg,
     textAlign: 'center',
+  },
+  eraseHeading: {
+    marginBottom: SPACING.xs,
+  },
+  erasePill: {
+    marginTop: SPACING.md,
+    alignSelf: 'flex-start',
+    paddingVertical: SPACING.sm,
+    paddingHorizontal: SPACING.md,
+    borderRadius: RADIUS.floating,
+    // Outlined, not filled: a destructive control should read as deliberate
+    // rather than inviting. Matches the BottomActionBar pill's hairline edge.
+    borderWidth: StyleSheet.hairlineWidth,
   },
 });

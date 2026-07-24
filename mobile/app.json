@@ -20,6 +20,11 @@
       "supportsTablet": false,
       "bundleIdentifier": "zuhd.news",
       "buildNumber": "285",
+      "privacyManifests": {
+        "NSPrivacyTracking": false,
+        "NSPrivacyTrackingDomains": [],
+        "NSPrivacyCollectedDataTypes": []
+      },
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "UIBackgroundModes": [

@@ -44,6 +44,15 @@ async function hydrate() {
   }
 }
 
+/** Drop the in-memory prompt counters. The caller is responsible for the
+ *  persisted keys; without this the RAM copy would immediately write itself
+ *  back over them. Used by the privacy page's erase control. */
+export function resetReviewState(): void {
+  memCount = 0;
+  memPromptedAt = 0;
+  hydrated = true; // nothing left to hydrate; don't re-read the cleared keys
+}
+
 /**
  * Call after a "signature interaction" (e.g. article snap).
  * Increments a counter and prompts for review once the threshold is met,

@@ -1,3 +1,4 @@
+import { recordBytes, utf8ByteLength } from './data-usage';
 import { fetchWithTimeout } from './fetch';
 
 export interface FetchJsonOptions {
@@ -25,7 +26,12 @@ export async function fetchJson<T>(
     cache: opts.cache,
   });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  const raw: unknown = await res.json();
+  // Read as text rather than `res.json()` so the payload can be weighed on the
+  // way past. This is the only place every content download passes through,
+  // which makes it the only honest place to count from — see `data-usage.ts`.
+  const text = await res.text();
+  recordBytes(utf8ByteLength(text));
+  const raw: unknown = JSON.parse(text);
   if (!validator(raw)) throw new Error(`Malformed response from ${url}`);
   return raw;
 }

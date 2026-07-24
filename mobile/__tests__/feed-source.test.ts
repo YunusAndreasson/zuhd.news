@@ -45,10 +45,20 @@ const feed = (generated: string): FeedResponse => ({
 });
 
 function ok(data: unknown) {
-  return { ok: true, status: 200, json: () => Promise.resolve(data) } as Response;
+  return {
+    ok: true,
+    status: 200,
+    json: () => Promise.resolve(data),
+    text: () => Promise.resolve(JSON.stringify(data)),
+  } as Response;
 }
 function notFound() {
-  return { ok: false, status: 404, json: () => Promise.resolve(null) } as Response;
+  return {
+    ok: false,
+    status: 404,
+    json: () => Promise.resolve(null),
+    text: () => Promise.resolve('null'),
+  } as Response;
 }
 
 beforeEach(() => {

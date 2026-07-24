@@ -17,10 +17,14 @@ export interface InfoSection {
 
 interface SheetInfoPageProps {
   sections: InfoSection[];
+  /** Interactive tail for a prose page — e.g. the privacy page's erase
+   *  control. Sections stay pure data (they live in a static registry), so
+   *  anything needing a handler is passed in by the owner instead. */
+  footer?: React.ReactNode;
 }
 
 /** Prose-heavy sheet page: optional heading, body, optional link per section. */
-export function SheetInfoPage({ sections }: SheetInfoPageProps) {
+export function SheetInfoPage({ sections, footer }: SheetInfoPageProps) {
   const openLink = useOpenLink();
   return (
     <>
@@ -57,6 +61,11 @@ export function SheetInfoPage({ sections }: SheetInfoPageProps) {
           ))}
         </Animated.View>
       ))}
+      {footer && (
+        <Animated.View entering={staggerEnter(sections.length)} style={styles.section}>
+          {footer}
+        </Animated.View>
+      )}
     </>
   );
 }

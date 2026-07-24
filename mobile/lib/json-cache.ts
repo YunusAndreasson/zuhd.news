@@ -4,6 +4,9 @@ export interface JsonCache<T> {
   read: () => Promise<T | null>;
   /** Resolves after the serialized value has been written (or the write fails quietly). */
   write: (data: T) => Promise<void>;
+  /** Delete the backing file. Used by the privacy page's erase control, which
+   *  promises that nothing the app downloaded is left on the device. */
+  clear: () => Promise<void>;
 }
 
 /**
@@ -30,6 +33,12 @@ export function createJsonCache<T>(
     write: (data) => {
       try {
         file.write(JSON.stringify(data));
+      } catch {}
+      return Promise.resolve();
+    },
+    clear: () => {
+      try {
+        if (file.exists) file.delete();
       } catch {}
       return Promise.resolve();
     },

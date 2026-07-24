@@ -84,6 +84,15 @@ export function toggle(article: Article, category: Category): boolean {
   return true; // added
 }
 
+/** Erase every saved bookmark. Persists immediately rather than on the debounce
+ *  — this is called from the privacy page's erase control, and a promise to
+ *  delete should not be sitting in a timer if the app is killed a moment later. */
+export function clearBookmarks(): void {
+  bookmarks = [];
+  emit();
+  persistNow();
+}
+
 // ---------------------------------------------------------------------------
 // useSyncExternalStore interface
 // ---------------------------------------------------------------------------
