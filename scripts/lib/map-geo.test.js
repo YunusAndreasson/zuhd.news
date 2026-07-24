@@ -20,7 +20,7 @@ import { build } from 'esbuild'
 import { readFileSync, existsSync, mkdtempSync, writeFileSync, rmSync } from 'node:fs'
 import { join } from 'node:path'
 import { tmpdir } from 'node:os'
-import { unwrap, closePolar, thin } from '../build/basemap.js'
+import { unwrap, closePolar, thin, simplifyRing } from '../build/basemap.js'
 
 const ROOT = new URL('../..', import.meta.url).pathname
 
@@ -198,6 +198,66 @@ test('closePolar leaves a normal country alone', () => {
     [10, 50],
   ]
   assert.deepEqual(closePolar(ring), ring)
+})
+
+test('simplifyRing keeps the shape of a closed ring', () => {
+  // The bug this pins: a closed ring's first and last vertex are identical, so
+  // the baseline Douglas-Peucker measures against has zero length and every
+  // point sits exactly on it. Run naively the whole coastline collapses to two
+  // points — no exception, just a country that renders as nothing.
+  const ring = []
+  const N = 64
+  for (let i = 0; i < N; i++) {
+    const a = (i / N) * Math.PI * 2
+    ring.push([10 + 5 * Math.cos(a), 50 + 5 * Math.sin(a)])
+  }
+  ring.push(ring[0])
+
+  const out = simplifyRing(ring, 0.003)
+  assert.ok(out.length > 8, `ring collapsed to ${out.length} points`)
+  assert.ok(out.length <= ring.length, 'must not add vertices')
+  assert.deepEqual(out[0], out[out.length - 1], 'must stay closed')
+
+  // Every surviving vertex must be one of the originals, and the extent must
+  // survive — simplification removes detail, it does not move the shape.
+  const xs = out.map(([x]) => x)
+  const ys = out.map(([, y]) => y)
+  assert.ok(Math.max(...xs) > 14.5 && Math.min(...xs) < 5.5, 'x extent lost')
+  assert.ok(Math.max(...ys) > 54.5 && Math.min(...ys) < 45.5, 'y extent lost')
+
+  // A coarse tolerance removes more than a fine one, and zero removes nothing.
+  assert.equal(simplifyRing(ring, 0).length, ring.length)
+  assert.ok(simplifyRing(ring, 0.5).length < out.length, 'coarser must cut more')
+})
+
+test('simplifyRing thins an open chain and leaves tiny rings alone', () => {
+  // An open chain that is almost a straight line: the interior points all sit
+  // well within tolerance, so only the endpoints need to survive.
+  const chain = [
+    [0, 0],
+    [1, 0.0001],
+    [2, -0.0001],
+    [3, 0.0002],
+    [4, 0],
+    [5, 0.0001],
+  ]
+  assert.equal(simplifyRing(chain, 0.003).length, 2, 'a straight chain reduces to its ends')
+
+  // A real corner must survive the same tolerance.
+  const corner = [
+    [0, 0],
+    [1, 0],
+    [2, 0],
+    [2, 1],
+    [2, 2],
+    [2, 3],
+  ]
+  assert.equal(simplifyRing(corner, 0.003).length, 3, 'the corner vertex must stay')
+
+  // Below five vertices there is no detail that can be removed without
+  // destroying the shape, so the ring is returned untouched.
+  const tiny = [[0, 0], [1, 1], [0, 1], [0, 0]]
+  assert.deepEqual(simplifyRing(tiny, 0.003), tiny)
 })
 
 test('thin rounds coordinates without changing the geometry type', () => {

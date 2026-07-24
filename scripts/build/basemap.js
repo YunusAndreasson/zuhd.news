@@ -66,10 +66,82 @@ export const closePolar = (ring) => {
   return [...open, [tail[0], -90], [first[0], -90], first]
 }
 
-/** Rounds coordinates to ~11m and drops the redundant precision NE ships. */
-export const thin = (geometry, dp = 4) => {
+/**
+ * Douglas–Peucker on an open chain. Tolerance is in degrees.
+ */
+const simplifyChain = (pts, tol) => {
+  if (pts.length < 3) return pts
+  const keep = new Uint8Array(pts.length)
+  keep[0] = keep[pts.length - 1] = 1
+  const stack = [[0, pts.length - 1]]
+  while (stack.length) {
+    const [s, e] = stack.pop()
+    if (e - s < 2) continue
+    const [x1, y1] = pts[s]
+    const [x2, y2] = pts[e]
+    const dx = x2 - x1
+    const dy = y2 - y1
+    const den = Math.hypot(dx, dy)
+    let far = -1
+    let best = tol
+    for (let i = s + 1; i < e; i++) {
+      const [x, y] = pts[i]
+      const d =
+        den === 0
+          ? Math.hypot(x - x1, y - y1)
+          : Math.abs(dy * x - dx * y + x2 * y1 - y2 * x1) / den
+      if (d > best) {
+        best = d
+        far = i
+      }
+    }
+    if (far > 0) {
+      keep[far] = 1
+      stack.push([s, far], [far, e])
+    }
+  }
+  return pts.filter((_, i) => keep[i])
+}
+
+/**
+ * Simplifies a ring, closed or open.
+ *
+ * A closed ring starts and ends on the same vertex, so the line Douglas–Peucker
+ * measures against has zero length and *every* point sits exactly on it — run
+ * naively, the whole coastline collapses to two points and no error is raised.
+ * Splitting at the vertex farthest from the start gives two open chains with
+ * real baselines, which is what the algorithm expects.
+ */
+export const simplifyRing = (ring, tol) => {
+  if (!tol || ring.length < 5) return ring
+  const last = ring.length - 1
+  const closed = ring[0][0] === ring[last][0] && ring[0][1] === ring[last][1]
+  if (!closed) return simplifyChain(ring, tol)
+
+  const open = ring.slice(0, -1)
+  let far = 0
+  let best = -1
+  for (let i = 1; i < open.length; i++) {
+    const d = Math.hypot(open[i][0] - open[0][0], open[i][1] - open[0][1])
+    if (d > best) {
+      best = d
+      far = i
+    }
+  }
+  const head = simplifyChain(open.slice(0, far + 1), tol)
+  const tail = simplifyChain(open.slice(far), tol)
+  const out = [...head, ...tail.slice(1)]
+  out.push(out[0])
+  // A ring that simplified below a triangle has no area left to draw.
+  return out.length >= 4 ? out : ring
+}
+
+/** Rounds coordinates to ~11m, drops NE's redundant precision, and optionally
+ *  thins vertices that carry no shape at the zooms the tier is used at. */
+export const thin = (geometry, dp = 4, tol = 0) => {
   const r = (n) => Math.round(n * 10 ** dp) / 10 ** dp
-  const ring = (pts) => closePolar(unwrap(pts)).map(([x, y]) => [r(x), r(y)])
+  const ring = (pts) =>
+    simplifyRing(closePolar(unwrap(pts)), tol).map(([x, y]) => [r(x), r(y)])
   const walk = (c, depth) => (depth === 0 ? ring(c) : c.map((x) => walk(x, depth - 1)))
   const depth = { Polygon: 1, MultiPolygon: 2, LineString: 0, MultiLineString: 1 }[geometry.type]
   return {
@@ -135,7 +207,7 @@ export async function buildMapSources(root) {
   // Two detail tiers. 110m is the first-paint basemap at 72 KB gzipped; 50m is
   // seven times heavier and only fetched once the reader zooms past the point
   // where the coarse coastline starts to show.
-  const tier = (file, dp) => {
+  const tier = (file, dp, tol = 0) => {
     const topo = JSON.parse(readFileSync(join(root, 'shared', 'data', file), 'utf8'))
     const fc = feature(topo, topo.objects.countries)
     return {
@@ -149,7 +221,7 @@ export async function buildMapSources(root) {
           // to be a number or a string that parses as one — so the hover state
           // rides on the feature index rather than the code.
           properties: iso2 ? { name, iso2 } : { name },
-          geometry: thin(f.geometry, dp),
+            geometry: thin(f.geometry, dp, tol),
         }
       }),
     }
@@ -165,7 +237,11 @@ export async function buildMapSources(root) {
     // once the camera is past continental scale. Coordinates keep 3 decimals
     // (~110 m), which is sub-pixel even at the map's maximum zoom; trimming to
     // 2 halves the payload but starts to read as jagged up close.
-    countriesUltra: tier('countries-10m.json', 3),
+    // 0.003° ≈ 330 m, which is sub-pixel below zoom 9 and about one pixel at
+    // it — invisible where the tier is used, and a 28% smaller download. The
+    // coarser tiers are left alone: they have little redundancy to remove and
+    // everything taken out of them shows immediately.
+    countriesUltra: tier('countries-10m.json', 3, 0.003),
     countryLabels: await countryLabelPoints(countries),
     places: JSON.parse(readFileSync(join(root, 'shared', 'data', 'places-50m.geojson'), 'utf8')),
   }
