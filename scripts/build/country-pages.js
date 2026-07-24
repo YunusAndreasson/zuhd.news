@@ -62,7 +62,7 @@ const resolveArticleCountry = (feat, countries, lat, lng) => {
   return null
 }
 
-export const buildCountryPages = async ({ sorted, distDir, templatesDir, headCommon }) => {
+export const buildCountryPages = async ({ sorted, distDir, templatesDir, headCommon, islandV = "" }) => {
   const [
     { COUNTRY_DATA },
     { COUNTRY_AUGMENTED },
@@ -92,7 +92,7 @@ export const buildCountryPages = async ({ sorted, distDir, templatesDir, headCom
     ;(articlesByCountry[name] ??= []).push(a)
   }
 
-  const template = readFileSync(join(templatesDir, 'country.html'), 'utf-8').replace('{{headCommon}}', headCommon)
+  const template = readFileSync(join(templatesDir, "country.html"), "utf-8").replace("{{headCommon}}", headCommon).replaceAll("{{v}}", islandV)
 
   mkdirSync(join(distDir, 'country'), { recursive: true })
 

@@ -10,3 +10,40 @@ content/audio/voice-tests/
 *.bad
 .claude/
 .tmp-*
+# Transient: the per-cycle social pick, regenerated (and rm'd) each cycle.
+content/.breaking-pick.json
+
+# visual-regression scratch (scripts/shoot.mjs)
+.shots-*/
+.refs/
+.diag.mjs
+.probe.mjs
+
+# Credential backups. `.env` was already ignored but its timestamped copies were
+# not, and they hold live X, Instagram and push tokens.
+.env.bak*
+.env.*.bak*
+
+# Second lockfile. The project installs with npm; a stray pnpm-lock.yaml only
+# creates two sources of truth for the same dependency tree.
+pnpm-lock.yaml
+
+# One-off length/character counting scratch. These accumulate at the repo root
+# and in scripts/ every time an article-length question comes up.
+check_*.py
+check_*.sh
+checklen*.py
+checklen*.sh
+count_chars.*
+verify_articles.py
+_tmp_*.py
+_wc_*.py
+scripts/_check*.py
+scripts/_char_check.py
+scripts/_checklen.py
+scripts/_wordcount_check.py
+scripts/tmp-*.py
+scripts/tmp-*.js
+scripts/tmp_*.py
+scripts/tmp_*.sh
+tmp_check*.py

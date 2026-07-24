@@ -5,12 +5,12 @@
   {{headCommon}}
   <link rel="alternate" type="application/atom+xml" title="zuhd.news" href="/feed.xml">
   <title>zuhd.news — Global news, no noise</title>
-  <meta name="description" content="Global news, no noise. Concise world news from 40 sources, curated by AI.">
+  <meta name="description" content="Global news, no noise. A live map of the last 14 days of world news, from 40 sources, curated by AI.">
   <link rel="canonical" href="https://zuhd.news/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="zuhd.news">
   <meta property="og:title" content="zuhd.news">
-  <meta property="og:description" content="Global news, no noise. Concise world news from 40 sources, curated by AI.">
+  <meta property="og:description" content="Global news, no noise. A live map of the last 14 days of world news, from 40 sources, curated by AI.">
   <meta property="og:url" content="https://zuhd.news/">
   <meta property="og:image" content="https://zuhd.news/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -18,9 +18,27 @@
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://zuhd.news/og-image.png">
+  <!--
+    The map's critical chain, declared so it starts downloading at parse time
+    instead of after island-loader.js has run and resolved a dynamic import.
+
+    countries.geojson is deliberately *not* preloaded: MapLibre loads GeoJSON
+    sources on its worker, and the preload cache belongs to the document, so the
+    hint was never claimable — the browser logged "preloaded but not used" and
+    the file was fetched twice. Warming the worker's copy is the HTTP cache's
+    job, which is what the /basemap/* rule in _headers is for.
+
+    The three modulepreloads matter for the same reason in reverse: the worker
+    imports maplibre-gl-shared.mjs as a sibling, so pulling it into the cache
+    here is what stops the engine's shared chunk arriving twice.
+  -->
+  <link rel="preload" href="/api/map.json" as="fetch" type="application/json" crossorigin>
+  <link rel="modulepreload" href="/islands/situation-map.js?v={{v}}">
+  <link rel="modulepreload" href="/islands/maplibre-gl.mjs">
+  <link rel="modulepreload" href="/islands/maplibre-gl-shared.mjs">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://zuhd.news/#org","name":"zuhd.news","url":"https://zuhd.news/","logo":{"@type":"ImageObject","url":"https://zuhd.news/apple-touch-icon.png"},"creator":{"@id":"https://andreassonphoto.com/#person"}},{"@type":"WebSite","@id":"https://zuhd.news/#site","name":"zuhd.news","url":"https://zuhd.news/","description":"Global news, no noise. Concise world news from 40 sources, curated by AI.","inLanguage":"en","publisher":{"@id":"https://zuhd.news/#org"}},{"@type":"Person","@id":"https://andreassonphoto.com/#person","name":"Yunus Andreasson","alternateName":["Jonas Yūnus Andrèasson"],"url":"https://andreassonphoto.com","sameAs":["https://github.com/YunusAndreasson","https://x.com/YunusAndreasson","https://www.instagram.com/andreasson.photo/","https://www.linkedin.com/in/yunusandreasson/"]},{"@type":"MobileApplication","@id":"https://zuhd.news/#app","name":"zuhd.news","operatingSystem":"iOS, Android","applicationCategory":"NewsApplication","url":"https://zuhd.news/","author":{"@id":"https://andreassonphoto.com/#person"},"publisher":{"@id":"https://zuhd.news/#org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"installUrl":"https://apps.apple.com/us/app/zuhd-news/id6760964753","downloadUrl":"https://play.google.com/store/apps/details?id=news.zuhd.app","sameAs":["https://apps.apple.com/us/app/zuhd-news/id6760964753","https://play.google.com/store/apps/details?id=news.zuhd.app"]}]}</script>
 </head>
-<body>
+<body class="map-page">
   <aside class="app-banner" hidden data-app-banner>
     <span class="app-banner-text">Also on <a href="https://apps.apple.com/us/app/zuhd-news/id6760964753" rel="noopener">iPhone</a> and <a href="https://play.google.com/store/apps/details?id=news.zuhd.app" rel="noopener">Android</a>.</span>
     <button class="app-banner-close" type="button" aria-label="Dismiss">&times;</button>
@@ -31,23 +49,19 @@
     {{audioBriefing}}
   </header>
 
-  <main class="split-pane">
-    <h1 class="sr-only">zuhd.news — Global news, no noise</h1>
-    <nav class="category-strip" role="tablist" aria-label="News categories"></nav>
-    <section class="headline-list" role="tabpanel" aria-label="Headlines"></section>
-    <article class="article-view" aria-live="polite" hidden>
-      <div class="article-view-inner"></div>
-    </article>
+  <main class="map-main">
+    <h1 class="sr-only">zuhd.news — a live map of the last 14 days of world news</h1>
+    <div class="map-shell" data-island-auto="situation-map"></div>
   </main>
 
   <noscript>
-    {{fallbackArticleList}}
+    <div class="noscript-list">
+      {{fallbackArticleList}}
+    </div>
   </noscript>
   <div aria-live="polite" aria-atomic="true" class="sr-only" id="announcer"></div>
 
   <footer>
-    <span class="update-status"></span>
-    <span class="vim-hint">vim: j↓ k↑ h← l→  u context</span>
     <nav class="footer-links">
       <a href="/about">about</a> <a href="/contact">contact</a> <a href="/mcp">mcp</a> <a href="/privacy">privacy</a>
     </nav>
@@ -59,20 +73,9 @@
         <a href="https://www.instagram.com/andreasson.photo/" target="_blank" rel="me noopener noreferrer">instagram</a>
         <a href="https://www.linkedin.com/in/yunusandreasson/" target="_blank" rel="me noopener noreferrer">linkedin</a>
       </span>
-      <span class="footer-maker-links footer-other-apps">
-        <a href="https://islam.se" target="_blank" rel="noopener noreferrer">islam.se</a>
-        <a href="https://openarabic.io" target="_blank" rel="noopener noreferrer">open-arabic</a>
-        <a href="https://al-ibadah.com" target="_blank" rel="noopener noreferrer">al-ibadah</a>
-        <a href="https://qamar360.com" target="_blank" rel="noopener noreferrer">qamar360</a>
-      </span>
     </nav>
   </footer>
 
-  <div data-island-auto="ambient-globe" aria-hidden="true"></div>
-  <div data-island-auto="spacefield" aria-hidden="true"></div>
-
-  <script type="application/json" id="article-data">{{articleDataJson}}</script>
-  <script type="module">{{inlineJS}}</script>
-  <script type="module" src="/island-loader.js" defer></script>
+  <script type="module" src="/island-loader.js?v={{v}}" defer></script>
 </body>
 </html>

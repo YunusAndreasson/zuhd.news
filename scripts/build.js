@@ -7,6 +7,7 @@ import { splitBlocks } from './lib/blocks.js'
 import { buildOgPng } from './lib/og-image.js'
 import { buildIgJpeg, IG_FEED, IG_STORY } from './lib/ig-image.js'
 import { buildIslands } from './build/islands.js'
+import { buildMapSources } from './build/basemap.js'
 import { buildCountryPages } from './build/country-pages.js'
 import { buildEntityPages } from './build/entity-pages.js'
 import { loadShared } from './build/shared-ts.js'
@@ -157,65 +158,23 @@ const groupByWindow = (sorted, cutoff) => {
   return grouped
 }
 
+// The homepage is the situational map, which loads its own data from
+// /api/map.json. The only server-rendered content left is the <noscript>
+// list — the sole text a crawler or a JS-less client gets from `/`.
 const buildHomepage = (sorted, cutoff, homepageTemplate) => {
-  const rawGrouped = groupByWindow(sorted, cutoff)
-
-  const grouped = Object.fromEntries(
-    Object.entries(rawGrouped).map(([cat, articles]) => [
-      cat,
-      articles.map(({ slug, title, meta, addedAt, bodyHtml, sources, concepts, sourceCount }) => {
-        const thread = threadLookup.get(slug)
-        return {
-          slug, title, addedAt,
-          date: meta.date,
-          bodyHtml,
-          sources: sources.map(s => ({ name: s.name, url: s.url || '', country: s.country || null, sentiment: s.sentiment ? Number(s.sentiment) : null })),
-          concepts: concepts.map(c => typeof c === 'object' ? c.label : c),
-          sourceCount,
-          eventCoverage: meta.eventCoverage ? Number(meta.eventCoverage) : null,
-          sentimentDivergence: meta.sentimentDivergence ? Number(meta.sentimentDivergence) : null,
-          // Coordinates so the ambient-globe island can rotate to the
-          // article's location when the reader switches articles.
-          ...(meta.lat != null && meta.lng != null
-            ? { lat: Number(meta.lat), lng: Number(meta.lng) }
-            : {}),
-          ...(thread?.threadContext && { threadId: thread.threadId }),
-        }
-      })
-    ])
-  )
-
-  const categoryOrder = [
-    ...CATEGORY_ORDER.filter(c => c in grouped),
-    ...Object.keys(grouped).filter(c => !CATEGORY_ORDER.includes(c))
-  ]
-
+  const grouped = groupByWindow(sorted, cutoff)
   const includedSlugs = new Set(Object.values(grouped).flat().map(a => a.slug))
   const fallbackArticleList = sorted
     .filter(a => includedSlugs.has(a.slug))
     .map(({ slug, title, meta, dateFormatted }) => `
       <article class="article-preview">
         <span class="category">${meta.category || ''}</span>
-        <h2><a href="/#${slug}">${title}</a></h2>
+        <h2><a href="/a/${slug}">${title}</a></h2>
         <time datetime="${meta.date}">${dateFormatted}</time>
       </article>`)
     .join('\n')
 
-  // Build contexts map — only include briefs referenced by articles on the page
-  const referencedThreadIds = new Set(
-    Object.values(grouped).flat().map(a => a.threadId).filter(Boolean)
-  )
-  const contexts = {}
-  for (const id of referencedThreadIds) {
-    const brief = contextBriefs[id]
-    if (brief?.timeline) {
-      contexts[id] = contextToHtml(brief.timeline)
-    }
-  }
-
-  return homepageTemplate
-    .replace(/{{articleDataJson}}/g, JSON.stringify({ categoryOrder, articles: grouped, contexts }))
-    .replace(/{{fallbackArticleList}}/g, fallbackArticleList)
+  return homepageTemplate.replace(/{{fallbackArticleList}}/g, fallbackArticleList)
 }
 
 const escHtmlAttr = (s) => String(s)
@@ -362,7 +321,6 @@ if (existsSync(audioSrc)) {
 }
 
 const cssContent = transformSync(readFileSync(join(ROOT, 'public', 'style.css'), 'utf-8'), { loader: 'css', minify: true }).code
-const jsContent = readFileSync(join(ROOT, 'public', 'reader.js'), 'utf-8')
 const headCommon = `<meta charset="utf-8">
   <meta name="google-site-verification" content="wE52hhFpRSdZ0DSAJM4Z57wM4AXTQ68eLrlo-zk_xLw">
   <meta name="author" content="Yunus Andreasson">
@@ -383,12 +341,45 @@ const headCommon = `<meta charset="utf-8">
   <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/api/*"}},{"not":{"href_matches":"/audio/*"}},{"not":{"href_matches":"/feed.xml"}},{"not":{"href_matches":"/sitemap.xml"}},{"not":{"href_matches":"/og-image.png"}}]},"eagerness":"moderate"}]}</script>
   <style>${cssContent}</style>`
 
-const homepageTemplate = readFileSync(join(TEMPLATES_DIR, 'index.html'), 'utf-8')
-  .replace('{{headCommon}}', headCommon)
-  .replace('{{inlineJS}}', jsContent)
+/**
+ * Cache key for the island bundles, stamped into every URL that points at one.
+ *
+ * Cloudflare Pages recognises `.js` as a static asset and serves it with its
+ * own `max-age=14400`, which `_headers` cannot lower. Without a version in the
+ * URL, a code deploy therefore takes up to four hours to reach anyone — the
+ * edge keeps handing out the previous bundle, and no amount of reloading on the
+ * reader's side helps, because the stale copy is the shared one.
+ *
+ * Hashing the island *sources* gives a key that changes exactly when the output
+ * does: a content-only cycle rebuilds byte-identical bundles and keeps the same
+ * URL, so the four-hour cache works for us instead of against us.
+ */
+const ISLAND_V = (() => {
+  const publicDir = join(ROOT, 'public')
+  const files = [join(publicDir, 'island-loader.js')]
+  const walk = (dir) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const full = join(dir, entry.name)
+      if (entry.isDirectory()) walk(full)
+      else if (/\.(ts|js)$/.test(entry.name)) files.push(full)
+    }
+  }
+  walk(join(publicDir, 'islands'))
+  const h = createHash('sha256')
+  for (const f of files.sort()) h.update(readFileSync(f))
+  return h.digest('hex').slice(0, 10)
+})()
 
-const articleTemplate = readFileSync(join(TEMPLATES_DIR, 'article.html'), 'utf-8')
-  .replace('{{headCommon}}', headCommon)
+const loadTemplate = (name) =>
+  readFileSync(join(TEMPLATES_DIR, name), 'utf-8')
+    .replace('{{headCommon}}', headCommon)
+    .replaceAll('{{v}}', ISLAND_V)
+
+const homepageTemplate = loadTemplate('index.html')
+
+const articleTemplate = loadTemplate('article.html')
+
+const staticPageTemplate = loadTemplate('static-page.html')
 
 // Story thread lookup — maps article slugs to their thread info from the ledger
 const ledgerPath = join(ROOT, 'content', '.story-ledger.json')
@@ -501,12 +492,6 @@ ms.setActionHandler('seekforward',function(d){a.currentTime=Math.min(a.duration|
 }}()</script>`
   }
 }
-
-// Embed last cycle timestamp for reader.js
-const lastCyclePath = join(ROOT, 'content', '.last-cycle.json')
-const lastCycleTs = existsSync(lastCyclePath)
-  ? (JSON.parse(readFileSync(lastCyclePath, 'utf-8')).timestamp ?? '')
-  : ''
 
 // (threadLookup moved above buildArticle calls)
 
@@ -687,6 +672,16 @@ writeFileSync(join(DIST_DIR, 'api', 'feed.json'), JSON.stringify({
 }))
 console.log(`  Built: api/feed.json (${apiArticles.length} articles, pre-grouped)`)
 
+// Event time for geo layers. `addedAt` is the markdown file's mtime — when
+// zuhd published — which drifts from when the thing actually happened and
+// resets whenever a file is rewritten. Both the heatmap's decay curve and the
+// map's timeline scrubber mean "when it happened", so they read the
+// frontmatter date and fall back to mtime only if it's unparseable.
+const eventTime = (a) => {
+  const parsed = a.meta.date ? Date.parse(a.meta.date) : NaN
+  return Number.isFinite(parsed) ? parsed : Math.round(a.addedAt)
+}
+
 // Heatmap endpoint — 72h of geo-located article points for globe time-decay rendering
 const HEATMAP_WINDOW_MS = 72 * 60 * 60 * 1000
 const heatmapCutoff = Date.now() - HEATMAP_WINDOW_MS
@@ -698,13 +693,156 @@ const heatmapPoints = sorted
       lat: Number(a.meta.lat),
       lng: Number(a.meta.lng),
       c: Number(a.meta.eventCoverage) || 0,
-      t: Math.round(a.addedAt),
+      t: eventTime(a),
       l: tl ? (tl.includes(':') ? tl.slice(0, tl.indexOf(':')) : tl) : (a.meta.title || ''),
     }
   })
 writeFileSync(join(DIST_DIR, 'api', 'heatmap.json'),
   JSON.stringify({ generated, points: heatmapPoints }))
 console.log(`  Built: api/heatmap.json (${heatmapPoints.length} points, 72h)`)
+
+// Map endpoints — the full 14-day geo-located corpus behind the homepage
+// situational map. Deliberately separate from articles.json/feed.json: those
+// are the 24h reading surface mobile depends on, this is the wide, thin point
+// set.
+//
+// Split in two on purpose. map.json is everything needed to *render* a beacon
+// and label it; the lead sentences live in map-leads.json, fetched during idle
+// after first paint. Inlining the leads tripled the payload the homepage
+// blocks on, for text that isn't visible until someone hovers something.
+//
+// `w` is the beacon's size channel, and it is computed here rather than in the
+// browser because the honest version needs the whole corpus at once.
+//
+// Two things make the raw eventCoverage number unusable as a radius. It is
+// absent on roughly two thirds of articles — the selector only records it when
+// the feed reported it — and where present it is occasionally nonsense (the
+// corpus holds values like 157957, which is not a number of outlets). A plain
+// log curve therefore pinned most of the map at the minimum radius while a
+// handful of bad rows saturated the top, so the size channel carried almost no
+// information.
+//
+// A percentile rank over the values we actually have fixes both at once: it
+// spends the full 0..1 range on real distinctions and an outlier is just "the
+// largest", worth no more than the next one down. Articles with no coverage
+// figure carry no `w` at all — the map gives them a fixed neutral size, which
+// says "unknown" instead of falsely saying "smallest".
+const coverageRanks = (() => {
+  const known = sorted
+    .filter(a => a.meta.lat != null && a.meta.lng != null)
+    .map(a => Number(a.meta.eventCoverage))
+    .filter(v => Number.isFinite(v) && v > 0)
+    .sort((x, y) => x - y)
+  if (known.length < 2) return null
+  return (v) => {
+    // Index of the first value >= v, i.e. this story's standing in the field.
+    let lo = 0
+    let hi = known.length
+    while (lo < hi) {
+      const mid = (lo + hi) >> 1
+      if (known[mid] < v) lo = mid + 1
+      else hi = mid
+    }
+    return Math.round((lo / (known.length - 1)) * 100) / 100
+  }
+})()
+
+const mapPoints = sorted
+  .filter(a => a.meta.lat != null && a.meta.lng != null)
+  .map(a => {
+    const cov = Number(a.meta.eventCoverage)
+    const hasCov = Number.isFinite(cov) && cov > 0
+    // Source disagreement. The pipeline measures how far apart the outlets
+    // covering a story sit in sentiment; a contested story is a different kind
+    // of event from a uniformly reported one, and the map had no way to say so.
+    const div = Number(a.meta.sentimentDivergence)
+    return {
+      lat: Number(a.meta.lat),
+      lng: Number(a.meta.lng),
+      t: eventTime(a),
+      c: hasCov ? cov : 0,
+      cat: a.meta.category || 'politics',
+      slug: a.slug,
+      title: a.title,
+      loc: a.meta.location || '',
+      n: a.sources.length,
+      ...(hasCov && coverageRanks ? { w: coverageRanks(cov) } : {}),
+      ...(Number.isFinite(div) && div > 0 ? { d: Math.round(div * 100) / 100 } : {}),
+    }
+  })
+  .sort((a, b) => a.t - b.t)
+const mapWindow = {
+  start: mapPoints.length ? mapPoints[0].t : Date.now(),
+  end: mapPoints.length ? mapPoints[mapPoints.length - 1].t : Date.now(),
+}
+writeFileSync(join(DIST_DIR, 'api', 'map.json'),
+  JSON.stringify({ generated, window: mapWindow, points: mapPoints }))
+console.log(`  Built: api/map.json (${mapPoints.length} points, ${BUILD_WINDOW_DAYS}d)`)
+
+// Per-story payloads for the map's reading card. The map never navigates away
+// to read — the card opens anchored at the story's own coordinates — so each
+// story needs its rendered body reachable on its own. One small file per story
+// rather than one large blob: only what is opened gets fetched.
+mkdirSync(join(DIST_DIR, 'api', 'story'), { recursive: true })
+let storyCount = 0
+for (const a of sorted) {
+  if (a.meta.lat == null || a.meta.lng == null) continue
+  const thread = threadLookup.get(a.slug)
+  writeFileSync(
+    join(DIST_DIR, 'api', 'story', `${a.slug}.json`),
+    JSON.stringify({
+      slug: a.slug,
+      title: a.title,
+      date: a.meta.date,
+      dateFormatted: a.dateFormatted,
+      category: a.meta.category || 'politics',
+      location: a.meta.location || '',
+      eventCoverage: Number(a.meta.eventCoverage) || 0,
+      bodyHtml: a.bodyHtml,
+      sources: a.sources.map((x) => ({ name: x.name, url: x.url || '' })),
+      ...(thread?.threadLabel ? { threadLabel: thread.threadLabel } : {}),
+    }),
+  )
+  storyCount++
+}
+console.log(`  Built: api/story/ (${storyCount} story cards)`)
+
+// Lead sentences, keyed by slug. Lazily fetched by the map island so a beacon
+// sheet has real text the moment it opens, without a per-beacon round trip.
+const mapLeads = {}
+for (const a of sorted) {
+  if (a.meta.lat == null || a.meta.lng == null) continue
+  // Body copy is markdown, and the pipeline writes country tags as
+  // `[Iran](country:IR)`. The popup renders plain text, so unwrap links to
+  // their label and apply the same typographic quotes the rest of the site uses.
+  const lead = smartQuotes(
+    splitBlocks(a.body)
+      .slice(0, 2)
+      .join(' ')
+      .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+      .replace(/\*\*?([^*]+)\*\*?/g, '$1'),
+  ).trim()
+  if (lead) mapLeads[a.slug] = lead
+}
+writeFileSync(join(DIST_DIR, 'api', 'map-leads.json'),
+  JSON.stringify({ generated, leads: mapLeads }))
+console.log(`  Built: api/map-leads.json (${Object.keys(mapLeads).length} leads)`)
+
+// Basemap sources for MapLibre — countries at two detail tiers plus place
+// labels, all served from our own origin so the CSP stays `default-src 'none'`.
+{
+  mkdirSync(join(DIST_DIR, 'basemap'), { recursive: true })
+  const { countries, countriesDetail, countryLabels, places } = await buildMapSources(ROOT)
+  const emit = (name, data) => {
+    writeFileSync(join(DIST_DIR, 'basemap', name), JSON.stringify(data))
+    return Math.round(statSync(join(DIST_DIR, 'basemap', name)).size / 1024)
+  }
+  const a = emit('countries.geojson', countries)
+  const b = emit('countries-detail.geojson', countriesDetail)
+  emit('country-labels.geojson', countryLabels)
+  const c = emit('places.geojson', places)
+  console.log(`  Built: basemap/ (countries ${a}KB, detail ${b}KB, ${places.features.length} places ${c}KB)`)
+}
 
 // Atom feed for RSS readers
 const escXml = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
@@ -771,7 +909,6 @@ const indicatorMap = new Map()
 // Homepage and static pages
 const homepage = buildHomepage(sorted, cutoff, homepageTemplate)
   .replace(/{{audioBriefing}}/g, audioBriefingHtml)
-  .replace('</body>', lastCycleTs ? `<script>window.__lastCycle="${lastCycleTs}"</script></body>` : '</body>')
 writeFileSync(join(DIST_DIR, 'index.html'), homepage)
 console.log(`  Built: index.html (${articles.length} articles)`)
 
@@ -792,8 +929,9 @@ for (let i = 0; i < sorted.length; i++) {
 console.log(`  Built: a/ (${sorted.length} article pages)`)
 
 // Islands: compile public/islands/*.ts via esbuild into dist/islands/*.js.
-// Each island is an ESM entry that reader.js lazy-loads on first
-// activation of its affordance (a <button data-island="..."> click).
+// Each island is an ESM entry that island-loader.js lazy-loads on first
+// activation of its affordance (a [data-island] click or a
+// [data-island-auto] element on the page).
 const islandsResult = await buildIslands()
 if (islandsResult.count > 0) {
   console.log(`  Built: islands/ (${islandsResult.count} entries)`)
@@ -863,7 +1001,7 @@ if (process.env.SKIP_OG === '1') {
   console.log('  Skipped: api/ig/ (SKIP_OG=1)')
 } else {
   const IG_CACHE_DIR = join(ROOT, '.cache', 'ig')
-  const IG_VERSION = 'v5' // bump when ig-image.js rendering changes
+  const IG_VERSION = 'v6' // bump when ig-image.js rendering changes
   const IG_RECENT = 20 // dev/manual fallback window
   // The card renders a dek — the story lead (first 1-2 sentences) with the
   // dateline prefix and markdown links stripped, cut to ~200 chars on a
@@ -902,7 +1040,9 @@ if (process.env.SKIP_OG === '1') {
   for (const article of igArticles) {
     const inputs = {
       v: IG_VERSION,
-      headline: article.title,
+      // Prefer the social-optimized card headline (written pre-build by
+      // pick-breaking-social.js) over the article title; falls back cleanly.
+      headline: article.meta.socialTitle ? smartQuotes(article.meta.socialTitle) : article.title,
       summary: igLead(article.body),
       category: article.meta.category || null,
       date: article.meta.date,
@@ -984,15 +1124,9 @@ const categoryPageTemplate = `<!-- بسم الله الرحمن الرحيم -->
         <a href="https://www.instagram.com/andreasson.photo/" target="_blank" rel="me noopener noreferrer">instagram</a>
         <a href="https://www.linkedin.com/in/yunusandreasson/" target="_blank" rel="me noopener noreferrer">linkedin</a>
       </span>
-      <span class="footer-maker-links footer-other-apps">
-        <a href="https://islam.se" target="_blank" rel="noopener noreferrer">islam.se</a>
-        <a href="https://openarabic.io" target="_blank" rel="noopener noreferrer">open-arabic</a>
-        <a href="https://al-ibadah.com" target="_blank" rel="noopener noreferrer">al-ibadah</a>
-        <a href="https://qamar360.com" target="_blank" rel="noopener noreferrer">qamar360</a>
-      </span>
     </nav>
   </footer>
-  <script type="module" src="/island-loader.js" defer></script>
+  <script type="module" src="/island-loader.js?v=${ISLAND_V}" defer></script>
 </body>
 </html>`
 
@@ -1070,6 +1204,7 @@ const countryResult = await buildCountryPages({
   distDir: DIST_DIR,
   templatesDir: TEMPLATES_DIR,
   headCommon,
+  islandV: ISLAND_V,
 })
 console.log(`  Built: country/ (${countryResult.count} pages)`)
 
@@ -1132,14 +1267,11 @@ for (const page of staticPages) {
   const pagePath = join(ROOT, 'content', `${page}.md`)
   if (!existsSync(pagePath)) continue
   const body = readFileSync(pagePath, 'utf-8')
-  const pageContent = `<h1 class="page-title">${page}</h1><div class="about-body">${markdownToHtml(body)}</div>`
-  writeFileSync(join(DIST_DIR, `${page}.html`), homepage
-    .replace('<div class="article-view-inner"></div>', `<div class="article-view-inner">${pageContent}</div>`)
-    .replace('article-view" aria-live="polite" hidden', `article-view" aria-live="polite" data-page="${page}"`)
-    .replace('<title>zuhd.news — Global news, no noise</title>', `<title>zuhd.news — ${page}</title>`)
-    .replace('<link rel="canonical" href="https://zuhd.news/">', `<link rel="canonical" href="https://zuhd.news/${page}">`)
-    .replace('<meta property="og:title" content="zuhd.news">', `<meta property="og:title" content="zuhd.news — ${page}">`)
-    .replace('<meta property="og:url" content="https://zuhd.news/">', `<meta property="og:url" content="https://zuhd.news/${page}">`)
+  // These used to be clones of the homepage with the reader pane filled in.
+  // With the homepage now a full-bleed map they get their own plain template.
+  writeFileSync(join(DIST_DIR, `${page}.html`), staticPageTemplate
+    .replace(/{{pageName}}/g, page)
+    .replace('{{content}}', markdownToHtml(body))
     .replace(`href="/${page}"`, `href="/${page}" aria-current="page"`)
   )
   console.log(`  Built: ${page}.html`)

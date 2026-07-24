@@ -1,13 +1,63 @@
+# Cloudflare Pages applies *every* matching rule and concatenates same-named
+# headers rather than letting the more specific one win. A `Cache-Control` on
+# `/*` therefore does not get overridden by the rules below — it gets prepended
+# to them, and browsers honour the first `max-age` they read. That silently
+# pinned the year-immutable glyphs and the day-cached basemap to 300 seconds.
+#
+# So `/*` carries security headers only, and every cache lifetime is stated on
+# a path prefix that matches exactly one rule. HTML is the one thing left
+# without an explicit rule: it falls through to Cloudflare's revalidate-always
+# default, which is what a site that redeploys five times a day wants anyway.
 /*
-  Cache-Control: public, max-age=300
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Content-Security-Policy: default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self'; img-src 'self' data:; media-src 'self'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'none'; script-src 'self' 'unsafe-inline'; worker-src 'self' blob:; child-src 'self' blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self'; img-src 'self' data: blob:; media-src 'self'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'
 
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
+
+/basemap/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Coastlines, borders and place labels. Natural Earth geometry does not change
+# between deploys; only a dependency bump would move it.
+/basemap/countries.geojson
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/basemap/countries-detail.geojson
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/basemap/places.geojson
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/basemap/country-labels.geojson
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# Islands split by extension so the two rules never both match: esbuild emits
+# our bundles as .js, MapLibre ships its engine, worker and shared chunk as
+# .mjs. The engine is vendor code that only moves on a version bump, so it must
+# not ride the content cycle — before this it inherited the 300s default and was
+# refetched all day.
+/islands/*.mjs
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# Our own bundles get no Cache-Control rule, because one would not be honoured:
+# Pages recognises `.js` as a static asset and serves it with its own
+# `max-age=14400`, keeping only the `stale-while-revalidate` from anything
+# stated here. So a code deploy can take up to four hours to reach a returning
+# visitor, and `_headers` cannot shorten that. Fixing it properly means
+# content-hashed bundle filenames plus a manifest for `island-loader.js`, which
+# builds its URLs as `/islands/{name}.js` — worth doing, not done here.
+#
+# `.mjs` is not on that list, which is why the vendor rule above takes effect.
+
+/style.css
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/island-loader.js
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
 
 /feed.xml
   Cache-Control: public, s-maxage=300, max-age=0, stale-while-revalidate=3600
@@ -32,3 +82,58 @@
   Cache-Control: public, max-age=86400
   Access-Control-Allow-Origin: *
   Accept-Ranges: bytes
+
+# Everything else under /api. Listed one prefix at a time rather than as
+# `/api/*`, which would match alongside the four rules above and concatenate
+# with them. Each of these is rewritten once per editorial cycle, so a short
+# max-age with a long stale-while-revalidate keeps the map instant on repeat
+# views while still picking up the next cycle.
+/api/articles.json
+  Cache-Control: public, s-maxage=300, max-age=0, stale-while-revalidate=3600, stale-if-error=86400
+  Access-Control-Allow-Origin: *
+
+/api/map.json
+  Cache-Control: public, max-age=300, stale-while-revalidate=3600, stale-if-error=86400
+
+/api/map-leads.json
+  Cache-Control: public, max-age=300, stale-while-revalidate=3600, stale-if-error=86400
+
+# Story cards are immutable once written — a slug's body never changes after
+# publication — so the map's reading card should never refetch one twice.
+/api/story/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# Upstream feeds refresh on their own schedule, not ours.
+/api/gdacs.json
+  Cache-Control: public, max-age=900, stale-while-revalidate=3600, stale-if-error=86400
+
+/api/chokepoints.json
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400, stale-if-error=86400
+
+/api/conflict.json
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400, stale-if-error=86400
+
+/api/trends.json
+  Cache-Control: public, max-age=900, stale-while-revalidate=3600, stale-if-error=86400
+
+/api/heatmap.json
+  Cache-Control: public, max-age=300, stale-while-revalidate=3600, stale-if-error=86400
+  Access-Control-Allow-Origin: *
+
+/api/context/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+  Access-Control-Allow-Origin: *
+
+/api/entity/*
+  Cache-Control: public, max-age=900, stale-while-revalidate=3600
+  Access-Control-Allow-Origin: *
+
+/api/country/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+  Access-Control-Allow-Origin: *
+
+/api/og/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/api/ig/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800

@@ -189,10 +189,10 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  /* Establish a stacking context so the ambient-globe island (fixed,
-     z-index: -1) paints above the body background but behind all
-     normal-flow content. Without this, z-index: -1 falls through to the
-     root stacking context and hides under body's background fill. */
+  /* Establish a stacking context so background islands (spacefield, fixed at
+     z-index: -2) paint above the body background but behind all normal-flow
+     content. Without this, a negative z-index falls through to the root
+     stacking context and hides under body's background fill. */
   isolation: isolate;
 }
 
@@ -226,7 +226,7 @@ a {
 
 /* --- Shared label pattern --- */
 /* Small caps with case-sensitive punctuation for labels */
-.page-title, .category, .category-tab, .about-body h2 {
+.page-title, .category, .map-filter, .about-body h2 {
   font-variant-caps: all-small-caps;
   font-variant-numeric: lining-nums tabular-nums;
   font-feature-settings: "case" 1;
@@ -430,92 +430,6 @@ footer {
   }
 }
 
-/* --- Category Strip --- */
-.category-strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-xs) var(--space-md);
-  margin-bottom: clamp(0.75rem, 2vh, 1.25rem);
-  padding-block: var(--space-xs);
-  user-select: none;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  background: var(--bg);
-  contain: layout style;
-}
-
-.category-tab {
-  font-size: var(--size-sm);
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: color 80ms ease, opacity 0.4s ease-out;
-
-  &[aria-selected="true"] {
-    color: var(--text);
-    text-decoration: underline;
-    text-underline-offset: 0.25em;
-    text-decoration-thickness: 1px;
-  }
-
-  &[data-all-read] {
-    opacity: 0.7;
-  }
-}
-
-/* --- Headline List --- */
-
-.headline-item {
-  padding: 0.5rem 0;
-  cursor: pointer;
-  user-select: none;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0 var(--space-xs);
-  content-visibility: auto;
-  contain-intrinsic-size: auto 2.5rem;
-  position: relative;
-
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-    border-radius: 2px;
-  }
-
-  &:active > h2 {
-    opacity: 0.5;
-    transition: opacity 0s;
-  }
-
-  h2 {
-    font-size: var(--size-base);
-    font-weight: 400;
-    color: var(--text);
-    line-height: var(--leading-heading);
-    margin: 0;
-    flex: 1;
-    min-width: 0;
-    transition: color 0.3s ease, opacity 0.3s ease;
-  }
-
-  time {
-    font-size: var(--size-sm);
-    line-height: var(--leading-heading);
-    color: var(--text-secondary);
-    font-variant-numeric: lining-nums tabular-nums;
-    white-space: nowrap;
-    flex-shrink: 0;
-    order: -1;
-    width: 4em;
-  }
-
-  &.read > h2 { opacity: 0.7; }
-}
-
 /* --- Article Body --- */
 .article-body {
   line-height: 1.75;
@@ -534,31 +448,6 @@ footer {
     &:last-child { margin-bottom: 0; }
   }
 }
-
-/* --- Article Expand (mobile accordion) --- */
-.article-expand {
-  padding-top: var(--space-xs);
-  animation: expand-in 200ms ease;
-  flex-basis: 100%;
-}
-
-@keyframes expand-in {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes article-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.article-view-inner.fade-in {
-  animation: article-fade-in 250ms ease;
-}
-
-/* --- Article View (desktop) --- */
-.article-view[hidden] { display: none; }
-.article-view[data-page] { display: block; }
 
 /* --- Screen Reader Only --- */
 .sr-only {
@@ -584,176 +473,11 @@ footer {
 
   header { margin-bottom: var(--space-sm); }
 
-  .category-strip {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scrollbar-width: none;
-    mask-image: linear-gradient(to right, #000 80%, transparent);
-    padding-right: 3.5rem;
-    gap: var(--space-sm);
-    position: relative;
-
-    &::after {
-      content: '';
-      position: sticky;
-      right: 0;
-      width: 1.25rem;
-      flex-shrink: 0;
-    }
-  }
-
-  .category-tab { padding: 0.5rem 0; }
-
-  .headline-item {
-    display: block;
-
-    time {
-      order: unset;
-      width: unset;
-      margin-left: 0.4em;
-      font-size: var(--size-xs);
-      opacity: 0.5;
-    }
-
-    h2 { display: inline; }
-    &.selected h2 {
-      text-decoration: underline;
-      text-decoration-thickness: 1.5px;
-      text-underline-offset: 0.2em;
-    }
-  }
-
   .article-body p {
     margin: 0 0 0.3em;
   }
 
   .briefing-track { display: none; }
-}
-
-/* --- Desktop — split-pane layout ---
-   Scoped to the homepage `<main class="split-pane">` so archetype/article
-   pages (which also use `<main>`) keep normal block flow.
-
-   The composition is capped at 110rem and centered. Below that, the
-   layout fills the viewport (minus generous body padding) so wide
-   monitors actually use their screen. Above it, the layout caps and
-   side margins grow — the rail ↔ reader proximity is preserved by
-   capping the right column too, instead of letting `1fr` swallow
-   every extra pixel. Header, main, and footer all use the same cap
-   so the masthead, content, and meta align on a shared axis. */
-@media (min-width: 641px) {
-  body:has(.split-pane) {
-    max-width: none;
-    height: 100dvh;
-    overflow: hidden;
-    padding-inline: clamp(1.5rem, 4vw, 4.5rem);
-    padding-block: clamp(1.75rem, 4vh, 3.5rem);
-  }
-
-  body:has(.split-pane) > .app-banner,
-  body:has(.split-pane) > header,
-  body:has(.split-pane) > main.split-pane,
-  body:has(.split-pane) > footer {
-    max-width: 100rem;
-    margin-inline: auto;
-    width: 100%;
-  }
-
-  body:has(.split-pane) > header {
-    margin-bottom: clamp(1.25rem, 3vh, 2.25rem);
-  }
-
-  main.split-pane {
-    display: grid;
-    grid-template-columns: minmax(18rem, 28rem) minmax(0, 1fr);
-    grid-template-rows: auto 1fr;
-    gap: 0 clamp(2rem, 2.5vw, 2.75rem);
-    flex: 1;
-    min-height: 0;
-    overflow: hidden;
-  }
-
-  /* Categories sit above the headline list in the left column */
-  .category-strip {
-    grid-column: 1;
-    grid-row: 1;
-    position: static;
-    margin-bottom: var(--space-md);
-    padding-block: 0;
-  }
-
-  .headline-list {
-    grid-column: 1;
-    grid-row: 2;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--rule) transparent;
-    scrollbar-gutter: stable;
-    padding-right: 0.5rem;
-    padding-bottom: var(--space-md);
-    mask-image: linear-gradient(to bottom, #000 calc(100% - 2rem), transparent);
-  }
-
-  .headline-item {
-    flex-wrap: nowrap;
-
-    h2 {
-      font-size: var(--size-base);
-      font-weight: 400;
-      line-height: var(--leading-heading);
-    }
-
-    time {
-      font-size: var(--size-xs);
-      line-height: var(--leading-heading);
-      width: 4em;
-    }
-
-    &.selected h2 {
-      text-decoration: underline;
-      text-decoration-color: var(--accent);
-      text-underline-offset: 0.3em;
-      text-decoration-thickness: 1px;
-    }
-
-    &:hover:not(.selected) h2 {
-      text-decoration: underline;
-      text-decoration-color: var(--rule);
-      text-underline-offset: 0.3em;
-      text-decoration-thickness: 1px;
-    }
-  }
-
-  /* Right panel — article reading area */
-  .article-view {
-    grid-column: 2;
-    grid-row: 1 / -1;
-    max-width: 72ch;
-    overflow-y: auto;
-    padding-top: 0;
-    padding-bottom: var(--space-md);
-    padding-left: clamp(1.5rem, 3vw, 3rem);
-    border-left: 1px solid var(--rule);
-    scrollbar-width: thin;
-    scrollbar-color: var(--rule) transparent;
-
-    &[hidden] { display: block; }
-  }
-
-  .article-view-header {
-    margin-top: -0.35em;
-    margin-bottom: var(--space-md);
-
-    h2 {
-      font-size: clamp(2rem, 2.5vw + 1.5rem, 3rem);
-      font-weight: 700;
-      line-height: 1.08;
-      text-wrap: balance;
-      margin: 0;
-      font-feature-settings: "titl" 1;
-    }
-  }
-
 }
 
 /* --- Audio Briefing --- */
@@ -939,8 +663,8 @@ footer {
 
 /* --- Standalone Article Page ---
    Used by /a/{slug}.html — reader-first layout with full-fidelity body,
-   SEO-friendly structure, share-URL destination. Homepage split-pane is
-   unaffected; the article page is its own archetype. */
+   SEO-friendly structure, share-URL destination. This is where the map's
+   beacon sheets send anyone who wants the whole story. */
 body.article-page-body {
   max-width: none;
   padding: 0;
@@ -1968,43 +1692,6 @@ body.archetype-page-body .article-page-header {
   background: var(--bg-soft);
 }
 
-/* --- Source modal --- */
-.source-modal {
-  max-width: 64rem;
-  width: calc(100vw - 2rem);
-}
-.source-modal .context-body {
-  columns: 2;
-  column-gap: var(--space-lg);
-  column-rule: 1px solid var(--rule-soft);
-
-  h2, h3, p { break-inside: avoid; }
-}
-
-.island-sheet-inner {
-  padding: var(--space-md);
-  max-height: 90vh;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-}
-
-.island-sheet-title {
-  font-size: var(--size-h2);
-  font-weight: var(--weight-bold);
-  line-height: var(--leading-heading);
-  letter-spacing: -0.01em;
-  text-wrap: balance;
-  margin: var(--space-xs) 0 var(--space-md);
-}
-
-.island-sheet-loading,
-.island-sheet-error {
-  color: var(--text-secondary);
-  font-size: var(--size-sm);
-  padding: var(--space-md) 0;
-}
-
-
 /* --- Entity strip on article pages --- */
 .article-entities {
   margin: var(--space-lg) 0 0;
@@ -2172,168 +1859,713 @@ body.archetype-page-body .article-page-header {
   height: 100%;
 }
 
-/* --- Ambient globe ---
-   Atmospheric horizon emerging from the bottom-right corner. Sized
-   relative to the viewport (vmin) so the visible cap scales with the
-   page and never looks dropped-in. The mask is centered on what the
-   viewer actually sees — the upper-left of the globe when ¼ of it
-   sits past the corner — so the fade radiates symmetrically from the
-   middle of the visible region rather than from the sphere's center.
-   Heavily dimmed so it reads as ambient ground, not figure. */
-.ambient-globe-root {
-  position: fixed;
-  /* Anchor to the right edge of the 100rem layout cap, not the
-     viewport. On wide screens the layout sits centered with side
-     margins; the globe rides the layout's right edge so the corner
-     it emerges from is the corner of the *composition*, not of the
-     monitor. Below the cap the layout fills the viewport, so the
-     `max()` falls back to -22vmin and the original behaviour is
-     unchanged. */
-  right: max(-22vmin, calc((100vw - 100rem) / 2 - 22vmin));
-  bottom: -22vmin;
-  width: 92vmin;
-  height: 92vmin;
-  min-width: 600px;
-  min-height: 600px;
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0.2;
-  mix-blend-mode: screen;
-  mask-image: radial-gradient(circle at 35% 35%, #000 0%, #000 32%, transparent 88%);
-  contain: layout paint;
-}
+/* --- Situational map (homepage) ---
+   Full-bleed and dark by commitment, not by system preference: coloured
+   markers need a dark ground to read against, which is why every operational
+   map worth copying is dark. Layout is a left event rail plus the map. */
 
-@media (prefers-color-scheme: dark) {
-  .ambient-globe-root { opacity: 0.1; }
-}
-
-@media (max-width: 720px) {
-  .ambient-globe-root {
-    width: 110vmin;
-    height: 110vmin;
-    right: -28vmin;
-    bottom: -22vmin;
-    min-width: 0;
-    min-height: 0;
-    opacity: 0.18;
-  }
-  @media (prefers-color-scheme: dark) {
-    .ambient-globe-root { opacity: 0.28; }
-  }
-}
-
-.ambient-globe-canvas {
-  width: 100%;
-  height: 100%;
+body.map-page {
+  /* Forces every light-dark() token on this page to its dark value. */
+  color-scheme: dark;
+  max-width: none;
+  height: 100dvh;
+  overflow: hidden;
+  padding: 0;
   display: block;
+  background: #080a0d;
 }
-/* Atmospheric glow ring — static radial gradient painted once behind the
-   cobe canvas. No filter means zero per-frame cost (unlike drop-shadow on
-   a continuously redrawn WebGL surface). The container's mask-image
-   naturally clips it to the visible crescent. */
-.ambient-globe-root::before {
-  content: '';
+
+body.map-page .app-banner { display: none; }
+
+.map-main {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  margin: 0;
+}
+
+.map-shell,
+.map-root {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 50%,
-    transparent 36%,
-    rgba(100, 145, 215, 0.1) 40%,
-    rgba(100, 145, 215, 0.05) 45%,
-    transparent 50%);
-  pointer-events: none;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 21rem) minmax(0, 1fr);
+  /* An auto row collapses to zero here: MapLibre's canvas is absolutely
+     positioned, so the row has no content to measure. */
+  grid-template-rows: minmax(0, 1fr);
 }
 
-/* --- Globe pulsar ---
-   Modern pulsar marker rendered as a DOM element rather than a cobe
-   marker (cobe markers can only draw solid filled dots, so rings/halos
-   are impossible inside the canvas). cobe registers a CSS anchor at the
-   marker's projected screen position via `marker.id` → custom property
-   `--cobe-focus`. This element rides that anchor.
-   Lives outside `.ambient-globe-root` so it's not dimmed by the host
-   opacity or radial-gradient mask, keeping the core dot crisp.
-   `position-anchor` requires Chrome 125+ / Safari 26+; on older browsers
-   the pulsar stays at viewport (0,0) — harmless degradation. */
-.globe-pulsar {
+.map-canvas-host {
+  position: relative;
+  /* Both items are pinned to row 1 explicitly. The map is appended before the
+     rail but declares column 2, and sparse auto-placement would push the rail
+     into an implicit second row — collapsing the map's row to zero height. */
+  grid-column: 2;
+  grid-row: 1;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Minimal MapLibre positioning. The library's own stylesheet is not shipped —
+   we use none of its chrome, so this is all that is load-bearing. */
+.maplibregl-map {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.maplibregl-canvas-container,
+.maplibregl-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+.maplibregl-canvas-container.maplibregl-interactive { cursor: grab; }
+.maplibregl-canvas-container.maplibregl-interactive:active { cursor: grabbing; }
+.maplibregl-control-container { display: none; }
+
+/* --- Left event rail --- */
+.map-feed {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-right: 1px solid #1c2029;
+  background: #0a0c10;
+}
+
+.map-feed-head {
+  flex: 0 0 auto;
+  padding: 3.6rem clamp(0.9rem, 1.4vw, 1.15rem) 0.5rem;
+  font-size: var(--size-xs);
+  color: var(--text-dim);
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid #1c2029;
+}
+
+.map-feed-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: thin;
+}
+
+.map-feed-item {
+  display: flex;
+  gap: 0.55rem;
+  padding: 0.6rem clamp(0.9rem, 1.4vw, 1.15rem);
+  border-bottom: 1px solid #14171d;
+  cursor: pointer;
+  transition: background var(--dur-fast);
+
+  &:hover { background: #10131a; }
+  &.is-active { background: #141922; }
+}
+
+.map-feed-dot {
+  flex: 0 0 auto;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 0.42rem;
+}
+
+.map-feed-body { min-width: 0; }
+
+.map-feed-title {
+  display: block;
+  font-size: 0.9rem;
+  line-height: 1.32;
+  color: #d3d8e0;
+  text-decoration: none;
+  text-wrap: pretty;
+
+  &:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+}
+
+.map-feed-meta {
+  margin: 0.15rem 0 0;
+  font-size: var(--size-xs);
+  color: #6d7684;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* --- Header, status, chrome over the map --- */
+body.map-page > header {
   position: fixed;
-  position-anchor: --cobe-focus;
-  top: anchor(center);
-  left: anchor(center);
-  /* 0×0 host — children are absolutely positioned with negative margins
-     so they center exactly on (0, 0) which IS the anchor's center. */
-  width: 0;
-  height: 0;
-  pointer-events: none;
-  z-index: 1;
-  /* cobe writes the literal token `N` to `--cobe-visible-focus` when the
-     marker is on the visible hemisphere; otherwise the variable is removed.
-     The token `N` is invalid for `opacity`, which makes opacity fall through
-     to its initial value (1) — visible. When the variable is absent, the
-     `var(..., 0)` fallback kicks in and the pulsar hides. So the pulsar
-     fades as the pin rotates behind/in front of the globe.
-     (Don't switch this to `@property <number>` — registered properties
-     substitute the initial-value on invalid tokens, which inverts the
-     behaviour and hides the pulsar permanently.) */
-  opacity: var(--cobe-visible-focus, 0);
-  transition: opacity 280ms ease;
+  top: 0;
+  left: 0;
+  width: 21rem;
+  z-index: 4;
+  margin: 0;
+  padding: 1rem clamp(0.9rem, 1.4vw, 1.15rem) 0;
+  border: none;
+  background: none;
 }
 
-.globe-pulsar-core,
-.globe-pulsar-ring {
+body.map-page > footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 21rem;
+  z-index: 4;
+  margin: 0;
+  padding: 0.5rem clamp(0.9rem, 1.4vw, 1.15rem);
+  border: none;
+  border-top: 1px solid #1c2029;
+  background: #0a0c10;
+  display: flex;
+  justify-content: flex-start;
+}
+
+body.map-page > footer .footer-maker { display: none; }
+
+body.map-page > footer .footer-links {
+  display: flex;
+  gap: var(--space-sm);
+  font-size: var(--size-xs);
+  opacity: 0.5;
+
+  &:hover { opacity: 1; }
+}
+
+.map-hud {
+  position: absolute;
+  top: 0;
+  left: 21rem;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: 0.85rem 1.1rem;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(8, 10, 13, 0.85), transparent);
+
+  > * { pointer-events: auto; }
+}
+
+.map-ranges {
+  display: flex;
+  gap: 0.15rem;
+  border: 1px solid #232936;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.map-range {
+  background: none;
+  border: none;
+  padding: 0.2rem 0.5rem;
+  font: inherit;
+  font-size: var(--size-xs);
+  font-variant-numeric: lining-nums tabular-nums;
+  color: #6d7684;
+  cursor: pointer;
+  transition: color var(--dur-fast), background var(--dur-fast);
+
+  &:hover { color: #aab2be; }
+  &.is-on { color: #e6eaf0; background: #1a1f2a; }
+}
+
+.map-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.map-filter {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: var(--size-xs);
+  letter-spacing: 0.04em;
+  color: #6d7684;
+  cursor: pointer;
+  opacity: 0.5;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: opacity var(--dur-fast), color var(--dur-fast);
+
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cat, currentColor);
+  }
+
+  &:hover { opacity: 0.85; }
+
+  &.is-on {
+    opacity: 1;
+    color: #d3d8e0;
+  }
+}
+
+/* Layer toggles have no category colour, so their dot is a hollow ring. */
+.map-filter[data-kind='layer']::before {
+  background: none;
+  border: 1px solid currentColor;
+}
+
+.map-filter-sep {
+  width: 1px;
+  height: 0.85rem;
+  background: #232936;
+}
+
+.map-status {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 3;
+  padding: 0.95rem 1.1rem;
+  font-size: var(--size-xs);
+  color: #6d7684;
+  font-variant-numeric: lining-nums tabular-nums;
+  pointer-events: none;
+}
+
+/* --- Map timeline --- */
+.map-timeline {
+  position: absolute;
+  left: 21rem;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 0 1.1rem 0.6rem;
+  background: linear-gradient(to top, rgba(8, 10, 13, 0.92) 60%, transparent);
+  pointer-events: auto;
+}
+
+.map-timeline-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  font-size: var(--size-xs);
+  color: #6d7684;
+  font-variant-numeric: lining-nums tabular-nums;
+  margin-bottom: 0.15rem;
+  opacity: 0.8;
+}
+
+.map-timeline.is-scrubbed .map-timeline-head { opacity: 1; }
+.map-timeline.is-scrubbed .map-timeline-readout { color: #e6eaf0; }
+
+.map-timeline-live {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: var(--size-xs);
+  font-variant-caps: all-small-caps;
+  color: var(--dome);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.map-timeline-track {
+  position: relative;
+  height: 2.15rem;
+  opacity: 0.6;
+  transition: opacity var(--dur-normal);
+}
+
+.map-timeline:hover .map-timeline-track,
+.map-timeline.is-scrubbed .map-timeline-track { opacity: 1; }
+
+.map-timeline-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.map-timeline-range {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  appearance: none;
+  background: none;
+  cursor: ew-resize;
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: 2px;
+    height: 1.5rem;
+    background: #e6eaf0;
+    border: none;
+    border-radius: 0;
+  }
+
+  &::-moz-range-thumb {
+    width: 2px;
+    height: 1.5rem;
+    background: #e6eaf0;
+    border: none;
+    border-radius: 0;
+  }
+
+  &:focus-visible { outline: 1px solid #4a5568; outline-offset: 2px; }
+}
+
+/* --- Map popup ---
+   MapLibre's own stylesheet is not shipped, so the popup's positioning,
+   flex direction per anchor and tip triangle are declared here. Everything
+   below `-content` is ours. */
+.maplibregl-popup {
   position: absolute;
   top: 0;
   left: 0;
-  border-radius: 50%;
+  display: flex;
+  will-change: transform;
   pointer-events: none;
+  z-index: 5;
 }
 
-.globe-pulsar-core {
+.maplibregl-popup-anchor-top,
+.maplibregl-popup-anchor-top-left,
+.maplibregl-popup-anchor-top-right { flex-direction: column; }
+
+.maplibregl-popup-anchor-bottom,
+.maplibregl-popup-anchor-bottom-left,
+.maplibregl-popup-anchor-bottom-right { flex-direction: column-reverse; }
+
+.maplibregl-popup-anchor-left { flex-direction: row; }
+.maplibregl-popup-anchor-right { flex-direction: row-reverse; }
+
+.maplibregl-popup-tip {
+  width: 0;
+  height: 0;
+  border: 7px solid transparent;
+  z-index: 1;
+  align-self: center;
+}
+
+.maplibregl-popup-anchor-top .maplibregl-popup-tip { border-top: none; border-bottom-color: #12151c; }
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip { border-bottom: none; border-top-color: #12151c; }
+.maplibregl-popup-anchor-left .maplibregl-popup-tip { border-left: none; border-right-color: #12151c; }
+.maplibregl-popup-anchor-right .maplibregl-popup-tip { border-right: none; border-left-color: #12151c; }
+
+.maplibregl-popup-anchor-top-left .maplibregl-popup-tip {
+  align-self: flex-start;
+  border-top: none;
+  border-left: none;
+  border-bottom-color: #12151c;
+}
+.maplibregl-popup-anchor-top-right .maplibregl-popup-tip {
+  align-self: flex-end;
+  border-top: none;
+  border-right: none;
+  border-bottom-color: #12151c;
+}
+.maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip {
+  align-self: flex-start;
+  border-bottom: none;
+  border-left: none;
+  border-top-color: #12151c;
+}
+.maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip {
+  align-self: flex-end;
+  border-bottom: none;
+  border-right: none;
+  border-top-color: #12151c;
+}
+
+.maplibregl-popup-content {
+  position: relative;
+  pointer-events: auto;
+  background: #12151c;
+  border: 1px solid #262c38;
+  border-radius: 3px;
+  box-shadow: 0 12px 38px rgba(0, 0, 0, 0.55);
+  padding: 0.75rem 0.85rem 0.8rem;
+}
+
+.maplibregl-popup-close-button {
+  position: absolute;
+  top: 0.1rem;
+  right: 0.25rem;
+  background: none;
+  border: none;
+  padding: 0.15rem 0.3rem;
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1;
+  color: #5d6673;
+  cursor: pointer;
+
+  &:hover { color: #d3d8e0; }
+}
+
+.map-popup-body { max-width: 20rem; }
+
+/* The reading card is wider than the hover preview and scrolls internally, so
+   a long article never pushes the popup past the viewport. */
+.map-popup-body.map-popup-article {
+  width: min(30rem, 42vw);
+  max-width: none;
+}
+
+.map-popup-prose {
+  max-height: 52vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  margin: 0 0 0.5rem;
+  padding-right: 0.35rem;
+  scrollbar-width: thin;
+
+  p {
+    margin: 0 0 0.6rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: #c3c9d3;
+  }
+
+  .article-dateline {
+    font-variant-caps: all-small-caps;
+    font-feature-settings: "case" 1;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    color: #e6eaf0;
+    margin-right: 0.5em;
+  }
+
+  .article-sources-flat {
+    margin-top: 0.6rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #232936;
+    font-size: var(--size-xs);
+    color: #6d7684;
+  }
+
+  a { color: #d3d8e0; text-underline-offset: 0.2em; }
+}
+
+.map-popup-hint,
+.map-popup-loading {
+  margin: 0.35rem 0 0;
+  font-size: var(--size-xs);
+  color: #5d6673;
+  font-style: italic;
+}
+
+.map-popup-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0 0 0.3rem;
+  padding-right: 1rem;
+  font-size: var(--size-xs);
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.04em;
+  color: #6d7684;
+}
+
+.map-popup-dot {
   width: 6px;
   height: 6px;
-  margin: -3px 0 0 -3px;
-  background: #fff;
-  box-shadow: 0 0 8px 1px rgba(255, 255, 255, 0.55);
-}
-
-.globe-pulsar-ring {
-  width: 36px;
-  height: 36px;
-  margin: -18px 0 0 -18px;
-  border: 2px solid rgba(255, 255, 255, 0.9);
   border-radius: 50%;
-  background: transparent;
-  animation: globe-pulsar-ring 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
-  transform-origin: center center;
+  flex: 0 0 auto;
 }
 
-.globe-pulsar-ring-delay {
-  animation-delay: 1.2s;
+.map-popup-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  font-weight: 600;
+  color: #e6eaf0;
+  text-wrap: balance;
 }
 
-@keyframes globe-pulsar-ring {
-  0% {
-    transform: scale(0.167);
-    opacity: 0.85;
+.map-popup-lead {
+  margin: 0 0 0.4rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: #aab2be;
+}
+
+.map-popup-meta {
+  margin: 0 0 0.45rem;
+  font-size: var(--size-xs);
+  color: #6d7684;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.map-popup-link {
+  font-size: 0.85rem;
+  color: #e6eaf0;
+  text-decoration-color: #586274;
+  text-underline-offset: 0.2em;
+}
+
+/* --- Map sheet --- */
+.map-sheet.is-peek {
+  position: fixed;
+  inset: auto auto 5.5rem 22rem;
+  margin: 0;
+  width: min(25rem, calc(100vw - 24rem));
+  max-height: 55vh;
+  border-radius: 2px;
+  border: 1px solid #232936;
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.5);
+}
+
+.map-sheet-kicker {
+  font-size: var(--size-xs);
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.03em;
+  color: var(--text-dim);
+  margin: 0 0 var(--space-xs);
+}
+
+.map-sheet .island-sheet-title {
+  font-size: var(--size-h3);
+  line-height: var(--leading-heading);
+  margin: 0 0 var(--space-xs);
+  text-wrap: balance;
+}
+
+.map-sheet-lead {
+  margin: 0 0 var(--space-xs);
+  font-size: var(--size-sm);
+  line-height: var(--leading-body);
+  color: var(--text);
+}
+
+.map-sheet-meta,
+.map-sheet-note {
+  margin: 0 0 var(--space-xs);
+  font-size: var(--size-xs);
+  color: var(--text-dim);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.map-sheet-note { font-style: italic; }
+
+.map-sheet-link {
+  display: inline-block;
+  font-size: var(--size-sm);
+  margin-top: 0.15rem;
+}
+
+.map-sheet-more-label {
+  margin: var(--space-sm) 0 0.25rem;
+  font-size: var(--size-xs);
+  font-variant-caps: all-small-caps;
+  color: var(--text-dim);
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-xs);
+}
+
+.map-sheet-more {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: var(--size-sm);
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    padding: 0.15rem 0;
   }
-  100% {
-    transform: scale(1);
-    opacity: 0;
+
+  a { text-decoration: none; }
+  a:hover { text-decoration: underline; }
+}
+
+.map-sheet-more-time {
+  color: var(--text-dim);
+  font-size: var(--size-xs);
+  white-space: nowrap;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.map-sheet-app {
+  margin: var(--space-sm) 0 0;
+  padding-top: var(--space-xs);
+  border-top: 1px solid var(--rule);
+  font-size: var(--size-xs);
+  color: var(--text-dim);
+}
+
+.noscript-list {
+  padding: var(--space-md);
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .map-shell,
+  .map-root { grid-template-columns: minmax(0, 1fr); }
+
+  .map-feed {
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 42vh;
+    border-right: none;
+    border-top: 1px solid #1c2029;
+    z-index: 3;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .globe-pulsar-ring { animation: none; opacity: 0.4; }
-}
+  .map-feed-head { padding-top: 0.6rem; }
+  .map-canvas-host { grid-column: 1; height: 58vh; }
 
-@media (prefers-reduced-motion: reduce) {
-  /* Keep the globe visible as a static composition; the island script
-     already disables phi increments when reduce is set. */
-  .ambient-globe-root { opacity: 0.12; }
+  body.map-page > header {
+    width: auto;
+    right: 0;
+    background: linear-gradient(to bottom, rgba(8, 10, 13, 0.9), transparent);
+    padding-bottom: 0.6rem;
+  }
+
+  body.map-page > footer { display: none; }
+
+  .map-hud {
+    left: 0;
+    top: 3.1rem;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    background: none;
+  }
+
+  .map-status { top: 3.2rem; }
+
+  .map-timeline {
+    left: 0;
+    bottom: 42vh;
+  }
+
+  .map-sheet.is-peek {
+    inset: auto 0 0 0;
+    width: 100vw;
+    max-height: 52vh;
+    border-radius: 8px 8px 0 0;
+  }
 }
 
 /* --- Reduced Motion --- */
 @media (prefers-reduced-motion: reduce) {
-  .headline-item h2, .category-tab { transition: none; }
-  .article-expand, .article-view { animation: none; }
   .source-count::before, .context-label::before { transition: none; }
   .island-sheet, .island-sheet::backdrop { transition: none; }
 }

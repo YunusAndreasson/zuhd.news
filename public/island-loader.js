@@ -11,6 +11,22 @@
 // page unloads.
 
 (() => {
+  // Cache key for the island bundles, carried on this script's own URL by the
+  // build. Cloudflare Pages pins `.js` to its own four-hour max-age and
+  // `_headers` cannot lower it, so without a version in the URL a code deploy
+  // would keep serving the previous bundle from the shared edge cache long
+  // after it shipped. `import.meta.url` is the tag's src, query and all, so no
+  // extra global or inline script is needed to pass it in.
+  const V = (() => {
+    try {
+      const v = new URL(import.meta.url).searchParams.get('v');
+      return v ? `?v=${encodeURIComponent(v)}` : '';
+    } catch {
+      return '';
+    }
+  })();
+  const islandUrl = (name) => `/islands/${name}.js${V}`;
+
   // Track triggers whose mount is currently in flight (prevents double-
   // mount on rapid double-click). Once the imported module has run, the
   // trigger is removed so it can be re-clicked after the sheet closes.
@@ -39,7 +55,7 @@
     container.dataset.island = name;
     document.body.appendChild(container);
     try {
-      const mod = await import(`/islands/${name}.js`);
+      const mod = await import(islandUrl(name));
       mod.mount?.(container, parseProps(trigger));
     } catch (err) {
       console.error(`[island:${name}]`, err);
@@ -74,7 +90,7 @@
     container.dataset.island = name;
     document.body.appendChild(container);
     try {
-      const mod = await import(`/islands/${name}.js`);
+      const mod = await import(islandUrl(name));
       mod.mount?.(container, props || {});
     } catch (err) {
       console.error(`[island:${name}]`, err);
@@ -94,7 +110,7 @@
       const name = node.getAttribute('data-island-auto');
       if (!name || !/^[a-z0-9-]+$/.test(name)) continue;
       try {
-        const mod = await import(`/islands/${name}.js`);
+        const mod = await import(islandUrl(name));
         const props = {};
         for (const { name: n, value } of node.attributes) {
           if (!n.startsWith('data-') || n === 'data-island-auto') continue;
