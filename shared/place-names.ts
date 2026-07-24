@@ -23,6 +23,38 @@ const ARABIC_NAMES: Record<string, string> = {
   Bethlehem: 'Bayt Lahm',
   Jericho: 'Ariha',
   Hebron: 'Al-Khalil',
+
+  // Further towns built on, or renamed from, named Palestinian localities.
+  'Beit Shean': 'Bisan',
+  Afula: 'al-Fula',
+  Yavne: 'Yibna',
+  Gedera: 'Qatra',
+  Sderot: 'Najd',
+  'Kiryat Shmona': 'al-Khalisa',
+  'Rishon LeZion': 'Ayun Qara',
+  'Petah Tikva': 'Mulabbis',
+  'Or Yehuda': "Kafr 'Ana",
+  Rehovot: 'Khirbat Duran',
+  'Kfar Saba': 'Kafr Saba',
+
+  // Alternate romanisations and official double-barrelled forms. Different
+  // feeds and cartographic datasets spell the same place several ways, and a
+  // lookup that only knows one of them silently passes the rest through — the
+  // map was printing "Tel Aviv" while the article beside it said "Yafa".
+  'Tel Aviv-Yafo': 'Yafa',
+  'Tel Aviv-Jaffa': 'Yafa',
+  Beersheba: 'Bir al-Saba',
+  "Be'er Sheva": 'Bir al-Saba',
+  Zefat: 'Safad',
+  Tzfat: 'Safad',
+  Akko: 'Akka',
+  Ako: 'Akka',
+  Hefa: 'Hayfa',
+  Yerushalayim: 'Al-Quds',
+  'Bet Shean': 'Bisan',
+  "Bet She'an": 'Bisan',
+  Ramla: 'ar-Ramla',
+  Lydda: 'al-Ludd',
 };
 
 export function displayLocation(location: string | null): string | null {

@@ -196,8 +196,35 @@ async function countryLabelPoints(fc) {
   }
 }
 
+/**
+ * Draws historic Palestine as one territory.
+ *
+ * Natural Earth splits the area into an "Israel" polygon and a "Palestine" one
+ * covering only the West Bank and Gaza. This publication's cartography treats
+ * historic Palestine as a whole — the same position the app already takes when
+ * it routes Yafa, Hayfa and Al-Quds to Palestine, and when it prints those
+ * cities under their own names. The basemap was the last surface still drawing
+ * it the other way, so a story datelined Al-Quds sat inside a polygon labelled
+ * Israel.
+ *
+ * `merge` works on the topology rather than on rendered rings, so the shared
+ * arc between the two is dissolved rather than drawn twice — one outline, no
+ * seam down the middle. Everything else about the feature (its label, its ISO2,
+ * so its click target) follows from being one feature.
+ */
+const mergePalestine = (topo, merge) => {
+  const geoms = topo.objects.countries.geometries
+  const parts = geoms.filter((g) => g.properties?.name === 'Israel' || g.properties?.name === 'Palestine')
+  if (parts.length < 2) return null
+  return {
+    type: 'Feature',
+    properties: { name: 'Palestine' },
+    geometry: merge(topo, parts),
+  }
+}
+
 export async function buildMapSources(root) {
-  const { feature } = await import('topojson-client')
+  const { feature, merge } = await import('topojson-client')
   // Natural Earth carries only a display name, but the country profile is
   // routed by ISO 3166-1 alpha-2 (`/api/country/{ISO2}.json`). Resolving it
   // here — with the same lookup the country pages are generated from, so the
@@ -210,6 +237,15 @@ export async function buildMapSources(root) {
   const tier = (file, dp, tol = 0) => {
     const topo = JSON.parse(readFileSync(join(root, 'shared', 'data', file), 'utf8'))
     const fc = feature(topo, topo.objects.countries)
+
+    const palestine = mergePalestine(topo, merge)
+    if (palestine) {
+      const kept = fc.features.filter(
+        (f) => f.properties?.name !== 'Israel' && f.properties?.name !== 'Palestine',
+      )
+      fc.features = [...kept, palestine]
+    }
+
     return {
       type: 'FeatureCollection',
       features: fc.features.map((f) => {
@@ -243,6 +279,29 @@ export async function buildMapSources(root) {
     // everything taken out of them shows immediately.
     countriesUltra: tier('countries-10m.json', 3, 0.003),
     countryLabels: await countryLabelPoints(countries),
-    places: JSON.parse(readFileSync(join(root, 'shared', 'data', 'places-50m.geojson'), 'utf8')),
+    places: await placeLabels(root),
+  }
+}
+
+/**
+ * City and town labels, under their own names.
+ *
+ * The article layer has shown locations in historic Palestine under their
+ * original Arabic names for a while, but the basemap underneath was drawn from
+ * Natural Earth untouched — so a story datelined Al-Quds sat on a label reading
+ * "Jerusalem", and the map contradicted the article printed on top of it. Same
+ * table, same rule, applied to the ground as well as to the stories.
+ */
+async function placeLabels(root) {
+  const { displayLocation } = await loadShared('place-names.ts')
+  const fc = JSON.parse(
+    readFileSync(join(root, 'shared', 'data', 'places-50m.geojson'), 'utf8'),
+  )
+  return {
+    ...fc,
+    features: fc.features.map((f) => ({
+      ...f,
+      properties: { ...f.properties, n: displayLocation(f.properties?.n) ?? f.properties?.n },
+    })),
   }
 }

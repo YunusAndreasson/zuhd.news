@@ -1159,7 +1159,7 @@ const categoryPageTemplate = `<!-- بسم الله الرحمن الرحيم -->
   </main>
   <footer>
     <nav class="footer-links">
-      <a href="/about">about</a> <a href="/contact">contact</a> <a href="/mcp">mcp</a> <a href="/privacy">privacy</a>
+      <a href="/about" data-island="doc-sheet" data-doc="about">about</a> <a href="/contact" data-island="doc-sheet" data-doc="contact">contact</a> <a href="/mcp" data-island="doc-sheet" data-doc="mcp">mcp</a> <a href="/privacy" data-island="doc-sheet" data-doc="privacy">privacy</a>
     </nav>
     <nav class="footer-maker" aria-label="Maker">
       <a class="footer-byline" href="https://andreassonphoto.com/about" target="_blank" rel="me noopener noreferrer">made by yunus andreasson</a>
@@ -1314,10 +1314,27 @@ for (const page of staticPages) {
   const body = readFileSync(pagePath, 'utf-8')
   // These used to be clones of the homepage with the reader pane filled in.
   // With the homepage now a full-bleed map they get their own plain template.
+  const contentHtml = markdownToHtml(body)
   writeFileSync(join(DIST_DIR, `${page}.html`), staticPageTemplate
     .replace(/{{pageName}}/g, page)
-    .replace('{{content}}', markdownToHtml(body))
-    .replace(`href="/${page}"`, `href="/${page}" aria-current="page"`)
+    .replace('{{content}}', contentHtml)
+    // The link to the page you are already reading is marked current and loses
+    // its overlay trigger — opening a sheet of the page behind it is a no-op
+    // the reader has to undo.
+    .replace(
+      `href="/${page}" data-island="doc-sheet" data-doc="${page}"`,
+      `href="/${page}" aria-current="page"`,
+    )
+  )
+
+  // The same prose, reachable without a page load, so the map can show these
+  // over itself instead of navigating away from it. The standalone page above
+  // stays the canonical URL — it is what a shared link, a crawler and a
+  // JS-less browser get, and what the overlay's own address bar points at.
+  mkdirSync(join(DIST_DIR, 'api', 'doc'), { recursive: true })
+  writeFileSync(
+    join(DIST_DIR, 'api', 'doc', `${page}.json`),
+    JSON.stringify({ page, title: page, html: contentHtml }),
   )
   console.log(`  Built: ${page}.html`)
 }

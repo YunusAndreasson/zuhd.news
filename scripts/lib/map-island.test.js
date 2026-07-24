@@ -70,6 +70,7 @@ writeFileSync(
     setPadding(p) { this.padding = p }
     queryRenderedFeatures() { return [] }
     getZoom() { return 2 }
+    getCenter() { return { lng: 12, lat: 22 } }
     flyTo() {}
     easeTo() {}
     isStyleLoaded() { return true }

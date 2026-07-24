@@ -1843,6 +1843,105 @@ body.archetype-page-body .article-page-header {
   text-decoration-color: var(--accent, #c9a84c);
 }
 
+/* --- Reset-view control ---
+   Zooming in is one gesture; getting back out was five. Sits above the
+   timeline, out of the rail's way, and only exists once the view has moved. */
+.map-reset {
+  position: absolute;
+  right: var(--space-sm);
+  bottom: 5.5rem;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.6rem 0.3rem 0.45rem;
+  font: inherit;
+  font-size: var(--size-xs);
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.05em;
+  color: #c3c9d3;
+  background: #12151cd9;
+  border: 1px solid #2b3240;
+  border-radius: 3px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: opacity var(--dur-normal) var(--ease-out), color var(--dur-fast);
+
+  svg { width: 13px; height: 13px; flex: 0 0 auto; }
+
+  &:hover { color: #fff; border-color: #3a4353; }
+  &[hidden] { display: none; }
+}
+
+@media (max-width: 60rem) {
+  .map-reset { bottom: 4.5rem; }
+}
+
+/* --- Document sheet ---
+   The same prose as the document pages, shown over the map so a footer link
+   never costs the reader their view. Sized as a reading column rather than a
+   full-bleed panel, and scrolled internally so the map stays put behind it. */
+.doc-sheet {
+  width: min(44rem, calc(100vw - 3rem));
+  max-width: none;
+  max-height: 82vh;
+  /* The base sheet is docked to the bottom edge and painted in --bg, which on
+     the map's dark ground is nearly the same black as the dimmed map behind
+     it — the card had no edge. This is the same surface the story and country
+     cards use, floated rather than docked, because it is a document to read
+     and not a tray of controls. */
+  margin: auto;
+  background: #12151c;
+  border: 1px solid #2b3240;
+  border-radius: 4px;
+  box-shadow: 0 24px 64px rgb(0 0 0 / 0.6);
+  padding: var(--space-sm) var(--space-md) var(--space-md);
+}
+
+.doc-sheet .island-sheet-close {
+  color: #8d97a6;
+
+  &:hover { color: #e6eaf0; }
+}
+
+.doc-sheet-inner {
+  max-height: calc(82vh - 2.5rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+.doc-sheet-kicker {
+  margin: 0 0 var(--space-sm);
+  font-size: var(--size-xs);
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.08em;
+  color: #6d7684;
+}
+
+.doc-sheet-body {
+  max-width: none;
+  color: #c3c9d3;
+
+  p { color: #c3c9d3; }
+  strong, b, h2 { color: #e6eaf0; }
+  ul { color: #8d97a6; }
+  a, ul a { color: #e6eaf0; text-decoration-color: #586274; }
+  code { color: #d8dde4; background: #0d1016; }
+  pre { background: #0d1016; border: 1px solid #232936; }
+}
+
+.doc-sheet-permalink {
+  display: inline-block;
+  margin-top: var(--space-sm);
+  font-size: 0.85rem;
+  color: #8d97a6;
+  text-decoration-color: #586274;
+  text-underline-offset: 0.2em;
+
+  &:hover { color: #e6eaf0; }
+}
+
 /* --- Document pages (about, contact, privacy, mcp, support, sources) ---
 
    These used to render as a light page with a starfield behind it, which left

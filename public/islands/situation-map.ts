@@ -255,13 +255,33 @@ export function mount(container: HTMLElement) {
 
   hud.append(ranges, filters)
 
+  /**
+   * Back to the whole world.
+   *
+   * Zooming in is one gesture; getting back out is five, and there was nothing
+   * on screen that said otherwise — the wordmark did it, but nobody knows that.
+   * The button only exists once the view has actually moved, so at rest it adds
+   * nothing to a map whose whole point is restraint.
+   */
+  const resetBtn = document.createElement('button')
+  resetBtn.type = 'button'
+  resetBtn.className = 'map-reset'
+  resetBtn.hidden = true
+  resetBtn.title = 'Show the whole world (Esc)'
+  resetBtn.setAttribute('aria-label', 'Zoom out to the whole world')
+  resetBtn.innerHTML =
+    '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">' +
+    '<circle cx="8" cy="8" r="5.6" fill="none" stroke="currentColor" stroke-width="1.3"/>' +
+    '<path d="M2.4 8h11.2M8 2.4c1.6 1.7 2.4 3.6 2.4 5.6S9.6 12.3 8 13.6C6.4 12.3 5.6 10 5.6 8S6.4 4.1 8 2.4Z" fill="none" stroke="currentColor" stroke-width="1.1"/>' +
+    '</svg><span>whole world</span>'
+
   const status = document.createElement('div')
   status.className = 'map-status'
   const clockEl = document.createElement('span')
   clockEl.className = 'map-clock'
   status.append(clockEl)
 
-  container.append(mapEl, hud, status)
+  container.append(mapEl, hud, status, resetBtn)
 
   // --- State --------------------------------------------------------------
   let points: MapPoint[] = []
@@ -997,6 +1017,17 @@ export function mount(container: HTMLElement) {
     map.easeTo({ ...HOME_VIEW, bearing: 0, pitch: 0, duration: 800, essential: true })
   }
 
+  /** Shows the reset control only when the camera is somewhere else. */
+  const syncResetButton = () => {
+    if (!mounted) return
+    const c = map.getCenter()
+    const moved =
+      map.getZoom() > HOME_VIEW.zoom + 0.15 ||
+      Math.abs(c.lat - HOME_VIEW.center[1]) > 4 ||
+      Math.abs(((c.lng - HOME_VIEW.center[0] + 540) % 360) - 180) > 8
+    resetBtn.hidden = !moved
+  }
+
   const onWordmarkClick = (e: MouseEvent) => {
     const target = e.target as HTMLElement | null
     if (!target?.closest?.('.wordmark')) return
@@ -1222,6 +1253,11 @@ export function mount(container: HTMLElement) {
         src()?.setData('/basemap/countries-detail.geojson')
       }
     })
+
+    // The reset control only exists once the view has left home, so at rest it
+    // adds nothing to a map whose whole point is restraint.
+    map.on('move', syncResetButton)
+    syncResetButton()
   }
 
   // --- Chrome -------------------------------------------------------------
@@ -1421,13 +1457,19 @@ export function mount(container: HTMLElement) {
   const onKeyDown = (e: KeyboardEvent) => {
     const target = e.target as HTMLElement | null
     if (target && target.matches('input, textarea, select')) return
-    if (e.key === 'Escape') {
+    if (e.key !== 'Escape') return
+    // Escape closes what is open; with nothing open it means "get me out of
+    // here", which on a map is the whole world.
+    if (popup?.isOpen() || sheet.isOpen()) {
       openSlug = null
       popup?.close()
       feed.highlight(null)
       sheet.close()
+      return
     }
+    if (!resetBtn.hidden) resetView()
   }
+  resetBtn.addEventListener('click', resetView)
   document.addEventListener('keydown', onKeyDown)
   document.addEventListener('click', onWordmarkClick)
 
