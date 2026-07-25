@@ -8,11 +8,45 @@
 // Since the build is Node and /shared/* is TypeScript, we transpile on
 // import via a small esbuild wrapper in scripts/build/shared-ts.js.
 
-import { readFileSync, writeFileSync, mkdirSync } from 'fs'
+import { createHash } from 'crypto'
+import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'fs'
 import { join } from 'path'
+import { buildCountryOgPng } from '../lib/og-image.js'
 import { loadShared } from './shared-ts.js'
 
 const ROOT = new URL('../..', import.meta.url).pathname
+
+/**
+ * Where to point the card's globe.
+ *
+ * `geoCentroid` over the whole feature is wrong for exactly the countries
+ * people share most: the United States averages the mainland with Alaska and
+ * Hawaii and lands in the Pacific, France averages in its overseas
+ * départements and lands in the Atlantic. Taking the centroid of the *largest*
+ * polygon instead puts the globe over the landmass a reader would recognise,
+ * which is the only job this projection has.
+ */
+const largestPolygonCentroid = (feat, geoCentroid, geoArea) => {
+  const g = feat?.geometry
+  if (!g) return null
+  let target = null
+  if (g.type === 'Polygon') {
+    target = g
+  } else if (g.type === 'MultiPolygon') {
+    let bestArea = -1
+    for (const coordinates of g.coordinates) {
+      const poly = { type: 'Polygon', coordinates }
+      const area = geoArea(poly)
+      if (area > bestArea) {
+        bestArea = area
+        target = poly
+      }
+    }
+  }
+  if (!target) return null
+  const [lng, lat] = geoCentroid(target)
+  return Number.isFinite(lat) && Number.isFinite(lng) ? { lat, lng } : null
+}
 
 const escHtml = (s) =>
   String(s ?? '')
@@ -62,14 +96,22 @@ const resolveArticleCountry = (feat, countries, lat, lng) => {
   return null
 }
 
-export const buildCountryPages = async ({ sorted, distDir, templatesDir, headCommon, islandV = "" }) => {
+export const buildCountryPages = async ({
+  sorted,
+  distDir,
+  templatesDir,
+  headCommon,
+  islandV = "",
+  shareRowHtml = () => '',
+  skipOg = false,
+}) => {
   const [
     { COUNTRY_DATA },
     { COUNTRY_AUGMENTED },
     { METRICS, getMetricValue, getRanking, parseStat },
     { codeFromTopojsonName },
     { displayCountryName },
-    { geoContains },
+    { geoContains, geoCentroid, geoArea },
     { feature },
   ] = await Promise.all([
     loadShared('countries/country-data.ts'),
@@ -94,9 +136,28 @@ export const buildCountryPages = async ({ sorted, distDir, templatesDir, headCom
     ;(articlesByCountry[name] ??= []).push(a)
   }
 
+  // Where each country's share card points its globe, keyed by the same raw
+  // topojson name that indexes COUNTRY_DATA.
+  const anchors = new Map()
+  for (const f of countries.features) {
+    const name = f.properties?.name
+    if (!name || anchors.has(name)) continue
+    const anchor = largestPolygonCentroid(f, geoCentroid, geoArea)
+    if (anchor) anchors.set(name, anchor)
+  }
+
   const template = readFileSync(join(templatesDir, "country.html"), "utf-8").replace("{{headCommon}}", headCommon).replaceAll("{{v}}", islandV)
 
   mkdirSync(join(distDir, 'country'), { recursive: true })
+
+  // Share cards, same content-hash disk cache the article cards use: country
+  // data moves about once a year, so after the first build this is a file copy.
+  const OG_CACHE_DIR = join(ROOT, '.cache', 'og-country')
+  const OG_VERSION = 'v3' // bump when buildCountryOgSvg or rasterizeSvg changes
+  if (!skipOg) {
+    mkdirSync(OG_CACHE_DIR, { recursive: true })
+    mkdirSync(join(distDir, 'api', 'og', 'country'), { recursive: true })
+  }
 
   // Precompute rankings once per metric so the 130 × 26 = 3380 row
   // renders stay fast. getRanking() already caches internally, but
@@ -107,6 +168,8 @@ export const buildCountryPages = async ({ sorted, distDir, templatesDir, headCom
 
   const codes = []
   let emitted = 0
+  let ogCached = 0
+  let ogRendered = 0
   for (const [name, data] of Object.entries(COUNTRY_DATA)) {
     const iso2 = codeFromTopojsonName(name)
     // `name` stays the raw key — it indexes COUNTRY_DATA, COUNTRY_AUGMENTED and
@@ -170,9 +233,43 @@ export const buildCountryPages = async ({ sorted, distDir, templatesDir, headCom
         </section>`
       : ''
 
+    // The best-ranked three, which is what the share card carries — a rank is
+    // what turns a metric into something worth passing on.
+    const topMetrics = metricResults
+      .filter((r) => r.rank != null)
+      .sort((a, b) => a.rank / a.total - b.rank / b.total)
+      .slice(0, 3)
+      .map((r) => ({ label: r.meta.label, value: r.value, rank: r.rank, total: r.total }))
+
+    if (!skipOg) {
+      const anchor = anchors.get(name) || null
+      const inputs = {
+        v: OG_VERSION,
+        name: label,
+        region: data.region || null,
+        metaLine,
+        metrics: topMetrics,
+        lat: anchor?.lat ?? null,
+        lng: anchor?.lng ?? null,
+      }
+      const key = createHash('sha1').update(JSON.stringify(inputs)).digest('hex')
+      const cachePath = join(OG_CACHE_DIR, `${key}.png`)
+      let png
+      if (existsSync(cachePath)) {
+        png = readFileSync(cachePath)
+        ogCached++
+      } else {
+        png = buildCountryOgPng(inputs, 'light')
+        writeFileSync(cachePath, png)
+        ogRendered++
+      }
+      writeFileSync(join(distDir, 'api', 'og', 'country', `${iso2}.png`), png)
+    }
+
     const html = template
       .replace(/{{name}}/g, escHtml(label))
       .replace(/{{description}}/g, escHtml(`${label} country profile: ${metaLine}. ${recent.length} recent articles on zuhd.news.`))
+      .replace(/{{shareRow}}/g, shareRowHtml(`/country/${iso2}`, `${label} — zuhd.news`))
       .replace(/{{iso2}}/g, iso2)
       .replace(/{{region}}/g, escHtml((data.region || '').toUpperCase()))
       .replace(/{{flag}}/g, data.flag || '')
@@ -228,5 +325,5 @@ export const buildCountryPages = async ({ sorted, distDir, templatesDir, headCom
     emitted++
   }
 
-  return { count: emitted, codes }
+  return { count: emitted, codes, ogCached, ogRendered }
 }

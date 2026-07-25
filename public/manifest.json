@@ -1,16 +1,38 @@
 {
+  "id": "/",
   "name": "zuhd.news",
   "short_name": "zuhd",
-  "description": "Global news, no noise.",
+  "description": "Global news, no noise. A live map of the last 14 days of world news, from 40 sources.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
   "orientation": "any",
   "dir": "ltr",
   "lang": "en",
-  "categories": ["news"],
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "categories": ["news", "magazines"],
+  "launch_handler": { "client_mode": "navigate-existing" },
+  "background_color": "#080a0d",
+  "theme_color": "#080a0d",
+  "related_applications": [
+    {
+      "platform": "itunes",
+      "url": "https://apps.apple.com/us/app/zuhd-news/id6760964753",
+      "id": "6760964753"
+    },
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=news.zuhd.app",
+      "id": "news.zuhd.app"
+    }
+  ],
+  "prefer_related_applications": false,
+  "shortcuts": [
+    { "name": "Politics", "short_name": "Politics", "url": "/c/politics" },
+    { "name": "Economy", "short_name": "Economy", "url": "/c/economy" },
+    { "name": "Science", "short_name": "Science", "url": "/c/science" },
+    { "name": "Tech", "short_name": "Tech", "url": "/c/tech" }
+  ],
   "icons": [
     {
       "src": "/briefing-artwork-192.png",

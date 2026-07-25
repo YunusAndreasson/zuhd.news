@@ -21,6 +21,13 @@ import { readFileSync, existsSync, mkdtempSync, writeFileSync, rmSync } from 'no
 import { join } from 'node:path'
 import { tmpdir } from 'node:os'
 import { unwrap, closePolar, thin, simplifyRing } from '../build/basemap.js'
+// Plain JS, so it needs no bundling — unlike the island modules below.
+import {
+  MARKET_BY_ID,
+  MARKET_CATALOG,
+  MARKET_TRACKED,
+  instrumentMismatch,
+} from './market-metadata.js'
 
 const ROOT = new URL('../..', import.meta.url).pathname
 
@@ -34,7 +41,10 @@ writeFileSync(
     // style.ts only imports maplibre-gl as a type, so it erases and the bundle
     // stays DOM-free. Pulled in for the land ramp constants: the legend and the
     // fill both read them, and so does the contrast test below.
-    `export * from '${join(ROOT, 'public/islands/_map/style.ts')}'\n`,
+    `export * from '${join(ROOT, 'public/islands/_map/style.ts')}'\n` +
+    // The genocide record. Data, not geometry, but it is the one overlay with
+    // no upstream feed validating it, so the invariants have to live here.
+    `export * from '${join(ROOT, 'shared/genocide.ts')}'\n`,
 )
 const bundlePath = join(dir, 'bundle.mjs')
 await build({
@@ -104,6 +114,48 @@ test('the night polygon spans the full longitude range and closes', () => {
   assert.equal(Math.min(...lngs), -180)
   assert.equal(Math.max(...lngs), 180)
   assert.deepEqual(ring[0], ring[ring.length - 1], 'ring must close')
+})
+
+test('day and night close over opposite poles', () => {
+  // The lit hemisphere exists so the terminator is visible over water: the
+  // night fill is black on a `#080a0d` ocean, which moves it about two values
+  // in 255, so day/night used to stop at the coastline and read as something
+  // that happened to continents. `dayPolygon` is the same terminator ring
+  // closed the other way, drawn under the land so it only reaches the sea.
+  //
+  // Which pole each one closes over is the whole correctness of it, and getting
+  // it backwards renders a perfectly plausible map of the wrong half of the
+  // planet. Nothing throws either way.
+  for (const iso of ['2026-06-21T12:00:00Z', '2026-12-21T12:00:00Z', '2026-03-20T06:00:00Z']) {
+    const when = new Date(iso)
+    const night = M.nightPolygon(when)
+    const day = M.dayPolygon(when)
+    assert.ok(night && day, `both hemispheres must exist at ${iso}`)
+
+    // The closing vertex, not the extreme latitude. `terminatorLat` clamps its
+    // own output to ±89.9, and at an equinox the terminator runs pole to pole —
+    // so both rings contain latitudes above 89 and "whichever end is higher"
+    // calls both of them north. Only the two vertices the polygon is *closed*
+    // with are exactly ±90, and those are the ones that say which cap it is.
+    const poleOf = (f) => {
+      const lats = f.geometry.coordinates[0].map(([, lat]) => lat)
+      if (lats.some((lat) => lat === 90)) return 'north'
+      if (lats.some((lat) => lat === -90)) return 'south'
+      return 'neither'
+    }
+    const nightPole = poleOf(night)
+    const dayPole = poleOf(day)
+    assert.notEqual(nightPole, 'neither', `night reaches no pole at ${iso}`)
+    assert.notEqual(dayPole, 'neither', `day reaches no pole at ${iso}`)
+    assert.notEqual(dayPole, nightPole, `day and night both close over the ${dayPole} pole at ${iso}`)
+
+    // And the sun must be on the day side: whichever pole is lit is the one
+    // the sub-solar latitude points at.
+    const sun = M.subsolarPoint(when)
+    if (Math.abs(sun.lat) > 1) {
+      assert.equal(dayPole, sun.lat > 0 ? 'north' : 'south', `lit pole disagrees with the sun at ${iso}`)
+    }
+  }
 })
 
 test('the night polygon puts local midnight in darkness', () => {
@@ -472,7 +524,7 @@ const srgbLuminance = (hex) => {
   )
 }
 
-test('the land ramp stays dark enough for borders to survive it', () => {
+test('the land ramp is legible, ordered, neutral, and clear of the border', () => {
   const ramp = M.LAND_RAMP
   assert.ok(ramp.length >= 2, 'ramp needs at least two stops')
 
@@ -485,21 +537,56 @@ test('the land ramp stays dark enough for borders to survive it', () => {
     )
   }
 
-  // `borders` is a single line layer drawn over the fill. A country tinted to
-  // the border's own lightness erases its frontier with every neighbour, so
-  // the top of the ramp has to stay under it.
+  // The one nobody was asking, and the reason a flat ramp shipped.
+  //
+  // The previous stops were monotonic, neutral and under the border, so every
+  // assertion here passed — while measuring 1.04:1 between adjacent stops and
+  // 1.22:1 across the entire scale. The land was uniformly dark and switching
+  // metrics changed nothing a reader could see. Monotonic is not the same as
+  // legible: an encoding has to be *perceptible*, not merely ordered.
+  const contrast = (a, b) => {
+    const [hi, lo] = [srgbLuminance(a), srgbLuminance(b)].sort((x, y) => y - x)
+    return (hi + 0.05) / (lo + 0.05)
+  }
+  for (let i = 1; i < ramp.length; i++) {
+    const c = contrast(ramp[i], ramp[i - 1])
+    assert.ok(
+      c >= 1.12,
+      `ramp step ${i} (${ramp[i - 1]} → ${ramp[i]}) is ${c.toFixed(3)}:1 — not a visible step`,
+    )
+  }
+  // And the scale as a whole has to be worth reading, not just its steps.
+  const span = contrast(ramp[ramp.length - 1], ramp[0])
+  assert.ok(span >= 1.8, `the whole ramp spans only ${span.toFixed(3)}:1 worst to best`)
+
+  // `borders` is a single line layer drawn over the fill, and it doubles as the
+  // coastline. Land tinted to the border's own lightness erases both the
+  // frontier and the shore, so the top of the ramp has to stay clear of it —
+  // and the border has to stay clear of the ocean, or the coast goes with it.
+  assert.ok(
+    contrast(M.MAP_COLOURS.border, ramp[ramp.length - 1]) >= 1.25,
+    `border ${M.MAP_COLOURS.border} is not distinguishable from ramp top ${ramp[ramp.length - 1]}`,
+  )
   assert.ok(
     srgbLuminance(ramp[ramp.length - 1]) < srgbLuminance(M.MAP_COLOURS.border),
     `ramp top ${ramp[ramp.length - 1]} is not darker than border ${M.MAP_COLOURS.border}`,
   )
+  assert.ok(
+    contrast(M.MAP_COLOURS.border, M.MAP_COLOURS.ocean) >= 2.5,
+    'the border is not visible against the ocean, so coastlines disappear',
+  )
 
   // No-data is off the scale, not at the bottom of it — and the gap saying so
   // has to be wider than the step between two adjacent stops, or "we have no
-  // figure" reads as "the lowest figure".
-  const noData = srgbLuminance(M.LAND_NO_DATA)
-  assert.ok(noData < srgbLuminance(ramp[0]), 'no-data tone is not below the ramp floor')
+  // figure" reads as "the lowest figure". Compared as a ratio, like every other
+  // distance here: an absolute luminance difference is not comparable between
+  // the dark end of the ramp and the light end.
   assert.ok(
-    srgbLuminance(ramp[0]) - noData > srgbLuminance(ramp[1]) - srgbLuminance(ramp[0]),
+    srgbLuminance(M.LAND_NO_DATA) < srgbLuminance(ramp[0]),
+    'no-data tone is not below the ramp floor',
+  )
+  assert.ok(
+    contrast(ramp[0], M.LAND_NO_DATA) >= contrast(ramp[1], ramp[0]),
     'the no-data gap is narrower than one ramp step, so off-scale reads as low',
   )
 
@@ -777,6 +864,178 @@ test('the published chokepoint delta really is a signed fractional change', (t) 
   assert.ok(checked > 5, `only ${checked} chokepoints carried a comparable delta`)
 })
 
+// --- the markets layer -----------------------------------------------------
+
+test('an exchange is open on its own week, not on a Western one', () => {
+  // The single fact this layer gets wrong most easily. Riyadh trades Sunday to
+  // Thursday; London Monday to Friday. A rule written against one of them is
+  // wrong about the other on two days in seven, and "is this market open" is
+  // precisely what the filled/hollow mark is claiming.
+  const riyadh = MARKET_BY_ID.tadawul
+  const london = MARKET_BY_ID.lse
+  const at = (iso) => Date.parse(iso)
+
+  // Sunday, 14:00 in Riyadh and 12:00 in London.
+  assert.equal(M.isTrading(riyadh, at('2026-07-19T11:00:00Z')), true, 'Riyadh trades on Sunday')
+  assert.equal(M.isTrading(london, at('2026-07-19T11:00:00Z')), false, 'London does not')
+
+  // Wednesday — both inside their sessions.
+  assert.equal(M.isTrading(riyadh, at('2026-07-22T11:00:00Z')), true)
+  assert.equal(M.isTrading(london, at('2026-07-22T11:00:00Z')), true)
+
+  // Saturday — nobody.
+  assert.equal(M.isTrading(riyadh, at('2026-07-25T11:00:00Z')), false)
+  assert.equal(M.isTrading(london, at('2026-07-25T11:00:00Z')), false)
+
+  // Riyadh's session ends at 15:00 local; 15:00 itself is already shut.
+  assert.equal(M.isTrading(riyadh, at('2026-07-22T12:00:00Z')), false, '15:00 local is closed')
+  assert.equal(M.isTrading(riyadh, at('2026-07-22T06:59:00Z')), false, '09:59 local is closed')
+  assert.equal(M.isTrading(riyadh, at('2026-07-22T07:01:00Z')), true, '10:01 local is open')
+
+  // A zone Intl cannot parse is a data problem, not a reason to throw inside a
+  // paint expression that runs for every mark.
+  assert.equal(
+    M.isTrading({ ...riyadh, tz: 'Not/AZone' }, at('2026-07-22T11:00:00Z')),
+    false,
+  )
+})
+
+test('the wrong-instrument guard rejects a healthy series from the wrong exchange', () => {
+  // Yahoo answers an unknown symbol with a *different* instrument rather than a
+  // 404. The three impostors found while building this catalog (`^PSI` → a
+  // PIMCO fund, `^NGX` → Nasdaq Next Generation 100, `^MSI` → a USD figure that
+  // is not Muscat) all carry too little history to pass the ≥5-closes rule in
+  // stocks.js — so this guard exists for the case that rule cannot see, and
+  // that is the case tested here: a full, healthy series that is simply not the
+  // instrument we asked for.
+  const nyse = MARKET_BY_ID.nyse
+  assert.equal(instrumentMismatch(nyse, { currencyReported: 'USD', timezone: 'America/New_York' }), null)
+  assert.match(
+    instrumentMismatch(nyse, { currencyReported: 'JPY', timezone: 'Asia/Tokyo' }),
+    /currency JPY/,
+    'the Nikkei must not be publishable as the S&P',
+  )
+  assert.match(
+    instrumentMismatch(nyse, { currencyReported: 'USD', timezone: 'Europe/London' }),
+    /timezone Europe\/London/,
+    'a right-currency, wrong-venue instrument must still be caught',
+  )
+  // Yahoo reports no currency at all for ^MERV. Silence is not a contradiction,
+  // and treating it as one would drop a good series.
+  assert.equal(
+    instrumentMismatch(MARKET_BY_ID.byma, {
+      currencyReported: '',
+      timezone: 'America/Argentina/Buenos_Aires',
+    }),
+    null,
+  )
+})
+
+test('exchanges that cannot be sourced are recorded rather than deleted', () => {
+  // The exchanges with no free daily series are concentrated in the Gulf, South
+  // Asia and North Africa — exactly the part of the world this layer exists to
+  // cover. Keeping the rows, each with a reason, is what stops a gap in the
+  // data commons from quietly becoming a gap in our stated coverage.
+  const absent = MARKET_CATALOG.filter((m) => !m.available)
+  assert.ok(absent.length >= 10, `only ${absent.length} unavailable exchanges recorded`)
+  for (const m of absent) {
+    assert.ok(m.reason && m.reason.length > 20, `${m.id} is not drawn but says nothing about why`)
+    assert.ok(m.iso2 && /^[A-Z]{2}$/.test(m.iso2), `${m.id} has no country`)
+    assert.ok(Number.isFinite(m.lat) && Number.isFinite(m.lng), `${m.id} has no location`)
+  }
+  // The catalog must not lose the markets this feature is for.
+  for (const id of ['qse', 'adx', 'psx', 'dse', 'egx', 'casablanca']) {
+    assert.ok(MARKET_BY_ID[id], `${id} dropped out of the catalog`)
+  }
+  const ids = MARKET_CATALOG.map((m) => m.id)
+  assert.equal(new Set(ids).size, ids.length, 'duplicate exchange id in the catalog')
+})
+
+test('every tracked exchange pins the expectations the fetcher asserts on', () => {
+  for (const m of MARKET_TRACKED) {
+    assert.ok(m.symbol, `${m.id} is tracked with no symbol`)
+    assert.ok(m.currency, `${m.id} has no expected currency to check against`)
+    assert.ok(m.tz, `${m.id} has no expected timezone to check against`)
+    assert.doesNotThrow(
+      () => new Intl.DateTimeFormat('en-US', { timeZone: m.tz }),
+      `${m.id}: ${m.tz} is not a zone Intl can resolve`,
+    )
+    assert.ok(/^\d{1,2}:\d{2}$/.test(m.sessionStart), `${m.id} has no session start`)
+    assert.ok(/^\d{1,2}:\d{2}$/.test(m.sessionEnd), `${m.id} has no session end`)
+    assert.ok(m.days.length > 0 && m.days.every((d) => d >= 0 && d <= 6), `${m.id} has no week`)
+    assert.ok(Math.abs(m.lat) <= 90 && Math.abs(m.lng) <= 180, `${m.id} is off the earth`)
+  }
+  // The point of the exercise: the map must not be a Western markets map.
+  const ummah = ['tadawul', 'bist', 'dfm', 'bursa-malaysia', 'idx']
+  for (const id of ummah) {
+    assert.ok(
+      MARKET_TRACKED.some((m) => m.id === id),
+      `${id} is no longer drawn — the layer's whole premise is that it is`,
+    )
+  }
+})
+
+test('the published market change really is a signed percent move', (t) => {
+  // Same discipline as the chokepoint delta above: read the units off the
+  // payload the sheet renders, so a percent can never quietly become a ratio.
+  const path = join(ROOT, 'dist/api/markets.json')
+  if (!existsSync(path)) {
+    t.skip('dist/api/markets.json not built')
+    return
+  }
+  const { exchanges } = JSON.parse(readFileSync(path, 'utf8'))
+  assert.ok(exchanges.length > 20, `only ${exchanges.length} exchanges published`)
+
+  const seen = new Set()
+  for (const e of exchanges) {
+    assert.ok(!seen.has(e.id), `${e.id} published twice`)
+    seen.add(e.id)
+
+    const v = e.series?.values ?? []
+    assert.ok(v.length >= 2, `${e.id}: ${v.length} closes, cannot carry a change`)
+    const expected = ((v[v.length - 1] - v[v.length - 2]) / v[v.length - 2]) * 100
+    assert.ok(
+      Math.abs(e.changePct - expected) < 0.01,
+      `${e.id}: changePct ${e.changePct} is not ${expected.toFixed(3)}`,
+    )
+    // The level shown must be the close the change was computed from — not the
+    // live price, which would leave the two disagreeing on the card.
+    assert.equal(e.level, v[v.length - 1], `${e.id}: level is not the last close`)
+    assert.equal(e.series.periods.length, v.length, `${e.id}: periods and values differ in length`)
+    assert.ok(Math.abs(e.lat) <= 90 && Math.abs(e.lng) <= 180, `${e.id} is off the earth`)
+    assert.ok(e.currency && e.tz && e.indexName, `${e.id} is missing its identifying fields`)
+
+    // An exchange the catalog says we cannot source must never appear here.
+    assert.ok(MARKET_BY_ID[e.id]?.available, `${e.id} is published but marked unavailable`)
+  }
+
+  // Yafa, not Tel Aviv — the payload is the display layer for this field.
+  const tase = exchanges.find((e) => e.id === 'tase')
+  if (tase) assert.equal(tase.city, 'Yafa', 'the TASE marker must print Yafa')
+})
+
+test('the exchange size channel actually varies', (t) => {
+  // The GDACS lesson: a layer whose marks all draw identically is a layer that
+  // has silently stopped saying anything, and it looks fine. `mag` saturates at
+  // a 3% move, so this also fails if the divisor is ever set so wide that a
+  // normal day flattens every mark to the floor.
+  const path = join(ROOT, 'dist/api/markets.json')
+  if (!existsSync(path)) {
+    t.skip('dist/api/markets.json not built')
+    return
+  }
+  const { exchanges } = JSON.parse(readFileSync(path, 'utf8'))
+  const mags = exchanges.map((e) => Math.min(1, Math.abs(e.changePct) / 3))
+  assert.ok(
+    new Set(mags.map((m) => m.toFixed(3))).size > 5,
+    `only ${new Set(mags.map((m) => m.toFixed(3))).size} distinct sizes across ${exchanges.length} exchanges`,
+  )
+  assert.ok(
+    mags.filter((m) => m >= 1).length / mags.length < 0.5,
+    'more than half the exchanges are saturated — the 3% divisor is too tight',
+  )
+})
+
 test('exposure figures abbreviate above ten thousand and stay exact below', () => {
   assert.equal(M.population(124), '124')
   assert.equal(M.population(9_319), '9,319')
@@ -784,4 +1043,204 @@ test('exposure figures abbreviate above ten thousand and stay exact below', () =
   assert.equal(M.population(888_676), '889K')
   assert.equal(M.population(9_319_328), '9.3M')
   assert.equal(M.population(0), '')
+})
+
+// ---------------------------------------------------------------------------
+// The genocide record
+//
+// This is the only overlay with no machine behind it: no feed validates it, no
+// upstream schema rejects a malformed entry, and a mistake here is not a broken
+// pixel but the map attributing a finding to a body that did not make it. The
+// checks below are the substitute for the validation the other layers get for
+// free — that every marked situation is citable, locatable and dated, and that
+// the bar between "determined" and "warned about" holds.
+// ---------------------------------------------------------------------------
+
+test('every marked genocide situation carries the citation that justifies it', () => {
+  assert.ok(M.GENOCIDE_MARKED.length > 0, 'expected at least one marked situation')
+
+  for (const s of M.GENOCIDE_MARKED) {
+    assert.equal(s.finding, 'determination', `${s.id} reached the map without a determination`)
+
+    // A mark whose provenance is "the UN" is a mark a reader cannot check. The
+    // body has to be a named organ, the document has to be a document, and the
+    // link has to go to the body that made the finding.
+    assert.ok(s.body && s.body.length > 12, `${s.id}: no naming body`)
+    assert.ok(s.document && s.document.length > 8, `${s.id}: no document cited`)
+    assert.ok(/^https:\/\//.test(s.url), `${s.id}: finding must link somewhere readable`)
+    assert.ok(s.summary && s.summary.length > 60, `${s.id}: summary too thin to stand alone`)
+
+    assert.ok(s.lat >= -90 && s.lat <= 90, `${s.id}: lat out of range`)
+    assert.ok(s.lng >= -180 && s.lng <= 180, `${s.id}: lng out of range`)
+    assert.ok(s.name, `${s.id}: the mark's label is what says what it is`)
+
+    // Both dates are real and in order: a finding cannot predate the situation
+    // it is a finding about.
+    const found = Date.parse(s.date)
+    const since = Date.parse(`${s.since}-01`)
+    assert.ok(Number.isFinite(found), `${s.id}: unparseable finding date ${s.date}`)
+    assert.ok(Number.isFinite(since), `${s.id}: unparseable start ${s.since}`)
+    assert.ok(found >= since, `${s.id}: finding dated before the situation began`)
+
+    // The link label and the page it opens have to agree — the Gaza mark opens
+    // Palestine's profile, and labelling it "Gaza in profile" would have the
+    // map misnaming its own country page.
+    if (s.iso2) {
+      assert.match(s.iso2, /^[A-Z]{2}$/, `${s.id}: iso2 must be a two-letter code`)
+      assert.ok(s.profile, `${s.id}: a country link needs the country's name`)
+    }
+  }
+})
+
+test('warnings are recorded but never drawn as findings', () => {
+  const risks = M.GENOCIDE_SITUATIONS.filter((s) => s.finding === 'risk')
+  const markedIds = new Set(M.GENOCIDE_MARKED.map((s) => s.id))
+  for (const s of risks) {
+    assert.ok(!markedIds.has(s.id), `${s.id} is a warning and must not reach the map`)
+    // Still fully cited, so promoting one is a one-word edit and not research
+    // done a second time under pressure.
+    assert.ok(s.body && s.document && /^https:\/\//.test(s.url), `${s.id}: warning uncited`)
+  }
+  assert.equal(
+    M.GENOCIDE_MARKED.length + risks.length,
+    M.GENOCIDE_SITUATIONS.length,
+    'every situation is either a determination or a warning',
+  )
+})
+
+test('the published genocide payload is exactly what cleared the bar', (t) => {
+  const path = join(ROOT, 'dist/api/genocide.json')
+  if (!existsSync(path)) {
+    t.skip('dist/api/genocide.json not built')
+    return
+  }
+  const { situations } = JSON.parse(readFileSync(path, 'utf8'))
+  assert.deepEqual(
+    situations.map((s) => s.id).sort(),
+    M.GENOCIDE_MARKED.map((s) => s.id).sort(),
+    'the endpoint and the record disagree about what is marked',
+  )
+  for (const s of situations) {
+    assert.equal(s.finding, 'determination', `${s.id} was published without a determination`)
+  }
+})
+
+test('the genocide mark owns its colour outright', () => {
+  // Prominence here is not a size — it is the only unmuted tone on the map. If
+  // another overlay ever takes the same colour, the mark stops being the one
+  // thing that reads differently and the layer quietly loses its point.
+  const others = Object.entries(M.OVERLAY_COLOUR)
+    .filter(([k]) => k !== 'genocide' && k !== 'genocideCore')
+    .map(([, v]) => v.toLowerCase())
+  assert.ok(
+    !others.includes(M.OVERLAY_COLOUR.genocide.toLowerCase()),
+    'the genocide tone is shared with another overlay',
+  )
+
+  const hsl = (hex) => {
+    const n = parseInt(hex.slice(1), 16)
+    const [r, g, b] = [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255]
+    const max = Math.max(r, g, b)
+    const min = Math.min(r, g, b)
+    const l = (max + min) / 2
+    const d = max - min
+    if (!d) return { h: 0, s: 0, l }
+    const s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
+    let h
+    if (max === r) h = ((g - b) / d + (g < b ? 6 : 0)) * 60
+    else if (max === g) h = ((b - r) / d + 2) * 60
+    else h = ((r - g) / d + 4) * 60
+    return { h, s, l }
+  }
+
+  const mark = hsl(M.OVERLAY_COLOUR.genocide)
+
+  // It shares conflict's hue on purpose — same subject, far end of it — so the
+  // separation has to come from saturation. Muted next to muted is two marks
+  // the reader has to compare rather than one that arrives first.
+  assert.ok(mark.h < 20 || mark.h > 340, `genocide mark is not red (hue ${Math.round(mark.h)})`)
+  for (const c of others) {
+    assert.ok(
+      mark.s > hsl(c).s + 0.2,
+      `${c} is within 20 points of the genocide mark's saturation`,
+    )
+  }
+
+  // And it still has to survive the ground it is drawn on, which is #080a0d.
+  assert.ok(mark.l > 0.42, `genocide mark too dark for the map's ground (l ${mark.l.toFixed(2)})`)
+})
+
+// ---------------------------------------------------------------------------
+// The join between Natural Earth's names and our ISO codes
+// ---------------------------------------------------------------------------
+
+/**
+ * Every country on the map has to be reachable.
+ *
+ * `CC_TO_TOPOJSON_NAME` is a *join key* onto Natural Earth's `properties.name`,
+ * and the basemap build turns it into each feature's `iso2`. A feature whose
+ * name is not in the table gets no `iso2` at all, and everything keyed on that
+ * id silently stops working for it: the metric tint can never shade it, and
+ * clicking it cannot open its profile. The country is drawn, labelled, and
+ * inert — nothing throws, nothing logs.
+ *
+ * Two shipped that way. `MK` was keyed `'North Macedonia'` — the country's
+ * current name, which is right for a label and wrong for this table, because
+ * the 1:110m file still says `Macedonia`. `VU` was missing outright. Both were
+ * invisible failures for as long as they existed.
+ *
+ * The exceptions are enumerated rather than tolerated: each is a feature with
+ * no ISO-3166-1 code of its own, so it has nothing to join to. If a real
+ * country ever lands in this list, that is the bug this test exists to catch.
+ */
+test('every ISO-coded country on the basemap resolves to its code', async () => {
+  // Checked against the 1:110m name set even though the basemap now ships
+  // 1:50m. That set is exactly the ~176 sovereign states this site holds data
+  // for; 50m adds another 64 features that are almost all dependencies and
+  // specks we knowingly have no figures for, and enumerating those as
+  // exceptions would bury the signal. A code missing from *this* list is a
+  // country the map cannot shade or open — which is the bug being pinned.
+  const topo = JSON.parse(
+    readFileSync(join(ROOT, 'shared/data/countries-110m.json'), 'utf8'),
+  )
+  const names = topo.objects.countries.geometries
+    .map((g) => g.properties?.name)
+    .filter(Boolean)
+
+  const isoEntry = join(dir, 'iso-entry.ts')
+  writeFileSync(isoEntry, `export * from '${join(ROOT, 'shared/countries/iso.ts')}'\n`)
+  const isoBundle = join(dir, 'iso.mjs')
+  await build({
+    entryPoints: [isoEntry],
+    outfile: isoBundle,
+    bundle: true,
+    format: 'esm',
+    platform: 'neutral',
+    logLevel: 'silent',
+  })
+  const { codeFromTopojsonName } = await import(isoBundle)
+
+  // Not countries with codes of their own: two are Antarctic, one is a
+  // dependency the map names Malvinas, and two are unrecognised states.
+  const NO_CODE = new Set([
+    'Antarctica',
+    'Fr. S. Antarctic Lands',
+    'Falkland Is.',
+    'N. Cyprus',
+    'Somaliland',
+  ])
+
+  const unreachable = names.filter((n) => !NO_CODE.has(n) && !codeFromTopojsonName(n))
+  assert.deepEqual(
+    unreachable,
+    [],
+    `these countries are drawn but carry no iso2, so nothing can shade or open them: ${unreachable.join(', ')}`,
+  )
+
+  // The reverse direction — table entries pointing at names the basemap does
+  // not carry — is deliberately *not* asserted. It looks like the same check
+  // wearing the other shoe and is not: `AD`/`BH` are microstates the 1:110m
+  // tier drops but the finer tiers keep, and `IL` no longer names a feature at
+  // all because `basemap.js` merges it into Palestine. All three are correct.
+  // A test that fires on correct behaviour is a test people learn to delete.
 })

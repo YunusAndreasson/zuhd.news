@@ -114,7 +114,13 @@ export const CC_TO_TOPOJSON_NAME: Record<string, string> = {
   MD: 'Moldova',
   ME: 'Montenegro',
   MG: 'Madagascar',
-  MK: 'North Macedonia',
+  // Natural Earth 1:110m still calls this feature `Macedonia`, and this table
+  // is a *join key* onto that string, not a label. Keying it by the country's
+  // current name meant the lookup missed entirely: the feature got no `iso2`,
+  // so the map could never shade it on any metric and clicking it could not
+  // open its profile — the country was on the map and unreachable. What the
+  // reader sees is `place-names.ts`'s job, and that already renames it.
+  MK: 'Macedonia',
   ML: 'Mali',
   MM: 'Myanmar',
   MN: 'Mongolia',
@@ -180,6 +186,9 @@ export const CC_TO_TOPOJSON_NAME: Record<string, string> = {
   UZ: 'Uzbekistan',
   VE: 'Venezuela',
   VN: 'Vietnam',
+  // Was simply absent, with the same consequence as the Macedonia mismatch:
+  // unshadeable on every metric, and not clickable through to its profile.
+  VU: 'Vanuatu',
   XK: 'Kosovo',
   YE: 'Yemen',
   ZA: 'South Africa',

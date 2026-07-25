@@ -17,14 +17,8 @@
   // would keep serving the previous bundle from the shared edge cache long
   // after it shipped. `import.meta.url` is the tag's src, query and all, so no
   // extra global or inline script is needed to pass it in.
-  const V = (() => {
-    try {
-      const v = new URL(import.meta.url).searchParams.get('v');
-      return v ? `?v=${encodeURIComponent(v)}` : '';
-    } catch {
-      return '';
-    }
-  })();
+  const v = new URL(import.meta.url).searchParams.get('v');
+  const V = v ? `?v=${encodeURIComponent(v)}` : '';
   const islandUrl = (name) => `/islands/${name}.js${V}`;
 
   // Track triggers whose mount is currently in flight (prevents double-
@@ -66,7 +60,7 @@
   };
 
   document.addEventListener('click', (e) => {
-    const trigger = e.target.closest?.('[data-island]');
+    const trigger = e.target instanceof Element && e.target.closest('[data-island]');
     if (!trigger) return;
     // Let the browser handle modified clicks (Cmd/Ctrl-click, middle-click,
     // shift-click) so users can still open the underlying href in a new
@@ -102,26 +96,27 @@
   // named island immediately on DOMContentLoaded instead of waiting for
   // a click. Used by the ambient-globe on the homepage.
   const autoMounted = new WeakSet();
-  const autoMount = async () => {
-    const autos = document.querySelectorAll('[data-island-auto]');
-    for (const node of autos) {
+  // Each container boots independently. Awaiting them in sequence made a second
+  // auto-island wait on the first island's module download for no reason —
+  // these have no ordering relationship, and the map's bundle is the big one.
+  const autoMount = () => {
+    for (const node of document.querySelectorAll('[data-island-auto]')) {
       if (autoMounted.has(node)) continue;
       autoMounted.add(node);
       const name = node.getAttribute('data-island-auto');
       if (!name || !/^[a-z0-9-]+$/.test(name)) continue;
-      try {
-        const mod = await import(islandUrl(name));
-        const props = {};
-        for (const { name: n, value } of node.attributes) {
-          if (!n.startsWith('data-') || n === 'data-island-auto') continue;
-          const key = n.slice(5).replace(/-([a-z])/g, (_, c) => c.toUpperCase());
-          props[key] = value;
-        }
-        mod.mount?.(node, props);
-      } catch (err) {
-        console.error(`[island:${name}]`, err);
-        autoMounted.delete(node);
+      const props = {};
+      for (const { name: n, value } of node.attributes) {
+        if (!n.startsWith('data-') || n === 'data-island-auto') continue;
+        const key = n.slice(5).replace(/-([a-z])/g, (_, c) => c.toUpperCase());
+        props[key] = value;
       }
+      import(islandUrl(name))
+        .then((mod) => mod.mount?.(node, props))
+        .catch((err) => {
+          console.error(`[island:${name}]`, err);
+          autoMounted.delete(node);
+        });
     }
   };
 

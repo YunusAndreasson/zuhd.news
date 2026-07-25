@@ -34,6 +34,7 @@ writeFileSync(
       // NB: Map here is this stub class, not the global — use a plain object.
       this.sources = Object.create(null)
       this.layers = []
+      this.images = {}
       this.handlers = {}
       this.filters = Object.create(null)
       this.layout = Object.create(null)
@@ -58,6 +59,14 @@ writeFileSync(
     }
     addSource(id, cfg) { this.sources[id] = { cfg, setData(d) { this.data = d } } }
     addLayer(l) { this.layers.push(l) }
+    // Sprite registration for the no-data hatch. The stub lacked it, and the
+    // island calls it partway through addDataLayers -- so every layer after
+    // the hatch (stories, disasters, conflict, genocide) silently never got
+    // added. That is the shape of the bug the guard in the island now covers,
+    // and the stub has to be able to reach the code past it.
+    // (No backticks in here: this class is itself inside a template literal.)
+    addImage(id, img) { this.images[id] = img }
+    hasImage(id) { return id in this.images }
     getLayer(id) { return this.layers.find((l) => l.id === id) }
     getSource(id) { return this.sources[id] }
     getCanvas() { return { style: {} } }
@@ -79,11 +88,26 @@ writeFileSync(
   }
   export class NavigationControl {}
   export class Popup {
-    constructor(opts) { this.opts = opts; this.open = false }
+    constructor(opts) { this.opts = opts; this.open = false; this.handlers = {} }
+    // MapLibre's Popup extends Evented and fires 'close' when it is removed —
+    // including by its own × button, which is the only way the island can hear
+    // about a reader dismissing a story card.
+    on(ev, fn) { (this.handlers[ev] ||= []).push(fn); return this }
+    off(ev, fn) {
+      const list = this.handlers[ev]
+      if (list) list.splice(list.indexOf(fn) >>> 0, 1)
+      return this
+    }
+    fire(ev) { for (const f of this.handlers[ev] || []) f({ type: ev }) }
     setLngLat() { return this }
     setDOMContent(node) { this.content = node; return this }
     addTo() { this.open = true; return this }
-    remove() { this.open = false; return this }
+    remove() {
+      const was = this.open
+      this.open = false
+      if (was) this.fire('close')
+      return this
+    }
     isOpen() { return this.open }
   }
   `,
@@ -168,7 +192,12 @@ function setupDom() {
   }
   window.HTMLDialogElement.prototype.close = function () {
     this.removeAttribute('open')
-    this.dispatchEvent(new window.Event('close'))
+    // The spec *queues* this event rather than firing it synchronously, and
+    // the difference is load-bearing here: the map sheet promotes a hover peek
+    // to a pinned modal by closing and re-showing, so a synchronous `close`
+    // runs the handler before the promotion and hides a real ordering bug. See
+    // map-sheet.test.js.
+    queueMicrotask(() => this.dispatchEvent(new window.Event('close')))
   }
   // The island measures its container; jsdom reports zero for everything.
   Object.defineProperty(window.HTMLElement.prototype, 'clientWidth', {
@@ -184,7 +213,10 @@ function setupDom() {
     },
   })
 
-  const globals = ['window', 'document', 'HTMLElement', 'Event', 'CustomEvent', 'Node']
+  // `Element` is here because the island narrows event targets with
+  // `instanceof` — a real document has every one of these and a harness that
+  // omits one turns a correct guard into a ReferenceError jsdom swallows.
+  const globals = ['window', 'document', 'Element', 'HTMLElement', 'Event', 'CustomEvent', 'Node']
   const saved = {}
   for (const k of globals) {
     saved[k] = globalThis[k]
@@ -262,13 +294,15 @@ test('the island mounts, renders, and tears down cleanly', async () => {
     assert.equal(cats.length, 4)
     for (const f of cats) assert.equal(f.getAttribute('aria-pressed'), 'true')
 
-    // Layer toggles exist alongside the category filters: disasters, straits
-    // and conflict. Conflict is the one that was built and served but never
-    // wired to the map, so its presence here is the regression guard.
+    // Layer toggles exist alongside the category filters: disasters, straits,
+    // markets and conflict. Conflict is the one that was built and served but
+    // never wired to the map, so its presence here is the regression guard.
+    // The order is the order they are drawn in, and is asserted rather than
+    // sorted so that adding a layer is a deliberate edit to this line.
     const layers = [...env.host.querySelectorAll('.map-filter[data-kind="layer"]')]
     assert.deepEqual(
       layers.map((b) => b.textContent),
-      ['disasters', 'straits', 'conflict'],
+      ['disasters', 'straits', 'markets', 'conflict'],
     )
     for (const f of layers) assert.equal(f.getAttribute('aria-pressed'), 'true')
 

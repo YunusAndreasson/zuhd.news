@@ -88,3 +88,39 @@ export function nightPolygon(date: Date): Feature<Polygon> | null {
     geometry: { type: 'Polygon', coordinates: [ring] },
   }
 }
+
+/**
+ * The lit hemisphere — the same terminator ring, closed over the other pole.
+ *
+ * Needed because the night overlay cannot be seen over water. It is black at
+ * 0.28 and the ocean is `#080a0d`, whose luminance is 0.003: darkening that
+ * moves it by about two values out of 255. So the terminator read across the
+ * land and stopped dead at the coast, which made day and night look like a
+ * property of continents rather than of the planet.
+ *
+ * Darkening the night side further is not available — there is no room below
+ * near-black. Lightening the *day* side is, and it costs nothing on land
+ * because the land layer is drawn on top of this one. The ocean gets a visible
+ * terminator; `--map-ground` and the CSS seam that depends on it are untouched.
+ */
+export function dayPolygon(date: Date): Feature<Polygon> | null {
+  const sun = subsolarPoint(date)
+  if (terminatorLat(0, sun) === null) return null
+
+  const ring: Array<[number, number]> = []
+  for (let lng = -180; lng <= 180; lng += 1) {
+    const lat = terminatorLat(lng, sun)
+    if (lat === null) return null
+    ring.push([lng, Math.max(-89.9, Math.min(89.9, lat))])
+  }
+
+  // The mirror of `nightPolygon`: day closes over the pole the sun is on.
+  const dayPole = sun.lat >= 0 ? 90 : -90
+  ring.push([180, dayPole], [-180, dayPole], ring[0])
+
+  return {
+    type: 'Feature',
+    properties: {},
+    geometry: { type: 'Polygon', coordinates: [ring] },
+  }
+}

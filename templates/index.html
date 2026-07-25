@@ -13,11 +13,14 @@
   <meta property="og:description" content="Global news, no noise. A live map of the last 14 days of world news, from 40 sources, curated by AI.">
   <meta property="og:url" content="https://zuhd.news/">
   <meta property="og:image" content="https://zuhd.news/og-image.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="zuhd.news — global news, no noise">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://zuhd.news/og-image.png">
+  <meta name="twitter:image:alt" content="zuhd.news — global news, no noise">
   <!--
     The map's critical chain, declared so it starts downloading at parse time
     instead of after island-loader.js has run and resolved a dynamic import.
@@ -36,7 +39,7 @@
   <link rel="modulepreload" href="/islands/situation-map.js?v={{v}}">
   <link rel="modulepreload" href="/islands/maplibre-gl.mjs">
   <link rel="modulepreload" href="/islands/maplibre-gl-shared.mjs">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://zuhd.news/#org","name":"zuhd.news","url":"https://zuhd.news/","logo":{"@type":"ImageObject","url":"https://zuhd.news/apple-touch-icon.png"},"creator":{"@id":"https://andreassonphoto.com/#person"}},{"@type":"WebSite","@id":"https://zuhd.news/#site","name":"zuhd.news","url":"https://zuhd.news/","description":"Global news, no noise. Concise world news from 40 sources, curated by AI.","inLanguage":"en","publisher":{"@id":"https://zuhd.news/#org"}},{"@type":"Person","@id":"https://andreassonphoto.com/#person","name":"Yunus Andreasson","alternateName":["Jonas Yūnus Andrèasson"],"url":"https://andreassonphoto.com","sameAs":["https://github.com/YunusAndreasson","https://x.com/YunusAndreasson","https://www.instagram.com/andreasson.photo/","https://www.linkedin.com/in/yunusandreasson/"]},{"@type":"MobileApplication","@id":"https://zuhd.news/#app","name":"zuhd.news","operatingSystem":"iOS, Android","applicationCategory":"NewsApplication","url":"https://zuhd.news/","author":{"@id":"https://andreassonphoto.com/#person"},"publisher":{"@id":"https://zuhd.news/#org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"installUrl":"https://apps.apple.com/us/app/zuhd-news/id6760964753","downloadUrl":"https://play.google.com/store/apps/details?id=news.zuhd.app","sameAs":["https://apps.apple.com/us/app/zuhd-news/id6760964753","https://play.google.com/store/apps/details?id=news.zuhd.app"]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://zuhd.news/#org","name":"zuhd.news","url":"https://zuhd.news/","logo":{"@type":"ImageObject","url":"https://zuhd.news/apple-touch-icon.png"},"sameAs":["https://x.com/zuhd_news","https://www.instagram.com/zuhdnews/","https://apps.apple.com/us/app/zuhd-news/id6760964753","https://play.google.com/store/apps/details?id=news.zuhd.app"],"creator":{"@id":"https://andreassonphoto.com/#person"}},{"@type":"WebSite","@id":"https://zuhd.news/#site","name":"zuhd.news","url":"https://zuhd.news/","description":"Global news, no noise. Concise world news from 40 sources, curated by AI.","inLanguage":"en","publisher":{"@id":"https://zuhd.news/#org"}},{"@type":"Person","@id":"https://andreassonphoto.com/#person","name":"Yunus Andreasson","alternateName":["Jonas Yūnus Andrèasson"],"url":"https://andreassonphoto.com","sameAs":["https://github.com/YunusAndreasson","https://x.com/YunusAndreasson","https://www.instagram.com/andreasson.photo/","https://www.linkedin.com/in/yunusandreasson/"]},{"@type":"MobileApplication","@id":"https://zuhd.news/#app","name":"zuhd.news","operatingSystem":"iOS, Android","applicationCategory":"NewsApplication","url":"https://zuhd.news/","author":{"@id":"https://andreassonphoto.com/#person"},"publisher":{"@id":"https://zuhd.news/#org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"installUrl":"https://apps.apple.com/us/app/zuhd-news/id6760964753","downloadUrl":"https://play.google.com/store/apps/details?id=news.zuhd.app","sameAs":["https://apps.apple.com/us/app/zuhd-news/id6760964753","https://play.google.com/store/apps/details?id=news.zuhd.app"]}]}</script>
 </head>
 <body class="map-page">
   <aside class="app-banner" hidden data-app-banner>

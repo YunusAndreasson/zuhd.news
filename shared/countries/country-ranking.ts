@@ -260,6 +260,24 @@ export function getMetricValue(name: string, data: CountryData, metric: MetricKe
   }
   // Augmented fields (World Bank + derived).
   const aug: CountryAugmented | undefined = COUNTRY_AUGMENTED[name];
+
+  // Population density is arithmetic, not a measurement, and both of its inputs
+  // are native fields above. It was only ever *stored* in the augmented table
+  // because that is where the generator happened to compute it — so the 32
+  // countries missing from that table (the United States, Saudi Arabia, the
+  // United Kingdom, South Africa, South Korea…) reported no density at all,
+  // while the site held their population and their area the whole time.
+  //
+  // Derived only when the table has nothing, so every published figure stays
+  // byte-identical; checked against the ones it does have — France 66M/544K
+  // gives 121, Germany 232, India 424, each matching the stored value exactly.
+  if (metric === 'populationDensity' && typeof aug?.populationDensity !== 'string') {
+    const pop = parseStat(data.population);
+    const area = parseStat(data.area);
+    if (pop != null && area != null && area > 0) return `${Math.round(pop / area)} /km²`;
+    return null;
+  }
+
   if (!aug) return null;
   const v = aug[metric as keyof CountryAugmented];
   return typeof v === 'string' ? v : null;

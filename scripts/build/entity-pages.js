@@ -137,10 +137,14 @@ __HEAD__
   <meta property="og:description" content="__DESC__">
   <meta property="og:url" content="https://zuhd.news/e/__ID__">
   <meta property="og:image" content="https://zuhd.news/og-image.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="__LABEL__ on zuhd.news">
+  <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://zuhd.news/og-image.png">
+  <meta name="twitter:image:alt" content="__LABEL__ on zuhd.news">
 </head>
 <body class="archetype-page-body">
   <header class="article-page-header">
@@ -163,11 +167,23 @@ __HEAD__
       </figure>
       __MENTIONED__
     </article>
+    __SHARE_ROW__
   </main>
   <footer>
     <span class="update-status">__AS_OF__</span>
     <nav class="footer-links">
       <a href="/about">about</a> <a href="/contact">contact</a> <a href="/privacy">privacy</a>
+    </nav>
+    <!--
+      Every other page type carries this row; the entity pages were built
+      before it existed and never got it, so an indicator page was the one
+      place on the site with no route to the feeds or either store.
+    -->
+    <nav class="footer-social" aria-label="Follow and download">
+      <a href="https://x.com/zuhd_news" rel="me noopener" target="_blank">x</a>
+      <a href="https://www.instagram.com/zuhdnews/" rel="me noopener" target="_blank">instagram</a>
+      <a href="https://apps.apple.com/us/app/zuhd-news/id6760964753" rel="noopener" target="_blank">iphone</a>
+      <a href="https://play.google.com/store/apps/details?id=news.zuhd.app" rel="noopener" target="_blank">android</a>
     </nav>
     <nav class="footer-maker" aria-label="Maker">
       <a class="footer-byline" href="https://andreassonphoto.com/about" target="_blank" rel="me noopener noreferrer">made by yunus andreasson</a>
@@ -185,11 +201,11 @@ __HEAD__
       </span>
     </nav>
   </footer>
-  <script type="module" src="/island-loader.js" defer></script>
+  <script type="module" src="/island-loader.js__ISLAND_V__" defer></script>
 </body>
 </html>`
 
-export const buildEntityPages = ({ sorted, distDir, headCommon }) => {
+export const buildEntityPages = ({ sorted, distDir, headCommon, islandV = '', shareRowHtml = () => '' }) => {
   const today = new Date().toISOString().slice(0, 10)
   const trendsPath = latestTrendsPath()
   if (!trendsPath) return { count: 0, ids: [] }
@@ -234,6 +250,12 @@ export const buildEntityPages = ({ sorted, distDir, headCommon }) => {
 
     const html = entityTemplate
       .replace(/__HEAD__/g, headCommon)
+      // Was a bare `/island-loader.js`. Pages pins `.js` to its own four-hour
+      // max-age and `_headers` cannot lower it, so without the build's cache
+      // key an entity page kept loading whichever loader the edge last cached —
+      // harmless while these pages mounted no islands, and not once they do.
+      .replace(/__ISLAND_V__/g, islandV ? `?v=${islandV}` : '')
+      .replace(/__SHARE_ROW__/g, shareRowHtml(`/e/${ind.id}`, `${ind.label} — zuhd.news`))
       .replace(/__ID__/g, escHtml(ind.id))
       .replace(/__LABEL__/g, escHtml(ind.label))
       .replace(/__DESC__/g, escHtml(`${ind.label} — ${ind.sourceLabel || ind.source}. ${mentions.length} related articles on zuhd.news.`))

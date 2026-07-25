@@ -47,6 +47,15 @@ export interface SparklineOptions {
    * that could belong to anything.
    */
   direction?: number
+  /**
+   * Which pair of colours `direction` selects between.
+   *
+   * `straits` (default) is the chokepoint vocabulary — gold for traffic falling
+   * away, teal for a surge. `signed` is `--map-pos` / `--map-neg`, for a series
+   * where up is simply up. A market index down 2% drawn in the strait-blockage
+   * gold would be borrowing a meaning it does not have.
+   */
+  palette?: 'straits' | 'signed'
 }
 
 /**
@@ -70,7 +79,7 @@ const PAD = { l: 3, r: 3, t: 12, b: 20 }
  * an empty box.
  */
 export function createSparkline(opts: SparklineOptions): SVGSVGElement | null {
-  const { values, periods = [], reference, label, direction } = opts
+  const { values, periods = [], reference, label, direction, palette = 'straits' } = opts
   const clean = values.filter((v) => Number.isFinite(v))
   if (clean.length < 2) return null
 
@@ -89,13 +98,14 @@ export function createSparkline(opts: SparklineOptions): SVGSVGElement | null {
   const x = (i: number) => PAD.l + (i / (values.length - 1)) * innerW
   const y = (v: number) => PAD.t + innerH - ((v - lo) / span) * innerH
 
-  // `is-up` / `is-down` carry the colour; a series with no direction stays the
-  // neutral ink it has always been.
+  // `is-up`/`is-down` (or `is-pos`/`is-neg`) carry the colour; a series with no
+  // direction stays the neutral ink it has always been.
+  const [down, up] = palette === 'signed' ? [' is-neg', ' is-pos'] : [' is-down', ' is-up']
   const tone =
     typeof direction === 'number' && Number.isFinite(direction) && direction !== 0
       ? direction < 0
-        ? ' is-down'
-        : ' is-up'
+        ? down
+        : up
       : ''
 
   const svg = svgEl('svg', {

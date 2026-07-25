@@ -73,16 +73,81 @@
   --leading-tight: 1.1;
   --leading-tabular: 1.0;
 
-  --text: light-dark(#1a1a1a, #d4d4d4);
+  /* ---------------------------------------------------------------- Colour
+     Four roles, and every colour in the file belongs to exactly one of them:
+     ink (what you read), surface (what it sits on), line (what divides it),
+     mark (the few things allowed to carry meaning in hue).
+
+     Every token here is `light-dark()`. That is the whole theming mechanism —
+     there is no `[data-theme]` class and no duplicate dark block to keep in
+     step, because `html { color-scheme: light dark }` resolves these and a
+     page that wants one scheme pins it with its own `color-scheme` (see
+     `body.map-page`). The one thing `light-dark()` cannot do is a non-colour
+     property: it is a *colour* function, so `opacity: light-dark(0, 0.85)` is
+     an invalid declaration that gets dropped — that mistake shipped a black
+     page over every light-mode article once already, and the spacefield block
+     still carries the media query that replaced it.
+
+     Contrast is a constraint, not an outcome. Every ink/surface pair below
+     clears WCAG AA (4.5:1) in *both* schemes and against both `--bg` and
+     `--bg-soft`; `--text-dim` is the floor and is set exactly there. */
+
+  /* Ink, most to least emphatic. */
   --text-emphasis: light-dark(#000, #fafafa);
+  --text: light-dark(#1a1a1a, #d4d4d4);
   --text-secondary: light-dark(#555, #a3a3a3);
-  --text-dim: light-dark(#777, #7a7a7a);
+  /* The quietest ink that is still text. Was #777/#7a7a7a, which measured
+     4.48:1 on white and 4.05:1 on `--bg-soft` — under AA on both, by a hair
+     on one and clearly on the other. These are the darkest/lightest greys
+     that clear 4.5:1 against the softer surface as well as the plain one. */
+  --text-dim: light-dark(#737373, #828282);
+
+  /* Surface. */
   --bg: light-dark(#fff, #080808);
   --bg-soft: light-dark(#fafafa, #1a1a1a);
-  --accent: light-dark(#444, #999);
-  --dome: #c9a84c;          /* sole accent color — matches mobile */
+
+  /* Line. */
   --rule: light-dark(#e8e8e8, #181818);
   --rule-soft: light-dark(#f2f2f2, #111);
+
+  /* Marks — the only colours that mean something.
+
+     Two accents, deliberately: `--accent` is the *neutral* one, a grey that
+     underlines links and fills value bars without ever becoming the subject;
+     `--brand` is the single chromatic mark on the site. Keeping them apart is
+     what stops the page acquiring a second hue by accident.
+
+     `--brand` was `--dome`, which named the shape it was first drawn as
+     rather than the job it does, so nothing that wasn't a dome could
+     reasonably reach for it. */
+  --accent: light-dark(#444, #999);
+  --brand: #c9a84c;         /* the one chromatic mark — matches mobile */
+
+  /* A signed change: a number that went up, a number that went down. Three
+     components each had their own pair before this — `.entity-delta`,
+     `.entity-sheet-delta` and the map's sentiment tones — which is four
+     greens and four reds for one idea, and one of the greens (#2f8a4a)
+     measured 4.33:1 on white and failed AA. These are the pair that already
+     passed in both schemes. The map keeps a pair of its own (`--map-pos`,
+     `--map-neg`): same axis, different surface, and forcing these onto a
+     committed-dark chrome would shout. */
+  --pos: light-dark(#2a6a2a, #7ac97a);
+  --neg: light-dark(#8a2a2a, #e07070);
+
+  /* The keyboard focus ring. WCAG 2.2 asks for 3:1 against what it sits on;
+     `--accent` gives 9.7:1 light and 7.0:1 dark. Named separately from
+     `--accent` so a future palette change has to think about it. */
+  --focus: light-dark(#444, #999);
+
+  /* What a modal dims the page with. It brightens in light mode rather than
+     darkening — a white veil under a white sheet keeps the sheet the brightest
+     thing on screen, which a black one does not. `--scrim-clear` is the same
+     colour at zero alpha, and exists because `@starting-style` has to animate
+     *from* something: transitioning from `transparent` would cross through
+     grey, and writing the transparent end inline meant the resting scrim and
+     its starting state were two independent declarations to keep in step. */
+  --scrim: light-dark(rgb(255 255 255 / 0.6), rgb(0 0 0 / 0.55));
+  --scrim-clear: light-dark(rgb(255 255 255 / 0), rgb(0 0 0 / 0));
 
   --measure: 80ch;
   --measure-reading: 65ch;
@@ -165,11 +230,29 @@
 /* --- Base --- */
 html {
   font-size: 100%;
+  /* The switch that makes every `light-dark()` token above resolve, and that
+     tells the UA to draw its own furniture — scrollbars, form controls, the
+     spellcheck underline — in the matching scheme. */
   color-scheme: light dark;
+  /* Native controls tint themselves from this. The map has a range slider and
+     a select; without it they were drawn in the platform blue, the only hue on
+     the site that belongs to no token. Two pages override it: see
+     `body.map-page`. */
+  accent-color: var(--accent);
   text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selected text was the last uncontrolled colour on the page: the UA default
+   is a saturated blue that belongs to the browser rather than to this
+   palette, and on the committed-dark surfaces it was the brightest thing on
+   screen. `--brand` at a low mix keeps the ink legible through it, which a
+   solid fill does not. */
+::selection {
+  background: color-mix(in srgb, var(--brand) 28%, transparent);
+  color: var(--text-emphasis);
 }
 
 body {
@@ -660,8 +743,121 @@ footer {
 }
 
 .app-banner-close:focus-visible {
-  outline: 1px solid var(--accent, #c9a84c);
+  outline: 1px solid var(--focus);
   outline-offset: 2px;
+}
+
+/* --- Share ---
+   Set in the same footnote register as `.footer-social`: a step below the
+   document links, no icons, no coloured brand marks. On a site whose whole
+   surface is one typeface and no images, four logos would be the loudest thing
+   on the page — and the row has to sit under an article without competing with
+   it, or the article stops being the point.
+
+   Two shapes from one block. Where the device has `navigator.share` the island
+   collapses the row to a single `.share-trigger`, which can afford an outline
+   because it is the only thing there; everywhere else the row stays as the
+   words, which is what the server rendered and what a reader with no
+   JavaScript keeps. `.share-choice` is styled to work as both `<a>` and
+   `<button>` — "copy link" needs a button and must not look like a different
+   kind of thing from "email". */
+.share {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.55rem;
+  margin-top: var(--space-lg);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--rule-soft);
+  font-size: var(--size-xs);
+  line-height: 1.3;
+}
+
+.share-label {
+  color: var(--text-dim);
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.06em;
+}
+
+.share-choice {
+  /* One step brighter than the `.share-label` beside it. The label is context
+     and the choices are the action; the row read the other way round, with the
+     four things you can click quieter than the word telling you what they are
+     for. Still below body text — this is an offer, not an instruction. */
+  color: var(--text-secondary);
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0.9;
+  transition: opacity var(--dur-fast) ease, color var(--dur-fast) ease;
+
+  &:hover {
+    opacity: 1;
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+.share-trigger {
+  font: inherit;
+  font-size: var(--size-xs);
+  color: var(--text-secondary);
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  /* A real tap target — this is the whole control on the devices that get it. */
+  padding: 0.35rem 0.85rem;
+  cursor: pointer;
+  transition: color var(--dur-fast) ease, border-color var(--dur-fast) ease;
+
+  &:hover {
+    color: var(--text);
+    border-color: var(--text-dim);
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--focus);
+    outline-offset: 2px;
+  }
+}
+
+/* --- The app line ---
+   Deliberately not a permission prompt. The browser's own notification
+   permission would mean holding a push endpoint per device on our server,
+   which is exactly the record /privacy says we don't keep — so the honest
+   answer to "tell me when something breaks" is the app, which already has
+   push. That makes this a fact about what the app does rather than a request,
+   and it earns its line only after the reader has opened enough of the site to
+   have found it useful (see `_app-prompt.ts` for the counters). */
+.app-prompt {
+  margin: var(--space-sm) 0 0;
+  font-size: var(--size-xs);
+  line-height: 1.45;
+  color: var(--text-dim);
+}
+
+.app-prompt-link {
+  color: var(--text-secondary);
+  text-decoration-color: var(--accent);
+  text-underline-offset: 0.2em;
+
+  &:hover { color: var(--text); }
+}
+
+.app-prompt-sep {
+  margin: 0 0.45em;
+  opacity: 0.6;
 }
 
 /* --- Standalone Article Page ---
@@ -685,7 +881,7 @@ body.article-page-body::before {
   position: fixed;
   inset: 0 0 auto 0;
   height: 2px;
-  background: var(--dome);
+  background: var(--brand);
   transform-origin: left center;
   transform: scaleX(0);
   z-index: 50;
@@ -909,7 +1105,7 @@ body.article-page-body::before {
 .article-page-main .article-body blockquote {
   margin: var(--space-lg) 0;
   padding: var(--space-xs) 0 var(--space-xs) var(--space-md);
-  border-left: 2px solid var(--dome);
+  border-left: 2px solid var(--brand);
   font-size: clamp(1.375rem, 0.35vw + 1.25rem, 1.625rem);
   font-weight: var(--weight-light);
   font-style: italic;
@@ -1352,8 +1548,8 @@ body.archetype-page-body .article-page-header {
   font-size: var(--size-sm);
 }
 
-.entity-delta.pos { color: light-dark(#2a6a2a, #7ac97a); }
-.entity-delta.neg { color: light-dark(#8a2a2a, #e07070); }
+.entity-delta.pos { color: var(--pos); }
+.entity-delta.neg { color: var(--neg); }
 
 .entity-chart {
   display: flex;
@@ -1484,7 +1680,7 @@ body.archetype-page-body .article-page-header {
 
 .country-link:hover,
 .country-link:focus-visible {
-  border-bottom-color: var(--accent, #c9a84c);
+  border-bottom-color: var(--accent);
   border-bottom-style: solid;
   outline: none;
 }
@@ -1583,7 +1779,7 @@ body.archetype-page-body .article-page-header {
 }
 .country-preview-coverage-row:hover .country-preview-coverage-title {
   text-decoration: underline;
-  text-decoration-color: var(--accent, #c9a84c);
+  text-decoration-color: var(--accent);
   text-underline-offset: 3px;
 }
 .country-preview-coverage-row time {
@@ -1605,7 +1801,7 @@ body.archetype-page-body .article-page-header {
   transition: text-decoration-color var(--dur-fast);
 }
 .country-preview-full-link:hover {
-  text-decoration-color: var(--accent, #c9a84c);
+  text-decoration-color: var(--accent);
 }
 
 /* --- Island sheets ---
@@ -1623,7 +1819,7 @@ body.archetype-page-body .article-page-header {
   width: min(44rem, 100vw);
   max-height: 90vh;
   border-radius: 8px 8px 0 0;
-  box-shadow: 0 -8px 48px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 -8px 48px rgb(0 0 0 / 0.18);
   overflow: hidden;
   margin: auto auto 0 auto;
   transition:
@@ -1636,7 +1832,7 @@ body.archetype-page-body .article-page-header {
 }
 
 .island-sheet::backdrop {
-  background: light-dark(rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.55));
+  background: var(--scrim);
   backdrop-filter: blur(6px);
   transition:
     display var(--dur-sheet) allow-discrete,
@@ -1650,7 +1846,7 @@ body.archetype-page-body .article-page-header {
     transform: translateY(20px);
   }
   .island-sheet[open]::backdrop {
-    background: light-dark(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0));
+    background: var(--scrim-clear);
   }
 }
 
@@ -1663,7 +1859,7 @@ body.archetype-page-body .article-page-header {
   .island-sheet {
     border-radius: 8px;
     margin: auto;
-    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.24);
+    box-shadow: 0 24px 64px rgb(0 0 0 / 0.24);
   }
 }
 
@@ -1768,12 +1964,8 @@ body.archetype-page-body .article-page-header {
   font-size: var(--size-sm);
   color: var(--text-secondary);
 }
-.entity-sheet-delta.pos { color: #2f8a4a; }
-.entity-sheet-delta.neg { color: #b83a2a; }
-@media (prefers-color-scheme: dark) {
-  .entity-sheet-delta.pos { color: #6ecf87; }
-  .entity-sheet-delta.neg { color: #e27a6b; }
-}
+.entity-sheet-delta.pos { color: var(--pos); }
+.entity-sheet-delta.neg { color: var(--neg); }
 .entity-sheet-chart {
   margin: 0;
   color: var(--text);
@@ -1781,7 +1973,10 @@ body.archetype-page-body .article-page-header {
 .entity-sheet-spark {
   display: block;
   width: 100%;
-  height: 160px;
+  /* From the viewBox, so the chart scales uniformly. A fixed height against a
+     fluid width is what forced `preserveAspectRatio="none"` and turned the end
+     dots into ellipses. */
+  height: auto;
   color: var(--text);
 }
 .entity-sheet-spark-label {
@@ -1842,7 +2037,7 @@ body.archetype-page-body .article-page-header {
   transition: text-decoration-color var(--dur-fast);
 }
 .entity-sheet-full-link:hover {
-  text-decoration-color: var(--accent, #c9a84c);
+  text-decoration-color: var(--accent);
 }
 
 /* --- Reset-view control ---
@@ -1861,9 +2056,9 @@ body.archetype-page-body .article-page-header {
   font-size: var(--size-xs);
   font-variant-caps: all-small-caps;
   letter-spacing: 0.05em;
-  color: #c3c9d3;
-  background: #12151cd9;
-  border: 1px solid #2b3240;
+  color: var(--map-ink-body);
+  background: color-mix(in srgb, var(--map-panel) 85%, transparent);
+  border: 1px solid var(--map-line-card);
   border-radius: 3px;
   cursor: pointer;
   backdrop-filter: blur(6px);
@@ -1871,7 +2066,7 @@ body.archetype-page-body .article-page-header {
 
   svg { width: 13px; height: 13px; flex: 0 0 auto; }
 
-  &:hover { color: #fff; border-color: #3a4353; }
+  &:hover { color: var(--map-ink); border-color: var(--map-line-loud); }
   &[hidden] { display: none; }
 }
 
@@ -1893,17 +2088,17 @@ body.archetype-page-body .article-page-header {
      cards use, floated rather than docked, because it is a document to read
      and not a tray of controls. */
   margin: auto;
-  background: #12151c;
-  border: 1px solid #2b3240;
+  background: var(--map-panel);
+  border: 1px solid var(--map-line-card);
   border-radius: 4px;
   box-shadow: 0 24px 64px rgb(0 0 0 / 0.6);
   padding: var(--space-sm) var(--space-md) var(--space-md);
 }
 
 .doc-sheet .island-sheet-close {
-  color: #8d97a6;
+  color: var(--map-ink-muted);
 
-  &:hover { color: #e6eaf0; }
+  &:hover { color: var(--map-ink); }
 }
 
 .doc-sheet-inner {
@@ -1918,30 +2113,30 @@ body.archetype-page-body .article-page-header {
   font-size: var(--size-xs);
   font-variant-caps: all-small-caps;
   letter-spacing: 0.08em;
-  color: #89919f;
+  color: var(--map-ink-muted);
 }
 
 .doc-sheet-body {
   max-width: none;
-  color: #c3c9d3;
+  color: var(--map-ink-body);
 
-  p { color: #c3c9d3; }
-  strong, b, h2 { color: #e6eaf0; }
-  ul { color: #8d97a6; }
-  a, ul a { color: #e6eaf0; text-decoration-color: #586274; }
-  code { color: #d8dde4; background: #0d1016; }
-  pre { background: #0d1016; border: 1px solid #232936; }
+  p { color: var(--map-ink-body); }
+  strong, b, h2 { color: var(--map-ink); }
+  ul { color: var(--map-ink-muted); }
+  a, ul a { color: var(--map-ink); text-decoration-color: var(--map-underline); }
+  code { color: var(--map-ink-strong); background: var(--map-inset); }
+  pre { background: var(--map-inset); border: 1px solid var(--map-line); }
 }
 
 .doc-sheet-permalink {
   display: inline-block;
   margin-top: var(--space-sm);
   font-size: 0.85rem;
-  color: #8d97a6;
-  text-decoration-color: #586274;
+  color: var(--map-ink-muted);
+  text-decoration-color: var(--map-underline);
   text-underline-offset: 0.2em;
 
-  &:hover { color: #e6eaf0; }
+  &:hover { color: var(--map-ink); }
 }
 
 /* --- Document pages (about, contact, privacy, mcp, support, sources) ---
@@ -1965,14 +2160,14 @@ body.doc-page {
      their content — so `max-width` + `margin: auto` on them centres a narrow
      box instead of laying out a column. Normal flow is what these want. */
   display: block;
-  background-color: #080a0d;
+  background-color: var(--map-ground);
   /* The graticule: 10° of nothing, then a hairline. Fixed, so it reads as the
      ground the page rests on rather than something that scrolls with it. */
   background-image:
-    repeating-linear-gradient(to right, #11151c 0 1px, transparent 1px 84px),
-    repeating-linear-gradient(to bottom, #11151c 0 1px, transparent 1px 84px);
+    repeating-linear-gradient(to right, var(--map-panel) 0 1px, transparent 1px 84px),
+    repeating-linear-gradient(to bottom, var(--map-panel) 0 1px, transparent 1px 84px);
   background-attachment: fixed;
-  color: #c3c9d3;
+  color: var(--map-ink-body);
   max-width: none;
   padding: 0;
 }
@@ -1987,15 +2182,15 @@ body.doc-page > header {
   padding: var(--space-md) var(--space-md) var(--space-sm);
 }
 
-body.doc-page .wordmark { color: #e6eaf0; }
+body.doc-page .wordmark { color: var(--map-ink); }
 
 .doc-back {
   font-size: var(--size-sm);
-  color: #8d97a6;
+  color: var(--map-ink-muted);
   text-decoration: none;
   white-space: nowrap;
 
-  &:hover { color: #e6eaf0; }
+  &:hover { color: var(--map-ink); }
 }
 
 body.doc-page > main {
@@ -2007,31 +2202,31 @@ body.doc-page > main {
 }
 
 .doc-panel {
-  background: #12151c;
-  border: 1px solid #262c38;
+  background: var(--map-panel);
+  border: 1px solid var(--map-line-panel);
   border-radius: 3px;
   padding: var(--space-md);
   box-shadow: 0 12px 38px rgb(0 0 0 / 0.45);
 }
 
 body.doc-page .page-title {
-  color: #89919f;
+  color: var(--map-ink-muted);
   margin-bottom: var(--space-sm);
 }
 
 body.doc-page .about-body {
-  color: #c3c9d3;
+  color: var(--map-ink-body);
   /* The panel already is the measure — a second one inside it just offsets
      the text within its own card. */
   max-width: none;
 
-  p { color: #c3c9d3; }
-  strong, b { color: #e6eaf0; }
-  h2 { color: #e6eaf0; }
-  ul { color: #8d97a6; }
-  ul a, a { color: #e6eaf0; text-decoration-color: #586274; }
-  code { color: #d8dde4; background: #0d1016; }
-  pre { background: #0d1016; border: 1px solid #232936; }
+  p { color: var(--map-ink-body); }
+  strong, b { color: var(--map-ink); }
+  h2 { color: var(--map-ink); }
+  ul { color: var(--map-ink-muted); }
+  ul a, a { color: var(--map-ink); text-decoration-color: var(--map-underline); }
+  code { color: var(--map-ink-strong); background: var(--map-inset); }
+  pre { background: var(--map-inset); border: 1px solid var(--map-line); }
 }
 
 body.doc-page > footer {
@@ -2040,8 +2235,8 @@ body.doc-page > footer {
   padding: 0 var(--space-md) var(--space-md);
   border-top: none;
 
-  a { color: #89919f; }
-  a:hover { color: #c3c9d3; }
+  a { color: var(--map-ink-muted); }
+  a:hover { color: var(--map-ink-body); }
 }
 
 @media (max-width: 40rem) {
@@ -2054,15 +2249,30 @@ body.doc-page > footer {
 /* --- Spacefield (stars + Mars) ---
    Canvas-rendered starfield with depth layers, subtle twinkling, and a
    small procedural Mars. Replaces the old static SVG starfield. The
-   island auto-mounts on every page, sitting at z-index -2 below the
-   ambient globe (-1). Opacity crossfades on color-scheme changes. */
+   island auto-mounts on the article and country templates, sitting at
+   z-index -2 below the ambient globe (-1).
+
+   Dark only, and the media query is load-bearing. This was
+   `opacity: light-dark(0, 0.85)`, which is not a thing: `light-dark()` is a
+   *colour* function, so in `opacity` the whole declaration is invalid and gets
+   dropped — leaving the initial value, 1. A near-black canvas therefore
+   painted at full strength over the white page on every light-mode device,
+   and since a fixed z-index:-2 element still stacks above the body's
+   background, the article headline (#000 on what was now black) simply
+   vanished. Every article and country page was a black rectangle for anyone
+   not running dark mode. Same trap the doc pages hit before they committed to
+   dark; here the fix is to honour the preference rather than override it. */
 .spacefield-root {
   position: fixed;
   inset: 0;
   z-index: -2;
   pointer-events: none;
-  opacity: light-dark(0, 0.85);
+  opacity: 0;
   transition: opacity 0.6s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .spacefield-root { opacity: 0.85; }
 }
 .spacefield-canvas {
   display: block;
@@ -2070,20 +2280,132 @@ body.doc-page > footer {
   height: 100%;
 }
 
+/* ---------------------------------------------------------- Dark surface ---
+   The palette for the two pages that commit to dark regardless of the reader's
+   scheme: the map, and the documents that open over it.
+
+   It exists because those pages are not "the site in dark mode". The site's
+   dark tokens are neutral greys on near-black; this is a blue-grey chrome
+   built to sit under saturated data marks without competing with them, and
+   the two must not be confused — which is exactly what happened while these
+   values lived as 180 raw hex literals spread through the file. There were
+   nine near-black surfaces within three points of each other, thirteen inks
+   across six, and no way to tell an intentional step from a typo.
+
+   Read as three scales plus states. Each step has a job; if a new colour is
+   needed, the first question is which of these it already is.
+
+   ── Kept in step with `_map/style.ts` ──
+   `--map-ground` is `MAP_COLOURS.ocean` and `--map-ink-muted` is a rounding of
+   `MAP_COLOURS.label`. MapLibre paints from the TypeScript, this chrome paints
+   from here, and the two sit pixel-adjacent — the HUD gradient fades into the
+   canvas, the cluster discs are filled in the ocean colour so a numeral reads
+   over a coastline. They cannot be generated from one source (the style is
+   built in the worker before any stylesheet is queryable), so they are
+   cross-referenced instead: change one and change the other. */
+body.map-page,
+body.doc-page {
+  /* Surface, deepest to highest. */
+  --map-ground: #080a0d;        /* the ocean; the ground everything sits on */
+  --map-sunken: #0a0c10;        /* rail and footer — below the ground */
+  --map-inset: #0d1016;         /* wells: code blocks, pressed panels */
+  --map-panel: #12151c;         /* raised chrome: cards, popups, selects */
+  --map-raised: #1a1f2a;        /* a control that is switched on */
+
+  /* Row states, which are surfaces the pointer makes. */
+  --map-row-hover: #10131a;
+  --map-row-active: #141922;
+
+  /* Line, quietest to loudest. */
+  --map-line-soft: #1c2029;     /* rail dividers */
+  --map-line: #232936;          /* the default hairline */
+  --map-line-panel: #262c38;    /* the edge of a raised panel */
+  --map-line-card: #2b3240;     /* the edge of a floating card */
+  --map-line-loud: #3a4353;     /* hover on a bordered control */
+
+  /* Ink, brightest to quietest. Every step clears AA on `--map-panel`, which
+     is the lightest surface any of them lands on. */
+  --map-ink: #e6eaf0;           /* headings, an active chip, the answer */
+  --map-ink-strong: #d3d8e0;
+  --map-ink-body: #c3c9d3;      /* prose */
+  --map-ink-soft: #aab2be;
+  --map-ink-muted: #89919f;     /* labels, captions, an inactive chip */
+  /* The quietest thing still meant to be read, and therefore the step that
+     defines the floor: 4.61:1 against `--map-raised`, the lightest surface in
+     this palette. It was #767f8c, which cleared AA on every surface except
+     that one — a token that fails somewhere inside its own system is a trap
+     waiting for whoever next puts dim text on a lit control. */
+  --map-ink-dim: #7f8896;
+
+  /* Marks. `--map-underline` is decoration rather than ink and sits below the
+     ink floor on purpose; it only ever appears under text that is `--map-ink`.
+     The sentiment pair is the map's own `--pos`/`--neg`: the same axis, held
+     back to earth tones so a source's tone never outshouts a beacon. */
+  /* Was #586274, which measured 2.97:1 on `--map-panel` — the surface the
+     document sheet's links actually sit on. The underline is not the only
+     thing identifying those links (their text is `--map-ink` at 15:1), so it
+     was never a strict 1.4.11 failure, but three hundredths under the line is
+     not a place to leave a token. */
+  --map-underline: #5c6678;
+  --map-pos: #9aab86;
+  --map-neg: #c08a6a;
+
+  /* The two data hues the chrome has to name.
+     Category and overlay colours belong to `_map/style.ts` — MapLibre paints
+     the marks and the HUD chips receive the same value inline as `--cat`, so
+     a chip can never disagree with its layer. These two are the exception:
+     the chokepoint sparkline is drawn in CSS and tinted by the direction of
+     travel, using the same pair as the marker the reader just clicked. Gold
+     for traffic falling away, cool for a surge. They mirror
+     `OVERLAY_COLOUR.straits` / `.straitsSurge`.
+     `--map-straits` shares a hex with `--brand` and means something else
+     entirely; that is why it is written here rather than reached for. */
+  --map-straits: #c9a84c;
+  --map-straits-surge: #5f9ea0;
+
+  /* The focus ring. Was #4a5568, which measured 2.63:1 against the ground and
+     2.19:1 against a lit chip — below the 3:1 WCAG 2.2 asks of a focus
+     indicator, on a page whose only keyboard affordance this is. This clears
+     3:1 against all three surfaces it can land on and stays quiet. */
+  --map-focus: #606d85;
+}
+
 /* --- Situational map (homepage) ---
    Full-bleed and dark by commitment, not by system preference: coloured
    markers need a dark ground to read against, which is why every operational
    map worth copying is dark. Layout is a left event rail plus the map. */
 
+body.map-page,
+body.doc-page {
+  /* Native furniture follows the chrome, not the site: these pages are dark
+     whatever the reader's system says, so a scrollbar or a slider drawn from
+     the light palette would be the one thing on screen that ignored them. */
+  accent-color: var(--map-ink-muted);
+}
+
+body.map-page ::selection,
+body.doc-page ::selection {
+  background: color-mix(in srgb, var(--map-ink) 24%, transparent);
+  color: var(--map-ink);
+}
+
 body.map-page {
   /* Forces every light-dark() token on this page to its dark value. */
   color-scheme: dark;
+  /* The rail's width, in one place. Five rules are laid out against it — the
+     grid column it occupies, the fixed header and footer that sit inside it,
+     and the left edge of both the HUD and the scrubber, which start where it
+     ends. As five copies of `21rem` they could only be changed together by
+     hand, and a missed one is a HUD that overhangs the rail or a strip of
+     canvas the scrubber never covers. The phone block below already couples
+     its three heights this way. */
+  --map-rail-w: 21rem;
   max-width: none;
   height: 100dvh;
   overflow: hidden;
   padding: 0;
   display: block;
-  background: #080a0d;
+  background: var(--map-ground);
 }
 
 body.map-page .app-banner { display: none; }
@@ -2101,7 +2423,7 @@ body.map-page .app-banner { display: none; }
   inset: 0;
   overflow: hidden;
   display: grid;
-  grid-template-columns: minmax(0, 21rem) minmax(0, 1fr);
+  grid-template-columns: minmax(0, var(--map-rail-w)) minmax(0, 1fr);
   /* An auto row collapses to zero here: MapLibre's canvas is absolutely
      positioned, so the row has no content to measure. */
   grid-template-rows: minmax(0, 1fr);
@@ -2148,8 +2470,8 @@ body.map-page .app-banner { display: none; }
   display: flex;
   flex-direction: column;
   min-height: 0;
-  border-right: 1px solid #1c2029;
-  background: #0a0c10;
+  border-right: 1px solid var(--map-line-soft);
+  background: var(--map-sunken);
   /* The site footer is `position: fixed` over the bottom of this column.
      Reserving its height ends the scrolling list at the footer's top edge;
      without it the list ran 62px underneath, and the last visible story was
@@ -2161,16 +2483,42 @@ body.map-page .app-banner { display: none; }
    are coupled, and the header is `position: fixed` so nothing enforces it. It
    grew from 3.6rem when the wordmark and the briefing player stopped sharing a
    line. If the header gains or loses a row, this has to move with it or the
-   story count ends up underneath it. */
+   story count ends up underneath it.
+
+   It is a <button> because on a phone it is the drawer's handle. Here it is a
+   caption and nothing more, so the UA's button chrome — its border, its
+   background, its centred 13px system type, its shrink-to-fit width — all has
+   to go, and the cursor has to stop claiming there is something to press. */
 .map-feed-head {
   flex: 0 0 auto;
+  display: block;
+  width: 100%;
   padding: 5.9rem clamp(0.9rem, 1.4vw, 1.15rem) 0.5rem;
+  font: inherit;
   font-size: var(--size-xs);
+  text-align: left;
   color: var(--text-dim);
   font-variant-caps: all-small-caps;
   letter-spacing: 0.06em;
-  border-bottom: 1px solid #1c2029;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--map-line-soft);
+  cursor: default;
 }
+
+.map-feed-head:focus-visible {
+  outline: 1px solid var(--map-focus);
+  outline-offset: -2px;
+}
+
+/* The chevron and the disclosure button belong to the phone layout; here the
+   rail is a column that is always open, so there is nothing to disclose.
+   `display: contents` is what lets the panel's three groups stay direct flex
+   items of the HUD strip — see `.map-hud-more` in the phone block. */
+.map-feed-chevron,
+.map-more { display: none; }
+
+.map-hud-more { display: contents; }
 
 .map-feed-list {
   flex: 1 1 auto;
@@ -2193,12 +2541,12 @@ body.map-page .app-banner { display: none; }
   display: flex;
   gap: 0.55rem;
   padding: 0.6rem clamp(0.9rem, 1.4vw, 1.15rem);
-  border-bottom: 1px solid #14171d;
+  border-bottom: 1px solid var(--map-line-soft);
   cursor: pointer;
   transition: background var(--dur-fast);
 
-  &:hover { background: #10131a; }
-  &.is-active { background: #141922; }
+  &:hover { background: var(--map-row-hover); }
+  &.is-active { background: var(--map-row-active); }
 }
 
 .map-feed-dot {
@@ -2215,7 +2563,7 @@ body.map-page .app-banner { display: none; }
   display: block;
   font-size: 0.9rem;
   line-height: 1.32;
-  color: #d3d8e0;
+  color: var(--map-ink-strong);
   text-decoration: none;
   text-wrap: pretty;
 
@@ -2225,7 +2573,7 @@ body.map-page .app-banner { display: none; }
 .map-feed-meta {
   margin: 0.15rem 0 0;
   font-size: var(--size-xs);
-  color: #89919f;
+  color: var(--map-ink-muted);
   font-variant-numeric: lining-nums tabular-nums;
 }
 
@@ -2242,7 +2590,7 @@ body.map-page > header {
   position: fixed;
   top: 0;
   left: 0;
-  width: 21rem;
+  width: var(--map-rail-w);
   z-index: 4;
   margin: 0;
   padding: 1rem clamp(0.9rem, 1.4vw, 1.15rem) 0;
@@ -2264,13 +2612,13 @@ body.map-page > footer {
   position: fixed;
   left: 0;
   bottom: 0;
-  width: 21rem;
+  width: var(--map-rail-w);
   z-index: 4;
   margin: 0;
   padding: 0.5rem clamp(0.9rem, 1.4vw, 1.15rem);
   border: none;
-  border-top: 1px solid #1c2029;
-  background: #0a0c10;
+  border-top: 1px solid var(--map-line-soft);
+  background: var(--map-sunken);
   display: flex;
   justify-content: flex-start;
 }
@@ -2357,7 +2705,7 @@ body.map-page > footer .footer-social {
 .map-hud {
   position: absolute;
   top: 0;
-  left: 21rem;
+  left: var(--map-rail-w);
   right: 0;
   z-index: 2;
   display: flex;
@@ -2370,7 +2718,7 @@ body.map-page > footer .footer-social {
   row-gap: 0.5rem;
   padding: 0.85rem 1.1rem;
   pointer-events: none;
-  background: linear-gradient(to bottom, rgba(8, 10, 13, 0.9), rgba(8, 10, 13, 0.55) 60%, transparent);
+  background: linear-gradient(to bottom, color-mix(in srgb, var(--map-ground) 90%, transparent), color-mix(in srgb, var(--map-ground) 55%, transparent) 60%, transparent);
 
   > * { pointer-events: auto; }
 }
@@ -2378,7 +2726,7 @@ body.map-page > footer .footer-social {
 .map-ranges {
   display: flex;
   gap: 0.15rem;
-  border: 1px solid #232936;
+  border: 1px solid var(--map-line);
   border-radius: 2px;
   overflow: hidden;
 }
@@ -2390,12 +2738,12 @@ body.map-page > footer .footer-social {
   font: inherit;
   font-size: var(--size-xs);
   font-variant-numeric: lining-nums tabular-nums;
-  color: #89919f;
+  color: var(--map-ink-muted);
   cursor: pointer;
   transition: color var(--dur-fast), background var(--dur-fast);
 
-  &:hover { color: #aab2be; }
-  &.is-on { color: #e6eaf0; background: #1a1f2a; }
+  &:hover { color: var(--map-ink-soft); }
+  &.is-on { color: var(--map-ink); background: var(--map-raised); }
 }
 
 .map-filters {
@@ -2412,7 +2760,7 @@ body.map-page > footer .footer-social {
   font: inherit;
   font-size: var(--size-xs);
   letter-spacing: 0.04em;
-  color: #89919f;
+  color: var(--map-ink-muted);
   cursor: pointer;
   opacity: 0.5;
   display: flex;
@@ -2432,7 +2780,7 @@ body.map-page > footer .footer-social {
 
   &.is-on {
     opacity: 1;
-    color: #d3d8e0;
+    color: var(--map-ink-strong);
   }
 
   /* The last category on cannot be switched off, or the map goes blank. It
@@ -2460,8 +2808,9 @@ body.map-page > footer .footer-social {
 .map-range:focus-visible,
 .map-filter:focus-visible,
 .map-reset:focus-visible,
+.map-more:focus-visible,
 .map-timeline-live:focus-visible {
-  outline: 1px solid #4a5568;
+  outline: 1px solid var(--map-focus);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -2471,13 +2820,13 @@ body.map-page > footer .footer-social {
   padding: 1.2rem clamp(0.9rem, 1.4vw, 1.15rem);
   font-size: var(--size-xs);
   line-height: 1.5;
-  color: #89919f;
+  color: var(--map-ink-muted);
 }
 
 .map-filter-sep {
   width: 1px;
   height: 0.85rem;
-  background: #232936;
+  background: var(--map-line);
 }
 
 /* --- Map key ---
@@ -2502,7 +2851,7 @@ body.map-page > footer .footer-social {
   font-size: var(--size-xs);
   font-variant-caps: all-small-caps;
   letter-spacing: 0.04em;
-  color: #767f8c;
+  color: var(--map-ink-dim);
   cursor: default;
 }
 
@@ -2535,7 +2884,7 @@ body.map-page > footer .footer-social {
   max-width: 100%;
   padding: 0.25rem 0.6rem;
   border-radius: 2px;
-  background: rgba(8, 10, 13, 0.72);
+  background: color-mix(in srgb, var(--map-ground) 72%, transparent);
 }
 
 .map-ground-select {
@@ -2545,21 +2894,21 @@ body.map-page > footer .footer-social {
      input; this is the same bargain. `color-scheme` is what keeps the popup
      dark to match. */
   color-scheme: dark;
-  background: #12161d;
-  border: 1px solid #232936;
+  background: var(--map-panel);
+  border: 1px solid var(--map-line);
   border-radius: 2px;
   padding: 0.14rem 0.3rem;
   max-width: 12rem;
   font: inherit;
   font-size: var(--size-xs);
   letter-spacing: 0.03em;
-  color: #cbd2dc;
+  color: var(--map-ink-strong);
   cursor: pointer;
 
-  &:hover { border-color: #313846; }
+  &:hover { border-color: var(--map-line-loud); }
 
   &:focus-visible {
-    outline: 1px solid #4a5568;
+    outline: 1px solid var(--map-focus);
     outline-offset: 2px;
   }
 }
@@ -2576,14 +2925,14 @@ body.map-page > footer .footer-social {
   width: 9px;
   height: 9px;
   background: var(--c);
-  border: 1px solid #232936;
+  border: 1px solid var(--map-line);
 }
 
 .map-ground-ramp {
   width: 72px;
   height: 9px;
   background: linear-gradient(to right, var(--ramp));
-  border: 1px solid #232936;
+  border: 1px solid var(--map-line);
 }
 
 /* One line. If a metric ever ships a description long enough to overflow, it
@@ -2593,13 +2942,13 @@ body.map-page > footer .footer-social {
   margin: 0;
   font-size: var(--size-xs);
   line-height: 1.4;
-  color: #767f8c;
+  color: var(--map-ink-dim);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.map-ground-source { color: #5d6673; }
+.map-ground-source { color: var(--map-ink-dim); }
 
 .map-status {
   position: absolute;
@@ -2608,20 +2957,39 @@ body.map-page > footer .footer-social {
   z-index: 3;
   padding: 0.95rem 1.1rem;
   font-size: var(--size-xs);
-  color: #89919f;
+  color: var(--map-ink-muted);
   font-variant-numeric: lining-nums tabular-nums;
+  pointer-events: none;
+}
+
+/* --- Waiting for the coastline ---
+   The basemap is a single ~540 KB fetch rather than a coarse placeholder that
+   gets replaced, which is the better trade — but on a cold visit it leaves the
+   canvas empty for as long as the fetch takes, and an empty dark rectangle
+   reads as a broken map rather than a loading one. Quiet, centred, and gone the
+   moment the source lands. No spinner: nothing else on this site animates to
+   pass the time, and a map that draws in under a second would only flash it. */
+.map-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  font-size: var(--size-sm);
+  color: var(--map-ink-dim);
   pointer-events: none;
 }
 
 /* --- Map timeline --- */
 .map-timeline {
   position: absolute;
-  left: 21rem;
+  left: var(--map-rail-w);
   right: 0;
   bottom: 0;
   z-index: 2;
   padding: 0 1.1rem 0.6rem;
-  background: linear-gradient(to top, rgba(8, 10, 13, 0.92) 60%, transparent);
+  background: linear-gradient(to top, color-mix(in srgb, var(--map-ground) 92%, transparent) 60%, transparent);
   pointer-events: auto;
 }
 
@@ -2631,14 +2999,14 @@ body.map-page > footer .footer-social {
   justify-content: flex-end;
   gap: var(--space-sm);
   font-size: var(--size-xs);
-  color: #89919f;
+  color: var(--map-ink-muted);
   font-variant-numeric: lining-nums tabular-nums;
   margin-bottom: 0.15rem;
   opacity: 0.8;
 }
 
 .map-timeline.is-scrubbed .map-timeline-head { opacity: 1; }
-.map-timeline.is-scrubbed .map-timeline-readout { color: #e6eaf0; }
+.map-timeline.is-scrubbed .map-timeline-readout { color: var(--map-ink); }
 
 .map-timeline-live {
   background: none;
@@ -2647,7 +3015,7 @@ body.map-page > footer .footer-social {
   font: inherit;
   font-size: var(--size-xs);
   font-variant-caps: all-small-caps;
-  color: var(--dome);
+  color: var(--brand);
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 0.2em;
@@ -2684,7 +3052,7 @@ body.map-page > footer .footer-social {
     appearance: none;
     width: 2px;
     height: 1.5rem;
-    background: #e6eaf0;
+    background: var(--map-ink);
     border: none;
     border-radius: 0;
   }
@@ -2692,12 +3060,12 @@ body.map-page > footer .footer-social {
   &::-moz-range-thumb {
     width: 2px;
     height: 1.5rem;
-    background: #e6eaf0;
+    background: var(--map-ink);
     border: none;
     border-radius: 0;
   }
 
-  &:focus-visible { outline: 1px solid #4a5568; outline-offset: 2px; }
+  &:focus-visible { outline: 1px solid var(--map-focus); outline-offset: 2px; }
 }
 
 /* --- Map popup ---
@@ -2733,43 +3101,43 @@ body.map-page > footer .footer-social {
   align-self: center;
 }
 
-.maplibregl-popup-anchor-top .maplibregl-popup-tip { border-top: none; border-bottom-color: #12151c; }
-.maplibregl-popup-anchor-bottom .maplibregl-popup-tip { border-bottom: none; border-top-color: #12151c; }
-.maplibregl-popup-anchor-left .maplibregl-popup-tip { border-left: none; border-right-color: #12151c; }
-.maplibregl-popup-anchor-right .maplibregl-popup-tip { border-right: none; border-left-color: #12151c; }
+.maplibregl-popup-anchor-top .maplibregl-popup-tip { border-top: none; border-bottom-color: var(--map-panel); }
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip { border-bottom: none; border-top-color: var(--map-panel); }
+.maplibregl-popup-anchor-left .maplibregl-popup-tip { border-left: none; border-right-color: var(--map-panel); }
+.maplibregl-popup-anchor-right .maplibregl-popup-tip { border-right: none; border-left-color: var(--map-panel); }
 
 .maplibregl-popup-anchor-top-left .maplibregl-popup-tip {
   align-self: flex-start;
   border-top: none;
   border-left: none;
-  border-bottom-color: #12151c;
+  border-bottom-color: var(--map-panel);
 }
 .maplibregl-popup-anchor-top-right .maplibregl-popup-tip {
   align-self: flex-end;
   border-top: none;
   border-right: none;
-  border-bottom-color: #12151c;
+  border-bottom-color: var(--map-panel);
 }
 .maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip {
   align-self: flex-start;
   border-bottom: none;
   border-left: none;
-  border-top-color: #12151c;
+  border-top-color: var(--map-panel);
 }
 .maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip {
   align-self: flex-end;
   border-bottom: none;
   border-right: none;
-  border-top-color: #12151c;
+  border-top-color: var(--map-panel);
 }
 
 .maplibregl-popup-content {
   position: relative;
   pointer-events: auto;
-  background: #12151c;
-  border: 1px solid #262c38;
+  background: var(--map-panel);
+  border: 1px solid var(--map-line-panel);
   border-radius: 3px;
-  box-shadow: 0 12px 38px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 12px 38px rgb(0 0 0 / 0.55);
   padding: 0.75rem 0.85rem 0.8rem;
 }
 
@@ -2790,10 +3158,10 @@ body.map-page > footer .footer-social {
   font: inherit;
   font-size: 1rem;
   line-height: 1;
-  color: #767f8c;
+  color: var(--map-ink-dim);
   cursor: pointer;
 
-  &:hover { color: #d3d8e0; }
+  &:hover { color: var(--map-ink-strong); }
 }
 
 .map-popup-body { max-width: 20rem; }
@@ -2817,7 +3185,7 @@ body.map-page > footer .footer-social {
     margin: 0 0 0.6rem;
     font-size: 0.9rem;
     line-height: 1.55;
-    color: #c3c9d3;
+    color: var(--map-ink-body);
   }
 
   .article-dateline {
@@ -2825,26 +3193,26 @@ body.map-page > footer .footer-social {
     font-feature-settings: "case" 1;
     letter-spacing: 0.08em;
     font-weight: 600;
-    color: #e6eaf0;
+    color: var(--map-ink);
     margin-right: 0.5em;
   }
 
   .article-sources-flat {
     margin-top: 0.6rem;
     padding-top: 0.5rem;
-    border-top: 1px solid #232936;
+    border-top: 1px solid var(--map-line);
     font-size: var(--size-xs);
-    color: #89919f;
+    color: var(--map-ink-muted);
   }
 
-  a { color: #d3d8e0; text-underline-offset: 0.2em; }
+  a { color: var(--map-ink-strong); text-underline-offset: 0.2em; }
 }
 
 .map-popup-hint,
 .map-popup-loading {
   margin: 0.35rem 0 0;
   font-size: var(--size-xs);
-  color: #767f8c;
+  color: var(--map-ink-dim);
   font-style: italic;
 }
 
@@ -2857,7 +3225,7 @@ body.map-page > footer .footer-social {
   font-size: var(--size-xs);
   font-variant-caps: all-small-caps;
   letter-spacing: 0.04em;
-  color: #89919f;
+  color: var(--map-ink-muted);
 }
 
 .map-popup-dot {
@@ -2872,7 +3240,7 @@ body.map-page > footer .footer-social {
   font-size: 1.05rem;
   line-height: 1.25;
   font-weight: 600;
-  color: #e6eaf0;
+  color: var(--map-ink);
   text-wrap: balance;
 }
 
@@ -2880,13 +3248,13 @@ body.map-page > footer .footer-social {
   margin: 0 0 0.4rem;
   font-size: 0.85rem;
   line-height: 1.45;
-  color: #aab2be;
+  color: var(--map-ink-soft);
 }
 
 .map-popup-meta {
   margin: 0 0 0.45rem;
   font-size: var(--size-xs);
-  color: #89919f;
+  color: var(--map-ink-muted);
   font-variant-numeric: lining-nums tabular-nums;
 }
 
@@ -2898,27 +3266,27 @@ body.map-page > footer .footer-social {
 .map-popup-sources-flat {
   margin: 0.55rem 0 0.35rem;
   padding-top: 0.5rem;
-  border-top: 1px solid #232936;
+  border-top: 1px solid var(--map-line);
   font-size: var(--size-xs);
   line-height: 1.5;
-  color: #8d97a6;
+  color: var(--map-ink-muted);
 }
 
 .map-popup-sources-label {
   font-variant-caps: all-small-caps;
   letter-spacing: 0.04em;
-  color: #767f8c;
+  color: var(--map-ink-dim);
   margin-right: 0.4rem;
 }
 
 .map-popup-section {
   margin: 0.55rem 0 0.35rem;
   padding-top: 0.5rem;
-  border-top: 1px solid #232936;
+  border-top: 1px solid var(--map-line);
   font-size: var(--size-xs);
   font-variant-caps: all-small-caps;
   letter-spacing: 0.04em;
-  color: #767f8c;
+  color: var(--map-ink-dim);
 }
 
 .map-popup-sources {
@@ -2940,18 +3308,18 @@ body.map-page > footer .footer-social {
 }
 
 .map-popup-source-name {
-  color: #c3c9d3;
+  color: var(--map-ink-body);
   min-width: 0;
   overflow-wrap: anywhere;
 }
 
 a.map-popup-source-name {
-  text-decoration-color: #3d4655;
+  text-decoration-color: var(--map-underline);
   text-underline-offset: 0.2em;
 }
 
 .map-popup-source-cc {
-  color: #767f8c;
+  color: var(--map-ink-dim);
   font-variant-caps: all-small-caps;
   letter-spacing: 0.04em;
 }
@@ -2959,20 +3327,80 @@ a.map-popup-source-name {
 .map-popup-source-tone {
   min-width: 3.2em;
   text-align: right;
-  color: #89919f;
+  color: var(--map-ink-muted);
   font-variant-numeric: lining-nums tabular-nums;
 }
 
 /* Warm for approving coverage, cool for critical — the same two-tone logic the
    chokepoint rim uses, and the only place on the card colour carries meaning. */
-.map-popup-source-tone.is-pos { color: #9aab86; }
-.map-popup-source-tone.is-neg { color: #c08a6a; }
+.map-popup-source-tone.is-pos { color: var(--map-pos); }
+.map-popup-source-tone.is-neg { color: var(--map-neg); }
 
 .map-popup-link {
   font-size: 0.85rem;
-  color: #e6eaf0;
-  text-decoration-color: #586274;
+  color: var(--map-ink);
+  text-decoration-color: var(--map-underline);
   text-underline-offset: 0.2em;
+}
+
+/* --- The card's foot, on the dark surfaces ---
+   The map never changes its URL — that is deliberate and right for the view,
+   and it means the address bar is the one thing a reader must not copy when
+   they want to pass a story on. So the card carries the canonical `/a/{slug}`
+   itself, which is also the URL holding the story's generated share card.
+
+   `renderShare` adds `.share` for the layout; everything below is the palette,
+   and it has to come after the base block in source order because both are
+   single-class selectors. Site inks would resolve here — `light-dark()` gives
+   them their dark values under `color-scheme: dark` — but they would be a
+   *different* dark from the one the card is built in, which is the drift the
+   two-palette split exists to stop.
+
+   The overlay sheets — disaster, chokepoint, conflict, genocide — get no share
+   row on purpose: they are marks on a layer, not documents, so the only URL
+   they could offer is `/`, which loses the very thing being shared. They carry
+   the app line and nothing else. */
+.map-popup-share {
+  gap: 0.5rem;
+  margin-top: 0.55rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--map-line);
+}
+
+.map-popup .share-label { color: var(--map-ink-dim); }
+
+.map-popup .share-choice {
+  color: var(--map-ink-muted);
+
+  &:hover { color: var(--map-ink); }
+  &:focus-visible { outline-color: var(--map-focus); }
+}
+
+.map-popup .share-trigger {
+  color: var(--map-ink-strong);
+  border-color: var(--map-line-card);
+
+  &:hover {
+    color: var(--map-ink);
+    border-color: var(--map-line-loud);
+  }
+
+  &:focus-visible { outline-color: var(--map-focus); }
+}
+
+.map-popup .app-prompt,
+.map-sheet .app-prompt {
+  color: var(--map-ink-dim);
+  padding-top: 0.45rem;
+  border-top: 1px solid var(--map-line-soft);
+}
+
+.map-popup .app-prompt-link,
+.map-sheet .app-prompt-link {
+  color: var(--map-ink-muted);
+  text-decoration-color: var(--map-underline);
+
+  &:hover { color: var(--map-ink); }
 }
 
 /* Cards rise into place rather than appearing. MapLibre adds the popup to the
@@ -3018,7 +3446,7 @@ a.map-popup-source-name {
   list-style: none;
   margin: 0.55rem 0 0.2rem;
   padding: 0.5rem 0 0;
-  border-top: 1px solid #232936;
+  border-top: 1px solid var(--map-line);
   display: grid;
   gap: 0.3rem;
 }
@@ -3037,7 +3465,7 @@ a.map-popup-source-name {
 .map-country-metric-strip {
   height: 2px;
   align-self: center;
-  background: #232936;
+  background: var(--map-line);
   overflow: hidden;
 }
 
@@ -3045,7 +3473,7 @@ a.map-popup-source-name {
   display: block;
   height: 100%;
   width: var(--fill, 0%);
-  background: #6f7c92;
+  background: var(--map-ink-dim);
 }
 
 /* Expanded: the whole profile, still anchored on the map. Wider than the
@@ -3062,13 +3490,13 @@ a.map-popup-source-name {
   scrollbar-width: thin;
 }
 
-.map-country-metric-label { color: #8d97a6; }
+.map-country-metric-label { color: var(--map-ink-muted); }
 .map-country-metric-value {
-  color: #e6eaf0;
+  color: var(--map-ink);
   font-variant-numeric: lining-nums tabular-nums;
 }
 .map-country-metric-rank {
-  color: #767f8c;
+  color: var(--map-ink-dim);
   font-size: var(--size-xs);
   font-variant-numeric: lining-nums tabular-nums;
   min-width: 3.4em;
@@ -3078,11 +3506,11 @@ a.map-popup-source-name {
 .map-country-section {
   margin: 0.65rem 0 0.3rem;
   padding-top: 0.5rem;
-  border-top: 1px solid #232936;
+  border-top: 1px solid var(--map-line);
   font-size: var(--size-xs);
   font-variant-caps: all-small-caps;
   letter-spacing: 0.06em;
-  color: #89919f;
+  color: var(--map-ink-muted);
 }
 
 .map-country-coverage {
@@ -3097,7 +3525,7 @@ a.map-popup-source-name {
   a {
     font-size: 0.85rem;
     line-height: 1.35;
-    color: #d3d8e0;
+    color: var(--map-ink-strong);
     text-decoration: none;
 
     &:hover { text-decoration: underline; text-underline-offset: 0.2em; }
@@ -3106,7 +3534,7 @@ a.map-popup-source-name {
 
 .map-country-coverage-time {
   font-size: var(--size-xs);
-  color: #767f8c;
+  color: var(--map-ink-dim);
   font-variant-numeric: lining-nums tabular-nums;
 }
 
@@ -3118,8 +3546,18 @@ a.map-popup-source-name {
   width: min(25rem, calc(100vw - 24rem));
   max-height: 55vh;
   border-radius: 2px;
-  border: 1px solid #232936;
-  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--map-line);
+  box-shadow: 0 14px 44px rgb(0 0 0 / 0.5);
+}
+
+/* The card's own margin.
+   `.island-sheet-inner` carries no padding of its own — the entity and doc
+   sheets each add theirs in their own block, and this one never did, so every
+   map card has been setting its type flush against the dialog's edge. Invisible
+   enough on a 44rem panel floating over a dark map; on a phone, where the sheet
+   is the full width of the screen, the headline started at pixel zero. */
+.map-sheet .island-sheet-inner {
+  padding: 0.95rem 1.15rem 1.1rem;
 }
 
 .map-sheet-kicker {
@@ -3128,6 +3566,9 @@ a.map-popup-source-name {
   letter-spacing: 0.03em;
   color: var(--text-dim);
   margin: 0 0 var(--space-xs);
+  /* Clears the close button, which is positioned against the dialog rather
+     than the content and would otherwise sit on the end of this line. */
+  padding-right: 1.5rem;
 }
 
 .map-sheet .island-sheet-title {
@@ -3153,6 +3594,30 @@ a.map-popup-source-name {
   font-size: var(--size-sm);
   line-height: var(--leading-body);
   color: var(--text);
+}
+
+/* Who made the finding — the genocide card's version of the focal line.
+   Every other sheet opens on a number; this one opens on an authority, because
+   the first question a reader has about a mark that says "genocide" is who is
+   saying it. Set a step above the prose and a step below the title: it has to
+   be read first and it is not the subject. */
+.map-sheet-authority {
+  margin: 0 0 0.15rem;
+  font-size: var(--size-sm);
+  line-height: 1.35;
+  font-weight: 600;
+  color: var(--text-emphasis);
+  text-wrap: pretty;
+}
+
+/* Two links, not one run-on. `.map-sheet-link` is inline-block, so a pair of
+   them sat flush against each other and read as a single sentence — "Read the
+   findingPalestine in profile". */
+.map-sheet-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.1rem;
+  margin: var(--space-xs) 0 0;
 }
 
 /* The focal number. The one thing a peek is for: magnitude, vessels/day,
@@ -3218,8 +3683,15 @@ a.map-popup-source-name {
 /* Gold for traffic falling away, cool for a surge — the same two colours the
    chokepoint marker on the map is drawn in, so the chart reads as that mark
    rather than as a generic line. */
-.map-spark.is-down { color: #c9a84c; }
-.map-spark.is-up { color: #5f9ea0; }
+.map-spark.is-down { color: var(--map-straits); }
+.map-spark.is-up { color: var(--map-straits-surge); }
+
+/* A series where up is simply up — a market index, not a strait. Drawing a
+   falling index in the strait-blockage gold would borrow a meaning it hasn't
+   got, so this pair is the site's own signed-change colours, which are what
+   the exchange marker on the map is drawn in. */
+.map-spark.is-neg { color: var(--map-neg); }
+.map-spark.is-pos { color: var(--map-pos); }
 
 .map-spark-line {
   fill: none;
@@ -3302,77 +3774,272 @@ a.map-popup-source-name {
   font-variant-numeric: lining-nums tabular-nums;
 }
 
-.map-sheet-app {
-  margin: var(--space-sm) 0 0;
-  padding-top: var(--space-xs);
-  border-top: 1px solid var(--rule);
-  font-size: var(--size-xs);
-  color: var(--text-dim);
-}
-
 .noscript-list {
   padding: var(--space-md);
   max-width: var(--measure);
   margin: 0 auto;
 }
 
+/* --- The map on a phone ---
+
+   The desktop layout is a rail beside a map with a strip of chrome across the
+   top, and every part of it is affordable because there is width to spare.
+   Squeezed onto a 390px screen it stopped being a layout at all: the header's
+   two rows landed on top of the range chips, seven filter chips wrapped onto
+   two lines, the ground legend's sentence ran off the right-hand edge, and the
+   rail took 42vh of a map already cut to 58vh — so the map was a letterbox
+   with four rows of controls over it and the list showed four stories.
+
+   The phone gets a different bargain, not a smaller one. The map takes the
+   whole canvas. One row of chrome stays — the time range, which is the control
+   that changes what the map is *about* — and everything else folds behind a
+   disclosure. The list becomes a drawer you pull up and push back down.
+   Nothing is dropped: the beacon key, hidden here for years because there was
+   no room for it, is back inside the panel where room is no longer the
+   constraint. */
 @media (max-width: 900px) {
+  body.map-page {
+    /* The three heights the phone layout is built from. The header, the HUD
+       and the drawer are all `position: fixed`/`absolute` and cannot measure
+       each other, so they agree here instead of in four separate magic
+       numbers that drift apart the next time the header gains a row. */
+    --map-head-h: 3.4rem;
+    --map-bar-h: 2.9rem;
+    --map-gutter: 0.85rem;
+  }
+
   .map-shell,
   .map-root { grid-template-columns: minmax(0, 1fr); }
 
-  .map-feed {
-    position: absolute;
-    inset: auto 0 0 0;
-    height: 42vh;
-    border-right: none;
-    border-top: 1px solid #1c2029;
-    z-index: 3;
-  }
+  .map-canvas-host { grid-column: 1; height: 100%; }
 
-  .map-feed-head { padding-top: 0.6rem; }
-  .map-canvas-host { grid-column: 1; height: 58vh; }
-
+  /* --- Header: one row --- */
+  /* The desktop header stacks the wordmark over the briefing player because
+     they do not fit across 21rem. Across the full width of a phone they do,
+     and stacking them cost a second row of the map — the row the range chips
+     were already using, which is how "Today's briefing" ended up printed
+     through "24h 3d 7d 14d". */
   body.map-page > header {
     width: auto;
     right: 0;
-    background: linear-gradient(to bottom, rgba(8, 10, 13, 0.9), transparent);
-    padding-bottom: 0.6rem;
+    height: var(--map-head-h);
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    padding: 0 var(--map-gutter);
+    background: linear-gradient(to bottom, color-mix(in srgb, var(--map-ground) 92%, transparent) 55%, transparent);
+
+    .audio-briefing { align-self: center; flex: 0 0 auto; }
+    /* A 2px scrubber is not a touch target, and the play button and the label
+       already say everything the row needs to. */
+    .briefing-track { display: none; }
   }
 
-  body.map-page > footer { display: none; }
+  body.map-page .wordmark { font-size: var(--size-h3); }
 
+  /* --- Chrome: one row, plus a panel --- */
   .map-hud {
     left: 0;
-    top: 3.1rem;
-    flex-wrap: wrap;
-    gap: 0.6rem;
+    top: var(--map-head-h);
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: var(--space-sm);
+    padding: 0.15rem var(--map-gutter) 0;
     background: none;
   }
 
-  /* The HUD wraps here and the canvas is down to 58vh, so the key is the first
-     thing to go: it explains marks the reader can still hover for the same
-     facts, and two rows of chrome over a half-height map costs more than it
-     tells. */
-  .map-key { display: none; }
+  /* Bigger than the desktop chip: 0.2rem of padding is a mouse target, not a
+     thumb one. */
+  .map-range { padding: 0.42rem 0.62rem; }
 
-  /* The ground legend stays, unlike the beacon key — the land tint is always
-     on and there is nothing to hover for its meaning, so dropping it would
-     leave a shaded world with no way to read it. The swatch and ramp go
-     instead: the metric's name and the direction of its scale are what make
-     the shading legible, and both are type. */
-  .map-ground {
-    max-width: none;
-    flex-wrap: wrap;
-    gap: 0.4rem;
+  .map-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-left: auto;
+    padding: 0.42rem 0.6rem;
+    font: inherit;
+    font-size: var(--size-xs);
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.05em;
+    color: var(--map-ink-soft);
+    background: color-mix(in srgb, var(--map-panel) 85%, transparent);
+    border: 1px solid var(--map-line);
+    border-radius: 2px;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+
+    svg { width: 13px; height: 13px; flex: 0 0 auto; }
+
+    &[aria-expanded='true'] { color: var(--map-ink); border-color: var(--map-line-loud); }
   }
 
-  .map-ground-scale { display: none; }
+  /* The panel proper. `display: contents` on the desktop side means this box
+     does not exist there at all — the three groups inside it are direct
+     children of the HUD strip, which is why none of the desktop rules that
+     target them need a second selector. */
+  .map-hud-more {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: var(--map-gutter);
+    left: var(--map-gutter);
+    max-height: 60dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-top: 0.35rem;
+    padding: 0.9rem;
+    background: color-mix(in srgb, var(--map-inset) 95%, transparent);
+    border: 1px solid var(--map-line);
+    border-radius: 3px;
+    box-shadow: 0 18px 44px rgb(0 0 0 / 0.55);
+    backdrop-filter: blur(8px);
 
-  .map-status { top: 3.2rem; }
+    &.is-open { display: flex; }
+  }
 
+  /* Inside the panel the chips have a column to themselves, so they can be
+     spaced for thumbs rather than crammed onto a strip. */
+  .map-filters {
+    gap: 0.35rem 1.1rem;
+    width: 100%;
+  }
+
+  .map-filter {
+    padding: 0.3rem 0;
+    gap: 0.45rem;
+  }
+
+  .map-filter-sep {
+    width: 100%;
+    height: 1px;
+    margin: 0.15rem 0;
+  }
+
+  /* Back, after being hidden on every phone since it was written. It was cut
+     because two rows of chrome over a half-height map cost more than they
+     told — but in a panel the reader opened on purpose, a legend is the whole
+     point, and hover (the fallback it was cut in favour of) does not exist
+     here at all. */
+  .map-key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.1rem;
+    margin-left: 0;
+    padding-right: 0;
+  }
+
+  .map-ground {
+    flex-basis: auto;
+    flex-wrap: wrap;
+    align-self: stretch;
+    width: auto;
+    max-width: none;
+    padding: 0;
+    background: none;
+  }
+
+  .map-ground-select { max-width: 100%; }
+
+  /* Off the strip and into a panel, so it has room to say the whole thing —
+     the one-line ellipsis existed to stop it landing on the map. */
+  .map-ground-note {
+    flex-basis: 100%;
+    white-space: normal;
+    overflow: visible;
+  }
+
+  /* The clock goes. The scrubber's readout carries the same fact in the same
+     units — "live · Sat 25 Jul 11:46 UTC" — and two clocks over a phone-sized
+     map is one more than the map can spare. */
+  .map-status { display: none; }
+
+  /* --- The scrubber, above the drawer's handle --- */
   .map-timeline {
     left: 0;
-    bottom: 42vh;
+    bottom: var(--map-bar-h);
+    padding-inline: var(--map-gutter);
+  }
+
+  .map-timeline-track { height: 2.6rem; opacity: 1; }
+
+  .map-reset { bottom: calc(var(--map-bar-h) + 4.6rem); }
+
+  /* --- The story list, as a drawer --- */
+  .map-feed {
+    position: absolute;
+    inset: auto 0 0 0;
+    height: var(--map-bar-h);
+    padding-bottom: 0;
+    border-right: none;
+    border-top: 1px solid var(--map-line-soft);
+    background: color-mix(in srgb, var(--map-sunken) 95%, transparent);
+    backdrop-filter: blur(8px);
+    z-index: 3;
+    transition: height var(--dur-normal) var(--ease-out);
+
+    /* Set for one reflow when the drawer has to be shut *and measured* in the
+       same frame — see `setExpanded(open, instant)`. */
+    &.is-instant { transition: none; }
+
+    &.is-open {
+      height: min(70dvh, 38rem);
+      /* Room for the document links, which are fixed to the foot of the
+         screen and only exist while the drawer is open. */
+      padding-bottom: 3.6rem;
+    }
+  }
+
+  /* The handle. The whole bar is the target — a chevron alone is 16px of
+     something you have to aim at. */
+  .map-feed-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    width: 100%;
+    height: var(--map-bar-h);
+    padding: 0 var(--map-gutter);
+    font: inherit;
+    font-size: var(--size-xs);
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    text-align: left;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--map-line-soft);
+    cursor: pointer;
+  }
+
+  .map-feed-chevron {
+    display: flex;
+    color: var(--map-ink-muted);
+    transition: transform var(--dur-normal) var(--ease-out);
+
+    svg { width: 16px; height: 16px; }
+  }
+
+  .map-feed.is-open .map-feed-chevron { transform: rotate(180deg); }
+
+  .map-feed-item { padding: 0.75rem var(--map-gutter); }
+  .map-feed-title { font-size: 0.95rem; }
+
+  /* Only while the drawer is open. Collapsed, these were the only thing on the
+     phone layout still claiming a row of the map — but hidden outright, as
+     they were, /about, /contact and /privacy became unreachable from the
+     homepage on a phone entirely. */
+  body.map-page > footer { display: none; }
+
+  body.map-page:has(.map-feed.is-open) > footer {
+    display: flex;
+    width: 100%;
+    z-index: 4;
+    background: var(--map-sunken);
   }
 
   .map-sheet.is-peek {
@@ -3381,6 +4048,28 @@ a.map-popup-source-name {
     max-height: 52vh;
     border-radius: 8px 8px 0 0;
   }
+
+  /* The cards were sized in vw for a desktop, where a fraction of the viewport
+     is still a column: 42vw of a 1440px window is 605px, 42vw of a phone is
+     164px. The story card came out as a ribbon of two-word lines and the
+     country card was narrower than the name of the country on it. */
+  .map-popup-body.map-popup-country { width: min(22rem, 86vw); }
+  .map-popup-body.map-popup-article { width: min(30rem, 88vw); }
+  .map-popup-body { max-width: min(20rem, 88vw); }
+
+  /* And it has to fit *somewhere*. A popup is anchored to its beacon, so its
+     height is spent from whatever is above or below that point — 52vh of prose
+     plus a headline is taller than either half of a phone, and MapLibre flips
+     the anchor but cannot shrink the card, so the tail ran off the bottom of
+     the screen with no way to reach it. */
+  .map-popup-prose { max-height: 30vh; }
+}
+
+/* A drawer that slides is a drawer; one that jumps is a repaint. Both end in
+   the same place, which is what someone who asked for less motion wants. */
+@media (prefers-reduced-motion: reduce) {
+  .map-feed,
+  .map-feed-chevron { transition: none; }
 }
 
 /* --- Reduced Motion --- */

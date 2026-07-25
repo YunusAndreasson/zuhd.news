@@ -17,10 +17,19 @@ const DIST = join(ROOT, 'dist')
 const target = process.argv[2] || 'local'
 const outDir = process.argv[3] || join(ROOT, '.shots')
 
+// `.mjs`, `.geojson` and `.pbf` are not optional extras: the map island imports
+// the vendored MapLibre as `/islands/maplibre-gl.mjs`, and a module served as
+// `application/octet-stream` is refused by the browser outright. Without them
+// this harness could not load the homepage map *at all* — every shot it took
+// showed the page with the thing it exists to photograph missing, and reported
+// nothing worse than a console line.
 const MIME = {
   '.html': 'text/html; charset=utf-8',
   '.js': 'text/javascript',
+  '.mjs': 'text/javascript',
   '.json': 'application/json',
+  '.geojson': 'application/json',
+  '.pbf': 'application/x-protobuf',
   '.css': 'text/css',
   '.png': 'image/png',
   '.jpg': 'image/jpeg',

@@ -24,10 +24,6 @@ const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 export interface Timeline {
   element: HTMLElement
   setPoints(points: MapPoint[]): void
-  /** Current scrub time in ms. Equals `end` when live. */
-  now(): number
-  isLive(): boolean
-  goLive(): void
   /**
    * The slice of the rail the map is currently drawing, as a start time.
    * `null` means the whole window. Shaded on the axis so the range chips and
@@ -112,38 +108,64 @@ export function createTimeline(opts: TimelineOptions): Timeline {
     range.setAttribute('aria-valuetext', `${fmtDate(scrubTime())} ${fmtTime(scrubTime())} UTC`)
   }
 
-  const draw = () => {
-    if (!ctx) return
-    const dpr = Math.min(window.devicePixelRatio || 1, 2)
-    const w = canvas.clientWidth
-    const h = canvas.clientHeight
-    if (!w || !h) return
-    canvas.width = Math.round(w * dpr)
-    canvas.height = Math.round(h * dpr)
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-    ctx.clearRect(0, 0, w, h)
-
-    const cs = getComputedStyle(root)
-    const pick = (name: string, fallback: string) => cs.getPropertyValue(name).trim() || fallback
-    // Custom properties resolve to light-dark() strings canvas can't parse, so
-    // the probe trick from render.ts applies here too.
+  /**
+   * The palette, resolved once.
+   *
+   * Custom properties resolve to `light-dark()` strings canvas cannot parse, so
+   * each colour has to be round-tripped through a real element that has a
+   * computed style. Canvas has the same problem with `font`: it parses the
+   * shorthand with no element to resolve against, so a `var()` in it is invalid
+   * and the assignment is silently dropped — the day labels were falling back
+   * to default sans while the rest of the map ran on Source Sans.
+   *
+   * This used to run *inside* `draw`, which meant appending a probe element to
+   * the document, four `getComputedStyle` reads and a removal on every frame of
+   * a scrub — a forced style recalculation per pointer move, on the one
+   * interaction where the frame budget is already spent rebuilding the story
+   * layer. None of these values can change while the map is open: the page
+   * commits to `color-scheme: dark` and the tokens are static.
+   */
+  const readPalette = () => {
     const probe = document.createElement('span')
     probe.style.cssText = 'position:absolute;opacity:0'
-    root.appendChild(probe)
+    root.append(probe)
     const colour = (name: string, fallback: string) => {
       probe.style.color = fallback
       probe.style.color = `var(${name}, ${fallback})`
       return getComputedStyle(probe).color || fallback
     }
-    const dim = colour('--rule', '#ddd')
-    const mid = colour('--text-dim', '#777')
-    const bright = colour('--text', '#222')
-    // Canvas parses `font` as the CSS shorthand with no element to resolve
-    // against, so a `var()` in it is invalid and the assignment is dropped —
-    // the day labels were silently falling back to 10px default sans while the
-    // rest of the map ran on Source Sans. Read the family off the probe, which
-    // does have a computed style, and hand canvas a literal.
-    const family = getComputedStyle(probe).fontFamily || 'sans-serif'
+    const palette = {
+      dim: colour('--rule', '#ddd'),
+      mid: colour('--text-dim', '#777'),
+      bright: colour('--text', '#222'),
+      family: getComputedStyle(probe).fontFamily || 'sans-serif',
+    }
+    probe.remove()
+    return palette
+  }
+
+  let palette: ReturnType<typeof readPalette> | null = null
+
+  const draw = () => {
+    if (!ctx) return
+    const dpr = Math.min(devicePixelRatio, 2)
+    const w = canvas.clientWidth
+    const h = canvas.clientHeight
+    if (!w || !h) return
+    // Assigning `width`/`height` reallocates the backing store and clears it,
+    // so it is only worth doing when the size actually moved — otherwise every
+    // scrub frame threw away a buffer to draw the same-sized one again.
+    const bw = Math.round(w * dpr)
+    const bh = Math.round(h * dpr)
+    if (canvas.width !== bw || canvas.height !== bh) {
+      canvas.width = bw
+      canvas.height = bh
+    }
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    ctx.clearRect(0, 0, w, h)
+
+    palette ??= readPalette()
+    const { dim, mid, bright, family } = palette
 
     const axisH = 12
     const barH = h - axisH - 2
@@ -205,14 +227,29 @@ export function createTimeline(opts: TimelineOptions): Timeline {
       ctx.fillRect(i * barW, barH - bh, Math.max(1, barW - 0.7), bh)
     }
     ctx.globalAlpha = 1
-    probe.remove()
+  }
+
+  /**
+   * Coalesces redraws onto the next frame.
+   *
+   * `input` fires far faster than a canvas repaint is worth doing, and the
+   * island's own refresh is already rAF-batched for exactly this reason — the
+   * rail was the one part of a scrub still running synchronously per event.
+   */
+  let drawFrame = 0
+  const scheduleDraw = () => {
+    if (drawFrame) return
+    drawFrame = requestAnimationFrame(() => {
+      drawFrame = 0
+      draw()
+    })
   }
 
   const emit = () => {
     updateReadout()
     liveBtn.hidden = live()
     root.classList.toggle('is-scrubbed', !live())
-    draw()
+    scheduleDraw()
     opts.onChange(scrubTime(), live())
   }
 
@@ -236,24 +273,22 @@ export function createTimeline(opts: TimelineOptions): Timeline {
     draw()
   })
 
-  const onResize = () => draw()
-  window.addEventListener('resize', onResize)
+  const onResize = () => scheduleDraw()
+  window.addEventListener('resize', onResize, { passive: true })
 
   return {
     element: root,
     setPoints(next) {
       points = next
-      draw()
+      scheduleDraw()
     },
-    now: scrubTime,
-    isLive: live,
-    goLive: onLive,
     setWindow(from) {
       if (from === windowFrom) return
       windowFrom = from
-      draw()
+      scheduleDraw()
     },
     destroy() {
+      if (drawFrame) cancelAnimationFrame(drawFrame)
       range.removeEventListener('input', onInput)
       liveBtn.removeEventListener('click', onLive)
       window.removeEventListener('resize', onResize)

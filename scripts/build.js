@@ -4,7 +4,7 @@ import { join, basename } from 'path'
 import { createHash } from 'crypto'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { splitBlocks } from './lib/blocks.js'
-import { buildOgPng } from './lib/og-image.js'
+import { buildCategoryOgPng, buildOgPng } from './lib/og-image.js'
 import { buildIgJpeg, IG_FEED, IG_STORY } from './lib/ig-image.js'
 import { buildIslands } from './build/islands.js'
 import { buildMapSources } from './build/basemap.js'
@@ -267,6 +267,12 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap) =
     name: 'zuhd.news',
     url: 'https://zuhd.news/',
     logo: { '@type': 'ImageObject', url: 'https://zuhd.news/apple-touch-icon.png' },
+    // The accounts and store listings that are this same publication. Without
+    // it a search engine has no way to connect an article to the masthead's
+    // feeds — it sees a domain and, separately, four strangers using the same
+    // word. The homepage @graph says the same thing about the same @id; an
+    // article page carries no @graph, so it has to say it inline.
+    sameAs: SHARE.ORG_SAME_AS,
   }
   const jsonLd = `<script type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org',
@@ -302,6 +308,7 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap) =
     .replace(/{{bodyHtml}}/g, bodyHtml)
     .replace(/{{entityStrip}}/g, entityStripHtml(meta.entities, indicatorMap))
     .replace(/{{threadBlock}}/g, threadBlockHtml(thread?.threadContext))
+    .replace(/{{shareRow}}/g, shareRowHtml(`/a/${slug}`, title))
     .replace(/{{prevLink}}/g, prevLink)
     .replace(/{{nextLink}}/g, nextLink)
 }
@@ -327,15 +334,40 @@ if (existsSync(audioSrc)) {
     cpSync(join(audioSrc, f), join(DIST_DIR, 'audio', f))
 }
 
+// Where the site is, where it can be passed on to, and the accounts that are
+// the same organisation as this domain. Shared with the islands
+// (`@shared/share`) so the row this file renders server-side and the row
+// `_share.ts` renders on top of it cannot become two different shares of the
+// same story.
+const SHARE = await loadShared('share.ts')
+
 const cssContent = transformSync(readFileSync(join(ROOT, 'public', 'style.css'), 'utf-8'), { loader: 'css', minify: true }).code
+
+/**
+ * The head every page shares.
+ *
+ * Two X accounts sit in here and they are not the same thing.
+ * `twitter:creator` credits the person who made the site; `twitter:site` names
+ * the *publication* the card belongs to, and is what X renders as the
+ * attribution under a shared story and what its "more from this account"
+ * surfaces follow. Until now only the first was declared, so every share of a
+ * zuhd.news story pointed readers at a personal account rather than the
+ * masthead's — the one piece of promotion a share carries for free, spent on
+ * the wrong feed.
+ *
+ * The reasoning stays out here rather than going in as an HTML comment: this
+ * block is inlined into roughly a thousand pages, so prose inside it is prose
+ * every reader downloads.
+ */
 const headCommon = `<meta charset="utf-8">
   <meta name="google-site-verification" content="wE52hhFpRSdZ0DSAJM4Z57wM4AXTQ68eLrlo-zk_xLw">
   <meta name="author" content="Yunus Andreasson">
+  <meta name="twitter:site" content="@${SHARE.X_HANDLE}">
   <meta name="twitter:creator" content="@YunusAndreasson">
   <meta name="color-scheme" content="light dark">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#141414" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#080808" media="(prefers-color-scheme: dark)">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -347,6 +379,28 @@ const headCommon = `<meta charset="utf-8">
   <link rel="manifest" href="/manifest.json">
   <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/api/*"}},{"not":{"href_matches":"/audio/*"}},{"not":{"href_matches":"/feed.xml"}},{"not":{"href_matches":"/sitemap.xml"}},{"not":{"href_matches":"/og-image.png"}}]},"eagerness":"moderate"}]}</script>
   <style>${cssContent}</style>`
+
+/**
+ * The head for the two page types that commit to dark.
+ *
+ * `theme-color` paints the browser's own chrome — the address bar on Android,
+ * the status area of an installed PWA — so it is a claim about what the page
+ * behind it looks like. The shared head above makes that claim conditionally,
+ * `#fff` under a light system preference, and for the map and the document
+ * pages that is simply false: they set `color-scheme: dark` and paint
+ * `--map-ground` regardless of what the reader's system says. A light-mode
+ * phone therefore got a white bar sitting directly on top of a black map.
+ *
+ * Unconditional, because these pages are unconditional. The value is
+ * `--map-ground` itself, so the chrome and the canvas are the same black
+ * rather than two blacks a few points apart. (The site-wide dark value was
+ * `#141414`, which was a third black again — it matched neither `--bg`'s
+ * `#080808` nor the map's ground.)
+ */
+const headCommonDark = headCommon.replace(
+  /  <meta name="theme-color"[^\n]*\n  <meta name="theme-color"[^\n]*/,
+  '  <meta name="theme-color" content="#080a0d">',
+)
 
 /**
  * Cache key for the island bundles, stamped into every URL that points at one.
@@ -364,6 +418,28 @@ const headCommon = `<meta charset="utf-8">
 // Place-name display rules, shared with the app so a location never reads one
 // way in the feed and another in the app.
 const { displayLocation } = await loadShared('place-names.ts')
+
+/**
+ * The share row, rendered as real links.
+ *
+ * This is the whole row for a reader with no JavaScript, and the starting point
+ * for everyone else: `share-bar.ts` replaces it with the operating system's own
+ * share sheet on a device that has one. Emitting it server-side rather than
+ * letting the island build it from scratch means the affordance is in the HTML
+ * — present on first paint, present in the cached page, present if the bundle
+ * never arrives.
+ */
+const shareRowHtml = (path, title) => {
+  const url = `${SHARE.SITE_URL}${path}`
+  const links = SHARE.shareLinks({ url, title })
+    .map(({ label, href, aria }) => {
+      // mailto: must open in place; _blank on it leaves an empty tab behind.
+      const target = href.startsWith('mailto:') ? '' : ' target="_blank" rel="noopener noreferrer"'
+      return `<a class="share-choice" href="${escHtmlAttr(href)}" aria-label="${escHtmlAttr(aria)}"${target}>${label}</a>`
+    })
+    .join('')
+  return `<div class="share" data-island-auto="share-bar" data-url="${escHtmlAttr(url)}" data-title="${escHtmlAttr(title)}"><span class="share-label">Share</span>${links}</div>`
+}
 
 const ISLAND_V = (() => {
   const publicDir = join(ROOT, 'public')
@@ -408,17 +484,20 @@ const BASEMAP_V = (() => {
   return h.digest('hex').slice(0, 10)
 })()
 
-const loadTemplate = (name) =>
+const loadTemplate = (name, head = headCommon) =>
   readFileSync(join(TEMPLATES_DIR, name), 'utf-8')
-    .replace('{{headCommon}}', headCommon)
+    .replace('{{headCommon}}', head)
     .replaceAll('{{v}}', ISLAND_V)
     .replaceAll('{{basemapV}}', BASEMAP_V)
 
-const homepageTemplate = loadTemplate('index.html')
+// The map and the document pages carry `body.map-page` / `body.doc-page`, which
+// pin `color-scheme: dark` — so they take the dark head. Everything else
+// follows the reader.
+const homepageTemplate = loadTemplate('index.html', headCommonDark)
 
 const articleTemplate = loadTemplate('article.html')
 
-const staticPageTemplate = loadTemplate('static-page.html')
+const staticPageTemplate = loadTemplate('static-page.html', headCommonDark)
 
 // Story thread lookup — maps article slugs to their thread info from the ledger
 const ledgerPath = join(ROOT, 'content', '.story-ledger.json')
@@ -653,6 +732,69 @@ if (existsSync(chokepointsSrc)) {
   console.log(`  Built: api/chokepoints.json (${enriched.chokepoints.length} chokepoints)`)
 }
 
+// Stock-exchange snapshot — the map's markets layer. Enriched the same way as
+// chokepoints, with one addition: an exchange is tied to a country in a way a
+// strait is not, so coverage matches on `countryTags` against the article's
+// inline `[Name](country:XX)` tags as well as on `topicTags` against the title
+// and concepts. Source country is deliberately NOT used — that is the outlet's
+// country, so joining on it would hang every Reuters story off London.
+const marketsSrc = join(ROOT, 'content', '.markets.json')
+if (existsSync(marketsSrc)) {
+  const raw = JSON.parse(readFileSync(marketsSrc, 'utf8'))
+  const normalize = (s) => String(s || '').toLowerCase()
+  // Precomputed once rather than per-exchange: 30 exchanges × ~200 articles
+  // would otherwise re-scan every body 30 times.
+  const articleIndex = sorted.map((a) => ({
+    slug: a.slug,
+    title: a.title,
+    date: a.meta.date,
+    dateFormatted: a.dateFormatted,
+    hay: [
+      a.title,
+      a.meta.location,
+      ...(a.concepts || []).map((x) => (typeof x === 'object' ? x.label : x)),
+    ]
+      .map(normalize)
+      .join(' '),
+    countries: new Set(
+      Array.from(String(a.body || '').matchAll(/\(country:([A-Za-z]{2})\)/g), (m) =>
+        m[1].toUpperCase(),
+      ),
+    ),
+  }))
+  // Word-boundary matching, not substring. A bare `includes` let `smi` (the
+  // Swiss index) match "transmission" and hung eight unrelated tech stories off
+  // Zurich; short tickers are exactly the tags a market catalog is full of.
+  // Phrases work too — the boundary is on the whole tag, not on each word.
+  const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const tagMatcher = (tag) => new RegExp(`(^|[^a-z0-9])${escapeRe(tag)}([^a-z0-9]|$)`)
+  const enriched = {
+    ...raw,
+    exchanges: (raw.exchanges || []).map((e) => {
+      const tags = (e.topicTags || []).map(normalize).map(tagMatcher)
+      const countries = e.countryTags || []
+      const hits = []
+      for (const a of articleIndex) {
+        const match =
+          tags.some((re) => re.test(a.hay)) || countries.some((c) => a.countries.has(c))
+        if (!match) continue
+        hits.push({ slug: a.slug, title: a.title, date: a.date, dateFormatted: a.dateFormatted })
+        if (hits.length >= 8) break
+      }
+      // Translated here, not in the island, for the same reason and by the same
+      // call the map points use above: the catalog holds the untranslated
+      // source string so joins stay stable, and the display layer renames. This
+      // is what prints Yafa rather than Tel Aviv beside the TA-125.
+      return { ...e, city: displayLocation(e.city) || e.city, relatedArticles: hits }
+    }),
+  }
+  writeFileSync(join(DIST_DIR, 'api', 'markets.json'), JSON.stringify(enriched))
+  const withCoverage = enriched.exchanges.filter((e) => e.relatedArticles.length).length
+  console.log(
+    `  Built: api/markets.json (${enriched.exchanges.length} exchanges, ${withCoverage} with coverage)`,
+  )
+}
+
 // GDACS disaster snapshot — pre-fetched alert list + EQ/TC population
 // details, one server-side fetch per cycle replacing N fetches per install.
 // Pure passthrough: the pipeline writes the API-shape directly, build just
@@ -676,6 +818,17 @@ if (existsSync(conflictSrc)) {
   const c = JSON.parse(readFileSync(conflictSrc, 'utf8'))
   console.log(`  Built: api/conflict.json (${c.events?.length ?? 0} events, ${c.windowStart} → ${c.windowEnd})`)
 }
+
+// Genocide determinations — the one overlay with no feed behind it. Written by
+// hand in shared/genocide.ts, with the UN body, document and date on every
+// entry, and published so the app and anything after it read the same record
+// the map draws. Only `determination` entries ship: see that file for the bar.
+const { GENOCIDE_MARKED } = await loadShared('genocide.ts')
+writeFileSync(
+  join(DIST_DIR, 'api', 'genocide.json'),
+  JSON.stringify({ situations: GENOCIDE_MARKED }),
+)
+console.log(`  Built: api/genocide.json (${GENOCIDE_MARKED.length} situations)`)
 
 // IODA country outage snapshot — internet connectivity scored against each
 // country's own 90-day baseline. Passthrough, same fail-soft shape as the two
@@ -937,23 +1090,23 @@ writeFileSync(join(DIST_DIR, 'api', 'map-leads.json'),
   JSON.stringify({ generated, leads: mapLeads }))
 console.log(`  Built: api/map-leads.json (${Object.keys(mapLeads).length} leads)`)
 
-// Basemap sources for MapLibre — countries at two detail tiers plus place
-// labels, all served from our own origin so the CSP stays `default-src 'none'`.
+// Basemap sources for MapLibre — the 1:50m coastline plus a 1:10m tier for
+// close zoom, and place labels. All served from our own origin so the CSP stays
+// `default-src 'none'`. The old 1:110m placeholder tier is gone; see
+// `scripts/build/basemap.js` for why one good fetch beat two.
 {
   mkdirSync(join(DIST_DIR, 'basemap'), { recursive: true })
-  const { countries, countriesDetail, countriesUltra, countryLabels, places } =
-    await buildMapSources(ROOT)
+  const { countries, countriesUltra, countryLabels, places } = await buildMapSources(ROOT)
   const emit = (name, data) => {
     writeFileSync(join(DIST_DIR, 'basemap', name), JSON.stringify(data))
     return Math.round(statSync(join(DIST_DIR, 'basemap', name)).size / 1024)
   }
   const a = emit('countries.geojson', countries)
-  const b = emit('countries-detail.geojson', countriesDetail)
   const d = emit('countries-ultra.geojson', countriesUltra)
   emit('country-labels.geojson', countryLabels)
   const c = emit('places.geojson', places)
   console.log(
-    `  Built: basemap/ (countries ${a}KB, detail ${b}KB, ultra ${d}KB, ${places.features.length} places ${c}KB)`,
+    `  Built: basemap/ (countries ${a}KB, ultra ${d}KB, ${places.features.length} places ${c}KB)`,
   )
 }
 
@@ -1066,7 +1219,10 @@ if (process.env.SKIP_OG === '1') {
   console.log('  Skipped: api/og/ (SKIP_OG=1)')
 } else {
   const OG_CACHE_DIR = join(ROOT, '.cache', 'og')
-  const OG_VERSION = 'v3' // bump when og-image.js rendering changes
+  // v5: rasterizeSvg switched from `fontBuffers` to `fontFiles` (every cached
+  // card was a monospace-metric render), and the title measure was retuned for
+  // the real advances that change exposed.
+  const OG_VERSION = 'v6' // bump when og-image.js rendering changes
   mkdirSync(OG_CACHE_DIR, { recursive: true })
   const ogStart = Date.now()
   let cached = 0
@@ -1204,11 +1360,15 @@ const categoryPageTemplate = `<!-- بسم الله الرحمن الرحيم -->
   <meta property="og:title" content="__CAT_CAP__ — zuhd.news">
   <meta property="og:description" content="__DESC__">
   <meta property="og:url" content="https://zuhd.news/c/__CAT__">
-  <meta property="og:image" content="https://zuhd.news/og-image.png">
+  <meta property="og:image" content="https://zuhd.news/api/og/c/__CAT__.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="__CAT_CAP__ on zuhd.news">
+  <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://zuhd.news/og-image.png">
+  <meta name="twitter:image" content="https://zuhd.news/api/og/c/__CAT__.png">
+  <meta name="twitter:image:alt" content="__CAT_CAP__ on zuhd.news">
 </head>
 <body class="archetype-page-body">
   <header class="article-page-header">
@@ -1224,6 +1384,7 @@ const categoryPageTemplate = `<!-- بسم الله الرحمن الرحيم -->
       </header>
       <ol class="category-article-list">__ROWS__</ol>
     </article>
+    __SHARE_ROW__
   </main>
   <footer>
     <nav class="footer-links">
@@ -1294,6 +1455,7 @@ for (const cat of CATEGORY_ORDER) {
     </li>`).join('\n')
   const html = categoryPageTemplate
     .replace(/__HEAD__/g, headCommon)
+    .replace(/__SHARE_ROW__/g, shareRowHtml(`/c/${cat}`, `${capitalize(cat)} — zuhd.news`))
     .replace(/__CAT__/g, cat)
     .replace(/__CAT_CAP__/g, capitalize(cat))
     .replace(/__COUNT__/g, String(items.length))
@@ -1301,6 +1463,17 @@ for (const cat of CATEGORY_ORDER) {
     .replace(/__DESC__/g, escHtmlAttr(`${items.length} ${cat} articles on zuhd.news. Minimalist global news, typography-first.`))
     .replace(/__ROWS__/g, rows)
   writeFileSync(join(DIST_DIR, 'c', `${cat}.html`), html)
+
+  // The desk's own share card. Four files, no disk cache — the render is a
+  // rectangle and two lines of type, and the story count on it changes every
+  // cycle anyway, so a cache keyed on the inputs would miss every time.
+  if (process.env.SKIP_OG !== '1') {
+    mkdirSync(join(DIST_DIR, 'api', 'og', 'c'), { recursive: true })
+    writeFileSync(
+      join(DIST_DIR, 'api', 'og', 'c', `${cat}.png`),
+      buildCategoryOgPng({ category: cat, count: items.length, days: BUILD_WINDOW_DAYS }, 'light'),
+    )
+  }
 }
 console.log(`  Built: c/ (${CATEGORY_ORDER.filter(c => (byCategory[c]||[]).length > 0).length} category pages)`)
 
@@ -1311,6 +1484,8 @@ const entityResult = buildEntityPages({
   sorted,
   distDir: DIST_DIR,
   headCommon,
+  islandV: ISLAND_V,
+  shareRowHtml,
 })
 console.log(`  Built: e/ (${entityResult.count} entity pages)`)
 
@@ -1324,8 +1499,12 @@ const countryResult = await buildCountryPages({
   templatesDir: TEMPLATES_DIR,
   headCommon,
   islandV: ISLAND_V,
+  shareRowHtml,
+  skipOg: process.env.SKIP_OG === '1',
 })
-console.log(`  Built: country/ (${countryResult.count} pages)`)
+console.log(
+  `  Built: country/ (${countryResult.count} pages · ${countryResult.ogCached} cached + ${countryResult.ogRendered} rendered share cards)`,
+)
 
 // The same 27 metrics arranged the other way round — one file per metric,
 // every country in it — so the map can tint the whole world by one dimension.

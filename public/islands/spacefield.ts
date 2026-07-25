@@ -30,10 +30,6 @@ const createRng = (seed: number) => {
   return () => { s = (s * 16807) % 2147483647; return s / 2147483647 }
 }
 
-// Power-law transform — skews random toward small values for natural
-// star brightness distribution (most dim, few bright)
-const pow = (v: number, exp: number) => Math.pow(v, exp)
-
 // Linear interpolation
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t
 
@@ -69,11 +65,8 @@ export const mount = (container: HTMLElement) => {
   let targetMouseX = 0.5
   let targetMouseY = 0.5
 
-  const prefersReduced = typeof matchMedia === 'function' &&
-    matchMedia('(prefers-reduced-motion: reduce)').matches
-
-  const isTouch = typeof matchMedia === 'function' &&
-    matchMedia('(pointer: coarse)').matches
+  const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches
+  const isTouch = matchMedia('(pointer: coarse)').matches
 
   // Parallax sensitivity — max pixel displacement per depth layer
   const PARALLAX_MAX = prefersReduced ? 0 : 4
@@ -158,10 +151,10 @@ export const mount = (container: HTMLElement) => {
       const target = layers[layerIdx]
       for (let i = 0; i < layer.count; i++) {
         const t = rand()
-        const r = layer.rMin + pow(t, 3) * (layer.rMax - layer.rMin)
-        const baseAlpha = layer.alphaMin + pow(rand(), 2) * (layer.alphaMax - layer.alphaMin)
+        const r = layer.rMin + t ** 3 * (layer.rMax - layer.rMin)
+        const baseAlpha = layer.alphaMin + rand() ** 2 * (layer.alphaMax - layer.alphaMin)
         const isBright = r > 1.5 && layer.glint
-        const x = clamp(0.01 + pow(rand() < 0.5 ? rand() : 1 - rand(), 1.6) * 0.49, 0, 1) * w
+        const x = clamp(0.01 + (rand() < 0.5 ? rand() : 1 - rand()) ** 1.6 * 0.49, 0, 1) * w
         const y = rand() * h * SKY_MAX_Y
         target.push({
           x,
@@ -321,15 +314,37 @@ export const mount = (container: HTMLElement) => {
     animId = requestAnimationFrame(tick)
   }
 
+  /**
+   * The field only exists in dark mode — `.spacefield-root` is `opacity: 0`
+   * otherwise — so in light mode this is a 60fps canvas loop drawing something
+   * nobody can see. On a phone that is battery spent on nothing. The listener
+   * is what keeps the CSS crossfade honest when the system flips mid-visit.
+   */
+  const darkQuery = matchMedia('(prefers-color-scheme: dark)')
+
+  const syncScheme = () => {
+    const wanted = darkQuery.matches
+    if (wanted === (animId !== 0)) return
+    if (wanted) {
+      animId = requestAnimationFrame(tick)
+    } else {
+      cancelAnimationFrame(animId)
+      animId = 0
+    }
+  }
+
   // --- Sizing ---
 
   const resize = () => {
-    const dpr = 1
+    // Deliberately 1 device pixel per CSS pixel, not devicePixelRatio: this is
+    // a backdrop of sub-pixel dots at 0.85 opacity, and paying 4× the fill rate
+    // for it on a retina phone buys nothing anyone can see. The stars are
+    // capped at 1440 wide and stretched beyond that for the same reason.
     const w = Math.min(window.innerWidth, 1440)
     const h = window.innerHeight
-    canvas.width = w * dpr
-    canvas.height = h * dpr
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    canvas.width = w
+    canvas.height = h
+    ctx.setTransform(1, 0, 0, 1, 0, 0)
     canvasW = w
     canvasH = h
     stars = generateStars(w, h)
@@ -353,20 +368,22 @@ export const mount = (container: HTMLElement) => {
   }
 
   resize()
-  animId = requestAnimationFrame(tick)
+  syncScheme()
 
   if (!isTouch && !prefersReduced) {
     document.addEventListener('mousemove', onMouseMove, { passive: true })
   }
   document.addEventListener('visibilitychange', onVisibilityChange)
   window.addEventListener('resize', onResize, { passive: true })
+  darkQuery.addEventListener('change', syncScheme)
 
   return () => {
-    cancelAnimationFrame(animId)
+    if (animId) cancelAnimationFrame(animId)
     if (resizeTimer) clearTimeout(resizeTimer)
     document.removeEventListener('mousemove', onMouseMove)
     document.removeEventListener('visibilitychange', onVisibilityChange)
     window.removeEventListener('resize', onResize)
+    darkQuery.removeEventListener('change', syncScheme)
     canvas.remove()
     container.classList.remove('spacefield-root')
   }

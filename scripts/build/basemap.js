@@ -231,9 +231,27 @@ export async function buildMapSources(root) {
   // two can never disagree — is what makes a land polygon clickable.
   const { codeFromTopojsonName } = await loadShared('countries/iso.ts')
 
-  // Two detail tiers. 110m is the first-paint basemap at 72 KB gzipped; 50m is
-  // seven times heavier and only fetched once the reader zooms past the point
-  // where the coarse coastline starts to show.
+  // ── Why the basemap is 1:50m and there is no coarse tier ──────────────────
+  //
+  // This used to ship 1:110m as a first-paint placeholder and swap up to 1:50m
+  // once the camera zoomed past 3.2. The map opens at world fit — about zoom
+  // 1.3 — so the default view, the one every reader sees and the only one most
+  // of them ever see, was 110m and stayed there.
+  //
+  // 110m is not a rounded 50m. Its generalisation removes real geography:
+  // whole inlets, peninsulas and islands are gone rather than approximated. For
+  // as long as the borders were invisible that went unnoticed; the moment the
+  // frontier line became readable, the coarseness was the thing it was drawing.
+  //
+  // So the placeholder is gone and the real basemap is fetched once. It is
+  // ~540 KB gzipped, and it is genuinely once: `/basemap/*` is served
+  // `max-age=86400, stale-while-revalidate=604800` and every URL carries the
+  // build's content hash, so it is refetched only when the basemap itself
+  // changes — a handful of times a year. Two fetches to end up in the same
+  // place was the worse deal, and it cost a visible re-render on every load.
+  //
+  // 1:10m still waits for `ULTRA_ZOOM`. At world scale its extra vertices are
+  // comfortably sub-pixel: megabytes spent on detail nobody can see.
   const tier = (file, dp, tol = 0) => {
     const topo = JSON.parse(readFileSync(join(root, 'shared', 'data', file), 'utf8'))
     const fc = feature(topo, topo.objects.countries)
@@ -263,12 +281,11 @@ export async function buildMapSources(root) {
     }
   }
 
-  const countries = tier('countries-110m.json', 4)
+  const countries = tier('countries-50m.json', 3)
   return {
     countries,
-    countriesDetail: tier('countries-50m.json', 3),
-    // Third tier, from Natural Earth 1:10m. 255 countries against 50m's 240
-    // and 110m's 176 — the difference is mostly islands and a coastline with
+    // Second tier, from Natural Earth 1:10m. 255 countries against 50m's 240
+    // — the difference is mostly islands and a coastline with
     // real inlets rather than a smoothed outline, which is exactly what shows
     // once the camera is past continental scale. Coordinates keep 3 decimals
     // (~110 m), which is sub-pixel even at the map's maximum zoom; trimming to

@@ -1,4 +1,4 @@
-// Number formatting for the map's cards.
+// Number and date formatting for the map's cards.
 //
 // The map island ships no framework, so it can reach none of the repo's
 // existing formatters: `formatValue` lives in a Node build script
@@ -10,6 +10,23 @@
 // silently drifted apart (`6/145` here, `6 / 145` there).
 //
 // Everything here is pure and DOM-free.
+
+/**
+ * How long ago, in the shortest form that still says it.
+ *
+ * This lived in `sheet.ts` — a 450-line DOM module that builds dialogs — so the
+ * rail and the story popup, neither of which opens a sheet, each imported the
+ * whole card renderer to format a timestamp. It is the same kind of pure
+ * function as everything else in this file and belongs beside them.
+ */
+export const relativeTime = (ts: number, now = Date.now()): string => {
+  const mins = Math.round((now - ts) / 60_000)
+  if (mins < 1) return 'just now'
+  if (mins < 60) return `${mins}m ago`
+  const hours = Math.round(mins / 60)
+  if (hours < 48) return `${hours}h ago`
+  return `${Math.round(hours / 24)}d ago`
+}
 
 /** Thousands separators. `25712` → `25,712`. */
 export const grouped = (n: number): string =>
@@ -88,6 +105,33 @@ export const shortDate = (iso: string): string => {
   return `${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]}`
 }
 
+const MONTHS_FULL = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+]
+
+/**
+ * A date that carries its year.
+ *
+ * `shortDate` deliberately drops the year, because everything it dates happened
+ * inside the map's own fortnight and "16 Sep 2025" on a card about this week is
+ * noise. Findings are the opposite case — one of them is from 2018 — and a
+ * citation without a year is not a citation.
+ */
+export const fullDate = (iso: string): string => {
+  const t = Date.parse(iso)
+  if (!Number.isFinite(t)) return ''
+  const d = new Date(t)
+  return `${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`
+}
+
+/** `YYYY-MM` → "October 2023", for a start date nobody can put a day on. */
+export const monthLabel = (iso: string): string => {
+  const [y, m] = iso.split('-')
+  const i = Number(m) - 1
+  return MONTHS_FULL[i] ? `${MONTHS_FULL[i]} ${y}` : y
+}
+
 /**
  * How far behind the present a dated snapshot runs, in plain words.
  *
@@ -102,4 +146,95 @@ export const lagLabel = (iso: string, now = Date.now()): string | null => {
   if (days < 14) return null
   const months = Math.round(days / 30)
   return months >= 2 ? `~${months} months old` : `~${days} days old`
+}
+
+/**
+ * An index level, in the units the exchange quotes it in.
+ *
+ * Two decimals is the convention for an index, but the MERVAL trades above
+ * three million — a currency that has been devalued repeatedly carries the
+ * digits — and `3,319,522.41` spends eleven characters saying nothing after
+ * the comma. Above six figures the decimals are dropped.
+ */
+export const indexLevel = (n: number, currency?: string): string => {
+  if (!Number.isFinite(n)) return ''
+  const body =
+    Math.abs(n) >= 100_000
+      ? grouped(n)
+      : n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+  return currency ? `${body} ${currency}` : body
+}
+
+/** A signed percent move, always carrying its sign. `0.82` → `+0.82%`. */
+export const pctChange = (n: number): string =>
+  Number.isFinite(n) ? `${n > 0 ? '+' : ''}${n.toFixed(2)}%` : ''
+
+const WEEKDAY_INDEX: Record<string, number> = {
+  Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6,
+}
+
+/** Minutes since local midnight, and the local weekday, in an IANA zone. */
+const zonedNow = (tz: string, at: number): { day: number; minutes: number } | null => {
+  try {
+    const parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: tz,
+      weekday: 'short',
+      hour: '2-digit',
+      minute: '2-digit',
+      hourCycle: 'h23',
+    }).formatToParts(new Date(at))
+    const get = (type: string) => parts.find((p) => p.type === type)?.value ?? ''
+    const day = WEEKDAY_INDEX[get('weekday')]
+    const minutes = Number(get('hour')) * 60 + Number(get('minute'))
+    if (day === undefined || !Number.isFinite(minutes)) return null
+    return { day, minutes }
+  } catch {
+    // An unparseable zone is a data problem, not a reason to take the map down.
+    return null
+  }
+}
+
+const toMinutes = (hhmm: string): number | null => {
+  const m = /^(\d{1,2}):(\d{2})$/.exec(hhmm || '')
+  if (!m) return null
+  return Number(m[1]) * 60 + Number(m[2])
+}
+
+/**
+ * Is this exchange inside its regular session right now?
+ *
+ * Weekday matters as much as the clock here: Riyadh and Yafa trade Sunday to
+ * Thursday while Dubai moved to Monday–Friday in 2022, so a Gulf-wide rule
+ * would be wrong about half the Gulf. Lunch breaks are not modelled — Tokyo and
+ * Kuala Lumpur read as open through theirs — and neither are public holidays,
+ * which is the real limit: an exchange shut for Eid or Christmas will show as
+ * trading. That only ever mis-states the *state*, never the number, because the
+ * card prints the actual date of the close beside it.
+ */
+export const isTrading = (
+  ex: { tz: string; sessionStart: string; sessionEnd: string; days: number[] },
+  now = Date.now(),
+): boolean => {
+  const start = toMinutes(ex.sessionStart)
+  const end = toMinutes(ex.sessionEnd)
+  if (start === null || end === null || !Array.isArray(ex.days) || !ex.days.length) return false
+  const local = zonedNow(ex.tz, now)
+  if (!local) return false
+  if (!ex.days.includes(local.day)) return false
+  return local.minutes >= start && local.minutes < end
+}
+
+/**
+ * What the card says about how fresh the figure is: `trading now`, or the
+ * weekday of the close it is showing.
+ */
+export const sessionLabel = (
+  ex: { tz: string; sessionStart: string; sessionEnd: string; days: number[]; asOf: string },
+  now = Date.now(),
+): string => {
+  if (isTrading(ex, now)) return 'trading now'
+  const t = Date.parse(`${ex.asOf}T12:00:00Z`)
+  if (!Number.isFinite(t)) return 'last close'
+  const weekday = new Date(t).toLocaleDateString('en-US', { weekday: 'short', timeZone: 'UTC' })
+  return `last close · ${weekday}`
 }

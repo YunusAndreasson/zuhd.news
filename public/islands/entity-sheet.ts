@@ -11,7 +11,7 @@
 
 import {
   html,
-  mountIsland,
+  mountSheetIsland,
   useEffect,
   useRef,
   useState,
@@ -53,7 +53,8 @@ interface Props {
 // instead of shared so the island stays self-contained (the build's
 // CommonJS-ish import shape would drag in Node polyfills via esbuild).
 const Sparkline = ({ values, periods }: { values: number[]; periods: string[] }) => {
-  if (!values.length || values.length < 2) return null
+  // One point is a dot pretending to be a trend.
+  if (values.length < 2) return null
   const w = 520
   const h = 140
   const pad = { l: 10, r: 10, t: 18, b: 20 }
@@ -69,14 +70,19 @@ const Sparkline = ({ values, periods }: { values: number[]; periods: string[] })
     .join('')
   const first = values[0]
   const last = values[values.length - 1]
-  const firstLabel = periods?.[0] ?? ''
-  const lastLabel = periods?.[periods.length - 1] ?? ''
+  const firstLabel = periods[0] ?? ''
+  const lastLabel = periods[periods.length - 1] ?? ''
 
+  // No `preserveAspectRatio="none"`. A 520×140 box stretched into a 100%-wide,
+  // 160px-tall frame is a non-uniform scale, and everything that is not the
+  // line pays for it: the two end dots came out as ellipses and the axis labels
+  // were drawn at the wrong width for their height. `chart.ts` fixed the same
+  // mistake on the map's sparkline; the CSS here now takes its height from the
+  // viewBox instead of imposing one.
   return html`
     <svg
       class="entity-sheet-spark"
       viewBox="0 0 ${w} ${h}"
-      preserveAspectRatio="none"
       role="img"
       aria-label="Series chart"
     >
@@ -192,4 +198,4 @@ const EntitySheet: Island<Props> = ({ id }) => {
 }
 
 export const mount = (container: HTMLElement, props: Props) =>
-  mountIsland(EntitySheet, container, props)
+  mountSheetIsland(EntitySheet, container, props)

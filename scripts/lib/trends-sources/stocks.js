@@ -1,5 +1,5 @@
 // Yahoo Finance — single-ticker daily-chart fetcher.
-// Endpoint: /v8/finance/chart/<symbol>?interval=1d&range=1mo
+// Endpoint: /v8/finance/chart/<symbol>?interval=1d&range=<range>  (default 1mo)
 // Free, no auth, no key — but unofficial and degrading (crumb walls, 429s).
 // Hardening (2026-07-03):
 //   • host alternation: query1 → query2 on any failure (Yahoo rate-limits
@@ -21,6 +21,7 @@ const USER_AGENT =
 
 const CACHE_PATH = new URL('../../../content/.stocks-cache.json', import.meta.url).pathname
 const CACHE_MAX_AGE_MS = 7 * 86400_000
+const DEFAULT_RANGE = '1mo'
 
 function formatPeriod(ms) {
   const d = new Date(ms)
@@ -35,10 +36,10 @@ function readCache() {
   return {}
 }
 
-function writeCache(symbol, entry) {
+function writeCache(key, entry) {
   try {
     const cache = readCache()
-    cache[symbol] = { ...entry, cachedAt: Date.now() }
+    cache[key] = { ...entry, cachedAt: Date.now() }
     // Rotate entries older than the max age so the file doesn't grow unbounded.
     for (const [k, v] of Object.entries(cache)) {
       if (!v.cachedAt || Date.now() - v.cachedAt > CACHE_MAX_AGE_MS) delete cache[k]
@@ -47,15 +48,24 @@ function writeCache(symbol, entry) {
   } catch {}
 }
 
-function readCachedSeries(symbol) {
-  const entry = readCache()[symbol]
+function readCachedSeries(key) {
+  const entry = readCache()[key]
   if (!entry?.cachedAt || Date.now() - entry.cachedAt > CACHE_MAX_AGE_MS) return null
   const { cachedAt, ...series } = entry
   return { ...series, stale: true }
 }
 
-async function fetchFromHost(host, symbol) {
-  const url = `${host}/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1d&range=1mo`
+/**
+ * Cache key. The range is part of it because two callers now ask for different
+ * windows of the same ticker — entity extraction wants a month, the markets
+ * layer wants a quarter — and a shared key would serve one of them the other's
+ * series with no way to notice. The default range keeps its bare-symbol key so
+ * the existing cache file stays warm.
+ */
+const cacheKey = (symbol, range) => (range === DEFAULT_RANGE ? symbol : `${symbol}@${range}`)
+
+async function fetchFromHost(host, symbol, range) {
+  const url = `${host}/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1d&range=${range}`
   const res = await fetch(url, {
     signal: AbortSignal.timeout(10000),
     headers: { 'User-Agent': USER_AGENT, accept: 'application/json' },
@@ -87,36 +97,59 @@ async function fetchFromHost(host, symbol) {
     asOf,
     name: result.meta?.longName || result.meta?.shortName || symbol,
     currency: result.meta?.currency || 'USD',
+    /** The currency exactly as reported, undefaulted. A caller that asserts
+     *  the currency must be able to tell "Yahoo says USD" from "Yahoo said
+     *  nothing" — ^MERV reports none at all — and the defaulting above makes
+     *  those two indistinguishable. */
+    currencyReported: result.meta?.currency ?? '',
     exchange: result.meta?.exchangeName || '',
+    /** IANA zone Yahoo attributes to the instrument. Used to catch a symbol
+     *  that resolved to a different instrument than the one asked for. */
+    timezone: result.meta?.exchangeTimezoneName ?? '',
+    /** Live/most-recent price. Note `chartPreviousClose` is deliberately NOT
+     *  forwarded: it is the close before the *window*, not the previous day,
+     *  so a caller reaching for it to compute a daily change gets the change
+     *  over the whole range instead. Use the last two `values`. */
+    marketPrice: typeof result.meta?.regularMarketPrice === 'number'
+      ? result.meta.regularMarketPrice
+      : null,
   }
 }
 
 /**
- * Fetch ~30 daily closes for one Yahoo Finance symbol.
+ * Fetch daily closes for one Yahoo Finance symbol.
  *
- * @param {string} symbol  Yahoo ticker (e.g. "META", "2222.SR", "9988.HK")
+ * @param {string} symbol  Yahoo ticker (e.g. "META", "2222.SR", "^TASI.SR")
+ * @param {{ range?: string }} [opts]  Yahoo range token — "1mo" (default,
+ *   ~21 closes) or "3mo" (~62), which is what the markets layer asks for so a
+ *   sparkline has a shape rather than a wobble.
  * @returns {Promise<{
  *   values: number[],
  *   periods: string[],
  *   asOf: string,
  *   name: string,
  *   currency: string,
+ *   currencyReported: string,
  *   exchange: string,
+ *   timezone: string,
+ *   marketPrice: number | null,
  *   stale?: boolean
  * } | null>}
  */
-export async function fetchYahooStock(symbol) {
+export async function fetchYahooStock(symbol, opts = {}) {
+  const range = opts.range || DEFAULT_RANGE
+  const key = cacheKey(symbol, range)
   let lastErr = null
   for (const host of YAHOO_HOSTS) {
     try {
-      const series = await fetchFromHost(host, symbol)
-      writeCache(symbol, series)
+      const series = await fetchFromHost(host, symbol, range)
+      writeCache(key, series)
       return series
     } catch (err) {
       lastErr = err
     }
   }
-  const cached = readCachedSeries(symbol)
+  const cached = readCachedSeries(key)
   if (cached) {
     console.error(`  ⚠ yahoo:${symbol}: ${lastErr?.message} — serving cached series from ${cached.asOf}`)
     return cached

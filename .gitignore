@@ -13,7 +13,11 @@ content/audio/voice-tests/
 # Transient: the per-cycle social pick, regenerated (and rm'd) each cycle.
 content/.breaking-pick.json
 
-# visual-regression scratch (scripts/shoot.mjs)
+# visual-regression scratch (scripts/shoot.mjs). `.shots/` is the script's own
+# default output directory and was missing here — only the suffixed variants
+# were covered, so a bare `node scripts/shoot.mjs` dropped several megabytes of
+# PNGs into the repo root as untracked files.
+.shots/
 .shots-*/
 .refs/
 .diag.mjs

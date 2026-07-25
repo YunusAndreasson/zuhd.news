@@ -18,6 +18,7 @@ import {
   type ExpressionSpecification,
   type GeoJSONSource,
   type MapGeoJSONFeature,
+  type PaddingOptions,
   type PointLike,
 } from 'maplibre-gl'
 // `GeoJSON.*` was being reached for as a UMD global, which @types/geojson only
@@ -32,30 +33,54 @@ import {
   LAND_NO_DATA,
   LAND_RAMP,
   MAP_COLOURS,
+  nodataHatch,
   OVERLAY_COLOUR,
 } from './_map/style'
 import { createFeed, type Feed } from './_map/feed'
+import { isTrading } from './_map/format'
 import { createTimeline, type Timeline } from './_map/timeline'
 import { createSheet, type Sheet } from './_map/sheet'
 import { createStoryPopup, type StoryPopup } from './_map/popup'
-import { nightPolygon } from './_map/solar'
+import { dayPolygon, nightPolygon } from './_map/solar'
 import {
   CONTESTED_D,
   DEFAULT_METRIC,
+  NARROW_PX,
   decayAt,
   type ConflictEvent,
   type GdacsAlert,
   type GdacsDetail,
+  type GenocideSituation,
   type MapChokepoint,
+  type MapExchange,
   type MapPoint,
   type MetricIndexEntry,
   type MetricPayload,
 } from './_map/types'
 import { detailKey } from '@shared/gdacs'
 
-const DETAIL_ZOOM = 3.2
 /** Where the 1:10m coastline replaces 1:50m — see the zoomend handler. */
 const ULTRA_ZOOM = 5.5
+
+/**
+ * The overlay marks: everything that opens a sheet on hover.
+ *
+ * A single list rather than one per call site, because the three handlers and
+ * the two hit-tests below have to agree on it — a layer added to one and not
+ * the others is a mark that lights the cursor and then does nothing, or one
+ * that swallows a click meant for the country underneath.
+ */
+const OVERLAY_LAYERS = [
+  'gdacs-marks',
+  'chokepoint-marks',
+  'market-marks',
+  'conflict-marks',
+  'genocide-marks',
+  'genocide-core',
+]
+
+/** Everything the pointer can hit, overlays plus the story beacons. */
+const MARKER_LAYERS = ['story-points', 'story-clusters', ...OVERLAY_LAYERS]
 
 /** A Web Mercator world is this wide at zoom 0, and doubles each level. */
 const TILE_PX = 512
@@ -196,15 +221,15 @@ const heatStops = (busiest: number): number[] => {
 }
 
 /** Disc radius across the same domain. */
-const clusterRadius = (stops: number[], scale = 1): ExpressionSpecification =>
+const clusterRadius = (stops: number[]): ExpressionSpecification =>
   [
     'interpolate',
     ['linear'],
     ['get', 'point_count'],
-    stops[0], 8 * scale,
-    stops[2], 13 * scale,
-    stops[4], 20 * scale,
-    stops[6], 27 * scale,
+    stops[0], 8,
+    stops[2], 13,
+    stops[4], 20,
+    stops[6], 27,
   ] as unknown as ExpressionSpecification
 
 /**
@@ -277,6 +302,17 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
    */
   const KEY_ITEMS: Array<{ id: string; label: string; hint: string; svg: string }> = [
     {
+      // First, and not for alphabetical reasons. The other three decode a
+      // channel the beacons spend ink on; this one names a mark the reader has
+      // no other way to read, and it is the gravest thing drawn.
+      id: 'genocide',
+      label: 'genocide',
+      hint: 'A situation a named UN body has determined to be genocide — click the mark for the finding',
+      svg:
+        '<circle cx="8" cy="8" r="5.2" fill="none" stroke="currentColor" stroke-width="1.8"/>' +
+        '<circle cx="8" cy="8" r="1.9"/>',
+    },
+    {
       id: 'size',
       label: 'coverage',
       hint: 'Beacon size shows how widely a story was covered, ranked across the window',
@@ -305,6 +341,14 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     const span = document.createElement('span')
     span.className = 'map-key-item'
     span.title = item.hint
+    // The genocide entry is drawn in the layer's own tone; the rest inherit the
+    // strip's grey, because they decode shapes that are already every colour.
+    if (item.id === 'genocide') {
+      span.style.color = OVERLAY_COLOUR.genocide
+      // Hidden until the record is on the wire. A legend for a mark that is not
+      // drawn is the same lie in either direction.
+      span.hidden = true
+    }
     span.innerHTML =
       `<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="currentColor">${item.svg}</svg>` +
       `<span>${item.label}</span>`
@@ -362,6 +406,14 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     groundSelect.value = metricKey
   }
 
+  /**
+   * Countries on the basemap that carry an ISO code, and so *could* be shaded.
+   * The denominator for "how much of the world does this metric cover" — the
+   * seven features without a code (Antarctica, Somaliland, N. Cyprus and the
+   * like) are not missing data, they are not countries with codes.
+   */
+  const TOTAL_COUNTRIES = 169
+
   /** Restates the scale for whichever metric is showing. */
   const renderMetricKey = () => {
     if (!metric) return
@@ -396,14 +448,68 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
 
     const swatch = groundScale.querySelector('.map-ground-swatch')
     if (swatch) {
+      // How much of the world this metric actually covers, stated rather than
+      // implied. It ranges from 170 countries down to 85 for literacy, and a
+      // reader has no way to tell a sparse metric from a dense one by looking —
+      // the hatch says "not this country", only the count says "not half of
+      // them".
+      const missing = Math.max(0, TOTAL_COUNTRIES - covered)
       swatch.setAttribute(
         'title',
-        `No figure for this metric — ${covered} countries shaded, the rest left dark`,
+        missing > 0
+          ? `Hatched: no figure for this metric — ${covered} countries shaded, ${missing} without data`
+          : `${covered} countries shaded`,
       )
     }
   }
 
-  hud.append(ranges, filters, key, ground)
+  /**
+   * The rest of the chrome, and the button that admits there is a limit.
+   *
+   * On a desktop the four control groups are one strip across the top of the
+   * canvas and cost nothing — there is width to spare. On a phone they are
+   * four stacked rows over a half-height map: the range chips, seven filter
+   * chips wrapping onto two lines, and a metric picker whose one-line
+   * description is wider than the screen. Together they covered the top third
+   * of the map with controls for a map you could no longer see.
+   *
+   * So on a phone everything except the time range folds behind a disclosure.
+   * `display: contents` is what keeps that free on the desktop side: the
+   * wrapper vanishes from layout and its three children stay direct flex items
+   * of the HUD, in the same order, with `.map-key`'s `margin-left: auto` and
+   * `.map-ground`'s `flex-basis: 100%` still resolving against the strip. One
+   * DOM, two layouts, no duplicated markup to drift.
+   */
+  const more = document.createElement('div')
+  more.className = 'map-hud-more'
+  more.id = 'map-hud-more'
+
+  const moreBtn = document.createElement('button')
+  moreBtn.type = 'button'
+  moreBtn.className = 'map-more'
+  moreBtn.setAttribute('aria-expanded', 'false')
+  moreBtn.setAttribute('aria-controls', 'map-hud-more')
+  moreBtn.innerHTML =
+    '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.2">' +
+    '<path d="M8 1.8 14.4 5 8 8.2 1.6 5Z"/><path d="m2.4 8 5.6 2.8L13.6 8"/><path d="m2.4 11 5.6 2.8L13.6 11"/>' +
+    '</svg><span>layers</span>'
+
+  const setMoreOpen = (open: boolean) => {
+    more.classList.toggle('is-open', open)
+    moreBtn.setAttribute('aria-expanded', String(open))
+  }
+
+  moreBtn.addEventListener('click', () => {
+    setMoreOpen(!more.classList.contains('is-open'))
+  })
+
+  // Touching the map is the reader saying they are done with the panel. Not a
+  // click — a pan or a pinch never becomes one, and a panel that survives the
+  // gesture it was in the way of is a panel you have to dismiss twice.
+  mapEl.addEventListener('pointerdown', () => setMoreOpen(false))
+
+  more.append(filters, key, ground)
+  hud.append(ranges, moreBtn, more)
 
   /**
    * Back to the whole world.
@@ -431,7 +537,22 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   clockEl.className = 'map-clock'
   status.append(clockEl)
 
-  container.append(mapEl, hud, status, resetBtn)
+  /**
+   * Says the canvas is empty on purpose.
+   *
+   * The basemap is one ~540 KB fetch now rather than a coarse placeholder
+   * followed by the real thing, which is the right trade — but it means the
+   * first paint of a cold visit is an empty ocean for as long as that takes.
+   * Silence there reads as breakage, and the reader has no way to tell a slow
+   * network from a map that has failed. A line of type is the whole fix; it is
+   * removed the moment the coastline is on screen.
+   */
+  const loading = document.createElement('p')
+  loading.className = 'map-loading'
+  loading.setAttribute('role', 'status')
+  loading.textContent = 'Drawing the world…'
+
+  container.append(mapEl, hud, status, resetBtn, loading)
 
   // --- State --------------------------------------------------------------
   let points: MapPoint[] = []
@@ -442,9 +563,11 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   /** Population exposure per alert, keyed `${eventtype}:${eventid}`. */
   let gdacsDetails: Record<string, GdacsDetail> = {}
   let chokepoints: MapChokepoint[] = []
+  let markets: MapExchange[] = []
   let conflicts: ConflictEvent[] = []
   /** Newest event in the conflict feed — see `conflictWindowLabel`. */
   let conflictNewest = 0
+  let genocide: GenocideSituation[] = []
 
   /** The metric currently tinting the land, and its payload once fetched. */
   let metricKey = DEFAULT_METRIC
@@ -452,11 +575,15 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   let metricIndex: MetricIndexEntry[] = []
 
   const enabled = new Set(CATEGORY_ORDER)
-  const layersOn = { gdacs: true, straits: true, conflict: true }
+  // Genocide is not in here on purpose. Every other overlay is a feed the
+  // reader may reasonably want out of the way — a few hundred conflict records,
+  // ninety-eight weather alerts, eleven straits. This is two marks, drawn from
+  // a finding by a named UN body, and a toggle that switches it off is a toggle
+  // whose only function is to make the map more comfortable. The layer stays.
+  const layersOn = { gdacs: true, straits: true, markets: true, conflict: true }
   let rangeHours: number | null = DEFAULT_RANGE_HOURS
   let scrubNow = Date.now()
   let mounted = true
-  let detailLoaded = false
   let ultraLoaded = false
   let layersReady = false
   const abort = new AbortController()
@@ -490,10 +617,36 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   let timeline: Timeline | null = null
 
   const feed: Feed = createFeed({
-    onSelect: (p) => flyToStory(p),
+    onSelect: (p) => {
+      // On a phone the list is a drawer over the map, so committing to a story
+      // has to give the map back — otherwise the camera flies somewhere the
+      // reader cannot see and the card opens behind the list.
+      //
+      // Instantly, and that is not a style choice. `flyTo` reads the map's
+      // padding once when the flight begins, and any `setPadding` after that
+      // goes through `jumpTo`, which calls `stop()` — so the drawer finishing
+      // its slide 200ms into a 1150ms flight *cancelled the flight*, leaving
+      // the camera exactly where it started with the story's card open over a
+      // world view. Sliding it shut and then flying is two animations racing
+      // over one camera; snapping it shut and then flying is one.
+      feed.setExpanded(false, true)
+      flyToStory(p)
+    },
     onHover: (p) => setHoverSlug(p ? p.slug : null),
+    // The drawer's height is part of what the camera has to dodge.
+    onToggle: () => applyPadding(),
   })
   container.append(feed.element)
+
+  /**
+   * Whether the phone layout is in force.
+   *
+   * `matchMedia` rather than a bare `innerWidth` read so this asks the same
+   * question the stylesheet does, in the same units, and answers it from the
+   * same place — the two cannot drift by a scrollbar's width.
+   */
+  const narrowQuery = matchMedia(`(max-width: ${NARROW_PX}px)`)
+  const isNarrow = () => narrowQuery.matches
 
   // --- Map ----------------------------------------------------------------
   /**
@@ -507,8 +660,18 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
    * fills the frame at whatever width it is given, and the duplicate has
    * nowhere to appear.
    *
-   * Floored at 1.35 so a narrow window zooms out no further than the old
-   * default.
+   * Floored at 1.35 on a desktop window, so a small one zooms out no further
+   * than the old default — there the fit zoom is above the floor anyway, so it
+   * only ever bites on a half-width window.
+   *
+   * The floor is dropped on a phone, and that is not a nicety. This value is
+   * also `minZoom`, and a 390px canvas fits the world at zoom −0.4 — so a
+   * floor of 1.35 was not a floor at all but a *ceiling on how far out the
+   * reader could go*, three whole zoom levels above the world. The map opened
+   * mid-Sahara at a scale where Europe ran off both edges, the "whole world"
+   * control returned you to the same place, and there was no gesture anywhere
+   * that reached the rest of the planet. A world map you cannot see the world
+   * on is not a framing problem.
    *
    * There used to be a 2.4 ceiling here, to stop an ultrawide monitor opening
    * "halfway into a continent" — but 2.4 puts the world at 2702px, so any
@@ -520,7 +683,23 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
    */
   const worldFitZoom = () => {
     const w = mapEl.clientWidth || window.innerWidth || 1280
-    return Math.max(1.35, Math.log2(w / TILE_PX))
+    const h = mapEl.clientHeight || window.innerHeight || 800
+    // The larger side, not the width. With `renderWorldCopies` off MapLibre
+    // refuses any zoom at which the world fails to cover the canvas — in
+    // *either* axis, since latitude stops at ±85° whatever the setting — so
+    // the real floor is whichever side needs more world. On a desktop the
+    // canvas is wider than it is tall and this is the width, which is what the
+    // rest of this comment was written about. On a phone it is emphatically
+    // the height: a 390×753 canvas cannot hold a 390px world, MapLibre clamps
+    // to 0.56 regardless, and a HOME_VIEW that asked for anything lower was a
+    // view the camera could not hold — the "whole world" control read as
+    // permanently pressed because the map was permanently 0.9 levels above the
+    // home it had been given.
+    const fit = Math.log2(Math.max(w, h) / TILE_PX)
+    // Measured on the viewport, not the canvas: the canvas is narrower than
+    // the window by the rail's width, and a 1200px desktop window would
+    // otherwise be mistaken for a phone and lose the floor.
+    return isNarrow() ? fit : Math.max(1.35, fit)
   }
 
   /** The view the map opens on, and the one the wordmark returns you to. */
@@ -552,7 +731,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     // the same conflict twice, in two places, is lying about where things are.
     renderWorldCopies: false,
   })
-  map.touchZoomRotate?.disableRotation()
+  map.touchZoomRotate.disableRotation()
 
   // Chrome that covers the canvas moves the map's true centre away from the
   // viewport's, and telling MapLibre once means every flyTo, easeTo and cluster
@@ -567,14 +746,78 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   // gutter down one side and a continent clipped off the other. Measuring the
   // actual intersection is right in both layouts, and stays right if the rail
   // ever becomes an overlay again.
+  //
+  // On a phone it *is* an overlay again — a bar across the foot of the canvas
+  // rather than a column beside it — so which edge it takes has to be read off
+  // the geometry rather than assumed. A rail that spans the full width is
+  // eating the bottom; one that spans less is eating the left. Getting this
+  // wrong is not cosmetic: a full-width bar measured as a left inset would
+  // push the camera most of a screen sideways on every flyTo.
+  /**
+   * Writes the padding, but only when it would actually change.
+   *
+   * `Map.setPadding` is `jumpTo` underneath, and `jumpTo` begins by calling
+   * `stop()` — so every padding write is also a cancellation of whatever the
+   * camera was doing. A redundant write of the value already in place is
+   * therefore not free: it is an invisible interruption. And a *needed* write
+   * that lands mid-flight is worse, so those are deferred rather than dropped
+   * — the flight keeps its aim and the new padding is applied the moment it
+   * lands.
+   */
+  let paddingPending = false
+  const writePadding = (next: PaddingOptions) => {
+    if (flying) {
+      paddingPending = true
+      return
+    }
+    const cur = map.getPadding()
+    const same = (['top', 'bottom', 'left', 'right'] as const).every(
+      (k) => Math.abs((cur[k] ?? 0) - (next[k] ?? 0)) < 1,
+    )
+    if (same) return
+    map.setPadding(next)
+  }
+
   const applyPadding = () => {
     // The style can finish loading after teardown.
     if (!mounted) return
-    const rail = feed.element.getBoundingClientRect()
+    paddingPending = false
     const canvas = mapEl.getBoundingClientRect()
-    const overlap = Math.max(0, Math.min(rail.right, canvas.right) - Math.max(rail.left, canvas.left))
-    const covers = rail.bottom > canvas.top && rail.top < canvas.bottom && overlap > 0
-    map.setPadding({ top: 0, bottom: 0, right: 0, left: covers ? overlap : 0 })
+    if (canvas.width <= 0 || canvas.height <= 0) return
+
+    const inset = (el: Element | null | undefined) => {
+      if (!el) return null
+      const r = el.getBoundingClientRect()
+      const w = Math.max(0, Math.min(r.right, canvas.right) - Math.max(r.left, canvas.left))
+      const h = Math.max(0, Math.min(r.bottom, canvas.bottom) - Math.max(r.top, canvas.top))
+      return w > 0 && h > 0 ? { w, h, top: Math.max(r.top, canvas.top) } : null
+    }
+
+    const rail = inset(feed.element)
+    if (!rail) {
+      writePadding({ top: 0, bottom: 0, right: 0, left: 0 })
+      return
+    }
+
+    if (rail.w < canvas.width - 1) {
+      writePadding({ top: 0, bottom: 0, right: 0, left: rail.w })
+      return
+    }
+
+    // The scrubber sits between the bar and the map on a phone, so the two are
+    // one obscured strip — measured as a union from whichever starts higher,
+    // because once the rail is expanded it covers the scrubber and adding the
+    // two heights would count the same pixels twice. Only reached on the
+    // full-width branch: on the desktop side the rail is a column and the
+    // timeline has never contributed padding, and that stays true.
+    const scrubber = inset(timeline?.element)
+    const top = scrubber && scrubber.w >= canvas.width - 1
+      ? Math.min(rail.top, scrubber.top)
+      : rail.top
+    // A padding that swallows the canvas leaves MapLibre no viewport to centre
+    // in; two thirds is the most the chrome may claim of the camera.
+    const bottom = Math.min(canvas.bottom - top, canvas.height * 0.66)
+    writePadding({ top: 0, bottom, right: 0, left: 0 })
   }
 
   // --- Data shaping -------------------------------------------------------
@@ -749,6 +992,40 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     }),
   })
 
+  // Exchanges carry no event time either — a close is a statement about the
+  // last session, not something the scrubber can wind back — so like the
+  // straits they sit out the time filter.
+  //
+  // Two channels, two facts, and no third encoding of either: the sign of the
+  // move picks the colour, the size of it drives radius and weight, and whether
+  // the exchange is trading right now decides whether the mark has a fill. That
+  // last one is read at build-of-the-collection time rather than baked into the
+  // payload, because a page cached for fifteen minutes would otherwise keep
+  // insisting Tokyo was open long after it shut.
+  const marketCollection = () => ({
+    type: 'FeatureCollection' as const,
+    features: markets.map((m) => {
+      const change = Number.isFinite(m.changePct) ? m.changePct : 0
+      return {
+        type: 'Feature' as const,
+        properties: {
+          id: m.id,
+          name: m.name,
+          change,
+          // A 3% day is a big day on an index; past that the mark stops growing
+          // rather than letting one panic drown out the rest of the world.
+          mag: Math.min(1, Math.abs(change) / 3),
+          // Under 0.15% is noise. Below it the mark stays neutral instead of
+          // committing to a direction it cannot really claim.
+          moved: Math.abs(change) > 0.15 ? 1 : 0,
+          direction: change < 0 ? -1 : 1,
+          trading: isTrading(m) ? 1 : 0,
+        },
+        geometry: { type: 'Point' as const, coordinates: [m.lng, m.lat] },
+      }
+    }),
+  })
+
   const src = (id: string) => map.getSource(id) as GeoJSONSource | undefined
 
   /** Layer toggles are visibility, not data — no rebuild to turn one off. */
@@ -758,6 +1035,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none')
     set('gdacs-marks', layersOn.gdacs)
     set('chokepoint-marks', layersOn.straits)
+    set('market-marks', layersOn.markets)
     set('conflict-marks', layersOn.conflict)
   }
 
@@ -810,12 +1088,36 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     applyTimeFilters()
   }
 
+  /**
+   * Genocide situations.
+   *
+   * The only overlay with no time on it. The scrubber moves the others because
+   * a disaster, a strait's traffic and a conflict record all happened on a day
+   * — rewinding to the 18th should not show you the 24th's earthquake. A
+   * determination that a genocide is being committed is not an event on a day;
+   * it is a condition that holds across every frame the scrubber can reach, and
+   * hiding it while the reader looks at last week would be the map claiming it
+   * had stopped.
+   */
+  const genocideCollection = () => ({
+    type: 'FeatureCollection' as const,
+    features: genocide.map((g) => ({
+      type: 'Feature' as const,
+      properties: { id: g.id, name: g.name },
+      geometry: { type: 'Point' as const, coordinates: [g.lng, g.lat] },
+    })),
+  })
+
   /** Rebuilds the overlay sources. Called when their data arrives, not per frame. */
   const setOverlayData = () => {
     if (!layersReady) return
     src('gdacs')?.setData(gdacsCollection())
     src('chokepoints')?.setData(chokeCollection())
+    src('markets')?.setData(marketCollection())
     src('conflict')?.setData(conflictCollection())
+    src('genocide')?.setData(genocideCollection())
+    const genocideKey = keyItems.get('genocide')
+    if (genocideKey) genocideKey.hidden = genocide.length === 0
     applyTimeFilters()
     applyLayerVisibility()
   }
@@ -868,8 +1170,52 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     })
     map.addSource('gdacs', { type: 'geojson', data: empty })
     map.addSource('chokepoints', { type: 'geojson', data: empty })
+    map.addSource('markets', { type: 'geojson', data: empty })
     map.addSource('conflict', { type: 'geojson', data: empty })
+    map.addSource('genocide', { type: 'geojson', data: empty })
     map.addSource('night', { type: 'geojson', data: empty })
+    map.addSource('day', { type: 'geojson', data: empty })
+
+    // Countries the current metric has no figure for, hatched.
+    //
+    // The tone underneath already puts them below the ramp's floor, and on a
+    // scale where lighter means more that reads as "least" — which for the ~30
+    // countries missing from `country-augmented` (Saudi Arabia, the US, the UK,
+    // South Africa, South Korea…) is a confident false statement rather than a
+    // gap. `literacyPct` covers half the world, so there it was making that
+    // statement about 84 countries at once.
+    //
+    // Driven by `fill-opacity` on feature-state rather than by a layer filter,
+    // because a filter cannot read feature state — and feature state is the
+    // only place the metric lives. Absent state means no figure.
+    // Guarded, and only this. The hatch is a decoration on top of a tone that
+    // already carries the value; every layer added *after* it is the actual
+    // data. Letting a failed `addImage` throw here would take the stories, the
+    // disasters and the conflict marks down with it — a whole map lost to a
+    // texture. If the image cannot be registered, the layer is skipped and the
+    // no-data tone stands on its own, which is where this started.
+    try {
+      map.addImage('nodata-hatch', nodataHatch())
+      map.addLayer(
+        {
+          id: 'land-nodata',
+          type: 'fill',
+          source: 'countries',
+          paint: {
+            'fill-pattern': 'nodata-hatch',
+            'fill-opacity': [
+              'case',
+              ['==', ['coalesce', ['feature-state', 'p'], -1], -1],
+              1,
+              0,
+            ],
+          },
+        },
+        'borders',
+      )
+    } catch (err) {
+      console.warn('[map] no-data hatch unavailable', err)
+    }
 
     // The country under the pointer, lit just enough to say "this is a thing
     // you can click". Still driven by a filter rather than feature-state: the
@@ -894,8 +1240,30 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       'borders',
     )
 
-    // Night sits directly on the ocean and under everything else: it darkens
-    // the ground, never the data.
+    // Daylight on the water.
+    //
+    // Inserted before `land`, so the land layer paints over it and this only
+    // ever reaches the ocean — which is the entire point. `night-shade` below
+    // cannot do this job: it is black at 0.28 over a `#080a0d` sea, a change of
+    // about two values in 255, so the terminator used to stop dead at the
+    // coastline and day/night read as a property of continents. There is no
+    // room to darken below near-black, so the lit side is lifted instead.
+    //
+    // Faint on purpose. It has to be enough to see the boundary sweep across an
+    // empty ocean and not enough to compete with a beacon sitting on it.
+    map.addLayer(
+      {
+        id: 'day-shade',
+        type: 'fill',
+        source: 'day',
+        paint: { 'fill-color': '#7f9dc4', 'fill-opacity': 0.055 },
+      },
+      'land',
+    )
+
+    // Night sits on the ground and under everything else: it darkens the land,
+    // never the data. Over water it is `day-shade` above that carries the
+    // terminator.
     map.addLayer(
       {
         id: 'night-shade',
@@ -937,6 +1305,41 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
           ['==', ['get', 'disrupted'], 0], MAP_COLOURS.coast,
           ['<', ['get', 'direction'], 0], OVERLAY_COLOUR.straits,
           OVERLAY_COLOUR.straitsSurge,
+        ],
+        'circle-stroke-opacity': ['interpolate', ['linear'], ['get', 'mag'], 0, 0.55, 1, 0.95],
+      },
+    })
+
+    map.addLayer({
+      id: 'market-marks',
+      type: 'circle',
+      source: 'markets',
+      paint: {
+        // Size is the size of the move, so a 3% rout reads louder than a flat
+        // session anywhere on the map.
+        'circle-radius': ['interpolate', ['linear'], ['get', 'mag'], 0, 3.5, 1, 8],
+        // A fill only while the exchange is trading. That makes an open market
+        // a disc and a closed one a ring — the vocabulary already on this map,
+        // where conflict is filled and the straits and disasters are not — and
+        // it answers "is this number live or is it last night's" without
+        // spending a word. Closed markets still carry their direction in the
+        // stroke, because the last close is the answer to "up or down today".
+        'circle-color': [
+          'case',
+          ['==', ['get', 'trading'], 0], 'rgba(0,0,0,0)',
+          ['<', ['get', 'direction'], 0], OVERLAY_COLOUR.marketDown,
+          OVERLAY_COLOUR.marketUp,
+        ],
+        'circle-opacity': 0.35,
+        'circle-stroke-width': ['interpolate', ['linear'], ['get', 'mag'], 0, 1, 1, 2.2],
+        // Under 0.15% the mark stays the neutral coastline tone rather than
+        // claiming a direction: on a quiet day most of the world is flat, and
+        // painting that as a weak rally is a statement the data does not make.
+        'circle-stroke-color': [
+          'case',
+          ['==', ['get', 'moved'], 0], MAP_COLOURS.coast,
+          ['<', ['get', 'direction'], 0], OVERLAY_COLOUR.marketDown,
+          OVERLAY_COLOUR.marketUp,
         ],
         'circle-stroke-opacity': ['interpolate', ['linear'], ['get', 'mag'], 0, 0.55, 1, 0.95],
       },
@@ -1098,16 +1501,89 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       },
     })
 
+    /**
+     * Genocide.
+     *
+     * Added last, so it draws over every other layer — a mark that a cluster
+     * of the day's stories can cover is a mark that disappears exactly where
+     * the news is thickest, which is where these are.
+     *
+     * Three parts, because one circle among a map of circles would not carry
+     * it. A dark disc large enough to be found at the opening zoom; a heavy
+     * bone-white ring around it, the only unmuted tone on the map; and the
+     * name in the same white beneath, always drawn. The name is the part that
+     * does the work — every other overlay expects the reader to hover to learn
+     * what a shape means, and this one has to say what it is before anyone
+     * touches it, on a phone where hovering does not exist at all.
+     *
+     * `-allow-overlap` throughout for the same reason the cluster counts have
+     * it: a mark suppressed for collision reads as an absence, and the absence
+     * this would read as is unacceptable.
+     */
+    map.addLayer({
+      id: 'genocide-marks',
+      type: 'circle',
+      source: 'genocide',
+      paint: {
+        'circle-radius': ['interpolate', ['linear'], ['zoom'], 0, 8.5, 3, 13, 6, 19],
+        'circle-color': OVERLAY_COLOUR.genocideCore,
+        'circle-opacity': 0.82,
+        'circle-stroke-width': ['interpolate', ['linear'], ['zoom'], 0, 2.4, 3, 3, 6, 3.8],
+        'circle-stroke-color': OVERLAY_COLOUR.genocide,
+        'circle-stroke-opacity': 1,
+      },
+    })
+
+    // The core. A ring alone is the disasters layer's grammar at a heavier
+    // weight; a ring with a filled centre is a different mark, and reads as
+    // one at the zoom where the ring is only nine pixels across.
+    map.addLayer({
+      id: 'genocide-core',
+      type: 'circle',
+      source: 'genocide',
+      paint: {
+        'circle-radius': ['interpolate', ['linear'], ['zoom'], 0, 2.6, 3, 3.8, 6, 5.2],
+        'circle-color': OVERLAY_COLOUR.genocide,
+        'circle-opacity': 1,
+      },
+    })
+
+    map.addLayer({
+      id: 'genocide-labels',
+      type: 'symbol',
+      source: 'genocide',
+      layout: {
+        'text-field': ['get', 'name'],
+        'text-font': ['Noto Sans Bold'],
+        'text-size': ['interpolate', ['linear'], ['zoom'], 0, 11.5, 4, 14],
+        'text-letter-spacing': 0.1,
+        'text-transform': 'uppercase',
+        'text-anchor': 'top',
+        'text-offset': [0, 1.05],
+        'text-allow-overlap': true,
+        'text-ignore-placement': true,
+      },
+      paint: {
+        'text-color': OVERLAY_COLOUR.genocide,
+        'text-halo-color': 'rgba(6,8,12,0.9)',
+        'text-halo-width': 1.4,
+      },
+    })
+
     layersReady = true
   }
 
   // --- Terminator ---------------------------------------------------------
   const drawNight = () => {
     if (!mounted || !layersReady) return
-    const night = nightPolygon(new Date())
+    const now = new Date()
+    const night = nightPolygon(now)
     src('night')?.setData(
       night ? { type: 'FeatureCollection', features: [night] } : empty,
     )
+    // The same boundary from the other side, for the water. See `dayPolygon`.
+    const day = dayPolygon(now)
+    src('day')?.setData(day ? { type: 'FeatureCollection', features: [day] } : empty)
   }
 
   // --- Interaction --------------------------------------------------------
@@ -1163,6 +1639,9 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       opened = true
       flying = false
       map.off('moveend', reveal)
+      // Anything that moved while the camera was busy deferred its padding
+      // rather than cancelling the flight; now is when it gets applied.
+      if (paddingPending) applyPadding()
       if (openSlug === p.slug) void popup?.open(p, scrubNow)
     }
     map.on('moveend', reveal)
@@ -1244,19 +1723,43 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     return Math.max(-slack, Math.min(slack, HOME_VIEW.center[0]))
   }
 
+  /**
+   * The same correction for latitude, which a phone needs and a desktop does
+   * not.
+   *
+   * A desktop canvas is wider than it is tall, so the world overshoots the
+   * height by a comfortable margin and the home latitude of 22° is reachable.
+   * A phone canvas is the other way round: the height is what sets the zoom,
+   * the world therefore fills it exactly, and MapLibre pins the centre to the
+   * equator. Comparing against 22° made the delta a permanent 22° — past the
+   * 4° threshold — so "whole world" was on screen the instant the map opened,
+   * before the reader had moved anything. Exactly the bug the longitude
+   * version above was written to fix, one axis over.
+   *
+   * Latitude is not linear in Mercator, so the slack has to come back through
+   * the inverse projection rather than a proportion of 180°.
+   */
+  const homeCenterLat = () => {
+    const world = TILE_PX * 2 ** HOME_VIEW.zoom
+    const slack = Math.max(0, (world - (mapEl.clientHeight || world)) / 2 / world)
+    if (slack <= 0) return 0
+    const limit = (Math.atan(Math.sinh(2 * Math.PI * slack)) * 180) / Math.PI
+    return Math.max(-limit, Math.min(limit, HOME_VIEW.center[1]))
+  }
+
   const syncResetButton = () => {
     if (!mounted) return
     const c = map.getCenter()
     const moved =
       map.getZoom() > HOME_VIEW.zoom + 0.15 ||
-      Math.abs(c.lat - HOME_VIEW.center[1]) > 4 ||
+      Math.abs(c.lat - homeCenterLat()) > 4 ||
       Math.abs(((c.lng - homeCenterLng() + 540) % 360) - 180) > 8
     resetBtn.hidden = !moved
   }
 
   const onWordmarkClick = (e: MouseEvent) => {
-    const target = e.target as HTMLElement | null
-    if (!target?.closest?.('.wordmark')) return
+    const target = e.target
+    if (!(target instanceof Element) || !target.closest('.wordmark')) return
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
     e.preventDefault()
     resetView()
@@ -1323,16 +1826,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
      * does a click on land open that country.
      */
     map.on('click', (e) => {
-      const markers = map.queryRenderedFeatures(e.point, {
-        layers: [
-          'story-points',
-          'story-clusters',
-          'gdacs-marks',
-          'chokepoint-marks',
-          'conflict-marks',
-        ],
-      })
-      if (markers.length > 0) return
+      if (map.queryRenderedFeatures(e.point, { layers: MARKER_LAYERS }).length > 0) return
 
       if (popup?.isOpen() || sheet.isOpen()) {
         openSlug = null
@@ -1353,9 +1847,8 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     // do nothing.
     map.on('mousemove', (e) => {
       if (flying) return
-      const overMarker = map.queryRenderedFeatures(e.point, {
-        layers: ['story-points', 'story-clusters', 'gdacs-marks', 'chokepoint-marks', 'conflict-marks'],
-      }).length > 0
+      const overMarker =
+        map.queryRenderedFeatures(e.point, { layers: MARKER_LAYERS }).length > 0
       const iso = overMarker ? null : countryAt(e.point)
       if (iso === hoverIso) return
       hoverIso = iso
@@ -1415,40 +1908,50 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       if (alert) return sheet.showGdacs(alert, gdacsDetails[detailKey(alert)] ?? null, pin)
       const cp = chokepoints.find((c) => c.id === key)
       if (cp) return sheet.showChokepoint(cp, pin)
+      const ex = markets.find((m) => m.id === key)
+      if (ex) return sheet.showMarket(ex, pin)
       const ev = conflicts.find((c) => c.id === key)
       if (ev) return sheet.showConflict(ev, conflictWindowLabel(), pin)
+      const gen = genocide.find((x) => x.id === key)
+      if (gen) return sheet.showGenocide(gen, pin)
     }
 
-    for (const layer of ['gdacs-marks', 'chokepoint-marks', 'conflict-marks']) {
-      map.on('mousemove', layer, (e) => {
-        map.getCanvas().style.cursor = 'pointer'
-        const id = e.features?.[0]?.properties?.id
-        if (id == null || String(id) === peekId) return
-        peekId = String(id)
-        clearPeekClose()
-        showFor(id, false)
-      })
+    // One delegated listener across all five overlay layers, not five.
+    //
+    // MapLibre gives every layer-scoped handler its own `queryRenderedFeatures`
+    // on every pointer event, so registering these per layer meant five hit
+    // tests per mousemove for the overlays alone — on top of the story layer's
+    // and the land probe's, on the one path that runs at pointer frequency.
+    // The array form does the whole set in one query and hands back the
+    // topmost feature, which is exactly what a marker under the pointer means.
+    map.on('mousemove', OVERLAY_LAYERS, (e) => {
+      map.getCanvas().style.cursor = 'pointer'
+      const id = e.features?.[0]?.properties?.id
+      if (id == null || String(id) === peekId) return
+      peekId = String(id)
+      clearPeekClose()
+      showFor(id, false)
+    })
 
-      map.on('mouseleave', layer, () => {
-        map.getCanvas().style.cursor = ''
-        peekId = null
-        // A short grace period: leaving the marker usually means the pointer is
-        // on its way to the sheet to read it, not that you are done with it.
-        clearPeekClose()
-        peekCloseTimer = window.setTimeout(() => {
-          peekCloseTimer = null
-          if (!sheet.isPinned()) sheet.close()
-        }, 260)
-      })
+    map.on('mouseleave', OVERLAY_LAYERS, () => {
+      map.getCanvas().style.cursor = ''
+      peekId = null
+      // A short grace period: leaving the marker usually means the pointer is
+      // on its way to the sheet to read it, not that you are done with it.
+      clearPeekClose()
+      peekCloseTimer = window.setTimeout(() => {
+        peekCloseTimer = null
+        if (!sheet.isPinned()) sheet.close()
+      }, 260)
+    })
 
-      map.on('click', layer, (e) => {
-        const id = e.features?.[0]?.properties?.id
-        if (id == null) return
-        clearPeekClose()
-        peekId = String(id)
-        showFor(id, true)
-      })
-    }
+    map.on('click', OVERLAY_LAYERS, (e) => {
+      const id = e.features?.[0]?.properties?.id
+      if (id == null) return
+      clearPeekClose()
+      peekId = String(id)
+      showFor(id, true)
+    })
 
     // Moving back onto the sheet itself cancels the pending dismissal.
     sheet.element.addEventListener('mouseenter', clearPeekClose)
@@ -1485,29 +1988,21 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       if (!data || !mounted) return
       metricApplied = false
       ;(map.getSource('countries') as GeoJSONSource | undefined)?.setData(data)
+      // `scheduleMetric` finds the source unloaded — `setData` marks it so
+      // synchronously — and waits for `idle`, which is what re-applies the tint
+      // once this data settles. It has to happen at all because the finer tier
+      // carries countries the coarse one never had (176 features become 255),
+      // and none of them arrive with feature state: without it the tint would
+      // thin out as the reader zoomed, worst on the small states the detail
+      // exists for.
       scheduleMetric()
-      // The metric tint is re-applied by the `sourcedata` listener once this
-      // data settles, not here — the source is not loaded the instant setData
-      // returns. It has to happen at all because the finer tier carries
-      // countries the coarse one never had (176 features become 255), and none
-      // of them arrive with feature state: without it the tint would thin out
-      // as the reader zoomed, worst on the small states the detail exists for.
     }
 
     map.on('zoomend', () => {
-      const z = map.getZoom()
-      if (!ultraLoaded && z >= ULTRA_ZOOM) {
-        // Set before awaiting, or a second zoomend starts the same 5.8 MB
-        // fetch again.
-        ultraLoaded = true
-        detailLoaded = true
-        void upgradeCoastline('countries-ultra.geojson')
-        return
-      }
-      if (!detailLoaded && z >= DETAIL_ZOOM) {
-        detailLoaded = true
-        void upgradeCoastline('countries-detail.geojson')
-      }
+      if (ultraLoaded || map.getZoom() < ULTRA_ZOOM) return
+      // Set before awaiting, or a second zoomend starts the same fetch again.
+      ultraLoaded = true
+      void upgradeCoastline('countries-ultra.geojson')
     })
 
     // The reset control only exists once the view has left home, so at rest it
@@ -1606,6 +2101,11 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     for (const [key, label, colour, filled] of [
       ['gdacs', 'disasters', OVERLAY_COLOUR.gdacs, false],
       ['straits', 'straits', OVERLAY_COLOUR.straits, false],
+      // Neutral, unlike the other three. Gold *is* what a disrupted strait
+      // looks like, so its chip can wear it — but a market layer is green and
+      // terracotta in equal measure and neither one stands for it. The chip
+      // shows the layer at rest, which is the colour of a flat market.
+      ['markets', 'markets', MAP_COLOURS.coast, false],
       ['conflict', 'conflict', OVERLAY_COLOUR.conflict, true],
     ] as Array<[keyof typeof layersOn, string, string, boolean]>) {
       const btn = document.createElement('button')
@@ -1679,12 +2179,14 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   }
 
   const loadLayers = async () => {
-    const [g, c] = await Promise.all([
+    const [g, c, gen, mk] = await Promise.all([
       json<{ alerts: GdacsAlert[]; details?: Record<string, GdacsDetail> }>(
         '/api/gdacs.json',
         abort.signal,
       ),
       json<{ chokepoints: MapChokepoint[] }>('/api/chokepoints.json', abort.signal),
+      json<{ situations: GenocideSituation[] }>('/api/genocide.json', abort.signal),
+      json<{ exchanges: MapExchange[] }>('/api/markets.json', abort.signal),
     ])
     if (!mounted) return
     if (g?.alerts) gdacs = g.alerts
@@ -1692,6 +2194,13 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     // was already on the wire before anything read it.
     if (g?.details) gdacsDetails = g.details
     if (c?.chokepoints) chokepoints = c.chokepoints
+    // Two features and no dependants — it rides along with the other two
+    // rather than earning a request of its own.
+    if (gen?.situations) genocide = gen.situations
+    // Thirty exchanges with a quarter of closes each — ~90 KB, small enough to
+    // ride along with the other three rather than earn its own request or an
+    // idle deferral like the conflict feed.
+    if (mk?.exchanges) markets = mk.exchanges
     setOverlayData()
   }
 
@@ -1762,6 +2271,9 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     // `sourcedata` listener re-runs this the moment the source is ready.
     if (metricApplied) return true
     if (!map.getSource('countries') || !map.isSourceLoaded('countries')) return false
+    // The coastline is on screen the moment its source is loaded, so this is
+    // where "drawing the world" stops being true.
+    loading.remove()
     metricApplied = true
     // Clearing first is what makes switching metrics correct: a country with a
     // figure for press freedom but none for Gini would otherwise keep its old
@@ -1787,15 +2299,33 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
    */
   const scheduleMetric = () => {
     if (applyMetric()) return
-    map.once('idle', () => {
-      applyMetric()
-    })
+    // Retry until it takes, not once. A single `once('idle')` was enough when
+    // the coastline was 210 KB and 176 features; the basemap is now 1:50m —
+    // 1.6 MB and 99k points, parsed on the worker — and one missed window
+    // leaves the world permanently unshaded and fully hatched, which reads as
+    // "no data for anywhere" rather than as "still loading". Bounded so a
+    // source that never loads cannot spin forever.
+    let tries = 0
+    const retry = () => {
+      if (!mounted || applyMetric()) return
+      if (++tries > 30) return
+      map.once('idle', retry)
+    }
+    map.once('idle', retry)
   }
 
   /** Fetches a metric and paints it. Leaves the land alone if it can't. */
   const loadMetric = async (key: string) => {
     const data = await json<MetricPayload>(`/api/metric/${key}.json`, abort.signal)
-    if (!data || !mounted) return
+    if (!mounted) return
+    if (!data) {
+      // The select has already moved to the metric the reader picked. Putting
+      // it back is the honest answer to a fetch that failed: a picker naming
+      // one metric over land still shaded by another is the map lying about
+      // what it is showing.
+      groundSelect.value = metricKey
+      return
+    }
     metricKey = key
     metric = data
     // Legend first. It describes the metric, not the paint, so it should not be
@@ -1810,7 +2340,17 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     // The style can finish after the island has been torn down — a fast
     // navigation away is enough. Everything below assumes a live document.
     if (!mounted) return
-    popup = createStoryPopup(map)
+    popup = createStoryPopup(map, {
+      // The card's own × button is inside MapLibre's DOM, so without this the
+      // island never learned the story had been dismissed: `openSlug` stayed
+      // set and `flyToStory`'s "already open" guard swallowed the next click
+      // on that same beacon.
+      onClose: () => {
+        if (!openSlug) return
+        openSlug = null
+        feed.highlight(hoverSlug)
+      },
+    })
     addDataLayers()
     wireInteraction()
     applyPadding()
@@ -1870,15 +2410,26 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   void loadCore()
 
   const onKeyDown = (e: KeyboardEvent) => {
-    const target = e.target as HTMLElement | null
-    // `e.target` is only an Element when something focusable has focus — a
-    // key event delivered straight to `document` has no `matches`, and the
-    // bare call threw a TypeError out of the global handler, taking Escape
-    // down with it.
-    if (target?.matches?.('input, textarea, select')) return
+    // `e.target` is only an Element when something focusable has focus — a key
+    // event delivered straight to `document` is not one, and calling `matches`
+    // on it threw a TypeError out of the global handler, taking Escape down
+    // with it. Testing what the target *is* says that, where an optional call
+    // only papered over it.
+    const target = e.target
+    if (target instanceof HTMLElement && target.matches('input, textarea, select')) return
     if (e.key !== 'Escape') return
     // Escape closes what is open; with nothing open it means "get me out of
-    // here", which on a map is the whole world.
+    // here", which on a map is the whole world. Innermost first — the layers
+    // panel and the story list are over the map, so they go before the view.
+    if (more.classList.contains('is-open')) {
+      setMoreOpen(false)
+      moreBtn.focus()
+      return
+    }
+    if (feed.isExpanded()) {
+      feed.setExpanded(false)
+      return
+    }
     if (popup?.isOpen() || sheet.isOpen()) {
       openSlug = null
       popup?.close()

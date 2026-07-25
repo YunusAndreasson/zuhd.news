@@ -8,9 +8,26 @@
 <meta name="color-scheme" content="dark">
 <!-- iOS Smart App Banner -->
 <meta name="apple-itunes-app" content="app-id=6760964753">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="zuhd.news">
 <meta property="og:title" content="Get the zuhd.news app">
 <meta property="og:description" content="Global news that barely uses data. No ads, no tracking, no accounts.">
 <meta property="og:url" content="https://zuhd.news/get">
+<!--
+  noindex keeps this page out of search, but it is pasted into messages and ad
+  previews constantly — and with no og:image every one of those rendered as a
+  bare link. The card is the cheapest thing on the page and the only part of it
+  most people ever see.
+-->
+<meta property="og:image" content="https://zuhd.news/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="zuhd.news — global news, no noise">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@zuhd_news">
+<meta name="twitter:image" content="https://zuhd.news/og-image.png">
+<meta name="twitter:image:alt" content="zuhd.news — global news, no noise">
 <script>
 // Fast path: redirect mobile visitors to their store from <head>, BEFORE the body
 // paints, so Android/iOS don't pay for rendering a page they never see. Desktop /

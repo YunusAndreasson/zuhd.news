@@ -337,6 +337,19 @@ $BODY_LENGTHS
   CHOKEPOINTS_EXIT=$?
   echo "Chokepoints exit: $CHOKEPOINTS_EXIT — $((SECONDS - T34B))s" | tee -a "$LOG_FILE"
 
+  # Stage 3.4b2: Market snapshot — the map's stock-exchange layer. One Yahoo
+  # call per exchange, sequential because parallel trips their rate limit on a
+  # shared IP (~10s for 30). Fail-soft: leaves the previous snapshot in place.
+  # The five cycles a day happen to sample the trading day well — 04:00 UTC
+  # catches the Asian close, 08:00 the Gulf, 12:00 European midday, 17:00 the
+  # European close, 22:00 the US close.
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.4b2: Market snapshot ---" | tee -a "$LOG_FILE"
+  T34B2=$SECONDS
+  timeout 90 node scripts/fetch-markets.js >> "$LOG_FILE" 2>&1
+  MARKETS_EXIT=$?
+  echo "Markets exit: $MARKETS_EXIT — $((SECONDS - T34B2))s" | tee -a "$LOG_FILE"
+
   # Stage 3.4c: GDACS snapshot — disaster layer on mobile. Pulls EVENTS4APP
   # list + per-event population details (EQ shakepop, TC JTWC buffer impact)
   # in one batch so every install reads from /api/gdacs.json instead of

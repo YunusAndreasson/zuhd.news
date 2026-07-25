@@ -1,20 +1,22 @@
 // Story card, anchored on the map itself.
 //
-// Two states from one popup. Hovering a marker gives a compact preview; a
-// dwell or a click flies in and opens the whole article in place — headline,
-// dateline, body, sources. This is the complete story, not a teaser: the
-// standalone /a/{slug} page carries the same text, so the card offers no link
-// out to it. That page still exists for search engines, shared URLs and
-// Cmd-click from the rail.
+// Two states from one popup. Committing to a story — a click on the beacon or
+// on a rail row — opens a compact preview at once and replaces it with the
+// whole article as soon as the camera lands: headline, dateline, body,
+// sources. This is the complete story, not a teaser: the standalone
+// /a/{slug} page carries the same text, so the card offers no link out to it.
+// That page still exists for search engines, shared URLs and Cmd-click from
+// the rail.
 //
 // A centred dialog would hide the geography that gives the story its context;
 // a popup pinned to the coordinate keeps the place in view and tracks pan and
 // zoom.
 
 import { Popup, type Map as MapLibreMap } from 'maplibre-gl'
+import { appPrompt } from '../_app-prompt'
+import { renderShare } from '../_share'
 import { CONTESTED_D, type MapPoint } from './types'
 import { CATEGORY_COLOUR } from './style'
-import { relativeTime } from './sheet'
 import * as fmt from './format'
 
 interface StorySource {
@@ -59,8 +61,22 @@ interface CountryProfile {
   coverage: Array<{ slug: string; title: string; dateFormatted: string; category: string }>
 }
 
+export interface StoryPopupOptions {
+  /**
+   * The reader dismissed the card themselves — the popup's own × button, which
+   * nothing else on the map can see.
+   *
+   * Without this the island went on believing the story was open: `openSlug`
+   * stayed set, and `flyToStory` opens with `if (openSlug === p.slug) return`,
+   * so clicking the very same beacon (or its rail row) again did *nothing*. The
+   * only way back into a story you had just closed was to open a different one
+   * first.
+   */
+  onClose?: () => void
+}
+
 export interface StoryPopup {
-  /** Compact card for hover — no fetch, no body. */
+  /** Compact card shown while the camera flies — no fetch, no body. */
   preview(point: MapPoint, leads: Record<string, string>, now: number): void
   /** Full article, fetched on demand and rendered in place. */
   open(point: MapPoint, now: number): Promise<void>
@@ -95,7 +111,7 @@ const el = <K extends keyof HTMLElementTagNameMap>(
 /** An outlet, linked to its own reporting when we hold the URL. */
 const sourceName = (s: StorySource): Node => {
   if (!s.url) return el('span', 'map-popup-source-name', s.name)
-  const a = el('a', 'map-popup-source-name', s.name) as HTMLAnchorElement
+  const a = el('a', 'map-popup-source-name', s.name)
   a.href = s.url
   a.target = '_blank'
   a.rel = 'noopener noreferrer'
@@ -171,18 +187,39 @@ const sourceBlock = (story: Story, p: MapPoint): Node[] => {
   return nodes
 }
 
+/**
+ * The card's foot: pass it on, and — occasionally — where the alerts are.
+ *
+ * The map deliberately never changes its URL, which is right for the view and
+ * wrong for the story: a reader who wants to send this one to someone has
+ * nothing to copy, because the address bar says `/` and always has. So the
+ * share targets the canonical `/a/{slug}` page, which is also the URL carrying
+ * the generated OG card, so what arrives at the other end is the headline over
+ * its own patch of globe rather than a bare link.
+ */
+const cardFoot = (path: string, title: string): Node[] => {
+  const nodes: Node[] = []
+  const row = document.createElement('div')
+  row.className = 'map-popup-share'
+  renderShare(row, { url: new URL(path, location.origin).href, title })
+  nodes.push(row)
+  const prompt = appPrompt()
+  if (prompt) nodes.push(prompt)
+  return nodes
+}
+
 const kickerFor = (p: MapPoint, now: number, extra?: string | null) => {
   const kicker = el('p', 'map-popup-kicker')
   const dot = el('span', 'map-popup-dot')
   dot.style.background = CATEGORY_COLOUR[p.cat] ?? '#8a8a8a'
   kicker.append(
     dot,
-    [p.cat, p.loc || null, relativeTime(p.t, now), extra || null].filter(Boolean).join(' · '),
+    [p.cat, p.loc || null, fmt.relativeTime(p.t, now), extra || null].filter(Boolean).join(' · '),
   )
   return kicker
 }
 
-export function createStoryPopup(map: MapLibreMap): StoryPopup {
+export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {}): StoryPopup {
   const popup = new Popup({
     closeButton: true,
     closeOnClick: false,
@@ -194,6 +231,44 @@ export function createStoryPopup(map: MapLibreMap): StoryPopup {
   const cache = new Map<string, Story>()
   // Guards against a slow fetch for a story the reader has already moved past.
   let pending: string | null = null
+
+  /**
+   * Attach the popup, without the close event that re-attaching would fire.
+   *
+   * `Popup.addTo` begins with `if (this._map) this.remove()`, and `remove()`
+   * fires `close` synchronously. So every re-render of an already-open card —
+   * which is what `preview()` → `open()` is — announced itself as the reader
+   * dismissing the card, one frame before the card actually appeared.
+   *
+   * That was not cosmetic. `close` clears `pending`, and `open()` re-checks
+   * `pending` after awaiting the story to make sure the reader has not moved
+   * on; with `pending` nulled by its own `addTo`, the check failed every time
+   * and the function returned before `setDOMContent`. The result was that the
+   * story card never rendered a story at all — it opened, said "Loading…",
+   * fetched the article successfully, and then threw it away. No exception, no
+   * failed request, nothing in the console: the card simply sat there.
+   *
+   * The flag says what the event cannot: whether this close is ours.
+   */
+  let reattaching = false
+  const attach = () => {
+    reattaching = true
+    try {
+      popup.addTo(map)
+    } finally {
+      reattaching = false
+    }
+  }
+
+  // Fires for the × button and for a real `popup.remove()` alike, so the island
+  // is told even when it is the one doing the closing — that is harmless, it
+  // clears state that is already being cleared, and it is the only way to hear
+  // about the button, which lives inside MapLibre's own DOM.
+  popup.on('close', () => {
+    if (reattaching) return
+    pending = null
+    opts.onClose?.()
+  })
 
   const fetchStory = async (slug: string): Promise<Story | null> => {
     const hit = cache.get(slug)
@@ -292,7 +367,7 @@ export function createStoryPopup(map: MapLibreMap): StoryPopup {
       const list = el('ul', 'map-country-coverage')
       for (const a of data.coverage.slice(0, expanded ? 20 : 5)) {
         const li = el('li')
-        const link = el('a', undefined, a.title) as HTMLAnchorElement
+        const link = el('a', undefined, a.title)
         link.href = `/a/${a.slug}`
         li.append(link, el('time', 'map-country-coverage-time', a.dateFormatted))
         list.append(li)
@@ -311,7 +386,7 @@ export function createStoryPopup(map: MapLibreMap): StoryPopup {
      * rail rows and the wordmark already make.
      */
     if (!expanded && (data.metrics?.length ?? 0) > (data.highlights?.length ?? 0)) {
-      const full = el('a', 'map-popup-link', 'Full profile →') as HTMLAnchorElement
+      const full = el('a', 'map-popup-link', 'Full profile →')
       full.href = `/country/${data.iso2}`
       full.addEventListener('click', (e) => {
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
@@ -325,6 +400,13 @@ export function createStoryPopup(map: MapLibreMap): StoryPopup {
       })
       root.append(full)
     }
+
+    // Shares the canonical profile either way — the expanded card and the
+    // collapsed one are two views of `/country/{iso2}`, and that page is what
+    // carries the country's own OG card.
+    const row = el('div', 'map-popup-share')
+    renderShare(row, { url: new URL(`/country/${data.iso2}`, location.origin).href, title: `${data.name} — zuhd.news` })
+    root.append(row)
     return root
   }
 
@@ -340,14 +422,16 @@ export function createStoryPopup(map: MapLibreMap): StoryPopup {
       const lead = leads[p.slug]
       if (lead) root.append(el('p', 'map-popup-lead', lead))
       root.append(el('p', 'map-popup-hint', 'Opening…'))
-      popup.setLngLat([p.lng, p.lat]).setDOMContent(root).addTo(map)
+      popup.setLngLat([p.lng, p.lat]).setDOMContent(root)
+      attach()
     },
 
     async open(p, now) {
       pending = p.slug
       const loading = shell(p, now, 'article')
       loading.append(el('p', 'map-popup-loading', 'Loading…'))
-      popup.setLngLat([p.lng, p.lat]).setDOMContent(loading).addTo(map)
+      popup.setLngLat([p.lng, p.lat]).setDOMContent(loading)
+      attach()
 
       const story = await fetchStory(p.slug)
       if (pending !== p.slug) return
@@ -360,11 +444,15 @@ export function createStoryPopup(map: MapLibreMap): StoryPopup {
         body.innerHTML = story.bodyHtml
         root.append(body)
         root.append(...sourceBlock(story, p))
+        // Only on a card that rendered. A story that failed to load is not one
+        // the reader has read, so it must not count towards the app line and
+        // there is nothing worth passing on.
+        root.append(...cardFoot(`/a/${p.slug}`, story.title || p.title))
       } else {
         // Only when the card itself cannot render does the standalone page
         // become worth offering — otherwise it holds nothing this does not.
         root.append(el('p', 'map-popup-lead', 'Could not load this story.'))
-        const link = el('a', 'map-popup-link', 'Open full page') as HTMLAnchorElement
+        const link = el('a', 'map-popup-link', 'Open full page')
         link.href = `/a/${p.slug}`
         root.append(link)
       }
@@ -376,7 +464,8 @@ export function createStoryPopup(map: MapLibreMap): StoryPopup {
       pending = key
       const loading = el('div', 'map-popup-body map-popup-country')
       loading.append(el('p', 'map-popup-loading', 'Loading…'))
-      popup.setLngLat(at).setDOMContent(loading).addTo(map)
+      popup.setLngLat(at).setDOMContent(loading)
+      attach()
 
       const data = await fetchCountry(iso)
       // The reader may have clicked elsewhere while this was in flight.

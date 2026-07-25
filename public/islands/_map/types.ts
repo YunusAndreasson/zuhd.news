@@ -24,6 +24,11 @@ export type {
   VesselField,
 } from '@shared/types'
 
+// Same reasoning one layer over: `/api/genocide.json` is the build's published
+// output of `GENOCIDE_MARKED`, so the map reads the record's own type rather
+// than a copy of it that can fall behind.
+export type { GenocideFinding, GenocideSituation } from '@shared/genocide'
+
 import type { Chokepoint } from '@shared/types'
 
 /** A story from `/api/map.json`. */
@@ -59,6 +64,61 @@ export interface MapPoint {
  * because only the web build produces it.
  */
 export interface MapChokepoint extends Chokepoint {
+  relatedArticles?: Array<{
+    slug: string
+    title: string
+    date?: string
+    dateFormatted?: string
+  }>
+}
+
+/**
+ * A stock exchange as `/api/markets.json` serves it.
+ *
+ * Declared here rather than re-exported from `shared/`, unlike the four feeds
+ * above, because there is nothing in `shared/` to re-export: this payload is
+ * assembled by `scripts/fetch-markets.js` from `scripts/lib/market-metadata.js`,
+ * both plain JS, and the app does not read the endpoint. The rule in the header
+ * is about not keeping a hand-narrowed *copy* of a type that already exists —
+ * with no other declaration to fall behind, this is the declaration.
+ *
+ * Exchanges the catalog knows about but cannot source are absent from the
+ * payload entirely. See `market-metadata.js` for which, and why.
+ */
+export interface MapExchange {
+  id: string
+  /** The institution — "Saudi Exchange". */
+  name: string
+  /** The index quoted — "TASI". These differ and the card shows both. */
+  indexName: string
+  /**
+   * The city, already through `displayLocation` at build time — so this reads
+   * `Yafa`, not `Tel Aviv`. The catalog keeps the untranslated string; only the
+   * published payload is renamed, the same way map points are.
+   */
+  city: string
+  iso2: string
+  lat: number
+  lng: number
+  /** Most recent close, in `currency`. */
+  level: number
+  /** Signed percent change against the prior close. 1.25 means +1.25%. */
+  changePct: number
+  currency: string
+  /** IANA zone, and the basis for whether the exchange is trading right now. */
+  tz: string
+  /** Local wall-clock "HH:MM" bounds of the regular session. */
+  sessionStart: string
+  sessionEnd: string
+  /** Trading weekdays, `Date.getDay()` convention — 0 is Sunday. */
+  days: number[]
+  series: { periods: string[]; values: number[] }
+  /** Date of the most recent close, `YYYY-MM-DD`. */
+  asOf: string
+  sourceLabel: string
+  blurb: string
+  /** Set when the figure came from the fetcher's last-good cache. */
+  stale?: boolean
   relatedArticles?: Array<{
     slug: string
     title: string
@@ -143,3 +203,15 @@ export const decayAt = (t: number, now: number) => {
  * the map asking a question it then refuses to answer.
  */
 export const CONTESTED_D = 0.35
+
+/**
+ * The viewport width below which the map is laid out for a phone.
+ *
+ * Kept in step with the `max-width: 900px` block in style.css by hand. Almost
+ * every consequence of that line is CSS and needs nothing here — which edge the
+ * rail takes and how tall the drawer is are both read back off the geometry —
+ * but two things cannot be measured after the fact: the zoom floor, which is a
+ * number the island has to choose, and whether the rail's header is a
+ * disclosure at all, which decides what it may claim to assistive technology.
+ */
+export const NARROW_PX = 900

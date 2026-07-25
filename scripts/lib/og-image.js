@@ -9,6 +9,7 @@
 
 import { readFileSync } from 'fs'
 import { join } from 'path'
+import { fileURLToPath } from 'url'
 import { Resvg } from '@resvg/resvg-js'
 import { geoOrthographic, geoPath, geoCircle } from 'd3-geo'
 import { feature } from 'topojson-client'
@@ -17,16 +18,18 @@ const ROOT = new URL('../..', import.meta.url).pathname
 
 let _assets = null
 /**
- * Load + memoize the shared render assets: the Source Sans 3 variable-font
- * buffer (also shipped to /fonts/, so renders match the site) and the
- * 110m country features from shared/data. Reused by ig-image.js.
+ * Load + memoize the 110m country features from shared/data, for the globe.
+ * Reused by ig-image.js.
+ *
+ * The variable WOFF2 this also used to load was the font resvg rendered with,
+ * and it is why every card came out monospace-looking — see `rasterizeSvg`.
+ * The renderer now takes the static TTFs by path and this loads geometry only.
  */
 export const getAssets = () => {
   if (_assets) return _assets
-  const fontRegular = readFileSync(join(ROOT, 'public', 'fonts', 'source-sans-3-var.woff2'))
   const topo = JSON.parse(readFileSync(join(ROOT, 'shared', 'data', 'countries-110m.json'), 'utf8'))
   const countries = feature(topo, topo.objects.countries).features
-  _assets = { fontRegular, countries }
+  _assets = { countries }
   return _assets
 }
 
@@ -179,16 +182,29 @@ export const buildOgSvg = (article, variant = 'light') => {
   const theme = themeFor(variant)
 
   const hasMap = article.lat != null && article.lng != null
-  // When the map is present, title wraps narrower (left column only).
-  const titleMaxChars = hasMap ? 16 : 24
+  // When the map is present, the title wraps narrower — left column only.
+  //
+  // These were 16/24, tuned by eye against the monospace-metric render
+  // `rasterizeSvg` used to produce, where every glyph took the width of the
+  // widest one. With real advances the same character count occupies roughly
+  // two-thirds the width, so a headline broke after three words and left the
+  // column half empty. 20 fills the 636px column at 60px without touching the
+  // globe.
+  const titleMaxChars = hasMap ? 20 : 30
   const titleLines = wrapTitle(article.title || 'Untitled', titleMaxChars, 4)
   const kicker = `${(article.category || 'politics').toUpperCase()}  ·  ${formatLongDate(article.date)}`
   const location = article.location ? String(article.location).toUpperCase() : null
 
-  const titleStartY = 180
   const titleLineHeight = 72
   const titleFontSize = 60
   const titleFontWeight = 700
+  // The headline grows upward from a fixed last baseline rather than downward
+  // from a fixed first one. Top-anchored, a four-line title filled the card and
+  // a two-line title left a third of it empty above the dateline — same layout,
+  // wildly different composition, decided by how long the headline happened to
+  // be. 396 is where the fourth line already sat, so the longest titles are
+  // unchanged and only the short ones stop floating.
+  const titleStartY = 396 - (titleLines.length - 1) * titleLineHeight
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
@@ -206,12 +222,147 @@ export const buildOgSvg = (article, variant = 'light') => {
 </svg>`
 }
 
-/** Rasterize an SVG string to PNG bytes using resvg-js with WOFF2 bundled. */
+// ── Cards for the pages that are not articles ──────────────────────────────
+//
+// Country, category and entity pages all shared one static `/og-image.png` —
+// the wordmark on a dark field. Which is fine as a brand mark and useless as a
+// share: someone passing on Palestine's profile, or the economy desk, got a
+// card that said nothing about what they were passing on, so the thing that
+// actually travels on X and WhatsApp carried none of the page's substance.
+//
+// These reuse the article card's grid exactly — same padding, same globe
+// geometry, same wordmark on the same baseline — so the generated cards read as
+// one family rather than three designs that happen to share a typeface.
+
+/** The masthead, bottom-left, on every generated card. */
+const wordmark = (theme) =>
+  `<text x="${PAD_X}" y="${H - 64}" font-family="Source Sans 3" font-size="28" font-weight="700" fill="${theme.fg}" letter-spacing="-0.01em">zuhd<tspan fill="${theme.dim}">.</tspan>news</text>`
+
+const kickerText = (parts, theme) =>
+  `<text x="${PAD_X}" y="${PAD_Y + 32}" font-family="Source Sans 3" font-size="22" font-weight="600" fill="${theme.dim}" letter-spacing="2">${escXml(parts.filter(Boolean).join('  ·  ').toUpperCase())}</text>`
+
+/** Right edge of the left-hand text column — where a globe is, it stops short. */
+const COL_RIGHT = MAP_CX - MAP_R - 44
+
+/**
+ * A country profile card.
+ *
+ * The globe is centred on the country itself, which is the one thing a country
+ * card can say that a headline card cannot — you recognise the place before you
+ * read the name. Three ranked metrics follow, because a rank is what makes a
+ * number worth sharing: "82 years" is a fact, "82 years · 6 of 145" is an
+ * argument.
+ *
+ * No flag. The card is rasterised with the Source Sans buffer and nothing else,
+ * so a regional-indicator pair has no glyph to resolve to and renders as two
+ * empty boxes — the emoji reads perfectly in the terminal and ships as tofu.
+ *
+ * @param {Object} c — { name, region, metaLine, metrics: [{label,value,rank,total}], lat, lng }
+ */
+export const buildCountryOgSvg = (c, variant = 'light') => {
+  const theme = themeFor(variant)
+  const hasMap = c.lat != null && c.lng != null
+  // Same column, same measure as the article card's headline (see there for
+  // why these are not the numbers the monospace render wanted).
+  const nameLines = wrapTitle(c.name || 'Country', hasMap ? 20 : 30, 2)
+  const metaLines = (c.metaLine ? wrapTitle(c.metaLine, hasMap ? 46 : 68, 2) : [])
+    // The meta line is middot-separated, and a greedy wrap happily ends a line
+    // on the separator — "Washington, D.C. · pop. 340M · English ·" over
+    // "United States dollar". The break is already doing the separating.
+    .map((line) => line.replace(/\s*·\s*$/, ''))
+  const metrics = (c.metrics || []).slice(0, 3)
+
+  const nameStartY = 190
+  const nameLineHeight = 68
+  const metaStartY = nameStartY + nameLines.length * nameLineHeight - 4
+  const metricsStartY = metaStartY + metaLines.length * 30 + 40
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
+  <rect width="${W}" height="${H}" fill="${theme.bg}"/>
+
+  ${buildGlobe(c.lat, c.lng, theme, { cx: MAP_CX, cy: MAP_CY, r: MAP_R, clipId: 'country-og-clip', scaleMul: 1.6 })}
+
+  ${kickerText(['country profile', c.region], theme)}
+
+  ${nameLines.map((line, i) => `<text x="${PAD_X}" y="${nameStartY + i * nameLineHeight}" font-family="Source Sans 3" font-size="60" font-weight="700" fill="${theme.fg}" letter-spacing="-0.01em">${escXml(line)}</text>`).join('\n  ')}
+
+  ${metaLines.map((line, i) => `<text x="${PAD_X}" y="${metaStartY + i * 30}" font-family="Source Sans 3" font-size="21" font-weight="400" fill="${theme.dim}">${escXml(line)}</text>`).join('\n  ')}
+
+  ${metrics
+    .map((m, i) => {
+      const y = metricsStartY + i * 40
+      const rank = m.rank && m.total ? `  ·  ${m.rank} of ${m.total}` : ''
+      return `<line x1="${PAD_X}" y1="${y - 26}" x2="${COL_RIGHT}" y2="${y - 26}" stroke="${theme.rule}" stroke-width="1"/>
+  <text x="${PAD_X}" y="${y}" font-family="Source Sans 3" font-size="20" font-weight="400" fill="${theme.dim}">${escXml(clipText(m.label, 26))}</text>
+  <text x="${COL_RIGHT}" y="${y}" text-anchor="end" font-family="Source Sans 3" font-size="20" font-weight="600" fill="${theme.fg}">${escXml(clipText(`${m.value}${rank}`, 30))}</text>`
+    })
+    .join('\n  ')}
+
+  ${wordmark(theme)}
+</svg>`
+}
+
+/**
+ * A category card.
+ *
+ * No globe: a desk is not a place, and putting Earth behind the word "tech"
+ * would be decoration pretending to be information. What is left is the one
+ * thing the page is — a name and how much of it there is — set large enough
+ * that the card works at the size a timeline actually renders it.
+ *
+ * @param {Object} c — { category, count, days }
+ */
+export const buildCategoryOgSvg = (c, variant = 'light') => {
+  const theme = themeFor(variant)
+  const name = String(c.category || 'news')
+  const line = [
+    c.count ? `${c.count} ${c.count === 1 ? 'story' : 'stories'}` : null,
+    c.days ? `last ${c.days} days` : null,
+  ]
+    .filter(Boolean)
+    .join('  ·  ')
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
+  <rect width="${W}" height="${H}" fill="${theme.bg}"/>
+
+  ${kickerText(['zuhd.news', 'category'], theme)}
+
+  <text x="${PAD_X}" y="${H / 2 + 26}" font-family="Source Sans 3" font-size="128" font-weight="700" fill="${theme.fg}" letter-spacing="-0.03em">${escXml(name)}</text>
+  <line x1="${PAD_X}" y1="${H / 2 + 66}" x2="${W - PAD_X}" y2="${H / 2 + 66}" stroke="${theme.rule}" stroke-width="1"/>
+  ${line ? `<text x="${PAD_X}" y="${H / 2 + 106}" font-family="Source Sans 3" font-size="24" font-weight="400" fill="${theme.dim}" letter-spacing="1">${escXml(line)}</text>` : ''}
+
+  ${wordmark(theme)}
+</svg>`
+}
+
+/**
+ * Rasterize an SVG string to PNG bytes.
+ *
+ * By PATH, not by buffer. resvg-js renders a font handed to it as
+ * `fontBuffers` with uniform advances — every glyph gets the same width — so
+ * proportional type comes out looking like a monospace face, and the variable
+ * WOFF2 this used to pass had exactly that effect on every share card the site
+ * has ever produced. `fontFiles` loads the real metrics. `ig-image.js` found
+ * this and fixed it on its own side; the OG cards were left on the buffer path
+ * and kept shipping wide, evenly-spaced headlines to every timeline they
+ * landed in.
+ *
+ * The static weights ship with the build tooling for this reason — they are
+ * not the ones the site serves (`/fonts/*.woff2` is one variable file), so
+ * bumping one does not necessarily bump the other.
+ */
+const FONT_FILES = [
+  'SourceSans3-Regular.ttf',
+  'SourceSans3-SemiBold.ttf',
+  'SourceSans3-Bold.ttf',
+].map((f) => fileURLToPath(new URL(`../assets/fonts/${f}`, import.meta.url)))
+
 export const rasterizeSvg = (svgString) => {
-  const { fontRegular } = getAssets()
   const resvg = new Resvg(svgString, {
     font: {
-      fontBuffers: [fontRegular],
+      fontFiles: FONT_FILES,
       loadSystemFonts: false,
       defaultFontFamily: 'Source Sans 3',
     },
@@ -224,3 +375,9 @@ export const rasterizeSvg = (svgString) => {
 /** Convenience: build + rasterize in one call. Returns a Buffer. */
 export const buildOgPng = (article, variant = 'light') =>
   rasterizeSvg(buildOgSvg(article, variant))
+
+export const buildCountryOgPng = (country, variant = 'light') =>
+  rasterizeSvg(buildCountryOgSvg(country, variant))
+
+export const buildCategoryOgPng = (category, variant = 'light') =>
+  rasterizeSvg(buildCategoryOgSvg(category, variant))

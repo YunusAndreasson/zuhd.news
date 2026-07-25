@@ -13,13 +13,16 @@
   <meta property="og:description" content="{{description}}">
   <meta property="og:url" content="https://zuhd.news/a/{{slug}}">
   <meta property="og:image" content="https://zuhd.news/api/og/{{slug}}.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{titleAttr}} — zuhd.news">
   <meta property="og:locale" content="en_US">
   <meta property="article:published_time" content="{{isoDate}}">
   <meta property="article:section" content="{{category}}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://zuhd.news/api/og/{{slug}}.png">
+  <meta name="twitter:image:alt" content="{{titleAttr}} — zuhd.news">
   {{jsonLd}}
 </head>
 <body class="article-page-body">
@@ -39,6 +42,14 @@
       {{entityStrip}}
       {{threadBlock}}
     </article>
+
+    <!--
+      Pass it on. Rendered here as plain links so it works with JavaScript off
+      and survives the island bundle failing; `share-bar.ts` swaps it for the
+      device's own share sheet where one exists. This is the page a shared link
+      lands on, so it is also where the next share starts.
+    -->
+    {{shareRow}}
 
     <nav class="article-pagination" aria-label="Article navigation">
       {{prevLink}}

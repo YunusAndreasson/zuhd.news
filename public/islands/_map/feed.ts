@@ -5,21 +5,31 @@
 // reading surface back to the homepage after the old split-pane reader was
 // retired — the list is scannable on its own, and each row is a link.
 
-import type { MapPoint } from './types'
+import { NARROW_PX, type MapPoint } from './types'
 import { CATEGORY_COLOUR } from './style'
-import { relativeTime } from './sheet'
+import { relativeTime } from './format'
 
 export interface Feed {
   element: HTMLElement
   setItems(points: MapPoint[], now: number): void
   /** Scrolls to and marks a row, e.g. when its marker is clicked on the map. */
   highlight(slug: string | null): void
+  /** Phone layout only — the rail is a column on a desktop and always open. */
+  isExpanded(): boolean
+  /**
+   * `instant` skips the slide and leaves the rail at its final height before
+   * this call returns, so a caller that is about to measure the layout gets
+   * the geometry it is going to keep rather than a frame of the animation.
+   */
+  setExpanded(open: boolean, instant?: boolean): void
   destroy(): void
 }
 
 export interface FeedOptions {
   onSelect: (point: MapPoint) => void
   onHover: (point: MapPoint | null) => void
+  /** The rail changed height, so whatever measured it needs to measure again. */
+  onToggle?: (open: boolean) => void
 }
 
 const MAX_ROWS = 120
@@ -29,8 +39,6 @@ export function createFeed(opts: FeedOptions): Feed {
   root.className = 'map-feed'
   root.setAttribute('aria-label', 'Latest stories')
 
-  const head = document.createElement('div')
-  head.className = 'map-feed-head'
   const count = document.createElement('span')
   count.className = 'map-feed-count'
   // Changing a range or a category rewrites the map and this number, and
@@ -38,15 +46,94 @@ export function createFeed(opts: FeedOptions): Feed {
   // feedback that confirms the control did anything at all.
   count.setAttribute('aria-live', 'polite')
   count.setAttribute('aria-atomic', 'true')
-  head.append(count)
 
   const list = document.createElement('ol')
   list.className = 'map-feed-list'
+  list.id = 'map-feed-list'
+
+  /**
+   * On a phone the rail is a drawer, and the head is its handle.
+   *
+   * The rail is a 21rem column beside the map on a desktop, which costs the
+   * map nothing. Reproduced on a phone it became a 42vh slab across the
+   * bottom: four stories visible, permanently, over a map already cut to 58vh
+   * — so neither half was usable and there was no gesture that gave the map
+   * its screen back. Collapsed to its own header it costs one line, and the
+   * whole head is the target: a 2.8rem bar is easy to hit, a chevron alone is
+   * not.
+   *
+   * A <button> wrapping the count rather than a click handler on the div, so
+   * it is reachable by keyboard and announces its state. The stylesheet is
+   * what decides whether the drawer exists at all — on a desktop the button is
+   * `display: none` and the rail has no collapsed height to return to.
+   */
+  const head = document.createElement('button')
+  head.type = 'button'
+  head.className = 'map-feed-head'
+
+  const chevron = document.createElement('span')
+  chevron.className = 'map-feed-chevron'
+  chevron.setAttribute('aria-hidden', 'true')
+  chevron.innerHTML =
+    '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" focusable="false">' +
+    '<path d="M3.5 10 8 5.5 12.5 10"/></svg>'
+
+  head.append(count, chevron)
 
   root.append(head, list)
 
+  let expanded = false
+
+  /**
+   * Whether the header is a disclosure at all.
+   *
+   * On a desktop the rail is a column that is always open and the header is a
+   * caption — so `aria-expanded="false"` there would announce a collapsed list
+   * that is in fact fully on screen, which is worse than saying nothing. The
+   * attributes are added and removed with the layout rather than left standing
+   * and hoped over, and the stylesheet's breakpoint is the one that decides.
+   */
+  const narrowQuery = matchMedia(`(max-width: ${NARROW_PX}px)`)
+
+  const syncDisclosure = () => {
+    if (!narrowQuery.matches) {
+      head.removeAttribute('aria-expanded')
+      head.removeAttribute('aria-controls')
+      return
+    }
+    head.setAttribute('aria-controls', 'map-feed-list')
+    head.setAttribute('aria-expanded', String(expanded))
+  }
+
+  const setExpanded = (open: boolean, instant = false) => {
+    if (open === expanded) return
+    expanded = open
+    // `.is-instant` is `transition: none`. Added before the height changes and
+    // removed after a forced reflow, so the browser resolves the new height in
+    // one go and no transition is ever started — which means `onToggle` below
+    // reports a rail that has already finished moving.
+    if (instant) root.classList.add('is-instant')
+    root.classList.toggle('is-open', open)
+    syncDisclosure()
+    if (instant) {
+      void root.offsetHeight
+      root.classList.remove('is-instant')
+    }
+    opts.onToggle?.(open)
+  }
+
+  head.addEventListener('click', () => setExpanded(!expanded))
+  syncDisclosure()
+  narrowQuery.addEventListener('change', syncDisclosure)
+
+  // The drawer animates its height, so the measurement taken the instant it is
+  // toggled is of a rail mid-slide. Reporting again when it settles is what
+  // makes the map's padding match where the list actually stopped.
+  root.addEventListener('transitionend', (e) => {
+    if (e.target === root && e.propertyName === 'height') opts.onToggle?.(expanded)
+  })
+
   const rows = new Map<string, HTMLLIElement>()
-  let current: MapPoint[] = []
 
   const build = (points: MapPoint[], now: number) => {
     rows.clear()
@@ -81,9 +168,7 @@ export function createFeed(opts: FeedOptions): Feed {
       // real URL so Cmd-click, middle-click and right-click still open the
       // full page, and the link works with JS disabled.
       li.addEventListener('click', (e) => {
-        const mouse = e as MouseEvent
-        if (mouse.metaKey || mouse.ctrlKey || mouse.shiftKey || mouse.altKey) return
-        if (mouse.button != null && mouse.button !== 0) return
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
         e.preventDefault()
         opts.onSelect(p)
       })
@@ -118,19 +203,24 @@ export function createFeed(opts: FeedOptions): Feed {
   return {
     element: root,
     setItems(points, now) {
-      current = [...points].sort((a, b) => b.t - a.t)
-      build(current, now)
+      build([...points].sort((a, b) => b.t - a.t), now)
     },
     highlight(slug) {
       for (const [key, li] of rows) li.classList.toggle('is-active', key === slug)
       if (!slug) return
       const li = rows.get(slug)
-      if (li) li.scrollIntoView({ block: 'nearest' })
+      // Only when the list can be seen. Collapsed, the list has no height to
+      // scroll and the browser walks up to the nearest scrollable ancestor
+      // instead — which on the map page is the document, and the document is
+      // the map.
+      if (li && list.clientHeight > 0) li.scrollIntoView({ block: 'nearest' })
     },
+    isExpanded: () => expanded,
+    setExpanded,
     destroy() {
+      narrowQuery.removeEventListener('change', syncDisclosure)
       root.remove()
       rows.clear()
-      current = []
     },
   }
 }

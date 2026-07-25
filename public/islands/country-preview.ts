@@ -15,7 +15,7 @@
 
 import {
   html,
-  mountIsland,
+  mountSheetIsland,
   useDialogOutsideClose,
   useEffect,
   useRef,
@@ -165,29 +165,5 @@ const CountryPreview: Island<Props> = ({ iso, href }) => {
   `
 }
 
-// Track the currently open sheet so a second click on a different country
-// link tears down the old one before mounting the new — prevents stacking.
-let activeContainer: HTMLElement | null = null
-
-export const mount = (container: HTMLElement, props: Props) => {
-  if (activeContainer && activeContainer !== container) {
-    activeContainer.remove()
-  }
-  activeContainer = container
-  mountIsland(CountryPreview, container, props)
-  // When the dialog closes, clean up the container so the next click
-  // mounts fresh state instead of a stale dialog.
-  const observer = new MutationObserver(() => {
-    const dialog = container.querySelector('dialog')
-    if (dialog && !dialog.open) {
-      observer.disconnect()
-      container.remove()
-      if (activeContainer === container) activeContainer = null
-    }
-  })
-  // Watch for the dialog losing its `open` attribute.
-  setTimeout(() => {
-    const dialog = container.querySelector('dialog')
-    if (dialog) observer.observe(dialog, { attributes: true, attributeFilter: ['open'] })
-  }, 0)
-}
+export const mount = (container: HTMLElement, props: Props) =>
+  mountSheetIsland(CountryPreview, container, props)

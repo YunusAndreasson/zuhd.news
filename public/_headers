@@ -26,9 +26,6 @@
 /basemap/countries.geojson
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
-/basemap/countries-detail.geojson
-  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
-
 /basemap/countries-ultra.geojson
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
@@ -117,6 +114,12 @@
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400, stale-if-error=86400
 
 /api/trends.json
+  Cache-Control: public, max-age=900, stale-while-revalidate=3600, stale-if-error=86400
+
+# Markets move within a trading day, so this is the shortest max-age of the
+# overlay feeds. Named in full rather than as `/api/markets*` so it cannot
+# co-match another rule and concatenate with it.
+/api/markets.json
   Cache-Control: public, max-age=900, stale-while-revalidate=3600, stale-if-error=86400
 
 /api/heatmap.json

@@ -55,6 +55,51 @@ export const mountIsland = <P extends object>(
   return () => render(null, container)
 }
 
+/**
+ * Mount a dialog island and clean it up when the reader closes it.
+ *
+ * The island loader appends a fresh `.island-container` to `<body>` on every
+ * activation and discards the teardown `mount` returns, so an island that does
+ * nothing about it leaves its container and a shut `<dialog>` in the document
+ * for the life of the page — one more per click, for ever.
+ *
+ * Two things are handled here so no island has to invent them again:
+ *
+ * - **Teardown on close.** `<dialog>` fires a native `close` event. The first
+ *   version of this watched for the `open` attribute disappearing with a
+ *   `MutationObserver` attached inside a `setTimeout(…, 0)`, which is both
+ *   heavier than the event and racy: a dialog dismissed inside that tick was
+ *   never cleaned up at all. Preact's initial `render` is synchronous, so the
+ *   dialog is in the container by the time this returns and the listener can
+ *   be attached directly.
+ * - **One at a time.** A second trigger replaces the first rather than
+ *   stacking a second modal on top of it.
+ */
+let activeSheet: { container: HTMLElement; unmount: () => void } | null = null
+
+export const mountSheetIsland = <P extends object>(
+  Component: Island<P>,
+  container: HTMLElement,
+  props: P,
+): (() => void) => {
+  if (activeSheet && activeSheet.container !== container) {
+    activeSheet.unmount()
+    activeSheet.container.remove()
+  }
+
+  const unmount = mountIsland(Component, container, props)
+  const dispose = () => {
+    if (activeSheet?.container === container) activeSheet = null
+    unmount()
+    container.remove()
+  }
+  activeSheet = { container, unmount }
+
+  const dialog = container.querySelector('dialog')
+  dialog?.addEventListener('close', dispose, { once: true })
+  return dispose
+}
+
 /** Close a <dialog popover> when the user taps outside the dialog body. */
 export const useDialogOutsideClose = (dialogRef: { current: HTMLDialogElement | null }) => {
   useEffect(() => {

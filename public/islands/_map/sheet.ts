@@ -21,31 +21,29 @@
 // is clipped rather than scrolled.
 
 import { displaySourceName, EVENT_TYPE_EYEBROW, parseSeverityHero } from '@shared/gdacs'
+import { appPrompt } from '../_app-prompt'
 import { createSparkline } from './chart'
 import * as fmt from './format'
 import type {
   ConflictEvent,
   GdacsAlert,
   GdacsDetail,
+  GenocideSituation,
   MapChokepoint,
+  MapExchange,
   VesselField,
 } from './types'
-
-const APP_IOS = 'https://apps.apple.com/us/app/zuhd-news/id6760964753'
-const APP_ANDROID = 'https://play.google.com/store/apps/details?id=news.zuhd.app'
-const OPEN_COUNT_KEY = 'zuhd-map-opens'
-/** Only mention the app once the map has clearly been found useful. */
-const APP_PROMPT_AFTER = 4
 
 export interface Sheet {
   element: HTMLDialogElement
   showGdacs(alert: GdacsAlert, detail: GdacsDetail | null, pinned: boolean): void
   showChokepoint(cp: MapChokepoint, pinned: boolean): void
+  showMarket(exchange: MapExchange, pinned: boolean): void
   showConflict(event: ConflictEvent, window: string | null, pinned: boolean): void
+  showGenocide(situation: GenocideSituation, pinned: boolean): void
   close(): void
   isOpen(): boolean
   isPinned(): boolean
-  pin(): void
   destroy(): void
 }
 
@@ -58,39 +56,6 @@ const el = <K extends keyof HTMLElementTagNameMap>(
   if (className) node.className = className
   if (text != null) node.textContent = text
   return node
-}
-
-export function relativeTime(ts: number, now = Date.now()) {
-  const mins = Math.round((now - ts) / 60000)
-  if (mins < 1) return 'just now'
-  if (mins < 60) return `${mins}m ago`
-  const hours = Math.round(mins / 60)
-  if (hours < 48) return `${hours}h ago`
-  return `${Math.round(hours / 24)}d ago`
-}
-
-function bumpOpenCount(): number {
-  try {
-    const next = Number(localStorage.getItem(OPEN_COUNT_KEY) || '0') + 1
-    localStorage.setItem(OPEN_COUNT_KEY, String(next))
-    return next
-  } catch {
-    return 0
-  }
-}
-
-function appLine(): HTMLElement | null {
-  if (bumpOpenCount() < APP_PROMPT_AFTER) return null
-  const p = el('p', 'map-sheet-app')
-  p.append('Carry the map with you — ')
-  const ios = el('a', undefined, 'iPhone') as HTMLAnchorElement
-  ios.href = APP_IOS
-  ios.rel = 'noopener'
-  const android = el('a', undefined, 'Android') as HTMLAnchorElement
-  android.href = APP_ANDROID
-  android.rel = 'noopener'
-  p.append(ios, ' · ', android)
-  return p
 }
 
 /** Which vessel class `primaryField` names, in words a reader can use. */
@@ -148,9 +113,9 @@ export function createSheet(): Sheet {
   const dialog = document.createElement('dialog')
   dialog.className = 'island-sheet map-sheet'
 
-  const closeForm = el('form', 'island-sheet-close-form') as HTMLFormElement
+  const closeForm = el('form', 'island-sheet-close-form')
   closeForm.method = 'dialog'
-  const closeBtn = el('button', 'island-sheet-close', '×') as HTMLButtonElement
+  const closeBtn = el('button', 'island-sheet-close', '×')
   closeBtn.type = 'submit'
   closeBtn.setAttribute('aria-label', 'Close')
   closeForm.append(closeBtn)
@@ -160,26 +125,34 @@ export function createSheet(): Sheet {
   document.body.append(dialog)
 
   let pinned = false
+  // `close` is *queued*, not dispatched synchronously — so a bare
+  // `pinned = false` here fired one task after the promotion below had already
+  // set `pinned = true`, and silently unpinned a sheet the reader had just
+  // clicked. The symptom was that pinning did nothing: the sheet still
+  // dismissed itself 260ms after the pointer left the marker, because the
+  // island's `isPinned()` said it was still a hover peek. Reading the dialog's
+  // own state is what makes this event mean "the sheet is shut" rather than
+  // "a close call happened at some point".
   dialog.addEventListener('close', () => {
-    pinned = false
+    if (!dialog.open) pinned = false
   })
 
   // Hover opens the sheet non-modally, so the map underneath stays live and
   // the pointer can move straight to the next beacon. Clicking promotes the
   // same sheet to a real modal — committed reading, backdrop and all. A
   // pinned sheet ignores hover entirely, so it never vanishes mid-read.
-  const open = (pin: boolean): boolean => {
-    if (pinned && !pin) return false
+  const open = (pin: boolean) => {
     if (pin) {
-      if (dialog.open && !pinned) dialog.close()
+      // `showModal` throws on an already-open dialog, so a peek has to be shut
+      // before it can be promoted.
+      if (dialog.open) dialog.close()
       pinned = true
       dialog.classList.remove('is-peek')
-      if (!dialog.open) dialog.showModal()
+      dialog.showModal()
     } else {
       dialog.classList.add('is-peek')
       if (!dialog.open) dialog.show()
     }
-    return true
   }
 
   const render = (nodes: Node[], pin: boolean) => {
@@ -187,9 +160,12 @@ export function createSheet(): Sheet {
     // The app line used to hang off the story sheet, which the map no longer
     // opens — stories now read in a popup anchored to their own coordinate. It
     // belongs on whichever sheet the reader has actually committed to, and only
-    // once they have opened enough of them to have found the map useful.
+    // once they have opened enough of them to have found the map useful. The
+    // counter it reads is shared with the story card (`_app-prompt.ts`), so
+    // four overlay sheets and four stories are the same four opens rather than
+    // two independent tallies both waiting to fire.
     if (pin) {
-      const app = appLine()
+      const app = appPrompt()
       if (app) nodes = [...nodes, app]
     }
     inner.replaceChildren(...nodes)
@@ -208,7 +184,7 @@ export function createSheet(): Sheet {
   }
 
   const readMore = (href: string, label: string) => {
-    const a = el('a', 'map-sheet-link', label) as HTMLAnchorElement
+    const a = el('a', 'map-sheet-link', label)
     a.href = href
     return a
   }
@@ -218,7 +194,7 @@ export function createSheet(): Sheet {
     const list = el('ul', 'map-sheet-more')
     for (const a of items.slice(0, 5)) {
       const li = el('li')
-      const link = el('a', undefined, a.title) as HTMLAnchorElement
+      const link = el('a', undefined, a.title)
       link.href = `/a/${a.slug}`
       li.append(link)
       list.append(li)
@@ -306,7 +282,7 @@ export function createSheet(): Sheet {
       const recent = cp.last7Avg?.[field]
       const base = cp.baseline90Avg?.[field]
       if (typeof recent === 'number') {
-        const noun = VESSEL_NOUN[field] ?? 'vessels'
+        const noun = VESSEL_NOUN[field]
         nodes.push(
           hero(
             `${fmt.vessels(recent)} ${noun}/day`,
@@ -369,6 +345,63 @@ export function createSheet(): Sheet {
       render(nodes, pin)
     },
 
+    showMarket(ex, pin) {
+      const nodes: Node[] = []
+      // The kicker carries freshness, because on a world map that is the first
+      // ambiguity: at any given moment most exchanges are shut, and "+0.8%"
+      // means something different twenty minutes into a session than it does
+      // fourteen hours after one.
+      nodes.push(kicker(['markets', fmt.sessionLabel(ex), ex.stale ? 'cached' : null]))
+      nodes.push(el('h2', 'island-sheet-title', ex.name))
+      nodes.push(
+        hero(
+          fmt.indexLevel(ex.level, ex.currency),
+          `${ex.indexName} · ${fmt.pctChange(ex.changePct)} on the day`,
+        ),
+      )
+
+      if (pin) {
+        if (ex.blurb) nodes.push(el('p', 'map-sheet-lead', ex.blurb))
+
+        // A quarter of closes, with a rule where the quarter started — the same
+        // job the 90-day baseline does on a chokepoint. A day's move says
+        // nothing about whether it is a blip or the shape of a decline.
+        const values = ex.series?.values ?? []
+        const spark = createSparkline({
+          values,
+          periods: ex.series?.periods ?? [],
+          reference: values[0],
+          direction: ex.changePct,
+          palette: 'signed',
+          label: `${ex.indexName} daily closes over the last ${values.length} sessions`,
+        })
+        if (spark) {
+          const figure = el('figure', 'map-sheet-figure')
+          figure.append(spark)
+          figure.append(
+            el(
+              'figcaption',
+              'map-sheet-figcaption',
+              'Daily closes · rule marks the start of the window',
+            ),
+          )
+          nodes.push(figure)
+        }
+
+        nodes.push(
+          el(
+            'p',
+            'map-sheet-meta',
+            [ex.city, ex.sourceLabel, fmt.shortDate(ex.asOf), fmt.lagLabel(ex.asOf)]
+              .filter(Boolean)
+              .join(' · '),
+          ),
+        )
+        nodes.push(...relatedList(ex.relatedArticles ?? [], 'Related coverage'))
+      }
+      render(nodes, pin)
+    },
+
     showConflict(event, windowLabel, pin) {
       const nodes: Node[] = []
       nodes.push(
@@ -393,15 +426,52 @@ export function createSheet(): Sheet {
       render(nodes, pin)
     },
 
+    /**
+     * The genocide card.
+     *
+     * Different from every other sheet here in one way that matters: there is
+     * no number. The others open on a magnitude — dead, displaced, vessels a
+     * day, percent off baseline — because the reader's first question is how
+     * big. Here the reader's first question is *who says so*, and answering it
+     * with a casualty figure would put the map in the position of arguing the
+     * case rather than reporting a finding. So the hero line is the body that
+     * made the determination, the card carries the document, the date and the
+     * finding in the body's own terms, and the link goes to where it can be
+     * read in full. The map asserts nothing it did not source.
+     */
+    showGenocide(situation, pin) {
+      const nodes: Node[] = []
+      nodes.push(kicker(['genocide', `UN finding · ${fmt.fullDate(situation.date)}`]))
+      nodes.push(el('h2', 'island-sheet-title', situation.name))
+      // Not `hero()`. That treatment is sized for a figure — three characters
+      // and a unit — and the body's name is thirteen words, which at h2 became
+      // the largest thing on a card whose subject is the place. It is still
+      // the first line after the title, because who made the finding is the
+      // first question; it just does not have to be set in display type to be.
+      nodes.push(el('p', 'map-sheet-authority', situation.body))
+      nodes.push(
+        el('p', 'map-sheet-meta', `Ongoing since ${fmt.monthLabel(situation.since)}`),
+      )
+
+      if (pin) {
+        nodes.push(el('p', 'map-sheet-lead', situation.summary))
+        nodes.push(el('p', 'map-sheet-meta', situation.document))
+        const links = el('p', 'map-sheet-links')
+        links.append(readMore(situation.url, 'Read the finding'))
+        if (situation.iso2 && situation.profile) {
+          links.append(readMore(`/country/${situation.iso2}`, `${situation.profile} in profile`))
+        }
+        nodes.push(links)
+      }
+      render(nodes, pin)
+    },
+
     close() {
       pinned = false
       if (dialog.open) dialog.close()
     },
     isOpen: () => dialog.open,
     isPinned: () => pinned,
-    pin() {
-      pinned = true
-    },
     destroy() {
       dialog.remove()
     },
