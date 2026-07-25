@@ -197,6 +197,17 @@ export const buildCountryPages = async ({ sorted, distDir, templatesDir, headCom
           rank: r.rank,
           total: r.total,
         })),
+      // Every metric, in page order. The map's country card opens the full
+      // profile over the map rather than navigating to /country/{iso2} — a
+      // reader who clicked a country to find out about it should not lose the
+      // view that prompted the question. This is what that card reads; the
+      // standalone page stays canonical for shared links and crawlers.
+      metrics: metricResults.map((r) => ({
+        label: r.meta.label,
+        value: r.value,
+        rank: r.rank,
+        total: r.total,
+      })),
       coverage: recent.slice(0, 5).map((a) => ({
         slug: a.slug,
         title: a.title,

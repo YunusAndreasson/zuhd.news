@@ -28,6 +28,12 @@ export interface Timeline {
   now(): number
   isLive(): boolean
   goLive(): void
+  /**
+   * The slice of the rail the map is currently drawing, as a start time.
+   * `null` means the whole window. Shaded on the axis so the range chips and
+   * the scrubber stop being two unrelated time controls.
+   */
+  setWindow(from: number | null): void
   destroy(): void
 }
 
@@ -83,6 +89,7 @@ export function createTimeline(opts: TimelineOptions): Timeline {
   let points: MapPoint[] = []
   let value = slots
   let ctx: CanvasRenderingContext2D | null = null
+  let windowFrom: number | null = null
 
   const scrubTime = () => Math.min(end, start + value * SLOT_MS)
   const live = () => value >= slots
@@ -131,15 +138,36 @@ export function createTimeline(opts: TimelineOptions): Timeline {
     const dim = colour('--rule', '#ddd')
     const mid = colour('--text-dim', '#777')
     const bright = colour('--text', '#222')
+    // Canvas parses `font` as the CSS shorthand with no element to resolve
+    // against, so a `var()` in it is invalid and the assignment is dropped —
+    // the day labels were silently falling back to 10px default sans while the
+    // rest of the map ran on Source Sans. Read the family off the probe, which
+    // does have a computed style, and hand canvas a literal.
+    const family = getComputedStyle(probe).fontFamily || 'sans-serif'
 
     const axisH = 12
     const barH = h - axisH - 2
     const xOf = (t: number) => ((t - start) / span) * w
 
-    // Day columns first — the axis the histogram sits on.
-    ctx.font = '9px var(--font-sans, sans-serif)'
-    ctx.textBaseline = 'alphabetic'
+    // The slice the map is actually drawing. Without it the chips say "24h"
+    // while the rail shows fourteen days of bars, and nothing connects the
+    // two — the reader has no way to see that most of this histogram is not
+    // on the map.
     const headT = scrubTime()
+    if (windowFrom !== null && windowFrom > start) {
+      const x0 = Math.max(0, xOf(windowFrom))
+      const x1 = Math.min(w, xOf(headT))
+      if (x1 > x0) {
+        ctx.fillStyle = mid
+        ctx.globalAlpha = 0.12
+        ctx.fillRect(x0, 0, x1 - x0, barH + 3)
+        ctx.globalAlpha = 1
+      }
+    }
+
+    // Day columns first — the axis the histogram sits on.
+    ctx.font = `9px ${family}`
+    ctx.textBaseline = 'alphabetic'
     for (let day = start; day <= end; day += DAY_MS) {
       const x = xOf(day)
       const isCurrent = headT >= day && headT < day + DAY_MS
@@ -220,6 +248,11 @@ export function createTimeline(opts: TimelineOptions): Timeline {
     now: scrubTime,
     isLive: live,
     goLive: onLive,
+    setWindow(from) {
+      if (from === windowFrom) return
+      windowFrom = from
+      draw()
+    },
     destroy() {
       range.removeEventListener('input', onInput)
       liveBtn.removeEventListener('click', onLive)

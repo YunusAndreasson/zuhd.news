@@ -57,9 +57,48 @@ const ARABIC_NAMES: Record<string, string> = {
   Lydda: 'al-Ludd',
 };
 
+/**
+ * Settlements under the name the people who live there chose.
+ *
+ * Separate from `ARABIC_NAMES` because the case is different: nothing here is
+ * contested. Each of these is a rename the state or city carried out itself,
+ * usually shedding a colonial transliteration — and news feeds keep supplying
+ * the old form, so an article dateline could still read "Bombay" while the
+ * country page beside it said India.
+ */
+const RECLAIMED_NAMES: Record<string, string> = {
+  // Kazakhstan reverted its capital to Astana in 2022.
+  'Nur-Sultan': 'Astana',
+
+  // Indian cities that replaced their British-era spellings. The city
+  // corporations made these official; the wires are just slow.
+  Bombay: 'Mumbai',
+  Calcutta: 'Kolkata',
+  Madras: 'Chennai',
+  Bangalore: 'Bengaluru',
+  Poona: 'Pune',
+  Baroda: 'Vadodara',
+  Cawnpore: 'Kanpur',
+  Benares: 'Varanasi',
+  Simla: 'Shimla',
+  Cochin: 'Kochi',
+  Trivandrum: 'Thiruvananthapuram',
+  Gauhati: 'Guwahati',
+
+  // Renamed on independence or after it.
+  Rangoon: 'Yangon',
+  Dacca: 'Dhaka',
+  Katmandu: 'Kathmandu',
+  Ulan_Bator: 'Ulaanbaatar',
+  'Ulan Bator': 'Ulaanbaatar',
+
+  // Australia's own dual-naming policy puts the Anangu name first.
+  'Ayers Rock': 'Uluru',
+};
+
 export function displayLocation(location: string | null): string | null {
   if (!location) return null;
-  return ARABIC_NAMES[location] ?? location;
+  return ARABIC_NAMES[location] ?? RECLAIMED_NAMES[location] ?? location;
 }
 
 /**
@@ -72,6 +111,32 @@ const COUNTRY_DISPLAY_NAMES: Record<string, string> = {
   Turkey: 'Türkiye',
   Macedonia: 'North Macedonia',
   eSwatini: 'Eswatini',
+
+  // The same rule applied to names the wires still print. A feed writing
+  // "Ivory Coast" is not using an English translation Côte d'Ivoire accepts —
+  // the state asked, in 1986, that the French form be used in every language.
+  'Ivory Coast': "Côte d'Ivoire",
+  Swaziland: 'Eswatini',
+  Burma: 'Myanmar',
+  'East Timor': 'Timor-Leste',
+  'Cape Verde': 'Cabo Verde',
+  'Czech Republic': 'Czechia',
+  'Republic of the Congo': 'Congo',
+
+  /* --- Territories carrying the coloniser's name -------------------------
+   *
+   * The map already prints Yafa and Al-Quds rather than the settler renaming,
+   * and it does it outright rather than in parentheses. These follow that
+   * house style: the name of the people whose land it is, standing alone.
+   *
+   * All three are live decolonisation questions, not historical ones —
+   * Malvinas and Kanaky sit on the UN list of Non-Self-Governing Territories,
+   * and Kalaallit Nunaat is simply what Greenland calls itself.
+   */
+  'Falkland Is.': 'Malvinas',
+  'Falkland Islands': 'Malvinas',
+  'New Caledonia': 'Kanaky',
+  Greenland: 'Kalaallit Nunaat',
 
   // Cartographic shortenings — match the conventions used by Google Maps
   // and most national atlases so labels read naturally on the globe.
@@ -86,7 +151,6 @@ const COUNTRY_DISPLAY_NAMES: Record<string, string> = {
   'Eq. Guinea': 'Equatorial Guinea',
   'W. Sahara': 'Western Sahara',
   'Solomon Is.': 'Solomon Islands',
-  'Falkland Is.': 'Falkland Islands',
   'Fr. S. Antarctic Lands': 'French Southern Territories',
   'N. Cyprus': 'Northern Cyprus',
 };

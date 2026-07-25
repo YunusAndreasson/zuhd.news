@@ -1679,15 +1679,17 @@ body.archetype-page-body .article-page-header {
   border: none;
   font: inherit;
   line-height: 1;
-  color: var(--rule);
+  /* `--rule` is the hairline token — #181818 in dark, which put the only
+     visible dismiss control at 1.05:1 against the sheet. It was there, but you
+     had to already know where to hover. A dim *text* tone keeps it quiet
+     without making it a guessing game. */
+  color: var(--text-dim);
   cursor: pointer;
   padding: 0.25rem 0.5rem;
   border-radius: 999px;
   font-size: 1.1rem;
   outline: none;
   transition: color var(--dur-fast);
-
-  &:hover { color: var(--text-dim); }
 }
 
 .island-sheet-close:hover {
@@ -1916,7 +1918,7 @@ body.archetype-page-body .article-page-header {
   font-size: var(--size-xs);
   font-variant-caps: all-small-caps;
   letter-spacing: 0.08em;
-  color: #6d7684;
+  color: #89919f;
 }
 
 .doc-sheet-body {
@@ -2013,7 +2015,7 @@ body.doc-page > main {
 }
 
 body.doc-page .page-title {
-  color: #6d7684;
+  color: #89919f;
   margin-bottom: var(--space-sm);
 }
 
@@ -2038,7 +2040,7 @@ body.doc-page > footer {
   padding: 0 var(--space-md) var(--space-md);
   border-top: none;
 
-  a { color: #6d7684; }
+  a { color: #89919f; }
   a:hover { color: #c3c9d3; }
 }
 
@@ -2148,6 +2150,11 @@ body.map-page .app-banner { display: none; }
   min-height: 0;
   border-right: 1px solid #1c2029;
   background: #0a0c10;
+  /* The site footer is `position: fixed` over the bottom of this column.
+     Reserving its height ends the scrolling list at the footer's top edge;
+     without it the list ran 62px underneath, and the last visible story was
+     sliced through the middle of its own type against an opaque edge. */
+  padding-bottom: 3.9rem;
 }
 
 .map-feed-head {
@@ -2167,8 +2174,14 @@ body.map-page .app-banner { display: none; }
   overscroll-behavior: contain;
   list-style: none;
   margin: 0;
-  padding: 0;
+  /* `.map-feed` reserves the footer's height, so this box now ends where the
+     footer begins and the fade lands in visible space: a row scrolling out
+     dissolves instead of meeting a hard edge. The trailing padding lets the
+     final story clear the fade entirely. */
+  padding: 0 0 0.9rem;
   scrollbar-width: thin;
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 1.75rem), transparent);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 1.75rem), transparent);
 }
 
 .map-feed-item {
@@ -2207,7 +2220,7 @@ body.map-page .app-banner { display: none; }
 .map-feed-meta {
   margin: 0.15rem 0 0;
   font-size: var(--size-xs);
-  color: #6d7684;
+  color: #89919f;
   font-variant-numeric: lining-nums tabular-nums;
 }
 
@@ -2349,7 +2362,7 @@ body.map-page > footer .footer-social {
   font: inherit;
   font-size: var(--size-xs);
   font-variant-numeric: lining-nums tabular-nums;
-  color: #6d7684;
+  color: #89919f;
   cursor: pointer;
   transition: color var(--dur-fast), background var(--dur-fast);
 
@@ -2371,7 +2384,7 @@ body.map-page > footer .footer-social {
   font: inherit;
   font-size: var(--size-xs);
   letter-spacing: 0.04em;
-  color: #6d7684;
+  color: #89919f;
   cursor: pointer;
   opacity: 0.5;
   display: flex;
@@ -2393,6 +2406,15 @@ body.map-page > footer .footer-social {
     opacity: 1;
     color: #d3d8e0;
   }
+
+  /* The last category on cannot be switched off, or the map goes blank. It
+     stays legible — it is still the active filter — but it stops offering the
+     pointer of a control that will answer. */
+  &.is-locked {
+    cursor: default;
+  }
+
+  &.is-locked:hover { opacity: 1; }
 }
 
 /* Layer toggles have no category colour, so their dot is a hollow ring. */
@@ -2401,10 +2423,65 @@ body.map-page > footer .footer-social {
   border: 1px solid currentColor;
 }
 
+/* The timeline slider styled its own focus ring and nothing else in the map
+   chrome did, so tabbing through the HUD fell back to the UA default on some
+   controls and matched the slider on others. One ring, everywhere. */
+.map-range:focus-visible,
+.map-filter:focus-visible,
+.map-reset:focus-visible,
+.map-timeline-live:focus-visible {
+  outline: 1px solid #4a5568;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Empty rail — the filters excluded everything. */
+.map-feed-empty {
+  padding: 1.2rem clamp(0.9rem, 1.4vw, 1.15rem);
+  font-size: var(--size-xs);
+  line-height: 1.5;
+  color: #89919f;
+}
+
 .map-filter-sep {
   width: 1px;
   height: 0.85rem;
   background: #232936;
+}
+
+/* --- Map key ---
+   Decodes the three channels the beacons spend their ink on: radius, alpha and
+   the contested ring. Sits at the right end of the HUD, clear of the clock,
+   and borrows the filter chips' type and colour rather than inventing a second
+   language for the same strip. `margin-left: auto` is what pushes it right —
+   the HUD is a flex row and this is its third child. */
+.map-key {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-left: auto;
+  /* Clears .map-status, which floats above the HUD's right edge. */
+  padding-right: 5.5rem;
+}
+
+.map-key-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: var(--size-xs);
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.04em;
+  color: #767f8c;
+  cursor: default;
+}
+
+.map-key-item[hidden] { display: none; }
+
+.map-key-item svg {
+  width: 16px;
+  height: 10px;
+  overflow: visible;
+  opacity: 0.85;
 }
 
 .map-status {
@@ -2414,7 +2491,7 @@ body.map-page > footer .footer-social {
   z-index: 3;
   padding: 0.95rem 1.1rem;
   font-size: var(--size-xs);
-  color: #6d7684;
+  color: #89919f;
   font-variant-numeric: lining-nums tabular-nums;
   pointer-events: none;
 }
@@ -2437,7 +2514,7 @@ body.map-page > footer .footer-social {
   justify-content: flex-end;
   gap: var(--space-sm);
   font-size: var(--size-xs);
-  color: #6d7684;
+  color: #89919f;
   font-variant-numeric: lining-nums tabular-nums;
   margin-bottom: 0.15rem;
   opacity: 0.8;
@@ -2585,11 +2662,18 @@ body.map-page > footer .footer-social {
   right: 0.25rem;
   background: none;
   border: none;
-  padding: 0.15rem 0.3rem;
+  /* 17x21 from padding alone, under the 24x24 floor in WCAG 2.5.8. The glyph
+     stays the same size; only the hit area grows. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 0;
   font: inherit;
   font-size: 1rem;
   line-height: 1;
-  color: #5d6673;
+  color: #767f8c;
   cursor: pointer;
 
   &:hover { color: #d3d8e0; }
@@ -2633,7 +2717,7 @@ body.map-page > footer .footer-social {
     padding-top: 0.5rem;
     border-top: 1px solid #232936;
     font-size: var(--size-xs);
-    color: #6d7684;
+    color: #89919f;
   }
 
   a { color: #d3d8e0; text-underline-offset: 0.2em; }
@@ -2643,7 +2727,7 @@ body.map-page > footer .footer-social {
 .map-popup-loading {
   margin: 0.35rem 0 0;
   font-size: var(--size-xs);
-  color: #5d6673;
+  color: #767f8c;
   font-style: italic;
 }
 
@@ -2656,7 +2740,7 @@ body.map-page > footer .footer-social {
   font-size: var(--size-xs);
   font-variant-caps: all-small-caps;
   letter-spacing: 0.04em;
-  color: #6d7684;
+  color: #89919f;
 }
 
 .map-popup-dot {
@@ -2685,9 +2769,87 @@ body.map-page > footer .footer-social {
 .map-popup-meta {
   margin: 0 0 0.45rem;
   font-size: var(--size-xs);
-  color: #6d7684;
+  color: #89919f;
   font-variant-numeric: lining-nums tabular-nums;
 }
+
+/* --- Story card attribution ---
+   The outlets we actually read, linked. This used to arrive as a flat unlinked
+   sentence inside the rendered body; the story endpoint now withholds that line
+   so the card can render the same names once, as links, and swap in the fuller
+   treatment below when the story is contested. */
+.map-popup-sources-flat {
+  margin: 0.55rem 0 0.35rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #232936;
+  font-size: var(--size-xs);
+  line-height: 1.5;
+  color: #8d97a6;
+}
+
+.map-popup-sources-label {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.04em;
+  color: #767f8c;
+  margin-right: 0.4rem;
+}
+
+.map-popup-section {
+  margin: 0.55rem 0 0.35rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #232936;
+  font-size: var(--size-xs);
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.04em;
+  color: #767f8c;
+}
+
+.map-popup-sources {
+  list-style: none;
+  margin: 0 0 0.45rem;
+  padding: 0;
+  display: grid;
+  gap: 0.18rem;
+}
+
+/* Outlet · country · tone. The tone column is fixed-width and tabular so the
+   signs line up — the spread is the point, and a ragged column hides it. */
+.map-popup-source {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: var(--size-xs);
+}
+
+.map-popup-source-name {
+  color: #c3c9d3;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+a.map-popup-source-name {
+  text-decoration-color: #3d4655;
+  text-underline-offset: 0.2em;
+}
+
+.map-popup-source-cc {
+  color: #767f8c;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.04em;
+}
+
+.map-popup-source-tone {
+  min-width: 3.2em;
+  text-align: right;
+  color: #89919f;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* Warm for approving coverage, cool for critical — the same two-tone logic the
+   chokepoint rim uses, and the only place on the card colour carries meaning. */
+.map-popup-source-tone.is-pos { color: #9aab86; }
+.map-popup-source-tone.is-neg { color: #c08a6a; }
 
 .map-popup-link {
   font-size: 0.85rem;
@@ -2746,10 +2908,41 @@ body.map-page > footer .footer-social {
 
 .map-country-metric {
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: minmax(0, 1fr) auto minmax(1.5rem, 2.75rem) auto;
   align-items: baseline;
   gap: 0.5rem;
   font-size: 0.82rem;
+}
+
+/* The percentile strip. Same 2px track and accent fill as the country page's
+   `.metric-strip`, which is where this arithmetic already lives — a column of
+   26 rankings is only scannable with a bar beside it. */
+.map-country-metric-strip {
+  height: 2px;
+  align-self: center;
+  background: #232936;
+  overflow: hidden;
+}
+
+.map-country-metric-fill {
+  display: block;
+  height: 100%;
+  width: var(--fill, 0%);
+  background: #6f7c92;
+}
+
+/* Expanded: the whole profile, still anchored on the map. Wider than the
+   at-a-glance card because 26 label/value pairs need the room, and scrolling
+   inside the card rather than growing past the viewport. */
+.map-popup-body.map-popup-country.is-expanded {
+  width: min(30rem, 46vw);
+  /* Short enough that MapLibre can still place the card against its own
+     coordinate without running off the bottom of the window — the anchor is
+     the point of opening it here rather than in a modal. */
+  max-height: 52vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
 }
 
 .map-country-metric-label { color: #8d97a6; }
@@ -2758,7 +2951,7 @@ body.map-page > footer .footer-social {
   font-variant-numeric: lining-nums tabular-nums;
 }
 .map-country-metric-rank {
-  color: #5d6673;
+  color: #767f8c;
   font-size: var(--size-xs);
   font-variant-numeric: lining-nums tabular-nums;
   min-width: 3.4em;
@@ -2772,7 +2965,7 @@ body.map-page > footer .footer-social {
   font-size: var(--size-xs);
   font-variant-caps: all-small-caps;
   letter-spacing: 0.06em;
-  color: #6d7684;
+  color: #89919f;
 }
 
 .map-country-coverage {
@@ -2796,7 +2989,7 @@ body.map-page > footer .footer-social {
 
 .map-country-coverage-time {
   font-size: var(--size-xs);
-  color: #5d6673;
+  color: #767f8c;
   font-variant-numeric: lining-nums tabular-nums;
 }
 
@@ -2827,11 +3020,120 @@ body.map-page > footer .footer-social {
   text-wrap: balance;
 }
 
+/* A pinned sheet carries the full account — prose, a chart, related coverage —
+   and can outrun its 90vh. Peek deliberately cannot: it is held to a few nodes
+   so it never reaches `.map-sheet.is-peek`'s 55vh, where `overflow: hidden` on
+   .island-sheet would clip rather than scroll. */
+.map-sheet:not(.is-peek) .island-sheet-inner {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  max-height: calc(90vh - 3rem);
+}
+
 .map-sheet-lead {
   margin: 0 0 var(--space-xs);
   font-size: var(--size-sm);
   line-height: var(--leading-body);
   color: var(--text);
+}
+
+/* The focal number. The one thing a peek is for: magnitude, vessels/day,
+   fatalities — big enough to read without focusing, with its qualifier
+   alongside rather than under it so the pair reads as one statement. */
+.map-sheet-hero {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 var(--space-xs);
+}
+
+.map-sheet-hero-focal {
+  font-size: var(--size-h2);
+  line-height: 1.1;
+  font-weight: 600;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--text);
+}
+
+.map-sheet-hero-note {
+  font-size: var(--size-sm);
+  color: var(--text-dim);
+}
+
+/* Human exposure. Sits between the hero and the metadata because it is the
+   consequence of the number above it, not a footnote to it. */
+.map-sheet-stat {
+  margin: 0 0 var(--space-xs);
+  font-size: var(--size-sm);
+  line-height: var(--leading-body);
+  color: var(--text);
+}
+
+.map-sheet-stat strong {
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.map-sheet-figure {
+  margin: var(--space-xs) 0 var(--space-sm);
+}
+
+.map-sheet-figcaption {
+  margin-top: 0.3rem;
+  font-size: var(--size-xs);
+  color: var(--text-dim);
+}
+
+/* --- Sparkline ---
+   Colour comes from `currentColor` so the same markup works on the sheet
+   (theme-aware) and anywhere else the map might put it. */
+/* `height: auto` with a uniform viewBox — the old fixed 68px against
+   `preserveAspectRatio: none` stretched the axis labels 2.35x wide and drew
+   the end dot as an ellipse. */
+.map-spark {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: var(--text);
+}
+
+/* Gold for traffic falling away, cool for a surge — the same two colours the
+   chokepoint marker on the map is drawn in, so the chart reads as that mark
+   rather than as a generic line. */
+.map-spark.is-down { color: #c9a84c; }
+.map-spark.is-up { color: #5f9ea0; }
+
+.map-spark-line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.map-spark-area {
+  fill: currentColor;
+  opacity: 0.14;
+  stroke: none;
+}
+
+/* The 90-day average, drawn under the series. Dashed and dimmed: it is a
+   reference, and a solid rule at equal weight would read as a second series. */
+.map-spark-ref {
+  stroke: var(--text-dim);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+  opacity: 0.7;
+  vector-effect: non-scaling-stroke;
+}
+
+.map-spark-dot { fill: currentColor; }
+
+.map-spark-label {
+  fill: var(--text-dim);
+  font-size: 10px;
+  font-variant-numeric: lining-nums tabular-nums;
 }
 
 .map-sheet-meta,
@@ -2929,6 +3231,12 @@ body.map-page > footer .footer-social {
     gap: 0.6rem;
     background: none;
   }
+
+  /* The HUD wraps here and the canvas is down to 58vh, so the key is the first
+     thing to go: it explains marks the reader can still hover for the same
+     facts, and two rows of chrome over a half-height map costs more than it
+     tells. */
+  .map-key { display: none; }
 
   .map-status { top: 3.2rem; }
 

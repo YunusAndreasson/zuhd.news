@@ -139,6 +139,12 @@ const buildArticle = (filename) => {
   return {
     slug, meta, body, sources, concepts,
     bodyHtml: renderedHtml + sourcemark,
+    // The same prose without the flat `Sources:` line. The map's story card
+    // renders its own attribution from the `sources[]` array — linked, and on a
+    // contested story annotated with each outlet's country and tone — so it
+    // needs the body to stop short of naming them, or the card would print the
+    // same outlets twice under two different treatments.
+    bodyHtmlBare: renderedHtml,
     title: smartQuotes(meta.title || 'Untitled'),
     dateFormatted: formatDate(meta.date),
     sourceCount: sources.length,
@@ -867,8 +873,21 @@ for (const a of sorted) {
       category: a.meta.category || 'politics',
       location: a.meta.location || '',
       eventCoverage: Number(a.meta.eventCoverage) || 0,
-      bodyHtml: a.bodyHtml,
-      sources: a.sources.map((x) => ({ name: x.name, url: x.url || '' })),
+      bodyHtml: a.bodyHtmlBare ?? a.bodyHtml,
+      sentimentDivergence:
+        a.meta.sentimentDivergence != null ? Number(a.meta.sentimentDivergence) : null,
+      // `country` and `sentiment` were dropped here while feed.json (above)
+      // forwarded both. That left the map's story card able to say "230
+      // outlets" and nothing else — no names, no datelines, and no way to show
+      // *what* the outlets disagreed about on a story the map had already
+      // ringed as contested. The ring poses the question; these two fields are
+      // the only answer we hold.
+      sources: a.sources.map((x) => ({
+        name: x.name,
+        url: x.url || '',
+        country: x.country || null,
+        sentiment: x.sentiment != null ? Number(x.sentiment) : null,
+      })),
       ...(thread?.threadLabel ? { threadLabel: thread.threadLabel } : {}),
     }),
   )

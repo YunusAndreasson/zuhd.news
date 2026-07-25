@@ -12,9 +12,17 @@
 // zoom.
 
 import { Popup, type Map as MapLibreMap } from 'maplibre-gl'
-import type { MapPoint } from './types'
+import { CONTESTED_D, type MapPoint } from './types'
 import { CATEGORY_COLOUR } from './style'
 import { relativeTime } from './sheet'
+import * as fmt from './format'
+
+interface StorySource {
+  name: string
+  url: string
+  country?: string | null
+  sentiment?: number | null
+}
 
 interface Story {
   slug: string
@@ -25,8 +33,16 @@ interface Story {
   location: string
   eventCoverage: number
   bodyHtml: string
-  sources: Array<{ name: string; url: string }>
+  sentimentDivergence?: number | null
+  sources: StorySource[]
   threadLabel?: string
+}
+
+interface CountryMetric {
+  label: string
+  value: string | number
+  rank: number | null
+  total: number
 }
 
 /** `/api/country/{ISO2}.json` — the same payload the inline country tags use. */
@@ -36,7 +52,10 @@ interface CountryProfile {
   flag: string
   region: string
   metaLine: string
-  highlights: Array<{ label: string; value: string | number; rank: number | null; total: number }>
+  /** The six best-ranked metrics — what the card opens on. */
+  highlights: CountryMetric[]
+  /** Every metric, in page order. Read when the card expands in place. */
+  metrics?: CountryMetric[]
   coverage: Array<{ slug: string; title: string; dateFormatted: string; category: string }>
 }
 
@@ -63,11 +82,90 @@ const el = <K extends keyof HTMLElementTagNameMap>(
   return node
 }
 
-const kickerFor = (p: MapPoint, now: number) => {
+// A "how long has this been running" kicker was built here and then removed
+// after looking at what the ledger actually holds for the map's window: all 61
+// threaded stories carry `threadArticleCount: 1`, `threadDay` never exceeds 2,
+// and `threadLabel` is the upstream source headline rather than a thread name —
+// frequently describing a different story than ours ("Interview: How Tragedy
+// Changed the FDA" against "FDA Weighs Unapproved Peptides"). There is no
+// running-story signal in there to surface yet, and a kicker built on it would
+// be noise at best and wrong at worst. `build.js` still computes the fields; if
+// the ledger starts grouping properly this is a small change to reinstate.
+
+/** An outlet, linked to its own reporting when we hold the URL. */
+const sourceName = (s: StorySource): Node => {
+  if (!s.url) return el('span', 'map-popup-source-name', s.name)
+  const a = el('a', 'map-popup-source-name', s.name) as HTMLAnchorElement
+  a.href = s.url
+  a.target = '_blank'
+  a.rel = 'noopener noreferrer'
+  return a
+}
+
+/**
+ * Attribution — and, on a story the map has already ringed, the disagreement
+ * itself rather than a word for it.
+ *
+ * The build has always shipped a `country` and a `sentiment` per source; the
+ * story endpoint dropped both, so the card could show the ring but never what
+ * produced it. A contested story is the one place the tone numbers are worth
+ * printing: they are a machine estimate, and putting one beside every outlet on
+ * every story would read as a verdict we do not stand behind story by story.
+ * Where the ring is on, the spread *is* the story, and the outlet's country is
+ * usually the shape of it.
+ */
+const sourceBlock = (story: Story, p: MapPoint): Node[] => {
+  const sources = story.sources ?? []
+  if (!sources.length) return [el('p', 'map-popup-meta', story.dateFormatted)]
+
+  const divergence = story.sentimentDivergence ?? p.d ?? 0
+  const rated = sources.filter((s) => typeof s.sentiment === 'number')
+  const nodes: Node[] = []
+
+  if (divergence >= CONTESTED_D && rated.length >= 2) {
+    // Ordered by tone so the spread reads down the list rather than needing to
+    // be reconstructed from scattered numbers.
+    const ordered = [...rated].sort((a, b) => (b.sentiment as number) - (a.sentiment as number))
+    nodes.push(el('p', 'map-popup-section', 'Sources diverge'))
+    const list = el('ul', 'map-popup-sources')
+    for (const s of ordered) {
+      const li = el('li', 'map-popup-source')
+      li.append(sourceName(s))
+      if (s.country) li.append(el('span', 'map-popup-source-cc', s.country))
+      const v = s.sentiment as number
+      const tone = v > 0 ? ' is-pos' : v < 0 ? ' is-neg' : ''
+      li.append(el('span', `map-popup-source-tone${tone}`, fmt.sentiment(v)))
+      list.append(li)
+    }
+    nodes.push(list)
+  } else {
+    const line = el('p', 'map-popup-sources-flat')
+    line.append(el('span', 'map-popup-sources-label', 'Sources'))
+    sources.forEach((s, i) => {
+      if (i) line.append(', ')
+      line.append(sourceName(s))
+    })
+    nodes.push(line)
+  }
+
+  // `eventCoverage` is a different number from the list above — how many
+  // outlets carried the event at all, against the handful we read — and it is
+  // what the beacon's radius encodes, so the card is where that channel gets
+  // decoded.
+  const meta = [story.dateFormatted]
+  if (story.eventCoverage > 0) meta.push(`${story.eventCoverage} outlets covering`)
+  nodes.push(el('p', 'map-popup-meta', meta.join(' · ')))
+  return nodes
+}
+
+const kickerFor = (p: MapPoint, now: number, extra?: string | null) => {
   const kicker = el('p', 'map-popup-kicker')
   const dot = el('span', 'map-popup-dot')
   dot.style.background = CATEGORY_COLOUR[p.cat] ?? '#8a8a8a'
-  kicker.append(dot, [p.cat, p.loc || null, relativeTime(p.t, now)].filter(Boolean).join(' · '))
+  kicker.append(
+    dot,
+    [p.cat, p.loc || null, relativeTime(p.t, now), extra || null].filter(Boolean).join(' · '),
+  )
   return kicker
 }
 
@@ -98,9 +196,9 @@ export function createStoryPopup(map: MapLibreMap): StoryPopup {
     }
   }
 
-  const shell = (p: MapPoint, now: number, variant: string) => {
+  const shell = (p: MapPoint, now: number, variant: string, extra?: string | null) => {
     const root = el('div', `map-popup-body map-popup-${variant}`)
-    root.append(kickerFor(p, now), el('h2', 'map-popup-title', p.title))
+    root.append(kickerFor(p, now, extra), el('h2', 'map-popup-title', p.title))
     return root
   }
 
@@ -132,8 +230,31 @@ export function createStoryPopup(map: MapLibreMap): StoryPopup {
    * asked, and built from the same `/api/country/{ISO2}.json` the inline
    * country tags already use — one payload, two surfaces.
    */
-  const countryCard = (data: CountryProfile) => {
-    const root = el('div', 'map-popup-body map-popup-country')
+  const metricRow = (m: CountryMetric) => {
+    const li = el('li', 'map-country-metric')
+    li.append(
+      el('span', 'map-country-metric-label', m.label),
+      el('span', 'map-country-metric-value', String(m.value)),
+    )
+    // The percentile strip, same arithmetic the country page uses: rank 1 of
+    // 145 is a full bar, last is empty. A bar makes a column of rankings
+    // scannable in a way that 26 pairs of numbers never is.
+    const strip = el('span', 'map-country-metric-strip')
+    if (m.rank != null && m.total > 1) {
+      const pct = 1 - (m.rank - 1) / (m.total - 1)
+      const fill = el('span', 'map-country-metric-fill')
+      fill.style.setProperty('--fill', `${Math.round(Math.max(0, Math.min(1, pct)) * 100)}%`)
+      strip.append(fill)
+    }
+    li.append(strip)
+    // A rank is what turns a number into a comparison — "82 years" says
+    // little, "82 years · 6 / 145" says where that sits in the world.
+    li.append(el('span', 'map-country-metric-rank', m.rank != null ? fmt.rank(m.rank, m.total) : ''))
+    return li
+  }
+
+  const countryCard = (data: CountryProfile, expanded = false) => {
+    const root = el('div', `map-popup-body map-popup-country${expanded ? ' is-expanded' : ''}`)
 
     const kicker = el('p', 'map-popup-kicker')
     kicker.append(data.region || 'country')
@@ -146,28 +267,17 @@ export function createStoryPopup(map: MapLibreMap): StoryPopup {
 
     if (data.metaLine) root.append(el('p', 'map-popup-meta', data.metaLine))
 
-    if (data.highlights?.length) {
+    const shown = expanded ? (data.metrics ?? data.highlights) : data.highlights
+    if (shown?.length) {
       const list = el('ul', 'map-country-metrics')
-      for (const h of data.highlights) {
-        const li = el('li', 'map-country-metric')
-        li.append(
-          el('span', 'map-country-metric-label', h.label),
-          el('span', 'map-country-metric-value', String(h.value)),
-        )
-        // A rank is what turns a number into a comparison — "82 years" says
-        // little, "82 years · 6 / 145" says where that sits in the world.
-        if (h.rank != null) {
-          li.append(el('span', 'map-country-metric-rank', `${h.rank}/${h.total}`))
-        }
-        list.append(li)
-      }
+      for (const m of shown) list.append(metricRow(m))
       root.append(list)
     }
 
     if (data.coverage?.length) {
       root.append(el('p', 'map-country-section', 'Recent coverage'))
       const list = el('ul', 'map-country-coverage')
-      for (const a of data.coverage.slice(0, 5)) {
+      for (const a of data.coverage.slice(0, expanded ? 20 : 5)) {
         const li = el('li')
         const link = el('a', undefined, a.title) as HTMLAnchorElement
         link.href = `/a/${a.slug}`
@@ -177,9 +287,31 @@ export function createStoryPopup(map: MapLibreMap): StoryPopup {
       root.append(list)
     }
 
-    const full = el('a', 'map-popup-link', 'Full profile →') as HTMLAnchorElement
-    full.href = `/country/${data.iso2}`
-    root.append(full)
+    /**
+     * The full profile opens *here*, not at /country/{iso2}.
+     *
+     * A reader clicks a country because of something they can see on the map;
+     * sending them to a standalone page to answer that question throws away the
+     * view that raised it, and the way back is a browser button. The card grows
+     * instead. The `href` stays a real URL so cmd-click, middle-click and a
+     * JS-less browser still reach the canonical page — the same bargain the
+     * rail rows and the wordmark already make.
+     */
+    if (!expanded && (data.metrics?.length ?? 0) > (data.highlights?.length ?? 0)) {
+      const full = el('a', 'map-popup-link', 'Full profile →') as HTMLAnchorElement
+      full.href = `/country/${data.iso2}`
+      full.addEventListener('click', (e) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
+        e.preventDefault()
+        const expandedCard = countryCard(data, true)
+        popup.setDOMContent(expandedCard)
+        // The link that was just clicked sat at the bottom of the old content,
+        // and the browser keeps the focused element in view — which lands the
+        // reader at the *end* of the profile they just asked to see.
+        expandedCard.scrollTop = 0
+      })
+      root.append(full)
+    }
     return root
   }
 
@@ -208,10 +340,7 @@ export function createStoryPopup(map: MapLibreMap): StoryPopup {
         // article markdown, the same string the /a/{slug} page renders.
         body.innerHTML = story.bodyHtml
         root.append(body)
-
-        const meta: string[] = [story.dateFormatted]
-        if (story.eventCoverage > 0) meta.push(`${story.eventCoverage} outlets`)
-        root.append(el('p', 'map-popup-meta', meta.join(' · ')))
+        root.append(...sourceBlock(story, p))
       } else {
         // Only when the card itself cannot render does the standalone page
         // become worth offering — otherwise it holds nothing this does not.

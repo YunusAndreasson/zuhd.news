@@ -33,6 +33,11 @@ export function createFeed(opts: FeedOptions): Feed {
   head.className = 'map-feed-head'
   const count = document.createElement('span')
   count.className = 'map-feed-count'
+  // Changing a range or a category rewrites the map and this number, and
+  // says nothing out loud. Announcing the new count is the one piece of
+  // feedback that confirms the control did anything at all.
+  count.setAttribute('aria-live', 'polite')
+  count.setAttribute('aria-atomic', 'true')
   head.append(count)
 
   const list = document.createElement('ol')
@@ -89,9 +94,25 @@ export function createFeed(opts: FeedOptions): Feed {
       frag.append(li)
     }
 
+    // Nothing matched. A rail that just goes blank reads as a failure to load
+    // rather than a filter that excluded everything — and leaves the reader
+    // with no idea which of the three controls to move to get back.
+    if (!points.length) {
+      const empty = document.createElement('li')
+      empty.className = 'map-feed-empty'
+      empty.textContent = 'No stories in this slice. Widen the range, or turn a category back on.'
+      frag.append(empty)
+    }
+
     list.replaceChildren(frag)
     const n = points.length
-    count.textContent = `${n} ${n === 1 ? 'story' : 'stories'}`
+    // The count describes the map; the rail stops at MAX_ROWS. Saying "722
+    // stories" over a list that ends at 120 makes the reader think they have
+    // reached the end of the corpus, so the cap is stated rather than hidden.
+    count.textContent =
+      n > MAX_ROWS
+        ? `${n} stories · newest ${MAX_ROWS} listed`
+        : `${n} ${n === 1 ? 'story' : 'stories'}`
   }
 
   return {

@@ -37,6 +37,19 @@ describe('parseSeverityHero', () => {
     ).toEqual({ focal: 'M 7.4', secondary: '23 km deep' });
   });
 
+  // GDACS publishes depth to three decimals on most real events
+  // ("Depth:182.779km"), which is false precision for a hypocentre estimate and
+  // reads as noise next to a one-decimal magnitude.
+  it('rounds a fractional depth to whole kilometres', () => {
+    expect(
+      parseSeverityHero({
+        ...baseAlert,
+        eventtype: 'EQ',
+        severityText: 'Magnitude 5.1M, Depth:182.779km',
+      }),
+    ).toEqual({ focal: 'M 5.1', secondary: '183 km deep' });
+  });
+
   it('reduces TC severityText to "<n> km/h" + tier word', () => {
     expect(
       parseSeverityHero({

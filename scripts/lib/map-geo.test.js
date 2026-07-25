@@ -29,7 +29,8 @@ const entry = join(dir, 'entry.ts')
 writeFileSync(
   entry,
   `export * from '${join(ROOT, 'public/islands/_map/solar.ts')}'\n` +
-    `export * from '${join(ROOT, 'public/islands/_map/types.ts')}'\n`,
+    `export * from '${join(ROOT, 'public/islands/_map/types.ts')}'\n` +
+    `export * from '${join(ROOT, 'public/islands/_map/format.ts')}'\n`,
 )
 const bundlePath = join(dir, 'bundle.mjs')
 await build({
@@ -39,6 +40,10 @@ await build({
   format: 'esm',
   platform: 'neutral',
   logLevel: 'silent',
+  // `_map/types.ts` re-exports the payload types from shared/. Those are
+  // type-only and erased, but the alias has to match the island bundler's or
+  // this suite would be the one place `@shared` fails to resolve.
+  alias: { '@shared': join(ROOT, 'shared') },
 })
 const M = await import(bundlePath)
 process.on('exit', () => rmSync(dir, { recursive: true, force: true }))
@@ -338,4 +343,194 @@ test('every map point has a story card to open', (t) => {
     .filter((p) => !existsSync(join(ROOT, 'dist/api/story', `${p.slug}.json`)))
     .map((p) => p.slug)
   assert.equal(missing.length, 0, `story cards missing for: ${missing.slice(0, 5).join(', ')}`)
+})
+
+// ---------------------------------------------------------------------------
+// What the overlay layers encode
+// ---------------------------------------------------------------------------
+
+// The bug this pins: `alertlevel` was the only input to the disaster mark's
+// size, and 98 of 100 alerts are Green — so an M6.2 and an M4.5 drew as the
+// same dot. The fix ranks `severityValue` within each event type, which only
+// works while the pipeline keeps populating it. If it stops, the layer goes
+// flat again in a way nothing else would report.
+test('gdacs alerts carry a severity value that spreads within each event type', (t) => {
+  const path = join(ROOT, 'dist/api/gdacs.json')
+  if (!existsSync(path)) {
+    t.skip('dist/api/gdacs.json not built')
+    return
+  }
+  const { alerts } = JSON.parse(readFileSync(path, 'utf8'))
+  assert.ok(alerts.length > 0, 'expected at least one alert')
+
+  const byType = new Map()
+  for (const a of alerts) {
+    if (typeof a.severityValue !== 'number' || !(a.severityValue > 0)) continue
+    if (!byType.has(a.eventtype)) byType.set(a.eventtype, [])
+    byType.get(a.eventtype).push(a.severityValue)
+  }
+  assert.ok(byType.size > 0, 'no alert carries a usable severityValue')
+
+  // Floods legitimately publish no scalar, so this asserts per type rather than
+  // over the feed: every type that *does* report a magnitude must vary in it.
+  for (const [type, values] of byType) {
+    if (values.length < 3) continue
+    assert.ok(
+      new Set(values).size > 1,
+      `${type} severity collapsed to a single value across ${values.length} alerts`,
+    )
+  }
+})
+
+// The `details` map is keyed `${eventtype}:${eventid}`. Keying it on the bare
+// event id silently finds nothing — which is exactly how the population figures
+// went unread on the web map while the app rendered them.
+test('gdacs detail keys resolve to alerts', (t) => {
+  const path = join(ROOT, 'dist/api/gdacs.json')
+  if (!existsSync(path)) {
+    t.skip('dist/api/gdacs.json not built')
+    return
+  }
+  const { alerts, details } = JSON.parse(readFileSync(path, 'utf8'))
+  if (!details) return
+  const keys = new Set(alerts.map((a) => `${a.eventtype}:${a.eventid}`))
+  const orphans = Object.keys(details).filter((k) => !keys.has(k))
+  assert.equal(orphans.length, 0, `detail keys match no alert: ${orphans.slice(0, 3).join(', ')}`)
+})
+
+// UCDP records an event as a pair, and the sheet titles it with both. Dropping
+// `actor2` is what made a card read "6 killed · JNIM" — as though JNIM had lost
+// the six people it in fact killed.
+test('conflict events name both sides', (t) => {
+  const path = join(ROOT, 'dist/api/conflict.json')
+  if (!existsSync(path)) {
+    t.skip('dist/api/conflict.json not built')
+    return
+  }
+  const { events } = JSON.parse(readFileSync(path, 'utf8'))
+  assert.ok(events.length > 0, 'expected at least one event')
+  const missing = events.filter((e) => !e.actor1 || !e.actor2)
+  assert.ok(
+    missing.length / events.length < 0.05,
+    `${missing.length}/${events.length} conflict events name only one actor`,
+  )
+  // Civilian deaths never exceed the total — the card renders "N killed, all
+  // civilians" off this comparison.
+  const impossible = events.filter((e) => (e.deathsCivilians ?? 0) > (e.fatalities ?? 0))
+  assert.equal(impossible.length, 0, `${impossible.length} events report more civilians than dead`)
+})
+
+// The story card annotates a contested story with each outlet's country and
+// tone. Both fields exist on essentially every source in frontmatter, and both
+// were being dropped by this endpoint while feed.json forwarded them.
+test('story cards forward the per-source country the card renders', (t) => {
+  const mapPath = join(ROOT, 'dist/api/map.json')
+  if (!existsSync(mapPath)) {
+    t.skip('dist/api/map.json not built')
+    return
+  }
+  const { points } = JSON.parse(readFileSync(mapPath, 'utf8'))
+  let cards = 0
+  let withCountry = 0
+  for (const p of points) {
+    const path = join(ROOT, 'dist/api/story', `${p.slug}.json`)
+    if (!existsSync(path)) continue
+    const story = JSON.parse(readFileSync(path, 'utf8'))
+    if (!story.sources?.length) continue
+    cards++
+    if (story.sources.some((s) => s.country)) withCountry++
+    // The card renders its own attribution from `sources[]`, so the body must
+    // not also end in a flat "Sources: …" line or both would show.
+    assert.ok(
+      !/article-sources-flat/.test(story.bodyHtml || ''),
+      `${p.slug} still carries the flat sources line in bodyHtml`,
+    )
+  }
+  assert.ok(cards > 0, 'no story cards with sources')
+  assert.ok(
+    withCountry / cards > 0.9,
+    `only ${withCountry}/${cards} story cards forward a source country`,
+  )
+})
+
+// ---------------------------------------------------------------------------
+// Card formatting
+// ---------------------------------------------------------------------------
+
+test('the basemap labels territories with the name of the people whose land it is', (t) => {
+  const path = join(ROOT, 'dist/basemap/country-labels.geojson')
+  if (!existsSync(path)) {
+    t.skip('dist/basemap/country-labels.geojson not built')
+    return
+  }
+  const names = new Set(
+    JSON.parse(readFileSync(path, 'utf8')).features.map((f) => f.properties?.name).filter(Boolean),
+  )
+  // Natural Earth ships the coloniser's name; `displayCountryName` is what
+  // replaces it, and it is easy to bypass by reading `properties.name`
+  // straight off the source data.
+  for (const gone of ['Falkland Islands', 'Falkland Is.', 'New Caledonia', 'Greenland']) {
+    assert.ok(!names.has(gone), `basemap still labels "${gone}"`)
+  }
+  for (const kept of ['Malvinas', 'Kanaky', 'Kalaallit Nunaat']) {
+    assert.ok(names.has(kept), `basemap lost "${kept}"`)
+  }
+  // Two that are already right and must not be "tidied" back:
+  // Palestine is the merged historic geometry, and Western Sahara is the UN's
+  // term for a Non-Self-Governing Territory — not Morocco's "Southern Provinces".
+  assert.ok(names.has('Palestine'), 'basemap lost Palestine')
+  assert.ok(names.has('Western Sahara'), 'basemap lost Western Sahara')
+})
+
+test('a chokepoint delta reads against its baseline in the right direction', () => {
+  // `delta7vs90` is a SIGNED FRACTIONAL CHANGE — `last7 / baseline - 1` — not
+  // a ratio. This test used to assert the ratio reading, which is how the
+  // label shipped inverted: Panama running 9.1 container ships/day against a
+  // baseline of 8 (delta 0.141, i.e. +14%) printed as "86% below baseline",
+  // and a strait down 17% printed as an impossible "-117%". The companion
+  // test below reads the convention off the built payload so it cannot drift.
+  assert.equal(M.deltaLabel(0.141), '+14% vs 90-day baseline')
+  assert.equal(M.deltaLabel(0.052), '+5% vs 90-day baseline')
+  assert.equal(M.deltaLabel(-0.174), '-17% vs 90-day baseline')
+  // Big moves are stated as multiples: +428% is 5.3× the baseline.
+  assert.equal(M.deltaLabel(4.281), '5.3× the 90-day baseline')
+  // Traffic at 40% of normal is a 60% fall.
+  assert.equal(M.deltaLabel(-0.6), '60% below baseline')
+  assert.equal(M.deltaLabel(0), 'level with the 90-day baseline')
+  assert.equal(M.deltaLabel(Number.NaN), null)
+})
+
+test('the published chokepoint delta really is a signed fractional change', (t) => {
+  // The units are not a matter of taste — read them off the payload the sheet
+  // actually renders, so the label can never quietly invert again.
+  const path = join(ROOT, 'dist/api/chokepoints.json')
+  if (!existsSync(path)) {
+    t.skip('dist/api/chokepoints.json not built')
+    return
+  }
+  const raw = JSON.parse(readFileSync(path, 'utf8'))
+  const list = Array.isArray(raw) ? raw : (raw.chokepoints ?? Object.values(raw)[0])
+  let checked = 0
+  for (const cp of list) {
+    const f = cp.primaryField
+    const last7 = cp.last7Avg?.[f]
+    const base = cp.baseline90Avg?.[f]
+    const delta = cp.delta7vs90?.[f]
+    if (![last7, base, delta].every(Number.isFinite) || !base) continue
+    checked++
+    assert.ok(
+      Math.abs(delta - (last7 / base - 1)) < 0.02,
+      `${cp.id}: delta ${delta} is not ${(last7 / base - 1).toFixed(3)} (last7 ${last7} / base ${base})`,
+    )
+  }
+  assert.ok(checked > 5, `only ${checked} chokepoints carried a comparable delta`)
+})
+
+test('exposure figures abbreviate above ten thousand and stay exact below', () => {
+  assert.equal(M.population(124), '124')
+  assert.equal(M.population(9_319), '9,319')
+  assert.equal(M.population(25_712), '26K')
+  assert.equal(M.population(888_676), '889K')
+  assert.equal(M.population(9_319_328), '9.3M')
+  assert.equal(M.population(0), '')
 })

@@ -26,19 +26,22 @@ import { createSheet, type Sheet } from './_map/sheet'
 import { createStoryPopup, type StoryPopup } from './_map/popup'
 import { nightPolygon } from './_map/solar'
 import {
+  CONTESTED_D,
   decayAt,
-  type Chokepoint,
   type ConflictEvent,
   type GdacsAlert,
+  type GdacsDetail,
+  type MapChokepoint,
   type MapPoint,
 } from './_map/types'
+import { detailKey } from '@shared/gdacs'
 
-// Long enough that sweeping the pointer across a dense field does not fire a
-// flight per marker, short enough that a deliberate hover feels immediate.
-const HOVER_DWELL_MS = 320
 const DETAIL_ZOOM = 3.2
 /** Where the 1:10m coastline replaces 1:50m — see the zoomend handler. */
 const ULTRA_ZOOM = 5.5
+
+/** A Web Mercator world is this wide at zoom 0, and doubles each level. */
+const TILE_PX = 512
 
 /** Time-range presets, in hours. `null` means the whole 14-day window. */
 const RANGES: Array<[string, number | null]> = [
@@ -72,8 +75,16 @@ const SUN_TICK_MS = 120_000
  */
 const UNKNOWN_COVERAGE_W = 0.28
 
-/** Above this sentiment spread across outlets, a story is drawn as contested. */
-const CONTESTED_D = 0.35
+/**
+ * Disaster mark size for an alert whose severity does not reduce to a number.
+ *
+ * Floods publish `severityValue: 0` with an empty unit at this endpoint — GDACS
+ * has no single scalar for a flood the way it has a magnitude for a quake. Same
+ * rule as `UNKNOWN_COVERAGE_W` above: unknown is drawn as unknown, not as
+ * smallest, because "we have no scale for this" and "this is the mildest event
+ * on the map" are different statements.
+ */
+const UNKNOWN_SEVERITY_MAG = 0.3
 
 const json = async <T>(url: string, signal?: AbortSignal): Promise<T | null> => {
   try {
@@ -106,9 +117,9 @@ const catColour = (fallback: string) =>
  *
  * `clusterProperties` sums a per-category counter as MapLibre builds the tree,
  * so a cluster knows its own composition without the island re-deriving it.
- * This rides on the disc's rim: the fill is spent on heat (below), and the ring
- * says a cluster over the Gulf is economy where one over Kyiv is politics —
- * before this every cluster was the same grey disc and the category channel
+ * This rides on the disc's rim — the only colour a cluster carries now — and
+ * says that a cluster over the Gulf is economy where one over Kyiv is politics.
+ * Before it, every cluster was the same grey disc and the category channel
  * vanished entirely the moment two points merged.
  */
 const clusterCategory = (): ExpressionSpecification =>
@@ -124,23 +135,21 @@ const clusterCategory = (): ExpressionSpecification =>
   ] as unknown as ExpressionSpecification
 
 /**
- * Cluster heat.
+ * How many steps the cluster domain is cut into.
  *
- * A count is a quantity, and quantity is the one thing a flat disc cannot say —
- * the reader has to stop and parse the digits on every marker before knowing
- * which ones matter. Running the fill up a cold-to-hot ramp means the eye sorts
- * the map before it reads a single number: a quiet corner sits back in slate,
- * and the busiest capital burns pale gold and pulls the eye first.
+ * This used to be the length of a seven-colour cold-to-hot ramp that filled
+ * each disc. The ramp is gone: a cluster already prints its own count, so
+ * colouring it by that same count said the number twice — once in a numeral
+ * anyone can read exactly, once in a hue nobody can decode to better than
+ * "warm". Three blurred rings and a kernel-density field underneath said it a
+ * third and fourth time. Four glow systems stacked on one coordinate is how
+ * London, New York and Islamabad turned into gold blobs.
+ *
+ * What survives is the *domain*: the rescaling that keeps the size and label
+ * curves spending their whole range on the visible set. That was always the
+ * load-bearing idea; the colour was decoration on top of it.
  */
-const CLUSTER_HEAT = [
-  '#3c4560',
-  '#5d5560',
-  '#8a6250',
-  '#b47540',
-  '#d78f36',
-  '#f0b94e',
-  '#fadf94',
-]
+const CLUSTER_STEPS = 7
 
 /**
  * Where the ramp's colours land, for a given busiest-cluster size.
@@ -158,7 +167,7 @@ const CLUSTER_HEAT = [
  * what a naive rescale produces the moment the domain gets small.
  */
 const heatStops = (busiest: number): number[] => {
-  const n = CLUSTER_HEAT.length
+  const n = CLUSTER_STEPS
   const top = Math.max(n + 1, Math.round(busiest))
   const out: number[] = []
   let prev = 1
@@ -168,14 +177,6 @@ const heatStops = (busiest: number): number[] => {
   }
   return out
 }
-
-const clusterHeat = (stops: number[]): ExpressionSpecification =>
-  [
-    'interpolate',
-    ['linear'],
-    ['get', 'point_count'],
-    ...stops.flatMap((s, i) => [s, CLUSTER_HEAT[i]]),
-  ] as unknown as ExpressionSpecification
 
 /** Disc radius across the same domain. */
 const clusterRadius = (stops: number[], scale = 1): ExpressionSpecification =>
@@ -190,35 +191,25 @@ const clusterRadius = (stops: number[], scale = 1): ExpressionSpecification =>
   ] as unknown as ExpressionSpecification
 
 /**
- * The blurred rings that give a cluster its falloff, widest first.
+ * Rim weight across the domain.
  *
- * Two rings read as two discs. `circle-blur` fades a circle across a band
- * proportional to its radius, so anything below ~1.6 keeps a legible edge, and
- * stacking a tight bright one under a wide faint one draws exactly the hard
- * ring it was meant to avoid — most obvious over New York and London, where the
- * counts are highest. Three rings, each blurred past its own radius and none
- * of them opaque, sum to a gradient with no edge of its own. The real
- * kernel-density field underneath (`story-heat`) does the rest.
+ * With the fill gone, the outline is what carries magnitude alongside the
+ * numeral — a hairline on a pair of stories, a firm ring on a capital. It stays
+ * a stroke rather than becoming a fill again so the disc reads as a container
+ * for its number, not as a blob with a number on it.
  */
-const CLUSTER_RINGS = [
-  { id: 'story-cluster-bloom', spread: 5.2, alpha: 0.09, blur: 1 },
-  { id: 'story-cluster-mid', spread: 3.1, alpha: 0.11, blur: 1 },
-  { id: 'story-cluster-glow', spread: 1.85, alpha: 0.14, blur: 1 },
-]
-
-/** Faint clusters barely bloom; the ramp is spent on the hot end. */
-const ringOpacity = (stops: number[], alpha: number): ExpressionSpecification =>
+const clusterStroke = (stops: number[]): ExpressionSpecification =>
   [
     'interpolate',
     ['linear'],
     ['get', 'point_count'],
-    stops[0], alpha * 0.3,
-    stops[2], alpha * 0.7,
-    stops[4], alpha,
-    stops[6], alpha * 1.25,
+    stops[0], 1,
+    stops[2], 1.3,
+    stops[4], 1.7,
+    stops[6], 2.2,
   ] as unknown as ExpressionSpecification
 
-/** Label size, and the count at which it flips from light to dark type. */
+/** Label size across the same domain. */
 const countSize = (stops: number[]): ExpressionSpecification =>
   [
     'interpolate',
@@ -229,8 +220,6 @@ const countSize = (stops: number[]): ExpressionSpecification =>
     stops[4], 14.5,
     stops[6], 17,
   ] as unknown as ExpressionSpecification
-
-const countFlip = (stops: number[]) => stops[3]
 
 export function mount(container: HTMLElement, props: { basemap?: string } = {}) {
   /** Cache key for the basemap files — see `basemapUrl`. */
@@ -255,7 +244,58 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   filters.setAttribute('role', 'group')
   filters.setAttribute('aria-label', 'Filter by category')
 
-  hud.append(ranges, filters)
+  /**
+   * The key.
+   *
+   * The map spends three channels on every beacon — radius for how widely a
+   * story was covered, alpha for how long ago, a ring for sources that disagree
+   * — and until now said what none of them meant. The category chips were the
+   * only legend, so the two channels carrying the most ink were undecodable and
+   * a reader could only conclude that some dots are bigger than others.
+   *
+   * Glyphs rather than sentences, because the thing being explained is a shape;
+   * the full sentence lives in `title` for anyone who wants it. Same type and
+   * colour as the filter chips — a key that needed its own visual language
+   * would be admitting the map has too many.
+   */
+  const KEY_ITEMS: Array<{ id: string; label: string; hint: string; svg: string }> = [
+    {
+      id: 'size',
+      label: 'coverage',
+      hint: 'Beacon size shows how widely a story was covered, ranked across the window',
+      svg: '<circle cx="4" cy="8" r="1.7"/><circle cx="12" cy="8" r="4"/>',
+    },
+    {
+      id: 'age',
+      label: 'recency',
+      hint: 'Beacons fade as the story ages — half-light every three days',
+      svg: '<circle cx="4" cy="8" r="3" opacity="0.28"/><circle cx="12" cy="8" r="3"/>',
+    },
+    {
+      id: 'contested',
+      label: 'contested',
+      hint: 'A ring marks a story the sources covering it disagree sharply about',
+      svg: '<circle cx="8" cy="8" r="2.4"/><circle cx="8" cy="8" r="5" fill="none" stroke="currentColor" stroke-width="1"/>',
+    },
+  ]
+
+  const key = document.createElement('div')
+  key.className = 'map-key'
+  key.setAttribute('role', 'group')
+  key.setAttribute('aria-label', 'What the beacons mean')
+  const keyItems = new Map<string, HTMLElement>()
+  for (const item of KEY_ITEMS) {
+    const span = document.createElement('span')
+    span.className = 'map-key-item'
+    span.title = item.hint
+    span.innerHTML =
+      `<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="currentColor">${item.svg}</svg>` +
+      `<span>${item.label}</span>`
+    keyItems.set(item.id, span)
+    key.append(span)
+  }
+
+  hud.append(ranges, filters, key)
 
   /**
    * Back to the whole world.
@@ -291,7 +331,9 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   let pointBySlug = new Map<string, MapPoint>()
   let leads: Record<string, string> = {}
   let gdacs: GdacsAlert[] = []
-  let chokepoints: Chokepoint[] = []
+  /** Population exposure per alert, keyed `${eventtype}:${eventid}`. */
+  let gdacsDetails: Record<string, GdacsDetail> = {}
+  let chokepoints: MapChokepoint[] = []
   let conflicts: ConflictEvent[] = []
   /** Newest event in the conflict feed — see `conflictWindowLabel`. */
   let conflictNewest = 0
@@ -307,20 +349,20 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   const abort = new AbortController()
 
   /**
-   * The heat ramp's current domain.
+   * The cluster domain — the counts at which disc size, rim weight and label
+   * size take each of their steps.
    *
    * Derived from how many stories are showing, not from the corpus: switching
    * to 24h drops the busiest cluster from ~140 to single digits, and a fixed
-   * domain would render that whole view in the ramp's two coldest colours. The
+   * domain would leave that whole view at the bottom of every curve. The
    * proportion is empirical — across ranges, the largest cluster at world zoom
    * runs a little under a fifth of the visible set.
    */
   let stops = heatStops(150)
-  const busiestFor = (visible: number) => Math.max(CLUSTER_HEAT.length + 1, visible * 0.19)
+  const busiestFor = (visible: number) => Math.max(CLUSTER_STEPS + 1, visible * 0.19)
 
   let hoverSlug: string | null = null
   let openSlug: string | null = null
-  let dwellTimer: number | null = null
   /** Which overlay marker the hover sheet is currently previewing. */
   let peekId: string | null = null
   /** ISO2 of the country under the pointer, driving the land highlight. */
@@ -341,15 +383,46 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   container.append(feed.element)
 
   // --- Map ----------------------------------------------------------------
+  /**
+   * The zoom at which exactly one Earth spans the canvas.
+   *
+   * A Web Mercator world is 512px at zoom 0 and doubles each level, so the zoom
+   * that fits a viewport is `log2(width / 512)`. The map used to open on a
+   * fixed 1.35, which put the world at ~1300px — narrower than most desktop
+   * viewports, so MapLibre drew a second copy alongside it and the map opened
+   * showing western Europe twice. Deriving the zoom instead means the globe
+   * fills the frame at whatever width it is given, and the duplicate has
+   * nowhere to appear.
+   *
+   * Floored at 1.35 so a narrow window zooms out no further than the old
+   * default.
+   *
+   * There used to be a 2.4 ceiling here, to stop an ultrawide monitor opening
+   * "halfway into a continent" — but 2.4 puts the world at 2702px, so any
+   * canvas wider than that got the second copy back, and Australia appeared
+   * twice at the right-hand edge. Coverage has to win over framing: a fit zoom
+   * is by definition the whole world, and the duplicate is a map that lies
+   * about where things are. Anything that wants a gentler opening frame has to
+   * come from padding or latitude, not from a zoom the world can't fill.
+   */
+  const worldFitZoom = () => {
+    const w = mapEl.clientWidth || window.innerWidth || 1280
+    return Math.max(1.35, Math.log2(w / TILE_PX))
+  }
+
   /** The view the map opens on, and the one the wordmark returns you to. */
-  const HOME_VIEW = { center: [12, 22] as [number, number], zoom: 1.35 }
+  const HOME_VIEW = { center: [12, 22] as [number, number], zoom: worldFitZoom() }
 
   const map = new MapLibreMap({
     container: mapEl,
     style: buildStyle(basemapV),
     center: HOME_VIEW.center,
     zoom: HOME_VIEW.zoom,
-    minZoom: 1,
+    // The floor is the zoom at which the world still covers the canvas, not a
+    // constant. Below it MapLibre draws a second copy of the world rather than
+    // letterboxing, so a fixed `1` was an invitation to see Australia twice.
+    // Kept in step with the viewport by `onResize`.
+    minZoom: HOME_VIEW.zoom,
     maxZoom: 9,
     attributionControl: false,
     // `preserveDrawingBuffer` was set here for a share-image export that was
@@ -360,25 +433,42 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     // Rotation on a situational map is disorientation, not a feature.
     dragRotate: false,
     pitchWithRotate: false,
-    renderWorldCopies: true,
+    // One Earth. `worldFitZoom` sizes the opening view so a single world fills
+    // the canvas, and without this MapLibre would still repeat it the moment a
+    // reader zoomed out or panned past a pole — a situational map that shows
+    // the same conflict twice, in two places, is lying about where things are.
+    renderWorldCopies: false,
   })
   map.touchZoomRotate?.disableRotation()
 
-  // The rail covers the left edge, so the map's true centre is not the
-  // viewport's. Telling MapLibre once means every flyTo, easeTo and cluster
-  // expansion lands in the visible half — the old code paid for this with a
-  // hand-tuned pixel offset on the one call that had been noticed.
+  // Chrome that covers the canvas moves the map's true centre away from the
+  // viewport's, and telling MapLibre once means every flyTo, easeTo and cluster
+  // expansion lands where the reader can see it.
+  //
+  // This used to inset by the rail's full width whenever the viewport was wide
+  // enough to have one. But the rail is grid column 1 and the canvas is column
+  // 2 — they sit side by side and have not overlapped since the layout became a
+  // grid, so the map was being pushed half the rail's width to the right to
+  // dodge something that was never on top of it. Harmless while the world was
+  // narrower than the canvas; the moment it fits exactly, it shows up as a
+  // gutter down one side and a continent clipped off the other. Measuring the
+  // actual intersection is right in both layouts, and stays right if the rail
+  // ever becomes an overlay again.
   const applyPadding = () => {
-    // The style can finish loading after teardown, and on a narrow viewport
-    // there is no rail to compensate for at all.
+    // The style can finish loading after teardown.
     if (!mounted) return
-    const railed = window.matchMedia?.('(min-width: 60rem)').matches ?? false
-    map.setPadding({ top: 0, bottom: 0, right: 0, left: railed ? feed.element.offsetWidth : 0 })
+    const rail = feed.element.getBoundingClientRect()
+    const canvas = mapEl.getBoundingClientRect()
+    const overlap = Math.max(0, Math.min(rail.right, canvas.right) - Math.max(rail.left, canvas.left))
+    const covers = rail.bottom > canvas.top && rail.top < canvas.bottom && overlap > 0
+    map.setPadding({ top: 0, bottom: 0, right: 0, left: covers ? overlap : 0 })
   }
 
   // --- Data shaping -------------------------------------------------------
   const visiblePoints = (): MapPoint[] => {
     const from = rangeHours === null ? -Infinity : scrubNow - rangeHours * 3_600_000
+    // Tell the rail which slice of itself is on the map.
+    timeline?.setWindow(rangeHours === null ? null : from)
     return points.filter((p) => p.t <= scrubNow && p.t >= from && enabled.has(p.cat))
   }
 
@@ -388,14 +478,15 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       type: 'Feature' as const,
       // Decay is baked into the feature so MapLibre can drive opacity from a
       // plain property — style expressions have no exponential.
+      // Only what a style expression reads or a hit-test needs. `title`, `loc`,
+      // `c` and `n` used to ride along here too, but nothing ever read them
+      // back — a marker resolves through `pointBySlug` — and this is the one
+      // layer re-serialised every time the scrubber moves, across a window
+      // that runs to ~720 points.
       properties: {
         slug: p.slug,
-        title: p.title,
         cat: p.cat,
-        loc: p.loc,
         t: p.t,
-        c: p.c,
-        n: p.n,
         a: Math.round((0.35 + 0.65 * decayAt(p.t, scrubNow)) * 100) / 100,
         // Percentile rank from the build, or the neutral "unknown" size.
         w: p.w ?? UNKNOWN_COVERAGE_W,
@@ -421,24 +512,76 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   // moves them with `setFilter`. That is a style-side predicate — no GeoJSON
   // rebuild, no re-parse on the worker, no re-index — where `setData` per frame
   // meant re-serialising several hundred features for every pixel of drag.
-  const gdacsCollection = () => ({
-    type: 'FeatureCollection' as const,
-    features: gdacs.map((a) => {
-      const t = Date.parse(a.fromDate)
-      return {
-        type: 'Feature' as const,
-        properties: {
-          id: a.eventid,
-          level: a.alertlevel || 'Green',
-          name: a.name,
-          kind: a.eventtype || '',
-          // Undated alerts sort to the beginning of time so they never vanish.
-          t: Number.isFinite(t) ? t : 0,
-        },
-        geometry: { type: 'Point' as const, coordinates: [a.lng, a.lat] },
+  /**
+   * How big a disaster is, on a scale the map can draw.
+   *
+   * The alert level was doing this job alone, and it cannot: 98 of the 100
+   * alerts in a typical feed are Green, so every mark came out the same size
+   * and the layer said only "something happened here". Meanwhile `severityValue`
+   * is populated on every single alert and was never read — an M6.2 and an M4.5
+   * drew identically, as did a 51,317-hectare fire and a 5,147-hectare one.
+   *
+   * The values are not comparable across event types (magnitude, km/h, hectares
+   * — and floods carry no scalar at all), so each type is ranked against its own
+   * kind. That is the same percentile trick `build.js` already applies to story
+   * coverage, and for the same reason: it spends the whole 0..1 range on real
+   * distinctions instead of letting one unit's arithmetic swamp another's.
+   *
+   * Alert level keeps the colour. Severity and human-impact tier are different
+   * facts and each deserves its own channel.
+   */
+  const severityRanker = (alerts: GdacsAlert[]) => {
+    const byType = new Map<string, number[]>()
+    for (const a of alerts) {
+      const v = a.severityValue
+      if (typeof v !== 'number' || !Number.isFinite(v) || v <= 0) continue
+      const bucket = byType.get(a.eventtype) ?? []
+      bucket.push(v)
+      byType.set(a.eventtype, bucket)
+    }
+    for (const bucket of byType.values()) bucket.sort((x, y) => x - y)
+
+    return (a: GdacsAlert): number => {
+      const v = a.severityValue
+      if (typeof v !== 'number' || !Number.isFinite(v) || v <= 0) return UNKNOWN_SEVERITY_MAG
+      const known = byType.get(a.eventtype)
+      // One event of a type is its own whole distribution; a percentile over a
+      // single sample is meaningless, so it reads as unknown rather than as
+      // "the largest earthquake" on the strength of being the only one.
+      if (!known || known.length < 3) return UNKNOWN_SEVERITY_MAG
+      let lo = 0
+      let hi = known.length
+      while (lo < hi) {
+        const mid = (lo + hi) >> 1
+        if (known[mid] < v) lo = mid + 1
+        else hi = mid
       }
-    }),
-  })
+      return Math.round((lo / (known.length - 1)) * 100) / 100
+    }
+  }
+
+  const gdacsCollection = () => {
+    const rank = severityRanker(gdacs)
+    return {
+      type: 'FeatureCollection' as const,
+      features: gdacs.map((a) => {
+        const t = Date.parse(a.fromDate)
+        return {
+          type: 'Feature' as const,
+          properties: {
+            id: a.eventid,
+            level: a.alertlevel || 'Green',
+            name: a.name,
+            kind: a.eventtype || '',
+            mag: rank(a),
+            // Undated alerts sort to the beginning of time so they never vanish.
+            t: Number.isFinite(t) ? t : 0,
+          },
+          geometry: { type: 'Point' as const, coordinates: [a.lng, a.lat] },
+        }
+      }),
+    }
+  }
 
   /**
    * Conflict events, sized by fatalities.
@@ -513,7 +656,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   }
 
   /**
-   * Rescales the heat ramp to the visible set.
+   * Rescales the cluster domain to the visible set.
    *
    * Only the paint properties are rewritten, and only when the domain actually
    * moves — the expressions are recompiled but no data is touched, which is
@@ -525,19 +668,13 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     if (next.every((v, i) => v === stops[i])) return
     stops = next
     map.setPaintProperty('story-clusters', 'circle-radius', clusterRadius(stops) as never)
-    map.setPaintProperty('story-clusters', 'circle-color', clusterHeat(stops) as never)
-    for (const ring of CLUSTER_RINGS) {
-      map.setPaintProperty(ring.id, 'circle-radius', clusterRadius(stops, ring.spread) as never)
-      map.setPaintProperty(ring.id, 'circle-color', clusterHeat(stops) as never)
-      map.setPaintProperty(ring.id, 'circle-opacity', ringOpacity(stops, ring.alpha) as never)
-    }
+    map.setPaintProperty('story-clusters', 'circle-stroke-width', [
+      'case',
+      ['==', ['get', 'contested'], 1],
+      ['+', clusterStroke(stops), 0.8],
+      clusterStroke(stops),
+    ] as never)
     map.setLayoutProperty('story-cluster-count', 'text-size', countSize(stops) as never)
-    map.setPaintProperty('story-cluster-count', 'text-color', [
-      'step', ['get', 'point_count'], '#eef2f8', countFlip(stops), '#1a1206',
-    ] as never)
-    map.setPaintProperty('story-cluster-count', 'text-halo-color', [
-      'step', ['get', 'point_count'], 'rgba(6,8,12,0.55)', countFlip(stops), 'rgba(255,241,214,0.4)',
-    ] as never)
   }
 
   const applyRefresh = () => {
@@ -546,6 +683,11 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     if (!mounted) return
     const visible = visiblePoints()
     feed.setItems(visible, scrubNow)
+    // The contested ring is rare — a few percent of the corpus — so its key
+    // entry only stands when there is one on screen to decode. A legend for a
+    // mark that is not showing is the clutter the rest of this file avoids.
+    const contested = keyItems.get('contested')
+    if (contested) contested.hidden = !visible.some((p) => (p.d ?? 0) >= CONTESTED_D)
     if (!layersReady) return
     applyClusterScale(visible.length)
     // Stories are the one layer whose *features* change with the scrub head:
@@ -684,69 +826,29 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       type: 'circle',
       source: 'gdacs',
       paint: {
-        'circle-radius': ['match', ['get', 'level'], 'Red', 9, 'Orange', 7, 5],
+        // Two facts, two channels. Size carries severity — the magnitude, wind
+        // speed or burn area ranked against its own event type — and the alert
+        // level adds a fixed bump on top, so an Orange event still reads louder
+        // than a Green one of the same physical size. Sizing on level alone
+        // drew 98 identical dots.
+        'circle-radius': [
+          '+',
+          ['interpolate', ['linear'], ['get', 'mag'], 0, 3.4, 1, 8.5],
+          ['match', ['get', 'level'], 'Red', 3, 'Orange', 1.5, 0],
+        ],
         'circle-color': 'rgba(0,0,0,0)',
         'circle-stroke-width': ['match', ['get', 'level'], 'Red', 1.8, 'Orange', 1.4, 1],
         'circle-stroke-color': '#b8763f',
-        'circle-stroke-opacity': ['match', ['get', 'level'], 'Red', 0.95, 'Orange', 0.8, 0.4],
-      },
-    })
-
-    /**
-     * The density field the discs sit on.
-     *
-     * MapLibre's `heatmap` type is a real kernel-density estimate, not circles
-     * with a blur on them: every story contributes a falloff and the overlaps
-     * sum, so a region reads hot because of how much is happening across it
-     * rather than because one marker happens to be large. That is the gradient
-     * the flat discs were missing.
-     *
-     * It is capped at zoom 5 and fades out before it. A density field is a
-     * claim about a *region*, and once you are close enough to see individual
-     * towns the region is smaller than the kernel — past that point it stops
-     * describing anything and just tints the ground.
-     *
-     * Weight comes from the cluster count where there is one. Supercluster
-     * hands back either a cluster or its members at a given zoom, never both,
-     * so counting `point_count` for the former and 1 for the latter sums the
-     * corpus exactly once.
-     */
-    map.addLayer({
-      id: 'story-heat',
-      type: 'heatmap',
-      source: 'stories',
-      maxzoom: 5,
-      paint: {
-        'heatmap-weight': [
-          'interpolate',
-          ['linear'],
-          ['coalesce', ['get', 'point_count'], 1],
-          1, 0.12,
-          10, 0.4,
-          40, 0.75,
-          140, 1,
+        // Green is 98% of the feed, so a flat 0.4 there made the whole layer
+        // one weight. Within Green, severity drives presence instead.
+        'circle-stroke-opacity': [
+          'case',
+          ['==', ['get', 'level'], 'Red'],
+          0.95,
+          ['==', ['get', 'level'], 'Orange'],
+          0.85,
+          ['interpolate', ['linear'], ['get', 'mag'], 0, 0.32, 1, 0.8],
         ],
-        'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 0, 0.9, 5, 1.6],
-        // Transparent at the bottom so empty ocean stays black — a ramp that
-        // starts opaque paints the whole world its coldest colour.
-        'heatmap-color': [
-          'interpolate',
-          ['linear'],
-          ['heatmap-density'],
-          0, 'rgba(10,12,18,0)',
-          0.12, 'rgba(52,62,92,0.30)',
-          0.3, 'rgba(104,84,92,0.42)',
-          0.5, 'rgba(158,104,72,0.5)',
-          0.7, 'rgba(206,138,56,0.55)',
-          0.88, 'rgba(238,180,74,0.6)',
-          1, 'rgba(252,226,158,0.68)',
-        ],
-        // Wider than feels right on paper: a kernel narrower than the marker
-        // it sits under reads as a halo on the marker rather than as a field
-        // over the region, which is the whole distinction the layer exists to
-        // draw.
-        'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 0, 34, 3, 58, 5, 88],
-        'heatmap-opacity': ['interpolate', ['linear'], ['zoom'], 0, 0.9, 3.5, 0.75, 5, 0],
       },
     })
 
@@ -825,37 +927,25 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       filter: ['has', 'point_count'],
       paint: {
         'circle-radius': clusterRadius(stops),
-        // Fill is heat, rim is category: how much, and of what.
-        'circle-color': clusterHeat(stops),
-        'circle-opacity': ['max', 0.6, ['*', ['get', 'amax'], 0.95]],
-        'circle-stroke-width': ['case', ['==', ['get', 'contested'], 1], 2, 1.4],
+        // A container, not a blob. The disc is the map's own ground colour at
+        // most of its opacity — enough to hold the numeral clear of coastlines
+        // and other markers underneath, and nothing more. Magnitude is the
+        // numeral and the rim; the fill is not a third telling of it.
+        'circle-color': MAP_COLOURS.ocean,
+        'circle-opacity': 0.82,
+        // Rim is category — of what — and its weight is how much.
+        'circle-stroke-width': [
+          'case',
+          ['==', ['get', 'contested'], 1],
+          ['+', clusterStroke(stops), 0.8],
+          clusterStroke(stops),
+        ],
         'circle-stroke-color': clusterCategory(),
-        'circle-stroke-opacity': 0.9,
+        // Recency still fades the rim, so a cluster of week-old stories sits
+        // back from one that formed this morning.
+        'circle-stroke-opacity': ['max', 0.55, ['*', ['get', 'amax'], 0.95]],
       },
     })
-
-    // Two blurred rings under every cluster, wide-and-faint over
-    // tight-and-warmer. One ring gives a disc a soft edge; two give it a
-    // falloff — the light drops off in stages the way it does on a heat map
-    // instead of ending at a single radius. Both are cheap: a blurred circle
-    // is one GPU-side fragment op, not a sprite.
-    for (const ring of CLUSTER_RINGS) {
-      map.addLayer(
-        {
-          id: ring.id,
-          type: 'circle',
-          source: 'stories',
-          filter: ['has', 'point_count'],
-          paint: {
-            'circle-radius': clusterRadius(stops, ring.spread),
-            'circle-color': clusterHeat(stops),
-            'circle-blur': ring.blur,
-            'circle-opacity': ringOpacity(stops, ring.alpha),
-          },
-        },
-        'story-clusters',
-      )
-    }
 
     map.addLayer({
       id: 'story-cluster-count',
@@ -875,22 +965,14 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
         'text-allow-overlap': true,
         'text-ignore-placement': true,
       },
-      // The ramp runs dark slate to pale gold, so the label has to cross over
-      // with it. It steps rather than blends: interpolating the type through
-      // the same midpoint as the fill put mid-sized counts in mid-brown on
-      // mid-brown, the one place on the ramp where the number stopped reading.
-      // `step` gives every disc a label at full contrast on one side or the
-      // other, and the switch lands at 18 — just below where the fill turns
-      // properly warm.
+      // One colour now. The label used to step from light type to dark halfway
+      // up the ramp, because the fill it sat on ran from dark slate to pale
+      // gold and no single colour read on both. The disc is one dark tone at
+      // every count, so the number is simply light — no crossover, no midpoint
+      // where it stopped reading.
       paint: {
-        'text-color': ['step', ['get', 'point_count'], '#eef2f8', countFlip(stops), '#1a1206'],
-        'text-halo-color': [
-          'step',
-          ['get', 'point_count'],
-          'rgba(6,8,12,0.55)',
-          countFlip(stops),
-          'rgba(255,241,214,0.4)',
-        ],
+        'text-color': '#eef2f8',
+        'text-halo-color': 'rgba(6,8,12,0.65)',
         'text-halo-width': 0.8,
       },
     })
@@ -944,8 +1026,14 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     // article replaces it once the map settles.
     popup?.preview(p, leads, scrubNow)
 
+    // Close enough to place the story in its region, not so close that the
+    // region is all that is left. Jumping the world view straight to 3.6 threw
+    // away the context the map exists to give — at that zoom a European story
+    // fills the frame with one country and the reader has lost the continent.
+    // 2.5 keeps neighbours and coastline in view; a reader who wants the street
+    // can scroll.
     const z = map.getZoom()
-    const target = z < 3.6 ? 3.6 : Math.min(z + 0.5, 7)
+    const target = z < 2.5 ? 2.5 : Math.min(z + 0.4, 6)
 
     flying = true
     let opened = false
@@ -969,7 +1057,12 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       offset: [0, 110],
       duration: 1150,
       curve: 1.35,
-      essential: true,
+      // No `essential: true`. In MapLibre that flag means "animate anyway,
+      // whatever the reader's motion preference" — and a 1.15s flight across
+      // the globe is the exact motion `prefers-reduced-motion` exists to
+      // suppress. Without the flag MapLibre still makes the move, it just
+      // arrives instantly, which is what someone who asked for less motion
+      // wants: the destination, not the journey.
     })
   }
 
@@ -983,13 +1076,6 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     // so nothing recompiles and nothing else on the layer is touched.
     if (previous) map.setFeatureState({ source: 'stories', id: previous }, { hover: false })
     if (slug) map.setFeatureState({ source: 'stories', id: slug }, { hover: true })
-  }
-
-  const clearDwell = () => {
-    if (dwellTimer !== null) {
-      clearTimeout(dwellTimer)
-      dwellTimer = null
-    }
   }
 
   const clearPeekClose = () => {
@@ -1011,22 +1097,39 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   const resetView = () => {
     openSlug = null
     peekId = null
-    clearDwell()
     clearPeekClose()
     popup?.close()
     sheet.close()
     feed.highlight(null)
-    map.easeTo({ ...HOME_VIEW, bearing: 0, pitch: 0, duration: 800, essential: true })
+    // As above: reduced motion turns this into an instant return, not a
+    // suppressed one.
+    map.easeTo({ ...HOME_VIEW, bearing: 0, pitch: 0, duration: 800 })
   }
 
-  /** Shows the reset control only when the camera is somewhere else. */
+  /**
+   * Shows the reset control only when the camera is somewhere else.
+   *
+   * The comparison is against the centre the map can actually *reach*, not the
+   * one we asked for. With `renderWorldCopies` off the world exactly fills the
+   * canvas at the home zoom, so MapLibre constrains the centre back to 0 and
+   * `HOME_VIEW.center[0]` of 12 is never honoured. Comparing against 12 made
+   * the delta a permanent 12° — past the 8° threshold — so the button was on
+   * screen at rest and stayed on after a reset had already finished, which is
+   * the exact opposite of an affordance that means "you have moved".
+   */
+  const homeCenterLng = () => {
+    const world = TILE_PX * 2 ** HOME_VIEW.zoom
+    const slack = Math.max(0, ((world - (mapEl.clientWidth || world)) / 2 / world) * 360)
+    return Math.max(-slack, Math.min(slack, HOME_VIEW.center[0]))
+  }
+
   const syncResetButton = () => {
     if (!mounted) return
     const c = map.getCenter()
     const moved =
       map.getZoom() > HOME_VIEW.zoom + 0.15 ||
       Math.abs(c.lat - HOME_VIEW.center[1]) > 4 ||
-      Math.abs(((c.lng - HOME_VIEW.center[0] + 540) % 360) - 180) > 8
+      Math.abs(((c.lng - homeCenterLng() + 540) % 360) - 180) > 8
     resetBtn.hidden = !moved
   }
 
@@ -1074,17 +1177,17 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       map.getCanvas().style.cursor = 'pointer'
       const p = pointFor(f)
       if (!p) return
+      // Hover previews, and stops there. It used to start a dwell timer that
+      // flew the camera in after 320ms, which meant the map moved on its own
+      // while the pointer was only passing over — a reader crossing a dense
+      // area got dragged somewhere they had not asked to go, and the way back
+      // was a separate gesture. Committing to a story is a click now, from the
+      // beacon or from the rail.
       setHoverSlug(p.slug)
-      clearDwell()
-      dwellTimer = window.setTimeout(() => {
-        dwellTimer = null
-        if (hoverSlug === p.slug) flyToStory(p)
-      }, HOVER_DWELL_MS)
     })
 
     map.on('mouseleave', 'story-points', () => {
       map.getCanvas().style.cursor = ''
-      clearDwell()
       setHoverSlug(null)
     })
 
@@ -1148,7 +1251,6 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       const f = e.features?.[0]
       const p = f ? pointFor(f) : null
       if (p) {
-        clearDwell()
         flyToStory(p)
       }
     })
@@ -1158,7 +1260,6 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       const f = e.features?.[0]
       const id = f?.properties?.cluster_id
       if (!f || id == null) return
-      clearDwell()
       expandCluster(Number(id), (f.geometry as GeoJSON.Point).coordinates as [number, number])
     })
 
@@ -1188,7 +1289,9 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     const showFor = (id: unknown, pin: boolean) => {
       const key = String(id)
       const alert = gdacs.find((a) => a.eventid === key)
-      if (alert) return sheet.showGdacs(alert, pin)
+      // `details` is keyed by `${eventtype}:${eventid}`, which is why the bare
+      // event id never found anything — see `detailKey` in shared/gdacs.
+      if (alert) return sheet.showGdacs(alert, gdacsDetails[detailKey(alert)] ?? null, pin)
       const cp = chokepoints.find((c) => c.id === key)
       if (cp) return sheet.showChokepoint(cp, pin)
       const ev = conflicts.find((c) => c.id === key)
@@ -1241,18 +1344,40 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
      * 110m's 176 — mostly islands and real inlets — so it is worth having and
      * emphatically not worth loading for a reader who never zooms in.
      */
+    /**
+     * Swaps the coastline source up a tier.
+     *
+     * MapLibre 6 dropped the URL form of `GeoJSONSource.setData` — it now
+     * takes a parsed object only, and hands a string straight to the worker
+     * as data, where it silently becomes nothing. No throw, no `error` event,
+     * no request: the tier swap had been dead since the v6 upgrade and every
+     * reader was getting the 110m coastline at maximum zoom while the 50m and
+     * 10m files shipped in the build and were never once fetched. Fetching it
+     * here and passing the object is also what lets the abort signal and the
+     * mounted check apply.
+     */
+    const upgradeCoastline = async (file: string) => {
+      const data = await json<GeoJSON.FeatureCollection>(
+        basemapUrl(file, basemapV),
+        abort.signal,
+      )
+      if (!data || !mounted) return
+      ;(map.getSource('countries') as GeoJSONSource | undefined)?.setData(data)
+    }
+
     map.on('zoomend', () => {
       const z = map.getZoom()
-      const src = () => map.getSource('countries') as GeoJSONSource | undefined
       if (!ultraLoaded && z >= ULTRA_ZOOM) {
+        // Set before awaiting, or a second zoomend starts the same 5.8 MB
+        // fetch again.
         ultraLoaded = true
         detailLoaded = true
-        src()?.setData(basemapUrl('countries-ultra.geojson', basemapV))
+        void upgradeCoastline('countries-ultra.geojson')
         return
       }
       if (!detailLoaded && z >= DETAIL_ZOOM) {
         detailLoaded = true
-        src()?.setData(basemapUrl('countries-detail.geojson', basemapV))
+        void upgradeCoastline('countries-detail.geojson')
       }
     })
 
@@ -1285,6 +1410,33 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   }
 
   const buildFilters = () => {
+    const catButtons = new Map<string, HTMLButtonElement>()
+
+    /**
+     * Marks the last lit category as the one that cannot be turned off.
+     *
+     * The map refuses to go blank, which is right — but it used to refuse in
+     * silence: you clicked the only category still on and absolutely nothing
+     * happened, with no hint that the click had been understood and declined.
+     * `aria-disabled` (not `disabled`, which would drop it out of the tab
+     * order) plus a reason on hover says so, and `.is-locked` lets the CSS
+     * stop pretending it is still a live toggle.
+     */
+    const syncLock = () => {
+      const sole = enabled.size === 1
+      for (const [cat, b] of catButtons) {
+        const locked = sole && enabled.has(cat)
+        b.classList.toggle('is-locked', locked)
+        if (locked) {
+          b.setAttribute('aria-disabled', 'true')
+          b.title = 'At least one category stays on'
+        } else {
+          b.removeAttribute('aria-disabled')
+          b.removeAttribute('title')
+        }
+      }
+    }
+
     for (const cat of CATEGORY_ORDER) {
       const btn = document.createElement('button')
       btn.type = 'button'
@@ -1294,15 +1446,17 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       btn.textContent = cat
       btn.setAttribute('aria-pressed', 'true')
       btn.addEventListener('click', () => {
+        // Never let the map go blank — the last category stays lit.
+        if (enabled.has(cat) && enabled.size === 1) return
         if (enabled.has(cat)) enabled.delete(cat)
         else enabled.add(cat)
-        // Never let the map go blank — the last category stays lit.
-        if (enabled.size === 0) enabled.add(cat)
         const on = enabled.has(cat)
         btn.classList.toggle('is-on', on)
         btn.setAttribute('aria-pressed', String(on))
+        syncLock()
         refresh()
       })
+      catButtons.set(cat, btn)
       filters.append(btn)
     }
 
@@ -1386,11 +1540,17 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
 
   const loadLayers = async () => {
     const [g, c] = await Promise.all([
-      json<{ alerts: GdacsAlert[] }>('/api/gdacs.json', abort.signal),
-      json<{ chokepoints: Chokepoint[] }>('/api/chokepoints.json', abort.signal),
+      json<{ alerts: GdacsAlert[]; details?: Record<string, GdacsDetail> }>(
+        '/api/gdacs.json',
+        abort.signal,
+      ),
+      json<{ chokepoints: MapChokepoint[] }>('/api/chokepoints.json', abort.signal),
     ])
     if (!mounted) return
     if (g?.alerts) gdacs = g.alerts
+    // Shipped in the same blob the alerts arrive in — no extra request, and it
+    // was already on the wire before anything read it.
+    if (g?.details) gdacsDetails = g.details
     if (c?.chokepoints) chokepoints = c.chokepoints
     setOverlayData()
   }
@@ -1451,14 +1611,35 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   const clockTimer = window.setInterval(updateClock, 30_000)
   const sunTimer = window.setInterval(drawNight, SUN_TICK_MS)
 
-  const onResize = () => applyPadding()
+  const onResize = () => {
+    // MapLibre sizes its drawing buffer from the container, and nothing else
+    // here tells it the container moved — `applyPadding` and `worldFitZoom`
+    // both *read* dimensions, they don't apply them. Without this the canvas
+    // kept whatever size it was built at: widen the window and the map went on
+    // drawing into a 900px corner of a 1544px frame, with dead space beside it.
+    map.resize()
+    applyPadding()
+    // "Whole world" has to keep meaning the whole world after a resize, or the
+    // reset lands on a view sized for a window that no longer exists.
+    HOME_VIEW.zoom = worldFitZoom()
+    // Widening the window leaves the camera at a zoom the new canvas is too
+    // big for, and a world narrower than its canvas comes back doubled. Moving
+    // the floor re-clamps the live camera as well, so the fix applies to the
+    // view the reader is already looking at and not just to the next reset.
+    map.setMinZoom(HOME_VIEW.zoom)
+    syncResetButton()
+  }
   window.addEventListener('resize', onResize, { passive: true })
 
   void loadCore()
 
   const onKeyDown = (e: KeyboardEvent) => {
     const target = e.target as HTMLElement | null
-    if (target && target.matches('input, textarea, select')) return
+    // `e.target` is only an Element when something focusable has focus — a
+    // key event delivered straight to `document` has no `matches`, and the
+    // bare call threw a TypeError out of the global handler, taking Escape
+    // down with it.
+    if (target?.matches?.('input, textarea, select')) return
     if (e.key !== 'Escape') return
     // Escape closes what is open; with nothing open it means "get me out of
     // here", which on a map is the whole world.
@@ -1481,7 +1662,6 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     clearInterval(clockTimer)
     clearInterval(sunTimer)
     if (refreshFrame) cancelAnimationFrame(refreshFrame)
-    clearDwell()
     clearPeekClose()
     window.removeEventListener('resize', onResize)
     document.removeEventListener('keydown', onKeyDown)

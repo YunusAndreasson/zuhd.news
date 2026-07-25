@@ -4,6 +4,27 @@
 // replaced that renderer, but the payloads are unchanged — they are the build's
 // published output — so the types outlived the drawing code and belong on their
 // own rather than inside whichever module happens to read them.
+//
+// The three overlay feeds are *not* declared here. `/api/gdacs.json`,
+// `/api/chokepoints.json` and `/api/conflict.json` are the same blobs the app
+// reads, and `shared/types.ts` already describes them in full — down to the
+// `${eventtype}:${eventid}` keying of the GDACS detail map and the units on
+// `maxWave24hM`. What used to sit here was a hand-narrowed copy: it declared
+// ten of GdacsAlert's nineteen fields and omitted `severityValue`, which is the
+// number that tells an M6.2 from an M4.5. Re-exporting the real types means the
+// map can only fall behind the payload if the payload's own type does.
+export type {
+  Chokepoint,
+  ChokepointCounts,
+  ChokepointWeather,
+  ConflictEvent,
+  GdacsAlert,
+  GdacsDetail,
+  GdacsEventType,
+  VesselField,
+} from '@shared/types'
+
+import type { Chokepoint } from '@shared/types'
 
 /** A story from `/api/map.json`. */
 export interface MapPoint {
@@ -29,50 +50,21 @@ export interface MapPoint {
   d?: number
 }
 
-/** A GDACS disaster alert from `/api/gdacs.json`. */
-export interface GdacsAlert {
-  eventid: string
-  eventtype: string
-  alertlevel: string
-  name: string
-  country: string
-  lat: number
-  lng: number
-  fromDate: string
-  severityText?: string
-  reportUrl?: string
-  narrative?: string
-}
-
-/** A maritime chokepoint from `/api/chokepoints.json`. */
-export interface Chokepoint {
-  id: string
-  name: string
-  blurb: string
-  lat: number
-  lng: number
-  primaryField: string
-  delta7vs90?: Record<string, number>
-  relatedArticles?: Array<{ slug: string; title: string }>
-}
-
-/** A UCDP conflict event from `/api/conflict.json`. */
-export interface ConflictEvent {
-  id: string
-  eventDate: string
-  family: string
-  subEvent: string
-  actor1: string
-  actor2?: string
-  country: string
-  location: string
-  lat: number
-  lng: number
-  fatalities: number
-  notes?: string
-  conflictName?: string
-  region?: string
-  numSources?: number
+/**
+ * A chokepoint as *this* endpoint serves it.
+ *
+ * `scripts/build.js` enriches the shared snapshot with matching zuhd coverage
+ * before writing `/api/chokepoints.json`, so the web payload is a superset of
+ * the one the app reads. The extra field lives here rather than in `shared/`
+ * because only the web build produces it.
+ */
+export interface MapChokepoint extends Chokepoint {
+  relatedArticles?: Array<{
+    slug: string
+    title: string
+    date?: string
+    dateFormatted?: string
+  }>
 }
 
 /**
@@ -93,3 +85,14 @@ export const decayAt = (t: number, now: number) => {
   const ageHours = Math.max(0, (now - t) / 3_600_000)
   return Math.exp(-DECAY_LAMBDA * ageHours)
 }
+
+/**
+ * Where a beacon's ring turns on: the sentiment spread across the outlets
+ * covering a story.
+ *
+ * Lives here rather than in the island because both the canvas (which draws
+ * the ring) and the story card (which has to explain it) need the same
+ * threshold, and a ring that appears without the card accounting for it is
+ * the map asking a question it then refuses to answer.
+ */
+export const CONTESTED_D = 0.35

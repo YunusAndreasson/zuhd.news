@@ -96,7 +96,10 @@ await build({
   format: 'esm',
   platform: 'neutral',
   logLevel: 'silent',
-  alias: { 'maplibre-gl': stubPath },
+  // Mirrors the island bundler's own alias (scripts/build/islands.js) — the
+  // map island pulls the GDACS severity parser from shared/ so the app and the
+  // web sheet reduce `severityText` to the same focal number.
+  alias: { 'maplibre-gl': stubPath, '@shared': join(ROOT, 'shared') },
 })
 process.on('exit', () => rmSync(dir, { recursive: true, force: true }))
 
