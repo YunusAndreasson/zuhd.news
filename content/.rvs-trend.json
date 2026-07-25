@@ -1,22 +1,5 @@
 [
   {
-    "ts": "2026-05-05T08:45:54.072Z",
-    "cycleId": "2026-05-05T08-45",
-    "cycleHour": "08",
-    "rvs": 70.5,
-    "clusters": {
-      "picking": null,
-      "writing": 95.45,
-      "briefing": 72.19,
-      "sourcing": 47.47,
-      "coverage": 58
-    },
-    "articleCount": 11,
-    "briefCount": 11,
-    "guardrailFailures": [],
-    "degenerate": false
-  },
-  {
     "ts": "2026-05-05T12:41:15.701Z",
     "cycleId": "2026-05-05T12-41",
     "cycleHour": "12",
@@ -6591,6 +6574,28 @@
     "articleCount": 12,
     "briefCount": 0,
     "guardrailFailures": [],
+    "degenerate": false
+  },
+  {
+    "ts": "2026-07-25T17:20:10.403Z",
+    "cycleId": "2026-07-25T17-20",
+    "cycleHour": "17",
+    "schema": 2,
+    "rvs": 71.56,
+    "clusters": {
+      "picking": null,
+      "writing": 83.33,
+      "briefing": null,
+      "sourcing": 34.87,
+      "coverage": 92.56
+    },
+    "articleCount": 9,
+    "briefCount": 0,
+    "guardrailFailures": [
+      "article 2026-07-25-syria-bus-crash-deir-ezzor-road-postwar-infrastructure has source with country:null",
+      "category economy below floor 3 (got 2)",
+      "category science below floor 2 (got 1)"
+    ],
     "degenerate": false
   }
 ]
