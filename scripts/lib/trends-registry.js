@@ -365,6 +365,23 @@ export const INDICATORS = [
     sourceLabel: 'CoinGecko · PAXG (gold-backed)',
   },
   {
+    id: 'xag',
+    label: 'Silver (Kinesis)',
+    unit: '$/oz',
+    source: 'crypto',
+    // Same trick as PAXG above: the metal itself has no free daily series we
+    // can reach, but a fully-backed token tracking it does. KAG is one troy
+    // ounce of allocated silver — checked against PAXG on the same day, the
+    // gold/silver ratio comes out at 71.5, which is where it should be. If that
+    // ratio ever goes somewhere absurd, this symbol has stopped tracking the
+    // metal and should be dropped rather than quietly reported.
+    seriesId: 'kinesis-silver',
+    cadence: 'daily',
+    topicTags: ['silver', 'bullion', 'precious metals', 'safe haven', 'industrial metals', 'solar', 'reserves', 'inflation hedge'],
+    defaultHighlight: 'last',
+    sourceLabel: 'CoinGecko · KAG (silver-backed)',
+  },
+  {
     id: 'xmr',
     label: 'Monero',
     unit: '$',

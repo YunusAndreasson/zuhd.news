@@ -51,7 +51,16 @@
   --font-sans: 'Source Sans 3', system-ui, sans-serif;
 
   /* Extended scale: major-third up to h1, perfect-fourth above for
-     archetype pages (article/country/entity) that need editorial mass. */
+     archetype pages (article/country/entity) that need editorial mass.
+
+     The two steps below `--size-sm` exist for the chrome, which had no scale at
+     all: ten distinct control types in the map HUD were all `--size-xs`, so a
+     legend and the control it explains were set at the same rank and nothing in
+     the strip could be read as subordinate to anything else. The rule now is
+     three rungs — a control you press is 12px, a readout is 12px tabular, and a
+     caption or a legend that explains one is 11px. */
+  --size-3xs: 0.625rem;    /* 10px — the floor: sparkline axis labels */
+  --size-2xs: 0.6875rem;   /* 11px — captions and legends */
   --size-xs: 0.75rem;      /* 12px */
   --size-sm: 0.875rem;     /* 14px */
   --size-base: 1.25rem;    /* 20px */
@@ -72,6 +81,16 @@
   --leading-heading: 1.2;
   --leading-tight: 1.1;
   --leading-tabular: 1.0;
+
+  /* Tracking. There were fifty raw `letter-spacing` literals in this file and
+     no token, of which 0.03 / 0.04 / 0.05 / 0.06 em were one idea measured four
+     times — and the four sat side by side in the map HUD, so controls set at the
+     same size rendered at visibly different widths. One rule: small-caps chrome
+     gets `--track-wide`, genuine all-caps gets `--track-caps`, display type gets
+     `--track-tight`, everything else gets none. */
+  --track-tight: -0.01em;
+  --track-wide: 0.04em;
+  --track-caps: 0.08em;
 
   /* ---------------------------------------------------------------- Colour
      Four roles, and every colour in the file belongs to exactly one of them:
@@ -308,8 +327,15 @@ a {
 }
 
 /* --- Shared label pattern --- */
-/* Small caps with case-sensitive punctuation for labels */
-.page-title, .category, .map-filter, .about-body h2 {
+/* Small caps with case-sensitive punctuation for labels.
+
+   `.map-filter` used to be in this list, which is how a map control came to
+   take its type from the rule that styles article-page category labels — and
+   how it acquired a `letter-spacing: 0.05em` it then overrode 2,400 lines
+   later, leaving a live-looking declaration that did nothing. Editing one
+   restyled the other. The chip now restates the four properties it actually
+   wants, in its own block. */
+.page-title, .category, .about-body h2 {
   font-variant-caps: all-small-caps;
   font-variant-numeric: lining-nums tabular-nums;
   font-feature-settings: "case" 1;
@@ -2753,34 +2779,68 @@ body.map-page > footer .footer-social {
   gap: 0.85rem;
 }
 
+/* A chip is a toggle and a legend at once, so both jobs have to be legible.
+
+   ── Off is an ink step, not opacity ────────────────────────────────────────
+   This used to be `opacity: 0.5` over `--map-ink-muted`, which composites to
+   #484d56 against the ocean: **2.33:1**, well under AA, on the label naming
+   what the map is currently showing. `colour-system.test.js` could not see it
+   because opacity is not a colour literal — which is exactly why it survived.
+   Off is now `--map-ink-dim`, the tested floor, at full strength, and the mark
+   beside it goes hollow. Two channels saying "off", both of them legible.
+
+   ── The mark is the layer's own silhouette ────────────────────────────────
+   It was a 6px disc for everything, with a hollow variant — so `disasters` and
+   `straits` were the same ring and `markets` was a grey ring while the layer
+   drew olive and terracotta ticks. The chip row is the map's legend and it was
+   teaching one wrong thing and two nothings. The SVG is now built from the same
+   vertex table `map.addImage` rasterises (`_map/glyphs.ts`), so a chip cannot
+   disagree with the mark it names, and `currentColor`/`--cat` keeps every hue
+   in TypeScript where `colour-system.test.js` requires it. */
 .map-filter {
   background: none;
   border: none;
   padding: 0;
   font: inherit;
   font-size: var(--size-xs);
-  letter-spacing: 0.04em;
-  color: var(--map-ink-muted);
+  font-variant-caps: all-small-caps;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "case" 1;
+  font-weight: 600;
+  letter-spacing: var(--track-wide);
+  color: var(--map-ink-dim);
   cursor: pointer;
-  opacity: 0.5;
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  transition: opacity var(--dur-fast), color var(--dur-fast);
+  transition: color var(--dur-fast);
 
-  &::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--cat, currentColor);
+  & svg {
+    width: 13px;
+    height: 13px;
+    flex: 0 0 auto;
+    overflow: visible;
+    color: var(--map-ink-dim);
+    transition: color var(--dur-fast);
   }
 
-  &:hover { opacity: 0.85; }
+  &:hover { color: var(--map-ink-soft); }
 
   &.is-on {
-    opacity: 1;
-    color: var(--map-ink-strong);
+    color: var(--map-ink);
+
+    & svg { color: var(--cat, currentColor); }
+  }
+
+  /* Two silhouettes, because this layer's meaning is a two-valued scale and no
+     single tone stands for it. The chip that showed a flat grey ring was the
+     one chip on the strip that taught the reader nothing at all. */
+  &[data-kind='layer'][data-mark='market'] {
+    gap: 0.28rem;
+
+    & svg { width: 11px; height: 11px; }
+    &.is-on svg:first-of-type { color: var(--cat-up, currentColor); }
+    &.is-on svg:nth-of-type(2) { color: var(--cat-down, currentColor); }
   }
 
   /* The last category on cannot be switched off, or the map goes blank. It
@@ -2789,17 +2849,16 @@ body.map-page > footer .footer-social {
   &.is-locked {
     cursor: default;
   }
-
-  &.is-locked:hover { opacity: 1; }
 }
 
-/* Layer toggles carry their layer's colour, like the category chips, and echo
-   the shape of the mark they switch: a hollow ring for the disaster and strait
-   layers, a filled disc for conflict. `--cat` is set per chip from
-   OVERLAY_COLOUR, so the chip cannot drift from the paint. */
-.map-filter[data-kind='layer'][data-mark='ring']::before {
-  background: none;
-  border: 1px solid var(--cat, currentColor);
+/* The constraint belongs to the group, not to whichever chip happens to be the
+   last one lit — which is where it lived, as a `title` on a moving target that
+   a touch reader could never reach. */
+.map-filters-note {
+  font-size: var(--size-2xs);
+  font-variant-caps: all-small-caps;
+  letter-spacing: var(--track-wide);
+  color: var(--map-ink-dim);
 }
 
 /* The timeline slider styled its own focus ring and nothing else in the map
@@ -2988,8 +3047,12 @@ body.map-page > footer .footer-social {
   right: 0;
   bottom: 0;
   z-index: 2;
-  padding: 0 1.1rem 0.6rem;
-  background: linear-gradient(to top, color-mix(in srgb, var(--map-ground) 92%, transparent) 60%, transparent);
+  padding: 0.5rem 1.1rem 0.6rem;
+  /* Holds to full strength further up than it used to. The head row is now
+     three lines rather than one — the exchange tally, the money ribbon, and the
+     time readout — and the old ramp began fading before the top of them, so
+     small type was landing on Patagonia and the South Atlantic islands. */
+  background: linear-gradient(to top, color-mix(in srgb, var(--map-ground) 94%, transparent) 78%, transparent);
   pointer-events: auto;
 }
 
@@ -2999,13 +3062,16 @@ body.map-page > footer .footer-social {
   justify-content: flex-end;
   gap: var(--space-sm);
   font-size: var(--size-xs);
-  color: var(--map-ink-muted);
+  /* Was `opacity: 0.8` over `--map-ink-muted`, which is the same composite-and-
+     hope trick the filter chips were doing. An ink step says the same thing and
+     stays at its tested contrast — which matters more now that the markets
+     strip shares this row and would otherwise have inherited the dimming. */
+  color: var(--map-ink-dim);
   font-variant-numeric: lining-nums tabular-nums;
   margin-bottom: 0.15rem;
-  opacity: 0.8;
 }
 
-.map-timeline.is-scrubbed .map-timeline-head { opacity: 1; }
+.map-timeline.is-scrubbed .map-timeline-head { color: var(--map-ink-muted); }
 .map-timeline.is-scrubbed .map-timeline-readout { color: var(--map-ink); }
 
 .map-timeline-live {
@@ -3015,10 +3081,194 @@ body.map-page > footer .footer-social {
   font: inherit;
   font-size: var(--size-xs);
   font-variant-caps: all-small-caps;
+  letter-spacing: var(--track-wide);
   color: var(--brand);
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 0.2em;
+}
+
+/* --- The markets strip ---
+   Thirty marks on a map answer "where". They cannot answer "how is the world
+   moving", because that is a question about the set, and reading a set off a
+   map means hovering it thirty times. So the layer gets a readout as well as
+   marks: the counts, the two strongest movers each way, and how many exchanges
+   are actually open.
+
+   It sits at the left-hand end of the scrubber's head — which is
+   `justify-content: flex-end`, so two thirds of that row were empty on every
+   viewport — rather than becoming a third bar of HUD over the map. That row is
+   already the map's readout line, the one saying what time it is now; this says
+   what the world's exchanges did in the same present tense. And it is outside
+   the phone disclosure, which is the point: a readout you have to tap to reveal
+   is not a readout. */
+.map-markets {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.05rem;
+  margin-right: auto;
+  min-width: 0;
+}
+
+.map-markets[hidden] { display: none; }
+
+.map-markets-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.1rem 0.7rem;
+  min-width: 0;
+}
+
+/* Money, metal and crypto sit one rung below the exchanges: same vocabulary,
+   quieter, because the exchanges are the layer the map is actually drawing and
+   these are context for them. */
+.map-markets-row.is-ribbon {
+  gap: 0.1rem 0.55rem;
+
+  &:empty { display: none; }
+}
+
+.map-markets-label {
+  font-size: var(--size-2xs);
+  font-variant-caps: all-small-caps;
+  letter-spacing: var(--track-wide);
+  font-weight: 600;
+  color: var(--map-ink-dim);
+}
+
+.map-markets-tally {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  color: var(--map-ink-body);
+}
+
+.map-markets-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: var(--size-xs);
+  font-variant-numeric: lining-nums tabular-nums;
+
+  &.is-pos { color: var(--map-pos); }
+  &.is-neg { color: var(--map-neg); }
+}
+
+.map-markets-tick {
+  display: inline-flex;
+
+  & svg {
+    width: 9px;
+    height: 9px;
+    overflow: visible;
+  }
+}
+
+.map-markets-movers {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.map-markets-mover {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: var(--size-xs);
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--map-ink-muted);
+  cursor: pointer;
+  white-space: nowrap;
+
+  &.is-pos .map-markets-tick { color: var(--map-pos); }
+  &.is-neg .map-markets-tick { color: var(--map-neg); }
+  &.is-pos .map-markets-mover-pct { color: var(--map-pos); }
+  &.is-neg .map-markets-mover-pct { color: var(--map-neg); }
+
+  &:hover { color: var(--map-ink); }
+
+  &:focus-visible {
+    outline: 1px solid var(--map-focus);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+.map-markets-mover-name {
+  font-variant-caps: all-small-caps;
+  letter-spacing: var(--track-wide);
+}
+
+.map-markets-quote {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: var(--size-2xs);
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--map-ink-dim);
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover .map-markets-quote-name { color: var(--map-ink); }
+
+  &:focus-visible {
+    outline: 1px solid var(--map-focus);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  &.is-pos .map-markets-tick, &.is-pos .map-markets-quote-pct { color: var(--map-pos); }
+  &.is-neg .map-markets-tick, &.is-neg .map-markets-quote-pct { color: var(--map-neg); }
+
+  & .map-markets-tick svg { width: 8px; height: 8px; }
+}
+
+.map-markets-quote-name {
+  font-variant-caps: all-small-caps;
+  letter-spacing: var(--track-wide);
+  color: var(--map-ink-muted);
+  transition: color var(--dur-fast);
+}
+
+/* A flag reads instantly where a three-letter code does not, and costs one
+   character of width. Sized down slightly — emoji run large for their point
+   size and would otherwise set the line height for the whole ribbon. */
+.map-markets-flag {
+  font-size: 0.9em;
+  line-height: 1;
+}
+
+/* The caveat on the whole readout: at any moment most exchanges are shut, and
+   those figures are last night's. One number, rather than thirty mark-states a
+   reader would have to decode individually. */
+.map-markets-note {
+  font-size: var(--size-2xs);
+  color: var(--map-ink-dim);
+  font-variant-numeric: lining-nums tabular-nums;
+  white-space: nowrap;
+
+  &:empty { display: none; }
+}
+
+/* Four movers plus the tally plus the time readout is about 900px of type, and
+   a laptop gives this row roughly a thousand. Drop to one mover a side before
+   it wraps into the scrubber rather than after. */
+@media (max-width: 1300px) {
+  .map-markets-movers li:nth-child(even) { display: none; }
 }
 
 .map-timeline-track {
@@ -3636,7 +3886,13 @@ a.map-popup-source-name {
   line-height: 1.1;
   font-weight: 600;
   font-variant-numeric: lining-nums tabular-nums;
-  color: var(--text);
+  color: var(--map-ink-strong);
+
+  /* The number is the colour of the mark the reader clicked. Same argument
+     that put the sparkline on the signed palette: one vocabulary for "a
+     signed change", spanning the mark, the chart and the figure. */
+  &.is-pos { color: var(--map-pos); }
+  &.is-neg { color: var(--map-neg); }
 }
 
 .map-sheet-hero-note {
@@ -3720,9 +3976,22 @@ a.map-popup-source-name {
 .map-spark-dot { fill: currentColor; }
 
 .map-spark-label {
-  fill: var(--text-dim);
-  font-size: 10px;
+  fill: var(--map-ink-dim);
+  font-size: var(--size-3xs);
   font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* The y-axis: the high, the low, and the rule's own value. Brighter than the
+   date labels, because these are the figures the chart exists to state — the
+   shape was readable before and the numbers were not there at all. */
+.map-spark-axis {
+  fill: var(--map-ink-muted);
+  font-size: var(--size-3xs);
+  font-variant-numeric: lining-nums tabular-nums;
+
+  /* The rule is drawn in the dim ink and dashed; its label matches it rather
+     than the extremes, so the eye can tell which number belongs to it. */
+  &.is-ref { fill: var(--map-ink-dim); }
 }
 
 .map-sheet-meta,
@@ -3967,7 +4236,25 @@ a.map-popup-source-name {
 
   .map-timeline-track { height: 2.6rem; opacity: 1; }
 
-  .map-reset { bottom: calc(var(--map-bar-h) + 4.6rem); }
+  /* The markets strip takes its own line above the time readout rather than
+     competing with it for a 390px row. It stays outside the `layers`
+     disclosure on purpose: a readout you have to tap to reveal is not a
+     readout, and this is the one thing on the phone layout that answers a
+     question about the whole world at once. */
+  .map-timeline-head { flex-wrap: wrap; }
+
+  .map-markets {
+    flex-basis: 100%;
+    order: -1;
+    gap: 0.1rem 0.55rem;
+  }
+
+  /* Two movers, not four — the top riser and the top faller, which is the pair
+     that carries the shape of the day. They are children 1 and 3 of a
+     risers-then-fallers list, so one rule gets both. */
+  .map-markets-movers li:nth-child(even) { display: none; }
+
+  .map-reset { bottom: calc(var(--map-bar-h) + 6.2rem); }
 
   /* --- The story list, as a drawer --- */
   .map-feed {

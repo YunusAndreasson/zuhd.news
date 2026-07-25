@@ -24,6 +24,7 @@ import { displaySourceName, EVENT_TYPE_EYEBROW, parseSeverityHero } from '@share
 import { appPrompt } from '../_app-prompt'
 import { createSparkline } from './chart'
 import * as fmt from './format'
+import type { TickerEntry } from './markets'
 import type {
   ConflictEvent,
   GdacsAlert,
@@ -39,6 +40,7 @@ export interface Sheet {
   showGdacs(alert: GdacsAlert, detail: GdacsDetail | null, pinned: boolean): void
   showChokepoint(cp: MapChokepoint, pinned: boolean): void
   showMarket(exchange: MapExchange, pinned: boolean): void
+  showIndicator(entry: TickerEntry, pinned: boolean): void
   showConflict(event: ConflictEvent, window: string | null, pinned: boolean): void
   showGenocide(situation: GenocideSituation, pinned: boolean): void
   close(): void
@@ -176,9 +178,9 @@ export function createSheet(): Sheet {
     el('p', 'map-sheet-kicker', parts.filter(Boolean).join(' · '))
 
   /** The focal number, with its supporting clause beside it. */
-  const hero = (focal: string, secondary?: string) => {
+  const hero = (focal: string, secondary?: string, tone?: 'pos' | 'neg') => {
     const p = el('p', 'map-sheet-hero')
-    p.append(el('strong', 'map-sheet-hero-focal', focal))
+    p.append(el('strong', `map-sheet-hero-focal${tone ? ` is-${tone}` : ''}`, focal))
     if (secondary) p.append(el('span', 'map-sheet-hero-note', secondary))
     return p
   }
@@ -353,10 +355,22 @@ export function createSheet(): Sheet {
       // fourteen hours after one.
       nodes.push(kicker(['markets', fmt.sessionLabel(ex), ex.stale ? 'cached' : null]))
       nodes.push(el('h2', 'island-sheet-title', ex.name))
+      // The day's move is the focal, not the level.
+      //
+      // It was the other way round, and the card was contradicting its own map:
+      // the mark is drawn from `changePct` and nothing else, so the reader
+      // clicked a percentage and was answered with an index level. `level`
+      // spans 1,086 to 3,319,522 across twenty-one currencies and is comparable
+      // with nothing — including its own past, unless you already know the
+      // index. `changePct` is the only cross-comparable figure on the card. So
+      // Seoul's +4.40%, the largest single-day move on earth that day, was set
+      // in small grey type beside the index name while `7,096.89 KRW` took the
+      // headline. Tinted with the same pair as the tick that opened it.
       nodes.push(
         hero(
-          fmt.indexLevel(ex.level, ex.currency),
-          `${ex.indexName} · ${fmt.pctChange(ex.changePct)} on the day`,
+          fmt.pctChange(ex.changePct),
+          `${ex.indexName} · ${fmt.indexLevel(ex.level, ex.currency)}`,
+          ex.changePct < 0 ? 'neg' : 'pos',
         ),
       )
 
@@ -366,23 +380,45 @@ export function createSheet(): Sheet {
         // A quarter of closes, with a rule where the quarter started — the same
         // job the 90-day baseline does on a chokepoint. A day's move says
         // nothing about whether it is a blip or the shape of a decline.
+        //
+        // The tint follows the *window*, not the day. It used to take
+        // `ex.changePct` while the rule sat at `values[0]`, which is two
+        // different horizons in one chart: an index down 12% over the quarter
+        // and up 0.3% today drew green, with its own line ending below its own
+        // rule. The chart describes the line against the rule it draws, and the
+        // hero above already states the day.
         const values = ex.series?.values ?? []
+        const first = values[0]
+        const last = values[values.length - 1]
+        const windowPct =
+          Number.isFinite(first) && Number.isFinite(last) && first !== 0
+            ? ((last - first) / first) * 100
+            : 0
         const spark = createSparkline({
           values,
           periods: ex.series?.periods ?? [],
-          reference: values[0],
-          direction: ex.changePct,
+          reference: first,
+          direction: windowPct,
           palette: 'signed',
           label: `${ex.indexName} daily closes over the last ${values.length} sessions`,
         })
         if (spark) {
           const figure = el('figure', 'map-sheet-figure')
           figure.append(spark)
+          // Both horizons named, each labelled, so neither has to be inferred
+          // from a colour.
+          const since = ex.series?.periods?.[0]
           figure.append(
             el(
               'figcaption',
               'map-sheet-figcaption',
-              'Daily closes · rule marks the start of the window',
+              [
+                'Daily closes',
+                since ? `${fmt.pctChangeShort(windowPct)} since ${since}` : null,
+                'rule marks the window’s open',
+              ]
+                .filter(Boolean)
+                .join(' · '),
             ),
           )
           nodes.push(figure)
@@ -398,6 +434,68 @@ export function createSheet(): Sheet {
           ),
         )
         nodes.push(...relatedList(ex.relatedArticles ?? [], 'Related coverage'))
+      }
+      render(nodes, pin)
+    },
+
+    /**
+     * A currency, a metal or a coin from the ribbon.
+     *
+     * The ribbon can only afford a three-letter code, and a three-letter code is
+     * not something most readers can place — PKR and IDR least of all. So the
+     * card does the naming: it leads with what the thing is actually called, and
+     * carries the quarter of closes behind the day's move, which is the only way
+     * to tell a blip from a slide. Same shape as the exchange card, because it
+     * is the same kind of fact.
+     */
+    showIndicator(entry, pin) {
+      const nodes: Node[] = []
+      nodes.push(kicker([entry.group, entry.asOf ? fmt.shortDate(entry.asOf) : null]))
+      nodes.push(el('h2', 'island-sheet-title', `${entry.flag} ${entry.name}`.trim()))
+      nodes.push(
+        hero(
+          fmt.pctChange(entry.pct),
+          [entry.label, Number.isFinite(entry.level) ? fmt.indexLevel(entry.level) : null, entry.unit]
+            .filter(Boolean)
+            .join(' · '),
+          entry.pct < 0 ? 'neg' : 'pos',
+        ),
+      )
+
+      if (pin) {
+        const values = entry.values.filter((v) => Number.isFinite(v))
+        const windowPct =
+          values.length > 1 && values[0] !== 0
+            ? ((values[values.length - 1] - values[0]) / values[0]) * 100
+            : 0
+        const spark = createSparkline({
+          values: entry.values,
+          periods: entry.periods,
+          reference: entry.values[0],
+          direction: windowPct,
+          palette: 'signed',
+          label: `${entry.name} over the last ${entry.values.length} days`,
+        })
+        if (spark) {
+          const figure = el('figure', 'map-sheet-figure')
+          figure.append(spark)
+          const since = entry.periods[0]
+          figure.append(
+            el(
+              'figcaption',
+              'map-sheet-figcaption',
+              [
+                'Daily',
+                since ? `${fmt.pctChangeShort(windowPct)} since ${since}` : null,
+                'rule marks the window’s open',
+              ]
+                .filter(Boolean)
+                .join(' · '),
+            ),
+          )
+          nodes.push(figure)
+        }
+        if (entry.sourceLabel) nodes.push(el('p', 'map-sheet-meta', entry.sourceLabel))
       }
       render(nodes, pin)
     },

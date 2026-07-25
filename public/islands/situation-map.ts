@@ -37,7 +37,15 @@ import {
   OVERLAY_COLOUR,
 } from './_map/style'
 import { createFeed, type Feed } from './_map/feed'
-import { isTrading } from './_map/format'
+import { glyphImages, glyphSvg, type GlyphId } from './_map/glyphs'
+import {
+  createMarketStrip,
+  marketCollection,
+  marketLayout,
+  marketPaint,
+  type MarketStrip,
+  type TrendIndicator,
+} from './_map/markets'
 import { createTimeline, type Timeline } from './_map/timeline'
 import { createSheet, type Sheet } from './_map/sheet'
 import { createStoryPopup, type StoryPopup } from './_map/popup'
@@ -616,6 +624,28 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   let popup: StoryPopup | null = null
   let timeline: Timeline | null = null
 
+  /**
+   * The markets readout.
+   *
+   * Built eagerly so the scrubber can take it as its `lead` the moment the core
+   * payload lands; filled in later, when the exchanges arrive.
+   */
+  const marketStrip: MarketStrip = createMarketStrip({
+    onSelect: (id) => {
+      const ex = markets.find((m) => m.id === id)
+      if (!ex) return
+      // Unlike a marker click, this one flies. The reader has picked a name out
+      // of a ranked list with no map context at all, so landing them on the
+      // card without showing them where it is would answer half the question —
+      // the same bargain the story rail makes.
+      feed.setExpanded(false, true)
+      flying = true
+      map.flyTo({ center: [ex.lng, ex.lat], zoom: Math.max(map.getZoom(), 3.2), duration: 900 })
+      sheet.showMarket(ex, true)
+    },
+    onQuote: (entry) => sheet.showIndicator(entry, true),
+  })
+
   const feed: Feed = createFeed({
     onSelect: (p) => {
       // On a phone the list is a drawer over the map, so committing to a story
@@ -996,35 +1026,12 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   // last session, not something the scrubber can wind back — so like the
   // straits they sit out the time filter.
   //
-  // Two channels, two facts, and no third encoding of either: the sign of the
-  // move picks the colour, the size of it drives radius and weight, and whether
-  // the exchange is trading right now decides whether the mark has a fill. That
-  // last one is read at build-of-the-collection time rather than baked into the
-  // payload, because a page cached for fifteen minutes would otherwise keep
-  // insisting Tokyo was open long after it shut.
-  const marketCollection = () => ({
-    type: 'FeatureCollection' as const,
-    features: markets.map((m) => {
-      const change = Number.isFinite(m.changePct) ? m.changePct : 0
-      return {
-        type: 'Feature' as const,
-        properties: {
-          id: m.id,
-          name: m.name,
-          change,
-          // A 3% day is a big day on an index; past that the mark stops growing
-          // rather than letting one panic drown out the rest of the world.
-          mag: Math.min(1, Math.abs(change) / 3),
-          // Under 0.15% is noise. Below it the mark stays neutral instead of
-          // committing to a direction it cannot really claim.
-          moved: Math.abs(change) > 0.15 ? 1 : 0,
-          direction: change < 0 ? -1 : 1,
-          trading: isTrading(m) ? 1 : 0,
-        },
-        geometry: { type: 'Point' as const, coordinates: [m.lng, m.lat] },
-      }
-    }),
-  })
+  // The collection itself lives in `_map/markets.ts`, next to the predicates the
+  // paint and the strip read, because keeping it here is what let "has it moved"
+  // and "which way" be answered twice and differently. Trading state is computed
+  // when the collection is built rather than baked into the payload: a page
+  // cached for fifteen minutes would otherwise keep insisting Tokyo was open
+  // long after it shut.
 
   const src = (id: string) => map.getSource(id) as GeoJSONSource | undefined
 
@@ -1037,6 +1044,10 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     set('chokepoint-marks', layersOn.straits)
     set('market-marks', layersOn.markets)
     set('conflict-marks', layersOn.conflict)
+    // The strip is the layer's readout, so it goes with the layer. Missing this
+    // would leave a ranked list of exchanges over a map that no longer draws
+    // any.
+    marketStrip.setVisible(layersOn.markets)
   }
 
   /** Moves the dated overlays with the scrub head, style-side. */
@@ -1113,7 +1124,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     if (!layersReady) return
     src('gdacs')?.setData(gdacsCollection())
     src('chokepoints')?.setData(chokeCollection())
-    src('markets')?.setData(marketCollection())
+    src('markets')?.setData(marketCollection(markets))
     src('conflict')?.setData(conflictCollection())
     src('genocide')?.setData(genocideCollection())
     const genocideKey = keyItems.get('genocide')
@@ -1194,6 +1205,16 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     // disasters and the conflict marks down with it — a whole map lost to a
     // texture. If the image cannot be registered, the layer is skipped and the
     // no-data tone stands on its own, which is where this started.
+    // The mark alphabet. Unguarded, deliberately, and note the contrast with
+    // the hatch below: the hatch is a decoration on top of a tone that already
+    // carries its value, so it can fail quietly. These *are* the marks. A
+    // swallowed failure here would leave a layer drawing nothing at all, with
+    // no exception and no failed request — the exact silent-failure class this
+    // file's tests exist to catch.
+    for (const [id, image] of glyphImages()) {
+      if (!map.hasImage(id)) map.addImage(id, image, { sdf: true, pixelRatio: 2 })
+    }
+
     try {
       map.addImage('nodata-hatch', nodataHatch())
       map.addLayer(
@@ -1302,44 +1323,9 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
         // for a surge, which is a different story told by the same number.
         'circle-stroke-color': [
           'case',
-          ['==', ['get', 'disrupted'], 0], MAP_COLOURS.coast,
+          ['==', ['get', 'disrupted'], 0], MAP_COLOURS.neutral,
           ['<', ['get', 'direction'], 0], OVERLAY_COLOUR.straits,
           OVERLAY_COLOUR.straitsSurge,
-        ],
-        'circle-stroke-opacity': ['interpolate', ['linear'], ['get', 'mag'], 0, 0.55, 1, 0.95],
-      },
-    })
-
-    map.addLayer({
-      id: 'market-marks',
-      type: 'circle',
-      source: 'markets',
-      paint: {
-        // Size is the size of the move, so a 3% rout reads louder than a flat
-        // session anywhere on the map.
-        'circle-radius': ['interpolate', ['linear'], ['get', 'mag'], 0, 3.5, 1, 8],
-        // A fill only while the exchange is trading. That makes an open market
-        // a disc and a closed one a ring — the vocabulary already on this map,
-        // where conflict is filled and the straits and disasters are not — and
-        // it answers "is this number live or is it last night's" without
-        // spending a word. Closed markets still carry their direction in the
-        // stroke, because the last close is the answer to "up or down today".
-        'circle-color': [
-          'case',
-          ['==', ['get', 'trading'], 0], 'rgba(0,0,0,0)',
-          ['<', ['get', 'direction'], 0], OVERLAY_COLOUR.marketDown,
-          OVERLAY_COLOUR.marketUp,
-        ],
-        'circle-opacity': 0.35,
-        'circle-stroke-width': ['interpolate', ['linear'], ['get', 'mag'], 0, 1, 1, 2.2],
-        // Under 0.15% the mark stays the neutral coastline tone rather than
-        // claiming a direction: on a quiet day most of the world is flat, and
-        // painting that as a weak rally is a statement the data does not make.
-        'circle-stroke-color': [
-          'case',
-          ['==', ['get', 'moved'], 0], MAP_COLOURS.coast,
-          ['<', ['get', 'direction'], 0], OVERLAY_COLOUR.marketDown,
-          OVERLAY_COLOUR.marketUp,
         ],
         'circle-stroke-opacity': ['interpolate', ['linear'], ['get', 'mag'], 0, 0.55, 1, 0.95],
       },
@@ -1485,9 +1471,19 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
         'text-size': countSize(stops),
         'text-letter-spacing': 0.01,
         // Counts must never be dropped for collision — a hidden number reads as
-        // an empty disc, which is worse than a crowded one.
+        // an empty disc, which is worse than a crowded one. That is what
+        // `allow-overlap` guarantees, and it is untouched.
         'text-allow-overlap': true,
-        'text-ignore-placement': true,
+        // `ignore-placement` is the *other* half, and it was doing harm. It
+        // keeps this label out of the collision index entirely, so nothing else
+        // on the map can see it — and once the exchanges began printing their
+        // move, a market numeral was free to land flush against a cluster
+        // count. Madrid's "1.6%" beside a cluster of 3 rendered as "31.6%":
+        // two true numbers reading as one false one.
+        //
+        // False here means the count still always draws (that is `allow-
+        // overlap`), but it now also occupies space others must route around.
+        'text-ignore-placement': false,
       },
       // One colour now. The label used to step from light type to dark halfway
       // up the ramp, because the fill it sat on ran from dark slate to pale
@@ -1499,6 +1495,46 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
         'text-halo-color': 'rgba(6,8,12,0.65)',
         'text-halo-width': 0.8,
       },
+    })
+
+    // Markets are ticks, and the ones that moved carry their number.
+    //
+    // This was a circle, and it was byte-identical to the chokepoint circle
+    // above — same radius domain, same stroke domain, same stroke-opacity
+    // domain, same neutral. Two layers cannot be told apart when they are the
+    // same mark, and hue could not tell them apart either, because `economy`
+    // gold and `straits` gold are three points from each other. So the
+    // silhouette carries the layer now, and colour is free to go back to
+    // carrying the value.
+    //
+    // One number was also driving four channels — radius, stroke width, stroke
+    // opacity and hue — which, with a median absolute move of 0.73%, put 28 of
+    // 30 marks inside two pixels of each other. Four copies of an imperceptible
+    // channel is four copies of nothing. Size keeps `mag`, hue keeps direction,
+    // opacity is freed for the session, and the number itself is printed where
+    // it clears the bar.
+    //
+    // ── Why this draws above the stories ──────────────────────────────────
+    //
+    // Exchanges sit in exactly the cities that generate the most stories, so a
+    // cluster disc forming over New York, London or Tokyo is not an occasional
+    // overlap — it is where every large exchange lives. Underneath the stories,
+    // the mark for the world's biggest market was reliably the one you could
+    // not see.
+    //
+    // The damage is asymmetric, and that is what settles the order. A cluster
+    // is a *count*: a 7px tick crossing its rim still leaves "9" perfectly
+    // readable. An exchange is a *single mark*: covered, it is not diminished,
+    // it is absent. So the small fragile symbol goes above the large robust
+    // one — which is also the ordinary cartographic rule for point symbols over
+    // area symbols. Genocide is still added after everything, for the reason
+    // given below, which this does not touch.
+    map.addLayer({
+      id: 'market-marks',
+      type: 'symbol',
+      source: 'markets',
+      layout: marketLayout() as never,
+      paint: marketPaint() as never,
     })
 
     /**
@@ -2046,19 +2082,32 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
      * order) plus a reason on hover says so, and `.is-locked` lets the CSS
      * stop pretending it is still a live toggle.
      */
+    // The reason lives on the group, not on whichever chip happens to be the
+    // last one lit. It was a `title` on a moving target — hover-only, so on a
+    // phone the constraint simply did not exist, which is precisely where the
+    // legend has been folded behind a disclosure and a reader is most likely to
+    // be poking at the chips to find out what they do.
+    const lockNote = document.createElement('span')
+    lockNote.className = 'map-filters-note'
+    lockNote.setAttribute('aria-live', 'polite')
+    lockNote.hidden = true
+
     const syncLock = () => {
       const sole = enabled.size === 1
       for (const [cat, b] of catButtons) {
         const locked = sole && enabled.has(cat)
         b.classList.toggle('is-locked', locked)
-        if (locked) {
-          b.setAttribute('aria-disabled', 'true')
-          b.title = 'At least one category stays on'
-        } else {
-          b.removeAttribute('aria-disabled')
-          b.removeAttribute('title')
-        }
+        if (locked) b.setAttribute('aria-disabled', 'true')
+        else b.removeAttribute('aria-disabled')
       }
+      lockNote.textContent = sole ? 'one category stays on' : ''
+      lockNote.hidden = !sole
+    }
+
+    /** A chip's mark, drawn from the table the map rasterises. */
+    const chipGlyph = (btn: HTMLButtonElement, ids: GlyphId[], label: string) => {
+      btn.innerHTML = ids.map(glyphSvg).join('')
+      btn.append(document.createTextNode(label))
     }
 
     for (const cat of CATEGORY_ORDER) {
@@ -2067,7 +2116,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       btn.className = 'map-filter is-on'
       btn.dataset.kind = 'category'
       btn.style.setProperty('--cat', CATEGORY_COLOUR[cat])
-      btn.textContent = cat
+      chipGlyph(btn, ['dot'], cat)
       btn.setAttribute('aria-pressed', 'true')
       btn.addEventListener('click', () => {
         // Never let the map go blank — the last category stays lit.
@@ -2089,32 +2138,34 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     sep.setAttribute('aria-hidden', 'true')
     filters.append(sep)
 
-    // The overlay chips carry their layer's own colour, the way the category
-    // chips carry theirs. They were grey rings, so the strip said "four things
-    // with colours, three things without" when in fact all seven mark the map
-    // in a colour of their own — the reader had no way to connect the amber
-    // rings over Anatolia to the word "disasters".
+    // Each overlay chip now draws its layer's own silhouette, from the same
+    // vertex table `map.addImage` rasterises. Before this they were all a 6px
+    // disc with a hollow variant, which meant `disasters` and `straits` were
+    // the same ring and there was nothing connecting the word to the mark.
     //
-    // Shape as well as colour: `filled` follows how the layer actually draws.
-    // Conflict is a filled disc, disasters and straits are hollow rings, and a
-    // chip that got that wrong would be a legend contradicting the map.
-    for (const [key, label, colour, filled] of [
-      ['gdacs', 'disasters', OVERLAY_COLOUR.gdacs, false],
-      ['straits', 'straits', OVERLAY_COLOUR.straits, false],
-      // Neutral, unlike the other three. Gold *is* what a disrupted strait
-      // looks like, so its chip can wear it — but a market layer is green and
-      // terracotta in equal measure and neither one stands for it. The chip
-      // shows the layer at rest, which is the colour of a flat market.
-      ['markets', 'markets', MAP_COLOURS.coast, false],
-      ['conflict', 'conflict', OVERLAY_COLOUR.conflict, true],
-    ] as Array<[keyof typeof layersOn, string, string, boolean]>) {
+    // `markets` was worse than uninformative: it was a *grey* ring, chosen on
+    // the reasoning that the layer is olive and terracotta in equal measure so
+    // neither tone stands for it. True, and the conclusion does not follow —
+    // the answer is to show both, because a two-valued scale is exactly what
+    // this layer means and the one chip that refused to say so was the one
+    // whose colours the reader had no other way to learn.
+    for (const [key, label, colour, glyphs] of [
+      ['gdacs', 'disasters', OVERLAY_COLOUR.gdacs, ['hazard']],
+      ['straits', 'straits', OVERLAY_COLOUR.straits, ['strait-rest']],
+      ['markets', 'markets', '', ['tick-up', 'tick-down']],
+      ['conflict', 'conflict', OVERLAY_COLOUR.conflict, ['conflict-mark']],
+    ] as Array<[keyof typeof layersOn, string, string, GlyphId[]]>) {
       const btn = document.createElement('button')
       btn.type = 'button'
       btn.className = 'map-filter is-on'
       btn.dataset.kind = 'layer'
-      btn.dataset.mark = filled ? 'disc' : 'ring'
-      btn.style.setProperty('--cat', colour)
-      btn.textContent = label
+      if (colour) btn.style.setProperty('--cat', colour)
+      else {
+        btn.dataset.mark = 'market'
+        btn.style.setProperty('--cat-up', OVERLAY_COLOUR.marketUp)
+        btn.style.setProperty('--cat-down', OVERLAY_COLOUR.marketDown)
+      }
+      chipGlyph(btn, glyphs, label)
       btn.setAttribute('aria-pressed', 'true')
       btn.addEventListener('click', () => {
         layersOn[key] = !layersOn[key]
@@ -2124,6 +2175,9 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       })
       filters.append(btn)
     }
+
+    filters.append(lockNote)
+    syncLock()
   }
 
   const updateClock = () => {
@@ -2148,6 +2202,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
         scrubNow = now
         refresh()
       },
+      lead: marketStrip.element,
     })
     timeline.setPoints(points)
     container.append(timeline.element)
@@ -2200,7 +2255,11 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     // Thirty exchanges with a quarter of closes each — ~90 KB, small enough to
     // ride along with the other three rather than earn its own request or an
     // idle deferral like the conflict feed.
-    if (mk?.exchanges) markets = mk.exchanges
+    if (mk?.exchanges) {
+      markets = mk.exchanges
+      marketStrip.update(markets)
+      marketStrip.setVisible(layersOn.markets)
+    }
     setOverlayData()
   }
 
@@ -2299,19 +2358,34 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
    */
   const scheduleMetric = () => {
     if (applyMetric()) return
-    // Retry until it takes, not once. A single `once('idle')` was enough when
-    // the coastline was 210 KB and 176 features; the basemap is now 1:50m —
-    // 1.6 MB and 99k points, parsed on the worker — and one missed window
-    // leaves the world permanently unshaded and fully hatched, which reads as
-    // "no data for anywhere" rather than as "still loading". Bounded so a
-    // source that never loads cannot spin forever.
-    let tries = 0
-    const retry = () => {
-      if (!mounted || applyMetric()) return
-      if (++tries > 30) return
-      map.once('idle', retry)
+    // Wait for the source, not for a number of frames.
+    //
+    // This counted `idle` events — thirty of them — because a single
+    // `once('idle')` was enough against a 210 KB, 176-feature coastline and is
+    // not enough against 1:50m: 1.6 MB and 99k points, parsed on a worker. But
+    // a count of idles is a wall-clock race wearing a counter's clothes. On a
+    // slow machine, or once the overlays became symbol layers and each frame
+    // began running a placement pass, thirty idles can elapse inside the first
+    // second — while the worker is still parsing. The retries then stop, and
+    // the world stays unshaded and *fully hatched*, which reads as "no data for
+    // anywhere" rather than as "still loading". That is exactly the failure the
+    // bound was added to prevent.
+    //
+    // `sourcedata` is the actual signal, and it is safe here now in a way the
+    // old comment feared: `setFeatureState` is itself a source-data change, so
+    // a naive listener re-enters ~170 times per pass and the map never
+    // completes a frame. `applyMetric` sets `metricApplied` *before* it writes
+    // any state, so the re-entrant call returns on its first line and the
+    // listener detaches. At most one extra pass, and no ceiling to run out of.
+    const onSourceData = (e: { sourceId?: string; isSourceLoaded?: boolean }) => {
+      if (!mounted) {
+        map.off('sourcedata', onSourceData)
+        return
+      }
+      if (e.sourceId !== 'countries' || !e.isSourceLoaded) return
+      if (applyMetric()) map.off('sourcedata', onSourceData)
     }
-    map.once('idle', retry)
+    map.on('sourcedata', onSourceData)
   }
 
   /** Fetches a metric and paints it. Leaves the land alone if it can't. */
@@ -2366,6 +2440,28 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     void loadMetric(metricKey)
     loadConflict()
     loadLeads()
+    // Currencies, metals and crypto for the ribbon.
+    //
+    // `/api/trends.json` already carries all of it — the ummah currency basket,
+    // gold and the crypto tier — so this is a read of something the build
+    // publishes rather than a new source. 12 KB gzipped, and nothing on screen
+    // waits for it, so it goes behind the idle callback with the metric index.
+    //
+    // Silver is the one thing asked for that is not in there: nothing in the
+    // registry fetches it. It is listed in the ribbon's table anyway and simply
+    // does not render, so the day a silver series exists it appears without a
+    // second edit — the same treatment `market-metadata.js` gives the thirteen
+    // exchanges the free data commons does not reach.
+    whenIdle(() => {
+      void (async () => {
+        const t = await json<{ indicators: TrendIndicator[] }>(
+          '/api/trends.json',
+          abort.signal,
+        )
+        if (!mounted || !t?.indicators) return
+        marketStrip.setTrends(t.indicators)
+      })()
+    })
     // The picker only needs a list of names, and nothing depends on it until
     // the reader reaches for it — so it waits for the main thread to go quiet.
     whenIdle(() => {

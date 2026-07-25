@@ -45,7 +45,23 @@ export const MAP_COLOURS = {
    * land rather than sea.
    */
   border: '#5c6470',
-  coast: '#39414e',
+  /**
+   * A mark that is making no claim: a strait running at its baseline, an
+   * exchange that has not moved.
+   *
+   * Was `coast: '#39414e'`, and the name was already wrong — nothing has ever
+   * drawn a coastline in it, because `borders` is the only line layer and it
+   * uses `border`. Its three real users were all "nothing to report", and it
+   * did that job at **1.93:1 against the ocean** and 1.26:1 against the land
+   * ramp's top. So the map's most common state — on a quiet day most of the
+   * market layer is flat — was also its least visible one, on marks that sit in
+   * straits and coastal cities.
+   *
+   * This is `label`'s value, which is already the map's tone for "furniture,
+   * not data": 6.7:1 on the ocean, 2.8:1 on the ramp's brightest stop, and with
+   * the marks' dark halo the ground stops being a variable at all.
+   */
+  neutral: '#8d97a6',
   /** Basemap place labels. The chrome's own text uses `--map-ink-*`, which is
    *  a different scale — this one is tuned against the land, not the panels. */
   label: '#8d97a6',

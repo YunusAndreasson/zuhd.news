@@ -56,6 +56,49 @@ export interface SparklineOptions {
    * gold would be borrowing a meaning it does not have.
    */
   palette?: 'straits' | 'signed'
+  /**
+   * How to print a value on the y-axis. Defaults to a compact formatter that
+   * groups thousands and keeps decimals only where the number is small enough
+   * to need them.
+   *
+   * Worth overriding when the series has a unit the reader needs — a chokepoint
+   * in vessels a day reads differently from an index level.
+   */
+  formatValue?: (v: number) => string
+}
+
+/**
+ * A value for the axis, at a precision that suits its magnitude.
+ *
+ * The series this draws span six orders of magnitude — a dollar index near 100,
+ * an exchange level at 3.3 million, a currency reciprocal at 0.021 — so a fixed
+ * number of decimals is wrong for almost all of them.
+ */
+const axisValue = (v: number, decimals: number): string => {
+  if (!Number.isFinite(v)) return ''
+  if (decimals < 0) return Math.round(v).toLocaleString('en-US')
+  return v.toFixed(decimals)
+}
+
+/**
+ * How many decimals the whole axis uses, decided once from the largest value on
+ * it rather than per label.
+ *
+ * Per-label precision reads as an error: a dollar index spanning 99.78 to 101.1
+ * straddles 100, so a magnitude rule gave the top of the axis one decimal and
+ * the bottom two, and the pair looked like two different quantities. Small
+ * reciprocals go the other way — an FX chart in USD-per-lira needs four
+ * decimals or the axis reads 0.02 / 0.02 / 0.02.
+ */
+const axisDecimals = (hi: number, lo: number): number => {
+  const mag = Math.max(Math.abs(hi), Math.abs(lo))
+  if (mag >= 1000) return -1
+  if (mag >= 100) return 1
+  if (mag >= 1) return 2
+  // Enough decimals to separate the ends of the axis, capped so it stays type.
+  const span = Math.abs(hi - lo)
+  if (span <= 0) return 4
+  return Math.min(6, Math.max(2, Math.ceil(-Math.log10(span)) + 2))
 }
 
 /**
@@ -71,7 +114,16 @@ export interface SparklineOptions {
  */
 const W = 640
 const H = 100
-const PAD = { l: 3, r: 3, t: 12, b: 20 }
+/**
+ * The right pad is a y-axis gutter, not breathing room.
+ *
+ * The chart used to carry no y-axis at all — a shape with no numbers on it, so
+ * a reader could see that something had fallen but not from what to what, and
+ * the only figure anywhere near it was the hero's percentage. The gutter is
+ * wide enough for a grouped thousands value ("3,319,522" is the worst case in
+ * the corpus and gets abbreviated by `axisValue`).
+ */
+const PAD = { l: 3, r: 62, t: 14, b: 20 }
 
 /**
  * Returns null for a series too short to have a shape — one point is a dot
@@ -153,18 +205,54 @@ export function createSparkline(opts: SparklineOptions): SVGSVGElement | null {
   const lastIdx = values.length - 1
   svg.append(svgEl('circle', { class: 'map-spark-dot', cx: x(lastIdx), cy: y(values[lastIdx]), r: 2.4 }))
 
-  // Only the ends are labelled. A day axis under 86 points is unreadable at
-  // this size, and the two that matter are "where this starts" and "now".
-  const first = periods[0]
-  const last = periods[lastIdx]
-  if (first) {
-    const t = svgEl('text', { class: 'map-spark-label', x: PAD.l, y: H - 3, 'text-anchor': 'start' })
-    t.textContent = first
+  // --- The y-axis ---------------------------------------------------------
+  // High, low, and the rule if there is one. Three numbers is the most this
+  // size can carry, and they are the three that answer "from what, to what,
+  // and against what".
+  const decimals = axisDecimals(hi, lo)
+  const fmt = opts.formatValue ?? ((v: number) => axisValue(v, decimals))
+  // Placed in priority order, and a label is dropped if it would sit on one
+  // already placed. The extremes go first because they define the axis; the
+  // rule's value is the one worth losing, since the dashed line still shows
+  // where it is and the caption still names it. Without this a reference near
+  // the low — which is the common case, the window's own opening value —
+  // printed straight through it.
+  const MIN_GAP = 11
+  const placed: number[] = []
+  const axisText = (v: number, cls: string) => {
+    const at = Math.min(H - PAD.b - 1, Math.max(PAD.t - 3, y(v) + 3))
+    if (placed.some((p) => Math.abs(p - at) < MIN_GAP)) return
+    placed.push(at)
+    const t = svgEl('text', { class: cls, x: W - PAD.r + 6, y: at, 'text-anchor': 'start' })
+    t.textContent = fmt(v)
     svg.append(t)
   }
-  if (last) {
-    const t = svgEl('text', { class: 'map-spark-label', x: W - PAD.r, y: H - 3, 'text-anchor': 'end' })
-    t.textContent = last
+  axisText(hi, 'map-spark-axis')
+  axisText(lo, 'map-spark-axis')
+  if (inRange && reference >= lo && reference <= hi) {
+    // The rule already carries a caption naming what it is; this is the number
+    // it sits at, so "above the baseline" stops being a purely visual claim.
+    axisText(reference, 'map-spark-axis is-ref')
+  }
+
+  // --- The x-axis ---------------------------------------------------------
+  // A day tick under 86 points is unreadable at this size, so the axis names
+  // the ends and the middle: where this starts, roughly halfway, and now.
+  const midIdx = Math.floor(lastIdx / 2)
+  const xLabels: Array<[number, string, string]> = [
+    [PAD.l, periods[0] ?? '', 'start'],
+    [x(midIdx), periods[midIdx] ?? '', 'middle'],
+    [W - PAD.r, periods[lastIdx] ?? '', 'end'],
+  ]
+  for (const [px, text, anchor] of xLabels) {
+    if (!text) continue
+    const t = svgEl('text', {
+      class: 'map-spark-label',
+      x: px,
+      y: H - 3,
+      'text-anchor': anchor,
+    })
+    t.textContent = text
     svg.append(t)
   }
 

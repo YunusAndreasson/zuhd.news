@@ -37,6 +37,16 @@ export interface TimelineOptions {
   start: number
   end: number
   onChange: (now: number, live: boolean) => void
+  /**
+   * Something to sit at the left-hand end of the head row.
+   *
+   * The head is `justify-content: flex-end` with the readout and the back-to-
+   * live button on the right, so the left two thirds of it are empty on every
+   * viewport. That is the map's readout row — the one line already saying what
+   * time it is — and it is where the markets strip goes, rather than becoming a
+   * third row of HUD over the map or hiding behind the phone disclosure.
+   */
+  lead?: HTMLElement
 }
 
 export function createTimeline(opts: TimelineOptions): Timeline {
@@ -61,6 +71,7 @@ export function createTimeline(opts: TimelineOptions): Timeline {
   liveBtn.textContent = 'back to live'
   liveBtn.hidden = true
 
+  if (opts.lead) head.append(opts.lead)
   head.append(readout, liveBtn)
 
   const track = document.createElement('div')

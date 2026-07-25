@@ -88,8 +88,18 @@ export const rank = (r: number, total: number): string => `${r} / ${total}`
  * editorialising — the figure is a machine estimate of tone, not a judgement
  * we stand behind story by story.
  */
-export const sentiment = (v: number): string =>
-  `${v > 0 ? '+' : v < 0 ? '−' : ''}${Math.abs(v).toFixed(2)}`
+export const sentiment = (v: number): string => signed(v, 2)
+
+/**
+ * The one place the sign glyph is chosen.
+ *
+ * `toFixed` emits an ASCII hyphen, so a falling market printed U+002D while
+ * `sentiment` just above hand-wrote U+2212 — two different minus signs in the
+ * same card, one of them the wrong width in a tabular column.
+ */
+function signed(n: number, digits: number): string {
+  return `${n > 0 ? '+' : n < 0 ? '−' : ''}${Math.abs(n).toFixed(digits)}`
+}
 
 /**
  * An ISO date as a plain UTC day. `2026-06-28` → `28 Jun`.
@@ -166,8 +176,10 @@ export const indexLevel = (n: number, currency?: string): string => {
 }
 
 /** A signed percent move, always carrying its sign. `0.82` → `+0.82%`. */
-export const pctChange = (n: number): string =>
-  Number.isFinite(n) ? `${n > 0 ? '+' : ''}${n.toFixed(2)}%` : ''
+export const pctChange = (n: number): string => (Number.isFinite(n) ? `${signed(n, 2)}%` : '')
+
+/** The same, at the precision a glance can use. For the markets strip. */
+export const pctChangeShort = (n: number): string => (Number.isFinite(n) ? `${signed(n, 1)}%` : '')
 
 const WEEKDAY_INDEX: Record<string, number> = {
   Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6,
