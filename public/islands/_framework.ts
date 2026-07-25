@@ -26,9 +26,27 @@ export const html = htm.bind(h)
  *   import { mount } from '/islands/entity-sheet.js'
  *   const dispose = mount(container, { id })
  */
-export type Island<Props> = (props: Props) => VNode
+/**
+ * An island's root component.
+ *
+ * Returns `VNode | VNode[]` rather than `VNode` because that is what `html`
+ * actually produces: htm returns an array whenever a template has more than one
+ * root node, which several islands do. Declaring the narrower type made every
+ * such island fail to satisfy `Island<Props>` while working perfectly at
+ * runtime — the type was describing a restriction the framework does not have.
+ */
+export type Island<Props> = (props: Props) => VNode | VNode[]
 
-export const mountIsland = <P extends Record<string, unknown>>(
+/**
+ * `P extends object`, not `P extends Record<string, unknown>`.
+ *
+ * Every island declares its props as an `interface`, and an interface has no
+ * implicit index signature, so it never satisfies `Record<string, unknown>` no
+ * matter how plain its fields are. The constraint was rejecting exactly the
+ * shapes it was meant to accept; `object` asks for the only thing this function
+ * actually needs.
+ */
+export const mountIsland = <P extends object>(
   Component: Island<P>,
   container: HTMLElement,
   props: P,

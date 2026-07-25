@@ -154,6 +154,19 @@ const sourceBlock = (story: Story, p: MapPoint): Node[] => {
   // decoded.
   const meta = [story.dateFormatted]
   if (story.eventCoverage > 0) meta.push(`${story.eventCoverage} outlets covering`)
+
+  // Where the reporting was filed from.
+  //
+  // The build has always carried a `country` per source, and until now the card
+  // only revealed it on the ~17% of stories the ring marks as contested — so
+  // the one fact that is true of every story was shown on almost none of them.
+  // Three wires filing from one country is a different kind of account from
+  // three outlets in three countries, whether or not they end up disagreeing,
+  // and on a map whose whole subject is where things happen it matters that
+  // this is often nowhere near the dateline.
+  const filedFrom = [...new Set(sources.map((s) => s.country).filter(Boolean))]
+  if (filedFrom.length) meta.push(`filed from ${filedFrom.join(', ')}`)
+
   nodes.push(el('p', 'map-popup-meta', meta.join(' · ')))
   return nodes
 }
@@ -317,7 +330,13 @@ export function createStoryPopup(map: MapLibreMap): StoryPopup {
 
   return {
     preview(p, leads, now) {
-      const root = shell(p, now, 'preview')
+      // `n` has been on every map point since the endpoint was written and
+      // nothing has ever read it. It belongs here rather than in a fifth visual
+      // channel on the beacon — size, alpha and the ring are already spoken
+      // for, and how many outlets we read is a fact to state, not a shape to
+      // decode. The full card lists them by name, so this is the preview's job.
+      const sourceCount = p.n > 0 ? `${p.n} ${p.n === 1 ? 'source' : 'sources'}` : null
+      const root = shell(p, now, 'preview', sourceCount)
       const lead = leads[p.slug]
       if (lead) root.append(el('p', 'map-popup-lead', lead))
       root.append(el('p', 'map-popup-hint', 'Opening…'))

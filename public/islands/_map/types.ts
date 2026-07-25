@@ -67,6 +67,53 @@ export interface MapChokepoint extends Chokepoint {
   }>
 }
 
+/** One country's standing on a metric, from `/api/metric/{key}.json`. */
+export interface MetricEntry {
+  /**
+   * Position in the metric's own distribution, 0..1, where 1 is the largest
+   * value. Deliberately *magnitude*, not merit: `ascending` is set on three of
+   * the twenty-seven metrics, so there is no good/bad axis to encode across the
+   * set, and `population` has no better end at all. Which end is desirable is
+   * stated in `description` instead of implied by the ramp.
+   */
+  p: number
+  /** The formatted value, as the country pages print it — "52.9", "$797". */
+  v: string
+  /** Rank, 1-based, in the metric's editorial order (see `getRanking`). */
+  r: number
+}
+
+/** `/api/metric/{key}.json` — one metric across every country we can route. */
+export interface MetricPayload {
+  key: string
+  label: string
+  /** The scale and its direction, in a sentence. What the key prints. */
+  description: string
+  source: string
+  sourceUrl: string
+  ascending: boolean
+  /** Countries with a figure for this metric, including unroutable ones. */
+  total: number
+  values: Record<string, MetricEntry>
+}
+
+/** `/api/metric/index.json` — enough to build the picker without 27 fetches. */
+export interface MetricIndexEntry {
+  key: string
+  label: string
+  count: number
+}
+
+/**
+ * The metric the map opens on.
+ *
+ * Press freedom, because it is the one country statistic that changes how you
+ * read everything else on the map. Every beacon is a claim assembled from
+ * outlets filing from somewhere, and how free those outlets are is context for
+ * the claim rather than a separate subject.
+ */
+export const DEFAULT_METRIC = 'pressFreedomScore'
+
 /**
  * Story decay, as a half-life in hours.
  *

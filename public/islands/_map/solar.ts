@@ -6,6 +6,12 @@
 // hand; MapLibre wants it as geometry, so the same equations now emit a polygon
 // instead of a stroke.
 
+// Imported rather than reached for as the ambient `GeoJSON.*` UMD global:
+// @types/geojson only exposes that global to non-module files, so every module
+// referencing it was relying on a namespace TypeScript will not resolve here.
+// esbuild erases type-only imports, so this costs the bundle nothing.
+import type { Feature, Polygon } from 'geojson'
+
 const DEG = Math.PI / 180
 
 /**
@@ -60,7 +66,7 @@ export function terminatorLat(lng: number, sun: { lat: number; lng: number }) {
  * At an equinox `terminatorLat` degenerates, and the honest answer is to draw
  * nothing for the few hours it takes the declination to move off zero.
  */
-export function nightPolygon(date: Date): GeoJSON.Feature<GeoJSON.Polygon> | null {
+export function nightPolygon(date: Date): Feature<Polygon> | null {
   const sun = subsolarPoint(date)
   const probe = terminatorLat(0, sun)
   if (probe === null) return null

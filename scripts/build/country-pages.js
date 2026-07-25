@@ -132,8 +132,14 @@ export const buildCountryPages = async ({ sorted, distDir, templatesDir, headCom
       if (value == null) return null
       const ranks = rankings[m]
       const idx = ranks.findIndex((e) => e.name === name)
-      const asc = meta.ascending === true
-      const rank = asc ? (ranks.length - idx) : (idx + 1)
+      // getRanking() has *already* applied the metric's direction — it reads
+      // METRICS[m].ascending and sorts so that rank #1 lands at index 0. This
+      // used to flip it a second time for ascending metrics, which inverted
+      // exactly the three the flag exists to correct: the page claimed Eritrea
+      // was rank 1 of 139 for press freedom and Colombia rank 1 of 117 for
+      // Gini, i.e. it awarded first place to the least free and the least
+      // equal. The position in the sorted list is the rank; nothing to flip.
+      const rank = idx + 1
       return {
         key: m,
         meta,

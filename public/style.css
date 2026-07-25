@@ -2157,9 +2157,14 @@ body.map-page .app-banner { display: none; }
   padding-bottom: 3.9rem;
 }
 
+/* The top padding reserves the height of the fixed header above it — the two
+   are coupled, and the header is `position: fixed` so nothing enforces it. It
+   grew from 3.6rem when the wordmark and the briefing player stopped sharing a
+   line. If the header gains or loses a row, this has to move with it or the
+   story count ends up underneath it. */
 .map-feed-head {
   flex: 0 0 auto;
-  padding: 3.6rem clamp(0.9rem, 1.4vw, 1.15rem) 0.5rem;
+  padding: 5.9rem clamp(0.9rem, 1.4vw, 1.15rem) 0.5rem;
   font-size: var(--size-xs);
   color: var(--text-dim);
   font-variant-caps: all-small-caps;
@@ -2225,6 +2230,14 @@ body.map-page .app-banner { display: none; }
 }
 
 /* --- Header, status, chrome over the map --- */
+/* The wordmark and the briefing player get a row each.
+   They used to share one line inside the rail's 21rem, and they do not fit:
+   the wordmark takes 155px of the 300px content width, the play button and
+   "Today's briefing" take the remaining 145px, and the progress track — which
+   is `flex: 1` — was shrunk to exactly 0px wide. The player rendered a
+   scrubber that could not be seen, hit or dragged, jammed against the
+   right-hand edge. Stacking gives it the full width, so the track gets its
+   10rem and the two things stop competing for the same line. */
 body.map-page > header {
   position: fixed;
   top: 0;
@@ -2235,6 +2248,16 @@ body.map-page > header {
   padding: 1rem clamp(0.9rem, 1.4vw, 1.15rem) 0;
   border: none;
   background: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+
+  /* `align-items: flex-start` shrink-wraps every child, which is right for the
+     wordmark — a link should not span a column it does not fill — and wrong
+     for the player, whose track is `flex: 1` and therefore resolves against
+     whatever width its own row has. Shrink-wrapped, that width is the content,
+     and the track stayed 0px even after it got a line of its own. */
+  .audio-briefing { align-self: stretch; }
 }
 
 body.map-page > footer {
@@ -2339,10 +2362,15 @@ body.map-page > footer .footer-social {
   z-index: 2;
   display: flex;
   align-items: center;
+  /* The ground legend takes a row of its own (`flex-basis: 100%`), which only
+     works if the row can break. Without this it stayed on line one and fought
+     the chips for width instead of wrapping under them. */
+  flex-wrap: wrap;
   gap: var(--space-md);
+  row-gap: 0.5rem;
   padding: 0.85rem 1.1rem;
   pointer-events: none;
-  background: linear-gradient(to bottom, rgba(8, 10, 13, 0.85), transparent);
+  background: linear-gradient(to bottom, rgba(8, 10, 13, 0.9), rgba(8, 10, 13, 0.55) 60%, transparent);
 
   > * { pointer-events: auto; }
 }
@@ -2417,10 +2445,13 @@ body.map-page > footer .footer-social {
   &.is-locked:hover { opacity: 1; }
 }
 
-/* Layer toggles have no category colour, so their dot is a hollow ring. */
-.map-filter[data-kind='layer']::before {
+/* Layer toggles carry their layer's colour, like the category chips, and echo
+   the shape of the mark they switch: a hollow ring for the disaster and strait
+   layers, a filled disc for conflict. `--cat` is set per chip from
+   OVERLAY_COLOUR, so the chip cannot drift from the paint. */
+.map-filter[data-kind='layer'][data-mark='ring']::before {
   background: none;
-  border: 1px solid currentColor;
+  border: 1px solid var(--cat, currentColor);
 }
 
 /* The timeline slider styled its own focus ring and nothing else in the map
@@ -2483,6 +2514,92 @@ body.map-page > footer .footer-social {
   overflow: visible;
   opacity: 0.85;
 }
+
+/* --- Ground legend ---
+   Decodes the land the way .map-key decodes the beacons. Takes its own row:
+   the direction of the scale is a sentence, not a glyph, and there is no
+   honest way to shorten "0 = most free, 100 = no press freedom" into a chip.
+   The HUD is a flex row, so `flex-basis: 100%` is what breaks the line. */
+.map-ground {
+  flex-basis: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  /* Its own backdrop rather than a taller HUD gradient. This row is type over
+     a map, and the map underneath it is whatever the reader has panned to —
+     the note used to land on top of the Kalaallit Nunaat label and neither was
+     readable. A pill sized to its contents keeps the legend legible without
+     darkening a strip of ocean the width of the canvas. */
+  align-self: flex-start;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.25rem 0.6rem;
+  border-radius: 2px;
+  background: rgba(8, 10, 13, 0.72);
+}
+
+.map-ground-select {
+  /* Native chrome on purpose. `appearance: none` took the caret with it and
+     left something that read as a text field — nothing said 27 other metrics
+     were behind it. The map already uses a native <dialog> and a native range
+     input; this is the same bargain. `color-scheme` is what keeps the popup
+     dark to match. */
+  color-scheme: dark;
+  background: #12161d;
+  border: 1px solid #232936;
+  border-radius: 2px;
+  padding: 0.14rem 0.3rem;
+  max-width: 12rem;
+  font: inherit;
+  font-size: var(--size-xs);
+  letter-spacing: 0.03em;
+  color: #cbd2dc;
+  cursor: pointer;
+
+  &:hover { border-color: #313846; }
+
+  &:focus-visible {
+    outline: 1px solid #4a5568;
+    outline-offset: 2px;
+  }
+}
+
+.map-ground-scale {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* No data sits apart from the ramp, and is drawn from the same constant the
+   fill uses, so the legend cannot claim a tone the map doesn't paint. */
+.map-ground-swatch {
+  width: 9px;
+  height: 9px;
+  background: var(--c);
+  border: 1px solid #232936;
+}
+
+.map-ground-ramp {
+  width: 72px;
+  height: 9px;
+  background: linear-gradient(to right, var(--ramp));
+  border: 1px solid #232936;
+}
+
+/* One line. If a metric ever ships a description long enough to overflow, it
+   ends in an ellipsis rather than wrapping onto the map — the direction of the
+   scale is the first clause, so a truncated note still does its job. */
+.map-ground-note {
+  margin: 0;
+  font-size: var(--size-xs);
+  line-height: 1.4;
+  color: #767f8c;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.map-ground-source { color: #5d6673; }
 
 .map-status {
   position: absolute;
@@ -3237,6 +3354,19 @@ a.map-popup-source-name {
      facts, and two rows of chrome over a half-height map costs more than it
      tells. */
   .map-key { display: none; }
+
+  /* The ground legend stays, unlike the beacon key — the land tint is always
+     on and there is nothing to hover for its meaning, so dropping it would
+     leave a shaded world with no way to read it. The swatch and ramp go
+     instead: the metric's name and the direction of its scale are what make
+     the shading legible, and both are type. */
+  .map-ground {
+    max-width: none;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .map-ground-scale { display: none; }
 
   .map-status { top: 3.2rem; }
 

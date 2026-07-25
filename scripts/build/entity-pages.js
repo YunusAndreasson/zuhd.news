@@ -15,7 +15,17 @@ import { join } from 'path'
 
 const ROOT = new URL('../..', import.meta.url).pathname
 
-const latestTrendsPath = () => {
+/**
+ * Newest daily trends snapshot on disk, or null.
+ *
+ * Exported because build.js needs the same answer for `/api/trends.json`. It
+ * used to look up `content/trends/${today}.json` directly, which is only
+ * present after that day's fetch stage has run — so on any build that happened
+ * before the fetch, or on a day the fetch failed, the endpoint silently did
+ * not exist. Entity pages never had that problem because they came through
+ * here; now neither does the API.
+ */
+export const latestTrendsPath = () => {
   const dir = join(ROOT, 'content', 'trends')
   if (!existsSync(dir)) return null
   const names = readdirSync(dir)

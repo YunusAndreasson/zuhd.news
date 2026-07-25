@@ -359,6 +359,19 @@ $BODY_LENGTHS
   CONFLICT_EXIT=$?
   echo "Conflict exit: $CONFLICT_EXIT — $((SECONDS - T34C2))s" | tee -a "$LOG_FILE"
 
+  # Stage 3.4c3: IODA internet outage snapshot — country connectivity scored
+  # against each country's own 90-day baseline. No surface renders it yet (the
+  # signal does not separate a shutdown from a cable fault — see the header of
+  # fetch-ioda.js); running it now accumulates the per-cycle series that any
+  # future threshold would have to be calibrated against. Two requests, ~5 KB.
+  # Fail-soft: prior snapshot stays in place on any error.
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.4c3: IODA outage snapshot ---" | tee -a "$LOG_FILE"
+  T34C3=$SECONDS
+  timeout 90 node scripts/fetch-ioda.js >> "$LOG_FILE" 2>&1
+  IODA_EXIT=$?
+  echo "IODA exit: $IODA_EXIT — $((SECONDS - T34C3))s" | tee -a "$LOG_FILE"
+
   # Stage 3.4d: GDACS narration — Opus writes a 2-3 sentence narrative for
   # each Orange/Red alert grounded in country profile + recent weather +
   # nearby chokepoint. Cached by inputs-hash so multi-day events aren't

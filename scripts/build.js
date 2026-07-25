@@ -9,7 +9,8 @@ import { buildIgJpeg, IG_FEED, IG_STORY } from './lib/ig-image.js'
 import { buildIslands } from './build/islands.js'
 import { buildMapSources } from './build/basemap.js'
 import { buildCountryPages } from './build/country-pages.js'
-import { buildEntityPages } from './build/entity-pages.js'
+import { buildCountryMetrics } from './build/country-metrics.js'
+import { buildEntityPages, latestTrendsPath } from './build/entity-pages.js'
 import { loadShared } from './build/shared-ts.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
@@ -676,17 +677,37 @@ if (existsSync(conflictSrc)) {
   console.log(`  Built: api/conflict.json (${c.events?.length ?? 0} events, ${c.windowStart} → ${c.windowEnd})`)
 }
 
+// IODA country outage snapshot — internet connectivity scored against each
+// country's own 90-day baseline. Passthrough, same fail-soft shape as the two
+// above. Nothing renders it yet: see the header of scripts/fetch-ioda.js for
+// why the map layer was not built, and what would have to be true to build it.
+// Published so the data is inspectable and so a per-cycle series accumulates.
+const iodaSrc = join(ROOT, 'content', '.ioda.json')
+if (existsSync(iodaSrc)) {
+  cpSync(iodaSrc, join(DIST_DIR, 'api', 'ioda.json'))
+  const i = JSON.parse(readFileSync(iodaSrc, 'utf8'))
+  console.log(`  Built: api/ioda.json (${i.countries?.length ?? 0} countries, ${i.recentDays}d vs ${i.baselineDays}d)`)
+}
+
 // Trends snapshot — full indicator catalog with values/periods. Mobile
 // EntitySheet fetches this to render charts for any entity tapped in an
-// article body. Ships today's snapshot as api/trends.json (single file,
-// always current for this deploy); if mobile wants historical, /trends/
+// article body. Ships the newest snapshot as api/trends.json (single file,
+// current as of this deploy); if mobile wants historical, /trends/
 // per-date JSONs remain queryable via the git repo.
-const today = new Date().toISOString().slice(0, 10)
-const trendsSrc = join(ROOT, 'content', 'trends', `${today}.json`)
-if (existsSync(trendsSrc)) {
+//
+// Dated by the snapshot it shipped, not by today: this looked up
+// `content/trends/${today}.json`, which only exists once that day's fetch
+// stage has run. Any build before the fetch — or on a day it failed — dropped
+// the endpoint entirely, with no log line saying so. Falling back to the
+// newest snapshot is what entity pages have always done.
+const trendsSrc = latestTrendsPath()
+if (trendsSrc && existsSync(trendsSrc)) {
   cpSync(trendsSrc, join(DIST_DIR, 'api', 'trends.json'))
-  const n = JSON.parse(readFileSync(trendsSrc, 'utf8')).indicators?.length ?? 0
-  console.log(`  Built: api/trends.json (${n} indicators)`)
+  const snapshot = JSON.parse(readFileSync(trendsSrc, 'utf8'))
+  const n = snapshot.indicators?.length ?? 0
+  console.log(`  Built: api/trends.json (${n} indicators, ${snapshot.asOf ?? 'undated'})`)
+} else {
+  console.log('  Skipped: api/trends.json (no snapshot in content/trends/)')
 }
 
 // Legacy flat endpoint (backwards compatible)
@@ -1305,6 +1326,13 @@ const countryResult = await buildCountryPages({
   islandV: ISLAND_V,
 })
 console.log(`  Built: country/ (${countryResult.count} pages)`)
+
+// The same 27 metrics arranged the other way round — one file per metric,
+// every country in it — so the map can tint the whole world by one dimension.
+// Country pages answer "what is this country like"; these answer "where does
+// this country sit", which is the question a map is for.
+const metricResult = await buildCountryMetrics({ distDir: DIST_DIR })
+console.log(`  Built: api/metric/ (${metricResult.count} metrics)`)
 
 // sitemap.xml covers homepage, static pages, and all article pages.
 // Cloudflare Pages serves /a/{slug}.html at /a/{slug} (extensionless).

@@ -1,0 +1,26 @@
+{
+  // Typecheck for the island sources.
+  //
+  // The islands are TypeScript, but nothing was ever checking them: esbuild
+  // strips types without looking at them, so a genuine type error shipped
+  // exactly as happily as correct code. This config exists to close that gap —
+  // `npm run typecheck` runs it, and `npm run verify` runs that before the
+  // tests.
+  //
+  // noEmit only. The real bundle is still built by scripts/build/islands.js;
+  // this never produces output and must never be wired into the build.
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "strict": true,
+    "noEmit": true,
+    // Third-party .d.ts files are not ours to fix, and maplibre-gl's are large.
+    "skipLibCheck": true,
+    // Mirrors the `@shared` alias scripts/build/islands.js gives esbuild. If the
+    // two ever disagree, this is the one that will notice first.
+    "paths": { "@shared/*": ["./shared/*"] }
+  },
+  "include": ["public/islands/**/*.ts", "shared/**/*.ts"]
+}

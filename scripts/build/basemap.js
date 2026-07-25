@@ -297,11 +297,49 @@ async function placeLabels(root) {
   const fc = JSON.parse(
     readFileSync(join(root, 'shared', 'data', 'places-50m.geojson'), 'utf8'),
   )
+
+  // National capitals, flagged as `ncap`.
+  //
+  // The `cap` property already on these features is Natural Earth's *admin*
+  // capital flag — it is set on 796 of 1251 places, Mumbai and Ekaterinburg
+  // among them, so it marks provincial seats as readily as national ones and
+  // says almost nothing when two thirds of the map carries it. `capitals-50m`
+  // is the 194-entry national list, and every one of its names is present here.
+  //
+  // Matched on name *and* proximity: capital names are not unique across the
+  // world, and a name-only join would promote the wrong San José.
+  const capitals = JSON.parse(
+    readFileSync(join(root, 'shared', 'data', 'capitals-50m.json'), 'utf8'),
+  )
+  const byName = new Map()
+  for (const cap of Object.values(capitals)) {
+    if (!byName.has(cap.name)) byName.set(cap.name, [])
+    byName.get(cap.name).push(cap)
+  }
+  const isCapital = (name, lng, lat) => {
+    const candidates = byName.get(name)
+    if (!candidates) return false
+    // 0.5° ≈ 55 km — comfortably wider than the disagreement between two
+    // gazetteers about where a city centre is, far narrower than the gap
+    // between two cities that merely share a name.
+    return candidates.some((c) => Math.abs(c.lat - lat) < 0.5 && Math.abs(c.lng - lng) < 0.5)
+  }
+
   return {
     ...fc,
-    features: fc.features.map((f) => ({
-      ...f,
-      properties: { ...f.properties, n: displayLocation(f.properties?.n) ?? f.properties?.n },
-    })),
+    features: fc.features.map((f) => {
+      const [lng, lat] = f.geometry?.coordinates ?? []
+      // Test against the *source* name — `capitals-50m` is untranslated
+      // Natural Earth, so matching after displayLocation() would drop Al-Quds.
+      const ncap = isCapital(f.properties?.n, lng, lat) ? 1 : 0
+      return {
+        ...f,
+        properties: {
+          ...f.properties,
+          n: displayLocation(f.properties?.n) ?? f.properties?.n,
+          ncap,
+        },
+      }
+    }),
   }
 }

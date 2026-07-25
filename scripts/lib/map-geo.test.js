@@ -30,7 +30,11 @@ writeFileSync(
   entry,
   `export * from '${join(ROOT, 'public/islands/_map/solar.ts')}'\n` +
     `export * from '${join(ROOT, 'public/islands/_map/types.ts')}'\n` +
-    `export * from '${join(ROOT, 'public/islands/_map/format.ts')}'\n`,
+    `export * from '${join(ROOT, 'public/islands/_map/format.ts')}'\n` +
+    // style.ts only imports maplibre-gl as a type, so it erases and the bundle
+    // stays DOM-free. Pulled in for the land ramp constants: the legend and the
+    // fill both read them, and so does the contrast test below.
+    `export * from '${join(ROOT, 'public/islands/_map/style.ts')}'\n`,
 )
 const bundlePath = join(dir, 'bundle.mjs')
 await build({
@@ -451,6 +455,253 @@ test('story cards forward the per-source country the card renders', (t) => {
     withCountry / cards > 0.9,
     `only ${withCountry}/${cards} story cards forward a source country`,
   )
+})
+
+// ---------------------------------------------------------------------------
+// The land tint — per-metric country payloads and the ramp that draws them
+// ---------------------------------------------------------------------------
+
+const srgbLuminance = (hex) => {
+  const n = Number.parseInt(hex.slice(1), 16)
+  const lin = (c) => {
+    const s = c / 255
+    return s <= 0.04045 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4
+  }
+  return (
+    0.2126 * lin((n >> 16) & 255) + 0.7152 * lin((n >> 8) & 255) + 0.0722 * lin(n & 255)
+  )
+}
+
+test('the land ramp stays dark enough for borders to survive it', () => {
+  const ramp = M.LAND_RAMP
+  assert.ok(ramp.length >= 2, 'ramp needs at least two stops')
+
+  // Monotonic, or the ramp would fold: two different percentiles could land on
+  // the same tone and a country's shade would stop being readable.
+  for (let i = 1; i < ramp.length; i++) {
+    assert.ok(
+      srgbLuminance(ramp[i]) > srgbLuminance(ramp[i - 1]),
+      `ramp stop ${i} (${ramp[i]}) is not lighter than ${ramp[i - 1]}`,
+    )
+  }
+
+  // `borders` is a single line layer drawn over the fill. A country tinted to
+  // the border's own lightness erases its frontier with every neighbour, so
+  // the top of the ramp has to stay under it.
+  assert.ok(
+    srgbLuminance(ramp[ramp.length - 1]) < srgbLuminance(M.MAP_COLOURS.border),
+    `ramp top ${ramp[ramp.length - 1]} is not darker than border ${M.MAP_COLOURS.border}`,
+  )
+
+  // No-data is off the scale, not at the bottom of it — and the gap saying so
+  // has to be wider than the step between two adjacent stops, or "we have no
+  // figure" reads as "the lowest figure".
+  const noData = srgbLuminance(M.LAND_NO_DATA)
+  assert.ok(noData < srgbLuminance(ramp[0]), 'no-data tone is not below the ramp floor')
+  assert.ok(
+    srgbLuminance(ramp[0]) - noData > srgbLuminance(ramp[1]) - srgbLuminance(ramp[0]),
+    'the no-data gap is narrower than one ramp step, so off-scale reads as low',
+  )
+
+  // Neutral. Category hue is the only colour on this map that means anything;
+  // a chromatic ramp would take that back. Allow a slight blue cast, which is
+  // the base palette's own, but nothing that reads as a hue.
+  for (const hex of [...ramp, M.LAND_NO_DATA]) {
+    const n = Number.parseInt(hex.slice(1), 16)
+    const [r, g, b] = [(n >> 16) & 255, (n >> 8) & 255, n & 255]
+    assert.ok(
+      Math.max(r, g, b) - Math.min(r, g, b) <= 20,
+      `${hex} is chromatic enough to compete with the category colours`,
+    )
+  }
+})
+
+test('every metric payload places its countries on a 0..1 scale', (t) => {
+  const indexPath = join(ROOT, 'dist/api/metric/index.json')
+  if (!existsSync(indexPath)) {
+    t.skip('dist/api/metric/ not built')
+    return
+  }
+  const { metrics } = JSON.parse(readFileSync(indexPath, 'utf8'))
+  assert.ok(metrics.length >= 20, `only ${metrics.length} metrics emitted`)
+
+  const iso2s = new Set(
+    JSON.parse(readFileSync(join(ROOT, 'dist/basemap/countries.geojson'), 'utf8')).features.map(
+      (f) => f.properties?.iso2,
+    ),
+  )
+
+  for (const m of metrics) {
+    const payload = JSON.parse(
+      readFileSync(join(ROOT, 'dist/api/metric', `${m.key}.json`), 'utf8'),
+    )
+    const entries = Object.entries(payload.values)
+    assert.ok(entries.length > 0, `${m.key} has no countries`)
+
+    // The description is what tells the reader which end of the ramp is which.
+    // Without it the tint is a shade with no direction, so it is not optional.
+    assert.ok(payload.description, `${m.key} ships no description for the key to print`)
+
+    let lowest = 1
+    let highest = 0
+    for (const [iso2, v] of entries) {
+      assert.ok(v.p >= 0 && v.p <= 1, `${m.key}/${iso2} has p=${v.p} outside 0..1`)
+      assert.ok(v.r >= 1 && v.r <= payload.total, `${m.key}/${iso2} has rank ${v.r} of ${payload.total}`)
+      // Every code must route somewhere — either to a polygon the map can tint
+      // or to a country page. Not every code does both: the basemap merges the
+      // Natural Earth Israel and Palestine geometries into one feature carrying
+      // `PS`, so `IL` has a profile page and no polygon. That is the map's
+      // cartography working as intended, and the payload is also a
+      // general-purpose endpoint, so `IL` stays. A code matching neither would
+      // be a genuine dead entry.
+      assert.ok(
+        iso2s.has(iso2) || existsSync(join(ROOT, 'dist/api/country', `${iso2}.json`)),
+        `${m.key} carries ${iso2}, which has neither a polygon nor a country page`,
+      )
+      if (v.p < lowest) lowest = v.p
+      if (v.p > highest) highest = v.p
+    }
+    // The percentile positions a country within the set the map can draw, so
+    // the darkest tone must belong to somebody — if it doesn't, percentiles are
+    // being computed over a wider set than the one being painted, and the ramp
+    // is spending its range on countries that never appear.
+    assert.equal(lowest, 0, `${m.key} never reaches p=0`)
+    // The top is looser on purpose. Ties share the lower position, so where
+    // several countries hold the highest value none of them lands on exactly 1
+    // — literacy tops out at 0.92 because a great many countries report the
+    // same high figure. That is the tie rule working, not a broken scale; the
+    // top group still gets the lightest tone in use.
+    assert.ok(highest > 0.85, `${m.key} tops out at p=${highest}, so the ramp's light end is unused`)
+  }
+})
+
+test('the polygon the map actually draws for Palestine can be tinted', (t) => {
+  const indexPath = join(ROOT, 'dist/api/metric/index.json')
+  const basePath = join(ROOT, 'dist/basemap/countries.geojson')
+  if (!existsSync(indexPath) || !existsSync(basePath)) {
+    t.skip('dist/api/metric or dist/basemap not built')
+    return
+  }
+  // The basemap dissolves Israel and Palestine into a single feature labelled
+  // Palestine and keyed `PS`. That is the only polygon covering the territory,
+  // so `PS` is the only code that can paint it — a metric table that carried
+  // the figures under `IL` alone would leave the map blank there while every
+  // neighbour was shaded, which reads as "no data" about a place we do hold
+  // data about.
+  const features = JSON.parse(readFileSync(basePath, 'utf8')).features
+  const codes = new Set(features.map((f) => f.properties?.iso2))
+  assert.ok(codes.has('PS'), 'the basemap has no PS polygon')
+  assert.ok(!codes.has('IL'), 'the basemap has a separate IL polygon, so the merge regressed')
+
+  const { metrics } = JSON.parse(readFileSync(indexPath, 'utf8'))
+  let withPs = 0
+  for (const m of metrics) {
+    const payload = JSON.parse(
+      readFileSync(join(ROOT, 'dist/api/metric', `${m.key}.json`), 'utf8'),
+    )
+    if (payload.values.PS) withPs++
+  }
+  assert.ok(withPs >= 15, `only ${withPs} of ${metrics.length} metrics can tint PS`)
+})
+
+test('a metric with no figure for a country omits it rather than scoring it zero', (t) => {
+  const path = join(ROOT, 'dist/api/metric/pressFreedomScore.json')
+  if (!existsSync(path)) {
+    t.skip('dist/api/metric/ not built')
+    return
+  }
+  const payload = JSON.parse(readFileSync(path, 'utf8'))
+  const covered = Object.keys(payload.values)
+
+  // country-augmented covers ~144 countries against country-data's 176, so
+  // this gap is real and permanent rather than a build accident. The countries
+  // in it must be absent, because p=0 is a claim — "least of this metric" —
+  // and we have no figure to make it with.
+  assert.ok(
+    covered.length < 176,
+    'press freedom covers every country, so the no-data path is untested',
+  )
+  assert.ok(!('SS' in payload.values) || payload.values.SS.p != null, 'South Sudan carries a null p')
+  for (const v of Object.values(payload.values)) {
+    assert.equal(typeof v.p, 'number', 'a covered country carries a non-numeric p')
+    assert.ok(Number.isFinite(v.p), 'a covered country carries a non-finite p')
+  }
+})
+
+test('rank 1 goes to the country the metric calls best, not worst', (t) => {
+  const path = join(ROOT, 'dist/api/metric/pressFreedomScore.json')
+  if (!existsSync(path)) {
+    t.skip('dist/api/metric/ not built')
+    return
+  }
+  const payload = JSON.parse(readFileSync(path, 'utf8'))
+  const byRank = Object.entries(payload.values).sort((a, b) => a[1].r - b[1].r)
+  const [bestIso] = byRank[0]
+  const [worstIso] = byRank[byRank.length - 1]
+
+  // getRanking() already applies METRICS[key].ascending; country-pages.js used
+  // to flip it a second time, which inverted exactly the three metrics the flag
+  // exists to correct — the page awarded rank 1 of 139 to Eritrea for press
+  // freedom. RSF scores 0 as most free, so rank 1 belongs at the low end.
+  assert.ok(payload.ascending, 'press freedom should be flagged ascending')
+  assert.ok(
+    Number.parseFloat(payload.values[bestIso].v) < Number.parseFloat(payload.values[worstIso].v),
+    `rank 1 (${bestIso}, ${payload.values[bestIso].v}) does not hold a lower RSF score than rank last (${worstIso}, ${payload.values[worstIso].v})`,
+  )
+  // And the ramp is magnitude, so the least free country is the light end.
+  assert.ok(
+    payload.values[worstIso].p > payload.values[bestIso].p,
+    'the higher RSF score does not sit higher on the ramp',
+  )
+})
+
+test('the country card and the land tint agree about where a country sits', (t) => {
+  const metricPath = join(ROOT, 'dist/api/metric/pressFreedomScore.json')
+  const countryDir = join(ROOT, 'dist/api/country')
+  if (!existsSync(metricPath) || !existsSync(countryDir)) {
+    t.skip('dist/api/metric or dist/api/country not built')
+    return
+  }
+  const payload = JSON.parse(readFileSync(metricPath, 'utf8'))
+  let checked = 0
+  for (const [iso2, v] of Object.entries(payload.values)) {
+    const cardPath = join(countryDir, `${iso2}.json`)
+    if (!existsSync(cardPath)) continue
+    const card = JSON.parse(readFileSync(cardPath, 'utf8'))
+    const row = card.metrics?.find((m) => m.label === payload.label)
+    if (!row) continue
+    checked++
+    // Two surfaces, one number. A reader who clicks a country to ask why it is
+    // shaded that way must not be told something different by the card.
+    assert.equal(row.value, v.v, `${iso2} value differs: card ${row.value} vs metric ${v.v}`)
+    assert.equal(row.rank, v.r, `${iso2} rank differs: card ${row.rank} vs metric ${v.r}`)
+    assert.equal(row.total, payload.total, `${iso2} total differs`)
+  }
+  assert.ok(checked > 100, `only ${checked} countries cross-checked`)
+})
+
+test('the basemap flags national capitals and not provincial ones', (t) => {
+  const path = join(ROOT, 'dist/basemap/places.geojson')
+  if (!existsSync(path)) {
+    t.skip('dist/basemap/places.geojson not built')
+    return
+  }
+  const { features } = JSON.parse(readFileSync(path, 'utf8'))
+  const flagged = features.filter((f) => f.properties?.ncap === 1)
+
+  // Natural Earth's own `cap` is set on 796 of 1251 places — it marks admin
+  // seats as readily as national ones, which is why this is a separate flag
+  // joined from capitals-50m rather than a rename of that one.
+  assert.ok(
+    flagged.length > 150 && flagged.length < 250,
+    `${flagged.length} places flagged as national capitals, expected ~194`,
+  )
+  const byName = (n) => features.find((f) => f.properties?.n === n)?.properties?.ncap
+  assert.equal(byName('New Delhi'), 1, 'New Delhi is not flagged as a national capital')
+  assert.equal(byName('Mumbai'), 0, 'Mumbai is flagged as a national capital')
+  // The join runs against the untranslated source name, so the place-name
+  // policy and the capital flag cannot knock each other out.
+  assert.equal(byName('Al-Quds'), 1, 'Al-Quds lost its capital flag to the rename')
 })
 
 // ---------------------------------------------------------------------------
