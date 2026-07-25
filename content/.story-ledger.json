@@ -2,13 +2,200 @@
   "version": 1,
   "stories": [
     {
+      "id": "kuwait-oil-pipelines-private-equity-war-financing",
+      "label": "Blackstone, KKR and Brookfield take Kuwait pipelines stake in $16bn deal",
+      "firstSeen": "2026-07-25T12:10:49.481Z",
+      "lastCovered": "2026-07-25T12:10:49.481Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-25-kuwait-oil-pipelines-private-equity-war-financing"
+      ],
+      "eventUri": "eng-11863377",
+      "summary": "Kuwait sold 49% of its national oil pipeline network to Blackstone, KKR and Brookfield for $16bn — its largest-ever foreign investment, raised to pay for damage from Iranian attacks. Lead with what the money is for, because that is the reveal: a state is monetising the physical spine of its oil industry to cover a war bill, and the buyers are three US private equity firms whose business is long-dated infrastructure rent. The mechanism to teach a strategic reader — a minority stake in a pipeline network is not a passive holding; it comes with tariff structures, dividend priority and decades-long contracts, so a wartime liquidity need converts into a permanent claim on Kuwaiti oil throughput. Who holds power: KPC's balance sheet constraints and the only capital pools large enough to write a $16bn cheque quickly. Who bears the cost: Kuwaiti citizens, whose sovereign wealth model was built on owning the whole chain. Pair explicitly with the Gulf war coverage — this is the same conflict arriving as an ownership transfer rather than a missile. Feed-side gap: no Gulf or Arab regional outlet covered this deal in today's feed; FT is the only source available.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Kuwait",
+        "http://en.wikipedia.org/wiki/Kohlberg_Kravis_Roberts",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Pipeline_transport",
+        "http://en.wikipedia.org/wiki/Joint_venture",
+        "http://en.wikipedia.org/wiki/Kuwait_Oil_Company",
+        "http://en.wikipedia.org/wiki/Foreign_direct_investment",
+        "http://en.wikipedia.org/wiki/Kuwait_Petroleum_Corporation"
+      ]
+    },
+    {
+      "id": "yemen-missiles-king-khalid-airbase-saudi-war-cost",
+      "label": "Yemeni army launch missile attacks on main base in S Arabia",
+      "firstSeen": "2026-07-25T12:10:49.481Z",
+      "lastCovered": "2026-07-25T12:10:49.481Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-25-yemen-missiles-king-khalid-airbase-saudi-war-cost"
+      ],
+      "eventUri": "eng-11863317",
+      "summary": "Yemeni forces struck King Khalid Air Base near Khamis Mushait in southern Saudi Arabia with domestically built ballistic missiles, with reports also naming Riyadh, Jizan and the Red Sea oil terminal at Yanbu. Lead with the target set, not the launch: an air base, a port and a refinery corridor are the three nodes that make Saudi Arabia a participant in the Gulf war, and hitting them prices the kingdom's involvement directly. The mechanism to explain for an economically literate reader — the cost is transmitted through war-risk insurance premiums on Red Sea and Gulf cargo and through the spare-capacity assumption that underwrites the global oil price, not through the physical damage, which is usually minor. Who bears it: Yemenis, already under blockade and bombardment, and Saudi civilians near military infrastructure. Attribute carefully — Mehr is an Iranian state outlet reporting 'local media', Fox News carries the US framing (a liveblog on Houthi escalation); neither confirms damage. Count any casualties on both sides. Continues the Hormuz and chokepoint arc from the maritime side.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/Yemen",
+        "http://en.wikipedia.org/wiki/Jizan",
+        "http://en.wikipedia.org/wiki/Houthi_movement",
+        "http://en.wikipedia.org/wiki/Riyadh",
+        "http://en.wikipedia.org/wiki/Yanbu",
+        "http://en.wikipedia.org/wiki/Ballistic_missile",
+        "http://en.wikipedia.org/wiki/Petroleum"
+      ]
+    },
+    {
+      "id": "sudan-burhan-asmara-ceasefire-rsf-chad-drones",
+      "label": "Sudan Nashra: Burhan in Asmara, ceasefire initiative tops agenda | Museveni invites Burhan to Uganda over South Sudan elections, Burhan-Hemedti channel | Burhan accelerates state-led dialogue plan | Deadly RSF drone strikes along Chad border as forces prepare for possible battle over Tina",
+      "firstSeen": "2026-07-25T12:10:49.481Z",
+      "lastCovered": "2026-07-25T12:10:49.481Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-25-sudan-burhan-asmara-ceasefire-rsf-chad-drones"
+      ],
+      "eventUri": null,
+      "summary": "Washington's revised ceasefire initiative has drawn cautious engagement from Khartoum while Burhan spent July courting the region — long talks with Isaias Afwerki in Asmara, an invitation from Museveni, and a reported back channel to Hemedti — even as RSF drones killed along the Chad border and both sides positioned for a battle over Tina. Lead with the geography of the diplomacy, not the ceasefire draft: Burhan is assembling Eritrean, Ugandan and Egyptian cover before negotiating, which tells the reader that the war's outcome is being set by regional patrons rather than by the mediating power. The mechanism to teach — a 'state-led dialogue plan' run by one belligerent is a legitimacy instrument, designed to make the army the government that negotiates rather than a party that surrenders. Who bears the cost: civilians on the Chad border under drone attack and the displaced who are counted in millions and named almost never — give them numbers. Sudan is the world's largest displacement crisis and among our thinnest coverage areas; Mada Masr's weekly brief is original regional reporting no wire carries.",
+      "conceptUris": []
+    },
+    {
+      "id": "kirillovka-strike-eight-killed-russia-evidence-dossier",
+      "label": "Zaporozhye Region governor calls Ukrainian strike on recreation centers outrageous crime",
+      "firstSeen": "2026-07-25T12:10:49.481Z",
+      "lastCovered": "2026-07-25T12:10:49.481Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-25-kirillovka-strike-eight-killed-russia-evidence-dossier"
+      ],
+      "eventUri": null,
+      "summary": "Eight people, two of them children, were killed in an overnight strike on tourist recreation centres at Kirillovka on the Azov coast, according to the Russian-installed Zaporozhye governor Yevgeny Balitsky; Russia's Foreign Ministry says it will compile evidence for international bodies and its envoy Rodion Miroshnik claims the timing was deliberately chosen. Count and name the dead — that obligation does not depend on who administers the territory. Then give the reader the mechanism that makes this more than a casualty report: Moscow is assembling an atrocity dossier for the same international bodies whose jurisdiction it rejects when the accusation runs the other way, and Ukraine faces the mirror problem in occupied territory it claims as its own. The teach — in a war fought in annexed territory, the identity of the victims and the venue of the complaint are contested before the facts are, which is precisely why documentation becomes a weapon rather than a remedy. Sourcing discipline: TASS is a Russian state agency and the only source in the feed; every claim here — the toll, the target's civilian character, the premeditation — is uncorroborated and must be attributed in the text, with the absence of independent verification stated plainly. Do not carry TASS framing ('outrageous crime') as our own.",
+      "conceptUris": []
+    },
+    {
+      "id": "iran-armenia-gas-working-group-sanctions-routes",
+      "label": "Iran, Armenia agreed to set up joint energy working group",
+      "firstSeen": "2026-07-25T12:10:49.481Z",
+      "lastCovered": "2026-07-25T12:10:49.481Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-25-iran-armenia-gas-working-group-sanctions-routes"
+      ],
+      "eventUri": null,
+      "summary": "Iran's oil minister Mohsen Paknejad and Armenia's territorial administration minister agreed to form a joint working group on energy, focused on gas trade and refining. Lead with what a working group actually signals in a sanctioned economy at war: Iran's export problem is not production but routes, and Armenia is the one northern neighbour that is neither a sanctions enforcer nor a Turkish or Azerbaijani transit dependency. The mechanism to teach — the existing Iran-Armenia gas-for-electricity swap is barter, not sale, which is how sanctioned energy trade survives without dollar settlement, and any expansion runs through a single pipeline and a single border. Who holds power: Tehran, which has the gas; Yerevan, which has the leverage of being landlocked between two states it does not trust. Consequence for our reader: this is what economic sovereignty looks like when it is assembled in small pieces, and it is also the reason the South Caucasus corridor is contested. Keep it proportionate — this is a memorandum of intent, not a contract, and Mehr is an Iranian state outlet reporting its own ministry.",
+      "conceptUris": []
+    },
+    {
+      "id": "india-ivf-regulation-embryo-mixups-accountability",
+      "label": "India's push to regulate IVF and protect patients",
+      "firstSeen": "2026-07-25T12:10:49.481Z",
+      "lastCovered": "2026-07-25T12:10:49.481Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-25-india-ivf-regulation-embryo-mixups-accountability"
+      ],
+      "eventUri": "eng-11863103",
+      "summary": "India's fertility industry is under scrutiny after reported embryo mix-ups, poor record-keeping and clinics operating without meaningful accountability — the specific failures that regulation of assisted reproduction is supposed to prevent. Lead with the embryo mix-up, because it is the failure mode a reader can hold in mind and it is unfixable after the fact: a laboratory chain-of-custody error in IVF produces a living child with the wrong genetic parents. The mechanism to explain — an embryo passes through retrieval, fertilisation, culture, cryopreservation and transfer, each a labelling event, and the ART Act's answer is registration, audit and traceability rather than clinical technique; India has the world's largest unregulated-to-regulated transition underway in a market driven by out-of-pocket payment. Who holds power: private clinics setting protocols and prices, and a registry with limited inspection capacity; who bears the cost: couples paying for cycles with no independent record of what happened to their embryos, and children who may never know. Avoid the IVF-Day framing entirely — the news is the accountability gap, not the anniversary.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/In_vitro_fertilisation",
+        "http://en.wikipedia.org/wiki/Infertility",
+        "http://en.wikipedia.org/wiki/Fertility",
+        "http://en.wikipedia.org/wiki/Assisted_reproductive_technology",
+        "http://en.wikipedia.org/wiki/Embryo",
+        "http://en.wikipedia.org/wiki/Louise_Brown",
+        "http://en.wikipedia.org/wiki/Pregnancy",
+        "http://en.wikipedia.org/wiki/Sperm"
+      ]
+    },
+    {
+      "id": "transmissible-cancer-catfish-memphremagog",
+      "label": "Scientists Discover Contagious Cancer in Lake Memphremagog Catfish",
+      "firstSeen": "2026-07-25T12:10:49.481Z",
+      "lastCovered": "2026-07-25T12:10:49.481Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-25-transmissible-cancer-catfish-memphremagog"
+      ],
+      "eventUri": "eng-11854926",
+      "summary": "Brown bullhead catfish in Lake Memphremagog, on the Vermont-Quebec border, have been coming up covered in black lesions for over a decade; a study published 22 July identifies the cause as a transmissible cancer — the tumour cells themselves move between fish. Lead with why that sentence should stop a reader: cancer is normally the end of a lineage, dying with its host, and a contagious cancer is a cell line that has escaped its own species' mortality to become an infectious parasite made of the host it came from. The mechanism to teach — only a handful are known (Tasmanian devil facial tumour, canine transmissible venereal tumour, several bivalve leukaemias), and each required the immune system to fail to recognise foreign cells, which is why they appear in populations with low genetic diversity. Consequence: this is the first such line described in a wild freshwater fish, so the phenomenon is less rare than the count suggests, and low-diversity populations — including farmed and fragmented ones — are the substrate. Link the paper; the aggregator is not the source. Anglers noticed a decade before science named it, which is worth a line about who actually holds environmental knowledge.",
+      "conceptUris": []
+    },
+    {
+      "id": "pakistan-fia-dark-web-unit-surveillance-peca",
+      "label": "FIA sets up dark web investigation unit to trace criminals hiding in shadowy realm",
+      "firstSeen": "2026-07-25T12:10:49.481Z",
+      "lastCovered": "2026-07-25T12:10:49.481Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-25-pakistan-fia-dark-web-unit-surveillance-peca"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's Federal Investigation Agency has stood up a dedicated dark web unit to trace and prosecute activity on encrypted platforms, framed by officials as countering threats to 'the country's interests'. Lead with that phrase, because it is the whole accountability question: dark web investigation is technically indistinguishable from dark web surveillance, and the difference lies entirely in the warrant regime — which Pakistan's cybercrime law (PECA) has repeatedly been used to stretch toward journalists and critics rather than traffickers. The mechanism a technically literate reader will want: onion routing does not hide who you are from someone watching the endpoints, so real deanonymisation comes from exchange records, operational mistakes and cryptocurrency chain analysis, not from breaking Tor — which means the unit's actual capability is financial-trail work and its actual reach is anyone using the same tools, including sources and dissidents. Who holds power: the FIA and the ministry that scopes 'national interest'; who bears the risk: Pakistani journalists and activists for whom encrypted platforms are protection, not cover. Regional outlet carries the institutional detail no wire reports.",
+      "conceptUris": []
+    },
+    {
+      "id": "peak-language-diversity-model-states-colonialism",
+      "label": "Scientists Uncover Lost 'Golden Age' of Languages That Ended 1,000 Years Ago",
+      "firstSeen": "2026-07-25T12:10:49.481Z",
+      "lastCovered": "2026-07-25T12:10:49.481Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-25-peak-language-diversity-model-states-colonialism"
+      ],
+      "eventUri": null,
+      "summary": "A computational reconstruction puts the peak of human linguistic diversity between 3,000 and 1,000 years ago, declining thereafter with the rise of multinational states and colonial expansion. Lead with the shape of the curve, not the peak: language loss is usually narrated as a modern tragedy, and this dates the inflection to the arrival of the large administrative state — which makes it a story about political consolidation, not modernity. The mechanism to teach a technical reader is the method itself, since the evidence does not exist: the model infers extinct diversity from present-day language distributions, geography and known histories, the same inverse-inference approach used for species richness, and its confidence intervals are the honest part of the finding. What it costs to accept: every empire that standardised a language of administration is in this dataset as a subtraction, including the ones that produced the scripts our reader reads in. Consequence now — the same consolidation pressure runs through digital infrastructure, where a language without training data is a language without a keyboard, a search engine or a model. Keep the estimate framed as a model output, not a measurement.",
+      "conceptUris": []
+    },
+    {
+      "id": "robinhood-chain-tokenized-equities-custody-risk",
+      "label": "Robinhood Chain's real-world assets jump fivefold as tokenized stocks start trading in size",
+      "firstSeen": "2026-07-25T12:10:49.481Z",
+      "lastCovered": "2026-07-25T12:10:49.481Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-25-robinhood-chain-tokenized-equities-custody-risk"
+      ],
+      "eventUri": "eng-11859173",
+      "summary": "Real-world assets on Robinhood Chain rose fivefold and total value locked tripled to about $312mn as tokenised equities began trading in size — while stablecoins and memecoins still dominate activity, which is the honest caveat to lead into. The mechanism to teach, because it is where the risk lives: a tokenised share is not a share. It is a claim on a custodian who holds the share, so the token's value depends on that custodian's solvency and on a broker-dealer's willingness to honour redemption, and none of the settlement guarantees of an exchange apply. Why it matters beyond crypto: the pitch is 24/7 access to US equities for people outside the US, which is genuinely consequential for savers in countries with capital controls or currency collapse — and it routes their savings into a synthetic instrument governed by one company's terms of service rather than a securities regulator. Who holds power: Robinhood, the custodian and the chain's validators; who bears the risk: the non-US retail buyer with no recourse in their own jurisdiction. Ground the piece in the $312mn figure and note it is still small enough that the growth rate is the only real signal.",
+      "conceptUris": []
+    },
+    {
       "id": "apple-iphone-financing-ai-ram-hardware-subscription",
       "label": "Want To Buy iPhone? Apple Has A New Way For You To Afford It",
       "firstSeen": "2026-07-25T04:12:39.618Z",
       "lastCovered": "2026-07-25T08:09:33.279Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-07-24-apple-iphone-financing-ai-ram-hardware-subscription",
@@ -34,7 +221,7 @@
       "lastCovered": "2026-07-25T08:09:33.279Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-25-india-neet-leak-hunger-strike-pradhan-talks"
@@ -56,7 +243,7 @@
       "lastCovered": "2026-07-25T08:09:33.279Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-25-nato-shape-intern-arrested-espionage-belgium"
@@ -77,7 +264,7 @@
       "lastCovered": "2026-07-25T08:09:33.279Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-24-peshawar-high-court-passport-control-list-illegal"
@@ -93,7 +280,7 @@
       "lastCovered": "2026-07-25T08:09:33.279Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-25-ukraine-metal-exports-collapse-industrial-base"
@@ -109,7 +296,7 @@
       "lastCovered": "2026-07-25T08:09:33.279Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-25-venezuela-earthquake-reconstruction-financing-gap"
@@ -125,7 +312,7 @@
       "lastCovered": "2026-07-25T08:09:33.279Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-25-kyrgyzstan-coffee-imports-russia-eaeu-reexport"
@@ -141,7 +328,7 @@
       "lastCovered": "2026-07-25T08:09:33.279Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-24-hpv-vaccine-cervical-cancer-zero-deaths-india-rollout"
@@ -157,7 +344,7 @@
       "lastCovered": "2026-07-25T08:09:33.279Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-25-india-pangolin-trafficking-enforcement-gap"
@@ -173,7 +360,7 @@
       "lastCovered": "2026-07-25T08:09:33.279Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-24-esa-ispace-magpie-lunar-rover-polar-ice-contract"
@@ -189,7 +376,7 @@
       "lastCovered": "2026-07-25T08:09:33.279Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-24-uk-tempest-gcap-demonstrator-images-configuration"
@@ -205,7 +392,7 @@
       "lastCovered": "2026-07-25T04:12:39.618Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-25-delhi-metro-stations-shut-neet-protest-jantar-mantar"
@@ -221,7 +408,7 @@
       "lastCovered": "2026-07-25T04:12:39.618Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-25-cape-town-planning-tribunal-term-limits-capture"
@@ -237,7 +424,7 @@
       "lastCovered": "2026-07-25T04:12:39.618Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-24-us-cuba-military-planning-blockade-invasion-costs"
@@ -253,7 +440,7 @@
       "lastCovered": "2026-07-25T04:12:39.618Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-24-japanese-filipino-children-citizenship-recognition"
@@ -269,7 +456,7 @@
       "lastCovered": "2026-07-25T04:12:39.618Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-25-iran-oman-hormuz-talks-track-araghchi"
@@ -285,7 +472,7 @@
       "lastCovered": "2026-07-25T04:12:39.618Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-24-rawalpindi-fuel-price-food-inflation-daily-revision"
@@ -301,7 +488,7 @@
       "lastCovered": "2026-07-25T04:12:39.618Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-25-south-africa-srd-grant-automated-exclusion-sassa"
@@ -317,7 +504,7 @@
       "lastCovered": "2026-07-25T04:12:39.618Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-24-uk-cyber-policy-continuity-liz-lloyd-burnham"
@@ -333,7 +520,7 @@
       "lastCovered": "2026-07-25T04:12:39.618Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-24-coast-guard-counter-uuv-harbour-defence"
@@ -349,7 +536,7 @@
       "lastCovered": "2026-07-25T04:12:39.618Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-25-altermagnetism-third-class-magnetism-europhysics-prize"
@@ -365,7 +552,7 @@
       "lastCovered": "2026-07-25T04:12:39.618Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-25-p450-gene-auxin-herbicide-resistance-crops"
@@ -375,13 +562,41 @@
       "conceptUris": []
     },
     {
+      "id": "spain-france-wildfires-national-emergency-heatwave",
+      "label": "Spain Declares National Emergency Over Wildfires Amid Europe Heatwave",
+      "firstSeen": "2026-07-24T17:08:25.473Z",
+      "lastCovered": "2026-07-25T12:10:49.481Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-07-24-spain-france-wildfires-national-emergency-heatwave",
+        "2026-07-25-france-spain-wildfires-200000-displaced-bordeaux"
+      ],
+      "eventUri": "eng-11860610",
+      "summary": "Tens of thousands fled as wildfires ravaged France and Spain, forcing Spain to declare a national emergency and France to evacuate the Cap Ferret peninsula. Lead with the human displacement number and the mechanism: a record European heatwave turning the continent's summer into an annual mass-evacuation event. This is climate consequence made concrete — who bears it (residents, firefighters) and why the baseline is shifting, not a one-off.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/France",
+        "http://en.wikipedia.org/wiki/Wildfire",
+        "http://en.wikipedia.org/wiki/Hectare",
+        "http://en.wikipedia.org/wiki/Conflagration",
+        "http://en.wikipedia.org/wiki/Firefighter",
+        "http://en.wikipedia.org/wiki/Cap_Ferret",
+        "http://en.wikipedia.org/wiki/Bordeaux",
+        "http://en.wikipedia.org/wiki/Atlantic_Ocean",
+        "http://en.wikipedia.org/wiki/Gironde",
+        "http://en.wikipedia.org/wiki/Emergency_evacuation"
+      ]
+    },
+    {
       "id": "icc-prosecutor-karim-khan-removed-misconduct",
       "label": "ICC top prosecutor removed over sexual misconduct allegations",
       "firstSeen": "2026-07-24T22:08:56.403Z",
       "lastCovered": "2026-07-24T22:08:56.403Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-24-icc-prosecutor-karim-khan-removed-misconduct"
@@ -406,7 +621,7 @@
       "lastCovered": "2026-07-24T22:08:56.403Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-24-us-measles-2318-cases-surpass-2025-record"
@@ -431,7 +646,7 @@
       "lastCovered": "2026-07-24T22:08:56.403Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-24-pakistan-justice-babar-sattar-residence-notice"
@@ -447,7 +662,7 @@
       "lastCovered": "2026-07-24T22:08:56.403Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-24-dmfi-pac-routing-michigan-primary-ad-spend"
@@ -463,7 +678,7 @@
       "lastCovered": "2026-07-24T22:08:56.403Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-24-trump-threat-seize-frozen-iranian-assets-precedent"
@@ -488,7 +703,7 @@
       "lastCovered": "2026-07-24T22:08:56.403Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-24-intel-capex-outlook-ai-demand-analyst-caution"
@@ -513,7 +728,7 @@
       "lastCovered": "2026-07-24T22:08:56.403Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-24-open-weight-ai-letter-us-export-controls"
@@ -538,7 +753,7 @@
       "lastCovered": "2026-07-24T22:08:56.403Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-24-anthropic-opus-5-token-efficiency-not-capability"
@@ -558,7 +773,7 @@
       "lastCovered": "2026-07-24T22:08:56.403Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-24-state-owned-ai-ownership-versus-oversight"
@@ -574,7 +789,7 @@
       "lastCovered": "2026-07-24T22:08:56.403Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-24-alphafold-redesigned-gene-editing-proteins-safety"
@@ -590,7 +805,7 @@
       "lastCovered": "2026-07-24T22:08:56.403Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-24-cepi-first-human-trial-bundibugyo-ebola-vaccine"
@@ -606,7 +821,7 @@
       "lastCovered": "2026-07-24T22:08:56.403Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-24-nasa-deep-space-network-antenna-fire-risk"
@@ -622,7 +837,7 @@
       "lastCovered": "2026-07-24T22:08:56.403Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-24-research-on-supply-chain-collaboration-strategies-under-manu"
@@ -632,29 +847,22 @@
       "conceptUris": []
     },
     {
-      "id": "spain-france-wildfires-national-emergency-heatwave",
-      "label": "Spain Declares National Emergency Over Wildfires Amid Europe Heatwave",
-      "firstSeen": "2026-07-24T17:08:25.473Z",
-      "lastCovered": "2026-07-24T17:08:25.473Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
+      "id": "mali-violence-mauritania-herders-sahel-spillover",
+      "label": "Violence in Mali is pushing Mauritania to the brink",
+      "firstSeen": "2026-07-24T08:09:06.165Z",
+      "lastCovered": "2026-07-25T12:10:49.481Z",
+      "coverageCount": 3,
+      "category": "economy",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
-        "2026-07-24-spain-france-wildfires-national-emergency-heatwave"
+        "2026-07-24-mali-violence-mauritania-herders-sahel-spillover",
+        "2026-07-24-mali-mauritania-herders-africa-corps-border",
+        "2026-07-25-mauritania-herders-killed-mali-africa-corps-border"
       ],
-      "eventUri": "eng-11860610",
-      "summary": "Tens of thousands fled as wildfires ravaged France and Spain, forcing Spain to declare a national emergency and France to evacuate the Cap Ferret peninsula. Lead with the human displacement number and the mechanism: a record European heatwave turning the continent's summer into an annual mass-evacuation event. This is climate consequence made concrete — who bears it (residents, firefighters) and why the baseline is shifting, not a one-off.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/France",
-        "http://en.wikipedia.org/wiki/Wildfire",
-        "http://en.wikipedia.org/wiki/Hectare",
-        "http://en.wikipedia.org/wiki/Conflagration",
-        "http://en.wikipedia.org/wiki/Firefighter",
-        "http://en.wikipedia.org/wiki/Cap_Ferret",
-        "http://en.wikipedia.org/wiki/Bordeaux",
-        "http://en.wikipedia.org/wiki/Atlantic_Ocean"
-      ]
+      "eventUri": null,
+      "summary": "Mauritania — a 15-year counterterrorism success — is being destabilized less by JNIM than by its neighbor: Malian troops and Russia's Africa Corps have killed scores of Mauritanian herders since January along a border where 70% of Mauritanian livestock graze in Mali and cattle are ~10% of GDP. Lead with the economic-interdependence trap: herders must cross to survive, and can pass safely through militant-held zones but get killed in 'state-controlled' ones. The structural stake — Bamako's brutality is manufacturing the grievances that recruit for al-Qaeda. Ground-reported, no regional outlet in the feed (note feed gap).",
+      "conceptUris": []
     },
     {
       "id": "trump-warns-china-russia-iran-war-involvement",
@@ -663,7 +871,7 @@
       "lastCovered": "2026-07-24T17:08:25.473Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-24-trump-warns-china-russia-iran-war-involvement"
@@ -688,7 +896,7 @@
       "lastCovered": "2026-07-24T17:08:25.473Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-24-bellingcat-shahed-drones-mali-villages"
@@ -704,7 +912,7 @@
       "lastCovered": "2026-07-24T17:08:25.473Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-24-west-bank-settler-attack-israel-military-operation"
@@ -720,7 +928,7 @@
       "lastCovered": "2026-07-24T17:08:25.473Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-24-myanmar-asean-readmission-far-off-envoy"
@@ -736,7 +944,7 @@
       "lastCovered": "2026-07-24T17:08:25.473Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-24-us-tariff-south-africa-125-percent-goods"
@@ -752,7 +960,7 @@
       "lastCovered": "2026-07-24T17:08:25.473Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-24-world-foundation-funding-biometric-id-deepfakes"
@@ -768,7 +976,7 @@
       "lastCovered": "2026-07-24T17:08:25.473Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-24-finance-access-climate-resilience-sub-saharan-women"
@@ -784,7 +992,7 @@
       "lastCovered": "2026-07-24T17:08:25.473Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-24-wrench-attacks-crypto-holders-rising"
@@ -800,7 +1008,7 @@
       "lastCovered": "2026-07-24T17:08:25.473Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-24-northrop-robotic-servicing-satellite-geo"
@@ -816,7 +1024,7 @@
       "lastCovered": "2026-07-24T17:08:25.473Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-24-us-china-ai-feud-threatens-safety-cooperation"
@@ -832,7 +1040,7 @@
       "lastCovered": "2026-07-24T17:08:25.473Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-24-factcheck-europe-heatwaves-air-pollution"
@@ -848,7 +1056,7 @@
       "lastCovered": "2026-07-24T17:08:25.473Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-23-oveis-gharan-abacus-medal-traveling-salesperson"
@@ -858,30 +1066,13 @@
       "conceptUris": []
     },
     {
-      "id": "mali-violence-mauritania-herders-sahel-spillover",
-      "label": "Violence in Mali is pushing Mauritania to the brink",
-      "firstSeen": "2026-07-24T08:09:06.165Z",
-      "lastCovered": "2026-07-25T04:12:39.618Z",
-      "coverageCount": 2,
-      "category": "economy",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-07-24-mali-violence-mauritania-herders-sahel-spillover",
-        "2026-07-24-mali-mauritania-herders-africa-corps-border"
-      ],
-      "eventUri": null,
-      "summary": "Mauritania — a 15-year counterterrorism success — is being destabilized less by JNIM than by its neighbor: Malian troops and Russia's Africa Corps have killed scores of Mauritanian herders since January along a border where 70% of Mauritanian livestock graze in Mali and cattle are ~10% of GDP. Lead with the economic-interdependence trap: herders must cross to survive, and can pass safely through militant-held zones but get killed in 'state-controlled' ones. The structural stake — Bamako's brutality is manufacturing the grievances that recruit for al-Qaeda. Ground-reported, no regional outlet in the feed (note feed gap).",
-      "conceptUris": []
-    },
-    {
       "id": "houthi-naval-blockade-saudi-tankers-oil-100",
       "label": "US-Iran war continues as oil tops $100 amid shipping route control measures",
       "firstSeen": "2026-07-24T12:09:41.456Z",
       "lastCovered": "2026-07-24T12:09:41.456Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-24-houthi-naval-blockade-saudi-tankers-oil-100"
@@ -906,7 +1097,7 @@
       "lastCovered": "2026-07-24T12:09:41.456Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-24-romania-shoots-down-drone-nato-airspace"
@@ -931,7 +1122,7 @@
       "lastCovered": "2026-07-24T12:09:41.456Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-24-south-africa-court-halts-ramaphosa-impeachment"
@@ -954,7 +1145,7 @@
       "lastCovered": "2026-07-24T12:09:41.456Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-24-pakistan-gen-raza-cnsc-27th-amendment-military-overhaul"
@@ -970,7 +1161,7 @@
       "lastCovered": "2026-07-24T12:09:41.456Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-24-jakarta-subsidence-groundwater-piped-water-gap"
@@ -986,7 +1177,7 @@
       "lastCovered": "2026-07-24T12:09:41.456Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-24-hcltech-sarvam-odisha-sovereign-ai-data-centre"
@@ -1011,7 +1202,7 @@
       "lastCovered": "2026-07-24T12:09:41.456Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-24-b2c2-sale-talks-crypto-market-maker-consolidation"
@@ -1027,7 +1218,7 @@
       "lastCovered": "2026-07-24T12:09:41.456Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-24-bitcoin-options-cluster-deribit-clarity-act"
@@ -1043,7 +1234,7 @@
       "lastCovered": "2026-07-24T12:09:41.456Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-24-eu-tiktok-dsa-children-privacy-defaults"
@@ -1068,7 +1259,7 @@
       "lastCovered": "2026-07-24T12:09:41.456Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-24-snake-robots-venezuela-earthquake-search-rescue"
@@ -1084,7 +1275,7 @@
       "lastCovered": "2026-07-24T12:09:41.456Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-24-diffusion-model-synthetic-earthquake-ground-motion"
@@ -1100,7 +1291,7 @@
       "lastCovered": "2026-07-24T12:09:41.456Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-24-el-nino-rapid-onset-record-warm-2026"
@@ -1116,212 +1307,13 @@
       "lastCovered": "2026-07-24T12:09:41.456Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-23-fda-peptides-advisory-oversight-conflict-of-interest"
       ],
       "eventUri": null,
       "summary": "As an FDA advisory committee weighs letting pharmacies dispense seven unapproved peptides, a former adviser walks through how the agency's oversight — and its conflict-of-interest screening for the very panels making these calls — was forged by past drug tragedies. Lead with the accountability mechanism: how regulatory guardrails get built after harm, and what's at stake if the peptide decision loosens them. Institutional-memory story for the science-literate reader.",
-      "conceptUris": []
-    },
-    {
-      "id": "ukraine-strikes-wildberries-st-petersburg-fourth-time",
-      "label": "3 injured as Ukraine strikes Russia's largest online retailer",
-      "firstSeen": "2026-07-24T08:09:06.165Z",
-      "lastCovered": "2026-07-24T08:09:06.165Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-24-ukraine-strikes-wildberries-st-petersburg-fourth-time"
-      ],
-      "eventUri": "rus-2099161",
-      "summary": "Ukraine hit logistics hubs for Wildberries — 'Russia's Amazon' — in Putin's home city St Petersburg for the fourth time in a week. Lead with the target logic: Kyiv is now systematically burning the civilian e-commerce infrastructure that keeps the Russian war economy liquid, not just military depots. Multi-source (UA, RU-exile Meduza, TR, IN) lets the writer weigh Russian casualty/damage claims against Ukrainian framing. The structural why: deep-strike drones have made the home front an economic front.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Leningrad_Oblast",
-        "http://en.wikipedia.org/wiki/Saint_Petersburg",
-        "http://en.wikipedia.org/wiki/Wildberries",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Governor",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Aleksandr_Drozdenko"
-      ]
-    },
-    {
-      "id": "us-strikes-ahvaz-iran-kill-four-thirteenth-night",
-      "label": "US attacks on southwestern Iran kill four people last night",
-      "firstSeen": "2026-07-24T08:09:06.165Z",
-      "lastCovered": "2026-07-24T08:09:06.165Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-24-us-strikes-ahvaz-iran-kill-four-thirteenth-night"
-      ],
-      "eventUri": null,
-      "summary": "US strikes near Ahvaz, Khuzestan killed four and wounded five on the 13th consecutive night of the air campaign, per the provincial governor. Named victims are Iranian civilians; name the toll and the location, and count them as the lead — this is continuation of an assault, not a diplomatic 'exchange'. Attribute figures to Khuzestan's governor via TASS and Iranian outlets, and give the reader the mechanism: a months-long bombing campaign is now baselined as routine. Add the regional voice (Mehr, Middle East Eye) that Western wires omit.",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-strikes-us-airbases-bahrain-jordan-drone",
-      "label": "Iran's Army strikes US airbases in Bahrain, Jordan with drone",
-      "firstSeen": "2026-07-24T08:09:06.165Z",
-      "lastCovered": "2026-07-24T08:09:06.165Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-24-iran-strikes-us-airbases-bahrain-jordan-drone"
-      ],
-      "eventUri": null,
-      "summary": "Iran says it hit US airbases in Bahrain and Jordan — fuel storage, hangars, troop housing — as retaliation, while Tehran demands Gulf states explain CENTCOM's claim they participated in the war. The stakes for the reader: the war is spilling onto OIC-member soil, forcing Gulf monarchies to choose between hosting US bases and Iranian reprisal. Lead with the targets and the accountability question Iran is putting to Manama and Amman. Regional source (Mehr, IR) carried here because Western wires frame this only as 'Iranian claims'.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-cjp-student-protests-modi-education-jantar-mantar",
-      "label": "'Treated as enemies, not inheritors of future': Sonia Gandhi's scathing attack on the Modi government",
-      "firstSeen": "2026-07-24T08:09:06.165Z",
-      "lastCovered": "2026-07-24T08:09:06.165Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-24-india-cjp-student-protests-modi-education-jantar-mantar"
-      ],
-      "eventUri": "eng-11859996",
-      "summary": "A student protest movement (CJP) is building at New Delhi's Jantar Mantar over education policy failures, and the opposition is now amplifying it. Lead with the accountability framing: students accuse the Modi government of 'impunity' on education, and the question is whether this stays a protest or becomes a broader reckoning. For a strategic reader, this is the domestic-legitimacy story running underneath India's foreign-policy assertiveness. Two Indian outlets (Financial Express, The Diplomat) give the movement and the establishment reaction.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Sonia_Gandhi",
-        "http://en.wikipedia.org/wiki/Premiership_of_Narendra_Modi",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Indian_National_Congress",
-        "http://en.wikipedia.org/wiki/Education",
-        "http://en.wikipedia.org/wiki/Central_Armed_Police_Forces",
-        "http://en.wikipedia.org/wiki/Accountability"
-      ]
-    },
-    {
-      "id": "india-pmi-four-year-low-iran-war-risk",
-      "label": "India Activity Slows to Over Four-Year Low on Iran Risks",
-      "firstSeen": "2026-07-24T08:09:06.165Z",
-      "lastCovered": "2026-07-24T08:09:06.165Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-24-india-pmi-four-year-low-iran-war-risk"
-      ],
-      "eventUri": "eng-11859873",
-      "summary": "India's private-sector PMI fell to a four-plus-year low as the Iran war rattled business confidence — a case study in war-by-proxy on the macro level, where a conflict 2,000km away shows up as slowing orders and hiring in Indian factories. Lead with the number and the transmission channel (oil, shipping, sentiment). Multi-source (Reuters, Bloomberg, Investing.com) with divergent read on the same PMI data lets the writer separate signal from spin. For the strategic reader: this is how the Gulf war metastasizes into Asian growth.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Private_sector",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/HSBC",
-        "http://en.wikipedia.org/wiki/Manufacturing",
-        "http://en.wikipedia.org/wiki/S&P_Global"
-      ]
-    },
-    {
-      "id": "russian-stock-market-moex-decline-war-economy",
-      "label": "Russian stock market declines at start of trading",
-      "firstSeen": "2026-07-24T08:09:06.165Z",
-      "lastCovered": "2026-07-24T08:09:06.165Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-24-russian-stock-market-moex-decline-war-economy"
-      ],
-      "eventUri": null,
-      "summary": "The MOEX fell 1.73% and the yuan slid below 11.5 rubles as Ukrainian deep strikes and the Iran war squeeze Russia's war economy. Lead with the linkage the feed's own stories supply: the same morning Wildberries hubs burned, the exchange dropped — the home-front economic front made visible in an index. Attribute to Moscow Exchange data via TASS (state outlet — flag it). For the reader tracking sanctions-and-strikes attrition, this is the price signal.",
-      "conceptUris": []
-    },
-    {
-      "id": "terence-tao-chatgpt-jacobian-conjecture-math-workflow",
-      "label": "Terence Tao's ChatGPT conversation about the Jacobian Conjecture counterexample",
-      "firstSeen": "2026-07-24T08:09:06.165Z",
-      "lastCovered": "2026-07-24T08:09:06.165Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-22-terence-tao-chatgpt-jacobian-conjecture-math-workflow"
-      ],
-      "eventUri": null,
-      "summary": "A published transcript of Fields medalist Terence Tao working through a Jacobian Conjecture counterexample with ChatGPT drew 1,098 points and 626 comments on Hacker News — a rare high-signal artifact of how a top mathematician actually uses a language model on a real open problem. Lead with the mechanism, not the hype: where the model helped, where Tao corrected it, and what that reveals about LLMs as research assistants rather than oracles. The reader is technical and skeptical — give them the substance of the exchange, not 'AI does math'.",
-      "conceptUris": []
-    },
-    {
-      "id": "ripple-rlusd-stablecoin-held-not-used-transfer-drop",
-      "label": "Ripple's RLUSD gets two boosts as transfer volume drops 25%",
-      "firstSeen": "2026-07-24T08:09:06.165Z",
-      "lastCovered": "2026-07-24T08:09:06.165Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-24-ripple-rlusd-stablecoin-held-not-used-transfer-drop"
-      ],
-      "eventUri": "eng-11856267",
-      "summary": "Ripple's RLUSD stablecoin has a $1.5B market cap and rising holder counts, yet monthly transfer volume fell 25% — it's being held, not used. Lead with that contradiction: a 'payment' stablecoin functioning as a parked asset tells you something structural about where stablecoin demand actually comes from (yield and reserve, not commerce). Ties to the reader's running interest in stablecoin reserve concentration. Give the on-chain mechanism (supply split across XRP Ledger and Ethereum) plainly.",
-      "conceptUris": []
-    },
-    {
-      "id": "crypto-pullback-dogecoin-ether-tech-earnings-correlation",
-      "label": "Dogecoin and ether lead pullback as investors digest tech earnings",
-      "firstSeen": "2026-07-24T08:09:06.165Z",
-      "lastCovered": "2026-07-24T08:09:06.165Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-24-crypto-pullback-dogecoin-ether-tech-earnings-correlation"
-      ],
-      "eventUri": null,
-      "summary": "A shallow crypto retreat — Dogecoin -4.5%, ether -2.5%, bitcoin holding near $65,400 — as the market consolidates a strong week alongside tech earnings. Lead with the correlation the reader should notice: digital assets now trade on the same macro/tech-earnings signal as equities, not as an independent 'hedge'. Keep it tight and mechanistic; this is a market-structure note, not a price ticker. Pair conceptually with the RLUSD 'held not used' story on where crypto demand really sits.",
-      "conceptUris": []
-    },
-    {
-      "id": "humic-acid-organic-waste-cinnamon-emulsion-green-chemistry",
-      "label": "Sustainable valorization of organic solid wastes: humic acid-stabilized cinnamon essential oil emulsions with antibacterial properties",
-      "firstSeen": "2026-07-24T08:09:06.165Z",
-      "lastCovered": "2026-07-24T08:09:06.165Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-24-humic-acid-organic-waste-cinnamon-emulsion-green-chemistry"
-      ],
-      "eventUri": null,
-      "summary": "Chinese researchers turned composted organic waste — spent traditional-medicine residue, tangerine meat, soy-sauce leftovers — into humic acid that stabilizes antibacterial cinnamon-oil emulsions. Lead with the circularity: a waste stream that causes real environmental problems in China becomes a functional food-safety material. For the science reader, the interesting bit is the mechanism — macromolecular humic acid as a green emulsifier — and the wider bet on valorizing agricultural waste rather than incinerating it.",
-      "conceptUris": []
-    },
-    {
-      "id": "liquid-crystal-biosensor-protein-detection-mesogen",
-      "label": "Self-assembly and protein-responsive properties of biotin-conjugated fork-like mesogens at aqueous/liquid-crystalline interfaces",
-      "firstSeen": "2026-07-24T08:09:06.165Z",
-      "lastCovered": "2026-07-24T08:09:06.165Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-24-liquid-crystal-biosensor-protein-detection-mesogen"
-      ],
-      "eventUri": null,
-      "summary": "A liquid-crystal interface functionalized with biotin-tagged 'fork-like' molecules reorganizes when it binds a target protein — a label-free biosensing mechanism where the readout is a visible change in the liquid crystal, no electronics required. Lead with the practical promise: cheap, power-free protein detection for point-of-care diagnostics. For the science reader, the teach is how spacer length tunes sensitivity — molecular design as the sensor's dial.",
       "conceptUris": []
     }
   ]
