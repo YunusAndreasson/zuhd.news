@@ -14,6 +14,13 @@ export interface Feed {
   setItems(points: MapPoint[], now: number): void
   /** Scrolls to and marks a row, e.g. when its marker is clicked on the map. */
   highlight(slug: string | null): void
+  /** Grey a row out without rebuilding the list. */
+  setRead(slug: string): void
+  /**
+   * What the refresh control is doing. `idle` restores the button; `busy`
+   * disables it; a number reports how many stories arrived, including zero.
+   */
+  setRefreshState(state: 'idle' | 'busy' | 'error' | number): void
   /** Phone layout only — the rail is a column on a desktop and always open. */
   isExpanded(): boolean
   /**
@@ -30,6 +37,10 @@ export interface FeedOptions {
   onHover: (point: MapPoint | null) => void
   /** The rail changed height, so whatever measured it needs to measure again. */
   onToggle?: (open: boolean) => void
+  /** The refresh control was pressed. */
+  onRefresh?: () => void
+  /** Has this reader already opened the story? Drives the greyed-out state. */
+  isRead?: (slug: string) => boolean
 }
 
 const MAX_ROWS = 120
@@ -64,12 +75,21 @@ export function createFeed(opts: FeedOptions): Feed {
    *
    * A <button> wrapping the count rather than a click handler on the div, so
    * it is reachable by keyboard and announces its state. The stylesheet is
-   * what decides whether the drawer exists at all — on a desktop the button is
-   * `display: none` and the rail has no collapsed height to return to.
+   * what decides whether the drawer exists at all — on a desktop the disclosure
+   * is inert and the rail has no collapsed height to return to.
+   *
+   * The head itself is a container rather than that button, because it holds
+   * two controls now. A <button> inside a <button> is invalid markup, and
+   * browsers resolve it by dropping the inner one — so nesting refresh inside
+   * the handle would have left it unclickable on exactly the layout where the
+   * handle exists.
    */
-  const head = document.createElement('button')
-  head.type = 'button'
+  const head = document.createElement('div')
   head.className = 'map-feed-head'
+
+  const disclosure = document.createElement('button')
+  disclosure.type = 'button'
+  disclosure.className = 'map-feed-disclosure'
 
   const chevron = document.createElement('span')
   chevron.className = 'map-feed-chevron'
@@ -78,9 +98,71 @@ export function createFeed(opts: FeedOptions): Feed {
     '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" focusable="false">' +
     '<path d="M3.5 10 8 5.5 12.5 10"/></svg>'
 
-  head.append(count, chevron)
+  disclosure.append(count, chevron)
 
+  /**
+   * Check for new stories without leaving the page.
+   *
+   * The map is a view a reader builds — a camera position, a time slice, a set
+   * of categories, maybe an open card — and reloading to see whether anything
+   * broke throws all of it away. So this asks the one question a reload was
+   * being used for and answers it in place.
+   *
+   * It is a glyph and a label, not a glyph alone: an unlabelled circular arrow
+   * on a news page is as easily read as "reset" as "reload", and the two would
+   * have opposite consequences for the view the reader has set up.
+   */
+  const refresh = document.createElement('button')
+  refresh.type = 'button'
+  refresh.className = 'map-feed-refresh'
+  refresh.title = 'Check for new stories'
+
+  const refreshIcon = document.createElement('span')
+  refreshIcon.className = 'map-feed-refresh-icon'
+  refreshIcon.setAttribute('aria-hidden', 'true')
+  refreshIcon.innerHTML =
+    '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" ' +
+    'stroke-linecap="round" focusable="false">' +
+    '<path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9"/><path d="M13.6 2.2v2.9h-2.9"/></svg>'
+
+  const refreshLabel = document.createElement('span')
+  refreshLabel.className = 'map-feed-refresh-label'
+  refreshLabel.textContent = 'refresh'
+
+  refresh.append(refreshIcon, refreshLabel)
+  refresh.addEventListener('click', () => opts.onRefresh?.())
+
+  head.append(disclosure, refresh)
   root.append(head, list)
+
+  /**
+   * The result of a refresh, said once and then withdrawn.
+   *
+   * "No new stories" is the answer most presses deserve and the one a spinner
+   * alone never gives — without it a refresh that found nothing is
+   * indistinguishable from a refresh that failed. It replaces the button's own
+   * label for a few seconds rather than opening a toast, because the reader is
+   * already looking at the thing they pressed.
+   */
+  let resultTimer = 0
+  const setRefreshState = (state: 'idle' | 'busy' | 'error' | number) => {
+    clearTimeout(resultTimer)
+    refresh.classList.toggle('is-busy', state === 'busy')
+    refresh.disabled = state === 'busy'
+    if (state === 'busy') {
+      refreshLabel.textContent = 'checking'
+      return
+    }
+    if (state === 'idle') {
+      refreshLabel.textContent = 'refresh'
+      return
+    }
+    refreshLabel.textContent =
+      state === 'error' ? 'try again' : state === 0 ? 'nothing new' : `+${state} new`
+    resultTimer = self.setTimeout(() => {
+      refreshLabel.textContent = 'refresh'
+    }, 4000)
+  }
 
   let expanded = false
 
@@ -97,12 +179,12 @@ export function createFeed(opts: FeedOptions): Feed {
 
   const syncDisclosure = () => {
     if (!narrowQuery.matches) {
-      head.removeAttribute('aria-expanded')
-      head.removeAttribute('aria-controls')
+      disclosure.removeAttribute('aria-expanded')
+      disclosure.removeAttribute('aria-controls')
       return
     }
-    head.setAttribute('aria-controls', 'map-feed-list')
-    head.setAttribute('aria-expanded', String(expanded))
+    disclosure.setAttribute('aria-controls', 'map-feed-list')
+    disclosure.setAttribute('aria-expanded', String(expanded))
   }
 
   const setExpanded = (open: boolean, instant = false) => {
@@ -122,7 +204,7 @@ export function createFeed(opts: FeedOptions): Feed {
     opts.onToggle?.(open)
   }
 
-  head.addEventListener('click', () => setExpanded(!expanded))
+  disclosure.addEventListener('click', () => setExpanded(!expanded))
   syncDisclosure()
   narrowQuery.addEventListener('change', syncDisclosure)
 
@@ -135,6 +217,23 @@ export function createFeed(opts: FeedOptions): Feed {
 
   const rows = new Map<string, HTMLLIElement>()
 
+  /**
+   * Mark a row read, in both channels a reader might have.
+   *
+   * The greying is colour and the hollow dot is shape, and neither reaches
+   * somebody listening to the page — so the state is also said in words. Once:
+   * `is-read` guards the insert so a rebuild over an already-marked row cannot
+   * stack them.
+   */
+  const applyRead = (li: HTMLLIElement) => {
+    if (li.classList.contains('is-read')) return
+    li.classList.add('is-read')
+    const note = document.createElement('span')
+    note.className = 'sr-only'
+    note.textContent = ' (read)'
+    li.querySelector('.map-feed-body')?.append(note)
+  }
+
   const build = (points: MapPoint[], now: number) => {
     rows.clear()
     const frag = document.createDocumentFragment()
@@ -144,9 +243,14 @@ export function createFeed(opts: FeedOptions): Feed {
       li.className = 'map-feed-item'
       li.dataset.slug = p.slug
 
+
       const dot = document.createElement('span')
       dot.className = 'map-feed-dot'
-      dot.style.background = CATEGORY_COLOUR[p.cat] ?? '#888'
+      // Handed in as `--cat` rather than written straight to `background`, the
+      // same way the HUD chips take their layer's colour — so a read row can
+      // switch the dot from a disc to a ring in the stylesheet without the
+      // stylesheet ever naming a category hue.
+      dot.style.setProperty('--cat', CATEGORY_COLOUR[p.cat] ?? '#888')
 
       const body = document.createElement('div')
       body.className = 'map-feed-body'
@@ -162,6 +266,12 @@ export function createFeed(opts: FeedOptions): Feed {
 
       body.append(link, meta)
       li.append(dot, body)
+
+      // Already opened. Greyed rather than hidden or reordered: the rail is a
+      // chronological record of what happened, and dropping a story because
+      // this reader has seen it would make the list disagree with the map it
+      // is captioning — the beacon stays exactly where it was.
+      if (opts.isRead?.(p.slug)) applyRead(li)
 
       // Clicking anywhere in the row — headline included — flies to the story
       // and opens it on the map rather than navigating away. The href stays a
@@ -205,6 +315,11 @@ export function createFeed(opts: FeedOptions): Feed {
     setItems(points, now) {
       build([...points].sort((a, b) => b.t - a.t), now)
     },
+    setRead(slug) {
+      const li = rows.get(slug)
+      if (li) applyRead(li)
+    },
+    setRefreshState,
     highlight(slug) {
       for (const [key, li] of rows) li.classList.toggle('is-active', key === slug)
       if (!slug) return
@@ -218,6 +333,7 @@ export function createFeed(opts: FeedOptions): Feed {
     isExpanded: () => expanded,
     setExpanded,
     destroy() {
+      clearTimeout(resultTimer)
       narrowQuery.removeEventListener('change', syncDisclosure)
       root.remove()
       rows.clear()

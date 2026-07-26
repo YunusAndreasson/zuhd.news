@@ -37,6 +37,7 @@ import {
   OVERLAY_COLOUR,
 } from './_map/style'
 import { createFeed, type Feed } from './_map/feed'
+import { createReadState } from './_map/read-state'
 import { glyphImages, glyphSvg, type GlyphId } from './_map/glyphs'
 import {
   createMarketStrip,
@@ -136,12 +137,29 @@ const UNKNOWN_COVERAGE_W = 0.28
  */
 const UNKNOWN_SEVERITY_MAG = 0.3
 
-const json = async <T>(url: string, signal?: AbortSignal): Promise<T | null> => {
+/**
+ * `revalidate` is for the refresh control, and nothing else should set it.
+ *
+ * On load there is deliberately no `cache: 'no-cache'`: it forced a
+ * revalidation every time, which both defeated the <link rel=preload> for this
+ * exact URL and threw away the stale-while-revalidate the endpoint is served
+ * with.
+ *
+ * A reader pressing "refresh" is the opposite case. `/api/map.json` is served
+ * `max-age=300`, so a plain fetch inside five minutes is answered from the
+ * browser's own cache without touching the network — the button would appear
+ * to work and be incapable of ever finding anything. `no-cache` forces the
+ * conditional request while still allowing a 304, which the endpoint does
+ * serve: unchanged, the whole check costs a round trip and zero bytes of body.
+ * `no-store` would be the wrong tool — it refetches the payload every time.
+ */
+const json = async <T>(
+  url: string,
+  signal?: AbortSignal,
+  revalidate = false,
+): Promise<T | null> => {
   try {
-    // No `cache: 'no-cache'`: that forced a revalidation on every load, which
-    // both defeated the <link rel=preload> for this exact URL and threw away
-    // the stale-while-revalidate the endpoint is served with.
-    const res = await fetch(url, { signal })
+    const res = await fetch(url, revalidate ? { signal, cache: 'no-cache' } : { signal })
     if (!res.ok) return null
     return (await res.json()) as T
   } catch {
@@ -623,6 +641,11 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   const sheet: Sheet = createSheet()
   let popup: StoryPopup | null = null
   let timeline: Timeline | null = null
+  // The span the current rail is drawn against, so a refresh can tell whether
+  // the window actually moved and only rebuild the scrubber when it did.
+  let windowStart = 0
+  let windowEnd = 0
+  let refreshing = false
 
   /**
    * The markets readout.
@@ -646,7 +669,27 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     onQuote: (entry) => sheet.showIndicator(entry, true),
   })
 
+  const readState = createReadState()
+
+  /**
+   * A story counts as read once its card has been opened.
+   *
+   * Opening the card is the reader committing to it — it fetches the article
+   * and puts the whole thing on screen — which is a far better signal than a
+   * hover or a marker click, and the only one on this surface that means
+   * anything. It marks on the way in rather than after some dwell time,
+   * because a card opened and immediately closed was still seen, and a rail
+   * that only greys stories you finished would grey almost nothing.
+   *
+   * The record never leaves the device; see `_map/read-state.ts`.
+   */
+  const markRead = (slug: string) => {
+    if (readState.mark(slug)) feed.setRead(slug)
+  }
+
   const feed: Feed = createFeed({
+    isRead: (slug) => readState.has(slug),
+    onRefresh: () => void refreshStories(),
     onSelect: (p) => {
       // On a phone the list is a drawer over the map, so committing to a story
       // has to give the map back — otherwise the camera flies somewhere the
@@ -1654,6 +1697,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     if (openSlug === p.slug) return
     openSlug = p.slug
     feed.highlight(p.slug)
+    markRead(p.slug)
 
     // Immediate feedback while the camera is still travelling; the full
     // article replaces it once the map settles.
@@ -2194,18 +2238,33 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     points = data.points
     pointBySlug = new Map(points.map((p) => [p.slug, p]))
     scrubNow = data.window.end
+    windowStart = data.window.start
+    windowEnd = data.window.end
 
     timeline = createTimeline({
       start: data.window.start,
       end: data.window.end,
-      onChange: (now) => {
-        scrubNow = now
-        refresh()
-      },
+      onChange: onScrub,
       lead: marketStrip.element,
     })
     timeline.setPoints(points)
     container.append(timeline.element)
+    refresh()
+  }
+
+  /**
+   * Shared by the scrubber built on load and the one a refresh replaces it
+   * with, so the two cannot drift.
+   *
+   * `live` is deliberately not cached here. It used to be, and the cache was
+   * wrong until the reader first touched the scrubber: this fires only on a
+   * gesture, so on load the flag was an assumption. A refresh read it, decided
+   * the reader had scrubbed away, and left them pinned to the old window with
+   * the new stories invisible — the button reporting "+1 new" over a rail that
+   * did not have it. `timeline.isLive()` is asked at the moment it matters.
+   */
+  function onScrub(now: number, _live: boolean) {
+    scrubNow = now
     refresh()
   }
 
@@ -2295,6 +2354,92 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
         if (data?.leads && mounted) leads = data.leads
       })()
     })
+  }
+
+  /**
+   * Check for new stories in place.
+   *
+   * The reader has built a view — a camera, a time slice, a set of categories,
+   * maybe an open card — and a reload discards all of it to answer one
+   * question. This asks that question and keeps the view.
+   *
+   * What it will not do is move the reader. If they are parked at the live edge
+   * the scrub head follows the new end of the window, because that is what live
+   * means; if they have scrubbed back to Tuesday they stay on Tuesday, and the
+   * new stories are simply there when they come forward. Silently snapping a
+   * scrubbed reader to now would be the same class of mistake as the old
+   * dwell-to-fly: the map moving somewhere nobody asked it to go.
+   */
+  const refreshStories = async () => {
+    if (refreshing || !mounted) return
+    refreshing = true
+    feed.setRefreshState('busy')
+    try {
+      const data = await json<{ window: { start: number; end: number }; points: MapPoint[] }>(
+        '/api/map.json',
+        abort.signal,
+        true,
+      )
+      if (!data || !mounted) {
+        feed.setRefreshState('error')
+        return
+      }
+
+      const before = new Set(points.map((p) => p.slug))
+      const fresh = data.points.filter((p) => !before.has(p.slug))
+      points = data.points
+      pointBySlug = new Map(points.map((p) => [p.slug, p]))
+
+      // The scrub head is the reader's, except at the live edge. Asked, never
+      // assumed — see `onScrub`.
+      const wasLive = timeline ? timeline.isLive() : true
+      const held = scrubNow
+      const start = data.window.start
+      const end = data.window.end
+
+      if (timeline && (start !== windowStart || end !== windowEnd)) {
+        // The rail is drawn against a fixed span, so a window that has moved
+        // needs a new one. Rebuilt rather than mutated because every tick, day
+        // label and histogram bucket is derived from that span — and rebuilt
+        // in place, restoring where the reader was standing.
+        const old = timeline
+        timeline = createTimeline({
+          start,
+          end,
+          value: wasLive ? undefined : Math.min(held, end),
+          onChange: onScrub,
+          lead: marketStrip.element,
+        })
+        timeline.setPoints(points)
+        old.element.replaceWith(timeline.element)
+        old.destroy()
+      } else {
+        timeline?.setPoints(points)
+      }
+
+      windowStart = start
+      windowEnd = end
+      if (wasLive) scrubNow = end
+
+      // Only when something arrived: the lead prose is 85 KB and re-fetching it
+      // to learn nothing changed is exactly the cost this button exists to
+      // avoid. Revalidated for the same reason the point set is.
+      if (fresh.length) {
+        void (async () => {
+          const l = await json<{ leads: Record<string, string> }>(
+            '/api/map-leads.json',
+            abort.signal,
+            true,
+          )
+          if (l?.leads && mounted) leads = l.leads
+        })()
+      }
+
+      refresh()
+      feed.setRefreshState(fresh.length)
+    } finally {
+      refreshing = false
+    }
   }
 
   /**

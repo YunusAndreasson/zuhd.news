@@ -2590,7 +2590,13 @@ body.map-page .app-banner { display: none; }
    to go, and the cursor has to stop claiming there is something to press. */
 .map-feed-head {
   flex: 0 0 auto;
-  display: block;
+  /* Was `display: block` on a <button>. It is a container now, holding the
+     disclosure and the refresh control side by side — a button inside a button
+     is invalid markup and browsers drop the inner one. */
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-xs);
   width: 100%;
   padding: 5.9rem clamp(0.9rem, 1.4vw, 1.15rem) 0.5rem;
   font: inherit;
@@ -2605,9 +2611,75 @@ body.map-page .app-banner { display: none; }
   cursor: default;
 }
 
-.map-feed-head:focus-visible {
+.map-feed-disclosure {
+  flex: 1 1 auto;
+  display: block;
+  min-width: 0;
+  padding: 0;
+  font: inherit;
+  font-size: inherit;
+  font-variant-caps: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: default;
+}
+
+.map-feed-disclosure:focus-visible,
+.map-feed-refresh:focus-visible {
   outline: 1px solid var(--map-focus);
-  outline-offset: -2px;
+  outline-offset: 2px;
+}
+
+/* Check for new stories without leaving the page.
+
+   Sized and coloured as a caption rather than as a call to action: this is the
+   quiet control that saves a reload, not something the reader should be
+   prompted toward. It carries a word as well as the glyph, because a bare
+   circular arrow reads as "reset" about as readily as "reload" and the two
+   would do opposite things to a view the reader has built. */
+.map-feed-refresh {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.15rem 0.3rem;
+  margin-right: -0.3rem;
+  font: inherit;
+  font-size: inherit;
+  font-variant-caps: inherit;
+  letter-spacing: inherit;
+  color: var(--map-ink-muted);
+  background: none;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.map-feed-refresh:hover:not(:disabled) { color: var(--map-ink); }
+.map-feed-refresh:disabled { cursor: default; }
+
+.map-feed-refresh-icon {
+  display: flex;
+  width: 0.85em;
+  height: 0.85em;
+}
+
+.map-feed-refresh-icon svg { width: 100%; height: 100%; }
+
+/* The only spinning thing on the page, and only while a request is in flight. */
+.map-feed-refresh.is-busy .map-feed-refresh-icon {
+  animation: map-feed-spin 900ms linear infinite;
+}
+
+@keyframes map-feed-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-feed-refresh.is-busy .map-feed-refresh-icon { animation: none; }
 }
 
 /* The chevron and the disclosure button belong to the phone layout; here the
@@ -2654,6 +2726,29 @@ body.map-page .app-banner { display: none; }
   height: 6px;
   border-radius: 50%;
   margin-top: 0.42rem;
+  background: var(--cat);
+}
+
+/* Already opened.
+
+   Two channels, deliberately. The ink steps down — and it is an ink *step*,
+   never `opacity`, which is the trick that quietly put a filter chip at 2.33:1
+   and slipped past the colour test because opacity is not a colour literal. And
+   the dot goes from a disc to a ring, so the state survives being read by
+   someone who cannot separate two greys, and does it in the vocabulary the map
+   already uses everywhere else: filled means live, hollow means not.
+
+   Greyed, not hidden and not reordered. The rail captions the map, and dropping
+   a story from the list because this reader has seen it would leave a beacon on
+   the map with no row to match. */
+.map-feed-item.is-read {
+  .map-feed-dot {
+    background: transparent;
+    box-shadow: inset 0 0 0 1.5px var(--cat);
+  }
+
+  .map-feed-title { color: var(--map-ink-muted); }
+  .map-feed-meta { color: var(--map-ink-dim); }
 }
 
 .map-feed-body { min-width: 0; }

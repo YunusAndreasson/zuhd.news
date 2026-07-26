@@ -31,6 +31,17 @@ export interface Timeline {
    * the scrubber stop being two unrelated time controls.
    */
   setWindow(from: number | null): void
+  /**
+   * Is the scrub head at the live edge?
+   *
+   * Asked rather than tracked. The island used to keep its own `timelineLive`
+   * flag written from the `onChange` callback — which is only ever fired by a
+   * user gesture, so before the reader had touched the scrubber the flag was an
+   * assumption rather than an observation, and a refresh read it as "not live"
+   * and left the reader behind the new window. The rail is the only thing that
+   * actually knows, so it is the thing that answers.
+   */
+  isLive(): boolean
   destroy(): void
 }
 
@@ -48,6 +59,16 @@ export interface TimelineOptions {
    * third row of HUD over the map or hiding behind the phone disclosure.
    */
   lead?: HTMLElement
+  /**
+   * Where to put the scrub head, as a timestamp. Defaults to the live edge.
+   *
+   * Only the refresh control uses this. The rail is drawn against a fixed span,
+   * so when new stories move the window the whole scrubber is rebuilt — and a
+   * rebuild that silently returned a scrubbed reader to "now" would move them
+   * somewhere they did not ask to go, which is the one thing this map's
+   * interaction rules keep refusing to do.
+   */
+  value?: number
 }
 
 export function createTimeline(opts: TimelineOptions): Timeline {
@@ -107,7 +128,13 @@ export function createTimeline(opts: TimelineOptions): Timeline {
   range.min = '0'
   range.max = String(slots)
   range.step = '1'
-  range.value = String(slots)
+  // Clamped into the rail: a held position from a previous window can sit
+  // before the new start once the fortnight has rolled forward.
+  const initialSlot =
+    opts.value === undefined
+      ? slots
+      : Math.max(0, Math.min(slots, Math.round((opts.value - start) / SLOT_MS)))
+  range.value = String(initialSlot)
   range.className = 'map-timeline-range'
   range.setAttribute('aria-label', 'Scrub through the last 14 days')
 
@@ -115,7 +142,7 @@ export function createTimeline(opts: TimelineOptions): Timeline {
   root.append(head, track)
 
   let points: MapPoint[] = []
-  let value = slots
+  let value = initialSlot
   let ctx: CanvasRenderingContext2D | null = null
   let windowFrom: number | null = null
 
@@ -329,6 +356,7 @@ export function createTimeline(opts: TimelineOptions): Timeline {
       windowFrom = from
       scheduleDraw()
     },
+    isLive: live,
     destroy() {
       if (drawFrame) cancelAnimationFrame(drawFrame)
       range.removeEventListener('input', onInput)
