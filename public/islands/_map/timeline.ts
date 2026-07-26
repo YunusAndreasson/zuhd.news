@@ -10,6 +10,7 @@
 // screen readers all work without reimplementation; the canvas behind it is
 // purely presentational.
 
+import { HIJRI_NOTE, hijriLabel } from './hijri'
 import type { MapPoint } from './types'
 
 const HOUR_MS = 3_600_000
@@ -65,6 +66,26 @@ export function createTimeline(opts: TimelineOptions): Timeline {
   const readout = document.createElement('output')
   readout.className = 'map-timeline-readout'
 
+  /**
+   * The same instant in the other calendar.
+   *
+   * This is the map's one line saying what time it is, so it is the only place
+   * on the site a second calendar can go without repeating itself — the
+   * article kicker says "3h ago" and has no date to double up, and the footer
+   * date would be a third statement of a fact already made twice.
+   *
+   * It earns the space by moving: the rail spans fourteen days, so scrubbing
+   * it walks half a lunar month, and the Hijri date is the only thing on the
+   * readout that makes that visible. A static badge would just be a badge.
+   *
+   * Its own element rather than more text, because it is a different kind of
+   * fact from the clock beside it and the narrow-viewport rule needs something
+   * to hide.
+   */
+  const hijri = document.createElement('span')
+  hijri.className = 'map-timeline-hijri'
+  hijri.title = HIJRI_NOTE
+
   const liveBtn = document.createElement('button')
   liveBtn.type = 'button'
   liveBtn.className = 'map-timeline-live'
@@ -72,7 +93,7 @@ export function createTimeline(opts: TimelineOptions): Timeline {
   liveBtn.hidden = true
 
   if (opts.lead) head.append(opts.lead)
-  head.append(readout, liveBtn)
+  head.append(readout, hijri, liveBtn)
 
   const track = document.createElement('div')
   track.className = 'map-timeline-track'
@@ -116,7 +137,17 @@ export function createTimeline(opts: TimelineOptions): Timeline {
       const ago = backDays >= 1 ? `${Math.round(backDays)}d back` : `${Math.round((end - t) / HOUR_MS)}h back`
       readout.textContent = `${fmtDate(t)} ${fmtTime(t)} UTC · ${ago}`
     }
-    range.setAttribute('aria-valuetext', `${fmtDate(scrubTime())} ${fmtTime(scrubTime())} UTC`)
+    // Read in the same frame as the clock beside it. Mixing frames on one line
+    // — a UTC time against the reader's local Hijri day — would put two
+    // different days on the same row for anyone east of the Atlantic, which is
+    // a worse error than the maghrib approximation `HIJRI_NOTE` states.
+    const hijriText = hijriLabel(t)
+    hijri.textContent = hijriText
+    hijri.hidden = !hijriText
+    range.setAttribute(
+      'aria-valuetext',
+      `${fmtDate(scrubTime())} ${fmtTime(scrubTime())} UTC${hijriText ? `, ${hijriText}` : ''}`,
+    )
   }
 
   /**

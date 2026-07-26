@@ -38,6 +38,14 @@ writeFileSync(
   `export * from '${join(ROOT, 'public/islands/_map/solar.ts')}'\n` +
     `export * from '${join(ROOT, 'public/islands/_map/types.ts')}'\n` +
     `export * from '${join(ROOT, 'public/islands/_map/format.ts')}'\n` +
+    // The Hijri calendar and the Eid closures that hang off it. Pure, and the
+    // only thing on the map whose correctness cannot be checked by looking at
+    // it — a wrong Hijri date is still a plausible Hijri date.
+    `export * from '${join(ROOT, 'public/islands/_map/hijri.ts')}'\n` +
+    // Named rather than `export *`: markets.ts re-exports payload types that
+    // would collide with types.ts above, and an ambiguous star export resolves
+    // to silence rather than an error.
+    `export { nisab } from '${join(ROOT, 'public/islands/_map/markets.ts')}'\n` +
     // style.ts only imports maplibre-gl as a type, so it erases and the bundle
     // stays DOM-free. Pulled in for the land ramp constants: the legend and the
     // fill both read them, and so does the contrast test below.
@@ -898,6 +906,118 @@ test('an exchange is open on its own week, not on a Western one', () => {
     M.isTrading({ ...riyadh, tz: 'Not/AZone' }, at('2026-07-22T11:00:00Z')),
     false,
   )
+})
+
+// --- the Hijri calendar ----------------------------------------------------
+
+test('the Hijri date is Umm al-Qura, and not one of the three calendars beside it', () => {
+  // `Intl` exposes four Islamic calendars and they disagree by up to two days
+  // on the same instant. Picking the wrong one produces a date that is wrong
+  // and completely plausible — there is no shape to the error, nothing renders
+  // oddly, and no reader can catch it from the page. So the choice is pinned.
+  //
+  // 2026-07-26 is 12 Safar 1448 in Umm al-Qura; islamic-civil says 10 and
+  // islamic-tbla says 11.
+  const at = Date.parse('2026-07-26T12:00:00Z')
+  assert.deepEqual(M.hijriDate(at), { day: 12, month: 2, year: 1448, monthName: 'Safar' })
+  assert.equal(M.hijriLabel(at), '12 Safar 1448')
+
+  // Month names come from our own table, not the engine's: ICU spells Safar
+  // "Ṣafar" in some builds and emits the numeral in others, and the readout
+  // should not change shape by browser.
+  assert.equal(M.hijriDate(Date.parse('2026-02-18T12:00:00Z')).monthName, 'Ramadan')
+  assert.equal(M.hijriDate(Date.parse('2026-03-20T12:00:00Z')).monthName, 'Shawwal')
+
+  // A Hijri date is a local fact. The same instant is two different days on
+  // either side of the date line, and the frame is the caller's to state.
+  const evening = Date.parse('2026-07-26T20:00:00Z')
+  assert.equal(M.hijriDate(evening, 'UTC').day, 12)
+  assert.equal(M.hijriDate(evening, 'Asia/Jakarta').day, 13)
+})
+
+test('an exchange that shuts for Eid is not drawn as trading', () => {
+  // The defect this replaces: five exchanges shut for the better part of a week
+  // twice a year and the map drew every one of them as a live disc with the
+  // previous week's number inside it.
+  const at = (iso) => Date.parse(iso)
+  const riyadh = MARKET_BY_ID.tadawul
+  const london = MARKET_BY_ID.lse
+
+  // 1 Shawwal 1447 — Eid al-Fitr — falls on Friday 2026-03-20, so reach for a
+  // day Riyadh would otherwise be trading. Sunday 22 March is 3 Shawwal.
+  const eidFitr = at('2026-03-22T11:00:00Z')
+  assert.equal(M.eidWindow(eidFitr), 'Eid al-Fitr')
+  assert.equal(M.isTrading(riyadh, eidFitr), false, 'Tadawul is shut for Eid al-Fitr')
+  assert.equal(M.sessionLabel({ ...riyadh, asOf: '2026-03-18' }, eidFitr), 'closed · Eid al-Fitr')
+
+  // 10 Dhu al-Hijja 1447 — Eid al-Adha — is 2026-05-27, a Wednesday.
+  const eidAdha = at('2026-05-27T11:00:00Z')
+  assert.equal(M.eidWindow(eidAdha), 'Eid al-Adha')
+  assert.equal(M.isTrading(riyadh, eidAdha), false, 'Tadawul is shut for Eid al-Adha')
+
+  // The flag is opt-in and nothing else observes it. London trades straight
+  // through both, which is the whole reason `holidays` is an editorial field
+  // on the catalog rather than something derived from the country code.
+  // Monday 23 March is 4 Shawwal — still inside the window, and a day both
+  // exchanges would otherwise be open, which is what makes the contrast mean
+  // something. (The 22nd is a Sunday: London is shut for the ordinary reason.)
+  const eidFitrWeekday = at('2026-03-23T11:00:00Z')
+  assert.equal(M.eidWindow(eidFitrWeekday), 'Eid al-Fitr')
+  assert.equal(M.isTrading(riyadh, eidFitrWeekday), false, 'Tadawul still shut on 4 Shawwal')
+  assert.equal(M.isTrading(london, eidFitrWeekday), true, 'London trades through Eid')
+  assert.equal(M.isTrading(london, eidAdha), true)
+
+  // And the ordinary week is untouched: an exchange outside the window behaves
+  // exactly as it did before the calendar existed.
+  assert.equal(M.eidWindow(at('2026-07-22T11:00:00Z')), null)
+  assert.equal(M.isTrading(riyadh, at('2026-07-22T11:00:00Z')), true)
+})
+
+test('Eid closure follows the editorial flag, not the trading week', () => {
+  // The trap this guards. TASE runs Sunday–Thursday exactly as Tadawul does,
+  // so any rule that infers Eid from the trading week — or from "Gulf-shaped
+  // hours" — closes the Tel Aviv exchange for Eid al-Fitr. The flag is set by
+  // hand for that reason, and this asserts the hand was steady.
+  const observes = MARKET_TRACKED.filter((e) => e.holidays === 'islamic').map((e) => e.id)
+  assert.deepEqual(observes.sort(), ['bist', 'bursa-malaysia', 'dfm', 'idx', 'tadawul'])
+
+  const tase = MARKET_BY_ID.tase
+  assert.deepEqual(tase.days, [0, 1, 2, 3, 4], 'TASE keeps a Sunday–Thursday week')
+  assert.equal(tase.holidays, undefined, 'and is still not flagged for Eid')
+  assert.equal(M.eidClosure(tase, Date.parse('2026-03-22T11:00:00Z')), null)
+
+  // No other holiday is modelled anywhere, and the file says so. Christmas Day
+  // must still read as trading, or the comment is lying.
+  assert.equal(M.isTrading(MARKET_BY_ID.lse, Date.parse('2026-12-25T11:00:00Z')), true)
+})
+
+test('nisab is derived from the metal price the card already prints', () => {
+  // Gold at $4,057.62/oz — the figure published on 2026-07-24 — puts the
+  // threshold near $11,100–11,400. The range is the schools' conversions of
+  // the classical weight, so it is a property of fiqh, not of the market, and
+  // it must not collapse to a single number.
+  const gold = M.nisab({ id: 'paxg', unit: '$/oz', level: 4057.62 })
+  assert.equal(gold.metal, 'gold')
+  assert.deepEqual(gold.grams, [85, 87.48])
+  assert.ok(gold.value[0] > 11_000 && gold.value[0] < 11_200, `low was ${gold.value[0]}`)
+  assert.ok(gold.value[1] > 11_300 && gold.value[1] < 11_500, `high was ${gold.value[1]}`)
+  assert.ok(gold.value[1] > gold.value[0], 'the heavier weight is the larger threshold')
+
+  // Silver's threshold is the lower one, which is why it is the consequential
+  // figure — and it is the one this site cannot currently compute, because the
+  // `xag` series is in the registry and absent from the published payload.
+  // Pinned so that landing the series is what turns this on, not a code change.
+  const silver = M.nisab({ id: 'xag', unit: '$/oz', level: 56.7 })
+  assert.equal(silver.metal, 'silver')
+  assert.ok(silver.value[0] < gold.value[0], 'silver nisab sits below gold')
+
+  // Everything else on the ribbon is not a weight of metal and gets no line.
+  assert.equal(M.nisab({ id: 'fx-try', unit: 'TRY / USD', level: 47.3 }), null)
+  assert.equal(M.nisab({ id: 'btc', unit: '$', level: 90_000 }), null)
+  // A metal quoted in something other than $/oz would silently produce a
+  // threshold in the wrong unit, which is worse than producing none.
+  assert.equal(M.nisab({ id: 'paxg', unit: '$/g', level: 130 }), null)
+  assert.equal(M.nisab({ id: 'paxg', unit: '$/oz', level: 0 }), null)
 })
 
 test('the wrong-instrument guard rejects a healthy series from the wrong exchange', () => {

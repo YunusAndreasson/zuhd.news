@@ -112,6 +112,11 @@ export interface MapExchange {
   sessionEnd: string
   /** Trading weekdays, `Date.getDay()` convention — 0 is Sunday. */
   days: number[]
+  /**
+   * `'islamic'` where the exchange shuts for the two Eids. Absent everywhere
+   * else, because no other holiday is modelled — see `_map/hijri.ts`.
+   */
+  holidays?: string
   series: { periods: string[]; values: number[] }
   /** Date of the most recent close, `YYYY-MM-DD`. */
   asOf: string

@@ -14,7 +14,7 @@ Minimalist typography-first global news site. Philosophy in `foundation.md`.
 ## Web surface
 
 - Homepage (`/`): the situational map — a labelled MapLibre GL basemap carrying every geo-located story from the last 14 days, with decay-weighted beacons, heat-ramped clusters, a day/night terminator, a timeline scrubber, an event rail, and the GDACS / chokepoint / conflict layers. See "Situational map" below. The list+reader split-pane it replaced (and `public/reader.js`) was removed 2026-07-24.
-- Article pages (`/a/{slug}.html` → served extensionless): standalone reader with prev/next, per-article OG meta, inline country-tag links. The `spacefield` starfield behind these (and country pages) is **dark-mode only, via a media query** — it was `opacity: light-dark(0, 0.85)`, which is invalid (`light-dark()` is a colour function), so the declaration was dropped, the near-black canvas painted at full strength over the white page on every light-mode device, and the `#000` headline vanished. The island stops its rAF loop entirely when the field is invisible.
+- Article pages (`/a/{slug}.html` → served extensionless): standalone reader with prev/next, per-article OG meta, inline country-tag links, the isnad and any corrections (see "Isnad and corrections" below). The `spacefield` starfield behind these (and country pages) is **dark-mode only, via a media query** — it was `opacity: light-dark(0, 0.85)`, which is invalid (`light-dark()` is a colour function), so the declaration was dropped, the near-black canvas painted at full strength over the white page on every light-mode device, and the `#000` headline vanished. The island stops its rAF loop entirely when the field is invisible.
 - Category pages (`/c/{politics|economy|science|tech}`): chronological list per category
 - Country pages (`/country/{ISO2}`): flag, region, meta line, 26-metric tabular block with percentile strips and rankings, recent coverage list
 - Entity pages (`/e/{id}`): indicator hero value + inline SVG sparkline + articles that reference the indicator via frontmatter `entities[]`
@@ -64,7 +64,7 @@ Minimalist typography-first global news site. Philosophy in `foundation.md`.
 - **The exchange marks draw above the stories** (2026-07-26). Exchanges sit in exactly the cities that generate the most stories, so a cluster over New York or London is not an occasional overlap, it is where every large exchange is. The damage is asymmetric: a cluster is a *count* and survives a 7px tick crossing its rim; an exchange is a single mark and, covered, is simply absent. `story-cluster-count` also had `text-ignore-placement: true`, keeping it out of the collision index entirely, so a market numeral could land flush against it and render "31.6%" out of two true numbers. It is `false` now — `allow-overlap` still guarantees the count is never dropped; it just also occupies space others route around.
 - **The money ribbon** (2026-07-26). Under the exchange tally in the scrubber head: currencies, metals and crypto, each a tick, a code and a signed figure, read from `/api/trends.json` (12 KB gzipped, idle-deferred) — data the build already published and nothing read. Currencies lead with the ummah basket for the same reason the exchange catalog does. **FX is quoted `X / USD`, so the number rises as the currency falls**, and the ribbon inverts it; the card inverts the *series* too, or the chart would climb away under a red percentage. Codes are unreadable to most people, so each quote carries its flag and opens a card with the full name, the quarter of closes and the source. Copper is in the payload and deliberately absent from the ribbon: it is monthly, and a monthly change in a row of daily ones reads as today's.
 - **`scheduleMetric` waits for the source, not for frames** (2026-07-26). It counted thirty `idle` events, which is a wall-clock race wearing a counter's clothes — on a slow machine, or once the overlays became symbol layers and each frame ran a placement pass, thirty idles elapse inside the first second while the worker is still parsing 99k points. The retries then stop and the world stays unshaded and *fully hatched*, which is the exact failure the bound was added to prevent. It listens to `sourcedata` now, which is safe because `applyMetric` sets `metricApplied` *before* it writes any state, so the re-entrant call returns on its first line.
-- **Which exchanges is an editorial claim, and the gaps are recorded** (`scripts/lib/market-metadata.js`). Riyadh, Istanbul, Dubai, Kuala Lumpur and Jakarta are first-class, not an appendix — a markets layer that ships NYSE/London/Frankfurt/Tokyo and stops is a Western markets map. But **the free data commons does not cover the ummah**: Doha, Abu Dhabi, Kuwait, Bahrain, Muscat, Karachi, Dhaka, Casablanca, Tunis, Amman, Lagos and Cairo have no usable daily series on Yahoo, every candidate symbol having been probed. They stay in the catalog with `available: false` and a reason each — the treatment `shared/genocide.ts` gives its `risk` entries — so the gap is revisited rather than quietly becoming a fact about our coverage. **Trading days are per-exchange** (`days`, `Date.getDay()` convention): Riyadh and Yafa run Sunday–Thursday while Dubai moved to Monday–Friday in 2022, and a test pins it, because a Gulf-wide rule is wrong about half the Gulf. Holidays are not modelled — an Eid closure reads as "trading" — which mis-states the *state* only, never the number, since the card prints the close's actual date.
+- **Which exchanges is an editorial claim, and the gaps are recorded** (`scripts/lib/market-metadata.js`). Riyadh, Istanbul, Dubai, Kuala Lumpur and Jakarta are first-class, not an appendix — a markets layer that ships NYSE/London/Frankfurt/Tokyo and stops is a Western markets map. But **the free data commons does not cover the ummah**: Doha, Abu Dhabi, Kuwait, Bahrain, Muscat, Karachi, Dhaka, Casablanca, Tunis, Amman, Lagos and Cairo have no usable daily series on Yahoo, every candidate symbol having been probed. They stay in the catalog with `available: false` and a reason each — the treatment `shared/genocide.ts` gives its `risk` entries — so the gap is revisited rather than quietly becoming a fact about our coverage. **Trading days are per-exchange** (`days`, `Date.getDay()` convention): Riyadh and Yafa run Sunday–Thursday while Dubai moved to Monday–Friday in 2022, and a test pins it, because a Gulf-wide rule is wrong about half the Gulf. **Eid is now modelled and nothing else is** (2026-07-26) — see "The Hijri calendar" below; a Christmas or national-day closure still reads as "trading", which mis-states the *state* only, never the number, since the card prints the close's actual date.
 - **Yahoo answers an unknown symbol with a different instrument, not a 404.** `^PSI` returns a PIMCO fund, `^NGX` the Nasdaq Next Generation 100, `^MSI` a USD figure that is not Muscat — each with a plausible level, a currency and a zone. So every catalog entry pins the currency and IANA zone its symbol is *known* to report and `instrumentMismatch()` discards a response that disagrees; those three happen to be caught upstream by the ≥5-closes rule in `trends-sources/stocks.js`, so the guard exists for the case that rule cannot see — an impostor with a full, healthy series. Also: **`chartPreviousClose` is the close before the *window*, not yesterday**, so the day's change comes from the last two closes; reaching for it against a 3-month range reports the quarter's move as the day's.
 - **The phone layout is a different bargain, not a smaller one** (`@media (max-width: 900px)`). The map takes the whole canvas; the time range keeps a row; the category chips, layer toggles, beacon key and ground legend fold behind a "layers" disclosure (`.map-hud-more` is `display: contents` on desktop, so one DOM serves both); the story rail becomes a drawer whose header is its handle, with the document links inside it. The beacon key, hidden on phones for years for want of room, is back in the panel. Three coupled numbers — `--map-head-h`, `--map-bar-h`, `--map-gutter` — live on `body.map-page` so the fixed header, HUD, scrubber and drawer cannot drift apart.
 - **`worldFitZoom` fits the larger side, and the floor is desktop-only.** With `renderWorldCopies` off MapLibre refuses any zoom at which the world fails to cover the canvas in *either* axis, so the real floor on a portrait phone is the height. The old `max(1.35, …)` was three zoom levels above a phone's fit, and since that value is also `minZoom` the whole world was unreachable: the map opened mid-Sahara and had no gesture out. `homeCenterLat` mirrors `homeCenterLng` for the same reason — at the fit zoom MapLibre pins the centre to the equator, so comparing against the home latitude of 22° left "whole world" lit before the reader had moved.
@@ -77,6 +77,119 @@ Minimalist typography-first global news site. Philosophy in `foundation.md`.
 - **`populationDensity` is derived in `getMetricValue`, not read.** It is arithmetic — population ÷ area — and both inputs are native `CountryData` fields; it lived in the augmented table only because that is where the generator happened to compute it. So every country missing from that table reported no density while the site held both of its inputs. It is now derived whenever the table has nothing, which took coverage from 141 to 172 countries and gave the US, the UK, Saudi Arabia, South Africa and South Korea a figure. Stored values are never overwritten, so nothing published changed: France still reads 121, Germany 232, India 424 — the derivation was checked against them.
 - **`CC_TO_TOPOJSON_NAME` is a join key, not a label.** `MK` was keyed `'North Macedonia'` — right for a label, wrong here, because Natural Earth 1:110m still says `Macedonia`. The join missed, the feature got no `iso2`, and the country became unshadeable on every metric *and* unclickable through to its profile — drawn, labelled and inert, with nothing thrown and nothing logged. `VU` was missing outright, same result. What the reader sees is `place-names.ts`'s job. A test now walks every Natural Earth feature and fails if one that has an ISO code cannot resolve to it; the five genuinely codeless features are enumerated, not tolerated.
 - Solar, decay, basemap-geometry and built-payload invariants are pinned in `scripts/lib/map-geo.test.js`, which bundles the DOM-free modules with esbuild and asserts against them. **The ramp test now checks step contrast**, because the flat ramp passed every assertion there was — monotonic, neutral, under the border. Nothing asked whether the steps could be seen.
+
+## Isnad and corrections
+
+`scripts/lib/article-chain.js`, pinned by `article-chain.test.js` and the
+corpus test. Both implement a sentence the site publishes about itself, which
+is why they are extracted and tested rather than living inline in `build.js`: a
+defect here does not look like a bug, it looks like the page working while the
+claim on the about page quietly stops being true.
+
+- **The chain is linked, and ranked by proximity to the event.** `about.md`
+  says "*isnad* — Every article ends with its chain of sources, **named and
+  linked**", and the article page printed `Sources: A, B, C` as flat text in
+  publication order — while the map's story card linked them. The claim was
+  false on the canonical page and true on the derived one. Ranking is the other
+  half: an isnad is not a bibliography, and what ranks it is how close the
+  transmitter stood. For a newsroom that reads as **jurisdiction** — an outlet
+  inside the country where it happened leads.
+- **Not by distance in kilometres.** `SOURCE_COORDS` covers 41 outlets against
+  the corpus's 489 distinct names, so only **32%** of source references resolve
+  to a coordinate and a distance sort would be arbitrary two thirds of the time
+  while looking principled. `source.country` is on **99%** of them. Story-side,
+  the inline `(country:XX)` tags cover ~52% of articles; where there is no tag
+  the published order stands, which is what the **stable** sort protects.
+- **`adalah` outranks nearness, and that is not a detail.** Ranked on nearness
+  alone a state agency leads every chain about its own state — measured against
+  this corpus, TASS at the head of 6, RT 10, Mehr 3 — which is exactly what the
+  source policy forbids: "State media is included to carry a government's
+  position, never as a substitute for independent reporting." `STATE_OUTLETS`
+  withholds the promotion and nothing else: those outlets stay in the chain,
+  named and linked, in the position the pipeline published them in. The list is
+  **editorial, short, and holds allies to the same rule** — Anadolu is on it for
+  the same reason TASS is. State-*funded* with editorial independence (BBC, Al
+  Jazeera) is a different thing and must not creep in; a test asserts the
+  boundary in both directions.
+- **`sources[]` is never reordered.** `sources[0]` is the published primary
+  source in `/api/*.json`, in `feed.xml` and on the generated share card. The
+  ordering sorts a display copy.
+- **Corrections are a record on the article, not an edit to it.**
+  `foundation.md`'s first principle promises "Corrections issued openly" and
+  nothing in the repo could record that an article had ever been wrong — so a
+  correction meant editing the prose and letting the earlier version disappear.
+  The record is `corrections: [{ date, note }]` in the article's own
+  frontmatter, so it travels with the article in git and lands in the same diff
+  as the text it fixes. It renders as a dated block **above** the source chain
+  (the isnad has to stay last, or `about.md`'s sentence is untrue), with a
+  `corrected` mark in the kicker linking to it — a correction the reader has to
+  scroll to find is filed, not issued.
+- **It reaches people through the channels that already exist**: `dateModified`
+  in the article's JSON-LD, `<updated>` in the Atom feed, and a `corrections`
+  field on the article in both `feed.json` and `feed-lite.json` (added to the
+  one `apiCategories` object, spread-conditionally — absent on the ~100% of
+  articles never corrected, so the published shape is unchanged and the app
+  keeps parsing). There is no `/corrections` index page.
+- **The parser drops a malformed correction rather than throwing**, which is
+  right inside a live pipeline and useless as a warning — so `corpus.test.js`
+  fails the build on any `corrections:` entry that would not survive the filter,
+  including one dated before the article it corrects.
+
+## The Hijri calendar
+
+`public/islands/_map/hijri.ts` — no library and no table of dates. `Intl` has
+shipped the Islamic calendars since ES2015, so the whole conversion costs a
+`DateTimeFormat` and nothing in the bundle, which is the only reason it earns
+its place: a date the reader can get from their own phone does not justify a
+dependency.
+
+- **Umm al-Qura specifically.** The four variants `Intl` exposes disagree by up
+  to two days on the same instant (`islamic-civil` reads 10 Safar where
+  `islamic-umalqura` reads 12), and picking the wrong one produces a date that
+  is wrong and entirely plausible — no shape to the error, nothing renders
+  oddly, no reader can catch it. It is the civil calendar of Saudi Arabia and
+  what the Gulf exchanges schedule against, which is the right instrument for
+  both uses here. A test pins the choice. Month names come from our own table,
+  because ICU spells Safar "Ṣafar" in some builds and emits the numeral in
+  others.
+- **In the map's time readout, and nowhere else.** It is the site's one line
+  saying what time it is, so it is the only place a second calendar does not
+  repeat itself — the article kicker says "3h ago" and the footer date would be
+  a third statement. It earns the space by *moving*: the rail spans fourteen
+  days, so scrubbing walks half a lunar month.
+- **Read in the same frame as the clock beside it** (UTC). Mixing frames on one
+  row — a UTC time against the reader's local Hijri day — puts two different
+  days on the same line for anyone east of the Atlantic, which is worse than the
+  approximation. `HIJRI_NOTE`, on the element's `title`, states the real caveat:
+  the Hijri day turns at **maghrib**, so there are always two Hijri dates in the
+  world at once and the boundary between them is the terminator this map
+  already draws.
+- **Eid is modelled in the markets layer; no other holiday is.** CLAUDE.md used
+  to record "Holidays are not modelled — an Eid closure reads as trading" as a
+  known defect, and it was the one the layer built to carry the Gulf could least
+  afford: five exchanges shut for the better part of a week twice a year and the
+  map drew each as a live disc with the previous week's number in it.
+  `eidClosure` suppresses `isTrading` and `sessionLabel` names the Eid —
+  "closed · Eid al-Fitr" answers the question "last close · Thu" only dodges.
+  Christmas, national days and unscheduled halts still read as trading.
+- **`holidays: 'islamic'` is an editorial flag on the catalog, not derived from
+  `iso2`** — and the trap it avoids is real: TASE runs Sunday–Thursday exactly
+  as Tadawul does, so any rule inferring Eid from the trading week closes the
+  Tel Aviv exchange for Eid al-Fitr. A test pins the five that carry it and that
+  TASE does not. The windows are **wider than the two feast days** (29 Ramadan –
+  4 Shawwal, 8–14 Dhu al-Hijja) because Umm al-Qura is calculated and the actual
+  Eid is sighted; the two can differ by a day either way.
+- **Nisab, on the metals card only** (`nisab` in `_map/markets.ts`). The one
+  question a Muslim reader actually has about the gold price, and the whole
+  answer is arithmetic on the figure already in the card's hero line — no fetch,
+  no payload, no new surface. It **prints the range rather than choosing**
+  (85–87.48 g gold, 595–612.36 g silver): the classical thresholds are 20 dinars
+  and 200 dirhams, and converting those to grams is where the schools part, so
+  picking one would have the site holding a fiqh position it has no business
+  holding. Silver is the more consequential figure — the lower threshold, and
+  the majority position for zakat on cash — and is currently **uncomputable**,
+  because `xag` is in `trends-registry.js` and absent from the published
+  `/api/trends.json`; landing that series is what turns it on, not a code change.
 
 ## Islands (interactive enhancements)
 

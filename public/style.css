@@ -1143,12 +1143,85 @@ body.article-page-body::before {
 .article-page-main .article-body blockquote p { margin: 0; }
 .article-page-main .article-body blockquote p + p { margin-top: var(--space-sm); }
 
-/* Subtle sources line — dimmed, small, no interactivity */
+/* Corrections.
+
+   Set as a matter of record, not as an alarm. `--neg` was the obvious reach and
+   is wrong: red would frame a correction as bad news about the article, when
+   the whole claim of `foundation.md`'s first principle is that issuing one is
+   the system working. So it takes the same soft surface the site uses for any
+   set-apart block, and the only emphasis is the label.
+
+   It sits above the source chain because `about.md` says the article ends with
+   its isnad, and that has to stay true. */
+.article-corrections {
+  margin-top: var(--space-lg);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-soft);
+  border-left: 2px solid var(--accent);
+  font-size: var(--size-sm);
+  color: var(--text-secondary);
+}
+
+.article-corrections-label {
+  font-size: var(--size-xs);
+  font-variant-caps: all-small-caps;
+  font-feature-settings: "case" 1;
+  letter-spacing: var(--track-caps);
+  font-weight: var(--weight-semibold);
+  color: var(--text-emphasis);
+  margin: 0 0 var(--space-xxs);
+}
+
+.article-corrections-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  line-height: var(--leading-body);
+}
+
+.article-corrections-list li + li { margin-top: var(--space-xs); }
+
+.article-corrections-list time {
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+/* The kicker mark. Small caps like everything else on that line, and a real
+   link — it is both the notice that the article was corrected and the way to
+   go read what changed. */
+.article-corrected {
+  color: var(--text-emphasis);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 0.2em;
+}
+
+/* The isnad: the chain of sources, named and linked, nearest the event first.
+
+   Dimmed and small because it is metadata, but every name is a real link — the
+   about page promises the chain is followable and for a long time this line was
+   the one place on the site where it wasn't. The links carry no colour of their
+   own: they inherit the line's ink and take an underline, so the chain reads as
+   one run of text rather than a rank of blue. */
 .article-sources-flat {
   font-size: var(--size-xs);
   color: var(--text-dim);
   margin-top: var(--space-sm);
   line-height: 1.4;
+}
+
+.article-sources-flat a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 0.2em;
+}
+
+.article-sources-flat a:hover,
+.article-sources-flat a:focus-visible {
+  color: var(--text);
+  text-decoration-color: currentColor;
 }
 
 .article-pagination {
@@ -3073,6 +3146,18 @@ body.map-page > footer .footer-social {
 
 .map-timeline.is-scrubbed .map-timeline-head { color: var(--map-ink-muted); }
 .map-timeline.is-scrubbed .map-timeline-readout { color: var(--map-ink); }
+
+/* The Hijri date, in the same ink as the clock it sits beside.
+
+   Deliberately not dimmed: the head is already at `--map-ink-dim`, the dimmest
+   ink with a tested contrast on this surface, and reaching for opacity to push
+   it further is the exact trick the filter chips were caught doing at 2.33:1.
+   It is a second calendar, not a footnote to the first, so it reads at the same
+   weight and separates with the middot the readout already uses. */
+.map-timeline-hijri::before {
+  content: "·";
+  margin-right: 0.4ch;
+}
 
 .map-timeline-live {
   background: none;

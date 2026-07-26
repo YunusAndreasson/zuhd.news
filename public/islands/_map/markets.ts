@@ -316,6 +316,8 @@ export const seriesChangePct = (values: number[], invert = false): number | null
 
 export interface TickerEntry {
   group: string
+  /** The registry id behind it. `usd-index` for the one derived entry. */
+  id: string
   /** The short code the ribbon prints — `TRY`, `GOLD`, `BTC`. */
   label: string
   /** What it is actually called: "Turkish lira". The ribbon has no room; the
@@ -383,6 +385,57 @@ const dollarIndex = (series: number[][]): number[] | null => {
   return out
 }
 
+// --- Nisab -----------------------------------------------------------------
+
+/** Troy ounce in grams. Both metals in the payload are quoted `$/oz`. */
+const TROY_OZ_G = 31.1034768
+
+/**
+ * The weights of gold and silver at which zakat becomes due.
+ *
+ * The classical thresholds are 20 dinars of gold and 200 dirhams of silver.
+ * Converting those into grams is where the schools part company, because it
+ * depends on the mithqal and the dirham you measure against — so the figures
+ * in circulation are 85 g and 87.48 g for gold, 595 g and 612.36 g for silver,
+ * and all four are defensible.
+ *
+ * This prints the range rather than choosing. Picking one would make the site
+ * appear to hold a fiqh position it has no business holding, and the range is
+ * about 3% wide — narrow enough to be useful for the only thing a reader wants
+ * it for, which is knowing roughly where the line is today.
+ */
+const NISAB_WEIGHTS: Record<string, { metal: string; grams: [number, number] }> = {
+  paxg: { metal: 'gold', grams: [85, 87.48] },
+  xag: { metal: 'silver', grams: [595, 612.36] },
+}
+
+export interface Nisab {
+  metal: string
+  grams: [number, number]
+  /** The threshold in the currency the metal is quoted in — USD, for both. */
+  value: [number, number]
+}
+
+/**
+ * The zakat threshold, from the metal price the ribbon already prints.
+ *
+ * This is the one question a Muslim reader actually has about the gold price,
+ * and the whole answer is arithmetic on a number already on the card — so it
+ * costs no fetch, no payload and no new surface. It appears only inside a card
+ * the reader has opened, on the two rows it applies to.
+ *
+ * `null` for everything else, including silver until the `xag` series lands in
+ * `/api/trends.json`. Silver is the more consequential of the two — it is the
+ * lower threshold, so it catches more wealth, which is the majority position
+ * for zakat on cash — and it is currently the one this site cannot compute.
+ */
+export const nisab = (entry: Pick<TickerEntry, 'id' | 'unit' | 'level'>): Nisab | null => {
+  const w = NISAB_WEIGHTS[entry.id]
+  if (!w || entry.unit !== '$/oz' || !Number.isFinite(entry.level) || entry.level <= 0) return null
+  const perGram = entry.level / TROY_OZ_G
+  return { metal: w.metal, grams: w.grams, value: [perGram * w.grams[0], perGram * w.grams[1]] }
+}
+
 /** ISO 3166-1 alpha-2 → regional-indicator pair. */
 const flagOf = (iso2?: string): string =>
   iso2 && iso2.length === 2
@@ -424,6 +477,7 @@ export const tickerEntries = (indicators: TrendIndicator[]): TickerEntry[] => {
         : ind.values
       out.push({
         group,
+        id: item.id,
         label: item.label,
         name: ind.label,
         flag: flagOf(item.iso2),
@@ -450,6 +504,7 @@ export const tickerEntries = (indicators: TrendIndicator[]): TickerEntry[] => {
       indicators.find((i) => i.id === 'fx-eur')?.periods?.slice(-usd.length) ?? []
     out.splice(firstCurrency < 0 ? 0 : firstCurrency, 0, {
       group: 'currencies',
+      id: 'usd-index',
       label: 'USD',
       name: 'US dollar',
       flag: flagOf('US'),

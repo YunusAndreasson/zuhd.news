@@ -11,6 +11,8 @@
 //
 // Everything here is pure and DOM-free.
 
+import { eidClosure } from './hijri'
+
 /**
  * How long ago, in the shortest form that still says it.
  *
@@ -217,19 +219,35 @@ const toMinutes = (hhmm: string): number | null => {
  *
  * Weekday matters as much as the clock here: Riyadh and Yafa trade Sunday to
  * Thursday while Dubai moved to Monday–Friday in 2022, so a Gulf-wide rule
- * would be wrong about half the Gulf. Lunch breaks are not modelled — Tokyo and
- * Kuala Lumpur read as open through theirs — and neither are public holidays,
- * which is the real limit: an exchange shut for Eid or Christmas will show as
- * trading. That only ever mis-states the *state*, never the number, because the
- * card prints the actual date of the close beside it.
+ * would be wrong about half the Gulf. Lunch breaks are still not modelled —
+ * Tokyo and Kuala Lumpur read as open through theirs.
+ *
+ * Eid is modelled, and it is the only holiday that is. The reasoning is not
+ * that Eid matters more than Christmas but that it is the one this map was
+ * getting wrong in the layer built specifically to carry the Gulf: five of
+ * these exchanges shut for the better part of a week twice a year, and the map
+ * drew every one of them as a live disc with last week's number inside it.
+ * `eidClosure` reads the exchange's own Hijri calendar day — see `hijri.ts`
+ * for why the window is wider than the two feast days themselves.
+ *
+ * Everything else — Christmas, national days, an unscheduled halt — still
+ * reads as trading. That mis-states the *state* only, never the number,
+ * because the card prints the actual date of the close beside it.
  */
 export const isTrading = (
-  ex: { tz: string; sessionStart: string; sessionEnd: string; days: number[] },
+  ex: {
+    tz: string
+    sessionStart: string
+    sessionEnd: string
+    days: number[]
+    holidays?: string
+  },
   now = Date.now(),
 ): boolean => {
   const start = toMinutes(ex.sessionStart)
   const end = toMinutes(ex.sessionEnd)
   if (start === null || end === null || !Array.isArray(ex.days) || !ex.days.length) return false
+  if (eidClosure(ex, now)) return false
   const local = zonedNow(ex.tz, now)
   if (!local) return false
   if (!ex.days.includes(local.day)) return false
@@ -237,13 +255,27 @@ export const isTrading = (
 }
 
 /**
- * What the card says about how fresh the figure is: `trading now`, or the
- * weekday of the close it is showing.
+ * What the card says about how fresh the figure is: `trading now`, the Eid the
+ * exchange is shut for, or the weekday of the close it is showing.
+ *
+ * Naming the Eid rather than falling back to `last close · Thu` is the whole
+ * point of modelling it. "Last close · Thursday" on a Tadawul that has been
+ * shut since Tuesday is *true* and tells the reader nothing about why the
+ * number stopped moving; "closed · Eid al-Fitr" answers it.
  */
 export const sessionLabel = (
-  ex: { tz: string; sessionStart: string; sessionEnd: string; days: number[]; asOf: string },
+  ex: {
+    tz: string
+    sessionStart: string
+    sessionEnd: string
+    days: number[]
+    asOf: string
+    holidays?: string
+  },
   now = Date.now(),
 ): string => {
+  const eid = eidClosure(ex, now)
+  if (eid) return `closed · ${eid}`
   if (isTrading(ex, now)) return 'trading now'
   const t = Date.parse(`${ex.asOf}T12:00:00Z`)
   if (!Number.isFinite(t)) return 'last close'

@@ -12,6 +12,13 @@ import { buildCountryPages } from './build/country-pages.js'
 import { buildCountryMetrics } from './build/country-metrics.js'
 import { buildEntityPages, latestTrendsPath } from './build/entity-pages.js'
 import { loadShared } from './build/shared-ts.js'
+import {
+  escHtmlAttr,
+  formatDate,
+  parseCorrections,
+  renderCorrections,
+  renderIsnad,
+} from './lib/article-chain.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
@@ -98,9 +105,6 @@ const markdownToHtml = (md) => {
   return result.join('\n')
 }
 
-const formatDate = (dateStr) =>
-  new Date(dateStr).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
-
 const buildArticle = (filename) => {
   const raw = readFileSync(join(CONTENT_DIR, filename), 'utf-8')
   const { meta, body } = parseFrontmatter(raw)
@@ -108,12 +112,8 @@ const buildArticle = (filename) => {
   const sources = Array.isArray(meta.sources) ? meta.sources : []
   const primarySource = sources[0]?.name || ''
 
-  // Subtle sources line — just names, no accordion
-  let sourcemark = ''
-  if (sources.length > 0) {
-    const names = sources.map(s => s.name).join(', ')
-    sourcemark = `<p class="article-sources-flat">Sources: ${names}</p>`
-  }
+  const corrections = parseCorrections(meta)
+  const sourcemark = renderCorrections(corrections) + renderIsnad(sources, body)
 
   // `concepts` stays in the parsed article so API consumers (feed.json,
   // mobile) keep getting the list, but we no longer append a concept-chip
@@ -138,7 +138,14 @@ const buildArticle = (filename) => {
 
   const slug = basename(filename, '.md')
   return {
-    slug, meta, body, sources, concepts,
+    slug, meta, body, sources, concepts, corrections,
+    // When the article last changed, as opposed to when it was published. Null
+    // for the overwhelming majority; where it is set it drives `dateModified`
+    // in the article's structured data and `<updated>` in the Atom feed, which
+    // is what "issued openly" means on a site with no comment section and no
+    // newsletter — the correction reaches a subscriber through the channel
+    // they already have rather than sitting on a page nobody revisits.
+    correctedAt: corrections.length ? corrections[corrections.length - 1].date : null,
     bodyHtml: renderedHtml + sourcemark,
     // The same prose without the flat `Sources:` line. The map's story card
     // renders its own attribution from the `sources[]` array — linked, and on a
@@ -183,12 +190,6 @@ const buildHomepage = (sorted, cutoff, homepageTemplate) => {
 
   return homepageTemplate.replace(/{{fallbackArticleList}}/g, fallbackArticleList)
 }
-
-const escHtmlAttr = (s) => String(s)
-  .replace(/&/g, '&amp;')
-  .replace(/"/g, '&quot;')
-  .replace(/</g, '&lt;')
-  .replace(/>/g, '&gt;')
 
 // Extract a clean OG/meta description from body: first 1-2 sentences, ≤170 chars.
 const buildDescription = (body) => {
@@ -246,7 +247,7 @@ const formatTimeAgo = (addedAt) => {
 }
 
 const buildArticlePage = (article, prev, next, thread, template, indicatorMap) => {
-  const { slug, meta, body, bodyHtml, title, dateFormatted, addedAt } = article
+  const { slug, meta, body, bodyHtml, title, dateFormatted, addedAt, correctedAt } = article
   const isoDate = meta.date || new Date(addedAt).toISOString()
   const category = meta.category || 'politics'
   const description = buildDescription(body)
@@ -281,7 +282,10 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap) =
     description,
     image: [`https://zuhd.news/api/og/${slug}.png`],
     datePublished: isoDate,
-    dateModified: isoDate,
+    // The one place these two legitimately differ. A corrected article that
+    // still claims it has never been modified is making the same kind of quiet
+    // false statement the correction exists to undo.
+    dateModified: correctedAt || isoDate,
     url,
     mainEntityOfPage: url,
     articleSection: category,
@@ -305,6 +309,15 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap) =
     .replace(/{{dateFormatted}}/g, dateFormatted)
     .replace(/{{isoDate}}/g, isoDate)
     .replace(/{{timeAgo}}/g, escHtmlAttr(timeAgo))
+    // In the kicker, beside the timestamp, because a correction a reader has to
+    // scroll to find is not issued openly — it is filed. The link goes to the
+    // block itself, so the mark is both the notice and the way to read it.
+    .replace(
+      /{{correctionMark}}/g,
+      correctedAt
+        ? '<a class="article-corrected" href="#corrections">corrected</a>'
+        : '',
+    )
     .replace(/{{bodyHtml}}/g, bodyHtml)
     .replace(/{{entityStrip}}/g, entityStripHtml(meta.entities, indicatorMap))
     .replace(/{{threadBlock}}/g, threadBlockHtml(thread?.threadContext))
@@ -622,13 +635,19 @@ const apiGrouped = groupByWindow(sorted, cutoff)
 const apiCategories = Object.fromEntries(
   Object.entries(apiGrouped).map(([cat, articles]) => [
     cat,
-    articles.map(({ slug, meta, addedAt, body, sources, concepts }) => {
+    articles.map(({ slug, meta, addedAt, body, sources, concepts, corrections }) => {
       const thread = threadLookup.get(slug)
       return {
         slug,
         title: meta.title || 'Untitled',
         date: meta.date,
         addedAt,
+        // Added here rather than in one endpoint, so `feed.json` and
+        // `feed-lite.json` cannot disagree about whether a story was corrected.
+        // Spread-conditional: the field is absent on the ~100% of articles that
+        // have never been corrected, so the published shape is unchanged for
+        // every existing consumer and the app keeps parsing.
+        ...(corrections?.length && { corrections }),
         source: sources[0]?.name || null,
         sourceUrl: sources[0]?.url || null,
         // `url` and `angle` were dropped here while the page-data mapping
@@ -1117,7 +1136,7 @@ const atomEntries = feedArticles.map(a => `  <entry>
     <title>${escXml(a.meta.title || 'Untitled')}</title>
     <link href="https://zuhd.news/#${a.slug}" rel="alternate"/>
     <id>tag:zuhd.news,${a.meta.date?.slice(0, 10) || '2026'}:${a.slug}</id>
-    <updated>${new Date(a.meta.date || a.addedAt).toISOString()}</updated>
+    <updated>${new Date(a.correctedAt || a.meta.date || a.addedAt).toISOString()}</updated>
     <category term="${escXml(a.meta.category || 'politics')}"/>
     <summary>${escXml(a.body.trim())}</summary>${a.sources[0] ? `\n    <source><title>${escXml(a.sources[0].name)}</title></source>` : ''}
   </entry>`).join('\n')

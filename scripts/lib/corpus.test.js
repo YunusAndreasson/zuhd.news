@@ -45,6 +45,36 @@ test('every article parses with all required fields', () => {
   assert.deepEqual(broken, [], `schema violations:\n  ${broken.slice(0, 20).join('\n  ')}`)
 })
 
+// --- Corrections ---
+// A correction that fails to render is the exact failure this mechanism exists
+// to prevent: the article is quietly fixed and the reader is never told it was
+// ever wrong. `parseCorrections` in build.js drops a malformed entry rather
+// than throwing mid-build, which is right for a live pipeline and useless as a
+// warning — so the warning is here. Any `corrections:` block that would not
+// survive that filter fails the build.
+test('every correction on file would actually be published', () => {
+  const broken = []
+  let total = 0
+  for (const { f, meta } of loadCorpus()) {
+    if (!('corrections' in (meta || {}))) continue
+    if (!Array.isArray(meta.corrections)) { broken.push(`${f}: corrections is not a list`); continue }
+    for (const c of meta.corrections) {
+      total++
+      if (!c || typeof c !== 'object') { broken.push(`${f}: correction is not a mapping`); continue }
+      // Both fields are load-bearing. Without a note it corrects nothing;
+      // without a date it cannot be placed against the version it applies to,
+      // and it drives `dateModified` and the feed's `<updated>`.
+      if (!c.note || !String(c.note).trim()) broken.push(`${f}: correction has no note`)
+      if (!Number.isFinite(Date.parse(String(c.date)))) broken.push(`${f}: correction has an unparseable date ${c.date}`)
+      // A correction predating the article it corrects is a data error, and it
+      // would push the story backwards in the Atom feed rather than surfacing it.
+      else if (meta.date && Date.parse(String(c.date)) < Date.parse(String(meta.date)))
+        broken.push(`${f}: correction dated before publication`)
+    }
+  }
+  assert.deepEqual(broken, [], `${total} corrections on file, violations:\n  ${broken.slice(0, 20).join('\n  ')}`)
+})
+
 // --- Coordinate sanity ---
 // A typo in lat/lng (e.g. 138.90 for 38.90) silently breaks the globe
 // marker and heatmap. Cheap to check.

@@ -24,7 +24,7 @@ import { displaySourceName, EVENT_TYPE_EYEBROW, parseSeverityHero } from '@share
 import { appPrompt } from '../_app-prompt'
 import { createSparkline } from './chart'
 import * as fmt from './format'
-import type { TickerEntry } from './markets'
+import { nisab, type TickerEntry } from './markets'
 import type {
   ConflictEvent,
   GdacsAlert,
@@ -495,6 +495,29 @@ export function createSheet(): Sheet {
           )
           nodes.push(figure)
         }
+
+        // On the metals, the threshold the price is actually being read for.
+        // Nothing else on this card answers it, and the arithmetic is already
+        // sitting in the hero figure directly above.
+        const n = nisab(entry)
+        if (n) {
+          nodes.push(
+            el(
+              'p',
+              'map-sheet-meta',
+              `Zakat nisab · $${fmt.grouped(n.value[0])} – $${fmt.grouped(n.value[1])}`,
+            ),
+          )
+          nodes.push(
+            el(
+              'p',
+              'map-sheet-note',
+              `The ${n.grams[0]}–${n.grams[1]} g of ${n.metal} at which zakat falls due. ` +
+                'The spread is the schools’ conversions of the classical weight, not a market range.',
+            ),
+          )
+        }
+
         if (entry.sourceLabel) nodes.push(el('p', 'map-sheet-meta', entry.sourceLabel))
       }
       render(nodes, pin)
