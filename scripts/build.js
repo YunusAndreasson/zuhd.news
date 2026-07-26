@@ -74,12 +74,16 @@ const markdownToHtml = (md) => {
       const rewritten = rewriteLinkHref(href)
       const isCountry = rewritten.startsWith('/country/')
       if (isCountry) {
+        const iso2 = rewritten.replace('/country/', '')
+        // A code we publish no page for stays as prose — see
+        // `ROUTABLE_COUNTRIES`. Linking it offers the reader a 404 and a
+        // preview sheet that can only say it failed.
+        if (!ROUTABLE_COUNTRIES.has(iso2)) return text
         // Country tags are popover triggers: the island-loader intercepts
         // primary clicks via `data-island` and opens the country-preview
         // sheet inline. The href stays as a real URL so middle-click /
         // Cmd-click / right-click still navigate to the full profile, and
         // the link works without JS.
-        const iso2 = rewritten.replace('/country/', '')
         return `<a href="${rewritten}" class="country-link" data-island="country-preview" data-iso="${iso2}">${text}</a>`
       }
       return `<a href="${rewritten}">${text}</a>`
@@ -433,6 +437,40 @@ const headCommonDark = headCommon.replace(
 const { displayLocation } = await loadShared('place-names.ts')
 
 /**
+ * The countries a `country:XX` tag can actually be routed to.
+ *
+ * Derived the same way `buildCountryPages` decides what to emit — every key of
+ * `COUNTRY_DATA` whose topojson name resolves to an ISO-2 — so the set of links
+ * the prose makes and the set of pages the build writes cannot disagree.
+ *
+ * They did disagree. The writer tags places we hold no country record for
+ * (Bahrain, Hong Kong, Singapore, the Maldives) and occasionally things that
+ * are not countries at all (`EU`, `UN`, and `UK` where the code is `GB`) — 15
+ * codes across the corpus. Each rendered as a live link to `/country/XX`, which
+ * 404s, and as a `country-preview` trigger, which opened a sheet that fetched a
+ * missing `/api/country/XX.json` and settled on "Couldn't load country
+ * preview." The reader's click was answered with an error either way.
+ *
+ * `iso.ts` already documents the contract for a code it cannot place —
+ * "unknown codes return undefined and the caller should fall back (e.g. skip
+ * highlighting, show the raw code as text)". This is that caller. An untagged
+ * country name reads exactly like the prose around it, which is the right
+ * failure: the sentence is unharmed and nothing offers to go somewhere it
+ * cannot.
+ */
+const ROUTABLE_COUNTRIES = await (async () => {
+  const [{ COUNTRY_DATA }, { codeFromTopojsonName }] = await Promise.all([
+    loadShared('countries/country-data.ts'),
+    loadShared('countries/iso.ts'),
+  ])
+  return new Set(
+    Object.keys(COUNTRY_DATA)
+      .map((name) => codeFromTopojsonName(name))
+      .filter(Boolean),
+  )
+})()
+
+/**
  * The share row, rendered as real links.
  *
  * This is the whole row for a reader with no JavaScript, and the starting point
@@ -581,12 +619,23 @@ const sorted = articles.sort((a, b) => b.addedAt - a.addedAt)
 const cutoff = Date.now() - WINDOW_MS
 
 // Generate audio briefing player HTML
+//
+// The mp3 has to exist, not just the metadata that describes it. These were
+// two different questions answered from one file: `/api/meta.json` below
+// checks `existsSync(mp3Path)` and correctly reported `briefing: null`, while
+// this gate asked only whether `briefing-meta.json` was there and recent. When
+// the metadata is written but generation fails — or the mp3 is cleaned up
+// while the metadata survives — the homepage renders a play button over a
+// `src` that 404s. Nothing looks broken until the reader presses it: the
+// label stays "Today's briefing", the bar never moves, and the only trace is
+// a media error in the console.
 let audioBriefingHtml = ''
 const briefingMetaPath = join(ROOT, 'content', 'audio', 'briefing-meta.json')
 if (existsSync(briefingMetaPath)) {
   const meta = JSON.parse(readFileSync(briefingMetaPath, 'utf-8'))
   const age = Date.now() - new Date(meta.generated).getTime()
-  if (age < 36 * 60 * 60 * 1000) {
+  const mp3Exists = existsSync(join(ROOT, 'content', 'audio', `briefing-${meta.date}.mp3`))
+  if (mp3Exists && age < 36 * 60 * 60 * 1000) {
     const genHour = new Date(meta.generated).getUTCHours()
     const cycles = [3, 9, 15, 21]
     const cycleHour = cycles.reduce((prev, c) => c <= genHour ? c : prev, 0)
@@ -1047,6 +1096,34 @@ writeFileSync(join(DIST_DIR, 'api', 'map.json'),
   JSON.stringify({ generated, window: mapWindow, points: mapPoints }))
 console.log(`  Built: api/map.json (${mapPoints.length} points, ${BUILD_WINDOW_DAYS}d)`)
 
+// Indicator map: id → {label, kind}. Drives the entity strip on both the
+// article page and the map's story card, so only chips that actually resolve
+// to a /e/{id} page + /api/entity/{id}.json blob are ever surfaced.
+//
+// Built here rather than beside the article pages that used to be its only
+// consumer, because the story payloads below need it and are written first.
+const indicatorMap = new Map()
+{
+  const today = new Date().toISOString().slice(0, 10)
+  const candidates = [join(ROOT, 'content', 'trends', `${today}.json`)]
+  // Fall back to the most recent snapshot when today's hasn't been
+  // generated yet — identical to what entity-pages.js does internally.
+  const trendsDir = join(ROOT, 'content', 'trends')
+  if (existsSync(trendsDir)) {
+    const names = readdirSync(trendsDir).filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f)).sort()
+    if (names.length) candidates.push(join(trendsDir, names[names.length - 1]))
+  }
+  for (const p of candidates) {
+    if (!existsSync(p)) continue
+    const trends = JSON.parse(readFileSync(p, 'utf8'))
+    for (const ind of trends.indicators || []) {
+      if (ind?.id && !indicatorMap.has(ind.id)) {
+        indicatorMap.set(ind.id, { label: ind.label, kind: ind.cadence || 'indicator' })
+      }
+    }
+    if (indicatorMap.size) break
+  }
+}
 // Per-story payloads for the map's reading card. The map never navigates away
 // to read — the card opens anchored at the story's own coordinates — so each
 // story needs its rendered body reachable on its own. One small file per story
@@ -1081,6 +1158,31 @@ for (const a of sorted) {
         country: x.country || null,
         sentiment: x.sentiment != null ? Number(x.sentiment) : null,
       })),
+      /**
+       * The indicators this story is about.
+       *
+       * The article page has carried these as a chip row for a long time and
+       * the map's card never did, so the one surface built for a reader who
+       * wants to see how things connect was the one surface that could not
+       * reach a single chart. A story about the strait of Hormuz sat on the map
+       * a few hundred pixels from the Brent series it is about, with no route
+       * between them — and taking that route from an article means leaving for
+       * `/e/{id}`, which on the map would mean abandoning a camera, a time
+       * slice and a set of filters the reader built.
+       *
+       * Filtered through `indicatorMap` for the same reason the article strip
+       * is: an entity naming a series we do not publish would be a chip that
+       * opens an empty sheet.
+       */
+      ...(() => {
+        const entities = (Array.isArray(a.meta.entities) ? a.meta.entities : [])
+          .filter((e) => e?.indicatorId && indicatorMap.has(e.indicatorId))
+          .map((e) => ({
+            id: e.indicatorId,
+            label: indicatorMap.get(e.indicatorId).label || e.mention || e.indicatorId,
+          }))
+        return entities.length ? { entities } : {}
+      })(),
       ...(thread?.threadLabel ? { threadLabel: thread.threadLabel } : {}),
     }),
   )
@@ -1163,33 +1265,6 @@ writeFileSync(join(DIST_DIR, 'api', 'meta.json'), JSON.stringify({
   briefing: briefingInfo
 }))
 console.log('  Built: api/meta.json')
-
-// Indicator map: id → {label, kind}. Drives the article entity strip
-// so we only surface chips that actually resolve to a /e/{id} page +
-// /api/entity/{id}.json blob. Computed once here; fed to every
-// buildArticlePage() call.
-const indicatorMap = new Map()
-{
-  const today = new Date().toISOString().slice(0, 10)
-  const candidates = [join(ROOT, 'content', 'trends', `${today}.json`)]
-  // Fall back to the most recent snapshot when today's hasn't been
-  // generated yet — identical to what entity-pages.js does internally.
-  const trendsDir = join(ROOT, 'content', 'trends')
-  if (existsSync(trendsDir)) {
-    const names = readdirSync(trendsDir).filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f)).sort()
-    if (names.length) candidates.push(join(trendsDir, names[names.length - 1]))
-  }
-  for (const p of candidates) {
-    if (!existsSync(p)) continue
-    const trends = JSON.parse(readFileSync(p, 'utf8'))
-    for (const ind of trends.indicators || []) {
-      if (ind?.id && !indicatorMap.has(ind.id)) {
-        indicatorMap.set(ind.id, { label: ind.label, kind: ind.cadence || 'indicator' })
-      }
-    }
-    if (indicatorMap.size) break
-  }
-}
 
 // Homepage and static pages
 const homepage = buildHomepage(sorted, cutoff, homepageTemplate)
@@ -1514,7 +1589,7 @@ console.log(`  Built: c/ (${CATEGORY_ORDER.filter(c => (byCategory[c]||[]).lengt
 // Per-entity pages at /e/{id}.html — stock/commodity/index/chokepoint.
 // Renders a monochrome inline SVG sparkline + the articles that
 // reference the entity via frontmatter entities[].indicatorId.
-const entityResult = buildEntityPages({
+const entityResult = await buildEntityPages({
   sorted,
   distDir: DIST_DIR,
   headCommon,

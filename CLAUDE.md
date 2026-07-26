@@ -32,7 +32,7 @@ Minimalist typography-first global news site. Philosophy in `foundation.md`.
 
 ## Situational map (homepage)
 
-- Island: `public/islands/situation-map.ts` + helpers in `public/islands/_map/` (`style`, `feed`, `timeline`, `sheet`, `popup`, `solar`, `types`). Imperative and framework-free — it stays off the Preact runtime the sheet islands use.
+- Island: `public/islands/situation-map.ts` + helpers in `public/islands/_map/` (`style`, `feed`, `timeline`, `sheet`, `popup`, `solar`, `types`) and the shared chart in `public/islands/_chart.ts`. Imperative and framework-free — it stays off the Preact runtime the sheet islands use.
 - **MapLibre GL renders the basemap**, from GeoJSON and SDF glyphs served from our own origin (`scripts/build/basemap.js` → `/basemap/`). No tile provider, no API key, no third-party request: the CSP stays `default-src 'none'` apart from the blob: worker MapLibre spawns. **The basemap is Natural Earth 1:50m, fetched once** (~1.6 MB, 547 KB gzipped), with 1:10m still behind `ULTRA_ZOOM` 5.5 for close work. **The swap must fetch the file and hand `setData` a parsed object**: MapLibre 6 dropped the URL form of `GeoJSONSource.setData`, and passing a string throws nothing, fires no `error` and makes no request — the upper tier was built, deployed and never once fetched.
 - **There is no 1:110m placeholder tier any more** (2026-07-25). It used to be the first-paint basemap with 1:50m swapped in past zoom 3.2 — but the map opens at world fit, around zoom 1.3, so the default view (the only one most readers ever see) was 110m and stayed there. 110m is not a rounded 50m: its generalisation deletes real geography — fjords, inlets, whole island groups — and the moment the border line became visible enough to read, coarseness was what it drew. Two fetches to reach the same place was the worse deal, so the placeholder is gone. The cost is one-off: `/basemap/*` is `max-age=86400, stale-while-revalidate=604800` and every URL carries the build's content hash, so it refetches only when the basemap changes. `.map-loading` ("Drawing the world…") covers the gap, because an empty dark canvas reads as breakage rather than as loading.
 - **Country labels are gated on area, not just collision.** 50m carries 240 countries against 110m's 176, and the newcomers are mostly specks — unfiltered, the world view acquired PITCAIRN IS., NORFOLK ISLAND, NAURU and BERMUDA scattered across an empty Pacific, each as loud as BRAZIL, with nothing nearby for collision resolution to suppress them against. The `country-labels` filter steps the minimum `area` by zoom, starting at 0.00008 sr — where the old 176-country set ended — so the world view keeps its previous density and small states arrive as the camera earns them.
@@ -60,7 +60,7 @@ Minimalist typography-first global news site. Philosophy in `foundation.md`.
 - **Territories carry the name of the people whose land they are** (`shared/place-names.ts`, so the map, the country pages and the app can't disagree): Malvinas, Kanaky and Kalaallit Nunaat, stated outright rather than parenthetically — the same house style as Palestine and Yafa. Western Sahara stays as it is: that *is* the UN's term for a Non-Self-Governing Territory, and the alternative is Morocco's "Southern Provinces". Puerto Rico stays too — the test is what the people concerned call it, and renaming it to Borikén on their behalf would fail that test. `scripts/lib/map-geo.test.js` pins all of this against the built labels, because `displayCountryName` is easy to bypass by reading `properties.name` straight off Natural Earth.
 - Sources that disagree sharply about a story (`sentimentDivergence` ≥ 0.35) get a contested ring; chokepoints size on the signed magnitude of `delta7vs90`, not a binary threshold.
 - Conflict recency anchors on the **dataset's newest event**, not `Date.now()` — UCDP publishes months in arrears, and decaying against wall-clock renders the whole layer at the opacity floor. Its 260 KB payload and the lead sentences are both `requestIdleCallback`-deferred.
-- **Genocide is its own layer, above every other** (2026-07-25). Situations a named UN body has *determined* to be genocide, drawn as a heavy bone-white ring with a solid core and the place name always set beside it — added last so nothing can cover it, and `-allow-overlap` throughout because a mark suppressed for collision reads as an absence. It carries **conflict's hue at the saturation conflict deliberately lacks** (`#f5372b` against `#c05252`) — same subject, far end of it, so a reader who has learned that red means people being killed does not need a second vocabulary. A test asserts the tone is unique, red, and at least 20 saturation points clear of every other overlay. It has **no time filter** — a determination is a condition, not an event, so the scrubber must not hide it — and **no toggle**, unlike the three feed layers. The record is `shared/genocide.ts`; the card leads with the body that made the finding rather than a casualty figure, because the first question about such a mark is who is saying it.
+- **Genocide is its own layer, above every other** (2026-07-25). Situations a named UN body has *determined* to be genocide, drawn as a heavy bone-white ring with a solid core and the place name always set beside it — added last so nothing can cover it, and `-allow-overlap` throughout because a mark suppressed for collision reads as an absence. It carries **conflict's hue at the saturation conflict deliberately lacks** (`#f5372b` against `#c05252`) — same subject, far end of it, so a reader who has learned that red means people being killed does not need a second vocabulary. A test asserts the tone is unique, red, and at least 20 saturation points clear of every other overlay. It has **no time filter** — a determination is a condition, not an event, so the scrubber must not hide it — and **no toggle**, unlike the three feed layers. It is **named at the end of the filter row, past its own separator, not in `.map-key`** (2026-07-26): that group's `aria-label` is "What the beacons mean" and its other three items decode a channel a story beacon spends ink on (radius, alpha, the contested ring), which genocide is not — at the head of it the gravest mark on the map read as a fifth way of encoding a beacon. The move also puts it beside `conflict`, which is the whole point of its colour: same hue, far end of the saturation, a relationship only legible with the two chips adjacent. It stays a `<span>` among four `<button>`s, and the separator is what says the controls end there. The record is `shared/genocide.ts`; the card leads with the body that made the finding rather than a casualty figure, because the first question about such a mark is who is saying it.
 - **Markets are 30 exchange marks, and the set is the point** (2026-07-25). One mark per stock exchange at its city: the sign of the day's move picks the colour, the size of the move drives radius and stroke weight, and a fill appears only while the exchange is actually trading — so an open market is a disc and a closed one a ring, the vocabulary the map already uses. Under 0.15% the mark stays neutral rather than claiming a direction it hasn't got. The colours are **`--map-pos`/`--map-neg`, not new ones** — the site already had a pair meaning "a signed change", and a seam test pins them to `OVERLAY_COLOUR.marketUp`/`.marketDown` because the marker is painted by MapLibre and its sparkline by CSS. `_map/chart.ts` grew a `palette: 'signed'` switch for exactly that: a falling index drawn in chokepoint gold would borrow a meaning it does not have.
 - **Shape says what, colour says which way** (2026-07-26). Every mark on this map was a circle, and `market-marks` and `chokepoint-marks` had drifted into *byte-identical* paint expressions — same radius domain, same stroke domain, same neutral. Hue could not rescue it either: `economy` `#d0a24a` and `straits` `#c9a84c` are three points apart and `politics`/`conflict`/`gdacs` are one red family. So colour was spending itself on identity and failing, with nothing left over for value. Now the silhouette carries the layer — hazard triangle, strait channel, conflict square, market tick — and colour is free to mean direction again. The alphabet is `_map/glyphs.ts`: shapes authored as vertex tables in a 16-unit box, rasterised to **real signed-distance fields** and handed to `map.addImage(..., {sdf: true})`. It has to be a true distance field, not an alpha mask: MapLibre's shader cuts at `alpha = 0.75` and reads halos outward from it, so a mask renders convincingly and then aliases under scale and silently ignores `icon-halo-width`. Font glyphs were the obvious alternative and are not available — Geometric Shapes is range `9472-9727` and `public/basemap/fonts/` ships four ranges, none of them that one, with no generator in the repo.
 - **The chips are the legend, so they draw from the same table** (2026-07-26). `_map/glyphs.ts` also emits SVG, and the filter chips render it, so a chip cannot disagree with the mark it names. Before this they were all a 6px disc: `disasters` and `straits` were the same ring, and `markets` was a *grey* ring on the reasoning that the layer is olive and terracotta in equal measure so neither stands for it — true, and the conclusion does not follow. It shows both now, which is the one thing that chip could say that the reader had no other way to learn.
@@ -76,12 +76,122 @@ Minimalist typography-first global news site. Philosophy in `foundation.md`.
 - **`Popup.addTo` fires `close` on its way in, and that must not read as a dismissal.** MapLibre's `addTo` begins `if (this._map) this.remove()`, and `remove()` fires `close` synchronously — so every re-render of an already-open card announced itself as the reader closing it. Since the `close` handler clears `pending`, and `open()` re-checks `pending` after awaiting the story, the check failed every time and the function returned before `setDOMContent`: **the story card never rendered a story**. It opened, said "Loading…", fetched the article successfully, and threw it away — no exception, no failed request, nothing in the console. `attach()` sets a `reattaching` flag around `addTo` so the handler can tell our own close from the reader's; every attach goes through it.
 - **Never write `setPadding` mid-flight.** `Map.setPadding` is `jumpTo` underneath and `jumpTo` calls `stop()`, so a padding write cancels the camera animation in progress. The drawer finishing its slide 200ms into a `flyTo` silently killed the flight and left the story's card open over a world view. Padding writes are skipped while `flying` and re-applied on landing (`writePadding`), redundant writes are dropped, and the drawer snaps shut rather than sliding when a selection is about to fly (`setExpanded(open, instant)`).
 - `applyPadding` reads which edge the rail actually takes: a rail narrower than the canvas is a column beside it (desktop, left inset), one spanning its full width is a bar across its foot (phone, bottom inset, unioned with the scrubber).
-- **The land ramp has to be perceptible, not merely ordered** (2026-07-25). Shading the land by a metric only works if a reader can tell the quartiles apart, and the original ramp could not: adjacent stops measured **1.04:1** and the whole scale, worst country to best, measured **1.22:1**. Press freedom and urbanisation produced the same picture, so the picker felt broken. The cause was a self-imposed cap — the ramp was held under `border` (`#2b313b`) so frontiers would survive it — which was buying nothing, because that border measured 1.06:1 against the land and had already vanished. The fix moves the border up (`#5c6470`, now 3.3:1 against the ocean, so it draws coastlines properly) instead of holding the ramp down; the ramp spans **2.01:1** with every step at 1.15:1 or better, and saturation tapers with lightness so the top stop doesn't drift chromatic. `LAND_NO_DATA` sits near the ocean and is safe there *because* the border outlines every country — an unshaded country reads as an empty outline, not as sea. The night terminator (`#000` at 0.28) compresses the scale to ~1.64:1 on the dark half; that's the cost of having a terminator at all.
+- **The land ramp has to be perceptible, not merely ordered** (2026-07-25). Shading the land by a metric only works if a reader can tell the quartiles apart, and the original ramp could not: adjacent stops measured **1.04:1** and the whole scale, worst country to best, measured **1.22:1**. Press freedom and urbanisation produced the same picture, so the picker felt broken. The cause was a self-imposed cap — the ramp was held under `border` (`#2b313b`) so frontiers would survive it — which was buying nothing, because that border measured 1.06:1 against the land and had already vanished. The fix moves the border up (`#5c6470`, now 3.3:1 against the ocean, so it draws coastlines properly) instead of holding the ramp down; the ramp spans **2.01:1** with every step at 1.15:1 or better, and saturation tapers with lightness so the top stop doesn't drift chromatic. `LAND_NO_DATA` sits near the ocean and is safe there *because* the border outlines every country — an unshaded country reads as an empty outline, not as sea. The night terminator (`#000` at 0.28) compresses the scale to ~1.64:1 on the dark half; that's the cost of having a terminator at all. **This was half the diagnosis.** "Press freedom and urbanisation produced the same picture" was read as a contrast problem and it was also a *distribution* problem — the percentile beneath it guaranteed the same picture at any contrast (see the next bullet). Widening the ramp was necessary and did not, on its own, make the picker teach anything.
+- **The tone is the value, not the ranking** (2026-07-26). Every metric was placed on a *percentile* — position in the sorted order — which is uniform by construction, so exactly a fifth of the world landed in each fifth of the ramp on all twenty-seven. The histogram of tones on screen was therefore **identical whichever metric was showing**; only which country held which tone changed, which is most of why flipping through the picker taught a reader nothing. It also mis-calibrated in opposite directions on the two families: measured over the built payloads, the light half of the ramp covered **14.5% of the value range on literacy** (90%→100%, so Oman at 97% read as a different kind of country from Lesotho at 90%) and **99.7% of it on GDP** (the whole story from $72B to $27.3T crushed into two stops, while the dark half carefully separated $1B from $72B). `METRICS[key].scale` now says how each is read — `'linear'` for bounded indices and rates, `'log'` for counts, money and long-tailed rates — and the position is the projected value. Percentile was chosen to stop skewed metrics pinning at the floor, which is a real problem correctly identified; log fixes it without flattening ratios to adjacent ranks. The `scale` field is **editorial and required**, not derived: a new metric must state its scale rather than inherit a default that happens to be wrong for it. Zeros floor to the smallest positive value in the set, which puts Costa Rica's $0 military spending at the bottom of the ramp, where it belongs.
+- **`ascending` turns the ramp around, and only it** (2026-07-26). The ramp meant magnitude on every metric, so the picker said "press freedom" while painting **Eritrea as the world's brightest example of it and Norway as its darkest** — on `DEFAULT_METRIC`, the first thing every reader sees. The flag already means "lower is better" for the three metrics that carry it (press freedom, Gini, youth unemployment); it now flips the ramp too. The other twenty-four are untouched, deliberately: `population` has no better end and must not be given one, and adding the flag to `co2PerCapita` or `refugeesProduced` would silently renumber the ranks the country pages print. Which end is desirable is not inferable from a tone, which is why the legend now prints the value at **both ends of the gradient** — a bare 72px gradient is a scale with no units, readable only by someone who already knew the distribution, and prose cannot carry the direction once it varies by metric. `domain.dark`/`domain.light` are emitted from the same projection that placed every country, so the legend cannot disagree with the paint; they are read off the *numeric* extremes rather than off `p`, because the log floor ties at the bottom and the tie printed 1% for a ramp end a 0% country was also painted.
+- **The country card answers the question the colour raised** (2026-07-26). It opened on `highlights` — that country's six *best-ranked* metrics, sorted flattering-first — regardless of what the map was shaded by. So a reader could shade the world by press freedom, click Egypt to find out why it looked the way it did, and be shown Egypt's six proudest numbers, which will not include press freedom: the one gesture that could calibrate their eye never mentioned the thing they were looking at. The active metric now leads the card, and it leads with **a swatch of the country's own tone**, taken from `rampColour()` — the same ramp the land layer paints with — so the card can be held against the map and seen to match. Then the figure, the rank, and the scale's direction in words. A country the metric has no figure for gets the hatch and "no figure" rather than a blank, because on `literacyPct` that is half the world and a hatched country is otherwise unexplained. `rampColour` reimplements the layer's `interpolate` expression, since there is no way to ask MapLibre what colour a feature came out; `map-geo.test.js` pins every stop against `LAND_RAMP` so the two cannot drift.
 - **"No figure" is hatched, not shaded** (2026-07-25). On a ramp where lighter means more, *any* tone reads as a position on the scale — so a country painted below the floor is asserting "lowest", and for the ~30 countries absent from `country-augmented` (Saudi Arabia, the US, the UK, South Africa, South Korea, the UAE, New Zealand…) that assertion is simply false. The map drew Saudi Arabia, ~85% urban, as the least urbanised country on earth, and did the same on every other augmented metric. `literacyPct` covers 85 of 169 countries, so there it was making that claim about half the world at once. `nodataHatch()` in `_map/style.ts` registers a 45° 8px sprite and `land-nodata` paints it wherever feature-state is absent — a difference of *kind*, which no choice of tone can express. Registration is wrapped in try/catch and is the only thing so wrapped: everything added after it in `addDataLayers` is the actual data, and a texture must not be able to take the map down with it.
 - **Country coverage is a data gap, not a rendering one.** `shared/countries/country-augmented.ts` holds 144 of `country-data`'s 176 countries, and its header names a generator — `scripts/build-country-augment.mjs` — **that is not in the repo**, so it cannot be regenerated. The missing names are genuinely absent, not misspelled; they were checked. The United States has figures for **8 of 27** metrics for this reason. Until that script comes back, those countries are correctly hatched rather than wrongly shaded.
 - **`populationDensity` is derived in `getMetricValue`, not read.** It is arithmetic — population ÷ area — and both inputs are native `CountryData` fields; it lived in the augmented table only because that is where the generator happened to compute it. So every country missing from that table reported no density while the site held both of its inputs. It is now derived whenever the table has nothing, which took coverage from 141 to 172 countries and gave the US, the UK, Saudi Arabia, South Africa and South Korea a figure. Stored values are never overwritten, so nothing published changed: France still reads 121, Germany 232, India 424 — the derivation was checked against them.
 - **`CC_TO_TOPOJSON_NAME` is a join key, not a label.** `MK` was keyed `'North Macedonia'` — right for a label, wrong here, because Natural Earth 1:110m still says `Macedonia`. The join missed, the feature got no `iso2`, and the country became unshadeable on every metric *and* unclickable through to its profile — drawn, labelled and inert, with nothing thrown and nothing logged. `VU` was missing outright, same result. What the reader sees is `place-names.ts`'s job. A test now walks every Natural Earth feature and fails if one that has an ISO code cannot resolve to it; the five genuinely codeless features are enumerated, not tolerated.
 - Solar, decay, basemap-geometry and built-payload invariants are pinned in `scripts/lib/map-geo.test.js`, which bundles the DOM-free modules with esbuild and asserts against them. **The ramp test now checks step contrast**, because the flat ramp passed every assertion there was — monotonic, neutral, under the border. Nothing asked whether the steps could be seen.
+
+## Charts
+
+Every series on this site is drawn by one thing: `shared/chart/series.ts` for
+the geometry, `public/islands/_chart.ts` for the browser, and a ten-line
+adapter per surface. Pinned in `scripts/lib/chart.test.js`.
+
+- **There were three, and they had drifted.** `_map/chart.ts` (imperative DOM),
+  `entity-sheet.ts` (a Preact VNode) and `entity-pages.js` (an HTML string from
+  Node) each carried the same thirty lines of scale arithmetic, and the header
+  of the first argued the duplication was unavoidable: three runtimes, three
+  node constructors, so "what is shared is the *shape*". That holds for the
+  renderer and not for the chart. The domain, the scales, the axis precision,
+  where the extremes fall, which points are finite — none of it has a runtime
+  opinion in it. So the arithmetic emits **SVG nodes as plain data** and each
+  surface walks the list with whatever constructor it has. What the drift
+  actually cost: the map's chart had a y-axis, an area, a reference rule and a
+  direction tint and the other two had a line and two dots, and
+  `preserveAspectRatio="none"` — diagnosed and removed twice — was still in
+  `/e/{id}`, the one page on this site whose entire subject is a chart, drawing
+  its axis labels stretched and its end dots as ellipses.
+- **A chart that can only be looked at is half a chart.** These drew 86 days of
+  vessel traffic and printed three of those numbers, so a reader could see that
+  something had fallen and could not find out when, by how much, or what it was
+  on any given day. The shape was the whole of the information, and a shape is
+  exactly the part a reader cannot check. Four things answer that: a **cursor**
+  (pointer, touch, or arrow keys) that reads any observation off the line into
+  a live readout; a **range control** that rescales the domain to a shorter
+  window; the **extremes ringed** where they fell, so the high and low printed
+  on the axis acquire a *when*; and **the numbers themselves**, every
+  observation in a `<details>` table with its step-over-step change, plus a
+  copy-as-TSV.
+- **The readout is never empty.** At rest it names the latest observation *and
+  its date* — a fact none of these charts stated before and the one most
+  readers came for — and tracks the cursor when there is one. The row is
+  height-reserved, so moving a pointer across the chart never shifts the layout
+  under it.
+- **`reference: 'open'` is a different quantity from `reference: 11.9`.** A
+  number is external and fixed — a chokepoint's published 90-day baseline, which
+  must not move when the reader narrows the range, because being able to see a
+  fortnight against the quarter's normal is the whole point of drawing it.
+  `'open'` is intrinsic and recomputed per window. Getting this wrong is silent:
+  a rule pinned to the full series drifts off the top of a narrowed domain,
+  squashes the data into a third of the box, and still looks exactly like a
+  rule — under a caption going on calling it "the window's open". `direction:
+  'window'` is the same idea for the tint, so a series that fell over the
+  quarter and rose over the last month is not drawn in the decline's colour.
+- **The caption states nothing the chart states.** It used to carry the date
+  range and the window's percentage change; both go stale the moment the range
+  control moves, and both are already on screen — the dates on the x-axis, the
+  change in the readout, each recomputed for what is actually drawn. So the
+  caption is provenance and what the rule marks, and nothing else.
+- **The axis rounds and the table does not.** `axisDecimals` is a magnitude
+  rule sized for three labels in a 62px gutter — one decimal above 100. Brent
+  peaked at 124.24 the day after closing at 124.16, and when the table borrowed
+  the axis's precision it printed `124.2` twice and put the word "high" beside
+  the second one, which reads as a broken chart in the one place whose entire
+  job is letting a reader check the picture. `formatExact` counts the decimals
+  the source actually published.
+- **The static chart is the whole chart.** `/e/{id}` ships the line, the area,
+  the rule, the axis, the extremes, the latest value in words and every
+  observation in a table, before any script runs — `<details>` and `<table>`
+  need none. `series-chart` then **replaces** it with the interactive figure
+  rather than hydrating it, because the two are not the same figure: the range
+  control, the cursor and the copy button are meaningless without a script and
+  so are deliberately absent from the markup. Same two-renderings-of-one-thing
+  pattern `share-bar` uses.
+- **The accessible description is composed where the numbers are.** Callers
+  used to append the count themselves, so a 30-session view of an 80-session
+  series announced itself as "…over 80 observations. 30 sessions." — a label
+  contradicting itself in one breath, and only for the readers with no way to
+  check it against the picture. `label` is now the subject and nothing else.
+  The focusable node is the plot wrapper carrying `role="img"`, not the `<svg>`,
+  which would be an image and a keyboard widget at once and announce as
+  neither; the readout is a `role="status"` live region; the table is the route
+  in for anyone who wants all of it.
+- **Colour is a class, never an attribute.** `colour-system.test.js` bans
+  literals in the stylesheet and an inline `stroke="#c08a6a"` would route
+  straight around it, so every mark takes `currentColor` from a classed
+  element. The component lands on both palettes — `:root` follows the reader,
+  `body.map-page` commits to dark — so it declares `--chart-*` once and each
+  surface says what those resolve to. Aliases only.
+- **Charts open over the map, never instead of it.** The chokepoint, exchange
+  and quote cards have always been `<dialog>`s on the map. The 54 indicator
+  series had no route from the map at all: the article page has carried an
+  entity strip for a long time and the map's story card never did, so a story
+  about the strait of Hormuz sat a few hundred pixels from the Brent series it
+  is about with nothing between them. The story card carries the strip now
+  (`entities` on `/api/story/{slug}.json`, filtered through the same
+  `indicatorMap` the article page uses), above the isnad since the chain has to
+  stay last. A chip is a real `<a href="/e/{id}">` so it survives a modified
+  click and a crawler, and its handler opens `entity-sheet` over the map via
+  the loader's `zuhd:mount-island` event — navigating would throw away a
+  camera, a time slice, a set of filters and possibly an open card.
+- **The rank strip is arithmetic too** (`shared/chart/rank-strip.ts`). Rank 1 of
+  145 is a full bar. The same expression was written out in `country-pages.js`
+  and twice in `_map/popup.ts`; nothing had drifted, and "nothing had drifted"
+  was the entire guarantee that a country page and a map card agreed about a
+  country's standing. It is deliberately *not* merged with
+  `country-metrics.js`'s `p`, which is position on the value scale and a
+  different quantity for a different job — the strip sits beside a printed rank
+  and has to mean the rank. It is `aria-hidden`: the rank is in the next cell,
+  and announcing it twice made a 26-row table read as 52 facts.
+- **The time rail is not one of these.** `_map/timeline.ts` is a canvas
+  histogram under a real `<input type="range">` — a control, not a chart to
+  read values off, and already keyboard- and screen-reader-operable through the
+  input. It stays as it is.
 
 ## Isnad and corrections
 
@@ -162,13 +272,27 @@ dependency.
   repeat itself — the article kicker says "3h ago" and the footer date would be
   a third statement. It earns the space by *moving*: the rail spans fourteen
   days, so scrubbing walks half a lunar month.
-- **Read in the same frame as the clock beside it** (UTC). Mixing frames on one
-  row — a UTC time against the reader's local Hijri day — puts two different
-  days on the same line for anyone east of the Atlantic, which is worse than the
-  approximation. `HIJRI_NOTE`, on the element's `title`, states the real caveat:
-  the Hijri day turns at **maghrib**, so there are always two Hijri dates in the
-  world at once and the boundary between them is the terminator this map
-  already draws.
+- **Read in the same frame as the clock beside it** — **Makkah** since
+  2026-07-26, previously UTC. Mixing frames on one row puts two different days
+  on the same line for most of the world, which is worse than the
+  approximation. The frame is `MAKKAH_TZ` in `_map/format.ts` (`Asia/Riyadh`;
+  there is no `Asia/Mecca` in the IANA database) and **everything that states a
+  time uses it**: the header clock, the scrubber readout, the rail's day
+  anchor and tick labels, and this date. Changing only the readout is the
+  smaller edit and the wrong one — between 21:00Z and midnight the Makkah date
+  is already tomorrow, so for three hours a day the readout would name a day
+  the tick under the scrub head contradicted. The offset is resolved through
+  `Intl` (`zoneOffset`), not hardcoded as `3 * HOUR_MS`: Saudi Arabia has never
+  observed daylight saving, so the two agree today, and only one of them stays
+  honest if that ever changes. It is resolved **once per rail** rather than per
+  value, which is safe only because there is no DST in this zone. The label is
+  "Makkah", not `AST` — that also means Atlantic Standard Time, and the place is
+  the point. This pairing is now *correct* rather than merely consistent: Umm
+  al-Qura is Saudi Arabia's own civil calendar, so Saudi Arabia's zone is the
+  frame it is defined in. `HIJRI_NOTE`, on the element's `title`, states the
+  real caveat: the Hijri day turns at **maghrib**, so there are always two
+  Hijri dates in the world at once and the boundary between them is the
+  terminator this map already draws.
 - **Eid is modelled in the markets layer; no other holiday is.** CLAUDE.md used
   to record "Holidays are not modelled — an Eid closure reads as trading" as a
   known defect, and it was the one the layer built to carry the Gulf could least
@@ -196,6 +320,125 @@ dependency.
   because `xag` is in `trends-registry.js` and absent from the published
   `/api/trends.json`; landing that series is what turns it on, not a code change.
 
+## Prayer lines
+
+`public/islands/_map/prayer.ts`, drawn by `situation-map.ts` and pinned in
+`map-geo.test.js`. At any instant the set of places where a given prayer is
+entering is a curve; five of them sweeping west is the earth as a prayer clock.
+Added 2026-07-26.
+
+- **The library is a test oracle, not an import.** adhan-js (Batoul Apps) is in
+  `devDependencies` and the island ships none of it. adhan answers "what time is
+  Fajr at this place" and the map needs the inverse, which has a closed form:
+  `cos H = (sin alt − sin φ sin δ) / (cos φ cos δ)`, and the hour angle *is* the
+  offset from the sub-solar meridian, so the answer is a longitude directly.
+  Inverting adhan per latitude would be more code for a worse answer — it rounds
+  to the minute (0.25° of longitude, so the curve staircases), it reads the
+  calendar day off a `Date`'s *local* components, and its high-latitude rule
+  substitutes a synthetic time rather than reporting that none exists. The test
+  compares every curve against it to within 20 seconds, which is a stronger
+  guarantee than importing it and costs the reader nothing.
+- **A line stops where the prayer has no time.** `|cos H| > 1` means the sun
+  does not reach that altitude at that latitude today, and the honest answer is
+  no point. On the June solstice the Fajr line ends at 48°N; you can watch it
+  retreat from the pole as the season turns. This is the reason above that
+  actually matters — adhan would have kept drawing across the Arctic.
+- **Umm al-Qura**, matching the Hijri date and the Makkah clock: Fajr 18.5°,
+  Isha ninety minutes after Maghrib, Asr at shadow length one. No method is
+  right everywhere and every method is a claim; the point is that the site makes
+  one claim rather than two, and the chip's `title` names it.
+- **Maghrib rides the terminator, ~0.83° outside it** — sunset is the disc's
+  upper limb at −0.833° where `terminatorLat` is the geometric 0°. About three
+  pixels of daylight between the shade edge and the line, at world zoom. They
+  are not meant to coincide; snapping them together is a regression. This is
+  also the highest-value label of the five: it says the boundary the reader can
+  already see is a prayer time. Shuruq is deliberately absent — not a prayer,
+  and its label would collide with Fajr's 18.5° away.
+- **They keep drawing at the equinox, when the terminator does not.**
+  `terminatorLat` bails at `|tan δ| < 1e-6` and the shade blinks out; the closed
+  form has no such singularity. The window is about **twelve seconds**, twice a
+  year — not the "few hours" `solar.ts` claims.
+- **Asr parts from adhan by up to two minutes, deliberately.** `SolarTime`
+  builds its solar coordinates at 0h UT of the local calendar day and
+  `afternoon()` reads the declination straight off them, so adhan's shadow rule
+  is anchored up to twelve hours from the prayer it describes. We anchor it at
+  the place's own noon, which is what "the shadow an object casts at noon" means
+  and is the only anchor that does not tear the curve: which calendar day a
+  place is on changes *along* a line that circles the planet, so adhan's anchor
+  would step the declination 0.4° at the date line and kink the Asr line in the
+  middle of the Pacific. Two pixels at world zoom. Both halves are pinned.
+- **Asr also needs a `|φ − δ| < 90` guard.** Past that, `tan` goes negative, the
+  reciprocal comes back a negative altitude, and the solve returns a perfectly
+  plausible longitude for a prayer with no time there — a second, fictitious Asr
+  limb across the winter polar cap, every day of the year.
+- **The walk is adaptive and cut at the antimeridian.** Near the poles these
+  curves run nearly east-west and a flat 1° latitude step moves up to **31° of
+  longitude** — a chord across the Arctic. Bisecting where the step exceeds 2°
+  brings the worst case to 2.95°, and only at the map edge. And unlike the
+  terminator ring these are functions of latitude, so they *do* cross ±180;
+  with `renderWorldCopies` off an uncut segment is drawn straight back across
+  the whole map as a horizontal bar.
+- **`symbol-spacing` has a ceiling of 512, and going over it deletes the labels
+  rather than thinning them.** MapLibre multiplies it by `EXTENT / tileSize`
+  (8192 / 512 = 16) to get tile units, then places an anchor every `spacing`
+  along each tile-clipped fragment. At 1400 that is 22400 units across a tile
+  8192 wide, so no anchor is ever placed, at any zoom — five dashed curves and
+  not one word saying what they are, with nothing in the console. It is 250.
+  `text-rotation-alignment: 'viewport'` is load-bearing too: Dhuhr is a meridian
+  and the default map-aligned rotation sets it bottom-to-top.
+- **The labels are placed last of everything, so they are opportunistic.**
+  MapLibre walks symbol layers top-down and the *later* layer claims its boxes
+  first, so `beforeId: 'country-labels'` is what makes country names win — and
+  it necessarily also puts prayer labels behind the city labels, the cluster
+  counts and the market numerals, because all of those sit above
+  `country-labels` in the style. There is no position that loses to country
+  names and beats the rest. So the two knobs that matter are the number of
+  candidate anchors and the size of the box each one asks for: at
+  `symbol-spacing: 420` with `text-padding: 6` the Dhuhr line went unnamed
+  across the Americas and *every* line went unnamed zoomed into Europe. 250 and
+  2 fixed both. Some line will still occasionally go unlabelled — which is what
+  the hover readout below is for, and why it is not a nicety.
+- **Hovering a line names it and says when it reaches that spot**
+  (`.map-prayer-tip`). The name is the part the labels cannot guarantee. The
+  time is the part worth reading twice: it is the same prayer all along the
+  line and not the same o'clock, and watching Isha run from 20:37 at one
+  latitude to 19:20 further down is the curve explaining its own shape. It is
+  **local mean solar time, marked `solar`** — the one place this map does not
+  speak Makkah, because "what o'clock is it *there*" is a different question
+  from the map's own clock. Civil time would want a lat/lng → IANA-zone dataset
+  the site does not ship, and the nautical approximation is a guess dressed as
+  a clock; solar is exact, free, and the frame the sun is actually in. Up to
+  about ninety minutes separates it from a phone standing there, so the word
+  `solar` is not decoration. `prayerInstantAt` is the curve solved for time
+  rather than longitude, and it is correct *off* the line too — the grab box is
+  seven pixels, which at world zoom is minutes of solar time, so a readout that
+  reported the time on the line rather than under the cursor would look right
+  and drift. Pinned against adhan in both directions.
+- **Dashed, near-neutral (`MAP_COLOURS.prayer`), and the colour is the absence
+  of one.** Solid would read as a coastline. These lines carry no value, so they
+  get no hue — a warm tone was the first instinct and landed six points of hue
+  from `OVERLAY_COLOUR.straits`, the exact collision the mark alphabet was built
+  to stop making. The line sits at `line-opacity` 0.2 (about 1.5:1 on the land,
+  quieter than a frontier); the **label is full strength**, because it is the
+  whole difference between a prayer time and a stray hairline. `line-width` is
+  constant: `line-dasharray` is measured in line widths, so a varying width
+  stretches the pattern instead of thickening the line, in floored steps.
+- **Hover lights the line; nothing takes a click.** A padded box query on the
+  existing global `mousemove`, only when no mark has already claimed the
+  pointer, then `feature-state`. It is deliberately absent from `MARKER_LAYERS`:
+  these lines cross every country there is, so joining the click path would
+  carve a band out of every country card on the map.
+- **It has a toggle, unlike the terminator it is drawn against.** The terminator
+  is an unlabelled wash; this is five named lines across every continent, which
+  is a larger footprint than any feed here. The chip leads the layer row because
+  the lines are drawn first, and its glyph comes from `_map/glyphs.ts` like
+  every other chip — a chip-only entry, as `dot` is, since MapLibre dashes a
+  `line` layer natively and there is nothing for `addImage` to rasterise.
+- **They read the wall clock, not `scrubNow`**, as the terminator always has:
+  the lines are drawn against the shade, and a Tuesday Maghrib over today's
+  night would be two clocks in one picture. Redrawn by `drawSolar` on the
+  existing 120-second tick — `prayerLines()` costs 0.26ms.
+
 ## Islands (interactive enhancements)
 
 Interactive features (situational map, entity sheet, country preview) load via the islands architecture to keep pages framework-free:
@@ -204,7 +447,7 @@ Interactive features (situational map, entity sheet, country preview) load via t
 - Bundler: `scripts/build/islands.js` runs esbuild as part of the SSG, emitting `dist/islands/*.js` ES modules. `@shared/*` imports resolve to `/shared/`.
 - Loader: `public/island-loader.js` — included on every page, listens globally for clicks on `[data-island]` triggers, dynamically imports the matching module on first activation, passes `data-*` attributes as props. Also listens for `zuhd:mount-island` CustomEvents so an island can open another island programmatically without a DOM trigger.
 - Sheet pattern: native `<dialog popover>` with CSS `@starting-style` transitions — no sheet library. Styles under `.island-sheet` in `public/style.css`.
-- Islands shipped: `situation-map` (auto-mounted homepage map), `entity-sheet` (indicator header + value/delta + inline SVG sparkline + mentions; opened from an article's entity strip; fetches `/api/entity/{id}.json`), `country-preview` (opened from inline country tags), `spacefield` (auto-mounted background on static pages), `doc-sheet` (footer document links over the map), `share-bar` (auto-mounted; upgrades a server-rendered share row).
+- Islands shipped: `situation-map` (auto-mounted homepage map), `entity-sheet` (indicator header + value/delta + the shared chart + mentions; opened from an article's entity strip **and from the map's story card**; fetches `/api/entity/{id}.json`), `series-chart` (auto-mounted on `/e/{id}`; upgrades the server-rendered chart in place), `country-preview` (opened from inline country tags), `spacefield` (auto-mounted background on static pages), `doc-sheet` (footer document links over the map), `share-bar` (auto-mounted; upgrades a server-rendered share row).
 - Note: the loader **discards** teardown functions returned by `mount()`. Long-lived islands own their own lifecycle (visibility pausing, resize observers, rAF cancellation) internally. A `<dialog>` island must therefore use `mountSheetIsland` from `_framework.ts`, which tears itself down on the dialog's native `close` event and keeps one sheet open at a time — without it every activation leaves another container and another shut dialog in the document.
 
 ## Sharing, discovery, and the app
@@ -274,6 +517,7 @@ Two palettes, declared once each. **No colour literal may appear outside those t
 Single source of truth for data consumed by both web and mobile:
 - `shared/data/*.json` — Natural Earth TopoJSON (countries, capitals, lakes, rivers, seas)
 - `shared/countries/country-data.ts`, `country-augmented.ts`, `country-ranking.ts` — 145 countries × 26 metrics + percentile-ranking logic
+- `shared/chart/series.ts`, `rank-strip.ts` — the one chart and the one rank bar, as arithmetic. See "Charts" above.
 - `shared/globe/coordinates.ts` — city/source coordinates, timezones, country overrides
 - `shared/types.ts` — Article, ContextBrief, Chokepoint, Entity, TrendsSnapshot types
 - `shared/genocide.ts` — the genocide record: hand-kept, one entry per situation, each carrying the UN body, document and date behind it. `GENOCIDE_MARKED` (determinations only) is what the build publishes and the map draws; `risk` entries are recorded and deliberately not drawn. Invariants pinned in `scripts/lib/map-geo.test.js`.

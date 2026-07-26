@@ -1,9 +1,13 @@
 // Entity page builder: emits /e/{id}.html for every indicator in
-// content/trends/<today>.json. Each page shows the current value, a
-// 180-day monochrome sparkline rendered as static SVG, the indicator
-// description, and every article that mentions the entity via its
-// frontmatter `entities[]` array. No chart library on the critical
-// path — the SVG is inline and rendered once, zero runtime JS needed.
+// content/trends/<today>.json. Each page shows the current value, the series
+// as a chart, the indicator description, and every article that mentions the
+// entity via its frontmatter `entities[]` array. No chart library on the
+// critical path — the geometry comes from `@shared/chart/series`, which emits
+// SVG nodes as data, and this walks them into a string.
+//
+// The chart is complete before any script runs: the line, the rule, the axis,
+// the extremes and every observation in a `<details>` table. `series-chart`
+// then replaces it with the interactive one.
 //
 // Also emits a sibling /api/entity/{id}.json blob used by the
 // entity-sheet island: identical numbers, lighter transport, consumed
@@ -12,6 +16,7 @@
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'fs'
 import { join } from 'path'
+import { loadShared } from './shared-ts.js'
 
 const ROOT = new URL('../..', import.meta.url).pathname
 
@@ -51,31 +56,39 @@ const formatValue = (v, unit) => {
   return `${v.toFixed(2)}${unit ? ' ' + unit : ''}`
 }
 
-/** Inline SVG sparkline for the indicator series. Monochrome, hairline,
- *  start/end dots. No axes — labels are set in adjacent HTML. */
-const sparklineSvg = (values, periods, { w = 720, h = 160 } = {}) => {
-  if (!values.length || values.length < 2) return ''
-  const pad = { l: 12, r: 12, t: 24, b: 24 }
-  const innerW = w - pad.l - pad.r
-  const innerH = h - pad.t - pad.b
-  const min = Math.min(...values)
-  const max = Math.max(...values)
-  const range = max - min || 1
-  const scaleX = (i) => pad.l + (i / (values.length - 1)) * innerW
-  const scaleY = (v) => pad.t + innerH - ((v - min) / range) * innerH
-  const d = values.map((v, i) => `${i === 0 ? 'M' : 'L'}${scaleX(i).toFixed(2)},${scaleY(v).toFixed(2)}`).join('')
-  const first = values[0]
-  const last = values[values.length - 1]
-  const firstLabel = periods?.[0] ?? ''
-  const lastLabel = periods?.[periods.length - 1] ?? ''
-
-  return `<svg class="entity-spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" role="img" aria-label="Series chart">
-    <path d="${d}" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round" stroke-linecap="round"/>
-    <circle cx="${scaleX(0)}" cy="${scaleY(first)}" r="3" fill="currentColor"/>
-    <circle cx="${scaleX(values.length - 1)}" cy="${scaleY(last)}" r="3" fill="currentColor"/>
-    <text x="${scaleX(0)}" y="${h - 6}" class="entity-spark-label" text-anchor="start">${escHtml(firstLabel)}</text>
-    <text x="${scaleX(values.length - 1)}" y="${h - 6}" class="entity-spark-label" text-anchor="end">${escHtml(lastLabel)}</text>
-  </svg>`
+/**
+ * The chart, from the same geometry the map sheet and the entity sheet draw.
+ *
+ * This used to be its own thirty lines — a line, two dots, two labels, and
+ * `preserveAspectRatio="none"`. That last one is the mistake that was found and
+ * removed twice elsewhere in the repo and never here: a 720×160 box stretched
+ * into a full-width frame is a non-uniform scale, so the axis labels came out
+ * wide for their height and the end dots were ellipses. On the one page whose
+ * entire subject is a chart.
+ *
+ * What lands here now is the complete no-JS chart: the line, the area, the
+ * window's opening rule, the y-axis, the extremes marked where they fell, the
+ * latest value named in words, and every observation in a `<details>` table.
+ * The `series-chart` island then replaces it with the interactive one — a
+ * cursor, a range control and a copy button, none of which mean anything
+ * without a script, which is exactly why none of them are in the static markup.
+ */
+const chartHtml = (chart, record) => {
+  const { seriesModel, staticFigure, renderMarkup } = chart
+  const values = record.values ?? []
+  const model = seriesModel({
+    values,
+    periods: record.periods ?? [],
+    reference: 'open',
+    referenceLabel: 'the window’s open',
+    direction: 'window',
+    palette: 'signed',
+    unit: record.unit || '',
+    step: record.kind === 'MONTHLY' ? 'months' : 'days',
+    label: record.label,
+  })
+  if (!model.ok) return ''
+  return renderMarkup(staticFigure(model, { caption: record.caption }))
 }
 
 /** Shape consumed by both the static page and the entity-sheet island.
@@ -87,16 +100,24 @@ const buildEntityRecord = (ind, mentions) => {
   const first = values[0]
   const prev = values[values.length - 2]
   const dayChange = last != null && prev != null ? ((last - prev) / prev) * 100 : null
-  const rangeChange = last != null && first != null ? ((last - first) / first) * 100 : null
   const deltaTone = dayChange == null ? '' : dayChange > 0 ? 'pos' : dayChange < 0 ? 'neg' : ''
-  const deltaLabel = dayChange == null
-    ? '—'
-    : `${dayChange >= 0 ? '+' : ''}${dayChange.toFixed(2)}% day  ·  ${rangeChange >= 0 ? '+' : ''}${rangeChange.toFixed(1)}% window`
-  const caption = [
-    periods.length ? `${periods[0]} → ${periods[periods.length - 1]}` : null,
-    ind.sourceLabel || ind.source,
-    ind.cadence,
-  ].filter(Boolean).join(' · ')
+  /**
+   * The day's move, and only the day's.
+   *
+   * This used to read "+2.33% day · −23.6% window" as one span tinted by the
+   * *day* — so on Brent, a green line of type containing a large red number,
+   * directly above a chart drawn red for the window. Two horizons sharing one
+   * colour is the same mistake the market card was fixed for, one surface over.
+   *
+   * The window's change is not lost: the chart's readout states it against the
+   * rule it draws, and it is the only place that can still be right once the
+   * range control has narrowed what "the window" means.
+   */
+  const deltaLabel =
+    dayChange == null ? '—' : `${dayChange >= 0 ? '+' : ''}${dayChange.toFixed(2)}% day`
+  // No date range: the chart's x-axis prints its own start and end, and unlike
+  // this string it reprints them when the reader changes the range.
+  const caption = [ind.sourceLabel || ind.source, ind.cadence].filter(Boolean).join(' · ')
 
   return {
     id: ind.id,
@@ -161,10 +182,17 @@ __HEAD__
           <span class="entity-delta t-tabular __DELTA_TONE__">__DELTA__</span>
         </div>
       </header>
-      <figure class="entity-chart">
+      <!--
+        The static chart is complete on its own; the island swaps in the
+        interactive one on top of it. The series travels in a JSON script
+        rather than a fetch — this page's entire content is that series, and
+        making the reader wait for a second request to be able to hover it
+        would be a round trip to deliver bytes already on the page.
+      -->
+      <div class="entity-chart" data-island-auto="series-chart">
         __SPARK__
-        <figcaption class="t-caption">__CAPTION__</figcaption>
-      </figure>
+        <script type="application/json" class="chart-source">__SERIES__</script>
+      </div>
       __MENTIONED__
     </article>
     __SHARE_ROW__
@@ -205,12 +233,19 @@ __HEAD__
 </body>
 </html>`
 
-export const buildEntityPages = ({ sorted, distDir, headCommon, islandV = '', shareRowHtml = () => '' }) => {
+export const buildEntityPages = async ({
+  sorted,
+  distDir,
+  headCommon,
+  islandV = '',
+  shareRowHtml = () => '',
+}) => {
   const today = new Date().toISOString().slice(0, 10)
   const trendsPath = latestTrendsPath()
   if (!trendsPath) return { count: 0, ids: [] }
   const trends = JSON.parse(readFileSync(trendsPath, 'utf8'))
   const indicators = Array.isArray(trends.indicators) ? trends.indicators : []
+  const chart = await loadShared('chart/series.ts')
 
   // Index articles by entity.indicatorId so each entity page can surface
   // its mentions. Use sorted (newest → oldest) to preserve the reading
@@ -264,8 +299,22 @@ export const buildEntityPages = ({ sorted, distDir, headCommon, islandV = '', sh
       .replace(/__CURRENT__/g, escHtml(record.currentFormatted))
       .replace(/__DELTA__/g, escHtml(record.deltaLabel))
       .replace(/__DELTA_TONE__/g, record.deltaTone)
-      .replace(/__SPARK__/g, sparklineSvg(record.values, record.periods))
-      .replace(/__CAPTION__/g, escHtml(record.caption))
+      .replace(/__SPARK__/g, chartHtml(chart, record))
+      // `</` is the only sequence that can end a script element early, and
+      // escaping it is what keeps a label like "S&P 500 </script>" from being
+      // a way to write markup into this page. JSON keeps `<` as a `<` on
+      // parse, so the payload is unchanged.
+      .replace(
+        /__SERIES__/g,
+        JSON.stringify({
+          values: record.values,
+          periods: record.periods,
+          unit: record.unit || '',
+          kind: record.kind,
+          label: record.label,
+          caption: record.caption,
+        }).replace(/</g, '\\u003c'),
+      )
       .replace(/__MENTIONED__/g, mentionedSection)
       .replace(/__AS_OF__/g, escHtml(`As of ${record.asOf || trends.asOf || today}`))
 
