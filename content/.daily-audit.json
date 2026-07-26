@@ -1,32 +1,32 @@
 {
-  "date": "2026-07-25",
+  "date": "2026-07-26",
   "metrics": {
-    "articles": { "value": 35, "detail": "5 cycles scheduled, 4 published (11 + 12 + 9 + 3); the 04:04 cycle shipped 0 after the writer stalled on a permission prompt" },
-    "freshness": { "median": 0.7, "p90": 0.8, "max": 0.8, "target": 1.0, "met": true },
-    "categories": { "politics": 14, "economy": 10, "science": 5, "tech": 6 },
-    "multiSource": { "value": 6, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "ME": 12, "EU": 9, "AM": 6, "AS": 6, "AF": 2, "OC": 0 } },
-    "sciTech": { "ratio": 31, "target": 25, "met": true },
-    "topSourceShare": { "source": "TASS", "pct": 14, "target": 20, "met": true },
-    "uniqueSources": 30,
+    "articles": { "value": 42, "detail": "5 cycles scheduled, 4 completed, avg 6 published/cycle — up from 35 yesterday" },
+    "freshness": { "median": 0.1, "p90": 1.5, "max": 1.5, "target": 1.0, "met": true },
+    "categories": { "politics": 15, "economy": 11, "science": 7, "tech": 9 },
+    "multiSource": { "value": 9, "target": 4, "met": true },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "ME": 11, "EU": 10, "AM": 9, "AF": 7, "AS": 5, "OC": 0 } },
+    "sciTech": { "ratio": 38, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 14, "target": 20, "met": true },
+    "uniqueSources": 34,
     "duplicates": 0,
-    "avgCycleDuration": 767
+    "avgCycleDuration": 870
   },
-  "experiment": "Skipped — the noNewExperimentsUntil gate (2026-07-28) covering the Opus 4.8 → Opus 5 migration is still in force, and no experiments are active to evaluate. Every headline metric is inside target regardless.",
-  "weakestArea": "Science is weakest on both counts: volume sat exactly on the 5/day floor, down from 11 yesterday, and every science story came from a general-interest outlet — Liverpool Echo, Aol, Hindustan Times, Global Voices, Dawn. Yesterday's specialist bench (Nature, Phys.org, New Scientist, Carbon Brief) appeared nowhere today, so the educational-value goal's 'from quality sources' half missed even though the ratio target passed at 31%.",
+  "experiment": "Skipped — the noNewExperimentsUntil gate (2026-07-28) covering the Opus 4.8 → Opus 5 migration is still in force, and no experiments are active to evaluate. Every headline metric cleared its target today anyway, so there is nothing a parameter change would be answering.",
+  "weakestArea": "Asia at 5 of 42 is the furthest any region fell today, and it is the region the source list is best equipped to cover — Dawn, NDTV, Hindustan Times, The Hindu, News18 and Economic Times all published, but most of their output landed under ME or AM datelines rather than as Asian stories. Freshness p90 also stretched to 1.5 days against a 0.1 median, so a handful of standalone picks are a full day older than the rest of the file.",
   "watching": [
-    "India's NEET paper leak escalated within a day — Delhi shut 18 metro stations, then education minister Pradhan resigned; the concession-versus-continued-protest arc is unresolved.",
-    "Russian strikes on Chornomorsk and Mykolaiv ports reach grain insurance pricing, a lever with wider economic consequence than the strike itself.",
-    "North Korea's reported 30,000 additional troops to Russia turns the manpower-export story from a one-off deployment into a sustained arrangement.",
-    "Sudan's Burhan-Asmara ceasefire track against continued RSF drone activity via Chad — early, and prior tracks have collapsed.",
-    "Saudi airstrikes on Hodeida port against Yemeni missiles at King Khalid airbase: an exchange with direct food-import consequences.",
-    "Pakistan's Chenab flood warning at barrage thresholds — slow-onset, worth holding open."
+    "A mine sinking a tanker in Hormuz alongside the Iran-US pause holding: the shipping-risk and diplomatic tracks are moving in opposite directions and one of them will break.",
+    "Israel's approval of a new Gaza force and settlers torching two mosques — escalation on two separate registers within the same day.",
+    "France evacuating 220,000 from wildfires, the largest single displacement figure in today's file and still rising.",
+    "India's exam-leak story moved from protest to institutional repair with Nilekani appointed; whether that closes the NEET arc is unresolved.",
+    "BitMart shutting after nine years plus a regulator warning on prediction markets — two crypto-adjacent enforcement signals in one cycle.",
+    "Karachi's water supply and Islamabad's ventilator shortage were filed as separate stories and are plainly one Pakistani capacity story."
   ],
   "coverageGaps": [
-    "Africa produced 2 of 35 articles and Oceania none; the AF share more than halved from yesterday's 5.",
-    "No specialist science outlet published to the site today, leaving all five science articles on general-interest sourcing.",
-    "Latin America appears only inside the AM bucket, which US coverage dominates — Venezuela earthquake financing was the sole distinctly Latin American piece.",
-    "Tech clears its floor at 6 but leans on crypto and finance (CoinDesk, Robinhood, Sberbank) rather than research or infrastructure reporting."
+    "Oceania produced nothing for the second consecutive day; no source in the curated list is based there.",
+    "Asia fell to 5 of 42 despite six Indian and Pakistani outlets publishing — the subcontinent carried the bucket and East and Southeast Asia were near-absent.",
+    "Latin America appears only inside the AM bucket, which US coverage dominates; Venezuela and Cuba were the only distinctly Latin American pieces.",
+    "Science recovered its specialist bench (Nature 4, Phys.org 2), but tech's nine stories still lean on crypto and platform reporting rather than research or infrastructure."
   ],
-  "context": "The 04:04 cycle selected 13 fresh stories, enriched all 13 and passed dedup, then the writer exited 0 after 17 seconds having asked for approval to run a command against /tmp/zuhd-selection.json — a Bash call it does not have and did not need, since Read covers that file. All 13 stories were lost and the day's output fell to 35 from 59. This is the same failure class as the July 1-3 Edit-tool incident, but it is the only occurrence in 41 July cycles, so it reads as an isolated model choice rather than a configuration fault; TOOLS_WRITER is already Read,Write,Edit and run-cycle.sh sits outside the tunable-parameter scope. Flagged, not changed — if it recurs the fix is a writer-stage guard that fails the cycle loudly when the writer exits 0 with no new files, instead of proceeding silently to briefing and deploy. Standing constraints unchanged: the selector multi-source floor lever is exhausted, and TOP_EVENTS_TO_FETCH stays at 8 because each unit is one NewsAPI token per cycle."
+  "context": "A clean day after yesterday's writer stall: four of five cycles completed, 42 articles, zero duplicates, and a freshness median of 0.1 — the best of the month. The Opus 5 lineup is now three days into its re-baseline and the metrics it most directly drives (category mix 15/11/9/7, multi-source 9, 34 unique sources) all sit at or above pre-migration levels, which is exactly the signal the gate was opened to collect. The gate lifts on 2026-07-28; the first candidate then should be a feed-side lever rather than a selector-side one, since the 2026-05-16 evaluation established that the selector multi-source floor is exhausted and the binding constraint is upstream supply. TOP_EVENTS_TO_FETCH stays at 8 — each unit is one NewsAPI token per cycle and that spend is capped."
 }
