@@ -1289,7 +1289,9 @@ if (process.env.SKIP_OG === '1') {
   console.log('  Skipped: api/ig/ (SKIP_OG=1)')
 } else {
   const IG_CACHE_DIR = join(ROOT, '.cache', 'ig')
-  const IG_VERSION = 'v6' // bump when ig-image.js rendering changes
+  // v7: measured type — the fitter replaced the character-count wrap, so every
+  // cached card was composed against the old (truncating) layout.
+  const IG_VERSION = 'v7' // bump when ig-image.js rendering changes
   const IG_RECENT = 20 // dev/manual fallback window
   // The card renders a dek — the story lead (first 1-2 sentences) with the
   // dateline prefix and markdown links stripped, cut to ~200 chars on a
@@ -1305,10 +1307,23 @@ if (process.env.SKIP_OG === '1') {
       .replace(/[*_`]/g, '')
       .replace(/\s+/g, ' ')
       .trim()
+    // Trim to whole sentences, never to an ellipsis. The card's type is fitted
+    // to whatever arrives (see `font-metrics.js`), so the only job left here is
+    // deciding how much of the lead to carry — and a dek that stops mid-phrase
+    // on "…" reads as a truncated card rather than as a chosen excerpt.
+    //
+    // If no sentence boundary falls inside the budget, the first sentence is
+    // carried whole however long it is. That is the one case where the old code
+    // reached for the ellipsis, and the fitter now absorbs the length instead.
     if (t.length > 260) {
       const cut = t.slice(0, 260)
       const end = cut.lastIndexOf('. ')
-      t = end > 130 ? cut.slice(0, end + 1) : cut.replace(/\s+\S*$/, '') + '…'
+      if (end > 130) {
+        t = cut.slice(0, end + 1)
+      } else {
+        const firstStop = t.indexOf('. ')
+        t = firstStop > 0 ? t.slice(0, firstStop + 1) : t
+      }
     }
     return t
   }

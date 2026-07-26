@@ -11,16 +11,25 @@
 import { fileURLToPath } from 'url'
 import { Resvg } from '@resvg/resvg-js'
 import jpeg from 'jpeg-js'
-import { themeFor, buildGlobe, escXml, wrapTitle, formatLongDate } from './og-image.js'
+import { themeFor, buildGlobe, escXml, formatLongDate } from './og-image.js'
+import { fitText, loadFont } from './font-metrics.js'
 
 // Static Source Sans 3 weights loaded by PATH. resvg-js 2.6.2 renders fonts
 // passed as `fontBuffers` with uniform (monospace-like) advances — a known
 // metrics bug — but loads proper proportional advances from `fontFiles`. The
 // share card's type quality depends on this, so we ship the static TTFs with
 // the build tooling and hand resvg the paths.
-const FONT_FILES = ['SourceSans3-Regular.ttf', 'SourceSans3-SemiBold.ttf', 'SourceSans3-Bold.ttf'].map((f) =>
-  fileURLToPath(new URL(`../assets/fonts/${f}`, import.meta.url)),
-)
+const fontPath = (f) => fileURLToPath(new URL(`../assets/fonts/${f}`, import.meta.url))
+const FONT_FILES = ['SourceSans3-Regular.ttf', 'SourceSans3-SemiBold.ttf', 'SourceSans3-Bold.ttf'].map(fontPath)
+
+// The same files, parsed for their advance widths, so the composer can measure
+// a line instead of guessing at it. See font-metrics.js for why a character
+// count could never do this job: these cards used to wrap against a constant
+// 0.62em, which was calibrated while resvg was rendering every glyph at the
+// same width, and Source Sans Bold actually runs ~0.49em over mixed-case
+// English with a 3× spread between its narrowest and widest letters.
+const BOLD = () => loadFont(fontPath('SourceSans3-Bold.ttf'))
+const REGULAR = () => loadFont(fontPath('SourceSans3-Regular.ttf'))
 
 // Feed post (4:5) is the canonical size; the Story variant reuses the same
 // composer with a taller canvas so it fills a 9:16 screen natively.
@@ -28,7 +37,75 @@ export const IG_FEED = { width: 1080, height: 1350 }
 export const IG_STORY = { width: 1080, height: 1920 }
 export const IG_X = { width: 1600, height: 900 } // 16:9 landscape for X — fills the timeline
 
-const PAD = 72
+// Was 72. The column is a touch wider now, which buys back a word or two per
+// line and lets the fitter settle on a larger size — the two changes work
+// together and neither is worth much alone.
+const PAD = 60
+
+/**
+ * The type ramps the fitter chooses from.
+ *
+ * `max` is what the card uses when the text is short, and it is well above the
+ * old fixed sizes because measuring instead of guessing freed the room. `min`
+ * is the floor that makes "never truncated" a promise rather than a hope: the
+ * fitter walks down from max and takes the first size that fits, and if even
+ * the floor overflows it still renders every word rather than clipping. The
+ * floors are set low enough that nothing in the corpus reaches them — a test
+ * asserts that, and asserts no card lands on one.
+ */
+const HEAD_RAMP = { min: 58, max: 108, step: 2, lineHeightRatio: 1.1, letterSpacingEm: -0.01 }
+const DEK_RAMP = { min: 32, max: 58, step: 2, lineHeightRatio: 1.42 }
+
+/**
+ * Below this the dek stops being a dek and starts being fine print. When a long
+ * lead pushes it under, the headline gives size back rather than the dek taking
+ * the whole loss — see `fitPair`.
+ */
+const DEK_COMFORT = 40
+
+/**
+ * Fit the headline and the dek together, because they are competing for one box.
+ *
+ * Fitting them in sequence — headline takes its maximum, dek gets the remainder
+ * — is what a greedy layout does, and on the 14 longest leads in the corpus it
+ * drove the dek to its 32px floor while the headline sat at 108. That trades a
+ * readable second block for a headline nobody needed at full size, which is the
+ * wrong way round: the headline is short, bold and already dominant at 90px.
+ *
+ * So the headline is stepped down while the dek is under `DEK_COMFORT` and
+ * giving it room actually helps. Neither block is ever truncated at any point
+ * in this loop; the only thing being traded is size.
+ */
+const fitPair = (headline, summary, { maxWidth, box, headMax = HEAD_RAMP.max }) => {
+  let best = null
+  for (let headMaxTry = headMax; headMaxTry >= HEAD_RAMP.min; headMaxTry -= HEAD_RAMP.step) {
+    const head = fitText(BOLD(), headline, {
+      ...HEAD_RAMP,
+      max: headMaxTry,
+      maxWidth,
+      maxLines: 4,
+      maxHeight: Math.round(box * 0.58),
+    })
+    const headBlock = head.lines.length * head.lineHeight
+    const gap = Math.round(head.fontSize * 0.55)
+    const dek = fitText(REGULAR(), summary, {
+      ...DEK_RAMP,
+      maxWidth,
+      maxLines: 8,
+      maxHeight: Math.max(DEK_RAMP.min * 2, box - headBlock - gap),
+    })
+    if (!best) best = { head, dek, gap }
+    // Keep whichever pass reads best: the dek at comfort wins, and past that a
+    // larger dek only wins if the headline has not fallen further than the dek
+    // gained. Without that second clause a 300-character lead would walk the
+    // headline all the way to its floor for two points of dek.
+    if (dek.fontSize > best.dek.fontSize && head.fontSize >= best.head.fontSize - (dek.fontSize - best.dek.fontSize) * 2) {
+      best = { head, dek, gap }
+    }
+    if (best.dek.fontSize >= DEK_COMFORT) break
+  }
+  return best
+}
 
 /**
  * Compose the Instagram card SVG: kicker, headline, a story dek (summary text
@@ -46,7 +123,8 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
   // X's native single-image aspect, so it fills the timeline with no crop.
   if (W > H) {
     const PADL = 90
-    const colW = W * 0.6 - PADL
+    // Was `W * 0.6 - PADL`. A touch wider, matching the portrait card's change.
+    const colW = W * 0.63 - PADL
     const shadow = variant === 'dark' ? '#000000' : '#ffffff'
     const dek = variant === 'dark' ? '#cfcfcf' : theme.dim
     const kickerL = `${(article.category || 'news').toUpperCase()}  ·  ${formatLongDate(article.date)}`
@@ -67,14 +145,23 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
       rim: null,
       showCross: true,
     })
-    const tf = headL.length > 34 ? 64 : 72
-    const tlh = Math.round(tf * 1.14)
-    const tl = wrapTitle(headL, Math.floor(colW / (tf * 0.62)), 3)
-    const ty = Math.round(H * 0.24) + tf
-    const df = 40
-    const dlh = Math.round(df * 1.45)
-    const dl = sumL ? wrapTitle(sumL, Math.floor(colW / (df * 0.53)), 5) : []
-    const dy = ty + (tl.length - 1) * tlh + tlh + df
+    // Same fitting as the portrait card: measured, never clipped. The box runs
+    // from the kicker down to the location line at the foot.
+    const boxTop = Math.round(H * 0.2)
+    const box = H - 150 - boxTop
+    const { head: headFit, dek: dekFit, gap: gapL } = fitPair(headL, sumL, {
+      maxWidth: colW,
+      box,
+      headMax: 84,
+    })
+    const tf = headFit.fontSize
+    const tlh = headFit.lineHeight
+    const tl = headFit.lines
+    const ty = boxTop + tf
+    const df = dekFit.fontSize
+    const dlh = dekFit.lineHeight
+    const dl = dekFit.lines
+    const dy = ty + (tl.length - 1) * tlh + gapL + df
     return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
   <defs><filter id="ig-text-shadow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feDropShadow dx="0" dy="2" stdDeviation="8" flood-color="${shadow}" flood-opacity="0.55"/></filter></defs>
@@ -122,24 +209,31 @@ export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
   const kicker = `${(article.category || 'news').toUpperCase()}  ·  ${formatLongDate(article.date)}`
   const location = article.location ? String(article.location).toUpperCase() : null
 
-  // Headline (article title), bold. resvg renders Source Sans 3 with wide,
-  // near-uniform advances (~0.62em) — size the wrap to that so it never clips.
-  const headline = article.headline || article.title || 'Breaking News'
-  const titleFontSize = headline.length > 38 ? 82 : 94
-  const titleLineHeight = Math.round(titleFontSize * 1.1)
-  const titleLines = wrapTitle(headline, Math.floor(inner / (titleFontSize * 0.62)), 3)
-  const titleStartY = Math.round(H * 0.135) + titleFontSize
+  // The box the type gets. Its foot is where the scrim starts handing the card
+  // back to the globe, so the fitter is working against the composition rather
+  // than against an arbitrary line count.
+  const textTop = Math.round(H * 0.135)
+  const textBottom = Math.round(H * 0.62)
+  const textBox = textBottom - textTop
 
-  // Dek: the story lead/summary rendered on the card in regular weight. Regular
-  // Source Sans advances are narrower (~0.53em). Sits just under the headline.
+  // Headline, measured rather than counted. It takes at most ~58% of the box
+  // before the dek is fitted into what is left, so a long headline shrinks the
+  // dek instead of pushing it into the globe.
+  const headline = article.headline || article.title || 'Breaking News'
   const summary = String(article.summary || '').trim()
-  const dekFontSize = 46
-  const dekLineHeight = Math.round(dekFontSize * 1.42)
   // Brighter than the dim label grey so the dek stays legible over the globe on
   // the dark card; weight (400 vs the 700 headline) still carries the hierarchy.
   const dekColor = variant === 'dark' ? '#cfcfcf' : theme.dim
-  const dekLines = summary ? wrapTitle(summary, Math.floor(inner / (dekFontSize * 0.53)), 6) : []
-  const dekStartY = titleStartY + (titleLines.length - 1) * titleLineHeight + titleLineHeight + dekFontSize
+  const { head, dek, gap } = fitPair(headline, summary, { maxWidth: inner, box: textBox })
+
+  const titleFontSize = head.fontSize
+  const titleLineHeight = head.lineHeight
+  const titleLines = head.lines
+  const titleStartY = textTop + titleFontSize
+  const dekFontSize = dek.fontSize
+  const dekLineHeight = dek.lineHeight
+  const dekLines = dek.lines
+  const dekStartY = titleStartY + (titleLines.length - 1) * titleLineHeight + gap + dekFontSize
 
   // Soft shadow behind the type so it stays crisp where it crosses the globe.
   const shadowColor = variant === 'dark' ? '#000000' : '#ffffff'

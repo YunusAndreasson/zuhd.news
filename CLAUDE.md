@@ -214,6 +214,40 @@ so the invariants are pinned in `scripts/lib/share-surface.test.js`.
 - **The map's story card carries the share, because the map's URL cannot.** The homepage URL stays `/` no matter which story is open — deliberate, and it makes the address bar the one thing a reader must *not* copy. The card shares `/a/{slug}`, which is also the URL holding that story's generated OG card. The overlay sheets (disaster, chokepoint, conflict, genocide) get no share row: they are marks on a layer, not documents, so the only URL they could offer is `/`.
 - **No web push, on purpose.** A browser notification subscription is a per-device endpoint held on our server — the same kind of record the app-open beacon was removed for. So "tell me when something breaks" is answered by the app, which already has push (`functions/api/push.js` → Expo). That makes `_app-prompt.ts` a fact about the app rather than a request, and it is bounded: it waits for four opens across the whole site, shows at most three times, and stops for good the moment a reader follows it. All three counters are in the reader's own localStorage.
 - **`.app-banner` in `templates/index.html` is dead.** `body.map-page .app-banner { display: none }` has hidden it since the map became the homepage, so its markup and inline script ship on every homepage load and never render. The contextual prompt above replaced what it was for; it has not been deleted, only identified.
+- **The Instagram and X cards fit their type; they never cut it** (2026-07-26).
+  Both posters render through the 4:5 portrait branch of `ig-image.js`, and it
+  used to wrap by counting characters against a constant `0.62em` — a number
+  calibrated while resvg was rendering every glyph at the same width, because
+  the cards predate the `fontBuffers` → `fontFiles` fix. Source Sans Bold is
+  actually ~0.49em over mixed-case English, so the cards wrapped ~20% early,
+  hit their max-line ceiling, and truncated: **20.5% of cards had the dek cut
+  with an ellipsis**, 1.4% had the lead pre-cut by `igLead` before the card
+  even saw it. A rendered card gives no sign of it. `scripts/lib/font-metrics.js`
+  parses the TTFs we actually render with (`head`/`hhea`/`hmtx`/`cmap`) and
+  measures instead — validated against resvg's own ink to within 1%, and
+  always *over*, because every error must fall on the side of "it fits". No
+  constant can do this job: `WWW` and `iii` differ by 3× in this family, so one
+  factor either overflows the card or shrinks the type. **Kerning is
+  deliberately not applied** — GPOS pairs here are mostly negative, so ignoring
+  them overestimates, which is the safe direction.
+- **Size is fitted, not fixed, and the two blocks are fitted together.** The
+  headline was 82/94px and the dek a flat 46px; both are now ramps
+  (58–108 / 32–58) and the fitter takes the largest size that fits. Fitting
+  them in sequence is what a greedy layout does and it drove the dek to its
+  floor on the longest leads while the headline sat at its ceiling — so
+  `fitPair` steps the headline down while the dek is under `DEK_COMFORT` (40px)
+  and giving it room still helps. Across the corpus the headline now lands at
+  108px on 97% of cards and no dek falls below 38px. The column widened a
+  little too (`PAD` 72 → 60); the two changes only pay off together. `IG_VERSION`
+  must be bumped for any of this — the card cache is keyed on it.
+- **`fitText` never truncates, at any size.** If even the floor overflows it
+  returns every word and lets the block run tall; the caller decides. That is
+  what makes "no ellipsis" a property rather than a hope, and
+  `share-card-type.test.js` asserts it over the corpus's hardest 150 cases in
+  three aspect ratios, plus that every line fits its column. Note the ruler has
+  to be as careful as the thing it measures: the first version of that test
+  parsed attributes in order, missed `letter-spacing` because it sits after
+  `fill`, and reported fifty overflows that did not exist.
 - **Generated share cards**: articles (`/api/og/{slug}.png`), countries (`/api/og/country/{ISO2}.png` — globe centred on the country, three best-ranked metrics), categories (`/api/og/c/{cat}.png`). Country and category pages previously shared the one static `og-image.png`, so passing on Palestine's profile produced a card that said nothing about it. Country cards use the **largest polygon's centroid**, not `geoCentroid` of the whole feature: averaging the United States with Alaska and Hawaii lands the globe in the Pacific. **No flags on the cards** — resvg is handed the Source Sans buffer and nothing else, so a regional-indicator pair renders as two empty boxes.
 - **Meta**: `twitter:site` is the masthead (`@zuhd_news`), `twitter:creator` the maker — only the second was declared, so every shared story credited a personal account. `og:image:alt`/`twitter:image:alt` everywhere; `static-page.html` asked for `summary_large_image` and named no image at all. The Organization carries `sameAs` in both the homepage `@graph` and each article's inline `publisher`, which is what connects the domain to the feeds and the two store listings.
 - **No campaign parameters on a shared URL, ever.** The site's claim is that it does not track anyone, and a share link that quietly reports where it came from is exactly the sort of thing that claim then has to keep covering.
