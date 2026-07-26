@@ -651,10 +651,8 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     if (!entries.length) return
     let current = ''
     for (const e of entries) {
-      if (e.group !== current) {
-        current = e.group
-        ribbon.append(el('span', 'map-markets-label', e.group))
-      }
+      const opensGroup = e.group !== current
+      if (opensGroup) current = e.group
       const item = el('button', `map-markets-quote${toneClass(e.pct)}`)
       item.setAttribute('type', 'button')
       // The code is what fits; the name is what the reader needs. The flag
@@ -667,7 +665,19 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
         el('span', 'map-markets-quote-pct', ribbonPct(e.pct)),
       )
       item.addEventListener('click', () => opts.onQuote(e))
-      ribbon.append(item)
+      if (opensGroup) {
+        // A label and the first thing it names travel together. The ribbon is
+        // one wrapping flex row, and a row wraps between its items — so with
+        // the label as a sibling the break could fall right after it, leaving
+        // "crypto" alone at the end of a line and BTC and ETH beginning the
+        // next under no heading at all. Pairing them makes that break
+        // impossible; the rest of the group still wraps wherever it likes.
+        const pair = el('span', 'map-markets-pair')
+        pair.append(el('span', 'map-markets-label', e.group), item)
+        ribbon.append(pair)
+      } else {
+        ribbon.append(item)
+      }
     }
   }
 

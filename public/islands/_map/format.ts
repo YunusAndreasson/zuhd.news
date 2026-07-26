@@ -14,6 +14,90 @@
 import { eidClosure } from './hijri'
 
 /**
+ * The frame the map tells the time in.
+ *
+ * It read UTC, which is nobody's day. A world map has to pick some frame — the
+ * reader's own is wrong here, because two readers would then see the same rail
+ * labelled differently and neither could quote a time to the other — and of the
+ * frames that are the same for everyone, this is the one this site should keep.
+ * It also makes the Hijri date beside it *more* correct rather than less: the
+ * calendar shown is Umm al-Qura, Saudi Arabia's own civil calendar, so reading
+ * it in Saudi Arabia's own zone is the frame it is actually defined in.
+ *
+ * `Asia/Riyadh` because there is no `Asia/Mecca` in the IANA database; it is
+ * the canonical zone for the whole country. AST is UTC+3 and Saudi Arabia has
+ * never observed daylight saving, so the offset is fixed in practice — but it
+ * is resolved through `Intl` rather than hardcoded as `3 * HOUR_MS`, because a
+ * hardcoded offset is a silent lie the day it stops being true.
+ */
+export const MAKKAH_TZ = 'Asia/Riyadh'
+
+/** What the clock says, printed after the time. Not `AST` — that also means
+ *  Atlantic Standard Time, and the place is the point of the change. */
+export const MAKKAH_LABEL = 'Makkah'
+
+/**
+ * Local mean solar time at a longitude, as `HH:MM`.
+ *
+ * The one exception to the Makkah rule above, and it is not a competing clock:
+ * every other time on this map is the map speaking, where one shared frame is
+ * the whole point, and this one answers "what o'clock is it *there*" for a
+ * place the pointer is on. Makkah would be useless for that and the reader's
+ * own zone would be worse.
+ *
+ * Solar rather than civil because it is exact and needs nothing: a civil time
+ * would want a lat/lng → IANA-zone dataset this site does not ship, and the
+ * nautical approximation (round the longitude to the nearest hour) is a guess
+ * dressed as a clock. It is the right frame here anyway — the thing being
+ * timed is the sun's position, and solar noon is where the sun actually is.
+ * Callers must say "solar", because up to about an hour and a half separates
+ * this from what a phone in that place would show.
+ */
+export const solarClock = (t: number, lng: number): string =>
+  new Date(t + (lng / 15) * 3_600_000).toISOString().slice(11, 16)
+
+/**
+ * How far ahead of UTC `tz` is at instant `t`, in milliseconds.
+ *
+ * Formats the instant in the zone, reads the fields back as though they were
+ * UTC, and takes the difference — the standard way to get a zone offset out of
+ * `Intl`, which exposes no direct accessor. Seconds are included because a few
+ * historical zones are offset by a non-whole number of minutes.
+ *
+ * Callers in this file's consumers resolve it once per render rather than per
+ * formatted value. That is safe for Makkah, which has no daylight saving, and
+ * would need revisiting for a zone that does.
+ */
+export const zoneOffset = (t: number, tz: string): number => {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: tz,
+    hour12: false,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  }).formatToParts(t)
+  const f: Record<string, string> = {}
+  for (const p of parts) f[p.type] = p.value
+  // `hourCycle: h23` is what `hour12: false` asks for, but some ICU builds
+  // still answer midnight with "24". Left unhandled it puts the offset a full
+  // day out, once a day, in the one hour nobody tests.
+  const hour = f.hour === '24' ? 0 : Number(f.hour)
+  const asIfUtc = Date.UTC(
+    Number(f.year),
+    Number(f.month) - 1,
+    Number(f.day),
+    hour,
+    Number(f.minute),
+    Number(f.second),
+  )
+  // `t` may carry milliseconds the formatter dropped; floor both to the second.
+  return asIfUtc - Math.floor(t / 1000) * 1000
+}
+
+/**
  * How long ago, in the shortest form that still says it.
  *
  * This lived in `sheet.ts` — a 450-line DOM module that builds dialogs — so the
@@ -180,8 +264,6 @@ export const indexLevel = (n: number, currency?: string): string => {
 /** A signed percent move, always carrying its sign. `0.82` → `+0.82%`. */
 export const pctChange = (n: number): string => (Number.isFinite(n) ? `${signed(n, 2)}%` : '')
 
-/** The same, at the precision a glance can use. For the markets strip. */
-export const pctChangeShort = (n: number): string => (Number.isFinite(n) ? `${signed(n, 1)}%` : '')
 
 const WEEKDAY_INDEX: Record<string, number> = {
   Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6,

@@ -256,8 +256,26 @@ const TICK_FLAT: Glyph = {
  *  else rather than keeping a CSS disc of their own. */
 const DOT: Glyph = { parts: [{ kind: 'disc', c: [8, 8], r: 4.4 }] }
 
+/**
+ * A prayer line. Also not an image: `prayer-lines` is a `line` layer, which
+ * MapLibre dashes natively, so there is nothing here for `addImage` to
+ * rasterise. Same reason as `dot` — the chip is the legend, and the legend
+ * draws from this table or it drifts. The three bars are the dash pattern.
+ *
+ * Bars rather than strokes because `glyphSvg` gives every stroke a round cap,
+ * and a cap adds half the stroke width at each end: at the chip's 13px the
+ * gaps closed up and the one glyph whose whole job is to say "dashed" drew a
+ * solid line.
+ */
+const dash = (x0: number, x1: number): Part => ({
+  kind: 'fill',
+  poly: [[x0, 7.1], [x1, 7.1], [x1, 8.9], [x0, 8.9]],
+})
+const PRAYER_DASH: Glyph = { parts: [dash(1, 4), dash(6.5, 9.5), dash(12, 15)] }
+
 export const GLYPHS = {
   dot: DOT,
+  'prayer-line': PRAYER_DASH,
   hazard: HAZARD,
   'strait-rest': strait(4.0),
   'strait-pinch': strait(1.4),
@@ -314,12 +332,16 @@ export const sdfImage = (glyph: Glyph): GlyphImage => {
 /**
  * Every glyph the map registers as an image, rasterised. Called once per mount.
  *
- * `dot` is excluded: `story-points` stays a circle layer (its hover reads
- * feature-state, which `icon-size` cannot), so the disc is only ever drawn as
- * chrome.
+ * Two are excluded, both because MapLibre draws their layer natively and there
+ * is nothing for `addImage` to serve: `story-points` is a circle layer (its
+ * hover reads feature-state, which `icon-size` cannot) and `prayer-lines` is a
+ * line layer. Their entries exist so the chips that name them draw from this
+ * table rather than keeping their own idea of the mark.
  */
+const CHIP_ONLY: ReadonlySet<GlyphId> = new Set<GlyphId>(['dot', 'prayer-line'])
+
 export const glyphImages = (): Array<[GlyphId, GlyphImage]> =>
-  GLYPH_IDS.filter((id) => id !== 'dot').map((id) => [id, sdfImage(GLYPHS[id])])
+  GLYPH_IDS.filter((id) => !CHIP_ONLY.has(id)).map((id) => [id, sdfImage(GLYPHS[id])])
 
 // --- The same shapes, as chrome --------------------------------------------
 

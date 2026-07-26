@@ -21,6 +21,10 @@ import { readFileSync, existsSync, mkdtempSync, writeFileSync, rmSync } from 'no
 import { join } from 'node:path'
 import { tmpdir } from 'node:os'
 import { unwrap, closePolar, thin, simplifyRing } from '../build/basemap.js'
+// The prayer-time oracle. A devDependency, and deliberately not shipped — the
+// island derives its curves in closed form and this is what proves it right.
+// See the header of `public/islands/_map/prayer.ts`.
+import * as adhan from 'adhan'
 // Plain JS, so it needs no bundling — unlike the island modules below.
 import {
   MARKET_BY_ID,
@@ -36,6 +40,10 @@ const entry = join(dir, 'entry.ts')
 writeFileSync(
   entry,
   `export * from '${join(ROOT, 'public/islands/_map/solar.ts')}'\n` +
+    // The prayer lines. Pure geometry, and the one layer on this map whose
+    // correctness a reader cannot check by looking at it — a Fajr line in the
+    // wrong place is still a plausible Fajr line. Pinned against adhan below.
+    `export * from '${join(ROOT, 'public/islands/_map/prayer.ts')}'\n` +
     `export * from '${join(ROOT, 'public/islands/_map/types.ts')}'\n` +
     `export * from '${join(ROOT, 'public/islands/_map/format.ts')}'\n` +
     // The Hijri calendar and the Eid closures that hang off it. Pure, and the
@@ -183,6 +191,523 @@ test('the night polygon puts local midnight in darkness', () => {
   // longitude must lie south of the sub-solar latitude.
   if (sun.lat >= 0) assert.ok(edge < sun.lat, `edge ${edge} vs sun ${sun.lat}`)
   else assert.ok(edge > sun.lat, `edge ${edge} vs sun ${sun.lat}`)
+})
+
+// ---------------------------------------------------------------------------
+// The prayer lines
+//
+// The one layer on this map whose correctness cannot be checked by looking at
+// it: a Fajr line in the wrong place is still a plausible Fajr line, drawn in
+// the right style, sweeping the right way. So it is checked against adhan-js —
+// Batoul Apps' library, a devDependency here and deliberately not shipped, for
+// the reasons in `_map/prayer.ts`.
+// ---------------------------------------------------------------------------
+
+const DEG = Math.PI / 180
+const HOUR = 3600_000
+
+/** Every vertex of every part, flattened, for a prayer at an instant. */
+const prayerVertices = (at, id) => {
+  const f = M.prayerLines(at).find((x) => x.properties.id === id)
+  assert.ok(f, `${id} is missing at ${at.toISOString()}`)
+  return { parts: f.geometry.coordinates, all: f.geometry.coordinates.flat() }
+}
+
+/** Local solar hour angle at a point: negative before noon, positive after. */
+const hourAngleAt = (lng, sun) => {
+  const d = lng - sun.lng
+  return ((((d + 180) % 360) + 360) % 360) - 180
+}
+
+/** Great-circle separation in degrees. */
+const separation = (aLat, aLng, bLat, bLng) =>
+  Math.acos(
+    Math.max(
+      -1,
+      Math.min(
+        1,
+        Math.sin(aLat * DEG) * Math.sin(bLat * DEG) +
+          Math.cos(aLat * DEG) * Math.cos(bLat * DEG) * Math.cos((aLng - bLng) * DEG),
+      ),
+    ),
+  ) / DEG
+
+/** A spread of instants across a year, at several times of day. */
+const YEAR_SAMPLE = []
+for (let day = 0; day < 365; day += 11) {
+  for (const hour of [0, 5, 11, 17]) {
+    YEAR_SAMPLE.push(new Date(Date.UTC(2026, 0, 1) + (day * 24 + hour) * HOUR))
+  }
+}
+
+test('every prayer line is drawn, everywhere, with no NaN in it', () => {
+  for (const at of YEAR_SAMPLE) {
+    const ids = M.prayerLines(at).map((f) => f.properties.id)
+    assert.deepEqual(
+      ids,
+      ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'],
+      `missing or reordered at ${at.toISOString()}`,
+    )
+    for (const f of M.prayerLines(at)) {
+      for (const part of f.geometry.coordinates) {
+        assert.ok(part.length > 1, `${f.properties.id} has a one-vertex part`)
+        for (const [lng, lat] of part) {
+          assert.ok(Number.isFinite(lng) && Number.isFinite(lat), `${f.properties.id} NaN`)
+          assert.ok(Math.abs(lng) <= 180.000001, `${f.properties.id} lng ${lng}`)
+          assert.ok(Math.abs(lat) <= 85.06, `${f.properties.id} lat ${lat}`)
+        }
+      }
+    }
+  }
+})
+
+test('no part of a prayer line wraps the antimeridian', () => {
+  // These curves are functions of latitude, so unlike the terminator ring they
+  // really do cross ±180 — and with `renderWorldCopies` off an uncut segment is
+  // not drawn the short way round, it is drawn straight back across the whole
+  // map as a horizontal bar. Nothing throws; the map just grows a stripe.
+  let split = 0
+  for (const at of YEAR_SAMPLE) {
+    for (const f of M.prayerLines(at)) {
+      if (f.geometry.coordinates.length > 1) split++
+      for (const part of f.geometry.coordinates) {
+        for (let i = 1; i < part.length; i++) {
+          assert.ok(
+            Math.abs(part[i][0] - part[i - 1][0]) <= 180,
+            `${f.properties.id} steps ${part[i - 1][0]} → ${part[i][0]}`,
+          )
+        }
+      }
+    }
+  }
+  assert.ok(split > 0, 'no curve was ever split — the seam handling is untested')
+})
+
+test('a split prayer line meets both edges at the same latitude', () => {
+  // The interpolated vertices are what make the two halves land on the same
+  // pixel row at the frame. Without them each half stops short of the edge and
+  // the line reads as broken rather than as continuing.
+  let checked = 0
+  for (const at of YEAR_SAMPLE) {
+    for (const f of M.prayerLines(at)) {
+      const parts = f.geometry.coordinates
+      for (let i = 1; i < parts.length; i++) {
+        const end = parts[i - 1][parts[i - 1].length - 1]
+        const start = parts[i][0]
+        // Only the antimeridian cut lands exactly on ±180; a polar break does
+        // not, and is the other reason a curve comes in more than one part.
+        if (Math.abs(Math.abs(end[0]) - 180) > 1e-9) continue
+        assert.equal(Math.abs(start[0]), 180, `${f.properties.id} reopens off-edge`)
+        assert.equal(Math.sign(start[0]), -Math.sign(end[0]), 'reopens on the same side')
+        assert.ok(
+          Math.abs(start[1] - end[1]) < 1e-9,
+          `${f.properties.id} seam jumps ${end[1]} → ${start[1]}`,
+        )
+        checked++
+      }
+    }
+  }
+  assert.ok(checked > 0, 'no seam was ever exercised')
+})
+
+test('a prayer line is walked finely enough not to draw a chord', () => {
+  // A flat 1° latitude walk moves up to 31° of longitude near the poles, where
+  // these curves run nearly east-west. That is a chord straight across the
+  // Arctic, and it reads as a drawing error rather than as a prayer. The walk
+  // bisects where the step is too long; this is the bound it must hold to.
+  let worst = 0
+  let where = null
+  for (const at of YEAR_SAMPLE) {
+    for (const f of M.prayerLines(at)) {
+      for (const part of f.geometry.coordinates) {
+        for (let i = 1; i < part.length; i++) {
+          const d = Math.abs(part[i][0] - part[i - 1][0])
+          const step = d > 180 ? 360 - d : d
+          if (step > worst) {
+            worst = step
+            where = `${f.properties.id} at ${part[i][1].toFixed(1)}°`
+          }
+        }
+      }
+    }
+  }
+  assert.ok(worst <= 3, `worst chord ${worst.toFixed(2)}° of longitude — ${where}`)
+})
+
+test('the prayers fall in the order of the day', () => {
+  // The whole geometry turns on which limb of the sun each prayer is solved
+  // against, and a flipped limb puts the line half a world away while still
+  // looking like a plausible curve. Local solar time runs
+  // Fajr → Dhuhr → Asr → Maghrib → Isha, so the hour angles must too.
+  for (const at of YEAR_SAMPLE) {
+    const sun = M.subsolarPoint(at)
+    const angles = {}
+    for (const id of ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha']) {
+      const near = prayerVertices(at, id).all
+        .filter(([, lat]) => Math.abs(lat) < 40)
+        .sort((a, b) => Math.abs(a[1]) - Math.abs(b[1]))[0]
+      if (near) angles[id] = hourAngleAt(near[0], sun)
+    }
+    const stamp = at.toISOString()
+    assert.ok(angles.fajr < 0, `Fajr is not before noon at ${stamp}`)
+    assert.ok(Math.abs(angles.dhuhr) < 1e-6, `Dhuhr is not the sub-solar meridian at ${stamp}`)
+    assert.ok(angles.asr > 0, `Asr is not after noon at ${stamp}`)
+    assert.ok(angles.maghrib > angles.asr, `Maghrib is not after Asr at ${stamp}`)
+    // Isha is Maghrib carried ninety minutes further round: the sun turns 15°
+    // an hour, so the line sits 22.5° deeper into the night.
+    assert.ok(
+      Math.abs(angles.isha - angles.maghrib - 22.5) < 0.6,
+      `Isha is not 22.5° behind Maghrib at ${stamp} (${(angles.isha - angles.maghrib).toFixed(2)}°)`,
+    )
+  }
+})
+
+test('Maghrib rides the terminator, just outside it', () => {
+  // Sunset is the disc's upper limb touching the horizon, so the Maghrib curve
+  // stands 0.833° beyond the geometric terminator `solar.ts` draws at a flat
+  // 0°. On screen that is about three pixels of daylight between the shade
+  // edge and the line, and it is correct — the two are not meant to coincide
+  // and snapping them together would be a regression, not a tidy-up.
+  for (const at of YEAR_SAMPLE) {
+    const sun = M.subsolarPoint(at)
+    for (const [lng, lat] of prayerVertices(at, 'maghrib').all) {
+      const d = separation(lat, lng, sun.lat, sun.lng)
+      assert.ok(
+        Math.abs(d - 90.833) < 0.02,
+        `Maghrib vertex is ${d.toFixed(3)}° from the sub-solar point, not 90.833°`,
+      )
+    }
+    for (const [lng, lat] of prayerVertices(at, 'fajr').all) {
+      const d = separation(lat, lng, sun.lat, sun.lng)
+      assert.ok(Math.abs(d - 108.5) < 0.02, `Fajr vertex is ${d.toFixed(3)}°, not 108.5°`)
+    }
+  }
+})
+
+test('a prayer line stops where the prayer has no time', () => {
+  // The reason adhan is not imported at runtime. Above roughly 48°N on the June
+  // solstice the sun never goes 18.5° down, so there is no moment that is
+  // Fajr — and adhan's high-latitude rule would hand back a substitute and let
+  // the line keep going across the Arctic. Here the solution ceases to exist
+  // and the line ends, which is both the truth and legible: you can watch the
+  // line retreat from the pole as the season turns.
+  const solstice = new Date('2026-06-21T12:00:00Z')
+  const fajr = prayerVertices(solstice, 'fajr').all
+  const north = Math.max(...fajr.map(([, lat]) => lat))
+  assert.ok(north > 44 && north < 52, `Fajr reaches ${north.toFixed(1)}°N, expected about 48`)
+  assert.ok(Math.min(...fajr.map(([, lat]) => lat)) < -80, 'Fajr should run to the far south')
+
+  // In December it is the other pole, by the same argument.
+  const december = new Date('2026-12-21T12:00:00Z')
+  const south = Math.min(...prayerVertices(december, 'fajr').all.map(([, lat]) => lat))
+  assert.ok(south < -44 && south > -52, `Fajr reaches ${south.toFixed(1)}°S, expected about -48`)
+
+  // Asr has a failure the others do not: past 90° of separation from the
+  // declination, `tan` in the shadow rule goes negative, the reciprocal comes
+  // back a negative altitude, and the solve returns a perfectly plausible
+  // longitude for a prayer that has no time there at all — a second, entirely
+  // fictitious Asr limb across the winter polar cap, every day of the year.
+  const asrSouth = Math.min(...prayerVertices(solstice, 'asr').all.map(([, lat]) => lat))
+  assert.ok(asrSouth > -67, `Asr reaches ${asrSouth.toFixed(1)}°S — the spurious limb is back`)
+})
+
+test('the prayer lines survive the equinox, when the terminator does not', () => {
+  // `terminatorLat` bails when |tan δ| < 1e-6, so `nightPolygon`/`dayPolygon`
+  // come back null and the shade blinks out for a few hours twice a year. The
+  // closed form behind these curves has no such singularity: at δ = 0 it
+  // reduces to cos H = sin(alt) / cos φ, defined for every |φ| < 90. So across
+  // that instant the Maghrib line is the only terminator on the map, which is
+  // the more correct of the two and is deliberate.
+  //
+  // The window is narrow enough that it has to be hunted rather than scanned:
+  // the guard trips inside 6e-5° of declination and the sun crosses that in
+  // about twelve seconds, so a per-minute sweep walks straight past it. Bisect
+  // the sign change instead.
+  let lo = Date.UTC(2026, 2, 19)
+  let hi = Date.UTC(2026, 2, 21)
+  assert.ok(
+    Math.sign(M.subsolarPoint(new Date(lo)).lat) !== Math.sign(M.subsolarPoint(new Date(hi)).lat),
+    'the March equinox should fall inside this window',
+  )
+  const negative = M.subsolarPoint(new Date(lo)).lat < 0
+  for (let i = 0; i < 60; i++) {
+    const mid = (lo + hi) / 2
+    if (M.subsolarPoint(new Date(mid)).lat < 0 === negative) lo = mid
+    else hi = mid
+  }
+  const found = new Date(lo)
+  assert.equal(
+    M.terminatorLat(0, M.subsolarPoint(found)),
+    null,
+    'the crossing should be inside the degenerate window',
+  )
+  assert.equal(M.nightPolygon(found), null, 'the terminator should be gone here')
+  assert.equal(M.prayerLines(found).length, 5, 'the prayer lines should not be')
+})
+
+/**
+ * What adhan says the named prayer is at a place, to the nearest millisecond.
+ *
+ * adhan reads the calendar day off a `Date`'s **local** components, so the day
+ * either side is tried and the closest taken — that is what makes this immune
+ * to whatever timezone the test runner happens to be in, which is the trap the
+ * island avoids by not importing the library at all.
+ */
+const adhanPrayerAt = (id, lat, lng, t) => {
+  const params = adhan.CalculationMethod.UmmAlQura()
+  params.madhab = adhan.Madhab.Shafi
+  // Otherwise every answer is quantised to the minute, which is 0.25° of
+  // longitude — enough to swamp what is being measured.
+  params.rounding = adhan.Rounding.None
+  let closest = Infinity
+  for (const shift of [-1, 0, 1]) {
+    const u = new Date(t + shift * 24 * HOUR)
+    const day = new Date(u.getUTCFullYear(), u.getUTCMonth(), u.getUTCDate())
+    const got = new adhan.PrayerTimes(new adhan.Coordinates(lat, lng), day, params)[id]
+    if (!got || Number.isNaN(got.getTime())) continue
+    closest = Math.min(closest, Math.abs(got.getTime() - t))
+  }
+  return closest
+}
+
+/**
+ * How far the target altitude sits from the day's highest and lowest sun.
+ *
+ * Two things go wrong as this approaches zero and neither is a defect in the
+ * geometry: the solve becomes ill-conditioned (the sun's altitude is flat at
+ * its own extremes, so a hundredth of a degree of model difference becomes
+ * minutes), and adhan starts substituting its high-latitude rule. Both are
+ * excluded here so the comparison measures what it claims to.
+ */
+const solarMargin = (id, lat, at) => {
+  const dec = M.subsolarPoint(at).lat
+  const lowest = Math.asin(Math.max(-1, Math.min(1, -Math.cos((lat + dec) * DEG)))) / DEG
+  const highest = 90 - Math.abs(lat - dec)
+  const target = id === 'fajr' ? -18.5 : id === 'asr' ? M.asrAltitude(lat, dec, 1) : -0.833
+  return Math.min(target - lowest, highest - target)
+}
+
+test('every prayer line lands where adhan says the prayer is', () => {
+  // The load-bearing test, and the reason adhan can stay out of the bundle: it
+  // pins the curves against the reference implementation without the reader
+  // paying for it. If this passes, "these are Umm al-Qura prayer times" is a
+  // checked statement rather than a hopeful one.
+  const worst = {}
+  let checked = 0
+  for (const at of YEAR_SAMPLE) {
+    for (const f of M.prayerLines(at)) {
+      const id = f.properties.id
+      for (const part of f.geometry.coordinates) {
+        for (let i = 0; i < part.length; i += 13) {
+          const [lng, lat] = part[i]
+          if (Math.abs(lat) > 55) continue
+          // Isha is Maghrib ninety minutes ago, so its conditioning is that
+          // sunset's, not this instant's.
+          const shifted = id === 'isha' ? new Date(at.getTime() - 90 * 60_000) : at
+          if (solarMargin(id === 'isha' ? 'maghrib' : id, lat, shifted) < 2) continue
+          const diff = adhanPrayerAt(id, lat, lng, at.getTime())
+          checked++
+          if (diff > (worst[id]?.diff ?? -1)) {
+            worst[id] = { diff, where: `${lat.toFixed(1)}° ${at.toISOString().slice(0, 10)}` }
+          }
+        }
+      }
+    }
+  }
+  assert.ok(checked > 3000, `only ${checked} points compared`)
+
+  for (const id of ['fajr', 'dhuhr', 'maghrib', 'isha']) {
+    assert.ok(
+      worst[id].diff <= 20_000,
+      `${id} is ${(worst[id].diff / 1000).toFixed(1)}s off adhan at ${worst[id].where}`,
+    )
+  }
+  // Asr is allowed more, for one known and measured reason — see the next test,
+  // which pins the reason rather than leaving this as a slop budget.
+  assert.ok(
+    worst.asr.diff <= 150_000,
+    `asr is ${(worst.asr.diff / 1000).toFixed(1)}s off adhan at ${worst.asr.where}`,
+  )
+})
+
+test('the hover readout names the right time for the place under the pointer', () => {
+  // `prayerInstantAt` reads the curve the other way — "when does this prayer
+  // reach here" rather than "where is it now" — and it is what the pointer
+  // readout prints. Two things have to hold. It must agree with adhan, which
+  // makes the number on screen the same claim the lines are; and it must hold
+  // *off* the line as well as on it, because the grab box is seven pixels wide
+  // and at world zoom that is a couple of degrees of longitude, which is eight
+  // minutes of solar time. A readout that silently reported the time on the
+  // line rather than under the cursor would look right and drift.
+  let worst = 0
+  let where = null
+  let checked = 0
+  for (const at of YEAR_SAMPLE.slice(0, 16)) {
+    for (const f of M.prayerLines(at)) {
+      const id = f.properties.id
+      for (const part of f.geometry.coordinates) {
+        for (let i = 0; i < part.length; i += 23) {
+          const [lng, lat] = part[i]
+          if (Math.abs(lat) > 55) continue
+          const shifted = id === 'isha' ? new Date(at.getTime() - 90 * 60_000) : at
+          if (solarMargin(id === 'isha' ? 'maghrib' : id, lat, shifted) < 2) continue
+          // Deliberately off the line, in both directions.
+          for (const nudge of [0, -2.5, 2.5]) {
+            const probe = ((((lng + nudge + 180) % 360) + 360) % 360) - 180
+            const when = M.prayerInstantAt(at, id, lat, probe)
+            assert.ok(when !== null, `${id} has no time at ${lat},${probe}`)
+            const diff = adhanPrayerAt(id, lat, probe, when)
+            checked++
+            if (diff > worst) {
+              worst = diff
+              where = `${id} at ${lat.toFixed(1)}° nudged ${nudge}°`
+            }
+          }
+        }
+      }
+    }
+  }
+  assert.ok(checked > 500, `only ${checked} points compared`)
+  // Asr carries the same known divergence as the forward direction.
+  assert.ok(worst <= 150_000, `${(worst / 1000).toFixed(1)}s off adhan — ${where}`)
+
+  // On the line and at the moment it is drawn for, the answer is that moment:
+  // that is the whole meaning of the curve, and it is what makes the readout
+  // and the line one statement rather than two.
+  const at = new Date('2026-05-14T08:00:00Z')
+  for (const f of M.prayerLines(at)) {
+    for (const [lng, lat] of f.geometry.coordinates[0].filter((_, i) => i % 40 === 0)) {
+      const when = M.prayerInstantAt(at, f.properties.id, lat, lng)
+      assert.ok(
+        Math.abs(when - at.getTime()) < 1000,
+        `${f.properties.id} on its own line is ${((when - at.getTime()) / 1000).toFixed(1)}s from now`,
+      )
+    }
+  }
+})
+
+test('the Asr difference from adhan is the one we chose, and no other', () => {
+  // adhan builds its solar coordinates at **0h UT of the local calendar day**
+  // and `SolarTime.afternoon()` reads the declination straight off them, so its
+  // shadow rule is anchored up to twelve hours from the prayer it describes.
+  // We anchor it at the place's own noon instead, which is what "the shadow an
+  // object casts at noon" actually means — and, more to the point, is the only
+  // choice that does not tear the curve: which calendar day a place is on
+  // changes *along* a line that circles the planet, so adhan's anchor would
+  // step the declination by 0.4° at the date line and kink the Asr line in the
+  // middle of the Pacific.
+  //
+  // The gap is up to about two minutes, which is two pixels at world zoom. This
+  // asserts where it comes from, comparatively rather than absolutely: the sun
+  // at adhan's Asr must be much better explained by the shadow rule at the 0h
+  // UT declination than by the same rule at the declination at Asr itself.
+  // Comparative because an absolute bound would be measuring the two solar
+  // models against each other, which is a different quantity and a smaller one.
+  const params = adhan.CalculationMethod.UmmAlQura()
+  params.madhab = adhan.Madhab.Shafi
+  params.rounding = adhan.Rounding.None
+
+  const altitudeAt = (t, lat, lng) => {
+    const sun = M.subsolarPoint(new Date(t))
+    const h = (((lng - sun.lng + 180) % 360) + 360) % 360 - 180
+    return (
+      Math.asin(
+        Math.sin(lat * DEG) * Math.sin(sun.lat * DEG) +
+          Math.cos(lat * DEG) * Math.cos(sun.lat * DEG) * Math.cos(h * DEG),
+      ) / DEG
+    )
+  }
+
+  let checked = 0
+  for (const [lat, lng, iso] of [
+    [-54, -70, '2026-04-30T15:00:00Z'],
+    [21.42, 39.83, '2026-07-26T12:00:00Z'],
+    [45, 10, '2026-11-05T13:00:00Z'],
+    [-8, 115, '2026-02-14T06:00:00Z'],
+    [33, -84, '2026-09-09T19:00:00Z'],
+  ]) {
+    const t = Date.parse(iso)
+    const u = new Date(t)
+    const day = new Date(u.getUTCFullYear(), u.getUTCMonth(), u.getUTCDate())
+    const asr = new adhan.PrayerTimes(new adhan.Coordinates(lat, lng), day, params).asr.getTime()
+    const at0hUT = M.subsolarPoint(
+      new Date(Date.UTC(u.getUTCFullYear(), u.getUTCMonth(), u.getUTCDate())),
+    ).lat
+    const atAsr = M.subsolarPoint(new Date(asr)).lat
+    const sun = altitudeAt(asr, lat, lng)
+    const byMidnight = Math.abs(sun - M.asrAltitude(lat, at0hUT, 1))
+    const byMoment = Math.abs(sun - M.asrAltitude(lat, atAsr, 1))
+    assert.ok(
+      byMidnight * 2 < byMoment,
+      `adhan's Asr at ${lat},${lng} is explained by the 0h UT declination to ` +
+        `${byMidnight.toFixed(3)}° and by the declination at Asr to ` +
+        `${byMoment.toFixed(3)}° — the anchoring has changed`,
+    )
+    checked++
+  }
+  assert.equal(checked, 5)
+})
+
+test('Asr is solved against the declination at that place, at its own noon', () => {
+  // The other half of the choice, stated positively. Anchoring the shadow rule
+  // to the place's own noon is what "the shadow an object casts at noon" means,
+  // and it is also the only anchor that keeps the line continuous: which
+  // calendar day a place is on changes *along* a curve that circles the planet,
+  // so adhan's 0h-UT-of-the-local-day anchor would step the declination by up
+  // to 0.4° somewhere in the Pacific and put a corner in the middle of the
+  // ocean. Nothing would throw and the line would still look like a line.
+  //
+  // Checked exactly rather than by smoothness: walk back from each vertex to
+  // that meridian's noon and the shadow rule there must give the altitude the
+  // sun is actually standing at.
+  for (const at of YEAR_SAMPLE.slice(0, 12)) {
+    const sun = M.subsolarPoint(at)
+    for (const [lng, lat] of prayerVertices(at, 'asr').all) {
+      const hours = hourAngleAt(lng, sun) / 15
+      const noonDec = M.subsolarPoint(new Date(at.getTime() - hours * HOUR)).lat
+      const standing =
+        Math.asin(
+          Math.sin(lat * DEG) * Math.sin(sun.lat * DEG) +
+            Math.cos(lat * DEG) * Math.cos(sun.lat * DEG) * Math.cos(hourAngleAt(lng, sun) * DEG),
+        ) / DEG
+      assert.ok(
+        Math.abs(standing - M.asrAltitude(lat, noonDec, 1)) < 0.02,
+        `Asr at ${lat.toFixed(1)}° stands at ${standing.toFixed(3)}° but its noon ` +
+          `declination asks for ${M.asrAltitude(lat, noonDec, 1).toFixed(3)}°`,
+      )
+    }
+  }
+})
+
+test('the prayer ink is neutral, its own, and legible on the ground', () => {
+  const prayer = M.MAP_COLOURS.prayer
+  const channels = [16, 8, 0].map((s) => (Number.parseInt(prayer.slice(1), 16) >> s) & 255)
+  // No hue, because these lines carry no value. Colour on this map means a
+  // category, a direction or a severity; a warm tone was the first instinct and
+  // landed six points of hue from `OVERLAY_COLOUR.straits`, which is the exact
+  // collision the mark alphabet was built to stop making. Shape says what.
+  assert.ok(
+    Math.max(...channels) - Math.min(...channels) <= 20,
+    `the prayer ink is chromatic (${prayer})`,
+  )
+  for (const [name, value] of [
+    ...Object.entries(M.OVERLAY_COLOUR),
+    ...Object.entries(M.CATEGORY_COLOUR),
+  ]) {
+    assert.notEqual(value, prayer, `the prayer ink is shared with ${name}`)
+  }
+  // The label is text and is drawn at full strength, so it answers to AA on
+  // every ground the ramp can paint. The line itself is the quiet half.
+  const contrast = (a, b) => {
+    const [hi, lo] = [srgbLuminance(a), srgbLuminance(b)].sort((x, y) => y - x)
+    return (hi + 0.05) / (lo + 0.05)
+  }
+  for (const ground of [M.MAP_COLOURS.ocean, M.MAP_COLOURS.land, ...M.LAND_RAMP]) {
+    assert.ok(
+      contrast(prayer, ground) >= 4.5,
+      `prayer ink is ${contrast(prayer, ground).toFixed(2)}:1 on ${ground}`,
+    )
+  }
 })
 
 // ---------------------------------------------------------------------------
@@ -656,17 +1181,19 @@ test('every metric payload places its countries on a 0..1 scale', (t) => {
       if (v.p < lowest) lowest = v.p
       if (v.p > highest) highest = v.p
     }
-    // The percentile positions a country within the set the map can draw, so
-    // the darkest tone must belong to somebody — if it doesn't, percentiles are
-    // being computed over a wider set than the one being painted, and the ramp
-    // is spending its range on countries that never appear.
+    // The position is computed over the set the map can draw, so both ends of
+    // the ramp must belong to somebody — if they don't, the projection is being
+    // taken over a wider set than the one being painted, and the ramp is
+    // spending its range on countries that never appear. The least populous
+    // entry in COUNTRY_DATA is Antarctica, which has no ISO2 and is never
+    // drawn; computed over the raw ranking, p=0 went to nobody.
+    //
+    // Both are exact now. Under the old percentile the light end was loose —
+    // ties shared the lower position, so literacy topped out at 0.92 — but the
+    // ramp is the value now, and the largest value is the top of the scale by
+    // definition however many countries hold it.
     assert.equal(lowest, 0, `${m.key} never reaches p=0`)
-    // The top is looser on purpose. Ties share the lower position, so where
-    // several countries hold the highest value none of them lands on exactly 1
-    // — literacy tops out at 0.92 because a great many countries report the
-    // same high figure. That is the tie rule working, not a broken scale; the
-    // top group still gets the lightest tone in use.
-    assert.ok(highest > 0.85, `${m.key} tops out at p=${highest}, so the ramp's light end is unused`)
+    assert.equal(highest, 1, `${m.key} tops out at p=${highest}, so the ramp's light end is unused`)
   }
 })
 
@@ -743,11 +1270,222 @@ test('rank 1 goes to the country the metric calls best, not worst', (t) => {
     Number.parseFloat(payload.values[bestIso].v) < Number.parseFloat(payload.values[worstIso].v),
     `rank 1 (${bestIso}, ${payload.values[bestIso].v}) does not hold a lower RSF score than rank last (${worstIso}, ${payload.values[worstIso].v})`,
   )
-  // And the ramp is magnitude, so the least free country is the light end.
+  // And the ramp now turns around with the flag, so the *freest* country is
+  // the light end. It used to be the other way: the ramp encoded magnitude
+  // only, so a picker labelled "press freedom" painted Eritrea as the world's
+  // brightest example of it and Norway as its darkest — on the metric the map
+  // opens with, which is the first thing every reader sees.
   assert.ok(
-    payload.values[worstIso].p > payload.values[bestIso].p,
-    'the higher RSF score does not sit higher on the ramp',
+    payload.values[bestIso].p > payload.values[worstIso].p,
+    `press freedom is not flipped: ${bestIso} (${payload.values[bestIso].v}) sits at p=${payload.values[bestIso].p}, below ${worstIso} at ${payload.values[worstIso].p}`,
   )
+  assert.equal(payload.values[bestIso].p, 1, 'the freest country is not the lightest tone')
+})
+
+test('the map tells the time in Makkah, and the day turns there too', () => {
+  const HOUR = 3_600_000
+  // Saudi Arabia is UTC+3 and has never observed daylight saving, so the offset
+  // has to be the same in January and July. A seasonal wobble here would slide
+  // the rail's day columns by an hour twice a year.
+  for (const iso of [
+    '2026-01-15T00:00:00Z',
+    '2026-03-29T12:00:00Z', // the European DST switch, which must not matter
+    '2026-07-26T13:00:00Z',
+    '2026-10-25T02:00:00Z',
+  ]) {
+    assert.equal(
+      M.zoneOffset(Date.parse(iso), M.MAKKAH_TZ),
+      3 * HOUR,
+      `Makkah is not +03:00 at ${iso}`,
+    )
+  }
+
+  // And the helper has to be reading the zone rather than returning a constant
+  // that happens to be right. London moves; if this passes for Riyadh and fails
+  // here, the offset is hardcoded somewhere.
+  assert.equal(M.zoneOffset(Date.parse('2026-01-15T12:00:00Z'), 'Europe/London'), 0)
+  assert.equal(M.zoneOffset(Date.parse('2026-07-15T12:00:00Z'), 'Europe/London'), HOUR)
+  // A zone offset by a non-whole hour, and one behind UTC.
+  assert.equal(M.zoneOffset(Date.parse('2026-01-15T12:00:00Z'), 'Asia/Kolkata'), 5.5 * HOUR)
+  assert.equal(M.zoneOffset(Date.parse('2026-01-15T12:00:00Z'), 'America/New_York'), -5 * HOUR)
+
+  // Midnight is the case that breaks: some ICU builds answer `hour: "24"` for
+  // it, which puts the offset a full day out once a day, in the hour nobody
+  // looks at. This is that hour — 21:00Z is 00:00 in Makkah.
+  assert.equal(M.zoneOffset(Date.parse('2026-07-26T21:00:00Z'), M.MAKKAH_TZ), 3 * HOUR)
+  assert.equal(M.zoneOffset(Date.parse('2026-07-26T21:30:00Z'), M.MAKKAH_TZ), 3 * HOUR)
+
+  // The label names the place, not the abbreviation: `AST` is also Atlantic
+  // Standard Time, and the place is the point.
+  assert.equal(M.MAKKAH_LABEL, 'Makkah')
+  assert.ok(!/AST|UTC|GMT/.test(M.MAKKAH_LABEL))
+
+  // The Hijri date beside the clock must read in the same frame, or the row
+  // states two different days at once. Umm al-Qura is Saudi Arabia's own civil
+  // calendar, so this is the frame it is defined in — and between 21:00Z and
+  // midnight the Makkah day is already the next one.
+  const late = Date.parse('2026-07-26T22:00:00Z')
+  assert.notEqual(
+    M.hijriLabel(late, M.MAKKAH_TZ),
+    M.hijriLabel(late, 'UTC'),
+    'the Hijri day does not turn at Makkah midnight, so the frame is not being applied',
+  )
+})
+
+test('the live scrub position is the real live edge, whatever the day anchor', () => {
+  const HOUR = 3_600_000
+  const DAY = 86_400_000
+  const SLOT = 6 * HOUR
+
+  // `createTimeline` needs a DOM, so this reproduces its three lines of axis
+  // arithmetic rather than importing it. They are copied deliberately: the
+  // point is to pin the *relationship* between the anchor, the slot count and
+  // the clamp, which is what broke.
+  const liveHead = (start, end, tzOffset) => {
+    const anchored = Math.floor((start + tzOffset) / DAY) * DAY - tzOffset
+    const span = Math.max(SLOT, end - anchored)
+    const slots = Math.max(1, Math.ceil(span / SLOT))
+    return Math.min(end, anchored + slots * SLOT)
+  }
+
+  // The window that exposed it: a build finishing at 21:15Z, which is 00:15 the
+  // next day in Makkah. Against a Makkah-midnight anchor the rounded slot count
+  // landed on 21:00Z — fifteen minutes short — so the rail said "live" while
+  // filtering out anything newer than 21:00.
+  const end = Date.parse('2026-07-25T21:15:00Z')
+  const start = Date.parse('2026-07-11T20:19:00Z')
+  for (const tz of [0, 3 * HOUR, -5 * HOUR, 5.5 * HOUR]) {
+    assert.equal(
+      liveHead(start, end, tz),
+      end,
+      `the live head misses the window end at offset ${tz / HOUR}h`,
+    )
+  }
+
+  // And it must hold for any end time, not just this one — a build lands
+  // wherever it lands. Every minute of a day, against the Makkah anchor.
+  for (let m = 0; m < 1440; m++) {
+    const e = Date.parse('2026-07-25T00:00:00Z') + m * 60_000
+    assert.equal(
+      liveHead(e - 14 * DAY, e, 3 * HOUR),
+      e,
+      `the live head misses the window end for a build at minute ${m}`,
+    )
+  }
+})
+
+test('the ramp is the value, not the ranking', (t) => {
+  const indexPath = join(ROOT, 'dist/api/metric/index.json')
+  if (!existsSync(indexPath)) {
+    t.skip('dist/api/metric/ not built')
+    return
+  }
+  const { metrics } = JSON.parse(readFileSync(indexPath, 'utf8'))
+
+  // A percentile is uniform by construction: a fifth of the world in each fifth
+  // of the ramp, on every metric, forever. That is what this used to be, and it
+  // meant the *distribution of tones on screen was identical* whichever metric
+  // was showing — only which country held which tone changed. So the test is
+  // that the world is NOT evenly spread: real distributions are lumpy, and the
+  // ramp's job is to show the lump.
+  let lumpy = 0
+  for (const m of metrics) {
+    const payload = JSON.parse(
+      readFileSync(join(ROOT, 'dist/api/metric', `${m.key}.json`), 'utf8'),
+    )
+    const ps = Object.values(payload.values).map((v) => v.p)
+    const bins = [0, 0, 0, 0, 0]
+    for (const p of ps) bins[Math.min(4, Math.floor(p * 5))]++
+    const share = Math.max(...bins) / ps.length
+
+    // Under a percentile every one of these lands within a rounding error of
+    // 0.2. Anything meaningfully above it means the tone is tracking the value.
+    if (share > 0.3) lumpy++
+
+    // The other side of the same coin, and the failure the `scale` field exists
+    // to prevent: a linear ramp on GDP put 99% of countries in one bin, which
+    // is a flat map wearing a gradient. Nothing may be that bunched.
+    assert.ok(
+      share <= 0.7,
+      `${m.key} (${payload.scale}) puts ${(share * 100).toFixed(0)}% of countries in one fifth of the ramp — the wrong scale for this distribution`,
+    )
+  }
+  assert.ok(
+    lumpy >= 10,
+    `only ${lumpy} of ${metrics.length} metrics have a non-uniform spread, so the ramp is still a percentile`,
+  )
+})
+
+test('every metric declares a scale and both ends of it', (t) => {
+  const indexPath = join(ROOT, 'dist/api/metric/index.json')
+  if (!existsSync(indexPath)) {
+    t.skip('dist/api/metric/ not built')
+    return
+  }
+  const { metrics } = JSON.parse(readFileSync(indexPath, 'utf8'))
+  for (const m of metrics) {
+    const payload = JSON.parse(
+      readFileSync(join(ROOT, 'dist/api/metric', `${m.key}.json`), 'utf8'),
+    )
+    assert.ok(
+      payload.scale === 'linear' || payload.scale === 'log',
+      `${m.key} ships scale=${payload.scale}`,
+    )
+    // The legend prints these either side of the gradient. Without them it is
+    // 72px of bare colour — a scale with no units, readable only by someone who
+    // already knows the distribution. They also carry the direction, which
+    // prose no longer can now that three metrics turn the ramp around.
+    assert.ok(payload.domain?.dark, `${m.key} has no dark-end label`)
+    assert.ok(payload.domain?.light, `${m.key} has no light-end label`)
+    assert.notEqual(
+      payload.domain.dark,
+      payload.domain.light,
+      `${m.key} prints the same value at both ends of the ramp`,
+    )
+
+    // The ends have to be the ends. A country lighter than the light-end label
+    // means the legend is understating what the ramp can mean — which is how
+    // the log floor first showed up: Niger's 0% youth unemployment shared the
+    // lightest tone with a country at 1%, and the tie printed the 1%.
+    const entries = Object.values(payload.values)
+    const darkest = entries.reduce((a, b) => (b.p < a.p ? b : a))
+    const lightest = entries.reduce((a, b) => (b.p > a.p ? b : a))
+    assert.equal(darkest.p, 0, `${m.key} never reaches the darkest tone`)
+    assert.equal(lightest.p, 1, `${m.key} never reaches the lightest tone`)
+  }
+})
+
+test('a country lands on the same tone the card shows it', () => {
+  // `rampColour` reimplements the land layer's interpolate expression, because
+  // there is no way to ask MapLibre what colour a feature came out. The two can
+  // only be kept honest by pinning the ends and the shape.
+  assert.equal(M.rampColour(0), M.LAND_RAMP[0])
+  assert.equal(M.rampColour(1), M.LAND_RAMP[M.LAND_RAMP.length - 1])
+  for (let i = 0; i < M.LAND_RAMP.length; i++) {
+    assert.equal(
+      M.rampColour(i / (M.LAND_RAMP.length - 1)),
+      M.LAND_RAMP[i],
+      `ramp stop ${i} is not reproduced at its own position`,
+    )
+  }
+  // Out of range clamps rather than extrapolating into a colour off the scale.
+  assert.equal(M.rampColour(-1), M.LAND_RAMP[0])
+  assert.equal(M.rampColour(2), M.LAND_RAMP[M.LAND_RAMP.length - 1])
+
+  // Monotonic in luminance between the stops, or an intermediate value would
+  // read as a position it isn't.
+  const lum = (hex) => {
+    const c = [1, 3, 5]
+      .map((i) => Number.parseInt(hex.slice(i, i + 2), 16) / 255)
+      .map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4))
+    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]
+  }
+  let prev = -1
+  for (let p = 0; p <= 1.0001; p += 0.05) {
+    const l = lum(M.rampColour(p))
+    assert.ok(l > prev, `ramp is not monotonic at p=${p.toFixed(2)}`)
+    prev = l
+  }
 })
 
 test('the country card and the land tint agree about where a country sits', (t) => {

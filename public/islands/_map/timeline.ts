@@ -10,6 +10,7 @@
 // screen readers all work without reimplementation; the canvas behind it is
 // purely presentational.
 
+import { MAKKAH_LABEL, MAKKAH_TZ, zoneOffset } from './format'
 import { HIJRI_NOTE, hijriLabel } from './hijri'
 import type { MapPoint } from './types'
 
@@ -73,10 +74,41 @@ export interface TimelineOptions {
 
 export function createTimeline(opts: TimelineOptions): Timeline {
   const { end } = opts
-  // Anchor the axis on a UTC midnight so day columns are real days.
-  const start = Math.floor(opts.start / DAY_MS) * DAY_MS
+  /**
+   * How far Makkah is ahead of UTC, resolved once for this rail.
+   *
+   * Every date on this component — the axis anchor, the tick labels, the
+   * readout and the Hijri date — is shifted by it, so they cannot disagree.
+   * Changing only the readout would have been the smaller edit and a worse
+   * one: between 21:00 and 24:00 UTC the Makkah date is already tomorrow, so
+   * for three hours of every day the readout would have named a day the tick
+   * under the scrub head contradicted.
+   *
+   * Once, not per call: Saudi Arabia has no daylight saving, so the offset is
+   * constant across any window this rail can span.
+   */
+  const tzOffset = zoneOffset(opts.start, MAKKAH_TZ)
+  // Anchor the axis on a Makkah midnight so day columns are real local days.
+  const start = Math.floor((opts.start + tzOffset) / DAY_MS) * DAY_MS - tzOffset
   const span = Math.max(SLOT_MS, end - start)
-  const slots = Math.max(1, Math.round(span / SLOT_MS))
+  /**
+   * Ceiling, not rounding: the last slot must never fall short of the window.
+   *
+   * `scrubTime` is `Math.min(end, start + value * SLOT_MS)`, so the live
+   * position only lands on the true live edge when the final slot boundary sits
+   * at or past `end` and the clamp fires. With `Math.round` that depended
+   * entirely on where the day anchor happened to fall: under the old UTC anchor
+   * the rounding overshot and the clamp fired, and moving the anchor to Makkah
+   * midnight flipped it to the short side — the readout then said 00:00 for a
+   * window that actually ended at 00:15, and `live()` reported the live edge
+   * while the map was filtered to fifteen minutes before it, quietly hiding any
+   * story in that sliver.
+   *
+   * It was correct by luck rather than by construction, which is why this is a
+   * ceiling now. The final slot is a sliver rather than a full six hours, which
+   * was already true of the first one.
+   */
+  const slots = Math.max(1, Math.ceil(span / SLOT_MS))
 
   const root = document.createElement('div')
   root.className = 'map-timeline'
@@ -149,31 +181,40 @@ export function createTimeline(opts: TimelineOptions): Timeline {
   const scrubTime = () => Math.min(end, start + value * SLOT_MS)
   const live = () => value >= slots
 
+  // Shifted into Makkah, then read with the UTC accessors — which is what the
+  // offset is for. Doing it this way keeps one arithmetic frame across the
+  // whole file rather than mixing `Intl` formatting into the canvas tick
+  // labels, where a per-tick `DateTimeFormat` would also be the expensive way
+  // to get one number.
+  const local = (t: number) => new Date(t + tzOffset)
+
   const fmtDate = (t: number) => {
-    const d = new Date(t)
+    const d = local(t)
     return `${DAYS[d.getUTCDay()]} ${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]}`
   }
-  const fmtTime = (t: number) => new Date(t).toISOString().slice(11, 16)
+  const fmtTime = (t: number) => local(t).toISOString().slice(11, 16)
 
   const updateReadout = () => {
     const t = scrubTime()
     if (live()) {
-      readout.textContent = `live · ${fmtDate(t)} ${fmtTime(t)} UTC`
+      readout.textContent = `live · ${fmtDate(t)} ${fmtTime(t)} ${MAKKAH_LABEL}`
     } else {
       const backDays = (end - t) / DAY_MS
       const ago = backDays >= 1 ? `${Math.round(backDays)}d back` : `${Math.round((end - t) / HOUR_MS)}h back`
-      readout.textContent = `${fmtDate(t)} ${fmtTime(t)} UTC · ${ago}`
+      readout.textContent = `${fmtDate(t)} ${fmtTime(t)} ${MAKKAH_LABEL} · ${ago}`
     }
     // Read in the same frame as the clock beside it. Mixing frames on one line
-    // — a UTC time against the reader's local Hijri day — would put two
-    // different days on the same row for anyone east of the Atlantic, which is
-    // a worse error than the maghrib approximation `HIJRI_NOTE` states.
-    const hijriText = hijriLabel(t)
+    // — a Makkah time against the reader's local Hijri day — would put two
+    // different days on the same row for most of the world, which is a worse
+    // error than the maghrib approximation `HIJRI_NOTE` states. Makkah is also
+    // the frame Umm al-Qura is actually defined in, so this pairing is now the
+    // correct one rather than merely the consistent one.
+    const hijriText = hijriLabel(t, MAKKAH_TZ)
     hijri.textContent = hijriText
     hijri.hidden = !hijriText
     range.setAttribute(
       'aria-valuetext',
-      `${fmtDate(scrubTime())} ${fmtTime(scrubTime())} UTC${hijriText ? `, ${hijriText}` : ''}`,
+      `${fmtDate(scrubTime())} ${fmtTime(scrubTime())} ${MAKKAH_LABEL}${hijriText ? `, ${hijriText}` : ''}`,
     )
   }
 
@@ -269,7 +310,7 @@ export function createTimeline(opts: TimelineOptions): Timeline {
       ctx.lineTo(Math.round(x) + 0.5, barH + 3)
       ctx.stroke()
 
-      const d = new Date(day)
+      const d = local(day)
       const label = d.getUTCDate() === 1 ? MONTHS[d.getUTCMonth()] : String(d.getUTCDate())
       ctx.fillStyle = isCurrent ? bright : mid
       ctx.globalAlpha = isCurrent ? 1 : 0.55

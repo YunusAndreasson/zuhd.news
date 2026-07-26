@@ -49,8 +49,10 @@ import {
 } from './_map/markets'
 import { createTimeline, type Timeline } from './_map/timeline'
 import { createSheet, type Sheet } from './_map/sheet'
-import { createStoryPopup, type StoryPopup } from './_map/popup'
+import { MAKKAH_LABEL, MAKKAH_TZ, solarClock, zoneOffset } from './_map/format'
+import { createStoryPopup, type CountryStanding, type StoryPopup } from './_map/popup'
 import { dayPolygon, nightPolygon } from './_map/solar'
+import { PRAYER_NOTE, PRAYERS, type PrayerId, prayerInstantAt, prayerLines } from './_map/prayer'
 import {
   CONTESTED_D,
   DEFAULT_METRIC,
@@ -90,6 +92,19 @@ const OVERLAY_LAYERS = [
 
 /** Everything the pointer can hit, overlays plus the story beacons. */
 const MARKER_LAYERS = ['story-points', 'story-clusters', ...OVERLAY_LAYERS]
+
+/**
+ * Whether a prayer line is the one under the pointer.
+ *
+ * Deliberately absent from `MARKER_LAYERS`: a prayer line crosses every
+ * continent, so putting it in the click path would carve a band out of every
+ * country where clicking no longer opens that country's card. It lights on
+ * hover and takes nothing.
+ */
+const PRAYER_HOVER: ExpressionSpecification = ['boolean', ['feature-state', 'hover'], false]
+
+/** How wide, in pixels, the pointer may miss a hairline by and still find it. */
+const PRAYER_GRAB_PX = 7
 
 /** A Web Mercator world is this wide at zoom 0, and doubles each level. */
 const TILE_PX = 512
@@ -299,6 +314,19 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   const mapEl = document.createElement('div')
   mapEl.className = 'map-canvas-host'
 
+  // What a prayer line says when the pointer rests on it. Inside the canvas
+  // host rather than the root because MapLibre reports pointer positions
+  // relative to the canvas, and the host is the only ancestor those numbers
+  // are already correct in — on desktop the rail is a separate grid column, so
+  // measuring from the root would slide every reading sideways by its width.
+  // `aria-hidden`: it is pointer-only and adds nothing a screen reader cannot
+  // get from the labels on the map and the method on the chip.
+  const prayerTip = document.createElement('div')
+  prayerTip.className = 'map-prayer-tip'
+  prayerTip.hidden = true
+  prayerTip.setAttribute('aria-hidden', 'true')
+  mapEl.append(prayerTip)
+
   const hud = document.createElement('div')
   hud.className = 'map-hud'
 
@@ -328,17 +356,6 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
    */
   const KEY_ITEMS: Array<{ id: string; label: string; hint: string; svg: string }> = [
     {
-      // First, and not for alphabetical reasons. The other three decode a
-      // channel the beacons spend ink on; this one names a mark the reader has
-      // no other way to read, and it is the gravest thing drawn.
-      id: 'genocide',
-      label: 'genocide',
-      hint: 'A situation a named UN body has determined to be genocide — click the mark for the finding',
-      svg:
-        '<circle cx="8" cy="8" r="5.2" fill="none" stroke="currentColor" stroke-width="1.8"/>' +
-        '<circle cx="8" cy="8" r="1.9"/>',
-    },
-    {
       id: 'size',
       label: 'coverage',
       hint: 'Beacon size shows how widely a story was covered, ranked across the window',
@@ -367,20 +384,73 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     const span = document.createElement('span')
     span.className = 'map-key-item'
     span.title = item.hint
-    // The genocide entry is drawn in the layer's own tone; the rest inherit the
-    // strip's grey, because they decode shapes that are already every colour.
-    if (item.id === 'genocide') {
-      span.style.color = OVERLAY_COLOUR.genocide
-      // Hidden until the record is on the wire. A legend for a mark that is not
-      // drawn is the same lie in either direction.
-      span.hidden = true
-    }
     span.innerHTML =
       `<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="currentColor">${item.svg}</svg>` +
       `<span>${item.label}</span>`
     keyItems.set(item.id, span)
     key.append(span)
   }
+
+  /**
+   * `contested` starts hidden, like the genocide chip below.
+   *
+   * Its visibility is conditional — `applyRefresh` stands it up only when a
+   * story on screen actually carries the ring — but it was *built* visible, so
+   * the first paint printed three items and the first data refresh took one
+   * away. On the default 24h view, where a contested story is the exception,
+   * that meant the key flashed "coverage · recency · contested" and settled on
+   * two, a second later, every single load. A legend item appearing and then
+   * withdrawing itself reads as the map correcting a mistake.
+   *
+   * Hidden until something needs decoding is the same rule the genocide chip
+   * states: a legend for a mark that is not drawn is a lie, and one that
+   * retracts itself in front of the reader is a worse way of telling it.
+   */
+  const contestedKey = keyItems.get('contested')
+  if (contestedKey) contestedKey.hidden = true
+
+  /**
+   * The genocide mark, named beside the layers rather than beside the beacons.
+   *
+   * It used to head `.map-key`, whose `aria-label` is "What the beacons mean"
+   * and whose three other items decode a channel a story beacon spends ink on
+   * — radius, alpha, the contested ring. Genocide is none of those. It is an
+   * overlay with its own mark, the same kind of thing as disasters, straits and
+   * conflict, and sitting at the head of that group it read as a fifth way of
+   * encoding a beacon. The code had already noticed twice without acting on it:
+   * the entry was given the layer's own colour while the rest inherit grey, and
+   * the stylesheet still describes the key as decoding *three* channels.
+   *
+   * Moving it here also puts it next to `conflict`, which is the point of its
+   * colour: `#f5372b` is conflict's hue at the saturation conflict deliberately
+   * lacks — the same subject at the far end of it. A reader can only learn that
+   * from the two chips being adjacent, and they were as far apart as this HUD
+   * can place them, on separate rows at opposite ends.
+   *
+   * Past its own separator, and a `<span>` rather than a `<button>`: the four
+   * chips before it are toggles and this one is deliberately not. Genocide has
+   * no toggle and no time filter — a determination is a condition, not an event
+   * — so it must not acquire the affordance of one. The separator is what says
+   * "controls end here", which is the fact that needed conveying.
+   */
+  const genocideKeySep = document.createElement('span')
+  genocideKeySep.className = 'map-filter-sep'
+  genocideKeySep.setAttribute('aria-hidden', 'true')
+  const genocideKey = document.createElement('span')
+  genocideKey.className = 'map-key-item is-layer-note'
+  genocideKey.title =
+    'A situation a named UN body has determined to be genocide — click the mark for the finding'
+  genocideKey.style.color = OVERLAY_COLOUR.genocide
+  genocideKey.innerHTML =
+    '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="currentColor">' +
+    '<circle cx="8" cy="8" r="5.2" fill="none" stroke="currentColor" stroke-width="1.8"/>' +
+    '<circle cx="8" cy="8" r="1.9"/></svg><span>genocide</span>'
+  // Hidden until the record is on the wire, separator and all. A legend for a
+  // mark that is not drawn is the same lie in either direction — and a lone
+  // divider hanging off the end of the row is its own small piece of nonsense.
+  genocideKeySep.hidden = true
+  genocideKey.hidden = true
+  keyItems.set('genocide', genocideKey)
 
   /**
    * The ground's own legend.
@@ -408,11 +478,25 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
 
   const groundScale = document.createElement('div')
   groundScale.className = 'map-ground-scale'
-  // A gradient built from the same constants the fill uses, so the key cannot
-  // drift from the map: change the ramp and the legend changes with it.
+  /**
+   * A gradient built from the same constants the fill uses, so the key cannot
+   * drift from the map: change the ramp and the legend changes with it — with
+   * the value at each end written on it.
+   *
+   * The numbers are the part that was missing. A bare gradient is a scale with
+   * no units: it says darker and lighter, never how much of a thing a shade is
+   * worth, so the only reader who could interpret it was one who already knew
+   * the distribution. And prose cannot carry the direction any more — the ramp
+   * turns around on the three `ascending` metrics, so "light means more" stops
+   * being true exactly where it matters most. Two numbers say both at once, in
+   * the metric's own units, and can't disagree with the paint because the build
+   * reads them off the same projection.
+   */
   groundScale.innerHTML =
     `<span class="map-ground-swatch" data-none="1" style="--c:${LAND_NO_DATA}"></span>` +
-    `<span class="map-ground-ramp" style="--ramp:${LAND_RAMP.join(',')}"></span>`
+    `<span class="map-ground-end" data-end="dark"></span>` +
+    `<span class="map-ground-ramp" style="--ramp:${LAND_RAMP.join(',')}"></span>` +
+    `<span class="map-ground-end" data-end="light"></span>`
 
   const groundNote = document.createElement('p')
   groundNote.className = 'map-ground-note'
@@ -471,6 +555,14 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       src.textContent = ` · ${metric.source}`
       groundNote.append(src)
     }
+
+    // The two ends of the ramp, in the metric's own units. `domain` is emitted
+    // from the same projection that produced every country's position, so the
+    // legend and the land cannot disagree about which end is which.
+    const dark = groundScale.querySelector<HTMLElement>('[data-end="dark"]')
+    const light = groundScale.querySelector<HTMLElement>('[data-end="light"]')
+    if (dark) dark.textContent = metric.domain?.dark ?? ''
+    if (light) light.textContent = metric.domain?.light ?? ''
 
     const swatch = groundScale.querySelector('.map-ground-swatch')
     if (swatch) {
@@ -606,7 +698,18 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   // ninety-eight weather alerts, eleven straits. This is two marks, drawn from
   // a finding by a named UN body, and a toggle that switches it off is a toggle
   // whose only function is to make the map more comfortable. The layer stays.
-  const layersOn = { gdacs: true, straits: true, markets: true, conflict: true }
+  // The prayer lines *do* get a toggle, unlike the terminator they are drawn
+  // against. The terminator is an unlabelled wash; these are five named lines
+  // crossing every continent, which is a larger footprint than any feed here
+  // and a claim besides. A reader who does not want them should be able to say
+  // so, and the row of layer toggles is where this map already takes that.
+  const layersOn = {
+    prayers: true,
+    gdacs: true,
+    straits: true,
+    markets: true,
+    conflict: true,
+  }
   let rangeHours: number | null = DEFAULT_RANGE_HOURS
   let scrubNow = Date.now()
   let mounted = true
@@ -633,6 +736,8 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   let peekId: string | null = null
   /** ISO2 of the country under the pointer, driving the land highlight. */
   let hoverIso: string | null = null
+  /** Which prayer line the pointer is on, if any. */
+  let hoverPrayer: string | null = null
   let peekCloseTimer: number | null = null
   // The map moves under a stationary pointer during a flight, which would
   // otherwise drag the cursor across other markers and chain more flights.
@@ -1087,6 +1192,11 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     set('chokepoint-marks', layersOn.straits)
     set('market-marks', layersOn.markets)
     set('conflict-marks', layersOn.conflict)
+    // Both halves, or the labels float over a map with no lines under them.
+    // Hiding the line layer also takes it out of `queryRenderedFeatures`, which
+    // is what stops the hover probe finding a line the reader turned off.
+    set('prayer-lines', layersOn.prayers)
+    set('prayer-labels', layersOn.prayers)
     // The strip is the layer's readout, so it goes with the layer. Missing this
     // would leave a ranked list of exchanges over a map that no longer draws
     // any.
@@ -1135,6 +1245,16 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     if (contested) contested.hidden = !visible.some((p) => (p.d ?? 0) >= CONTESTED_D)
     if (!layersReady) return
     applyClusterScale(visible.length)
+    // Scrubbed past the story the pointer is resting on: its rail row has just
+    // gone with it, so the highlight has nothing left to point at.
+    if (hoverSlug && !visible.some((p) => p.slug === hoverSlug)) {
+      hoverSlug = null
+      feed.highlight(null)
+    }
+    // Nothing may be left in the source's feature-state map across a `setData`
+    // — see `syncHoverState`. Restored by the `idle` handler once the new
+    // tiles are in.
+    map.removeFeatureState({ source: 'stories' })
     // Stories are the one layer whose *features* change with the scrub head:
     // their decay alpha is baked per feature, and the cluster counts have to
     // reflect the filtered set. Everything else moves by filter above.
@@ -1170,8 +1290,12 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     src('markets')?.setData(marketCollection(markets))
     src('conflict')?.setData(conflictCollection())
     src('genocide')?.setData(genocideCollection())
-    const genocideKey = keyItems.get('genocide')
-    if (genocideKey) genocideKey.hidden = genocide.length === 0
+    // Separator and label together — revealing the mark's name while leaving
+    // its divider hidden would put the label inside the toggle group, which is
+    // the grouping this was moved out of `.map-key` to fix.
+    const showGenocide = genocide.length > 0
+    genocideKey.hidden = !showGenocide
+    genocideKeySep.hidden = !showGenocide
     applyTimeFilters()
     applyLayerVisibility()
   }
@@ -1229,6 +1353,10 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     map.addSource('genocide', { type: 'geojson', data: empty })
     map.addSource('night', { type: 'geojson', data: empty })
     map.addSource('day', { type: 'geojson', data: empty })
+    // `promoteId` so hover can address a whole prayer by name. The geometry is
+    // a MultiLineString cut at the antimeridian and at the poles, so a segment
+    // is not a thing a reader would ever mean to point at.
+    map.addSource('prayer', { type: 'geojson', data: empty, promoteId: 'id' })
 
     // Countries the current metric has no figure for, hatched.
     //
@@ -1336,6 +1464,94 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
         paint: { 'fill-color': '#000', 'fill-opacity': 0.28 },
       },
       'borders',
+    )
+
+    // The five prayers, where each is entering right now.
+    //
+    // Inserted at `borders` *after* `night-shade`, so the lines sit on the
+    // ground above the night wash and below the frontiers — furniture, not
+    // data. A border crossing a hairline is invisible; a hairline crossing a
+    // beacon is not, and these cross every continent.
+    //
+    // Dashed because a solid hairline on a map is a coastline. It is the one
+    // silhouette nothing else here uses, which is what lets the colour stay
+    // neutral (see `MAP_COLOURS.prayer`).
+    //
+    // `line-width` is constant rather than zoom-interpolated: `line-dasharray`
+    // is measured in line widths, so a varying width does not thicken the line,
+    // it stretches the dash pattern — and the dash atlas keys on a *floored*
+    // width, so it does it in steps. Same reason hover moves opacity and
+    // nothing else.
+    map.addLayer(
+      {
+        id: 'prayer-lines',
+        type: 'line',
+        source: 'prayer',
+        layout: { 'line-cap': 'butt', 'line-join': 'round' },
+        paint: {
+          'line-color': MAP_COLOURS.prayer,
+          'line-width': 0.9,
+          'line-dasharray': [3, 4],
+          'line-opacity': ['case', PRAYER_HOVER, 0.55, 0.2],
+        },
+      },
+      'borders',
+    )
+
+    // Above the coastline so the halo has something to protect the glyphs
+    // from, and below `country-labels` so country names win the collision:
+    // MapLibre places symbol layers top-down, so the *later* layer claims its
+    // boxes first and everything under it has to dodge.
+    //
+    // `text-rotation-alignment: viewport` because Dhuhr is a meridian, and line
+    // placement with map-aligned rotation would set it bottom-to-top. The
+    // labels follow the line's path and stay horizontal.
+    map.addLayer(
+      {
+        id: 'prayer-labels',
+        type: 'symbol',
+        source: 'prayer',
+        layout: {
+          'symbol-placement': 'line',
+          // There is a ceiling on this, and going over it does not thin the
+          // labels out — it removes them entirely. MapLibre multiplies
+          // `symbol-spacing` by `EXTENT / tileSize` (8192 / 512 = 16) to get
+          // tile units, then walks each tile-clipped fragment placing an anchor
+          // every `spacing`. At 1400 that is 22400 units across a tile 8192
+          // wide, so no anchor is ever placed, on any line, at any zoom: five
+          // dashed curves and not one word saying what they are. Nothing warns.
+          // The real ceiling is 512. Well under it, because these labels lose
+          // every collision to country names by design and a single candidate
+          // anchor per tile means one lost collision is the whole label: zoomed
+          // into Europe, every line was unnamed. More candidates cost nothing
+          // when they are refused — collision drops the surplus — and buy the
+          // label a place to land where the basemap is quiet.
+          'symbol-spacing': 250,
+          'text-field': ['get', 'name'],
+          'text-transform': 'uppercase',
+          'text-font': ['Noto Sans Regular'],
+          'text-size': 9,
+          'text-letter-spacing': 0.16,
+          // Dhuhr is a meridian, and line placement with the default map-aligned
+          // rotation would set it bottom-to-top. The anchors still follow the
+          // line; the words stay level.
+          'text-rotation-alignment': 'viewport',
+          // The label yields to every country name on the map, so its own
+          // collision box is the one thing it can afford to keep small — at 6
+          // it was asking for room it does not need and losing gaps it would
+          // have fitted in. Over the Americas that cost the Dhuhr line its
+          // name entirely.
+          'text-padding': 2,
+        },
+        paint: {
+          // Full strength, deliberately, while the line stays at 0.2: the label
+          // is the whole difference between a prayer time and a stray hairline.
+          'text-color': MAP_COLOURS.prayer,
+          'text-halo-color': MAP_COLOURS.labelHalo,
+          'text-halo-width': 1.2,
+        },
+      },
+      'country-labels',
     )
 
     map.addLayer({
@@ -1652,8 +1868,16 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     layersReady = true
   }
 
-  // --- Terminator ---------------------------------------------------------
-  const drawNight = () => {
+  // --- Terminator and prayer lines -----------------------------------------
+  /**
+   * Everything on this map that is a function of where the sun is.
+   *
+   * All of it reads the wall clock rather than `scrubNow`, as the terminator
+   * always has: the lines are drawn against the shade, and a Tuesday Maghrib
+   * over today's night would be two clocks in one picture. What the scrubber
+   * moves is the news.
+   */
+  const drawSolar = () => {
     if (!mounted || !layersReady) return
     const now = new Date()
     const night = nightPolygon(now)
@@ -1663,11 +1887,41 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     // The same boundary from the other side, for the water. See `dayPolygon`.
     const day = dayPolygon(now)
     src('day')?.setData(day ? { type: 'FeatureCollection', features: [day] } : empty)
+    // Note these keep drawing at the equinox, when `terminatorLat` degenerates
+    // and the two polygons above come back null: the closed form behind them
+    // has no such singularity. Across that instant — a window about twelve
+    // seconds wide, twice a year — the Maghrib line is the only terminator on
+    // the map, which is the more correct of the two.
+    src('prayer')?.setData({ type: 'FeatureCollection', features: prayerLines(now) })
+    syncPrayerHover()
   }
 
   // --- Interaction --------------------------------------------------------
   const pointFor = (f: MapGeoJSONFeature): MapPoint | null =>
     pointBySlug.get(String(f.properties?.slug)) ?? null
+
+  /**
+   * Which prayer line is within grabbing distance of a screen point.
+   *
+   * A box rather than a point: the line is 0.9px wide and dashed, so a point
+   * query finds it roughly never — and `queryRenderedFeatures` reads the hit
+   * geometry from `line-width`, not from what you can see, so widening the
+   * paint would be the only alternative. A hidden layer is not queried at all,
+   * which is what makes the toggle switch this off too.
+   */
+  const prayerAt = (point: { x: number; y: number }): string | null => {
+    if (!layersReady) return null
+    const g = PRAYER_GRAB_PX
+    const hit = map.queryRenderedFeatures(
+      [
+        [point.x - g, point.y - g],
+        [point.x + g, point.y + g],
+      ],
+      { layers: ['prayer-lines'] },
+    )
+    const id = hit[0]?.properties?.id
+    return id == null ? null : String(id)
+  }
 
   /** ISO2 of the country under a screen point, or null over ocean/unmapped. */
   const countryAt = (point: PointLike): string | null => {
@@ -1746,16 +2000,105 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     })
   }
 
+  /**
+   * Put the hover bit where the paint expression can see it — but only while
+   * the source is standing still.
+   *
+   * One bit per feature: the expressions already read `feature-state`, so
+   * nothing recompiles and nothing else on the layer is touched. The catch is
+   * that the state lives on the *source*, not the tile, and MapLibre replays
+   * the whole of it onto every tile it rebuilds (`_reloadTile` →
+   * `initializeTileState` → `updatePaintArrays`), where features are addressed
+   * by the position they held in the previous parse. `stories` is rebuilt on
+   * every scrub tick, so writing state while those tiles are in flight sends
+   * that replay past the end of the feature list and the vector-tile reader
+   * throws "feature index out of bounds" — from a stack this island does not
+   * appear in, with nothing visibly wrong on the map.
+   *
+   * So: never write across a reload, and never leave anything behind for one
+   * to replay. The whole source is cleared rather than the previous id unset,
+   * because `{hover: false}` is still an entry to be replayed; hover is the
+   * only state this source carries, so clearing it is exact. `idle` restores
+   * whatever the pointer is on once the new tiles have landed.
+   */
+  const syncHoverState = () => {
+    if (!layersReady || !map.isSourceLoaded('stories')) return
+    map.removeFeatureState({ source: 'stories' })
+    if (hoverSlug) map.setFeatureState({ source: 'stories', id: hoverSlug }, { hover: true })
+  }
+
   const setHoverSlug = (slug: string | null) => {
     if (slug === hoverSlug) return
-    const previous = hoverSlug
     hoverSlug = slug
     feed.highlight(slug)
-    if (!layersReady) return
-    // One bit per feature. The paint expressions already read `feature-state`,
-    // so nothing recompiles and nothing else on the layer is touched.
-    if (previous) map.setFeatureState({ source: 'stories', id: previous }, { hover: false })
-    if (slug) map.setFeatureState({ source: 'stories', id: slug }, { hover: true })
+    syncHoverState()
+  }
+
+  /**
+   * The same trick for the prayer lines, and a separate function on purpose.
+   *
+   * `syncHoverState` gives up unless `stories` has settled, and `stories` is
+   * rebuilt on every scrub tick — folding this into it would mean the prayer
+   * bit was never restored during a scrub, which is precisely when the source
+   * has just been rewritten.
+   */
+  const syncPrayerHover = () => {
+    if (!layersReady || !map.isSourceLoaded('prayer')) return
+    map.removeFeatureState({ source: 'prayer' })
+    if (hoverPrayer) map.setFeatureState({ source: 'prayer', id: hoverPrayer }, { hover: true })
+  }
+
+  const setHoverPrayer = (id: string | null) => {
+    if (id === hoverPrayer) return
+    hoverPrayer = id
+    syncPrayerHover()
+  }
+
+  /**
+   * Name the line under the pointer, and say when it reaches *there*.
+   *
+   * The name is the part that has to be there — a label only lands where symbol
+   * placement allows, so most of any given line is unnamed. The time is what
+   * makes it worth reading twice: it is the same prayer all the way along, but
+   * not the same o'clock, and watching it run from 04:52 at the equator to
+   * 02:20 in northern summer is the curve explaining itself.
+   *
+   * Solar time, marked as such — see `solarClock`. It is exact, it needs no
+   * timezone dataset, and it is the frame the thing being timed is defined in.
+   */
+  const showPrayerTip = (id: string, point: { x: number; y: number }, at: { lng: number; lat: number }) => {
+    const prayer = PRAYERS.find((p) => p.id === id)
+    if (!prayer) {
+      prayerTip.hidden = true
+      return
+    }
+    const when = prayerInstantAt(new Date(), prayer.id as PrayerId, at.lat, at.lng)
+    prayerTip.replaceChildren()
+    const name = document.createElement('b')
+    name.textContent = prayer.name
+    prayerTip.append(name)
+    if (when !== null) {
+      const clock = document.createElement('span')
+      clock.textContent = solarClock(when, at.lng)
+      const frame = document.createElement('i')
+      frame.textContent = 'solar'
+      prayerTip.append(clock, frame)
+    }
+    prayerTip.hidden = false
+
+    // Measured after it is filled and shown, so the flip near an edge is
+    // against the width this text actually has rather than the last one's.
+    const gap = 14
+    const { width, height } = mapEl.getBoundingClientRect()
+    const w = prayerTip.offsetWidth
+    const h = prayerTip.offsetHeight
+    const x = point.x + gap + w > width - 8 ? point.x - gap - w : point.x + gap
+    const y = point.y + gap + h > height - 8 ? point.y - gap - h : point.y + gap
+    prayerTip.style.transform = `translate(${Math.max(8, x)}px, ${Math.max(8, y)}px)`
+  }
+
+  const hidePrayerTip = () => {
+    prayerTip.hidden = true
   }
 
   const clearPeekClose = () => {
@@ -1919,7 +2262,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       const iso = countryAt(e.point)
       if (!iso) return
       openSlug = null
-      void popup?.openCountry(iso, [e.lngLat.lng, e.lngLat.lat])
+      void popup?.openCountry(iso, [e.lngLat.lng, e.lngLat.lat], standingFor(iso))
     })
 
     // Land is only clickable where a profile exists, so the highlight and the
@@ -1929,6 +2272,16 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       if (flying) return
       const overMarker =
         map.queryRenderedFeatures(e.point, { layers: MARKER_LAYERS }).length > 0
+      // A hairline is not a pointing target, so the prayer probe is a small box
+      // rather than the point every other hit test uses. It runs on the same
+      // event and only when no mark has already claimed it — a beacon under the
+      // pointer is always what was meant. Nothing is suppressed the other way
+      // round: the country under a prayer line still highlights and still takes
+      // the click, because that line is drawn across every country there is.
+      const onPrayer = overMarker ? null : prayerAt(e.point)
+      setHoverPrayer(onPrayer)
+      if (onPrayer) showPrayerTip(onPrayer, e.point, e.lngLat)
+      else hidePrayerTip()
       const iso = overMarker ? null : countryAt(e.point)
       if (iso === hoverIso) return
       hoverIso = iso
@@ -1938,6 +2291,8 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
 
     map.on('mouseout', () => {
       hoverIso = null
+      setHoverPrayer(null)
+      hidePrayerTip()
       map.setFilter('country-hover', ['==', ['get', 'iso2'], ''])
     })
 
@@ -2038,6 +2393,13 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     sheet.element.addEventListener('mouseleave', () => {
       if (!sheet.isPinned()) sheet.close()
     })
+
+    // The other half of `syncHoverState`: hover writes are skipped while the
+    // story tiles are reloading, so the bit is put back the moment they stop.
+    // Cheap — it compares one slug and, at most, writes one feature's state.
+    map.on('idle', syncHoverState)
+    // Its own listener, not a line inside that one — see `syncPrayerHover`.
+    map.on('idle', syncPrayerHover)
 
     /**
      * Coastline detail, swapped in as the camera earns it.
@@ -2193,16 +2555,28 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     // the answer is to show both, because a two-valued scale is exactly what
     // this layer means and the one chip that refused to say so was the one
     // whose colours the reader had no other way to learn.
-    for (const [key, label, colour, glyphs] of [
-      ['gdacs', 'disasters', OVERLAY_COLOUR.gdacs, ['hazard']],
-      ['straits', 'straits', OVERLAY_COLOUR.straits, ['strait-rest']],
-      ['markets', 'markets', '', ['tick-up', 'tick-down']],
-      ['conflict', 'conflict', OVERLAY_COLOUR.conflict, ['conflict-mark']],
-    ] as Array<[keyof typeof layersOn, string, string, GlyphId[]]>) {
+    //
+    // `prayers` leads because it is drawn first — these lines sit on the ground
+    // under every mark, and the order of this row is the order of the map.
+    for (const [key, label, colour, glyphs, note] of [
+      ['prayers', 'prayers', MAP_COLOURS.prayer, ['prayer-line'], PRAYER_NOTE],
+      ['gdacs', 'disasters', OVERLAY_COLOUR.gdacs, ['hazard'], ''],
+      ['straits', 'straits', OVERLAY_COLOUR.straits, ['strait-rest'], ''],
+      ['markets', 'markets', '', ['tick-up', 'tick-down'], ''],
+      ['conflict', 'conflict', OVERLAY_COLOUR.conflict, ['conflict-mark'], ''],
+    ] as Array<[keyof typeof layersOn, string, string, GlyphId[], string]>) {
       const btn = document.createElement('button')
       btn.type = 'button'
       btn.className = 'map-filter is-on'
       btn.dataset.kind = 'layer'
+      // Which school's angles the lines are drawn to is provenance, not a
+      // constraint the reader has to act on, so it goes where `HIJRI_NOTE`
+      // goes — and it is on the chip rather than on a mark, because the marks
+      // are lines with nothing to open.
+      if (note) {
+        btn.title = note
+        btn.setAttribute('aria-label', `${label} — ${note}`)
+      }
       if (colour) btn.style.setProperty('--cat', colour)
       else {
         btn.dataset.mark = 'market'
@@ -2220,15 +2594,50 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       filters.append(btn)
     }
 
+    // Last in the row, past its own separator: a mark the map draws, named
+    // where the other marks are named, but not a control. See its construction
+    // above for why it is not in `.map-key`.
+    filters.append(genocideKeySep, genocideKey)
+
     filters.append(lockNote)
     syncLock()
   }
 
   const updateClock = () => {
-    clockEl.textContent = `${new Date().toISOString().slice(11, 16)} UTC`
+    // Makkah, like the scrubber readout and the Hijri date beside it. The three
+    // are the map's only statements about what time it is and they have to
+    // agree; see `MAKKAH_TZ` in `_map/format.ts` for why this frame.
+    const now = Date.now()
+    clockEl.textContent = `${new Date(now + zoneOffset(now, MAKKAH_TZ))
+      .toISOString()
+      .slice(11, 16)} ${MAKKAH_LABEL}`
   }
 
   // --- Data ---------------------------------------------------------------
+  /**
+   * Where the rail's live edge is: now, not the last time something happened.
+   *
+   * `window.end` in the payload is the newest story's timestamp, which is an
+   * honest description of the data and the wrong end for the scrubber. The
+   * pipeline publishes every few hours, so between runs that timestamp falls
+   * behind the wall clock — and three things on this map read it as "now":
+   *
+   *   - the scrubber printed `live · <newest story's time>` directly under a
+   *     header clock printing the real time. `updateClock` says the two "have
+   *     to agree"; they were hours apart, and on a quiet feed most of a day.
+   *   - the rail dates every story against it, so the newest one always read
+   *     "just now" no matter how old it was.
+   *   - the range chips measure back from it, so "24h" meant the 24 hours
+   *     before the last story rather than the last 24 hours — a window that
+   *     quietly stretches to 30 or 40 as the feed goes quiet.
+   *
+   * Nothing is hidden by moving the edge forward: no point can be newer than
+   * `window.end`, so the added span is empty by construction. The rail simply
+   * ends where the reader is standing, and an empty last few hours is a true
+   * statement about the news rather than a wrong one about the clock.
+   */
+  const liveEdge = (dataEnd: number) => Math.max(dataEnd, Date.now())
+
   const loadCore = async () => {
     const data = await json<{ window: { start: number; end: number }; points: MapPoint[] }>(
       '/api/map.json',
@@ -2237,18 +2646,20 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     if (!data || !mounted) return
     points = data.points
     pointBySlug = new Map(points.map((p) => [p.slug, p]))
-    scrubNow = data.window.end
+    const end = liveEdge(data.window.end)
+    scrubNow = end
     windowStart = data.window.start
-    windowEnd = data.window.end
+    windowEnd = end
 
     timeline = createTimeline({
       start: data.window.start,
-      end: data.window.end,
+      end,
       onChange: onScrub,
       lead: marketStrip.element,
     })
     timeline.setPoints(points)
     container.append(timeline.element)
+    watchChrome()
     refresh()
   }
 
@@ -2395,7 +2806,12 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       const wasLive = timeline ? timeline.isLive() : true
       const held = scrubNow
       const start = data.window.start
-      const end = data.window.end
+      // Now, for the same reason as on load — and it advances between presses,
+      // so a refresh rebuilds the rail even when the story set is unchanged.
+      // That is the point: the head of the rail is where the reader is
+      // standing, and a scrubber that stopped tracking the clock after the
+      // first paint would drift out of step with the header over a long visit.
+      const end = liveEdge(data.window.end)
 
       if (timeline && (start !== windowStart || end !== windowEnd)) {
         // The rail is drawn against a fixed span, so a window that has moved
@@ -2413,6 +2829,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
         timeline.setPoints(points)
         old.element.replaceWith(timeline.element)
         old.destroy()
+        watchChrome()
       } else {
         timeline?.setPoints(points)
       }
@@ -2533,6 +2950,27 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     map.on('sourcedata', onSourceData)
   }
 
+  /**
+   * A country's standing on the metric currently shading the land.
+   *
+   * Read from the payload the island is already holding, so the card cannot
+   * name a metric other than the one on screen — and returns a row even where
+   * there is no figure, because a hatched country is exactly the case a reader
+   * needs told in words. Null only before the first metric has landed.
+   */
+  const standingFor = (iso: string): CountryStanding | null => {
+    if (!metric) return null
+    const entry = metric.values[iso]
+    return {
+      label: metric.label,
+      value: entry?.v ?? null,
+      rank: entry?.r ?? null,
+      total: metric.total,
+      p: entry?.p ?? null,
+      description: metric.description,
+    }
+  }
+
   /** Fetches a metric and paints it. Leaves the land alone if it can't. */
   const loadMetric = async (key: string) => {
     const data = await json<MetricPayload>(`/api/metric/${key}.json`, abort.signal)
@@ -2573,7 +3011,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     addDataLayers()
     wireInteraction()
     applyPadding()
-    drawNight()
+    drawSolar()
     applyRefresh()
     // The land tint needs the countries source to have finished loading, which
     // `load` does not promise for a GeoJSON source fetched over the network —
@@ -2626,7 +3064,46 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   buildFilters()
   updateClock()
   const clockTimer = window.setInterval(updateClock, 30_000)
-  const sunTimer = window.setInterval(drawNight, SUN_TICK_MS)
+  const sunTimer = window.setInterval(drawSolar, SUN_TICK_MS)
+
+  /**
+   * Publish the two chrome sizes that CSS cannot measure for itself.
+   *
+   * Both were magic numbers, and both had already drifted:
+   *
+   * `--map-scrub-h` — the scrubber's real height. "Whole world" sat at a
+   * hardcoded `bottom: 5.5rem`, which cleared the rail as it stood the day it
+   * was written. The scrubber has since grown a markets strip and a money
+   * ribbon that *wraps*, so its height now runs from 95px to 174px depending on
+   * width, and 88px cleared none of them: the button landed on the time readout
+   * and covered the Hijri date outright at every desktop size.
+   *
+   * `--map-status-w` — the clock's. It is positioned over the HUD rather than
+   * in it, so the filter row happily ran underneath: between about 1220px and
+   * 1330px — 1280 among them — "genocide" and the time printed through each
+   * other, which is the one chip on this map that must never be unreadable.
+   *
+   * Measured rather than guessed because both depend on the rendered text: the
+   * ribbon's wrap point moves with the viewport, and the clock's width moves
+   * with the reader's font size. A number typed into the stylesheet is right
+   * only for the layout it was typed against.
+   */
+  const measureChrome = () => {
+    const scrub = timeline?.element
+    if (scrub) container.style.setProperty('--map-scrub-h', `${Math.round(scrub.offsetHeight)}px`)
+    container.style.setProperty('--map-status-w', `${Math.round(status.offsetWidth)}px`)
+  }
+
+  // The scrubber is replaced wholesale when a refresh moves the window, so the
+  // observer follows the current element rather than holding the first one.
+  const chromeObserver = new ResizeObserver(measureChrome)
+  const watchChrome = () => {
+    chromeObserver.disconnect()
+    if (timeline?.element) chromeObserver.observe(timeline.element)
+    chromeObserver.observe(status)
+    measureChrome()
+  }
+  watchChrome()
 
   const onResize = () => {
     // MapLibre sizes its drawing buffer from the container, and nothing else
@@ -2635,6 +3112,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     // kept whatever size it was built at: widen the window and the map went on
     // drawing into a 900px corner of a 1544px frame, with dead space beside it.
     map.resize()
+    measureChrome()
     applyPadding()
     // "Whole world" has to keep meaning the whole world after a resize, or the
     // reset lands on a view sized for a window that no longer exists.
@@ -2691,6 +3169,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     clearInterval(sunTimer)
     if (refreshFrame) cancelAnimationFrame(refreshFrame)
     clearPeekClose()
+    chromeObserver.disconnect()
     window.removeEventListener('resize', onResize)
     document.removeEventListener('keydown', onKeyDown)
     document.removeEventListener('click', onWordmarkClick)

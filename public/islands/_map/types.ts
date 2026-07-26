@@ -135,11 +135,19 @@ export interface MapExchange {
 /** One country's standing on a metric, from `/api/metric/{key}.json`. */
 export interface MetricEntry {
   /**
-   * Position in the metric's own distribution, 0..1, where 1 is the largest
-   * value. Deliberately *magnitude*, not merit: `ascending` is set on three of
-   * the twenty-seven metrics, so there is no good/bad axis to encode across the
-   * set, and `population` has no better end at all. Which end is desirable is
-   * stated in `description` instead of implied by the ramp.
+   * Position on the land ramp, 0 (darkest) to 1 (lightest).
+   *
+   * The *value*, projected onto `scale` — not a percentile of the ordering,
+   * which is what this was until it turned out that a uniform-by-construction
+   * position meant every metric painted the same distribution of tones. See
+   * `scripts/build/country-metrics.js` for the whole account.
+   *
+   * On the three `ascending` metrics the ramp is turned around, so the lightest
+   * countries are the best ones: the picker says "press freedom" and used to
+   * paint Eritrea as the brightest example of it. On the other twenty-four,
+   * light still means more of whatever the label names — `population` has no
+   * better end and must not be given one. `domain` states both ends in the
+   * metric's own units so the direction is read rather than assumed.
    */
   p: number
   /** The formatted value, as the country pages print it — "52.9", "$797". */
@@ -156,7 +164,20 @@ export interface MetricPayload {
   description: string
   source: string
   sourceUrl: string
+  /** Lower is better, so the ramp runs the other way. Three of twenty-seven. */
   ascending: boolean
+  /** How values are spaced across the ramp — `METRICS[key].scale`. */
+  scale: 'linear' | 'log'
+  /**
+   * The values at each end of the ramp, formatted as the country pages print
+   * them, printed either side of the legend's gradient.
+   *
+   * A gradient with nothing written on it is a scale with no units — the only
+   * way to learn what a tone was worth was to already know the distribution.
+   * These also carry the direction, which prose could when the ramp always
+   * meant "more" and cannot now that three metrics turn it around.
+   */
+  domain: { dark: string; light: string }
   /** Countries with a figure for this metric, including unroutable ones. */
   total: number
   values: Record<string, MetricEntry>
