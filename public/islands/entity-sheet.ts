@@ -9,6 +9,7 @@
 // Progressive fallback: the static /e/{id} page stays a valid direct
 // link / no-JS / crawler target.
 
+import { createChart } from './_chart'
 import {
   html,
   mountSheetIsland,
@@ -48,68 +49,45 @@ interface Props {
   id: string
 }
 
-// Inline SVG sparkline — same math as the build-time renderer so the
-// sheet and the static /e/ page draw identical charts. Duplicated
-// instead of shared so the island stays self-contained (the build's
-// CommonJS-ish import shape would drag in Node polyfills via esbuild).
-const Sparkline = ({ values, periods }: { values: number[]; periods: string[] }) => {
-  // One point is a dot pretending to be a trend.
-  if (values.length < 2) return null
-  const w = 520
-  const h = 140
-  const pad = { l: 10, r: 10, t: 18, b: 20 }
-  const innerW = w - pad.l - pad.r
-  const innerH = h - pad.t - pad.b
-  const min = Math.min(...values)
-  const max = Math.max(...values)
-  const range = max - min || 1
-  const sx = (i: number) => pad.l + (i / (values.length - 1)) * innerW
-  const sy = (v: number) => pad.t + innerH - ((v - min) / range) * innerH
-  const d = values
-    .map((v, i) => `${i === 0 ? 'M' : 'L'}${sx(i).toFixed(2)},${sy(v).toFixed(2)}`)
-    .join('')
-  const first = values[0]
-  const last = values[values.length - 1]
-  const firstLabel = periods[0] ?? ''
-  const lastLabel = periods[periods.length - 1] ?? ''
+/**
+ * The chart, mounted rather than rendered.
+ *
+ * This used to be a second implementation of the map's sparkline in Preact,
+ * on the argument that a VNode and an imperative island cannot share a
+ * renderer. They cannot — but they can share the chart, which is what
+ * `@shared/chart/series` is: the geometry as data, with a ten-line adapter per
+ * runtime. `_chart.ts` owns the DOM adapter and everything the reader actually
+ * interacts with, so this component's whole job is to hand it a container.
+ *
+ * The effect owns the chart's lifetime and tears it down on unmount, because
+ * the chart registers listeners on nodes Preact does not know it created.
+ */
+const SeriesChart = ({ record }: { record: EntityRecord }) => {
+  const host = useRef<HTMLDivElement>(null)
 
-  // No `preserveAspectRatio="none"`. A 520×140 box stretched into a 100%-wide,
-  // 160px-tall frame is a non-uniform scale, and everything that is not the
-  // line pays for it: the two end dots came out as ellipses and the axis labels
-  // were drawn at the wrong width for their height. `chart.ts` fixed the same
-  // mistake on the map's sparkline; the CSS here now takes its height from the
-  // viewBox instead of imposing one.
-  return html`
-    <svg
-      class="entity-sheet-spark"
-      viewBox="0 0 ${w} ${h}"
-      role="img"
-      aria-label="Series chart"
-    >
-      <path
-        d=${d}
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.25"
-        stroke-linejoin="round"
-        stroke-linecap="round"
-      />
-      <circle cx=${sx(0)} cy=${sy(first)} r="3" fill="currentColor" />
-      <circle cx=${sx(values.length - 1)} cy=${sy(last)} r="3" fill="currentColor" />
-      <text
-        x=${sx(0)}
-        y=${h - 4}
-        class="entity-sheet-spark-label"
-        text-anchor="start"
-      >${firstLabel}</text>
-      <text
-        x=${sx(values.length - 1)}
-        y=${h - 4}
-        class="entity-sheet-spark-label"
-        text-anchor="end"
-      >${lastLabel}</text>
-    </svg>
-  `
+  useEffect(() => {
+    const node = host.current
+    if (!node) return
+    const values = record.values ?? []
+    const chart = createChart({
+      values,
+      periods: record.periods ?? [],
+      // The drawn window's opening value, the same rule the market cards draw.
+      // A 180-day line with nothing across it can only be read for its shape.
+      reference: 'open',
+      referenceLabel: 'the window’s open',
+      direction: 'window',
+      palette: 'signed',
+      unit: record.unit,
+      step: record.kind === 'MONTHLY' ? 'months' : 'days',
+      label: record.label,
+      caption: record.caption,
+    })
+    if (chart) node.append(chart.element)
+    return () => chart?.destroy()
+  }, [record])
+
+  return html`<div class="entity-sheet-chart-host" ref=${host}></div>`
 }
 
 const EntitySheet: Island<Props> = ({ id }) => {
@@ -161,10 +139,7 @@ const EntitySheet: Island<Props> = ({ id }) => {
                   </span>
                 </div>
               </header>
-              <figure class="entity-sheet-chart">
-                <${Sparkline} values=${record.values} periods=${record.periods} />
-                <figcaption class="t-caption">${record.caption}</figcaption>
-              </figure>
+              <${SeriesChart} record=${record} />
               ${record.mentions.length
                 ? html`
                     <section class="entity-sheet-mentioned">

@@ -18,9 +18,17 @@
       background: #fff; color: #141414;
     }
     @media (prefers-color-scheme: dark) { body { background: #141414; color: #f4f4f4; } }
-    .wordmark { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.01em; text-decoration: none; color: inherit; }
-    .wordmark-dot { color: #c0392b; }
-    .wordmark-tld { font-weight: 400; opacity: 0.6; }
+    /* This page carries its own styles on purpose — it has to render when the
+       stylesheet is the thing that could not be found — so these values are
+       copied from the site palette rather than referenced. Keep them in step
+       with `.wordmark` / `--text-secondary` in style.css: the dot used to be
+       #c0392b, a red that appears nowhere else on the site, and the tld a
+       different weight again, so the one page a lost reader sees wore a
+       masthead they had never seen before. */
+    .wordmark { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.02em; text-decoration: none; color: inherit; }
+    .wordmark-dot, .wordmark-tld { color: #555; font-weight: 300; }
+    .wordmark-dot { margin-inline: -0.04em; }
+    @media (prefers-color-scheme: dark) { .wordmark-dot, .wordmark-tld { color: #a3a3a3; } }
     h1 { font-size: 1rem; font-weight: 600; margin: 0; }
     p { margin: 0; opacity: 0.7; font-size: 0.95rem; }
     a.home { color: inherit; }

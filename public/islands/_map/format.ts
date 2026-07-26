@@ -11,6 +11,92 @@
 //
 // Everything here is pure and DOM-free.
 
+import { eidClosure } from './hijri'
+
+/**
+ * The frame the map tells the time in.
+ *
+ * It read UTC, which is nobody's day. A world map has to pick some frame — the
+ * reader's own is wrong here, because two readers would then see the same rail
+ * labelled differently and neither could quote a time to the other — and of the
+ * frames that are the same for everyone, this is the one this site should keep.
+ * It also makes the Hijri date beside it *more* correct rather than less: the
+ * calendar shown is Umm al-Qura, Saudi Arabia's own civil calendar, so reading
+ * it in Saudi Arabia's own zone is the frame it is actually defined in.
+ *
+ * `Asia/Riyadh` because there is no `Asia/Mecca` in the IANA database; it is
+ * the canonical zone for the whole country. AST is UTC+3 and Saudi Arabia has
+ * never observed daylight saving, so the offset is fixed in practice — but it
+ * is resolved through `Intl` rather than hardcoded as `3 * HOUR_MS`, because a
+ * hardcoded offset is a silent lie the day it stops being true.
+ */
+export const MAKKAH_TZ = 'Asia/Riyadh'
+
+/** What the clock says, printed after the time. Not `AST` — that also means
+ *  Atlantic Standard Time, and the place is the point of the change. */
+export const MAKKAH_LABEL = 'Makkah'
+
+/**
+ * Local mean solar time at a longitude, as `HH:MM`.
+ *
+ * The one exception to the Makkah rule above, and it is not a competing clock:
+ * every other time on this map is the map speaking, where one shared frame is
+ * the whole point, and this one answers "what o'clock is it *there*" for a
+ * place the pointer is on. Makkah would be useless for that and the reader's
+ * own zone would be worse.
+ *
+ * Solar rather than civil because it is exact and needs nothing: a civil time
+ * would want a lat/lng → IANA-zone dataset this site does not ship, and the
+ * nautical approximation (round the longitude to the nearest hour) is a guess
+ * dressed as a clock. It is the right frame here anyway — the thing being
+ * timed is the sun's position, and solar noon is where the sun actually is.
+ * Callers must say "solar", because up to about an hour and a half separates
+ * this from what a phone in that place would show.
+ */
+export const solarClock = (t: number, lng: number): string =>
+  new Date(t + (lng / 15) * 3_600_000).toISOString().slice(11, 16)
+
+/**
+ * How far ahead of UTC `tz` is at instant `t`, in milliseconds.
+ *
+ * Formats the instant in the zone, reads the fields back as though they were
+ * UTC, and takes the difference — the standard way to get a zone offset out of
+ * `Intl`, which exposes no direct accessor. Seconds are included because a few
+ * historical zones are offset by a non-whole number of minutes.
+ *
+ * Callers in this file's consumers resolve it once per render rather than per
+ * formatted value. That is safe for Makkah, which has no daylight saving, and
+ * would need revisiting for a zone that does.
+ */
+export const zoneOffset = (t: number, tz: string): number => {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: tz,
+    hour12: false,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  }).formatToParts(t)
+  const f: Record<string, string> = {}
+  for (const p of parts) f[p.type] = p.value
+  // `hourCycle: h23` is what `hour12: false` asks for, but some ICU builds
+  // still answer midnight with "24". Left unhandled it puts the offset a full
+  // day out, once a day, in the one hour nobody tests.
+  const hour = f.hour === '24' ? 0 : Number(f.hour)
+  const asIfUtc = Date.UTC(
+    Number(f.year),
+    Number(f.month) - 1,
+    Number(f.day),
+    hour,
+    Number(f.minute),
+    Number(f.second),
+  )
+  // `t` may carry milliseconds the formatter dropped; floor both to the second.
+  return asIfUtc - Math.floor(t / 1000) * 1000
+}
+
 /**
  * How long ago, in the shortest form that still says it.
  *
@@ -178,8 +264,6 @@ export const indexLevel = (n: number, currency?: string): string => {
 /** A signed percent move, always carrying its sign. `0.82` → `+0.82%`. */
 export const pctChange = (n: number): string => (Number.isFinite(n) ? `${signed(n, 2)}%` : '')
 
-/** The same, at the precision a glance can use. For the markets strip. */
-export const pctChangeShort = (n: number): string => (Number.isFinite(n) ? `${signed(n, 1)}%` : '')
 
 const WEEKDAY_INDEX: Record<string, number> = {
   Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6,
@@ -217,19 +301,35 @@ const toMinutes = (hhmm: string): number | null => {
  *
  * Weekday matters as much as the clock here: Riyadh and Yafa trade Sunday to
  * Thursday while Dubai moved to Monday–Friday in 2022, so a Gulf-wide rule
- * would be wrong about half the Gulf. Lunch breaks are not modelled — Tokyo and
- * Kuala Lumpur read as open through theirs — and neither are public holidays,
- * which is the real limit: an exchange shut for Eid or Christmas will show as
- * trading. That only ever mis-states the *state*, never the number, because the
- * card prints the actual date of the close beside it.
+ * would be wrong about half the Gulf. Lunch breaks are still not modelled —
+ * Tokyo and Kuala Lumpur read as open through theirs.
+ *
+ * Eid is modelled, and it is the only holiday that is. The reasoning is not
+ * that Eid matters more than Christmas but that it is the one this map was
+ * getting wrong in the layer built specifically to carry the Gulf: five of
+ * these exchanges shut for the better part of a week twice a year, and the map
+ * drew every one of them as a live disc with last week's number inside it.
+ * `eidClosure` reads the exchange's own Hijri calendar day — see `hijri.ts`
+ * for why the window is wider than the two feast days themselves.
+ *
+ * Everything else — Christmas, national days, an unscheduled halt — still
+ * reads as trading. That mis-states the *state* only, never the number,
+ * because the card prints the actual date of the close beside it.
  */
 export const isTrading = (
-  ex: { tz: string; sessionStart: string; sessionEnd: string; days: number[] },
+  ex: {
+    tz: string
+    sessionStart: string
+    sessionEnd: string
+    days: number[]
+    holidays?: string
+  },
   now = Date.now(),
 ): boolean => {
   const start = toMinutes(ex.sessionStart)
   const end = toMinutes(ex.sessionEnd)
   if (start === null || end === null || !Array.isArray(ex.days) || !ex.days.length) return false
+  if (eidClosure(ex, now)) return false
   const local = zonedNow(ex.tz, now)
   if (!local) return false
   if (!ex.days.includes(local.day)) return false
@@ -237,13 +337,27 @@ export const isTrading = (
 }
 
 /**
- * What the card says about how fresh the figure is: `trading now`, or the
- * weekday of the close it is showing.
+ * What the card says about how fresh the figure is: `trading now`, the Eid the
+ * exchange is shut for, or the weekday of the close it is showing.
+ *
+ * Naming the Eid rather than falling back to `last close · Thu` is the whole
+ * point of modelling it. "Last close · Thursday" on a Tadawul that has been
+ * shut since Tuesday is *true* and tells the reader nothing about why the
+ * number stopped moving; "closed · Eid al-Fitr" answers it.
  */
 export const sessionLabel = (
-  ex: { tz: string; sessionStart: string; sessionEnd: string; days: number[]; asOf: string },
+  ex: {
+    tz: string
+    sessionStart: string
+    sessionEnd: string
+    days: number[]
+    asOf: string
+    holidays?: string
+  },
   now = Date.now(),
 ): string => {
+  const eid = eidClosure(ex, now)
+  if (eid) return `closed · ${eid}`
   if (isTrading(ex, now)) return 'trading now'
   const t = Date.parse(`${ex.asOf}T12:00:00Z`)
   if (!Number.isFinite(t)) return 'last close'

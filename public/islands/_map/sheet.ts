@@ -22,9 +22,9 @@
 
 import { displaySourceName, EVENT_TYPE_EYEBROW, parseSeverityHero } from '@shared/gdacs'
 import { appPrompt } from '../_app-prompt'
-import { createSparkline } from './chart'
+import { createChart, type ChartOptions } from '../_chart'
 import * as fmt from './format'
-import type { TickerEntry } from './markets'
+import { nisab, type TickerEntry } from './markets'
 import type {
   ConflictEvent,
   GdacsAlert,
@@ -191,6 +191,21 @@ export function createSheet(): Sheet {
     return a
   }
 
+  /**
+   * A chart on a card.
+   *
+   * The three sheets that draw one built their own `<figure>` and
+   * `<figcaption>` around a bare SVG; the chart now owns both, because the
+   * caption is one of the things the range control changes the meaning of and
+   * a caption the chart cannot see is a caption that goes stale. Returns an
+   * empty list for a series too short to draw, which is what keeps a
+   * single-observation exchange from rendering an empty box.
+   */
+  const chartFigure = (opts: ChartOptions): Node[] => {
+    const chart = createChart({ ...opts, className: 'map-sheet-figure' })
+    return chart ? [chart.element] : []
+  }
+
   const relatedList = (items: Array<{ slug: string; title: string }>, label: string): Node[] => {
     if (!items.length) return []
     const list = el('ul', 'map-sheet-more')
@@ -298,29 +313,25 @@ export function createSheet(): Sheet {
 
         // 86 days of daily transits, with the baseline drawn across them. The
         // sheet could already state the delta; the line is what shows whether
-        // it is a step change or the tail of a spike.
-        const spark = createSparkline({
-          values: cp.series?.total ?? [],
-          periods: cp.series?.periods ?? [],
-          reference: cp.baseline90Avg?.n_total,
-          direction: delta,
-          label: `Daily vessel transits at ${cp.name} over the last ${cp.series?.total?.length ?? 0} days`,
-        })
-        if (spark) {
-          const figure = el('figure', 'map-sheet-figure')
-          figure.append(spark)
-          // The series is undifferentiated traffic — PortWatch publishes the
-          // per-class split only as averages, never as a time series — so the
-          // caption must stop it being read as the headline vessel class.
-          figure.append(
-            el(
-              'figcaption',
-              'map-sheet-figcaption',
-              'All vessel traffic, daily · rule marks the 90-day average',
-            ),
-          )
-          nodes.push(figure)
-        }
+        // it is a step change or the tail of a spike — and the cursor is what
+        // lets a reader put a number on the day it turned.
+        nodes.push(
+          ...chartFigure({
+            values: cp.series?.total ?? [],
+            periods: cp.series?.periods ?? [],
+            reference: cp.baseline90Avg?.n_total,
+            referenceLabel: 'the 90-day average',
+            direction: delta,
+            palette: 'straits',
+            unit: 'vessels',
+            step: 'days',
+            label: `Daily vessel transits at ${cp.name}`,
+            // The series is undifferentiated traffic — PortWatch publishes the
+            // per-class split only as averages, never as a time series — so the
+            // caption must stop it being read as the headline vessel class.
+            caption: 'All vessel traffic, daily · rule marks the 90-day average',
+          }),
+        )
 
         const phrase = cp.weather?.alert ? WEATHER_PHRASE[cp.weather.alert] : null
         if (phrase && cp.weather) {
@@ -377,8 +388,8 @@ export function createSheet(): Sheet {
       if (pin) {
         if (ex.blurb) nodes.push(el('p', 'map-sheet-lead', ex.blurb))
 
-        // A quarter of closes, with a rule where the quarter started — the same
-        // job the 90-day baseline does on a chokepoint. A day's move says
+        // A quarter of closes, with a rule where the drawn window started — the
+        // same job the 90-day baseline does on a chokepoint. A day's move says
         // nothing about whether it is a blip or the shape of a decline.
         //
         // The tint follows the *window*, not the day. It used to take
@@ -387,42 +398,33 @@ export function createSheet(): Sheet {
         // and up 0.3% today drew green, with its own line ending below its own
         // rule. The chart describes the line against the rule it draws, and the
         // hero above already states the day.
+        //
+        // `'open'` and `'window'` rather than the two figures, because the range
+        // control moves what "the window" means. Computing them here would pin
+        // both to the full quarter and leave a 30-session view drawing a rule at
+        // a price outside its own domain, under a caption still claiming it was
+        // the open.
         const values = ex.series?.values ?? []
-        const first = values[0]
-        const last = values[values.length - 1]
-        const windowPct =
-          Number.isFinite(first) && Number.isFinite(last) && first !== 0
-            ? ((last - first) / first) * 100
-            : 0
-        const spark = createSparkline({
-          values,
-          periods: ex.series?.periods ?? [],
-          reference: first,
-          direction: windowPct,
-          palette: 'signed',
-          label: `${ex.indexName} daily closes over the last ${values.length} sessions`,
-        })
-        if (spark) {
-          const figure = el('figure', 'map-sheet-figure')
-          figure.append(spark)
-          // Both horizons named, each labelled, so neither has to be inferred
-          // from a colour.
-          const since = ex.series?.periods?.[0]
-          figure.append(
-            el(
-              'figcaption',
-              'map-sheet-figcaption',
-              [
-                'Daily closes',
-                since ? `${fmt.pctChangeShort(windowPct)} since ${since}` : null,
-                'rule marks the window’s open',
-              ]
-                .filter(Boolean)
-                .join(' · '),
-            ),
-          )
-          nodes.push(figure)
-        }
+        nodes.push(
+          ...chartFigure({
+            values,
+            periods: ex.series?.periods ?? [],
+            reference: 'open',
+            referenceLabel: 'the window’s open',
+            direction: 'window',
+            palette: 'signed',
+            // The same unit the hero prints beside the level, so the readout
+            // and the card agree about what a number on this chart is.
+            unit: ex.currency,
+            step: 'sessions',
+            label: `${ex.indexName} daily closes`,
+            // The window's change and its dates used to be spelled out here.
+            // Both moved to the readout and the axis, which state them for
+            // whatever is actually drawn — a caption cannot, and a caption that
+            // is wrong about the chart above it is worse than no caption.
+            caption: 'Daily closes · rule marks the window’s open',
+          }),
+        )
 
         nodes.push(
           el(
@@ -463,38 +465,46 @@ export function createSheet(): Sheet {
       )
 
       if (pin) {
-        const values = entry.values.filter((v) => Number.isFinite(v))
-        const windowPct =
-          values.length > 1 && values[0] !== 0
-            ? ((values[values.length - 1] - values[0]) / values[0]) * 100
-            : 0
-        const spark = createSparkline({
-          values: entry.values,
-          periods: entry.periods,
-          reference: entry.values[0],
-          direction: windowPct,
-          palette: 'signed',
-          label: `${entry.name} over the last ${entry.values.length} days`,
-        })
-        if (spark) {
-          const figure = el('figure', 'map-sheet-figure')
-          figure.append(spark)
-          const since = entry.periods[0]
-          figure.append(
+        nodes.push(
+          ...chartFigure({
+            values: entry.values,
+            periods: entry.periods,
+            reference: 'open',
+            referenceLabel: 'the window’s open',
+            direction: 'window',
+            palette: 'signed',
+            // Without this the readout said "4,057.62" and the hero two lines
+            // above said "$/oz" — the card naming the unit once and then
+            // quoting thirty values that could have been anything.
+            unit: entry.unit,
+            step: 'days',
+            label: entry.name,
+            caption: 'Daily · rule marks the window’s open',
+          }),
+        )
+
+        // On the metals, the threshold the price is actually being read for.
+        // Nothing else on this card answers it, and the arithmetic is already
+        // sitting in the hero figure directly above.
+        const n = nisab(entry)
+        if (n) {
+          nodes.push(
             el(
-              'figcaption',
-              'map-sheet-figcaption',
-              [
-                'Daily',
-                since ? `${fmt.pctChangeShort(windowPct)} since ${since}` : null,
-                'rule marks the window’s open',
-              ]
-                .filter(Boolean)
-                .join(' · '),
+              'p',
+              'map-sheet-meta',
+              `Zakat nisab · $${fmt.grouped(n.value[0])} – $${fmt.grouped(n.value[1])}`,
             ),
           )
-          nodes.push(figure)
+          nodes.push(
+            el(
+              'p',
+              'map-sheet-note',
+              `The ${n.grams[0]}–${n.grams[1]} g of ${n.metal} at which zakat falls due. ` +
+                'The spread is the schools’ conversions of the classical weight, not a market range.',
+            ),
+          )
         }
+
         if (entry.sourceLabel) nodes.push(el('p', 'map-sheet-meta', entry.sourceLabel))
       }
       render(nodes, pin)

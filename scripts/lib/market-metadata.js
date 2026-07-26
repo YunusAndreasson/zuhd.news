@@ -17,6 +17,13 @@
 //                  Dubai moved to Monday–Friday in 2022, and a map that shows
 //                  the Gulf shut on a Sunday is wrong about the thing this
 //                  layer exists to show.
+//   - holidays   — 'islamic' means this exchange shuts for the two Eids, and
+//                  the island suppresses its "trading now" state for the
+//                  window (see `_map/hijri.ts`). Editorial rather than derived
+//                  from iso2: an exchange in a Muslim-majority country need
+//                  not close for Eid and one elsewhere might. No other holiday
+//                  is modelled anywhere in this file — Christmas, national
+//                  days and unscheduled halts all still read as trading.
 //   - topicTags / countryTags — matched against article concepts/title and
 //                  ISO2 respectively, for the sheet's related coverage.
 //   - available  — false means recorded but not drawn, and `reason` says why.
@@ -56,6 +63,7 @@ export const MARKET_CATALOG = [
     tz: 'Asia/Riyadh',
     sessionStart: '10:00',
     sessionEnd: '15:00',
+    holidays: 'islamic',
     days: [0, 1, 2, 3, 4],
     blurb:
       'The Arab world’s largest exchange by market value, dominated by Aramco. Trades Sunday to Thursday, so it opens the global week before Tokyo.',
@@ -76,6 +84,7 @@ export const MARKET_CATALOG = [
     tz: 'Europe/Istanbul',
     sessionStart: '10:00',
     sessionEnd: '18:00',
+    holidays: 'islamic',
     days: [1, 2, 3, 4, 5],
     blurb:
       'Türkiye’s only exchange. Priced in lira, so its index level carries the country’s inflation as much as its earnings — read the direction, not the number.',
@@ -96,6 +105,7 @@ export const MARKET_CATALOG = [
     tz: 'Asia/Dubai',
     sessionStart: '10:00',
     sessionEnd: '15:00',
+    holidays: 'islamic',
     days: [1, 2, 3, 4, 5],
     blurb:
       'The Gulf’s main listing venue for property and banking. Moved from a Sunday–Thursday week to Monday–Friday in 2022, unlike Riyadh.',
@@ -116,6 +126,7 @@ export const MARKET_CATALOG = [
     tz: 'Asia/Kuala_Lumpur',
     sessionStart: '09:00',
     sessionEnd: '17:00',
+    holidays: 'islamic',
     days: [1, 2, 3, 4, 5],
     blurb:
       'The world’s largest market for Islamic finance instruments, and the centre of the global sukuk trade.',
@@ -136,6 +147,7 @@ export const MARKET_CATALOG = [
     tz: 'Asia/Jakarta',
     sessionStart: '09:00',
     sessionEnd: '16:00',
+    holidays: 'islamic',
     days: [1, 2, 3, 4, 5],
     blurb:
       'The exchange of the world’s largest Muslim-majority country, heavily weighted to commodities and banking.',

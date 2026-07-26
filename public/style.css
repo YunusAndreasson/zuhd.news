@@ -1143,12 +1143,85 @@ body.article-page-body::before {
 .article-page-main .article-body blockquote p { margin: 0; }
 .article-page-main .article-body blockquote p + p { margin-top: var(--space-sm); }
 
-/* Subtle sources line — dimmed, small, no interactivity */
+/* Corrections.
+
+   Set as a matter of record, not as an alarm. `--neg` was the obvious reach and
+   is wrong: red would frame a correction as bad news about the article, when
+   the whole claim of `foundation.md`'s first principle is that issuing one is
+   the system working. So it takes the same soft surface the site uses for any
+   set-apart block, and the only emphasis is the label.
+
+   It sits above the source chain because `about.md` says the article ends with
+   its isnad, and that has to stay true. */
+.article-corrections {
+  margin-top: var(--space-lg);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-soft);
+  border-left: 2px solid var(--accent);
+  font-size: var(--size-sm);
+  color: var(--text-secondary);
+}
+
+.article-corrections-label {
+  font-size: var(--size-xs);
+  font-variant-caps: all-small-caps;
+  font-feature-settings: "case" 1;
+  letter-spacing: var(--track-caps);
+  font-weight: var(--weight-semibold);
+  color: var(--text-emphasis);
+  margin: 0 0 var(--space-xxs);
+}
+
+.article-corrections-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  line-height: var(--leading-body);
+}
+
+.article-corrections-list li + li { margin-top: var(--space-xs); }
+
+.article-corrections-list time {
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+/* The kicker mark. Small caps like everything else on that line, and a real
+   link — it is both the notice that the article was corrected and the way to
+   go read what changed. */
+.article-corrected {
+  color: var(--text-emphasis);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 0.2em;
+}
+
+/* The isnad: the chain of sources, named and linked, nearest the event first.
+
+   Dimmed and small because it is metadata, but every name is a real link — the
+   about page promises the chain is followable and for a long time this line was
+   the one place on the site where it wasn't. The links carry no colour of their
+   own: they inherit the line's ink and take an underline, so the chain reads as
+   one run of text rather than a rank of blue. */
 .article-sources-flat {
   font-size: var(--size-xs);
   color: var(--text-dim);
   margin-top: var(--space-sm);
   line-height: 1.4;
+}
+
+.article-sources-flat a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 0.2em;
+}
+
+.article-sources-flat a:hover,
+.article-sources-flat a:focus-visible {
+  color: var(--text);
+  text-decoration-color: currentColor;
 }
 
 .article-pagination {
@@ -1577,27 +1650,12 @@ body.archetype-page-body .article-page-header {
 .entity-delta.pos { color: var(--pos); }
 .entity-delta.neg { color: var(--neg); }
 
+/* The chart's frame on an entity page. Everything inside it is `.chart`,
+   which is one component now rather than three near-copies — see the block
+   near the end of this file. */
 .entity-chart {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
+  margin: var(--space-sm) 0;
   color: var(--text);
-  margin: 0;
-}
-
-.entity-spark {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 72 / 16;
-  color: var(--text);
-}
-
-.entity-spark-label {
-  font-family: var(--font-sans);
-  font-size: 11px;
-  fill: currentColor;
-  opacity: 0.55;
-  font-variant-numeric: lining-nums tabular-nums;
 }
 
 .entity-mentioned { margin-top: var(--space-md); }
@@ -1992,23 +2050,9 @@ body.archetype-page-body .article-page-header {
 }
 .entity-sheet-delta.pos { color: var(--pos); }
 .entity-sheet-delta.neg { color: var(--neg); }
-.entity-sheet-chart {
+.entity-sheet-chart-host {
   margin: 0;
   color: var(--text);
-}
-.entity-sheet-spark {
-  display: block;
-  width: 100%;
-  /* From the viewBox, so the chart scales uniformly. A fixed height against a
-     fluid width is what forced `preserveAspectRatio="none"` and turned the end
-     dots into ellipses. */
-  height: auto;
-  color: var(--text);
-}
-.entity-sheet-spark-label {
-  fill: var(--text-secondary);
-  font-size: 11px;
-  font-variant-numeric: tabular-nums;
 }
 .entity-sheet-mentioned {
   display: flex;
@@ -2072,7 +2116,13 @@ body.archetype-page-body .article-page-header {
 .map-reset {
   position: absolute;
   right: var(--space-sm);
-  bottom: 5.5rem;
+  /* Cleared the scrubber when it was one row tall. It is now one to three,
+     depending on where the money ribbon wraps, so a fixed 5.5rem put this
+     button on top of the time readout at every desktop width and hid the Hijri
+     date behind it completely. `--map-scrub-h` is the rail's measured height,
+     published by the island (see `measureChrome`); the fallback only has to
+     survive the frame before the scrubber exists. */
+  bottom: calc(var(--map-scrub-h, 5.5rem) + var(--space-xs));
   z-index: 3;
   display: inline-flex;
   align-items: center;
@@ -2096,9 +2146,13 @@ body.archetype-page-body .article-page-header {
   &[hidden] { display: none; }
 }
 
-@media (max-width: 60rem) {
-  .map-reset { bottom: 4.5rem; }
-}
+/* There used to be a `@media (max-width: 60rem) { .map-reset { bottom: 4.5rem } }`
+   here, moving the button *down* on narrow windows. It is exactly backwards:
+   the money ribbon wraps harder as the window narrows, so the scrubber is at
+   its tallest — 174px at 901px wide against 95px at 1600 — precisely where
+   this gave the button the least room. `--map-scrub-h` on the rule above
+   measures it instead, at every width, so the override has nothing left to
+   correct. */
 
 /* --- Document sheet ---
    The same prose as the document pages, shown over the map so a footer link
@@ -2426,6 +2480,22 @@ body.map-page {
      canvas the scrubber never covers. The phone block below already couples
      its three heights this way. */
   --map-rail-w: 21rem;
+  /* The height of the HUD's first row, and the reason it needs a name.
+
+     The row's height is set by the range chips — the tallest thing on it — and
+     everything else in the flow is centred against them by `.map-hud`'s
+     `align-items: center`. The clock is not in that flow: it is absolutely
+     positioned so it never eats width from the chips, which meant its vertical
+     position was a hand-tuned `padding: 0.95rem` guessing at where the row's
+     centre line fell. It guessed 2.59px high, and had been that way as long as
+     the clock has existed — visible the moment the beacon key wraps up onto row
+     one and lands beside it, which is what a wide viewport does.
+
+     Naming the height lets both sides derive from it instead of approximating
+     each other: the chips are pinned to it, and the clock centres itself in a
+     box of exactly that height at exactly the HUD's own padding. Change the
+     chip padding and the two still agree. */
+  --map-hud-row-h: 27px;
   max-width: none;
   height: 100dvh;
   overflow: hidden;
@@ -2517,7 +2587,13 @@ body.map-page .app-banner { display: none; }
    to go, and the cursor has to stop claiming there is something to press. */
 .map-feed-head {
   flex: 0 0 auto;
-  display: block;
+  /* Was `display: block` on a <button>. It is a container now, holding the
+     disclosure and the refresh control side by side — a button inside a button
+     is invalid markup and browsers drop the inner one. */
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-xs);
   width: 100%;
   padding: 5.9rem clamp(0.9rem, 1.4vw, 1.15rem) 0.5rem;
   font: inherit;
@@ -2532,9 +2608,75 @@ body.map-page .app-banner { display: none; }
   cursor: default;
 }
 
-.map-feed-head:focus-visible {
+.map-feed-disclosure {
+  flex: 1 1 auto;
+  display: block;
+  min-width: 0;
+  padding: 0;
+  font: inherit;
+  font-size: inherit;
+  font-variant-caps: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: default;
+}
+
+.map-feed-disclosure:focus-visible,
+.map-feed-refresh:focus-visible {
   outline: 1px solid var(--map-focus);
-  outline-offset: -2px;
+  outline-offset: 2px;
+}
+
+/* Check for new stories without leaving the page.
+
+   Sized and coloured as a caption rather than as a call to action: this is the
+   quiet control that saves a reload, not something the reader should be
+   prompted toward. It carries a word as well as the glyph, because a bare
+   circular arrow reads as "reset" about as readily as "reload" and the two
+   would do opposite things to a view the reader has built. */
+.map-feed-refresh {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.15rem 0.3rem;
+  margin-right: -0.3rem;
+  font: inherit;
+  font-size: inherit;
+  font-variant-caps: inherit;
+  letter-spacing: inherit;
+  color: var(--map-ink-muted);
+  background: none;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.map-feed-refresh:hover:not(:disabled) { color: var(--map-ink); }
+.map-feed-refresh:disabled { cursor: default; }
+
+.map-feed-refresh-icon {
+  display: flex;
+  width: 0.85em;
+  height: 0.85em;
+}
+
+.map-feed-refresh-icon svg { width: 100%; height: 100%; }
+
+/* The only spinning thing on the page, and only while a request is in flight. */
+.map-feed-refresh.is-busy .map-feed-refresh-icon {
+  animation: map-feed-spin 900ms linear infinite;
+}
+
+@keyframes map-feed-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-feed-refresh.is-busy .map-feed-refresh-icon { animation: none; }
 }
 
 /* The chevron and the disclosure button belong to the phone layout; here the
@@ -2581,6 +2723,29 @@ body.map-page .app-banner { display: none; }
   height: 6px;
   border-radius: 50%;
   margin-top: 0.42rem;
+  background: var(--cat);
+}
+
+/* Already opened.
+
+   Two channels, deliberately. The ink steps down — and it is an ink *step*,
+   never `opacity`, which is the trick that quietly put a filter chip at 2.33:1
+   and slipped past the colour test because opacity is not a colour literal. And
+   the dot goes from a disc to a ring, so the state survives being read by
+   someone who cannot separate two greys, and does it in the vocabulary the map
+   already uses everywhere else: filled means live, hollow means not.
+
+   Greyed, not hidden and not reordered. The rail captions the map, and dropping
+   a story from the list because this reader has seen it would leave a beacon on
+   the map with no row to match. */
+.map-feed-item.is-read {
+  .map-feed-dot {
+    background: transparent;
+    box-shadow: inset 0 0 0 1.5px var(--cat);
+  }
+
+  .map-feed-title { color: var(--map-ink-muted); }
+  .map-feed-meta { color: var(--map-ink-dim); }
 }
 
 .map-feed-body { min-width: 0; }
@@ -2743,6 +2908,14 @@ body.map-page > footer .footer-social {
   gap: var(--space-md);
   row-gap: 0.5rem;
   padding: 0.85rem 1.1rem;
+  /* The clock is painted over this row, not laid out in it (`.map-status` is
+     absolutely positioned), so the chips had no idea it was there and ran
+     straight under it: from ~1220px to ~1330px wide — 1280 among them — the
+     genocide chip and the time printed through each other. Reserving the
+     clock's measured width makes the row break before it reaches the time
+     instead. `--map-status-w` comes from the island; the fallback is only for
+     the first frame. */
+  padding-right: calc(var(--map-status-w, 6.5rem) + var(--space-sm));
   pointer-events: none;
   background: linear-gradient(to bottom, color-mix(in srgb, var(--map-ground) 90%, transparent), color-mix(in srgb, var(--map-ground) 55%, transparent) 60%, transparent);
 
@@ -2751,10 +2924,16 @@ body.map-page > footer .footer-social {
 
 .map-ranges {
   display: flex;
+  align-items: center;
   gap: 0.15rem;
   border: 1px solid var(--map-line);
   border-radius: 2px;
   overflow: hidden;
+  /* Pinned rather than incidental. These chips are the tallest item on the HUD's
+     first row, so their height *is* the row height, and `.map-status` centres
+     itself against that number. Left implicit, a change to `.map-range`'s
+     padding would move the row and silently un-align the clock again. */
+  min-height: var(--map-hud-row-h);
 }
 
 .map-range {
@@ -2890,7 +3069,10 @@ body.map-page > footer .footer-social {
 
 /* --- Map key ---
    Decodes the three channels the beacons spend their ink on: radius, alpha and
-   the contested ring. Sits at the right end of the HUD, clear of the clock,
+   the contested ring — and, since 2026-07-26, only those. The genocide mark
+   used to head this group while being none of them; it is a layer, and it now
+   sits with the layers at the end of `.map-filters`.
+   Sits at the right end of the HUD, clear of the clock,
    and borrows the filter chips' type and colour rather than inventing a second
    language for the same strip. `margin-left: auto` is what pushes it right —
    the HUD is a flex row and this is its third child. */
@@ -2915,6 +3097,18 @@ body.map-page > footer .footer-social {
 }
 
 .map-key-item[hidden] { display: none; }
+.map-filter-sep[hidden] { display: none; }
+
+/* The genocide mark, named at the end of the filter row rather than in the key.
+   It is a layer, not a beacon channel, and its colour is conflict's hue at the
+   saturation conflict lacks — a relationship only legible with the two chips
+   adjacent. Slightly tighter than a key item because it sits among chips, and
+   `cursor: default` inherited from .map-key-item is doing real work here: every
+   sibling to its left is a toggle and this one is deliberately not. */
+.map-key-item.is-layer-note {
+  gap: 0.28rem;
+  margin-left: 0.1rem;
+}
 
 .map-key-item svg {
   width: 16px;
@@ -2994,6 +3188,20 @@ body.map-page > footer .footer-social {
   border: 1px solid var(--map-line);
 }
 
+/* The value at each end of the ramp, in the metric's own units.
+   Tabular figures so the two ends sit on one optical line whatever digits they
+   happen to hold, and `--map-ink-dim` rather than an opacity step — dimming a
+   label with `opacity` is how a filter chip ended up at 2.33:1 while
+   `colour-system.test.js` looked straight past it, because opacity is not a
+   colour literal. */
+.map-ground-end {
+  font-size: var(--size-xs);
+  line-height: 1;
+  color: var(--map-ink-dim);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
 /* One line. If a metric ever ships a description long enough to overflow, it
    ends in an ellipsis rather than wrapping onto the map — the direction of the
    scale is the first clause, so a truncated note still does its job. */
@@ -3014,7 +3222,15 @@ body.map-page > footer .footer-social {
   top: 0;
   right: 0;
   z-index: 3;
-  padding: 0.95rem 1.1rem;
+  /* Aligned to the HUD's first row by construction, not by a tuned padding.
+     Same padding as `.map-hud`, a box exactly as tall as that row, and the text
+     centred in it — so the clock sits on the row's centre line for the same
+     reason every chip does. The old `0.95rem` was 2.59px high against every
+     element on the row. */
+  display: flex;
+  align-items: center;
+  min-height: calc(var(--map-hud-row-h) + 0.85rem * 2);
+  padding: 0.85rem 1.1rem;
   font-size: var(--size-xs);
   color: var(--map-ink-muted);
   font-variant-numeric: lining-nums tabular-nums;
@@ -3039,6 +3255,47 @@ body.map-page > footer .footer-social {
   color: var(--map-ink-dim);
   pointer-events: none;
 }
+
+/* --- Prayer-line readout ---
+   What a prayer line says when the pointer rests on it: which prayer, and the
+   local solar time it reaches that spot. `transform` rather than `left`/`top`
+   so following the pointer stays on the compositor and never reflows the map.
+   `pointer-events: none` is load-bearing — the tip sits under the cursor by
+   design, and a tip that could take the pointer would flicker itself away and
+   block the country underneath from ever being clicked. */
+.map-prayer-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  pointer-events: none;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.22rem 0.5rem;
+  border: 1px solid var(--map-line-card);
+  border-radius: 2px;
+  background: var(--map-panel);
+  font-size: var(--size-xs);
+  font-variant-caps: all-small-caps;
+  font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: var(--track-wide);
+  white-space: nowrap;
+  color: var(--map-ink);
+
+  & b { font-weight: 600; }
+
+  /* The frame, not the figure. It has to be said — up to an hour and a half
+     separates solar time from the clock on a phone standing there — and it
+     has to be quieter than the number it qualifies. */
+  & i {
+    font-style: normal;
+    color: var(--map-ink-dim);
+  }
+}
+
+/* `display: flex` beats the UA's `[hidden]` rule, as it does on `.map-key-item`. */
+.map-prayer-tip[hidden] { display: none; }
 
 /* --- Map timeline --- */
 .map-timeline {
@@ -3073,6 +3330,30 @@ body.map-page > footer .footer-social {
 
 .map-timeline.is-scrubbed .map-timeline-head { color: var(--map-ink-muted); }
 .map-timeline.is-scrubbed .map-timeline-readout { color: var(--map-ink); }
+
+/* One line each.
+   "Makkah" is three characters longer than the "UTC" this row used to print,
+   and that was enough to break the clock across two lines — "live · Sun 26 Jul
+   00:00" over "Makkah", with the Hijri year stranded under its month. The row
+   is a flex line shared with the markets strip, and the strip is the right one
+   to give up the width: it already wraps its own content by design, where a
+   clock split mid-phrase reads as two separate facts. */
+.map-timeline-readout,
+.map-timeline-hijri {
+  white-space: nowrap;
+}
+
+/* The Hijri date, in the same ink as the clock it sits beside.
+
+   Deliberately not dimmed: the head is already at `--map-ink-dim`, the dimmest
+   ink with a tested contrast on this surface, and reaching for opacity to push
+   it further is the exact trick the filter chips were caught doing at 2.33:1.
+   It is a second calendar, not a footnote to the first, so it reads at the same
+   weight and separates with the middot the readout already uses. */
+.map-timeline-hijri::before {
+  content: "·";
+  margin-right: 0.4ch;
+}
 
 .map-timeline-live {
   background: none;
@@ -3128,6 +3409,14 @@ body.map-page > footer .footer-social {
   gap: 0.1rem 0.55rem;
 
   &:empty { display: none; }
+}
+
+/* A group's label and its first quote, kept on one line — see
+   `map-markets-pair` in `_map/markets.ts`. */
+.map-markets-pair {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.55rem;
 }
 
 .map-markets-label {
@@ -3389,6 +3678,20 @@ body.map-page > footer .footer-social {
   border-radius: 3px;
   box-shadow: 0 12px 38px rgb(0 0 0 / 0.55);
   padding: 0.75rem 0.85rem 0.8rem;
+  /* Half the viewport, less a little — the height at which MapLibre's anchor
+     choice can always find room.
+     It picks `top` (card *below* the point) whenever the point sits higher
+     than the card is tall, and never checks whether below fits either. So a
+     card of height H in a map of height M overflows for every click between
+     H and M − H: at 695px in a 900px window that is the whole middle of the
+     map, and Brazil, Australia, China and the United States all lost their
+     lower half — "Full profile →" and the share row among it, with no way to
+     scroll to them. Capping at 50vh − 1.5rem makes H ≤ (M − 28) / 2 hold at
+     every viewport height, which closes the band by construction rather than
+     by testing a few sizes. What no longer fits scrolls. */
+  max-height: calc(50vh - 1.5rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .maplibregl-popup-close-button {
@@ -3692,6 +3995,73 @@ a.map-popup-source-name {
 
 .map-country-flag { font-size: 1.15rem; line-height: 1; flex: 0 0 auto; }
 
+/* Why this country is that colour.
+   Set apart from the highlights list rather than being its first row: it
+   answers the question the click asked, and the rows below it are a different
+   question. The swatch is the country's own tone, straight off the ramp the
+   land layer paints with, so the card can be held against the map. */
+.map-country-standing {
+  margin: 0.55rem 0 0;
+  padding: 0.45rem 0.55rem 0.5rem;
+  border: 1px solid var(--map-line);
+  display: grid;
+  gap: 0.3rem;
+}
+
+.map-country-standing-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 0.45rem;
+}
+
+/* Large enough to judge against the land, which a 9px chip is not — the whole
+   point is comparing it to a country-sized area of the same fill. */
+.map-country-standing-swatch {
+  width: 14px;
+  height: 14px;
+  align-self: center;
+  background: var(--c);
+  border: 1px solid var(--map-line);
+}
+
+/* No figure: the hatch the land itself draws, not a tone. A shade would put the
+   country somewhere on the scale, which is the claim we cannot make. */
+.map-country-standing-swatch[data-nodata] {
+  background: repeating-linear-gradient(
+    45deg,
+    transparent 0 3px,
+    var(--map-line) 3px 4px
+  );
+}
+
+.map-country-standing-label {
+  color: var(--map-ink-muted);
+  font-size: 0.82rem;
+}
+
+.map-country-standing-value {
+  color: var(--map-ink);
+  font-size: 0.95rem;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.map-country-standing-foot {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* The scale's direction, in the metric's own words. Wraps — unlike the HUD's
+   one-line note, this card has the width and the reader has stopped to read. */
+.map-country-standing-note {
+  margin: 0;
+  font-size: var(--size-xs);
+  line-height: 1.35;
+  color: var(--map-ink-dim);
+}
+
 .map-country-metrics {
   list-style: none;
   margin: 0.55rem 0 0.2rem;
@@ -3786,6 +4156,51 @@ a.map-popup-source-name {
   font-size: var(--size-xs);
   color: var(--map-ink-dim);
   font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* --- The story card's indicator strip ---
+   The same row the article page carries, at the card's scale. A chip opens the
+   series as a sheet over the map rather than navigating, so the reader keeps
+   the camera, the time slice and the filters they built. */
+.map-popup-entities {
+  margin: 0.7rem 0 0;
+  padding-top: 0.55rem;
+  border-top: 1px solid var(--map-line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.map-popup-entities-label {
+  margin-right: 0.15rem;
+  font-size: var(--size-xs);
+  font-variant-caps: all-small-caps;
+  letter-spacing: var(--track-caps);
+  color: var(--map-ink-dim);
+}
+
+.map-entity-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border: 1px solid var(--map-line-loud);
+  border-radius: 999px;
+  color: var(--map-ink-body);
+  font-size: var(--size-xs);
+  line-height: 1.3;
+  text-decoration: none;
+  transition: border-color var(--dur-fast), color var(--dur-fast);
+}
+
+.map-entity-chip:hover {
+  border-color: var(--map-ink-muted);
+  color: var(--map-ink);
+}
+
+.map-entity-chip:focus-visible {
+  outline: 2px solid var(--map-focus);
+  outline-offset: 2px;
 }
 
 /* --- Map sheet --- */
@@ -3913,43 +4328,125 @@ a.map-popup-source-name {
   font-variant-numeric: lining-nums tabular-nums;
 }
 
+/* The chart's frame on a card. Everything inside it is `.chart`, which now
+   owns its own caption — so there is no `.map-sheet-figcaption` any more; a
+   caption the chart cannot see is one that goes stale the moment the range
+   control changes what is drawn. */
 .map-sheet-figure {
   margin: var(--space-xs) 0 var(--space-sm);
 }
 
-.map-sheet-figcaption {
-  margin-top: 0.3rem;
-  font-size: var(--size-xs);
-  color: var(--text-dim);
+/* ==========================================================================
+   The series chart
+   ==========================================================================
+
+   One component, four surfaces: the map's chokepoint, exchange and quote
+   cards, the entity sheet, and the static `/e/{id}` page. It used to be three
+   near-copies of a sparkline — the map's carried a y-axis, a rule and a tint;
+   the other two carried a line and two dots — with the class names, the
+   geometry and one long-fixed `preserveAspectRatio` bug all diverging quietly.
+
+   The two palettes cannot see each other (`:root` follows the reader,
+   `body.map-page` commits to dark), and this component lands on both. So it
+   declares its own names once and each surface says what they resolve to.
+   Aliases only — no literal enters the file here. */
+.chart {
+  --chart-ink: var(--text);
+  --chart-ink-muted: var(--text-secondary);
+  --chart-ink-dim: var(--text-dim);
+  --chart-line: var(--rule);
+  --chart-surface: var(--bg);
+  --chart-focus: var(--focus);
+  --chart-pos: var(--pos);
+  --chart-neg: var(--neg);
+  /* A strait has its own vocabulary — gold for traffic falling away, teal for
+     a surge. It only ever renders on the map, but a component that resolves a
+     token on one surface and not the other is a trap for the next edit. */
+  --chart-down: var(--pos);
+  --chart-up: var(--neg);
+
+  display: grid;
+  gap: 0.34rem;
+  margin: 0;
+  color: var(--chart-ink);
 }
 
-/* --- Sparkline ---
-   Colour comes from `currentColor` so the same markup works on the sheet
-   (theme-aware) and anywhere else the map might put it. */
-/* `height: auto` with a uniform viewBox — the old fixed 68px against
-   `preserveAspectRatio: none` stretched the axis labels 2.35x wide and drew
-   the end dot as an ellipse. */
-.map-spark {
+body.map-page .chart,
+body.doc-page .chart {
+  --chart-ink: var(--map-ink);
+  --chart-ink-muted: var(--map-ink-muted);
+  --chart-ink-dim: var(--map-ink-dim);
+  --chart-line: var(--map-line);
+  --chart-surface: var(--map-panel);
+  --chart-focus: var(--map-focus);
+  --chart-pos: var(--map-pos);
+  --chart-neg: var(--map-neg);
+  --chart-down: var(--map-straits);
+  --chart-up: var(--map-straits-surge);
+}
+
+/* The line under the reader's pointer, in words.
+
+   Always present and always saying something true: at rest it names the latest
+   observation and its date, which is a fact none of these charts stated before
+   and the one most readers came for. `min-height` reserves the row, so moving
+   a pointer across the chart never shifts the layout under it. */
+.chart-readout {
+  margin: 0;
+  min-height: 1.4em;
+  font-size: var(--size-xs);
+  line-height: 1.4;
+  color: var(--chart-ink);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* Reading a value is a live state, and it needs to look like one or the row
+   reads as static type that happens to keep changing. An ink step, never
+   opacity — the trick that put a filter chip at 2.33:1 and got past the colour
+   test because opacity is not a colour literal. */
+.chart-readout.is-live {
+  color: var(--chart-ink);
+  font-weight: var(--weight-medium);
+}
+
+/* The focusable, labelled thing is the wrapper, not the SVG: one accessible
+   node carrying the summary, one live region carrying the cursor. */
+.chart-plot {
+  display: block;
+  /* Vertical scrolling still belongs to the page; a horizontal drag scrubs the
+     chart. Without this a touch reader cannot scroll past a chart at all. */
+  touch-action: pan-y;
+  cursor: crosshair;
+  border-radius: 1px;
+}
+
+.chart-plot:focus-visible {
+  outline: 2px solid var(--chart-focus);
+  outline-offset: 3px;
+}
+
+.chart-svg {
   display: block;
   width: 100%;
+  /* From the viewBox, so the geometry scales uniformly. A fixed height against
+     a fluid width is what forced `preserveAspectRatio: none`, which stretched
+     the axis labels and drew every dot as an ellipse. */
   height: auto;
-  color: var(--text);
+  color: var(--chart-ink);
 }
 
 /* Gold for traffic falling away, cool for a surge — the same two colours the
-   chokepoint marker on the map is drawn in, so the chart reads as that mark
-   rather than as a generic line. */
-.map-spark.is-down { color: var(--map-straits); }
-.map-spark.is-up { color: var(--map-straits-surge); }
+   chokepoint marker is drawn in, so the chart reads as the mark the reader
+   just clicked rather than as a generic line. */
+.chart.is-down .chart-svg { color: var(--chart-down); }
+.chart.is-up .chart-svg { color: var(--chart-up); }
 
-/* A series where up is simply up — a market index, not a strait. Drawing a
-   falling index in the strait-blockage gold would borrow a meaning it hasn't
-   got, so this pair is the site's own signed-change colours, which are what
-   the exchange marker on the map is drawn in. */
-.map-spark.is-neg { color: var(--map-neg); }
-.map-spark.is-pos { color: var(--map-pos); }
+/* A series where up is simply up. Drawing a falling index in the
+   strait-blockage gold would borrow a meaning it has not got. */
+.chart.is-neg .chart-svg { color: var(--chart-neg); }
+.chart.is-pos .chart-svg { color: var(--chart-pos); }
 
-.map-spark-line {
+.chart-line {
   fill: none;
   stroke: currentColor;
   stroke-width: 1.4;
@@ -3957,41 +4454,262 @@ a.map-popup-source-name {
   vector-effect: non-scaling-stroke;
 }
 
-.map-spark-area {
+/* The area under the line, so the series carries weight at a glance. A 1px
+   stroke across 640 units is a hairline you have to hunt for. */
+.chart-area {
   fill: currentColor;
   opacity: 0.14;
   stroke: none;
 }
 
-/* The 90-day average, drawn under the series. Dashed and dimmed: it is a
-   reference, and a solid rule at equal weight would read as a second series. */
-.map-spark-ref {
-  stroke: var(--text-dim);
+/* The baseline. Dashed and in the dim ink: it is a reference, and a solid rule
+   at equal weight would read as a second series. */
+.chart-ref {
+  stroke: var(--chart-ink-dim);
   stroke-width: 1;
   stroke-dasharray: 3 3;
-  opacity: 0.7;
   vector-effect: non-scaling-stroke;
 }
 
-.map-spark-dot { fill: currentColor; }
+.chart-dot { fill: currentColor; }
 
-.map-spark-label {
-  fill: var(--map-ink-dim);
-  font-size: var(--size-3xs);
-  font-variant-numeric: lining-nums tabular-nums;
+/* The high and the low, ringed where they fell. The axis prints both numbers
+   and can never say *when*; two hollow marks answer that with no type at all.
+   Hollow against the end dot's solid, which is the vocabulary the map already
+   uses — filled means live, hollow means not. */
+.chart-extreme {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+  vector-effect: non-scaling-stroke;
+}
+
+.chart-cursor-rule {
+  stroke: var(--chart-ink-muted);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Filled with the surface rather than with nothing, so the ring reads over the
+   line it is sitting on instead of letting the line run through it. */
+.chart-cursor-dot {
+  fill: var(--chart-surface);
+  stroke: currentColor;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
 }
 
 /* The y-axis: the high, the low, and the rule's own value. Brighter than the
-   date labels, because these are the figures the chart exists to state — the
-   shape was readable before and the numbers were not there at all. */
-.map-spark-axis {
-  fill: var(--map-ink-muted);
+   date row, because these are the figures the chart exists to state. */
+.chart-axis {
+  fill: var(--chart-ink-muted);
   font-size: var(--size-3xs);
   font-variant-numeric: lining-nums tabular-nums;
 
   /* The rule is drawn in the dim ink and dashed; its label matches it rather
      than the extremes, so the eye can tell which number belongs to it. */
-  &.is-ref { fill: var(--map-ink-dim); }
+  &.is-ref { fill: var(--chart-ink-dim); }
+}
+
+.chart-date {
+  fill: var(--chart-ink-dim);
+  font-size: var(--size-3xs);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* --- Controls ----------------------------------------------------------- */
+
+.chart-controls {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.chart-ranges {
+  display: flex;
+  gap: 0.1rem;
+  flex: none;
+  order: 2;
+}
+
+.chart-ranges[hidden] { display: none; }
+
+.chart-range {
+  appearance: none;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  padding: 0.05rem 0.34rem;
+  font: inherit;
+  font-size: var(--size-2xs);
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--chart-ink-muted);
+  cursor: pointer;
+}
+
+/* The chosen window, marked with the site's own affordance for "this is the
+   live one" — an underline, the same mark a link carries. An ink step and a
+   rule, not a dimming: an unlit control at reduced opacity is how the HUD
+   chips ended up under AA. */
+.chart-range[aria-pressed='true'] {
+  color: var(--chart-ink);
+  border-bottom-color: currentColor;
+}
+
+.chart-range:focus-visible {
+  outline: 2px solid var(--chart-focus);
+  outline-offset: 2px;
+}
+
+.chart-caption {
+  margin: 0;
+  flex: 1 1 12rem;
+  order: 1;
+  font-size: var(--size-2xs);
+  line-height: 1.4;
+  color: var(--chart-ink-muted);
+}
+
+.chart-caption[hidden] { display: none; }
+
+/* --- The numbers -------------------------------------------------------- */
+
+.chart-data {
+  font-size: var(--size-2xs);
+  border-top: 1px solid var(--chart-line);
+  padding-top: 0.3rem;
+}
+
+.chart-data[hidden] { display: none; }
+
+.chart-data-summary {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  cursor: pointer;
+  color: var(--chart-ink-muted);
+  list-style: none;
+}
+
+/* The native marker is a different glyph in every engine and none of them are
+   in this typeface. A `+` and a `−` are, and they say the same thing. */
+.chart-data-summary::-webkit-details-marker { display: none; }
+
+.chart-data-summary::before {
+  content: '+';
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--chart-ink-dim);
+}
+
+.chart-data[open] > .chart-data-summary::before { content: '−'; }
+
+.chart-data-summary:focus-visible {
+  outline: 2px solid var(--chart-focus);
+  outline-offset: 2px;
+}
+
+/* "the numbers" and the count beside it: the label is what the reader is
+   deciding whether to open, the count is how much is behind it. An ink step
+   apart, so the pair reads as one control with a quantity rather than as two
+   equal words. */
+.chart-data-label { color: var(--chart-ink-muted); }
+
+.chart-data-count {
+  color: var(--chart-ink-dim);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.chart-data-body {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+}
+
+.chart-table-scroll {
+  max-height: 15rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+.chart-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.chart-table th,
+.chart-table td {
+  padding: 0.16rem 0 0.16rem 0.5rem;
+  text-align: right;
+  font-weight: var(--weight-regular);
+  white-space: nowrap;
+}
+
+.chart-table .is-when {
+  padding-left: 0;
+  text-align: left;
+  color: var(--chart-ink-muted);
+}
+
+.chart-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--chart-surface);
+  color: var(--chart-ink-dim);
+  border-bottom: 1px solid var(--chart-line);
+}
+
+.chart-table td.is-value { color: var(--chart-ink); }
+.chart-table td.is-change.is-pos { color: var(--chart-pos); }
+.chart-table td.is-change.is-neg { color: var(--chart-neg); }
+
+/* Which row is the peak, which the trough, and which is today. Otherwise the
+   only way to find any of them in 86 rows is to read all 86 — and the chart
+   above has already marked them, so the table not marking them makes the two
+   look like different series. A word, never a glyph: this typeface has no
+   triangle, and a character it lacks falls back to a system font. */
+.chart-table tbody th.is-when { color: var(--chart-ink-muted); }
+.chart-table tbody tr.is-peak th.is-when,
+.chart-table tbody tr.is-trough th.is-when,
+.chart-table tbody tr.is-latest th.is-when { color: var(--chart-ink); }
+
+.chart-mark {
+  margin-left: 0.4em;
+  font-size: 0.9em;
+  font-variant-caps: all-small-caps;
+  letter-spacing: var(--track-caps);
+  color: var(--chart-ink-dim);
+}
+
+.chart-copy {
+  justify-self: start;
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  font-size: var(--size-2xs);
+  color: var(--chart-ink-muted);
+  border-bottom: 1px solid var(--chart-line);
+  cursor: pointer;
+}
+
+.chart-copy:hover { color: var(--chart-ink); }
+
+.chart-copy:focus-visible {
+  outline: 2px solid var(--chart-focus);
+  outline-offset: 2px;
+}
+
+/* A pointer cursor over a chart that cannot be read with one is a lie, and a
+   reduced-motion reader still gets everything here — nothing in this component
+   animates. */
+@media (hover: none) {
+  .chart-plot { cursor: default; }
 }
 
 .map-sheet-meta,
@@ -4254,7 +4972,12 @@ a.map-popup-source-name {
      risers-then-fallers list, so one rule gets both. */
   .map-markets-movers li:nth-child(even) { display: none; }
 
-  .map-reset { bottom: calc(var(--map-bar-h) + 6.2rem); }
+  /* The scrubber sits on top of the drawer handle here (`bottom:
+     var(--map-bar-h)` above), so clearing it means clearing both. 6.2rem was a
+     guess at the rail's height and short by half: on a 390px screen the markets
+     strip, the money ribbon and the readout each take their own line and the
+     rail runs to 193px, which put the button on top of the tick labels. */
+  .map-reset { bottom: calc(var(--map-bar-h) + var(--map-scrub-h, 6.2rem) + var(--space-xs)); }
 
   /* --- The story list, as a drawer --- */
   .map-feed {

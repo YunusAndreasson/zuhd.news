@@ -39,7 +39,7 @@ Data providers include [World Bank](https://data.worldbank.org/), [IMF PortWatch
 
 *zuhd* — Only what benefits the reader is published.
 
-*tabayyun* — Reports are verified before publication; the burden of proof rests with the source (Qur'an 49:6).
+*tabayyun* — Reports are verified before publication; the burden of proof rests with the source (Qur'an 49:6). When verification arrives late, the correction is dated and printed on the article itself — never a quiet edit.
 
 *isnad* — Every article ends with its chain of sources, named and linked.
 

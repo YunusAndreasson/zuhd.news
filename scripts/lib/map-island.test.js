@@ -76,6 +76,18 @@ writeFileSync(
     setFeatureState(ref, state) {
       Object.assign((this.featureState[ref.id] ||= {}), state)
     }
+    // The island clears the whole source's state before every setData and only
+    // writes it back once the source is settled -- feature state left across a
+    // reload is replayed onto the rebuilt tiles by feature *position*, which is
+    // how an ordinary scrub-while-hovering ended in "feature index out of
+    // bounds" from inside MapLibre. The stub has to model both calls, and
+    // isSourceLoaded, or the island throws here instead.
+    // (No backticks in here either -- see the note above.)
+    removeFeatureState(ref) {
+      if (ref && ref.id != null) delete this.featureState[ref.id]
+      else this.featureState = {}
+    }
+    isSourceLoaded(id) { return id in this.sources }
     setPadding(p) { this.padding = p }
     queryRenderedFeatures() { return [] }
     getZoom() { return 2 }
@@ -294,17 +306,25 @@ test('the island mounts, renders, and tears down cleanly', async () => {
     assert.equal(cats.length, 4)
     for (const f of cats) assert.equal(f.getAttribute('aria-pressed'), 'true')
 
-    // Layer toggles exist alongside the category filters: disasters, straits,
-    // markets and conflict. Conflict is the one that was built and served but
-    // never wired to the map, so its presence here is the regression guard.
-    // The order is the order they are drawn in, and is asserted rather than
-    // sorted so that adding a layer is a deliberate edit to this line.
+    // Layer toggles exist alongside the category filters: prayers, disasters,
+    // straits, markets and conflict. Conflict is the one that was built and
+    // served but never wired to the map, so its presence here is the regression
+    // guard. The order is the order they are drawn in, and is asserted rather
+    // than sorted so that adding a layer is a deliberate edit to this line.
     const layers = [...env.host.querySelectorAll('.map-filter[data-kind="layer"]')]
     assert.deepEqual(
       layers.map((b) => b.textContent),
-      ['disasters', 'straits', 'markets', 'conflict'],
+      ['prayers', 'disasters', 'straits', 'markets', 'conflict'],
     )
     for (const f of layers) assert.equal(f.getAttribute('aria-pressed'), 'true')
+
+    // The prayer chip carries the calculation method. The lines are drawn to
+    // one school's angles and no single method is right everywhere, so a chip
+    // that names the layer without naming the authority is making a claim it
+    // does not attribute.
+    const prayers = layers[0]
+    assert.match(prayers.title, /Umm al-Qura/, 'the prayer chip names its method')
+    assert.match(prayers.getAttribute('aria-label') ?? '', /Umm al-Qura/)
 
     await settle()
     assert.equal(typeof teardown, 'function', 'mount must return a teardown')

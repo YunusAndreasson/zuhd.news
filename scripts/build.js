@@ -12,6 +12,13 @@ import { buildCountryPages } from './build/country-pages.js'
 import { buildCountryMetrics } from './build/country-metrics.js'
 import { buildEntityPages, latestTrendsPath } from './build/entity-pages.js'
 import { loadShared } from './build/shared-ts.js'
+import {
+  escHtmlAttr,
+  formatDate,
+  parseCorrections,
+  renderCorrections,
+  renderIsnad,
+} from './lib/article-chain.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
@@ -67,12 +74,16 @@ const markdownToHtml = (md) => {
       const rewritten = rewriteLinkHref(href)
       const isCountry = rewritten.startsWith('/country/')
       if (isCountry) {
+        const iso2 = rewritten.replace('/country/', '')
+        // A code we publish no page for stays as prose — see
+        // `ROUTABLE_COUNTRIES`. Linking it offers the reader a 404 and a
+        // preview sheet that can only say it failed.
+        if (!ROUTABLE_COUNTRIES.has(iso2)) return text
         // Country tags are popover triggers: the island-loader intercepts
         // primary clicks via `data-island` and opens the country-preview
         // sheet inline. The href stays as a real URL so middle-click /
         // Cmd-click / right-click still navigate to the full profile, and
         // the link works without JS.
-        const iso2 = rewritten.replace('/country/', '')
         return `<a href="${rewritten}" class="country-link" data-island="country-preview" data-iso="${iso2}">${text}</a>`
       }
       return `<a href="${rewritten}">${text}</a>`
@@ -98,9 +109,6 @@ const markdownToHtml = (md) => {
   return result.join('\n')
 }
 
-const formatDate = (dateStr) =>
-  new Date(dateStr).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
-
 const buildArticle = (filename) => {
   const raw = readFileSync(join(CONTENT_DIR, filename), 'utf-8')
   const { meta, body } = parseFrontmatter(raw)
@@ -108,12 +116,8 @@ const buildArticle = (filename) => {
   const sources = Array.isArray(meta.sources) ? meta.sources : []
   const primarySource = sources[0]?.name || ''
 
-  // Subtle sources line — just names, no accordion
-  let sourcemark = ''
-  if (sources.length > 0) {
-    const names = sources.map(s => s.name).join(', ')
-    sourcemark = `<p class="article-sources-flat">Sources: ${names}</p>`
-  }
+  const corrections = parseCorrections(meta)
+  const sourcemark = renderCorrections(corrections) + renderIsnad(sources, body)
 
   // `concepts` stays in the parsed article so API consumers (feed.json,
   // mobile) keep getting the list, but we no longer append a concept-chip
@@ -138,7 +142,14 @@ const buildArticle = (filename) => {
 
   const slug = basename(filename, '.md')
   return {
-    slug, meta, body, sources, concepts,
+    slug, meta, body, sources, concepts, corrections,
+    // When the article last changed, as opposed to when it was published. Null
+    // for the overwhelming majority; where it is set it drives `dateModified`
+    // in the article's structured data and `<updated>` in the Atom feed, which
+    // is what "issued openly" means on a site with no comment section and no
+    // newsletter — the correction reaches a subscriber through the channel
+    // they already have rather than sitting on a page nobody revisits.
+    correctedAt: corrections.length ? corrections[corrections.length - 1].date : null,
     bodyHtml: renderedHtml + sourcemark,
     // The same prose without the flat `Sources:` line. The map's story card
     // renders its own attribution from the `sources[]` array — linked, and on a
@@ -183,12 +194,6 @@ const buildHomepage = (sorted, cutoff, homepageTemplate) => {
 
   return homepageTemplate.replace(/{{fallbackArticleList}}/g, fallbackArticleList)
 }
-
-const escHtmlAttr = (s) => String(s)
-  .replace(/&/g, '&amp;')
-  .replace(/"/g, '&quot;')
-  .replace(/</g, '&lt;')
-  .replace(/>/g, '&gt;')
 
 // Extract a clean OG/meta description from body: first 1-2 sentences, ≤170 chars.
 const buildDescription = (body) => {
@@ -246,7 +251,7 @@ const formatTimeAgo = (addedAt) => {
 }
 
 const buildArticlePage = (article, prev, next, thread, template, indicatorMap) => {
-  const { slug, meta, body, bodyHtml, title, dateFormatted, addedAt } = article
+  const { slug, meta, body, bodyHtml, title, dateFormatted, addedAt, correctedAt } = article
   const isoDate = meta.date || new Date(addedAt).toISOString()
   const category = meta.category || 'politics'
   const description = buildDescription(body)
@@ -281,7 +286,10 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap) =
     description,
     image: [`https://zuhd.news/api/og/${slug}.png`],
     datePublished: isoDate,
-    dateModified: isoDate,
+    // The one place these two legitimately differ. A corrected article that
+    // still claims it has never been modified is making the same kind of quiet
+    // false statement the correction exists to undo.
+    dateModified: correctedAt || isoDate,
     url,
     mainEntityOfPage: url,
     articleSection: category,
@@ -305,6 +313,15 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap) =
     .replace(/{{dateFormatted}}/g, dateFormatted)
     .replace(/{{isoDate}}/g, isoDate)
     .replace(/{{timeAgo}}/g, escHtmlAttr(timeAgo))
+    // In the kicker, beside the timestamp, because a correction a reader has to
+    // scroll to find is not issued openly — it is filed. The link goes to the
+    // block itself, so the mark is both the notice and the way to read it.
+    .replace(
+      /{{correctionMark}}/g,
+      correctedAt
+        ? '<a class="article-corrected" href="#corrections">corrected</a>'
+        : '',
+    )
     .replace(/{{bodyHtml}}/g, bodyHtml)
     .replace(/{{entityStrip}}/g, entityStripHtml(meta.entities, indicatorMap))
     .replace(/{{threadBlock}}/g, threadBlockHtml(thread?.threadContext))
@@ -418,6 +435,40 @@ const headCommonDark = headCommon.replace(
 // Place-name display rules, shared with the app so a location never reads one
 // way in the feed and another in the app.
 const { displayLocation } = await loadShared('place-names.ts')
+
+/**
+ * The countries a `country:XX` tag can actually be routed to.
+ *
+ * Derived the same way `buildCountryPages` decides what to emit — every key of
+ * `COUNTRY_DATA` whose topojson name resolves to an ISO-2 — so the set of links
+ * the prose makes and the set of pages the build writes cannot disagree.
+ *
+ * They did disagree. The writer tags places we hold no country record for
+ * (Bahrain, Hong Kong, Singapore, the Maldives) and occasionally things that
+ * are not countries at all (`EU`, `UN`, and `UK` where the code is `GB`) — 15
+ * codes across the corpus. Each rendered as a live link to `/country/XX`, which
+ * 404s, and as a `country-preview` trigger, which opened a sheet that fetched a
+ * missing `/api/country/XX.json` and settled on "Couldn't load country
+ * preview." The reader's click was answered with an error either way.
+ *
+ * `iso.ts` already documents the contract for a code it cannot place —
+ * "unknown codes return undefined and the caller should fall back (e.g. skip
+ * highlighting, show the raw code as text)". This is that caller. An untagged
+ * country name reads exactly like the prose around it, which is the right
+ * failure: the sentence is unharmed and nothing offers to go somewhere it
+ * cannot.
+ */
+const ROUTABLE_COUNTRIES = await (async () => {
+  const [{ COUNTRY_DATA }, { codeFromTopojsonName }] = await Promise.all([
+    loadShared('countries/country-data.ts'),
+    loadShared('countries/iso.ts'),
+  ])
+  return new Set(
+    Object.keys(COUNTRY_DATA)
+      .map((name) => codeFromTopojsonName(name))
+      .filter(Boolean),
+  )
+})()
 
 /**
  * The share row, rendered as real links.
@@ -568,12 +619,23 @@ const sorted = articles.sort((a, b) => b.addedAt - a.addedAt)
 const cutoff = Date.now() - WINDOW_MS
 
 // Generate audio briefing player HTML
+//
+// The mp3 has to exist, not just the metadata that describes it. These were
+// two different questions answered from one file: `/api/meta.json` below
+// checks `existsSync(mp3Path)` and correctly reported `briefing: null`, while
+// this gate asked only whether `briefing-meta.json` was there and recent. When
+// the metadata is written but generation fails — or the mp3 is cleaned up
+// while the metadata survives — the homepage renders a play button over a
+// `src` that 404s. Nothing looks broken until the reader presses it: the
+// label stays "Today's briefing", the bar never moves, and the only trace is
+// a media error in the console.
 let audioBriefingHtml = ''
 const briefingMetaPath = join(ROOT, 'content', 'audio', 'briefing-meta.json')
 if (existsSync(briefingMetaPath)) {
   const meta = JSON.parse(readFileSync(briefingMetaPath, 'utf-8'))
   const age = Date.now() - new Date(meta.generated).getTime()
-  if (age < 36 * 60 * 60 * 1000) {
+  const mp3Exists = existsSync(join(ROOT, 'content', 'audio', `briefing-${meta.date}.mp3`))
+  if (mp3Exists && age < 36 * 60 * 60 * 1000) {
     const genHour = new Date(meta.generated).getUTCHours()
     const cycles = [3, 9, 15, 21]
     const cycleHour = cycles.reduce((prev, c) => c <= genHour ? c : prev, 0)
@@ -622,13 +684,19 @@ const apiGrouped = groupByWindow(sorted, cutoff)
 const apiCategories = Object.fromEntries(
   Object.entries(apiGrouped).map(([cat, articles]) => [
     cat,
-    articles.map(({ slug, meta, addedAt, body, sources, concepts }) => {
+    articles.map(({ slug, meta, addedAt, body, sources, concepts, corrections }) => {
       const thread = threadLookup.get(slug)
       return {
         slug,
         title: meta.title || 'Untitled',
         date: meta.date,
         addedAt,
+        // Added here rather than in one endpoint, so `feed.json` and
+        // `feed-lite.json` cannot disagree about whether a story was corrected.
+        // Spread-conditional: the field is absent on the ~100% of articles that
+        // have never been corrected, so the published shape is unchanged for
+        // every existing consumer and the app keeps parsing.
+        ...(corrections?.length && { corrections }),
         source: sources[0]?.name || null,
         sourceUrl: sources[0]?.url || null,
         // `url` and `angle` were dropped here while the page-data mapping
@@ -1028,6 +1096,34 @@ writeFileSync(join(DIST_DIR, 'api', 'map.json'),
   JSON.stringify({ generated, window: mapWindow, points: mapPoints }))
 console.log(`  Built: api/map.json (${mapPoints.length} points, ${BUILD_WINDOW_DAYS}d)`)
 
+// Indicator map: id → {label, kind}. Drives the entity strip on both the
+// article page and the map's story card, so only chips that actually resolve
+// to a /e/{id} page + /api/entity/{id}.json blob are ever surfaced.
+//
+// Built here rather than beside the article pages that used to be its only
+// consumer, because the story payloads below need it and are written first.
+const indicatorMap = new Map()
+{
+  const today = new Date().toISOString().slice(0, 10)
+  const candidates = [join(ROOT, 'content', 'trends', `${today}.json`)]
+  // Fall back to the most recent snapshot when today's hasn't been
+  // generated yet — identical to what entity-pages.js does internally.
+  const trendsDir = join(ROOT, 'content', 'trends')
+  if (existsSync(trendsDir)) {
+    const names = readdirSync(trendsDir).filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f)).sort()
+    if (names.length) candidates.push(join(trendsDir, names[names.length - 1]))
+  }
+  for (const p of candidates) {
+    if (!existsSync(p)) continue
+    const trends = JSON.parse(readFileSync(p, 'utf8'))
+    for (const ind of trends.indicators || []) {
+      if (ind?.id && !indicatorMap.has(ind.id)) {
+        indicatorMap.set(ind.id, { label: ind.label, kind: ind.cadence || 'indicator' })
+      }
+    }
+    if (indicatorMap.size) break
+  }
+}
 // Per-story payloads for the map's reading card. The map never navigates away
 // to read — the card opens anchored at the story's own coordinates — so each
 // story needs its rendered body reachable on its own. One small file per story
@@ -1062,6 +1158,31 @@ for (const a of sorted) {
         country: x.country || null,
         sentiment: x.sentiment != null ? Number(x.sentiment) : null,
       })),
+      /**
+       * The indicators this story is about.
+       *
+       * The article page has carried these as a chip row for a long time and
+       * the map's card never did, so the one surface built for a reader who
+       * wants to see how things connect was the one surface that could not
+       * reach a single chart. A story about the strait of Hormuz sat on the map
+       * a few hundred pixels from the Brent series it is about, with no route
+       * between them — and taking that route from an article means leaving for
+       * `/e/{id}`, which on the map would mean abandoning a camera, a time
+       * slice and a set of filters the reader built.
+       *
+       * Filtered through `indicatorMap` for the same reason the article strip
+       * is: an entity naming a series we do not publish would be a chip that
+       * opens an empty sheet.
+       */
+      ...(() => {
+        const entities = (Array.isArray(a.meta.entities) ? a.meta.entities : [])
+          .filter((e) => e?.indicatorId && indicatorMap.has(e.indicatorId))
+          .map((e) => ({
+            id: e.indicatorId,
+            label: indicatorMap.get(e.indicatorId).label || e.mention || e.indicatorId,
+          }))
+        return entities.length ? { entities } : {}
+      })(),
       ...(thread?.threadLabel ? { threadLabel: thread.threadLabel } : {}),
     }),
   )
@@ -1117,7 +1238,7 @@ const atomEntries = feedArticles.map(a => `  <entry>
     <title>${escXml(a.meta.title || 'Untitled')}</title>
     <link href="https://zuhd.news/#${a.slug}" rel="alternate"/>
     <id>tag:zuhd.news,${a.meta.date?.slice(0, 10) || '2026'}:${a.slug}</id>
-    <updated>${new Date(a.meta.date || a.addedAt).toISOString()}</updated>
+    <updated>${new Date(a.correctedAt || a.meta.date || a.addedAt).toISOString()}</updated>
     <category term="${escXml(a.meta.category || 'politics')}"/>
     <summary>${escXml(a.body.trim())}</summary>${a.sources[0] ? `\n    <source><title>${escXml(a.sources[0].name)}</title></source>` : ''}
   </entry>`).join('\n')
@@ -1144,33 +1265,6 @@ writeFileSync(join(DIST_DIR, 'api', 'meta.json'), JSON.stringify({
   briefing: briefingInfo
 }))
 console.log('  Built: api/meta.json')
-
-// Indicator map: id → {label, kind}. Drives the article entity strip
-// so we only surface chips that actually resolve to a /e/{id} page +
-// /api/entity/{id}.json blob. Computed once here; fed to every
-// buildArticlePage() call.
-const indicatorMap = new Map()
-{
-  const today = new Date().toISOString().slice(0, 10)
-  const candidates = [join(ROOT, 'content', 'trends', `${today}.json`)]
-  // Fall back to the most recent snapshot when today's hasn't been
-  // generated yet — identical to what entity-pages.js does internally.
-  const trendsDir = join(ROOT, 'content', 'trends')
-  if (existsSync(trendsDir)) {
-    const names = readdirSync(trendsDir).filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f)).sort()
-    if (names.length) candidates.push(join(trendsDir, names[names.length - 1]))
-  }
-  for (const p of candidates) {
-    if (!existsSync(p)) continue
-    const trends = JSON.parse(readFileSync(p, 'utf8'))
-    for (const ind of trends.indicators || []) {
-      if (ind?.id && !indicatorMap.has(ind.id)) {
-        indicatorMap.set(ind.id, { label: ind.label, kind: ind.cadence || 'indicator' })
-      }
-    }
-    if (indicatorMap.size) break
-  }
-}
 
 // Homepage and static pages
 const homepage = buildHomepage(sorted, cutoff, homepageTemplate)
@@ -1270,7 +1364,9 @@ if (process.env.SKIP_OG === '1') {
   console.log('  Skipped: api/ig/ (SKIP_OG=1)')
 } else {
   const IG_CACHE_DIR = join(ROOT, '.cache', 'ig')
-  const IG_VERSION = 'v6' // bump when ig-image.js rendering changes
+  // v7: measured type — the fitter replaced the character-count wrap, so every
+  // cached card was composed against the old (truncating) layout.
+  const IG_VERSION = 'v7' // bump when ig-image.js rendering changes
   const IG_RECENT = 20 // dev/manual fallback window
   // The card renders a dek — the story lead (first 1-2 sentences) with the
   // dateline prefix and markdown links stripped, cut to ~200 chars on a
@@ -1286,10 +1382,23 @@ if (process.env.SKIP_OG === '1') {
       .replace(/[*_`]/g, '')
       .replace(/\s+/g, ' ')
       .trim()
+    // Trim to whole sentences, never to an ellipsis. The card's type is fitted
+    // to whatever arrives (see `font-metrics.js`), so the only job left here is
+    // deciding how much of the lead to carry — and a dek that stops mid-phrase
+    // on "…" reads as a truncated card rather than as a chosen excerpt.
+    //
+    // If no sentence boundary falls inside the budget, the first sentence is
+    // carried whole however long it is. That is the one case where the old code
+    // reached for the ellipsis, and the fitter now absorbs the length instead.
     if (t.length > 260) {
       const cut = t.slice(0, 260)
       const end = cut.lastIndexOf('. ')
-      t = end > 130 ? cut.slice(0, end + 1) : cut.replace(/\s+\S*$/, '') + '…'
+      if (end > 130) {
+        t = cut.slice(0, end + 1)
+      } else {
+        const firstStop = t.indexOf('. ')
+        t = firstStop > 0 ? t.slice(0, firstStop + 1) : t
+      }
     }
     return t
   }
@@ -1480,7 +1589,7 @@ console.log(`  Built: c/ (${CATEGORY_ORDER.filter(c => (byCategory[c]||[]).lengt
 // Per-entity pages at /e/{id}.html — stock/commodity/index/chokepoint.
 // Renders a monochrome inline SVG sparkline + the articles that
 // reference the entity via frontmatter entities[].indicatorId.
-const entityResult = buildEntityPages({
+const entityResult = await buildEntityPages({
   sorted,
   distDir: DIST_DIR,
   headCommon,

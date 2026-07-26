@@ -222,7 +222,7 @@ test('a market peek states the level and the move, and nothing else', async () =
     // Peek is capped at 55vh and clips rather than scrolls, so the things that
     // belong to the pinned density must not be rendered into it.
     assert.doesNotMatch(text, /largest exchange by market value/, 'no blurb in a peek')
-    assert.equal(sheet.element.querySelector('.map-spark'), null, 'no sparkline in a peek')
+    assert.equal(sheet.element.querySelector('.chart'), null, 'no chart in a peek')
     assert.doesNotMatch(text, /Related coverage/, 'no related list in a peek')
 
     sheet.destroy()
@@ -243,12 +243,12 @@ test('a pinned market card carries the series, its provenance and its coverage',
     assert.match(text, /Yahoo Finance/, 'provenance')
     assert.match(text, /Related coverage/)
 
-    const spark = sheet.element.querySelector('.map-spark')
-    assert.ok(spark, 'the pinned card draws the series')
+    const chart = sheet.element.querySelector('.chart')
+    assert.ok(chart, 'the pinned card draws the series')
     // A rising index must not be drawn in the chokepoint blockage gold — it is
     // the signed palette or it is borrowing someone else's meaning.
-    assert.equal(spark.classList.contains('is-pos'), true, 'a rise uses the signed palette')
-    assert.equal(spark.classList.contains('is-up'), false, 'not the straits palette')
+    assert.equal(chart.classList.contains('is-pos'), true, 'a rise uses the signed palette')
+    assert.equal(chart.classList.contains('is-up'), false, 'not the straits palette')
 
     sheet.destroy()
   } finally {
@@ -259,7 +259,7 @@ test('a pinned market card carries the series, its provenance and its coverage',
 test('a market with too short a series still opens, without a chart', async () => {
   // Cairo is the live case: Yahoo returns a level and no usable history. The
   // card must degrade to the number rather than render an empty figure — and
-  // `createSparkline` returning null is what makes that automatic.
+  // `createChart` returning null is what makes that automatic.
   const env = setupDom()
   try {
     const { createSheet } = await import(bundlePath)
@@ -268,8 +268,79 @@ test('a market with too short a series still opens, without a chart', async () =
 
     assert.equal(sheet.isOpen(), true)
     assert.match(sheet.element.textContent, /10,720\.28 SAR/)
-    assert.equal(sheet.element.querySelector('.map-spark'), null, 'one point draws no chart')
+    assert.equal(sheet.element.querySelector('.chart'), null, 'one point draws no chart')
 
+    sheet.destroy()
+  } finally {
+    env.restore()
+  }
+})
+
+// A strait's chart is the one that reads a *published* baseline rather than
+// its own opening value, and the one drawn in the chokepoint vocabulary. Both
+// were previously untested, and both are things the range control could break
+// without anything throwing: a rule recomputed per window stops being the
+// 90-day average, and a rising strait drawn in the signed palette borrows the
+// meaning of a market.
+const CHOKEPOINT = {
+  id: 'hormuz',
+  name: 'Strait of Hormuz',
+  lat: 26.5,
+  lng: 56.2,
+  primaryField: 'n_total',
+  last7Avg: { n_total: 12.1 },
+  baseline90Avg: { n_total: 11.9 },
+  delta7vs90: { n_total: -0.42 },
+  series: {
+    periods: Array.from({ length: 40 }, (_, i) => `Jun ${i + 1}`),
+    values: [],
+    total: Array.from({ length: 40 }, (_, i) => 12 + Math.sin(i / 3) * 2),
+  },
+  asOf: '2026-07-24',
+  blurb: 'A fifth of the world’s oil passes through it.',
+  relatedArticles: [{ slug: 'a-story', title: 'A Story' }],
+}
+
+test('a pinned chokepoint draws its traffic against the published baseline', async () => {
+  const env = setupDom()
+  try {
+    const { createSheet } = await import(bundlePath)
+    const sheet = createSheet()
+    sheet.showChokepoint(CHOKEPOINT, true)
+
+    const chart = sheet.element.querySelector('.chart')
+    assert.ok(chart, 'the pinned card draws the series')
+    // Falling traffic is the chokepoint's gold, not the market's red. The two
+    // palettes mean different things and share a card surface.
+    assert.equal(chart.classList.contains('is-down'), true, 'the straits palette')
+    assert.equal(chart.classList.contains('is-neg'), false, 'not the signed one')
+
+    // The rule is the 90-day average — an external, published figure. If it
+    // were recomputed from the drawn window it would silently become "the
+    // window's open" while the caption went on naming the baseline.
+    const ref = sheet.element.querySelector('.chart-ref')
+    assert.ok(ref, 'the baseline is drawn')
+    assert.match(
+      sheet.element.querySelector('.chart-readout').textContent,
+      /vs the 90-day average/,
+      'and the readout says what a value is being compared against',
+    )
+    assert.match(sheet.element.textContent, /vessels/, 'the unit reaches the readout')
+
+    sheet.destroy()
+  } finally {
+    env.restore()
+  }
+})
+
+test('a chokepoint peek is the number, not the chart', async () => {
+  const env = setupDom()
+  try {
+    const { createSheet } = await import(bundlePath)
+    const sheet = createSheet()
+    sheet.showChokepoint(CHOKEPOINT, false)
+    assert.equal(sheet.element.querySelector('.chart'), null)
+    assert.match(sheet.element.textContent, /12\.1 vessels\/day/)
     sheet.destroy()
   } finally {
     env.restore()

@@ -55,20 +55,28 @@ const escHtml = (s) =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
 
-/** One row in the metric list: label · value · rank strip · source. */
-const renderMetricRow = (metric, meta, value, rank, total) => {
-  const pct = rank && total ? (1 - (rank - 1) / Math.max(1, total - 1)) : null
-  const stripFill = pct != null ? Math.max(0, Math.min(1, pct)) : 0
-  const rankText = rank && total ? `${rank} of ${total}` : '—'
+/**
+ * One row in the metric list: label · value · rank strip · source.
+ *
+ * `rankStrip` is passed in rather than imported, because this module is loaded
+ * before the esbuild wrapper has had a chance to transpile anything and the
+ * page builder is already `async` for exactly that reason.
+ *
+ * The strip is `aria-hidden`: the rank it encodes is printed in full in the
+ * next cell, so announcing it twice makes a 26-row table read as 52 facts. It
+ * used to carry an `aria-label` of its own, which is what produced that.
+ */
+const renderMetricRow = (rankStrip, meta, value, rank, total) => {
+  const strip = rankStrip(rank, total)
   const source = meta.source ? escHtml(meta.source) : ''
   return `
     <li class="metric-row">
       <div class="metric-label">${escHtml(meta.label)}</div>
       <div class="metric-value t-tabular">${escHtml(value ?? '—')}</div>
-      <div class="metric-strip" aria-label="${rankText}">
-        <span class="metric-strip-fill" style="--fill:${(stripFill * 100).toFixed(1)}%"></span>
+      <div class="metric-strip" aria-hidden="true">
+        <span class="metric-strip-fill" style="--fill:${strip.css}"></span>
       </div>
-      <div class="metric-rank t-tabular">${escHtml(rankText)}</div>
+      <div class="metric-rank t-tabular">${escHtml(strip.text)}</div>
       ${source ? `<div class="metric-source t-source-host">${source}</div>` : ''}
     </li>`
 }
@@ -111,6 +119,7 @@ export const buildCountryPages = async ({
     { METRICS, getMetricValue, getRanking, parseStat },
     { codeFromTopojsonName },
     { displayCountryName },
+    { rankStrip },
     { geoContains, geoCentroid, geoArea },
     { feature },
   ] = await Promise.all([
@@ -119,6 +128,7 @@ export const buildCountryPages = async ({
     loadShared('countries/country-ranking.ts'),
     loadShared('countries/iso.ts'),
     loadShared('place-names.ts'),
+    loadShared('chart/rank-strip.ts'),
     import('d3-geo'),
     import('topojson-client'),
   ])
@@ -213,7 +223,7 @@ export const buildCountryPages = async ({
     }).filter(Boolean)
 
     const metricRows = metricResults
-      .map((r) => renderMetricRow(r.key, r.meta, r.value, r.rank, r.total))
+      .map((r) => renderMetricRow(rankStrip, r.meta, r.value, r.rank, r.total))
       .join('\n')
 
     const recent = articlesByCountry[name] || []

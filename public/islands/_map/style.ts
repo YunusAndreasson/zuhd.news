@@ -70,6 +70,23 @@ export const MAP_COLOURS = {
    *  the only thing about a label that does not move. */
   labelDim: '#727b88',
   labelHalo: '#05070a',
+  /**
+   * The prayer lines, and their labels.
+   *
+   * Near-neutral on purpose. Every hue on this map means something — a
+   * category, a direction, a severity — and these lines mean none of those:
+   * they carry no value, so they get no value channel. Shape does the work
+   * instead, the way `glyphs.ts` argues it should. A dash is the one silhouette
+   * nothing else here uses.
+   *
+   * A warm tone was the first instinct and it was wrong: at 38° of hue it lands
+   * six points from `OVERLAY_COLOUR.straits` (#c9a84c), which is the exact
+   * collision the mark alphabet was built to stop making. Lighter than `border`
+   * and cooler than nothing, so a hairline at 0.2 sits at about 1.5:1 over the
+   * land — present, and quieter than a frontier — while the label at full
+   * strength clears AA against every ground tone the ramp can paint.
+   */
+  prayer: '#c0c4ca',
 } as const
 
 /** Category hues, low-saturation so four of them can coexist without shouting. */
@@ -186,6 +203,39 @@ export const OVERLAY_COLOUR = {
  * asked whether the steps could be seen.
  */
 export const LAND_RAMP = ['#192029', '#242b37', '#303843', '#3c4450', '#48505c'] as const
+
+/**
+ * The tone the land layer paints at a given ramp position, in CSS.
+ *
+ * The country card shows this beside the figure, which is the one gesture on
+ * this map that can teach the ramp: a reader who clicks a country because of
+ * the colour it is gets the colour it is, the number behind it, and the rank,
+ * in one row. A legend explains the scale in the abstract; this attaches it to
+ * a country they were already looking at.
+ *
+ * Reimplements the `['interpolate', ['linear'], …]` in `addDataLayers` rather
+ * than asking MapLibre, because the paint expression is evaluated inside the
+ * renderer against feature state and there is no public way to ask it what
+ * colour a feature came out. Straight component-wise interpolation over evenly
+ * spaced stops, which is what MapLibre's own `interpolate` does for colours —
+ * it is not `interpolate-lab` or `interpolate-hcl`, which have to be asked for
+ * by name. `map-geo.test.js` pins the two ends against `LAND_RAMP` so the two
+ * implementations cannot drift apart silently.
+ */
+export const rampColour = (p: number): string => {
+  const t = Math.max(0, Math.min(1, p)) * (LAND_RAMP.length - 1)
+  const i = Math.min(LAND_RAMP.length - 2, Math.floor(t))
+  const f = t - i
+  const parse = (hex: string) => [
+    Number.parseInt(hex.slice(1, 3), 16),
+    Number.parseInt(hex.slice(3, 5), 16),
+    Number.parseInt(hex.slice(5, 7), 16),
+  ]
+  const a = parse(LAND_RAMP[i])
+  const b = parse(LAND_RAMP[i + 1])
+  const mix = a.map((v, k) => Math.round(v + (b[k] - v) * f))
+  return `#${mix.map((v) => v.toString(16).padStart(2, '0')).join('')}`
+}
 
 /**
  * A country the current metric has no figure for.
