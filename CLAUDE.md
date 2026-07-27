@@ -502,6 +502,63 @@ so the invariants are pinned in `scripts/lib/share-surface.test.js`.
 - **App Links (`al:*`) are deliberately absent.** They would let Facebook's and Instagram's in-app browsers hand a zuhd.news link to the native app — but the app is a single screen (`mobile/app/index.tsx`) with no per-article route, so the handoff would drop the reader on the app's home screen and lose the story they tapped. Worth adding the day the app has a `/a/{slug}` route.
 - `manifest.json` opens on the map, so its `theme_color`/`background_color` are `#080a0d` rather than white; `related_applications` names both stores with `prefer_related_applications: false`, which keeps desktop PWA install available while still letting Chrome surface the native app.
 
+## Type
+
+One scale, in `:root`: **11 / 12 / 14 / 16 / 18 / 20**, then 25 / 31 / 40 / 52 / 68
+for editorial mass. `--size-base` (20px) is body copy and has never moved; every
+rung below it went up one step on 2026-07-27, and `--size-md` (18px) is new.
+
+- **The small end was a floor, not a scale.** The three rungs the chrome is built
+  from were 12 / 12 / 11px on a bottom rung of 10, and between `--size-sm` (14)
+  and `--size-base` (20) sat a 6px gap with nothing in it. So everything that was
+  not body copy fell to 11–14px and stayed there, because there was no rung to
+  promote it *to*: the map's story headlines, the whole HUD, the money ribbon,
+  the footer, and on the article page the kicker, the share row, the pagination
+  and the isnad — a sentence the site publishes about itself, set two rungs under
+  the prose it certifies. Nothing was renamed, so the ~200 call sites rose
+  together and the relationships the three-rung rule encodes are untouched: a
+  legend is still a step under the control it explains.
+- **The literals were the real floor.** A scale only binds what uses it, and the
+  smallest type on the site was off it entirely — `.map-feed-title` at `0.9rem`
+  (the rail's *headlines*, smaller than the article page's kicker),
+  `.map-popup-lead` at `0.85rem`, `.map-country-metric` at `0.82rem`. Those are
+  the map's reading surfaces. They are all on the scale now, and
+  `font-size: 0.8x rem` should not come back; `--size-md` exists because
+  `.map-popup-title` wanted 18 and the ramp had no such step.
+- **Quiet is an ink step, never opacity.** The rule the filter chips and the
+  scrubber head already followed, with the footer as the last holdout:
+  `.footer-links` was `--text-secondary` at `opacity: 0.5` (**2.73:1**) and
+  `.footer-social a` at `0.62 × 0.85` (**2.21:1**) — both under AA, on the only
+  links that reach /about, /sources and /privacy. `colour-system.test.js` cannot
+  see this class of bug, because opacity is not a colour literal. That is what
+  makes it worth restating rather than assuming.
+- **Bigger type is paid for, not absorbed.** Leading and padding are the budget:
+  `.map-feed-item` gave back 0.2rem of vertical padding and tightened both
+  leadings, so the rail row went from ~60px to ~58px while its headline grew
+  14.4 → 16px and its dateline 12 → 14px. More readable *and* denser.
+- **The HUD folds when width stops paying for it** (`@media (max-width: 1250px)`).
+  Between the phone layout and a wide desktop, the strip is still the desktop's
+  but no longer has the room that made it affordable: at 1200px it got 719px of
+  the window and wrapped onto five rows — 194px of chrome lying over the map.
+  Two things go, both already said elsewhere on the same screen. The **clock**,
+  because the scrubber readout carries the same instant in the same frame with
+  more of it — and because it is *painted over* the strip rather than laid out in
+  it, so the HUD reserves its width as `padding-right` on every row to clear
+  something that only sits on the first. And the **key's second clearance**, a
+  `padding-right: 5.5rem` holding the door for that same clock. Then
+  `.map-filters` becomes `display: contents` so its chips join the HUD's own wrap
+  run instead of breaking as a unit — grouping survives because `.map-filter-sep`
+  is a real element and simply becomes an item too. **194px → 126px, with every
+  control still on the strip.** `.map-key` is deliberately *not* dissolved: it
+  reads "what the beacons mean" and its items decode channels rather than
+  offering anything to press, so flattened into the run they came out
+  indistinguishable from two more toggles. The phone block must restate
+  `display: flex` on `.map-filters` — every phone width also matches 1250px, and
+  without it the panel opens onto chips that have escaped it.
+- Sizes are not pinned by a test. `colour-system.test.js` covers contrast, and
+  the contrast of every rung was checked in a browser at the sizes above; the
+  quietest ink now measures 4.91:1 (the isnad) against a 4.5:1 floor.
+
 ## Colour
 
 Two palettes, declared once each. **No colour literal may appear outside those two blocks** — `scripts/lib/colour-system.test.js` fails the build if one does, along with every other invariant below.

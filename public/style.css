@@ -53,16 +53,33 @@
   /* Extended scale: major-third up to h1, perfect-fourth above for
      archetype pages (article/country/entity) that need editorial mass.
 
-     The two steps below `--size-sm` exist for the chrome, which had no scale at
+     The steps below `--size-base` exist for the chrome, which had no scale at
      all: ten distinct control types in the map HUD were all `--size-xs`, so a
      legend and the control it explains were set at the same rank and nothing in
-     the strip could be read as subordinate to anything else. The rule now is
-     three rungs — a control you press is 12px, a readout is 12px tabular, and a
-     caption or a legend that explains one is 11px. */
-  --size-3xs: 0.625rem;    /* 10px — the floor: sparkline axis labels */
-  --size-2xs: 0.6875rem;   /* 11px — captions and legends */
-  --size-xs: 0.75rem;      /* 12px */
-  --size-sm: 0.875rem;     /* 14px */
+     the strip could be read as subordinate to anything else. The rule is three
+     rungs — a control you press is `--size-xs`, a readout is `--size-xs`
+     tabular, and a caption or a legend that explains one is `--size-2xs`.
+
+     ── The small end was a floor, not a scale (2026-07-27) ───────────────────
+     Those three rungs were 12 / 12 / 11px, on a bottom rung of 10, and between
+     `--size-sm` (14) and `--size-base` (20) sat a 6px gap with nothing in it.
+     So *everything* that was not body copy fell to 11–14px and stayed there:
+     the map's story headlines, the whole HUD, the money ribbon, the footer, and
+     — on the article page — the kicker, the share row, the pagination and the
+     isnad, which is a sentence this site publishes about itself set two rungs
+     below the prose it certifies. There was no rung to promote any of it *to*.
+
+     Every rung below `--size-base` therefore moves up one step and the missing
+     middle is filled: 11 / 12 / 14 / 16 / 18 / 20. Nothing is renamed, so the
+     ~200 existing call sites all rise together and the *relationships* the
+     three-rung rule encodes are untouched — a legend is still a step under the
+     control it explains. 12px is the floor now, not 10, because the floor is
+     where a reader without perfect vision meets this site first. */
+  --size-3xs: 0.6875rem;   /* 11px — the floor: sparkline axis labels */
+  --size-2xs: 0.75rem;     /* 12px — captions and legends */
+  --size-xs: 0.875rem;     /* 14px — a control you press, a readout */
+  --size-sm: 1rem;         /* 16px */
+  --size-md: 1.125rem;     /* 18px — the rung that was missing between sm and base */
   --size-base: 1.25rem;    /* 20px */
   --size-h3: 1.563rem;     /* 25px */
   --size-h2: 1.953rem;     /* 31.25px */
@@ -2211,7 +2228,7 @@ body.archetype-page-body .article-page-header {
 .doc-sheet-permalink {
   display: inline-block;
   margin-top: var(--space-sm);
-  font-size: 0.85rem;
+  font-size: var(--size-xs);
   color: var(--map-ink-muted);
   text-decoration-color: var(--map-underline);
   text-underline-offset: 0.2em;
@@ -2705,10 +2722,16 @@ body.map-page .app-banner { display: none; }
   mask-image: linear-gradient(to bottom, #000 calc(100% - 1.75rem), transparent);
 }
 
+/* The type grew; the row did not. Vertical padding pays for it — 0.6rem of
+   dead space above and below a headline is worth less than the headline being
+   readable, and trading it back keeps the rail's density almost exactly where
+   it was (~59px a row before, ~61px after) while the title goes 14.4 → 16px
+   and the meta 12 → 14px. Space management here is a transfer, not a sacrifice:
+   the rail still shows the same handful of stories above the fold. */
 .map-feed-item {
   display: flex;
   gap: 0.55rem;
-  padding: 0.6rem clamp(0.9rem, 1.4vw, 1.15rem);
+  padding: 0.5rem clamp(0.9rem, 1.4vw, 1.15rem);
   border-bottom: 1px solid var(--map-line-soft);
   cursor: pointer;
   transition: background var(--dur-fast);
@@ -2750,10 +2773,14 @@ body.map-page .app-banner { display: none; }
 
 .map-feed-body { min-width: 0; }
 
+/* These are headlines — the list of what happened, and the only prose on the
+   map surface. `0.9rem` was a literal outside the scale entirely, which is how
+   the rail's most important type ended up smaller than the article page's
+   *kicker*. `--size-sm` puts it back on the ramp at 16px. */
 .map-feed-title {
   display: block;
-  font-size: 0.9rem;
-  line-height: 1.32;
+  font-size: var(--size-sm);
+  line-height: 1.3;
   color: var(--map-ink-strong);
   text-decoration: none;
   text-wrap: pretty;
@@ -2761,9 +2788,15 @@ body.map-page .app-banner { display: none; }
   &:hover { text-decoration: underline; text-underline-offset: 0.2em; }
 }
 
+/* Stays one rung under the headline, and that rung is now 14px rather than 12.
+   Place and elapsed time are what a reader scans the rail *by* — the line that
+   answers "where, and is this still current" cannot be the smallest type on the
+   surface. Tightening the leading and the gap pays for both this and the
+   headline: the row measures ~58px against the old ~60. */
 .map-feed-meta {
-  margin: 0.15rem 0 0;
+  margin: 0.1rem 0 0;
   font-size: var(--size-xs);
+  line-height: 1.35;
   color: var(--map-ink-muted);
   font-variant-numeric: lining-nums tabular-nums;
 }
@@ -2832,6 +2865,14 @@ body.map-page > footer {
   body.map-page > footer a { padding-block: 0.15rem; }
 }
 
+/* Quiet is an ink step, never opacity — the same rule the filter chips and the
+   scrubber head already follow, and the last place on the map still breaking
+   it. These four were `--text-secondary` at `opacity: 0.5`, which composites to
+   **2.73:1** on the rail's foot: under AA, on the only links that reach the
+   about page, the sources policy and the privacy note. `colour-system.test.js`
+   could not see it, because opacity is not a colour literal.
+
+   Full strength on a tested ink now, and hover promotes rather than restores. */
 body.map-page > footer .footer-links {
   display: flex;
   gap: var(--space-sm);
@@ -2841,9 +2882,9 @@ body.map-page > footer .footer-links {
      wide page. In the rail they are the first row of a column, and an auto
      margin there just indents them by whatever space is left. */
   margin-left: 0;
-  opacity: 0.5;
 
-  &:hover { opacity: 1; }
+  a { color: var(--map-ink-muted); }
+  a:hover { color: var(--map-ink); }
 }
 
 /* --- Follow / download ---
@@ -2859,14 +2900,17 @@ body.map-page > footer .footer-links {
   font-size: var(--size-xs);
   line-height: 1.3;
 
+  /* `opacity: 0.62` here (times 0.85 on the map's own wrapper below) put these
+     at **2.21:1** — the quietest thing on the site and the one that fails
+     hardest. A footnote is allowed to recede; it is not allowed to be
+     unreadable, and the ink scale already has a step that says "quiet" without
+     lying about the contrast. */
   a {
     color: var(--text-dim);
     text-decoration: none;
-    opacity: 0.62;
-    transition: opacity var(--dur-fast) ease, color var(--dur-fast) ease;
+    transition: color var(--dur-fast) ease;
 
     &:hover {
-      opacity: 1;
       color: var(--text);
       text-decoration: underline;
       text-underline-offset: 0.25em;
@@ -2887,10 +2931,10 @@ body.map-page > footer .footer-links {
   }
 }
 
-body.map-page > footer .footer-social {
-  opacity: 0.85;
+body.map-page > footer .footer-social a {
+  color: var(--map-ink-dim);
 
-  &:hover { opacity: 1; }
+  &:hover { color: var(--map-ink); }
 }
 
 .map-hud {
@@ -3736,7 +3780,7 @@ body.map-page > footer .footer-social {
 
   p {
     margin: 0 0 0.6rem;
-    font-size: 0.9rem;
+    font-size: var(--size-sm);
     line-height: 1.55;
     color: var(--map-ink-body);
   }
@@ -3788,9 +3832,13 @@ body.map-page > footer .footer-social {
   flex: 0 0 auto;
 }
 
+/* The card's headline, and the map's one moment of reading. It was `1.05rem` —
+   a literal off the scale entirely, and smaller than the article page's own
+   kicker once the chrome moved up a rung. `--size-md` is the step that was
+   missing between `--size-sm` and `--size-base`, and this is what wanted it. */
 .map-popup-title {
   margin: 0 0 0.35rem;
-  font-size: 1.05rem;
+  font-size: var(--size-md);
   line-height: 1.25;
   font-weight: 600;
   color: var(--map-ink);
@@ -3799,7 +3847,7 @@ body.map-page > footer .footer-social {
 
 .map-popup-lead {
   margin: 0 0 0.4rem;
-  font-size: 0.85rem;
+  font-size: var(--size-sm);
   line-height: 1.45;
   color: var(--map-ink-soft);
 }
@@ -3890,7 +3938,7 @@ a.map-popup-source-name {
 .map-popup-source-tone.is-neg { color: var(--map-neg); }
 
 .map-popup-link {
-  font-size: 0.85rem;
+  font-size: var(--size-xs);
   color: var(--map-ink);
   text-decoration-color: var(--map-underline);
   text-underline-offset: 0.2em;
@@ -4037,12 +4085,12 @@ a.map-popup-source-name {
 
 .map-country-standing-label {
   color: var(--map-ink-muted);
-  font-size: 0.82rem;
+  font-size: var(--size-xs);
 }
 
 .map-country-standing-value {
   color: var(--map-ink);
-  font-size: 0.95rem;
+  font-size: var(--size-sm);
   font-variant-numeric: lining-nums tabular-nums;
 }
 
@@ -4076,7 +4124,7 @@ a.map-popup-source-name {
   grid-template-columns: minmax(0, 1fr) auto minmax(1.5rem, 2.75rem) auto;
   align-items: baseline;
   gap: 0.5rem;
-  font-size: 0.82rem;
+  font-size: var(--size-xs);
 }
 
 /* The percentile strip. Same 2px track and accent fill as the country page's
@@ -4143,7 +4191,7 @@ a.map-popup-source-name {
   li { display: grid; gap: 0.05rem; }
 
   a {
-    font-size: 0.85rem;
+    font-size: var(--size-xs);
     line-height: 1.35;
     color: var(--map-ink-strong);
     text-decoration: none;
@@ -4767,6 +4815,82 @@ body.doc-page .chart {
   margin: 0 auto;
 }
 
+/* --- The chrome strip, once the width stops paying for it ---
+   Between the phone layout and a wide desktop there is a band — laptops at
+   1152, 1280, 1366 — where the strip is still the desktop's (a rail beside the
+   map, chips across the top) but no longer has the width that made it
+   affordable. At 1200px the HUD gets 719px of a 1200px window, because the rail
+   takes 336 and the clock reserves another 116, and into that it wraps the
+   ranges, the chips, the beacon key and the ground legend onto *five* rows —
+   194px of controls lying over the map. Raising the chrome from 12px to 14px
+   made that worse, which is the trade this breakpoint pays for.
+
+   Nothing is hidden that the reader cannot get to. Two things go, and both are
+   already said somewhere else on the same screen:
+
+   ── The clock, because the scrubber already is one ─────────────────────────
+   `.map-status` prints "22:33 Makkah" over the HUD's right edge; the scrubber's
+   readout prints "live · Mon 27 Jul 22:33 Makkah · 13 Safar 1448" across the
+   foot. Same instant, same frame, more of it. The phone block drops the clock
+   for exactly this reason and the reasoning does not start being true at 900px.
+   What it buys is out of proportion to what it costs: the clock is painted over
+   the strip rather than laid out in it, so the HUD reserves its measured width
+   as `padding-right` on *every* row to stop the chips running under it — 116px
+   of every line, to clear something that only ever sits on the first.
+
+   ── The key's second clearance ─────────────────────────────────────────────
+   `.map-key` carries `padding-right: 5.5rem` to clear that same clock, on top
+   of the HUD's own reservation. Two elements holding the door for one. With the
+   clock gone neither is needed, and the key stops forcing a break to be pushed
+   right against nothing.
+
+   ── The groups stop being boxes ────────────────────────────────────────────
+   Reclaiming the clock's 116px was not enough on its own, because the strip was
+   not short of width so much as spending it badly. `.map-ranges`, `.map-filters`
+   and `.map-key` are three flex *items*, so each breaks to a fresh line as a
+   unit: at 1200px that left the range chips alone on row one with 672px of
+   slack beside them, while the chip group — 814px wide, and unable to fit in
+   what was left — wrapped onto two lines of its own underneath, and the key
+   took a fourth. Four rows to hold 1119px of controls across an 814px strip
+   that should need two.
+
+   `display: contents` dissolves `.map-filters` so its chips become direct items
+   of the HUD and wrap as one continuous run, which is the same trick
+   `.map-hud-more` uses to serve one DOM to two layouts. The row gap and the chip
+   gap then have to come from the HUD itself, since the box that used to supply
+   them no longer generates a frame. Grouping survives inside the run because
+   `.map-filter-sep` is a real element and simply becomes an item too — the
+   categories still end at a hairline, and genocide still sits past its own.
+
+   `.map-key` is deliberately NOT dissolved. It reads "what the beacons mean",
+   and its three items decode channels a beacon spends ink on rather than
+   offering anything to press; flattened into the same run they came out
+   adjacent to `markets` and `conflict` and indistinguishable from two more
+   toggles. It keeps its box and loses only the `margin-left: auto` that was
+   forcing the break, so it settles at the end of the chip run as one unit,
+   behind a gutter wider than the gap between chips.
+
+   `.map-ground` keeps its own row — `flex-basis: 100%` still holds — because it
+   is a sentence, not a chip.
+
+   The phone block below must put `display: flex` back: it restyles
+   `.map-filters` for the panel and would otherwise inherit a dissolved box. */
+@media (max-width: 1250px) {
+  .map-status { display: none; }
+
+  .map-hud {
+    padding-right: var(--space-md);
+    gap: 0.4rem 0.8rem;
+  }
+
+  .map-filters { display: contents; }
+
+  .map-key {
+    margin-left: 1.4rem;
+    padding-right: 0;
+  }
+}
+
 /* --- The map on a phone ---
 
    The desktop layout is a rail beside a map with a strip of chrome across the
@@ -4890,8 +5014,14 @@ body.doc-page .chart {
   }
 
   /* Inside the panel the chips have a column to themselves, so they can be
-     spaced for thumbs rather than crammed onto a strip. */
+     spaced for thumbs rather than crammed onto a strip.
+
+     `display: flex` is restated, not inherited: the 1250px block above
+     dissolves this box with `display: contents` so its chips can pack into the
+     HUD's own wrap run, and every phone width also matches that query. Without
+     this line the panel would open onto chips that had escaped it. */
   .map-filters {
+    display: flex;
     gap: 0.35rem 1.1rem;
     width: 100%;
   }
@@ -5036,8 +5166,11 @@ body.doc-page .chart {
 
   .map-feed.is-open .map-feed-chevron { transform: rotate(180deg); }
 
+  /* The drawer is a reading surface a thumb's width from the eye, so the
+     headline has no reason to be *smaller* here than in the desktop rail —
+     which is what `0.95rem` had become once the rail moved onto the scale.
+     The row keeps its roomier padding; only the literal goes. */
   .map-feed-item { padding: 0.75rem var(--map-gutter); }
-  .map-feed-title { font-size: 0.95rem; }
 
   /* Only while the drawer is open. Collapsed, these were the only thing on the
      phone layout still claiming a row of the map — but hidden outright, as
