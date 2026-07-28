@@ -1,112 +1,5 @@
 [
   {
-    "timestamp": "2026-07-06T04:12:07.411Z",
-    "candidateCount": 12,
-    "candidates": [
-      {
-        "slug": "2026-07-06-mumbai-monsoon-landslides-expressway-closed",
-        "title": "Monsoon Shuts Mumbai Expressway",
-        "category": "economy",
-        "eventCoverage": 39,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-06-russian-missiles-kyiv-podilskyi-civilians-killed",
-        "title": "Missiles Kill Three In Kyiv",
-        "category": "politics",
-        "eventCoverage": 37,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-06-australia-fiji-defence-alliance-china-pacific",
-        "title": "Fiji Joins Australia Alliance",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-06-india-eci-sir-draft-rolls-voters-deleted",
-        "title": "India Purges Millions Of Voters",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-06-ram-mandir-donation-irregularities-vhp-accountability",
-        "title": "AAP Accuses VHP Chief",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-06-nigeria-presidency-ghost-agency-institutional-credibility",
-        "title": "Ghost Agency Roils Nigeria",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-06-shalimar-express-derailment-pakistan-railways",
-        "title": "Train Derails Near Khanewal",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-06-eocene-lizard-balkanatolia-overwater-dispersal",
-        "title": "Fossil Reveals Ancient Sea Crossing",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-06-pneumococcal-vaccine-asplenia-immunogenicity-review",
-        "title": "Vaccines Fall Short For Asplenia",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-06-flamingos-rakh-khanpur-sanctuary-indus-flyway",
-        "title": "Flamingos Return After 40 Years",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-06-queensland-beach-rocket-debris-space-junk",
-        "title": "Space Debris Washes Ashore",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-06-russia-s-west-battlegroup-disrupts-ukrainian-troop-rotation",
-        "title": "Russia Says Drones Halt Rotation",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-07-06-mumbai-monsoon-landslides-expressway-closed",
-      "title": "Monsoon Shuts Mumbai Expressway",
-      "category": "economy",
-      "body": "Landslide shut a tunnel opened two months",
-      "eventCoverage": 39,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Mumbai shuts expressway, suspends trains after landslides hit Bhor Ghat tracks",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 25
-    }
-  },
-  {
     "timestamp": "2026-07-06T08:17:50.189Z",
     "candidateCount": 12,
     "candidates": [
@@ -10224,6 +10117,106 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "DR Congo Ebola outbreak kills 1,405 of 3,200 cases",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 17
+    }
+  },
+  {
+    "timestamp": "2026-07-28T04:20:30.749Z",
+    "candidateCount": 11,
+    "candidates": [
+      {
+        "slug": "2026-07-28-israel-lebanon-rome-talks-technical-track-blue-line",
+        "title": "Israel-Lebanon Talks Go Technical",
+        "category": "politics",
+        "eventCoverage": 43,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-28-brazil-wto-consultations-us-tariffs-appellate-body-void",
+        "title": "Brazil Sues US Over Tariffs",
+        "category": "politics",
+        "eventCoverage": 39,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-28-faa-737-max-seat-airworthiness-directive-delegated-certification",
+        "title": "US Flags Boeing Seat Defect",
+        "category": "politics",
+        "eventCoverage": 19,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-28-west-bank-settler-outposts-retroactive-legalisation-land-seizure",
+        "title": "Settlers Seize West Bank Land",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-28-kospi-circuit-breaker-ai-selloff-memory-concentration",
+        "title": "Kospi Halts on AI Selloff",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-28-johnson-johnson-talc-settlement-no-finding-export-tail",
+        "title": "J&J Settles Talc Cases",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-28-kenya-pesticide-case-banned-in-eu-exported-regulator-liability",
+        "title": "Kenya Sues Over Banned Pesticides",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-28-lake-chad-wetland-aerial-survey-flyway-conflict-ecology",
+        "title": "War Zone Hides Bird Haven",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-28-wikimedia-declines-voluntary-union-recognition-commons-stewardship",
+        "title": "Wikimedia Rejects Union Recognition",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-28-data-centre-hearing-arrest-withheld-report-siting-process",
+        "title": "Clapping Gets Resident Arrested",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-28-anthropic-open-weights-position-irrevocability-sovereignty",
+        "title": "Anthropic States Open-Weights Case",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-07-28-faa-737-max-seat-airworthiness-directive-delegated-certification",
+      "title": "US Flags Boeing Seat Defect",
+      "category": "politics",
+      "body": "453 Boeing jets may have seats installed",
+      "eventCoverage": 19,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "FAA warns 453 Boeing 737 Max jets have improperly installed seats",
     "response": {
       "pushed": 1,
       "skipped": 0,
