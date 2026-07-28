@@ -2,13 +2,248 @@
   "version": 1,
   "stories": [
     {
+      "id": "zelenskyy-washington-air-defence-interceptors-ask",
+      "label": "Zelenskyy arrives in US to meet with Trump",
+      "firstSeen": "2026-07-28T08:14:16.116Z",
+      "lastCovered": "2026-07-28T08:14:16.116Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-zelenskyy-washington-air-defence-interceptors-ask"
+      ],
+      "eventUri": "ukr-358879",
+      "summary": "Zelenskyy lands in Washington with anti-ballistic defence named as his 'number one priority' — the ask is interceptors, not territory, which tells you Kyiv now expects the war to be decided by what falls on its cities rather than by the line of contact. Lead with the specific ask and what the US has and has not agreed to supply. Note the sentiment spread across the five sources (0.13 at Ukrainska Pravda, 0.47 at Anadolu and ANI): the same arrival is being written as supplication in Kyiv and as partnership elsewhere. Do not let the summit framing carry the story — state what stalled in the peace track, and what Russia struck while the plane was in the air.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/President_of_Ukraine",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Washington,_D.C.",
+        "http://en.wikipedia.org/wiki/United_States_Senate",
+        "http://en.wikipedia.org/wiki/Russia"
+      ]
+    },
+    {
+      "id": "moscow-belgorod-drone-strikes-civilian-casualties-verification",
+      "label": "Drones strike homes and recycling plant near Moscow",
+      "firstSeen": "2026-07-28T08:14:16.116Z",
+      "lastCovered": "2026-07-28T08:14:16.116Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-moscow-belgorod-drone-strikes-civilian-casualties-verification"
+      ],
+      "eventUri": "rus-2099567",
+      "summary": "Ukrainian long-range drones hit residential blocks in Chekhov and Moscow Oblast, and a bus in Shebekino, Belgorod, injuring 19 civilians the same morning. Russian officials claim roughly 60 civilians killed and 500 wounded in a week. Our dignity principle requires these deaths be counted — and our truth principle requires stating plainly what can and cannot be verified: two of the three sources here are Russian state outlets (RT, TASS) and no independent monitor has confirmed the weekly figure. Lead with the named places and the confirmed bus casualties, attribute the aggregate claim to the officials making it, and give the reader the actual asymmetry — Russian strikes on Ukrainian cities over the same week — rather than balancing the two into equivalence. The mechanism worth explaining: deep-strike drones are now cheap enough that the interior of a nuclear power is inside the war.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Moscow",
+        "http://en.wikipedia.org/wiki/Sergey_Sobyanin",
+        "http://en.wikipedia.org/wiki/Anti-aircraft_warfare",
+        "http://en.wikipedia.org/wiki/Moscow_Oblast",
+        "http://en.wikipedia.org/wiki/Chekhov,_Moscow_Oblast",
+        "http://en.wikipedia.org/wiki/Andrey_Vorobyov",
+        "http://en.wikipedia.org/wiki/Belgorod_Oblast"
+      ]
+    },
+    {
+      "id": "westminster-foreign-funded-mp-trips-register-qatar-israel",
+      "label": "Revealed: Qatar and Israel top Westminster lobbying league table",
+      "firstSeen": "2026-07-28T08:14:16.116Z",
+      "lastCovered": "2026-07-28T08:14:16.116Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-westminster-foreign-funded-mp-trips-register-qatar-israel"
+      ],
+      "eventUri": null,
+      "summary": "165 foreign-funded overseas trips for MPs since the general election, with Qatar and Israel at the head of the table. The number is drawn from the parliamentary register of members' interests — public, declared data, which is what makes this checkable rather than an allegation. The mechanism to explain: 'friends of' groups registered in the UK are a legal channel for a foreign state to buy an MP's time and itinerary without ever appearing as a lobbyist, and the register records the trip but not what was asked for. Name the top-funding states, the party split, and the committee memberships of the MPs who travelled. Because this outlet is advocacy-forward, hold the article to the register entries themselves and attribute any inference about influence rather than asserting it.",
+      "conceptUris": []
+    },
+    {
+      "id": "us-spr-311-million-barrels-salt-cavern-minimum-operating-level",
+      "label": "Trump is playing chicken with America's oil reserves",
+      "firstSeen": "2026-07-28T08:14:16.116Z",
+      "lastCovered": "2026-07-28T08:14:16.116Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-us-spr-311-million-barrels-salt-cavern-minimum-operating-level"
+      ],
+      "eventUri": null,
+      "summary": "The US Strategic Petroleum Reserve stood at 311.4 million barrels on 17 July after a 172-million-barrel release — the lowest since 1983 and within a hair of the 300-million 'minimum operating level'. Lead with the engineering, which is the part nobody covers: the SPR is crude held in 60 salt caverns, and drawing it down means pumping fresh water in to float the oil out, which dissolves the salt walls a little more each cycle. Below the floor, the GAO warns the caverns themselves are at risk — so the reserve is not simply emptier, it is less able to be refilled and re-drawn. Set that against Hormuz tanker traffic at roughly one-fifth of pre-war levels and Houthi strikes reaching toward Bab el-Mandeb. Stick to the sourced figures (EIA, GAO, named senators from both parties, Rapidan and Commodity Context analysts) and attribute the outlet's motive-reading rather than adopting it.",
+      "conceptUris": []
+    },
+    {
+      "id": "pakistan-strategic-petroleum-reserves-refining-policy-import-bill",
+      "label": "PM orders increase in country's strategic petroleum reserves; changes to oil refining policy approved",
+      "firstSeen": "2026-07-28T08:14:16.116Z",
+      "lastCovered": "2026-07-28T08:14:16.116Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-pakistan-strategic-petroleum-reserves-refining-policy-import-bill"
+      ],
+      "eventUri": null,
+      "summary": "Shehbaz Sharif's Cabinet Committee on Energy ordered strategic petroleum reserves built up and approved amendments to the Pakistan Oil Refining Policy 2023 — a net importer moving to store fuel in the same week the world's largest reserve holder is draining its own. That contrast is the story: Pakistan has neither salt caverns nor spare foreign exchange, so the question the piece must answer is where the barrels physically go, who pays the carrying cost in dollars, and what the refining-policy amendment actually changes for the refinery upgrade investment the 2023 policy failed to attract. Consequence for the reader: fuel is the largest single line in Pakistan's import bill, and reserve-building competes directly with debt service. Continues our coverage of the SBP holding at 11.5% on imported-inflation grounds.",
+      "conceptUris": []
+    },
+    {
+      "id": "iran-oman-hormuz-transit-toll-unclos-article-26",
+      "label": "Iran, Oman to decide on fee for passage through Hormuz Strait",
+      "firstSeen": "2026-07-28T08:14:16.116Z",
+      "lastCovered": "2026-07-28T08:14:16.116Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-iran-oman-hormuz-transit-toll-unclos-article-26"
+      ],
+      "eventUri": null,
+      "summary": "Iran's ambassador to Moscow, Kazem Jalali, says Tehran and Muscat will jointly set a toll on Western ships transiting Hormuz. The legal mechanism is the whole story: UNCLOS Article 26 forbids charging vessels for transit passage through an international strait, so a toll is not a tariff — it is a claim that Hormuz is no longer an international strait. Iran has signed but never ratified UNCLOS; Oman has. Explain what a levy would do to war-risk insurance premiums, which are already the binding cost on Gulf shipping, and what it means that the announcement came from an ambassador in Moscow rather than from either foreign ministry. Attribution discipline: this is a single Iranian state outlet reporting an on-record official statement — write it as a stated Iranian position, flag that Oman has not confirmed, and do not report the toll as a decided fact.",
+      "conceptUris": []
+    },
+    {
+      "id": "kumamoto-kyushu-magnitude-7-1-tsunami-advisory-tiers",
+      "label": "A 7.1 magnitude earthquake in Japan! Tsunami warning issued",
+      "firstSeen": "2026-07-28T08:14:16.116Z",
+      "lastCovered": "2026-07-28T08:14:16.116Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-kumamoto-kyushu-magnitude-7-1-tsunami-advisory-tiers"
+      ],
+      "eventUri": "eng-11870340",
+      "summary": "A magnitude 7.1 quake struck Kumamoto prefecture on Kyushu and the Japan Meteorological Agency issued a one-metre tsunami alert. Lead with what a one-metre advisory actually means — it is not a small 2011, it is a different warning tier, and the JMA's distinction between advisory, warning and major warning is the thing that governs whether people evacuate. Kumamoto is the 2016 sequence's ground, so the reader deserves the aftershock question: whether this is on the Futagawa–Hinagu fault system and what a 7.1 there implies for the following 72 hours. Consequence to check: Kyushu carries the Sendai and Genkai nuclear plants and a large share of Japan's semiconductor fabrication, including TSMC's Kumamoto site.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Earthquake",
+        "http://en.wikipedia.org/wiki/Japan",
+        "http://en.wikipedia.org/wiki/Tsunami",
+        "http://en.wikipedia.org/wiki/Japan_Meteorological_Agency",
+        "http://en.wikipedia.org/wiki/Kumamoto_Prefecture",
+        "http://en.wikipedia.org/wiki/Kyushu",
+        "http://en.wikipedia.org/wiki/Moment_magnitude_scale",
+        "http://en.wikipedia.org/wiki/Tsunami_warning_system"
+      ]
+    },
+    {
+      "id": "sydney-1789-smallpox-modelling-220000-first-nations-deaths",
+      "label": "Modeling reveals Sydney's 1789 smallpox outbreak killed as many as 220,000 indigenous Australians",
+      "firstSeen": "2026-07-28T08:14:16.116Z",
+      "lastCovered": "2026-07-28T08:14:16.116Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-sydney-1789-smallpox-modelling-220000-first-nations-deaths"
+      ],
+      "eventUri": null,
+      "summary": "New epidemiological modelling puts the death toll of the 1789 smallpox outbreak that began at Sydney Cove at up to 220,000 First Nations people — traced to the First Fleet, sixteen months after it landed. Lead with the number and the method, because the method is why this is news: no contemporary count exists, so the figure comes from reconstructing transmission across pre-colonial population and trade networks, and the paper should be read for its uncertainty bounds as much as its central estimate. The accountability point is structural, not rhetorical: a toll of that scale reframes the collapse of Indigenous resistance and land management as a demographic event caused by colonisation rather than as evidence of its inevitability. Note that Australia has never treated the outbreak's origin as a settled question.",
+      "conceptUris": []
+    },
+    {
+      "id": "nigeria-rivers-akwa-ibom-hiv-donor-collapse-treatment-interruption",
+      "label": "Donor cuts, govt inaction push HIV patients towards death, uncertainty in Rivers, Akwa Ibom (I)",
+      "firstSeen": "2026-07-28T08:14:16.116Z",
+      "lastCovered": "2026-07-28T08:14:16.116Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-nigeria-rivers-akwa-ibom-hiv-donor-collapse-treatment-interruption"
+      ],
+      "eventUri": "eng-11868184",
+      "summary": "Part one of a Premium Times investigation into what the collapse of donor-funded community HIV programmes has done in Rivers and Akwa Ibom states — thousands at risk of treatment interruption, worsening stigma, preventable deaths. This is the ground-level half of the story we covered as a global financing figure: an 18% fall in UNAIDS funding is an abstraction until you can see that the thing it paid for was community health workers who carried antiretrovirals to people who cannot reach a clinic. The mechanism to lead with is interruption, not absence — a patient who stops and restarts ART develops resistance, so a funding gap converts into a permanently more expensive epidemic. Name what the Nigerian federal and state governments committed to fund on donor withdrawal and what they have actually disbursed.",
+      "conceptUris": []
+    },
+    {
+      "id": "convscalecast-physics-informed-convective-rainfall-forecast-lead-time",
+      "label": "ConvScaleCast: a physics-informed scale-bridging framework for 0-24 h urban convective precipitation forecasting",
+      "firstSeen": "2026-07-28T08:14:16.116Z",
+      "lastCovered": "2026-07-28T08:14:16.116Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-convscalecast-physics-informed-convective-rainfall-forecast-lead-time"
+      ],
+      "eventUri": null,
+      "summary": "Mesoscale convective systems produce the heavy-tailed rainfall that floods coastal cities, and both conventional numerical weather prediction and standard deep learning consistently underestimate exactly that tail. ConvScaleCast couples physics constraints to a learned model to forecast 0–24 hours ahead. The reader's stake is concrete: the cities that drown from convective rainfall are Karachi, Lagos, Jakarta, Chennai, Dhaka — places where the warning lead time, not the drainage, is what determines the death toll, and where the national met service cannot run a bespoke high-resolution model. Lead with the specific failure being fixed (models systematically under-predicting the extreme) and state honestly what the paper demonstrates versus what it only claims, including the domains it was validated on.",
+      "conceptUris": []
+    },
+    {
+      "id": "wyden-federal-end-of-life-vpn-appliances-cisa-authority",
+      "label": "Outdated VPNs should be purged from federal agencies, senator says",
+      "firstSeen": "2026-07-28T08:14:16.116Z",
+      "lastCovered": "2026-07-28T08:14:16.116Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-wyden-federal-end-of-life-vpn-appliances-cisa-authority"
+      ],
+      "eventUri": null,
+      "summary": "Ron Wyden has written to CISA, OMB and NIST asking for a coordinated federal effort to rip obsolete VPN appliances out of government networks. The mechanism is the point and it generalises far past Washington: a VPN concentrator is an internet-facing box that terminates encryption and sits inside the perimeter, so a single unpatched appliance is not one compromised device but a credentialled foothold — which is why this class of hardware has anchored a long run of state-actor intrusions. Lead with which agencies still run end-of-life appliances and whether any of the three bodies has authority to compel removal, because 'a senator asked' is only a story if the answer is that nobody currently can. Relevant to any reader whose employer runs the same boxes.",
+      "conceptUris": []
+    },
+    {
+      "id": "commercial-location-data-brokers-ad-sdk-bidstream-global-exposure",
+      "label": "This Man Bought Phone Location Data from Around the World",
+      "firstSeen": "2026-07-28T08:14:16.116Z",
+      "lastCovered": "2026-07-28T08:14:16.116Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-commercial-location-data-brokers-ad-sdk-bidstream-global-exposure"
+      ],
+      "eventUri": null,
+      "summary": "Mike Yeagley describes, on the record, how he bought global phone location data on the open commercial market — and what he could see with it. The mechanism to lead with is the supply chain: location leaves a phone through ordinary ad-SDK bid requests embedded in ordinary apps, is aggregated by brokers, and is sold without any of the legal process a government would need to demand it. That is why this reaches our reader directly — the coverage of Riyadh, Cairo, Karachi or Gaza in these datasets is not an American privacy question, it is a targeting question, and the countries whose populations are most exposed have no data-protection regulator able to reach the brokers. Write it as reporting on the industry, not as a podcast recap; state which datasets and which regions Yeagley names, and where he declines to be specific.",
+      "conceptUris": []
+    },
+    {
+      "id": "hkma-quantum-readiness-2-3-harvest-now-decrypt-later-migration",
+      "label": "Hong Kong's banks score a 2.3 out of 10 on quantum readiness, HKMA says",
+      "firstSeen": "2026-07-28T08:14:16.116Z",
+      "lastCovered": "2026-07-28T08:14:16.116Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-hkma-quantum-readiness-2-3-harvest-now-decrypt-later-migration"
+      ],
+      "eventUri": null,
+      "summary": "The Hong Kong Monetary Authority scored its own banking sector at 2.3 out of 10 on quantum readiness and set a target of 10 by 2030 — a regulator publishing an unflattering number about the institutions it supervises, which is rare enough to be the lead. The mechanism the reader needs is harvest-now-decrypt-later: encrypted traffic and archived records stolen today can be stored until a cryptanalytically relevant quantum computer exists, so the migration deadline is set by data retention periods, not by when such a machine arrives. Explain what post-quantum migration actually requires of a bank (inventorying every use of RSA and elliptic-curve crypto, much of it in hardware and vendor code it does not control) and why 2030 is aggressive. Set it against the parallel US federal timeline.",
+      "conceptUris": []
+    },
+    {
       "id": "israel-lebanon-rome-talks-technical-track-blue-line",
       "label": "Israel, Lebanon talks set for Rome next week",
       "firstSeen": "2026-07-28T04:09:05.504Z",
       "lastCovered": "2026-07-28T04:09:05.504Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-28-israel-lebanon-rome-talks-technical-track-blue-line"
@@ -33,7 +268,7 @@
       "lastCovered": "2026-07-28T04:09:05.504Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-28-west-bank-settler-outposts-retroactive-legalisation-land-seizure"
@@ -49,7 +284,7 @@
       "lastCovered": "2026-07-28T04:09:05.504Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-28-brazil-wto-consultations-us-tariffs-appellate-body-void"
@@ -74,7 +309,7 @@
       "lastCovered": "2026-07-28T04:09:05.504Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-28-faa-737-max-seat-airworthiness-directive-delegated-certification"
@@ -99,7 +334,7 @@
       "lastCovered": "2026-07-28T04:09:05.504Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-28-kospi-circuit-breaker-ai-selloff-memory-concentration"
@@ -115,7 +350,7 @@
       "lastCovered": "2026-07-28T04:09:05.504Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-28-uae-eu-trade-talks-non-trade-conditionality-cepa"
@@ -131,7 +366,7 @@
       "lastCovered": "2026-07-28T04:09:05.504Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-28-johnson-johnson-talc-settlement-no-finding-export-tail"
@@ -147,7 +382,7 @@
       "lastCovered": "2026-07-28T04:09:05.504Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-28-kenya-pesticide-case-banned-in-eu-exported-regulator-liability"
@@ -163,7 +398,7 @@
       "lastCovered": "2026-07-28T04:09:05.504Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-28-lake-chad-wetland-aerial-survey-flyway-conflict-ecology"
@@ -179,7 +414,7 @@
       "lastCovered": "2026-07-28T04:09:05.504Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-28-single-atom-copper-photo-fenton-textile-effluent-water"
@@ -195,7 +430,7 @@
       "lastCovered": "2026-07-28T04:09:05.504Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-28-wikimedia-declines-voluntary-union-recognition-commons-stewardship"
@@ -211,7 +446,7 @@
       "lastCovered": "2026-07-28T04:09:05.504Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-28-data-centre-hearing-arrest-withheld-report-siting-process"
@@ -227,7 +462,7 @@
       "lastCovered": "2026-07-28T04:09:05.504Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-28-anthropic-open-weights-position-irrevocability-sovereignty"
@@ -243,7 +478,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-el-obeid-rsf-drones-hospital-power-water-sudan"
@@ -259,7 +494,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-turkiye-f-35-sale-qme-s400-israeli-veto"
@@ -284,7 +519,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-osun-pvc-centre-attack-bvas-backups-disenfranchisement"
@@ -300,7 +535,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-aaliya-hamza-kot-lakhpat-custodial-safety-political-detention"
@@ -316,7 +551,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-perpetual-futures-us-retail-funding-rate-leverage"
@@ -332,7 +567,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-vietnam-halcert-halal-certification-mutual-recognition"
@@ -348,7 +583,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-clean-electricity-equity-cost-of-capital-cop31"
@@ -364,7 +599,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-drc-ebola-case-fatality-ring-vaccination-access"
@@ -380,7 +615,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-unaids-financing-18pc-fall-treatment-interruption-resistance"
@@ -396,7 +631,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-huanglongbing-atlas-phloem-presymptomatic-citrus-smallholders"
@@ -412,7 +647,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-kik-username-misidentification-wrongful-imprisonment-digital-evidence"
@@ -428,7 +663,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-google-serpapi-dmca-scraping-circumvention-precedent"
@@ -444,7 +679,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-openai-hugging-face-specification-gaming-unprecedented-claim"
@@ -460,7 +695,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-chad-icc-withdrawal-article-127-jurisdiction-lag"
@@ -485,7 +720,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-saudi-drone-interception-iraq-launch-eastern-province-oil"
@@ -510,7 +745,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-pakistan-cnsc-aamer-raza-nuclear-command-authority-chain"
@@ -526,7 +761,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-lorenzana-clan-guatemala-border-kingpin-strategy-limits"
@@ -542,7 +777,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-laser-enrichment-paducah-tails-proliferation-signature"
@@ -558,7 +793,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-timor-leste-petroleum-fund-drawdown-sustainable-income"
@@ -574,7 +809,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-rumen-microbe-organelle-methane-hydrogen-transfer"
@@ -590,7 +825,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-wandering-supermassive-black-hole-tidal-disruption-offset"
@@ -606,7 +841,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-sars-cov-2-mac1-macrodomain-inhibitors-second-target"
@@ -622,7 +857,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-von-hagens-plastination-body-provenance-consent-chain"
@@ -647,7 +882,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-claude-share-links-indexed-unlisted-versus-private"
@@ -663,7 +898,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-telegram-account-takeover-exiled-activist-transnational-repression"
@@ -679,7 +914,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-kimi-k3-open-weights-licence-sovereignty-inference"
@@ -695,7 +930,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-southern-iran-ports-grid-blackouts-civilian-infrastructure"
@@ -711,7 +946,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-26-quetta-asif-baloch-enforced-disappearance-record-destruction"
@@ -727,7 +962,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-cambodia-vietnamese-statelessness-registry-documentation"
@@ -743,7 +978,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-nigeria-villa-gate-officer-coup-plot-access-control"
@@ -759,7 +994,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-philippines-us-japan-drill-south-china-sea-grey-zone-threshold"
@@ -775,7 +1010,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-sbp-holds-11-5pc-imported-inflation-rupee-debt-service"
@@ -791,7 +1026,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-thailand-land-bridge-shelved-kra-isthmus-transhipment-malacca"
@@ -807,7 +1042,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-oak-hill-bio-angelman-orphan-drug-exclusivity-revival"
@@ -823,7 +1058,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-12-total-solar-eclipse-umbra-path-greenland-iceland-spain"
@@ -848,7 +1083,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-burial-moved-from-household-to-municipal-ground-archaeology"
@@ -864,7 +1099,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-bank-of-baroda-breach-aadhaar-permanent-identifier-email-compromise"
@@ -889,7 +1124,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-china-face-licensing-microdramas-biometric-consent-perpetual"
@@ -905,7 +1140,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-bombay-hc-gadkari-deepfake-intermediary-liability-safe-harbour"
@@ -930,7 +1165,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-cxmt-shanghai-debut-dram-shortage-memory-oligopoly"
@@ -955,7 +1190,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-india-supreme-court-lathicharge-police-excess-protest-right"
@@ -980,7 +1215,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-bordeaux-fire-cloud-france-spain-evacuation-pyrocumulonimbus"
@@ -1005,7 +1240,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-benue-ohimini-attack-igp-pledge-middle-belt-security-gap"
@@ -1021,7 +1256,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-uk-palestine-activists-terrorism-connection-sentencing-jury"
@@ -1037,7 +1272,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-stfc-diamond-light-source-funding-gap-commercialise-beam-time"
@@ -1053,7 +1288,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-argenx-forte-biosciences-acquisition-pipeline-immunology"
@@ -1069,7 +1304,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-esa-cebreros-deep-space-station-wildfire-network-redundancy"
@@ -1085,7 +1320,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-cml-bcr-abl1-international-scale-lab-precision-standardisation"
@@ -1101,7 +1336,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-ultra-processed-food-brain-health-inflammation-dietary-transition"
@@ -1117,7 +1352,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-grapheneos-border-search-auto-wipe-obstruction-charge"
@@ -1133,7 +1368,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-q-day-bitcoin-exposed-keys-harvest-now-decrypt-later"
@@ -1149,7 +1384,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-multiverse-computing-tensor-compression-edge-ai-efficiency"
@@ -1166,225 +1401,6 @@
         "http://en.wikipedia.org/wiki/Santander,_Spain",
         "http://en.wikipedia.org/wiki/Solar_Impulse"
       ]
-    },
-    {
-      "id": "bank-indonesia-warjiyo-resignation-independence-succession",
-      "label": "Indonesia central bank governor Warjiyo steps down in surprise exit",
-      "firstSeen": "2026-07-27T04:13:15.602Z",
-      "lastCovered": "2026-07-27T04:13:15.602Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-27-bank-indonesia-warjiyo-resignation-independence-succession"
-      ],
-      "eventUri": "eng-11866417",
-      "summary": "Perry Warjiyo has resigned as governor of Bank Indonesia mid-term and without explanation, with his senior deputy Destry Damayanti installed as acting governor by a Sunday board meeting. Lead with the word 'surprise', because an unscheduled central bank departure in the world's largest Muslim-majority economy is a governance event before it is a personnel one: the rupiah is under pressure from the same oil shock that has the Fed considering a hike, and a governor who leaves in the middle of that is either being moved or is refusing to be. The mechanism to teach an economically literate reader is what central bank independence actually consists of — not a clause in a statute but a fixed term, a removal procedure with named grounds, and a successor process no president controls; Bank Indonesia has all three on paper, and the test of them is whether anyone will say why this happened. Prabowo's administration has run an expansionary fiscal programme (the free-meals scheme, the sovereign fund) that a tight monetary stance constrains, and that tension is the frame to check the reporting against — without asserting it as the cause, because nobody has established one. Who bears the cost: 280 million Indonesians, through the rupiah's import prices, and every emerging-market borrower whose risk premium moves when a peer's institutions look less predictable. Give the resignation's stated reason if any, Warjiyo's remaining term, Damayanti's standing, the appointment procedure from here, and the rupiah's and JCI's reaction. TEMPO reports it from Jakarta; CNBC and SCMP carry the market read.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Governor",
-        "http://en.wikipedia.org/wiki/Perry_Warjiyo",
-        "http://en.wikipedia.org/wiki/Indonesia",
-        "http://en.wikipedia.org/wiki/Bank_Indonesia",
-        "http://en.wikipedia.org/wiki/Central_bank",
-        "http://en.wikipedia.org/wiki/Prabowo_Subianto",
-        "http://en.wikipedia.org/wiki/Destry_(TV_series)",
-        "http://en.wikipedia.org/wiki/Jakarta"
-      ]
-    },
-    {
-      "id": "mas-currency-band-tightening-oil-shock-open-economy",
-      "label": "Singapore delivers back-to-back tightening to tame price risks",
-      "firstSeen": "2026-07-27T04:13:15.602Z",
-      "lastCovered": "2026-07-27T04:13:15.602Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-27-mas-currency-band-tightening-oil-shock-open-economy"
-      ],
-      "eventUri": "eng-11866377",
-      "summary": "The Monetary Authority of Singapore has tightened for the second meeting running, explicitly citing the Middle East conflict's effect on energy costs — a small, deliberate move announced hours before the Fed meets under pressure to hike. Lead with the instrument, because Singapore's is unique and genuinely teaches something: MAS does not set an interest rate at all, it manages the exchange rate against a trade-weighted basket, so 'tightening' means steepening the slope of a currency band. For an economy where imports and exports each exceed GDP, the exchange rate is the transmission channel that matters and the policy rate is not — which is the clearest illustration available of why an open economy's monetary tools are chosen by its trade structure, not by fashion. Follow it to the ummah-relevant point: Malaysia, Indonesia and the Gulf states face the same imported oil-and-dollar shock and have each picked a different instrument, and Singapore's is the one that trades domestic price stability for export competitiveness. Do not re-report yesterday's Fed piece — reference it in one sentence as the larger version of the same problem, and make this story about a small state acting first because it has less room to wait. Give the exact slope change, the current core inflation print, the SGD NEER reaction, and how many consecutive tightenings this now is.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Singapore",
-        "http://en.wikipedia.org/wiki/Central_bank",
-        "http://en.wikipedia.org/wiki/Inflation",
-        "http://en.wikipedia.org/wiki/Singapore_dollar",
-        "http://en.wikipedia.org/wiki/Monetary_policy",
-        "http://en.wikipedia.org/wiki/Malaysia",
-        "http://en.wikipedia.org/wiki/Monetary_Authority_of_Singapore",
-        "http://en.wikipedia.org/wiki/Exchange_rate"
-      ]
-    },
-    {
-      "id": "australia-ev-share-fuel-shock-fleet-turnover-expectations",
-      "label": "'A new trajectory': EVs now almost quarter of Australia's new car sales as fuel crisis bites",
-      "firstSeen": "2026-07-27T04:13:15.602Z",
-      "lastCovered": "2026-07-27T04:13:15.602Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-27-australia-ev-share-fuel-shock-fleet-turnover-expectations"
-      ],
-      "eventUri": "eng-11865353",
-      "summary": "Australians bought more electric vehicles in six months than in all of last year, taking EVs to nearly a quarter of new car sales, and the reporting attributes the jump to petrol-price uncertainty from the Gulf war. Lead with the causal chain, because it is the same one as the Fed and Singapore stories seen from the household end: a mined strait raises crude, crude raises pump prices, and a family in Melbourne re-prices a fifteen-year capital decision in a single quarter. The mechanism to teach an economically literate reader is that vehicle fleets turn over slowly and are therefore governed by expectations rather than by today's price — nobody switches because petrol is dear this week, they switch because they no longer believe it will be cheap for the life of the car, which is why an energy shock produces a permanent shift in demand long after the shock clears. That is the asymmetry oil exporters have historically underestimated. Follow it to who is on the other side of this: Australia has no fuel-efficiency legacy fleet policy comparable to Europe's and imports every vehicle, so the switch is a straight transfer of the import bill from refined petroleum to Chinese-built EVs and to the lithium and nickel supply chains that Indonesia is now trying to capture domestically. Give the actual percentage, the half-year unit numbers, the plug-in hybrid split, the pump price move, and what the previous trajectory looked like. Fills the Oceania gap the audit has now flagged two days running.",
-      "conceptUris": []
-    },
-    {
-      "id": "seattle-food-festival-shooting-trauma-system-substitution",
-      "label": "At Least 2 Killed in Shooting at Food Festival in Seattle",
-      "firstSeen": "2026-07-27T04:13:15.602Z",
-      "lastCovered": "2026-07-27T04:13:15.602Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-27-seattle-food-festival-shooting-trauma-system-substitution"
-      ],
-      "eventUri": "eng-11866456",
-      "summary": "Two people were killed and at least five wounded when someone opened fire at the Bite of Seattle, a food festival at the Seattle Center with thousands in attendance. Lead with the dead and the wounded — count them, name them where the authorities have, and give the trauma centre they were taken to, because the count is the fact and everything else in this story is inference. The reason it belongs in a global file rather than an American one is the mechanism visible in the response: the United States has built the finest mass-casualty trauma system in the world — Harborview is one of its flagships, and the survival rate at a shooting like this would have been unthinkable thirty years ago — and it has built it because the political system settled long ago on treating gunfire at public gatherings as a medical problem rather than a legislative one. That substitution is the transferable lesson, and it recurs wherever a state finds a harm cheaper to treat than to prevent. Resist the two easy frames: this is the only multi-source politics cluster in today's feed and it must earn its place on consequence, not on volume, so do not speculate about motive, do not reach for a national gun-policy essay, and do not write the aftermath before the investigation has produced one. Give the police account, the suspect status, the venue's security arrangements if reported, and where the four outlets' accounts of the casualty figures diverge.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Seattle",
-        "http://en.wikipedia.org/wiki/Seattle_Center",
-        "http://en.wikipedia.org/wiki/Space_Needle",
-        "http://en.wikipedia.org/wiki/Bite_of_Seattle",
-        "http://en.wikipedia.org/wiki/Seattle_Police_Department",
-        "http://en.wikipedia.org/wiki/Food_festival",
-        "http://en.wikipedia.org/wiki/Harborview_Medical_Center",
-        "http://en.wikipedia.org/wiki/Mass_shooting"
-      ]
-    },
-    {
-      "id": "cockroach-protests-end-resignation-without-prosecution",
-      "label": "India's Cockroach Protests End as Modi Government Bows to Demands",
-      "firstSeen": "2026-07-27T04:13:15.602Z",
-      "lastCovered": "2026-07-27T04:13:15.602Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-27-cockroach-protests-end-resignation-without-prosecution"
-      ],
-      "eventUri": null,
-      "summary": "The Delhi exam-leak protests have ended with the education minister gone and the government conceding the movement's demands — the first time in a decade a street movement has forced a resignation from this government. Lead with what was won and what it cost, because we have already covered the government's answer (the Nilekani task force) and the police response (pellets at Jantar Mantar); the unreported half is the movement itself. The mechanism to teach a strategic reader is how a leaderless student movement with a joke name survived long enough to extract a concession: no party sponsorship meant nothing to co-opt and nobody to arrest at the top, and a single, narrow, verifiable demand — one minister's resignation — meant the government could concede without conceding a principle. That is also the movement's ceiling, and the piece should say so plainly: nobody has been charged for the leak, nobody has been charged for the pellet injuries, the exam itself is being redesigned by a technologist rather than investigated by a prosecutor, and 2.3 million candidates still sit a test whose custody chain failed. A resignation is a scalp, not a remedy. Drop Site reports this from the ground with protesters' own accounts — use them, and keep to what it establishes. Give the minister's name and the date of the resignation, the protest's duration and peak size, the injury and arrest figures, and what the students say they will do about the unprosecuted leak. Third and final entry in this arc; do not return to it without a genuinely new development.",
-      "conceptUris": []
-    },
-    {
-      "id": "intermittent-water-supply-unpaid-labour-pressure-hierarchy",
-      "label": "Beyond the pipes -- Water infrastructure in the Global South",
-      "firstSeen": "2026-07-27T04:13:15.602Z",
-      "lastCovered": "2026-07-27T04:13:15.602Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-27-intermittent-water-supply-unpaid-labour-pressure-hierarchy"
-      ],
-      "eventUri": "eng-11864509",
-      "summary": "Research across cities in South Africa, India and beyond finds that urban water scarcity is not principally a question of whether pipes exist but of who reaches them, when the water flows, and who spends their day carrying it. Lead with the labour, because it is the finding and it is invisible in every infrastructure budget: where supply is intermittent, the network's shortfall is made up by unpaid household work — overwhelmingly women's and girls' — plus a borehole for those who can sink one and a tanker for those who cannot, and none of those three appear as a cost to the utility. The mechanism to teach a strategic reader is that intermittent supply is not a degraded version of continuous supply, it is a different system with a different distributive logic: pressure determines who gets water, elevation and distance from the trunk main determine pressure, and so the network's engineering silently encodes a hierarchy of neighbourhoods that no policy document ever states. That is why the per-litre price is highest at the poorest end of every one of these cities. Use this deliberately as the general case beneath two stories we ran yesterday — Karachi's single pumping station and Johannesburg's billing failure — and give it no more than a sentence each; the value here is the comparison, not a third city. Be explicit that this is academic research summarised for a general audience, not new reporting: name the researchers, the cities studied, the method, and the specific figures on collection time, tanker pricing and borehole depth that the work establishes.",
-      "conceptUris": []
-    },
-    {
-      "id": "lahore-division-flood-camps-punjab-floodplain-treaty-data",
-      "label": "17 flood relief camps made operational in Lahore division",
-      "firstSeen": "2026-07-27T04:13:15.602Z",
-      "lastCovered": "2026-07-27T04:13:15.602Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-27-lahore-division-flood-camps-punjab-floodplain-treaty-data"
-      ],
-      "eventUri": null,
-      "summary": "Seventeen relief camps are open across Lahore division — in schools, at Nankana Sahib, Sharaqpur and Sheikhupura — with more sites identified in case they are needed. Lead with the camps as a measurement, because that is the only honest way to read an administrative bulletin: a commissioner's office does not open camps in advance, so seventeen operational sites is a lower bound on displacement in Punjab's most populous division, and the phrase 'more sites identified' is an official expectation that the water is still rising. The mechanism to teach a technically literate reader is why Punjab floods the way it does — this is not rainfall landing where it falls but the Ravi, Chenab and Sutlej carrying an upstream monsoon into a floodplain that has been embanked, canal-irrigated and built on for a century, so the flood peak arrives days after the rain and arrives where the engineering puts it, which is why a camp in Sheikhupura can fill on a dry morning. Add the transboundary fact our reader will want and handle it precisely: these rivers are governed by the Indus Waters Treaty and their headworks are upstream in India, so barrage releases and flood-warning telemetry are treaty obligations, not courtesies — say what the treaty actually requires on flood data and what its current operating status is, without asserting a cause for this particular peak. Who bears it: tenant farmers and katchi abadi residents on the riverine belt, the same households displaced in 2022 and 2023. Give the camp locations and capacity, the displacement and livestock figures, the river gauge readings and warning levels, and the PDMA's forecast.",
-      "conceptUris": []
-    },
-    {
-      "id": "adolescent-mental-disorder-mortality-coding-and-surveillance",
-      "label": "Mental and behavioral disorder-related mortality among US adolescents, 1999-2023",
-      "firstSeen": "2026-07-27T04:13:15.602Z",
-      "lastCovered": "2026-07-27T04:13:15.602Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-27-adolescent-mental-disorder-mortality-coding-and-surveillance"
-      ],
-      "eventUri": null,
-      "summary": "A 25-year national analysis finds mental and behavioural disorder-related deaths among US adolescents rising, with the burden falling unevenly across ethnic groups. Lead with the trend line and the disaggregation together, because a national average is exactly what this kind of study exists to break: the interesting number is never the aggregate rate but which subgroup's curve bent and when. The mechanism to teach a technically literate reader is the study's own instrument — this is death-certificate data coded to ICD-10, so what it actually measures is what a coroner wrote in a particular field, and mental-disorder-related mortality is chronically undercounted because a death from an overdose, a suicide or a complication of an eating disorder can be coded to the proximate cause instead. A rising line therefore has two candidate explanations, real increase and improved coding, and the paper's handling of that is what determines whether it is worth anything; report which it argues and on what evidence. The reason this sits in a global file: the United States has the best adolescent mortality surveillance in existence and is still arguing about what its own numbers mean, which is the strongest available caution against reading the far thinner mental-health statistics published across South Asia, the Gulf and Africa as though they described reality — a country with no psychiatric coding infrastructure reports a low rate, and that is a fact about the registry, not about its young people. Give the rates at both ends of the period, the ethnic and sex breakdowns, the ICD chapters included, and the authors' stated limitations.",
-      "conceptUris": []
-    },
-    {
-      "id": "la-brea-smilodon-spinal-tumours-inbreeding-extinction-vortex",
-      "label": "Saber-toothed cats' spinal tumors suggest inbred species struggled to survive",
-      "firstSeen": "2026-07-27T04:13:15.602Z",
-      "lastCovered": "2026-07-27T04:13:15.602Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-27-la-brea-smilodon-spinal-tumours-inbreeding-extinction-vortex"
-      ],
-      "eventUri": null,
-      "summary": "Fossil spines from the La Brea Tar Pits show saber-toothed cats carrying rare spinal nerve tumours at a rate far above anything expected in a healthy population, and the researchers read that as a signature of inbreeding in the species' final generations. Lead with the inference chain rather than the tumours, because the chain is the science: a rare disease appearing often is evidence about a gene pool, and a gene pool is evidence about population size, so a pathology in a bone becomes a demographic measurement of a species that has been extinct for eleven thousand years. The mechanism to teach a technically literate reader is the extinction vortex — as a population shrinks, deleterious recessive variants that were harmless while rare start meeting themselves, disease and deformity rise, fitness falls, the population shrinks further, and the collapse becomes self-driving well before the last animal dies. That is why conservation biologists watch effective population size rather than headcount, and it is the reason a species with several hundred individuals left can already be past saving. The second inference is the one to check hardest and the most attractive: painful spinal tumours reducing limb function would plausibly push an animal toward easy prey stuck in tar, which would mean the tar pits over-sampled the sick — so the same pathology that is the finding is also the sampling bias against it, and the paper's answer to that circularity is the test of it. Give the specimen count, the prevalence figure and its modern comparison, the dating, the institutions, and what would falsify the inbreeding reading.",
-      "conceptUris": []
-    },
-    {
-      "id": "meta-nudify-ads-china-reseller-enforcement-delegation",
-      "label": "Instagram, Facebook ran AI 'nudify' ads from China, says report",
-      "firstSeen": "2026-07-27T04:13:15.602Z",
-      "lastCovered": "2026-07-27T04:13:15.602Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-27-meta-nudify-ads-china-reseller-enforcement-delegation"
-      ],
-      "eventUri": "eng-11866605",
-      "summary": "The Tech Transparency Project reports that Meta served thousands of ads for AI 'nudify' apps — tools that generate sexualised images of real people from ordinary photographs — in breach of its own policies, placed through Beijing-based GatherOne, one of the handful of firms authorised to sell Meta inventory to Chinese advertisers. Lead with the reseller, because that is the finding and it is structural rather than accidental: Meta cannot sell ads inside China, so it delegates that market to intermediaries, and delegation moves policy enforcement from a company that answers to regulators to a company that answers to neither. The mechanism to teach a technically literate reader is the economics of ad review at scale — enforcement is a cost centre applied by classifier and sampled by humans, revenue arrives per impression whether or not the ad complies, and a channel partner is paid on the same per-impression basis, so nobody in the chain is paid to find this. That is why the violating category keeps being the one with the highest click-through. Then the consequence, which is the reason this is not a content-moderation curiosity: nudify apps are used overwhelmingly against women and girls who never consented to be photographed that way, image-based abuse is the fastest-growing category of online harm in Pakistan, India, Nigeria and across the Gulf, and in most of those jurisdictions there is no statute that names it — so the harm arrives through a platform the state cannot compel, from an app store the victim cannot reach, in a market whose ad reseller is outside every relevant law. Give the ad counts, the app names, the dates, GatherOne's role and response, and Meta's response and stated policy.",
-      "conceptUris": []
-    },
-    {
-      "id": "pratt-whitney-barb-robot-engine-assembly-defence-throughput",
-      "label": "Meet BARB, The Robot That's A Glimpse At Future Jet Engine Assembly",
-      "firstSeen": "2026-07-27T04:13:15.602Z",
-      "lastCovered": "2026-07-27T04:13:15.602Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-27-pratt-whitney-barb-robot-engine-assembly-defence-throughput"
-      ],
-      "eventUri": null,
-      "summary": "Pratt & Whitney has put a robot called BARB onto a jet engine production line — a step toward automating assembly work that has been done by hand for as long as turbofans have existed. Lead with why an incremental factory story matters this month: our Iran coverage established that the American pause in the Gulf is priced by an interceptor shortage rather than by diplomacy, which makes defence manufacturing throughput a variable in a war, and this is what a throughput fix actually looks like — not a new weapon, a robot that does not stop. The mechanism to teach a technically literate reader is why aero-engine assembly resisted automation for so long and what changed: blade-and-disc work involves compliant force control, sub-millimetre fit-up against parts with real dimensional scatter, and a certification regime in which every operation must be traceable to a person or a validated process, so the hard problem was never the arm but the qualification of the arm's output. Say which of those BARB actually solves and which it does not, because the honest answer is usually 'one station of forty'. Then the structural why for our reader: military-industrial capacity is the binding constraint of the current era, the skilled-labour pool for it is ageing across the US and Europe, and the countries buying these engines — Gulf air forces, Pakistan, Indonesia, Turkey — are trying to negotiate offsets and local assembly precisely as the work becomes less transferable, because you cannot offset a robot's job to another country's workforce. Give what BARB does, the station it replaces, the cycle-time and defect claims, and the labour numbers on that line.",
-      "conceptUris": []
-    },
-    {
-      "id": "scientists-uncover-lost-golden-age-of-languages-that-ended-1",
-      "label": "Scientists Uncover Lost ‘Golden Age’ of Languages That Ended 1,000 Years Ago",
-      "firstSeen": "2026-07-27T04:13:15.602Z",
-      "lastCovered": "2026-07-27T04:13:15.602Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-25-scientists-uncover-lost-golden-age-of-languages-that-ended-1"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for tech floor] Scientists have predicted that human linguistic diversity flourished between 3,000 and 1,000 years ago, before declining with the rise of multinational states and colonial expansion.",
-      "conceptUris": []
     }
   ]
 }
