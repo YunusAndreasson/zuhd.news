@@ -2,13 +2,248 @@
   "version": 1,
   "stories": [
     {
+      "id": "israel-lebanon-rome-talks-technical-track-blue-line",
+      "label": "Israel, Lebanon talks set for Rome next week",
+      "firstSeen": "2026-07-28T04:09:05.504Z",
+      "lastCovered": "2026-07-28T04:09:05.504Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-israel-lebanon-rome-talks-technical-track-blue-line"
+      ],
+      "eventUri": "eng-11869732",
+      "summary": "US-brokered Israel-Lebanon talks resume in Rome, described by the State Department as 'technical groups' advancing a framework agreement. Lead with what 'technical' is doing in that sentence, because it is the mechanism: the framework was agreed at the political level and the unresolved questions — the thirteen disputed points on the Blue Line, Hezbollah's weapons north of the Litani, and Israeli positions still held inside Lebanese territory — were pushed down into working groups precisely because they cannot be settled politically. So a technical track is not progress toward a settlement, it is a way of keeping a ceasefire alive without one, and the reader should be able to tell the difference. Note the sentimentDivergence of 0.59, one of the highest in this feed: TRT and Middle East Eye read this as movement, DW's live-blog framing does not. Who bears the cost is the part no communiqué names — the villages in the south that cannot be rebuilt while the line is undefined, and the displaced who cannot return. Lebanon is an OIC state and TRT World is a Turkish state broadcaster: name it as such, use the US State Department official as the attributed source they are, and state plainly that no Lebanese or Israeli confirmation of an agenda exists yet. Give the date, the parties actually attending, whether Lebanon is represented by the army or by civilian negotiators, and what the framework agreement obliges each side to do.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Lebanon",
+        "http://en.wikipedia.org/wiki/Rome",
+        "http://en.wikipedia.org/wiki/United_States_Department_of_State",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/United_Nations",
+        "http://en.wikipedia.org/wiki/Hezbollah",
+        "http://en.wikipedia.org/wiki/Beirut"
+      ]
+    },
+    {
+      "id": "west-bank-settler-outposts-retroactive-legalisation-land-seizure",
+      "label": "Israeli Settlers Set Up At Least Six New Colonial Outposts After Friday Killings in the Occupied West Bank",
+      "firstSeen": "2026-07-28T04:09:05.504Z",
+      "lastCovered": "2026-07-28T04:09:05.504Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-west-bank-settler-outposts-retroactive-legalisation-land-seizure"
+      ],
+      "eventUri": null,
+      "summary": "At least six new settler outposts went up in the occupied West Bank in the days after Friday's killings, alongside home raids, shootings, mass detentions and demolitions. Lead with the outposts and the interval between the two events, because the sequence is the mechanism: a killing is followed within days by the seizure of ground, and the ground does not go back. The structural point to teach is how an outpost becomes a settlement — it is illegal under Israeli law as well as international law when it starts, and the state's response is to supply it with a road, a water line, an electricity connection and an army detail to protect it, after which it is retroactively legalised. So 'outpost' names a stage in a process, not a rogue act, and counting outposts is how you measure annexation happening without anyone declaring it. Name the locations, the villages whose land they sit on, and the Palestinians killed, detained and made homeless, with numbers. Palestine is an OIC territory and this feed carries no Palestinian or regional outlet on the event — say so explicitly. Drop Site is doing original ground reporting and is the only source: attribute every figure to it and to the named residents, mark what the Israeli army has and has not responded to, and state what has not been independently verified.",
+      "conceptUris": []
+    },
+    {
+      "id": "brazil-wto-consultations-us-tariffs-appellate-body-void",
+      "label": "Brazil requests WTO consultations over US tariffs",
+      "firstSeen": "2026-07-28T04:09:05.504Z",
+      "lastCovered": "2026-07-28T04:09:05.504Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-brazil-wto-consultations-us-tariffs-appellate-body-void"
+      ],
+      "eventUri": "por-1302915",
+      "summary": "Brasília has formally requested WTO consultations with Washington over this month's tariffs — the first step in dispute settlement, and the news is that a large developing economy is still using a machine that no longer works. Lead with that: the Appellate Body has been paralysed since 2019 because the US blocked appointments to it, so a losing party can appeal 'into the void' and the ruling never becomes binding. Brazil knows this. The mechanism to teach is why a country files anyway — consultations create a record, start a clock, and establish the legal predicate for retaliation that other members will recognise as lawful; and Brazil is a party to the MPIA workaround, which is the checkable detail that determines whether this case can actually reach a binding outcome. The structural why for our reader: this is what the rules-based trading order looks like once the state that wrote it stops submitting to it, and the countries that built export sectors on the promise of adjudication — Brazil here, but the same logic runs through every OIC economy negotiating with Washington — are discovering the promise was collateral, not law. Note the Free Malaysia Today pickup: this is being read as a precedent across the Global South. Give the tariff rates and the goods covered, the date of the request, the 60-day consultation window, Brazil's stated retaliation authority under its own reciprocity law, and whether the US has responded. Fills the Latin America gap the audit has flagged three days running.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/World_Trade_Organization",
+        "http://en.wikipedia.org/wiki/Brazil",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Ministry_of_Foreign_Affairs_(Brazil)",
+        "http://en.wikipedia.org/wiki/Fare",
+        "http://en.wikipedia.org/wiki/General_Agreement_on_Tariffs_and_Trade",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Trade"
+      ]
+    },
+    {
+      "id": "faa-737-max-seat-airworthiness-directive-delegated-certification",
+      "label": "US warns hundreds of Boeing jets may require seat safety inspections",
+      "firstSeen": "2026-07-28T04:09:05.504Z",
+      "lastCovered": "2026-07-28T04:09:05.504Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-faa-737-max-seat-airworthiness-directive-delegated-certification"
+      ],
+      "eventUri": "eng-11869625",
+      "summary": "The FAA has proposed an airworthiness directive covering 453 US-registered 737 MAX aircraft over seats that may have been installed incorrectly. Lead with the word 'proposed', because that is the accountability story: an airworthiness directive is the regulator's binding instrument, and it goes through a public comment period in which the manufacturer and the airlines get to argue about cost and timing before anyone has to touch a seat. The mechanism to teach is regulatory capture in its procedural rather than its conspiratorial form — the FAA delegated large parts of 737 MAX certification to Boeing's own employees under the Organization Designation Authorization programme, which is the arrangement the two fatal crashes and the Alaska Airlines door plug all ran through, and a seat installed wrong on hundreds of airframes is another instance of the same question: who actually checked. The number to press on is how many jets worldwide, not just the 453 registered in the US, since an FAA directive is adopted by other regulators with a lag and the aircraft flying in Africa, South Asia and the Gulf are on the long end of it. Give the defect precisely — which seats, what the incorrect installation does under load, how it was discovered, whether any injury has been attributed to it — the comment period dates, the compliance deadline, and Boeing's response. Al Jazeera is the only source in the feed; attribute the technical detail to the FAA's own notice.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Federal_Aviation_Administration",
+        "http://en.wikipedia.org/wiki/Boeing_737_MAX",
+        "http://en.wikipedia.org/wiki/Airworthiness_Directive",
+        "http://en.wikipedia.org/wiki/Emergency_landing",
+        "http://en.wikipedia.org/wiki/Boeing",
+        "http://en.wikipedia.org/wiki/Aviation",
+        "http://en.wikipedia.org/wiki/Chief_executive_officer",
+        "http://en.wikipedia.org/wiki/Alaska_Airlines"
+      ]
+    },
+    {
+      "id": "kospi-circuit-breaker-ai-selloff-memory-concentration",
+      "label": "Chip firms fall in US and Asia as AI jitters rattle investors",
+      "firstSeen": "2026-07-28T04:09:05.504Z",
+      "lastCovered": "2026-07-28T04:09:05.504Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-kospi-circuit-breaker-ai-selloff-memory-concentration"
+      ],
+      "eventUri": null,
+      "summary": "South Korea's Kospi fell 8% and hit its circuit breaker, halting trading for twenty minutes, as an AI-related selloff spread from Wall Street through Asian chip names. Lead with the circuit breaker, because it is the concrete, checkable fact and almost no reader knows the rule: a Korean exchange halt at that threshold is automatic, not a decision, and it is a design feature intended to interrupt a feedback loop rather than to express a view. The mechanism to teach is concentration risk — index-level moves of this size happen when a handful of names carry the index, and the Kospi is SK Hynix and Samsung Electronics to a degree that makes 'the Korean market' and 'the memory cycle' close to the same quantity, which is why an AI sentiment shift in New York arrives in Seoul as a national economic event. Our reader should also see the link the headlines do not draw to yesterday's CXMT piece: a memory shortage narrative and an AI valuation correction are two readings of one supply question, and they cannot both be right about 2027. Consequence beyond the tickers: memory prices set the cost of every phone, server and car sold in Karachi, Lagos and Jakarta, and the countries with no chip industry take the price without any of the equity upside. Give the index moves, the named companies and their percentages, the halt time, the US session that preceded it, and what specifically triggered the sentiment shift — state plainly if no single catalyst is identified.",
+      "conceptUris": []
+    },
+    {
+      "id": "uae-eu-trade-talks-non-trade-conditionality-cepa",
+      "label": "UAE - EU trade talks lag as non-trade demands stall progress",
+      "firstSeen": "2026-07-28T04:09:05.504Z",
+      "lastCovered": "2026-07-28T04:09:05.504Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-uae-eu-trade-talks-non-trade-conditionality-cepa"
+      ],
+      "eventUri": null,
+      "summary": "The UAE-EU free trade negotiation has stalled, and the obstacle is not tariffs — it is the conditions Brussels attaches to market access. Lead with the category itself, because naming it is the whole insight: 'non-trade demands' means labour standards, human rights clauses, environmental chapters and regulatory alignment, and they now decide more trade agreements than tariff schedules do. The mechanism to teach an economically literate reader is conditionality as a trade instrument: the EU's own leverage is the size of its consumer market, so it exports its regulation with its purchases, and a country that wants the access adopts rules it had no part in writing. That is a sovereignty transaction, and whether it is a fair one depends entirely on who is across the table — which is why the same clauses that read as principled when applied to a Gulf state read as extractive when applied to a Sahelian one with no alternative buyer. The structural why for the ummah: the Gulf states are negotiating these agreements individually rather than through the GCC as a bloc, which multiplies Brussels' leverage, and the UAE's CEPA strategy — dozens of bilateral deals signed at speed with India, Türkiye, Indonesia and others — is the explicit alternative to waiting for Europe. Salaam Gateway is a UAE trade outlet and the only source here: build on verifiable trade figures, name which chapters are actually in dispute, give the timeline of rounds held, and attribute characterisations of the EU's position rather than stating them.",
+      "conceptUris": []
+    },
+    {
+      "id": "johnson-johnson-talc-settlement-no-finding-export-tail",
+      "label": "Johnson & Johnson announces $5.5 billion settlement of talc lawsuits",
+      "firstSeen": "2026-07-28T04:09:05.504Z",
+      "lastCovered": "2026-07-28T04:09:05.504Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-johnson-johnson-talc-settlement-no-finding-export-tail"
+      ],
+      "eventUri": "eng-11869477",
+      "summary": "J&J has agreed to pay $5.5 billion to settle roughly 69,000 consolidated talc claims — 99.75% of what remains — ending a decade of litigation over whether its baby powder caused ovarian cancer and mesothelioma. Lead with the arithmetic the settlement performs: divide the sum by the claimant count and the figure per person is the price the system put on a cancer, and it was reached without any court ruling on causation. The mechanism to teach is why that is the normal outcome and not a failure of nerve — a settlement extinguishes the claims and produces no finding, no admission and no precedent, which is precisely what the money buys, and it is why the same company can pay billions while its position that the product is safe remains formally undisturbed. Note what preceded this: two attempts to move the liability into a shell subsidiary and bankrupt it — the 'Texas two-step' — both rejected by the courts, which is the accountability story worth telling, because it was the only moment the mechanism was visible. The structural point for our reader is the export tail: J&J stopped selling talc-based baby powder in the US and Canada in 2020 and continued elsewhere until 2023, so the exposure ran on longest in markets with the least capacity to sue, and there is no settlement fund for anyone in Lagos, Dhaka or Cairo. Give the court, the judge, the claim types covered, what remains unsettled, and whether any admission of liability is included — state plainly that there is none if so.",
+      "conceptUris": []
+    },
+    {
+      "id": "kenya-pesticide-case-banned-in-eu-exported-regulator-liability",
+      "label": "The Kenyans taking on multinational chemical companies",
+      "firstSeen": "2026-07-28T04:09:05.504Z",
+      "lastCovered": "2026-07-28T04:09:05.504Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-kenya-pesticide-case-banned-in-eu-exported-regulator-liability"
+      ],
+      "eventUri": null,
+      "summary": "A Kenyan lawyer, working with a nurse and local activists, is suing the Kenyan government, its pesticide regulator and several multinational agrochemical firms over hazardous pesticides sold to smallholder farmers. Lead with the regulatory asymmetry, because it is the finding and it is documented: a substantial share of the active ingredients registered for sale in Kenya are withdrawn or banned in the EU, and several of them are manufactured in the countries that banned them. Exporting a pesticide you will not permit at home is legal, and that legality is the story. The mechanism to teach is how the exposure actually happens: these compounds are sold in unlabelled repackaged quantities to farmers with no protective equipment, applied by hand, on crops eaten locally and exported — so the harm lands on the applicator first and the food chain second, and the epidemiological evidence is thin precisely because nobody is funded to collect it, which the defence then uses. That circularity is the accountability gap worth naming. Note what makes the case unusual: it targets the regulator alongside the companies, which is an argument that a state's failure to restrict is itself actionable — and if it succeeds it is a template for every country in the same position. Give the named plaintiffs, the compounds and companies named, the court and its stage, the Kenyan Pest Control Products Board's response, and be precise about which claims are established science and which are contested. This is a BBC documentary rather than a news filing: build the piece on the court record and published pesticide registers, and attribute the reporting to it.",
+      "conceptUris": []
+    },
+    {
+      "id": "lake-chad-wetland-aerial-survey-flyway-conflict-ecology",
+      "label": "Boko Haram conflict zone hides huge bird haven – study",
+      "firstSeen": "2026-07-28T04:09:05.504Z",
+      "lastCovered": "2026-07-28T04:09:05.504Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-lake-chad-wetland-aerial-survey-flyway-conflict-ecology"
+      ],
+      "eventUri": null,
+      "summary": "Aerial surveys and modelling have found that one of Africa's least accessible wetlands — inside the Lake Chad basin conflict zone — holds a waterbird population far larger than anyone could confirm while the ground was unreachable. Lead with the method rather than the birds, because the method is what makes this a story about knowledge under war: fifteen years of insurgency made ordinary field ecology impossible, so the baseline everyone cited was an extrapolation from before it, and the honest position was that nobody knew. Flying transects and modelling from them is how you get an answer without walking the marsh. The mechanism to teach is the ecology the number implies — the Lake Chad wetlands are a terminus of the Palearctic flyway, so a European breeding population's fortunes depend on a floodplain in Borno and Chad, which makes this a shared asset that no party to the conflict has any incentive to manage. Then the part that matters most: the same wetland is the fishery, the pasture and the recession-agriculture ground for millions of people, Lake Chad has lost the large majority of its surface area since the 1960s, and the competition over what remains is entangled with the insurgency's own origins. So a conservation finding here is also a livelihoods finding, and treating the area as a protected zone without the people who fish it would repeat a familiar error. Nigeria and Chad are OIC states and the feed carries no regional African outlet on this study — note it. Name the researchers, the institutions, the journal, the survey years, the species and counts, and be exact about the modelling's uncertainty.",
+      "conceptUris": []
+    },
+    {
+      "id": "single-atom-copper-photo-fenton-textile-effluent-water",
+      "label": "Tailoring d-p orbital hybridization of single-atom Cu-N2S sites for enhanced photo-Fenton reaction",
+      "firstSeen": "2026-07-28T04:09:05.504Z",
+      "lastCovered": "2026-07-28T04:09:05.504Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-single-atom-copper-photo-fenton-textile-effluent-water"
+      ],
+      "eventUri": null,
+      "summary": "A Nature Communications group has tuned the local coordination of single copper atoms — swapping one nitrogen for a sulfur — and made a photo-Fenton catalyst substantially more active at breaking down organic pollutants in water. Lead with what a photo-Fenton reaction actually does, because the chemistry is the point and it is explainable: it uses light plus hydrogen peroxide to generate hydroxyl radicals, which are indiscriminate enough to tear apart dye, pharmaceutical and pesticide molecules that ordinary biological treatment leaves intact. The mechanism to teach is single-atom catalysis itself, which is the genuinely interesting idea: a conventional catalyst is a nanoparticle whose interior atoms do nothing, so isolating individual metal atoms on a support means every atom is a working site — the reason a scarce metal can be used in milligram rather than gram quantities, and the reason the exact atoms bonded to it change the outcome. Why this belongs in a global file rather than a chemistry one: conventional Fenton treatment needs acidified water and produces iron sludge, which is exactly what makes it unaffordable at the small scale, and textile-dyeing and pharmaceutical effluent is untreated surface water in Faisalabad, Tiruppur, Dhaka and the Nile delta. A catalyst that works near neutral pH under light is the version of this technology that could plausibly reach those places — or not, depending on cost and stability over cycles, which the writer must ask about. Be precise about stage: this is an unedited accepted manuscript reporting laboratory performance, not a deployed system. Name the institutions and lead authors, give the degradation rates and the comparison baseline, and say how many cycles the catalyst survived.",
+      "conceptUris": []
+    },
+    {
+      "id": "wikimedia-declines-voluntary-union-recognition-commons-stewardship",
+      "label": "Wikimedia Will Not Voluntarily Recognize Union a Supermajority of Its Workers Want",
+      "firstSeen": "2026-07-28T04:09:05.504Z",
+      "lastCovered": "2026-07-28T04:09:05.504Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-wikimedia-declines-voluntary-union-recognition-commons-stewardship"
+      ],
+      "eventUri": null,
+      "summary": "The Wikimedia Foundation waited until its largest annual conference had ended to tell staff it will not voluntarily recognise the union a supermajority of them have signed for. Lead with the timing, because the timing is the decision: the announcement was scheduled to miss the one week of the year when the movement's volunteers, chapters and press are assembled and paying attention, and that is a communications judgement made by an institution whose entire moral authority rests on openness. The mechanism to teach is what declining voluntary recognition actually buys an employer: it forces the union through a formal election, which adds months, opens a legally protected window for management campaigning, and shifts the fight from card counts to procedure — so 'we prefer a secret ballot' is a real argument and also, reliably, a delay strategy, and readers should be able to hold both. The structural why this is not a US labour story: Wikimedia is the steward of the largest freely licensed knowledge commons on earth, it is funded by small donations given on the strength of that stewardship, and it is now the primary training substrate for the AI systems its own staff are being asked to build against — so how it treats the people who maintain it is a question about the commons, not about one nonprofit's HR. Give the number of workers who signed, the union and unit, the Foundation's stated reasoning in full, its executive compensation and reserve figures for context, and what its board has said. 404 Media is the only source; attribute throughout.",
+      "conceptUris": []
+    },
+    {
+      "id": "data-centre-hearing-arrest-withheld-report-siting-process",
+      "label": "Person Opposing Data Center Arrested for Clapping at City Meeting",
+      "firstSeen": "2026-07-28T04:09:05.504Z",
+      "lastCovered": "2026-07-28T04:09:05.504Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-data-centre-hearing-arrest-withheld-report-siting-process"
+      ],
+      "eventUri": null,
+      "summary": "A resident opposing a data centre was arrested for clapping at a city council meeting, and the police then refused to release the arrest report on the grounds that it could interfere with investigative efforts. Lead with the refusal rather than the applause, because that is the checkable abuse: an arrest report is a public record in most US jurisdictions, the investigative exemption exists for open cases and not for a completed arrest in a televised public meeting, and invoking it here means the one document that would show what was actually alleged is being withheld. The mechanism to teach is how a local planning process becomes an enforcement question: hyperscale data centres are sited through municipal bodies with no capacity to negotiate against them, the deals carry tax abatements and non-disclosure agreements, and the public hearing is often the only point of contact — so removing people from the hearing is not incidental to the approval, it is a way of producing one. The consequences residents raise are specific and measurable and should be in the piece: water withdrawal for cooling, load added to a grid whose costs are socialised across ratepayers, substation noise, and construction jobs that end. The structural why for our reader is that this build-out is global and the pattern travels — the same facilities are being sited in Ireland, Chile, Malaysia and the Gulf, and where the public hearing does not exist at all there is nothing to be arrested at. Give the city, the company and project, the charge, the resident's account, the council's response, and exactly which records request was denied and under what statute.",
+      "conceptUris": []
+    },
+    {
+      "id": "anthropic-open-weights-position-irrevocability-sovereignty",
+      "label": "Our position on open-weights models",
+      "firstSeen": "2026-07-28T04:09:05.504Z",
+      "lastCovered": "2026-07-28T04:09:05.504Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-28-anthropic-open-weights-position-irrevocability-sovereignty"
+      ],
+      "eventUri": null,
+      "summary": "Anthropic has published a formal position on open-weights models — 580 points and 818 comments on Hacker News, the second-highest attention item in this feed and the direct sequel to yesterday's Kimi-K3 release. Lead with what a closed-weights lab has to gain by writing this down, and read the document rather than the reaction: a position paper from a company that does not release weights is an argument about what its competitors should be permitted to do, and that is true whether or not the argument is sound. Our reader is capable of holding both — the safety case for withholding weights is real and so is the incumbent's interest in it, and the article's job is to state the reasoning accurately enough that the reader can weigh it themselves. The mechanism to teach is what release actually forecloses: a model that has been downloaded cannot be recalled, patched, rate-limited or refused, so every safety measure a lab operates — usage policies, monitoring, refusal training that can be fine-tuned away — ends at the download, and that is a structural fact rather than a policy preference. Set against it the sovereignty argument this site has already made: open weights are the only route by which a university in Karachi, Lagos or Cairo works on the current generation instead of the last, and 'trust the lab's judgement' is not available to anyone with no seat at that lab's table. Note the disclosure our readers deserve: this site's own pipeline runs on Anthropic models — say so plainly in the piece. Quote the document's actual commitments and distinguish them from its recommendations, name what it asks regulators to do, and give the strongest opposing argument from the HN thread with attribution.",
+      "conceptUris": []
+    },
+    {
       "id": "el-obeid-rsf-drones-hospital-power-water-sudan",
       "label": "Drone Strikes Are Destroying the Infrastructure of Survival in the Heart of Sudan",
       "firstSeen": "2026-07-27T22:09:51.276Z",
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-27-el-obeid-rsf-drones-hospital-power-water-sudan"
@@ -24,7 +259,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-27-turkiye-f-35-sale-qme-s400-israeli-veto"
@@ -49,7 +284,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-27-osun-pvc-centre-attack-bvas-backups-disenfranchisement"
@@ -65,7 +300,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-27-aaliya-hamza-kot-lakhpat-custodial-safety-political-detention"
@@ -81,7 +316,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-27-perpetual-futures-us-retail-funding-rate-leverage"
@@ -97,7 +332,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-27-vietnam-halcert-halal-certification-mutual-recognition"
@@ -113,7 +348,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-27-clean-electricity-equity-cost-of-capital-cop31"
@@ -129,7 +364,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-27-drc-ebola-case-fatality-ring-vaccination-access"
@@ -145,7 +380,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-27-unaids-financing-18pc-fall-treatment-interruption-resistance"
@@ -161,7 +396,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-27-huanglongbing-atlas-phloem-presymptomatic-citrus-smallholders"
@@ -177,7 +412,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-27-kik-username-misidentification-wrongful-imprisonment-digital-evidence"
@@ -193,7 +428,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-27-google-serpapi-dmca-scraping-circumvention-precedent"
@@ -209,7 +444,7 @@
       "lastCovered": "2026-07-27T22:09:51.276Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-27-openai-hugging-face-specification-gaming-unprecedented-claim"
@@ -225,7 +460,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-chad-icc-withdrawal-article-127-jurisdiction-lag"
@@ -250,7 +485,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-saudi-drone-interception-iraq-launch-eastern-province-oil"
@@ -275,7 +510,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-pakistan-cnsc-aamer-raza-nuclear-command-authority-chain"
@@ -291,7 +526,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-lorenzana-clan-guatemala-border-kingpin-strategy-limits"
@@ -307,7 +542,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-laser-enrichment-paducah-tails-proliferation-signature"
@@ -323,7 +558,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-timor-leste-petroleum-fund-drawdown-sustainable-income"
@@ -339,7 +574,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-rumen-microbe-organelle-methane-hydrogen-transfer"
@@ -355,7 +590,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-wandering-supermassive-black-hole-tidal-disruption-offset"
@@ -371,7 +606,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-sars-cov-2-mac1-macrodomain-inhibitors-second-target"
@@ -387,7 +622,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-von-hagens-plastination-body-provenance-consent-chain"
@@ -412,7 +647,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-claude-share-links-indexed-unlisted-versus-private"
@@ -428,7 +663,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-telegram-account-takeover-exiled-activist-transnational-repression"
@@ -444,7 +679,7 @@
       "lastCovered": "2026-07-27T17:11:40.695Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-27-kimi-k3-open-weights-licence-sovereignty-inference"
@@ -460,7 +695,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-southern-iran-ports-grid-blackouts-civilian-infrastructure"
@@ -476,7 +711,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-26-quetta-asif-baloch-enforced-disappearance-record-destruction"
@@ -492,7 +727,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-cambodia-vietnamese-statelessness-registry-documentation"
@@ -508,7 +743,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-nigeria-villa-gate-officer-coup-plot-access-control"
@@ -524,7 +759,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-philippines-us-japan-drill-south-china-sea-grey-zone-threshold"
@@ -540,7 +775,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-sbp-holds-11-5pc-imported-inflation-rupee-debt-service"
@@ -556,7 +791,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-thailand-land-bridge-shelved-kra-isthmus-transhipment-malacca"
@@ -572,7 +807,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-oak-hill-bio-angelman-orphan-drug-exclusivity-revival"
@@ -588,7 +823,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-12-total-solar-eclipse-umbra-path-greenland-iceland-spain"
@@ -613,7 +848,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-burial-moved-from-household-to-municipal-ground-archaeology"
@@ -629,7 +864,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-bank-of-baroda-breach-aadhaar-permanent-identifier-email-compromise"
@@ -654,7 +889,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-china-face-licensing-microdramas-biometric-consent-perpetual"
@@ -670,7 +905,7 @@
       "lastCovered": "2026-07-27T12:13:00.807Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-27-bombay-hc-gadkari-deepfake-intermediary-liability-safe-harbour"
@@ -695,7 +930,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-cxmt-shanghai-debut-dram-shortage-memory-oligopoly"
@@ -720,7 +955,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-india-supreme-court-lathicharge-police-excess-protest-right"
@@ -745,7 +980,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-bordeaux-fire-cloud-france-spain-evacuation-pyrocumulonimbus"
@@ -770,7 +1005,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-benue-ohimini-attack-igp-pledge-middle-belt-security-gap"
@@ -786,7 +1021,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-uk-palestine-activists-terrorism-connection-sentencing-jury"
@@ -802,7 +1037,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-stfc-diamond-light-source-funding-gap-commercialise-beam-time"
@@ -818,7 +1053,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-argenx-forte-biosciences-acquisition-pipeline-immunology"
@@ -834,7 +1069,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-esa-cebreros-deep-space-station-wildfire-network-redundancy"
@@ -850,7 +1085,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-cml-bcr-abl1-international-scale-lab-precision-standardisation"
@@ -866,7 +1101,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-ultra-processed-food-brain-health-inflammation-dietary-transition"
@@ -882,7 +1117,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-grapheneos-border-search-auto-wipe-obstruction-charge"
@@ -898,7 +1133,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-q-day-bitcoin-exposed-keys-harvest-now-decrypt-later"
@@ -914,7 +1149,7 @@
       "lastCovered": "2026-07-27T08:11:37.340Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-multiverse-computing-tensor-compression-edge-ai-efficiency"
@@ -939,7 +1174,7 @@
       "lastCovered": "2026-07-27T04:13:15.602Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-bank-indonesia-warjiyo-resignation-independence-succession"
@@ -964,7 +1199,7 @@
       "lastCovered": "2026-07-27T04:13:15.602Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-mas-currency-band-tightening-oil-shock-open-economy"
@@ -989,7 +1224,7 @@
       "lastCovered": "2026-07-27T04:13:15.602Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-australia-ev-share-fuel-shock-fleet-turnover-expectations"
@@ -1005,7 +1240,7 @@
       "lastCovered": "2026-07-27T04:13:15.602Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-seattle-food-festival-shooting-trauma-system-substitution"
@@ -1030,7 +1265,7 @@
       "lastCovered": "2026-07-27T04:13:15.602Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-cockroach-protests-end-resignation-without-prosecution"
@@ -1046,7 +1281,7 @@
       "lastCovered": "2026-07-27T04:13:15.602Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-intermittent-water-supply-unpaid-labour-pressure-hierarchy"
@@ -1062,7 +1297,7 @@
       "lastCovered": "2026-07-27T04:13:15.602Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-lahore-division-flood-camps-punjab-floodplain-treaty-data"
@@ -1078,7 +1313,7 @@
       "lastCovered": "2026-07-27T04:13:15.602Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-adolescent-mental-disorder-mortality-coding-and-surveillance"
@@ -1094,7 +1329,7 @@
       "lastCovered": "2026-07-27T04:13:15.602Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-la-brea-smilodon-spinal-tumours-inbreeding-extinction-vortex"
@@ -1110,7 +1345,7 @@
       "lastCovered": "2026-07-27T04:13:15.602Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-meta-nudify-ads-china-reseller-enforcement-delegation"
@@ -1126,7 +1361,7 @@
       "lastCovered": "2026-07-27T04:13:15.602Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-27-pratt-whitney-barb-robot-engine-assembly-defence-throughput"
@@ -1142,241 +1377,13 @@
       "lastCovered": "2026-07-27T04:13:15.602Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-25-scientists-uncover-lost-golden-age-of-languages-that-ended-1"
       ],
       "eventUri": null,
       "summary": "[Auto-backfill for tech floor] Scientists have predicted that human linguistic diversity flourished between 3,000 and 1,000 years ago, before declining with the rise of multinational states and colonial expansion.",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-us-pause-second-day-no-text-no-verification",
-      "label": "U.S., Iran pause attacks for 2nd straight day",
-      "firstSeen": "2026-07-26T22:14:13.834Z",
-      "lastCovered": "2026-07-26T22:14:13.834Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-26-iran-us-pause-second-day-no-text-no-verification"
-      ],
-      "eventUri": "eng-11864896",
-      "summary": "The pause has now held two full nights, which is the new fact and the only one worth leading with — this morning it was an Iranian official's conditional offer, tonight it is observed behaviour on both sides. Do not re-report the tacit-bargaining explanation we ran at 17:00; advance it. What a strategic reader needs now is the failure model: a pause with no text, no mediator of record and no violation clause is held together only by each side's reading of the other's last twenty-four hours, so the things that end it are not decisions but events — a mined hull in Hormuz, a proxy strike, interceptor debris in a residential street. Name what would count as defection and to whom. Second, the arithmetic underneath: reporting attributes the American restraint to an air-defence interceptor shortage, so this is a pause priced by a production line rather than a diplomatic outcome, and the moment stocks recover the constraint lifts. Third, who is inside the interval: civilians in Fars and along the Gulf littoral, for whom a pause is not peace but a chance to bury and rebuild, and Gulf states hosting the bases either side would strike. Attribute carefully — CBC, AP-via-News18 and the LA Times report the absence of strikes; Al Jazeera carries Tehran's framing. State plainly that nothing has been signed and no verification mechanism exists.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Oman",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/Diplomacy"
-      ]
-    },
-    {
-      "id": "gaza-stabilisation-force-mandate-consent-rules-of-engagement",
-      "label": "Israeli government nods to international stabilisation force in Gaza",
-      "firstSeen": "2026-07-26T22:14:13.834Z",
-      "lastCovered": "2026-07-26T22:14:13.834Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-26-gaza-stabilisation-force-mandate-consent-rules-of-engagement"
-      ],
-      "eventUri": "eng-11865940",
-      "summary": "Israel's security cabinet has approved the legal measures admitting the International Stabilization Force to Gaza under Trump's 20-point plan. Lead with the question the approval does not answer: whose law the force operates under, who may order it to act, and what happens when it is present at an event it has no mandate to stop. The mechanism to teach a strategic reader is that a stabilisation force is defined by its rules of engagement and its status-of-forces agreement, not by its name — a force that may not disarm anyone, may not restrain the occupying power, and reports to a board rather than to a state is an observer with a budget, and every precedent worth citing (UNIFIL in south Lebanon, UNMISS in Juba, the 1982 MNF in Beirut) turns on exactly that seam. Second, the consent question: Israel has approved the entry; Palestinians have not been asked, and a force administering a territory whose population did not consent to it is a governance arrangement, not a peacekeeping one. Who bears the cost: two million people in Gaza for whom this determines whether aid moves, whether reconstruction can start, and who holds a gun at a checkpoint. The sourcing divergence is unusually wide (0.51) and should be used rather than smoothed — the Times of Israel reports a cabinet win, TRT and Al Jazeera-via-Yahoo report an unresolved mandate, Daily Maverick reports it flat. Say where they agree: the approval happened. Say what none of them establish: troop contributors, timeline, mandate text.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Gaza_City",
-        "http://en.wikipedia.org/wiki/Hamas",
-        "http://en.wikipedia.org/wiki/Gaza_Strip",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Israel_Defense_Forces",
-        "http://en.wikipedia.org/wiki/Palestinians",
-        "http://en.wikipedia.org/wiki/Cabinet_(government)"
-      ]
-    },
-    {
-      "id": "ajk-elections-kashmir-council-reserved-powers-self-rule-ceiling",
-      "label": "In reply to Nawaz, Bilawal says people of AJK not ready to 'bargain away their rights'",
-      "firstSeen": "2026-07-26T22:14:13.834Z",
-      "lastCovered": "2026-07-26T22:14:13.834Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-26-ajk-elections-kashmir-council-reserved-powers-self-rule-ceiling"
-      ],
-      "eventUri": null,
-      "summary": "Azad Jammu and Kashmir votes tomorrow in the first phase of its elections, and the campaign's closing exchange between Pakistan's two largest parties is about whose rights are being bargained. Lead with the vote, not the quarrel — Dawn's framing is a party spat, and the story underneath it is that roughly four million people are electing a legislature whose constitutional standing is unresolved by design. The mechanism to teach a strategic reader: AJK has a prime minister, an assembly and a supreme court, and it also has a Kashmir Council in Islamabad with reserved powers over the subjects that matter, so the territory has the form of self-government and a ceiling on it; the same architecture, mirrored, governs Indian-administered Kashmir, and both states justify it by the unresolved plebiscite neither has held since 1948. That is why an election there is a claim about sovereignty rather than only about administration. Follow it to what the vote will actually decide — hydropower royalties from the Neelum-Jhelum and Mangla projects, wheat subsidy, and the tax status that produced the 2021 and 2024 protest movements — because these are the grievances that have brought people onto AJK's streets while both national parties campaigned on rhetoric. Timely against our Kargil Diwas piece from this morning: India's defence minister ruled out dialogue on Friday; here is what the other side of the Line of Control is being asked to vote on. Give the phase dates, the seats at stake, turnout expectations, and what the Kashmir Council retains.",
-      "conceptUris": []
-    },
-    {
-      "id": "fed-hike-oil-shock-dollar-transmission-emerging-market-debt",
-      "label": "Fed Faces Growing Pressure to Hike Rates as Price Risks Rebound",
-      "firstSeen": "2026-07-26T22:14:13.834Z",
-      "lastCovered": "2026-07-26T22:14:13.834Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-26-fed-hike-oil-shock-dollar-transmission-emerging-market-debt"
-      ],
-      "eventUri": "eng-11864760",
-      "summary": "Investors are now pricing a real chance the Federal Reserve raises rates this week, with policymakers publicly building the case — a reversal, and one driven substantially by an oil shock the Gulf war produced. Lead with the transmission chain, because that is what makes this our reader's story rather than an American one: a war in Hormuz lifts crude, crude lifts US headline inflation, US inflation lifts the policy rate, the dollar strengthens, and the bill arrives in Karachi, Cairo, Lagos, Dhaka and Colombo as a higher import price and a higher debt-service cost on dollar borrowing — three transmissions removed from a decision no one in those capitals voted on. The mechanism to teach an economically literate reader is why the Fed's mandate makes this unavoidable rather than careless: it is legally required to target US employment and US prices, so the spillover is not a side effect it is permitted to weigh, and 'the dollar is our currency and your problem' is a description of a statute, not an insult. Second, the specific trap for a supply shock — raising rates does not put oil back in the water, so the tightening works only by suppressing demand for everything else, which is why every previous energy-shock hiking cycle produced emerging-market debt distress before it produced disinflation. Name the officials making the case (Warsh is in the concepts) and give the actual market-implied probability, the current inflation print, and what the last comparable episode did to EM currencies.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Inflation",
-        "http://en.wikipedia.org/wiki/Kevin_Warsh",
-        "http://en.wikipedia.org/wiki/Interest_rate",
-        "http://en.wikipedia.org/wiki/Federal_Reserve",
-        "http://en.wikipedia.org/wiki/Central_bank",
-        "http://en.wikipedia.org/wiki/Monetary_policy",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Donald_Trump"
-      ]
-    },
-    {
-      "id": "gatwick-water-outage-ses-monopoly-resilience-regulation",
-      "label": "London's Gatwick Airport hit by water supply problem",
-      "firstSeen": "2026-07-26T22:14:13.834Z",
-      "lastCovered": "2026-07-26T22:14:13.834Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-26-gatwick-water-outage-ses-monopoly-resilience-regulation"
-      ],
-      "eventUri": "eng-11865376",
-      "summary": "Britain's second-busiest airport lost running water on the busiest Sunday of the travel year because a power cut stopped a treatment works at Horley, and its bars and restaurants shut while flights kept moving. Lead with the ownership question, not the inconvenience: Gatwick handles some 40 million passengers a year and buys water from SES Water, a privately owned regional monopoly, and neither party is contractually obliged to hold resilience the other can rely on — so a single treatment works with no backup generation is the actual continuity plan for a national gateway. The mechanism to teach an economically literate reader is the regulatory one: England's water companies are regulated on price and on customer-service metrics, and resilience investment is a cost that raises bills today against a failure that is somebody's problem tomorrow, which is precisely the expenditure a regulated monopoly under-provides unless the regulator prices it. Ofwat can compel it and has been criticised for not doing so; say what the current asset-management period actually requires. Deliberately do not repeat this morning's Karachi piece — Dhabeji was about a network with no redundancy at all, and the interesting fact here is the opposite: a wealthy, heavily regulated system with an explicit resilience regime failed in the same way. That comparison is worth one sentence and no more. Give the outage duration, the number of properties affected beyond the airport, SES Water's explanation, and whether standby generation existed at the site.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Gatwick_Airport",
-        "http://en.wikipedia.org/wiki/Airport",
-        "http://en.wikipedia.org/wiki/Water_supply",
-        "http://en.wikipedia.org/wiki/Bottled_water",
-        "http://en.wikipedia.org/wiki/SES_Water",
-        "http://en.wikipedia.org/wiki/Horley",
-        "http://en.wikipedia.org/wiki/Power_outage",
-        "http://en.wikipedia.org/wiki/Kent"
-      ]
-    },
-    {
-      "id": "futa-teaching-hospital-strike-unenforceable-agreement-nigeria",
-      "label": "Labour shuts down FUTA Teaching Hospital over non-implementation of agreement",
-      "firstSeen": "2026-07-26T22:14:13.834Z",
-      "lastCovered": "2026-07-26T22:14:13.834Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-26-futa-teaching-hospital-strike-unenforceable-agreement-nigeria"
-      ],
-      "eventUri": null,
-      "summary": "Nigeria's two labour federations have ordered health workers at the Federal University of Technology Akure teaching hospital to down tools from midnight over an agreement the government signed and did not implement. Lead with the instrument, because it is the story: a strike is what remains when a signed collective agreement carries no enforcement, and Nigerian health unions have been driven to it repeatedly for the same reason — the memorandum is a political undertaking, not a contract a court will make the treasury honour, so the only sanction available to the workers is the harm the withdrawal of their labour does to patients who are not party to the dispute. That is the mechanism to teach an economically literate reader, and it generalises: wherever wage agreements are made by ministries rather than by budget lines, the workers' only remedy is one that injures third parties, which is why the same hospitals close every eighteen months. Second, the emigration column that makes it structural — Nigeria loses doctors and nurses to the Gulf, the UK and Canada at a rate that makes any given strike a recruitment event for another country's health system, so an unimplemented agreement is not only a labour dispute but a transfer of trained clinicians out of the country. Who bears the cost: patients in Ondo State, and specifically the ones who cannot pay a private clinic. Give the terms of the agreement, how long it has gone unimplemented, the union's specific demands, the hospital's catchment, and whether emergency cover is exempted. Fills the Africa gap yesterday's audit flagged, with Nigerian reporting.",
-      "conceptUris": []
-    },
-    {
-      "id": "joburg-billing-errors-burden-of-proof-municipal-revenue",
-      "label": "Sold your Joburg home? Why utility bills may still arrive months later",
-      "firstSeen": "2026-07-26T22:14:13.834Z",
-      "lastCovered": "2026-07-26T22:14:13.834Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-26-joburg-billing-errors-burden-of-proof-municipal-revenue"
-      ],
-      "eventUri": null,
-      "summary": "Johannesburg keeps billing people for homes they sold months ago, and the burden of stopping it falls entirely on the former owner. Lead with where the burden sits, because that is the transferable fact: the city's billing system treats an account as live until someone proves it should not be, so an administrative failure inside a municipality becomes a debt on a private citizen's name, chased by the same credit machinery that chases real debt. The mechanism to teach an economically literate reader — municipal revenue in South Africa is collected against a property rather than a person, and the clearance certificate that should close the account is issued by the same department whose records are wrong, so the citizen must litigate a monopoly's bookkeeping using the monopoly's own process, with electricity disconnection as the lever held over them meanwhile. That asymmetry is why it persists: the cost of the error falls on the household and not on the department that made it. The wider stakes, and why this is not a consumer-affairs item: Johannesburg's billing crisis is a solvency story wearing a service-delivery costume — a city that cannot bill accurately cannot collect, and a city that cannot collect cannot maintain the grid and water network the rest of its coverage is about. Give the documented cases, how long the bills continued, what the city says its process is, what recourse exists at the ombud, and the city's collection rate if reported.",
-      "conceptUris": []
-    },
-    {
-      "id": "boreal-carbon-sink-productivity-not-warming-budget-uncertainty",
-      "label": "Forest productivity, not rapid warming, shapes Northern Eurasia's carbon sink",
-      "firstSeen": "2026-07-26T22:14:13.834Z",
-      "lastCovered": "2026-07-26T22:14:13.834Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-26-boreal-carbon-sink-productivity-not-warming-budget-uncertainty"
-      ],
-      "eventUri": null,
-      "summary": "Northern Eurasia holds about a fifth of the world's forests, and new work finds that what governs how much carbon they absorb is forest productivity — how much the trees actually grow — rather than the region's exceptionally fast warming. Lead with why that distinction has consequences rather than only interest: every national climate pledge on earth is denominated in net emissions, and the net depends on an assumed land sink whose size is inferred from models, so if the wrong variable is driving the largest boreal sink then a very large number in everyone's accounting is being estimated the wrong way. The mechanism to teach a technically literate reader — warming lengthens the growing season, which should increase uptake, but it also increases respiration, drought stress and fire, and the sink is the difference between two large and separately uncertain quantities; when the difference is small relative to its terms, the thing that determines the answer is whichever term is best constrained, which is why productivity turns out to carry it. Follow it to the political consequence our reader will recognise: a boreal sink sits almost entirely inside Russia and Canada, and a carbon budget that leans on it is leaning on land two states control and no one else can measure well, which is exactly the asymmetry running through carbon border mechanisms and offset markets that developing exporters are being asked to accept. Report it precisely — the study, the observational record it uses, the size of the sink with its uncertainty, what the previous consensus held, and what would falsify this. Restores a specialist science source after the audit found none.",
-      "conceptUris": []
-    },
-    {
-      "id": "cookie-banner-consent-dark-pattern-browser-signal",
-      "label": "Kill The Cookie Banner",
-      "firstSeen": "2026-07-26T22:14:13.834Z",
-      "lastCovered": "2026-07-26T22:14:13.834Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-26-cookie-banner-consent-dark-pattern-browser-signal"
-      ],
-      "eventUri": null,
-      "summary": "A campaign to abolish the consent banner is at the top of Hacker News with 715 points, and the interesting thing is not that developers hate the banner — it is that the banner was never what the law asked for. Lead with that: the ePrivacy Directive and the GDPR require consent to be freely given, specific and informed, and nowhere require a modal covering the page with an accept button in colour and a reject link in grey; the banner is what the advertising industry built when asked to obtain consent, and it was designed to be unbearable enough that people click accept. The mechanism to teach a technically literate reader is the enforcement asymmetry that produced it: a regulator can fine a site for tracking without consent far more easily than for making refusal tedious, so the compliant-looking dark pattern is the rational response, and the fix the campaign proposes — honouring a browser-level signal such as Global Privacy Control, which several US state laws already make binding — moves the choice from ten thousand sites to one setting. Note what that costs and who it favours, honestly: a browser-level signal makes the browser vendor the arbiter of consent, and the two dominant browsers are made by an advertising company and by a hardware company with its own ad business. The structural why for our reader: this is the template question for every jurisdiction now writing data law — India's DPDP Act, Nigeria's NDPA, Saudi Arabia's PDPL — all of which are inheriting the consent model, and therefore inheriting the banner unless they specify the signal instead. Say clearly that this is an advocacy site, not a regulatory action, and that 715 points is attention, not law.",
-      "conceptUris": []
-    },
-    {
-      "id": "nelson-mandela-bay-surveillance-vehicle-opex-oversight-gap",
-      "label": "Nelson Mandela Bay's crime-fighting 'Loerbroer' could soon return to spy on criminals",
-      "firstSeen": "2026-07-26T22:14:13.834Z",
-      "lastCovered": "2026-07-26T22:14:13.834Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-26-nelson-mandela-bay-surveillance-vehicle-opex-oversight-gap"
-      ],
-      "eventUri": null,
-      "summary": "A R6-million mobile surveillance vehicle has sat in a municipal depot in Nelson Mandela Bay for nearly five years and may go back on the road in August; the metro's gunshot-detection system is still dead. Lead with the depot, because the wasted asset is the finding: this is what public surveillance procurement usually produces — a capital purchase made in a crisis or around an event, with no line for maintenance, no trained operator, and no evidentiary process to make what it records usable in court, so the equipment degrades into a photograph in an audit report. The mechanism to teach a technically literate reader: surveillance systems are overwhelmingly operating expenditure disguised as capital expenditure — a camera mast is cheap next to the backhaul, storage, retention policy and the analyst hours needed to look at any of it, and acoustic gunshot detection additionally needs a dense, calibrated sensor array whose false-positive rate rises the moment maintenance lapses, which is why cities from Chicago to Cape Town have quietly switched theirs off. Then hold both halves, as the reporting does: residents of a metro with one of the world's highest homicide rates are not wrong to want it working, and the same vehicle, unaccountable, is a mobile camera pointed at whoever the metro chooses. Ask the questions the article opens: what oversight governs where it parks, how long footage is kept, who may request it, and what the five-year failure actually cost. Give the councillor's account, the repair cost, and the gunshot system's status. Africa coverage and a technology-accountability story, both flagged as gaps.",
-      "conceptUris": []
-    },
-    {
-      "id": "graphene-reconfigurable-surface-6g-beam-steering-standards",
-      "label": "A graphene-based intelligent reconfigurable reflective surface for circularly polarized beam scanning in 6G applications",
-      "firstSeen": "2026-07-26T22:14:13.834Z",
-      "lastCovered": "2026-07-26T22:14:13.834Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-26-graphene-reconfigurable-surface-6g-beam-steering-standards"
-      ],
-      "eventUri": null,
-      "summary": "Researchers report a graphene-based reconfigurable intelligent surface that steers a circularly polarised beam in the sub-terahertz band — a 1-bit coding metasurface that both tunes phase and converts polarisation in one compact structure. Lead with what the device is for, because the acronym hides it: 6G is expected to run at frequencies so high that the signal is stopped by a wall, a tree or a human body, and a reconfigurable intelligent surface is a panel that reflects the beam around the obstruction — in effect a mirror for radio that can be aimed electronically, turning the environment itself into part of the network. The mechanism to teach a technically literate reader is why graphene is the interesting part rather than the metasurface: graphene's conductivity can be tuned with a bias voltage, which is what lets one physical structure hold many reflection states without moving parts, and the reported combination of polarisation conversion with phase tuning matters because circular polarisation survives multipath and misalignment that would kill a linearly polarised link. Then be honest about the distance from here to a network: this is a simulated and bench-validated unit cell, not a deployed panel, and sub-THz graphene devices have a long record of good cells and hard arrays. The structural why for our reader — 6G's standards and its patent pool are being written now, and the countries whose laboratories are in the literature at this stage are the ones who will collect licence fees from every base station sold in Karachi, Cairo and Jakarta a decade from now; the last three generations' royalty flows are the evidence. Give the frequency range, the scan angle and sidelobe figures claimed, the institutions behind it, and what stage of validation this is.",
-      "conceptUris": []
-    },
-    {
-      "id": "a-probilistic-markov-model-based-framework-for-indoor-locali",
-      "label": "A probilistic markov model-based framework for indoor localization",
-      "firstSeen": "2026-07-26T22:14:13.834Z",
-      "lastCovered": "2026-07-26T22:14:13.834Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-26-a-probilistic-markov-model-based-framework-for-indoor-locali"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for science floor] We are providing an unedited version of this manuscript to give early access to its findings. Before final publication, the manuscript will undergo further editing. Please note there may be errors present which affect the content, and all legal disclaimers apply.\n\nIn recent years, the demand for ind",
       "conceptUris": []
     }
   ]
