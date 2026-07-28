@@ -1,7 +1,5 @@
 {
   "version": 1,
-  "noNewExperimentsUntil": "2026-07-28",
-  "noNewExperimentsReason": "Opus 4.8 → Opus 5 migration landed 2026-07-24 (commit af5e869b) across the selector, tune, autoresearch propose/replay, dry-run-augment, GDACS narrator and briefing stages. The selector is the single largest determinant of category mix, multi-source rate and region spread, so every tunable metric is mid-re-baseline. Introducing a parameter variable now would be jointly confounded with the model swap through any evaluation window. Gate lifts 2026-07-28, giving the new lineup ~4 days (≈20 cycles) of clean data.",
   "activeExperiments": [],
   "activeExperiment": null,
   "history": [

@@ -1,34 +1,34 @@
 {
-  "date": "2026-07-27",
+  "date": "2026-07-28",
   "metrics": {
-    "articles": { "value": 59, "detail": "5 cycles, all 5 completed, avg 10 published/cycle — up from 43 yesterday, the highest single-day count of the month" },
-    "freshness": { "median": 0, "p90": 1.2, "max": 1.2, "target": 1.0, "met": true },
-    "categories": { "politics": 18, "economy": 13, "science": 14, "tech": 14 },
-    "multiSource": { "value": 7, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 18, "AS": 12, "EU": 10, "ME": 9, "AF": 7, "OC": 1, "unknown": 2 } },
-    "sciTech": { "ratio": 47, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 5, "target": 20, "met": true },
-    "uniqueSources": 45,
+    "articles": { "value": 50, "detail": "5 cycles, 4 completed at audit time, avg 10 published/cycle — down from yesterday's 59 with the 22:00 cycle still in flight" },
+    "freshness": { "median": 0.1, "p90": 0.9, "max": 0.9, "target": 1.0, "met": true },
+    "categories": { "politics": 15, "economy": 12, "science": 11, "tech": 12 },
+    "multiSource": { "value": 9, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 18, "ME": 11, "AF": 7, "AS": 7, "EU": 6, "OC": 1 } },
+    "sciTech": { "ratio": 46, "target": 25, "met": true },
+    "topSourceShare": { "source": "404 Media", "pct": 8, "target": 20, "met": true },
+    "uniqueSources": 48,
     "duplicates": 0,
-    "avgCycleDuration": 1056
+    "avgCycleDuration": 1044
   },
-  "experiment": "Skipped on both counts: no experiment is active to evaluate, and the noNewExperimentsUntil gate (2026-07-28) covering the Opus 4.8 → Opus 5 migration is still in force for one more day. Every headline metric cleared its target with margin today, so there is no defect a parameter change would be answering.",
-  "weakestArea": "Nothing missed a target, so the weakest thing here is a measurement rather than an output: freshness is computed over 9 of 59 articles, because only that many carry a resolvable upstream publication timestamp. A median of 0 on a 15% sample is a weaker claim than the number looks. After that it is region balance — the Americas took 18 of 59 (31%) while Oceania took 1 and 2 datelines resolved to no region at all, so the count of 6 clears the target on breadth while the distribution stays lopsided.",
+  "experiment": "Skipped, and the gate is now down. No experiment was active to evaluate; the noNewExperimentsUntil field (2026-07-28) reached its date and was dropped from content/.experiments.json rather than extended, as the migration note specified. Nothing is proposed today because every goal metric cleared its target with margin — the rule is skip-if-healthy, and a variable introduced against a clean day measures noise.",
+  "weakestArea": "Region distribution, inside a metric that passes. The Americas took 18 of 50 (36%, up from 31%) while Europe fell 10 → 6 and Oceania held at 1 for the fourth consecutive day. The regions target counts presence, not balance, so a run this AM-heavy still scores 6/6. Behind it sits yesterday's measurement caveat unchanged: freshness is computed over 10 of 50 articles — the rest carry no resolvable upstream timestamp — so a median of 0.1 rests on a 20% sample.",
   "watching": [
-    "The DRC Ebola outbreak at 1,405 deaths in 3,200 cases — a 44% case-fatality rate running well above the ring-vaccination era's norm, and the story is framed as access failing rather than the virus changing.",
-    "Türkiye's F-35 file moved twice in a day: Trump rejecting Netanyahu's veto cuts against the qualitative-military-edge doctrine, and the S-400 question is still unresolved.",
-    "El-Obeid's hospitals losing power — the Sudan siege economy, not the front line, is what the casualty figures are now tracking.",
-    "Southern Iran's grid collapsing at Bandar Abbas alongside Saudi Arabia downing drones: Gulf infrastructure under stress on both shores in the same cycle.",
-    "Pakistan named a new nuclear chief from Rawalpindi in the same file as a jailed PTI leader reportedly attacked — civil-military signalling worth reading together.",
-    "CXMT's debut read as a memory-shortage signal, and Moonshot shipping Kimi K3 — Chinese hardware and model tracks converging inside one week.",
-    "Chad notifying the ICC of its exit, a live test of the Rome Statute's one-year withdrawal clause."
+    "Ukrainian air defence became a supply story rather than a battlefield one: two separate filings on Patriot interceptor output trailing the drone barrage rate, alongside Zelenskyy's Washington ask.",
+    "Sudan recaptured the Bara junction, carried by Radio Dabanga alone — a single-outlet thread on the cycle's most consequential African military move.",
+    "Gaza forced cashless under siege — the blockade's second-order financial effect, with a natural follow-up in remittance and banking data.",
+    "Aramco shutting the Jazan refinery, worth reading against the Gulf infrastructure stress tracked yesterday at Bandar Abbas.",
+    "Two 2026-08-12 total-eclipse articles are already filed ahead of the event; check they do not surface as near-duplicates when the rolling window reaches them.",
+    "Kashmir protesters branded khawarij — takfiri language entering state security framing is a thread the site is unusually placed to follow.",
+    "Russia accelerating digital-asset rules in the same cycle as CoinDesk's three filings — regulatory and market tracks converging."
   ],
   "coverageGaps": [
-    "Oceania produced 1 story of 59 for the third consecutive day; no curated source is based there and Melbourne's EV piece arrived via a wire.",
-    "Two datelines resolved to no region — the geocoder failing on 'Global' filings, which is a classification gap rather than an absence of coverage.",
-    "Latin America appears almost entirely through crime and enforcement (Zacapa's drug clan, InSight Crime); its politics and economy are unrepresented while the AM bucket reads as US coverage.",
-    "Central Asia and the Caucasus were absent again — no dateline between Ankara and Delhi in a 59-article day.",
-    "Tech's geography concentrated hard: San Francisco three times, Mumbai twice, plus Beijing and Shanghai — a US/China/India axis with nothing from Europe's or Africa's own technology sectors beyond San Sebastián."
+    "Oceania produced 1 story of 50 for the fourth consecutive day; still no curated source based there.",
+    "Europe fell 10 → 6 with nothing from Southern or Central Europe — DW, RTE and Ukrainska Pravda carried the continent between them.",
+    "Latin America is again invisible inside the AM bucket, which reads as US coverage; InSight Crime appeared yesterday and not today.",
+    "Science leaned on generalists (BBC, CBS News, The Times of India, Haberler.com) beside Nature, Phys.org, Carbon Brief and SciDev.Net — a thinner specialist share than yesterday's Quanta/New Scientist/STAT run.",
+    "Central Asia and the Caucasus remain absent apart from a single APA filing — the second day with effectively no dateline between Ankara and Delhi."
   ],
-  "context": "The strongest day the pipeline has recorded this month: all five cycles completed, 59 articles at avg 10/cycle, 45 unique sources, zero duplicates, and a sci-tech ratio of 47% on 14 science and 14 tech — the first day each has matched politics' order of magnitude. Top-source share fell to 5%, a third of yesterday's 14%. This is the fourth and final day of the Opus 5 re-baseline window, and the metrics the selector most directly drives all sit at or above pre-migration levels, which is the signal the gate was opened to collect; the migration can be treated as ratified. The gate lifts tomorrow — drop noNewExperimentsUntil then rather than extending it. The first candidate should be feed-side, not selector-side: the 2026-05-16 evaluation established that the selector's multi-source floor is exhausted and the binding constraint is upstream supply, and today's category floors are being cleared by wide margins without help. TOP_EVENTS_TO_FETCH stays at 8 — each unit is one NewsAPI token per cycle and that spend is capped."
+  "context": "First day past the Opus 5 re-baseline window, and the post-migration numbers hold: multi-source at 9 against a floor of 4 — the highest reading in the file and up from 7 — with 48 unique sources, top-source share at 8%, zero duplicates, freshness median 0.1 days and sci-tech at 46%. Category counts flattened usefully too: politics 15 against tech 12, economy 12, science 11, with every floor cleared by wide margins, so the selector floors are not the binding constraint on mix. State media accounted for 5 of 50 (TASS 2, RT, Mehr, Anadolu), inside the source policy as position-carrying rather than substitute reporting, and the isnad ranking withholds their proximity promotion automatically. Yesterday's guidance on the first post-gate candidate stands and is unchanged by today: it should be feed-side rather than selector-side, since the 2026-05-16 evaluation established the selector's multi-source floor is exhausted and the constraint is upstream supply. TOP_EVENTS_TO_FETCH stays at 8 — each unit is one NewsAPI token per cycle against a capped spend."
 }
