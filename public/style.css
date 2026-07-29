@@ -161,7 +161,7 @@
 
   /* A signed change: a number that went up, a number that went down. Three
      components each had their own pair before this — `.entity-delta`,
-     `.entity-sheet-delta` and the map's sentiment tones — which is four
+     `.article-entity-delta` and the map's sentiment tones — which is four
      greens and four reds for one idea, and one of the greens (#2f8a4a)
      measured 4.33:1 on white and failed AA. These are the pair that already
      passed in both schemes. The map keeps a pair of its own (`--map-pos`,
@@ -1906,9 +1906,14 @@ body.archetype-page-body .article-page-header {
 }
 
 /* --- Island sheets ---
-   Native <dialog> popovers used by entity-sheet and country-preview.
-   Slide-up on mobile, centered on desktop. Zero JS sheet library —
-   @starting-style drives the entry animation. */
+   Native <dialog> popovers used by country-preview, doc-sheet and the map's
+   own overlay sheets. Slide-up on mobile, centered on desktop. Zero JS sheet
+   library — @starting-style drives the entry animation.
+
+   Note what is *not* here any more: an indicator's chart. A sheet is right for
+   a document (doc-sheet) and for a mark on a layer that has nothing under it
+   worth protecting; it is wrong for a question a sentence just raised, which
+   is answered under that sentence — see `.article-entity-panel`. */
 .island-sheet {
   border: none;
   padding: 0;
@@ -2027,104 +2032,137 @@ body.archetype-page-body .article-page-header {
   background-color: color-mix(in srgb, var(--text) 4%, transparent);
 }
 
-/* --- Entity sheet --- */
-.entity-sheet-dialog {
-  max-width: 640px;
+/* --- The article's follows panel ---
+   The indicator, unfolded under the chip that named it. This replaces
+   `.entity-sheet-dialog` — a 44rem <dialog> with a scrim and a backdrop blur
+   thrown over the article being read, to show a chart and a list of other
+   articles to go and read. The chart was the only part of it anyone asked for,
+   and a question raised by a sentence is answered under that sentence. Same
+   mechanism as the map's story card (`_disclosure.ts`); the map's palette is
+   the only difference between them. */
+.article-entity-panel {
+  margin: var(--space-md) 0 0;
 }
-.entity-sheet-inner {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-}
-.entity-sheet-header {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-}
-.entity-sheet-label {
+
+.article-entity-head {
   margin: 0;
-  font-size: var(--size-h2);
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  line-height: 1.15;
-}
-.entity-sheet-hero {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-md);
-  margin-top: var(--space-xs);
-  flex-wrap: wrap;
-}
-.entity-sheet-current {
-  font-size: var(--size-h1);
-  font-weight: 300;
-  letter-spacing: -0.02em;
-  line-height: 1;
-}
-.entity-sheet-delta {
-  font-size: var(--size-sm);
+  font-size: var(--size-xs);
+  font-variant-caps: all-small-caps;
+  letter-spacing: var(--track-caps);
   color: var(--text-secondary);
 }
-.entity-sheet-delta.pos { color: var(--pos); }
-.entity-sheet-delta.neg { color: var(--neg); }
-.entity-sheet-chart-host {
+
+.article-entity-hero {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin: 2px 0 var(--space-sm);
+}
+
+/* The sheet set this at `--size-h1`, which it could afford: a modal has no
+   other subject. This panel is a guest inside an article whose headline is
+   `--size-h2`, so the figure states itself without outranking the story that
+   raised it — the same argument the map's card makes at its own scale. */
+.article-entity-value {
+  font-size: var(--size-h3);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+}
+
+.article-entity-delta {
+  font-size: var(--size-sm);
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+.article-entity-delta.pos { color: var(--pos); }
+.article-entity-delta.neg { color: var(--neg); }
+
+.article-entity-figure {
   margin: 0;
   color: var(--text);
 }
-.entity-sheet-mentioned {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-}
-.entity-sheet-section-title {
+
+.article-entity-loading {
   margin: 0;
+  font-size: var(--size-sm);
   color: var(--text-secondary);
 }
-.entity-sheet-mention-list {
-  list-style: none;
+
+.article-entity-full {
+  display: inline-block;
+  margin-top: var(--space-sm);
+  font-size: var(--size-sm);
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 3px;
+  transition: color var(--dur-fast), text-decoration-color var(--dur-fast);
+
+  &:hover { color: var(--text); text-decoration-color: var(--accent); }
+
+  /* A disclosure wearing a link's clothes — the `href` is real and survives a
+     modified click — so the open state has to be visible as well as announced. */
+  &[aria-expanded='true'] { color: var(--text); }
+}
+
+.article-entity-more {
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--rule);
+}
+
+.article-entity-provenance,
+.article-entity-section {
   margin: 0;
+  font-size: var(--size-xs);
+  color: var(--text-secondary);
+}
+
+.article-entity-section {
+  margin-top: var(--space-sm);
+  font-variant-caps: all-small-caps;
+  letter-spacing: var(--track-caps);
+}
+
+.article-entity-mentions {
+  list-style: none;
+  margin: var(--space-xs) 0 0;
   padding: 0;
   display: flex;
   flex-direction: column;
   gap: 2px;
+
+  li {
+    display: grid;
+    grid-template-columns: 1fr 80px;
+    gap: var(--space-sm);
+    align-items: baseline;
+    padding: var(--space-xs) 0;
+    border-bottom: 1px solid var(--rule);
+  }
 }
-.entity-sheet-mention-row {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: var(--space-sm);
-  padding: var(--space-xs) 0;
-  border-bottom: 1px solid var(--rule);
-  color: var(--text);
-  text-decoration: none;
-}
-.entity-sheet-mention-row:hover .entity-sheet-mention-title {
-  text-decoration: underline;
-  text-decoration-color: var(--rule);
-  text-underline-offset: 3px;
-}
-.entity-sheet-mention-row time {
-  color: var(--text-secondary);
-  font-size: var(--size-xs);
-}
-.entity-sheet-mention-title {
+
+.article-entity-mention-title {
   font-size: var(--size-sm);
   line-height: 1.35;
-}
-.entity-sheet-footer {
-  margin-top: var(--space-md);
-  padding-top: var(--space-md);
-  border-top: 1px solid var(--rule);
-}
-.entity-sheet-full-link {
   color: var(--text);
-  text-decoration: underline;
-  text-decoration-color: var(--rule);
-  text-underline-offset: 3px;
-  font-size: var(--size-sm);
-  transition: text-decoration-color var(--dur-fast);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--rule);
+    text-underline-offset: 3px;
+  }
 }
-.entity-sheet-full-link:hover {
-  text-decoration-color: var(--accent);
+
+.article-entity-mention-time {
+  font-size: var(--size-xs);
+  color: var(--text-secondary);
+  font-variant-numeric: lining-nums tabular-nums;
+  text-align: right;
 }
 
 /* --- Reset-view control ---
@@ -3763,9 +3801,19 @@ body.map-page > footer .footer-social a {
 
 .map-popup-body { max-width: 20rem; }
 
-/* The reading card is wider than the hover preview and scrolls internally, so
-   a long article never pushes the popup past the viewport. */
-.map-popup-body.map-popup-article {
+/* The reading card scrolls internally, so a long article never pushes the
+   popup past the viewport.
+
+   The preview takes the same width, because it is the same card: it is what
+   the story card looks like while the camera is still flying to it, and a
+   moment later the article replaces it in place. Sized apart — 20rem against
+   30rem — that replacement widened the card by 46% in one frame, on top of
+   the height change it was already making. A card that changes its width
+   while the reader is reading its headline is a different card arriving, not
+   this one filling in. Only the height still moves, which is the one
+   dimension the content genuinely decides. */
+.map-popup-body.map-popup-article,
+.map-popup-body.map-popup-preview {
   width: min(30rem, 42vw);
   max-width: none;
 }
@@ -4207,9 +4255,9 @@ a.map-popup-source-name {
 }
 
 /* --- The story card's indicator strip ---
-   The same row the article page carries, at the card's scale. A chip opens the
-   series as a sheet over the map rather than navigating, so the reader keeps
-   the camera, the time slice and the filters they built. */
+   The same row the article page carries, at the card's scale. A chip unfolds
+   the series inside this card rather than navigating, so the reader keeps the
+   camera, the time slice and the filters they built. */
 .map-popup-entities {
   margin: 0.7rem 0 0;
   padding-top: 0.55rem;
@@ -4249,6 +4297,111 @@ a.map-popup-source-name {
 .map-entity-chip:focus-visible {
   outline: 2px solid var(--map-focus);
   outline-offset: 2px;
+}
+
+/* Open reads as filled, the same vocabulary the rest of this map uses for
+   live-versus-not: a market disc against a market ring, a beacon against a
+   read story's hollow dot. */
+.map-entity-chip[aria-expanded="true"] {
+  border-color: var(--map-ink-muted);
+  background: var(--map-row-hover);
+  color: var(--map-ink-strong);
+}
+
+/* --- The follows panel: an indicator, unfolded inside the story card ------- */
+.map-popup-entity-panel {
+  margin: 0.5rem 0 0;
+}
+
+.map-popup-entity-head {
+  margin: 0;
+  font-size: var(--size-xs);
+  font-variant-caps: all-small-caps;
+  letter-spacing: var(--track-caps);
+  color: var(--map-ink-dim);
+}
+
+.map-popup-entity-hero {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.1rem 0 0.35rem;
+}
+
+/* The map's own sheets set a focal figure at `--size-h2`, but those cards have
+   no other subject. This one is a guest inside a story, whose headline is
+   `--size-md` — a 31px number over an 18px headline would invert what the card
+   is about. `--size-base` is plainly the focal figure of the panel without
+   outranking the story it was opened from. */
+.map-popup-entity-value {
+  font-size: var(--size-base);
+  line-height: 1.15;
+  color: var(--map-ink-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The map keeps its own signed pair rather than borrowing the site's — same
+   axis, different surface, and `--pos`/`--neg` are tuned for a white page. */
+.map-popup-entity-delta {
+  font-size: var(--size-sm);
+  color: var(--map-ink-muted);
+  font-variant-numeric: tabular-nums;
+}
+.map-popup-entity-delta.pos { color: var(--map-pos); }
+.map-popup-entity-delta.neg { color: var(--map-neg); }
+
+.map-popup-entity-figure {
+  margin: 0;
+}
+
+.map-popup-entity-full {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: var(--size-xs);
+  color: var(--map-ink-muted);
+  text-underline-offset: 0.2em;
+
+  &:hover { color: var(--map-ink-strong); }
+
+  /* Open reads as louder, the way the chips above it already do. This is a
+     disclosure wearing a link's clothes — the `href` is real and survives a
+     modified click — so the state has to be visible as well as announced. */
+  &[aria-expanded='true'] { color: var(--map-ink-strong); }
+}
+
+/* The second density, under the first: the rest of a country's metrics, or the
+   rest of an indicator's record. Ruled off from what it was opened under, so it
+   reads as more of the same panel rather than as a new one. */
+.map-popup-more {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--map-line);
+}
+
+.map-popup-mentions {
+  list-style: none;
+  margin: 0.35rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.map-popup-mention {
+  display: grid;
+  gap: 0.05rem;
+}
+
+/* A row naming another story. It flies the map where the map holds that story
+   and navigates where it does not, and it looks the same either way — the
+   difference is a fact about our window, not about the story. */
+.map-popup-story-link {
+  font-size: var(--size-xs);
+  line-height: 1.35;
+  color: var(--map-ink-strong);
+  text-decoration: none;
+
+  &:hover { text-decoration: underline; text-underline-offset: 0.2em; }
 }
 
 /* --- Map sheet --- */
@@ -5197,7 +5350,10 @@ body.doc-page .chart {
      164px. The story card came out as a ribbon of two-word lines and the
      country card was narrower than the name of the country on it. */
   .map-popup-body.map-popup-country { width: min(22rem, 86vw); }
-  .map-popup-body.map-popup-article { width: min(30rem, 88vw); }
+
+  .map-popup-body.map-popup-article,
+  .map-popup-body.map-popup-preview { width: min(30rem, 88vw); }
+
   .map-popup-body { max-width: min(20rem, 88vw); }
 
   /* And it has to fit *somewhere*. A popup is anchored to its beacon, so its
@@ -5219,4 +5375,19 @@ body.doc-page .chart {
 @media (prefers-reduced-motion: reduce) {
   .source-count::before, .context-label::before { transition: none; }
   .island-sheet, .island-sheet::backdrop { transition: none; }
+}
+
+/* The country tag's panel, inside a story card. Same shell as the series
+   panel above it — one disclosure, two subjects. */
+.map-popup-country-inline {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  margin: 0.1rem 0 0.35rem;
+}
+
+.map-popup-country-inline-name {
+  font-size: var(--size-base);
+  line-height: 1.15;
+  color: var(--map-ink-strong);
 }

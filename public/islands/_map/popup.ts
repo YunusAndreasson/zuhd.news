@@ -15,6 +15,8 @@
 import { rankStrip } from '@shared/chart/rank-strip'
 import { Popup, type Map as MapLibreMap } from 'maplibre-gl'
 import { appPrompt } from '../_app-prompt'
+import { createChart, type Chart } from '../_chart'
+import { disclosure, el, growTo, moreLink, type Built } from '../_disclosure'
 import { renderShare } from '../_share'
 import { CONTESTED_D, type MapPoint } from './types'
 import { CATEGORY_COLOUR, rampColour } from './style'
@@ -76,6 +78,41 @@ export interface CountryStanding {
   description: string
 }
 
+/** One story that cited an indicator — the tail of `/api/entity/{id}.json`. */
+interface EntityMention {
+  slug: string
+  title: string
+  date: string
+  dateFormatted: string
+  source: string
+}
+
+/**
+ * `/api/entity/{id}.json`, as the story card reads it.
+ *
+ * `mentions` is read only by the record's second density — the panel opens on
+ * the chart alone, because "what is Brent crude doing?" is the whole of what a
+ * chip is being asked. See `entityStrip`.
+ */
+interface EntityRecord {
+  id: string
+  label: string
+  kind: string
+  sourceLabel?: string | null
+  unit?: string
+  currentFormatted: string
+  deltaLabel?: string | null
+  deltaTone?: string | null
+  caption?: string
+  /** The series filters non-finite points itself; `series-chart` declares the
+   *  same shape against the same endpoint. */
+  values: number[]
+  periods: string[]
+  /** The last observation's own date, which the chart's caption does not carry. */
+  asOf?: string
+  mentions?: EntityMention[]
+}
+
 /** `/api/country/{ISO2}.json` — the same payload the inline country tags use. */
 interface CountryProfile {
   iso2: string
@@ -102,6 +139,31 @@ export interface StoryPopupOptions {
    * first.
    */
   onClose?: () => void
+  /**
+   * Where a country stands on the metric currently shading the land.
+   *
+   * The island owns the metric, so the card has to ask. Without it an inline
+   * country panel would open on `highlights` — that country's best-ranked
+   * numbers, sorted flattering-first — regardless of what the reader was
+   * looking at, which is the exact failure the map's own country card was
+   * fixed for.
+   */
+  standingFor?: (iso: string) => CountryStanding | null
+  /**
+   * Open another story's card on the map, from a list inside this one.
+   *
+   * The card holds two lists of other stories — a country's recent coverage,
+   * and the articles that cite an indicator — and both were rows of
+   * `/a/{slug}` links, which is the same navigation the chips and the tags
+   * were fixed for wearing different clothes. A story already on the map is
+   * one the map can simply fly to, so the row becomes a map gesture.
+   *
+   * Returns false when that slug is outside the loaded window — a story from
+   * five months ago is genuinely not on this map, and the honest answer there
+   * is the link the row already is. The island owns the point set, so only it
+   * can tell.
+   */
+  openStory?: (slug: string) => boolean
 }
 
 export interface StoryPopup {
@@ -124,17 +186,6 @@ export interface StoryPopup {
   close(): void
   isOpen(): boolean
   destroy(): void
-}
-
-const el = <K extends keyof HTMLElementTagNameMap>(
-  tag: K,
-  className?: string,
-  text?: string,
-): HTMLElementTagNameMap[K] => {
-  const node = document.createElement(tag)
-  if (className) node.className = className
-  if (text != null) node.textContent = text
-  return node
 }
 
 // A "how long has this been running" kicker was built here and then removed
@@ -272,6 +323,40 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
   let pending: string | null = null
 
   /**
+   * Swap the card's contents, growing rather than jumping.
+   *
+   * A preview and a full article are two densities of one card, and the step
+   * between them is the size of the article — measured on a 1440x900 desktop,
+   * 202px to 336px. `setDOMContent` applies that in a single frame, and
+   * MapLibre's `_update` re-runs its anchor arithmetic against the *new*
+   * `offsetHeight` at the same moment, so the card is repositioned and
+   * resized together: a 233px jolt with nothing connecting the two states. It
+   * reads as a repaint, not as a card opening.
+   *
+   * So the height is animated from what it was to what it becomes. The
+   * position is already final when the animation starts — that is what makes
+   * this work rather than fight MapLibre. A `bottom`-anchored card (the
+   * ordinary case, since the card opens above its beacon) is pinned by its
+   * foot, so a shorter box means a lower top edge and the card unfurls upward
+   * from the tip; a `top`-anchored one is pinned by its head and unfurls down.
+   * Either way the growth starts where the reader was already looking.
+   */
+  const contentBox = () =>
+    (popup.getElement()?.querySelector('.maplibregl-popup-content') as HTMLElement | null) ?? null
+
+  const swap = (root: HTMLElement) => {
+    const before = popup.isOpen() ? contentBox() : null
+    const from = before?.getBoundingClientRect().height ?? 0
+    if (!before || from < 1) {
+      popup.setDOMContent(root)
+      return
+    }
+    growTo(before, from, () => {
+      popup.setDOMContent(root)
+    })
+  }
+
+  /**
    * Attach the popup, without the close event that re-attaching would fire.
    *
    * `Popup.addTo` begins with `if (this._map) this.remove()`, and `remove()`
@@ -288,9 +373,18 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
    * failed request, nothing in the console: the card simply sat there.
    *
    * The flag says what the event cannot: whether this close is ours.
+   *
+   * Better still is not to re-add at all. An already-open popup needs nothing
+   * from `addTo`: `setDOMContent` has already run `_update` and moved focus.
+   * What `addTo` adds is the remove-and-recreate — MapLibre drops `_container`
+   * and builds a new one — which tears the card out of the document and puts
+   * it back a frame later, cancelling any animation running on it. So this is
+   * a no-op while the card is up, and the flag stays for the case that still
+   * re-attaches: a card the reader closed between the preview and the story.
    */
   let reattaching = false
   const attach = () => {
+    if (popup.isOpen()) return
     reattaching = true
     try {
       popup.addTo(map)
@@ -329,6 +423,24 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     return root
   }
 
+  const entityCache = new Map<string, EntityRecord>()
+
+  const fetchEntity = async (id: string): Promise<EntityRecord | null> => {
+    const hit = entityCache.get(id)
+    if (hit) return hit
+    try {
+      const res = await fetch(`/api/entity/${encodeURIComponent(id)}.json`, {
+        cache: 'force-cache',
+      })
+      if (!res.ok) return null
+      const record = (await res.json()) as EntityRecord
+      entityCache.set(id, record)
+      return record
+    } catch {
+      return null
+    }
+  }
+
   const countryCache = new Map<string, CountryProfile>()
 
   const fetchCountry = async (iso: string): Promise<CountryProfile | null> => {
@@ -345,6 +457,34 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     } catch {
       return null
     }
+  }
+
+  /**
+   * A row naming another story, which opens on the map rather than instead of it.
+   *
+   * Both lists of other stories in this card — a country's recent coverage and
+   * the articles citing an indicator — were rows of `/a/{slug}` links, so the
+   * two panels that had just been taught to answer in place still ended in a
+   * list whose every row left. The map already draws these stories; a row that
+   * names one should fly to it.
+   *
+   * Where the island cannot — a story outside the loaded fortnight is not on
+   * this map, and pretending otherwise would be a click that does nothing —
+   * the row stays exactly what it is, a link to the page that does hold it.
+   */
+  const storyLink = (slug: string, title: string): HTMLAnchorElement => {
+    const a = el('a', 'map-popup-story-link', title)
+    a.href = `/a/${slug}`
+    if (!opts.openStory) return a
+    a.addEventListener('click', (ev) => {
+      const e = ev as MouseEvent
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
+      // Only swallow the navigation if the map actually took it.
+      if (!opts.openStory?.(slug)) return
+      e.preventDefault()
+      e.stopPropagation()
+    })
+    return a
   }
 
   /**
@@ -482,9 +622,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
       const list = el('ul', 'map-country-coverage')
       for (const a of data.coverage.slice(0, expanded ? 20 : 5)) {
         const li = el('li')
-        const link = el('a', undefined, a.title)
-        link.href = `/a/${a.slug}`
-        li.append(link, el('time', 'map-country-coverage-time', a.dateFormatted))
+        li.append(storyLink(a.slug, a.title), el('time', 'map-country-coverage-time', a.dateFormatted))
         list.append(li)
       }
       root.append(list)
@@ -526,6 +664,109 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
   }
 
   /**
+   * The country tags in the prose, answered in the card.
+   *
+   * `build.js` renders every `/country/{ISO2}` link in an article as
+   * `<a class="country-link" data-island="country-preview">`, and the loader
+   * listens on the document for exactly that — so inside the map's story card
+   * a tag opened the `country-preview` sheet: a `.island-sheet` on the *site*
+   * palette, over a scrim, covering the map. The same mistake the `follows`
+   * chips were making, from a different direction, and worse here because the
+   * sheet does not even commit to the map's dark chrome.
+   *
+   * So the tag becomes a disclosure over the same payload the sheet fetches.
+   * The `href` is untouched — a modified click and a crawler still reach the
+   * full profile, and this is still the only route to it from the map.
+   *
+   * It leads with the metric currently shading the land, for the same reason
+   * the map's own country card does: a reader who shaded the world by press
+   * freedom and clicked Egypt to find out why it looked that way must not be
+   * shown Egypt's six proudest numbers instead.
+   *
+   * `coverage` is deliberately dropped. It is a list of other stories to go and
+   * read, offered at the moment the reader is reading one, on a map where those
+   * stories are already beacons — the same judgement that keeps "Cited in" out
+   * of the series panel's first density.
+   */
+  const countryTags = (prose: HTMLElement): HTMLElement => {
+    const tags = disclosure('map-popup-entity-panel', { scrollIntoView: true })
+    const seen = new Set<string>()
+    for (const node of prose.querySelectorAll<HTMLAnchorElement>('a.country-link[data-iso]')) {
+      const iso = node.dataset.iso
+      if (!iso) continue
+      // The same country can be tagged more than once in one article, and both
+      // tags should drive the one panel.
+      const id = `country:${iso}`
+      tags.bind(id, node, async () => {
+        const data = await fetchCountry(iso)
+        return { node: countryInline(data, iso, tags.panel) }
+      })
+      seen.add(iso)
+    }
+    return tags.panel
+  }
+
+  const countryInline = (data: CountryProfile | null, iso: string, box: HTMLElement): Node => {
+    const body = document.createDocumentFragment()
+    if (!data) {
+      body.append(el('p', 'map-popup-loading', 'No profile for this territory.'))
+      return body
+    }
+    body.append(el('p', 'map-popup-entity-head', data.region || 'country'))
+    const head = el('p', 'map-popup-country-inline')
+    if (data.flag) head.append(el('span', 'map-country-flag', data.flag))
+    head.append(el('span', 'map-popup-country-inline-name', data.name))
+    body.append(head)
+    if (data.metaLine) body.append(el('p', 'map-popup-meta', data.metaLine))
+
+    const standing = opts.standingFor?.(iso) ?? null
+    if (standing) body.append(standingBlock(standing))
+
+    // Four, not the full 27: this is an aside inside a story, and the rest is
+    // one press away in the same panel for a reader who wants the table.
+    const notStanding = (m: CountryMetric) => !standing || m.label !== standing.label
+    const shown = (data.highlights ?? []).filter(notStanding).slice(0, 4)
+    if (shown.length) {
+      const list = el('ul', 'map-country-metrics')
+      for (const m of shown) list.append(metricRow(m))
+      body.append(list)
+    }
+
+    /**
+     * The rest of the profile, under the four — not at `/country/{ISO2}`.
+     *
+     * The four highlights are an aside inside a story and the twenty-seven are
+     * the profile; a reader who wants the second was being sent off the map to
+     * get it, which is the disclosure this panel *is* undone at its own last
+     * line. `coverage` stays out of it for the reason it was dropped from the
+     * panel in the first place: it is a list of other stories to go and read,
+     * offered while the reader is reading one, on a map already drawing them.
+     *
+     * The remainder rather than the whole table, so the four the panel opened
+     * on are not restated four rows below themselves.
+     */
+    const seen = new Set(shown.map((m) => m.label))
+    const rest = (data.metrics ?? []).filter(notStanding).filter((m) => !seen.has(m.label))
+    if (rest.length) {
+      body.append(
+        ...moreLink({
+          labels: ['full profile →', 'less ↑'],
+          href: `/country/${encodeURIComponent(iso)}`,
+          box,
+          linkClass: 'map-popup-entity-full',
+          moreClass: 'map-popup-more',
+          fill: (into) => {
+            const list = el('ul', 'map-country-metrics')
+            for (const m of rest) list.append(metricRow(m))
+            into.append(list)
+          },
+        }),
+      )
+    }
+    return body
+  }
+
+  /**
    * The numbers a story is about, as a row of chips that open over the map.
    *
    * The article page has carried this strip for a long time and the map's card
@@ -534,36 +775,148 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
    * series it is about with no route between them.
    *
    * A chip is an `<a href="/e/{id}">`, so it survives the bundle failing, a
-   * middle click and a crawler — and the click handler opens the chart as a
-   * modal instead, because on this surface navigating away means abandoning a
-   * camera, a time slice, a set of filters and possibly an open card. The
-   * `zuhd:mount-island` event is the loader's own hook for exactly this: the
-   * map does not have to know that `entity-sheet` is a module, and the sheet
-   * does not have to know it was opened from a map.
+   * middle click and a crawler — and the click handler unfolds the series
+   * *inside this card* instead, because on this surface navigating away means
+   * abandoning a camera, a time slice, a set of filters and an open story.
+   *
+   * It used to open the `entity-sheet` dialog, and that solved the navigation
+   * and then did the same damage a different way: a 640x810 card over a scrim,
+   * which on a 900px viewport dims the map out entirely and puts the story the
+   * reader clicked from behind a curtain. Sixty percent of that panel was
+   * "Mentioned in · 30" — a list of other stories to go and read, offered at
+   * the exact moment the reader is reading one, on a map where those stories
+   * are already drawn as beacons. What the chip is actually being asked is
+   * narrower than that: *this story is about Brent crude — what is Brent crude
+   * doing?* The chart answers it, so the chart is what unfolds, in place,
+   * under the strip.
+   *
+   * The mentions are not gone, they are one press further in: `full record →`
+   * opens them here rather than at `/e/{id}`, as rows that fly the map. The
+   * ordering is the judgement — the question the chip was asked is answered
+   * first, and the question it was not is available to a reader who turns out
+   * to have it.
+   *
+   * The card is capped at 50vh, so a long article plus a chart will overflow
+   * it and scroll. That is the right trade: the reader chose to spend the
+   * card's height on this.
    */
   const entityStrip = (story: Story): Node[] => {
     const entities = story.entities ?? []
     if (!entities.length) return []
+
     const aside = el('aside', 'map-popup-entities')
     aside.setAttribute('aria-label', 'Indicators this story follows')
     aside.append(el('span', 'map-popup-entities-label', 'follows'))
+
+    // One panel for the strip rather than one per chip: two indicators open at
+    // once would be two charts stacked in a card that has room for neither,
+    // and the second would push the first out of view as it arrived.
+    const strip = disclosure('map-popup-entity-panel', { scrollIntoView: true })
+
+    const build = (record: EntityRecord | null, id: string): Built => {
+      const body = document.createDocumentFragment()
+      if (!record) {
+        body.append(el('p', 'map-popup-loading', 'Could not load this series.'))
+        return { node: body }
+      }
+      body.append(
+        el(
+          'p',
+          'map-popup-entity-head',
+          [record.kind, record.sourceLabel].filter(Boolean).join(' · '),
+        ),
+      )
+      const hero = el('p', 'map-popup-entity-hero')
+      hero.append(el('span', 'map-popup-entity-value', record.currentFormatted))
+      if (record.deltaLabel) {
+        const tone = record.deltaTone === 'pos' || record.deltaTone === 'neg' ? record.deltaTone : ''
+        hero.append(el('span', `map-popup-entity-delta ${tone}`.trim(), record.deltaLabel))
+      }
+      body.append(hero)
+      // The same options `entity-sheet` hands the chart, so the series a reader
+      // sees here and the one on `/e/{id}` cannot disagree about what the rule
+      // marks or which direction is which.
+      const chart = createChart({
+        values: record.values ?? [],
+        periods: record.periods ?? [],
+        reference: 'open',
+        referenceLabel: 'the window’s open',
+        direction: 'window',
+        palette: 'signed',
+        unit: record.unit,
+        step: record.kind === 'MONTHLY' ? 'months' : 'days',
+        label: record.label,
+        caption: record.caption,
+        className: 'map-popup-entity-figure',
+      })
+      if (chart) body.append(chart.element)
+
+      /**
+       * The record's second density, under the chart rather than at `/e/{id}`.
+       *
+       * The panel opens on the chart alone because that is what the chip is
+       * being asked — *this story is about Brent crude; what is Brent crude
+       * doing?* — and "Mentioned in · 30" answered a question nobody had asked
+       * yet. But a reader who then asks it was being sent to the entity page
+       * for the answer, off the map, which is the same navigation this panel
+       * was built to stop making. So the rest of the record opens here: when
+       * the last observation was taken, who publishes it, and the stories that
+       * cite it — as rows that fly the map, not links that leave it.
+       */
+      const mentions = record.mentions ?? []
+      const asOf = record.asOf ? `as of ${record.asOf}` : null
+      if (mentions.length || asOf) {
+        body.append(
+          ...moreLink({
+            labels: ['full record →', 'less ↑'],
+            href: `/e/${encodeURIComponent(id)}`,
+            box: strip.panel,
+            linkClass: 'map-popup-entity-full',
+            moreClass: 'map-popup-more',
+            fill: (into) => {
+              const provenance = [asOf, record.sourceLabel || null].filter(Boolean).join(' · ')
+              if (provenance) into.append(el('p', 'map-popup-meta', provenance))
+              if (!mentions.length) return
+              into.append(el('p', 'map-popup-section', `Cited in · ${mentions.length}`))
+              const list = el('ul', 'map-popup-mentions')
+              // Eight, as the entity sheet showed — the panel is inside a card
+              // capped at 50vh, and thirty rows is a scroll with no bottom.
+              for (const m of mentions.slice(0, 8)) {
+                const li = el('li', 'map-popup-mention')
+                li.append(
+                  storyLink(m.slug, m.title),
+                  el('time', 'map-country-coverage-time', m.dateFormatted),
+                )
+                list.append(li)
+              }
+              into.append(list)
+            },
+          }),
+        )
+      }
+      // The chart registers listeners on nodes it created; the panel owns its
+      // lifetime and hands them back when the panel is replaced or closed.
+      return { node: body, dispose: () => chart?.destroy() }
+    }
+
     for (const e of entities) {
       const chip = el('a', 'map-entity-chip', e.label)
       chip.href = `/e/${encodeURIComponent(e.id)}`
-      chip.addEventListener('click', (ev) => {
-        // Modified clicks and the middle button keep the browser's own
-        // behaviour, the same rule the wordmark and the rail rows follow.
-        if (ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return
-        ev.preventDefault()
-        document.dispatchEvent(
-          new CustomEvent('zuhd:mount-island', {
-            detail: { name: 'entity-sheet', props: { id: e.id } },
-          }),
-        )
-      })
+      strip.bind(
+        e.id,
+        chip,
+        async () => build(await fetchEntity(e.id), e.id),
+        // Warm from `preview`'s prefetch on the ordinary path, so the chip
+        // opens in one step with no waiting line.
+        () => {
+          const hit = entityCache.get(e.id)
+          return hit ? build(hit, e.id) : null
+        },
+      )
       aside.append(chip)
     }
-    return [aside]
+
+    return [aside, strip.panel]
   }
 
   return {
@@ -580,17 +933,34 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
       root.append(el('p', 'map-popup-hint', 'Opening…'))
       popup.setLngLat([p.lng, p.lat]).setDOMContent(root)
       attach()
+
+      // The flight is 1150ms and the fetch is one small same-origin JSON, so
+      // asking for it now means the article is in hand before the camera
+      // lands. Waiting until `moveend` — which is what this did — put a
+      // "Loading…" card between the preview and the story: a third state, and
+      // the one that looked worst, because the article shell with a single
+      // line in it is *shorter* than the preview it replaced. The card grew
+      // wide, collapsed to half its height, then doubled. This is the same
+      // request either way; only its timing changed.
+      void fetchStory(p.slug)
     },
 
     async open(p, now) {
       pending = p.slug
-      const loading = shell(p, now, 'article')
-      loading.append(el('p', 'map-popup-loading', 'Loading…'))
-      popup.setLngLat([p.lng, p.lat]).setDOMContent(loading)
-      attach()
+      popup.setLngLat([p.lng, p.lat])
 
-      const story = await fetchStory(p.slug)
-      if (pending !== p.slug) return
+      // Warm from `preview`'s prefetch on the ordinary path, so the preview
+      // becomes the article in one step. `fetchStory` resolves from the same
+      // cache; the loading card is only for the fetch that has not landed.
+      let story = cache.get(p.slug) ?? null
+      if (!story) {
+        const loading = shell(p, now, 'article')
+        loading.append(el('p', 'map-popup-loading', 'Loading…'))
+        swap(loading)
+        attach()
+        story = await fetchStory(p.slug)
+        if (pending !== p.slug) return
+      }
 
       const root = shell(p, now, 'article')
       if (story) {
@@ -599,6 +969,9 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
         // article markdown, the same string the /a/{slug} page renders.
         body.innerHTML = story.bodyHtml
         root.append(body)
+        // Directly under the prose, because that is where the tags are. A
+        // disclosure that opens somewhere else is a navigation.
+        root.append(countryTags(body))
         // Above the isnad, because the chain has to stay last — `about.md`
         // says every article ends with its sources, and this card is the
         // article on this surface.
@@ -616,7 +989,8 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
         link.href = `/a/${p.slug}`
         root.append(link)
       }
-      popup.setDOMContent(root)
+      swap(root)
+      attach()
     },
 
     async openCountry(iso, at, standing = null) {
@@ -648,6 +1022,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     destroy() {
       pending = null
       cache.clear()
+      entityCache.clear()
       countryCache.clear()
       popup.remove()
     },

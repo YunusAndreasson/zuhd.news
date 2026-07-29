@@ -2768,6 +2768,38 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   }
 
   /**
+   * Inland water, after the coastline it belongs to.
+   *
+   * GeoJSON expands TopoJSON's shared arcs, so 52 KB and 54 KB of source
+   * become 104 KB and 101 KB on the wire — 205 KB against the coastline's
+   * 546 KB, which would make the first paint 37% heavier for detail that is
+   * not why anyone opens this map. Simplification does not recover it: at a
+   * tolerance loose enough to matter the lakes start to show it, and the
+   * rivers barely respond at all because their vertices are already sparse.
+   * So the answer is when rather than how much, the same one the conflict
+   * feed and the lead sentences got.
+   *
+   * One request for both — they are drawn together, neither is useful without
+   * the other, and two idle callbacks racing each other is two chances to land
+   * mid-gesture. `setData` takes a parsed object: MapLibre 6 dropped the URL
+   * form, and a string handed to it makes no request and throws nothing, which
+   * is how the coastline tier swap stayed dead for a while.
+   */
+  const loadWater = () => {
+    whenIdle(() => {
+      void (async () => {
+        const [lakes, rivers] = await Promise.all([
+          json<FeatureCollection>(basemapUrl('lakes.geojson', basemapV), abort.signal),
+          json<FeatureCollection>(basemapUrl('rivers.geojson', basemapV), abort.signal),
+        ])
+        if (!mounted) return
+        if (lakes) (map.getSource('lakes') as GeoJSONSource | undefined)?.setData(lakes)
+        if (rivers) (map.getSource('rivers') as GeoJSONSource | undefined)?.setData(rivers)
+      })()
+    }, 6000)
+  }
+
+  /**
    * Check for new stories in place.
    *
    * The reader has built a view — a camera, a time slice, a set of categories,
@@ -3007,6 +3039,31 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
         openSlug = null
         feed.highlight(hoverSlug)
       },
+      // A country tag in the story's prose opens in the card now, and it leads
+      // with whatever the land is shaded by — the same rule the map's own
+      // country card follows.
+      standingFor,
+      /**
+       * A row naming another story flies to it instead of leaving for it.
+       *
+       * The card holds two such lists — a country's recent coverage, and the
+       * stories citing an indicator — and only the island knows whether a
+       * given slug is on the map at all. `pointBySlug` is the loaded fortnight;
+       * anything older is genuinely not here, and the row stays the link it
+       * already was rather than becoming a click that does nothing.
+       *
+       * No filter or scrubber check: the reader asked for *this* story by name,
+       * and refusing it because its category chip is unlit or its day is behind
+       * the scrub head would be the map overruling an explicit request. The
+       * flight lands, the card opens, and the beacon appears the moment the
+       * slice admits it again.
+       */
+      openStory: (slug) => {
+        const p = pointBySlug.get(slug)
+        if (!p) return false
+        flyToStory(p)
+        return true
+      },
     })
     addDataLayers()
     wireInteraction()
@@ -3023,6 +3080,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     void loadMetric(metricKey)
     loadConflict()
     loadLeads()
+    loadWater()
     // Currencies, metals and crypto for the ribbon.
     //
     // `/api/trends.json` already carries all of it — the ummah currency basket,

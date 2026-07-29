@@ -219,20 +219,26 @@ const threadBlockHtml = (threadCtx) => {
 // Entity strip — the reader-facing affordance for an article's
 // frontmatter entities[]. Rendered as <a href="/e/{id}"> so no-JS
 // clients and crawlers still follow through to the full page; the
-// island loader hijacks the click on first tap and opens the entity
-// sheet in place. Only entries whose indicatorId actually corresponds
-// to a trends snapshot get rendered — anything else (e.g. the old
-// `stocks:MRNA` shape we don't ship series for) is silently dropped.
+// `entity-strip` island then unfolds the series *under the strip*, in
+// place. It used to carry `data-island="entity-sheet"`, which threw a
+// 44rem dialog and a scrim over the article being read to show a chart
+// and a list of other articles to go and read — the same navigation the
+// map's story card was fixed for, wearing a modal's clothes. Only
+// entries whose indicatorId actually corresponds to a trends snapshot
+// get rendered — anything else (e.g. the old `stocks:MRNA` shape we
+// don't ship series for) is silently dropped.
 const entityStripHtml = (entities, indicatorMap) => {
   if (!Array.isArray(entities) || !entities.length) return ''
   const rendered = entities
     .filter((e) => e?.indicatorId && indicatorMap?.has(e.indicatorId))
     .map((e) => {
       const ind = indicatorMap.get(e.indicatorId)
-      return `<a class="article-entity-chip" href="/e/${escHtmlAttr(e.indicatorId)}" data-island="entity-sheet" data-id="${escHtmlAttr(e.indicatorId)}"><span class="article-entity-chip-label">${escHtmlAttr(ind.label || e.mention || e.indicatorId)}</span></a>`
+      return `<a class="article-entity-chip" href="/e/${escHtmlAttr(e.indicatorId)}" data-id="${escHtmlAttr(e.indicatorId)}"><span class="article-entity-chip-label">${escHtmlAttr(ind.label || e.mention || e.indicatorId)}</span></a>`
     })
   if (!rendered.length) return ''
-  return `<aside class="article-entities" aria-label="Related entities"><span class="label article-entities-label">Follows</span>${rendered.join('')}</aside>`
+  // The island mounts on the wrapper and appends its panel there, so the chart
+  // opens as a sibling *below* the chip row rather than inside a flex line.
+  return `<div class="article-entities-block" data-island-auto="entity-strip"><aside class="article-entities" aria-label="Related entities"><span class="label article-entities-label">Follows</span>${rendered.join('')}</aside></div>`
 }
 
 // Relative time-ago label — mirror of mobile/lib/article-utils.formatTimeAgo.
@@ -529,6 +535,11 @@ const BASEMAP_V = (() => {
     join(ROOT, 'shared', 'data', 'countries-50m.json'),
     join(ROOT, 'shared', 'data', 'countries-10m.json'),
     join(ROOT, 'shared', 'data', 'places-50m.geojson'),
+    // Every file the basemap is built from belongs here, or the layer it feeds
+    // is the one that goes stale for a day with no way for a reader to force it.
+    join(ROOT, 'shared', 'data', 'lakes-50m.json'),
+    join(ROOT, 'shared', 'data', 'rivers-50m.json'),
+    join(ROOT, 'shared', 'data', 'seas-50m.json'),
   ]
   const h = createHash('sha256')
   for (const f of inputs) if (existsSync(f)) h.update(readFileSync(f))
@@ -1217,7 +1228,8 @@ console.log(`  Built: api/map-leads.json (${Object.keys(mapLeads).length} leads)
 // `scripts/build/basemap.js` for why one good fetch beat two.
 {
   mkdirSync(join(DIST_DIR, 'basemap'), { recursive: true })
-  const { countries, countriesUltra, countryLabels, places } = await buildMapSources(ROOT)
+  const { countries, countriesUltra, countryLabels, places, lakes, rivers, seas } =
+    await buildMapSources(ROOT)
   const emit = (name, data) => {
     writeFileSync(join(DIST_DIR, 'basemap', name), JSON.stringify(data))
     return Math.round(statSync(join(DIST_DIR, 'basemap', name)).size / 1024)
@@ -1226,8 +1238,13 @@ console.log(`  Built: api/map-leads.json (${Object.keys(mapLeads).length} leads)
   const d = emit('countries-ultra.geojson', countriesUltra)
   emit('country-labels.geojson', countryLabels)
   const c = emit('places.geojson', places)
+  const l = emit('lakes.geojson', lakes)
+  const r = emit('rivers.geojson', rivers)
+  const s = emit('seas.geojson', seas)
   console.log(
-    `  Built: basemap/ (countries ${a}KB, ultra ${d}KB, ${places.features.length} places ${c}KB)`,
+    `  Built: basemap/ (countries ${a}KB, ultra ${d}KB, ${places.features.length} places ${c}KB, ` +
+      `${lakes.features.length} lakes ${l}KB, ${rivers.features.length} rivers ${r}KB, ` +
+      `${seas.features.length} seas ${s}KB)`,
   )
 }
 
