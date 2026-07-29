@@ -1,112 +1,5 @@
 [
   {
-    "timestamp": "2026-07-07T08:17:33.885Z",
-    "candidateCount": 12,
-    "candidates": [
-      {
-        "slug": "2026-07-07-le-pen-bardella-court-appeal-ruling",
-        "title": "Paris Ruling Decides Le Pen",
-        "category": "politics",
-        "eventCoverage": 491,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-07-china-hubei-tornado-storms-deaths",
-        "title": "Rare Tornadoes Strike Hubei",
-        "category": "science",
-        "eventCoverage": 54,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-07-hormuz-lng-tanker-struck-ablaze",
-        "title": "Tanker Ablaze Near Hormuz",
-        "category": "economy",
-        "eventCoverage": 45,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-07-kerala-wayanad-tunnel-landslide-workers-trapped",
-        "title": "Kerala Landslide Traps Workers",
-        "category": "science",
-        "eventCoverage": 29,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-07-araghchi-iran-us-talks-threats-precondition",
-        "title": "Araghchi Conditions US Talks",
-        "category": "politics",
-        "eventCoverage": 23,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-07-adnoc-shell-south-africa-fuels-deal",
-        "title": "Gulf State Buys SA Fuel",
-        "category": "economy",
-        "eventCoverage": 21,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-07-malacca-strait-open-to-all-levy-pledge",
-        "title": "Malacca Strait Stays Free",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-07-nigeria-lassa-school-abduction-rescue",
-        "title": "Borno Students Remain Missing",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-07-neurocysticercosis-tapeworm-brain-ntd",
-        "title": "38 Cysts In Her Brain",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-07-bitcoin-yen-carry-trade-japan-rates",
-        "title": "Japan's Bonds Threaten Bitcoin",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-07-pakistan-resecurity-critical-infrastructure-cyber-mou",
-        "title": "US Firm Guards Pakistan Grid",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-07-edge-iot-water-quality-index-screening",
-        "title": "Cheap Sensors Screen Water",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-07-07-le-pen-bardella-court-appeal-ruling",
-      "title": "Paris Ruling Decides Le Pen",
-      "category": "politics",
-      "body": "Five years separate Le Pen from the",
-      "eventCoverage": 491,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "France's Court of Appeal rules on Le Pen candidacy eligibility today",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 25
-    }
-  },
-  {
     "timestamp": "2026-07-07T12:18:20.896Z",
     "candidateCount": 8,
     "candidates": [
@@ -10256,6 +10149,99 @@
       "pushed": 1,
       "skipped": 0,
       "tokens": 17
+    }
+  },
+  {
+    "timestamp": "2026-07-29T17:26:13.217Z",
+    "candidateCount": 10,
+    "candidates": [
+      {
+        "slug": "2026-07-29-china-houthis-red-sea-passage-bilateral-toll-navigation",
+        "title": "China Bargains For Red Sea Passage",
+        "category": "economy",
+        "eventCoverage": 66,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-29-tap-binding-bids-lufthansa-air-france-lusophone-routes",
+        "title": "Two Bidders Chase TAP",
+        "category": "economy",
+        "eventCoverage": 40,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-29-jordan-bases-struck-iran-horizontal-escalation-arab-states",
+        "title": "War Spreads Into Jordan",
+        "category": "politics",
+        "eventCoverage": 36,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-29-nccia-toor-summons-state-as-complainant-cybercrime-speech",
+        "title": "State Summons Journalist Toor",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-29-venezuela-criminal-order-after-maduro-reshuffled-not-reformed",
+        "title": "Venezuela's Crime Network Endures",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-29-data-centre-power-interconnection-queue-ratepayers-clean-air",
+        "title": "Grid Can't Match AI's Pace",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-29-glasswing-ai-bug-discovery-outpaces-patching-microsoft",
+        "title": "AI Outpaces Bug Patching",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-29-laundry-bear-owa-exploit-attribution-is-not-an-ending",
+        "title": "Russian Hackers Return To Webmail",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-29-muon-g-2-anomaly-resolved-hadronic-lattice-new-clash",
+        "title": "Muon Mystery Loses Its Signpost",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-29-un-draft-22-of-23-nature-targets-missed-no-enforcement",
+        "title": "UN Nature Goals Falling Short",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-07-29-jordan-bases-struck-iran-horizontal-escalation-arab-states",
+      "title": "War Spreads Into Jordan",
+      "category": "politics",
+      "body": "5 Iranian missiles hit US bases in",
+      "eventCoverage": 36,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Iran missiles hit US military bases in Jordan, officials say",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 16
     }
   }
 ]
