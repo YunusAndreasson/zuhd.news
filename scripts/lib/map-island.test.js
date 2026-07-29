@@ -31,6 +31,10 @@ writeFileSync(
   `export class Map {
     constructor(opts) {
       this.opts = opts
+      // Every instance, so a test can inspect what the island actually asked
+      // the engine to draw. The stub is bundled *into* the island, so a global
+      // is the only channel out of it.
+      ;(globalThis.__zuhdMaps ||= []).push(this)
       // NB: Map here is this stub class, not the global — use a plain object.
       this.sources = Object.create(null)
       this.layers = []
@@ -306,15 +310,16 @@ test('the island mounts, renders, and tears down cleanly', async () => {
     assert.equal(cats.length, 4)
     for (const f of cats) assert.equal(f.getAttribute('aria-pressed'), 'true')
 
-    // Layer toggles exist alongside the category filters: prayers, disasters,
-    // straits, markets and conflict. Conflict is the one that was built and
-    // served but never wired to the map, so its presence here is the regression
-    // guard. The order is the order they are drawn in, and is asserted rather
-    // than sorted so that adding a layer is a deliberate edit to this line.
+    // Layer toggles exist alongside the category filters. Conflict is the one
+    // that was built and served but never wired to the map, so its presence
+    // here is the regression guard. The order is the order they are drawn in,
+    // and is asserted rather than sorted so that adding a layer is a deliberate
+    // edit to this line — `thermal` sits next to `disasters` because it shares
+    // that layer's hue one step lighter, and the pair is only legible adjacent.
     const layers = [...env.host.querySelectorAll('.map-filter[data-kind="layer"]')]
     assert.deepEqual(
       layers.map((b) => b.textContent),
-      ['prayers', 'disasters', 'straits', 'markets', 'conflict'],
+      ['prayers', 'disasters', 'thermal', 'straits', 'markets', 'conflict'],
     )
     for (const f of layers) assert.equal(f.getAttribute('aria-pressed'), 'true')
 
@@ -337,6 +342,116 @@ test('the island mounts, renders, and tears down cleanly', async () => {
       'teardown must remove the sheet from <body>',
     )
   } finally {
+    env.restore()
+  }
+})
+
+/**
+ * Every mark the alphabet registers is drawn by a layer.
+ *
+ * This is the guard whose absence let the mark alphabet ship half-built.
+ * `glyphs.ts` authored `hazard`, `strait-rest/pinch/surge` and `conflict-mark`,
+ * `addImage` registered all four, and the HUD chips rendered them as SVG — while
+ * `gdacs-marks`, `chokepoint-marks` and `conflict-marks` stayed `circle` layers
+ * that never referenced them. So each of those chips promised a silhouette its
+ * own layer did not draw: the legend-drifting-from-the-mark failure the module
+ * exists to prevent, running backwards. Nothing failed, because the images were
+ * valid and the chips were right, and nothing asked whether anything used them.
+ *
+ * Asserted against what the island actually handed the engine, rather than by
+ * reading the source, because the question is not whether a name appears in the
+ * file — it did — but whether a layer draws it.
+ */
+test('every registered glyph is drawn by a layer, not only by its chip', async () => {
+  const env = setupDom()
+  globalThis.__zuhdMaps = []
+  try {
+    const { mount } = await import(bundlePath)
+    const teardown = mount(env.host)
+    env.pump()
+    await settle()
+
+    const map = globalThis.__zuhdMaps.at(-1)
+    assert.ok(map, 'the island should have constructed a map')
+
+    // Which glyphs reach `icon-image`, walking the expression rather than
+    // assuming a bare string: three of these layers pick their mark with a
+    // `['case', …]`.
+    const used = new Set()
+    const walk = (v) => {
+      if (typeof v === 'string') used.add(v)
+      else if (Array.isArray(v)) for (const x of v) walk(x)
+    }
+    for (const layer of map.layers) walk(layer.layout?.['icon-image'])
+
+    // `dot` and `prayer-line` are chip-only by design — a circle layer whose
+    // hover reads feature-state, and a line layer MapLibre dashes natively.
+    for (const id of Object.keys(map.images)) {
+      if (id === 'nodata-hatch') continue
+      assert.ok(used.has(id), `glyph '${id}' is registered as an image but no layer draws it`)
+    }
+    assert.ok(used.has('thermal'), 'the thermal mark should be drawn')
+    assert.ok(used.has('hazard'), 'the disaster mark should be the hazard triangle')
+    assert.ok(used.has('conflict-mark'), 'the conflict mark should be the square')
+    assert.ok(used.has('strait-pinch'), 'a pinched strait should narrow its channel')
+
+    teardown()
+  } finally {
+    delete globalThis.__zuhdMaps
+    env.restore()
+  }
+})
+
+/**
+ * Symbols collide where circles never did, and both flags are load-bearing.
+ *
+ * `icon-allow-overlap` because `queryRenderedFeatures` only returns *placed*
+ * symbols — a collided conflict mark is not merely invisible, it is unhoverable,
+ * and its card can never open. `icon-ignore-placement` because a circle layer
+ * was never in the collision index at all: without it several thousand conflict
+ * marks would begin deleting the country and city names beneath them.
+ *
+ * Both are silent failures on a live map and neither shows up in a screenshot of
+ * a quiet day, which is why they are pinned here.
+ */
+test('every symbol mark layer opts out of collision, both ways', async () => {
+  const env = setupDom()
+  globalThis.__zuhdMaps = []
+  try {
+    const { mount } = await import(bundlePath)
+    const teardown = mount(env.host)
+    env.pump()
+    await settle()
+
+    const map = globalThis.__zuhdMaps.at(-1)
+    const MARKS = ['gdacs-marks', 'thermal-marks', 'chokepoint-marks', 'conflict-marks', 'market-marks']
+    for (const id of MARKS) {
+      const layer = map.getLayer(id)
+      assert.ok(layer, `${id} should be added`)
+      assert.equal(layer.type, 'symbol', `${id} should draw a glyph, not a circle`)
+      assert.equal(layer.layout['icon-allow-overlap'], true, `${id} may be suppressed on collision`)
+      assert.equal(
+        layer.layout['icon-ignore-placement'],
+        true,
+        `${id} would push the basemap's own labels out of the way`,
+      )
+    }
+
+    // The dated overlays move with the scrub head. A satellite pass happened at
+    // a moment, so thermal is one of them — leaving it pinned to the present
+    // while the stories rewind is the quiet lie the time filters exist to stop.
+    for (const id of ['gdacs-marks', 'conflict-marks', 'thermal-marks']) {
+      assert.ok(map.filters[id], `${id} should carry a time filter`)
+    }
+    // Chokepoints and markets are statements about now, and genocide is a
+    // condition rather than an event. None of them may be filtered by time.
+    for (const id of ['chokepoint-marks', 'market-marks', 'genocide-marks']) {
+      assert.equal(map.filters[id], undefined, `${id} must not be filtered by time`)
+    }
+
+    teardown()
+  } finally {
+    delete globalThis.__zuhdMaps
     env.restore()
   }
 })

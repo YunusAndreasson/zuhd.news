@@ -60,7 +60,11 @@ writeFileSync(
     `export * from '${join(ROOT, 'public/islands/_map/style.ts')}'\n` +
     // The genocide record. Data, not geometry, but it is the one overlay with
     // no upstream feed validating it, so the invariants have to live here.
-    `export * from '${join(ROOT, 'shared/genocide.ts')}'\n`,
+    `export * from '${join(ROOT, 'shared/genocide.ts')}'\n` +
+    // The mark alphabet. Pure vertex tables and a rasteriser, no DOM — and the
+    // module whose whole promise (shape says what a mark is) went unkept by
+    // three of the four layers that were supposed to draw from it.
+    `export * from '${join(ROOT, 'public/islands/_map/glyphs.ts')}'\n`,
 )
 const bundlePath = join(dir, 'bundle.mjs')
 await build({
@@ -2168,6 +2172,180 @@ test('the genocide mark owns its colour outright', () => {
 
   // And it still has to survive the ground it is drawn on, which is #080a0d.
   assert.ok(mark.l > 0.42, `genocide mark too dark for the map's ground (l ${mark.l.toFixed(2)})`)
+})
+
+// ---------------------------------------------------------------------------
+// The mark alphabet, and the thermal layer that joined it
+// ---------------------------------------------------------------------------
+
+// Whether every registered glyph is actually *drawn* by a layer is asserted in
+// `map-island.test.js`, against what the island hands the engine — the mark
+// alphabet shipped with three of its four layers still drawing circles, and only
+// a mounted map can see that. What belongs here is the geometry of the marks
+// themselves, and the tone they are painted in.
+
+test('the two chip-only glyphs stay out of the image set', () => {
+  // `dot` is a circle layer because its hover reads feature-state, which
+  // `icon-size` cannot; `prayer-line` is a line layer MapLibre dashes natively.
+  // Both exist so their chips draw from this table rather than from CSS.
+  const registered = M.glyphImages().map(([id]) => id)
+  assert.ok(!registered.includes('dot'))
+  assert.ok(!registered.includes('prayer-line'))
+  assert.equal(registered.length, M.GLYPH_IDS.length - 2)
+})
+
+test('the thermal glyph is a burst nothing else could be mistaken for', () => {
+  const img = M.sdfImage(M.GLYPHS.thermal)
+  const n = img.width
+  const at = (x, y) => img.data[(y * n + x) * 4 + 3]
+  // MapLibre's shader cuts at alpha 191; anything at or above it is ink.
+  const INK = 191
+
+  // Centred and four-fold symmetric, or the mark sits off its own coordinate.
+  let weight = 0
+  let cx = 0
+  let cy = 0
+  for (let y = 0; y < n; y++) {
+    for (let x = 0; x < n; x++) {
+      const a = at(x, y)
+      weight += a
+      cx += a * x
+      cy += a * y
+    }
+  }
+  assert.ok(Math.abs(cx / weight - (n - 1) / 2) < 0.01, 'thermal glyph is off-centre in x')
+  assert.ok(Math.abs(cy / weight - (n - 1) / 2) < 0.01, 'thermal glyph is off-centre in y')
+  for (let y = 0; y < n; y++) {
+    for (let x = 0; x < n; x++) {
+      assert.equal(at(x, y), at(n - 1 - x, y), `asymmetric across the vertical at ${x},${y}`)
+      assert.equal(at(x, y), at(y, x), `not symmetric under transpose at ${x},${y}`)
+    }
+  }
+
+  // The gap between core and rays is the whole silhouette. Without it this is a
+  // blob, and a blob at 7px is the story beacon it will be drawn beside.
+  const mid = (n - 1) / 2
+  let gap = 255
+  for (let r = 2.8; r <= 4.2; r += 0.1) {
+    const p = Math.round(mid + r * Math.SQRT1_2 * 2)
+    gap = Math.min(gap, at(p, p))
+  }
+  assert.ok(gap < INK, `the core and rays have merged (darkest gap alpha ${gap})`)
+
+  // The field has to stop short of the texture edge or the halo is clipped —
+  // which looks like a rendering bug rather than a missing constant.
+  let reach = 0
+  for (let y = 0; y < n; y++) {
+    for (let x = 0; x < n; x++) {
+      if (at(x, y) > 0) reach = Math.max(reach, Math.hypot(x - mid, y - mid))
+    }
+  }
+  assert.ok(reach < n / 2 - 4, `thermal field reaches ${reach.toFixed(1)} of ${n / 2}`)
+})
+
+test('the thermal tone is the disaster hue at a step the eye can separate', () => {
+  const hsl = (hex) => {
+    const v = Number.parseInt(hex.slice(1), 16)
+    const [r, g, b] = [((v >> 16) & 255) / 255, ((v >> 8) & 255) / 255, (v & 255) / 255]
+    const max = Math.max(r, g, b)
+    const min = Math.min(r, g, b)
+    const l = (max + min) / 2
+    const d = max - min
+    if (!d) return { h: 0, s: 0, l }
+    const s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
+    const h =
+      max === r ? ((g - b) / d + (g < b ? 6 : 0)) * 60 : max === g ? ((b - r) / d + 2) * 60 : ((r - g) / d + 4) * 60
+    return { h, s, l }
+  }
+  const heat = hsl(M.OVERLAY_COLOUR.thermal)
+  const gdacs = hsl(M.OVERLAY_COLOUR.gdacs)
+
+  // Sharing the hue is the argument, not an accident: same subject as the
+  // disaster layer, seen by a different kind of witness. `glyphs.ts` earns it by
+  // putting identity in the silhouette.
+  assert.ok(
+    Math.abs(heat.h - gdacs.h) < 8,
+    `thermal (${Math.round(heat.h)}°) has drifted off the disaster hue (${Math.round(gdacs.h)}°)`,
+  )
+  // And a lightness step, because a wildfire alert and its own thermal footprint
+  // are the same coordinate: in one tone that pair reads as a single object with
+  // a strange outline.
+  assert.ok(
+    heat.l - gdacs.l > 0.05,
+    `thermal is only ${((heat.l - gdacs.l) * 100).toFixed(1)} lightness points off gdacs`,
+  )
+  // The saturation ceiling is not taste — the genocide test requires every other
+  // overlay to sit 20 points below it, so anything above ~.71 fails there
+  // instead, with a message about genocide rather than about this.
+  assert.ok(heat.s < 0.71, `thermal saturation ${heat.s.toFixed(2)} will break the genocide test`)
+
+  // Legibility is measured against the ocean and against the mark's own halo,
+  // **not** against every stop of the land ramp — and that is a correction worth
+  // recording, because the ramp version was written first and failed. Measured
+  // on the lightest stop (#48505c) the whole overlay set comes in under 3:1:
+  // gdacs 2.21, conflict 1.77, genocide 2.12, straitsSurge 2.67. Thermal's 2.98
+  // is the third best figure on the map. So a 3:1-on-any-ground bar is not a
+  // standard this design holds anything to; what makes these marks read on a
+  // bright country is `icon-halo-color: labelHalo`, which is why
+  // `MAP_COLOURS.neutral` says the halo means "the ground stops being a
+  // variable at all". Contrast against the halo is therefore the real invariant.
+  const contrast = (a, b) => {
+    const [hi, lo] = [srgbLuminance(a), srgbLuminance(b)].sort((x, y) => y - x)
+    return (hi + 0.05) / (lo + 0.05)
+  }
+  for (const [name, ground] of [
+    ['the ocean', M.MAP_COLOURS.ocean],
+    ['its own halo', M.MAP_COLOURS.labelHalo],
+  ]) {
+    const ratio = contrast(M.OVERLAY_COLOUR.thermal, ground)
+    assert.ok(ratio >= 3, `thermal is ${ratio.toFixed(2)}:1 against ${name}`)
+  }
+  // And it must not be quieter than the disaster mark it sits beside: the pair
+  // is meant to read as one family with the newer, more provisional evidence
+  // *not* being the harder one to see.
+  assert.ok(
+    contrast(M.OVERLAY_COLOUR.thermal, M.MAP_COLOURS.ocean) >
+      contrast(M.OVERLAY_COLOUR.gdacs, M.MAP_COLOURS.ocean),
+    'thermal reads quieter than gdacs on the ocean',
+  )
+})
+
+test('the published thermal payload only claims what it can explain', (t) => {
+  const path = join(ROOT, 'dist/api/firms.json')
+  if (!existsSync(path)) {
+    t.skip('dist/api/firms.json not built')
+    return
+  }
+  const payload = JSON.parse(readFileSync(path, 'utf8'))
+  const now = Date.now()
+  for (const e of payload.events ?? []) {
+    assert.ok(Number.isFinite(e.lat) && Math.abs(e.lat) <= 90, `${e.id} has no usable latitude`)
+    assert.ok(Number.isFinite(e.lng) && Math.abs(e.lng) <= 180, `${e.id} has no usable longitude`)
+    // A satellite cannot have seen tomorrow's fire, and a `t` in the future
+    // would sit permanently past the scrub head and never draw.
+    assert.ok(e.t <= now + 3600_000, `${e.id} was acquired in the future`)
+    assert.ok(e.tEnd >= e.t, `${e.id} ends before it starts`)
+    assert.ok(e.frp > 0, `${e.id} has no radiative power`)
+    assert.ok(e.frpPeak > 0 && e.frpPeak <= e.frp, `${e.id} peak exceeds its total`)
+    assert.ok(e.pixels >= 1, `${e.id} has no detections`)
+    assert.ok(e.persistDays >= 1, `${e.id} was alight for less than a day`)
+    assert.ok(
+      ['low', 'nominal', 'high'].includes(e.confidence),
+      `${e.id} has confidence "${e.confidence}"`,
+    )
+    // The layer's whole claim. An anomaly with nothing to corroborate is a fire
+    // on a news map asserting a cause it has not got.
+    assert.ok(
+      e.relatedArticles?.length > 0,
+      `${e.id} is published with no coverage to corroborate`,
+    )
+    assert.ok(e.near?.loc, `${e.id} has no place name to state a distance against`)
+    for (const a of e.relatedArticles) {
+      assert.ok(a.km <= payload.joinRadiusKm, `${e.id} cites a story ${a.km}km away`)
+    }
+    // `near` is the nearest cited story, which is what the card's hero prints.
+    assert.equal(e.near.km, e.relatedArticles[0].km, `${e.id}'s near distance is not its nearest`)
+  }
 })
 
 // ---------------------------------------------------------------------------

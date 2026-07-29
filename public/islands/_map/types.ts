@@ -132,6 +132,74 @@ export interface MapExchange {
   }>
 }
 
+/**
+ * A thermal anomaly as `/api/firms.json` serves it.
+ *
+ * Declared here rather than re-exported from `shared/`, for the reason
+ * `MapExchange` gives: there is nothing in `shared/` to fall behind. The payload
+ * is assembled by `scripts/fetch-firms.js` from `scripts/lib/firms.js` and
+ * joined to coverage by `build.js`, and the app does not read the endpoint.
+ *
+ * Every event in the published payload has at least one `relatedArticles` entry —
+ * that is the layer's whole claim, and an anomaly with nothing to corroborate is
+ * dropped at build time rather than drawn.
+ */
+export interface ThermalEvent {
+  id: string
+  lat: number
+  lng: number
+  /** Earliest acquisition in the cluster, ms. What the scrubber filters on. */
+  t: number
+  /** Latest acquisition, ms. Equal to `t` for a single-pass detection. */
+  tEnd: number
+  /** Total fire radiative power across the cluster, MW. Drives the mark's size. */
+  frp: number
+  /** The hottest single pixel, MW. */
+  frpPeak: number
+  /** Detections in the cluster. A 375 m pixel each. */
+  pixels: number
+  /** The best confidence in the cluster. Drives the mark's opacity. */
+  confidence: 'low' | 'nominal' | 'high'
+  /** Whether the peak pixel was a day or night pass. Night is the cleaner read. */
+  daynight: 'D' | 'N'
+  /**
+   * Distinct days this location has been alight across the fetcher's window.
+   *
+   * 1 means it appeared on this pass. Anything at or above
+   * `PERSIST_DROP_DAYS` only survives because it is burning far harder than its
+   * own baseline — see `escalating`, and `lib/firms.js` for why a plain day count
+   * would delete every large wildfire.
+   */
+  persistDays: number
+  /** Set when a long-burning location was kept for burning above its baseline. */
+  escalating?: boolean
+  /** Which satellites' passes contributed. */
+  satellites: string[]
+  /** The nearest cited story's place name and distance, for the card's one line. */
+  near: { loc: string; km: number }
+  relatedArticles: Array<{
+    slug: string
+    title: string
+    date?: string
+    dateFormatted?: string
+    /** Distance from the anomaly to that story's location, km. */
+    km: number
+  }>
+}
+
+/**
+ * On the chip's `title`, the way `PRAYER_NOTE` and `HIJRI_NOTE` sit on theirs.
+ *
+ * This is the short form; the card carries the fuller caveat, because a reader
+ * who has clicked a mark has asked a more specific question than a reader
+ * reading a legend. Both have to say the same thing about cause, which is the
+ * one claim this layer must never make.
+ */
+export const THERMAL_NOTE =
+  'Infrared heat measured by NASA VIIRS in 375 m pixels, within 75 km of a ' +
+  'story we published. The instrument sees heat, not its cause. Sources ' +
+  'burning steadily for days — flares, furnaces, volcanoes — are filtered out.'
+
 /** One country's standing on a metric, from `/api/metric/{key}.json`. */
 export interface MetricEntry {
   /**

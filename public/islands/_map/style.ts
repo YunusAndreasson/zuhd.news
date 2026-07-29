@@ -137,6 +137,30 @@ export const CATEGORY_ORDER = ['politics', 'economy', 'science', 'tech']
  */
 export const OVERLAY_COLOUR = {
   gdacs: '#b8763f',
+  /**
+   * A thermal anomaly — infrared heat a satellite pass measured, beside a story
+   * we published.
+   *
+   * **Deliberately `gdacs`'s hue**, at a lighter step: 27° on both, lightness
+   * .57 against .48. Sharing it is the argument, not an accident — this is the
+   * same subject as the disaster layer, the way `genocide` is the far end of
+   * `conflict`, and `glyphs.ts` earns the reuse by putting identity in the
+   * silhouette: "once the silhouette identifies the layer, two layers sharing a
+   * hue stops being a defect".
+   *
+   * The lightness step is not decoration either. A GDACS wildfire alert and its
+   * thermal footprint are *the same coordinate*, so these two marks are drawn on
+   * top of each other routinely; in one tone that pair reads as a single object
+   * with a strange outline, and asking a reader to separate a hazard triangle
+   * from a radiant burst at six pixels is asking too much of shape alone.
+   *
+   * Saturation is .65, and the ceiling is not a matter of taste: the genocide
+   * test requires every other overlay to sit 20 saturation points below it, so
+   * .71 is the hard limit. The hotter, more obvious oranges — `#e8632f` at .80,
+   * `#e0713a` at .73 — both fail it. That is the test doing its job, keeping the
+   * one unmuted tone on this map unspent.
+   */
+  thermal: '#d98a4a',
   /** = `--map-straits` in style.css, which the chokepoint sparkline is drawn
    *  in. Shares a hex with the site's `--brand` and means something else. */
   straits: '#c9a84c',

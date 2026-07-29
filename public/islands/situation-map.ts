@@ -57,6 +57,7 @@ import {
   CONTESTED_D,
   DEFAULT_METRIC,
   NARROW_PX,
+  THERMAL_NOTE,
   decayAt,
   type ConflictEvent,
   type GdacsAlert,
@@ -67,6 +68,7 @@ import {
   type MapPoint,
   type MetricIndexEntry,
   type MetricPayload,
+  type ThermalEvent,
 } from './_map/types'
 import { detailKey } from '@shared/gdacs'
 
@@ -83,6 +85,7 @@ const ULTRA_ZOOM = 5.5
  */
 const OVERLAY_LAYERS = [
   'gdacs-marks',
+  'thermal-marks',
   'chokepoint-marks',
   'market-marks',
   'conflict-marks',
@@ -686,6 +689,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   /** Newest event in the conflict feed — see `conflictWindowLabel`. */
   let conflictNewest = 0
   let genocide: GenocideSituation[] = []
+  let thermal: ThermalEvent[] = []
 
   /** The metric currently tinting the land, and its payload once fetched. */
   let metricKey = DEFAULT_METRIC
@@ -706,6 +710,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   const layersOn = {
     prayers: true,
     gdacs: true,
+    thermal: true,
     straits: true,
     markets: true,
     conflict: true,
@@ -1118,6 +1123,34 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   }
 
   /**
+   * Thermal anomalies.
+   *
+   * `mag` is the size channel, and it is a log of total radiative power rather
+   * than the figure itself: FRP across a real snapshot runs from 5 MW to 17,000,
+   * so a linear radius would draw one Siberian fire the size of a continent and
+   * everything else at the floor. The ceiling is 5,000 MW — past that a mark is
+   * already the largest thing on the map and further growth says nothing.
+   *
+   * Confidence rides on opacity, which is the honest channel for it: VIIRS marks
+   * a low-confidence detection where sun glint or a weak temperature anomaly
+   * could account for the reading, and a mark the instrument is unsure about
+   * should not arrive at the same weight as a saturated night pass.
+   */
+  const thermalCollection = () => ({
+    type: 'FeatureCollection' as const,
+    features: thermal.map((e) => ({
+      type: 'Feature' as const,
+      properties: {
+        id: e.id,
+        mag: Math.min(1, Math.log1p(e.frp) / Math.log(5000)),
+        conf: e.confidence,
+        t: e.t,
+      },
+      geometry: { type: 'Point' as const, coordinates: [e.lng, e.lat] },
+    })),
+  })
+
+  /**
    * Conflict events, sized by fatalities.
    *
    * Recency is measured against the newest event in the *dataset*, not the wall
@@ -1189,6 +1222,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     const set = (id: string, on: boolean) =>
       map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none')
     set('gdacs-marks', layersOn.gdacs)
+    set('thermal-marks', layersOn.thermal)
     set('chokepoint-marks', layersOn.straits)
     set('market-marks', layersOn.markets)
     set('conflict-marks', layersOn.conflict)
@@ -1208,6 +1242,10 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     if (!layersReady) return
     map.setFilter('gdacs-marks', ['<=', ['get', 't'], scrubNow])
     map.setFilter('conflict-marks', ['<=', ['get', 't'], scrubNow])
+    // A satellite pass happened at a moment, so the scrubber moves these too.
+    // Rewinding to Tuesday and being shown Thursday's fire would be the same
+    // quiet lie the dated overlays were filtered to stop telling.
+    map.setFilter('thermal-marks', ['<=', ['get', 't'], scrubNow])
   }
 
   /**
@@ -1286,6 +1324,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   const setOverlayData = () => {
     if (!layersReady) return
     src('gdacs')?.setData(gdacsCollection())
+    src('thermal')?.setData(thermalCollection())
     src('chokepoints')?.setData(chokeCollection())
     src('markets')?.setData(marketCollection(markets))
     src('conflict')?.setData(conflictCollection())
@@ -1347,6 +1386,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       },
     })
     map.addSource('gdacs', { type: 'geojson', data: empty })
+    map.addSource('thermal', { type: 'geojson', data: empty })
     map.addSource('chokepoints', { type: 'geojson', data: empty })
     map.addSource('markets', { type: 'geojson', data: empty })
     map.addSource('conflict', { type: 'geojson', data: empty })
@@ -1554,63 +1594,117 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       'country-labels',
     )
 
+    /**
+     * The three feed layers that never adopted the mark alphabet.
+     *
+     * `glyphs.ts` was written so that shape says *what a mark is* and colour is
+     * freed to say which way or how much — because `economy` and `straits` are
+     * three points of hue apart and `politics`, `conflict` and `gdacs` are one
+     * red family, so hue could not carry identity and had nothing left over for
+     * value. The glyphs were authored, rasterised, registered by `addImage` and
+     * drawn on the HUD chips. Then only `market-marks` actually used one: these
+     * three stayed `circle` layers, so every chip promised a silhouette its own
+     * layer did not draw, which is the exact failure the alphabet was built to
+     * fix, running the other way. `map-geo.test.js` now fails if a registered
+     * glyph has no layer.
+     *
+     * Radius domains translate as `wantedCssPx / GLYPH_BOX` — a circle of radius
+     * r is a mark 2r wide — so every number below is the old one, doubled and
+     * divided by 16.
+     *
+     * All three take both collision flags, and both are load-bearing.
+     * `allow-overlap` because a suppressed mark reads as an absence *and*
+     * because `queryRenderedFeatures` only ever returns placed symbols — a
+     * collided conflict mark would be silently unhoverable and its card could
+     * never open. `ignore-placement` because circles never entered the collision
+     * index at all and symbols do: without it, several thousand conflict marks
+     * would begin deleting the country and city names underneath them.
+     */
     map.addLayer({
       id: 'conflict-marks',
-      type: 'circle',
+      type: 'symbol',
       source: 'conflict',
+      layout: {
+        'icon-image': 'conflict-mark',
+        // 5 → 14px, which is the range `glyphs.ts` says this mark was drawn for
+        // and the one `GLYPH_PAD` was sized against ("at 0.31, the conflict
+        // floor…"). Not a translation of the circle's 1.6px radius: a 3.2px
+        // square has no corners left, and corners are the whole mark.
+        'icon-size': ['interpolate', ['linear'], ['get', 'mag'], 0, 0.31, 1, 0.875],
+        'icon-allow-overlap': true,
+        'icon-ignore-placement': true,
+      } as never,
       paint: {
-        'circle-radius': ['interpolate', ['linear'], ['get', 'mag'], 0, 1.6, 1, 7],
-        'circle-color': OVERLAY_COLOUR.conflictFill,
-        'circle-opacity': ['*', ['get', 'a'], 0.55],
-        'circle-stroke-width': 0.5,
-        'circle-stroke-color': OVERLAY_COLOUR.conflict,
-        'circle-stroke-opacity': ['*', ['get', 'a'], 0.5],
-      },
+        // The fill and the hairline stroke become the glyph's colour and its
+        // halo: a solid square in the darker red, outlined in the lighter one,
+        // is the same two-tone mark the circle drew.
+        'icon-color': OVERLAY_COLOUR.conflictFill,
+        'icon-opacity': ['*', ['get', 'a'], 0.55],
+        'icon-halo-color': OVERLAY_COLOUR.conflict,
+        'icon-halo-width': 0.8,
+      } as never,
     })
 
     map.addLayer({
       id: 'chokepoint-marks',
-      type: 'circle',
+      type: 'symbol',
       source: 'chokepoints',
+      layout: {
+        // The bulge of the two coastlines *is* the data: at rest the channel sits
+        // open, a pinch narrows it, a surge widens it. So direction survives
+        // greyscale, which gold-against-teal never did.
+        'icon-image': [
+          'case',
+          ['==', ['get', 'disrupted'], 0], 'strait-rest',
+          ['<', ['get', 'direction'], 0], 'strait-pinch',
+          'strait-surge',
+        ],
+        // Was radius 3.5 → 8, so 7 → 16px wide.
+        'icon-size': ['interpolate', ['linear'], ['get', 'mag'], 0, 0.44, 1, 1.0],
+        'icon-allow-overlap': true,
+        'icon-ignore-placement': true,
+      } as never,
       paint: {
-        // Radius grows with how far traffic has moved from its baseline, so a
-        // strait that has half-emptied reads louder than one that has dipped.
-        'circle-radius': ['interpolate', ['linear'], ['get', 'mag'], 0, 3.5, 1, 8],
-        'circle-color': 'rgba(0,0,0,0)',
-        'circle-stroke-width': ['interpolate', ['linear'], ['get', 'mag'], 0, 1, 1, 2.2],
         // Gold for traffic falling away — the blockage case — and a cool tone
         // for a surge, which is a different story told by the same number.
-        'circle-stroke-color': [
+        'icon-color': [
           'case',
           ['==', ['get', 'disrupted'], 0], MAP_COLOURS.neutral,
           ['<', ['get', 'direction'], 0], OVERLAY_COLOUR.straits,
           OVERLAY_COLOUR.straitsSurge,
         ],
-        'circle-stroke-opacity': ['interpolate', ['linear'], ['get', 'mag'], 0, 0.55, 1, 0.95],
-      },
+        'icon-opacity': ['interpolate', ['linear'], ['get', 'mag'], 0, 0.55, 1, 0.95],
+        'icon-halo-color': MAP_COLOURS.labelHalo,
+        'icon-halo-width': 1,
+      } as never,
     })
 
     map.addLayer({
       id: 'gdacs-marks',
-      type: 'circle',
+      type: 'symbol',
       source: 'gdacs',
-      paint: {
+      layout: {
+        'icon-image': 'hazard',
         // Two facts, two channels. Size carries severity — the magnitude, wind
         // speed or burn area ranked against its own event type — and the alert
         // level adds a fixed bump on top, so an Orange event still reads louder
         // than a Green one of the same physical size. Sizing on level alone
         // drew 98 identical dots.
-        'circle-radius': [
+        //
+        // Was radius 3.4 → 8.5 plus a 3 / 1.5 level bump; doubled and over 16.
+        'icon-size': [
           '+',
-          ['interpolate', ['linear'], ['get', 'mag'], 0, 3.4, 1, 8.5],
-          ['match', ['get', 'level'], 'Red', 3, 'Orange', 1.5, 0],
+          ['interpolate', ['linear'], ['get', 'mag'], 0, 0.425, 1, 1.0625],
+          ['match', ['get', 'level'], 'Red', 0.375, 'Orange', 0.1875, 0],
         ],
-        'circle-color': 'rgba(0,0,0,0)',
-        'circle-stroke-width': ['match', ['get', 'level'], 'Red', 1.8, 'Orange', 1.4, 1],
-        'circle-stroke-color': OVERLAY_COLOUR.gdacs,
+        'icon-allow-overlap': true,
+        'icon-ignore-placement': true,
+      } as never,
+      paint: {
+        'icon-color': OVERLAY_COLOUR.gdacs,
         // Green is 98% of the feed, so a flat 0.4 there made the whole layer
         // one weight. Within Green, severity drives presence instead.
-        'circle-stroke-opacity': [
+        'icon-opacity': [
           'case',
           ['==', ['get', 'level'], 'Red'],
           0.95,
@@ -1618,7 +1712,9 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
           0.85,
           ['interpolate', ['linear'], ['get', 'mag'], 0, 0.32, 1, 0.8],
         ],
-      },
+        'icon-halo-color': MAP_COLOURS.labelHalo,
+        'icon-halo-width': 1,
+      } as never,
     })
 
     // Story halo — circle-blur is the cheap, GPU-side equivalent of the glow
@@ -1794,6 +1890,54 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       source: 'markets',
       layout: marketLayout() as never,
       paint: marketPaint() as never,
+    })
+
+    /**
+     * Thermal anomalies.
+     *
+     * Above the stories, for the reason the exchange marks are: these sit within
+     * 75 km of a story by construction, so overlap with a beacon or a cluster is
+     * not an occasional accident, it is where every one of them is. A cluster is
+     * a count and survives a 10px burst crossing it; a single anomaly, covered,
+     * is simply absent.
+     *
+     * Both collision flags, as `marketLayout` explains at length: `allow-overlap`
+     * because `queryRenderedFeatures` only returns *placed* symbols, so a
+     * collided mark would be silently unhoverable and its card could never open;
+     * `ignore-placement` because circles never entered the collision index and
+     * symbols do — without it a fire would start deleting the country and city
+     * names around it.
+     */
+    map.addLayer({
+      id: 'thermal-marks',
+      type: 'symbol',
+      source: 'thermal',
+      layout: {
+        'icon-image': 'thermal',
+        // `wantedCssPx / GLYPH_BOX`: ~7px at the 5 MW floor, ~18px at 5,000.
+        'icon-size': ['interpolate', ['linear'], ['get', 'mag'], 0, 0.42, 1, 1.1],
+        'icon-allow-overlap': true,
+        'icon-ignore-placement': true,
+        // Biggest first, so if anything ever does have to yield it is the
+        // smallest fire rather than whichever sorted last.
+        'symbol-sort-key': ['-', 0, ['get', 'mag']],
+      } as never,
+      paint: {
+        'icon-color': OVERLAY_COLOUR.thermal,
+        // The instrument's own certainty. VIIRS marks a detection low-confidence
+        // where sun glint or a weak (<15 K) anomaly could account for the
+        // reading, and a mark the satellite is unsure of must not arrive at the
+        // same weight as a saturated night pass.
+        'icon-opacity': [
+          'match',
+          ['get', 'conf'],
+          'high', 0.95,
+          'nominal', 0.8,
+          0.5,
+        ],
+        'icon-halo-color': MAP_COLOURS.labelHalo,
+        'icon-halo-width': 1.2,
+      } as never,
     })
 
     /**
@@ -2349,6 +2493,8 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       if (ev) return sheet.showConflict(ev, conflictWindowLabel(), pin)
       const gen = genocide.find((x) => x.id === key)
       if (gen) return sheet.showGenocide(gen, pin)
+      const heat = thermal.find((x) => x.id === key)
+      if (heat) return sheet.showThermal(heat, pin)
     }
 
     // One delegated listener across all five overlay layers, not five.
@@ -2561,6 +2707,11 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     for (const [key, label, colour, glyphs, note] of [
       ['prayers', 'prayers', MAP_COLOURS.prayer, ['prayer-line'], PRAYER_NOTE],
       ['gdacs', 'disasters', OVERLAY_COLOUR.gdacs, ['hazard'], ''],
+      // Beside `disasters`, because that adjacency is the whole point of its
+      // colour: same hue, one step lighter, same subject seen by a different
+      // kind of witness. Read apart, two warm marks; read together, a pair.
+      // Same argument as the genocide chip sitting next to conflict.
+      ['thermal', 'thermal', OVERLAY_COLOUR.thermal, ['thermal'], THERMAL_NOTE],
       ['straits', 'straits', OVERLAY_COLOUR.straits, ['strait-rest'], ''],
       ['markets', 'markets', '', ['tick-up', 'tick-down'], ''],
       ['conflict', 'conflict', OVERLAY_COLOUR.conflict, ['conflict-mark'], ''],
@@ -2704,7 +2855,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   }
 
   const loadLayers = async () => {
-    const [g, c, gen, mk] = await Promise.all([
+    const [g, c, gen, mk, th] = await Promise.all([
       json<{ alerts: GdacsAlert[]; details?: Record<string, GdacsDetail> }>(
         '/api/gdacs.json',
         abort.signal,
@@ -2712,6 +2863,11 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       json<{ chokepoints: MapChokepoint[] }>('/api/chokepoints.json', abort.signal),
       json<{ situations: GenocideSituation[] }>('/api/genocide.json', abort.signal),
       json<{ exchanges: MapExchange[] }>('/api/markets.json', abort.signal),
+      // Tens of events, a few KB. In the main batch rather than idle-deferred
+      // like the conflict feed: this is a visible layer whose marks sit on top
+      // of the beacons, and arriving a second late reads as a glitch rather
+      // than as loading.
+      json<{ events: ThermalEvent[] }>('/api/firms.json', abort.signal),
     ])
     if (!mounted) return
     if (g?.alerts) gdacs = g.alerts
@@ -2730,6 +2886,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       marketStrip.update(markets)
       marketStrip.setVisible(layersOn.markets)
     }
+    if (th?.events) thermal = th.events
     setOverlayData()
   }
 

@@ -113,6 +113,13 @@
 /api/conflict.json
   Cache-Control: public, max-age=3600, stale-while-revalidate=86400, stale-if-error=86400
 
+# Thermal anomalies turn over with the corpus they are joined to, not just with
+# the satellite: a new story can attach an anomaly that was already in the
+# snapshot. So this follows the editorial cycle rather than the ~2 VIIRS passes
+# a day.
+/api/firms.json
+  Cache-Control: public, max-age=900, stale-while-revalidate=3600, stale-if-error=86400
+
 /api/trends.json
   Cache-Control: public, max-age=900, stale-while-revalidate=3600, stale-if-error=86400
 

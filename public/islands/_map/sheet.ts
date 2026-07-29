@@ -32,6 +32,7 @@ import type {
   GenocideSituation,
   MapChokepoint,
   MapExchange,
+  ThermalEvent,
   VesselField,
 } from './types'
 
@@ -43,6 +44,7 @@ export interface Sheet {
   showIndicator(entry: TickerEntry, pinned: boolean): void
   showConflict(event: ConflictEvent, window: string | null, pinned: boolean): void
   showGenocide(situation: GenocideSituation, pinned: boolean): void
+  showThermal(event: ThermalEvent, pinned: boolean): void
   close(): void
   isOpen(): boolean
   isPinned(): boolean
@@ -59,6 +61,26 @@ const el = <K extends keyof HTMLElementTagNameMap>(
   if (text != null) node.textContent = text
   return node
 }
+
+/**
+ * Fire radiative power, in the precision the figure deserves.
+ *
+ * FRP across a real snapshot runs from 5 MW to 17,000. A decimal is the whole
+ * difference between two small fires and is noise on a large one, so the rule is
+ * magnitude-based — the same argument `axisDecimals` makes for a chart's gutter.
+ */
+const thermalPower = (mw: number): string =>
+  mw >= 100 ? fmt.grouped(Math.round(mw)) : mw.toFixed(1)
+
+/**
+ * A pass time in Makkah, like every other time this map states.
+ *
+ * Mixing frames on one surface puts two different days on one card for most of
+ * the world — see `MAKKAH_TZ` in `_map/format.ts`, and the header clock, the
+ * scrubber readout and the Hijri date that all already answer to it.
+ */
+const makkahClock = (t: number): string =>
+  `${new Date(t + fmt.zoneOffset(t, fmt.MAKKAH_TZ)).toISOString().slice(11, 16)} ${fmt.MAKKAH_LABEL}`
 
 /** Which vessel class `primaryField` names, in words a reader can use. */
 const VESSEL_NOUN: Record<VesselField, string> = {
@@ -570,6 +592,102 @@ export function createSheet(): Sheet {
           links.append(readMore(`/country/${situation.iso2}`, `${situation.profile} in profile`))
         }
         nodes.push(links)
+      }
+      render(nodes, pin)
+    },
+
+    /**
+     * A thermal anomaly.
+     *
+     * The card's whole job is to state what the instrument saw and stop, because
+     * the one thing a thermal detection cannot tell you is what was burning. A
+     * strike, a wildfire, a crop fire and a refinery flare are the same reading —
+     * so the mark is drawn only where a story stands beside it, and the card says
+     * how far away that story is rather than implying the two are the same thing.
+     *
+     * Peek answers what a resting pointer is asking: how hot, how far, how long.
+     * Pinned adds the caveat, the provenance, and a route to the pass itself, so
+     * a reader can check the claim against NASA's own map rather than taking it
+     * from us.
+     */
+    showThermal(event, pin) {
+      const nodes: Node[] = []
+      nodes.push(
+        kicker([
+          'thermal',
+          event.daynight === 'N' ? 'night pass' : 'day pass',
+          `${event.confidence} confidence`,
+        ]),
+      )
+      nodes.push(
+        el(
+          'h2',
+          'island-sheet-title',
+          event.near?.loc ? `Heat near ${event.near.loc}` : 'Heat signature',
+        ),
+      )
+
+      // Radiative power is the figure, and the pixel count is what makes it
+      // legible: 40 MW over one pixel and over twenty are very different fires.
+      const pixels = `${fmt.grouped(event.pixels)} pixel${event.pixels === 1 ? '' : 's'}`
+      const distance = event.near ? `${event.near.km} km from the story` : null
+      nodes.push(hero(`${thermalPower(event.frp)} MW`, [pixels, distance].filter(Boolean).join(' · ')))
+
+      // How long this place has been alight. "First seen on this pass" is the
+      // common case and worth saying outright — it is the difference between a
+      // new event and something the map has been watching for days.
+      const spell = el('p', 'map-sheet-stat')
+      if (event.persistDays <= 1) {
+        spell.append(el('strong', undefined, 'First seen'), ' on this pass')
+      } else {
+        spell.append(
+          el('strong', undefined, `${event.persistDays} days`),
+          event.escalating ? ' alight, and burning well above its own baseline' : ' alight',
+        )
+      }
+      nodes.push(spell)
+
+      if (pin) {
+        nodes.push(
+          el(
+            'p',
+            'map-sheet-lead',
+            'A satellite pass measured infrared radiance above the background here. ' +
+              'The instrument records heat, not its cause: a strike, a wildfire, ' +
+              'burning cropland and an industrial flare are the same reading. ' +
+              'Places alight steadily for days are filtered out as installations, ' +
+              'which is why this one is drawn — and why a fire the satellite has ' +
+              'watched all week only appears once it burns harder than it has been.',
+          ),
+        )
+        nodes.push(
+          el(
+            'p',
+            'map-sheet-meta',
+            [
+              'NASA FIRMS',
+              event.satellites?.length ? `VIIRS/${event.satellites.join(', ')}` : 'VIIRS',
+              '375 m pixels',
+              `${makkahClock(event.t)} · ${fmt.relativeTime(event.t)}`,
+            ]
+              .filter(Boolean)
+              .join(' · '),
+          ),
+        )
+        // The pass itself, on NASA's own map, so the reader can check us. Zoomed
+        // in enough to see the individual detections this event was clustered
+        // from rather than the region they sit in.
+        const link = readMore(
+          `https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@${event.lng},${event.lat},9z`,
+          'This pass on FIRMS',
+        )
+        link.target = '_blank'
+        link.rel = 'noopener noreferrer'
+        nodes.push(link)
+        // The stories that make this mark publishable. The nearest one's distance
+        // is already in the hero, which is the calibration that matters — the
+        // join is 75 km wide and the card has to admit it.
+        nodes.push(...relatedList(event.relatedArticles ?? [], 'Reported near here'))
       }
       render(nodes, pin)
     },

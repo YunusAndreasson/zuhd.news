@@ -250,6 +250,43 @@ const TICK_FLAT: Glyph = {
   parts: [{ kind: 'stroke', path: [[1, 8], [15, 8]], width: 2.2 }],
 }
 
+/**
+ * A thermal anomaly: a core with heat coming off it.
+ *
+ * The only radial silhouette in the alphabet, which is what makes it safe to
+ * share `gdacs`'s hue — a closed triangle and a burst do not resolve into each
+ * other even when they land on the same coordinate, which a wildfire alert and
+ * its own footprint do.
+ *
+ * Diagonal rays rather than four-square ones: on the axes this reads as a plus
+ * sign, which is a medical mark in every vocabulary a reader brings to a map,
+ * and it is also the one orientation that collides with the graticule-like
+ * hairlines of the prayer lines and the frontiers. Rays stop well short of the
+ * box edge so the halo has somewhere to sit — at `icon-size` 0.4 there is very
+ * little room, and a ray running to the edge loses its tip to the field
+ * falling off rather than to any intended clipping.
+ */
+const ray = (from: number, to: number, sx: number, sy: number): Part => {
+  const k = Math.SQRT1_2
+  return {
+    kind: 'stroke',
+    path: [
+      [8 + sx * from * k, 8 + sy * from * k],
+      [8 + sx * to * k, 8 + sy * to * k],
+    ],
+    width: 1.6,
+  }
+}
+const THERMAL: Glyph = {
+  parts: [
+    { kind: 'disc', c: [8, 8], r: 2.6 },
+    ray(5.0, 7.4, 1, 1),
+    ray(5.0, 7.4, 1, -1),
+    ray(5.0, 7.4, -1, 1),
+    ray(5.0, 7.4, -1, -1),
+  ],
+}
+
 /** A story. Not registered as an image — `story-points` stays a circle layer,
  *  because feature-state drives its hover and `icon-size` cannot read it. This
  *  entry exists so the category chips can draw from the same table as everything
@@ -277,6 +314,7 @@ export const GLYPHS = {
   dot: DOT,
   'prayer-line': PRAYER_DASH,
   hazard: HAZARD,
+  thermal: THERMAL,
   'strait-rest': strait(4.0),
   'strait-pinch': strait(1.4),
   'strait-surge': strait(6.4),

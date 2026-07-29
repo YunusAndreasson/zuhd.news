@@ -3,6 +3,7 @@ import { transformSync } from 'esbuild'
 import { join, basename } from 'path'
 import { createHash } from 'crypto'
 import { parseFrontmatter } from './lib/frontmatter.js'
+import { isThermallyRelevant, nearestStories } from './lib/firms.js'
 import { splitBlocks } from './lib/blocks.js'
 import { buildCategoryOgPng, buildOgPng } from './lib/og-image.js'
 import { buildIgJpeg, IG_FEED, IG_STORY } from './lib/ig-image.js'
@@ -1106,6 +1107,94 @@ const mapWindow = {
 writeFileSync(join(DIST_DIR, 'api', 'map.json'),
   JSON.stringify({ generated, window: mapWindow, points: mapPoints }))
 console.log(`  Built: api/map.json (${mapPoints.length} points, ${BUILD_WINDOW_DAYS}d)`)
+
+// Thermal anomalies — NASA FIRMS active-fire detections, joined to the stories
+// they may corroborate. Here rather than beside the GDACS mirror because this is
+// the one overlay that is *about* the corpus: the join needs `eventTime` and the
+// same geo-located set behind map.json, and an event with nothing to corroborate
+// is not published at all.
+//
+// That last rule is the layer, and it took three gates to get right.
+// `content/.firms.json` holds every clustered anomaly within 75 km of a story
+// location — 1,391 on the snapshot this was built against — because the
+// fetcher's AOI is a 10° grid that knows nothing about *when* anything happened.
+// Adding the time window takes it to 58. Adding `isThermallyRelevant` takes it
+// to **11**, and that third gate is not a refinement, it is the layer: without
+// it the map published a veld fire outside Johannesburg cited against "Joburg
+// Bills Wrong Owners", because a city-centroid join catches every fire in a
+// metropolitan region. See `lib/firms.js` for the whole account.
+//
+// The wider snapshot stays on disk and unpublished, the way fetch-ioda.js keeps
+// its series: the evidence is inspectable, and only what can be explained is
+// drawn.
+const firmsSrc = join(ROOT, 'content', '.firms.json')
+if (existsSync(firmsSrc)) {
+  const raw = JSON.parse(readFileSync(firmsSrc, 'utf8'))
+  // The same filter map.json uses, plus the two fields the card needs that a map
+  // point does not carry: a formatted date, and the place name to print a
+  // distance against.
+  const geoIndex = sorted
+    .filter((a) => a.meta.lat != null && a.meta.lng != null)
+    // Title and concepts, the same haystack the chokepoint and market joins
+    // build — and deliberately not the body, which admits matches on a passing
+    // mention rather than on what a story is about.
+    .filter((a) =>
+      isThermallyRelevant(
+        [a.title, ...(a.concepts || []).map((x) => (typeof x === 'object' ? x.label : x))].join(' '),
+      ),
+    )
+    .map((a) => ({
+      slug: a.slug,
+      title: a.title,
+      date: a.meta.date,
+      dateFormatted: a.dateFormatted,
+      loc: displayLocation(a.meta.location || '') || '',
+      lat: Number(a.meta.lat),
+      lng: Number(a.meta.lng),
+      t: eventTime(a),
+    }))
+  const firmsEvents = []
+  for (const event of raw.events ?? []) {
+    const hits = nearestStories(event, geoIndex)
+    if (hits.length === 0) continue
+    // `seedKm` was the fetcher's coarse distance-to-any-story, used only to bound
+    // the snapshot. The published distance is to the story actually cited.
+    const { seedKm, ...rest } = event
+    firmsEvents.push({
+      ...rest,
+      // Denormalised so the card can say "18 km from Beirut" without the island
+      // holding the corpus. The nearest hit, which is also `relatedArticles[0]`.
+      near: { loc: hits[0].loc, km: hits[0].km },
+      relatedArticles: hits.map((h) => ({
+        slug: h.slug,
+        title: h.title,
+        date: h.date,
+        dateFormatted: h.dateFormatted,
+        km: h.km,
+      })),
+    })
+  }
+  writeFileSync(
+    join(DIST_DIR, 'api', 'firms.json'),
+    JSON.stringify({
+      generated,
+      source: raw.source,
+      dayRange: raw.dayRange,
+      joinRadiusKm: raw.joinRadiusKm,
+      events: firmsEvents,
+      // What was dropped and why, carried through from the fetcher and extended.
+      // A bounded layer that does not say what it left out reads as complete.
+      skipped: {
+        ...(raw.skipped ?? {}),
+        unjoined: (raw.events?.length ?? 0) - firmsEvents.length,
+      },
+    }),
+  )
+  console.log(
+    `  Built: api/firms.json (${firmsEvents.length} anomalies joined to coverage, ` +
+      `${(raw.events?.length ?? 0) - firmsEvents.length} unjoined)`,
+  )
+}
 
 // Indicator map: id → {label, kind}. Drives the entity strip on both the
 // article page and the map's story card, so only chips that actually resolve

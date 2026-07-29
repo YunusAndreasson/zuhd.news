@@ -385,6 +385,20 @@ $BODY_LENGTHS
   IODA_EXIT=$?
   echo "IODA exit: $IODA_EXIT — $((SECONDS - T34C3))s" | tee -a "$LOG_FILE"
 
+  # Stage 3.4c4: Thermal-anomaly snapshot — NASA FIRMS active-fire detections,
+  # for the map's `thermal` layer. One request per 10° cell of the corpus's own
+  # geography (~116 cells, ~20s measured), then clustered and filtered against a
+  # 5-day persistence baseline because the NRT product carries no `type` column
+  # to identify a gas flare. Needs FIRMS_MAP_KEY; without it the stage logs a
+  # skip and the layer is simply absent. Fail-soft: prior snapshot stays in
+  # place on any error, and build.js drops the endpoint when the file is missing.
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.4c4: Thermal anomaly snapshot ---" | tee -a "$LOG_FILE"
+  T34C4=$SECONDS
+  timeout 180 node scripts/fetch-firms.js >> "$LOG_FILE" 2>&1
+  FIRMS_EXIT=$?
+  echo "FIRMS exit: $FIRMS_EXIT — $((SECONDS - T34C4))s" | tee -a "$LOG_FILE"
+
   # Stage 3.4d: GDACS narration — Opus writes a 2-3 sentence narrative for
   # each Orange/Red alert grounded in country profile + recent weather +
   # nearby chokepoint. Cached by inputs-hash so multi-day events aren't
