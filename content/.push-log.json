@@ -1,84 +1,5 @@
 [
   {
-    "timestamp": "2026-07-07T12:18:20.896Z",
-    "candidateCount": 8,
-    "candidates": [
-      {
-        "slug": "2026-07-07-monaco-bomb-suspect-killed-ukraine-intelligence",
-        "title": "Officer Confesses to Monaco Suspect's Killing",
-        "category": "politics",
-        "eventCoverage": 291,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-07-nato-saab-globaleye-awacs-europe-over-us",
-        "title": "NATO Picks Saab Over Boeing",
-        "category": "economy",
-        "eventCoverage": 73,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-07-china-bans-ai-companion-apps-romantic-chatbots",
-        "title": "China Bans AI Companion Chatbots",
-        "category": "tech",
-        "eventCoverage": 38,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-07-farage-undeclared-benefits-reform-uk-statement",
-        "title": "Farage Faces Disclosure Probe",
-        "category": "politics",
-        "eventCoverage": 36,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-07-ziarat-bla-ambush-pakistan-police-killed-balochistan",
-        "title": "BLA Overruns Ziarat Outpost",
-        "category": "politics",
-        "eventCoverage": 28,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-07-ram-temple-babri-donation-theft-leadership-reshuffle",
-        "title": "Ram Temple Trust Reshuffles Leadership",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-07-coinbase-uk-equities-derivatives-everything-exchange",
-        "title": "Coinbase Wins UK Stocks License",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-07-worms-microbes-manure-methane-dairy-pollution",
-        "title": "Worms Take On Dairy Methane",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-07-07-monaco-bomb-suspect-killed-ukraine-intelligence",
-      "title": "Officer Confesses to Monaco Suspect's Killing",
-      "category": "politics",
-      "body": "The Monaco bombing suspect was found shot dead near",
-      "eventCoverage": 291,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Ukrainian intelligence officer confesses to killing Monaco bombing suspect",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 25
-    }
-  },
-  {
     "timestamp": "2026-07-07T17:19:08.790Z",
     "candidateCount": 13,
     "candidates": [
@@ -10238,6 +10159,85 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Iran missiles hit US military bases in Jordan, officials say",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 16
+    }
+  },
+  {
+    "timestamp": "2026-07-29T22:24:04.434Z",
+    "candidateCount": 8,
+    "candidates": [
+      {
+        "slug": "2026-07-29-fed-holds-350-375-fuel-led-inflation-dollar-plateau",
+        "title": "Fed Holds Rates on War",
+        "category": "economy",
+        "eventCoverage": 163,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-29-fedorova-deportation-order-administrative-measure-appeal",
+        "title": "France Expels Kremlin Voice",
+        "category": "politics",
+        "eventCoverage": 156,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-29-damietta-lng-floating-storage-drone-mediterranean-war-risk",
+        "title": "Drone Hits Damietta LNG",
+        "category": "economy",
+        "eventCoverage": 60,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-29-vande-mataram-bill-compelled-singing-national-honour-act",
+        "title": "India Criminalises Song Refusal",
+        "category": "politics",
+        "eventCoverage": 55,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-29-fcc-foreign-robot-ban-equipment-authorisation-chokepoint",
+        "title": "FCC Bans Foreign Robots",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-29-malaria-risk-shift-africa-temperature-window-no-immunity",
+        "title": "Warming Shifts Malaria Map",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-29-china-15th-plan-renewables-curtailment-integration-price",
+        "title": "China Sets Renewables Floor",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-07-29-openai-rogue-agent-four-more-victims-unnamed-blast-radius",
+        "title": "Rogue Agent Hit Four More",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-07-29-damietta-lng-floating-storage-drone-mediterranean-war-risk",
+      "title": "Drone Hits Damietta LNG",
+      "category": "economy",
+      "body": "Fire jumped from one tanker to a",
+      "eventCoverage": 60,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Drone strike sets fire on tanker at Egypt's Damietta LNG terminal",
     "response": {
       "pushed": 1,
       "skipped": 0,
