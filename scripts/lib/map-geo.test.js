@@ -1566,6 +1566,148 @@ test('the basemap labels territories with the name of the people whose land it i
   assert.ok(names.has('Western Sahara'), 'basemap lost Western Sahara')
 })
 
+// ---------------------------------------------------------------------------
+// Inland water and the marine labels
+// ---------------------------------------------------------------------------
+
+test('the marine labels name the disputed waters the way we decided to', (t) => {
+  const path = join(ROOT, 'dist/basemap/seas.geojson')
+  if (!existsSync(path)) {
+    t.skip('dist/basemap/seas.geojson not built')
+    return
+  }
+  const names = new Set(
+    JSON.parse(readFileSync(path, 'utf8')).features.map((f) => f.properties?.name),
+  )
+  // Two of the 54 are live disputes, and this is the decision rather than an
+  // oversight: **Persian Gulf** and **Sea of Japan** are the UN and IHO terms,
+  // where each alternative — Arabian Gulf, East Sea — is one party's claim.
+  // That is the same reasoning that keeps Western Sahara as it is, and a
+  // different case from Palestine, where the site follows a UN determination
+  // rather than departing from one. Pinned in both directions so neither can
+  // drift silently.
+  assert.ok(names.has('Persian Gulf'), 'the marine labels lost "Persian Gulf"')
+  assert.ok(names.has('Sea of Japan'), 'the marine labels lost "Sea of Japan"')
+  assert.ok(!names.has('Arabian Gulf'), 'the marine labels renamed the Persian Gulf')
+  assert.ok(!names.has('East Sea'), 'the marine labels renamed the Sea of Japan')
+
+  // The layer exists to name the water the chokepoints sit in, so the bodies
+  // holding them have to be in the world-zoom set.
+  const rank1 = new Set(
+    JSON.parse(readFileSync(path, 'utf8'))
+      .features.filter((f) => f.properties?.rank === 1)
+      .map((f) => f.properties.name),
+  )
+  for (const sea of ['Red Sea', 'Mediterranean Sea', 'Arabian Sea', 'South China Sea']) {
+    assert.ok(rank1.has(sea), `${sea} is not in the world-zoom marine set`)
+  }
+})
+
+test('the world view gets the lakes that are geography, not every pond', (t) => {
+  const path = join(ROOT, 'dist/basemap/lakes.geojson')
+  if (!existsSync(path)) {
+    t.skip('dist/basemap/lakes.geojson not built')
+    return
+  }
+  const features = JSON.parse(readFileSync(path, 'utf8')).features
+  // The first step of the `lakes` filter in `_map/style.ts`. Steradians of the
+  // lake's own polygon, the same unit `country-labels` gates on.
+  const WORLD_GATE = 0.0002
+  const shown = features.filter((f) => f.properties.area >= WORLD_GATE)
+  // The first gate was 0.00004 and admitted 110 — IJsselmeer, Mälaren and
+  // dozens of Canadian reservoirs, every one of them sub-pixel at world zoom,
+  // which speckled Fennoscandia and the Shield rather than drawing geography.
+  assert.ok(
+    shown.length >= 12 && shown.length <= 30,
+    `${shown.length} lakes at world zoom, expected the ~20 that are geography`,
+  )
+  const names = new Set(shown.map((f) => f.properties.name))
+  for (const lake of ['Lake Superior', 'Lake Victoria', 'Lake Baikal', 'Lake Tanganyika']) {
+    assert.ok(names.has(lake), `the world view lost ${lake}`)
+  }
+  // Every feature is drawable. One river in the same family ships a `null`
+  // geometry, which reaches `thin` as a crash rather than as a skipped record.
+  for (const f of features) {
+    assert.ok(f.geometry?.coordinates?.length, `a lake has no geometry: ${f.properties.name}`)
+  }
+})
+
+test('rivers are gated by significance and every one of them is drawable', (t) => {
+  const path = join(ROOT, 'dist/basemap/rivers.geojson')
+  if (!existsSync(path)) {
+    t.skip('dist/basemap/rivers.geojson not built')
+    return
+  }
+  const features = JSON.parse(readFileSync(path, 'utf8')).features
+  for (const f of features) {
+    assert.ok(f.geometry?.coordinates?.length, `a river has no geometry: ${f.properties.name}`)
+    assert.ok(
+      Number.isInteger(f.properties.r) && f.properties.r >= 1 && f.properties.r <= 5,
+      `river "${f.properties.name}" has no usable scalerank`,
+    )
+  }
+  // The world-zoom set. Ungated this layer is a net of hairlines over every
+  // continent, which is ink spent on something no other layer here references.
+  const world = features.filter((f) => f.properties.r <= 1)
+  assert.ok(
+    world.length >= 15 && world.length <= 40,
+    `${world.length} rivers at world zoom, expected the ~27 Natural Earth ranks first`,
+  )
+})
+
+test('the water tone is separable from the frontiers and from every land tone', () => {
+  const { MAP_COLOURS, LAND_RAMP, LAND_NO_DATA } = M
+  const water = MAP_COLOURS.water
+
+  // A river in `ocean` — the obvious choice, since it is the same substance —
+  // measures 1.04:1 against LAND_NO_DATA and would simply not be there across
+  // the thirty hatched countries. This is the floor that rules that out.
+  const ratioTo = (a, b) => {
+    const [hi, lo] = [srgbLuminance(a), srgbLuminance(b)].sort((x, y) => y - x)
+    return (hi + 0.05) / (lo + 0.05)
+  }
+  const grounds = [LAND_NO_DATA, ...LAND_RAMP]
+  for (const ground of grounds) {
+    const ratio = ratioTo(water, ground)
+    assert.ok(
+      ratio >= 1.5,
+      `water (${water}) measures ${ratio.toFixed(2)}:1 on ${ground} — a river that is not there`,
+    )
+  }
+
+  // Hue cannot separate it from the frontiers: `border` and `prayer` are both
+  // at 216°, because the blue-grey family is this map's furniture. Saturation
+  // is what does the work, the same argument the genocide tone makes against
+  // conflict — and the same 20-point floor.
+  const sat = (hex) => {
+    const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
+    const mx = Math.max(r, g, b)
+    const mn = Math.min(r, g, b)
+    const l = (mx + mn) / 2
+    return mx === mn ? 0 : ((mx - mn) / (1 - Math.abs(2 * l - 1))) * 100
+  }
+  assert.ok(
+    sat(water) - sat(MAP_COLOURS.border) >= 20,
+    `water is only ${(sat(water) - sat(MAP_COLOURS.border)).toFixed(0)} saturation points ` +
+      `clear of border — a river indistinguishable from a frontier`,
+  )
+})
+
+test('the marine labels are placed last, so the crowded seas keep their names', () => {
+  const ids = M.buildStyle().layers.map((l) => l.id)
+  // MapLibre walks symbol layers top-down and the *later* layer claims its
+  // collision boxes first. Under `country-labels` this was the lowest-priority
+  // symbol layer on the map, and it drew only in empty ocean — the
+  // Mediterranean, the Red Sea, the Arabian Sea and the Caribbean went
+  // unnamed, which is every water the eleven chokepoints are in.
+  assert.equal(ids.at(-1), 'sea-labels', 'sea-labels is no longer the last base layer')
+  // Water is under the frontiers, so a border running down the middle of the
+  // Great Lakes or the Caspian stays drawn.
+  assert.ok(ids.indexOf('lakes') > ids.indexOf('land'), 'lakes are drawn under the land')
+  assert.ok(ids.indexOf('lakes') < ids.indexOf('borders'), 'lakes are drawn over the borders')
+  assert.ok(ids.indexOf('rivers') < ids.indexOf('borders'), 'rivers are drawn over the borders')
+})
+
 test('a chokepoint delta reads against its baseline in the right direction', () => {
   // `delta7vs90` is a SIGNED FRACTIONAL CHANGE — `last7 / baseline - 1` — not
   // a ratio. This test used to assert the ratio reading, which is how the

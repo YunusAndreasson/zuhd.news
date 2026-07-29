@@ -87,6 +87,29 @@ export const MAP_COLOURS = {
    * strength clears AA against every ground tone the ramp can paint.
    */
   prayer: '#c0c4ca',
+  /**
+   * Inland water — river threads, and the rim of a lake.
+   *
+   * There is no colour that works flat here, and finding that out is the whole
+   * reason this is a separate token rather than a reuse. A river drawn in
+   * `ocean` — the obvious choice, since it is literally the same substance —
+   * measures **1.04:1 against `LAND_NO_DATA`** and 1.21:1 on the ramp's darkest
+   * stop, so it would vanish across the thirty hatched countries and most of
+   * the dark half of every metric. And any mid-tone picked to survive that
+   * collides with one of the ramp's own five stops: the best flat candidate a
+   * search could find still measured 1.10:1 against `border`, which is a river
+   * indistinguishable from a frontier.
+   *
+   * Hue cannot break the tie either, because `border` and `prayer` are *both*
+   * at 216° — the blue-grey family is already this map's furniture. So the
+   * separation is saturation, the same argument the genocide tone makes against
+   * conflict: 40% here against `border`'s 10%, thirty points clear, in a family
+   * a reader already reads as "ground, not data". Against the six tones the
+   * land can be painted it holds a 1.92:1 minimum — louder than the prayer
+   * lines' ~1.5:1, which is right, since a river is a fact about the ground
+   * rather than a construction laid over it.
+   */
+  water: '#4a7fae',
 } as const
 
 /** Category hues, low-saturation so four of them can coexist without shouting. */
@@ -315,6 +338,9 @@ export const nodataHatch = (): { width: number; height: number; data: Uint8Array
 export const basemapUrl = (file: string, v?: string) =>
   v ? `/basemap/${file}?v=${encodeURIComponent(v)}` : `/basemap/${file}`
 
+/** A source declared in the style but filled later. */
+const EMPTY_FC = { type: 'FeatureCollection' as const, features: [] }
+
 export function buildStyle(v?: string): StyleSpecification {
   return {
     version: 8,
@@ -329,6 +355,17 @@ export function buildStyle(v?: string): StyleSpecification {
       countries: { type: 'geojson', data: basemapUrl('countries.geojson', v), promoteId: 'iso2' },
       countryLabels: { type: 'geojson', data: basemapUrl('country-labels.geojson', v) },
       places: { type: 'geojson', data: basemapUrl('places.geojson', v) },
+      // Lakes and rivers start empty and are filled after first paint — see
+      // `loadWater` in `situation-map.ts`. GeoJSON expands TopoJSON's shared
+      // arcs, so the two together are 205 KB gzipped against the coastline's
+      // 546 KB: a 37% heavier first paint, spent on detail that is not what
+      // anyone opens this map to see. Simplification will not recover it
+      // (rivers barely respond — their vertices are already sparse), so the
+      // fix is when, not how much. The seas are 1 KB and are needed at world
+      // zoom, so they load with the style.
+      lakes: { type: 'geojson', data: EMPTY_FC },
+      rivers: { type: 'geojson', data: EMPTY_FC },
+      seas: { type: 'geojson', data: basemapUrl('seas.geojson', v) },
     },
     layers: [
       {
@@ -359,6 +396,79 @@ export function buildStyle(v?: string): StyleSpecification {
               1, LAND_RAMP[4],
             ],
           ],
+        },
+      },
+      /**
+       * Lakes, above `land` and below `borders`.
+       *
+       * Above the land because a lake is water *carved out of* it — filled in
+       * `ocean`, the same tone as the sea, because it is the same substance and
+       * this map's single strongest ground rule is that the darkest thing is
+       * water. Below the borders because a frontier that runs down the middle
+       * of a lake — as they do on the Great Lakes, Victoria, Chad and the
+       * Caspian — is a fact about the lake and has to stay drawn.
+       *
+       * The fill alone is not enough: `ocean` against `LAND_NO_DATA` is
+       * 1.04:1, so on a hatched country a lake would be an invisible hole. The
+       * rim in `water` is what guarantees it reads, and it is the same thread
+       * the rivers are drawn in — a river running into a lake continues as its
+       * edge rather than stopping at an unrelated colour.
+       *
+       * Note this sits *after* `day-shade`, which is inserted before `land` so
+       * it only reaches the sea. A lake therefore takes the night wash but not
+       * the day lift. That is deliberate: the alternative is a terminator
+       * visibly crossing Lake Victoria while the country around it is unshaded.
+       */
+      {
+        id: 'lakes',
+        type: 'fill',
+        source: 'lakes',
+        /**
+         * The same idea as `country-labels`: 412 lakes at 1:50m is mostly
+         * specks, and the world view wants the ones that are geography.
+         *
+         * The first step is 0.0002 sr because that is where the distribution
+         * has its break — 21 lakes, Superior down to Turkana, which is the set
+         * a reader would name. The first guess was 0.00004 and it admitted
+         * **110**, speckling Canada and Fennoscandia with reservoirs and
+         * IJsselmeer at world scale, where each is well under a pixel.
+         */
+        filter: ['>=', ['get', 'area'], ['step', ['zoom'], 0.0002, 3, 0.00004, 5, 0.000008, 7, 0]],
+        paint: {
+          'fill-color': MAP_COLOURS.ocean,
+          'fill-outline-color': MAP_COLOURS.water,
+        },
+      },
+      /**
+       * Rivers.
+       *
+       * `r` is Natural Earth's `scalerank`, and it is the entire density
+       * control — 27 rank-1 rivers against 69 at rank 5. Ungated, the world
+       * view is a net of hairlines over every continent, which is the cluster
+       * glow again: ink spent on something no layer here references and no
+       * reader asked for. So the world sees the Nile, the Amazon, the
+       * Mississippi, the Chang Jiang and the Lena, and the rest arrive with the
+       * camera.
+       *
+       * Width is constant per zoom rather than per rank: a river is not a
+       * quantity, and varying weight would imply one. They are the only
+       * meandering line on this map, which is most of what tells them from the
+       * frontiers they cross.
+       */
+      {
+        id: 'rivers',
+        type: 'line',
+        source: 'rivers',
+        minzoom: 1.6,
+        filter: ['<=', ['get', 'r'], ['step', ['zoom'], 1, 3, 2, 4.5, 3, 6, 5]],
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
+        paint: {
+          'line-color': MAP_COLOURS.water,
+          'line-width': ['interpolate', ['linear'], ['zoom'], 2, 0.4, 5, 0.8, 8, 1.4],
+          // Quieter than a frontier at world scale, where a river is orientation
+          // and nothing more; full strength once the camera is close enough for
+          // it to be the thing being looked at.
+          'line-opacity': ['interpolate', ['linear'], ['zoom'], 2, 0.55, 5, 0.85],
         },
       },
       {
@@ -456,6 +566,67 @@ export function buildStyle(v?: string): StyleSpecification {
           'text-color': MAP_COLOURS.label,
           'text-halo-color': MAP_COLOURS.labelHalo,
           'text-halo-width': 1.2,
+        },
+      },
+      /**
+       * Marine labels.
+       *
+       * **Last of the base style**, which is load-bearing: MapLibre walks
+       * symbol layers top-down and the *later* layer claims its collision
+       * boxes first, so this was the lowest-priority symbol layer on the whole
+       * map when it sat under `country-labels`. The result was that it drew
+       * only where nothing else wanted the space — LABRADOR SEA, SEA OF
+       * OKHOTSK, PHILIPPINE SEA, all of them in empty ocean — while the
+       * Mediterranean, the Red Sea, the Arabian Sea and the Caribbean went
+       * unnamed. Those are precisely the waters this layer was added for: they
+       * are where the eleven chokepoints are, and they are crowded exactly
+       * because that is where the news is.
+       *
+       * Sitting last it claims before the country and city names. That is the
+       * right way round rather than merely the effective one — a sea label is
+       * placed at the centroid of open water, so where it competes with a land
+       * label at all, it is the land label that has drifted out over the sea.
+       *
+       * It still loses to everything `addDataLayers` adds, which is correct:
+       * the stories are the subject and the basemap is the ground.
+       *
+       * Set in `water`, the same tone as the rivers and lake rims, so
+       * everything on this map that is about water is one family a reader can
+       * learn once. 4.66:1 on the ocean, so it clears AA on the surface it will
+       * always be drawn against. Regular rather than the country labels' Bold,
+       * and wider tracking: cartography sets water names in italic, which is
+       * not available here — the basemap ships two Noto stacks and neither is
+       * oblique — so weight and tracking carry the distinction instead.
+       */
+      {
+        id: 'sea-labels',
+        type: 'symbol',
+        source: 'seas',
+        /**
+         * No `minzoom`, and that is the whole point of the layer.
+         *
+         * `worldFitZoom` is `log2(width / 512)` and is also the map's floor, so
+         * the *default* view sits at 1.11 on a 1104px canvas and **−0.39 on a
+         * phone**. A `minzoom` of 1.4 — which this had — hid the marine labels
+         * at the one view every reader starts from, which is the view they were
+         * added for. Density is the rank filter's job, not a zoom floor's.
+         */
+        filter: ['<=', ['get', 'rank'], ['step', ['zoom'], 1, 3.2, 2]],
+        layout: {
+          'text-field': ['get', 'name'],
+          'text-font': ['Noto Sans Regular'],
+          'text-size': ['interpolate', ['linear'], ['zoom'], 1.5, 8, 6, 12],
+          'text-letter-spacing': 0.22,
+          'text-transform': 'uppercase',
+          'text-max-width': 8,
+          'text-padding': 2,
+          // Among the seas themselves, the major bodies place first.
+          'symbol-sort-key': ['get', 'rank'],
+        },
+        paint: {
+          'text-color': MAP_COLOURS.water,
+          'text-halo-color': MAP_COLOURS.labelHalo,
+          'text-halo-width': 1,
         },
       },
     ],

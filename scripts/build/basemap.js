@@ -297,6 +297,108 @@ export async function buildMapSources(root) {
     countriesUltra: tier('countries-10m.json', 3, 0.003),
     countryLabels: await countryLabelPoints(countries),
     places: await placeLabels(root),
+    lakes: await lakePolygons(root, feature),
+    rivers: await riverLines(root, feature),
+    seas: seaLabels(root),
+  }
+}
+
+/**
+ * Inland water, as area.
+ *
+ * `area` is carried per lake for the same reason `country-labels` carries it:
+ * 412 lakes at 1:50m is mostly specks, and a world view speckled with ponds is
+ * noise rather than geography. The layer steps its minimum by zoom, so the
+ * Caspian, the Great Lakes, Victoria and Baikal are there from the start and
+ * the rest arrive as the camera earns them.
+ *
+ * 91 of the 412 have no name and are kept anyway — a lake is drawn for its
+ * shape, not its label, and this layer prints no text at all.
+ */
+async function lakePolygons(root, feature) {
+  const { geoArea } = await import('d3-geo')
+  const topo = JSON.parse(readFileSync(join(root, 'shared', 'data', 'lakes-50m.json'), 'utf8'))
+  const fc = feature(topo, topo.objects.lakes)
+  return {
+    type: 'FeatureCollection',
+    features: fc.features
+      .filter((f) => f.geometry)
+      .map((f) => ({
+        type: 'Feature',
+        properties: {
+          name: f.properties?.name ?? '',
+          area: Math.round(geoArea(f.geometry) * 1e6) / 1e6,
+        },
+        // 3 decimals (~110 m) matches the country tiers: sub-pixel at every
+        // zoom this layer is drawn at.
+        geometry: thin(f.geometry, 3),
+      })),
+  }
+}
+
+/**
+ * Rivers, as lines.
+ *
+ * `scalerank` is Natural Earth's own significance grading — 27 rank-1 rivers
+ * (Nile, Amazonas, Mississippi, Chang Jiang, Lena) against 69 at rank 5 — and
+ * it is the whole density control: without it the world view is a net of
+ * threads over every continent, which is the "cluster glow" mistake set in
+ * hairlines. It ships as `r` to keep the property short in a payload that is
+ * mostly coordinates.
+ */
+async function riverLines(root, feature) {
+  const topo = JSON.parse(readFileSync(join(root, 'shared', 'data', 'rivers-50m.json'), 'utf8'))
+  const fc = feature(topo, topo.objects.rivers)
+  return {
+    type: 'FeatureCollection',
+    // One of the 256 carries a `null` geometry — a Natural Earth record with
+    // attributes and no line. `feature()` passes it through as a Feature with
+    // `geometry: null`, which `thin` reads straight into a crash.
+    features: fc.features
+      .filter((f) => f.geometry)
+      .map((f) => ({
+        type: 'Feature',
+        properties: { name: f.properties?.name ?? '', r: f.properties?.scalerank ?? 5 },
+        geometry: thin(f.geometry, 3),
+      })),
+  }
+}
+
+/**
+ * Marine labels — 54 points, and the cheapest thing in `shared/data/` by two
+ * orders of magnitude (1 KB gzipped against the basemap's 547 KB).
+ *
+ * The map draws eleven chokepoints — Hormuz, Bab el-Mandeb, Suez, Malacca,
+ * Bosporus, Gibraltar, Kerch — and every one of them sat in water the basemap
+ * left as anonymous black. This names it. Being labels rather than geometry,
+ * it adds no line family to a map that has already had to ration lines.
+ *
+ * The file ships lat/lng/rank/kind rather than GeoJSON, so it is converted
+ * here. `rank` is Natural Earth's significance (22 major bodies, 32 minor) and
+ * becomes the zoom gate, exactly as `area` does for country labels.
+ *
+ * The names are printed as Natural Earth has them, which is a decision and not
+ * an oversight for two of them: **Persian Gulf** and **Sea of Japan** are both
+ * live disputes (against Arabian Gulf and East Sea). Neither is renamed, on
+ * this site's own stated precedent — "Western Sahara stays as it is: that *is*
+ * the UN's term" — because these are likewise the UN and IHO terms, where each
+ * alternative is one party's claim. That is a different case from Palestine,
+ * where the site follows a UN determination rather than departing from one.
+ * `map-geo.test.js` pins both names so the decision cannot drift silently in
+ * either direction.
+ */
+function seaLabels(root) {
+  const raw = JSON.parse(readFileSync(join(root, 'shared', 'data', 'seas-50m.json'), 'utf8'))
+  return {
+    type: 'FeatureCollection',
+    features: Object.values(raw).map((s) => ({
+      type: 'Feature',
+      properties: { name: s.name, rank: s.rank, kind: s.kind },
+      geometry: {
+        type: 'Point',
+        coordinates: [Math.round(s.lng * 1e3) / 1e3, Math.round(s.lat * 1e3) / 1e3],
+      },
+    })),
   }
 }
 
