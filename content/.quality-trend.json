@@ -931,5 +931,68 @@
         "politics": 134
       }
     }
+  },
+  {
+    "week": "2026-07-26",
+    "windowDays": 7,
+    "articleCount": 308,
+    "metrics": {
+      "charLengthAvg": 313,
+      "charOver350Pct": 12,
+      "charOver400Pct": 0,
+      "wordCountAvg": 47,
+      "wordInRangePct": 91.6,
+      "titleEchoRatePct": 24,
+      "passiveHookRatePct": 2.6,
+      "causalClaimHits": 0,
+      "pressEraHits": 8,
+      "hedgeRatePct": 0.6,
+      "acronymViolations": 299,
+      "topAcronymViolators": [
+        [
+          "IN",
+          25
+        ],
+        [
+          "IR",
+          21
+        ],
+        [
+          "PK",
+          19
+        ],
+        [
+          "RU",
+          18
+        ],
+        [
+          "IL",
+          16
+        ]
+      ],
+      "countryNullCount": 1,
+      "topOutletSharePct": 14.1,
+      "top3Outlets": [
+        {
+          "name": "Dawn",
+          "count": 27
+        },
+        {
+          "name": "CoinDesk",
+          "count": 19
+        },
+        {
+          "name": "Nature",
+          "count": 16
+        }
+      ],
+      "multiSourceRatePct": 19.2,
+      "categoryBalance": {
+        "politics": 108,
+        "tech": 68,
+        "science": 54,
+        "economy": 78
+      }
+    }
   }
 ]
