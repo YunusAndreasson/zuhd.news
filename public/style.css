@@ -2431,13 +2431,18 @@ body.doc-page > footer {
    needed, the first question is which of these it already is.
 
    ── Kept in step with `_map/style.ts` ──
-   `--map-ground` is `MAP_COLOURS.ocean` and `--map-ink-muted` is a rounding of
-   `MAP_COLOURS.label`. MapLibre paints from the TypeScript, this chrome paints
-   from here, and the two sit pixel-adjacent — the HUD gradient fades into the
-   canvas, the cluster discs are filled in the ocean colour so a numeral reads
-   over a coastline. They cannot be generated from one source (the style is
-   built in the worker before any stylesheet is queryable), so they are
-   cross-referenced instead: change one and change the other. */
+   `--map-ground` is `MAP_COLOURS.ocean`. MapLibre paints from the TypeScript,
+   this chrome paints from here, and the two sit pixel-adjacent — the HUD
+   gradient fades into the canvas, and the place numeral is set in the canvas's
+   own label tone. They cannot be generated from one source (the style is built
+   in the worker before any stylesheet is queryable), so they are
+   cross-referenced instead: change one and change the other.
+
+   `--map-ink-muted` used to be described as a rounding of `MAP_COLOURS.label`,
+   and that stopped being true on 2026-07-30: the map's label tones moved much
+   lighter because they are text sitting on a *data* surface that the ground
+   metric and the density wash both move, where this scale sits on fixed panels.
+   Same family, different problem, and no longer the same value. */
 body.map-page,
 body.doc-page {
   /* Surface, deepest to highest. */

@@ -57,18 +57,62 @@ export const MAP_COLOURS = {
    * market layer is flat — was also its least visible one, on marks that sit in
    * straits and coastal cities.
    *
-   * This is `label`'s value, which is already the map's tone for "furniture,
-   * not data": 6.7:1 on the ocean, 2.8:1 on the ramp's brightest stop, and with
-   * the marks' dark halo the ground stops being a variable at all.
+   * It was `label`'s value when it was chosen, on the reasoning that this is the
+   * map's tone for "furniture, not data": 6.7:1 on the ocean, 2.8:1 on the ramp's
+   * brightest stop, and with the marks' dark halo the ground stops being a
+   * variable at all. `label` has since moved much lighter and this has not,
+   * because that argument is sound for a *mark* and was never sound for text —
+   * see the note there. A 7px silhouette with a dark halo is read by its shape;
+   * a letterform needs the ground behind it. Same value once, two jobs, and the
+   * jobs have parted.
    */
   neutral: '#8d97a6',
-  /** Basemap place labels. The chrome's own text uses `--map-ink-*`, which is
-   *  a different scale — this one is tuned against the land, not the panels. */
-  label: '#8d97a6',
-  /** Country names. Quiet on purpose, and carried by `labelHalo` rather than by
-   *  its own contrast — the land underneath is now a variable, so the halo is
-   *  the only thing about a label that does not move. */
-  labelDim: '#727b88',
+  /**
+   * Basemap place labels, and the numeral naming how many stories a place holds.
+   *
+   * Was `#8d97a6`, the same value as `neutral` — and the note there still
+   * describes that value as "the map's tone for furniture, not data". The two
+   * have parted: `neutral` is a *mark* saying nothing is happening, which a dark
+   * halo and 7px of silhouette carry perfectly well, and this is **text**. A
+   * letterform is read by its shape, so what matters is its contrast against the
+   * pixels immediately behind it, not against a halo drawn around it.
+   *
+   * At `#8d97a6` a city name measured **2.76:1 on the brightest land the metric
+   * can paint and 1.80:1 once the density wash lifted it** — well under AA, on
+   * the labels naming the places the news is happening in. It is 5.66:1 and
+   * 3.87:1 now. The chrome's own text uses `--map-ink-*`, which is a different
+   * scale tuned against the panels rather than against the land.
+   */
+  label: '#d3d7dd',
+  /**
+   * Country names, and the dot marking a capital.
+   *
+   * This used to be `#727b88` and read *"quiet on purpose, and carried by
+   * `labelHalo` rather than by its own contrast — the land underneath is now a
+   * variable, so the halo is the only thing about a label that does not move."*
+   * That reasoning is why the map was hard to read, and it is worth keeping the
+   * sentence to say so. A halo makes a label **findable**; it does not make it
+   * **readable**. A 1.1px outline around an 8.5px glyph leaves the letterform
+   * itself at whatever contrast the ground happens to allow — and measured, that
+   * was **1.90:1 on the brightest land and 1.24:1 under the density wash**. The
+   * most prominent text on the map was, on a third of the world, an outline of a
+   * word rather than a word.
+   *
+   * It is 4.90:1 and 3.35:1 now: AA against every tone the ground can take
+   * unwashed, and clear of the 3:1 non-text floor even at the wash's peak. Which
+   * is only reachable because the wash's own ceiling came down at the same time
+   * — see `DENSITY_STOPS`. The halo did not go away, it got thicker; it is now
+   * the *second* line of defence rather than the only one.
+   *
+   * Deliberately still a step below `label`: cities are the louder of the two,
+   * because a country name is already carried by being uppercase, letter-spaced
+   * and set at a centroid with nothing near it. And it lands within a hair of
+   * `prayer` (1.05:1), which is not an oversight — both are basemap furniture in
+   * the same 216° family, and what separates a prayer label from a country name
+   * is that one runs along a dashed curve and the other sits still. Shape does
+   * the work, exactly as `MAP_COLOURS.prayer` argues.
+   */
+  labelDim: '#c5c9cf',
   labelHalo: '#05070a',
   /**
    * The prayer lines, and their labels.
@@ -110,6 +154,24 @@ export const MAP_COLOURS = {
    * rather than a construction laid over it.
    */
   water: '#4a7fae',
+  /**
+   * Marine labels — the seas, gulfs and straits.
+   *
+   * Split off from `water` on 2026-07-30 for the reason `label` split from
+   * `neutral`: a line and a word are not the same job. Everything the long note
+   * on `water` argues is about a *line* — it has to separate from `border` at
+   * thirty saturation points and survive on a hatched country — and none of it is
+   * about text. Measured as text, `water` read **1.92:1 on the brightest land**
+   * and 1.25:1 under the wash, which is where labels like the Persian Gulf and
+   * the Red Sea sit once they drift onto a coast.
+   *
+   * Same hue, same family, lightness raised until a sea name clears 3:1 on every
+   * ground it can reach: 4.6:1 unwashed, 3.2:1 at the wash's peak, and 11:1 on
+   * the open water where most of them actually sit. Saturation is held near
+   * `water`'s so a sea *reads* as the same substance as the rivers running into
+   * it — the relationship that note was written to protect.
+   */
+  waterLabel: '#b8c4d7',
   /**
    * The density wash — how far the news reaches.
    *
@@ -424,10 +486,19 @@ export const nodataHatch = (): { width: number; height: number; data: Uint8Array
  * gradient from "barely crowding" to "the busiest region on the planet".
  *
  * The first visible stop is deliberately **under** the land ramp's own largest
- * internal step (1.18:1 against its 1.21:1). That is the onset of the scale — a
- * place that has only just begun to crowd — and it is not tone that keeps it from
- * reading as a shaded country, it is the absence of an edge. From the second
- * visible stop up, tone alone is enough. See `MAP_COLOURS.density`.
+ * internal step. That is the onset of the scale — a place that has only just
+ * begun to crowd — and it is not tone that keeps it from reading as a shaded
+ * country, it is the absence of an edge. From the second visible stop up, tone
+ * alone is enough. See `MAP_COLOURS.density`.
+ *
+ * **The peak came down from 0.34 to 0.30 on 2026-07-30, and it was the labels
+ * that paid for it.** The original ceiling argument only required the wash to
+ * stay *darker* than the quietest ink — which is the condition for text to be
+ * invisible on it, not the condition for text to be readable. At 0.34 a country
+ * name measured **1.24:1** where the wash was strongest. The fix is shared: the
+ * label tones went up (see `MAP_COLOURS.labelDim`) and this came down, so a
+ * country name now clears 3:1 even at the peak. 0.30 against 0.34 is a change
+ * the wash can afford — it is four points of alpha against a legible map.
  *
  * **Stop 0 must be transparent.** MapLibre evaluates `heatmap-color` at every
  * pixel of the layer's extent, so any alpha at density 0 paints the whole world
@@ -436,9 +507,9 @@ export const nodataHatch = (): { width: number; height: number; data: Uint8Array
 export const DENSITY_STOPS: ReadonlyArray<readonly [number, number]> = [
   [0, 0],
   [0.1, 0],
-  [0.3, 0.13],
-  [0.65, 0.24],
-  [1.2, 0.34],
+  [0.3, 0.12],
+  [0.65, 0.21],
+  [1.2, 0.3],
 ] as const
 
 /**
@@ -643,7 +714,17 @@ export function buildStyle(v?: string): StyleSpecification {
         id: 'country-labels',
         type: 'symbol',
         source: 'countryLabels',
-        minzoom: 1.1,
+        /**
+         * No `minzoom`, for the reason `sea-labels` has none — and this layer had
+         * the very bug that note was written about, unnoticed for longer.
+         *
+         * It was `minzoom: 1.1`, which is fine on a desktop: `worldFitZoom` is
+         * `log2(max(w, h) / 512)` and a 1104px canvas opens at 1.11, just above
+         * it. A portrait phone opens at about **−0.39**, so **the map had no
+         * country names at all** at the one view every phone reader starts from.
+         * Not hard to read — absent. Density is the area gate's job below, never a
+         * zoom floor's.
+         */
         /**
          * A label has to earn its place by the size of the thing it names.
          *
@@ -660,15 +741,29 @@ export function buildStyle(v?: string): StyleSpecification {
          * density it had, and the smaller states arrive as the camera earns
          * them rather than never appearing at all.
          */
+        /**
+         * The first step is new, and it is what makes dropping the zoom floor
+         * safe. Below 1.1 the canvas is a phone's — a 390px-wide world, an eighth
+         * of a desktop's area — so the same 176-country set would be a solid mat
+         * of type. 0.006 sr admits 75 candidates, of which collision places
+         * around twenty; `symbol-sort-key` sorts on area, so the ones that
+         * survive are Russia, China, Brazil, Canada, the United States,
+         * Australia, India and their peers rather than whichever the index
+         * reached first. From 1.1 up nothing changes: the desktop world view
+         * keeps exactly the density it had.
+         */
         filter: [
           '>=',
           ['get', 'area'],
-          ['step', ['zoom'], 0.00008, 3, 0.00001, 4.5, 0.000002, 6, 0],
+          ['step', ['zoom'], 0.006, 1.1, 0.00008, 3, 0.00001, 4.5, 0.000002, 6, 0],
         ],
         layout: {
           'text-field': ['get', 'name'],
           'text-font': ['Noto Sans Bold'],
-          'text-size': ['interpolate', ['linear'], ['zoom'], 1.2, 8.5, 6, 13],
+          // 8.5px was too small for the most prominent text on the map, and small
+          // type is the other half of why it was hard to read — contrast and size
+          // trade against each other, and this was short on both.
+          'text-size': ['interpolate', ['linear'], ['zoom'], 1.2, 10, 6, 14],
           'text-letter-spacing': 0.14,
           'text-transform': 'uppercase',
           'text-max-width': 7,
@@ -680,7 +775,10 @@ export function buildStyle(v?: string): StyleSpecification {
         paint: {
           'text-color': MAP_COLOURS.labelDim,
           'text-halo-color': MAP_COLOURS.labelHalo,
-          'text-halo-width': 1.1,
+          // Thicker, because the halo is now the second line of defence rather
+          // than the only one: the ink carries the letterform and this keeps the
+          // edge crisp where the ground comes up under it.
+          'text-halo-width': 1.6,
         },
       },
       {
@@ -723,7 +821,7 @@ export function buildStyle(v?: string): StyleSpecification {
         paint: {
           'text-color': MAP_COLOURS.label,
           'text-halo-color': MAP_COLOURS.labelHalo,
-          'text-halo-width': 1.2,
+          'text-halo-width': 1.5,
         },
       },
       /**
@@ -782,9 +880,10 @@ export function buildStyle(v?: string): StyleSpecification {
           'symbol-sort-key': ['get', 'rank'],
         },
         paint: {
-          'text-color': MAP_COLOURS.water,
+          // Its own tone, not the rivers'. See `MAP_COLOURS.waterLabel`.
+          'text-color': MAP_COLOURS.waterLabel,
           'text-halo-color': MAP_COLOURS.labelHalo,
-          'text-halo-width': 1,
+          'text-halo-width': 1.4,
         },
       },
     ],

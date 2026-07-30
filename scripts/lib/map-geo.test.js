@@ -2675,9 +2675,15 @@ test('the density wash sits above the land ramp and below the ink', () => {
       `a visible stop lifts the brightest land only ${lift.toFixed(3)}:1, under the ramp's own ${rampStep.toFixed(3)}:1 step`,
     )
   }
+  // 1.4, not 1.5, and the drop is the point: this ceiling is no longer set by
+  // how visible the wash can be, it is set by how far it may lift the ground
+  // before the text on top of it stops reading. The peak came down from 0.34 to
+  // 0.30 on 2026-07-30 because a country name measured 1.24:1 where the wash was
+  // strongest. Legibility outranks the field, and the bar records which way that
+  // trade went.
   const peakOnLand = over(field, visible[visible.length - 1][1], top)
   assert.ok(
-    contrast(peakOnLand, top) >= 1.5,
+    contrast(peakOnLand, top) >= 1.4,
     `the peak lifts the brightest land only ${contrast(peakOnLand, top).toFixed(2)}:1`,
   )
 
@@ -2696,11 +2702,19 @@ test('the density wash sits above the land ramp and below the ink', () => {
   // inverts. Every label, beacon and glyph here is lighter than its ground —
   // that is what the dark palette is *for* — so a wash bright enough to pass the
   // quietest ink would locally turn the map inside out.
+  //
+  // This assertion used to require only that the peak stay 1.15:1 *below*
+  // `labelDim` — which is the condition for text to be invisible on the wash, not
+  // the condition for text to be readable, and it is how the map shipped with
+  // country names at 1.24:1. The bar is the real one now: a label must clear the
+  // 3:1 non-text floor against the wash at full strength. The label side of the
+  // same invariant is pinned in "every label on the map is legible on every
+  // ground it can land on", which walks all four inks.
   const dim = rgb(M.MAP_COLOURS.labelDim)
-  assert.ok(lum(peakOnLand) < lum(dim), 'the wash peak must stay darker than the quietest ink')
+  assert.ok(lum(peakOnLand) < lum(dim), 'the wash must never be brighter than the type on it')
   assert.ok(
-    contrast(dim, peakOnLand) >= 1.15,
-    `only ${contrast(dim, peakOnLand).toFixed(2)}:1 between the wash peak and labelDim`,
+    contrast(dim, peakOnLand) >= 3,
+    `a country name measures only ${contrast(dim, peakOnLand).toFixed(2)}:1 on the wash at its peak`,
   )
 
   /**
@@ -2794,4 +2808,148 @@ test('the density wash sits above the land ramp and below the ink', () => {
       `the wash tone is also ${name}`,
     )
   }
+})
+
+/**
+ * Every word printed on the map is legible on every ground it can land on.
+ *
+ * The test that did not exist, which is why the map shipped hard to read. The
+ * palette was audited for chrome ink on panel surfaces — `colour-system.test.js`
+ * checks a 40-pair cross product there — and nothing ever asked about the text
+ * MapLibre paints, whose ground is not a surface at all but a *data* layer that
+ * two separate things move: whichever metric shades the land, and the density
+ * wash over it.
+ *
+ * Measured before the fix: a country name at **1.90:1 on the brightest land and
+ * 1.24:1 under the wash**, a city name at 2.76 / 1.80, a sea name at 1.92 / 1.25.
+ * The palette's own defence was that `labelHalo` carries them — and a halo makes
+ * a label findable, not readable. You read a letter by its shape, and a 1.1px
+ * outline around an 8.5px glyph leaves the shape at whatever the ground allows.
+ *
+ * Two bars, because the grounds are not equally avoidable. Unwashed land is where
+ * most labels live and AA applies. The wash's peak reaches a few dozen pixels
+ * around the busiest places on earth, and there the 3:1 non-text floor is what is
+ * held — going further would mean either near-white labels or no wash.
+ */
+test('every label on the map is legible on every ground it can land on', () => {
+  const rgb = (hex) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16))
+  const lum = (c) => {
+    const [r, g, b] = c
+      .map((v) => v / 255)
+      .map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4))
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b
+  }
+  const contrast = (a, b) => {
+    const [x, y] = [lum(a), lum(b)]
+    return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05)
+  }
+  const over = (fg, alpha, bg) => fg.map((v, i) => v * alpha + bg[i] * (1 - alpha))
+
+  // Every tone the ground under a label can be: the metric ramp, a country the
+  // metric has no figure for, and the open water a marine label sits on.
+  const grounds = [...M.LAND_RAMP, M.LAND_NO_DATA, M.MAP_COLOURS.ocean].map(rgb)
+  const peak = Math.max(...M.DENSITY_STOPS.map(([, a]) => a))
+  const washed = grounds.map((g) => over(rgb(M.MAP_COLOURS.density), peak, g))
+
+  // Every ink MapLibre sets type in. `prayer` is here too: its labels are drawn
+  // at full strength over the same land.
+  const inks = {
+    'country names': M.MAP_COLOURS.labelDim,
+    'city names and the place numeral': M.MAP_COLOURS.label,
+    'marine labels': M.MAP_COLOURS.waterLabel,
+    'prayer labels': M.MAP_COLOURS.prayer,
+  }
+
+  for (const [what, ink] of Object.entries(inks)) {
+    for (const g of grounds) {
+      const c = contrast(rgb(ink), g)
+      assert.ok(c >= 4.5, `${what} measure ${c.toFixed(2)}:1 on ${g.map(Math.round)} — under AA`)
+    }
+    for (const g of washed) {
+      const c = contrast(rgb(ink), g)
+      assert.ok(
+        c >= 3,
+        `${what} measure ${c.toFixed(2)}:1 on the density wash at its peak — under the 3:1 floor`,
+      )
+    }
+    // The halo is the second line of defence and has to stay one: a light ink on
+    // a dark outline is what keeps the letterform crisp where the ground rises.
+    assert.ok(
+      contrast(rgb(ink), rgb(M.MAP_COLOURS.labelHalo)) >= 4.5,
+      `${what} do not separate from their own halo`,
+    )
+  }
+
+  // Hierarchy, asserted rather than assumed: a city name is the louder of the
+  // two, because a country name is already carried by being uppercase,
+  // letter-spaced and set alone at a centroid.
+  assert.ok(
+    lum(rgb(M.MAP_COLOURS.label)) > lum(rgb(M.MAP_COLOURS.labelDim)),
+    'city names must not be quieter than country names',
+  )
+
+  // The label tones are text, not marks, and must not drift into a category or
+  // an overlay hue — colour on this map means category.
+  for (const [name, value] of [
+    ...Object.entries(M.CATEGORY_COLOUR),
+    ...Object.entries(M.OVERLAY_COLOUR),
+  ]) {
+    for (const [what, ink] of Object.entries(inks)) {
+      assert.notEqual(value.toLowerCase(), ink.toLowerCase(), `${what} are also ${name}`)
+    }
+  }
+
+  // `neutral` is deliberately *not* in the loop above. It is a mark saying
+  // nothing is happening — a 7px silhouette with a dark halo, read by its shape —
+  // and it held `label`'s old value only because the two jobs had not yet been
+  // told apart. If it ever becomes text, it joins this test.
+  assert.notEqual(
+    M.MAP_COLOURS.neutral,
+    M.MAP_COLOURS.label,
+    'neutral is a mark and label is text; sharing one value is what hid this bug',
+  )
+})
+
+/**
+ * No label layer is hidden at the view every reader starts from.
+ *
+ * `worldFitZoom` is `log2(max(w, h) / 512)` and is also the map's floor, so the
+ * opening zoom is a function of the canvas: about **1.11 on a 1104px desktop and
+ * −0.39 on a portrait phone**. Every zoom ramp on this map was written looking at
+ * a desktop, so a `minzoom` that reads as "world view and in" on one is a layer
+ * that never appears on the other.
+ *
+ * `sea-labels` had exactly this bug — `minzoom: 1.4` hid the marine labels at the
+ * one view they were added for — and it was fixed with a note explaining that
+ * density is the rank filter's job, never a zoom floor's. `country-labels` had
+ * the same bug at 1.1 and kept it for longer: **a phone had no country names at
+ * all**. Both are gated on significance now, so this asserts the shape of the
+ * fix rather than the two instances of it.
+ */
+test('no label layer is floored above the zoom a phone opens at', () => {
+  // A 390x844 phone, which is the narrowest layout the CSS has a block for.
+  const PHONE_FIT = Math.log2(844 / 512)
+  const layers = M.buildStyle().layers.filter((l) => /label/.test(l.id))
+  assert.ok(layers.length >= 3, 'expected the country, place and sea label layers')
+
+  for (const l of layers) {
+    // `place-labels` is the deliberate exception and says so: city names are not
+    // a world-view layer at all, they arrive when the camera has earned them.
+    if (l.id === 'place-labels') {
+      assert.ok(l.minzoom > PHONE_FIT, 'place-labels is meant to be a close-up layer')
+      continue
+    }
+    assert.ok(
+      l.minzoom === undefined || l.minzoom <= PHONE_FIT,
+      `${l.id} has minzoom ${l.minzoom}, above the ${PHONE_FIT.toFixed(2)} a phone opens at — it would be absent there`,
+    )
+  }
+
+  // And the country labels must still gate density by area, or dropping the
+  // floor trades an empty phone for a phone paved in type.
+  const country = layers.find((l) => l.id === 'country-labels')
+  assert.ok(country, 'country-labels should exist')
+  const filter = JSON.stringify(country.filter)
+  assert.match(filter, /"area"/, 'country labels must be gated on area')
+  assert.match(filter, /step/, 'and that gate must step with zoom')
 })
