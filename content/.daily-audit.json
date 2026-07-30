@@ -1,33 +1,33 @@
 {
-  "date": "2026-07-29",
+  "date": "2026-07-30",
   "metrics": {
-    "articles": { "value": 45, "detail": "5 cycles, 4 completed at audit time, avg 7 published/cycle — down from yesterday's 51" },
-    "freshness": { "median": 0.3, "p90": 1.4, "max": 1.4, "target": 1.0, "met": true },
-    "categories": { "politics": 18, "economy": 13, "science": 6, "tech": 8 },
+    "articles": { "value": 49, "detail": "5 cycles, 4 completed at audit time, avg 7 published/cycle — up from yesterday's 45" },
+    "freshness": { "median": 0.6, "p90": 1.7, "max": 1.7, "target": 1.0, "met": true },
+    "categories": { "politics": 18, "economy": 11, "science": 9, "tech": 11 },
     "multiSource": { "value": 11, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "ME": 14, "AM": 13, "AS": 7, "EU": 7, "AF": 3, "OC": 1 } },
-    "sciTech": { "ratio": 31, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 11, "target": 20, "met": true },
-    "uniqueSources": 46,
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 17, "ME": 13, "EU": 8, "AS": 7, "AF": 4, "OC": 0 } },
+    "sciTech": { "ratio": 41, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 8, "target": 20, "met": true },
+    "uniqueSources": 56,
     "duplicates": 0,
-    "avgCycleDuration": 881
+    "avgCycleDuration": 949
   },
-  "experiment": "Skipped. No experiment was active to evaluate and every goal metric cleared its target, so the skip-if-healthy rule applies. The one queued item (2026-05-08-numerical-density) edits scripts/write-prompt.md, which is outside this stage's permitted files — it stays queued rather than being promoted, and its blocker note is now stale by nearly three months.",
-  "weakestArea": "Science, at 6 articles against a floor of 5 — the thinnest margin on the board, down from 11 yesterday, which also pulled sci-tech from 47% to 31%. The cause reads as crowding rather than supply: politics ran to 18 as a widening Gulf war absorbed the selector, while the science that did land came from the usual specialist set (Nature, Quanta, Carbon Brief, Phys.org) with no generalist padding. Share moved, sourcing did not, which is why no floor change is proposed against a single day.",
+  "experiment": "Skipped. No experiment was active to evaluate, there is no pause gate, and every goal metric cleared its target — the skip-if-healthy rule applies. Yesterday's thinnest margin (science at 6) recovered to 9 without intervention, which is the argument for not having moved a floor against a single day.",
+  "weakestArea": "Regional spread, at 5 regions against a target of 4 — the thinnest margin on the board, and the count flatters the reality. Oceania went to zero (from 1, where it had sat for five days) and Africa is 4 of 49, three of them Nigeria. The larger imbalance is inside the Americas: 17 filings, of which 15 are US datelines (New York, Washington, Mountain View, Armonk, Redmond, San Francisco), leaving Havana as effectively the whole of Latin America. Region count is met; regional coverage is one country wearing a continent's number.",
   "watching": [
-    "A regional war widened past its belligerents: strikes on Iraqi paramilitaries, three tankers disabled by Iran, a drone on the Damietta LNG terminal, and war spreading into Jordan — eight of the day's filings hang off the same escalation.",
-    "The Fed appeared twice with opposite framings in one day — holding rates on the war, then weighing a surprise hike; the second wants checking against sourcing before it hardens into a house line.",
-    "China is transacting on both sides of the Gulf, arming Iran's air defence while bargaining for Red Sea passage — a thread the chokepoint series on the map can corroborate or contradict.",
-    "Three Pakistan datelines in one day (journalist Toor summoned, the Bannu highway protest, Asif calling Kashmiris enemies) with Dawn already the top source at 11%.",
-    "Drones reached a Russian refinery at Ryazan the same day Russia charged the Telegram founder and France expelled a Kremlin outlet — pressure and information control moving together.",
-    "Two independent warming-and-disease filings landed together (malaria range shifting, mosquitoes outrunning insecticides); worth watching that they stay distinct as the rolling window advances."
+    "Poland named the origin of the missile that landed near Lublin — an attribution escalates an incident rather than closing it, and the response is the story.",
+    "Cairo confirmed the Damietta drone strike but not who launched it; yesterday's filing on the same terminal makes the unnamed half the thread to hold.",
+    "Japan fired its first Tomahawk — a threshold in strike-capability posture that regional capitals will answer.",
+    "Two independent economic shocks opened the same day: the Kazakh oil route shutting and Pakistan's ministry warning of a war shock, both with days of follow-through.",
+    "The UN Secretary-General succession race has begun and will run for months — worth a coverage line rather than episodic filings.",
+    "China released frontier AI weights freely on the same day DeepMind claimed a robotics leap and a filing argued AI models cannot be secured; three tech threads converging on the same question."
   ],
   "coverageGaps": [
-    "Africa fell to 3 of 45 from 7 yesterday — Dakar, Port Harcourt and one other carried the continent.",
-    "Latin America is represented by a single Caracas crime story; no Brazil, Mexico, Argentina or Andean dateline.",
-    "Oceania held at 1 for the fifth consecutive day, and that item is an India-Australia visa story datelined Canberra rather than a Pacific story.",
-    "Science skewed almost entirely to climate and public health; one particle-physics and one genomics filing were the only coverage outside that band.",
-    "Central Asia and the Caucasus remain absent apart from a single APA filing — the third day with effectively nothing between Ankara and Delhi."
+    "Latin America is one story (Havana): no Brazil, Mexico, Argentina, Colombia or Andean dateline for a second consecutive day.",
+    "Oceania produced nothing at all, down from one filing and now six days without a genuine Pacific story.",
+    "Africa is 4 of 49 and three are Nigerian (two Abuja, one Lagos-adjacent) — no Sahel, Horn or Southern Africa.",
+    "Southeast Asia is absent; Asian coverage runs Pakistan, India, Bangladesh, Korea, Japan and China only.",
+    "Central Asia appears once, as an oil-logistics story out of Almaty — the fourth day with effectively nothing between Ankara and Delhi."
   ],
-  "context": "Freshness loosened but stays inside target (median 0.1 → 0.3 days, p90 0.9 → 1.4), and the sample caveat carries over unchanged: it is computed over 10 of 45 articles, the rest having no resolvable upstream timestamp, so the median rests on a 22% sample. Cycles are healthy at 881s average, down from 1044s, with the editor at 55s and the selector at 298s. Multi-source hit 11 against a floor of 4 — the highest reading in the file — so the war escalation is being carried with competing perspectives rather than single-wire, which is the right response to a fast-moving conflict. State media accounted for 5 of 45 (RT 2, Mehr 2, TASS, Anadolu), inside the source policy as position-carrying, with the isnad ranking withholding their proximity promotion automatically. Standing guidance for the next candidate is unchanged: it should be feed-side rather than selector-side, since the 2026-05-16 evaluation established the selector's multi-source floor is exhausted and the constraint is upstream supply. TOP_EVENTS_TO_FETCH stays at 8 — each unit is one NewsAPI token per cycle against a capped spend."
+  "context": "The strongest volume day in the file: 49 articles across 56 unique sources with zero duplicates, and no source above 8% — the widest source base recorded here. Science recovered to 9 and sci-tech to 41%, sourced from Nature, Carbon Brief and Phys.org plus non-specialist science out of Abuja, Chandigarh and Yellowknife, which is the generalist padding yesterday's audit noted was missing. Freshness loosened for a second day (median 0.3 → 0.6, p90 1.4 → 1.7) and stays inside target, with the same sample caveat carrying over unchanged: it is computed over 10 of 49 articles, so the median rests on a 20% sample. Cycles averaged 949s with the selector at 380s the dominant cost. State media accounted for 3 of 49 (RT, TASS, TRT), inside the source policy as position-carrying, with the isnad ranking withholding their proximity promotion automatically. Standing guidance for the next candidate is unchanged and now points at the gap above: it should be feed-side rather than selector-side, since the 2026-05-16 evaluation established the selector's multi-source floor is exhausted and the constraint is upstream supply — a GAP_COUNTRIES or CURATED_SOURCES adjustment aimed at Latin America and the Pacific is the shape to consider once the geographic thinness persists across more than a single day. TOP_EVENTS_TO_FETCH stays at 8 — each unit is one NewsAPI token per cycle against a capped spend."
 }
