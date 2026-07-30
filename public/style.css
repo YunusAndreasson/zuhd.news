@@ -2204,7 +2204,7 @@ body.archetype-page-body .article-page-header {
 /* There used to be a `@media (max-width: 60rem) { .map-reset { bottom: 4.5rem } }`
    here, moving the button *down* on narrow windows. It is exactly backwards:
    the money ribbon wraps harder as the window narrows, so the scrubber is at
-   its tallest — 174px at 901px wide against 95px at 1600 — precisely where
+   its tallest — 141px at 920px wide against 97px at 1920 — precisely where
    this gave the button the least room. `--map-scrub-h` on the rule above
    measures it instead, at every width, so the override has nothing left to
    correct. */
@@ -2734,13 +2734,17 @@ body.map-page .app-banner { display: none; }
   .map-feed-refresh.is-busy .map-feed-refresh-icon { animation: none; }
 }
 
-/* The chevron and the disclosure button belong to the phone layout; here the
-   rail is a column that is always open, so there is nothing to disclose.
-   `display: contents` is what lets the panel's three groups stay direct flex
-   items of the HUD strip — see `.map-hud-more` in the phone block. */
-.map-feed-chevron,
-.map-more { display: none; }
+/* The chevron belongs to the phone layout; here the rail is a column that is
+   always open, so there is nothing to disclose. */
+.map-feed-chevron { display: none; }
 
+/* `.map-hud-more` is a pass-through on the desktop: it generates no box, so
+   `.map-filters` and `.map-ground` stay direct flex items of the HUD strip and
+   `.map-ground`'s `flex-basis: 100%` still resolves against it. On the phone it
+   becomes the panel proper. `.map-hud-legend` is the mirror image — the desktop
+   panel, dissolved on the phone so the key and the note become rows of the
+   phone's own panel rather than a box nested inside it. See the comment on
+   `more` in `situation-map.ts`. */
 .map-hud-more { display: contents; }
 
 .map-feed-list {
@@ -2983,12 +2987,26 @@ body.map-page > footer .footer-social a {
   z-index: 2;
   display: flex;
   align-items: center;
-  /* The ground legend takes a row of its own (`flex-basis: 100%`), which only
-     works if the row can break. Without this it stayed on line one and fought
-     the chips for width instead of wrapping under them. */
   flex-wrap: wrap;
-  gap: var(--space-md);
-  row-gap: 0.5rem;
+  /* One continuous wrap run, at every width — which is what `.map-filters
+     { display: contents }` below buys, and why the chip gap has to be declared
+     here rather than on the box that used to supply it.
+
+     This was a 1250px-only treatment until 2026-07-30, and having it apply only
+     under that width was most of why the strip thrashed rather than degraded.
+     `.map-ranges`, `.map-filters` and `.map-ground` were three flex *items*
+     above 1250, so each broke to a fresh line as a unit: at 1440px the four
+     range chips sat alone on row one with ~600px of slack beside them, because
+     the chip group was 814px wide and could not fit in what was left. Four rows
+     to hold what two would take. Below 1250 the same strip packed into two —
+     a narrower window producing a *shorter* HUD, 193px at 1400 against 125px at
+     1200, which is a layout with no rule a reader could learn.
+
+     Now every chip, separator, range group and picker is an item in one run, so
+     each line fills before the next begins and height falls monotonically as
+     width grows. Grouping survives because `.map-filter-sep` is a real element
+     and simply becomes an item too. */
+  gap: 0.45rem 0.85rem;
   padding: 0.85rem 1.1rem;
   /* The clock is painted over this row, not laid out in it (`.map-status` is
      absolutely positioned), so the chips had no idea it was there and ran
@@ -3016,6 +3034,12 @@ body.map-page > footer .footer-social a {
      itself against that number. Left implicit, a change to `.map-range`'s
      padding would move the row and silently un-align the clock again. */
   min-height: var(--map-hud-row-h);
+  /* The gutter that says "the time range is its own group". Every other group
+     on the strip is bounded by a `.map-filter-sep`, and this one cannot be —
+     there is no element between the last range chip and the first category. So
+     the boundary is width: 0.85rem of HUD gap plus this, against 0.85rem
+     between chips inside a group. */
+  margin-right: 0.55rem;
 }
 
 .map-range {
@@ -3033,12 +3057,10 @@ body.map-page > footer .footer-social a {
   &.is-on { color: var(--map-ink); background: var(--map-raised); }
 }
 
-.map-filters {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.85rem;
-}
+/* Dissolved, so the chips pack into the HUD's own wrap run instead of breaking
+   as one indivisible 814px block. The phone block restates `display: flex` —
+   there the chips get a column inside the panel and the box has to exist. */
+.map-filters { display: contents; }
 
 /* A chip is a toggle and a legend at once, so both jobs have to be legible.
 
@@ -3152,19 +3174,21 @@ body.map-page > footer .footer-social a {
 /* --- Map key ---
    Decodes the three channels the beacons spend their ink on: radius, alpha and
    the contested ring — and, since 2026-07-26, only those. The genocide mark
-   used to head this group while being none of them; it is a layer, and it now
-   sits with the layers at the end of `.map-filters`.
-   Sits at the right end of the HUD, clear of the clock,
-   and borrows the filter chips' type and colour rather than inventing a second
-   language for the same strip. `margin-left: auto` is what pushes it right —
-   the HUD is a flex row and this is its third child. */
+   used to head this group while being none of them; it is a layer, and it sits
+   with the layers at the end of `.map-filters`.
+
+   Since 2026-07-30 it lives inside `.map-hud-legend` rather than on the strip.
+   It was `margin-left: auto` there — a right-aligned legend forcing its own row
+   the moment the chips stopped leaving it space, and landing at a different x at
+   every viewport width (965 at 1440, 376 at 1100, 467 at 920). A full row of the
+   map at almost every desktop size, for the only group on the strip with nothing
+   to press. It still borrows the filter chips' type and colour rather than
+   inventing a second language. */
 .map-key {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.85rem;
-  margin-left: auto;
-  /* Clears .map-status, which floats above the HUD's right edge. */
-  padding-right: 5.5rem;
+  gap: 0.35rem 0.85rem;
 }
 
 .map-key-item {
@@ -3180,6 +3204,76 @@ body.map-page > footer .footer-social a {
 
 .map-key-item[hidden] { display: none; }
 .map-filter-sep[hidden] { display: none; }
+
+/* --- The legend, behind a press ---
+   What the marks mean: the beacon key, and the sentence behind whichever metric
+   is shading the land. Both were on the strip until 2026-07-30 and between them
+   they cost two of its four rows — see `.map-hud` above for the measurements.
+
+   It hangs under the *strip*, so it can never cover a control, and is aligned
+   horizontally to the button that opened it — `--legend-x` is measured and
+   clamped by `anchorLegend` in the island, because the button is the last item
+   in a wrap run and lands somewhere different at every width. The fallback is
+   the left gutter; the panel is never off-screen even if the script that
+   measures it never runs. Sized to its contents up to a readable measure: the
+   note is a sentence and wants a column, not the width of the canvas. */
+.map-hud-legend {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: var(--legend-x, 1.1rem);
+  z-index: 4;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.7rem;
+  width: max-content;
+  max-width: min(24rem, calc(100% - 2.2rem));
+  margin-top: 0.35rem;
+  padding: 0.75rem 0.85rem;
+  background: color-mix(in srgb, var(--map-inset) 96%, transparent);
+  border: 1px solid var(--map-line);
+  border-radius: 3px;
+  box-shadow: 0 16px 40px rgb(0 0 0 / 0.5);
+  backdrop-filter: blur(8px);
+
+  &.is-open { display: flex; }
+}
+
+/* The disclosure. Present at every width now — on the desktop it reveals the
+   legend and is called "key"; on the phone it also swallows the chips and the
+   picker, so it stays "layers". Quiet at rest: it names a thing the map can
+   explain, not a thing the reader has to do. */
+.map-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.22rem 0.5rem;
+  font: inherit;
+  font-size: var(--size-xs);
+  font-variant-caps: all-small-caps;
+  letter-spacing: var(--track-wide);
+  font-weight: 600;
+  color: var(--map-ink-dim);
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: color var(--dur-fast), border-color var(--dur-fast);
+
+  svg { width: 15px; height: 11px; flex: 0 0 auto; overflow: visible; }
+
+  &:hover { color: var(--map-ink-soft); }
+
+  &[aria-expanded='true'] {
+    color: var(--map-ink);
+    border-color: var(--map-line);
+    background: color-mix(in srgb, var(--map-inset) 88%, transparent);
+  }
+
+  /* One button, two names. The hidden half is `display: none`, so it leaves the
+     accessibility tree with the pixels and the button announces one word. */
+  [data-for='narrow'] { display: none; }
+}
 
 /* The genocide mark, named at the end of the filter row rather than in the key.
    It is a layer, not a beacon channel, and its colour is conflict's hue at the
@@ -3200,22 +3294,23 @@ body.map-page > footer .footer-social a {
 }
 
 /* --- Ground legend ---
-   Decodes the land the way .map-key decodes the beacons. Takes its own row:
-   the direction of the scale is a sentence, not a glyph, and there is no
-   honest way to shorten "0 = most free, 100 = no press freedom" into a chip.
-   The HUD is a flex row, so `flex-basis: 100%` is what breaks the line. */
+   Decodes the land the way .map-key decodes the beacons: which metric, and the
+   value at each end of the ramp.
+
+   It used to be `flex-basis: 100%` — a forced row of its own, because the third
+   thing in it was a whole sentence and there was no honest way to shorten
+   "0 = most free, 100 = no press freedom" into a chip. The sentence is in the
+   legend panel now, so what is left is a picker and a 150px scale: about 300px,
+   which fits beside the time range on any desktop. It stops claiming a row it no
+   longer needs and joins the wrap run like everything else.
+
+   The pill stays. This is type and a colour ramp over a map, and the map under
+   it is whatever the reader has panned to — sized to its contents, so it never
+   darkens a strip of ocean the width of the canvas. */
 .map-ground {
-  flex-basis: 100%;
   display: flex;
   align-items: center;
   gap: 0.55rem;
-  /* Its own backdrop rather than a taller HUD gradient. This row is type over
-     a map, and the map underneath it is whatever the reader has panned to —
-     the note used to land on top of the Kalaallit Nunaat label and neither was
-     readable. A pill sized to its contents keeps the legend legible without
-     darkening a strip of ocean the width of the canvas. */
-  align-self: flex-start;
-  width: fit-content;
   max-width: 100%;
   padding: 0.25rem 0.6rem;
   border-radius: 2px;
@@ -3284,17 +3379,19 @@ body.map-page > footer .footer-social a {
   white-space: nowrap;
 }
 
-/* One line. If a metric ever ships a description long enough to overflow, it
-   ends in an ellipsis rather than wrapping onto the map — the direction of the
-   scale is the first clause, so a truncated note still does its job. */
+/* In the legend panel since 2026-07-30, so it can be the whole sentence.
+
+   On the strip it was `white-space: nowrap` with an ellipsis, on the reasoning
+   that a truncated note still does its job because the direction of the scale is
+   the first clause. Measurement said otherwise: press freedom's note is 113
+   characters and below ~1300px it rendered `…0 = most free, 100 = no press
+   freedo…`, cutting the second half of exactly the clause the note exists for.
+   Off the strip there is nothing to truncate against. */
 .map-ground-note {
   margin: 0;
   font-size: var(--size-xs);
-  line-height: 1.4;
+  line-height: 1.45;
   color: var(--map-ink-dim);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .map-ground-source { color: var(--map-ink-dim); }
@@ -3395,11 +3492,33 @@ body.map-page > footer .footer-social a {
   pointer-events: auto;
 }
 
+/* --- The readout line ---
+   The markets strip on the left, the clock and the Hijri date on the right.
+
+   **It wraps.** It was `nowrap` on the desktop, on the reasoning that the clock
+   must never split mid-phrase and the markets strip "is the right one to give up
+   the width, because it already wraps its own content by design". That holds for
+   a small overflow and stopped holding when the strip grew a money ribbon. The
+   clock and the date are `white-space: nowrap` and take **251px unconditionally**,
+   so `.map-markets` was left with whatever remained: 1084px at 1920, 746 at 1400,
+   446 at 1100, **266 at 920** — less than the **363px it gets on a 390px phone**,
+   where this row has always wrapped. A 920px window was therefore rendering the
+   ribbon in a narrower column than a phone and paying 203px of scrubber for it
+   against the phone's 224. Wrapping puts the strip on a full-width line of its
+   own the moment the clock stops fitting beside it, which is what the phone block
+   already did and what the desktop needed for the same reason. */
 .map-timeline-head {
   display: flex;
   align-items: baseline;
   justify-content: flex-end;
-  gap: var(--space-sm);
+  flex-wrap: wrap;
+  /* Asymmetric on purpose. The column gap separates the strip from the clock
+     beside it; the row gap is only ever paid when the two stop fitting on one
+     line, and at `--space-sm` that wrap cost 12px on top of the line itself —
+     16px of scrubber at 1100px for a break that is already a compromise. The
+     ribbon's own rows sit 0.05rem apart; a new line here should not be four
+     times as expensive as a new line there. */
+  gap: 0.15rem var(--space-sm);
   font-size: var(--size-xs);
   /* Was `opacity: 0.8` over `--map-ink-muted`, which is the same composite-and-
      hope trick the filter chips were doing. An ink step says the same thing and
@@ -3465,11 +3584,30 @@ body.map-page > footer .footer-social a {
    what the world's exchanges did in the same present tense. And it is outside
    the phone disclosure, which is the point: a readout you have to tap to reveal
    is not a readout. */
+/* `flex: 1 1 40rem` is the whole negotiation with the clock, and the basis is
+   the load-bearing part.
+
+   With `flex-basis: auto` the strip asks for its max-content — 1109px, the three
+   ribbon groups side by side — so on any window under about 1360px it never fits
+   beside the clock and always claims a line of its own. That is one line too many
+   from 1400px to 1920px, where there is room for both. With `flex-basis: 0` it
+   asks for nothing and gets squeezed to the 266px that made a 920px window
+   render the ribbon in a narrower column than a 390px phone.
+
+   34rem is the middle, and it was chosen by sweeping it against real line
+   counts rather than reasoned to. Above it (40rem) the strip demands its own
+   line from 1280px down, costing a row where there was room for both. Below it
+   (30rem, 26rem) the strip buys a shorter row at 1150px by letting the
+   currencies group wrap *inside itself* — which is the mid-group break this
+   whole change exists to stop, sold back for 17 pixels. At 34rem the currencies
+   group sets on one line at **every** width from 1920 to 920, and the clock only
+   takes a line of its own below about 1250px. */
 .map-markets {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.05rem;
+  flex: 1 1 34rem;
   margin-right: auto;
   min-width: 0;
 }
@@ -3493,12 +3631,22 @@ body.map-page > footer .footer-social a {
   &:empty { display: none; }
 }
 
-/* A group's label and its first quote, kept on one line — see
-   `map-markets-pair` in `_map/markets.ts`. */
-.map-markets-pair {
+/* A group travels whole: its label and every quote under it, in one box — see
+   `setTrends` in `_map/markets.ts` for the breaks this replaced, and the
+   exchange row's `tallyGroup` for the same fix applied to "markets · 5 · 19 ·
+   6 flat".
+
+   `gap: inherit` is what makes the box invisible in the layout: it takes its
+   row's own column and row gaps, so a grouped run sets to exactly the same
+   rhythm as the flat run it replaced. Declaring a number here instead would put
+   the ribbon's 0.55rem inside the exchange row's 0.7rem and vice versa, and the
+   drift would be two pixels — the kind nobody sees and nobody can explain. */
+.map-markets-group {
   display: inline-flex;
   align-items: baseline;
-  gap: 0.55rem;
+  flex-wrap: wrap;
+  gap: inherit;
+  min-width: 0;
 }
 
 .map-markets-label {
@@ -3635,11 +3783,20 @@ body.map-page > footer .footer-social a {
   &:empty { display: none; }
 }
 
-/* Four movers plus the tally plus the time readout is about 900px of type, and
+/* --- What the readout gives up when the window stops paying for it ---
+   Four movers plus the tally plus the time readout is about 900px of type, and
    a laptop gives this row roughly a thousand. Drop to one mover a side before
-   it wraps into the scrubber rather than after. */
+   it wraps into the scrubber rather than after.
+
+   The two comparison currencies go at the same width and for the same reason.
+   Currencies is the widest group in the ribbon — 683px against metals' 215 and
+   crypto's 193 — and it is the one that decides whether the ribbon sets in two
+   lines or three: at 503px, which is what dropping EUR and JPY leaves, it fits
+   on one line down to a 920px window. Which two are expendable is stated in
+   `TICKER` (`comparison: true`), not inferred from their position here. */
 @media (max-width: 1300px) {
   .map-markets-movers li:nth-child(even) { display: none; }
+  .map-markets-quote[data-comparison] { display: none; }
 }
 
 .map-timeline-track {
@@ -4405,11 +4562,24 @@ a.map-popup-source-name {
 }
 
 /* --- Map sheet --- */
+/* The peek card clears the scrubber by measurement, not by a guess.
+   `bottom: 5.5rem` (88px) was the same hardcoded number `.map-reset` was fixed
+   away from, and it was wrong for the same reason and by more: the scrubber is
+   97px at 1920 and 203px at 920, so a peek card's bottom edge — pinned at
+   88px regardless of the card's own height — landed *inside* it at every
+   desktop width. Measured: 9px of overlap at 1920, 29px at 1400, 51px at 1100,
+   93px at 1000, **115px at 920**, which is the money ribbon and the clock with
+   a card lying over them. `--map-scrub-h` is published by the island's
+   `measureChrome`; the fallback only has to survive the frame before the
+   scrubber exists. `left` and `width` derive from `--map-rail-w` for the same
+   reason — a second hardcoded copy of the rail's width had already drifted one
+   rem from the first. */
 .map-sheet.is-peek {
   position: fixed;
-  inset: auto auto 5.5rem 22rem;
+  inset: auto auto calc(var(--map-scrub-h, 5.5rem) + var(--space-xs))
+    calc(var(--map-rail-w) + var(--space-md));
   margin: 0;
-  width: min(25rem, calc(100vw - 24rem));
+  width: min(25rem, calc(100vw - var(--map-rail-w) - 4rem));
   max-height: 55vh;
   border-radius: 2px;
   border: 1px solid var(--map-line);
@@ -4972,14 +5142,13 @@ body.doc-page .chart {
    Between the phone layout and a wide desktop there is a band — laptops at
    1152, 1280, 1366 — where the strip is still the desktop's (a rail beside the
    map, chips across the top) but no longer has the width that made it
-   affordable. At 1200px the HUD gets 719px of a 1200px window, because the rail
-   takes 336 and the clock reserves another 116, and into that it wraps the
-   ranges, the chips, the beacon key and the ground legend onto *five* rows —
-   194px of controls lying over the map. Raising the chrome from 12px to 14px
-   made that worse, which is the trade this breakpoint pays for.
+   affordable. At 1200px the HUD gets 719px of a 1200px window: the rail takes
+   336 and the clock reserves another 116.
 
-   Nothing is hidden that the reader cannot get to. Two things go, and both are
-   already said somewhere else on the same screen:
+   Most of what this breakpoint used to do is now unconditional — `.map-filters`
+   is dissolved in the base rule and `.map-key` is off the strip entirely, so
+   the "groups stop being boxes" treatment applies at every width. What is left
+   here is the one thing that is genuinely a width judgement:
 
    ── The clock, because the scrubber already is one ─────────────────────────
    `.map-status` prints "22:33 Makkah" over the HUD's right edge; the scrubber's
@@ -4989,59 +5158,11 @@ body.doc-page .chart {
    What it buys is out of proportion to what it costs: the clock is painted over
    the strip rather than laid out in it, so the HUD reserves its measured width
    as `padding-right` on *every* row to stop the chips running under it — 116px
-   of every line, to clear something that only ever sits on the first.
-
-   ── The key's second clearance ─────────────────────────────────────────────
-   `.map-key` carries `padding-right: 5.5rem` to clear that same clock, on top
-   of the HUD's own reservation. Two elements holding the door for one. With the
-   clock gone neither is needed, and the key stops forcing a break to be pushed
-   right against nothing.
-
-   ── The groups stop being boxes ────────────────────────────────────────────
-   Reclaiming the clock's 116px was not enough on its own, because the strip was
-   not short of width so much as spending it badly. `.map-ranges`, `.map-filters`
-   and `.map-key` are three flex *items*, so each breaks to a fresh line as a
-   unit: at 1200px that left the range chips alone on row one with 672px of
-   slack beside them, while the chip group — 814px wide, and unable to fit in
-   what was left — wrapped onto two lines of its own underneath, and the key
-   took a fourth. Four rows to hold 1119px of controls across an 814px strip
-   that should need two.
-
-   `display: contents` dissolves `.map-filters` so its chips become direct items
-   of the HUD and wrap as one continuous run, which is the same trick
-   `.map-hud-more` uses to serve one DOM to two layouts. The row gap and the chip
-   gap then have to come from the HUD itself, since the box that used to supply
-   them no longer generates a frame. Grouping survives inside the run because
-   `.map-filter-sep` is a real element and simply becomes an item too — the
-   categories still end at a hairline, and genocide still sits past its own.
-
-   `.map-key` is deliberately NOT dissolved. It reads "what the beacons mean",
-   and its three items decode channels a beacon spends ink on rather than
-   offering anything to press; flattened into the same run they came out
-   adjacent to `markets` and `conflict` and indistinguishable from two more
-   toggles. It keeps its box and loses only the `margin-left: auto` that was
-   forcing the break, so it settles at the end of the chip run as one unit,
-   behind a gutter wider than the gap between chips.
-
-   `.map-ground` keeps its own row — `flex-basis: 100%` still holds — because it
-   is a sentence, not a chip.
-
-   The phone block below must put `display: flex` back: it restyles
-   `.map-filters` for the panel and would otherwise inherit a dissolved box. */
+   of every line, to clear something that only ever sits on the first. */
 @media (max-width: 1250px) {
   .map-status { display: none; }
 
-  .map-hud {
-    padding-right: var(--space-md);
-    gap: 0.4rem 0.8rem;
-  }
-
-  .map-filters { display: contents; }
-
-  .map-key {
-    margin-left: 1.4rem;
-    padding-right: 0;
-  }
+  .map-hud { padding-right: var(--space-md); }
 }
 
 /* --- The map on a phone ---
@@ -5117,32 +5238,41 @@ body.doc-page .chart {
      thumb one. */
   .map-range { padding: 0.42rem 0.62rem; }
 
+  /* Louder than the desktop's. There it is a quiet word at the end of a strip
+     of quiet words and reveals a legend; here it is the only route to every
+     control except the time range, and 0.22rem of padding is a mouse target,
+     not a thumb one. */
   .map-more {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
     margin-left: auto;
     padding: 0.42rem 0.6rem;
-    font: inherit;
-    font-size: var(--size-xs);
-    font-variant-caps: all-small-caps;
     letter-spacing: 0.05em;
+    font-weight: normal;
     color: var(--map-ink-soft);
     background: color-mix(in srgb, var(--map-panel) 85%, transparent);
-    border: 1px solid var(--map-line);
-    border-radius: 2px;
-    cursor: pointer;
+    border-color: var(--map-line);
     backdrop-filter: blur(6px);
 
-    svg { width: 13px; height: 13px; flex: 0 0 auto; }
+    svg { width: 13px; height: 13px; }
 
-    &[aria-expanded='true'] { color: var(--map-ink); border-color: var(--map-line-loud); }
+    &[aria-expanded='true'] {
+      color: var(--map-ink);
+      border-color: var(--map-line-loud);
+      background: color-mix(in srgb, var(--map-panel) 85%, transparent);
+    }
+
+    /* "layers", not "key" — the panel holds the chips and the picker here, so
+       the desktop's narrower word would be describing a fraction of it. */
+    [data-for='wide'] { display: none; }
+    /* `revert`, not a value of our own: it drops back to the UA's `inline` for
+       both the `<svg>` and the `<span>`, so neither needs to know what the
+       other's natural display is. */
+    [data-for='narrow'] { display: revert; }
   }
 
   /* The panel proper. `display: contents` on the desktop side means this box
-     does not exist there at all — the three groups inside it are direct
-     children of the HUD strip, which is why none of the desktop rules that
-     target them need a second selector. */
+     does not exist there at all — the groups inside it are direct children of
+     the HUD strip, which is why none of the desktop rules that target them need
+     a second selector. */
   .map-hud-more {
     display: none;
     position: absolute;
@@ -5166,15 +5296,25 @@ body.doc-page .chart {
     &.is-open { display: flex; }
   }
 
+  /* The mirror of `.map-hud-more`: the desktop's legend panel dissolves here so
+     the key and the note become rows of the phone's own panel, at its gap,
+     rather than a bordered box nested inside a bordered box. */
+  .map-hud-legend {
+    display: contents;
+
+    &.is-open { display: contents; }
+  }
+
   /* Inside the panel the chips have a column to themselves, so they can be
      spaced for thumbs rather than crammed onto a strip.
 
-     `display: flex` is restated, not inherited: the 1250px block above
-     dissolves this box with `display: contents` so its chips can pack into the
-     HUD's own wrap run, and every phone width also matches that query. Without
-     this line the panel would open onto chips that had escaped it. */
+     `display: flex` is restated, not inherited: the base rule dissolves this box
+     with `display: contents` so its chips can pack into the HUD's own wrap run.
+     Without this line the panel would open onto chips that had escaped it. */
   .map-filters {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 0.35rem 1.1rem;
     width: 100%;
   }
@@ -5194,17 +5334,16 @@ body.doc-page .chart {
      because two rows of chrome over a half-height map cost more than they
      told — but in a panel the reader opened on purpose, a legend is the whole
      point, and hover (the fallback it was cut in favour of) does not exist
-     here at all. */
+     here at all. Since 2026-07-30 the desktop reaches it the same way, through
+     the same panel; this rule only widens the gaps for thumbs. */
   .map-key {
-    display: flex;
-    flex-wrap: wrap;
     gap: 0.35rem 1.1rem;
-    margin-left: 0;
-    padding-right: 0;
+    width: 100%;
   }
 
+  /* No pill here: the panel is already a surface, and a pill inside it would be
+     a second border around the same three things. */
   .map-ground {
-    flex-basis: auto;
     flex-wrap: wrap;
     align-self: stretch;
     width: auto;
@@ -5214,14 +5353,6 @@ body.doc-page .chart {
   }
 
   .map-ground-select { max-width: 100%; }
-
-  /* Off the strip and into a panel, so it has room to say the whole thing —
-     the one-line ellipsis existed to stop it landing on the map. */
-  .map-ground-note {
-    flex-basis: 100%;
-    white-space: normal;
-    overflow: visible;
-  }
 
   /* The clock goes. The scrubber's readout carries the same fact in the same
      units — "live · Sat 25 Jul 11:46 UTC" — and two clocks over a phone-sized
@@ -5250,10 +5381,20 @@ body.doc-page .chart {
     gap: 0.1rem 0.55rem;
   }
 
-  /* Two movers, not four — the top riser and the top faller, which is the pair
-     that carries the shape of the day. They are children 1 and 3 of a
-     risers-then-fallers list, so one rule gets both. */
-  .map-markets-movers li:nth-child(even) { display: none; }
+  /* No named movers at all here (2026-07-30) — the ≤1300px rule above has
+     already cut four to two, and on a phone the two that are left cost a whole
+     line of a strip that is 25% of the viewport.
+
+     What survives is the readout proper: `markets · 5 ▲ 19 ▼ 6 flat · 16
+     closed`, which answers "how is the world moving" for all thirty exchanges
+     at once — the question this strip exists to answer, and the one a map cannot
+     answer by being looked at. Two named indices are the detail underneath it,
+     and unlike the tally they are already reachable: every one of them is a mark
+     on the map with a card behind it. Nothing here is hidden that the reader
+     cannot get to, which is the same test the `layers` disclosure has to pass.
+
+     211px → 187px at 390px wide. */
+  .map-markets-movers { display: none; }
 
   /* The scrubber sits on top of the drawer handle here (`bottom:
      var(--map-bar-h)` above), so clearing it means clearing both. 6.2rem was a

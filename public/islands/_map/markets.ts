@@ -260,6 +260,15 @@ interface TickerItem {
    * they say "the lira is down".
    */
   invert?: boolean
+  /**
+   * Shown only where the row has width for it — see the `fx-eur` entry below.
+   * Reaches the DOM as `data-comparison`, which the narrow-desktop rule in the
+   * stylesheet hides. In the table rather than in CSS because *which* quotes are
+   * expendable is an editorial fact about this ribbon, not a fact about a
+   * viewport, and a positional `nth-child` cull would quietly start dropping a
+   * different pair the next time the basket is reordered.
+   */
+  comparison?: boolean
 }
 
 /**
@@ -272,8 +281,10 @@ interface TickerItem {
  *
  * Copper is deliberately absent despite being in the payload: it is a *monthly*
  * series, and a monthly change sitting in a row of daily ones would be read as
- * today's move. Silver is absent because there is no source for it yet — see
- * the note in `situation-map.ts` where the ribbon is filled.
+ * today's move. Silver has arrived: `xag` is published daily in `$/oz` as of
+ * 2026-07, so the `silver`/`xag` pair below resolves and — since
+ * `NISAB_WEIGHTS` was already keyed for it — the silver threshold on the metals
+ * card computes with no code change, exactly as that note predicted.
  */
 const TICKER: Array<{ group: string; items: TickerItem[] }> = [
   {
@@ -283,8 +294,16 @@ const TICKER: Array<{ group: string; items: TickerItem[] }> = [
       { id: 'fx-egp', label: 'EGP', iso2: 'EG', invert: true },
       { id: 'fx-pkr', label: 'PKR', iso2: 'PK', invert: true },
       { id: 'fx-idr', label: 'IDR', iso2: 'ID', invert: true },
-      { id: 'fx-eur', label: 'EUR', iso2: 'EU', invert: true },
-      { id: 'fx-jpy', label: 'JPY', iso2: 'JP', invert: true },
+      // Comparison, not subject — and therefore the first thing the row gives
+      // up when the window stops paying for it. The basket above is what this
+      // site is for; USD, spliced in at the head, is the denominator all six are
+      // quoted against and so can never be the thing that goes. These two are
+      // here to say what the basket moved *relative to*, which is worth two
+      // quotes on a wide desktop and worth less than a wrapped line on a narrow
+      // one. Marked in the table rather than culled by position, so reordering
+      // the basket cannot silently change which pair disappears.
+      { id: 'fx-eur', label: 'EUR', iso2: 'EU', invert: true, comparison: true },
+      { id: 'fx-jpy', label: 'JPY', iso2: 'JP', invert: true, comparison: true },
     ],
   },
   {
@@ -325,6 +344,8 @@ export interface TickerEntry {
   name: string
   flag: string
   pct: number
+  /** Carried through from `TickerItem.comparison` — see that field. */
+  comparison?: boolean
   unit?: string
   level: number
   /**
@@ -482,6 +503,7 @@ export const tickerEntries = (indicators: TrendIndicator[]): TickerEntry[] => {
         name: ind.label,
         flag: flagOf(item.iso2),
         pct,
+        comparison: item.comparison,
         unit: ind.unit,
         level: ind.values[ind.values.length - 1],
         values,
@@ -587,7 +609,17 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
   const tally = el('span', 'map-markets-tally')
   const movers = el('ul', 'map-markets-movers')
   const note = el('span', 'map-markets-note')
-  exchanges.append(label, tally, movers, note)
+  /**
+   * The label and the counts are one statement — "markets: 5 up, 19 down, 6
+   * flat" — so they travel as one item. As siblings in the row's wrap run they
+   * broke apart: at 1000px and below the row came out four lines deep with
+   * `markets` alone on the first, the counts on the second, the movers on the
+   * third and `15 closed` on the fourth. A heading on a line of its own is a
+   * heading that has stopped labelling anything.
+   */
+  const tallyGroup = el('span', 'map-markets-group')
+  tallyGroup.append(label, tally)
+  exchanges.append(tallyGroup, movers, note)
 
   // The second rung: money, metal and crypto. Same vocabulary as the row above
   // — tick, name, signed figure — because they are the same kind of fact, and
@@ -645,19 +677,47 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     note.textContent = t.closed ? `${t.closed} closed` : ''
   }
 
+  /**
+   * One box per group, holding its label and every quote under it.
+   *
+   * This was `map-markets-pair` — the label and *the first thing it names*,
+   * kept together on the reasoning that "the rest of the group still wraps
+   * wherever it likes". Measuring where it liked to wrap is what killed that
+   * idea. The ribbon is one flat run of eleven quotes and three labels, and the
+   * column it wraps in runs from 1084px at 1920 down to 266px at 920, so the
+   * breaks fell mid-group at almost every width:
+   *
+   *   1600  `currencies 🇺🇸 USD 0.0%` alone on line 1 — the pairing *caused*
+   *         this, forcing exactly one member onto the label's line and pushing
+   *         the other six onto the next.
+   *   1100  line 3 `metals GOLD −0.7%`, line 4 `SILVER −4.5% · crypto BTC ·
+   *         ETH` — silver stranded ahead of a *different* group's heading, so
+   *         the only reading available on that line is that it is crypto.
+   *   1000  `ETH −0.2%` alone on a line with no heading anywhere on it.
+   *    360  five lines, three of them beginning mid-group.
+   *
+   * A group box cannot break in the middle: flex moves an item to the next line
+   * whole, and only wraps *inside* the group when the group alone is wider than
+   * the line — which on a phone is the honest outcome, since seven currencies
+   * do not fit across 355px however they are marked up. What is guaranteed is
+   * that no line ever mixes two groups, and no member is ever separated from
+   * its heading by another heading.
+   *
+   * A `Map` rather than a running `current` string, so a payload that ever
+   * interleaves groups still produces three boxes rather than six.
+   */
   const setTrends = (indicators: TrendIndicator[]) => {
     ribbon.replaceChildren()
     const entries = tickerEntries(indicators)
     if (!entries.length) return
-    let current = ''
+    const groups = new Map<string, HTMLElement>()
     for (const e of entries) {
-      const opensGroup = e.group !== current
-      if (opensGroup) current = e.group
       const item = el('button', `map-markets-quote${toneClass(e.pct)}`)
       item.setAttribute('type', 'button')
       // The code is what fits; the name is what the reader needs. The flag
       // bridges them at no cost in width, and the card carries the rest.
       item.setAttribute('aria-label', `${e.name}, ${ribbonPct(e.pct)}`)
+      if (e.comparison) item.dataset.comparison = ''
       if (e.flag) item.append(el('span', 'map-markets-flag', e.flag))
       item.append(
         tick(e.pct > FLAT_PCT ? 1 : e.pct < -FLAT_PCT ? -1 : 0),
@@ -665,19 +725,14 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
         el('span', 'map-markets-quote-pct', ribbonPct(e.pct)),
       )
       item.addEventListener('click', () => opts.onQuote(e))
-      if (opensGroup) {
-        // A label and the first thing it names travel together. The ribbon is
-        // one wrapping flex row, and a row wraps between its items — so with
-        // the label as a sibling the break could fall right after it, leaving
-        // "crypto" alone at the end of a line and BTC and ETH beginning the
-        // next under no heading at all. Pairing them makes that break
-        // impossible; the rest of the group still wraps wherever it likes.
-        const pair = el('span', 'map-markets-pair')
-        pair.append(el('span', 'map-markets-label', e.group), item)
-        ribbon.append(pair)
-      } else {
-        ribbon.append(item)
+      let group = groups.get(e.group)
+      if (!group) {
+        group = el('span', 'map-markets-group')
+        group.append(el('span', 'map-markets-label', e.group))
+        groups.set(e.group, group)
+        ribbon.append(group)
       }
+      group.append(item)
     }
   }
 

@@ -504,7 +504,28 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   const groundNote = document.createElement('p')
   groundNote.className = 'map-ground-note'
 
-  ground.append(groundSelect, groundScale, groundNote)
+  /**
+   * The note is not in `.map-ground`, and that is the point.
+   *
+   * It used to be the third child of the pill on the strip, which made the
+   * ground legend a sentence lying over the map: 113 characters for press
+   * freedom, plus the publisher, `white-space: nowrap` with an ellipsis to stop
+   * it landing on the country labels. So below about 1300px it rendered
+   * `…0 = most free, 100 = no press freedo…` — truncating the clause that
+   * states the direction, which is the only clause it exists for.
+   *
+   * And the strip does not need it any more. The two ends of the ramp print the
+   * metric's own extremes (`57K ▬▬ 1.4B`), which is the argument this file
+   * already makes for putting them there: prose cannot carry the direction once
+   * the ramp turns around on `ascending`, and two numbers say both at once. The
+   * sentence restates in words what the numerals state exactly — the
+   * cluster-glow mistake in another medium.
+   *
+   * So it goes into the legend panel, where it has room to be the whole
+   * sentence rather than two thirds of one, and where the source line beside it
+   * is not competing with the map for a row.
+   */
+  ground.append(groundSelect, groundScale)
 
   /** Fills the picker once the index has landed. */
   const buildMetricPicker = () => {
@@ -585,39 +606,119 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   }
 
   /**
-   * The rest of the chrome, and the button that admits there is a limit.
+   * The strip carries controls; the panel carries explanations.
    *
-   * On a desktop the four control groups are one strip across the top of the
-   * canvas and cost nothing — there is width to spare. On a phone they are
-   * four stacked rows over a half-height map: the range chips, seven filter
-   * chips wrapping onto two lines, and a metric picker whose one-line
-   * description is wider than the screen. Together they covered the top third
-   * of the map with controls for a map you could no longer see.
+   * That is the whole reorganisation of 2026-07-30, and it comes from measuring
+   * what the strip actually cost. Four groups sat on it at equal weight — the
+   * time range, the chips, the beacon key and the ground legend — and the HUD
+   * spent 128px of the map at 1920, 158px at 1500, **193px at 1400 and 1280**,
+   * 125px at 1200, 153px at 1100 and below. It did not degrade with width, it
+   * *thrashed*: the 1250px breakpoint produced a better layout than the hundred
+   * pixels above it, so a 1400px laptop — the commonest desktop there is — got
+   * the worst version on the site, four rows deep, with the range chips alone on
+   * row one and 600px of dead space beside them.
    *
-   * So on a phone everything except the time range folds behind a disclosure.
-   * `display: contents` is what keeps that free on the desktop side: the
-   * wrapper vanishes from layout and its three children stay direct flex items
-   * of the HUD, in the same order, with `.map-key`'s `margin-left: auto` and
-   * `.map-ground`'s `flex-basis: 100%` still resolving against the strip. One
-   * DOM, two layouts, no duplicated markup to drift.
+   * Two things caused most of it, and neither was a control.
+   *
+   * `.map-key` — coverage, recency, contested — was `margin-left: auto`, a
+   * right-aligned legend that forced its own row the moment the chips stopped
+   * leaving it space, landing at x=965 at 1440, x=376 at 1100, x=467 at 920: a
+   * different place at every width, which is the "it breaks on a smaller
+   * screen" a reader actually sees. It is the one group on the strip with
+   * nothing to press, decoding three channels a reader learns once, and it was
+   * taking a full row of the map at 1440, 1500, 1600, 1100, 1024 and 920.
+   *
+   * The ground note was a 113-character sentence with an ellipsis. See
+   * `groundNote` above for why the strip stopped needing it.
+   *
+   * So both fold into this panel, at *every* width — which is not a new
+   * mechanism, it is the phone's own. The phone block already argued the key
+   * belongs here ("in a panel the reader opened on purpose, a legend is the
+   * whole point"), and that argument does not start being true at 900px either.
+   * What stays on the strip is what answers a press: the range, the chips, and
+   * the metric picker with its ramp.
+   *
+   * ── Two boxes, because the two layouts fold at different depths ────────────
+   * `.map-hud-more` is the phone's panel and a pass-through on the desktop
+   * (`display: contents`, so `.map-filters` and `.map-ground` stay direct flex
+   * items of the strip). `.map-hud-legend` is the desktop's panel and a
+   * pass-through on the phone (`display: contents`, so the key and the note
+   * become rows of the phone panel instead of a box inside it). One DOM, two
+   * layouts, and the same `is-open` on both — each stylesheet block decides
+   * which of the two the word refers to.
    */
   const more = document.createElement('div')
   more.className = 'map-hud-more'
   more.id = 'map-hud-more'
 
+  const legend = document.createElement('div')
+  legend.className = 'map-hud-legend'
+  legend.id = 'map-hud-legend'
+
   const moreBtn = document.createElement('button')
   moreBtn.type = 'button'
   moreBtn.className = 'map-more'
   moreBtn.setAttribute('aria-expanded', 'false')
-  moreBtn.setAttribute('aria-controls', 'map-hud-more')
+  // An IDREF *list*: which of the two boxes this actually reveals is a layout
+  // question, and the answer is in a media query the button cannot read.
+  moreBtn.setAttribute('aria-controls', 'map-hud-more map-hud-legend')
+  /**
+   * Two words and two glyphs, one of each per layout — because the panel holds
+   * different things on either side of 900px and a control has to say which.
+   * On the desktop it reveals the legend and is called "key"; on the phone it
+   * also swallows the chips and the picker, so "layers" stays the honest word
+   * and the stacked-planes glyph stays the honest mark. The hidden one is
+   * `display: none`, so it leaves the accessibility tree with the pixels and
+   * the button announces one name rather than both.
+   */
   moreBtn.innerHTML =
-    '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.2">' +
+    '<svg viewBox="0 0 16 16" data-for="wide" aria-hidden="true" focusable="false" fill="currentColor">' +
+    '<circle cx="3.4" cy="8" r="1.5"/><circle cx="8" cy="8" r="2.4" opacity="0.5"/>' +
+    '<circle cx="13" cy="8" r="2.4" fill="none" stroke="currentColor" stroke-width="1"/></svg>' +
+    '<svg viewBox="0 0 16 16" data-for="narrow" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.2">' +
     '<path d="M8 1.8 14.4 5 8 8.2 1.6 5Z"/><path d="m2.4 8 5.6 2.8L13.6 8"/><path d="m2.4 11 5.6 2.8L13.6 11"/>' +
-    '</svg><span>layers</span>'
+    '</svg><span data-for="wide">key</span><span data-for="narrow">layers</span>'
+
+  /**
+   * The legend hangs under the strip, aligned to the button that opened it.
+   *
+   * It cannot be a child of the button — it has to sit inside `.map-hud-more`
+   * so the phone can dissolve it into its own panel — and the button's position
+   * is not a constant: it is the last item in a wrap run, so it lands anywhere
+   * from x=911 at 1400px to the middle of row three at 920px. Pinned to the
+   * HUD's right edge (the first version of this) the panel opened 150px clear of
+   * the control that summoned it, with no horizontal overlap at all, which reads
+   * as two unrelated things happening at once.
+   *
+   * So the island measures, the way it already does for `--map-status-w`. `top`
+   * stays `100%` — the whole strip, not the button's row — so the panel can
+   * never cover a control, and only the horizontal alignment is computed. It is
+   * clamped into the HUD on both sides, because the button can sit near the
+   * right edge and the panel is up to 24rem wide.
+   *
+   * No-op on the phone, where the box is `display: contents` and has no
+   * geometry of its own.
+   */
+  const anchorLegend = () => {
+    if (!legend.offsetParent) return
+    const b = moreBtn.getBoundingClientRect()
+    const h = hud.getBoundingClientRect()
+    const gutter = 12
+    const max = Math.max(gutter, h.width - legend.offsetWidth - gutter)
+    legend.style.setProperty(
+      '--legend-x',
+      `${Math.round(Math.min(Math.max(gutter, b.left - h.left), max))}px`,
+    )
+  }
 
   const setMoreOpen = (open: boolean) => {
     more.classList.toggle('is-open', open)
+    legend.classList.toggle('is-open', open)
     moreBtn.setAttribute('aria-expanded', String(open))
+    // After the class, never before: the panel is `display: none` until then and
+    // `offsetWidth` on a box with no frame is 0, which would clamp it to the
+    // gutter every time.
+    if (open) anchorLegend()
   }
 
   moreBtn.addEventListener('click', () => {
@@ -629,8 +730,14 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   // gesture it was in the way of is a panel you have to dismiss twice.
   mapEl.addEventListener('pointerdown', () => setMoreOpen(false))
 
-  more.append(filters, key, ground)
-  hud.append(ranges, moreBtn, more)
+  legend.append(key, groundNote)
+  more.append(filters, ground, legend)
+  // The button is last, which is a desktop fact: `.map-hud-more` is a
+  // pass-through there, so `more`'s children *are* strip items and a button
+  // appended before them would sit between the time range and the chips. On the
+  // phone the panel is out of flow and the button's `margin-left: auto` puts it
+  // at the right end regardless of where it appears in the markup.
+  hud.append(ranges, more, moreBtn)
 
   /**
    * Back to the whole world.
@@ -3289,8 +3396,8 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
    * `--map-scrub-h` — the scrubber's real height. "Whole world" sat at a
    * hardcoded `bottom: 5.5rem`, which cleared the rail as it stood the day it
    * was written. The scrubber has since grown a markets strip and a money
-   * ribbon that *wraps*, so its height now runs from 95px to 174px depending on
-   * width, and 88px cleared none of them: the button landed on the time readout
+   * ribbon that *wraps*, so its height runs from **97px at 1920 to 228px at
+   * 360**, and 88px cleared none of them: the button landed on the time readout
    * and covered the Hijri date outright at every desktop size.
    *
    * `--map-status-w` — the clock's. It is positioned over the HUD rather than
@@ -3302,11 +3409,20 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
    * ribbon's wrap point moves with the viewport, and the clock's width moves
    * with the reader's font size. A number typed into the stylesheet is right
    * only for the layout it was typed against.
+   *
+   * **On `body`, not on the container** (2026-07-30). `.map-sheet` is appended
+   * to `document.body` by `createSheet`, so a property published on `.map-root`
+   * never reached it — which is how the peek card kept its own hardcoded
+   * `bottom: 5.5rem` long after `.map-reset` was fixed: pointing it at
+   * `--map-scrub-h` would have silently resolved to the fallback and changed
+   * nothing. `body.map-page` is where the phone layout's three coupled heights
+   * already live, and everything inside the map inherits from it.
    */
   const measureChrome = () => {
     const scrub = timeline?.element
-    if (scrub) container.style.setProperty('--map-scrub-h', `${Math.round(scrub.offsetHeight)}px`)
-    container.style.setProperty('--map-status-w', `${Math.round(status.offsetWidth)}px`)
+    const root = document.body
+    if (scrub) root.style.setProperty('--map-scrub-h', `${Math.round(scrub.offsetHeight)}px`)
+    root.style.setProperty('--map-status-w', `${Math.round(status.offsetWidth)}px`)
   }
 
   // The scrubber is replaced wholesale when a refresh moves the window, so the
@@ -3338,6 +3454,9 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     // view the reader is already looking at and not just to the next reset.
     map.setMinZoom(HOME_VIEW.zoom)
     syncResetButton()
+    // The strip rewraps, so the button the legend is aligned to has moved. Only
+    // matters while it is open, which is what `anchorLegend` checks.
+    if (legend.classList.contains('is-open')) anchorLegend()
   }
   window.addEventListener('resize', onResize, { passive: true })
 
@@ -3395,5 +3514,10 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     map.remove()
     container.replaceChildren()
     container.classList.remove('map-root')
+    // `measureChrome` writes these onto `body` so the sheet — which lives
+    // outside the container — can read them. Teardown used to be free because
+    // clearing the container took them with it; now it has to say so.
+    document.body.style.removeProperty('--map-scrub-h')
+    document.body.style.removeProperty('--map-status-w')
   }
 }

@@ -261,12 +261,33 @@ export interface MetricIndexEntry {
 /**
  * The metric the map opens on.
  *
- * Press freedom, because it is the one country statistic that changes how you
- * read everything else on the map. Every beacon is a claim assembled from
- * outlets filing from somewhere, and how free those outlets are is context for
- * the claim rather than a separate subject.
+ * Population, and the argument for it is the cluster count. A `7` over Tokyo
+ * and a `7` over Reykjavík are the same numeral standing for two completely
+ * different facts, and population is the denominator that separates them — so
+ * the ground is answering a question the figure drawn on top of it raises,
+ * which is the only job a default has.
+ *
+ * It was press freedom until 2026-07-30, on the reasoning that how free a
+ * country's outlets are is context for every beacon assembled from them. That
+ * is true and it is not a default. Three things were wrong with it:
+ *
+ *   - It is a **claim**, made about every country on earth, before the reader
+ *     has asked anything. The site is entitled to hold RSF's index — it is in
+ *     the picker, and one press of it says so — but opening on it makes an
+ *     editorial position the ground the news is drawn on.
+ *   - It covers **139 of the 169 countries that carry a code**, so the first
+ *     view every reader gets is also the most hatched one the picker can
+ *     produce: the United States, the United Kingdom, Saudi Arabia, South
+ *     Korea and South Africa all arrive as diagonal lines. Population covers
+ *     172 and hatches almost nothing.
+ *   - It is one of the three `ascending` metrics, so the ramp runs backwards
+ *     against the reader's instinct on the one view they did not choose —
+ *     the hardest case, as the default.
+ *
+ * Population is log-scaled, has no better end, and needs no sentence to
+ * explain its direction: `57K ▬▬ 1.4B` is the whole legend.
  */
-export const DEFAULT_METRIC = 'pressFreedomScore'
+export const DEFAULT_METRIC = 'population'
 
 /**
  * Story decay, as a half-life in hours.
