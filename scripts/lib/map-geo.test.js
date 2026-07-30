@@ -64,7 +64,14 @@ writeFileSync(
     // The mark alphabet. Pure vertex tables and a rasteriser, no DOM — and the
     // module whose whole promise (shape says what a mark is) went unkept by
     // three of the four layers that were supposed to draw from it.
-    `export * from '${join(ROOT, 'public/islands/_map/glyphs.ts')}'\n`,
+    `export * from '${join(ROOT, 'public/islands/_map/glyphs.ts')}'\n` +
+    // How stories become places, and how a place becomes a wash. Extracted from
+    // the island precisely so it could be bundled here: every expression the
+    // cluster design was built from — the domain, the disc radius, the rim
+    // weight, the label size, the dominant-category argmax — lived in
+    // `situation-map.ts`, which this suite deliberately does not bundle, so none
+    // of it was ever tested. That was the largest hole in the map's coverage.
+    `export * from '${join(ROOT, 'public/islands/_map/places.ts')}'\n`,
 )
 const bundlePath = join(dir, 'bundle.mjs')
 await build({
@@ -2421,4 +2428,370 @@ test('every ISO-coded country on the basemap resolves to its code', async () => 
   // tier drops but the finer tiers keep, and `IL` no longer names a feature at
   // all because `basemap.js` merges it into Palestine. All three are correct.
   // A test that fires on correct behaviour is a test people learn to delete.
+})
+
+// ---------------------------------------------------------------------------
+// Places, and the wash raised from them
+// ---------------------------------------------------------------------------
+
+/**
+ * A place is a name and a distance, never a grid cell.
+ *
+ * Asserted against the built payload rather than a fixture, because every
+ * pathology this grouping exists to handle was found by measuring the corpus and
+ * none of them would have been guessed.
+ */
+test('a place is a name and a distance, never a grid cell', (t) => {
+  const path = join(ROOT, 'dist/api/map.json')
+  if (!existsSync(path)) {
+    t.skip('dist/api/map.json not built')
+    return
+  }
+  const { points } = JSON.parse(readFileSync(path, 'utf8'))
+  const index = M.buildPlaceIndex(points)
+  const places = M.countPlaces(index, points, Date.now())
+
+  // Every story reaches a place. A miss here is a beacon whose click cannot
+  // resolve and which contributes nothing to the wash.
+  assert.equal(index.of.size, points.length, 'every story must join a place')
+  assert.equal(
+    places.reduce((n, p) => n + p.count, 0),
+    points.length,
+    'the places must account for every story exactly once',
+  )
+
+  // The no-invented-coordinate rule, which is the whole thesis in one assertion.
+  // A cluster disc stood at a centroid no story held; so would a mean or a
+  // median of Washington's 17 jittered coordinates.
+  const held = new Set(points.map((p) => `${p.lat},${p.lng}`))
+  const invented = places.filter((p) => !held.has(`${p.lat},${p.lng}`))
+  assert.deepEqual(
+    invented.map((p) => `${p.loc} @ ${p.lat},${p.lng}`),
+    [],
+    'a place must stand where some story in it actually stands',
+  )
+
+  // One mark per pixel. Keyed on the dateline alone this fails: eight
+  // coordinates in this corpus carry two spellings each — New Delhi/Delhi,
+  // Gaza/Gaza City, Sana'a/Sanaa, Odessa/Odesa — and each pair would draw its own
+  // numeral on the same pixel, which is the overlap the whole redesign removes.
+  const perCoord = new Map()
+  for (const p of places) {
+    const k = `${p.lat},${p.lng}`
+    perCoord.set(k, (perCoord.get(k) ?? 0) + 1)
+  }
+  const stacked = [...perCoord].filter(([, n]) => n > 1)
+  assert.deepEqual(stacked, [], 'two places must never share one coordinate')
+
+  // Washington is the corpus's hardest case in both directions: 17 distinct
+  // coordinates inside 2.2 km that must merge, and the largest count on the map.
+  const dc = places.filter((p) => p.loc === 'Washington')
+  assert.equal(dc.length, 1, 'Washington must be one place, not seventeen')
+  assert.ok(dc[0].count > 40, `Washington should hold its whole pile, got ${dc[0].count}`)
+
+  // And the split that must survive all of that merging: `La Paz` is two cities
+  // 4,511 km apart, Bolivia and Mexico. A grid catches this and so does
+  // proximity; only proximity cannot also invent a split under 2 km of jitter.
+  const lapaz = places.filter((p) => p.loc === 'La Paz')
+  if (lapaz.length) {
+    assert.equal(lapaz.length, 2, 'La Paz is two cities and must stay two places')
+  }
+
+  // The tight merge radius has to stay tight. These are separate cities with
+  // separate stories, 9–15 km apart, and on this map separate peoples' — a merge
+  // radius comfortable enough to absorb a spelling variant must not reach them.
+  const distinct = ['Al-Quds', 'Ramallah', 'Bethlehem', 'Yafa'].filter((n) =>
+    places.some((p) => p.loc === n),
+  )
+  for (const n of distinct) {
+    assert.equal(
+      places.filter((p) => p.loc === n).length,
+      1,
+      `${n} must be its own place`,
+    )
+  }
+  if (distinct.includes('Al-Quds') && distinct.includes('Ramallah')) {
+    const a = places.find((p) => p.loc === 'Al-Quds')
+    const b = places.find((p) => p.loc === 'Ramallah')
+    assert.notEqual(`${a.lat},${a.lng}`, `${b.lat},${b.lng}`, 'these are two places')
+  }
+
+  // Newest first, because that is the order the place card lists them in and the
+  // story the numeral's hover previews. Read off the input order it would be
+  // oldest-first, since `/api/map.json` is ascending by time.
+  for (const p of places) {
+    const times = p.slugs.map((s) => points.find((q) => q.slug === s).t)
+    for (let i = 1; i < times.length; i++) {
+      assert.ok(times[i] <= times[i - 1], `${p.loc} lists its stories out of order`)
+    }
+  }
+})
+
+/**
+ * The wash cannot saturate on the corpus it was calibrated against.
+ *
+ * `heatmap-weight` is summed per pixel by the shader, so the compression has to
+ * be baked into the weight — there is no logarithm available in there. Counts per
+ * place run 1 to 62 in a fortnight, so a linear weight either saturates
+ * Washington across half a continent, which is the gold blob in greyscale, or
+ * leaves a small place under the ramp's toe.
+ */
+test('the density wash cannot saturate on the corpus it was calibrated against', (t) => {
+  // The kernel coefficient is MapLibre's, and leaving it out of the arithmetic
+  // costs a factor of 2.5 — a field whose busiest place on earth sits barely past
+  // the first visible stop, which renders as a map with no field on it.
+  assert.ok(
+    Math.abs(M.GAUSS_COEF - 0.3989422804014327) < 1e-12,
+    'GAUSS_COEF must match the heatmap fragment shader',
+  )
+  assert.ok(
+    Math.abs(M.placeDensity(1) - 0.085) < 1e-9,
+    `a one-story place must land at 0.085, got ${M.placeDensity(1)}`,
+  )
+
+  // Strictly sublinear, which is what a linear weight fails and sqrt passes.
+  for (const n of [2, 5, 10, 30]) {
+    assert.ok(M.placeWeight(2 * n, 1) < 2 * M.placeWeight(n, 1), `weight is linear at ${n}`)
+    assert.ok(M.placeWeight(n + 1, 1) > M.placeWeight(n, 1), `weight is not monotonic at ${n}`)
+  }
+
+  // A lone story raises no field at all: it is already completely expressed by
+  // its own beacon, and a kernel's skirt is a fact about the kernel.
+  const toe = Math.max(...M.DENSITY_STOPS.filter(([, a]) => a === 0).map(([d]) => d))
+  assert.ok(M.placeDensity(1) < toe, 'one story must sit under the ramp toe')
+  assert.ok(M.placeDensity(2) > toe, 'two stories must clear it')
+
+  const path = join(ROOT, 'dist/api/map.json')
+  if (!existsSync(path)) {
+    t.skip('dist/api/map.json not built')
+    return
+  }
+  const { points } = JSON.parse(readFileSync(path, 'utf8'))
+  const places = M.countPlaces(M.buildPlaceIndex(points), points, Date.now())
+
+  for (const p of places) {
+    assert.ok(
+      M.placeDensity(p.count) <= 0.95,
+      `${p.loc} (${p.count}) would clip the ramp at ${M.placeDensity(p.count).toFixed(3)}`,
+    )
+  }
+
+  // Kernels sum, so the top of the scale has to be a *neighbourhood* rather than
+  // a place — and getting that wrong is what flattens the map. The three busiest
+  // places within ten degrees of each other stand in for the worst overlap world
+  // zoom can produce; ten degrees is inside the kernel there, where the radius is
+  // 24px against a 512px world.
+  //
+  // Measured: the US northeast reaches 1.238 (Washington 62 + New York 22 +
+  // Atlanta 4) and London + Paris + Brussels reach 1.018, against Washington's
+  // 0.669 alone. Anchoring the ramp's top on the busiest single place would put
+  // every one of those regions past the last stop, where MapLibre clamps them all
+  // to one tone — so the ramp must reach roughly as far as the corpus does.
+  const busiest = [...places].sort((a, b) => b.count - a.count).slice(0, 40)
+  let worst = 0
+  for (const a of busiest) {
+    const near = busiest.filter(
+      (b) => Math.abs(a.lat - b.lat) < 10 && Math.abs(a.lng - b.lng) < 10,
+    )
+    const sum = near
+      .map((b) => M.placeDensity(b.count))
+      .sort((x, y) => y - x)
+      .slice(0, 3)
+      .reduce((s, v) => s + v, 0)
+    worst = Math.max(worst, sum)
+  }
+  const top = M.DENSITY_STOPS[M.DENSITY_STOPS.length - 1][0]
+  assert.ok(
+    worst <= top * 1.1,
+    `the busiest region reaches ${worst.toFixed(2)} against a ramp topping out at ${top} — regions above it all render alike`,
+  )
+  // And the other way: a ramp reaching far past the data spends its brightest
+  // tones on densities nothing produces, which is the flat-ramp failure the land
+  // ramp was fixed for, one layer down.
+  assert.ok(
+    worst >= top * 0.6,
+    `the ramp tops out at ${top} but nothing on the map exceeds ${worst.toFixed(2)}`,
+  )
+})
+
+/**
+ * The wash sits above the land ramp and below the ink.
+ *
+ * The invariant that carries the whole colour argument, and it is computed on
+ * **composites** rather than on the stop values, because a composite is what the
+ * reader actually sees. A translucent tone over a variable ground has no colour
+ * of its own.
+ */
+test('the density wash sits above the land ramp and below the ink', () => {
+  const rgb = (hex) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16))
+  const lum = (c) => {
+    const [r, g, b] = c
+      .map((v) => v / 255)
+      .map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4))
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b
+  }
+  const contrast = (a, b) => {
+    const [x, y] = [lum(a), lum(b)]
+    return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05)
+  }
+  const over = (fg, alpha, bg) => fg.map((v, i) => v * alpha + bg[i] * (1 - alpha))
+
+  const field = rgb(M.MAP_COLOURS.density)
+  const top = rgb(M.LAND_RAMP[M.LAND_RAMP.length - 1])
+  const ocean = rgb(M.MAP_COLOURS.ocean)
+  const visible = M.DENSITY_STOPS.filter(([, a]) => a > 0)
+  assert.ok(visible.length >= 2, 'the ramp needs a visible range')
+
+  // Stop 0 must be fully transparent. MapLibre evaluates `heatmap-color` at
+  // every pixel of the layer's extent, so any alpha at density 0 paints the
+  // whole world — silently, since it is a fill with nothing under it.
+  assert.equal(M.DENSITY_STOPS[0][0], 0, 'the ramp must start at density 0')
+  assert.equal(M.DENSITY_STOPS[0][1], 0, 'and at zero alpha')
+
+  // Monotonic in both axes, or the wash would say less where there is more.
+  for (let i = 1; i < M.DENSITY_STOPS.length; i++) {
+    assert.ok(M.DENSITY_STOPS[i][0] > M.DENSITY_STOPS[i - 1][0], 'density stops must ascend')
+    assert.ok(M.DENSITY_STOPS[i][1] >= M.DENSITY_STOPS[i - 1][1], 'alpha must not fall')
+  }
+
+  // The land ramp's own largest internal step is the bar. Clearing it means the
+  // wash's *quietest* visible tone already lies outside the entire vocabulary a
+  // shaded country can speak, so the two cannot be confused by tone — on top of
+  // being distinguished by kind, the wash having no edge at all.
+  let rampStep = 0
+  for (let i = 1; i < M.LAND_RAMP.length; i++) {
+    rampStep = Math.max(rampStep, contrast(rgb(M.LAND_RAMP[i]), rgb(M.LAND_RAMP[i - 1])))
+  }
+  // Every stop *above the onset*. The first visible stop is the beginning of the
+  // scale — a place that has only just started to crowd, at 1.18:1 against the
+  // ramp's 1.21:1 — and what keeps that from reading as a shaded country is the
+  // structural guarantee rather than the tone: the wash is inserted under
+  // `borders`, so it is the only thing on this map with no edge. From the second
+  // visible stop up, tone alone suffices, and that is what is pinned.
+  for (const [, alpha] of visible.slice(1)) {
+    const lift = contrast(over(field, alpha, top), top)
+    assert.ok(
+      lift >= rampStep,
+      `a visible stop lifts the brightest land only ${lift.toFixed(3)}:1, under the ramp's own ${rampStep.toFixed(3)}:1 step`,
+    )
+  }
+  const peakOnLand = over(field, visible[visible.length - 1][1], top)
+  assert.ok(
+    contrast(peakOnLand, top) >= 1.5,
+    `the peak lifts the brightest land only ${contrast(peakOnLand, top).toFixed(2)}:1`,
+  )
+
+  // The wash only ever adds light, on every ground it can lie on.
+  for (const ground of [...M.LAND_RAMP, M.LAND_NO_DATA, M.MAP_COLOURS.ocean]) {
+    const bg = rgb(ground)
+    for (const [, alpha] of visible) {
+      assert.ok(
+        lum(over(field, alpha, bg)) > lum(bg),
+        `the wash darkens ${ground}, which inverts what more news means`,
+      )
+    }
+  }
+
+  // The ceiling, which is the constraint nobody writes down until the map
+  // inverts. Every label, beacon and glyph here is lighter than its ground —
+  // that is what the dark palette is *for* — so a wash bright enough to pass the
+  // quietest ink would locally turn the map inside out.
+  const dim = rgb(M.MAP_COLOURS.labelDim)
+  assert.ok(lum(peakOnLand) < lum(dim), 'the wash peak must stay darker than the quietest ink')
+  assert.ok(
+    contrast(dim, peakOnLand) >= 1.15,
+    `only ${contrast(dim, peakOnLand).toFixed(2)}:1 between the wash peak and labelDim`,
+  )
+
+  /**
+   * A beacon reads on the wash by one channel or the other, everywhere.
+   *
+   * Two channels because neither works alone, and measuring is what showed it.
+   * On the brightest land the wash peak comes up to `#656c76`, where a `politics`
+   * fill measures **1.39:1** — nearly the same luminance — and the ocean-coloured
+   * rim measures **3.73:1**. Over the water the peak is `#3b3e42` and it is the
+   * other way round: the rim collapses to **1.84:1** while the fills run
+   * 2.83–4.60:1. So fill carries the mark on dark ground, rim carries it on
+   * bright, and the invariant is the *better* of the two on every ground the wash
+   * can lie on — the same reasoning this map already applies to the overlay
+   * glyphs, whose fills all come in under 3:1 on the ramp's lightest stop and
+   * whose halo is the real guarantee.
+   *
+   * The worst case is `politics` on the darkest ramp stop, where the wash lifts
+   * the ground to almost exactly the beacon's own luminance: 2.29:1 by the rim,
+   * 2.27:1 by the fill. Under 3:1, and what still makes the mark a mark there is
+   * the edge *between* rim and fill, which no ground can affect.
+   */
+  const peakOnOcean = over(field, visible[visible.length - 1][1], ocean)
+  const casing = rgb(M.MAP_COLOURS.ocean)
+  assert.ok(
+    contrast(casing, peakOnLand) >= 3,
+    `the rim only reaches ${contrast(casing, peakOnLand).toFixed(2)}:1 on the wash over bright land, which is the case it exists for`,
+  )
+  for (const [name, hex] of Object.entries(M.CATEGORY_COLOUR)) {
+    assert.ok(
+      contrast(rgb(hex), peakOnOcean) >= 2.5,
+      `${name} only reaches ${contrast(rgb(hex), peakOnOcean).toFixed(2)}:1 on the wash over water, where the rim cannot help it`,
+    )
+  }
+  for (const ground of [...M.LAND_RAMP, M.LAND_NO_DATA, M.MAP_COLOURS.ocean]) {
+    const patch = over(field, visible[visible.length - 1][1], rgb(ground))
+    for (const [name, hex] of Object.entries(M.CATEGORY_COLOUR)) {
+      const best = Math.max(contrast(rgb(hex), patch), contrast(casing, patch))
+      assert.ok(
+        best >= 2.25,
+        `a ${name} beacon on the wash over ${ground} reaches only ${best.toFixed(2)}:1 by either channel`,
+      )
+    }
+  }
+  // The numeral's halo is held to the same bar the rim is, on the same ground:
+  // `story-place-count` is set in `label` and carried by `labelHalo`, which is
+  // what lets its ground be a variable at all.
+  assert.ok(
+    contrast(rgb(M.MAP_COLOURS.labelHalo), peakOnLand) >= 3,
+    `the label halo only reaches ${contrast(rgb(M.MAP_COLOURS.labelHalo), peakOnLand).toFixed(2)}:1 on the wash`,
+  )
+
+  // Neutral, and quieter than a frontier. The land ramp is held to a channel
+  // spread of 20 for the same reason: category hue is the only colour on this map
+  // that means anything, and a wash spanning whole continents is the last place
+  // to spend a hue.
+  const spread = Math.max(...field) - Math.min(...field)
+  assert.ok(spread <= 20, `the wash tone is chromatic (channel spread ${spread})`)
+  const hslOf = (hex) => {
+    const [r, g, b] = rgb(hex).map((v) => v / 255)
+    const max = Math.max(r, g, b)
+    const min = Math.min(r, g, b)
+    const l = (max + min) / 2
+    const d = max - min
+    if (!d) return { h: 0, s: 0, l }
+    const s = d / (1 - Math.abs(2 * l - 1))
+    let h
+    if (max === r) h = ((g - b) / d + (g < b ? 6 : 0)) * 60
+    else if (max === g) h = ((b - r) / d + 2) * 60
+    else h = ((r - g) / d + 4) * 60
+    return { h, s, l }
+  }
+  const wash = hslOf(M.MAP_COLOURS.density)
+  const border = hslOf(M.MAP_COLOURS.border)
+  assert.ok(
+    Math.abs(wash.h - border.h) < 2,
+    `the wash left the map's blue-grey furniture family (${wash.h.toFixed(0)}° vs ${border.h.toFixed(0)}°)`,
+  )
+  assert.ok(
+    wash.s < border.s,
+    'the wash must be less chromatic than a frontier, not more',
+  )
+
+  // And it must not have quietly become one of the marks it lies under.
+  for (const [name, value] of [
+    ...Object.entries(M.CATEGORY_COLOUR),
+    ...Object.entries(M.OVERLAY_COLOUR),
+  ]) {
+    assert.notEqual(
+      value.toLowerCase(),
+      M.MAP_COLOURS.density.toLowerCase(),
+      `the wash tone is also ${name}`,
+    )
+  }
 })

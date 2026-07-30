@@ -110,6 +110,46 @@ export const MAP_COLOURS = {
    * rather than a construction laid over it.
    */
   water: '#4a7fae',
+  /**
+   * The density wash — how far the news reaches.
+   *
+   * 216°, the same hue as `border` and `prayer`, because blue-grey is already
+   * this map's furniture family and a field carrying one quantity is furniture.
+   * Saturation is **5.4% against `border`'s 9.8%**, so the wash is *less*
+   * chromatic than a frontier and cannot compete with a category — which is the
+   * whole reason `LAND_RAMP`'s first constraint exists, restated one layer up.
+   *
+   * Two things keep it off the land ramp, and the first is not a colour.
+   *
+   * 1. **Structural.** `story-density` is inserted *under* `borders`, so the
+   *    wash is the only thing on this map with no edge. A shaded country is a
+   *    polygon bounded by a frontier; a patch of field is a gradient bounded by
+   *    nothing. That is a difference of kind, the same argument `nodataHatch`
+   *    makes, and no choice of tone substitutes for it.
+   * 2. **Numerical.** Composited over `LAND_RAMP[4]` — the brightest tone the
+   *    ground can ever take — the faintest visible stop lifts it **1.26:1** and
+   *    the peak **1.54:1**, against the ramp's own largest internal step of
+   *    1.21:1. So the wash's *quietest* visible tone is already outside the
+   *    ramp's entire vocabulary.
+   *
+   * And a ceiling, which is the constraint nobody writes down until the map
+   * inverts: the peak stays **1.24:1 below `labelDim`**, the quietest ink ever
+   * drawn over it. Every label, beacon and glyph on this map is lighter than its
+   * ground — that is what the opening comment means by coloured markers needing
+   * a dark ground — so a wash bright enough to pass the ink would locally invert
+   * the map, and every colour on it was chosen for light-on-dark. The corridor
+   * between `LAND_RAMP[4]` and `labelDim` is 1.90:1 wide and the field spends
+   * 1.54:1 of it. That restraint is the point: magnitude is carried by how
+   * *wide* a patch is, not how bright.
+   */
+  density: '#9ea2a8',
+  /**
+   * The ring on a story its sources disagree sharply about.
+   *
+   * Lived in `situation-map.ts` as a raw literal, where `colour-system.test.js`
+   * cannot see it — that test reads this file and `style.css` and nothing else.
+   */
+  contested: '#e8e2d4',
 } as const
 
 /** Category hues, low-saturation so four of them can coexist without shouting. */
@@ -348,6 +388,100 @@ export const nodataHatch = (): { width: number; height: number; data: Uint8Array
     }
   }
   return { width: N, height: N, data }
+}
+
+/**
+ * How story density becomes a wash: `[density, alpha]`.
+ *
+ * Alpha only, over the one tone, for two reasons. A wash laid over a *variable*
+ * ground — the land carries whatever metric the reader picked — has to track
+ * that ground rather than become its own object; and a multi-hue ramp would
+ * spend colour on a quantity, which on this map is reserved for category.
+ *
+ * **The toe is the design.** Below 0.10 the ramp is fully transparent, and
+ * `DENSITY_INTENSITY` is chosen so a one-story place accumulates exactly 0.085 —
+ * just under it. A lone story raises no field at all, which is right: a heat
+ * kernel's skirt is an artefact of the kernel rather than a fact about the world,
+ * and one story is already completely expressed by its own beacon.
+ *
+ * What the field turns on for is **crowding**, and it gets there two ways,
+ * because kernels sum. One busy place climbs the ramp by itself — 10 stories
+ * reach 0.269, Washington's 62 reach 0.669 — and so does a *neighbourhood* of
+ * ordinary ones: three five-story cities inside the radius reach 0.57 between
+ * them, more than any of them alone. That second path is the one the layer exists
+ * for, since it is the only thing on this map that can say a region is busy.
+ *
+ * **The top stop is where the busiest *region* lands, not the busiest place.**
+ * 1.20, measured: Washington alone reaches 0.669 and sits mid-scale, which is
+ * right — one busy capital is not the loudest thing a fortnight of world news
+ * produces. The US northeast (Washington 62 + New York 22 + Atlanta 4, kernels
+ * overlapping at world zoom) reaches 1.238 and tops the scale; London + Paris +
+ * Brussels reach 1.018. Anchoring the top on a single place instead would have
+ * flattened every one of those regions into the same saturated plate.
+ *
+ * So a place with 10 stories lands at alpha 0.110, Washington at 0.244, London's
+ * neighbourhood at 0.307 and the US northeast at the 0.340 ceiling — a real
+ * gradient from "barely crowding" to "the busiest region on the planet".
+ *
+ * The first visible stop is deliberately **under** the land ramp's own largest
+ * internal step (1.18:1 against its 1.21:1). That is the onset of the scale — a
+ * place that has only just begun to crowd — and it is not tone that keeps it from
+ * reading as a shaded country, it is the absence of an edge. From the second
+ * visible stop up, tone alone is enough. See `MAP_COLOURS.density`.
+ *
+ * **Stop 0 must be transparent.** MapLibre evaluates `heatmap-color` at every
+ * pixel of the layer's extent, so any alpha at density 0 paints the whole world
+ * — and being a fill with no features under it, it fails silently.
+ */
+export const DENSITY_STOPS: ReadonlyArray<readonly [number, number]> = [
+  [0, 0],
+  [0.1, 0],
+  [0.3, 0.13],
+  [0.65, 0.24],
+  [1.2, 0.34],
+] as const
+
+/**
+ * `DENSITY_STOPS` as the tail of a `heatmap-color` interpolate expression, and
+ * as CSS stops for the legend swatch.
+ *
+ * Both from one table, so the swatch in the panel cannot disagree with the wash
+ * on the canvas — the same reason the HUD chips take their glyph and their hue
+ * from the layer that draws them. The space/slash alpha form, not `rgba()`,
+ * which `colour-system.test.js` bans outright.
+ */
+const densityStop = (alpha: number): string => {
+  const [r, g, b] = [1, 3, 5].map((i) => Number.parseInt(MAP_COLOURS.density.slice(i, i + 2), 16))
+  return `rgb(${r} ${g} ${b} / ${alpha})`
+}
+
+export const densityRamp = (): Array<number | string> =>
+  DENSITY_STOPS.flatMap(([d, a]) => [d, densityStop(a)])
+
+/**
+ * The same ramp as CSS stops for the legend swatch — composited over `ocean`.
+ *
+ * Not the alpha form. The swatch sits on `--map-inset`, and a 0.18 alpha over a
+ * panel is a different colour from a 0.18 alpha over the map: the strip would be
+ * a faint smudge that does not resemble the thing it names, and at the same time
+ * the faintest key item in a row of siblings set in `--map-ink-dim`. Composited
+ * against the ground the wash actually lies on, the swatch is a 16px piece of
+ * this map's water with the field running across it — which is the one rendering
+ * that cannot mislead.
+ *
+ * The toe is included as bare `ocean`, because "nothing here" is the first thing
+ * the scale says and a gradient that opens mid-range hides it.
+ */
+export const densityCssRamp = (): string => {
+  const bg = [1, 3, 5].map((i) => Number.parseInt(MAP_COLOURS.ocean.slice(i, i + 2), 16))
+  const fg = [1, 3, 5].map((i) => Number.parseInt(MAP_COLOURS.density.slice(i, i + 2), 16))
+  const visible = DENSITY_STOPS.filter(([, a]) => a > 0)
+  return [0, ...visible.map(([, a]) => a)]
+    .map((a, i, arr) => {
+      const rgb = fg.map((v, k) => Math.round(v * a + bg[k] * (1 - a)))
+      return `rgb(${rgb.join(' ')}) ${Math.round((i / (arr.length - 1)) * 100)}%`
+    })
+    .join(', ')
 }
 
 /**

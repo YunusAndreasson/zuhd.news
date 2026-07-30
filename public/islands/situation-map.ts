@@ -6,9 +6,10 @@
 // `default-src 'none'` apart from the blob: worker MapLibre spawns.
 //
 // Over that sit the pipeline's own layers: every geo-located story from the
-// last 14 days, coloured by category and clustered by MapLibre, plus the GDACS
-// disaster and maritime-chokepoint feeds. A left rail lists the same stories in
-// time order — the map says where, the rail says what.
+// last 14 days, coloured by category and drawn as itself, a density wash raised
+// from the places those stories share, plus the GDACS disaster and
+// maritime-chokepoint feeds. A left rail lists the same stories in time order —
+// the map says where, the rail says what.
 
 // maplibre-gl v6 ships named ESM exports only — there is no default export.
 // The bundler resolves it to the copied vendor file rather than inlining it, so
@@ -24,18 +25,27 @@ import {
 // `GeoJSON.*` was being reached for as a UMD global, which @types/geojson only
 // exposes to non-module files — so the namespace never resolved in here.
 // Type-only, so esbuild drops it.
-import type { FeatureCollection, Point as GeoJSONPoint } from 'geojson'
+import type { FeatureCollection } from 'geojson'
 import {
   basemapUrl,
   buildStyle,
   CATEGORY_COLOUR,
   CATEGORY_ORDER,
+  densityCssRamp,
+  densityRamp,
   LAND_NO_DATA,
   LAND_RAMP,
   MAP_COLOURS,
   nodataHatch,
   OVERLAY_COLOUR,
 } from './_map/style'
+import {
+  buildPlaceIndex,
+  countPlaces,
+  DENSITY_INTENSITY,
+  type PlaceIndex,
+  type StoryPlace,
+} from './_map/places'
 import { createFeed, type Feed } from './_map/feed'
 import { createReadState } from './_map/read-state'
 import { glyphImages, glyphSvg, type GlyphId } from './_map/glyphs'
@@ -76,6 +86,14 @@ import { detailKey } from '@shared/gdacs'
 const ULTRA_ZOOM = 5.5
 
 /**
+ * Where the density wash has finished fading out.
+ *
+ * Named because three things have to agree on it: the layer's `heatmap-opacity`,
+ * the legend item that decodes it, and the test that pins the pair together.
+ */
+const DENSITY_FADE_OUT = 5
+
+/**
  * The overlay marks: everything that opens a sheet on hover.
  *
  * A single list rather than one per call site, because the three handlers and
@@ -93,8 +111,52 @@ const OVERLAY_LAYERS = [
   'genocide-core',
 ]
 
-/** Everything the pointer can hit, overlays plus the story beacons. */
-const MARKER_LAYERS = ['story-points', 'story-clusters', ...OVERLAY_LAYERS]
+/**
+ * Everything the pointer can hit: overlays, the story beacons, and the numeral
+ * naming how many stories a place holds.
+ *
+ * `story-place-count` is in here because it is the most legible affordance on a
+ * dense place, and nothing on this map should look interactive and then do
+ * nothing. It is safe to add for the reason `PRAYER_HOVER` is not: a 10px
+ * numeral's box is a numeral's box, where a prayer line crosses every continent.
+ *
+ * Exported only so `map-island.test.js` can hold it against `HIT_ORDER`. The two
+ * describe one contract from two directions and a layer in one but not the other
+ * is a bug in either direction — a mark that lights the cursor and does nothing,
+ * or one with no stated precedence when something else lands on top of it.
+ */
+export const MARKER_LAYERS = ['story-points', 'story-place-count', ...OVERLAY_LAYERS]
+
+/**
+ * Which mark wins when several sit under one pointer: draw order, reversed.
+ *
+ * This exists because of a bug that had been live and unreported. Handlers were
+ * registered per layer — `map.on('click', 'story-clusters', …)` beside
+ * `map.on('click', OVERLAY_LAYERS, …)` — and MapLibre gives each registration
+ * its *own* hit test over its *own* layers. Both found a feature, so both fired:
+ * clicking the story aggregate over London flew the camera **and** pinned the
+ * London Stock Exchange card, because `market-marks` draws above the stories and
+ * exchanges sit in exactly the cities that generate the most stories. Hovering
+ * the pair did the same thing twice over. Nothing in MapLibre makes the topmost
+ * layer win *across* separate registrations.
+ *
+ * So there is one `click` and one `mousemove` now, each asking `topHit` once.
+ * Order is stated rather than read off `queryRenderedFeatures`, whose ordering
+ * is not part of MapLibre's contract, and a test asserts this is the same set as
+ * `MARKER_LAYERS` — a layer in one and not the other is a mark that lights the
+ * cursor and does nothing.
+ */
+export const HIT_ORDER = [
+  'genocide-core',
+  'genocide-marks',
+  'thermal-marks',
+  'market-marks',
+  'story-place-count',
+  'story-points',
+  'gdacs-marks',
+  'chokepoint-marks',
+  'conflict-marks',
+]
 
 /**
  * Whether a prayer line is the one under the pointer.
@@ -123,12 +185,22 @@ const RANGES: Array<[string, number | null]> = [
 /**
  * The range the map opens on.
  *
- * Opening on the full fortnight showed everything at once, which is the one
- * view where nothing stands out: 764 beacons, most of them cold, burying the
- * dozen stories that broke today. A news map should open on the news. The
- * other ranges are one click away and the scrubber still spans all 14 days.
+ * Opening on the full fortnight showed everything at once, which is the one view
+ * where nothing stands out: 764 beacons, most of them cold, burying the dozen
+ * stories that broke today. A news map should open on the news. That argument
+ * still holds and is why this is not `null`.
+ *
+ * What changed on 2026-07-30 is the measurement at the other end. 24 hours is
+ * **29 stories** against this payload, and the freshest six-hour bucket is
+ * routinely empty because the newest story is already hours old when the build
+ * runs — so twelve hours after a cycle the opening view is about *seven*. The
+ * rail said "29 STORIES" over a map that looked like nothing was happening, and
+ * a density field cannot be raised from seven points.
+ *
+ * 72 hours is 135, which is enough for the field to show a real pattern on first
+ * paint while still being the news. 24h is one press away.
  */
-const DEFAULT_RANGE_HOURS: number | null = 24
+const DEFAULT_RANGE_HOURS: number | null = 72
 
 /** How often the terminator is redrawn. The sun moves 0.25° a minute. */
 const SUN_TICK_MS = 120_000
@@ -199,113 +271,24 @@ const catColour = (fallback: string) =>
   ] as unknown as ExpressionSpecification
 
 /**
- * Dominant category inside a cluster.
+ * How a place's story count becomes a wash weight.
  *
- * `clusterProperties` sums a per-category counter as MapLibre builds the tree,
- * so a cluster knows its own composition without the island re-deriving it.
- * This rides on the disc's rim — the only colour a cluster carries now — and
- * says that a cluster over the Gulf is economy where one over Kyiv is politics.
- * Before it, every cluster was the same grey disc and the category channel
- * vanished entirely the moment two points merged.
+ * The compression lives in `_map/places.ts` beside the measured distribution it
+ * was fitted to; this is only the expression handing it to the shader. `sqrt`
+ * because counts run 1 to 62 in a real window and a linear weight either
+ * saturates Washington across half a continent or leaves a two-story place under
+ * the ramp's toe.
+ *
+ * Deliberately not `w`. Coverage is absent on 62% of the corpus, where it
+ * becomes `UNKNOWN_COVERAGE_W` — and a radius can draw "unknown" as its own
+ * distinct size, which is the entire reason that constant exists, while a
+ * continuous field cannot: a placeholder just makes a patch dimmer, silently,
+ * and a reader reads that as less news. Coverage is also a fact about media
+ * attention, and mixing it in here would render a media fact as a geographic
+ * one — Washington brightening because American stories are better covered.
  */
-const clusterCategory = (): ExpressionSpecification =>
-  [
-    'case',
-    ['all', ['>=', ['get', 'politics'], ['get', 'economy']], ['>=', ['get', 'politics'], ['get', 'science']], ['>=', ['get', 'politics'], ['get', 'tech']]],
-    CATEGORY_COLOUR.politics,
-    ['all', ['>=', ['get', 'economy'], ['get', 'science']], ['>=', ['get', 'economy'], ['get', 'tech']]],
-    CATEGORY_COLOUR.economy,
-    ['>=', ['get', 'science'], ['get', 'tech']],
-    CATEGORY_COLOUR.science,
-    CATEGORY_COLOUR.tech,
-  ] as unknown as ExpressionSpecification
-
-/**
- * How many steps the cluster domain is cut into.
- *
- * This used to be the length of a seven-colour cold-to-hot ramp that filled
- * each disc. The ramp is gone: a cluster already prints its own count, so
- * colouring it by that same count said the number twice — once in a numeral
- * anyone can read exactly, once in a hue nobody can decode to better than
- * "warm". Three blurred rings and a kernel-density field underneath said it a
- * third and fourth time. Four glow systems stacked on one coordinate is how
- * London, New York and Islamabad turned into gold blobs.
- *
- * What survives is the *domain*: the rescaling that keeps the size and label
- * curves spending their whole range on the visible set. That was always the
- * load-bearing idea; the colour was decoration on top of it.
- */
-const CLUSTER_STEPS = 7
-
-/**
- * Where the ramp's colours land, for a given busiest-cluster size.
- *
- * The stops cannot be constants. Calibrated against the full 14-day corpus they
- * top out near 220, and at that scale the default 24-hour view — a few dozen
- * stories, no cluster above single digits — renders every disc in the coldest
- * two colours: the heat channel switches itself off exactly where the map is
- * most worth reading. So the domain is rebuilt whenever the visible set
- * changes, and the ramp always spends its full range on what is actually there.
- *
- * The curve is a power law rather than linear because cluster sizes are
- * long-tailed: most are small, so the cold end needs the resolution. Stops are
- * forced strictly ascending — `interpolate` rejects a repeated input, which is
- * what a naive rescale produces the moment the domain gets small.
- */
-const heatStops = (busiest: number): number[] => {
-  const n = CLUSTER_STEPS
-  const top = Math.max(n + 1, Math.round(busiest))
-  const out: number[] = []
-  let prev = 1
-  for (let i = 0; i < n; i++) {
-    const f = (i / (n - 1)) ** 2.2
-    out.push((prev = Math.max(prev + 1, Math.round(2 + (top - 2) * f))))
-  }
-  return out
-}
-
-/** Disc radius across the same domain. */
-const clusterRadius = (stops: number[]): ExpressionSpecification =>
-  [
-    'interpolate',
-    ['linear'],
-    ['get', 'point_count'],
-    stops[0], 8,
-    stops[2], 13,
-    stops[4], 20,
-    stops[6], 27,
-  ] as unknown as ExpressionSpecification
-
-/**
- * Rim weight across the domain.
- *
- * With the fill gone, the outline is what carries magnitude alongside the
- * numeral — a hairline on a pair of stories, a firm ring on a capital. It stays
- * a stroke rather than becoming a fill again so the disc reads as a container
- * for its number, not as a blob with a number on it.
- */
-const clusterStroke = (stops: number[]): ExpressionSpecification =>
-  [
-    'interpolate',
-    ['linear'],
-    ['get', 'point_count'],
-    stops[0], 1,
-    stops[2], 1.3,
-    stops[4], 1.7,
-    stops[6], 2.2,
-  ] as unknown as ExpressionSpecification
-
-/** Label size across the same domain. */
-const countSize = (stops: number[]): ExpressionSpecification =>
-  [
-    'interpolate',
-    ['linear'],
-    ['get', 'point_count'],
-    stops[0], 10,
-    stops[2], 12,
-    stops[4], 14.5,
-    stops[6], 17,
-  ] as unknown as ExpressionSpecification
+const densityWeight = (): ExpressionSpecification =>
+  ['*', ['get', 'amax'], ['sqrt', ['get', 'n']]] as unknown as ExpressionSpecification
 
 export function mount(container: HTMLElement, props: { basemap?: string } = {}) {
   /** Cache key for the basemap files — see `basemapUrl`. */
@@ -381,7 +364,13 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   const key = document.createElement('div')
   key.className = 'map-key'
   key.setAttribute('role', 'group')
-  key.setAttribute('aria-label', 'What the beacons mean')
+  // "How the stories are drawn", not "What the beacons mean", since 2026-07-30.
+  // The density wash belongs in this group — it is raised from the stories and is
+  // part of the same layer's alphabet — but it is not a channel a *beacon* spends
+  // ink on, and that exact distinction is the argument this file makes for
+  // keeping the genocide chip out of here. Widening the label is the honest fix;
+  // leaving it would have made the group's own name false.
+  key.setAttribute('aria-label', 'How the stories are drawn')
   const keyItems = new Map<string, HTMLElement>()
   for (const item of KEY_ITEMS) {
     const span = document.createElement('span')
@@ -393,6 +382,33 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     keyItems.set(item.id, span)
     key.append(span)
   }
+
+  /**
+   * The density wash, which is the one channel here a reader cannot guess.
+   *
+   * A swatch rather than a `currentColor` glyph, because a gradient is not a
+   * shape — built from `DENSITY_STOPS` through `densityCssRamp`, so the strip in
+   * the panel cannot disagree with the wash on the canvas. The value stays in
+   * `_map/style.ts` and arrives here as an inline custom property, the way
+   * `--ramp` and `--cat` already do; no literal enters the stylesheet.
+   *
+   * There is deliberately **no key item for the numeral**. A count beside a place
+   * name decodes itself, which is why the cluster count never had one either. And
+   * unlike the ground ramp, this scale prints no values at its ends: the ground's
+   * gradient needed them because a bare gradient is a scale with no units and the
+   * *direction* varies by metric, whereas here more news is always more wash. The
+   * hint carries the only thing left to say, which is what the wash is *about*:
+   * how far, not how much.
+   */
+  const densityKey = document.createElement('span')
+  densityKey.className = 'map-key-item'
+  densityKey.title =
+    'A wash where stories crowd together — how far the news reaches, not how much of it there is'
+  densityKey.innerHTML =
+    `<span class="map-key-field" style="--ramp:${densityCssRamp()}"></span>` +
+    '<span>density</span>'
+  keyItems.set('density', densityKey)
+  key.append(densityKey)
 
   /**
    * `contested` starts hidden, like the genocide chip below.
@@ -830,17 +846,16 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   const abort = new AbortController()
 
   /**
-   * The cluster domain — the counts at which disc size, rim weight and label
-   * size take each of their steps.
+   * The places the visible stories share, rebuilt on the same frame the beacons
+   * are, and the index that joins a slug to one.
    *
-   * Derived from how many stories are showing, not from the corpus: switching
-   * to 24h drops the busiest cluster from ~140 to single digits, and a fixed
-   * domain would leave that whole view at the bottom of every curve. The
-   * proportion is empirical — across ranges, the largest cluster at world zoom
-   * runs a little under a fifth of the visible set.
+   * The index is resolved once per payload because a story's place is a fact
+   * about the story; only the counting is per frame. What used to happen here
+   * instead was a supercluster KD-tree rebuild every scrub frame.
    */
-  let stops = heatStops(150)
-  const busiestFor = (visible: number) => Math.max(CLUSTER_STEPS + 1, visible * 0.19)
+  let placeIndex: PlaceIndex = { of: new Map(), at: new Map() }
+  let places: StoryPlace[] = []
+  let placeByKey = new Map<string, StoryPlace>()
 
   let hoverSlug: string | null = null
   let openSlug: string | null = null
@@ -1133,17 +1148,39 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
         slug: p.slug,
         cat: p.cat,
         t: p.t,
-        a: Math.round((0.35 + 0.65 * decayAt(p.t, scrubNow)) * 100) / 100,
+        // Floor raised from 0.35 on 2026-07-30. Recency has to be *ordered and
+        // perceptible*, not asymptotic — and the blurred halo that used to
+        // rescue the faint end is gone. A week-old beacon now measures 1.89:1
+        // against the ocean where it measured 1.57:1; today's is 5.20:1, so a
+        // 2.2x range is still an unmistakable step.
+        a: Math.round((0.45 + 0.55 * decayAt(p.t, scrubNow)) * 100) / 100,
         // Percentile rank from the build, or the neutral "unknown" size.
         w: p.w ?? UNKNOWN_COVERAGE_W,
         contested: (p.d ?? 0) >= CONTESTED_D ? 1 : 0,
-        // One-hot counters so `clusterProperties` can sum a cluster's mix.
-        politics: p.cat === 'politics' ? 1 : 0,
-        economy: p.cat === 'economy' ? 1 : 0,
-        science: p.cat === 'science' ? 1 : 0,
-        tech: p.cat === 'tech' ? 1 : 0,
       },
       geometry: { type: 'Point' as const, coordinates: [p.lng, p.lat] },
+    })),
+  })
+
+  /**
+   * The places, as the field's source and the numeral's.
+   *
+   * One collection feeds both, so the wash and the count cannot disagree about
+   * where the news is or how much of it there is. Raising the field from the
+   * stories instead would also have let our own jitter speak: Washington carries
+   * 17 coordinates inside 2.2 km, which is 17 kernels smearing one peak.
+   */
+  const placeCollection = (visible: StoryPlace[]) => ({
+    type: 'FeatureCollection' as const,
+    features: visible.map((pl) => ({
+      type: 'Feature' as const,
+      properties: {
+        key: pl.key,
+        loc: pl.loc,
+        n: pl.count,
+        amax: pl.amax,
+      },
+      geometry: { type: 'Point' as const, coordinates: [pl.lng, pl.lat] },
     })),
   })
 
@@ -1355,28 +1392,6 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     map.setFilter('thermal-marks', ['<=', ['get', 't'], scrubNow])
   }
 
-  /**
-   * Rescales the cluster domain to the visible set.
-   *
-   * Only the paint properties are rewritten, and only when the domain actually
-   * moves — the expressions are recompiled but no data is touched, which is
-   * cheap next to the story `setData` happening in the same frame.
-   */
-  const applyClusterScale = (visible: number) => {
-    if (!layersReady) return
-    const next = heatStops(busiestFor(visible))
-    if (next.every((v, i) => v === stops[i])) return
-    stops = next
-    map.setPaintProperty('story-clusters', 'circle-radius', clusterRadius(stops) as never)
-    map.setPaintProperty('story-clusters', 'circle-stroke-width', [
-      'case',
-      ['==', ['get', 'contested'], 1],
-      ['+', clusterStroke(stops), 0.8],
-      clusterStroke(stops),
-    ] as never)
-    map.setLayoutProperty('story-cluster-count', 'text-size', countSize(stops) as never)
-  }
-
   const applyRefresh = () => {
     // A late style-load or data fetch can land after teardown; rebuilding the
     // rail then throws against a document that is already gone.
@@ -1389,7 +1404,11 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     const contested = keyItems.get('contested')
     if (contested) contested.hidden = !visible.some((p) => (p.d ?? 0) >= CONTESTED_D)
     if (!layersReady) return
-    applyClusterScale(visible.length)
+    // Counted here rather than derived in a paint expression, because the field
+    // and the numeral both read it and the click path has to resolve a beacon to
+    // the place holding it. One O(n) walk; the joins were done at load.
+    places = countPlaces(placeIndex, visible, scrubNow)
+    placeByKey = new Map(places.map((pl) => [pl.key, pl]))
     // Scrubbed past the story the pointer is resting on: its rail row has just
     // gone with it, so the highlight has nothing left to point at.
     if (hoverSlug && !visible.some((p) => p.slug === hoverSlug)) {
@@ -1400,10 +1419,11 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     // — see `syncHoverState`. Restored by the `idle` handler once the new
     // tiles are in.
     map.removeFeatureState({ source: 'stories' })
-    // Stories are the one layer whose *features* change with the scrub head:
-    // their decay alpha is baked per feature, and the cluster counts have to
+    // Stories and their places are the layers whose *features* change with the
+    // scrub head: decay alpha is baked per feature, and a place's count has to
     // reflect the filtered set. Everything else moves by filter above.
     src('stories')?.setData(storyCollection(visible))
+    src('story-places')?.setData(placeCollection(places))
     applyTimeFilters()
   }
 
@@ -1476,22 +1496,11 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       // rewriting a paint property — a full style re-evaluation per pointer
       // move — instead of flipping one bit on one feature.
       promoteId: 'slug',
-      cluster: true,
-      clusterRadius: 30,
-      clusterMaxZoom: 4,
-      // Aggregated as the cluster tree is built, so a merged disc still knows
-      // what it is made of: its category mix, its heaviest story, and whether
-      // anything inside it is contested.
-      clusterProperties: {
-        politics: ['+', ['get', 'politics']],
-        economy: ['+', ['get', 'economy']],
-        science: ['+', ['get', 'science']],
-        tech: ['+', ['get', 'tech']],
-        wmax: ['max', ['get', 'w']],
-        amax: ['max', ['get', 'a']],
-        contested: ['max', ['get', 'contested']],
-      },
     })
+    // Named `story-places`, not `places` — the base style already owns that name
+    // for the basemap's cities, and overwriting it would replace the world's
+    // place labels with our own datelines.
+    map.addSource('story-places', { type: 'geojson', data: empty })
     map.addSource('gdacs', { type: 'geojson', data: empty })
     map.addSource('thermal', { type: 'geojson', data: empty })
     map.addSource('chokepoints', { type: 'geojson', data: empty })
@@ -1609,6 +1618,107 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
         type: 'fill',
         source: 'night',
         paint: { 'fill-color': '#000', 'fill-opacity': 0.28 },
+      },
+      'borders',
+    )
+
+    /**
+     * How far the news reaches.
+     *
+     * `CLAUDE.md` says *"Don't reintroduce a density field without a reason the
+     * count doesn't already cover"*, and that prohibition stands. It was written
+     * about four encodings of one number stacked on one coordinate — a gold fill
+     * ramp, three blurred falloff rings, a kernel-density layer, and a numeral
+     * that already stated the count exactly. The field was the fourth telling.
+     *
+     * The reason it now covers something no count can: a count is only honest
+     * standing at a place that exists, and once the aggregating discs are gone
+     * **nothing on this map says how far the news reaches.** Extent is a shape.
+     * No numeral states a shape. And every one of the four things it used to be
+     * stacked beside is gone and stays gone — this is the only density encoding
+     * on the map.
+     *
+     * Where it sits is the other half of the argument. **Above `night-shade`**,
+     * because night darkens the land and never the data, and comparing extents
+     * across a globe half of which is always dark is the whole job. **Below
+     * `borders` and every label**, so a coastline draws straight through a patch:
+     * that is what makes the field the only thing here with no edge, which is how
+     * a reader tells a wash from a shaded country — a difference of kind, the
+     * argument `nodataHatch` already makes. See `MAP_COLOURS.density` for the
+     * numbers backing it up.
+     *
+     * No `filter` and no toggle. This is the story layer's own alphabet, like a
+     * beacon's radius; a chip for it would be a chip that turns off part of a
+     * mark. The category chips and the scrubber already filter it, because it
+     * reads the places counted from the visible slice.
+     */
+    map.addLayer(
+      {
+        id: 'story-density',
+        type: 'heatmap',
+        source: 'story-places',
+        paint: {
+          'heatmap-weight': densityWeight(),
+          // Fixed, never rescaled to the visible set the way the cluster domain
+          // was — see `DENSITY_INTENSITY`. It rises with zoom only, because
+          // kernels separate as the camera descends and the same news spreads
+          // over more pixels.
+          'heatmap-intensity': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            0, DENSITY_INTENSITY,
+            3, DENSITY_INTENSITY * 1.55,
+            5, DENSITY_INTENSITY * 2.2,
+          ],
+          // Screen pixels, so the ramp has to start below zero. `worldFitZoom`
+          // is `log2(max(w, h) / 512)` and a portrait phone opens at about
+          // −0.39 — off the low end of every zoom ramp on this map, all of which
+          // were written looking at a desktop.
+          //
+          // Read as "where a place fades out", not "how big the patch looks":
+          // the kernel is `exp(-4.5 · (d/r)²)`, so at the full radius a place
+          // contributes 1.1% of its peak and the visible core is nearer half of
+          // it. Generous at world zoom on purpose — it is the overlap between
+          // neighbouring capitals that makes a *region* read, and Europe's are
+          // 10–20px apart there.
+          //
+          // Wide, and that was a correction. At 24px on a 512px world the kernel
+          // was narrower than the gap between neighbouring capitals, so every
+          // busy place got its own tidy disc — which reads as a *glow on the
+          // mark*, and a glow on the mark is what was deleted from this map in
+          // July for saying the count a second time. The field only earns its
+          // place by describing a region, so the bandwidth has to be regional:
+          // Washington and New York sit 11px apart at the opening zoom, London
+          // and Paris the same, and at these radii they pool rather than each
+          // wearing a halo.
+          'heatmap-radius': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            -1, 26,
+            0, 34,
+            1.5, 46,
+            3, 58,
+            5, 72,
+          ],
+          'heatmap-color': [
+            'interpolate',
+            ['linear'],
+            ['heatmap-density'],
+            ...densityRamp(),
+          ],
+          // Gone by the zoom at which places have separated and every mark is a
+          // story again: a field answers "how far", and past z5 the question the
+          // reader is asking has become "which one".
+          'heatmap-opacity': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            3.2, 1,
+            DENSITY_FADE_OUT, 0,
+          ],
+        } as never,
       },
       'borders',
     )
@@ -1824,60 +1934,95 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       } as never,
     })
 
-    // Story halo — circle-blur is the cheap, GPU-side equivalent of the glow
-    // sprite the canvas version baked by hand.
-    map.addLayer({
-      id: 'story-glow',
-      type: 'circle',
-      source: 'stories',
-      filter: ['!', ['has', 'point_count']],
-      paint: {
-        'circle-radius': ['interpolate', ['linear'], ['get', 'w'], 0, 7, 1, 20],
-        'circle-color': catColour('#8a8a8a'),
-        'circle-blur': 1,
-        'circle-opacity': ['*', ['get', 'a'], 0.45],
-      },
-    })
-
-    // A ring around stories whose sources disagree sharply about them. Drawn
-    // under the dot rather than on it so it reads as an aura, and only for the
-    // top quartile of divergence — otherwise every story has one and it says
-    // nothing.
+    /**
+     * A ring around stories whose sources disagree sharply about them.
+     *
+     * Drawn under the dot rather than on it so it reads as an aura, and only for
+     * the top quartile of divergence — otherwise every story has one and it says
+     * nothing. Radii track the beacon's, which grew on 2026-07-30.
+     *
+     * `story-glow` used to sit under this: a per-story blurred halo, 7–20px at
+     * `a * 0.45` in the category hue. It is **deleted**, not crossfaded against
+     * the new field. It was already a kernel-density blob — uncalibrated, in four
+     * colours, stacking at exactly the 92 coincident places `story-density` is
+     * built to describe — and two density fields on one map is the "four glow
+     * systems stacked on one coordinate" charge verbatim. Its own comment
+     * admitted it was the hand-baked glow sprite carried forward, which is
+     * decoration, and decoration does not get to stay.
+     */
     map.addLayer({
       id: 'story-contested',
       type: 'circle',
       source: 'stories',
-      filter: ['all', ['!', ['has', 'point_count']], ['==', ['get', 'contested'], 1]],
+      filter: ['==', ['get', 'contested'], 1],
       paint: {
-        'circle-radius': ['interpolate', ['linear'], ['get', 'w'], 0, 6, 1, 10.5],
+        'circle-radius': ['interpolate', ['linear'], ['get', 'w'], 0, 6.8, 1, 12],
         'circle-color': 'rgba(0,0,0,0)',
         'circle-stroke-width': 1,
-        'circle-stroke-color': '#e8e2d4',
+        'circle-stroke-color': MAP_COLOURS.contested,
         'circle-stroke-opacity': ['*', ['get', 'a'], 0.5],
       },
     })
 
+    /**
+     * The beacons — one per story, at every zoom.
+     *
+     * These were 2.6–6px with an alpha floor of 0.35, sized for a map where a
+     * beacon was the exception: measured at the world-fit zoom, **14 of 705
+     * stories drew as one and the other 691 were inside a disc**. So the mark
+     * carrying the subject of this map was tuned as an afterthought, and
+     * `glyphs.ts` had already worked out that 3.2px is below the floor at which a
+     * mark survives at all.
+     *
+     * Now 3.4–7.5px. The ceiling is 15px across, just under the 16px `GLYPH_BOX`
+     * the overlays share, so a heavily-covered story never out-sizes a Red GDACS
+     * alert or a genocide ring — the beacon gains presence without becoming the
+     * loudest thing here. A story with no coverage figure lands at 4.55px: 1.34x
+     * the floor and still below the known median of 5.41px, so a fixed value
+     * below the median goes on saying "unknown" rather than "smallest", with more
+     * room to say it in.
+     *
+     * **The rim is what makes a beacon read on the density wash**, and it is the
+     * channel that had to be paid for. A `politics` fill measures 1.07:1 against
+     * the field's peak at the alpha floor and 1.37:1 at full strength — nearly
+     * the same luminance. Its ocean-coloured rim measures 3.74:1. That is exactly
+     * the argument this file already makes for the overlay glyphs' dark halo:
+     * contrast against the halo is the real invariant, and it is what stops the
+     * ground being a variable. So the rim goes from 0.6px at 0.6 alpha to 1px at
+     * 0.85. Fill carries the mark on dark ground; rim carries it on bright.
+     */
     map.addLayer({
       id: 'story-points',
       type: 'circle',
       source: 'stories',
-      filter: ['!', ['has', 'point_count']],
+      layout: {
+        // 445 of 705 stories share a coordinate with another, so at those places
+        // 2 to 62 beacons composite. Which one ended up on top was an accident of
+        // parse order; it is now the latest story there, which is a rule — and it
+        // is what makes hovering a pile preview the same story the numeral beside
+        // it stands for. The stack going opaque is honest: coincident stories
+        // genuinely are coincident, and the exact fact it cannot state is what
+        // the numeral and the place card are for.
+        'circle-sort-key': ['get', 't'],
+      },
       paint: {
         'circle-radius': [
           'interpolate',
           ['linear'],
           ['get', 'w'],
-          0, 2.6,
-          1, 6,
+          0, 3.4,
+          1, 7.5,
         ],
         'circle-color': catColour('#8a8a8a'),
         'circle-opacity': ['get', 'a'],
         // Hover is a per-feature state flip rather than a style rewrite: the
         // expression is compiled once and only the one feature's state changes.
+        // This is also why the beacon has to stay a `circle` — `icon-size`
+        // cannot read feature state, which `glyphs.ts` records under `DOT`.
         'circle-stroke-width': [
           'case',
           ['boolean', ['feature-state', 'hover'], false], 1.8,
-          0.6,
+          1,
         ],
         'circle-stroke-color': [
           'case',
@@ -1887,110 +2032,76 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
         'circle-stroke-opacity': [
           'case',
           ['boolean', ['feature-state', 'hover'], false], 1,
-          0.6,
+          0.85,
         ],
       },
     })
 
+    /**
+     * How many stories share this place.
+     *
+     * The count that used to live inside an aggregating disc, moved to a place
+     * that exists and set beside the stack rather than on it.
+     *
+     * The threshold is inside `text-field` and must never become a layer
+     * `filter`: a filter would delete the feature, and the feature is what raises
+     * the density wash. Same mistake `marketLayout` documents for the exchange
+     * tick's own numeral. `step` has to be the outer expression too — MapLibre
+     * accepts `['zoom']` only as the direct input of a top-level
+     * step/interpolate, and inside out it fails validation and drops the layer
+     * silently.
+     *
+     * Two is deliberately not numbered at world zoom: 42 of the 92 multi-story
+     * places hold exactly two, and a "2" beside two visible dots states what the
+     * mark already stated. Three at world zoom, two once the camera has earned
+     * it. Because `worldFitZoom` is a function of canvas width, a phone opens at
+     * about 0.56 and lands on the stricter step by itself.
+     *
+     * **It may be dropped under collision, and that is the change.** A disc with
+     * no numeral was an empty container saying nothing, so the cluster count
+     * could never be dropped and was kept out of the collision index entirely —
+     * which is what let a market tick's "1.6%" land flush against a "3" and
+     * render "31.6%". A stack of dots with no numeral is still a complete mark:
+     * the beacon, the wash and the rail all carry the story, and the figure is
+     * one click away in the place card. So this one takes its place in the
+     * collision index like any other label.
+     */
     map.addLayer({
-      id: 'story-clusters',
-      type: 'circle',
-      source: 'stories',
-      filter: ['has', 'point_count'],
-      paint: {
-        'circle-radius': clusterRadius(stops),
-        // A container, not a blob. The disc is the map's own ground colour at
-        // most of its opacity — enough to hold the numeral clear of coastlines
-        // and other markers underneath, and nothing more. Magnitude is the
-        // numeral and the rim; the fill is not a third telling of it.
-        'circle-color': MAP_COLOURS.ocean,
-        'circle-opacity': 0.82,
-        // Rim is category — of what — and its weight is how much.
-        'circle-stroke-width': [
-          'case',
-          ['==', ['get', 'contested'], 1],
-          ['+', clusterStroke(stops), 0.8],
-          clusterStroke(stops),
-        ],
-        'circle-stroke-color': clusterCategory(),
-        // Recency still fades the rim, so a cluster of week-old stories sits
-        // back from one that formed this morning.
-        'circle-stroke-opacity': ['max', 0.55, ['*', ['get', 'amax'], 0.95]],
-      },
-    })
-
-    map.addLayer({
-      id: 'story-cluster-count',
+      id: 'story-place-count',
       type: 'symbol',
-      source: 'stories',
-      filter: ['has', 'point_count'],
+      source: 'story-places',
       layout: {
-        'text-field': ['get', 'point_count_abbreviated'],
+        'text-field': [
+          'step',
+          ['zoom'],
+          ['case', ['>=', ['get', 'n'], 4], ['to-string', ['get', 'n']], ''],
+          1, ['case', ['>=', ['get', 'n'], 3], ['to-string', ['get', 'n']], ''],
+          3, ['case', ['>=', ['get', 'n'], 2], ['to-string', ['get', 'n']], ''],
+        ],
         'text-font': ['Noto Sans Bold'],
-        // A bigger number on a hotter disc. The count is the payload, so it
-        // grows with the thing it is counting instead of staying 11px whether
-        // it reads 2 or 200.
-        'text-size': countSize(stops),
-        'text-letter-spacing': 0.01,
-        // Counts must never be dropped for collision — a hidden number reads as
-        // an empty disc, which is worse than a crowded one. That is what
-        // `allow-overlap` guarantees, and it is untouched.
-        'text-allow-overlap': true,
-        // `ignore-placement` is the *other* half, and it was doing harm. It
-        // keeps this label out of the collision index entirely, so nothing else
-        // on the map can see it — and once the exchanges began printing their
-        // move, a market numeral was free to land flush against a cluster
-        // count. Madrid's "1.6%" beside a cluster of 3 rendered as "31.6%":
-        // two true numbers reading as one false one.
-        //
-        // False here means the count still always draws (that is `allow-
-        // overlap`), but it now also occupies space others must route around.
+        'text-size': ['interpolate', ['linear'], ['zoom'], 1, 10, 5, 12],
+        // Beside the stack, never on it, and free to hop when crowded — eight
+        // European capitals sit within a few degrees of each other.
+        'text-variable-anchor': ['left', 'right', 'top', 'bottom'],
+        'text-radial-offset': 0.9,
+        'text-justify': 'auto',
+        'text-padding': 5,
+        'text-allow-overlap': false,
         'text-ignore-placement': false,
-      },
-      // One colour now. The label used to step from light type to dark halfway
-      // up the ramp, because the fill it sat on ran from dark slate to pale
-      // gold and no single colour read on both. The disc is one dark tone at
-      // every count, so the number is simply light — no crossover, no midpoint
-      // where it stopped reading.
+        // Busiest place wins the space when two numerals compete.
+        'symbol-sort-key': ['-', 0, ['get', 'n']],
+      } as never,
       paint: {
-        'text-color': '#eef2f8',
-        'text-halo-color': 'rgba(6,8,12,0.65)',
-        'text-halo-width': 0.8,
+        // The tone this map sets place names in, because that is what this is: a
+        // fact about a place. Its legibility is the halo's job — 3.80:1 against
+        // the density field's own peak — which is the standard every mark here is
+        // held to rather than a contrast bar against a ground that moves.
+        'text-color': MAP_COLOURS.label,
+        'text-halo-color': MAP_COLOURS.labelHalo,
+        'text-halo-width': 1.4,
       },
     })
 
-    // Markets are ticks, and the ones that moved carry their number.
-    //
-    // This was a circle, and it was byte-identical to the chokepoint circle
-    // above — same radius domain, same stroke domain, same stroke-opacity
-    // domain, same neutral. Two layers cannot be told apart when they are the
-    // same mark, and hue could not tell them apart either, because `economy`
-    // gold and `straits` gold are three points from each other. So the
-    // silhouette carries the layer now, and colour is free to go back to
-    // carrying the value.
-    //
-    // One number was also driving four channels — radius, stroke width, stroke
-    // opacity and hue — which, with a median absolute move of 0.73%, put 28 of
-    // 30 marks inside two pixels of each other. Four copies of an imperceptible
-    // channel is four copies of nothing. Size keeps `mag`, hue keeps direction,
-    // opacity is freed for the session, and the number itself is printed where
-    // it clears the bar.
-    //
-    // ── Why this draws above the stories ──────────────────────────────────
-    //
-    // Exchanges sit in exactly the cities that generate the most stories, so a
-    // cluster disc forming over New York, London or Tokyo is not an occasional
-    // overlap — it is where every large exchange lives. Underneath the stories,
-    // the mark for the world's biggest market was reliably the one you could
-    // not see.
-    //
-    // The damage is asymmetric, and that is what settles the order. A cluster
-    // is a *count*: a 7px tick crossing its rim still leaves "9" perfectly
-    // readable. An exchange is a *single mark*: covered, it is not diminished,
-    // it is absent. So the small fragile symbol goes above the large robust
-    // one — which is also the ordinary cartographic rule for point symbols over
-    // area symbols. Genocide is still added after everything, for the reason
-    // given below, which this does not touch.
     map.addLayer({
       id: 'market-marks',
       type: 'symbol',
@@ -2439,143 +2550,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     resetView()
   }
 
-  /**
-   * Hovering a cluster drills into it.
-   *
-   * Without this, hover-only navigation dead-ends at the default view: nearly
-   * every marker is a cluster there, so there is nothing individual to hover.
-   * Expanding on hover turns the whole map into one continuous gesture —
-   * hover a cluster to descend, hover a story to read it.
-   */
-  const expandCluster = (clusterId: number, coords: [number, number]) => {
-    const source = src('stories')
-    if (!source) return
-    flying = true
-    void source
-      .getClusterExpansionZoom(clusterId)
-      .then((zoom) => {
-        map.easeTo({ center: coords, zoom: Math.min(zoom + 0.35, 9), duration: 750 })
-        map.once('moveend', () => {
-          flying = false
-        })
-        window.setTimeout(() => {
-          flying = false
-        }, 1100)
-      })
-      .catch(() => {
-        flying = false
-      })
-  }
-
   const wireInteraction = () => {
-    map.on('mousemove', 'story-points', (e) => {
-      if (flying) return
-      const f = e.features?.[0]
-      if (!f) return
-      map.getCanvas().style.cursor = 'pointer'
-      const p = pointFor(f)
-      if (!p) return
-      // Hover previews, and stops there. It used to start a dwell timer that
-      // flew the camera in after 320ms, which meant the map moved on its own
-      // while the pointer was only passing over — a reader crossing a dense
-      // area got dragged somewhere they had not asked to go, and the way back
-      // was a separate gesture. Committing to a story is a click now, from the
-      // beacon or from the rail.
-      setHoverSlug(p.slug)
-    })
-
-    map.on('mouseleave', 'story-points', () => {
-      map.getCanvas().style.cursor = ''
-      setHoverSlug(null)
-    })
-
-    /**
-     * Clicking the ground.
-     *
-     * Three outcomes, in order. A marker takes the click — those layers have
-     * their own handlers and this one stays out of the way. Otherwise, if
-     * something is already open, the click dismisses it: escape-first is what
-     * people expect from a click on empty space, and opening a country profile
-     * instead would feel like the map fighting back. Only from a clean slate
-     * does a click on land open that country.
-     */
-    map.on('click', (e) => {
-      if (map.queryRenderedFeatures(e.point, { layers: MARKER_LAYERS }).length > 0) return
-
-      if (popup?.isOpen() || sheet.isOpen()) {
-        openSlug = null
-        popup?.close()
-        sheet.close()
-        feed.highlight(null)
-        return
-      }
-
-      const iso = countryAt(e.point)
-      if (!iso) return
-      openSlug = null
-      void popup?.openCountry(iso, [e.lngLat.lng, e.lngLat.lat], standingFor(iso))
-    })
-
-    // Land is only clickable where a profile exists, so the highlight and the
-    // cursor follow the same test — nothing should look interactive and then
-    // do nothing.
-    map.on('mousemove', (e) => {
-      if (flying) return
-      const overMarker =
-        map.queryRenderedFeatures(e.point, { layers: MARKER_LAYERS }).length > 0
-      // A hairline is not a pointing target, so the prayer probe is a small box
-      // rather than the point every other hit test uses. It runs on the same
-      // event and only when no mark has already claimed it — a beacon under the
-      // pointer is always what was meant. Nothing is suppressed the other way
-      // round: the country under a prayer line still highlights and still takes
-      // the click, because that line is drawn across every country there is.
-      const onPrayer = overMarker ? null : prayerAt(e.point)
-      setHoverPrayer(onPrayer)
-      if (onPrayer) showPrayerTip(onPrayer, e.point, e.lngLat)
-      else hidePrayerTip()
-      const iso = overMarker ? null : countryAt(e.point)
-      if (iso === hoverIso) return
-      hoverIso = iso
-      map.setFilter('country-hover', ['==', ['get', 'iso2'], iso ?? ''])
-      if (!overMarker) map.getCanvas().style.cursor = iso ? 'pointer' : ''
-    })
-
-    map.on('mouseout', () => {
-      hoverIso = null
-      setHoverPrayer(null)
-      hidePrayerTip()
-      map.setFilter('country-hover', ['==', ['get', 'iso2'], ''])
-    })
-
-    map.on('click', 'story-points', (e) => {
-      const f = e.features?.[0]
-      const p = f ? pointFor(f) : null
-      if (p) {
-        flyToStory(p)
-      }
-    })
-
-    // Clicking a cluster does the same as dwelling on it, without the wait.
-    map.on('click', 'story-clusters', (e) => {
-      const f = e.features?.[0]
-      const id = f?.properties?.cluster_id
-      if (!f || id == null) return
-      expandCluster(Number(id), (f.geometry as GeoJSONPoint).coordinates as [number, number])
-    })
-
-    // Hovering a cluster only marks it as clickable. It used to expand on a
-    // dwell, which meant the camera moved on its own whenever the pointer
-    // crossed a dense area — the map pulled you somewhere you had not asked to
-    // go, and there was no way to read the rail without setting it off.
-    // Descending into a cluster is now an explicit click.
-    map.on('mouseenter', 'story-clusters', () => {
-      map.getCanvas().style.cursor = 'pointer'
-    })
-
-    map.on('mouseleave', 'story-clusters', () => {
-      map.getCanvas().style.cursor = ''
-    })
-
     /**
      * Disasters, straits and conflict open on hover, like a story does.
      *
@@ -2604,41 +2579,181 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       if (heat) return sheet.showThermal(heat, pin)
     }
 
-    // One delegated listener across all five overlay layers, not five.
-    //
-    // MapLibre gives every layer-scoped handler its own `queryRenderedFeatures`
-    // on every pointer event, so registering these per layer meant five hit
-    // tests per mousemove for the overlays alone — on top of the story layer's
-    // and the land probe's, on the one path that runs at pointer frequency.
-    // The array form does the whole set in one query and hands back the
-    // topmost feature, which is exactly what a marker under the pointer means.
-    map.on('mousemove', OVERLAY_LAYERS, (e) => {
-      map.getCanvas().style.cursor = 'pointer'
-      const id = e.features?.[0]?.properties?.id
-      if (id == null || String(id) === peekId) return
-      peekId = String(id)
-      clearPeekClose()
-      showFor(id, false)
-    })
+    /**
+     * The one hit test, and the one precedence.
+     *
+     * Every marker used to register its own layer-scoped handler, and MapLibre
+     * gives each registration its own `queryRenderedFeatures` over its own
+     * layers — so two handlers could both find a feature under one pointer and
+     * both fire. That is not hypothetical: clicking the story aggregate over
+     * London flew the camera *and* pinned the London Stock Exchange, because
+     * exchanges sit in exactly the cities that generate the most stories.
+     * Hovering the pair did it twice over, and nothing had ever reported it.
+     *
+     * One query, one winner, order stated in `HIT_ORDER` rather than read off the
+     * result array, whose ordering MapLibre does not promise. Pointer cost drops
+     * from up to five `queryRenderedFeatures` per move to two.
+     */
+    const topHit = (point: PointLike): MapGeoJSONFeature | null => {
+      const hits = map.queryRenderedFeatures(point, { layers: MARKER_LAYERS })
+      if (!hits.length) return null
+      for (const id of HIT_ORDER) {
+        const f = hits.find((h) => h.layer.id === id)
+        if (f) return f
+      }
+      return hits[0]
+    }
 
-    map.on('mouseleave', OVERLAY_LAYERS, () => {
-      map.getCanvas().style.cursor = ''
+    /** The place a story belongs to, or null if the index has not caught up. */
+    const placeOf = (slug: string): StoryPlace | null => {
+      const key = placeIndex.of.get(slug)
+      return key ? placeByKey.get(key) ?? null : null
+    }
+
+    const placeForFeature = (f: MapGeoJSONFeature): StoryPlace | null => {
+      const key = f.properties?.key
+      return key == null ? null : placeByKey.get(String(key)) ?? null
+    }
+
+    const isStoryLayer = (id: string) => id === 'story-points' || id === 'story-place-count'
+
+    /** Dismiss a peek that is no longer under the pointer. */
+    const releasePeek = () => {
+      if (peekId === null) return
       peekId = null
+      clearPeekClose()
       // A short grace period: leaving the marker usually means the pointer is
       // on its way to the sheet to read it, not that you are done with it.
-      clearPeekClose()
       peekCloseTimer = window.setTimeout(() => {
         peekCloseTimer = null
         if (!sheet.isPinned()) sheet.close()
       }, 260)
+    }
+
+    /**
+     * Clicking the map.
+     *
+     * One handler, four outcomes in `HIT_ORDER`'s precedence. A story beacon at a
+     * place holding one story flies to it; a beacon at a place holding several —
+     * and 445 of 705 stories share a coordinate — opens the place instead, which
+     * is the gesture `expandCluster` was pretending to offer. It could not
+     * deliver: coincident stories never separate at any zoom, so descending into
+     * a pile moved the camera and produced nothing to read. An overlay mark pins
+     * its sheet. Nothing under the pointer dismisses whatever is open, and only
+     * from a clean slate does a click on land open that country — escape-first is
+     * what a click on empty space is expected to do.
+     */
+    map.on('click', (e) => {
+      const f = topHit(e.point)
+
+      if (f) {
+        const layer = f.layer.id
+        if (layer === 'story-place-count') {
+          const place = placeForFeature(f)
+          if (place) {
+            openSlug = null
+            void popup?.openPlace(place, scrubNow)
+          }
+          return
+        }
+        if (layer === 'story-points') {
+          const p = pointFor(f)
+          if (!p) return
+          const place = placeOf(p.slug)
+          if (place && place.count > 1) {
+            openSlug = null
+            void popup?.openPlace(place, scrubNow)
+          } else {
+            flyToStory(p)
+          }
+          return
+        }
+        const id = f.properties?.id
+        if (id == null) return
+        clearPeekClose()
+        peekId = String(id)
+        showFor(id, true)
+        return
+      }
+
+      if (popup?.isOpen() || sheet.isOpen()) {
+        openSlug = null
+        popup?.close()
+        sheet.close()
+        feed.highlight(null)
+        return
+      }
+
+      const iso = countryAt(e.point)
+      if (!iso) return
+      openSlug = null
+      void popup?.openCountry(iso, [e.lngLat.lng, e.lngLat.lat], standingFor(iso))
     })
 
-    map.on('click', OVERLAY_LAYERS, (e) => {
-      const id = e.features?.[0]?.properties?.id
-      if (id == null) return
-      clearPeekClose()
-      peekId = String(id)
-      showFor(id, true)
+    /**
+     * Moving over the map.
+     *
+     * Same single hit test. A story lights its rail row and nothing else — hover
+     * previews and stops there, because the dwell timer this replaced flew the
+     * camera after 320ms and dragged readers across dense areas they were only
+     * passing over. An overlay peeks its sheet. Only where no mark has claimed
+     * the pointer do the prayer probe and the land highlight run: a beacon under
+     * the pointer is always what was meant. Nothing is suppressed the other way
+     * round — the country under a prayer line still highlights and still takes
+     * the click, because that line crosses every country there is.
+     */
+    map.on('mousemove', (e) => {
+      if (flying) return
+      const f = topHit(e.point)
+      const overMarker = f !== null
+
+      if (f && isStoryLayer(f.layer.id)) {
+        map.getCanvas().style.cursor = 'pointer'
+        releasePeek()
+        if (f.layer.id === 'story-place-count') {
+          // The numeral stands for the place, so it lights the place's newest
+          // story — the same one the top of the stack under it is drawing.
+          const place = placeForFeature(f)
+          setHoverSlug(place?.slugs[0] ?? null)
+        } else {
+          setHoverSlug(pointFor(f)?.slug ?? null)
+        }
+      } else if (f) {
+        map.getCanvas().style.cursor = 'pointer'
+        setHoverSlug(null)
+        const id = f.properties?.id
+        if (id != null && String(id) !== peekId) {
+          peekId = String(id)
+          clearPeekClose()
+          showFor(id, false)
+        }
+      } else {
+        setHoverSlug(null)
+        releasePeek()
+      }
+
+      // A hairline is not a pointing target, so the prayer probe is a small box
+      // rather than the point every other hit test uses.
+      const onPrayer = overMarker ? null : prayerAt(e.point)
+      setHoverPrayer(onPrayer)
+      if (onPrayer) showPrayerTip(onPrayer, e.point, e.lngLat)
+      else hidePrayerTip()
+      const iso = overMarker ? null : countryAt(e.point)
+      if (iso !== hoverIso) {
+        hoverIso = iso
+        map.setFilter('country-hover', ['==', ['get', 'iso2'], iso ?? ''])
+      }
+      if (!overMarker) map.getCanvas().style.cursor = iso ? 'pointer' : ''
+    })
+
+    map.on('mouseout', () => {
+      hoverIso = null
+      setHoverSlug(null)
+      setHoverPrayer(null)
+      hidePrayerTip()
+      releasePeek()
+      map.getCanvas().style.cursor = ''
+      map.setFilter('country-hover', ['==', ['get', 'iso2'], ''])
     })
 
     // Moving back onto the sheet itself cancels the pending dismissal.
@@ -2694,6 +2809,13 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     }
 
     map.on('zoomend', () => {
+      // The wash fades to nothing by `DENSITY_FADE_OUT`, where places have
+      // separated and every mark is a story again. A legend for something not
+      // drawn is the same lie the `contested` and genocide items are hidden to
+      // avoid — and `hidden`, never `opacity`, which is how a chip once ended up
+      // at 2.33:1 with nothing able to see it.
+      const density = keyItems.get('density')
+      if (density) density.hidden = map.getZoom() >= DENSITY_FADE_OUT
       if (ultraLoaded || map.getZoom() < ULTRA_ZOOM) return
       // Set before awaiting, or a second zoomend starts the same fetch again.
       ultraLoaded = true
@@ -2904,6 +3026,9 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     if (!data || !mounted) return
     points = data.points
     pointBySlug = new Map(points.map((p) => [p.slug, p]))
+    // Resolved once per payload, not per frame: which place a story belongs to
+    // is a fact about the story.
+    placeIndex = buildPlaceIndex(points)
     const end = liveEdge(data.window.end)
     scrubNow = end
     windowStart = data.window.start
@@ -3096,6 +3221,9 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       const fresh = data.points.filter((p) => !before.has(p.slug))
       points = data.points
       pointBySlug = new Map(points.map((p) => [p.slug, p]))
+    // Resolved once per payload, not per frame: which place a story belongs to
+    // is a fact about the story.
+    placeIndex = buildPlaceIndex(points)
 
       // The scrub head is the reader's, except at the live edge. Asked, never
       // assumed — see `onScrub`.
@@ -3328,6 +3456,15 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
         flyToStory(p)
         return true
       },
+      /**
+       * The stories at a place, resolved against the loaded window.
+       *
+       * `StoryPlace` carries slugs and a count, deliberately — it is the shape
+       * the field and the numeral read, and the card is the only thing that
+       * needs headlines. `pointBySlug` is right here, so nothing is fetched.
+       */
+      storiesAt: (place) =>
+        place.slugs.map((slug) => pointBySlug.get(slug)).filter((p): p is MapPoint => !!p),
     })
     addDataLayers()
     wireInteraction()

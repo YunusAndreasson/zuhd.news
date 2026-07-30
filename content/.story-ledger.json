@@ -2,13 +2,248 @@
   "version": 1,
   "stories": [
     {
+      "id": "us-heavy-strike-wave-jordan-intercepts-iranian-missiles",
+      "label": "Jordan intercepts Iranian missiles after US launches 'heavy' strikes",
+      "firstSeen": "2026-07-30T08:16:22.290Z",
+      "lastCovered": "2026-07-30T08:16:22.290Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-30-us-heavy-strike-wave-jordan-intercepts-iranian-missiles"
+      ],
+      "eventUri": "eng-11877165",
+      "summary": "The retaliation cycle we filed yesterday has closed: US Central Command says it completed 'a heavy wave of strikes against Iran' overnight, and hours later Jordan's own air defences shot down five missiles launched from Iran — Petra, the state agency, confirming it. Lead with Jordan, not Washington, because Jordan is the story: an Arab state that is not a belligerent has now been struck by Iranian missiles, has intercepted them with its own batteries, and hosts the US base whose attack triggered the American strikes. That is the mechanism to teach — horizontal escalation, in which a state with escalation dominance but no ability to reach the adversary's homeland reaches instead for the adversary's hosts, so the cost of the war is paid by the countries in between. Amman did not choose this and cannot exit it: the bases are on Jordanian soil under a defence agreement, so every US sortie makes Jordanian airspace a corridor and Jordanian towns a backstop. Count the fifth Arab state drawn in and name the others (Iraq struck jointly by US and Saudi forces, Egypt's Damietta terminal, Jordan, the Gulf littoral) so the reader sees the shape rather than a day's incident. Then the dead, which the wire framing will not lead with: Mehr, Iran's state agency, reports CENTCOM's strikes hit residential areas in Hormozgan and on Qeshm Island — carry that as Iran's own account, attributed as state media and not as established fact, and press for independent casualty figures on both sides. Give the exact strike targets CENTCOM names, the interception count and where debris fell, Jordanian casualties if any, Petra's exact wording, Trump's statement, and whether any party has said what would end this. SOURCING: four-source cluster with Al Arabiya (AE) carrying the regional voice; Mehr (IR) merged in as the affected state's own record. Note the wide sentiment divergence (0.42) between the Gulf, British, Indian and Japanese chains.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Islamic_Revolutionary_Guard_Corps",
+        "http://en.wikipedia.org/wiki/Middle_East",
+        "http://en.wikipedia.org/wiki/United_States_Armed_Forces",
+        "http://en.wikipedia.org/wiki/Jordan",
+        "http://en.wikipedia.org/wiki/Missile"
+      ]
+    },
+    {
+      "id": "poland-crater-russia-358-munition-barrage-interceptor-cost",
+      "label": "Poland probes 'airspace violation' after mystery 10-meter crater found as Russia pounds Ukraine",
+      "firstSeen": "2026-07-30T08:16:22.290Z",
+      "lastCovered": "2026-07-30T08:16:22.290Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-30-poland-crater-russia-358-munition-barrage-interceptor-cost"
+      ],
+      "eventUri": "rus-2102012",
+      "summary": "Russia fired 74 missiles and 284 drones at Ukraine overnight, killing at least thirteen, and a ten-metre crater appeared on Polish soil in Lublin voivodeship with NATO jets scrambled and nothing yet identified. Lead with the dead in Dnipropetrovsk and Lviv, then the crater, because the order matters: the crater is what will dominate European coverage and the casualties are the event. The mechanism to teach is Article 4 and the deliberate ambiguity beneath it — an unattributed object leaves a NATO member with the choice of invoking consultation on evidence it does not yet have, or absorbing the violation and setting the precedent that the border is porous, and that choice is itself a weapon. Establish precisely what Poland has and has not said: whether the object was tracked, whether debris has been recovered, what 'airspace violation' means in the Operational Command's own wording, and how many such incidents Poland has logged since 2022. Then the part our reader should take: a saturation barrage of 358 munitions in one night is an economics story as much as a military one — it is designed to exhaust an interceptor stock that costs orders of magnitude more per shot than the drones it downs, which is the same cost-asymmetry arithmetic we set out on Chinese MANPADS to Iran, running from the other end. Zelensky's renewed appeal to allies for air-defence missiles is that arithmetic losing. Give the ministry's figures for launched versus intercepted, the named oblasts and casualty counts, what was hit, Poland's investigation status, NATO's response, and Moscow's account. SOURCING: five-source cluster carrying Ukrainska Pravda and the Kyiv Independent (the attacked country's own record) alongside the Guardian, WION and APA (AZ). Note the Guardian filing is a liveblog — do not lift its running structure; go to the underlying reports.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Poland",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Fighter_aircraft",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Lublin_Voivodeship",
+        "http://en.wikipedia.org/wiki/Airspace",
+        "http://en.wikipedia.org/wiki/Radar",
+        "http://en.wikipedia.org/wiki/Lublin"
+      ]
+    },
+    {
+      "id": "islamabad-mou-pakistan-mediation-us-iran-war",
+      "label": "Pakistan says 'doing utmost' to bring US, Iran back to Islamabad MoU",
+      "firstSeen": "2026-07-30T08:16:22.290Z",
+      "lastCovered": "2026-07-30T08:16:22.290Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-30-islamabad-mou-pakistan-mediation-us-iran-war"
+      ],
+      "eventUri": null,
+      "summary": "On the morning American strikes hit southern Iran and Iranian missiles reached Jordan, Pakistan's Foreign Office told its weekly briefing that Islamabad is 'doing its utmost' to bring Washington and Tehran back to the memorandum of understanding signed in Islamabad last month. Lead with that juxtaposition, because it is the only mediation architecture in this war that still formally exists and almost nobody outside South Asia knows it does. The mechanism to teach is why Pakistan and not a Gulf state holds this file: it borders Iran, is a treaty-adjacent US security partner, has a serving relationship with both militaries, and — unlike Qatar or Oman, whose mediation runs through personal channels — put a signed instrument on the table with terms that can be pointed at. That is what makes a collapsed MoU different from a collapsed conversation: there is a text to return to. Establish exactly what the Islamabad MoU committed each party to, when and why it broke down, who signed it and at what level, what Tahir Andrabi actually said and what he pointedly did not, and whether either Washington or Tehran has acknowledged the effort. Then the cost for our reader, which is the reason this is a Pakistan story and not a diplomacy story: Islamabad is mediating a war in which one belligerent's aircraft transit a region it depends on for oil and remittances, while it fights an insurgency at home that killed nine police in Hangu this week — so the state offering to broker peace abroad is the state losing control of Khyber Pakhtunkhwa, and its leverage in Washington is exactly what it cannot spend twice. Note that a foreign-ministry briefing is a claim about intent, not a fact about progress, and write it as such. SOURCING: Dawn alone — Pakistan's own record, which is the right anchor here; no wire carried the briefing.",
+      "conceptUris": []
+    },
+    {
+      "id": "mozambique-jus-soli-statelessness-birth-registration",
+      "label": "The right to nationality in Mozambique: The application of 'Jus soli' in the fight against statelessness",
+      "firstSeen": "2026-07-30T08:16:22.290Z",
+      "lastCovered": "2026-07-30T08:16:22.290Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-30-mozambique-jus-soli-statelessness-birth-registration"
+      ],
+      "eventUri": null,
+      "summary": "Mozambique applies jus soli — nationality by birth on the territory — and the piece asks whether it is actually reaching the people it exists for. Lead with what statelessness does rather than with the doctrine: without a legal identity a person cannot enrol in school, cannot be admitted to a hospital, cannot open an account, cannot register a marriage or a death, and cannot complain about any of it, so they are permanently available for exploitation by anyone who can. That is the mechanism to teach — nationality is not a status, it is the key that unlocks every other right, which is why the 1961 Convention treats statelessness as the condition that makes all other protections unenforceable. Then why Mozambique specifically: jus soli on paper collides with birth registration in practice, and in Cabo Delgado — where an insurgency has displaced hundreds of thousands and destroyed the civil registry offices along with everything else — the children born in displacement are exactly the cohort the law says are nationals and the state has no record of. Establish the numbers: registered births as a share of all births, UNHCR's estimate of stateless and at-risk people in Mozambique, what the Nationality Law actually says and what documentary proof it demands, and what the registration fee and travel distance cost a rural family. For our reader the frame is regional and uncomfortable: Mozambique is an OIC member whose jus soli rule is more generous than most of the Muslim world's, where nationality passes by descent through the father and the stateless populations — the bidoon of Kuwait and the Gulf, the Rohingya, children of unregistered marriages in camps — are produced by that rule rather than by administrative failure. Say so plainly and give figures. SOURCING: Global Voices alone; no Mozambican outlet in the feed. Attribute the reporting and go to the primary law and UNHCR data.",
+      "conceptUris": []
+    },
+    {
+      "id": "hernandez-pardon-honduras-return-rule-of-law",
+      "label": "Trump's favorite drug trafficker returns triumphantly to Honduras",
+      "firstSeen": "2026-07-30T08:16:22.290Z",
+      "lastCovered": "2026-07-30T08:16:22.290Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-30-hernandez-pardon-honduras-return-rule-of-law"
+      ],
+      "eventUri": null,
+      "summary": "Juan Orlando Hernández — former president of Honduras, convicted in a New York federal court of moving more than 400 tons of cocaine and sentenced to 45 years — flew home to Honduras on Sunday, eight months after Donald Trump pardoned him. Lead with the two facts side by side, because both are documentary and neither is in dispute: the conviction is on the record of the Southern District of New York, and the pardon was issued on 1 December 2025, two days before Honduras voted. The mechanism to teach is what a pardon does outside the United States, which is the part nobody built a doctrine for: it is an unreviewable domestic power with no foreign-policy check on it, and used this way it does not merely free a man, it restores a political faction abroad — Hernández's National Party now holds the presidency of Congress, has deposed the attorney general and the president of the Supreme Court, and that Court has ruled the standing domestic arrest warrant will not be observed. Then the accountability our reader will hold onto: the same administration is destroying vessels in the Caribbean and Pacific and threatening Cuba and Mexico under drug-war authority, so the pardon and the strikes are the same policy asking to be read as two, and a US senator has put that contradiction on the record in a confirmation hearing. This is the site's first Latin America filing in days and it is a rule-of-law story, not a Trump story — keep the subject Honduran. SOURCING AND CARE: Responsible Statecraft is advocacy-adjacent and this piece is signed commentary by an academic who attended the trial, so verify every hard fact independently — the conviction and sentence from the SDNY record, the pardon from the Federal Register or DOJ, the ICE-detainer lifting from ProPublica's reporting, the Aguán Valley killings of 26 May and the court rulings from Honduran outlets — and attribute analysis and characterisation to the author by name rather than adopting it. Give the 3 August hearing date, what charge he faces domestically, and what the government of President Asfura says.",
+      "conceptUris": []
+    },
+    {
+      "id": "equity-perpetuals-chip-selloff-280m-liquidations",
+      "label": "Rollercoaster bitcoin, ether price action leads to $280 million liquidations",
+      "firstSeen": "2026-07-30T08:16:22.290Z",
+      "lastCovered": "2026-07-30T08:16:22.290Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-30-equity-perpetuals-chip-selloff-280m-liquidations"
+      ],
+      "eventUri": null,
+      "summary": "Crypto prices went almost nowhere over twenty-four hours and $280 million of positions were liquidated anyway — and the losses were not on bitcoin, they were on leveraged bets on SanDisk, Micron and SK Hynix taken through equity perpetuals listed on crypto exchanges, in the sharpest chip selloff of the year. Lead with that sentence, because it contains two stories our reader has been following converging into one. The first is the memory trade turning: we filed Samsung's record 89.5 trillion won profit and its shortage warning yesterday, and this is the market taking the other side of it within a day — say plainly what the selloff prices in and what it does not, since a chip correction is not a shortage ending. The second is the mechanism, and it is the more important one: an equity perpetual is a never-expiring leveraged derivative on a listed share, offered by an offshore crypto venue to anyone with a wallet, with no broker, no suitability check, no settlement in the underlying and no securities regulator on either side of it. So exposure to Micron is now available at high leverage to a retail trader in Karachi, Lagos or Jakarta who could never open a US brokerage account — which is genuine access and a liquidation engine at the same time, and the $280 million is what the second half looks like. Explain funding rates and forced liquidation in plain terms, because that is how the money actually left. Give the exact liquidation split between long and short, which venues, the size of the chip move, where bitcoin and ether traded through it, and whether any regulator has said anything about equity perps. Note that CoinDesk is a crypto-industry outlet reporting on its own sector.",
+      "conceptUris": []
+    },
+    {
+      "id": "wildberries-warehouses-drone-strikes-civilian-logistics",
+      "label": "Fires at Wildberries facilities, 258 drones: aftermath of attacks on Russian regions",
+      "firstSeen": "2026-07-30T08:16:22.290Z",
+      "lastCovered": "2026-07-30T08:16:22.290Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-30-wildberries-warehouses-drone-strikes-civilian-logistics"
+      ],
+      "eventUri": null,
+      "summary": "Russia's defence ministry says 258 Ukrainian drones were intercepted overnight and fires broke out at facilities of Wildberries — Russia's largest online retailer, not a refinery, not a depot, a warehouse network that delivers parcels to ordinary households. Lead with the target class, because that is the change: Ukraine's deep-strike campaign has moved from oil refineries and military logistics to civilian commercial infrastructure near Moscow and St Petersburg, and a warehouse is undefended, uninsurable at war risk, and impossible to disperse. The mechanism to teach is what deep strike is actually for when it cannot take ground — it is an attempt to make the war cost something to the population that has been insulated from it, by degrading the consumer economy rather than the front, and its record is poor: the same argument was made for strategic bombing in every war that tried it, and analysts quoted this week in Responsible Statecraft argue precisely that these strikes 'do not disrupt Moscow's core ability to wage a long-term war of attrition.' Say what is known about damage, injuries and whether Wildberries has suspended operations, and be exact that one person is reported injured in Penza. Set it directly against the same night's Russian barrage on Ukraine, which we are filing separately, so the reader sees both directions in one cycle rather than one. For our reader the transferable point is insurance and logistics: once retail warehousing inside a nuclear state is a target set, freight, warehousing and e-commerce war-risk pricing changes across the whole Eurasian corridor that Central Asian and Gulf traders use. CRITICAL SOURCING: TASS is Russian state media and is the only outlet in the feed carrying this — it must not anchor the article. Attribute every figure to the Russian defence ministry as a claim, seek independent confirmation of the Wildberries fires (Ukrainian General Staff statements, NASA FIRMS thermal data, Wildberries' own notices), and state clearly what could not be verified.",
+      "conceptUris": []
+    },
+    {
+      "id": "for-profit-detention-index-funds-occupancy-contracts",
+      "label": "Are Your Investments Fueling For-Profit Immigrant Detention?",
+      "firstSeen": "2026-07-30T08:16:22.290Z",
+      "lastCovered": "2026-07-30T08:16:22.290Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-30-for-profit-detention-index-funds-occupancy-contracts"
+      ],
+      "eventUri": null,
+      "summary": "Activists are no longer protesting outside detention centres; they are going after the capital that builds them — the listed operators, their lenders, and the index funds that hold them on behalf of teachers' pensions and university endowments. Lead with the ownership chain and make it concrete, because that is the whole point of the story: name the operators (GEO Group and CoreCivic are the listed ones), give their detention revenue and how much of it is federal, name the banks that underwrite the debt, and name the funds — a broad-market index fund holds these companies automatically, which is how a person who has never heard of them is a part-owner. The mechanism to teach is why this is a leverage point at all: detention capacity is capital-intensive and financed, so the binding constraint is not political will but the cost and availability of credit, and a lender withdrawing does more to the bed count than a protest does. It is also the mechanism's limit — divested shares are bought by someone, so state honestly what divestment has and has not achieved, and where the campaigns have actually moved money (several large banks exited the sector in 2019 and the operators refinanced elsewhere). For our reader the frame is not American: this is the clearest available worked example of how a state outsources coercion to a balance sheet, and the same structure runs the Gulf's labour-recruitment intermediaries, Europe's externalised border contracts in Libya and Turkey, and the surveillance vendors sold into the Muslim world — the question 'who is paid, and by whom, per person held' travels everywhere. Give the current ICE detention population and the per-detainee daily rate, the contract structures including guaranteed-minimum occupancy clauses if present, share prices since the current administration took office, and what the companies say. SOURCING: Inkstick alone. Verify every financial figure against SEC filings and ICE contract data rather than the article, and attribute campaign claims to the campaigners.",
+      "conceptUris": []
+    },
+    {
+      "id": "atra-rarbeta-myeloma-imid-resistance-cheap-repurposing",
+      "label": "Activating RARβ to overcome immunomodulatory drug resistance in t(4;14) human myeloma",
+      "firstSeen": "2026-07-30T08:16:22.290Z",
+      "lastCovered": "2026-07-30T08:16:22.290Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-30-atra-rarbeta-myeloma-imid-resistance-cheap-repurposing"
+      ],
+      "eventUri": null,
+      "summary": "Researchers report that all-trans retinoic acid — a vitamin A derivative that has been off patent for decades and costs almost nothing — restores sensitivity to pomalidomide in myeloma cells carrying the t(4;14) translocation, with the combination showing synergy rather than mere addition on the Chou-Talalay index. Lead with the price of the second drug, because that is what makes this worth a global reader's attention: t(4;14) is one of the high-risk cytogenetic subgroups of multiple myeloma, its patients stop responding to the immunomodulatory drugs that are the backbone of treatment, and the alternatives are the newest and most expensive agents in oncology — CAR-T and bispecific antibodies — which are effectively unavailable across most of Africa, South Asia and the Middle East. A cheap old drug that makes a merely expensive drug work again is a different kind of finding from a new drug. The mechanism to teach is resistance and how it is reversed: RARβ is a retinoic acid receptor that these cells silence epigenetically, ATRA reactivates it, and the point is that the resistance was a switch rather than a mutation — a reversible state, which is why an old agonist can flip it back. Be exact and sceptical about how far this goes: this is cell-line and preclinical work with combination-index arithmetic, not a trial, so give the models used, the concentrations at which synergy appeared and whether they are achievable in a patient, whether any primary patient samples or animal work is included, and the authors' own stated limitations. Say plainly what a reader should not conclude — no one should change treatment on this. Then the honest bottom line: if it holds, the beneficiaries are precisely the health systems that cannot buy their way past resistance, and the next step is a trial that somebody has to fund for a drug nobody can profit from, which is the structural reason repurposing findings stall.",
+      "conceptUris": []
+    },
+    {
+      "id": "iiasa-climate-emulator-uncertainty-national-risk-assessment",
+      "label": "From single projection to many possibilities: A new tool for climate risk assessment",
+      "firstSeen": "2026-07-30T08:16:22.290Z",
+      "lastCovered": "2026-07-30T08:16:22.290Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-30-iiasa-climate-emulator-uncertainty-national-risk-assessment"
+      ],
+      "eventUri": null,
+      "summary": "IIASA researchers have built an emulator that generates regional climate and impact projections from existing model output instead of running the full Earth-system model chain — cheaply enough to produce many scenarios rather than one. Lead with who currently cannot run that chain, because that is the consequence and the press release will not state it: a coupled model ensemble needs supercomputing time, a modelling group and years, so the countries that produce their own national climate risk assessments are a short list, and everyone else adapts on the basis of one downscaled projection handed to them by someone else's institute. One projection is the worst possible input for adaptation, because it looks like a forecast — and the whole of climate risk lives in the spread, not the central line. The mechanism to teach is why the uncertainty is the product: a ministry deciding a drainage standard, a reservoir rule curve or a crop insurance trigger needs the distribution of outcomes, and a single line gives it a number with no way to price the tail. An emulator that samples that distribution at low cost is what lets Pakistan, Egypt, Nigeria, Bangladesh or Somalia do their own assessment rather than receive one — and set that directly against this week's Haryana groundwater filing and the malaria-range shift, both of which are exactly the questions this class of tool is meant to answer at national scale. Be precise about the limits: an emulator learns from the projections it was trained on, so it cannot produce a mechanism the parent models do not contain, and it will be least trustworthy for the extremes that matter most. Give the institutions and the paper, what impacts it covers, how it was validated against full model runs, the compute cost against the chain it replaces, and whether the code and outputs are open. Sourced to Phys.org's write-up of an IIASA release — cite the underlying paper, not the release.",
+      "conceptUris": []
+    },
+    {
+      "id": "grapheneos-wipe-code-charge-precedent-encryption",
+      "label": "'The Government Hopes To Set a Precedent': An Interview With the Man Charged for Allegedly Wiping His GrapheneOS Phone",
+      "firstSeen": "2026-07-30T08:16:22.290Z",
+      "lastCovered": "2026-07-30T08:16:22.290Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-30-grapheneos-wipe-code-charge-precedent-encryption"
+      ],
+      "eventUri": null,
+      "summary": "Samuel Tunick has been charged by the US government for allegedly typing a passcode that wiped his own phone before officers could search it — the act charged is entering a number into a device he owned. Lead with exactly that, in those terms, because the charge only sounds ordinary if it is described as 'destroying evidence' and only sounds extraordinary if it is described as what physically happened. The mechanism to teach is what a duress or wipe code is and why it exists: GrapheneOS is a hardened Android build used by journalists, aid workers, lawyers and people crossing borders, and its wipe function is a designed security feature, not a hack — so a prosecution over using it is a prosecution over a product's intended behaviour, and the precedent would attach criminal liability to a category of software rather than to a person's conduct. Establish the statute charged and its elements, whether the government must prove he knew of a specific investigation, what the underlying case is, what the government's filings actually claim, whether the phone was seized under warrant, and what his counsel argues. Then the structural point our reader should carry: this is the same shape as the two filings that bracket it in our recent record — the Alien Terrorist Removal Court switched on for the first time in thirty years, and Pakistan's NCCIA summoning a journalist under a new cyber-offence statute — where the instrument is old or narrow, the first use is the whole event, and the process is the punishment. And note that this is the encryption argument arriving where it was always going to: unable to compel a passcode reliably, the state criminalises the alternative. Attribute Tunick's account as his own; get the prosecution's position or record that it declined. 404 Media is the sole outlet and did the interview.",
+      "conceptUris": []
+    },
+    {
+      "id": "esafety-telegram-removal-notice-offshore-enforcement",
+      "label": "Australia sues Telegram over alleged failure to remove extremist content; platform could face $38 million penalty",
+      "firstSeen": "2026-07-30T08:16:22.290Z",
+      "lastCovered": "2026-07-30T08:16:22.290Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-30-esafety-telegram-removal-notice-offshore-enforcement"
+      ],
+      "eventUri": "eng-11876810",
+      "summary": "Australia's eSafety Commissioner has taken Telegram to court for failing to remove terrorist material — Isis execution videos and footage of the Christchurch and Buffalo attacks — with a penalty of up to A$38 million in play. Lead with the regulator rather than the platform, because the novelty is the instrument: eSafety can issue a binding removal notice to a foreign company with no Australian office, and this is the enforcement step that tests whether that notice is worth anything. The mechanism to teach is jurisdiction without presence — the Online Safety Act reaches any service accessible in Australia, so the question the court answers is not whether the content is lawful but whether an offshore platform that ignores a notice can be made to pay, and the answer sets the template every mid-sized regulator has been waiting for. Telegram is the right defendant for that test precisely because it has the thinnest compliance function of any major platform, which is also why the material was there. Then set it against the record our reader already has: Moscow's FSB has charged Pavel Durov over what Telegram's users wrote, and Paris expelled a broadcaster by ministerial order — so three states are now asserting authority over the same company by three different routes, and only this one runs through a court with a published standard and an appeal. That distinction is the story, and it is worth stating without either cheering the regulator or defending the platform: a takedown power exercised judicially is the least dangerous version of a power that is dangerous in every version, and Christchurch is why Australia built it. Give the filing date and court, the specific notices Telegram is alleged to have ignored, the statutory maximum and how it is calculated, Telegram's response, and what eSafety's previous actions against X and others achieved. SOURCING: three-source cluster with TRT World (TR) carrying the regional voice alongside The Independent (GB) and Mint (IN); note the sentiment divergence of 0.42.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Australia",
+        "http://en.wikipedia.org/wiki/Telegram_(messaging_service)",
+        "http://en.wikipedia.org/wiki/Terrorism",
+        "http://en.wikipedia.org/wiki/Mass_shooting",
+        "http://en.wikipedia.org/wiki/Extremism",
+        "http://en.wikipedia.org/wiki/Christchurch",
+        "http://en.wikipedia.org/wiki/Buffalo,_New_York",
+        "http://en.wikipedia.org/wiki/Australian_dollar"
+      ]
+    },
+    {
+      "id": "data-centre-hearing-arrest-county-zoning-consent",
+      "label": "'Clapping Is a First Amendment Right:' An Interview With the Person Arrested for Clapping at a Data Center Meeting",
+      "firstSeen": "2026-07-30T08:16:22.290Z",
+      "lastCovered": "2026-07-30T08:16:22.290Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-07-30-data-centre-hearing-arrest-county-zoning-consent"
+      ],
+      "eventUri": null,
+      "summary": "A resident was arrested for clapping at a public meeting about a proposed data centre. Lead with the arrest and the reason given, because the smallness of the act is the entire measurement being taken: the question is not whether clapping is protected speech, it is what pressure a local planning process is under such that applause becomes an arrestable offence. The mechanism to teach is where data centres are actually decided — not in Congress or a national regulator but in county zoning boards and utility commissions, sitting in rooms with a dozen residents, ruling on rezonings, tax abatements and interconnection agreements worth billions to companies with more legal capacity than the county has staff. That asymmetry is the story, and it is the third dimension of the constraint we have now filed twice: the interconnection queue is the grid's limit, licensed electricians are labour's limit, and consent at the county level is the political one — and it is the only one of the three a company can attempt to manage by changing the rules of the room. Establish precisely what happened: the jurisdiction, the project and its developer, the power and water it would draw, what the chair ruled and under what authority, the charge, and whether it has been dropped. Get the county's account, not only the arrestee's. Then the frame that makes this a global story rather than a local one: the same build-out is landing in Saudi Arabia, the UAE, Malaysia and Indonesia, where the equivalent hearing does not exist at all, so this is what the loudest available version of public objection to a data centre looks like — and it produced an arrest. 404 Media is the sole outlet; attribute the interview to it and treat the interviewee's account as their own.",
+      "conceptUris": []
+    },
+    {
       "id": "turk-lebanon-gaza-pattern-documentation-no-enforcement",
       "label": "U.N. rights chief sees Gaza-like pattern in south Lebanon",
       "firstSeen": "2026-07-30T04:13:32.184Z",
       "lastCovered": "2026-07-30T04:13:32.184Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-30-turk-lebanon-gaza-pattern-documentation-no-enforcement"
@@ -33,7 +268,7 @@
       "lastCovered": "2026-07-30T04:13:32.184Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-30-israel-lebanon-rome-pilot-zone-bilateral-replaces-1701"
@@ -58,7 +293,7 @@
       "lastCovered": "2026-07-30T04:13:32.184Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-30-hangu-checkpost-nine-police-killed-static-post-burden"
@@ -74,7 +309,7 @@
       "lastCovered": "2026-07-30T04:13:32.184Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-30-alien-terrorist-removal-court-first-case-classified-evidence"
@@ -90,7 +325,7 @@
       "lastCovered": "2026-07-30T04:13:32.184Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-30-samsung-record-profit-memory-shortage-device-prices"
@@ -115,7 +350,7 @@
       "lastCovered": "2026-07-30T04:13:32.184Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-30-meta-free-cash-flow-collapse-capex-depreciation-assumption"
@@ -131,7 +366,7 @@
       "lastCovered": "2026-07-30T04:13:32.184Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-30-gaza-forced-cashless-economy-note-shortage-failed-transfers"
@@ -147,7 +382,7 @@
       "lastCovered": "2026-07-30T04:13:32.184Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-30-haryana-groundwater-136-percent-extraction-fossil-water"
@@ -163,7 +398,7 @@
       "lastCovered": "2026-07-30T04:13:32.184Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-30-urine-hpv-pax1-methylation-self-sampling-screening-access"
@@ -179,7 +414,7 @@
       "lastCovered": "2026-07-30T04:13:32.184Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-30-indian-ev-efficiency-icct-small-battery-engineering"
@@ -195,7 +430,7 @@
       "lastCovered": "2026-07-30T04:13:32.184Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-30-ai-datacentre-electricians-licensing-bottleneck-trades"
@@ -211,7 +446,7 @@
       "lastCovered": "2026-07-30T04:13:32.184Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-07-30-lhc-crypto-bail-non-retroactivity-blockchain-record"
@@ -227,7 +462,7 @@
       "lastCovered": "2026-07-29T22:14:28.502Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-29-damietta-lng-floating-storage-drone-mediterranean-war-risk"
@@ -252,7 +487,7 @@
       "lastCovered": "2026-07-29T22:14:28.502Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-29-fed-holds-350-375-fuel-led-inflation-dollar-plateau"
@@ -277,7 +512,7 @@
       "lastCovered": "2026-07-29T22:14:28.502Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-29-fcc-foreign-robot-ban-equipment-authorisation-chokepoint"
@@ -293,7 +528,7 @@
       "lastCovered": "2026-07-29T22:14:28.502Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-29-vande-mataram-bill-compelled-singing-national-honour-act"
@@ -318,7 +553,7 @@
       "lastCovered": "2026-07-29T22:14:28.502Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-29-fedorova-deportation-order-administrative-measure-appeal"
@@ -343,7 +578,7 @@
       "lastCovered": "2026-07-29T22:14:28.502Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-29-tokayev-freeze-ukraine-multi-vector-kazakhstan-alliance"
@@ -359,7 +594,7 @@
       "lastCovered": "2026-07-29T22:14:28.502Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-29-malaria-risk-shift-africa-temperature-window-no-immunity"
@@ -375,7 +610,7 @@
       "lastCovered": "2026-07-29T22:14:28.502Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-29-china-15th-plan-renewables-curtailment-integration-price"
@@ -391,7 +626,7 @@
       "lastCovered": "2026-07-29T22:14:28.502Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-29-openai-rogue-agent-four-more-victims-unnamed-blast-radius"
@@ -407,7 +642,7 @@
       "lastCovered": "2026-07-29T22:14:28.502Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-29-discover-what-s-next-for-ai-from-the-saas-reckoning-to-the-a"
@@ -432,7 +667,7 @@
       "lastCovered": "2026-07-29T22:14:28.502Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-07-29-customize-ars-your-way-with-an-ars-pro-subscription"
@@ -448,7 +683,7 @@
       "lastCovered": "2026-07-29T17:12:49.479Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-07-29-iran-china-manpads-transfer-low-band-air-denial",
@@ -474,7 +709,7 @@
       "lastCovered": "2026-07-29T17:12:49.479Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-07-29-india-exam-irregularity-protests-pradhan-resignation-firing-order",
@@ -501,7 +736,7 @@
       "lastCovered": "2026-07-29T17:12:49.479Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-07-29-bmw-8000-job-cuts-german-auto-china-margin-loss",
@@ -527,7 +762,7 @@
       "lastCovered": "2026-07-29T17:12:49.479Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-29-jordan-bases-struck-iran-horizontal-escalation-arab-states"
@@ -552,7 +787,7 @@
       "lastCovered": "2026-07-29T17:12:49.479Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-29-nccia-toor-summons-state-as-complainant-cybercrime-speech"
@@ -568,7 +803,7 @@
       "lastCovered": "2026-07-29T17:12:49.479Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-29-venezuela-criminal-order-after-maduro-reshuffled-not-reformed"
@@ -584,7 +819,7 @@
       "lastCovered": "2026-07-29T17:12:49.479Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-29-china-houthis-red-sea-passage-bilateral-toll-navigation"
@@ -609,7 +844,7 @@
       "lastCovered": "2026-07-29T17:12:49.479Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-29-tap-binding-bids-lufthansa-air-france-lusophone-routes"
@@ -634,7 +869,7 @@
       "lastCovered": "2026-07-29T17:12:49.479Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-29-data-centre-power-interconnection-queue-ratepayers-clean-air"
@@ -650,7 +885,7 @@
       "lastCovered": "2026-07-29T17:12:49.479Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-29-glasswing-ai-bug-discovery-outpaces-patching-microsoft"
@@ -666,7 +901,7 @@
       "lastCovered": "2026-07-29T17:12:49.479Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-29-laundry-bear-owa-exploit-attribution-is-not-an-ending"
@@ -682,7 +917,7 @@
       "lastCovered": "2026-07-29T17:12:49.479Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-29-muon-g-2-anomaly-resolved-hadronic-lattice-new-clash"
@@ -698,7 +933,7 @@
       "lastCovered": "2026-07-29T17:12:49.479Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-07-29-un-draft-22-of-23-nature-targets-missed-no-enforcement"
@@ -714,7 +949,7 @@
       "lastCovered": "2026-07-29T12:13:39.519Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-29-nigeria-coup-plot-cleric-payments-financing-trail"
@@ -730,7 +965,7 @@
       "lastCovered": "2026-07-29T12:13:39.519Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-28-pakistan-brownfield-refining-policy-escrow-fuel-imports"
@@ -746,7 +981,7 @@
       "lastCovered": "2026-07-29T12:13:39.519Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-27-vietnam-halcert-halal-certification-market-access"
@@ -762,7 +997,7 @@
       "lastCovered": "2026-07-29T12:13:39.519Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-29-binance-metals-options-cash-settled-exposure"
@@ -778,7 +1013,7 @@
       "lastCovered": "2026-07-29T12:13:39.519Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-29-south-africa-double-burden-stunting-child-obesity-grant"
@@ -794,7 +1029,7 @@
       "lastCovered": "2026-07-29T12:13:39.519Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-29-lean-masld-india-visceral-adiposity-screening-gap"
@@ -810,7 +1045,7 @@
       "lastCovered": "2026-07-29T12:13:39.519Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-29-jwst-newborn-little-red-dot-black-hole-seed"
@@ -826,7 +1061,7 @@
       "lastCovered": "2026-07-29T12:13:39.519Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-29-synthid-watermarking-provenance-deniability"
@@ -842,7 +1077,7 @@
       "lastCovered": "2026-07-29T12:13:39.519Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-29-china-gaokao-ai-advisers-allocation-feedback-loop"
@@ -858,7 +1093,7 @@
       "lastCovered": "2026-07-29T12:13:39.519Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-07-29-ssvep-bci-electrode-reconstruction-bedside-patients"
@@ -874,7 +1109,7 @@
       "lastCovered": "2026-07-29T22:14:28.502Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-07-29-pakistan-second-monsoon-spell-saturated-ground-crop-loss",
@@ -900,7 +1135,7 @@
       "lastCovered": "2026-07-29T08:13:10.373Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-29-pmf-death-toll-nineveh-iraqi-state-paramilitary-sovereignty"
@@ -925,7 +1160,7 @@
       "lastCovered": "2026-07-29T08:13:10.373Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-29-ryazan-refinery-wildberries-deep-strike-attrition-economics"
@@ -950,7 +1185,7 @@
       "lastCovered": "2026-07-29T08:13:10.373Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-29-faye-kiiraay-pastef-split-sonko-parliamentary-majority"
@@ -966,7 +1201,7 @@
       "lastCovered": "2026-07-29T08:13:10.373Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-29-rohingya-camp-education-accreditation-permanence-policy"
@@ -982,7 +1217,7 @@
       "lastCovered": "2026-07-29T08:13:10.373Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-29-bannu-peace-committee-indus-highway-auxiliary-security"
@@ -998,7 +1233,7 @@
       "lastCovered": "2026-07-29T08:13:10.373Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-29-shell-niger-delta-decommissioning-liability-divestment"
@@ -1014,7 +1249,7 @@
       "lastCovered": "2026-07-29T08:13:10.373Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-29-fed-decision-forward-guidance-independence-dollar-rate"
@@ -1030,7 +1265,7 @@
       "lastCovered": "2026-07-29T08:13:10.373Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-29-australia-graduate-visa-fees-india-education-migration-pipeline"
@@ -1046,7 +1281,7 @@
       "lastCovered": "2026-07-29T08:13:10.373Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-29-durov-fsb-terrorism-charge-intermediary-liability-encryption"
@@ -1071,7 +1306,7 @@
       "lastCovered": "2026-07-29T08:13:10.373Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-29-lebanon-child-online-safety-committee-age-verification-identity"
@@ -1087,7 +1322,7 @@
       "lastCovered": "2026-07-29T08:13:10.373Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-29-immersion-vaccine-chitosan-nanoparticle-aquaculture-amr"
@@ -1103,7 +1338,7 @@
       "lastCovered": "2026-07-29T08:13:10.373Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-29-lead-samsung-c-t-q2-net-profit-jumps-73-9-pct-on-diversified"
@@ -1128,232 +1363,13 @@
       "lastCovered": "2026-07-29T08:13:10.373Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-07-29-sounds-like-london-100-years-of-black-music-in-the-capital-3"
       ],
       "eventUri": null,
       "summary": "[Auto-backfill for tech floor] A milestone is passed with the emergence of Afro-rock - a genuine London sound from an African perspective. Lloyd Bradley explores the story of a London's transformation through its music, taking in the wave of Commonwealth immigration in the 40s right up to the present day. Abridged by Natalie Stee",
-      "conceptUris": []
-    },
-    {
-      "id": "us-saudi-strikes-iraq-riyadh-enters-iran-war",
-      "label": "Saudi Arabia joins US in strikes on Iraq",
-      "firstSeen": "2026-07-29T04:12:55.032Z",
-      "lastCovered": "2026-07-29T04:12:55.032Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-29-us-saudi-strikes-iraq-riyadh-enters-iran-war"
-      ],
-      "eventUri": "eng-11873242",
-      "summary": "CENTCOM says US and Saudi aircraft struck Iran-aligned logistics and weapons sites across eastern Iraq, framed as a response to more than 30 IRGC-directed drone attacks in 72 hours. Lead with the Saudi participation, because that is the new fact and everything else is continuity: Riyadh has spent a decade avoiding open kinetic participation in a US-Iran confrontation, and joint strikes on Iraqi soil end that posture in a single sortie. The mechanism to teach is sovereignty — the strikes are on Iraq, a state that is neither party's enemy and whose government has to explain to its own parliament why two foreign air forces operate over Diyala and Anbar; Baghdad's position, or its silence, is the part most write-ups will skip. Then the escalation ladder our reader needs: Iran fired ballistic missiles at a US air base and a CENTCOM facility in Jordan the same night (US Central Command says they were intercepted; the IRGC claims them as retaliation), Aramco's Jazan refinery is still shut from last week's Houthi strike, and the IRGC is now disabling tankers in Hormuz — this is one war reaching four countries in a week. Give the targets named, the aircraft and munitions if stated, casualties on the ground, Baghdad's response, and what Tehran says. Note that Reuters, TRT World, RT and TASS diverge sharply on who initiated what: state media is carried for the position it states, never as corroboration.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iraq",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Terrorism",
-        "http://en.wikipedia.org/wiki/United_States_Central_Command",
-        "http://en.wikipedia.org/wiki/Islamic_Revolutionary_Guard_Corps"
-      ]
-    },
-    {
-      "id": "saudi-cables-special-committee-yemen-2012-directive",
-      "label": "Leaked Saudi Cables Reveal the Shadowy Committee That Oversees the Kingdom's Policy on Yemen",
-      "firstSeen": "2026-07-29T04:12:55.032Z",
-      "lastCovered": "2026-07-29T04:12:55.032Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-29-saudi-cables-special-committee-yemen-2012-directive"
-      ],
-      "eventUri": null,
-      "summary": "Leaked cables show a Special Committee of the Saudi Council of Ministers directing the kingdom's Yemen policy, and a 2012 instruction from then-defence minister Salman bin Abdulaziz to engineer a rift in order to target Ansarallah — three years before the war began. Lead with the date, because it is what the documents actually establish: the standard account has Saudi Arabia responding in 2015 to a Houthi takeover, and a 2012 directive to split and target them puts deliberate policy where reaction is usually claimed. The mechanism to teach is the committee itself — a body outside the ordinary ministries, reporting to the defence portfolio, which is how a state runs a war file without it passing through the institutions that would leave a public record; identify who sat on it and what it controlled (funds, tribal payments, factional appointments). Then the consequence, which must not be lost behind the intrigue: Yemen has endured the world's largest cholera outbreak, famine conditions and well over a decade of blockade, and this is documentary evidence about who chose the policy. Set it against this month's collapse of the de facto Saudi-Houthi truce, the Houthi strike that shut Aramco's Jazan refinery, and Saudi aircraft now flying alongside the US over Iraq — the same government, the same week. SOURCING: single-source but original document-based reporting no wire has. Build on what the cables say, quote them, state their provenance and any limits on authentication, and give Riyadh's response or record that it did not respond. The feed carried no Gulf or Yemeni outlet on this.",
-      "conceptUris": []
-    },
-    {
-      "id": "ajk-asif-enemies-framing-32-dead-rawalakot",
-      "label": "'They're Enemies Like India': Khawaja Asif Defends Killing Of 32 PoK Protestors",
-      "firstSeen": "2026-07-29T04:12:55.032Z",
-      "lastCovered": "2026-07-29T04:12:55.032Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-29-ajk-asif-enemies-framing-32-dead-rawalakot"
-      ],
-      "eventUri": "eng-11870103",
-      "summary": "Pakistan's defence minister Khawaja Asif is reported to have defended the killing of at least 32 protesters in Rawalakot by equating Azad Jammu and Kashmir demonstrators with India — 'they're enemies like India'. This is the fourth move in a file we have followed all week: concede to the Joint Awami Action Committee, proscribe it, brand its members khawarij, and now place them outside the nation altogether. Lead with the count of the dead and their names where they can be got, not the quote, because 32 people killed protesting flour and electricity tariffs is the fact and the minister's framing is the response to it. The mechanism to teach is the sequence itself: each step widens the legal category the state may use force under, and 'enemy' is the last one — a protester who is an enemy is a combatant, and a combatant may be shot. Explain what AJK's constitutional status does here: its residents elect an assembly with no representation in Pakistan's parliament, so the grievance has no ordinary political route, which is why it reaches the street and then the mortuary. SOURCING DISCIPLINE — this matters more than usual: the only filing in the feed is NDTV, an Indian outlet reporting a Pakistani minister on Kashmir, which is an interested party. Anchor the piece on the checkable record — the death toll and its source, the date and venue of Asif's remarks, the full quote in context, the JAAC's stated demands, the proscription order — attribute the characterisation to NDTV, and say plainly if Dawn, Geo or the ministry have confirmed, disputed or not addressed the quote. No Pakistani outlet carried it in this cycle.",
-      "conceptUris": []
-    },
-    {
-      "id": "hernandez-pardon-narco-state-conviction-precedent",
-      "label": "The InSight Take: Juan Orlando Hernández, from Indictment to Pardon",
-      "firstSeen": "2026-07-29T04:12:55.032Z",
-      "lastCovered": "2026-07-29T04:12:55.032Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-29-hernandez-pardon-narco-state-conviction-precedent"
-      ],
-      "eventUri": null,
-      "summary": "Honduras's former president Juan Orlando Hernández was convicted in a US federal court of running his country as a narco-state, sentenced to 45 years, and is now free by presidential pardon. Lead with the pardon and the arithmetic of it: a head of state prosecuted by the United States for moving cocaine through the institutions he commanded, convicted on the testimony of traffickers and DEA evidence, released by the executive of the same government that convicted him. The mechanism to teach is what the pardon power actually reaches — it erases a federal sentence without touching the findings of fact, so the conviction stands as a record while the punishment evaporates, and there is no appeal against clemency by anyone, including the prosecutors who built the case. Then the structural point our reader will want: US drug-war policy in Central America has always rested on the claim that it prosecutes corruption without regard to office, and this is the counter-example that will be cited in every future extradition fight from Tegucigalpa to Quito — Honduran and Ecuadorean defence lawyers now have a precedent that the sentence is negotiable at a level above the court. Say what it means inside Honduras, where JOH's party is contesting elections and his release is a live domestic event. Give the indictment date, the charges and statutes, the trial and sentence, the pardon's date and stated grounds, what the prosecutors and the Honduran government each said, and what the court found about the 2013 and 2017 elections. Latin America has been absent from our coverage for several cycles; InSight Crime is the specialist outlet on this file and no wire in the feed carried it.",
-      "conceptUris": []
-    },
-    {
-      "id": "kyushu-quake-toll-13-mall-collapse-seismic-code",
-      "label": "Japan quake toll rises to 13 as rescuers haul people from collapsed mall",
-      "firstSeen": "2026-07-29T04:12:55.032Z",
-      "lastCovered": "2026-07-29T04:12:55.032Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-29-kyushu-quake-toll-13-mall-collapse-seismic-code"
-      ],
-      "eventUri": "spa-4283960",
-      "summary": "The Kyushu earthquake we covered on the tsunami advisory has become a rescue operation: 13 dead, people still being pulled from a collapsed shopping mall, Prime Minister Takaichi calling it a race against time. Lead with the mall, because the collapse is the anomaly and therefore the story — Japan's post-1981 seismic code is the strictest in the world and its large commercial structures are not supposed to pancake at this magnitude, so the question a reader should be handed is when that building was built or last retrofitted, and whether it was one of the known stock exempted from later standards. The mechanism to teach is the 72-hour window: survival rates under rubble fall off a cliff after three days, which is why the size of the response in the first hours decides the final toll more than the magnitude does. Give the confirmed dead and missing, the towns affected, the shelter population, the aftershock forecast the JMA has issued, and what has happened to power and water. Then the comparison worth drawing for our reader: this is a wealthy state with the world's best building code and it still lost a mall — the same magnitude in Herat, Kahramanmaraş or Balochistan is measured in thousands, and the difference is entirely enforcement and money, not geology. Update rather than restate: our earlier piece covered the advisory tiers, so this one is the toll, the rescue and the buildings.",
-      "conceptUris": []
-    },
-    {
-      "id": "hormuz-tankers-disabled-transit-passage-war-risk",
-      "label": "Three tankers hit after using illegal route in Hormuz Strait",
-      "firstSeen": "2026-07-29T04:12:55.032Z",
-      "lastCovered": "2026-07-29T04:12:55.032Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-29-hormuz-tankers-disabled-transit-passage-war-risk"
-      ],
-      "eventUri": null,
-      "summary": "The IRGC Navy says it struck and disabled three oil tankers that ignored warnings and continued through what it calls an unauthorised passage in the Strait of Hormuz; Brent rebounded 3.2% to $86.80 the same morning. Lead with the phrase 'unauthorised passage', because it is a legal claim and the whole story is inside it: Iran is asserting the right to route and to stop commercial shipping in a strait where UNCLOS grants transit passage that a coastal state may not suspend, and disabling a vessel for using the wrong lane converts a traffic-separation scheme into a checkpoint. That is a different act from mining or seizing a ship, and it is the one that changes the price of everything. The mechanism to teach is war-risk insurance, not oil: roughly a fifth of the world's seaborne crude and a large share of its LPG pass Hormuz, and the transmission from a strait incident to a Pakistani or Bangladeshi household is the premium underwriters charge per voyage, which reprices within days and is paid by importers, not by Iran or the US. Follow that chain — premium, charter rate, cargo cost, subsidised pump price, fiscal deficit — and name which countries sit at the end of it. Give the vessels, flags, crews and any casualties; the IRGC's own account; whether owners, the US Navy or UKMTO have confirmed anything; and the current Brent and WTI levels with the size of the move. SOURCING: Mehr is Iranian state media and is the actor's own account of its own action. Carry it as the IRGC's claim, attributed in every sentence that rests on it, state clearly what independent confirmation exists and what does not, and do not let the phrase 'illegal route' pass unquoted.",
-      "conceptUris": []
-    },
-    {
-      "id": "hyperscaler-capex-repricing-depreciation-window",
-      "label": "Amazon Earnings Must Prove $200 Billion in AI Spending Can Pay Off",
-      "firstSeen": "2026-07-29T04:12:55.032Z",
-      "lastCovered": "2026-07-29T04:12:55.032Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-29-hyperscaler-capex-repricing-depreciation-window"
-      ],
-      "eventUri": "eng-11863440",
-      "summary": "Investors punished Alphabet for its capital expenditure guidance, and Amazon now reports into a market that has changed its mind about what AI spending is worth. Lead with the reversal rather than the earnings date: for three years higher capex read as conviction and the stock rose on it, and the same disclosure now reads as a hole in the cash flow — that is a repricing of the entire buildout, and it happened without a single model getting worse. The mechanism to teach is the depreciation schedule, which is where this is actually decided: a data centre full of accelerators is booked over five or six years, so the $200bn is not an expense today, it is a commitment to earn a return before the hardware is written down, and the market's new question is whether the revenue arrives inside that window. Then the part that reaches our reader directly: this capex is the demand behind the chip supply, the power contracts and the land, so a hyperscaler blinking shows up as cancelled grid connections, softer memory prices and stalled data-centre projects in the Gulf, Malaysia and India, where sovereign AI programmes have been priced off the assumption that this spending only goes up. Give the actual figures — Alphabet's guidance and the market reaction, Amazon's AWS growth rate and capex, the consensus, what Microsoft and Meta have signalled — and be precise that a preview is not a result: say what is known and what is expected, and do not write the quarter before it prints.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Amazon_(company)",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Amazon_Web_Services",
-        "http://en.wikipedia.org/wiki/Cloud_computing",
-        "http://en.wikipedia.org/wiki/Wall_Street",
-        "http://en.wikipedia.org/wiki/Capital_expenditure",
-        "http://en.wikipedia.org/wiki/Chief_executive_officer",
-        "http://en.wikipedia.org/wiki/Andy_Jassy"
-      ]
-    },
-    {
-      "id": "flock-alpr-casa-grande-council-symmetry-test",
-      "label": "'I Would Never Do This To You:' Protesting Flock, Arizona Man Presents Plan to Surveil Government Officials",
-      "firstSeen": "2026-07-29T04:12:55.032Z",
-      "lastCovered": "2026-07-29T04:12:55.032Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-29-flock-alpr-casa-grande-council-symmetry-test"
-      ],
-      "eventUri": null,
-      "summary": "A resident of Casa Grande, Arizona stood up at his city council and proposed, in detail and with a straight face, a system to track the movements of council members and city officials — mirroring back the Flock automatic licence-plate reader network the council was about to approve for everyone else. They took it seriously until the end, and they were not happy. Lead with the symmetry, because the stunt works as reporting: every argument for the ALPR network applied unchanged to the proposal, and the room's reaction is the measurement — officials who found the surveillance reasonable when pointed outward found it intolerable when pointed at them. The mechanism to teach is what Flock actually is and why a city council vote is the wrong venue for it: individual towns buy cameras that read and store every plate that passes, and the data pools into a national searchable network shared across thousands of agencies, so a municipal procurement decision quietly enrols residents in a system no one in that room controls, audits or can delete from. Give the retention period, who can query it, the contract value, whether there is a warrant requirement, and how the vote went. For our reader the read-across is the point: the same vendors and the same architecture are being sold to municipalities across the Gulf, Turkey and Southeast Asia as smart-city packages, and the accountability question — who queries the database, on what authority, and who audits the queries — is identical everywhere and is almost never answered at the point of purchase.",
-      "conceptUris": []
-    },
-    {
-      "id": "mosquito-metabolic-resistance-enzymes-cross-resistance",
-      "label": "Mosquitoes are rapidly activating enzymes against common insecticide, researchers warn",
-      "firstSeen": "2026-07-29T04:12:55.032Z",
-      "lastCovered": "2026-07-29T04:12:55.032Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-29-mosquito-metabolic-resistance-enzymes-cross-resistance"
-      ],
-      "eventUri": null,
-      "summary": "Researchers report mosquito populations rapidly upregulating detoxifying enzymes against a widely used insecticide — resistance arriving through biochemistry rather than through a slow change in gene frequency. Lead with the speed, because it is what makes this different from the resistance story public health has been managing for decades: a population that can induce enzyme expression within a generation defeats a chemical faster than a control programme can procure and distribute its replacement, and procurement cycles for bed nets and indoor spraying run in years. The mechanism to teach is metabolic resistance itself — cytochrome P450s and esterases that break the compound down before it reaches the nervous system — and why it is more dangerous than target-site resistance: a single enzyme family can degrade several chemically unrelated insecticides at once, so cross-resistance appears against compounds the population has never met. Then the consequence, which is where the story lives: malaria and dengue kill overwhelmingly in sub-Saharan Africa, South Asia and Southeast Asia, and the entire architecture of control — pyrethroid-treated nets, indoor residual spraying, larviciding — rests on chemistry that this finding says is being outrun. Name the species, the compound, the populations and countries sampled, the fold-change in resistance measured, the method, and the authors' own caveats about extrapolating from assay to field. Say what the alternatives are — new active ingredients, dual-AI nets, spatial repellents — and what they cost per household against what a pyrethroid net costs, because that ratio is the real constraint on every national programme.",
-      "conceptUris": []
-    },
-    {
-      "id": "kore-map-1-2-korean-medicine-omics-resource-extension-map-on",
-      "label": "KORE-Map 1.2: Korean medicine Omics Resource Extension Map on transcriptome data of Qi-related herbal medicine - Scientific Data",
-      "firstSeen": "2026-07-29T04:12:55.032Z",
-      "lastCovered": "2026-07-29T04:12:55.032Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-29-kore-map-1-2-korean-medicine-omics-resource-extension-map-on"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for science floor] We are providing an unedited version of this manuscript to give early access to its findings. Before final publication, the manuscript will undergo further editing. Please note there may be errors present which affect the content, and all legal disclaimers apply.\n\nAlthough traditional herbal medicin",
-      "conceptUris": []
-    },
-    {
-      "id": "oneplus-n6x-s-battery-capacity-confirmed",
-      "label": "OnePlus N6x's battery capacity confirmed",
-      "firstSeen": "2026-07-29T04:12:55.032Z",
-      "lastCovered": "2026-07-29T04:12:55.032Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-28-oneplus-n6x-s-battery-capacity-confirmed"
-      ],
-      "eventUri": "eng-11863439",
-      "summary": "[Auto-backfill for tech floor] OnePlus has stopped selling smartphones in the North American and European markets, a gut punch for the die-hard fans of the scrappy Android alternative. The brand once marketed itself as a company that would \"never settle.\" It printed this slogan on its phones, boxes, and t-shirts. Rather than stan",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/OnePlus",
-        "http://en.wikipedia.org/wiki/Electric_battery",
-        "http://en.wikipedia.org/wiki/Smartphone",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Amazon_(company)",
-        "http://en.wikipedia.org/wiki/Android_(operating_system)",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Display_device"
-      ]
-    },
-    {
-      "id": "xbox-went-down-for-15-hours-new-cto-calls-outage-unacceptabl",
-      "label": "Xbox Went Down For 15 Hours; New CTO Calls Outage \"Unacceptable",
-      "firstSeen": "2026-07-29T04:12:55.032Z",
-      "lastCovered": "2026-07-29T04:12:55.032Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-07-29-xbox-went-down-for-15-hours-new-cto-calls-outage-unacceptabl"
-      ],
-      "eventUri": "eng-11868932",
-      "summary": "[Auto-backfill for tech floor] Xbox CTO Scott Van Vliet has publicly explained what caused a 15-hour outage that locked players out of sign-ins, libraries, and even physical disc games. Here's what happened.\n\nXbox just had one of the worst outages in its recent history, and rather than staying quiet about it, the platform's newly",
       "conceptUris": []
     }
   ]

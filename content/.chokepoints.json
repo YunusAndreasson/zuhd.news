@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-29T17:22:35.547Z",
+  "generated": "2026-07-30T04:18:14.933Z",
   "chokepoints": [
     {
       "id": "hormuz",
@@ -28,26 +28,25 @@
         "n_roro": 0.1
       },
       "baseline90Avg": {
-        "n_total": 12.3,
+        "n_total": 12.4,
         "n_tanker": 4.8,
         "n_container": 1.5,
         "n_dry_bulk": 4.1,
-        "n_cargo": 7.5,
+        "n_cargo": 7.6,
         "n_general_cargo": 1.8,
         "n_roro": 0.2
       },
       "delta7vs90": {
-        "n_total": -0.095,
-        "n_tanker": -0.285,
-        "n_container": 0.759,
-        "n_dry_bulk": -0.234,
-        "n_cargo": 0.027,
-        "n_general_cargo": 0.035,
-        "n_roro": -0.071
+        "n_total": -0.1,
+        "n_tanker": -0.286,
+        "n_container": 0.752,
+        "n_dry_bulk": -0.239,
+        "n_cargo": 0.019,
+        "n_general_cargo": 0.021,
+        "n_roro": -0.083
       },
       "series": {
         "periods": [
-          "Apr 30",
           "May 1",
           "May 2",
           "May 3",
@@ -134,7 +133,6 @@
           "Jul 23"
         ],
         "total": [
-          7,
           10,
           10,
           6,
@@ -223,7 +221,7 @@
       },
       "asOf": "2026-07-23",
       "weather": {
-        "asOf": "2026-07-29T17:22:35.547Z",
+        "asOf": "2026-07-30T04:18:14.932Z",
         "maxWave24hM": 0.3,
         "alert": null
       }
@@ -256,25 +254,24 @@
       },
       "baseline90Avg": {
         "n_total": 35.9,
-        "n_tanker": 13.7,
-        "n_container": 5.5,
+        "n_tanker": 13.6,
+        "n_container": 5.4,
         "n_dry_bulk": 10.6,
-        "n_cargo": 22.3,
+        "n_cargo": 22.2,
         "n_general_cargo": 4.6,
         "n_roro": 1.6
       },
       "delta7vs90": {
-        "n_total": -0.217,
-        "n_tanker": -0.383,
-        "n_container": -0.036,
-        "n_dry_bulk": -0.206,
-        "n_cargo": -0.115,
-        "n_general_cargo": -0.041,
-        "n_roro": 0.002
+        "n_total": -0.216,
+        "n_tanker": -0.382,
+        "n_container": -0.028,
+        "n_dry_bulk": -0.207,
+        "n_cargo": -0.113,
+        "n_general_cargo": -0.037,
+        "n_roro": -0.002
       },
       "series": {
         "periods": [
-          "Apr 30",
           "May 1",
           "May 2",
           "May 3",
@@ -364,7 +361,6 @@
           "Jul 26"
         ],
         "total": [
-          41,
           42,
           28,
           35,
@@ -456,7 +452,7 @@
       },
       "asOf": "2026-07-26",
       "weather": {
-        "asOf": "2026-07-29T17:22:35.547Z",
+        "asOf": "2026-07-30T04:18:14.933Z",
         "maxWave24hM": 0.8,
         "alert": null
       }
@@ -488,26 +484,25 @@
         "n_roro": 1.1
       },
       "baseline90Avg": {
-        "n_total": 40.2,
-        "n_tanker": 16,
-        "n_container": 8.4,
+        "n_total": 40.1,
+        "n_tanker": 15.9,
+        "n_container": 8.3,
         "n_dry_bulk": 11.6,
         "n_cargo": 24.3,
         "n_general_cargo": 3.1,
         "n_roro": 1.3
       },
       "delta7vs90": {
-        "n_total": 0.015,
-        "n_tanker": -0.033,
-        "n_container": 0.06,
-        "n_dry_bulk": -0.039,
-        "n_cargo": 0.047,
-        "n_general_cargo": 0.394,
-        "n_roro": -0.092
+        "n_total": 0.018,
+        "n_tanker": -0.027,
+        "n_container": 0.062,
+        "n_dry_bulk": -0.04,
+        "n_cargo": 0.048,
+        "n_general_cargo": 0.405,
+        "n_roro": -0.095
       },
       "series": {
         "periods": [
-          "Apr 30",
           "May 1",
           "May 2",
           "May 3",
@@ -597,7 +592,6 @@
           "Jul 26"
         ],
         "total": [
-          49,
           39,
           23,
           33,
@@ -720,22 +714,21 @@
         "n_tanker": 70.9,
         "n_container": 60.2,
         "n_dry_bulk": 63.2,
-        "n_cargo": 148.7,
+        "n_cargo": 148.8,
         "n_general_cargo": 18.4,
         "n_roro": 6.9
       },
       "delta7vs90": {
         "n_total": 0.021,
-        "n_tanker": 0.068,
+        "n_tanker": 0.069,
         "n_container": -0.018,
         "n_dry_bulk": 0.015,
         "n_cargo": -0.002,
-        "n_general_cargo": 0.003,
-        "n_roro": -0.024
+        "n_general_cargo": 0,
+        "n_roro": -0.03
       },
       "series": {
         "periods": [
-          "Apr 30",
           "May 1",
           "May 2",
           "May 3",
@@ -825,7 +818,6 @@
           "Jul 26"
         ],
         "total": [
-          218,
           216,
           213,
           215,
@@ -917,8 +909,8 @@
       },
       "asOf": "2026-07-26",
       "weather": {
-        "asOf": "2026-07-29T17:22:35.547Z",
-        "maxWave24hM": 0.3,
+        "asOf": "2026-07-30T04:18:14.933Z",
+        "maxWave24hM": 0.2,
         "alert": null
       }
     },
@@ -949,26 +941,25 @@
         "n_roro": 6.9
       },
       "baseline90Avg": {
-        "n_total": 246.8,
-        "n_tanker": 47.2,
-        "n_container": 90.6,
-        "n_dry_bulk": 73.5,
-        "n_cargo": 199.6,
-        "n_general_cargo": 28.9,
+        "n_total": 247.3,
+        "n_tanker": 47.3,
+        "n_container": 90.8,
+        "n_dry_bulk": 73.6,
+        "n_cargo": 200.1,
+        "n_general_cargo": 29,
         "n_roro": 6.7
       },
       "delta7vs90": {
-        "n_total": -0.101,
-        "n_tanker": -0.017,
-        "n_container": -0.104,
-        "n_dry_bulk": -0.158,
-        "n_cargo": -0.121,
-        "n_general_cargo": -0.115,
-        "n_roro": 0.029
+        "n_total": -0.103,
+        "n_tanker": -0.018,
+        "n_container": -0.106,
+        "n_dry_bulk": -0.159,
+        "n_cargo": -0.123,
+        "n_general_cargo": -0.118,
+        "n_roro": 0.022
       },
       "series": {
         "periods": [
-          "Apr 30",
           "May 1",
           "May 2",
           "May 3",
@@ -1058,7 +1049,6 @@
           "Jul 26"
         ],
         "total": [
-          207,
           267,
           285,
           249,
@@ -1150,8 +1140,8 @@
       },
       "asOf": "2026-07-26",
       "weather": {
-        "asOf": "2026-07-29T17:22:35.547Z",
-        "maxWave24hM": 0.6,
+        "asOf": "2026-07-30T04:18:14.933Z",
+        "maxWave24hM": 0.4,
         "alert": null
       }
     },
@@ -1191,16 +1181,15 @@
       },
       "delta7vs90": {
         "n_total": -0.142,
-        "n_tanker": -0.242,
-        "n_container": 0.023,
-        "n_dry_bulk": -0.304,
-        "n_cargo": -0.057,
-        "n_general_cargo": -0.178,
-        "n_roro": 0.273
+        "n_tanker": -0.243,
+        "n_container": 0.025,
+        "n_dry_bulk": -0.3,
+        "n_cargo": -0.056,
+        "n_general_cargo": -0.179,
+        "n_roro": 0.27
       },
       "series": {
         "periods": [
-          "Apr 30",
           "May 1",
           "May 2",
           "May 3",
@@ -1290,7 +1279,6 @@
           "Jul 26"
         ],
         "total": [
-          33,
           37,
           39,
           33,
@@ -1408,26 +1396,25 @@
         "n_roro": 0.4
       },
       "baseline90Avg": {
-        "n_total": 82.8,
+        "n_total": 82.5,
         "n_tanker": 20.4,
-        "n_container": 10.1,
-        "n_dry_bulk": 18.3,
-        "n_cargo": 62.3,
-        "n_general_cargo": 33.6,
+        "n_container": 10.2,
+        "n_dry_bulk": 18.2,
+        "n_cargo": 62.1,
+        "n_general_cargo": 33.4,
         "n_roro": 0.3
       },
       "delta7vs90": {
-        "n_total": -0.228,
-        "n_tanker": -0.209,
+        "n_total": -0.226,
+        "n_tanker": -0.207,
         "n_container": -0.127,
-        "n_dry_bulk": -0.211,
-        "n_cargo": -0.235,
-        "n_general_cargo": -0.285,
-        "n_roro": 0.286
+        "n_dry_bulk": -0.208,
+        "n_cargo": -0.232,
+        "n_general_cargo": -0.282,
+        "n_roro": 0.27
       },
       "series": {
         "periods": [
-          "Apr 30",
           "May 1",
           "May 2",
           "May 3",
@@ -1517,7 +1504,6 @@
           "Jul 26"
         ],
         "total": [
-          103,
           90,
           60,
           55,
@@ -1609,8 +1595,8 @@
       },
       "asOf": "2026-07-26",
       "weather": {
-        "asOf": "2026-07-29T17:22:35.547Z",
-        "maxWave24hM": 1.1,
+        "asOf": "2026-07-30T04:18:14.933Z",
+        "maxWave24hM": 1.2,
         "alert": null
       }
     },
@@ -1639,26 +1625,25 @@
         "n_roro": 5.4
       },
       "baseline90Avg": {
-        "n_total": 132.2,
-        "n_tanker": 44,
-        "n_container": 31.2,
+        "n_total": 132.3,
+        "n_tanker": 43.9,
+        "n_container": 31.3,
         "n_dry_bulk": 28.3,
-        "n_cargo": 88.2,
+        "n_cargo": 88.3,
         "n_general_cargo": 23.6,
         "n_roro": 5.2
       },
       "delta7vs90": {
         "n_total": -0.031,
-        "n_tanker": 0.003,
-        "n_container": -0.057,
-        "n_dry_bulk": -0.156,
-        "n_cargo": -0.048,
-        "n_general_cargo": 0.072,
-        "n_roro": 0.049
+        "n_tanker": 0.005,
+        "n_container": -0.059,
+        "n_dry_bulk": -0.157,
+        "n_cargo": -0.049,
+        "n_general_cargo": 0.071,
+        "n_roro": 0.052
       },
       "series": {
         "periods": [
-          "Apr 30",
           "May 1",
           "May 2",
           "May 3",
@@ -1748,7 +1733,6 @@
           "Jul 26"
         ],
         "total": [
-          129,
           145,
           123,
           123,
@@ -1840,7 +1824,7 @@
       },
       "asOf": "2026-07-26",
       "weather": {
-        "asOf": "2026-07-29T17:22:35.547Z",
+        "asOf": "2026-07-30T04:18:14.933Z",
         "maxWave24hM": 0.8,
         "alert": null
       }
@@ -1869,26 +1853,25 @@
         "n_roro": 10.9
       },
       "baseline90Avg": {
-        "n_total": 163.9,
-        "n_tanker": 56.4,
-        "n_container": 35.1,
+        "n_total": 164.1,
+        "n_tanker": 56.5,
+        "n_container": 35.2,
         "n_dry_bulk": 22.9,
-        "n_cargo": 107.5,
-        "n_general_cargo": 38.9,
+        "n_cargo": 107.6,
+        "n_general_cargo": 39,
         "n_roro": 10.6
       },
       "delta7vs90": {
-        "n_total": -0.058,
-        "n_tanker": -0.023,
-        "n_container": 0.009,
+        "n_total": -0.059,
+        "n_tanker": -0.024,
+        "n_container": 0.008,
         "n_dry_bulk": -0.126,
-        "n_cargo": -0.076,
-        "n_general_cargo": -0.151,
-        "n_roro": 0.024
+        "n_cargo": -0.077,
+        "n_general_cargo": -0.154,
+        "n_roro": 0.028
       },
       "series": {
         "periods": [
-          "Apr 30",
           "May 1",
           "May 2",
           "May 3",
@@ -1978,7 +1961,6 @@
           "Jul 26"
         ],
         "total": [
-          149,
           194,
           172,
           181,
@@ -2070,8 +2052,8 @@
       },
       "asOf": "2026-07-26",
       "weather": {
-        "asOf": "2026-07-29T17:22:35.547Z",
-        "maxWave24hM": 0.5,
+        "asOf": "2026-07-30T04:18:14.933Z",
+        "maxWave24hM": 1,
         "alert": null
       }
     },
@@ -2099,26 +2081,25 @@
         "n_roro": 4.3
       },
       "baseline90Avg": {
-        "n_total": 94.4,
+        "n_total": 94.3,
         "n_tanker": 19.8,
         "n_container": 21,
         "n_dry_bulk": 45.3,
-        "n_cargo": 74.6,
-        "n_general_cargo": 4.1,
+        "n_cargo": 74.5,
+        "n_general_cargo": 4.2,
         "n_roro": 4.1
       },
       "delta7vs90": {
-        "n_total": -0.047,
-        "n_tanker": -0.107,
-        "n_container": -0.165,
-        "n_dry_bulk": 0.008,
-        "n_cargo": -0.031,
-        "n_general_cargo": 0.147,
+        "n_total": -0.045,
+        "n_tanker": -0.104,
+        "n_container": -0.161,
+        "n_dry_bulk": 0.009,
+        "n_cargo": -0.03,
+        "n_general_cargo": 0.136,
         "n_roro": 0.042
       },
       "series": {
         "periods": [
-          "Apr 30",
           "May 1",
           "May 2",
           "May 3",
@@ -2208,7 +2189,6 @@
           "Jul 26"
         ],
         "total": [
-          108,
           86,
           123,
           106,
@@ -2300,8 +2280,8 @@
       },
       "asOf": "2026-07-26",
       "weather": {
-        "asOf": "2026-07-29T17:22:35.547Z",
-        "maxWave24hM": 3,
+        "asOf": "2026-07-30T04:18:14.933Z",
+        "maxWave24hM": 2.7,
         "alert": "rough"
       }
     },
@@ -2334,22 +2314,21 @@
         "n_tanker": 1.9,
         "n_container": 0.3,
         "n_dry_bulk": 1.6,
-        "n_cargo": 7.2,
-        "n_general_cargo": 5.2,
+        "n_cargo": 7.3,
+        "n_general_cargo": 5.3,
         "n_roro": 0.1
       },
       "delta7vs90": {
-        "n_total": -0.875,
+        "n_total": -0.876,
         "n_tanker": -1,
         "n_container": -1,
-        "n_dry_bulk": -0.816,
-        "n_cargo": -0.842,
-        "n_general_cargo": -0.837,
+        "n_dry_bulk": -0.819,
+        "n_cargo": -0.844,
+        "n_general_cargo": -0.838,
         "n_roro": -1
       },
       "series": {
         "periods": [
-          "Apr 30",
           "May 1",
           "May 2",
           "May 3",
@@ -2439,7 +2418,6 @@
           "Jul 26"
         ],
         "total": [
-          4,
           5,
           3,
           4,
@@ -2531,8 +2509,8 @@
       },
       "asOf": "2026-07-26",
       "weather": {
-        "asOf": "2026-07-29T17:22:35.547Z",
-        "maxWave24hM": 0.4,
+        "asOf": "2026-07-30T04:18:14.933Z",
+        "maxWave24hM": 0.2,
         "alert": null
       }
     }

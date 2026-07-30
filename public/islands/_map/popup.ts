@@ -19,6 +19,7 @@ import { createChart, type Chart } from '../_chart'
 import { disclosure, el, growTo, moreLink, type Built } from '../_disclosure'
 import { renderShare } from '../_share'
 import { CONTESTED_D, type MapPoint } from './types'
+import type { StoryPlace } from './places'
 import { CATEGORY_COLOUR, rampColour } from './style'
 import * as fmt from './format'
 
@@ -164,6 +165,15 @@ export interface StoryPopupOptions {
    * can tell.
    */
   openStory?: (slug: string) => boolean
+  /**
+   * The stories at one place, newest first.
+   *
+   * The place card needs headlines and times, and `StoryPlace` carries only
+   * slugs — the island holds `pointBySlug`, so it resolves them. No fetch is
+   * involved anywhere in this card: everything it prints is already in memory,
+   * which is why `openPlace` is the one card here that is not async.
+   */
+  storiesAt?: (place: StoryPlace) => MapPoint[]
 }
 
 export interface StoryPopup {
@@ -183,6 +193,20 @@ export interface StoryPopup {
     at: [number, number],
     standing?: CountryStanding | null,
   ): Promise<void>
+  /**
+   * Everything at one place.
+   *
+   * What `expandCluster` was pretending to offer. Coordinates in this corpus are
+   * city-level and 445 of 705 stories share one exactly, so a pile could never be
+   * separated by zooming — descending into it moved the camera and gave the
+   * reader nothing to read, and on a phone, where there is no hover, tapping one
+   * produced no text at all. This names the place and lists what happened there.
+   *
+   * Anchored where the reader clicked and it does **not** fly, for the reason the
+   * country card does not: the answer appears where the question was asked. Rows
+   * fly, one story at a time, through `openStory`.
+   */
+  openPlace(place: StoryPlace, now: number): void
   close(): void
   isOpen(): boolean
   destroy(): void
@@ -664,6 +688,70 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
   }
 
   /**
+   * How many rows a place card shows before it has to be asked for more.
+   *
+   * Five is what the country card shows of its recent coverage, and this is the
+   * same kind of list on the same surface. Washington holds 62 over a fortnight,
+   * so most of the tail is genuinely a second density.
+   */
+  const PLACE_ROWS = 5
+
+  const placeCard = (place: StoryPlace, now: number, expanded = false) => {
+    const root = el('div', `map-popup-body map-popup-place${expanded ? ' is-expanded' : ''}`)
+    const stories = opts.storiesAt?.(place) ?? []
+
+    // The kicker says what kind of thing this card is about, the way the story
+    // card's says the category and the country card's says the region.
+    root.append(el('p', 'map-popup-kicker', 'place'))
+    root.append(el('h2', 'map-popup-title', place.loc))
+    // The count is the fact the numeral on the map stated; this is the sentence
+    // that makes it checkable, and it is the only place the exact figure is
+    // guaranteed — the numeral itself may be dropped under collision.
+    root.append(
+      el(
+        'p',
+        'map-popup-meta',
+        [
+          `${fmt.grouped(place.count)} ${place.count === 1 ? 'story' : 'stories'}`,
+          stories[0] ? `latest ${fmt.relativeTime(stories[0].t, now)}` : null,
+          place.contested ? 'sources disagree' : null,
+        ]
+          .filter(Boolean)
+          .join(' · '),
+      ),
+    )
+
+    if (stories.length) {
+      const list = el('ul', 'map-country-coverage')
+      for (const p of stories.slice(0, expanded ? 40 : PLACE_ROWS)) {
+        const li = el('li')
+        li.append(
+          storyLink(p.slug, p.title),
+          el('time', 'map-country-coverage-time', fmt.relativeTime(p.t, now)),
+        )
+        list.append(li)
+      }
+      root.append(list)
+    }
+
+    // The rest opens here, like the country card's full profile. There is no
+    // canonical page for a place, so this is a button rather than a link with its
+    // navigation suppressed — nothing is being withheld from a crawler.
+    if (!expanded && stories.length > PLACE_ROWS) {
+      const more = el('button', 'map-popup-link', `All ${fmt.grouped(stories.length)} →`)
+      more.type = 'button'
+      more.addEventListener('click', () => {
+        const grown = placeCard(place, now, true)
+        popup.setDOMContent(grown)
+        grown.scrollTop = 0
+      })
+      root.append(more)
+    }
+
+    return root
+  }
+
+  /**
    * The country tags in the prose, answered in the card.
    *
    * `build.js` renders every `/country/{ISO2}` link in an article as
@@ -1012,6 +1100,15 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
         return
       }
       popup.setDOMContent(countryCard(data, standing))
+    },
+
+    openPlace(place, now) {
+      // Nothing to await, so nothing to race — but `pending` still has to be
+      // claimed, or a story fetch already in flight would land on top of this
+      // card when it resolves.
+      pending = `place:${place.key}`
+      popup.setLngLat([place.lng, place.lat]).setDOMContent(placeCard(place, now))
+      attach()
     },
 
     close() {

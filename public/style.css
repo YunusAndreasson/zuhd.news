@@ -3293,6 +3293,19 @@ body.map-page > footer .footer-social a {
   opacity: 0.85;
 }
 
+/* The density wash. A gradient is not a shape, so this key item is a strip
+   rather than a glyph — and the stops arrive inline from DENSITY_STOPS, already
+   composited over the ocean, so it reads as a 22px piece of this map's water
+   with the field running across it. Full strength, unlike the sibling glyphs at
+   0.85: the wash is quiet enough already and dimming its own legend would put
+   the faintest thing in the panel next to the label explaining it. */
+.map-key-field {
+  width: 22px;
+  height: 8px;
+  border-radius: 1px;
+  background: linear-gradient(to right, var(--ramp));
+}
+
 /* --- Ground legend ---
    Decodes the land the way .map-key decodes the beacons: which metric, and the
    value at each end of the ramp.
@@ -4147,6 +4160,25 @@ a.map-popup-source-name {
   color: var(--map-ink);
   text-decoration-color: var(--map-underline);
   text-underline-offset: 0.2em;
+
+  /* The place card's "All 62 →" is a real <button> rather than a link with its
+     navigation suppressed, because a place has no canonical page — unlike the
+     country card's "Full profile", nothing here is being withheld from a crawler
+     or a modified click. So it has to be stripped back to the same text the
+     anchors in this class are, or it arrives wearing the browser's own button
+     chrome inside a card that has none. */
+  &:is(button) {
+    appearance: none;
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    font-size: var(--size-xs);
+    text-align: left;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: var(--map-underline);
+  }
 }
 
 /* --- The card's foot, on the dark surfaces ---

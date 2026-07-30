@@ -62,7 +62,12 @@ writeFileSync(
       if (i >= 0) list.splice(i, 1)
     }
     addSource(id, cfg) { this.sources[id] = { cfg, setData(d) { this.data = d } } }
-    addLayer(l) { this.layers.push(l) }
+    // beforeId is recorded, because for two layers it is the whole design and
+    // not a detail: the density wash has to go under the borders so a coastline
+    // draws through it, and the prayer lines have to go under them for the same
+    // reason. Insertion order into this array is not the style order, so the
+    // anchor is the only thing a test can hold.
+    addLayer(l, before) { this.layers.push(l); l.__before = before }
     // Sprite registration for the no-data hatch. The stub lacked it, and the
     // island calls it partway through addDataLayers -- so every layer after
     // the hatch (stories, disasters, conflict, genocide) silently never got
@@ -293,9 +298,13 @@ test('the island mounts, renders, and tears down cleanly', async () => {
     assert.ok(env.host.querySelector('.map-status'), 'status readout present')
     assert.ok(env.host.querySelector('.map-feed'), 'event rail present')
 
-    // Four time-range presets. The map opens on 24h, not the full fortnight:
-    // the widest range is the one view where nothing stands out, because the
-    // dozen stories that broke today sit under 700-odd cold ones.
+    // Four time-range presets, and the map opens on neither end of them. Not the
+    // full fortnight, because the widest range is the one view where nothing
+    // stands out — 700-odd mostly cold stories burying the dozen that broke
+    // today. And not 24h either, which measured at 29 stories against a real
+    // payload and about seven twelve hours after a build: a near-empty world
+    // under a rail reading "29 STORIES", and far too few points to raise a
+    // density field from. 3d is 135.
     const rangeBtns = [...env.host.querySelectorAll('.map-range')]
     assert.deepEqual(
       rangeBtns.map((b) => b.textContent),
@@ -303,7 +312,7 @@ test('the island mounts, renders, and tears down cleanly', async () => {
     )
     const pressed = rangeBtns.filter((b) => b.getAttribute('aria-pressed') === 'true')
     assert.equal(pressed.length, 1, 'exactly one range is selected')
-    assert.equal(pressed[0].textContent, '24h', '24h is the default')
+    assert.equal(pressed[0].textContent, '3d', '3d is the default')
 
     // Four category filters, all lit by default.
     const cats = env.host.querySelectorAll('.map-filter[data-kind="category"]')
@@ -454,6 +463,162 @@ test('every symbol mark layer opts out of collision, both ways', async () => {
     delete globalThis.__zuhdMaps
     env.restore()
   }
+})
+
+/**
+ * No layer aggregates stories across places.
+ *
+ * The guard against reintroduction. Supercluster's `clusterRadius: 30` is screen
+ * pixels, which at the zoom this map opens at is about nine degrees of longitude
+ * — measured, that put **92% of the corpus inside a merged disc**, and the
+ * largest of them read `116` while standing at a coordinate no story held,
+ * merging Washington with New York, Atlanta and 23 more datelines. Another merged
+ * Gaza with Cairo, Beirut and Damascus.
+ *
+ * It could not be escaped either: coordinates here are city-level and 445 of 705
+ * stories share one exactly, so `expandCluster` offered a descent that no amount
+ * of zooming could deliver.
+ *
+ * Cheap to re-enable by accident — one key on one source — so it is asserted from
+ * three directions rather than one.
+ */
+test('no layer aggregates stories across places', async () => {
+  const env = setupDom()
+  globalThis.__zuhdMaps = []
+  try {
+    const { mount } = await import(bundlePath)
+    const teardown = mount(env.host)
+    env.pump()
+    await settle()
+
+    const map = globalThis.__zuhdMaps.at(-1)
+    const stories = map.sources.stories
+    assert.ok(stories, 'the stories source should exist')
+    assert.ok(!stories.cfg.cluster, 'stories must not be clustered')
+    assert.equal(stories.cfg.clusterProperties, undefined, 'no cluster aggregation')
+    assert.equal(stories.cfg.clusterRadius, undefined)
+    for (const l of map.layers) {
+      assert.ok(!/cluster/.test(l.id), `${l.id} should not be a cluster layer`)
+      assert.ok(
+        !JSON.stringify(l.filter ?? null).includes('point_count'),
+        `${l.id} should not filter on point_count`,
+      )
+    }
+
+    teardown()
+  } finally {
+    delete globalThis.__zuhdMaps
+    env.restore()
+  }
+})
+
+/**
+ * The wash is a ground and the numeral is a mark.
+ *
+ * Two layers replaced the discs and each has one property doing the load-bearing
+ * work, neither of which shows up in a screenshot of a quiet day.
+ *
+ * The field's is its **anchor**. Inserted under `borders`, a coastline draws
+ * straight through a patch, which is what makes the wash the only thing on this
+ * map with no edge — and an edge is how a reader separates it from a country
+ * shaded by the ground metric, which is the same neutral blue-grey family. Move
+ * it above the borders and that distinction of *kind* silently becomes a
+ * distinction of degree.
+ *
+ * The numeral's is that it **may be dropped**. That is the exact inverse of the
+ * cluster count's policy, which had to be `allow-overlap` because a disc with no
+ * numeral was an empty container saying nothing — and being kept out of the
+ * collision index entirely is how a market tick's "1.6%" once landed flush
+ * against a "3" and rendered "31.6%". A stack of dots with no numeral is still a
+ * complete mark, so this one queues like any other label.
+ *
+ * Also pinned: the threshold lives in `text-field`, never in a layer `filter`. A
+ * filter would delete the feature, and the feature is what raises the wash.
+ */
+test('the density wash is a ground, and the place numeral is a droppable mark', async () => {
+  const env = setupDom()
+  globalThis.__zuhdMaps = []
+  try {
+    const { mount } = await import(bundlePath)
+    const teardown = mount(env.host)
+    env.pump()
+    await settle()
+
+    const map = globalThis.__zuhdMaps.at(-1)
+
+    // The source the field reads is ours, and is not the basemap's. `places` is
+    // already taken by the world's own cities; overwriting it would replace them
+    // with our datelines.
+    assert.ok(map.sources['story-places'], 'the places source should exist')
+    assert.notEqual(
+      map.sources['story-places'],
+      map.sources.places,
+      'the field must not be reading the basemap place labels',
+    )
+
+    const field = map.getLayer('story-density')
+    assert.ok(field, 'story-density should be added')
+    assert.equal(field.type, 'heatmap')
+    assert.equal(field.source, 'story-places')
+    assert.equal(field.__before, 'borders', 'the wash goes under the frontiers and the labels')
+    assert.equal(field.filter, undefined, 'the wash is filtered by its data, never by a layer')
+
+    // The old glow and the discs are gone, not merely unused.
+    for (const id of ['story-glow', 'story-clusters', 'story-cluster-count']) {
+      assert.equal(map.getLayer(id), undefined, `${id} should be gone`)
+    }
+
+    const numeral = map.getLayer('story-place-count')
+    assert.ok(numeral, 'story-place-count should be added')
+    assert.equal(numeral.type, 'symbol')
+    assert.equal(numeral.source, 'story-places')
+    assert.equal(numeral.layout['text-allow-overlap'], false, 'the numeral may be dropped')
+    assert.equal(numeral.layout['text-ignore-placement'], false, 'and it occupies space')
+    // `text-optional` is a no-op on a text-only layer — it means "draw the icon
+    // even if the text does not fit", and there is no icon here. Shipping it
+    // would be config promising something it does not do, which is the same
+    // defect class as a glyph registered and drawn by nothing.
+    assert.equal(numeral.layout['text-optional'], undefined, 'no no-op collision config')
+    assert.equal(numeral.filter, undefined, 'the count threshold belongs in text-field')
+    assert.ok(
+      JSON.stringify(numeral.layout['text-field']).includes('zoom'),
+      'the threshold steps with zoom inside text-field',
+    )
+
+    teardown()
+  } finally {
+    delete globalThis.__zuhdMaps
+    env.restore()
+  }
+})
+
+/**
+ * Every hit-testable layer has exactly one stated precedence.
+ *
+ * This pins the fix for a bug that had been live and unreported. Handlers were
+ * registered per layer, and MapLibre gives each registration its own
+ * `queryRenderedFeatures` over its own layers — so two could both find a feature
+ * under one pointer and both fire. Clicking the story aggregate over London flew
+ * the camera *and* pinned the London Stock Exchange, because `market-marks` draws
+ * above the stories and exchanges sit in exactly the cities that generate the
+ * most stories.
+ *
+ * There is one handler now, resolving through `HIT_ORDER`. A layer in one list
+ * and not the other is a bug in either direction: hittable with no stated
+ * precedence, or ranked but never queried.
+ */
+test('the hit test and its precedence describe the same set of layers', async () => {
+  const { MARKER_LAYERS, HIT_ORDER } = await import(bundlePath)
+  assert.equal(
+    new Set(HIT_ORDER).size,
+    HIT_ORDER.length,
+    'a layer may not appear twice in the precedence',
+  )
+  assert.deepEqual(
+    [...HIT_ORDER].sort(),
+    [...MARKER_LAYERS].sort(),
+    'every hittable layer is ranked, and every ranked layer is hittable',
+  )
 })
 
 test('toggling a category filter never blanks the map', async () => {

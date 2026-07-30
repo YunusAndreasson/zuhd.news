@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-29T17:22:38.973Z",
+  "generated": "2026-07-30T04:18:18.030Z",
   "exchanges": [
     {
       "id": "tadawul",
@@ -9,8 +9,8 @@
       "iso2": "SA",
       "lat": 24.7136,
       "lng": 46.6753,
-      "level": 10544.1,
-      "changePct": -1.643,
+      "level": 10720.28,
+      "changePct": 0.147,
       "currency": "SAR",
       "tz": "Asia/Riyadh",
       "sessionStart": "10:00",
@@ -75,8 +75,7 @@
           "Jul 13",
           "Jul 14",
           "Jul 15",
-          "Jul 16",
-          "Jul 29"
+          "Jul 16"
         ],
         "values": [
           11238.07,
@@ -130,8 +129,7 @@
           10801.71,
           10715.61,
           10704.51,
-          10720.28,
-          10544.1
+          10720.28
         ]
       },
       "asOf": "2026-07-29",
@@ -157,8 +155,8 @@
       "iso2": "TR",
       "lat": 41.0082,
       "lng": 28.9784,
-      "level": 13501.55,
-      "changePct": -1.984,
+      "level": 13501.6,
+      "changePct": -1.361,
       "currency": "TRY",
       "tz": "Europe/Istanbul",
       "sessionStart": "10:00",
@@ -228,7 +226,9 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
+          "Jul 24",
           "Jul 27",
+          "Jul 28",
           "Jul 29"
         ],
         "values": [
@@ -288,8 +288,10 @@
           13974.1,
           14138.9,
           14077.7,
+          13943.9,
           13774.8,
-          13501.55
+          13687.9,
+          13501.6
         ]
       },
       "asOf": "2026-07-29",
@@ -315,8 +317,8 @@
       "iso2": "AE",
       "lat": 25.2048,
       "lng": 55.2708,
-      "level": 5796.79,
-      "changePct": -1.681,
+      "level": 5895.93,
+      "changePct": -0.261,
       "currency": "AED",
       "tz": "Asia/Dubai",
       "sessionStart": "10:00",
@@ -371,8 +373,7 @@
           "Jul 13",
           "Jul 14",
           "Jul 15",
-          "Jul 16",
-          "Jul 29"
+          "Jul 16"
         ],
         "values": [
           5861.3,
@@ -416,8 +417,7 @@
           5967.43,
           5890.99,
           5911.36,
-          5895.93,
-          5796.79
+          5895.93
         ]
       },
       "asOf": "2026-07-29",
@@ -442,8 +442,8 @@
       "iso2": "MY",
       "lat": 3.139,
       "lng": 101.6869,
-      "level": 1713.09,
-      "changePct": -0.087,
+      "level": 1714.96,
+      "changePct": -0.035,
       "currency": "MYR",
       "tz": "Asia/Kuala_Lumpur",
       "sessionStart": "09:00",
@@ -457,7 +457,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 29",
           "Apr 30",
           "May 4",
           "May 5",
@@ -516,10 +515,13 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
-          "Jul 27"
+          "Jul 24",
+          "Jul 27",
+          "Jul 28",
+          "Jul 29",
+          "Jul 30"
         ],
         "values": [
-          1720.42,
           1722.02,
           1739.77,
           1747.43,
@@ -578,10 +580,14 @@
           1720.37,
           1711.37,
           1714.59,
-          1713.09
+          1701.02,
+          1713.09,
+          1712.48,
+          1715.56,
+          1714.96
         ]
       },
-      "asOf": "2026-07-29",
+      "asOf": "2026-07-30",
       "sourceLabel": "Yahoo Finance · KLS",
       "blurb": "The world’s largest market for Islamic finance instruments, and the centre of the global sukuk trade.",
       "topicTags": [
@@ -604,8 +610,8 @@
       "iso2": "ID",
       "lat": -6.2088,
       "lng": 106.8456,
-      "level": 6185.78,
-      "changePct": -2.051,
+      "level": 6140.22,
+      "changePct": 0.802,
       "currency": "IDR",
       "tz": "Asia/Jakarta",
       "sessionStart": "09:00",
@@ -619,7 +625,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 29",
           "Apr 30",
           "May 4",
           "May 5",
@@ -674,10 +679,13 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
-          "Jul 27"
+          "Jul 24",
+          "Jul 27",
+          "Jul 28",
+          "Jul 29",
+          "Jul 30"
         ],
         "values": [
-          7101.23,
           6956.8,
           6971.95,
           7057.11,
@@ -732,10 +740,14 @@
           6340.02,
           6334.48,
           6315.31,
-          6185.78
+          6196.43,
+          6185.78,
+          6130.59,
+          6091.39,
+          6140.22
         ]
       },
-      "asOf": "2026-07-29",
+      "asOf": "2026-07-30",
       "sourceLabel": "Yahoo Finance · JKT",
       "blurb": "The exchange of the world’s largest Muslim-majority country, heavily weighted to commodities and banking.",
       "topicTags": [
@@ -757,8 +769,8 @@
       "iso2": "JP",
       "lat": 35.6762,
       "lng": 139.6503,
-      "level": 64931.19,
-      "changePct": -2.245,
+      "level": 62013.24,
+      "changePct": 0.943,
       "currency": "JPY",
       "tz": "Asia/Tokyo",
       "sessionStart": "09:00",
@@ -829,7 +841,11 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
-          "Jul 27"
+          "Jul 24",
+          "Jul 27",
+          "Jul 28",
+          "Jul 29",
+          "Jul 30"
         ],
         "values": [
           59284.92,
@@ -889,10 +905,14 @@
           66232.19,
           66115.6,
           66422.6,
-          64931.19
+          64611.15,
+          64931.19,
+          62364.92,
+          61434.19,
+          62013.24
         ]
       },
-      "asOf": "2026-07-29",
+      "asOf": "2026-07-30",
       "sourceLabel": "Yahoo Finance · OSA",
       "blurb": "Asia’s largest exchange, and the first major market to price each trading day.",
       "topicTags": [
@@ -914,8 +934,8 @@
       "iso2": "HK",
       "lat": 22.3193,
       "lng": 114.1694,
-      "level": 25207.18,
-      "changePct": -0.014,
+      "level": 25796.2,
+      "changePct": -0.045,
       "currency": "HKD",
       "tz": "Asia/Hong_Kong",
       "sessionStart": "09:30",
@@ -929,7 +949,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 29",
           "Apr 30",
           "May 4",
           "May 5",
@@ -987,10 +1006,13 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
-          "Jul 27"
+          "Jul 24",
+          "Jul 27",
+          "Jul 28",
+          "Jul 29",
+          "Jul 30"
         ],
         "values": [
-          26111.84,
           25776.53,
           26095.88,
           25898.61,
@@ -1048,10 +1070,14 @@
           25132.29,
           24892.66,
           25210.81,
-          25207.18
+          24963.23,
+          25207.18,
+          25310.85,
+          25807.92,
+          25796.2
         ]
       },
-      "asOf": "2026-07-29",
+      "asOf": "2026-07-30",
       "sourceLabel": "Yahoo Finance · HKG",
       "blurb": "Where mainland Chinese companies meet foreign capital — the clearest daily read on sentiment toward China.",
       "topicTags": [
@@ -1073,8 +1099,8 @@
       "iso2": "CN",
       "lat": 31.2304,
       "lng": 121.4737,
-      "level": 3858.25,
-      "changePct": -0.478,
+      "level": 3784.55,
+      "changePct": -1.147,
       "currency": "CNY",
       "tz": "Asia/Shanghai",
       "sessionStart": "09:30",
@@ -1088,7 +1114,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 29",
           "Apr 30",
           "May 6",
           "May 7",
@@ -1146,10 +1171,13 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
-          "Jul 27"
+          "Jul 24",
+          "Jul 27",
+          "Jul 28",
+          "Jul 29",
+          "Jul 30"
         ],
         "values": [
-          4107.51,
           4112.16,
           4160.17,
           4180.09,
@@ -1207,10 +1235,14 @@
           3864.37,
           3867.03,
           3876.78,
-          3858.25
+          3814.2,
+          3858.25,
+          3813.31,
+          3828.47,
+          3784.55
         ]
       },
-      "asOf": "2026-07-29",
+      "asOf": "2026-07-30",
       "sourceLabel": "Yahoo Finance · SHH",
       "blurb": "Mainland China’s main board. Largely closed to foreign investors, so it tracks domestic policy more than global risk appetite.",
       "topicTags": [
@@ -1232,8 +1264,8 @@
       "iso2": "KR",
       "lat": 37.5665,
       "lng": 126.978,
-      "level": 6755.75,
-      "changePct": -4.807,
+      "level": 5641.74,
+      "changePct": -0.38,
       "currency": "KRW",
       "tz": "Asia/Seoul",
       "sessionStart": "09:00",
@@ -1247,7 +1279,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 29",
           "Apr 30",
           "May 4",
           "May 6",
@@ -1304,10 +1335,13 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
-          "Jul 27"
+          "Jul 24",
+          "Jul 27",
+          "Jul 28",
+          "Jul 29",
+          "Jul 30"
         ],
         "values": [
-          6690.9,
           6598.87,
           6936.99,
           7384.56,
@@ -1364,10 +1398,14 @@
           6747.95,
           6797.7,
           7096.89,
-          6755.75
+          6690.62,
+          6755.75,
+          6023.66,
+          5663.24,
+          5641.74
         ]
       },
-      "asOf": "2026-07-29",
+      "asOf": "2026-07-30",
       "sourceLabel": "Yahoo Finance · KSC",
       "blurb": "Dominated by Samsung and SK Hynix — a proxy for the global semiconductor cycle.",
       "topicTags": [
@@ -1390,8 +1428,8 @@
       "iso2": "IN",
       "lat": 19.076,
       "lng": 72.8777,
-      "level": 77654.6,
-      "changePct": 1.066,
+      "level": 77720.9,
+      "changePct": 0.085,
       "currency": "INR",
       "tz": "Asia/Kolkata",
       "sessionStart": "09:15",
@@ -1405,7 +1443,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 29",
           "Apr 30",
           "May 4",
           "May 5",
@@ -1464,11 +1501,13 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
+          "Jul 24",
           "Jul 27",
-          "Jul 29"
+          "Jul 28",
+          "Jul 29",
+          "Jul 30"
         ],
         "values": [
-          77496.36,
           76913.5,
           77269.4,
           77017.79,
@@ -1527,11 +1566,14 @@
           77470.11,
           76755.05,
           76391.39,
+          76059.77,
           76835.78,
-          77654.6
+          76765.92,
+          77654.6,
+          77720.9
         ]
       },
-      "asOf": "2026-07-29",
+      "asOf": "2026-07-30",
       "sourceLabel": "Yahoo Finance · BSE",
       "blurb": "Asia’s oldest exchange, founded 1875, and the benchmark for Indian equities.",
       "topicTags": [
@@ -1553,8 +1595,8 @@
       "iso2": "SG",
       "lat": 1.3521,
       "lng": 103.8198,
-      "level": 5620.24,
-      "changePct": 0.689,
+      "level": 5669.19,
+      "changePct": -0.77,
       "currency": "SGD",
       "tz": "Asia/Singapore",
       "sessionStart": "09:00",
@@ -1568,7 +1610,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 29",
           "Apr 30",
           "May 4",
           "May 5",
@@ -1627,10 +1668,13 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
-          "Jul 27"
+          "Jul 24",
+          "Jul 27",
+          "Jul 28",
+          "Jul 29",
+          "Jul 30"
         ],
         "values": [
-          4860.97,
           4912.69,
           4924.31,
           4920.61,
@@ -1689,10 +1733,14 @@
           5526.72,
           5595.42,
           5581.76,
-          5620.24
+          5588.34,
+          5620.24,
+          5616.11,
+          5713.19,
+          5669.19
         ]
       },
-      "asOf": "2026-07-29",
+      "asOf": "2026-07-30",
       "sourceLabel": "Yahoo Finance · SES",
       "blurb": "Southeast Asia’s financial hub, weighted to banks and regional property.",
       "topicTags": [
@@ -1713,8 +1761,8 @@
       "iso2": "TW",
       "lat": 25.033,
       "lng": 121.5654,
-      "level": 43634.19,
-      "changePct": -2.713,
+      "level": 40449.5,
+      "changePct": 1.025,
       "currency": "TWD",
       "tz": "Asia/Taipei",
       "sessionStart": "09:00",
@@ -1728,7 +1776,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 29",
           "Apr 30",
           "May 4",
           "May 5",
@@ -1787,10 +1834,13 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
-          "Jul 27"
+          "Jul 24",
+          "Jul 27",
+          "Jul 28",
+          "Jul 29",
+          "Jul 30"
         ],
         "values": [
-          39303.5,
           38926.63,
           40705.14,
           40769.29,
@@ -1849,10 +1899,14 @@
           44232.87,
           44825.78,
           44850.81,
-          43634.19
+          43654.84,
+          43634.19,
+          41603.36,
+          40039.18,
+          40449.5
         ]
       },
-      "asOf": "2026-07-29",
+      "asOf": "2026-07-30",
       "sourceLabel": "Yahoo Finance · TAI",
       "blurb": "TSMC alone is roughly a third of the index, which makes this the most concentrated major market on the map.",
       "topicTags": [
@@ -1874,8 +1928,8 @@
       "iso2": "TH",
       "lat": 13.7563,
       "lng": 100.5018,
-      "level": 1639.04,
-      "changePct": 0.229,
+      "level": 1598.1,
+      "changePct": -2.498,
       "currency": "THB",
       "tz": "Asia/Bangkok",
       "sessionStart": "10:00",
@@ -1889,7 +1943,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 29",
           "Apr 30",
           "May 5",
           "May 6",
@@ -1942,10 +1995,10 @@
           "Jul 14",
           "Jul 15",
           "Jul 16",
-          "Jul 17"
+          "Jul 17",
+          "Jul 30"
         ],
         "values": [
-          1491.74,
           1493.69,
           1490.1,
           1516.91,
@@ -1998,10 +2051,11 @@
           1626.03,
           1630.21,
           1635.29,
-          1639.04
+          1639.04,
+          1598.1
         ]
       },
-      "asOf": "2026-07-29",
+      "asOf": "2026-07-30",
       "sourceLabel": "Yahoo Finance · SET",
       "blurb": "Thailand’s benchmark, sensitive to tourism flows and regional energy prices.",
       "topicTags": [
@@ -2023,8 +2077,8 @@
       "iso2": "PH",
       "lat": 14.5995,
       "lng": 120.9842,
-      "level": 6404.11,
-      "changePct": 1.248,
+      "level": 6277.07,
+      "changePct": -1.984,
       "currency": "PHP",
       "tz": "Asia/Manila",
       "sessionStart": "09:30",
@@ -2038,7 +2092,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 29",
           "Apr 30",
           "May 4",
           "May 5",
@@ -2092,10 +2145,10 @@
           "Jul 14",
           "Jul 15",
           "Jul 16",
-          "Jul 17"
+          "Jul 17",
+          "Jul 30"
         ],
         "values": [
-          5907.89,
           5833.64,
           5942.16,
           5898.08,
@@ -2149,10 +2202,11 @@
           6256.02,
           6302.5,
           6325.15,
-          6404.11
+          6404.11,
+          6277.07
         ]
       },
-      "asOf": "2026-07-29",
+      "asOf": "2026-07-30",
       "sourceLabel": "Yahoo Finance · PHS",
       "blurb": "A small, domestically-driven market where remittance flows move the index.",
       "topicTags": [
@@ -2174,8 +2228,8 @@
       "iso2": "AU",
       "lat": -33.8688,
       "lng": 151.2093,
-      "level": 8894,
-      "changePct": 0.622,
+      "level": 8974.8,
+      "changePct": -0.706,
       "currency": "AUD",
       "tz": "Australia/Sydney",
       "sessionStart": "10:00",
@@ -2189,7 +2243,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 29",
           "Apr 30",
           "May 1",
           "May 4",
@@ -2250,10 +2303,13 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
-          "Jul 27"
+          "Jul 24",
+          "Jul 27",
+          "Jul 28",
+          "Jul 29",
+          "Jul 30"
         ],
         "values": [
-          8687,
           8665.8,
           8729.8,
           8697.1,
@@ -2314,10 +2370,14 @@
           8793.3,
           8823,
           8839,
-          8894
+          8772.3,
+          8894,
+          8947.8,
+          9038.6,
+          8974.8
         ]
       },
-      "asOf": "2026-07-29",
+      "asOf": "2026-07-30",
       "sourceLabel": "Yahoo Finance · ASX",
       "blurb": "Mining and banking. Often the first major market to react to Chinese demand data.",
       "topicTags": [
@@ -2338,8 +2398,8 @@
       "iso2": "ZA",
       "lat": -26.2041,
       "lng": 28.0473,
-      "level": 110440.34,
-      "changePct": 0.3,
+      "level": 110440.3,
+      "changePct": 0.488,
       "currency": "ZAR",
       "tz": "Africa/Johannesburg",
       "sessionStart": "09:00",
@@ -2413,7 +2473,9 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
+          "Jul 24",
           "Jul 27",
+          "Jul 28",
           "Jul 29"
         ],
         "values": [
@@ -2477,8 +2539,10 @@
           108980,
           109682.6,
           108335,
+          109398,
           110109.6,
-          110440.34
+          109904.1,
+          110440.3
         ]
       },
       "asOf": "2026-07-29",
@@ -2502,8 +2566,8 @@
       "iso2": "BR",
       "lat": -23.5505,
       "lng": -46.6333,
-      "level": 174655.73,
-      "changePct": -0.387,
+      "level": 173885,
+      "changePct": -1.518,
       "currency": "BRL",
       "tz": "America/Sao_Paulo",
       "sessionStart": "10:00",
@@ -2577,7 +2641,9 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
+          "Jul 24",
           "Jul 27",
+          "Jul 28",
           "Jul 29"
         ],
         "values": [
@@ -2641,8 +2707,10 @@
           173326,
           177548,
           176724,
+          174042,
           175335,
-          174655.73
+          176565,
+          173885
         ]
       },
       "asOf": "2026-07-29",
@@ -2667,8 +2735,8 @@
       "iso2": "MX",
       "lat": 19.4326,
       "lng": -99.1332,
-      "level": 66492.88,
-      "changePct": -0.99,
+      "level": 66479.89,
+      "changePct": -1.23,
       "currency": "MXN",
       "tz": "America/Mexico_City",
       "sessionStart": "08:30",
@@ -2743,7 +2811,9 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
+          "Jul 24",
           "Jul 27",
+          "Jul 28",
           "Jul 29"
         ],
         "values": [
@@ -2808,8 +2878,10 @@
           66713.83,
           67303.83,
           66266.01,
+          66383.26,
           67157.91,
-          66492.88
+          67307.54,
+          66479.89
         ]
       },
       "asOf": "2026-07-29",
@@ -2833,8 +2905,8 @@
       "iso2": "AR",
       "lat": -34.6037,
       "lng": -58.3816,
-      "level": 3238278.5,
-      "changePct": -2.028,
+      "level": 3233105,
+      "changePct": -0.714,
       "currency": "ARS",
       "tz": "America/Argentina/Buenos_Aires",
       "sessionStart": "11:00",
@@ -2906,7 +2978,9 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
+          "Jul 24",
           "Jul 27",
+          "Jul 28",
           "Jul 29"
         ],
         "values": [
@@ -2968,8 +3042,10 @@
           3281979,
           3379772,
           3319522,
+          3283854,
           3305316,
-          3238278.5
+          3256362,
+          3233105
         ]
       },
       "asOf": "2026-07-29",
@@ -2992,8 +3068,8 @@
       "iso2": "CA",
       "lat": 43.6532,
       "lng": -79.3832,
-      "level": 35484.89,
-      "changePct": -0.234,
+      "level": 35333.8,
+      "changePct": -1.163,
       "currency": "CAD",
       "tz": "America/Toronto",
       "sessionStart": "09:30",
@@ -3067,7 +3143,9 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
+          "Jul 24",
           "Jul 27",
+          "Jul 28",
           "Jul 29"
         ],
         "values": [
@@ -3131,8 +3209,10 @@
           35369.1,
           35485.1,
           35192.7,
+          35369.1,
           35568.1,
-          35484.89
+          35749.7,
+          35333.8
         ]
       },
       "asOf": "2026-07-29",
@@ -3156,8 +3236,8 @@
       "iso2": "US",
       "lat": 40.7069,
       "lng": -74.0113,
-      "level": 7392.47,
-      "changePct": -0.279,
+      "level": 7316.15,
+      "changePct": -1.516,
       "currency": "USD",
       "tz": "America/New_York",
       "sessionStart": "09:30",
@@ -3171,7 +3251,6 @@
       ],
       "series": {
         "periods": [
-          "Apr 29",
           "Apr 30",
           "May 1",
           "May 4",
@@ -3230,11 +3309,12 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
+          "Jul 24",
           "Jul 27",
+          "Jul 28",
           "Jul 29"
         ],
         "values": [
-          7135.95,
           7209.01,
           7230.12,
           7200.75,
@@ -3293,8 +3373,10 @@
           7509.2,
           7498.96,
           7408.3,
+          7411.98,
           7413.18,
-          7392.47
+          7428.78,
+          7316.15
         ]
       },
       "asOf": "2026-07-29",
@@ -3319,8 +3401,8 @@
       "iso2": "GB",
       "lat": 51.5155,
       "lng": -0.0922,
-      "level": 10908.41,
-      "changePct": 1.174,
+      "level": 10908.4,
+      "changePct": 0.344,
       "currency": "GBP",
       "tz": "Europe/London",
       "sessionStart": "08:00",
@@ -3394,7 +3476,9 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
+          "Jul 24",
           "Jul 27",
+          "Jul 28",
           "Jul 29"
         ],
         "values": [
@@ -3458,8 +3542,10 @@
           10585.9,
           10717,
           10639.2,
+          10736.2,
           10781.8,
-          10908.41
+          10871,
+          10908.4
         ]
       },
       "asOf": "2026-07-29",
@@ -3485,7 +3571,7 @@
       "lat": 50.1109,
       "lng": 8.6821,
       "level": 25460.48,
-      "changePct": 0.392,
+      "changePct": -0.014,
       "currency": "EUR",
       "tz": "Europe/Berlin",
       "sessionStart": "09:00",
@@ -3560,7 +3646,9 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
+          "Jul 24",
           "Jul 27",
+          "Jul 28",
           "Jul 29"
         ],
         "values": [
@@ -3625,7 +3713,9 @@
           25011.35,
           25155.41,
           24763.12,
+          25099,
           25361.03,
+          25464.01,
           25460.48
         ]
       },
@@ -3651,7 +3741,7 @@
       "lat": 48.8566,
       "lng": 2.3522,
       "level": 8408.27,
-      "changePct": 0.026,
+      "changePct": -0.597,
       "currency": "EUR",
       "tz": "Europe/Paris",
       "sessionStart": "09:00",
@@ -3726,7 +3816,9 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
+          "Jul 24",
           "Jul 27",
+          "Jul 28",
           "Jul 29"
         ],
         "values": [
@@ -3791,7 +3883,9 @@
           8363.14,
           8437.89,
           8299.09,
+          8372.28,
           8406.06,
+          8458.78,
           8408.27
         ]
       },
@@ -3817,7 +3911,7 @@
       "lat": 52.3676,
       "lng": 4.9041,
       "level": 1093.1,
-      "changePct": 1.107,
+      "changePct": 0.055,
       "currency": "EUR",
       "tz": "Europe/Amsterdam",
       "sessionStart": "09:00",
@@ -3894,6 +3988,7 @@
           "Jul 23",
           "Jul 24",
           "Jul 27",
+          "Jul 28",
           "Jul 29"
         ],
         "values": [
@@ -3960,6 +4055,7 @@
           1086.67,
           1090.04,
           1081.13,
+          1092.5,
           1093.1
         ]
       },
@@ -3986,7 +4082,7 @@
       "lat": 40.4168,
       "lng": -3.7038,
       "level": 19412.7,
-      "changePct": -1.665,
+      "changePct": -1.593,
       "currency": "EUR",
       "tz": "Europe/Madrid",
       "sessionStart": "09:00",
@@ -4061,7 +4157,9 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
+          "Jul 24",
           "Jul 27",
+          "Jul 28",
           "Jul 29"
         ],
         "values": [
@@ -4126,7 +4224,9 @@
           19379.8,
           19571.3,
           19267,
+          19585.4,
           19741.3,
+          19727,
           19412.7
         ]
       },
@@ -4151,8 +4251,8 @@
       "iso2": "IT",
       "lat": 45.4642,
       "lng": 9.19,
-      "level": 51443.11,
-      "changePct": -1.175,
+      "level": 51443,
+      "changePct": -0.493,
       "currency": "EUR",
       "tz": "Europe/Rome",
       "sessionStart": "09:00",
@@ -4227,7 +4327,9 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
+          "Jul 24",
           "Jul 27",
+          "Jul 28",
           "Jul 29"
         ],
         "values": [
@@ -4292,8 +4394,10 @@
           52285,
           52792,
           51316,
+          51802,
           52055,
-          51443.11
+          51698,
+          51443
         ]
       },
       "asOf": "2026-07-29",
@@ -4318,7 +4422,7 @@
       "lat": 47.3769,
       "lng": 8.5417,
       "level": 14486.1,
-      "changePct": 0.445,
+      "changePct": -0.585,
       "currency": "CHF",
       "tz": "Europe/Zurich",
       "sessionStart": "09:00",
@@ -4391,7 +4495,9 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
+          "Jul 24",
           "Jul 27",
+          "Jul 28",
           "Jul 29"
         ],
         "values": [
@@ -4454,7 +4560,9 @@
           14298.26,
           14315.88,
           14214.95,
+          14327.2,
           14421.97,
+          14571.33,
           14486.1
         ]
       },
@@ -4481,7 +4589,7 @@
       "lat": 59.3293,
       "lng": 18.0686,
       "level": 3219.11,
-      "changePct": 0.038,
+      "changePct": -0.158,
       "currency": "SEK",
       "tz": "Europe/Stockholm",
       "sessionStart": "09:00",
@@ -4554,7 +4662,9 @@
           "Jul 21",
           "Jul 22",
           "Jul 23",
+          "Jul 24",
           "Jul 27",
+          "Jul 28",
           "Jul 29"
         ],
         "values": [
@@ -4617,7 +4727,9 @@
           3146.34,
           3186.12,
           3167.1,
+          3199.62,
           3217.89,
+          3224.22,
           3219.11
         ]
       },
@@ -4644,7 +4756,7 @@
       "lat": 32.0853,
       "lng": 34.7818,
       "level": 3985.02,
-      "changePct": -2.7,
+      "changePct": -0.956,
       "currency": "ILS",
       "tz": "Asia/Jerusalem",
       "sessionStart": "09:00",
@@ -4717,7 +4829,9 @@
           "Jul 20",
           "Jul 21",
           "Jul 22",
+          "Jul 24",
           "Jul 27",
+          "Jul 28",
           "Jul 29"
         ],
         "values": [
@@ -4780,7 +4894,9 @@
           4081.45,
           4129.39,
           4156.91,
+          4173.88,
           4095.62,
+          4023.47,
           3985.02
         ]
       },
