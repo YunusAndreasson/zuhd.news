@@ -104,7 +104,15 @@
      times — and the four sat side by side in the map HUD, so controls set at the
      same size rendered at visibly different widths. One rule: small-caps chrome
      gets `--track-wide`, genuine all-caps gets `--track-caps`, display type gets
-     `--track-tight`, everything else gets none. */
+     `--track-tight`, everything else gets none.
+
+     The rule was stated and then barely applied: on 2026-08-01 only
+     `--track-caps` was referenced anywhere, once, while forty-seven literals
+     stood. Every literal whose value already *equalled* a token now uses it —
+     twelve sites, no pixel moved. What is left is ~35 sites at values no token
+     names (0.03, 0.05, 0.06, 0.1, 0.14, 0.2 and six negatives between -0.005
+     and -0.024), and folding those in is a change to how the type is set, not a
+     substitution. It needs measuring, and it is not this. */
   --track-tight: -0.01em;
   --track-wide: 0.04em;
   --track-caps: 0.08em;
@@ -186,7 +194,6 @@
   --scrim-clear: light-dark(rgb(255 255 255 / 0), rgb(0 0 0 / 0));
 
   --measure: 80ch;
-  --measure-reading: 65ch;
 
   --space-xxs: 0.25rem;
   --space-xs: 0.5rem;
@@ -212,7 +219,7 @@
   font-size: var(--size-h1);
   font-weight: var(--weight-bold);
   line-height: var(--leading-tight);
-  letter-spacing: -0.01em;
+  letter-spacing: var(--track-tight);
   text-wrap: balance;
 }
 .t-caption {
@@ -228,7 +235,7 @@
   color: var(--text-secondary);
   font-variant-caps: all-small-caps;
   font-feature-settings: "case" 1;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--track-caps);
   text-transform: uppercase;
 }
 
@@ -240,7 +247,7 @@
 .article-dateline {
   font-variant-caps: all-small-caps;
   font-feature-settings: "case" 1;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--track-caps);
   font-weight: var(--weight-semibold);
   color: var(--text);
   margin-right: 0.5em;
@@ -739,7 +746,7 @@ footer {
 .context-body .context-heading {
   font-size: var(--size-sm);
   font-variant-caps: all-small-caps;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--track-caps);
   font-weight: 600;
   margin: 1em 0 0.3em 0;
 }
@@ -912,7 +919,7 @@ body.article-page-body::before {
 
 .article-page-header .wordmark {
   font-size: var(--size-base);
-  letter-spacing: -0.01em;
+  letter-spacing: var(--track-tight);
 }
 
 .article-back-link {
@@ -2202,7 +2209,7 @@ body.archetype-page-body .article-page-header {
   margin: 0 0 var(--space-sm);
   font-size: var(--size-xs);
   font-variant-caps: all-small-caps;
-  letter-spacing: 0.08em;
+  letter-spacing: var(--track-caps);
   color: var(--map-ink-muted);
 }
 
@@ -2539,6 +2546,43 @@ body.map-page {
   grid-template-rows: minmax(0, 1fr);
 }
 
+/* The rail grows on a wide screen, and stops growing well before the screen does.
+
+   A sphere is a disc, and a disc in a 16:9 frame leaves the sides empty — that
+   is not a bug to be designed away, it is what the projection is. Measured
+   against the built map, the globe is height-bound at every width from 1600 up,
+   so the canvas runs **39% empty at 1600×900, 41% at 1920, 44% at 2560 and 60%
+   at 3440**, and none of it can be given back to the planet: the globe is
+   `min(canvasW, canvasH)` and the width is never the smaller one.
+
+   Moving the HUD or the scrubber into that gap was the obvious idea and it buys
+   almost nothing. Both are *overlays*, not grid items, so neither takes any
+   height from the canvas — the HUD clips the globe's top by 23–35px and the
+   scrubber its bottom by about 13. Relocating them would fill pixels without
+   making the map any bigger or any clearer.
+
+   So the space goes to the one thing on this page that is content: the rail. It
+   was a flat 21rem from 1600 to 3440, which is about 39 characters of a 16px
+   headline — enough that most rail titles wrapped to two lines on a monitor with
+   900px of unused canvas beside them.
+
+   **The cap is typographic, not spatial.** 28rem is ~54 characters of measure,
+   which is inside the comfortable range for a scanned list; going further would
+   trade a readable column for a full one, on a site whose first principle is
+   that typography *is* the design. Past 2000px the rail stops and the remaining
+   space stays space — `--map-ground`, the same tone as the ocean, so it reads as
+   space around a planet rather than as a panel nobody filled.
+
+   Only the custom property moves. The grid column, the fixed header and footer
+   inside the rail, and the left edge of the HUD, the scrubber and the peek card
+   are all laid out against it, which is the whole reason it has a name. */
+@media (min-width: 1600px) {
+  body.map-page { --map-rail-w: 24rem; }
+}
+@media (min-width: 2000px) {
+  body.map-page { --map-rail-w: 28rem; }
+}
+
 .map-canvas-host {
   position: relative;
   /* Both items are pinned to row 1 explicitly. The map is appended before the
@@ -2548,6 +2592,26 @@ body.map-page {
   grid-row: 1;
   height: 100%;
   overflow: hidden;
+  /* Space, on the round half of the projection — and this one declaration is
+     what keeps the whole chrome seam intact.
+
+     Below `GLOBE_ZOOM.plane` the map is a sphere, and MapLibre draws the
+     `ocean` background layer *on the tile meshes*, i.e. on the planet. It then
+     clears the canvas to transparent, with the GL context created `alpha: true`.
+     So outside the limb there is no MapLibre colour at all — whatever sits
+     behind the canvas shows through, and without this rule that is the page.
+
+     `--map-ground` is the same value as `MAP_COLOURS.ocean` (a seam
+     `colour-system.test.js` already pins in both directions), so space and sea
+     come out identical and every gradient in `.map-hud` and `.map-timeline`
+     that fades into `--map-ground` keeps meaning what it meant on the flat map.
+     Painting space any other tone would put a second ground under those scrims
+     and they have no way to tell which one they are over — the seam this
+     palette is split across two languages to protect.
+
+     The consequence is deliberate: with space and ocean equal, the planet's
+     edge is drawn by the atmosphere alone. See `MAP_COLOURS.horizon`. */
+  background: var(--map-ground);
 }
 
 /* Minimal MapLibre positioning. The library's own stylesheet is not shipped —
@@ -3195,7 +3259,7 @@ body.map-page > footer .footer-social a {
   gap: 0.3rem;
   font-size: var(--size-xs);
   font-variant-caps: all-small-caps;
-  letter-spacing: 0.04em;
+  letter-spacing: var(--track-wide);
   color: var(--map-ink-dim);
   cursor: default;
 }
@@ -3656,12 +3720,23 @@ body.map-page > footer .footer-social a {
    whole change exists to stop, sold back for 17 pixels. At 34rem the currencies
    group sets on one line at **every** width from 1920 to 920, and the clock only
    takes a line of its own below about 1250px. */
+/* One row, four summaries.
+
+   `flex-direction: column` and `flex: 1 1 34rem` are both gone with the second
+   row. That basis was swept against real line counts to stop the currencies
+   group wrapping mid-group — at 40rem the strip demanded its own line from
+   1280px down, at 30rem it bought a shorter row by letting the group break
+   inside itself — and none of that arises now: the widest thing on this row is
+   `markets ⌃15 ⌄9 6 flat 30 closed`, and four of those fit across a laptop.
+
+   `flex: 0 1 auto` rather than a basis, so the strip asks for what it needs and
+   the clock beside it keeps the rest. */
 .map-markets {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.05rem;
-  flex: 1 1 34rem;
+  align-items: baseline;
+  gap: 0.1rem 1.1rem;
+  flex-wrap: wrap;
+  flex: 0 1 auto;
   margin-right: auto;
   min-width: 0;
 }
@@ -3674,15 +3749,6 @@ body.map-page > footer .footer-social a {
   flex-wrap: wrap;
   gap: 0.1rem 0.7rem;
   min-width: 0;
-}
-
-/* Money, metal and crypto sit one rung below the exchanges: same vocabulary,
-   quieter, because the exchanges are the layer the map is actually drawing and
-   these are context for them. */
-.map-markets-row.is-ribbon {
-  gap: 0.1rem 0.55rem;
-
-  &:empty { display: none; }
 }
 
 /* A group travels whole: its label and every quote under it, in one box — see
@@ -3710,6 +3776,192 @@ body.map-page > footer .footer-social a {
   font-weight: 600;
   color: var(--map-ink-dim);
 }
+
+/* The group heading is the control, and the quotes are what it unfolds.
+
+   The strip used to print all eleven quotes at every width, which is how it grew
+   to two and three lines and why the `≤1300px` rule below has to cull the two
+   comparison currencies to keep the currencies group on one line. Collapsed, the
+   whole ribbon is four short summaries — `⌃ currencies ⌃3 ⌄2` — and the culling
+   rule only has anything to do once a reader has opened one.
+
+   A `<button>` rather than a `<summary>`: `<details>` would give the open state
+   for free and take the wrap behaviour with it, since a `<details>` is a block
+   and these have to be flex items in the row's single wrap run. The whole reason
+   `.map-markets-group` exists is that a group travels whole through a wrap.
+
+   No `background` and no border at rest. This sits over the map, the strip is
+   already a 96% scrim, and a row of four filled chips would read as a toolbar —
+   which the note on `.map-timeline`'s overhang says is the one thing it must
+   not. The affordance is the caret, which appears on hover and focus and is
+   permanent once open. */
+.map-markets-summary {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: inherit;
+  min-width: 0;
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+
+  &::after {
+    content: '›';
+    font-size: var(--size-2xs);
+    line-height: 1;
+    color: var(--map-ink-dim);
+    /* Rotated rather than swapped for a second glyph, so the two states are one
+       mark in two positions and there is no chance of them disagreeing. */
+    transition: transform 120ms ease, opacity 120ms ease;
+    opacity: 0;
+  }
+
+  &:hover::after,
+  &:focus-visible::after,
+  &.is-open::after { opacity: 1; }
+
+  &.is-open::after { transform: rotate(90deg); }
+
+  /* Quiet is an ink step, never opacity — the rule this strip broke for four
+     days. The caret's opacity is a *presence* toggle on a mark that carries no
+     information when hidden, not a dimming of live text. */
+  &:hover .map-markets-label,
+  &:focus-visible .map-markets-label { color: var(--map-ink-body); }
+}
+
+/* Hidden with `hidden`, so it leaves the accessibility tree with the pixels.
+   `display: contents` when open, so unfolding a group does not introduce a box
+   between the group and its quotes — the quotes have to stay flex items of the
+   group for the wrap guarantee above to hold.
+
+   **The `[hidden]` rule is not redundant.** `hidden` is `display: none` in the
+   UA stylesheet, and any author `display` beats it — so `display: contents`
+   alone would have left the attribute set, the element out of the accessibility
+   tree, and every quote still on screen. Silent, and exactly the wrong way
+   round. */
+/* The detail, folded up from the strip.
+
+   A non-modal `<dialog>`, so it is in the top layer — above the canvas, the HUD
+   and the scrubber without a z-index, and out of `.map-markets`'s clipped,
+   scrimmed box — while the map underneath stays live. No `::backdrop` is
+   rendered for `show()`, and that is the point: this answers a glance, and
+   dimming the planet to show four exchange rates is more ceremony than the
+   question asked for.
+
+   `position: fixed` with `left`/`bottom` written by `placePanel`. A dialog in
+   the top layer is out of flow, so it cannot be anchored by nesting; the values
+   are measured off the summary that opened it, for the reason every offset on
+   this surface is measured — the strip rewraps and a written-down `left` would
+   point at whichever summary happened to be there when it was written.
+
+   Sized to its content and capped. Fifteen exchanges is the longest list this
+   ever holds, and a panel that fills the viewport to show seven currencies is
+   the set-versus-answer mistake the strip was just fixed for. */
+.map-markets-panel {
+  position: fixed;
+  inset: auto auto 0 0;
+  margin: 0;
+  width: max-content;
+  max-width: min(24rem, calc(100vw - 2rem));
+  max-height: min(24rem, calc(100vh - 8rem));
+  overflow-y: auto;
+  padding: var(--space-sm) var(--space-sm) 0.35rem;
+  border: 1px solid var(--map-line-loud);
+  border-radius: 4px;
+  background: var(--map-panel);
+  color: var(--map-ink);
+  box-shadow: 0 6px 24px rgb(0 0 0 / 0.45);
+
+  /* It folds up. The transform origin is the bottom edge, because that is the
+     edge it is anchored by — growing from anywhere else would read as the panel
+     arriving from somewhere other than the control that summoned it. */
+  &[open] {
+    animation: map-markets-unfold 140ms ease-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &[open] { animation: none; }
+  }
+}
+
+@keyframes map-markets-unfold {
+  from { opacity: 0; transform: translateY(4px) scaleY(0.96); }
+  to { opacity: 1; transform: none; }
+}
+
+.map-markets-panel-title {
+  margin: 0 0 0.35rem;
+  font-size: var(--size-2xs);
+  font-variant-caps: all-small-caps;
+  letter-spacing: var(--track-wide);
+  font-weight: 600;
+  color: var(--map-ink-dim);
+}
+
+/* No close button. The control that opened it closes it, Escape closes it, and
+   so does a press anywhere else — three dismissals, none of which needs a
+   target the size of a full stop in the corner of a small panel. */
+.map-markets-panel-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* One row per instrument. A grid rather than a flex run so the figures form a
+   column the eye can run down — the whole reason to open this rather than read
+   the summary is to compare members against each other. */
+.map-markets-row-item {
+  display: grid;
+  grid-template-columns: 1.2rem 0.9rem 1fr auto;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  appearance: none;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--map-line);
+  padding: 0.4rem 0.15rem;
+  font: inherit;
+  /* A step up from the strip's own `--size-xs`/`--map-ink-body`. The strip is
+     glanced at over a map and is rationed accordingly; this was opened on
+     purpose, and the reason to open it is to *read* seven figures against each
+     other. Matching the strip here would have been consistency for its own sake
+     — the same argument the type scale makes against `.map-feed-title` sitting
+     at 0.9rem because it happened to be chrome. */
+  font-size: var(--size-sm);
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--map-ink);
+  text-align: left;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:last-child { border-bottom: 0; }
+  &:hover { background: var(--map-row-hover); color: var(--map-ink); }
+
+  &:focus-visible {
+    background: var(--map-row-hover);
+    color: var(--map-ink);
+    outline: 1px solid var(--map-focus);
+    outline-offset: -1px;
+  }
+
+  /* Fixed columns, so an exchange row with no flag still lines its tick up with
+     a currency row that has one. */
+  & .map-markets-flag { grid-column: 1; }
+  & .map-markets-tick { grid-column: 2; }
+  & .map-markets-row-name { grid-column: 3; }
+  & .map-markets-row-pct { grid-column: 4; }
+
+  &.is-pos .map-markets-tick, &.is-pos .map-markets-row-pct { color: var(--map-pos); }
+  &.is-neg .map-markets-tick, &.is-neg .map-markets-row-pct { color: var(--map-neg); }
+}
+
+.map-markets-row-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.map-markets-row-pct { white-space: nowrap; }
 
 .map-markets-tally {
   display: flex;
@@ -3739,84 +3991,6 @@ body.map-page > footer .footer-social a {
   }
 }
 
-.map-markets-movers {
-  display: flex;
-  align-items: baseline;
-  gap: 0.7rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  min-width: 0;
-}
-
-.map-markets-mover {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.28rem;
-  background: none;
-  border: none;
-  padding: 0;
-  font: inherit;
-  font-size: var(--size-xs);
-  font-variant-numeric: lining-nums tabular-nums;
-  color: var(--map-ink-muted);
-  cursor: pointer;
-  white-space: nowrap;
-
-  &.is-pos .map-markets-tick { color: var(--map-pos); }
-  &.is-neg .map-markets-tick { color: var(--map-neg); }
-  &.is-pos .map-markets-mover-pct { color: var(--map-pos); }
-  &.is-neg .map-markets-mover-pct { color: var(--map-neg); }
-
-  &:hover { color: var(--map-ink); }
-
-  &:focus-visible {
-    outline: 1px solid var(--map-focus);
-    outline-offset: 2px;
-    border-radius: 2px;
-  }
-}
-
-.map-markets-mover-name {
-  font-variant-caps: all-small-caps;
-  letter-spacing: var(--track-wide);
-}
-
-.map-markets-quote {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  background: none;
-  border: none;
-  padding: 0;
-  font: inherit;
-  font-size: var(--size-2xs);
-  font-variant-numeric: lining-nums tabular-nums;
-  color: var(--map-ink-dim);
-  white-space: nowrap;
-  cursor: pointer;
-
-  &:hover .map-markets-quote-name { color: var(--map-ink); }
-
-  &:focus-visible {
-    outline: 1px solid var(--map-focus);
-    outline-offset: 2px;
-    border-radius: 2px;
-  }
-
-  &.is-pos .map-markets-tick, &.is-pos .map-markets-quote-pct { color: var(--map-pos); }
-  &.is-neg .map-markets-tick, &.is-neg .map-markets-quote-pct { color: var(--map-neg); }
-
-  & .map-markets-tick svg { width: 8px; height: 8px; }
-}
-
-.map-markets-quote-name {
-  font-variant-caps: all-small-caps;
-  letter-spacing: var(--track-wide);
-  color: var(--map-ink-muted);
-  transition: color var(--dur-fast);
-}
-
 /* A flag reads instantly where a three-letter code does not, and costs one
    character of width. Sized down slightly — emoji run large for their point
    size and would otherwise set the line height for the whole ribbon. */
@@ -3837,21 +4011,23 @@ body.map-page > footer .footer-social a {
   &:empty { display: none; }
 }
 
-/* --- What the readout gives up when the window stops paying for it ---
-   Four movers plus the tally plus the time readout is about 900px of type, and
-   a laptop gives this row roughly a thousand. Drop to one mover a side before
-   it wraps into the scrubber rather than after.
+/* --- Retired 2026-08-01, with its reasoning, because the row it managed is gone ---
 
-   The two comparison currencies go at the same width and for the same reason.
-   Currencies is the widest group in the ribbon — 683px against metals' 215 and
-   crypto's 193 — and it is the one that decides whether the ribbon sets in two
-   lines or three: at 503px, which is what dropping EUR and JPY leaves, it fits
-   on one line down to a 920px window. Which two are expendable is stated in
-   `TICKER` (`comparison: true`), not inferred from their position here. */
-@media (max-width: 1300px) {
-  .map-markets-movers li:nth-child(even) { display: none; }
-  .map-markets-quote[data-comparison] { display: none; }
-}
+   This culled the two comparison currencies and halved the named movers below
+   1300px, and the numbers behind it were real: four movers plus the tally plus
+   the clock was about 900px of type in a row that had roughly a thousand, and
+   the currencies group was 683px against metals' 215 and crypto's 193 — the one
+   group that decided whether the ribbon set in two lines or three.
+
+   Every one of those measurements is an argument that the strip was printing a
+   *set* where a summary would do. It prints four summaries now, the widest being
+   `markets ⌃15 ⌄9 6 flat 30 closed`, and the members are in a modal where there
+   is room for all of them and no reason to pick two to drop.
+
+   `comparison: true` stays on `TICKER`. Which two currencies are expendable is
+   an editorial fact about the ummah basket being the subject and USD being the
+   denominator, and the next thing to need it should not have to re-derive it
+   from a stylesheet that no longer asks. */
 
 /* No `opacity`. It was 0.6 at rest, lifting to 1 on hover — the composite-and-
    hope trick this stylesheet has now caught three times (the filter chips at
@@ -4065,7 +4241,7 @@ body.map-page > footer .footer-social a {
   .article-dateline {
     font-variant-caps: all-small-caps;
     font-feature-settings: "case" 1;
-    letter-spacing: 0.08em;
+    letter-spacing: var(--track-caps);
     font-weight: 600;
     color: var(--map-ink);
     margin-right: 0.5em;
@@ -4098,7 +4274,7 @@ body.map-page > footer .footer-social a {
   padding-right: 1rem;
   font-size: var(--size-xs);
   font-variant-caps: all-small-caps;
-  letter-spacing: 0.04em;
+  letter-spacing: var(--track-wide);
   color: var(--map-ink-muted);
 }
 
@@ -4152,7 +4328,7 @@ body.map-page > footer .footer-social a {
 
 .map-popup-sources-label {
   font-variant-caps: all-small-caps;
-  letter-spacing: 0.04em;
+  letter-spacing: var(--track-wide);
   color: var(--map-ink-dim);
   margin-right: 0.4rem;
 }
@@ -4163,7 +4339,7 @@ body.map-page > footer .footer-social a {
   border-top: 1px solid var(--map-line);
   font-size: var(--size-xs);
   font-variant-caps: all-small-caps;
-  letter-spacing: 0.04em;
+  letter-spacing: var(--track-wide);
   color: var(--map-ink-dim);
 }
 
@@ -4199,7 +4375,7 @@ a.map-popup-source-name {
 .map-popup-source-cc {
   color: var(--map-ink-dim);
   font-variant-caps: all-small-caps;
-  letter-spacing: 0.04em;
+  letter-spacing: var(--track-wide);
 }
 
 .map-popup-source-tone {
@@ -5484,8 +5660,19 @@ body.doc-page .chart {
      on the map with a card behind it. Nothing here is hidden that the reader
      cannot get to, which is the same test the `layers` disclosure has to pass.
 
-     211px → 187px at 390px wide. */
-  .map-markets-movers { display: none; }
+     211px → 187px at 390px wide.
+
+     **Superseded 2026-08-01, and deliberately not deleted with its reasoning.**
+     Every argument above is the argument for progressive disclosure, reached one
+     screen size early: the tally is the answer, the movers are the follow-up,
+     and the follow-up is reachable elsewhere. The strip now collapses that way
+     at *every* width, so a blanket `display: none` here would no longer be the
+     phone keeping the important half — it would be the phone alone refusing to
+     unfold what every other screen can. The last line of that note is the test
+     this rule would now fail: nothing hidden that the reader cannot get to.
+
+     What the phone still does is start closed and stay closed until asked,
+     which is what it was really after. */
 
   /* The scrubber sits on top of the drawer handle here (`bottom:
      var(--map-bar-h)` above), so clearing it means clearing both. 6.2rem was a

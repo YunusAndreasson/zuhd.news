@@ -14,10 +14,13 @@
 // below is a third reader of the same predicates, and inline that third drift
 // was only a matter of time.
 
+import { el } from '../_dom'
 import { isTrading } from './format'
-import { GLYPHS, glyphSvg } from './glyphs'
+import { glyphSvg } from './glyphs'
+import type { GLYPHS } from './glyphs'
 import { MAP_COLOURS, OVERLAY_COLOUR } from './style'
 import type { MapExchange } from './types'
+import type { ExpressionSpecification, SymbolLayerSpecification } from 'maplibre-gl'
 
 /**
  * Below this, a move is noise and the mark claims no direction.
@@ -105,7 +108,7 @@ export const marketCollection = (markets: MapExchange[], now = Date.now()) => ({
  * `dir` already folds the flat band in, so there is no second threshold here to
  * fall out of step with the first.
  */
-const TONE = [
+const TONE: ExpressionSpecification = [
   'case',
   ['==', ['get', 'dir'], 0],
   MAP_COLOURS.neutral,
@@ -114,7 +117,26 @@ const TONE = [
   OVERLAY_COLOUR.marketUp,
 ]
 
-export const marketLayout = () => ({
+/**
+ * The exchange marks' layout and paint.
+ *
+ * Both carry an explicit return type, and that is the whole reason the caller no
+ * longer needs `as never`.
+ *
+ * A style expression is a tuple to MapLibre's types — `['get', 'dir']` has to
+ * narrow to the `["get", string]` member of `ExpressionSpecification`. TypeScript
+ * only narrows an array literal that way when it has an expected type to narrow
+ * *against*: written inline in an `addLayer` call it does, so every layer defined
+ * there checks. Returned from a bare `() => ({…})` it does not — the literals
+ * widen to `(string | number | string[])[]`, which matches nothing in the spec,
+ * and the two call sites were silenced with `as never` rather than typed.
+ *
+ * That cast is not narrow. `never` disables checking on the *whole* object, so
+ * these two — the map's most conditional expressions, three nested `case`s over a
+ * signed value — were the layers least watched by the checker. Naming the return
+ * type restores contextual typing at the literal, which is where it belongs.
+ */
+export const marketLayout = (): NonNullable<SymbolLayerSpecification['layout']> => ({
   // Shape carries direction, so it survives a reader who cannot see hue —
   // which olive against terracotta, at 5px, does not.
   'icon-image': [
@@ -172,7 +194,7 @@ export const marketLayout = () => ({
   'symbol-sort-key': ['-', 0, ['get', 'abs']],
 })
 
-export const marketPaint = () => ({
+export const marketPaint = (): NonNullable<SymbolLayerSpecification['paint']> => ({
   'icon-color': TONE,
   // What the fill used to say. A closed exchange sits back because its number
   // is last night's; an open one carries full weight. Direction moved to the
@@ -580,12 +602,6 @@ const ribbonPct = (pct: number): string => {
 const toneClass = (pct: number): string =>
   Math.abs(pct) <= FLAT_PCT ? '' : pct < 0 ? ' is-neg' : ' is-pos'
 
-const el = (tag: string, className?: string, text?: string) => {
-  const node = document.createElement(tag)
-  if (className) node.className = className
-  if (text != null) node.textContent = text
-  return node
-}
 
 /**
  * A ranked readout of what the world's exchanges did.
@@ -604,10 +620,29 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
   const root = el('div', 'map-markets')
   root.hidden = true
 
-  const exchanges = el('div', 'map-markets-row')
+  /**
+   * One row, four summaries, and every detail behind a fold-up panel.
+   *
+   * The strip used to be two rows — the exchange tally and its named movers on
+   * one, then eleven currency, metal and crypto quotes on the other — and it
+   * cost between 97 and 141px of the map depending on width, wrapping to three
+   * lines at the narrow end. Every rule that followed was width management:
+   * culling the two comparison currencies below 1300, halving the movers at the
+   * same breakpoint, dropping the movers entirely on a phone, and a
+   * `flex: 1 1 34rem` basis swept against real line counts to stop the currencies
+   * group breaking mid-group.
+   *
+   * All of that was the same problem: the strip printed a set when the reader
+   * had asked a question about a set. `markets ⌃15 ⌄9 6 flat` is the answer —
+   * it is what the phone block worked out on its own and said so in as many
+   * words — and the eleven quotes are the follow-up. So the row now carries four
+   * of those answers and nothing else, and the follow-up opens where a follow-up
+   * belongs: in front of the map, at a size that can hold it, rather than in a
+   * strip competing with the planet for the bottom of the screen.
+   */
+  const row = el('div', 'map-markets-row')
   const label = el('span', 'map-markets-label', 'markets')
   const tally = el('span', 'map-markets-tally')
-  const movers = el('ul', 'map-markets-movers')
   const note = el('span', 'map-markets-note')
   /**
    * The label and the counts are one statement — "markets: 5 up, 19 down, 6
@@ -617,15 +652,64 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * third and `15 closed` on the fourth. A heading on a line of its own is a
    * heading that has stopped labelling anything.
    */
-  const tallyGroup = el('span', 'map-markets-group')
-  tallyGroup.append(label, tally)
-  exchanges.append(tallyGroup, movers, note)
+  const tallyGroup = el('button', 'map-markets-group map-markets-summary')
+  tallyGroup.append(label, tally, note)
+  row.append(tallyGroup)
+  root.append(row)
 
-  // The second rung: money, metal and crypto. Same vocabulary as the row above
-  // — tick, name, signed figure — because they are the same kind of fact, and
-  // one rung quieter because the exchanges are the layer the map is drawing.
-  const ribbon = el('div', 'map-markets-row is-ribbon')
-  root.append(exchanges, ribbon)
+  /**
+   * The panel the summaries open, folded up from the strip.
+   *
+   * A `<dialog>` — but `show()`, not `showModal()`. The difference is the whole
+   * design: a modal dialog renders a backdrop, makes the rest of the page inert
+   * and takes the focus with it, which for *a glance at a ticker* is far more
+   * ceremony than the question deserves. This one leaves the map live
+   * underneath, so a reader can read the currencies and keep watching the
+   * planet, and closes on a second press of the same control.
+   *
+   * It is still a `<dialog>` rather than an absolutely positioned `<div>`
+   * because of where it has to escape from. `.map-markets` lives inside the
+   * scrubber's own box, which clips and carries a scrim; an in-flow panel would
+   * be cut off by it. The top layer ignores ancestor clipping and stacking
+   * entirely, and a non-modal dialog is in the top layer just as a modal one is.
+   *
+   * The cost of `show()` is that the platform stops doing three things for us —
+   * Escape, the light-dismiss and the focus ring — so all three are wired below.
+   */
+  const panel = el('dialog', 'map-markets-panel')
+  const panelTitle = el('h2', 'map-markets-panel-title')
+  const panelList = el('div', 'map-markets-panel-list')
+  panel.append(panelTitle, panelList)
+  document.body.append(panel)
+
+  /** Which summary the panel is currently open on, so a second press closes. */
+  let openOn: HTMLElement | null = null
+
+  const closePanel = () => {
+    if (!openOn) return
+    openOn.classList.remove('is-open')
+    openOn.setAttribute('aria-expanded', 'false')
+    openOn = null
+    panel.close()
+  }
+
+  /**
+   * Put the panel directly above the control that opened it.
+   *
+   * Measured rather than declared, for the reason every other offset on this
+   * surface is: the strip rewraps, the summaries move, and a fixed `left` would
+   * point at whichever one happened to be there when the number was written.
+   * Clamped into the viewport so the last summary on the row does not open a
+   * panel half off the right edge.
+   */
+  const placePanel = (btn: HTMLElement) => {
+    const r = btn.getBoundingClientRect()
+    const w = panel.offsetWidth
+    const gap = 10
+    const left = Math.max(gap, Math.min(r.left, window.innerWidth - w - gap))
+    panel.style.left = `${left}px`
+    panel.style.bottom = `${Math.max(gap, window.innerHeight - r.top + gap)}px`
+  }
 
   const tick = (dir: -1 | 0 | 1) => {
     const id = dir > 0 ? 'tick-up' : dir < 0 ? 'tick-down' : 'tick-flat'
@@ -634,42 +718,172 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     return span
   }
 
-  const update = (markets: MapExchange[], now = Date.now()) => {
-    const t = marketTally(markets, now)
+  /**
+   * A group's whole state as three counts and one direction.
+   *
+   * The flat band is `FLAT_PCT`, the same threshold the marks use, so a quote
+   * the map draws as neutral is counted as flat here — the strip and the canvas
+   * cannot disagree about whether something moved.
+   *
+   * `net` is the mean of the displayed percentages, not of the raw ones. The
+   * currencies are quoted `X / USD` and inverted on the way in, so averaging
+   * anything else would report the basket rising as the basket falling.
+   */
+  const summarise = (pcts: number[]) => {
+    const up = pcts.filter((p) => p > FLAT_PCT).length
+    const down = pcts.filter((p) => p < -FLAT_PCT).length
+    const mean = pcts.length ? pcts.reduce((a, b) => a + b, 0) / pcts.length : 0
+    return { up, down, flat: pcts.length - up - down, net: marketDirection(mean) }
+  }
 
-    tally.replaceChildren()
+  /**
+   * The counts, in the vocabulary the exchange tally already established.
+   *
+   * Reused rather than re-invented for the ribbon groups: a reader who has
+   * learned that `⌃15 ⌄9 6 flat` means the exchanges should not have to learn a
+   * second shape to read the same fact about the currencies.
+   */
+  const countsInto = (host: HTMLElement, s: ReturnType<typeof summarise>) => {
     for (const [dir, n, cls] of [
-      [1, t.up, 'is-pos'],
-      [-1, t.down, 'is-neg'],
+      [1, s.up, 'is-pos'],
+      [-1, s.down, 'is-neg'],
     ] as Array<[-1 | 1, number, string]>) {
-      const group = el('span', `map-markets-count ${cls}`)
-      group.append(tick(dir), el('span', undefined, String(n)))
-      tally.append(group)
+      if (!n) continue
+      const g = el('span', `map-markets-count ${cls}`)
+      g.append(tick(dir), el('span', undefined, String(n)))
+      host.append(g)
     }
     // Omitted at zero — a strip that says "0 flat" is spending a word to
     // report the absence of a thing nobody asked about.
-    if (t.flat) tally.append(el('span', 'map-markets-count', `${t.flat} flat`))
+    if (s.flat) host.append(el('span', 'map-markets-count', `${s.flat} flat`))
+  }
 
-    movers.replaceChildren()
-    // Risers, then fallers — a ranking, read down each side. With two per side
-    // the phone rule `li:nth-child(even)` happens to leave the top riser and
-    // the top faller, which is exactly the pair worth keeping, so grouping
-    // costs nothing at the narrow end.
-    for (const m of [...t.risers, ...t.fallers]) {
-      const li = el('li')
-      const btn = el('button', `map-markets-mover${toneClass(m.changePct)}`)
-      btn.setAttribute('type', 'button')
-      // The index, not the institution: KOSPI, not Korea Exchange. It is
-      // shorter and it is what a market is called in a headline.
-      btn.append(
-        tick(marketDirection(m.changePct)),
-        el('span', 'map-markets-mover-name', m.indexName),
-        el('span', 'map-markets-mover-pct', ribbonPct(m.changePct)),
-      )
-      btn.addEventListener('click', () => opts.onSelect(m.id))
-      li.append(btn)
-      movers.append(li)
+  /**
+   * Make a summary open the modal on its own group.
+   *
+   * Per group rather than one control for the whole strip, because the four
+   * groups are independent questions — a reader checking the ummah basket is not
+   * thereby asking about crypto — and because a single "expand everything"
+   * control would put the reader back in front of the set the summaries exist to
+   * spare them.
+   *
+   * The rows are built fresh on each open rather than cached, so the modal
+   * cannot show a figure the strip behind it has already replaced. These are
+   * fifteen rows off data the island is already holding; there is nothing to
+   * amortise.
+   */
+  const openPanel = (btn: HTMLElement, name: string, rows: () => HTMLElement[]) => {
+    // A second press on the control that opened it closes it. Pressing a
+    // *different* summary swaps the contents rather than stacking a second
+    // panel, which is the behaviour a row of four peers should have.
+    if (openOn === btn) {
+      closePanel()
+      return
     }
+    closePanel()
+    panelTitle.textContent = name
+    panelList.replaceChildren(...rows())
+    panel.show()
+    openOn = btn
+    btn.classList.add('is-open')
+    btn.setAttribute('aria-expanded', 'true')
+    // After `show()`, so `offsetWidth` is the laid-out width and not zero.
+    placePanel(btn)
+  }
+
+  const trigger = (btn: HTMLButtonElement, name: string, rows: () => HTMLElement[]) => {
+    btn.setAttribute('type', 'button')
+    btn.setAttribute('aria-haspopup', 'dialog')
+    btn.setAttribute('aria-expanded', 'false')
+    btn.setAttribute('aria-label', `${name}, show detail`)
+    btn.addEventListener('click', () => openPanel(btn, name, rows))
+  }
+
+  /**
+   * The three things `show()` does not give us, unlike `showModal()`.
+   *
+   * Escape is registered here, at strip construction, which is before the
+   * island's own `keydown` — so it runs first and `stopPropagation` keeps the
+   * same key from also resetting the camera. That is the island's stated
+   * "innermost first" order, honoured by registration rather than by asking.
+   *
+   * The light-dismiss is `pointerdown`, not `click`: a `click` listener on
+   * `document` fires *after* the summary's own handler on the way back up, so
+   * opening the panel and immediately closing it again was the first behaviour
+   * this had. `pointerdown` also dismisses on a drag of the map, which is right
+   * — the reader has moved on.
+   */
+  const onDocKey = (e: KeyboardEvent) => {
+    if (e.key !== 'Escape' || !openOn) return
+    const btn = openOn
+    closePanel()
+    btn.focus()
+    e.stopPropagation()
+  }
+  const onDocDown = (e: Event) => {
+    if (!openOn) return
+    const t = e.target
+    if (t instanceof Node && (panel.contains(t) || openOn.contains(t))) return
+    closePanel()
+  }
+  document.addEventListener('keydown', onDocKey)
+  document.addEventListener('pointerdown', onDocDown, true)
+  // The panel is fixed to a measured point, so anything that moves the strip
+  // moves what it is pointing at.
+  const onReflow = () => { if (openOn) placePanel(openOn) }
+  window.addEventListener('resize', onReflow, { passive: true })
+
+  /**
+   * An exchange, as a row in the panel.
+   *
+   * The index, not the institution: KOSPI, not Korea Exchange. It is shorter and
+   * it is what a market is called in a headline. Selecting one closes the modal
+   * first — the card it opens is anchored to a place on the map, and leaving a
+   * modal in front of the flight would hide the answer.
+   */
+  const exchangeRow = (m: MapExchange) => {
+    const btn = el('button', `map-markets-row-item${toneClass(m.changePct)}`)
+    btn.setAttribute('type', 'button')
+    btn.append(
+      tick(marketDirection(m.changePct)),
+      el('span', 'map-markets-row-name', m.indexName),
+      el('span', 'map-markets-row-pct', ribbonPct(m.changePct)),
+    )
+    btn.addEventListener('click', () => {
+      closePanel()
+      opts.onSelect(m.id)
+    })
+    return btn
+  }
+
+  const quoteRow = (e: TickerEntry) => {
+    const btn = el('button', `map-markets-row-item${toneClass(e.pct)}`)
+    btn.setAttribute('type', 'button')
+    if (e.flag) btn.append(el('span', 'map-markets-flag', e.flag))
+    btn.append(
+      tick(e.pct > FLAT_PCT ? 1 : e.pct < -FLAT_PCT ? -1 : 0),
+      // The full name here, where there is room for it. The strip never had it
+      // and the code alone is unreadable to most people, which is the whole
+      // reason every quote carried a flag.
+      el('span', 'map-markets-row-name', e.name),
+      el('span', 'map-markets-row-pct', ribbonPct(e.pct)),
+    )
+    btn.addEventListener('click', () => {
+      closePanel()
+      opts.onQuote(e)
+    })
+    return btn
+  }
+
+  /** The whole exchange set, ranked, not the four the strip used to name. */
+  let allExchanges: MapExchange[] = []
+
+  const update = (markets: MapExchange[], now = Date.now()) => {
+    const t = marketTally(markets, now)
+    allExchanges = [...markets].sort((a, b) => (b.changePct ?? 0) - (a.changePct ?? 0))
+
+    tally.replaceChildren()
+    countsInto(tally, { up: t.up, down: t.down, flat: t.flat, net: 0 })
 
     // The caveat on the whole readout: at any given moment most exchanges are
     // shut, and those numbers are last night's. One number rather than thirty
@@ -677,62 +891,46 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     note.textContent = t.closed ? `${t.closed} closed` : ''
   }
 
+  trigger(tallyGroup, 'markets', () => allExchanges.map(exchangeRow))
+
   /**
-   * One box per group, holding its label and every quote under it.
+   * The three money groups, as three more summaries on the same row.
    *
-   * This was `map-markets-pair` — the label and *the first thing it names*,
-   * kept together on the reasoning that "the rest of the group still wraps
-   * wherever it likes". Measuring where it liked to wrap is what killed that
-   * idea. The ribbon is one flat run of eleven quotes and three labels, and the
-   * column it wraps in runs from 1084px at 1920 down to 266px at 920, so the
-   * breaks fell mid-group at almost every width:
-   *
-   *   1600  `currencies 🇺🇸 USD 0.0%` alone on line 1 — the pairing *caused*
-   *         this, forcing exactly one member onto the label's line and pushing
-   *         the other six onto the next.
-   *   1100  line 3 `metals GOLD −0.7%`, line 4 `SILVER −4.5% · crypto BTC ·
-   *         ETH` — silver stranded ahead of a *different* group's heading, so
-   *         the only reading available on that line is that it is crypto.
-   *   1000  `ETH −0.2%` alone on a line with no heading anywhere on it.
-   *    360  five lines, three of them beginning mid-group.
-   *
-   * A group box cannot break in the middle: flex moves an item to the next line
-   * whole, and only wraps *inside* the group when the group alone is wider than
-   * the line — which on a phone is the honest outcome, since seven currencies
-   * do not fit across 355px however they are marked up. What is guaranteed is
-   * that no line ever mixes two groups, and no member is ever separated from
-   * its heading by another heading.
+   * This replaced a second row that printed all eleven quotes, and with it goes
+   * every rule that existed to manage that row's width — the mid-group wrap
+   * problem the group boxes were built to solve, and the `flex: 1 1 34rem` basis
+   * swept against real line counts to keep the currencies group on one line. A
+   * summary is four tokens wide and the problem does not arise.
    *
    * A `Map` rather than a running `current` string, so a payload that ever
-   * interleaves groups still produces three boxes rather than six.
+   * interleaves groups still produces three summaries rather than six.
    */
   const setTrends = (indicators: TrendIndicator[]) => {
-    ribbon.replaceChildren()
+    for (const stale of row.querySelectorAll('.map-markets-group[data-trend]')) stale.remove()
     const entries = tickerEntries(indicators)
     if (!entries.length) return
-    const groups = new Map<string, HTMLElement>()
+
+    const byGroup = new Map<string, TickerEntry[]>()
     for (const e of entries) {
-      const item = el('button', `map-markets-quote${toneClass(e.pct)}`)
-      item.setAttribute('type', 'button')
-      // The code is what fits; the name is what the reader needs. The flag
-      // bridges them at no cost in width, and the card carries the rest.
-      item.setAttribute('aria-label', `${e.name}, ${ribbonPct(e.pct)}`)
-      if (e.comparison) item.dataset.comparison = ''
-      if (e.flag) item.append(el('span', 'map-markets-flag', e.flag))
-      item.append(
-        tick(e.pct > FLAT_PCT ? 1 : e.pct < -FLAT_PCT ? -1 : 0),
-        el('span', 'map-markets-quote-name', e.label),
-        el('span', 'map-markets-quote-pct', ribbonPct(e.pct)),
-      )
-      item.addEventListener('click', () => opts.onQuote(e))
-      let group = groups.get(e.group)
-      if (!group) {
-        group = el('span', 'map-markets-group')
-        group.append(el('span', 'map-markets-label', e.group))
-        groups.set(e.group, group)
-        ribbon.append(group)
-      }
-      group.append(item)
+      const list = byGroup.get(e.group)
+      if (list) list.push(e)
+      else byGroup.set(e.group, [e])
+    }
+
+    for (const [name, items] of byGroup) {
+      const summary = el('button', 'map-markets-group map-markets-summary')
+      summary.dataset.trend = ''
+      const counts = el('span', 'map-markets-tally')
+      const s = summarise(items.map((e) => e.pct))
+      countsInto(counts, s)
+      // The group's own direction, in the shape the marks already use. This is
+      // the "average colour": one glyph saying which way the basket as a whole
+      // went, ahead of the counts saying how unanimous that was. A group can be
+      // 4 up and 3 down and still net down, and those are two different facts —
+      // which is the whole reason the tick is not derived from the counts.
+      summary.append(tick(s.net), el('span', 'map-markets-label', name), counts)
+      trigger(summary, name, () => items.map(quoteRow))
+      row.append(summary)
     }
   }
 
@@ -745,6 +943,14 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     },
     destroy() {
       root.remove()
+      // The panel lives on `document.body`, not inside `root`, so clearing the
+      // container does not take it — the same debt the sheet and the story
+      // popup carry for the same reason. Its three document-level listeners go
+      // with it; they are the price of `show()` over `showModal()`.
+      document.removeEventListener('keydown', onDocKey)
+      document.removeEventListener('pointerdown', onDocDown, true)
+      window.removeEventListener('resize', onReflow)
+      panel.remove()
     },
   }
 }

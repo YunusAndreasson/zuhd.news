@@ -16,11 +16,11 @@
 
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { build } from 'esbuild'
-import { readFileSync, existsSync, mkdtempSync, writeFileSync, rmSync } from 'node:fs'
+import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
-import { tmpdir } from 'node:os'
 import { unwrap, closePolar, thin, simplifyRing } from '../build/basemap.js'
+import { channels, composite, contrast, hsl, luminance, luminanceOf } from './contrast.js'
+import { bundleIsland, bundleIslands, scratchDir } from './island-bundle.js'
 // The prayer-time oracle. A devDependency, and deliberately not shipped — the
 // island derives its curves in closed form and this is what proves it right.
 // See the header of `public/islands/_map/prayer.ts`.
@@ -35,59 +35,47 @@ import {
 
 const ROOT = new URL('../..', import.meta.url).pathname
 
-const dir = mkdtempSync(join(tmpdir(), 'zuhd-map-test-'))
-const entry = join(dir, 'entry.ts')
-writeFileSync(
-  entry,
-  `export * from '${join(ROOT, 'public/islands/_map/solar.ts')}'\n` +
+const dir = scratchDir('map-geo')
+const bundlePath = await bundleIslands(
+  dir,
+  [
+    'public/islands/_map/solar.ts',
     // The prayer lines. Pure geometry, and the one layer on this map whose
     // correctness a reader cannot check by looking at it — a Fajr line in the
     // wrong place is still a plausible Fajr line. Pinned against adhan below.
-    `export * from '${join(ROOT, 'public/islands/_map/prayer.ts')}'\n` +
-    `export * from '${join(ROOT, 'public/islands/_map/types.ts')}'\n` +
-    `export * from '${join(ROOT, 'public/islands/_map/format.ts')}'\n` +
+    'public/islands/_map/prayer.ts',
+    'public/islands/_map/types.ts',
+    'public/islands/_map/format.ts',
     // The Hijri calendar and the Eid closures that hang off it. Pure, and the
     // only thing on the map whose correctness cannot be checked by looking at
     // it — a wrong Hijri date is still a plausible Hijri date.
-    `export * from '${join(ROOT, 'public/islands/_map/hijri.ts')}'\n` +
+    'public/islands/_map/hijri.ts',
     // Named rather than `export *`: markets.ts re-exports payload types that
     // would collide with types.ts above, and an ambiguous star export resolves
     // to silence rather than an error.
-    `export { nisab } from '${join(ROOT, 'public/islands/_map/markets.ts')}'\n` +
+    { path: 'public/islands/_map/markets.ts', names: ['nisab'] },
     // style.ts only imports maplibre-gl as a type, so it erases and the bundle
     // stays DOM-free. Pulled in for the land ramp constants: the legend and the
     // fill both read them, and so does the contrast test below.
-    `export * from '${join(ROOT, 'public/islands/_map/style.ts')}'\n` +
+    'public/islands/_map/style.ts',
     // The genocide record. Data, not geometry, but it is the one overlay with
     // no upstream feed validating it, so the invariants have to live here.
-    `export * from '${join(ROOT, 'shared/genocide.ts')}'\n` +
+    'shared/genocide.ts',
     // The mark alphabet. Pure vertex tables and a rasteriser, no DOM — and the
     // module whose whole promise (shape says what a mark is) went unkept by
     // three of the four layers that were supposed to draw from it.
-    `export * from '${join(ROOT, 'public/islands/_map/glyphs.ts')}'\n` +
+    'public/islands/_map/glyphs.ts',
     // How stories become places, and how a place becomes a wash. Extracted from
     // the island precisely so it could be bundled here: every expression the
     // cluster design was built from — the domain, the disc radius, the rim
     // weight, the label size, the dominant-category argmax — lived in
     // `situation-map.ts`, which this suite deliberately does not bundle, so none
     // of it was ever tested. That was the largest hole in the map's coverage.
-    `export * from '${join(ROOT, 'public/islands/_map/places.ts')}'\n`,
+    'public/islands/_map/places.ts',
+  ],
+  'bundle.mjs',
 )
-const bundlePath = join(dir, 'bundle.mjs')
-await build({
-  entryPoints: [entry],
-  outfile: bundlePath,
-  bundle: true,
-  format: 'esm',
-  platform: 'neutral',
-  logLevel: 'silent',
-  // `_map/types.ts` re-exports the payload types from shared/. Those are
-  // type-only and erased, but the alias has to match the island bundler's or
-  // this suite would be the one place `@shared` fails to resolve.
-  alias: { '@shared': join(ROOT, 'shared') },
-})
 const M = await import(bundlePath)
-process.on('exit', () => rmSync(dir, { recursive: true, force: true }))
 
 // ---------------------------------------------------------------------------
 // Solar geometry and the night polygon
@@ -709,10 +697,6 @@ test('the prayer ink is neutral, its own, and legible on the ground', () => {
   }
   // The label is text and is drawn at full strength, so it answers to AA on
   // every ground the ramp can paint. The line itself is the quiet half.
-  const contrast = (a, b) => {
-    const [hi, lo] = [srgbLuminance(a), srgbLuminance(b)].sort((x, y) => y - x)
-    return (hi + 0.05) / (lo + 0.05)
-  }
   for (const ground of [M.MAP_COLOURS.ocean, M.MAP_COLOURS.land, ...M.LAND_RAMP]) {
     assert.ok(
       contrast(prayer, ground) >= 4.5,
@@ -1057,17 +1041,6 @@ test('story cards forward the per-source country the card renders', (t) => {
 // The land tint — per-metric country payloads and the ramp that draws them
 // ---------------------------------------------------------------------------
 
-const srgbLuminance = (hex) => {
-  const n = Number.parseInt(hex.slice(1), 16)
-  const lin = (c) => {
-    const s = c / 255
-    return s <= 0.04045 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4
-  }
-  return (
-    0.2126 * lin((n >> 16) & 255) + 0.7152 * lin((n >> 8) & 255) + 0.0722 * lin(n & 255)
-  )
-}
-
 test('the land ramp is legible, ordered, neutral, and clear of the border', () => {
   const ramp = M.LAND_RAMP
   assert.ok(ramp.length >= 2, 'ramp needs at least two stops')
@@ -1076,7 +1049,7 @@ test('the land ramp is legible, ordered, neutral, and clear of the border', () =
   // the same tone and a country's shade would stop being readable.
   for (let i = 1; i < ramp.length; i++) {
     assert.ok(
-      srgbLuminance(ramp[i]) > srgbLuminance(ramp[i - 1]),
+      luminance(ramp[i]) > luminance(ramp[i - 1]),
       `ramp stop ${i} (${ramp[i]}) is not lighter than ${ramp[i - 1]}`,
     )
   }
@@ -1088,10 +1061,6 @@ test('the land ramp is legible, ordered, neutral, and clear of the border', () =
   // 1.22:1 across the entire scale. The land was uniformly dark and switching
   // metrics changed nothing a reader could see. Monotonic is not the same as
   // legible: an encoding has to be *perceptible*, not merely ordered.
-  const contrast = (a, b) => {
-    const [hi, lo] = [srgbLuminance(a), srgbLuminance(b)].sort((x, y) => y - x)
-    return (hi + 0.05) / (lo + 0.05)
-  }
   for (let i = 1; i < ramp.length; i++) {
     const c = contrast(ramp[i], ramp[i - 1])
     assert.ok(
@@ -1112,7 +1081,7 @@ test('the land ramp is legible, ordered, neutral, and clear of the border', () =
     `border ${M.MAP_COLOURS.border} is not distinguishable from ramp top ${ramp[ramp.length - 1]}`,
   )
   assert.ok(
-    srgbLuminance(ramp[ramp.length - 1]) < srgbLuminance(M.MAP_COLOURS.border),
+    luminance(ramp[ramp.length - 1]) < luminance(M.MAP_COLOURS.border),
     `ramp top ${ramp[ramp.length - 1]} is not darker than border ${M.MAP_COLOURS.border}`,
   )
   assert.ok(
@@ -1126,7 +1095,7 @@ test('the land ramp is legible, ordered, neutral, and clear of the border', () =
   // distance here: an absolute luminance difference is not comparable between
   // the dark end of the ramp and the light end.
   assert.ok(
-    srgbLuminance(M.LAND_NO_DATA) < srgbLuminance(ramp[0]),
+    luminance(M.LAND_NO_DATA) < luminance(ramp[0]),
     'no-data tone is not below the ramp floor',
   )
   assert.ok(
@@ -1485,15 +1454,9 @@ test('a country lands on the same tone the card shows it', () => {
 
   // Monotonic in luminance between the stops, or an intermediate value would
   // read as a position it isn't.
-  const lum = (hex) => {
-    const c = [1, 3, 5]
-      .map((i) => Number.parseInt(hex.slice(i, i + 2), 16) / 255)
-      .map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4))
-    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]
-  }
   let prev = -1
   for (let p = 0; p <= 1.0001; p += 0.05) {
-    const l = lum(M.rampColour(p))
+    const l = luminance(M.rampColour(p))
     assert.ok(l > prev, `ramp is not monotonic at p=${p.toFixed(2)}`)
     prev = l
   }
@@ -1674,7 +1637,7 @@ test('the water tone is separable from the frontiers and from every land tone', 
   // measures 1.04:1 against LAND_NO_DATA and would simply not be there across
   // the thirty hatched countries. This is the floor that rules that out.
   const ratioTo = (a, b) => {
-    const [hi, lo] = [srgbLuminance(a), srgbLuminance(b)].sort((x, y) => y - x)
+    const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x)
     return (hi + 0.05) / (lo + 0.05)
   }
   const grounds = [LAND_NO_DATA, ...LAND_RAMP]
@@ -2148,22 +2111,6 @@ test('the genocide mark owns its colour outright', () => {
     'the genocide tone is shared with another overlay',
   )
 
-  const hsl = (hex) => {
-    const n = parseInt(hex.slice(1), 16)
-    const [r, g, b] = [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255]
-    const max = Math.max(r, g, b)
-    const min = Math.min(r, g, b)
-    const l = (max + min) / 2
-    const d = max - min
-    if (!d) return { h: 0, s: 0, l }
-    const s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
-    let h
-    if (max === r) h = ((g - b) / d + (g < b ? 6 : 0)) * 60
-    else if (max === g) h = ((b - r) / d + 2) * 60
-    else h = ((r - g) / d + 4) * 60
-    return { h, s, l }
-  }
-
   const mark = hsl(M.OVERLAY_COLOUR.genocide)
 
   // It shares conflict's hue on purpose — same subject, far end of it — so the
@@ -2283,19 +2230,6 @@ test('the thermal glyph is a burst nothing else could be mistaken for', () => {
 })
 
 test('the thermal tone is the disaster hue at a step the eye can separate', () => {
-  const hsl = (hex) => {
-    const v = Number.parseInt(hex.slice(1), 16)
-    const [r, g, b] = [((v >> 16) & 255) / 255, ((v >> 8) & 255) / 255, (v & 255) / 255]
-    const max = Math.max(r, g, b)
-    const min = Math.min(r, g, b)
-    const l = (max + min) / 2
-    const d = max - min
-    if (!d) return { h: 0, s: 0, l }
-    const s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
-    const h =
-      max === r ? ((g - b) / d + (g < b ? 6 : 0)) * 60 : max === g ? ((b - r) / d + 2) * 60 : ((r - g) / d + 4) * 60
-    return { h, s, l }
-  }
   const heat = hsl(M.OVERLAY_COLOUR.thermal)
   const gdacs = hsl(M.OVERLAY_COLOUR.gdacs)
 
@@ -2328,10 +2262,6 @@ test('the thermal tone is the disaster hue at a step the eye can separate', () =
   // bright country is `icon-halo-color: labelHalo`, which is why
   // `MAP_COLOURS.neutral` says the halo means "the ground stops being a
   // variable at all". Contrast against the halo is therefore the real invariant.
-  const contrast = (a, b) => {
-    const [hi, lo] = [srgbLuminance(a), srgbLuminance(b)].sort((x, y) => y - x)
-    return (hi + 0.05) / (lo + 0.05)
-  }
   for (const [name, ground] of [
     ['the ocean', M.MAP_COLOURS.ocean],
     ['its own halo', M.MAP_COLOURS.labelHalo],
@@ -2424,18 +2354,9 @@ test('every ISO-coded country on the basemap resolves to its code', async () => 
     .map((g) => g.properties?.name)
     .filter(Boolean)
 
-  const isoEntry = join(dir, 'iso-entry.ts')
-  writeFileSync(isoEntry, `export * from '${join(ROOT, 'shared/countries/iso.ts')}'\n`)
-  const isoBundle = join(dir, 'iso.mjs')
-  await build({
-    entryPoints: [isoEntry],
-    outfile: isoBundle,
-    bundle: true,
-    format: 'esm',
-    platform: 'neutral',
-    logLevel: 'silent',
-  })
-  const { codeFromTopojsonName } = await import(isoBundle)
+  const { codeFromTopojsonName } = await import(
+    await bundleIsland(dir, 'shared/countries/iso.ts', 'iso.mjs')
+  )
 
   // Not countries with codes of their own: two are Antarctic, one is a
   // dependency the map names Malvinas, and two are unrecognised states.
@@ -2655,22 +2576,10 @@ test('the density wash cannot saturate on the corpus it was calibrated against',
  * of its own.
  */
 test('the density wash sits above the land ramp and below the ink', () => {
-  const rgb = (hex) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16))
-  const lum = (c) => {
-    const [r, g, b] = c
-      .map((v) => v / 255)
-      .map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4))
-    return 0.2126 * r + 0.7152 * g + 0.0722 * b
-  }
-  const contrast = (a, b) => {
-    const [x, y] = [lum(a), lum(b)]
-    return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05)
-  }
-  const over = (fg, alpha, bg) => fg.map((v, i) => v * alpha + bg[i] * (1 - alpha))
 
-  const field = rgb(M.MAP_COLOURS.density)
-  const top = rgb(M.LAND_RAMP[M.LAND_RAMP.length - 1])
-  const ocean = rgb(M.MAP_COLOURS.ocean)
+  const field = channels(M.MAP_COLOURS.density)
+  const top = channels(M.LAND_RAMP[M.LAND_RAMP.length - 1])
+  const ocean = channels(M.MAP_COLOURS.ocean)
   const visible = M.DENSITY_STOPS.filter(([, a]) => a > 0)
   assert.ok(visible.length >= 2, 'the ramp needs a visible range')
 
@@ -2692,7 +2601,7 @@ test('the density wash sits above the land ramp and below the ink', () => {
   // being distinguished by kind, the wash having no edge at all.
   let rampStep = 0
   for (let i = 1; i < M.LAND_RAMP.length; i++) {
-    rampStep = Math.max(rampStep, contrast(rgb(M.LAND_RAMP[i]), rgb(M.LAND_RAMP[i - 1])))
+    rampStep = Math.max(rampStep, contrast(channels(M.LAND_RAMP[i]), channels(M.LAND_RAMP[i - 1])))
   }
   // Every stop *above the onset*. The first visible stop is the beginning of the
   // scale — a place that has only just started to crowd, at 1.18:1 against the
@@ -2701,7 +2610,7 @@ test('the density wash sits above the land ramp and below the ink', () => {
   // `borders`, so it is the only thing on this map with no edge. From the second
   // visible stop up, tone alone suffices, and that is what is pinned.
   for (const [, alpha] of visible.slice(1)) {
-    const lift = contrast(over(field, alpha, top), top)
+    const lift = contrast(composite(field, alpha, top), top)
     assert.ok(
       lift >= rampStep,
       `a visible stop lifts the brightest land only ${lift.toFixed(3)}:1, under the ramp's own ${rampStep.toFixed(3)}:1 step`,
@@ -2713,7 +2622,7 @@ test('the density wash sits above the land ramp and below the ink', () => {
   // 0.30 on 2026-07-30 because a country name measured 1.24:1 where the wash was
   // strongest. Legibility outranks the field, and the bar records which way that
   // trade went.
-  const peakOnLand = over(field, visible[visible.length - 1][1], top)
+  const peakOnLand = composite(field, visible[visible.length - 1][1], top)
   assert.ok(
     contrast(peakOnLand, top) >= 1.4,
     `the peak lifts the brightest land only ${contrast(peakOnLand, top).toFixed(2)}:1`,
@@ -2721,10 +2630,10 @@ test('the density wash sits above the land ramp and below the ink', () => {
 
   // The wash only ever adds light, on every ground it can lie on.
   for (const ground of [...M.LAND_RAMP, M.LAND_NO_DATA, M.MAP_COLOURS.ocean]) {
-    const bg = rgb(ground)
+    const bg = channels(ground)
     for (const [, alpha] of visible) {
       assert.ok(
-        lum(over(field, alpha, bg)) > lum(bg),
+        luminanceOf(composite(field, alpha, bg)) > luminanceOf(bg),
         `the wash darkens ${ground}, which inverts what more news means`,
       )
     }
@@ -2742,8 +2651,11 @@ test('the density wash sits above the land ramp and below the ink', () => {
   // 3:1 non-text floor against the wash at full strength. The label side of the
   // same invariant is pinned in "every label on the map is legible on every
   // ground it can land on", which walks all four inks.
-  const dim = rgb(M.MAP_COLOURS.labelDim)
-  assert.ok(lum(peakOnLand) < lum(dim), 'the wash must never be brighter than the type on it')
+  const dim = channels(M.MAP_COLOURS.labelDim)
+  assert.ok(
+    luminanceOf(peakOnLand) < luminanceOf(dim),
+    'the wash must never be brighter than the type on it',
+  )
   assert.ok(
     contrast(dim, peakOnLand) >= 3,
     `a country name measures only ${contrast(dim, peakOnLand).toFixed(2)}:1 on the wash at its peak`,
@@ -2768,22 +2680,22 @@ test('the density wash sits above the land ramp and below the ink', () => {
    * 2.27:1 by the fill. Under 3:1, and what still makes the mark a mark there is
    * the edge *between* rim and fill, which no ground can affect.
    */
-  const peakOnOcean = over(field, visible[visible.length - 1][1], ocean)
-  const casing = rgb(M.MAP_COLOURS.ocean)
+  const peakOnOcean = composite(field, visible[visible.length - 1][1], ocean)
+  const casing = channels(M.MAP_COLOURS.ocean)
   assert.ok(
     contrast(casing, peakOnLand) >= 3,
     `the rim only reaches ${contrast(casing, peakOnLand).toFixed(2)}:1 on the wash over bright land, which is the case it exists for`,
   )
   for (const [name, hex] of Object.entries(M.CATEGORY_COLOUR)) {
     assert.ok(
-      contrast(rgb(hex), peakOnOcean) >= 2.5,
-      `${name} only reaches ${contrast(rgb(hex), peakOnOcean).toFixed(2)}:1 on the wash over water, where the rim cannot help it`,
+      contrast(channels(hex), peakOnOcean) >= 2.5,
+      `${name} only reaches ${contrast(channels(hex), peakOnOcean).toFixed(2)}:1 on the wash over water, where the rim cannot help it`,
     )
   }
   for (const ground of [...M.LAND_RAMP, M.LAND_NO_DATA, M.MAP_COLOURS.ocean]) {
-    const patch = over(field, visible[visible.length - 1][1], rgb(ground))
+    const patch = composite(field, visible[visible.length - 1][1], channels(ground))
     for (const [name, hex] of Object.entries(M.CATEGORY_COLOUR)) {
-      const best = Math.max(contrast(rgb(hex), patch), contrast(casing, patch))
+      const best = Math.max(contrast(channels(hex), patch), contrast(casing, patch))
       assert.ok(
         best >= 2.25,
         `a ${name} beacon on the wash over ${ground} reaches only ${best.toFixed(2)}:1 by either channel`,
@@ -2794,8 +2706,8 @@ test('the density wash sits above the land ramp and below the ink', () => {
   // `story-place-count` is set in `label` and carried by `labelHalo`, which is
   // what lets its ground be a variable at all.
   assert.ok(
-    contrast(rgb(M.MAP_COLOURS.labelHalo), peakOnLand) >= 3,
-    `the label halo only reaches ${contrast(rgb(M.MAP_COLOURS.labelHalo), peakOnLand).toFixed(2)}:1 on the wash`,
+    contrast(channels(M.MAP_COLOURS.labelHalo), peakOnLand) >= 3,
+    `the label halo only reaches ${contrast(channels(M.MAP_COLOURS.labelHalo), peakOnLand).toFixed(2)}:1 on the wash`,
   )
 
   // Neutral, and quieter than a frontier. The land ramp is held to a channel
@@ -2805,7 +2717,7 @@ test('the density wash sits above the land ramp and below the ink', () => {
   const spread = Math.max(...field) - Math.min(...field)
   assert.ok(spread <= 20, `the wash tone is chromatic (channel spread ${spread})`)
   const hslOf = (hex) => {
-    const [r, g, b] = rgb(hex).map((v) => v / 255)
+    const [r, g, b] = channels(hex).map((v) => v / 255)
     const max = Math.max(r, g, b)
     const min = Math.min(r, g, b)
     const l = (max + min) / 2
@@ -2864,24 +2776,12 @@ test('the density wash sits above the land ramp and below the ink', () => {
  * held — going further would mean either near-white labels or no wash.
  */
 test('every label on the map is legible on every ground it can land on', () => {
-  const rgb = (hex) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16))
-  const lum = (c) => {
-    const [r, g, b] = c
-      .map((v) => v / 255)
-      .map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4))
-    return 0.2126 * r + 0.7152 * g + 0.0722 * b
-  }
-  const contrast = (a, b) => {
-    const [x, y] = [lum(a), lum(b)]
-    return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05)
-  }
-  const over = (fg, alpha, bg) => fg.map((v, i) => v * alpha + bg[i] * (1 - alpha))
 
   // Every tone the ground under a label can be: the metric ramp, a country the
   // metric has no figure for, and the open water a marine label sits on.
-  const grounds = [...M.LAND_RAMP, M.LAND_NO_DATA, M.MAP_COLOURS.ocean].map(rgb)
+  const grounds = [...M.LAND_RAMP, M.LAND_NO_DATA, M.MAP_COLOURS.ocean].map(channels)
   const peak = Math.max(...M.DENSITY_STOPS.map(([, a]) => a))
-  const washed = grounds.map((g) => over(rgb(M.MAP_COLOURS.density), peak, g))
+  const washed = grounds.map((g) => composite(channels(M.MAP_COLOURS.density), peak, g))
 
   // Every ink MapLibre sets type in. `prayer` is here too: its labels are drawn
   // at full strength over the same land.
@@ -2894,11 +2794,11 @@ test('every label on the map is legible on every ground it can land on', () => {
 
   for (const [what, ink] of Object.entries(inks)) {
     for (const g of grounds) {
-      const c = contrast(rgb(ink), g)
+      const c = contrast(channels(ink), g)
       assert.ok(c >= 4.5, `${what} measure ${c.toFixed(2)}:1 on ${g.map(Math.round)} — under AA`)
     }
     for (const g of washed) {
-      const c = contrast(rgb(ink), g)
+      const c = contrast(channels(ink), g)
       assert.ok(
         c >= 3,
         `${what} measure ${c.toFixed(2)}:1 on the density wash at its peak — under the 3:1 floor`,
@@ -2907,7 +2807,7 @@ test('every label on the map is legible on every ground it can land on', () => {
     // The halo is the second line of defence and has to stay one: a light ink on
     // a dark outline is what keeps the letterform crisp where the ground rises.
     assert.ok(
-      contrast(rgb(ink), rgb(M.MAP_COLOURS.labelHalo)) >= 4.5,
+      contrast(channels(ink), channels(M.MAP_COLOURS.labelHalo)) >= 4.5,
       `${what} do not separate from their own halo`,
     )
   }
@@ -2916,7 +2816,7 @@ test('every label on the map is legible on every ground it can land on', () => {
   // two, because a country name is already carried by being uppercase,
   // letter-spaced and set alone at a centroid.
   assert.ok(
-    lum(rgb(M.MAP_COLOURS.label)) > lum(rgb(M.MAP_COLOURS.labelDim)),
+    luminance(M.MAP_COLOURS.label) > luminance(M.MAP_COLOURS.labelDim),
     'city names must not be quieter than country names',
   )
 
@@ -2943,6 +2843,77 @@ test('every label on the map is legible on every ground it can land on', () => {
 })
 
 /**
+ * The globe's opening framing, which nothing else can check.
+ *
+ * `globeFitZoom` is the one piece of arithmetic the projection change turns on,
+ * and it is invisible when wrong: the map still opens, still draws the world,
+ * still reports a plausible "fit zoom" — it just draws the planet at a third of
+ * the size it should be. The old `worldFitZoom` fitted a *Mercator* world, and
+ * feeding a sphere that number is exactly the silent failure this file exists to
+ * catch, so the closed form is pinned against MapLibre's own.
+ */
+test('the globe fit solves MapLibre\'s own globe-radius formula', () => {
+  // maplibre-gl/src/geo/projection/globe_utils.ts:
+  //   getGlobeRadiusPixels(worldSize, lat) = worldSize / 2π / cos(lat)
+  // so diameter = TILE_PX · 2^z / (π · cos lat). Round-tripping a zoom back to
+  // a diameter must return the span asked for.
+  const diameter = (z, lat) =>
+    (M.TILE_PX * 2 ** z) / (Math.PI * Math.cos((lat * Math.PI) / 180))
+
+  for (const [span, lat] of [[900, 22], [390, 22], [1400, 0], [700, 45]]) {
+    const z = M.globeFitZoom(span, lat)
+    // Only meaningful below the cap; above it the fit is deliberately not met.
+    if (z >= M.GLOBE_ZOOM.sphere) continue
+    assert.ok(
+      Math.abs(diameter(z, lat) - span * M.GLOBE_FIT) < 0.5,
+      `globeFitZoom(${span}, ${lat}) = ${z.toFixed(3)} draws a ${diameter(z, lat).toFixed(0)}px globe, not ${span * M.GLOBE_FIT}`,
+    )
+  }
+
+  // A bigger canvas never opens further out, and a higher latitude never draws a
+  // bigger globe at the same span — MapLibre scales the planet up towards the
+  // poles to hold the centre's pixel scale constant, so the fit has to come down.
+  assert.ok(M.globeFitZoom(1200, 22) > M.globeFitZoom(600, 22), 'monotonic in span')
+  assert.ok(M.globeFitZoom(900, 60) < M.globeFitZoom(900, 0), 'higher latitude, smaller fit')
+
+  // The cap is what stops a large canvas opening part-way through the
+  // flattening, where neither projection is the one anything was tuned for.
+  assert.equal(
+    M.globeFitZoom(4000, 22),
+    M.GLOBE_ZOOM.sphere,
+    'a very large canvas must clamp to the sphere end of the transition, not exceed it',
+  )
+  assert.ok(
+    M.globeFitZoom(390, 22) < M.GLOBE_ZOOM.sphere,
+    'and a phone must still open on a full sphere',
+  )
+})
+
+/**
+ * The projection transition itself.
+ *
+ * `GLOBE_ZOOM` is read by the style *and* by the island's framing cap, so the
+ * two cannot be allowed to part — and the ordering is the whole meaning of it.
+ */
+test('the projection interpolates from sphere to plane, in that order', () => {
+  const style = M.buildStyle()
+  const type = style.projection?.type
+  assert.ok(Array.isArray(type), 'projection.type must be a zoom expression, not a bare string')
+  assert.equal(type[0], 'interpolate')
+  // `'globe'` is a preset that expands to an 11 → 12 transition, and this map's
+  // maxZoom is 9 — so it would be a sphere everywhere and the plane half of the
+  // design would silently never run.
+  assert.notEqual(type, 'globe')
+  const stops = type.slice(3)
+  assert.deepEqual(
+    stops,
+    [M.GLOBE_ZOOM.sphere, 'vertical-perspective', M.GLOBE_ZOOM.plane, 'mercator'],
+    'the sphere must come first and both stops must come from GLOBE_ZOOM',
+  )
+  assert.ok(M.GLOBE_ZOOM.sphere < M.GLOBE_ZOOM.plane, 'sphere zoom must be the lower one')
+})
+
+/**
  * No label layer is hidden at the view every reader starts from.
  *
  * `worldFitZoom` is `log2(max(w, h) / 512)` and is also the map's floor, so the
@@ -2960,7 +2931,17 @@ test('every label on the map is legible on every ground it can land on', () => {
  */
 test('no label layer is floored above the zoom a phone opens at', () => {
   // A 390x844 phone, which is the narrowest layout the CSS has a block for.
-  const PHONE_FIT = Math.log2(844 / 512)
+  //
+  // The **shorter** side and the globe formula, where this used to be
+  // `log2(844 / 512)` — the longer side and the Mercator one. Both halves of
+  // that changed with the projection, and in opposite directions: a sphere is a
+  // disc that has to fit in both axes (so `min`, not `max`), and it is far
+  // smaller than a flat world at the same zoom (so the fit zoom is far higher).
+  // A phone now opens at about **1.15** where it opened at −0.39, which makes
+  // this a much weaker bar than it was — it is kept because the failure it
+  // guards against is a `minzoom` written while looking at a desktop, and that
+  // is unchanged.
+  const PHONE_FIT = M.globeFitZoom(390, 22)
   const layers = M.buildStyle().layers.filter((l) => /label/.test(l.id))
   assert.ok(layers.length >= 3, 'expected the country, place and sea label layers')
 

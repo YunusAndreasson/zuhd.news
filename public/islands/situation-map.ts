@@ -15,7 +15,9 @@
 // The bundler resolves it to the copied vendor file rather than inlining it, so
 // the engine is fetched once and shared with the worker it spawns.
 import {
+  clearPrewarmedResources,
   Map as MapLibreMap,
+  prewarm,
   type ExpressionSpecification,
   type GeoJSONSource,
   type MapGeoJSONFeature,
@@ -33,6 +35,7 @@ import {
   CATEGORY_ORDER,
   densityCssRamp,
   densityRamp,
+  globeFitZoom,
   LAND_NO_DATA,
   LAND_RAMP,
   MAP_COLOURS,
@@ -67,7 +70,6 @@ import { PRAYER_NOTE, PRAYERS, type PrayerId, prayerInstantAt, prayerLines } fro
 import {
   CONTESTED_D,
   DEFAULT_METRIC,
-  NARROW_PX,
   THERMAL_NOTE,
   decayAt,
   type ConflictEvent,
@@ -190,9 +192,6 @@ const PRAYER_HOVER: ExpressionSpecification = ['boolean', ['feature-state', 'hov
 
 /** How wide, in pixels, the pointer may miss a hairline by and still find it. */
 const PRAYER_GRAB_PX = 7
-
-/** A Web Mercator world is this wide at zoom 0, and doubles each level. */
-const TILE_PX = 512
 
 /** Time-range presets, in hours. `null` means the whole 14-day window. */
 const RANGES: Array<[string, number | null]> = [
@@ -322,6 +321,23 @@ export function mount(
   container: HTMLElement,
   props: { basemap?: string; story?: string } = {},
 ) {
+  /**
+   * Start MapLibre's worker pool before anything needs it.
+   *
+   * `new MapLibreMap(…)` is several hundred lines below this: the whole HUD, the
+   * rail, the scrubber and the style are built first, and only then does the
+   * engine get asked for anything. `prewarm` spends that interval creating the
+   * worker and its shared resources, so the 1.6 MB basemap parse starts against
+   * a worker that already exists rather than one spun up on demand.
+   *
+   * It is explicitly *not* aimed at the boot cost this map actually has. Most of
+   * that is `getShaderParameter`/`getProgramParameter` blocking the main thread
+   * on the driver — ~820 ms of ~1.9 s, still without `KHR_parallel_shader_compile`
+   * in 6.1.0 — which is upstream and untouchable from here. This is the part
+   * that *is* ours: overlapping a startup we control with one we do not.
+   */
+  prewarm()
+
   /** Cache key for the basemap files — see `basemapUrl`. */
   const basemapV = props.basemap
   /**
@@ -931,7 +947,22 @@ export function mount(
   /** Which overlay marker the hover sheet is currently previewing. */
   let peekId: string | null = null
   /** ISO2 of the country under the pointer, driving the land highlight. */
-  let hoverIso: string | null = null
+  /**
+   * Which country's `hover` bit is written into the `countries` state map.
+   *
+   * This replaces a `hoverIso` that tracked where the pointer was, because with
+   * the hover bit in feature state the two questions have the same answer
+   * everywhere except one place, and that place is why the name changed:
+   * `applyMetric` clears this source's whole state map, wiping the hover bit
+   * along with every `p`. What the guard needs to know is what is *written*, not
+   * what is under the pointer — the same distinction `hoverStateWritten` makes
+   * for the stories, and for the same reason. `setFeatureState` and
+   * `removeFeatureState` both end in `_update()` whether or not they changed
+   * anything, so a write that changes nothing still dirties the source and
+   * schedules a frame. That is the 56.8-renders-a-second bug, and it is only
+   * ever avoided by comparing against what was last written.
+   */
+  let countryHoverWritten: string | null = null
   /** Which prayer line the pointer is on, if any. */
   let hoverPrayer: string | null = null
   /**
@@ -1030,16 +1061,6 @@ export function mount(
   })
   container.append(feed.element)
 
-  /**
-   * Whether the phone layout is in force.
-   *
-   * `matchMedia` rather than a bare `innerWidth` read so this asks the same
-   * question the stylesheet does, in the same units, and answers it from the
-   * same place — the two cannot drift by a scrollbar's width.
-   */
-  const narrowQuery = matchMedia(`(max-width: ${NARROW_PX}px)`)
-  const isNarrow = () => narrowQuery.matches
-
   // --- Map ----------------------------------------------------------------
   /**
    * The zoom at which exactly one Earth spans the canvas.
@@ -1073,39 +1094,43 @@ export function mount(
    * about where things are. Anything that wants a gentler opening frame has to
    * come from padding or latitude, not from a zoom the world can't fill.
    */
-  const worldFitZoom = () => {
+  /**
+   * The opening zoom, measured off the canvas.
+   *
+   * The arithmetic is `globeFitZoom` in `_map/style.ts`, beside the projection
+   * it describes and where `map-geo.test.js` can reach it; this is only the DOM
+   * measurement it needs. The shorter side, because a sphere is a disc that has
+   * to fit in both axes — see the note there for why the flat version took the
+   * longer one instead.
+   */
+  const fitZoom = (lat: number) => {
     const w = mapEl.clientWidth || window.innerWidth || 1280
     const h = mapEl.clientHeight || window.innerHeight || 800
-    // The larger side, not the width. With `renderWorldCopies` off MapLibre
-    // refuses any zoom at which the world fails to cover the canvas — in
-    // *either* axis, since latitude stops at ±85° whatever the setting — so
-    // the real floor is whichever side needs more world. On a desktop the
-    // canvas is wider than it is tall and this is the width, which is what the
-    // rest of this comment was written about. On a phone it is emphatically
-    // the height: a 390×753 canvas cannot hold a 390px world, MapLibre clamps
-    // to 0.56 regardless, and a HOME_VIEW that asked for anything lower was a
-    // view the camera could not hold — the "whole world" control read as
-    // permanently pressed because the map was permanently 0.9 levels above the
-    // home it had been given.
-    const fit = Math.log2(Math.max(w, h) / TILE_PX)
-    // Measured on the viewport, not the canvas: the canvas is narrower than
-    // the window by the rail's width, and a 1200px desktop window would
-    // otherwise be mistaken for a phone and lose the floor.
-    return isNarrow() ? fit : Math.max(1.35, fit)
+    return globeFitZoom(Math.min(w, h), lat)
   }
 
   /** The view the map opens on, and the one the wordmark returns you to. */
-  const HOME_VIEW = { center: [12, 22] as [number, number], zoom: worldFitZoom() }
+  const HOME_CENTER: [number, number] = [12, 22]
+  const HOME_VIEW = { center: HOME_CENTER, zoom: fitZoom(HOME_CENTER[1]) }
 
   const map = new MapLibreMap({
     container: mapEl,
     style: buildStyle(basemapV),
     center: HOME_VIEW.center,
     zoom: HOME_VIEW.zoom,
-    // The floor is the zoom at which the world still covers the canvas, not a
-    // constant. Below it MapLibre draws a second copy of the world rather than
-    // letterboxing, so a fixed `1` was an invitation to see Australia twice.
-    // Kept in step with the viewport by `onResize`.
+    // The floor is the fit, not a constant, and it is kept in step with the
+    // viewport by `onResize`.
+    //
+    // Note that the *effective* floor sits a hair below this. On the sphere
+    // MapLibre clamps to `minZoom + getZoomAdjustment(0, lat)`, which is
+    // `minZoom + log2(cos lat)` — it re-applies the latitude term itself, to
+    // keep the planet the same size as the reader moves north or south. At the
+    // home latitude of 22° that is −0.109, so the reader can pull out about 11%
+    // past a perfect fit and see a slightly smaller globe. That is harmless
+    // here, because on this projection the space around the disc is the design
+    // rather than a failure to fill the frame — but it is worth writing down,
+    // since a floor that does not equal the number handed to it looks like a
+    // bug to anyone who measures it.
     minZoom: HOME_VIEW.zoom,
     maxZoom: 9,
     attributionControl: false,
@@ -1117,10 +1142,13 @@ export function mount(
     // Rotation on a situational map is disorientation, not a feature.
     dragRotate: false,
     pitchWithRotate: false,
-    // One Earth. `worldFitZoom` sizes the opening view so a single world fills
-    // the canvas, and without this MapLibre would still repeat it the moment a
-    // reader zoomed out or panned past a pole — a situational map that shows
-    // the same conflict twice, in two places, is lying about where things are.
+    // One Earth, and it still has to be said even though the opening view is a
+    // sphere now. A sphere cannot repeat — but this map is only a sphere below
+    // `GLOBE_ZOOM.plane`, and past that it is ordinary Mercator, where the
+    // duplicate is exactly as available and exactly as much of a lie: a
+    // situational map that shows the same conflict twice, in two places, is
+    // lying about where things are. So this governs the flat half, and
+    // `globeFitZoom`'s cap governs the round one.
     renderWorldCopies: false,
   })
   map.touchZoomRotate.disableRotation()
@@ -1714,8 +1742,36 @@ export function mount(
         id: 'country-hover',
         type: 'fill',
         source: 'countries',
-        filter: ['==', ['get', 'iso2'], ''],
-        paint: { 'fill-color': '#ffffff', 'fill-opacity': 0.06 },
+        // Feature state, not a filter, and this layer was the last thing on the
+        // map still doing it the expensive way.
+        //
+        // It used to carry `filter: ['==', ['get','iso2'], '']` and have that
+        // filter *rewritten on every pointer move*. A filter change ends in
+        // `Style._updateLayer`, which marks the whole source `'reload'` — so
+        // pointing at Chad re-bucketed `countries`, which is 1.6 MB and 99k
+        // points, and then did it again for Sudan. This file already forbids
+        // exactly that one layer up, in the note on `stories`: hover is
+        // `promoteId` + `setFeatureState`, "not a `setPaintProperty` rewrite per
+        // pointer move". The rule was written for the beacons and never applied
+        // here.
+        //
+        // The source already carries `promoteId: 'iso2'` for the ground metric,
+        // so the id this addresses is the one already in use and nothing new had
+        // to be plumbed. `setFeatureState` ends in `TileManager.setFeatureState`
+        // → `updatePaintArrays`, which rewrites the paint buffers in place with
+        // no reload at all.
+        //
+        // Note this is deliberately *not* a `global-state` expression, which was
+        // the obvious modern answer and is the wrong one: `global-state` inside a
+        // paint property that also reads `['get', …]` is **data-driven**, and
+        // `StyleLayer.setPaintProperty` returns `isDataDriven` as its
+        // `requiresRelayout` flag — so it would have reloaded the source exactly
+        // like the filter did. Feature state is the only mechanism here that
+        // updates a per-feature paint value without one.
+        paint: {
+          'fill-color': '#ffffff',
+          'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.06, 0],
+        },
       },
       'borders',
     )
@@ -1850,7 +1906,7 @@ export function mount(
             3.2, 1,
             DENSITY_FADE_OUT, 0,
           ],
-        } as never,
+        },
       },
       'borders',
     )
@@ -1881,6 +1937,18 @@ export function mount(
           'line-color': MAP_COLOURS.prayer,
           'line-width': 0.9,
           'line-dasharray': [3, 4],
+          // Stays `line-opacity`, unlike `rivers`, and the reason is that this
+          // one is data-driven. `line-layer-opacity` is `data-constant` in the
+          // spec, so it cannot read `feature-state` and cannot carry the hover
+          // step — splitting the two across both properties would express one
+          // decision as a product of two numbers, which is how a hover ends up
+          // at some tone nobody chose.
+          //
+          // The accumulation it would fix is also much smaller here than at a
+          // river confluence: these are five curves of constant solar hour angle,
+          // so they run parallel almost everywhere and only approach each other
+          // near the poles, at 0.2 alpha, in a layer a reader has to switch on.
+          // Not worth a full-canvas compositing pass per frame.
           'line-opacity': ['case', PRAYER_HOVER, 0.55, 0.2],
         },
       },
@@ -1982,7 +2050,7 @@ export function mount(
         'icon-size': ['interpolate', ['linear'], ['get', 'mag'], 0, 0.31, 1, 0.875],
         'icon-allow-overlap': true,
         'icon-ignore-placement': true,
-      } as never,
+      },
       paint: {
         // The fill and the hairline stroke become the glyph's colour and its
         // halo: a solid square in the darker red, outlined in the lighter one,
@@ -1991,7 +2059,7 @@ export function mount(
         'icon-opacity': ['*', ['get', 'a'], 0.55],
         'icon-halo-color': OVERLAY_COLOUR.conflict,
         'icon-halo-width': 0.8,
-      } as never,
+      },
     })
 
     map.addLayer({
@@ -2012,7 +2080,7 @@ export function mount(
         'icon-size': ['interpolate', ['linear'], ['get', 'mag'], 0, 0.44, 1, 1.0],
         'icon-allow-overlap': true,
         'icon-ignore-placement': true,
-      } as never,
+      },
       paint: {
         // Gold for traffic falling away — the blockage case — and a cool tone
         // for a surge, which is a different story told by the same number.
@@ -2025,7 +2093,7 @@ export function mount(
         'icon-opacity': ['interpolate', ['linear'], ['get', 'mag'], 0, 0.55, 1, 0.95],
         'icon-halo-color': MAP_COLOURS.labelHalo,
         'icon-halo-width': 1,
-      } as never,
+      },
     })
 
     map.addLayer({
@@ -2048,7 +2116,7 @@ export function mount(
         ],
         'icon-allow-overlap': true,
         'icon-ignore-placement': true,
-      } as never,
+      },
       paint: {
         'icon-color': OVERLAY_COLOUR.gdacs,
         // Green is 98% of the feed, so a flat 0.4 there made the whole layer
@@ -2063,7 +2131,7 @@ export function mount(
         ],
         'icon-halo-color': MAP_COLOURS.labelHalo,
         'icon-halo-width': 1,
-      } as never,
+      },
     })
 
     /**
@@ -2222,7 +2290,7 @@ export function mount(
         'text-ignore-placement': false,
         // Busiest place wins the space when two numerals compete.
         'symbol-sort-key': ['-', 0, ['get', 'n']],
-      } as never,
+      },
       paint: {
         // The tone this map sets place names in, because that is what this is: a
         // fact about a place. Its legibility is the halo's job — 3.80:1 against
@@ -2238,8 +2306,8 @@ export function mount(
       id: 'market-marks',
       type: 'symbol',
       source: 'markets',
-      layout: marketLayout() as never,
-      paint: marketPaint() as never,
+      layout: marketLayout(),
+      paint: marketPaint(),
     })
 
     /**
@@ -2271,7 +2339,7 @@ export function mount(
         // Biggest first, so if anything ever does have to yield it is the
         // smallest fire rather than whichever sorted last.
         'symbol-sort-key': ['-', 0, ['get', 'mag']],
-      } as never,
+      },
       paint: {
         'icon-color': OVERLAY_COLOUR.thermal,
         // The instrument's own certainty. VIIRS marks a detection low-confidence
@@ -2287,7 +2355,7 @@ export function mount(
         ],
         'icon-halo-color': MAP_COLOURS.labelHalo,
         'icon-halo-width': 1.2,
-      } as never,
+      },
     })
 
     /**
@@ -2349,7 +2417,7 @@ export function mount(
         // Gravest on top. Where two areas' marks overlap at world zoom — which in
         // Darfur they do — the one that yields must be the less severe.
         'symbol-sort-key': ['-', 0, ['get', 'phase']],
-      } as never,
+      },
       paint: {
         'icon-color': OVERLAY_COLOUR.famine,
         // How old the analysis is. A determination the IPC made eleven months ago
@@ -2360,7 +2428,7 @@ export function mount(
         'icon-opacity': ['interpolate', ['linear'], ['get', 'age'], 0, 1, 1, 0.55],
         'icon-halo-color': MAP_COLOURS.labelHalo,
         'icon-halo-width': 1.4,
-      } as never,
+      },
     })
 
     /**
@@ -2572,6 +2640,30 @@ export function mount(
   }
 
   /**
+   * The country hover bit, written per id rather than per source.
+   *
+   * **Never clear this source wholesale.** `removeFeatureState({source})` with
+   * no id is what `applyMetric` uses, and on `countries` that map holds every
+   * country's `p` — the entire ground metric. Clearing it to unset one hover bit
+   * would blank the choropleth and leave the world fully hatched, which is the
+   * "no data anywhere" failure `scheduleMetric` exists to prevent, reached from
+   * the other direction. So the previous id is unset by key and nothing else is
+   * touched.
+   *
+   * Safe per-id, unlike `stories`, because `countries` is not rebuilt on a
+   * scrub — the only thing that reloads it is the one-shot coastline upgrade at
+   * `ULTRA_ZOOM`, so there is no tile-rebuild race to write across here.
+   */
+  const writeCountryHover = (iso: string | null) => {
+    if (countryHoverWritten === iso) return
+    if (countryHoverWritten) {
+      map.removeFeatureState({ source: 'countries', id: countryHoverWritten }, 'hover')
+    }
+    if (iso) map.setFeatureState({ source: 'countries', id: iso }, { hover: true })
+    countryHoverWritten = iso
+  }
+
+  /**
    * Put the hover bit where the paint expression can see it — but only while
    * the source is standing still.
    *
@@ -2707,51 +2799,40 @@ export function mount(
   /**
    * Shows the reset control only when the camera is somewhere else.
    *
-   * The comparison is against the centre the map can actually *reach*, not the
-   * one we asked for. With `renderWorldCopies` off the world exactly fills the
-   * canvas at the home zoom, so MapLibre constrains the centre back to 0 and
-   * `HOME_VIEW.center[0]` of 12 is never honoured. Comparing against 12 made
-   * the delta a permanent 12° — past the 8° threshold — so the button was on
-   * screen at rest and stayed on after a reset had already finished, which is
-   * the exact opposite of an affordance that means "you have moved".
-   */
-  const homeCenterLng = () => {
-    const world = TILE_PX * 2 ** HOME_VIEW.zoom
-    const slack = Math.max(0, ((world - (mapEl.clientWidth || world)) / 2 / world) * 360)
-    return Math.max(-slack, Math.min(slack, HOME_VIEW.center[0]))
-  }
-
-  /**
-   * The same correction for latitude, which a phone needs and a desktop does
-   * not.
+   * This used to compare against the centre the map could actually *reach*
+   * rather than the one we asked for, through two functions of Mercator slack —
+   * and both of them are gone, because the thing they modelled is gone.
    *
-   * A desktop canvas is wider than it is tall, so the world overshoots the
-   * height by a comfortable margin and the home latitude of 22° is reachable.
-   * A phone canvas is the other way round: the height is what sets the zoom,
-   * the world therefore fills it exactly, and MapLibre pins the centre to the
-   * equator. Comparing against 22° made the delta a permanent 22° — past the
-   * 4° threshold — so "whole world" was on screen the instant the map opened,
-   * before the reader had moved anything. Exactly the bug the longitude
-   * version above was written to fix, one axis over.
+   * The problem they solved was real and specific to the flat projection. With
+   * `renderWorldCopies` off, the world exactly fills the canvas at the home
+   * zoom, so MapLibre constrained the centre back towards 0 and
+   * `HOME_VIEW.center` was never honoured: on a desktop the longitude of 12°
+   * was clamped away, on a phone (where the height sets the zoom) the latitude
+   * of 22° was too. Comparing against the requested centre therefore made the
+   * delta a permanent 12° and 22°, past both thresholds, so "whole world" was
+   * lit the instant the map opened and stayed lit after a reset had finished —
+   * the exact opposite of an affordance meaning "you have moved".
    *
-   * Latitude is not linear in Mercator, so the slack has to come back through
-   * the inverse projection rather than a proportion of 180°.
+   * **A sphere has no edges to be pushed away from.** The globe's constrain
+   * (`vertical_perspective_transform.ts`) clamps latitude to ±85° and clamps
+   * zoom, and does nothing whatever to the centre — there is no "world fails to
+   * cover the canvas" case on a disc, which is the same fact that let
+   * `globeFitZoom` take `min()` where the flat fit needed `max()`. So the
+   * requested centre is honoured exactly, and the honest comparison is against
+   * the number we asked for.
+   *
+   * This is only sound because the home view is *always* on the sphere:
+   * `globeFitZoom` caps at `GLOBE_ZOOM.sphere`, so `HOME_VIEW.zoom` can never
+   * reach the flattening. Past it the zoom test below has already fired and the
+   * centre tests cannot be what decides the answer.
    */
-  const homeCenterLat = () => {
-    const world = TILE_PX * 2 ** HOME_VIEW.zoom
-    const slack = Math.max(0, (world - (mapEl.clientHeight || world)) / 2 / world)
-    if (slack <= 0) return 0
-    const limit = (Math.atan(Math.sinh(2 * Math.PI * slack)) * 180) / Math.PI
-    return Math.max(-limit, Math.min(limit, HOME_VIEW.center[1]))
-  }
-
   const syncResetButton = () => {
     if (!mounted) return
     const c = map.getCenter()
     const moved =
       map.getZoom() > HOME_VIEW.zoom + 0.15 ||
-      Math.abs(c.lat - homeCenterLat()) > 4 ||
-      Math.abs(((c.lng - homeCenterLng() + 540) % 360) - 180) > 8
+      Math.abs(c.lat - HOME_CENTER[1]) > 4 ||
+      Math.abs(((c.lng - HOME_CENTER[0] + 540) % 360) - 180) > 8
     resetBtn.hidden = !moved
   }
 
@@ -2954,21 +3035,17 @@ export function mount(
       if (onPrayer) showPrayerTip(onPrayer, e.point, e.lngLat)
       else hidePrayerTip()
       const iso = overMarker ? null : countryAt(e.point)
-      if (iso !== hoverIso) {
-        hoverIso = iso
-        map.setFilter('country-hover', ['==', ['get', 'iso2'], iso ?? ''])
-      }
+      writeCountryHover(iso)
       if (!overMarker) map.getCanvas().style.cursor = iso ? 'pointer' : ''
     })
 
     map.on('mouseout', () => {
-      hoverIso = null
       setHoverSlug(null)
       setHoverPrayer(null)
       hidePrayerTip()
       releasePeek()
       map.getCanvas().style.cursor = ''
-      map.setFilter('country-hover', ['==', ['get', 'iso2'], ''])
+      writeCountryHover(null)
     })
 
     // Moving back onto the sheet itself cancels the pending dismissal.
@@ -3623,7 +3700,13 @@ export function mount(
     // Clearing first is what makes switching metrics correct: a country with a
     // figure for press freedom but none for Gini would otherwise keep its old
     // shade and quietly assert a value the new metric doesn't have for it.
+    //
+    // It takes the hover bit with it, since that lives in the same state map —
+    // so the tracker has to be told, or `writeCountryHover` would compare
+    // against an id it believes is still written, skip the write, and leave the
+    // country under the pointer unlit until the reader moved to a different one.
     map.removeFeatureState({ source: 'countries' })
+    countryHoverWritten = null
     if (!metric) return true
     for (const [iso2, entry] of Object.entries(metric.values)) {
       map.setFeatureState({ source: 'countries', id: iso2 }, { p: entry.p })
@@ -3876,7 +3959,7 @@ export function mount(
 
   const onResize = () => {
     // MapLibre sizes its drawing buffer from the container, and nothing else
-    // here tells it the container moved — `applyPadding` and `worldFitZoom`
+    // here tells it the container moved — `applyPadding` and `globeFitZoom`
     // both *read* dimensions, they don't apply them. Without this the canvas
     // kept whatever size it was built at: widen the window and the map went on
     // drawing into a 900px corner of a 1544px frame, with dead space beside it.
@@ -3885,11 +3968,12 @@ export function mount(
     applyPadding()
     // "Whole world" has to keep meaning the whole world after a resize, or the
     // reset lands on a view sized for a window that no longer exists.
-    HOME_VIEW.zoom = worldFitZoom()
-    // Widening the window leaves the camera at a zoom the new canvas is too
-    // big for, and a world narrower than its canvas comes back doubled. Moving
-    // the floor re-clamps the live camera as well, so the fix applies to the
-    // view the reader is already looking at and not just to the next reset.
+    HOME_VIEW.zoom = fitZoom(HOME_CENTER[1])
+    // Widening the window leaves the camera at a zoom the new canvas no longer
+    // suits — on the flat half a world narrower than its canvas comes back
+    // doubled, and on the round half the globe simply stops filling the frame.
+    // Moving the floor re-clamps the live camera as well, so the fix applies to
+    // the view the reader is already looking at and not just to the next reset.
     map.setMinZoom(HOME_VIEW.zoom)
     syncResetButton()
     // The strip rewraps, so the button the legend is aligned to has moved. Only
@@ -3950,6 +4034,11 @@ export function mount(
     popup?.destroy()
     sheet.destroy()
     map.remove()
+    // The other half of `prewarm`. The pool it created is process-wide and
+    // outlives the map, so without this a torn-down island leaves a worker
+    // running for a page that no longer has a map on it. Strictly after
+    // `map.remove()`, since it frees resources a live map is still using.
+    clearPrewarmedResources()
     container.replaceChildren()
     container.classList.remove('map-root')
     // `measureChrome` writes these onto `body` so the sheet — which lives

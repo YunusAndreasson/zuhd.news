@@ -13,15 +13,12 @@
 
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { build } from 'esbuild'
 import { JSDOM } from 'jsdom'
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs'
+import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { tmpdir } from 'node:os'
+import { bundleIsland, scratchDir } from './island-bundle.js'
 
-const ROOT = new URL('../..', import.meta.url).pathname
-const dir = mkdtempSync(join(tmpdir(), 'zuhd-map-island-'))
-const bundlePath = join(dir, 'island.mjs')
+const dir = scratchDir('map-island')
 
 // A MapLibre stand-in: records what the island asks of it, resolves 'load'
 // asynchronously like the real thing, and needs no GPU.
@@ -139,22 +136,23 @@ writeFileSync(
     }
     isOpen() { return this.open }
   }
+  // The worker-pool lifecycle. Recorded rather than ignored, because the pair
+  // has to stay a pair: \`prewarm\` without \`clearPrewarmedResources\` leaves a
+  // worker running for a page that no longer has a map on it.
+  export function prewarm() { globalThis.__zuhdPrewarm = (globalThis.__zuhdPrewarm || 0) + 1 }
+  export function clearPrewarmedResources() {
+    globalThis.__zuhdPrewarm = (globalThis.__zuhdPrewarm || 0) - 1
+  }
   `,
 )
 
-await build({
-  entryPoints: [join(ROOT, 'public/islands/situation-map.ts')],
-  outfile: bundlePath,
-  bundle: true,
-  format: 'esm',
-  platform: 'neutral',
-  logLevel: 'silent',
-  // Mirrors the island bundler's own alias (scripts/build/islands.js) — the
-  // map island pulls the GDACS severity parser from shared/ so the app and the
-  // web sheet reduce `severityText` to the same focal number.
-  alias: { 'maplibre-gl': stubPath, '@shared': join(ROOT, 'shared') },
+// `@shared` comes from the harness and mirrors the island bundler's own alias
+// (scripts/build/islands.js) — the map island pulls the GDACS severity parser
+// from shared/ so the app and the web sheet reduce `severityText` to the same
+// focal number.
+const bundlePath = await bundleIsland(dir, 'public/islands/situation-map.ts', 'island.mjs', {
+  'maplibre-gl': stubPath,
 })
-process.on('exit', () => rmSync(dir, { recursive: true, force: true }))
 
 /** A no-op 2D context that records which operations were attempted. */
 function stubContext() {
@@ -580,6 +578,28 @@ test('the density wash is a ground, and the place numeral is a droppable mark', 
     assert.equal(field.__before, 'borders', 'the wash goes under the frontiers and the labels')
     assert.equal(field.filter, undefined, 'the wash is filtered by its data, never by a layer')
 
+    // The wash is the one layer whose kernels are sized in *screen* pixels, so
+    // on the sphere they compress toward the limb. Every figure it is calibrated
+    // against — GAUSS_COEF, `placeDensity(1) = 0.085`, the 1.20 top stop — was
+    // measured on the globe, so it has to have faded out by the time the
+    // projection reaches the plane. Otherwise the tail of the scale is being
+    // read on a projection nothing tuned it for, and a wash is exactly the kind
+    // of layer that goes subtly wrong without going visibly wrong.
+    // Read off the style the island actually handed the engine, rather than
+    // imported — this way the assertion is against what ships, and it fails if
+    // the projection stops and the layer ever stop being derived from the same
+    // constant.
+    const projection = map.opts.style.projection.type
+    const plane = projection[projection.length - 2]
+    const opacity = field.paint['heatmap-opacity']
+    const fadeOut = opacity[opacity.length - 2]
+    assert.equal(projection[projection.length - 1], 'mercator', 'the plane is the far stop')
+    assert.equal(opacity[opacity.length - 1], 0, 'the wash must end fully transparent')
+    assert.ok(
+      fadeOut <= plane,
+      `the wash fades out at ${fadeOut}, after the plane arrives at ${plane}`,
+    )
+
     // The old glow and the discs are gone, not merely unused.
     for (const id of ['story-glow', 'story-clusters', 'story-cluster-count']) {
       assert.equal(map.getLayer(id), undefined, `${id} should be gone`)
@@ -727,6 +747,65 @@ test('a failed data fetch degrades to an empty map rather than throwing', async 
     assert.ok(env.host.querySelector('.map-feed'))
     teardown()
   } finally {
+    env.restore()
+  }
+})
+
+/**
+ * Country hover is feature state, not a filter.
+ *
+ * It was a filter, rewritten inside the `mousemove` handler, for as long as the
+ * layer had existed. A filter change ends in `Style._updateLayer`, which marks
+ * the layer's whole source `'reload'` — so moving the pointer across Africa
+ * re-bucketed `countries`, which is 1.6 MB and 99k points, once per country.
+ *
+ * The rule was already written down one layer up, for the story beacons: hover
+ * is `promoteId` + `setFeatureState`, "not a `setPaintProperty` rewrite per
+ * pointer move". It had simply never been applied here, and nothing could
+ * notice — a filter rewrite is correct, just expensive, so the map looked right
+ * the whole time.
+ *
+ * Asserting the *absence* of a filter rather than the presence of an expression,
+ * because the failure being guarded against is the cheap fix coming back: a
+ * `global-state` expression looks modern and would be just as bad, since
+ * `global-state` inside a paint property that also reads `['get', …]` is
+ * data-driven, and `setPaintProperty` returns `isDataDriven` as its
+ * `requiresRelayout` flag.
+ */
+test('country hover paints from feature state and adds no filter', async () => {
+  const env = setupDom()
+  globalThis.__zuhdMaps = []
+  try {
+    const { mount } = await import(bundlePath)
+    const teardown = mount(env.host)
+    env.pump()
+    await settle()
+
+    const map = globalThis.__zuhdMaps.at(-1)
+    const hover = map.getLayer('country-hover')
+    assert.ok(hover, 'country-hover should be added')
+    assert.equal(
+      hover.filter,
+      undefined,
+      'country-hover must not carry a filter — that is the per-pointer-move reload',
+    )
+    assert.equal(
+      map.filters['country-hover'],
+      undefined,
+      'and nothing may setFilter it afterwards either',
+    )
+
+    const opacity = JSON.stringify(hover.paint['fill-opacity'])
+    assert.match(opacity, /feature-state/, 'the hover bit has to come from feature state')
+    assert.doesNotMatch(
+      opacity,
+      /global-state/,
+      'global-state here is data-driven and would reload the source exactly like the filter did',
+    )
+
+    teardown()
+  } finally {
+    delete globalThis.__zuhdMaps
     env.restore()
   }
 })

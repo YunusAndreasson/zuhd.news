@@ -212,6 +212,42 @@ export const MAP_COLOURS = {
    * cannot see it — that test reads this file and `style.css` and nothing else.
    */
   contested: '#e8e2d4',
+  /**
+   * The atmosphere at the globe's limb.
+   *
+   * The one thing on this map drawn purely to say where something ends — and it
+   * is not decoration, it is the only mark that says the world is round.
+   * `ocean` is painted *behind* the canvas as well as on the sphere (see
+   * `.map-canvas-host` in style.css, and A3 in the plan this came from), which
+   * is what keeps the HUD seam intact; the cost of that choice is that space and
+   * sea are the same tone, so the limb has nothing to separate it from the void.
+   * The atmosphere is that separation, and it is the honest one — a planet's
+   * edge *is* its air.
+   *
+   * 216°, the furniture family, because `border` and `prayer` are already there
+   * and this is furniture in the strictest sense: it carries no value, so it
+   * gets no value channel. That is `MAP_COLOURS.prayer`'s argument, and it
+   * applies here with more force, since the limb is the one line on this map
+   * that is a fact about the *camera* rather than about the world.
+   *
+   * Measured, and the middle figure is the one that was chosen for:
+   * **1.45:1 against `ocean`**, so the rim is present and no louder than the
+   * prayer hairlines' ~1.5:1; **1.18:1 above `LAND_RAMP[0]`**, so it sits just
+   * inside the ramp rather than under it; and **1.68:1 below `LAND_RAMP[4]`**,
+   * so the brightest land the ground metric can paint still reads as more solid
+   * than the air outside it. Getting that last one backwards is the failure
+   * mode — an atmosphere brighter than the continents makes the planet look
+   * like a hole.
+   *
+   * Saturation is 31%, which is chromatic enough to be air and still 60 points
+   * clear of the corridor `map-geo.test.js` reserves above every overlay for the
+   * genocide mark.
+   *
+   * The rendered rim is not this value: `draw_sky.ts` blends it against
+   * `sky-color` and multiplies by the globe transition, so what a reader sees is
+   * softer than the token. These figures bound it; the screen decides it.
+   */
+  horizon: '#222e40',
 } as const
 
 /** Category hues, low-saturation so four of them can coexist without shouting. */
@@ -615,12 +651,223 @@ export const basemapUrl = (file: string, v?: string) =>
 /** A source declared in the style but filled later. */
 const EMPTY_FC = { type: 'FeatureCollection' as const, features: [] }
 
+/**
+ * Where the globe gives way to the plane.
+ *
+ * Exported because `situation-map.ts` frames the opening view against it: the
+ * home zoom is capped here so the map can never open part-way through the
+ * flattening, which would be the one view no reader chose and neither
+ * projection was tuned for.
+ *
+ * The two anchors are picked against thresholds this map already had, not
+ * invented:
+ *
+ * - `flyToStory`'s minimum target is **2.5**, so committing to a story from the
+ *   world view lands on the sphere. That is the point of the transition being
+ *   here rather than lower — the globe is not a splash screen you leave on the
+ *   first gesture.
+ * - `place-dots` and `place-labels` open at **2.4**, so cities arrive on the
+ *   globe too.
+ * - `DENSITY_FADE_OUT` is **5**: the density wash reaches zero exactly as the
+ *   plane arrives, so the one layer whose kernels are screen-sized — and which
+ *   therefore compresses toward the limb — lives entirely inside globe
+ *   territory and nowhere else.
+ * - `ULTRA_ZOOM` is **5.5**, so the 1:10m coastline is only ever drawn flat.
+ *
+ * **Do not replace this with `projection: { type: 'globe' }`.** That is a preset
+ * that expands to a 11 → 12 interpolation
+ * (`maplibre-gl/src/geo/projection/projection_factory.ts`), and this map's
+ * `maxZoom` is 9 — so `'globe'` would be a sphere at every zoom a reader can
+ * reach, and the whole second half of this file's reasoning about close work
+ * would silently never apply.
+ */
+export const GLOBE_ZOOM = { sphere: 3, plane: 5 } as const
+
+/**
+ * The floor for anything that must not appear at the view the map opens on.
+ *
+ * **The projection re-keyed every zoom gate on this map, and nothing said so.**
+ * A globe is drawn far smaller than a flat world at the same zoom — the disc's
+ * diameter is `TILE_PX · 2^z / π` against Mercator's `TILE_PX · 2^z` of width —
+ * so fitting one to the canvas lands about a whole zoom level higher than
+ * fitting the other. Measured, the opening view went **1.25 → 2.36** at 1600px,
+ * **1.58 → 2.62** at 1920 and **2.04 → 3.00** at 2560.
+ *
+ * Every `minzoom` and every `['step', ['zoom'], …]` in this file was chosen by
+ * looking at the flat map, so all of them now sit a level lower relative to the
+ * view than they were written for. Two were crossed outright: `place-dots` and
+ * `place-labels` at 2.4, and `rivers` at 1.6 — none of which the world view had
+ * ever drawn. The opening frame acquired every city name and the river network
+ * on the same day it became a globe, which is most of why it reads as busy.
+ *
+ * `globeFitZoom` caps at `GLOBE_ZOOM.sphere`, so **3 is the highest zoom the map
+ * can ever open at, on any screen**. That makes it the one honest floor for
+ * close-up detail: above it a reader has asked to come closer, below it they are
+ * still looking at the world. A margin over the cap keeps the first gesture from
+ * immediately repainting the map.
+ */
+export const DETAIL_ZOOM = GLOBE_ZOOM.sphere + 0.2
+
+/** A Web Mercator tile, and the unit MapLibre's world size is counted in. */
+export const TILE_PX = 512
+
+/**
+ * How much of the shorter side the globe takes.
+ *
+ * A sphere fitted flush to the frame has its limb cut by the frame, which is the
+ * one thing the limb exists not to be — it is the mark that says the world is
+ * round, and a circle tangent to four edges reads as a circle that ran out of
+ * room. The margin is what makes the surrounding space deliberate rather than
+ * residual.
+ *
+ * **This is a fudge factor and is honest about it.** `globeFitZoom` solves
+ * MapLibre's own globe-radius formula exactly, but that formula gives the
+ * sphere's radius in *world* units; what reaches the screen has been through a
+ * perspective projection, which foreshortens it by an amount depending on the
+ * disc's angular size. Measured against the built map at three viewports, the
+ * rendered diameter comes out about **0.87** of what the formula asks for on a
+ * desktop and **0.93** on a phone — so 1.0 here lands the globe at roughly 86%
+ * of the shorter side, which is what the number is for.
+ *
+ * Do not read it as "the globe takes 100% of the short side". It does not, and
+ * the arithmetic that would make it exact lives inside the renderer.
+ *
+ * **Raised from 1.0 after looking at it.** At 1.0 the globe drew ~86% of the
+ * shorter side — 929px of a 1080px canvas at 1920 — against a flat world that
+ * had filled the full 1536px width. So the Earth was not only showing one
+ * hemisphere, it was showing it *smaller*, and every mark on this map is sized
+ * in screen pixels: a 7.5px beacon on a 929px globe claims 1.65× the share of
+ * the world it claimed on the flat map. Overview was lost twice over.
+ *
+ * 1.12 draws it at ~96% of the shorter side. What that spends is the poles: the
+ * HUD scrim covers the top of the disc and the scrubber the bottom, and at a
+ * centre latitude of 22°N those are the Arctic Ocean and the Southern Ocean —
+ * the two regions this map has the least to say about. The alternative was to
+ * leave the planet small so that empty sea could stay uncovered.
+ */
+export const GLOBE_FIT = 1.12
+
+/**
+ * The zoom at which the globe fills `span` pixels, centred at `lat`.
+ *
+ * This replaces the old `worldFitZoom`, and the arithmetic is different in kind
+ * rather than tweaked. MapLibre sizes the sphere as
+ *
+ *     radius_px = worldSize / 2π / cos(lat)          (globe_utils.ts)
+ *     worldSize = TILE_PX · 2^zoom
+ *
+ * so the globe's **diameter** is `TILE_PX · 2^z / (π · cos lat)`, against a
+ * Mercator world **width** of `TILE_PX · 2^z` at the same zoom. Solving the
+ * first for a target pixel span gives the line below.
+ *
+ * The two are not interchangeable and the gap is not small: the old
+ * `log2(max(w, h) / TILE_PX)` fitted the *Mercator* world, and at that zoom the
+ * sphere is only about **a third of the canvas width** — 379px of a 1104px
+ * canvas. Shipping the projection change without this one would have opened the
+ * map on a marble, and nothing would have reported a problem, because both
+ * numbers are honestly describable as "the fit zoom".
+ *
+ * **The caller passes the shorter side, where Mercator took the longer one.**
+ * That inversion is the difference in kind. With `renderWorldCopies` off,
+ * MapLibre refuses any zoom at which the flat world fails to *cover* the canvas,
+ * so the flat fit had to satisfy whichever axis needed more world — a world
+ * narrower than its frame is not letterboxed, it is duplicated. A sphere cannot
+ * duplicate. It is a disc, it is *meant* to be letterboxed by space, and the
+ * constraint that forced `max()` does not exist here.
+ *
+ * Capped at `GLOBE_ZOOM.sphere` so a very large canvas cannot open part-way into
+ * the flattening — a 4K monitor fits the globe at about 3.4, which would put the
+ * opening view inside the transition, a view no reader chose and neither
+ * projection was tuned for. On such a screen the globe stops growing and the
+ * space around it grows instead. That is also the ceiling the flat version had
+ * to abandon: 2.4 was dropped because it let the world duplicate, and on a
+ * sphere that reason is gone.
+ */
+export const globeFitZoom = (span: number, lat: number): number => {
+  const fit = Math.log2((span * GLOBE_FIT * Math.PI * Math.cos((lat * Math.PI) / 180)) / TILE_PX)
+  return Math.min(fit, GLOBE_ZOOM.sphere)
+}
+
 export function buildStyle(v?: string): StyleSpecification {
   return {
     version: 8,
     // Glyphs are genuinely immutable — the same Noto ranges every build — so
     // they keep their unversioned, year-long cached URL.
     glyphs: '/basemap/fonts/{fontstack}/{range}.pbf',
+    /**
+     * The world is a sphere at the zoom every reader starts on, and a plane by
+     * the time they are looking at one country.
+     *
+     * This is not the map acquiring an effect. **Mercator at world zoom is a
+     * lie about area** — it draws Greenland the size of Africa — and this file
+     * spends four hundred lines making sure a tone cannot overstate a value,
+     * while the projection underneath overstated every high-latitude country on
+     * the map by a factor the reader has no way to discount. The same objection
+     * turned `renderWorldCopies` off: a situational map that misplaces or
+     * misproportions the world is lying about where things are, and the fix is
+     * the projection rather than a caption.
+     *
+     * The cost is stated plainly because it is real: a sphere hides a
+     * hemisphere. Stories on the far side are not dimmed, they are *absent*
+     * until the reader turns the globe — which is why `locationOccludedOpacity`
+     * is set on the card in `popup.ts`, and why `topHit` must not return a
+     * feature through the planet.
+     */
+    projection: {
+      type: [
+        'interpolate',
+        ['linear'],
+        ['zoom'],
+        GLOBE_ZOOM.sphere, 'vertical-perspective',
+        GLOBE_ZOOM.plane, 'mercator',
+      ],
+    },
+    /**
+     * The atmosphere, and nothing else.
+     *
+     * `sky-color` is `ocean` deliberately: the canvas clears to transparent and
+     * `.map-canvas-host` paints `--map-ground` behind it, so space is already
+     * this tone. Setting the sky to anything else would put a second, disagreeing
+     * ground behind the globe and reopen the seam the CSS fix closes — the HUD
+     * and scrubber scrims fade into `--map-ground`, and they do not know which
+     * of the two they are sitting on.
+     *
+     * `atmosphere-blend` takes a **constant, not a zoom interpolation**, and
+     * that is not laziness. `draw_sky.ts` computes
+     * `blend × projectionData.projectionTransition`, so it already fades out
+     * exactly in step with the globe. Interpolating it here would be a second
+     * copy of `GLOBE_ZOOM` that nothing checks against the first — the class of
+     * duplication this file's header is about.
+     *
+     * `fog-*` is untouched: it requires 3D terrain, and there is none.
+     */
+    sky: {
+      'sky-color': MAP_COLOURS.ocean,
+      'horizon-color': MAP_COLOURS.horizon,
+      /**
+       * 0.34, not the 0.8 default, and the number was measured rather than
+       * chosen.
+       *
+       * The atmosphere is lit from the sun's own direction — `draw_sky.ts`
+       * takes a `sunPos` uniform — so it is a *crescent* along the day limb,
+       * not a ring. At 0.8 that crescent renders near-white, which on this map
+       * is a category error: `OVERLAY_COLOUR.genocide` is the one unmuted tone
+       * the whole palette is rationed to afford, and a white arc a thousand
+       * pixels long was louder than it, drawn by the camera rather than by any
+       * fact about the world.
+       *
+       * At 0.34 the limb is a rim rather than a light source — the same
+       * register as the prayer hairlines, which is the right one for furniture.
+       *
+       * The night limb stays unlit and therefore invisible, since space and
+       * ocean are the same tone by construction (see `.map-canvas-host`). That
+       * is kept deliberately: it is what the terminator already says, said once
+       * more by the edge, and a planet whose dark side merges into the dark is
+       * the honest picture. What it must not do is look like clipping, and the
+       * only thing that made it look like clipping was the day side shouting.
+       */
+      'atmosphere-blend': 0.34,
+    },
     sources: {
       // `promoteId` lifts each feature's `iso2` into the feature id, which is
       // what `setFeatureState` keys on — the same mechanism the story layer
@@ -653,21 +900,34 @@ export function buildStyle(v?: string): StyleSpecification {
         source: 'countries',
         paint: {
           // The metric percentile arrives per-country as feature state. A
-          // country the metric doesn't cover has no state at all, so `coalesce`
-          // falls through to the off-scale tone rather than to `p = 0`.
+          // country the metric doesn't cover has no state at all, so the
+          // `coalesce` falls through to the off-scale tone rather than to
+          // `p = 0`.
+          //
+          // Bound once with `let` rather than read twice. This used to
+          // `coalesce` the feature state in the test *and* again in the ramp
+          // input — two lookups and two coalesces per country per frame, for one
+          // value that cannot differ between them. The sentinel is −1 because
+          // the ramp's own domain starts at 0, so "absent" needs a value outside
+          // it; binding makes that explicit instead of leaving the second reader
+          // to default to 0 and hope the first one caught it.
           'fill-color': [
-            'case',
-            ['==', ['coalesce', ['feature-state', 'p'], -1], -1],
-            LAND_NO_DATA,
+            'let',
+            'p', ['coalesce', ['feature-state', 'p'], -1],
             [
-              'interpolate',
-              ['linear'],
-              ['coalesce', ['feature-state', 'p'], 0],
-              0, LAND_RAMP[0],
-              0.25, LAND_RAMP[1],
-              0.5, LAND_RAMP[2],
-              0.75, LAND_RAMP[3],
-              1, LAND_RAMP[4],
+              'case',
+              ['==', ['var', 'p'], -1],
+              LAND_NO_DATA,
+              [
+                'interpolate',
+                ['linear'],
+                ['var', 'p'],
+                0, LAND_RAMP[0],
+                0.25, LAND_RAMP[1],
+                0.5, LAND_RAMP[2],
+                0.75, LAND_RAMP[3],
+                1, LAND_RAMP[4],
+              ],
             ],
           ],
         },
@@ -733,16 +993,45 @@ export function buildStyle(v?: string): StyleSpecification {
         id: 'rivers',
         type: 'line',
         source: 'rivers',
-        minzoom: 1.6,
+        // Was 1.6, which the flat world view sat below and the globe's sits
+        // above — so the river network arrived at the opening frame the day the
+        // projection changed. See DETAIL_ZOOM.
+        minzoom: DETAIL_ZOOM,
         filter: ['<=', ['get', 'r'], ['step', ['zoom'], 1, 3, 2, 4.5, 3, 6, 5]],
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: {
           'line-color': MAP_COLOURS.water,
           'line-width': ['interpolate', ['linear'], ['zoom'], 2, 0.4, 5, 0.8, 8, 1.4],
-          // Quieter than a frontier at world scale, where a river is orientation
-          // and nothing more; full strength once the camera is close enough for
-          // it to be the thing being looked at.
-          'line-opacity': ['interpolate', ['linear'], ['zoom'], 2, 0.55, 5, 0.85],
+          /**
+           * Quieter than a frontier at world scale, where a river is orientation
+           * and nothing more; full strength once the camera is close enough for
+           * it to be the thing being looked at.
+           *
+           * **`line-layer-opacity`, not `line-opacity`** (new in MapLibre 6.0),
+           * and the difference is a claim this layer must not make. Natural
+           * Earth ships a river system as separate features, so a tributary and
+           * the stem it joins are two strokes laid over each other for the length
+           * of the junction. Under `line-opacity` those alphas accumulate:
+           * measured on 6.1 with two crossing lines at 0.5, each arm renders
+           * rgb(128) and the crossing rgb(192) — 1 − (1 − 0.5)², textbook
+           * compositing. So every confluence drew brighter than the rivers
+           * feeding it, which reads as *more river*, and the note on `line-width`
+           * directly above says why that is wrong: a river is not a quantity, and
+           * varying weight would imply one. The map was implying it at exactly
+           * the points where two rivers become one.
+           *
+           * (6.0's changelog does mention fixing overlapping-line artefacts for
+           * `line-opacity`. Measured, that fix does not cover this case — hence
+           * the test above rather than a reading of the release notes.)
+           *
+           * The cost is real and bounded: a layer opacity below 1 makes MapLibre
+           * render the layer to a scratch framebuffer and composite it once
+           * (`draw_layer_opacity.ts`), so this is one extra full-canvas pass per
+           * *rendered frame* — not per idle tick, since a still map draws no
+           * frames at all. One thin line layer is worth it; see `prayer-lines`,
+           * which is deliberately left alone.
+           */
+          'line-layer-opacity': ['interpolate', ['linear'], ['zoom'], 2, 0.55, 5, 0.85],
         },
       },
       {
@@ -830,7 +1119,9 @@ export function buildStyle(v?: string): StyleSpecification {
         id: 'place-dots',
         type: 'circle',
         source: 'places',
-        minzoom: 2.4,
+        // Was 2.4. See DETAIL_ZOOM: the globe opens at 2.36–3.00, so a floor of
+        // 2.4 put city dots on the world view of every screen from 1920 up.
+        minzoom: DETAIL_ZOOM,
         filter: ['<=', ['get', 'r'], 4],
         paint: {
           // A national capital reads a touch heavier than a city that merely
@@ -845,7 +1136,11 @@ export function buildStyle(v?: string): StyleSpecification {
         id: 'place-labels',
         type: 'symbol',
         source: 'places',
-        minzoom: 2.4,
+        // Was 2.4 — and this is the layer the change is most visible on. At the
+        // globe's opening zoom the rank filter below admits r <= 1 + 1.6·3 = 5.8,
+        // which is most of the gazetteer: Reykjavik, Trondheim, Murmansk, Norilsk
+        // and Dikson all named on a view that used to carry country names alone.
+        minzoom: DETAIL_ZOOM,
         // Rank gates density: only the most important places survive low zoom.
         filter: ['<=', ['get', 'r'], ['+', 1, ['*', 1.6, ['zoom']]]],
         layout: {

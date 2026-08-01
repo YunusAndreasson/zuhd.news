@@ -15,14 +15,39 @@
 import { rankStrip } from '@shared/chart/rank-strip'
 import { Popup, type Map as MapLibreMap } from 'maplibre-gl'
 import { appPrompt } from '../_app-prompt'
-import { createChart } from '../_chart'
-import { disclosure, el, growTo, moreLink, type Built } from '../_disclosure'
+import { disclosure, growTo, moreLink, type Built } from '../_disclosure'
+import { el } from '../_dom'
+import {
+  buildEntityPanel,
+  cachedEntity,
+  type EntityPanelClasses,
+  type EntityRecord,
+  fetchEntity,
+} from '../_entity-panel'
 import { shareUrl } from '@shared/share'
 import { renderShare } from '../_share'
 import { CONTESTED_D, type MapPoint } from './types'
 import type { StoryPlace } from './places'
 import { CATEGORY_COLOUR, rampColour } from './style'
 import * as fmt from './format'
+
+/** How the map paints the indicator panel. The article page's copy of this
+ *  table is in `entity-strip.ts`; the panel itself is `_entity-panel.ts`. */
+const ENTITY_CLASSES: EntityPanelClasses = {
+  loading: 'map-popup-loading',
+  head: 'map-popup-entity-head',
+  hero: 'map-popup-entity-hero',
+  value: 'map-popup-entity-value',
+  delta: 'map-popup-entity-delta',
+  figure: 'map-popup-entity-figure',
+  full: 'map-popup-entity-full',
+  more: 'map-popup-more',
+  provenance: 'map-popup-meta',
+  section: 'map-popup-section',
+  mentions: 'map-popup-mentions',
+  mention: 'map-popup-mention',
+  mentionTime: 'map-country-coverage-time',
+}
 
 interface StorySource {
   name: string
@@ -78,41 +103,6 @@ export interface CountryStanding {
   p: number | null
   /** The metric's scale sentence — which end is which, in words. */
   description: string
-}
-
-/** One story that cited an indicator — the tail of `/api/entity/{id}.json`. */
-interface EntityMention {
-  slug: string
-  title: string
-  date: string
-  dateFormatted: string
-  source: string
-}
-
-/**
- * `/api/entity/{id}.json`, as the story card reads it.
- *
- * `mentions` is read only by the record's second density — the panel opens on
- * the chart alone, because "what is Brent crude doing?" is the whole of what a
- * chip is being asked. See `entityStrip`.
- */
-interface EntityRecord {
-  id: string
-  label: string
-  kind: string
-  sourceLabel?: string | null
-  unit?: string
-  currentFormatted: string
-  deltaLabel?: string | null
-  deltaTone?: string | null
-  caption?: string
-  /** The series filters non-finite points itself; `series-chart` declares the
-   *  same shape against the same endpoint. */
-  values: number[]
-  periods: string[]
-  /** The last observation's own date, which the chart's caption does not carry. */
-  asOf?: string
-  mentions?: EntityMention[]
 }
 
 /** `/api/country/{ISO2}.json` — the same payload the inline country tags use. */
@@ -342,6 +332,22 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     maxWidth: 'none',
     offset: 14,
     className: 'map-popup',
+    /**
+     * Hide the card when its story is on the far side of the planet.
+     *
+     * A popup is DOM, positioned over the canvas — it has no idea the world is
+     * round, so on the sphere a card anchored to Santiago while the reader is
+     * looking at the Levant renders *in front of* the Earth, pointing at a
+     * beacon that is not there. MapLibre knows (`isLocationOccluded`, the same
+     * clipping plane that culls the marks) and this is how it tells the card.
+     *
+     * Zero rather than a low alpha, because a half-visible card is the worse of
+     * the two failures: the mark it names is fully absent, so anything left on
+     * screen is a label for nothing. The card is not closed, only hidden — turn
+     * the globe back and it is still open, still the same story, which is what
+     * makes rotating away from a card recoverable instead of destructive.
+     */
+    locationOccludedOpacity: 0,
   })
 
   const cache = new Map<string, Story>()
@@ -447,24 +453,6 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     const root = el('div', `map-popup-body map-popup-${variant}`)
     root.append(kickerFor(p, now, extra), el('h2', 'map-popup-title', p.title))
     return root
-  }
-
-  const entityCache = new Map<string, EntityRecord>()
-
-  const fetchEntity = async (id: string): Promise<EntityRecord | null> => {
-    const hit = entityCache.get(id)
-    if (hit) return hit
-    try {
-      const res = await fetch(`/api/entity/${encodeURIComponent(id)}.json`, {
-        cache: 'force-cache',
-      })
-      if (!res.ok) return null
-      const record = (await res.json()) as EntityRecord
-      entityCache.set(id, record)
-      return record
-    } catch {
-      return null
-    }
   }
 
   const countryCache = new Map<string, CountryProfile>()
@@ -903,91 +891,16 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     // and the second would push the first out of view as it arrived.
     const strip = disclosure('map-popup-entity-panel', { scrollIntoView: true })
 
-    const build = (record: EntityRecord | null, id: string): Built => {
-      const body = document.createDocumentFragment()
-      if (!record) {
-        body.append(el('p', 'map-popup-loading', 'Could not load this series.'))
-        return { node: body }
-      }
-      body.append(
-        el(
-          'p',
-          'map-popup-entity-head',
-          [record.kind, record.sourceLabel].filter(Boolean).join(' · '),
-        ),
-      )
-      const hero = el('p', 'map-popup-entity-hero')
-      hero.append(el('span', 'map-popup-entity-value', record.currentFormatted))
-      if (record.deltaLabel) {
-        const tone = record.deltaTone === 'pos' || record.deltaTone === 'neg' ? record.deltaTone : ''
-        hero.append(el('span', `map-popup-entity-delta ${tone}`.trim(), record.deltaLabel))
-      }
-      body.append(hero)
-      // The same options `entity-sheet` hands the chart, so the series a reader
-      // sees here and the one on `/e/{id}` cannot disagree about what the rule
-      // marks or which direction is which.
-      const chart = createChart({
-        values: record.values ?? [],
-        periods: record.periods ?? [],
-        reference: 'open',
-        referenceLabel: 'the window’s open',
-        direction: 'window',
-        palette: 'signed',
-        unit: record.unit,
-        step: record.kind === 'MONTHLY' ? 'months' : 'days',
-        label: record.label,
-        caption: record.caption,
-        className: 'map-popup-entity-figure',
+    const build = (record: EntityRecord | null, id: string): Built =>
+      buildEntityPanel({
+        record,
+        id,
+        classes: ENTITY_CLASSES,
+        box: strip.panel,
+        // A mention row flies the map rather than leaving it, which is the one
+        // way this panel differs from the article page's copy of it.
+        mentionLink: (m) => storyLink(m.slug, m.title),
       })
-      if (chart) body.append(chart.element)
-
-      /**
-       * The record's second density, under the chart rather than at `/e/{id}`.
-       *
-       * The panel opens on the chart alone because that is what the chip is
-       * being asked — *this story is about Brent crude; what is Brent crude
-       * doing?* — and "Mentioned in · 30" answered a question nobody had asked
-       * yet. But a reader who then asks it was being sent to the entity page
-       * for the answer, off the map, which is the same navigation this panel
-       * was built to stop making. So the rest of the record opens here: when
-       * the last observation was taken, who publishes it, and the stories that
-       * cite it — as rows that fly the map, not links that leave it.
-       */
-      const mentions = record.mentions ?? []
-      const asOf = record.asOf ? `as of ${record.asOf}` : null
-      if (mentions.length || asOf) {
-        body.append(
-          ...moreLink({
-            labels: ['full record →', 'less ↑'],
-            href: `/e/${encodeURIComponent(id)}`,
-            box: strip.panel,
-            linkClass: 'map-popup-entity-full',
-            moreClass: 'map-popup-more',
-            fill: (into) => {
-              const provenance = [asOf, record.sourceLabel || null].filter(Boolean).join(' · ')
-              if (provenance) into.append(el('p', 'map-popup-meta', provenance))
-              if (!mentions.length) return
-              into.append(el('p', 'map-popup-section', `Cited in · ${mentions.length}`))
-              const list = el('ul', 'map-popup-mentions')
-              // Eight, as the entity sheet showed — the panel is inside a card
-              // capped at 50vh, and thirty rows is a scroll with no bottom.
-              for (const m of mentions.slice(0, 8)) {
-                const li = el('li', 'map-popup-mention')
-                li.append(
-                  storyLink(m.slug, m.title),
-                  el('time', 'map-country-coverage-time', m.dateFormatted),
-                )
-                list.append(li)
-              }
-              into.append(list)
-            },
-          }),
-        )
-      }
-      // The chart registers listeners on nodes it created; the panel owns its
-      // lifetime and hands them back when the panel is replaced or closed.
-      return { node: body, dispose: () => chart?.destroy() }
-    }
 
     for (const e of entities) {
       const chip = el('a', 'map-entity-chip', e.label)
@@ -999,7 +912,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
         // Warm from `preview`'s prefetch on the ordinary path, so the chip
         // opens in one step with no waiting line.
         () => {
-          const hit = entityCache.get(e.id)
+          const hit = cachedEntity(e.id)
           return hit ? build(hit, e.id) : null
         },
       )
@@ -1121,7 +1034,6 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
     destroy() {
       pending = null
       cache.clear()
-      entityCache.clear()
       countryCache.clear()
       popup.remove()
     },
