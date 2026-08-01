@@ -1,33 +1,33 @@
 {
-  "date": "2026-07-31",
+  "date": "2026-08-01",
   "metrics": {
-    "articles": { "value": 65, "detail": "5 cycles, 4 completed at audit time, avg 8 published/cycle — up from yesterday's 49" },
-    "freshness": { "median": 0.2, "p90": 0.8, "max": 1.4, "target": 1.0, "met": true },
-    "categories": { "politics": 23, "economy": 16, "tech": 15, "science": 11 },
-    "multiSource": { "value": 11, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 21, "ME": 13, "AS": 13, "EU": 8, "AF": 7, "OC": 3 } },
-    "sciTech": { "ratio": 40, "target": 25, "met": true },
-    "topSourceShare": { "source": "Daily Maverick / CoinDesk / Nature (tied at 5)", "pct": 8, "target": 20, "met": true },
-    "uniqueSources": 45,
+    "articles": { "value": 51, "detail": "5 cycles, all 5 completed, avg 9 published/cycle — down from yesterday's 69" },
+    "freshness": { "median": 0.7, "p90": 1.5, "max": 1.5, "target": 1.0, "met": true },
+    "categories": { "politics": 20, "economy": 10, "tech": 9, "science": 12 },
+    "multiSource": { "value": 12, "target": 4, "met": true },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 18, "ME": 16, "AS": 7, "AF": 5, "EU": 5 } },
+    "sciTech": { "ratio": 41, "target": 25, "met": true },
+    "topSourceShare": { "source": "Hindustan Times", "pct": 12, "target": 20, "met": true },
+    "uniqueSources": 46,
     "duplicates": 0,
-    "avgCycleDuration": 1073
+    "avgCycleDuration": 1078
   },
-  "experiment": "Skipped. Nothing was active to evaluate, there is no pause gate, and every goal metric cleared its target — skip-if-healthy applies. It also resolves yesterday's standing guidance in the negative: that audit said to consider a feed-side GAP_COUNTRIES or CURATED_SOURCES adjustment only once the geographic thinness persisted beyond a single day, and it did not. Oceania went 0 → 3, Africa 4 → 7, Latin America 1 → 4, and the region count 5 → 6, with no parameter moved.",
-  "weakestArea": "Regional balance again, though from a better position: the Americas take 21 of 65 datelines (32%) against Oceania's 3, all Australian. The distortion has moved rather than disappeared — Latin America now files four stories (Boa Vista, Managua, San Salvador, plus Havana's absence filled by regional crime coverage) but all four are crime, gangs or crypto, so the continent is present as a subject category rather than as a place. Sudan and the Sahel are covered from Washington, Cyprus and Nicosia, so African coverage is thinner at the dateline than at the subject. No target governs any of this; it is the softest edge on an otherwise clear board.",
+  "experiment": "Skipped. No experiment was active to evaluate, no pause gate is set, and every goal metric cleared its target — skip-if-healthy applies. The one queued candidate (2026-05-08-numerical-density) edits scripts/write-prompt.md, which is outside the parameter set this audit may touch, so it stays queued.",
+  "weakestArea": "Freshness, in the sense that it is the only metric that moved materially the wrong way: median 0.2 → 0.7 and p90 0.8 → 1.5, still inside the ≤1.0 median target but with the whole distribution shifted about half a day older. The caveat is the same one this file has carried all week and it bites harder today — freshness is computed over 12 of 51 articles, a 24% sample, so a single cycle of older standalone picks moves the median. Nothing here justifies touching the standalone cap, which experiment 2026-04-26-standalone-cap-22 already tuned for exactly this; one day inside target is drift, not a signal.",
   "watching": [
-    "The Gaza deal names no verifier while Hamas cedes arms custody — who monitors, and to whom they report, is the thread that decides whether the agreement holds.",
-    "Congress weighs an RSF militia designation and a UAE genocide-finding gap sits unresolved alongside it; a designation vote would give Sudan coverage a hard peg it currently lacks.",
-    "The yen moved twice in one day — sliding on the BOJ hold, then surging on suspected intervention. Confirmation would be the quarter's largest FX event and the metals and currency ribbon would carry it.",
-    "Zelenskyy seeking Musk's approval for Starlink strike guidance is a sovereignty precedent, not an incident; the private veto over a state's targeting will recur.",
-    "Bangsamoro voted its first parliament — a Muslim-autonomy governance milestone this site's remit should follow past election day rather than file once.",
-    "Two Hormuz-adjacent filings landed together: US sanctions on Hormuz insurers and Iran claiming tanker strikes. The chokepoint layer already draws the strait; the insurance leg is the part with no mark on it."
+    "The Gaza withdrawal clause still names no verifier, and today's Sheikh Radwan drone strike and the Lebanon demolitions both test the same unmonitored ceasefire from two directions.",
+    "Interceptor depth is now a stated constraint in two places at once — EUCOM's magazine warning and the Kyiv barrage's civilian toll; the supply-side story is becoming the story.",
+    "Iran's founding of WAICO gives the AI-standards split a formal bloc with a charter, which is a durable institutional peg rather than a one-day filing.",
+    "Two consecutive cold-wallet sweeps ($70M then $89M) plus generative fraud erasing stylistic tells suggest one campaign, not three incidents; the ledger-versus-agency framing should hold across the next wave.",
+    "The CPC storage fill and drone strikes on the Kazakh export route make a single-point failure legible in the chokepoint layer, which currently has no mark for it.",
+    "Venezuela's transition talks exclude Machado, so the legitimacy question is being decided before the negotiation is, and that is what will need re-reporting."
   ],
   "coverageGaps": [
-    "Latin America's four stories are all crime, gangs or crypto — no LatAm economy, science or civil-society filing for a third consecutive day.",
-    "Oceania recovered to 3 but every one is Australian; New Zealand and the Pacific island states remain absent through a live climate and security season.",
-    "Central Asia and the Caucasus produced nothing today, the fifth day with effectively nothing between Ankara and Delhi.",
-    "Sudan and the Sahel are reported from Washington, Cyprus and Nicosia; no regional transmitter (Sudan Tribune, Radio Dabanga) appears in the source mix.",
-    "Science is the smallest category at 11 and leans on Nature, Phys.org, Quanta and European Spaceflight — Global South research institutions are barely represented as originating sources."
+    "Oceania filed nothing at all today — region count fell 6 → 5 and neither Australia nor the Pacific island states appear.",
+    "Europe and Africa sit at 5 datelines each against the Americas' 18 and the Middle East's 16; the board is genuinely two-region-heavy today.",
+    "South Asia is heavily India-weighted through Hindustan Times, NDTV, India.com, India Today, Firstpost, News18, Times of India and mint — eight Indian outlets, no single one dominant, but the country's share of the source base is well ahead of its share of stories.",
+    "Central Asia and the Caucasus produce only the CPC route and a single APA filing — the sixth day with almost nothing between Ankara and Delhi.",
+    "Economy is the smallest category at 10 and is carried by Saudi, Egypt, South Africa and India; no European or East Asian macro filing appeared."
   ],
-  "context": "The strongest day in this file on every axis: 65 articles, 45 unique sources, zero duplicates, no source above 8%, and the best freshness recorded (median 0.2, p90 0.8, max 1.4 — against yesterday's 0.6 / 1.7 / 1.7). The sample caveat carries over unchanged and matters more at this volume: freshness is computed over 16 of 65 articles, so the median rests on a 25% sample. Cycles averaged 1073s, up from 949, with the selector at 347s now clearly dominant — the editor has fallen to 65s average, so the Sonnet-5 low-effort editor is no longer a cost factor at all and the writer at 234s is second. Source base widened in a different direction than yesterday: 45 unique sources against 56, but with Daily Maverick, Nature and CoinDesk tied at the top rather than one outlet at 8%, and no state outlet in the top ten. No experiment has been active since 2026-05-18. The one queued candidate (2026-05-08-numerical-density) targets scripts/write-prompt.md, which is outside the tunable-parameter set this audit may edit, so it stays queued rather than blocked. TOP_EVENTS_TO_FETCH stays at 8 — each unit is one NewsAPI token per cycle against a capped spend."
+  "context": "A lighter day than yesterday — 51 articles against 69 — but with all five cycles completing rather than four, so the drop is per-cycle yield (9 vs the prior day's higher count) rather than a failed run. Quality of spread held: 46 unique sources, zero duplicates, top source at 12%, multi-source at 12, sci+tech at 41% for the second straight day. Cycle timing is stable at 1078s (selector 351s, writer 247s, editor 75s); the low-effort Sonnet-5 editor remains a non-factor in wall-time. The only real movement is freshness aging half a day and Oceania dropping out, and neither breaches a target. No experiment has been active since 2026-05-18. TOP_EVENTS_TO_FETCH stays at 8 — each unit is one NewsAPI token per cycle against a capped spend."
 }
