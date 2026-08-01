@@ -16,11 +16,8 @@
 
 import { writeFileSync } from 'node:fs'
 import { chromium } from 'playwright'
+import { argAt as arg } from '../lib/argv.js'
 
-const arg = (name, fallback) => {
-  const i = process.argv.indexOf(`--${name}`)
-  return i === -1 ? fallback : process.argv[i + 1]
-}
 
 const BASE = arg('base', 'http://127.0.0.1:8788')
 const JSON_OUT = arg('json', null)

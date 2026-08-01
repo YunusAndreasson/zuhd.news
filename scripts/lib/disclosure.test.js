@@ -16,32 +16,21 @@
 
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { build } from 'esbuild'
 import { JSDOM } from 'jsdom'
-import { mkdtempSync, rmSync, readFileSync, readdirSync } from 'node:fs'
+import { readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
-import { tmpdir } from 'node:os'
+import { bundleIsland, scratchDir } from './island-bundle.js'
 
 const ROOT = new URL('../..', import.meta.url).pathname
-const dir = mkdtempSync(join(tmpdir(), 'zuhd-disclosure-'))
-
-const bundle = async (entry, name) => {
-  const outfile = join(dir, name)
-  await build({
-    entryPoints: [join(ROOT, entry)],
-    outfile,
-    bundle: true,
-    format: 'esm',
-    platform: 'neutral',
-    logLevel: 'silent',
-    alias: { '@shared': join(ROOT, 'shared') },
-  })
-  return outfile
-}
+const dir = scratchDir('disclosure')
+const bundle = (entry, name) => bundleIsland(dir, entry, name)
 
 const disclosurePath = await bundle('public/islands/_disclosure.ts', 'disclosure.mjs')
+// `el` used to be exported from `_disclosure.ts`. It is `_dom.ts` now — five
+// islands had their own copy of the same four lines, so it moved to the module
+// that is only that.
+const domPath = await bundle('public/islands/_dom.ts', 'dom.mjs')
 const stripPath = await bundle('public/islands/entity-strip.ts', 'entity-strip.mjs')
-process.on('exit', () => rmSync(dir, { recursive: true, force: true }))
 
 /** `/api/entity/{id}.json`, trimmed to the fields these surfaces read. */
 const RECORD = {
@@ -133,7 +122,8 @@ const settle = () => new Promise((r) => setTimeout(r, 0))
 test('a chip opens the panel in place, and a second chip replaces it', async () => {
   const env = setupDom()
   try {
-    const { disclosure, el } = await import(disclosurePath)
+    const { disclosure } = await import(disclosurePath)
+    const { el } = await import(domPath)
     const d = disclosure('panel')
     document.body.append(d.panel)
 
@@ -171,7 +161,8 @@ test('a chip opens the panel in place, and a second chip replaces it', async () 
 test('a modified click is left to the browser, on the chip and on "full record"', async () => {
   const env = setupDom()
   try {
-    const { disclosure, moreLink, el } = await import(disclosurePath)
+    const { disclosure, moreLink } = await import(disclosurePath)
+    const { el } = await import(domPath)
     const d = disclosure('panel')
     document.body.append(d.panel)
     const chip = el('a', 'chip', 'A')
@@ -210,7 +201,8 @@ test('a modified click is left to the browser, on the chip and on "full record"'
 test('"full record" opens the rest here rather than at /e/{id}', async () => {
   const env = setupDom()
   try {
-    const { moreLink, el } = await import(disclosurePath)
+    const { moreLink } = await import(disclosurePath)
+    const { el } = await import(domPath)
     const box = el('div')
     document.body.append(box)
 

@@ -185,6 +185,10 @@ test('every hardcoded store and account link names the right thing', () => {
     'public/get.html',
     'scripts/build.js',
     'scripts/build/entity-pages.js',
+    // Where most of them live now: the footer used to be six copies of this
+    // markup and is one. The templates are still listed because the homepage's
+    // JSON-LD graph spells the same URLs out a second time.
+    'scripts/lib/site-chrome.js',
   ].filter((f) => existsSync(join(ROOT, f)))
 
   let seen = 0
@@ -216,6 +220,35 @@ test('every hardcoded store and account link names the right thing', () => {
   }
   // A regex that stops matching is a test that passes by finding nothing.
   assert.ok(seen > 10, `only ${seen} store/account links found — the patterns have gone stale`)
+})
+
+test('every page type wears the same footer', (t) => {
+  // Six copies of this markup — four templates, the category-page literal in
+  // build.js, and entity-pages.js — and two of them had drifted before anyone
+  // counted: the entity page's document links carried no `doc-sheet` trigger
+  // and no `/mcp` at all, so on that one page type "about" navigated away and
+  // the MCP endpoint had no route from the footer. It also grew a second row of
+  // maker links that nothing styled. All six now come out of `site-chrome.js`;
+  // this is what stops a seventh page type from being written by hand.
+  const pages = samples()
+  if (!pages.homepage) {
+    t.skip('dist not built')
+    return
+  }
+  const footer = (html) =>
+    html
+      .match(/<nav class="footer-links">[\s\S]*?<nav class="footer-maker"[\s\S]*?\n\s*<\/nav>/)?.[0]
+      // A static page marks the link to itself current and drops its overlay
+      // trigger — opening a sheet of the page behind it is a no-op the reader
+      // then has to undo. That is the one difference allowed here.
+      .replace(/href="\/(\w+)" aria-current="page"/, 'href="/$1" data-island="doc-sheet" data-doc="$1"')
+
+  const baseline = footer(readFileSync(pages.homepage, 'utf8'))
+  assert.ok(baseline, 'the homepage renders no footer')
+  for (const [kind, path] of Object.entries(pages)) {
+    if (!path) continue
+    assert.equal(footer(readFileSync(path, 'utf8')), baseline, `${kind} has its own footer`)
+  }
 })
 
 // ---------------------------------------------------------------------------

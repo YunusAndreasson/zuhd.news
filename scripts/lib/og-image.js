@@ -13,6 +13,7 @@ import { fileURLToPath } from 'node:url'
 import { Resvg } from '@resvg/resvg-js'
 import { geoOrthographic, geoPath } from 'd3-geo'
 import { feature } from 'topojson-client'
+import { escXml } from './html.js'
 
 const ROOT = new URL('../..', import.meta.url).pathname
 
@@ -63,13 +64,6 @@ const MAP_R = 210
 const MAP_CX = W - PAD_X - MAP_R
 const MAP_CY = H / 2
 
-export const escXml = (s) =>
-  String(s ?? '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&apos;')
 
 export const clipText = (text, max) => {
   const t = String(text ?? '').trim()

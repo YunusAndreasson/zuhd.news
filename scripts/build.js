@@ -7,7 +7,7 @@ import { isThermallyRelevant, nearestStories } from './lib/firms.js'
 import { ISO3_TO_ISO2, PHASE_NAMES, publishable, windowCoveringDay } from './lib/ipc.js'
 import { splitBlocks } from './lib/blocks.js'
 import { buildCategoryOgPng, buildOgPng, buildSiteOgPng } from './lib/og-image.js'
-import { buildIgJpeg, IG_FEED, IG_STORY } from './lib/ig-image.js'
+import { buildIgJpeg, IG_FEED, IG_STORY, igLead } from './lib/ig-image.js'
 import { buildIslands } from './build/islands.js'
 import { buildMapSources } from './build/basemap.js'
 import { buildCountryPages } from './build/country-pages.js'
@@ -15,12 +15,13 @@ import { buildCountryMetrics } from './build/country-metrics.js'
 import { buildEntityPages, latestTrendsPath } from './build/entity-pages.js'
 import { loadShared } from './build/shared-ts.js'
 import {
-  escHtmlAttr,
   formatDate,
   parseCorrections,
   renderCorrections,
   renderIsnad,
 } from './lib/article-chain.js'
+import { escHtml, escXml } from './lib/html.js'
+import { ARCHETYPE_HEADER, siteFooter, WORDMARK } from './lib/site-chrome.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
@@ -235,7 +236,7 @@ const entityStripHtml = (entities, indicatorMap) => {
     .filter((e) => e?.indicatorId && indicatorMap?.has(e.indicatorId))
     .map((e) => {
       const ind = indicatorMap.get(e.indicatorId)
-      return `<a class="article-entity-chip" href="/e/${escHtmlAttr(e.indicatorId)}" data-id="${escHtmlAttr(e.indicatorId)}"><span class="article-entity-chip-label">${escHtmlAttr(ind.label || e.mention || e.indicatorId)}</span></a>`
+      return `<a class="article-entity-chip" href="/e/${escHtml(e.indicatorId)}" data-id="${escHtml(e.indicatorId)}"><span class="article-entity-chip-label">${escHtml(ind.label || e.mention || e.indicatorId)}</span></a>`
     })
   if (!rendered.length) return ''
   // The island mounts on the wrapper and appends its panel there, so the chart
@@ -265,10 +266,10 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap) =
   const description = buildDescription(body)
   const timeAgo = formatTimeAgo(addedAt)
   const prevLink = prev
-    ? `<a class="article-pagination-prev" href="/a/${prev.slug}" rel="prev"><span class="article-pagination-label">Previous</span><span class="article-pagination-title">${escHtmlAttr(prev.title)}</span></a>`
+    ? `<a class="article-pagination-prev" href="/a/${prev.slug}" rel="prev"><span class="article-pagination-label">Previous</span><span class="article-pagination-title">${escHtml(prev.title)}</span></a>`
     : '<span class="article-pagination-prev"></span>'
   const nextLink = next
-    ? `<a class="article-pagination-next" href="/a/${next.slug}" rel="next"><span class="article-pagination-label">Next</span><span class="article-pagination-title">${escHtmlAttr(next.title)}</span></a>`
+    ? `<a class="article-pagination-next" href="/a/${next.slug}" rel="next"><span class="article-pagination-label">Next</span><span class="article-pagination-title">${escHtml(next.title)}</span></a>`
     : '<span class="article-pagination-next"></span>'
 
   // NewsArticle structured data — gates Top Stories / rich-result eligibility.
@@ -314,13 +315,13 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap) =
   return template
     .replace(/{{jsonLd}}/g, jsonLd)
     .replace(/{{slug}}/g, slug)
-    .replace(/{{title}}/g, escHtmlAttr(title))
-    .replace(/{{titleAttr}}/g, escHtmlAttr(title))
-    .replace(/{{description}}/g, escHtmlAttr(description))
+    .replace(/{{title}}/g, escHtml(title))
+    .replace(/{{titleAttr}}/g, escHtml(title))
+    .replace(/{{description}}/g, escHtml(description))
     .replace(/{{category}}/g, category)
     .replace(/{{dateFormatted}}/g, dateFormatted)
     .replace(/{{isoDate}}/g, isoDate)
-    .replace(/{{timeAgo}}/g, escHtmlAttr(timeAgo))
+    .replace(/{{timeAgo}}/g, escHtml(timeAgo))
     // In the kicker, beside the timestamp, because a correction a reader has to
     // scroll to find is not issued openly — it is filed. The link goes to the
     // block itself, so the mark is both the notice and the way to read it.
@@ -400,7 +401,7 @@ const headCommon = `<meta charset="utf-8">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="zuhd.news">
-  <meta name="apple-itunes-app" content="app-id=6760964753">
+  <meta name="apple-itunes-app" content="app-id=${SHARE.APP_STORE_ID}">
   <link rel="preload" href="/fonts/source-sans-3-var.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -499,10 +500,10 @@ const shareRowHtml = (target, title) => {
     .map(({ label, href, aria }) => {
       // mailto: must open in place; _blank on it leaves an empty tab behind.
       const target = href.startsWith('mailto:') ? '' : ' target="_blank" rel="noopener noreferrer"'
-      return `<a class="share-choice" href="${escHtmlAttr(href)}" aria-label="${escHtmlAttr(aria)}"${target}>${label}</a>`
+      return `<a class="share-choice" href="${escHtml(href)}" aria-label="${escHtml(aria)}"${target}>${label}</a>`
     })
     .join('')
-  return `<div class="share" data-island-auto="share-bar" data-url="${escHtmlAttr(url)}" data-title="${escHtmlAttr(title)}"><span class="share-label">Share</span>${links}</div>`
+  return `<div class="share" data-island-auto="share-bar" data-url="${escHtml(url)}" data-title="${escHtml(title)}"><span class="share-label">Share</span>${links}</div>`
 }
 
 const ISLAND_V = (() => {
@@ -553,9 +554,17 @@ const BASEMAP_V = (() => {
   return h.digest('hex').slice(0, 10)
 })()
 
+// The page furniture, built once from `shared/share.ts` so the store and
+// account links in six footers cannot become six different answers. See
+// `lib/site-chrome.js` — two of them had already drifted before this existed.
+const FOOTER_NAV = siteFooter(SHARE)
+
 const loadTemplate = (name, head = headCommon) =>
   readFileSync(join(TEMPLATES_DIR, name), 'utf-8')
     .replace('{{headCommon}}', head)
+    .replace('{{archetypeHeader}}', ARCHETYPE_HEADER)
+    .replace('{{footerNav}}', FOOTER_NAV)
+    .replaceAll('{{wordmark}}', WORDMARK)
     .replaceAll('{{v}}', ISLAND_V)
     .replaceAll('{{basemapV}}', BASEMAP_V)
 
@@ -567,6 +576,8 @@ const homepageTemplate = loadTemplate('index.html', headCommonDark)
 const articleTemplate = loadTemplate('article.html')
 
 const staticPageTemplate = loadTemplate('static-page.html', headCommonDark)
+
+const countryTemplate = loadTemplate('country.html')
 
 // Story thread lookup — maps article slugs to their thread info from the ledger
 const ledgerPath = join(ROOT, 'content', '.story-ledger.json')
@@ -1428,7 +1439,6 @@ console.log(`  Built: api/map-leads.json (${Object.keys(mapLeads).length} leads)
 }
 
 // Atom feed for RSS readers
-const escXml = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 const feedArticles = sorted.filter(a => a.addedAt >= cutoff).slice(0, 30)
 const atomEntries = feedArticles.map(a => `  <entry>
     <title>${escXml(a.meta.title || 'Untitled')}</title>
@@ -1564,40 +1574,9 @@ if (process.env.SKIP_OG === '1') {
   // cached card was composed against the old (truncating) layout.
   const IG_VERSION = 'v7' // bump when ig-image.js rendering changes
   const IG_RECENT = 20 // dev/manual fallback window
-  // The card renders a dek — the story lead (first 1-2 sentences) with the
-  // dateline prefix and markdown links stripped, cut to ~200 chars on a
-  // sentence boundary.
-  const igLead = (body) => {
-    let t = String(body || '')
-      .trim()
-      .split(/\n\n+/)
-      .slice(0, 2)
-      .join(' ')
-      .replace(/^[A-Z][\w .,'-]{0,28}\s—\s/, '') // strip 'Washington — ' dateline
-      .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1') // markdown links -> text
-      .replace(/[*_`]/g, '')
-      .replace(/\s+/g, ' ')
-      .trim()
-    // Trim to whole sentences, never to an ellipsis. The card's type is fitted
-    // to whatever arrives (see `font-metrics.js`), so the only job left here is
-    // deciding how much of the lead to carry — and a dek that stops mid-phrase
-    // on "…" reads as a truncated card rather than as a chosen excerpt.
-    //
-    // If no sentence boundary falls inside the budget, the first sentence is
-    // carried whole however long it is. That is the one case where the old code
-    // reached for the ellipsis, and the fitter now absorbs the length instead.
-    if (t.length > 260) {
-      const cut = t.slice(0, 260)
-      const end = cut.lastIndexOf('. ')
-      if (end > 130) {
-        t = cut.slice(0, end + 1)
-      } else {
-        const firstStop = t.indexOf('. ')
-        t = firstStop > 0 ? t.slice(0, firstStop + 1) : t
-      }
-    }
-    return t
-  }
+  // The dek is `igLead`, in lib/ig-image.js beside the card it feeds — it used
+  // to be declared here and again in each of the two posters, and the three had
+  // parted over whether to cut on an ellipsis.
   mkdirSync(IG_CACHE_DIR, { recursive: true })
   let cycleSlugs = null
   try {
@@ -1678,10 +1657,7 @@ const categoryPageTemplate = `<!-- بسم الله الرحمن الرحيم -->
   <meta name="twitter:image:alt" content="__CAT_CAP__ on zuhd.news">
 </head>
 <body class="archetype-page-body">
-  <header class="article-page-header">
-    <a href="/" class="wordmark">zuhd<span class="wordmark-dot">.</span><span class="wordmark-tld">news</span></a>
-    <a href="/" class="article-back-link" aria-label="All stories">All stories</a>
-  </header>
+  ${ARCHETYPE_HEADER}
   <main class="article-page-main">
     <article class="category-page">
       <header class="category-page-header">
@@ -1694,24 +1670,7 @@ const categoryPageTemplate = `<!-- بسم الله الرحمن الرحيم -->
     __SHARE_ROW__
   </main>
   <footer>
-    <nav class="footer-links">
-      <a href="/about" data-island="doc-sheet" data-doc="about">about</a> <a href="/contact" data-island="doc-sheet" data-doc="contact">contact</a> <a href="/mcp" data-island="doc-sheet" data-doc="mcp">mcp</a> <a href="/privacy" data-island="doc-sheet" data-doc="privacy">privacy</a>
-    </nav>
-    <nav class="footer-social" aria-label="Follow and download">
-      <a href="https://x.com/zuhd_news" rel="me noopener" target="_blank">x</a>
-      <a href="https://www.instagram.com/zuhdnews/" rel="me noopener" target="_blank">instagram</a>
-      <a href="https://apps.apple.com/us/app/zuhd-news/id6760964753" rel="noopener" target="_blank">iphone</a>
-      <a href="https://play.google.com/store/apps/details?id=news.zuhd.app" rel="noopener" target="_blank">android</a>
-    </nav>
-    <nav class="footer-maker" aria-label="Maker">
-      <a class="footer-byline" href="https://andreassonphoto.com/about" target="_blank" rel="me noopener noreferrer">made by yunus andreasson</a>
-      <span class="footer-maker-links">
-        <a href="https://github.com/YunusAndreasson" target="_blank" rel="me noopener noreferrer">github</a>
-        <a href="https://x.com/YunusAndreasson" target="_blank" rel="me noopener noreferrer">x</a>
-        <a href="https://www.instagram.com/andreasson.photo/" target="_blank" rel="me noopener noreferrer">instagram</a>
-        <a href="https://www.linkedin.com/in/yunusandreasson/" target="_blank" rel="me noopener noreferrer">linkedin</a>
-      </span>
-    </nav>
+    ${FOOTER_NAV}
   </footer>
   <script type="module" src="/island-loader.js?v=${ISLAND_V}" defer></script>
 </body>
@@ -1756,8 +1715,8 @@ for (const cat of CATEGORY_ORDER) {
       <h2 class="category-day-heading"><time datetime="${g.day}">${formatDayHeading(g.day)}</time></h2>
       <ol class="category-day-list">${g.items.map(a => `<li>
         <a class="category-article-row" href="/a/${a.slug}">
-          <span class="category-article-title">${escHtmlAttr(a.title)}</span>
-          ${a.sources[0]?.name ? `<span class="t-source-host">${escHtmlAttr(a.sources[0].name)}</span>` : ''}
+          <span class="category-article-title">${escHtml(a.title)}</span>
+          ${a.sources[0]?.name ? `<span class="t-source-host">${escHtml(a.sources[0].name)}</span>` : ''}
         </a>
       </li>`).join('')}</ol>
     </li>`).join('\n')
@@ -1768,7 +1727,7 @@ for (const cat of CATEGORY_ORDER) {
     .replace(/__CAT_CAP__/g, capitalize(cat))
     .replace(/__COUNT__/g, String(items.length))
     .replace(/__DAYS__/g, String(BUILD_WINDOW_DAYS))
-    .replace(/__DESC__/g, escHtmlAttr(`${items.length} ${cat} articles on zuhd.news. Minimalist global news, typography-first.`))
+    .replace(/__DESC__/g, escHtml(`${items.length} ${cat} articles on zuhd.news. Minimalist global news, typography-first.`))
     .replace(/__ROWS__/g, rows)
   writeFileSync(join(DIST_DIR, 'c', `${cat}.html`), html)
 
@@ -1816,6 +1775,7 @@ const entityResult = await buildEntityPages({
   sorted,
   distDir: DIST_DIR,
   headCommon,
+  footerNav: FOOTER_NAV,
   islandV: ISLAND_V,
   shareRowHtml,
 })
@@ -1828,9 +1788,7 @@ console.log(`  Built: e/ (${entityResult.count} entity pages)`)
 const countryResult = await buildCountryPages({
   sorted,
   distDir: DIST_DIR,
-  templatesDir: TEMPLATES_DIR,
-  headCommon,
-  islandV: ISLAND_V,
+  template: countryTemplate,
   shareRowHtml,
   skipOg: process.env.SKIP_OG === '1',
 })

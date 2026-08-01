@@ -12,9 +12,7 @@
 // inside a 1,600-line top-level-await script is rendering nobody can assert on,
 // and the isnad ordering in particular is a claim strong enough to deserve one.
 
-/** HTML-escape, for both text and attribute positions. */
-export const escHtmlAttr = (s) =>
-  String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+import { escHtml } from './html.js'
 
 /** `2026-07-26T05:00:00Z` → `26 July 2026`. */
 export const formatDate = (dateStr) =>
@@ -75,7 +73,7 @@ export const renderCorrections = (corrections) => {
   const items = corrections
     .map(
       (c) =>
-        `<li><time datetime="${escHtmlAttr(c.date)}">${escHtmlAttr(formatDate(c.date))}</time> — ${escHtmlAttr(c.note)}</li>`,
+        `<li><time datetime="${escHtml(c.date)}">${escHtml(formatDate(c.date))}</time> — ${escHtml(c.note)}</li>`,
     )
     .join('')
   const label = corrections.length === 1 ? 'Correction' : 'Corrections'
@@ -202,12 +200,12 @@ export const renderIsnad = (sources, body) => {
     .map((s, i) => ({ s, i, near: nearness(s) }))
     .sort((a, b) => a.near - b.near || a.i - b.i)
     .map(({ s }) => {
-      const name = escHtmlAttr(s.name || '')
+      const name = escHtml(s.name || '')
       if (!name) return ''
       // A source without a URL is still part of the chain and still named. It
       // just cannot be followed, and a dead `<a>` would imply it could.
       if (!s.url) return `<span>${name}</span>`
-      return `<a href="${escHtmlAttr(s.url)}" rel="noopener nofollow" target="_blank">${name}</a>`
+      return `<a href="${escHtml(s.url)}" rel="noopener nofollow" target="_blank">${name}</a>`
     })
     .filter(Boolean)
 

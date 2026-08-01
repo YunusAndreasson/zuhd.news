@@ -42,11 +42,6 @@ export function loadRecentArticles(cutoffMs = 48 * 3600 * 1000) {
   } catch { return [] }
 }
 
-/** Back-compat: just slugs (callers that don't need titles). */
-export function loadRecentSlugs(cutoffMs = 48 * 3600 * 1000) {
-  return loadRecentArticles(cutoffMs).map(a => a.slug)
-}
-
 /** Load eventUri → article slug arrays from the story ledger. */
 export function loadLedgerEventUris() {
   const map = new Map()

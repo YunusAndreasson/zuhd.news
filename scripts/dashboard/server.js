@@ -8,6 +8,7 @@ import { join } from 'node:path'
 import { execSync } from 'node:child_process'
 import { parseFrontmatter } from '../lib/frontmatter.js'
 import { scoreDir } from '../lib/quality-score.js'
+import { regionFromCoords } from '../lib/regions.js'
 
 const PORT = 7777
 const HOST = '127.0.0.1'
@@ -320,7 +321,7 @@ function handleQuality() {
           for (const s of (a.sources || [])) {
             sourceMap[s.name] = (sourceMap[s.name] || 0) + 1
           }
-          const region = regionFromCoords(a.lat, a.lng)
+          const region = regionFromCoords(a.lat, a.lng) ?? 'unknown'
           regionMap[region] = (regionMap[region] || 0) + 1
         }
         result.sources = { unique: Object.keys(sourceMap).length, top: Object.entries(sourceMap).sort((a, b) => b[1] - a[1]).slice(0, 8) }
@@ -522,17 +523,6 @@ function handleArticleImages() {
     }
     return { articles: out, total: out.length, withImage }
   })
-}
-
-function regionFromCoords(lat, lng) {
-  if (lat == null || lng == null) return 'unknown'
-  if (lat > 15 && lat < 45 && lng > 25 && lng < 75) return 'ME'
-  if (lat > -10 && lat < 55 && lng > 60 && lng < 150) return 'AS'
-  if (lat > -40 && lat < 40 && lng > -20 && lng < 55) return 'AF'
-  if (lat > 35 && lat < 72 && lng > -25 && lng < 60) return 'EU'
-  if (lat > -60 && lat < 75 && lng > -170 && lng < -30) return 'AM'
-  if (lat > -50 && lat < -10 && lng > 110 && lng < 180) return 'OC'
-  return 'GL'
 }
 
 // ── Experiment Tracking ─────────────────────────────────────────────

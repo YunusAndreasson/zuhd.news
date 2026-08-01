@@ -6,33 +6,19 @@
 
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { build } from 'esbuild'
 import { JSDOM } from 'jsdom'
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs'
-import { join } from 'node:path'
-import { tmpdir } from 'node:os'
+import { bundleIslands, scratchDir } from './island-bundle.js'
 
-const ROOT = new URL('../..', import.meta.url).pathname
-const dir = mkdtempSync(join(tmpdir(), 'zuhd-map-feed-'))
-const entry = join(dir, 'entry.ts')
-const bundlePath = join(dir, 'feed.mjs')
-
-writeFileSync(
-  entry,
-  `export * from '${join(ROOT, 'public/islands/_map/feed.ts')}'\n` +
-    `export * from '${join(ROOT, 'public/islands/_map/read-state.ts')}'\n` +
-    `export * from '${join(ROOT, 'public/islands/_map/timeline.ts')}'\n`,
+const dir = scratchDir('map-feed')
+const bundlePath = await bundleIslands(
+  dir,
+  [
+    'public/islands/_map/feed.ts',
+    'public/islands/_map/read-state.ts',
+    'public/islands/_map/timeline.ts',
+  ],
+  'feed.mjs',
 )
-await build({
-  entryPoints: [entry],
-  outfile: bundlePath,
-  bundle: true,
-  format: 'esm',
-  platform: 'neutral',
-  logLevel: 'silent',
-  alias: { '@shared': join(ROOT, 'shared') },
-})
-process.on('exit', () => rmSync(dir, { recursive: true, force: true }))
 
 const setupDom = () => {
   const dom = new JSDOM('<!doctype html><html><body></body></html>', { url: 'https://zuhd.news/' })

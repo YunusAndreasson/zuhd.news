@@ -11,26 +11,11 @@
 
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { build } from 'esbuild'
 import { JSDOM } from 'jsdom'
-import { mkdtempSync, rmSync } from 'node:fs'
-import { join } from 'node:path'
-import { tmpdir } from 'node:os'
+import { bundleIsland, scratchDir } from './island-bundle.js'
 
-const ROOT = new URL('../..', import.meta.url).pathname
-const dir = mkdtempSync(join(tmpdir(), 'zuhd-map-sheet-'))
-const bundlePath = join(dir, 'sheet.mjs')
-
-await build({
-  entryPoints: [join(ROOT, 'public/islands/_map/sheet.ts')],
-  outfile: bundlePath,
-  bundle: true,
-  format: 'esm',
-  platform: 'neutral',
-  logLevel: 'silent',
-  alias: { '@shared': join(ROOT, 'shared') },
-})
-process.on('exit', () => rmSync(dir, { recursive: true, force: true }))
+const dir = scratchDir('map-sheet')
+const bundlePath = await bundleIsland(dir, 'public/islands/_map/sheet.ts', 'sheet.mjs')
 
 function setupDom() {
   const dom = new JSDOM('<!doctype html><html><body></body></html>', {

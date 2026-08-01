@@ -8,60 +8,43 @@
 // the panel that answers it belongs where the question was asked, not over the
 // top of the sentence that raised it.
 //
-// This is the same mechanism the map's story card uses (`_disclosure`), which
-// is the point: the strip is the same row on both surfaces and behaved
-// differently on each, and the surface a reader happens to be on is not a
-// reason for a chip to mean something else.
+// The mechanism is `_disclosure` and the contents are `_entity-panel`, both
+// shared with the map's story card. That is the point: the strip is the same
+// row on both surfaces and used to behave — and then render — differently on
+// each, and the surface a reader happens to be on is not a reason for a chip to
+// mean something else. What is left in this file is what is genuinely this
+// page's: the class names, and the fact that a mention row here is an ordinary
+// link, because the reader is on an article page and another article page is
+// where it leads.
 //
 // `/e/{id}` is untouched and still canonical — the chip's `href` is real, so a
 // modified click, a crawler and a JS-less browser all still reach the page that
 // carries the mentions and the whole record. Nothing routes a reader there by
 // an ordinary click any more.
 
-import { createChart } from './_chart'
-import { disclosure, el, moreLink, type Built } from './_disclosure'
+import { disclosure, type Built } from './_disclosure'
+import { el } from './_dom'
+import {
+  buildEntityPanel,
+  cachedEntity,
+  type EntityPanelClasses,
+  type EntityRecord,
+  fetchEntity,
+} from './_entity-panel'
 
-interface Mention {
-  slug: string
-  title: string
-  date: string
-  dateFormatted: string
-  source: string
-}
-
-/** `/api/entity/{id}.json` — the same payload `/e/{id}` is generated from. */
-interface EntityRecord {
-  id: string
-  label: string
-  kind: string
-  sourceLabel?: string | null
-  unit?: string
-  currentFormatted: string
-  deltaLabel?: string | null
-  deltaTone?: string | null
-  caption?: string
-  values: number[]
-  periods: string[]
-  asOf?: string
-  mentions?: Mention[]
-}
-
-const cache = new Map<string, EntityRecord>()
-
-const fetchEntity = async (id: string): Promise<EntityRecord | null> => {
-  const hit = cache.get(id)
-  if (hit) return hit
-  try {
-    const res = await fetch(`/api/entity/${encodeURIComponent(id)}.json`, {
-      cache: 'force-cache',
-    })
-    if (!res.ok) return null
-    const record = (await res.json()) as EntityRecord
-    cache.set(id, record)
-    return record
-  } catch {
-    return null
-  }
+const CLASSES: EntityPanelClasses = {
+  loading: 'article-entity-loading',
+  head: 'article-entity-head',
+  hero: 'article-entity-hero',
+  value: 'article-entity-value',
+  delta: 'article-entity-delta',
+  figure: 'article-entity-figure',
+  full: 'article-entity-full',
+  more: 'article-entity-more',
+  provenance: 'article-entity-provenance',
+  section: 'article-entity-section',
+  mentions: 'article-entity-mentions',
+  mentionTime: 'article-entity-mention-time',
 }
 
 export function mount(container: HTMLElement): () => void {
@@ -83,79 +66,18 @@ export function mount(container: HTMLElement): () => void {
   })
   container.append(panel.panel)
 
-  const build = (record: EntityRecord | null, id: string): Built => {
-    const body = document.createDocumentFragment()
-    if (!record) {
-      body.append(el('p', 'article-entity-loading', 'Could not load this series.'))
-      return { node: body }
-    }
-
-    body.append(
-      el('p', 'article-entity-head', [record.kind, record.sourceLabel].filter(Boolean).join(' · ')),
-    )
-    const hero = el('p', 'article-entity-hero')
-    hero.append(el('span', 'article-entity-value', record.currentFormatted))
-    if (record.deltaLabel) {
-      const tone = record.deltaTone === 'pos' || record.deltaTone === 'neg' ? record.deltaTone : ''
-      hero.append(el('span', `article-entity-delta ${tone}`.trim(), record.deltaLabel))
-    }
-    body.append(hero)
-
-    // The options `/e/{id}` and the map's card both hand the chart, so the
-    // series a reader sees on any of the three cannot disagree about what the
-    // rule marks or which direction is which.
-    const chart = createChart({
-      values: record.values ?? [],
-      periods: record.periods ?? [],
-      reference: 'open',
-      referenceLabel: 'the window’s open',
-      direction: 'window',
-      palette: 'signed',
-      unit: record.unit,
-      step: record.kind === 'MONTHLY' ? 'months' : 'days',
-      label: record.label,
-      caption: record.caption,
-      className: 'article-entity-figure',
+  const build = (record: EntityRecord | null, id: string): Built =>
+    buildEntityPanel({
+      record,
+      id,
+      classes: CLASSES,
+      box: panel.panel,
+      mentionLink: (m) => {
+        const link = el('a', 'article-entity-mention-title', m.title)
+        link.href = `/a/${m.slug}`
+        return link
+      },
     })
-    if (chart) body.append(chart.element)
-
-    // The rest of the record, under the chart rather than at `/e/{id}` — the
-    // provenance of the last observation and the stories that cite it. On this
-    // surface those rows are ordinary links: the reader is already on an
-    // article page, and another article page is where they lead.
-    const mentions = record.mentions ?? []
-    const asOf = record.asOf ? `as of ${record.asOf}` : null
-    if (mentions.length || asOf) {
-      body.append(
-        ...moreLink({
-          labels: ['full record →', 'less ↑'],
-          href: `/e/${encodeURIComponent(id)}`,
-          box: panel.panel,
-          linkClass: 'article-entity-full',
-          moreClass: 'article-entity-more',
-          fill: (into) => {
-            const provenance = [asOf, record.sourceLabel || null].filter(Boolean).join(' · ')
-            if (provenance) into.append(el('p', 'article-entity-provenance', provenance))
-            if (!mentions.length) return
-            into.append(el('p', 'article-entity-section', `Cited in · ${mentions.length}`))
-            const list = el('ul', 'article-entity-mentions')
-            for (const m of mentions.slice(0, 8)) {
-              const li = el('li')
-              const link = el('a', 'article-entity-mention-title', m.title)
-              link.href = `/a/${m.slug}`
-              li.append(link, el('time', 'article-entity-mention-time', m.dateFormatted))
-              list.append(li)
-            }
-            into.append(list)
-          },
-        }),
-      )
-    }
-
-    // The chart registers listeners on nodes it created; the panel owns their
-    // lifetime and hands them back when it is replaced or closed.
-    return { node: body, dispose: () => chart?.destroy() }
-  }
 
   for (const chip of chips) {
     const id = chip.dataset.id
@@ -165,7 +87,7 @@ export function mount(container: HTMLElement): () => void {
       chip,
       async () => build(await fetchEntity(id), id),
       () => {
-        const hit = cache.get(id)
+        const hit = cachedEntity(id)
         return hit ? build(hit, id) : null
       },
     )

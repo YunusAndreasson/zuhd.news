@@ -47,6 +47,24 @@ const TWINKLE_STEP = 0.03     // alpha change per frame
 const TWINKLE_RANGE = 0.12    // max deviation from baseAlpha
 const TWINKLE_MIN_R = 0.8     // only stars larger than this twinkle
 
+/**
+ * One star's alpha, nudged toward or away from its resting value.
+ *
+ * A single `Math.random()` drives both directions so the two branches cannot
+ * both fire in one frame, and each is clamped to `TWINKLE_RANGE` either side of
+ * `baseAlpha` — the star wanders about its own brightness rather than drifting
+ * off it.
+ */
+const twinkle = (s: { alpha: number; baseAlpha: number }): void => {
+  const roll = Math.random()
+  if (roll < TWINKLE_CHANCE && s.alpha > s.baseAlpha - TWINKLE_RANGE) {
+    s.alpha = Math.max(s.baseAlpha - TWINKLE_RANGE, s.alpha - TWINKLE_STEP)
+  } else if (roll < TWINKLE_CHANCE * 2 && s.alpha < s.baseAlpha + TWINKLE_RANGE) {
+    s.alpha = Math.min(s.baseAlpha + TWINKLE_RANGE, s.alpha + TWINKLE_STEP)
+  }
+}
+
+
 export const mount = (container: HTMLElement) => {
   const canvas = document.createElement('canvas')
   canvas.className = 'spacefield-canvas'
@@ -219,25 +237,11 @@ export const mount = (container: HTMLElement) => {
 
     const [far, mid, near] = stars
 
-    // Probabilistic twinkling — only larger stars flicker
-    for (const s of mid) {
-      if (s.r > TWINKLE_MIN_R) {
-        const roll = Math.random()
-        if (roll < TWINKLE_CHANCE && s.alpha > s.baseAlpha - TWINKLE_RANGE) {
-          s.alpha = Math.max(s.baseAlpha - TWINKLE_RANGE, s.alpha - TWINKLE_STEP)
-        } else if (roll < TWINKLE_CHANCE * 2 && s.alpha < s.baseAlpha + TWINKLE_RANGE) {
-          s.alpha = Math.min(s.baseAlpha + TWINKLE_RANGE, s.alpha + TWINKLE_STEP)
-        }
-      }
-    }
-    for (const s of near) {
-      const roll = Math.random()
-      if (roll < TWINKLE_CHANCE && s.alpha > s.baseAlpha - TWINKLE_RANGE) {
-        s.alpha = Math.max(s.baseAlpha - TWINKLE_RANGE, s.alpha - TWINKLE_STEP)
-      } else if (roll < TWINKLE_CHANCE * 2 && s.alpha < s.baseAlpha + TWINKLE_RANGE) {
-        s.alpha = Math.min(s.baseAlpha + TWINKLE_RANGE, s.alpha + TWINKLE_STEP)
-      }
-    }
+    // Probabilistic twinkling — only larger stars flicker. Mid-field stars are
+    // gated on radius; near-field ones all qualify, which is the only
+    // difference between these two passes and used to be two copies of the walk.
+    for (const s of mid) if (s.r > TWINKLE_MIN_R) twinkle(s)
+    for (const s of near) twinkle(s)
 
     // Draw far stars — faint dots, no glow
     for (const s of far) {

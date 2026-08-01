@@ -16,6 +16,8 @@
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
+import { escHtml } from '../lib/html.js'
+import { ARCHETYPE_HEADER } from '../lib/site-chrome.js'
 import { loadShared } from './shared-ts.js'
 
 const ROOT = new URL('../..', import.meta.url).pathname
@@ -39,13 +41,6 @@ export const latestTrendsPath = () => {
   const latest = names[names.length - 1]
   return latest ? join(dir, latest) : null
 }
-
-const escHtml = (s) =>
-  String(s ?? '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
 
 const formatValue = (v, unit) => {
   if (v == null || !Number.isFinite(v)) return '—'
@@ -167,10 +162,7 @@ __HEAD__
   <meta name="twitter:image:alt" content="__LABEL__ on zuhd.news">
 </head>
 <body class="archetype-page-body">
-  <header class="article-page-header">
-    <a href="/" class="wordmark">zuhd<span class="wordmark-dot">.</span><span class="wordmark-tld">news</span></a>
-    <a href="/" class="article-back-link" aria-label="All stories">All stories</a>
-  </header>
+  ${ARCHETYPE_HEADER}
   <main class="article-page-main">
     <article class="entity-page">
       <header class="entity-header">
@@ -198,35 +190,7 @@ __HEAD__
   </main>
   <footer>
     <span class="update-status">__AS_OF__</span>
-    <nav class="footer-links">
-      <a href="/about">about</a> <a href="/contact">contact</a> <a href="/privacy">privacy</a>
-    </nav>
-    <!--
-      Every other page type carries this row; the entity pages were built
-      before it existed and never got it, so an indicator page was the one
-      place on the site with no route to the feeds or either store.
-    -->
-    <nav class="footer-social" aria-label="Follow and download">
-      <a href="https://x.com/zuhd_news" rel="me noopener" target="_blank">x</a>
-      <a href="https://www.instagram.com/zuhdnews/" rel="me noopener" target="_blank">instagram</a>
-      <a href="https://apps.apple.com/us/app/zuhd-news/id6760964753" rel="noopener" target="_blank">iphone</a>
-      <a href="https://play.google.com/store/apps/details?id=news.zuhd.app" rel="noopener" target="_blank">android</a>
-    </nav>
-    <nav class="footer-maker" aria-label="Maker">
-      <a class="footer-byline" href="https://andreassonphoto.com/about" target="_blank" rel="me noopener noreferrer">made by yunus andreasson</a>
-      <span class="footer-maker-links">
-        <a href="https://github.com/YunusAndreasson" target="_blank" rel="me noopener noreferrer">github</a>
-        <a href="https://x.com/YunusAndreasson" target="_blank" rel="me noopener noreferrer">x</a>
-        <a href="https://www.instagram.com/andreasson.photo/" target="_blank" rel="me noopener noreferrer">instagram</a>
-        <a href="https://www.linkedin.com/in/yunusandreasson/" target="_blank" rel="me noopener noreferrer">linkedin</a>
-      </span>
-      <span class="footer-maker-links footer-other-apps">
-        <a href="https://islam.se" target="_blank" rel="noopener noreferrer">islam.se</a>
-        <a href="https://openarabic.io" target="_blank" rel="noopener noreferrer">open-arabic</a>
-        <a href="https://al-ibadah.com" target="_blank" rel="noopener noreferrer">al-ibadah</a>
-        <a href="https://qamar360.com" target="_blank" rel="noopener noreferrer">qamar360</a>
-      </span>
-    </nav>
+    __FOOTER_NAV__
   </footer>
   <script type="module" src="/island-loader.js__ISLAND_V__" defer></script>
 </body>
@@ -234,10 +198,13 @@ __HEAD__
 
 /**
  * @param {{ sorted: any[], distDir: string, headCommon: string,
- *           islandV?: string,
+ *           footerNav?: string, islandV?: string,
  *           shareRowHtml?: (target: string, title: string) => string }} opts
- *        `shareRowHtml` is passed in rather than imported because build.js owns
- *        it; the default is a no-op for callers that do not want a share row.
+ *        `shareRowHtml` and `footerNav` are passed in rather than imported
+ *        because build.js owns both — the footer is built once there from the
+ *        loaded `share.ts`, and this module cannot load TypeScript itself.
+ *        `shareRowHtml`'s default is a no-op for callers that do not want a
+ *        share row.
  *        Its signature has to be declared here — a default of `() => ''` infers
  *        a zero-argument function, which makes the two real call sites read as
  *        passing two arguments too many.
@@ -246,6 +213,7 @@ export const buildEntityPages = async ({
   sorted,
   distDir,
   headCommon,
+  footerNav = '',
   islandV = '',
   shareRowHtml = () => '',
 }) => {
@@ -295,6 +263,7 @@ export const buildEntityPages = async ({
 
     const html = entityTemplate
       .replace(/__HEAD__/g, headCommon)
+      .replace(/__FOOTER_NAV__/g, footerNav)
       // Was a bare `/island-loader.js`. Pages pins `.js` to its own four-hour
       // max-age and `_headers` cannot lower it, so without the build's cache
       // key an entity page kept loading whichever loader the edge last cached —

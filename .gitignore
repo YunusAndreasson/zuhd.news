@@ -8,7 +8,13 @@ logs/
 content/audio/*.mp3
 content/audio/voice-tests/
 *.bad
-.claude/
+# Claude Code config. `settings.local.json` is per-machine; `rules/` is not —
+# it carries this repo's design record, scoped by `paths:` frontmatter so each
+# file loads only when Claude reads code it covers. That record used to live in
+# CLAUDE.md, which is tracked, and un-ignoring it here is what keeps it tracked.
+/.claude/*
+!/.claude/rules/
+mobile/.claude/
 .tmp-*
 # Transient: the per-cycle social pick, regenerated (and rm'd) each cycle.
 content/.breaking-pick.json

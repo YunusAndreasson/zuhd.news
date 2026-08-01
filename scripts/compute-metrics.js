@@ -5,6 +5,7 @@
 
 import { readFileSync, readdirSync, existsSync } from 'node:fs'
 import { join, basename } from 'node:path'
+import { regionFromCoords } from './lib/regions.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const ARTICLES_DIR = join(ROOT, 'content', 'articles')
@@ -53,17 +54,6 @@ function tally(items, keyFn) {
   return counts
 }
 
-function regionFromCoords(lat, lng) {
-  if (lat === null || lng === null) return 'unknown'
-  if (lat > 15 && lat < 45 && lng > 25 && lng < 75) return 'ME'   // Middle East + Central Asia
-  if (lat > -10 && lat < 55 && lng > 60 && lng < 150) return 'AS' // Asia-Pacific
-  if (lat > -40 && lat < 40 && lng > -20 && lng < 55) return 'AF' // Africa
-  if (lat > 35 && lat < 72 && lng > -25 && lng < 60) return 'EU'  // Europe
-  if (lat > -60 && lat < 75 && lng > -170 && lng < -30) return 'AM' // Americas
-  if (lat > -50 && lat < -10 && lng > 110 && lng < 180) return 'OC' // Oceania
-  return 'GL'
-}
-
 // ── Freshness ────────────────────────────────────────────────────────
 
 function computeFreshness(articles) {
@@ -96,7 +86,7 @@ function computeDiversity(articles) {
   const allSourceNames = articles.flatMap(a => a.sources.length > 0 ? a.sources : [a.source || 'unknown'])
   const sources = {}
   for (const s of allSourceNames) { sources[s || 'unknown'] = (sources[s || 'unknown'] || 0) + 1 }
-  const regions = tally(articles, a => regionFromCoords(a.lat, a.lng))
+  const regions = tally(articles, a => regionFromCoords(a.lat, a.lng) ?? 'unknown')
   const uniqueSources = Object.keys(sources).length
   const uniqueRegions = Object.keys(regions).filter(r => r !== 'unknown').length
   const scienceSources = [...new Set(articles.filter(a => a.category === 'science').flatMap(a => a.sources))]

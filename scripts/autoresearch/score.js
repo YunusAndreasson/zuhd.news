@@ -11,6 +11,7 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { join, basename } from 'node:path'
 import { spawnSync } from 'node:child_process'
+import { REGION_CODES, regionFromCoords } from '../lib/regions.js'
 import { MODELS, REPO_ROOT } from './replay-utils.js'
 
 const SELECTION_JUDGE_PROMPT = readFileSync(
@@ -516,25 +517,6 @@ function regionMix(articles) {
   return obs
 }
 
-const REGION_MAP = {
-  ME: ['SA', 'AE', 'EG', 'IL', 'IR', 'IQ', 'JO', 'KW', 'LB', 'OM', 'PS', 'QA', 'SY', 'TR', 'YE', 'BH'],
-  AS: ['IN', 'PK', 'BD', 'LK', 'NP', 'BT', 'AF', 'CN', 'JP', 'KR', 'KP', 'MN', 'TW', 'HK', 'ID', 'MY', 'PH', 'SG', 'TH', 'VN', 'KH', 'LA', 'MM', 'TJ', 'UZ', 'KG', 'TM', 'KZ'],
-  AF: ['DZ', 'AO', 'BJ', 'BW', 'BF', 'BI', 'CM', 'CV', 'CF', 'TD', 'KM', 'CG', 'CD', 'DJ', 'GQ', 'ER', 'ET', 'GA', 'GM', 'GH', 'GN', 'GW', 'CI', 'KE', 'LS', 'LR', 'LY', 'MG', 'MW', 'ML', 'MR', 'MU', 'MA', 'MZ', 'NA', 'NE', 'NG', 'RW', 'SN', 'SC', 'SL', 'SO', 'ZA', 'SS', 'SD', 'SZ', 'TZ', 'TG', 'TN', 'UG', 'ZM', 'ZW'],
-  EU: ['AL', 'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IS', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'MD', 'NL', 'NO', 'PL', 'PT', 'RO', 'RU', 'RS', 'SK', 'SI', 'ES', 'SE', 'CH', 'UA', 'GB', 'BY', 'BA', 'MK', 'ME', 'XK'],
-  AM: ['AR', 'BO', 'BR', 'CA', 'CL', 'CO', 'CR', 'CU', 'DO', 'EC', 'SV', 'GT', 'GY', 'HT', 'HN', 'JM', 'MX', 'NI', 'PA', 'PY', 'PE', 'SR', 'TT', 'US', 'UY', 'VE', 'BS'],
-  OC: ['AU', 'NZ', 'FJ', 'PG', 'SB', 'VU', 'WS', 'TO'],
-}
-// Bbox match used by production compute-metrics.js — story-location signal.
-function coordsToRegion(lat, lng) {
-  if (lat === null || lng === null || Number.isNaN(Number(lat)) || Number.isNaN(Number(lng))) return null
-  if (lat > 15 && lat < 45 && lng > 25 && lng < 75) return 'ME'
-  if (lat > -10 && lat < 55 && lng > 60 && lng < 150) return 'AS'
-  if (lat > -40 && lat < 40 && lng > -20 && lng < 55) return 'AF'
-  if (lat > 35 && lat < 72 && lng > -25 && lng < 60) return 'EU'
-  if (lat > -60 && lat < 75 && lng > -170 && lng < -30) return 'AM'
-  if (lat > -50 && lat < -10 && lng > 110 && lng < 180) return 'OC'
-  return 'GL'
-}
 
 // Region attribution prefers the article's lat/lng (what the story is
 // about) over the source's country (where the outlet is HQ'd). Falls back
@@ -542,11 +524,11 @@ function coordsToRegion(lat, lng) {
 // the writer pipeline has emitted lat/lng since long before this scorer
 // landed.
 function locationToRegion(article) {
-  const r = coordsToRegion(article.lat, article.lng)
+  const r = regionFromCoords(article.lat, article.lng)
   if (r) return r
   const cc = (article.sourceCountries || []).find((c) => c && c !== 'null')
   if (cc) {
-    for (const [region, codes] of Object.entries(REGION_MAP)) {
+    for (const [region, codes] of Object.entries(REGION_CODES)) {
       if (codes.includes(cc)) return region
     }
   }

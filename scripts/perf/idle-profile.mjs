@@ -8,11 +8,8 @@
 //   node scripts/perf/idle-profile.mjs [--base URL] [--settle MS] [--window MS]
 
 import { chromium } from 'playwright'
+import { argAt as arg } from '../lib/argv.js'
 
-const arg = (n, d) => {
-  const i = process.argv.indexOf(`--${n}`)
-  return i === -1 ? d : process.argv[i + 1]
-}
 const BASE = arg('base', 'http://127.0.0.1:8788')
 const SETTLE = Number(arg('settle', 14000))
 const WINDOW = Number(arg('window', 6000))

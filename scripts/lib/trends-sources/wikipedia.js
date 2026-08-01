@@ -210,7 +210,3 @@ export async function fetchWikipediaTrendingConcepts() {
   console.log(`  · wikipedia: ${results.length}/${concepts.length} concepts resolved to live pageviews`)
   return results
 }
-
-// Backward-compat re-export (nothing imports the old name anymore, but keep
-// the module surface minimal and predictable).
-export { fetchWikipediaTrendingConcepts as fetchWikipediaPageviews }

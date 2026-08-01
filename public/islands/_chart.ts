@@ -35,28 +35,9 @@ import {
   type SeriesOptions,
   type SeriesPoint,
 } from '@shared/chart/series'
+import { el, svgEl } from './_dom'
 
-const NS = 'http://www.w3.org/2000/svg'
 
-const svgEl = <K extends keyof SVGElementTagNameMap>(
-  tag: K,
-  attrs: Record<string, string | number> = {},
-): SVGElementTagNameMap[K] => {
-  const node = document.createElementNS(NS, tag)
-  for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, String(v))
-  return node
-}
-
-const el = <K extends keyof HTMLElementTagNameMap>(
-  tag: K,
-  className?: string,
-  text?: string,
-): HTMLElementTagNameMap[K] => {
-  const node = document.createElement(tag)
-  if (className) node.className = className
-  if (text != null) node.textContent = text
-  return node
-}
 
 /** One scene node into one SVG element. The whole of the DOM adapter. */
 export const renderNode = (n: SceneNode): SVGElement => {

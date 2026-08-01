@@ -21,6 +21,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { AA, channels, contrast, luminance, NON_TEXT } from './contrast.js'
 
 const ROOT = new URL('../..', import.meta.url).pathname
 const css = readFileSync(join(ROOT, 'public/style.css'), 'utf8')
@@ -42,29 +43,6 @@ const scheme = (value) => {
 
 // --- contrast --------------------------------------------------------------
 
-const channels = (hex) => {
-  let h = hex.replace('#', '')
-  if (h.length === 3) h = h.split('').map((c) => c + c).join('')
-  return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16))
-}
-
-const luminance = (hex) =>
-  channels(hex)
-    .map((v) => {
-      const s = v / 255
-      return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4
-    })
-    .reduce((acc, c, i) => acc + [0.2126, 0.7152, 0.0722][i] * c, 0)
-
-const contrast = (a, b) => {
-  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x)
-  return (hi + 0.05) / (lo + 0.05)
-}
-
-/** WCAG 2.1 AA for body text. */
-const AA = 4.5
-/** WCAG 2.2 SC 1.4.11, non-text contrast — what a focus ring owes. */
-const NON_TEXT = 3
 
 const assertContrast = (fgName, fg, bgName, bg, min) => {
   const r = contrast(fg, bg)

@@ -44,6 +44,7 @@
 import { existsSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { representativePoint } from './lib/geo-point.js'
+import { runWithConcurrency } from './lib/concurrency.js'
 import {
   AGE_LIMIT_MONTHS,
   gateByAge,
@@ -284,15 +285,3 @@ console.log(
 )
 
 if (!existsSync(OUTPUT_PATH)) bail('output vanished after write')
-
-async function runWithConcurrency(items, limit, worker) {
-  const queue = items.slice()
-  const runners = Array.from({ length: Math.min(limit, queue.length) }, async () => {
-    while (queue.length > 0) {
-      const next = queue.shift()
-      if (next === undefined) return
-      await worker(next)
-    }
-  })
-  await Promise.all(runners)
-}

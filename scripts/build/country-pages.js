@@ -13,16 +13,10 @@ import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { largestPolygonCentroid } from '../lib/geo-point.js'
 import { buildCountryOgPng } from '../lib/og-image.js'
+import { escHtml } from '../lib/html.js'
 import { loadShared } from './shared-ts.js'
 
 const ROOT = new URL('../..', import.meta.url).pathname
-
-const escHtml = (s) =>
-  String(s ?? '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
 
 /**
  * One row in the metric list: label · value · rank strip · source.
@@ -74,9 +68,15 @@ const resolveArticleCountry = (feat, countries, lat, lng) => {
 }
 
 /**
- * @param {{ sorted: any[], distDir: string, templatesDir: string,
- *           headCommon: string, islandV?: string, skipOg?: boolean,
+ * @param {{ sorted: any[], distDir: string, template: string,
+ *           skipOg?: boolean,
  *           shareRowHtml?: (target: string, title: string) => string }} opts
+ *        `template` arrives already resolved. This module used to read
+ *        `country.html` and substitute `{{headCommon}}` and `{{v}}` itself,
+ *        which was a second copy of build.js's `loadTemplate` that then had to
+ *        be told about every new placeholder — the page furniture landed there
+ *        first and this one would silently have emitted the literal
+ *        `{{footerNav}}`.
  *        `shareRowHtml` is passed in rather than imported because build.js owns
  *        it; the default is a no-op for callers that do not want a share row.
  *        Its signature has to be declared here — a default of `() => ''` infers
@@ -86,9 +86,7 @@ const resolveArticleCountry = (feat, countries, lat, lng) => {
 export const buildCountryPages = async ({
   sorted,
   distDir,
-  templatesDir,
-  headCommon,
-  islandV = "",
+  template,
   shareRowHtml = () => '',
   skipOg = false,
 }) => {
@@ -136,8 +134,6 @@ export const buildCountryPages = async ({
     const anchor = largestPolygonCentroid(f, geoCentroid, geoArea)
     if (anchor) anchors.set(name, anchor)
   }
-
-  const template = readFileSync(join(templatesDir, "country.html"), "utf-8").replace("{{headCommon}}", headCommon).replaceAll("{{v}}", islandV)
 
   mkdirSync(join(distDir, 'country'), { recursive: true })
 

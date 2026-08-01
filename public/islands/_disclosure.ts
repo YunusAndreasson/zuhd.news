@@ -13,16 +13,8 @@
 // second is pressed while the first is still fetching, how the box grows, and
 // what has to be unwound when it closes.
 
-export const el = <K extends keyof HTMLElementTagNameMap>(
-  tag: K,
-  className?: string,
-  text?: string,
-): HTMLElementTagNameMap[K] => {
-  const node = document.createElement(tag)
-  if (className) node.className = className
-  if (text != null) node.textContent = text
-  return node
-}
+import { el } from './_dom'
+
 
 /**
  * How a card changes size.

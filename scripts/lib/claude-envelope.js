@@ -1,3 +1,5 @@
+import { spawnSync } from 'node:child_process'
+
 // Parse the `claude --output-format json` envelope.
 //
 // The CLI returns `{type:"result", result:"<stringified payload>", usage,
@@ -53,4 +55,37 @@ export function parseClaudeEnvelopeWithUsage(stdout) {
 
 export function parseClaudeEnvelope(stdout) {
   return parseClaudeEnvelopeWithUsage(stdout).result
+}
+
+/**
+ * One batched Haiku call: `claude -p <prompt> --output-format json`.
+ *
+ * Three call sites spelled this out — `extract-entities.js` twice and
+ * `extract-source-angles.js` once — with an identical five-flag argv and an
+ * identical `delete env.CLAUDECODE`, differing only in the timeout and buffer.
+ * The flags are the part worth having once: `--no-session-persistence` and
+ * `--max-turns 1` are what make these micro-tasks rather than sessions, and a
+ * copy that lost either would still work, cost more, and leave state behind.
+ *
+ * `CLAUDECODE` is dropped so the subprocess does not inherit the parent
+ * session's marker.
+ *
+ * Returns the raw `spawnSync` result — the callers each log their own stage
+ * name on a non-zero exit, and swallowing that here would cost the one line
+ * that says which of the three failed.
+ */
+export function runHaiku(prompt, { timeout, maxBuffer }) {
+  const env = { ...process.env }
+  delete env.CLAUDECODE
+  return spawnSync(
+    'claude',
+    [
+      '--model', 'claude-haiku-4-5-20251001',
+      '--no-session-persistence',
+      '--max-turns', '1',
+      '--output-format', 'json',
+      '-p', prompt,
+    ],
+    { encoding: 'utf-8', timeout, maxBuffer, env },
+  )
 }

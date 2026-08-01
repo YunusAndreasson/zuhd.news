@@ -25,7 +25,8 @@ import { join } from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { createHmac, randomBytes } from 'node:crypto'
 import { parseFrontmatter } from './lib/frontmatter.js'
-import { buildIgJpeg, IG_FEED } from './lib/ig-image.js'
+import { buildIgJpeg, IG_FEED, igLead } from './lib/ig-image.js'
+import { argAt, hasFlag } from './lib/argv.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const TWEET_LOG = join(ROOT, 'content/.tweet-log.json')
@@ -37,11 +38,6 @@ const MEDIA_UPLOAD_URL = 'https://upload.twitter.com/1.1/media/upload.json'
 const MAX_LEN = 275
 
 // --- args ---
-const argAt = (name) => {
-  const i = process.argv.indexOf(`--${name}`)
-  return i !== -1 ? process.argv[i + 1] : undefined
-}
-const hasFlag = (name) => process.argv.includes(`--${name}`)
 const slug = argAt('slug')
 const explicitText = argAt('text')
 const dryRun = hasFlag('dry-run')
@@ -138,24 +134,6 @@ if (!existsSync(articlePath)) {
 const { meta, body } = parseFrontmatter(readFileSync(articlePath, 'utf8'))
 
 // Story lead → the card's dek (same extraction as the IG poster / build.js).
-const igLead = (b) => {
-  let t = String(b || '')
-    .trim()
-    .split(/\n\n+/)
-    .slice(0, 2)
-    .join(' ')
-    .replace(/^[A-Z][\w .,'-]{0,28}\s—\s/, '')
-    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
-    .replace(/[*_`]/g, '')
-    .replace(/\s+/g, ' ')
-    .trim()
-  if (t.length > 260) {
-    const cut = t.slice(0, 260)
-    const end = cut.lastIndexOf('. ')
-    t = end > 130 ? cut.slice(0, end + 1) : `${cut.replace(/\s+\S*$/, '')}…`
-  }
-  return t
-}
 const cardArticle = {
   // socialTitle (the scroll-stopping card headline written by
   // pick-breaking-social.js) wins over the article title when present.

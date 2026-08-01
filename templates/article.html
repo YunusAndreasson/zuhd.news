@@ -26,10 +26,7 @@
   {{jsonLd}}
 </head>
 <body class="article-page-body">
-  <header class="article-page-header">
-    <a href="/" class="wordmark">zuhd<span class="wordmark-dot">.</span><span class="wordmark-tld">news</span></a>
-    <a href="/" class="article-back-link" aria-label="All stories">All stories</a>
-  </header>
+  {{archetypeHeader}}
 
   <main class="article-page-main">
     <article class="article-standalone">
@@ -61,24 +58,7 @@
 
   <footer>
     <span class="update-status"><time datetime="{{isoDate}}">{{dateFormatted}}</time></span>
-    <nav class="footer-links">
-      <a href="/about" data-island="doc-sheet" data-doc="about">about</a> <a href="/contact" data-island="doc-sheet" data-doc="contact">contact</a> <a href="/mcp" data-island="doc-sheet" data-doc="mcp">mcp</a> <a href="/privacy" data-island="doc-sheet" data-doc="privacy">privacy</a>
-    </nav>
-    <nav class="footer-social" aria-label="Follow and download">
-      <a href="https://x.com/zuhd_news" rel="me noopener" target="_blank">x</a>
-      <a href="https://www.instagram.com/zuhdnews/" rel="me noopener" target="_blank">instagram</a>
-      <a href="https://apps.apple.com/us/app/zuhd-news/id6760964753" rel="noopener" target="_blank">iphone</a>
-      <a href="https://play.google.com/store/apps/details?id=news.zuhd.app" rel="noopener" target="_blank">android</a>
-    </nav>
-    <nav class="footer-maker" aria-label="Maker">
-      <a class="footer-byline" href="https://andreassonphoto.com/about" target="_blank" rel="me noopener noreferrer">made by yunus andreasson</a>
-      <span class="footer-maker-links">
-        <a href="https://github.com/YunusAndreasson" target="_blank" rel="me noopener noreferrer">github</a>
-        <a href="https://x.com/YunusAndreasson" target="_blank" rel="me noopener noreferrer">x</a>
-        <a href="https://www.instagram.com/andreasson.photo/" target="_blank" rel="me noopener noreferrer">instagram</a>
-        <a href="https://www.linkedin.com/in/yunusandreasson/" target="_blank" rel="me noopener noreferrer">linkedin</a>
-      </span>
-    </nav>
+    {{footerNav}}
   </footer>
   <div data-island-auto="spacefield" aria-hidden="true"></div>
   <script type="module" src="/island-loader.js?v={{v}}" defer></script>

@@ -93,21 +93,37 @@ console.log(
 // latitude/longitude lists and returns one result object per location, in
 // order. Collapses ~10 sequential calls into 1. Returns an array aligned with
 // `points`; entries are null where wave data is unavailable (inland canals).
-async function fetchMarineWeatherBatch(points) {
+/**
+ * One open-meteo marine call, batched or not.
+ *
+ * `lat`/`lng` are comma-separated lists for the batch form and bare numbers for
+ * the single one — that difference, and what to do with a non-OK response, was
+ * the whole of what separated the two functions this replaces. Everything else
+ * (the endpoint, the three query parameters, the abort timer and its
+ * `clearTimeout`) was written out twice, which is two chances for the window
+ * `extractWeather` slices to stop matching the window that was asked for.
+ */
+async function marineRequest(lat, lng) {
   const url = new URL('https://marine-api.open-meteo.com/v1/marine')
-  url.searchParams.set('latitude', points.map((p) => p.lat).join(','))
-  url.searchParams.set('longitude', points.map((p) => p.lng).join(','))
+  url.searchParams.set('latitude', lat)
+  url.searchParams.set('longitude', lng)
   url.searchParams.set('hourly', 'wave_height')
   url.searchParams.set('past_days', '1')
   url.searchParams.set('forecast_days', '1')
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), MARINE_TIMEOUT_MS)
-  let res
   try {
-    res = await fetch(url, { signal: controller.signal })
+    return await fetch(url, { signal: controller.signal })
   } finally {
     clearTimeout(timer)
   }
+}
+
+async function fetchMarineWeatherBatch(points) {
+  const res = await marineRequest(
+    points.map((p) => p.lat).join(','),
+    points.map((p) => p.lng).join(','),
+  )
   if (!res.ok) {
     // A single rejected coordinate can 400 the whole batch — degrade to the
     // old per-point calls so one bad location doesn't blank all weather.
@@ -121,20 +137,7 @@ async function fetchMarineWeatherBatch(points) {
 }
 
 async function fetchMarineWeatherSingle(lat, lng) {
-  const url = new URL('https://marine-api.open-meteo.com/v1/marine')
-  url.searchParams.set('latitude', String(lat))
-  url.searchParams.set('longitude', String(lng))
-  url.searchParams.set('hourly', 'wave_height')
-  url.searchParams.set('past_days', '1')
-  url.searchParams.set('forecast_days', '1')
-  const controller = new AbortController()
-  const timer = setTimeout(() => controller.abort(), MARINE_TIMEOUT_MS)
-  let res
-  try {
-    res = await fetch(url, { signal: controller.signal })
-  } finally {
-    clearTimeout(timer)
-  }
+  const res = await marineRequest(String(lat), String(lng))
   if (!res.ok) return null
   return extractWeather(await res.json())
 }

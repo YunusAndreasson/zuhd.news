@@ -12,8 +12,8 @@
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { join, basename } from 'node:path'
-import { spawnSync } from 'node:child_process'
 import { randomUUID } from 'node:crypto'
+import { parseClaudeEnvelope, runHaiku } from './lib/claude-envelope.js'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { ENTITY_RULES_SORTED, mentionToRegex } from './lib/entity-registry.js'
 import { fetchYahooStock } from './lib/trends-sources/stocks.js'
@@ -120,32 +120,14 @@ ${blocks}
 
 Return ONLY the JSON object. No commentary, no markdown fences.`
 
-  const env = { ...process.env }
-  delete env.CLAUDECODE
-  const res = spawnSync(
-    'claude',
-    [
-      '--model', 'claude-haiku-4-5-20251001',
-      '--no-session-persistence',
-      '--max-turns', '1',
-      '--output-format', 'json',
-      '-p', prompt,
-    ],
-    { encoding: 'utf-8', timeout: 20_000, maxBuffer: 256 * 1024, env },
-  )
+  const res = runHaiku(prompt, { timeout: 20_000, maxBuffer: 256 * 1024 })
 
   if (res.status !== 0) {
     console.error(`  ✗ entity-haiku ${invocationId}: exit ${res.status}`)
     return new Map()
   }
   try {
-    const envelope = JSON.parse(res.stdout)
-    const raw = envelope.result ?? envelope.text ?? res.stdout
-    const cleaned = String(raw).replace(/^```(?:json)?\s*|\s*```$/g, '').trim()
-    const start = cleaned.indexOf('{')
-    const end = cleaned.lastIndexOf('}')
-    if (start === -1 || end === -1) throw new Error('no JSON object in output')
-    const obj = JSON.parse(cleaned.slice(start, end + 1))
+    const obj = parseClaudeEnvelope(res.stdout)
     const out = new Map()
     for (const it of items) {
       const chosen = obj[String(it.key)] ?? obj[it.key]
@@ -222,37 +204,19 @@ ${blocks}
 
 Return ONLY the JSON object. No commentary, no markdown fences.`
 
-  const env = { ...process.env }
-  delete env.CLAUDECODE
-  const res = spawnSync(
-    'claude',
-    [
-      '--model', 'claude-haiku-4-5-20251001',
-      '--no-session-persistence',
-      '--max-turns', '1',
-      '--output-format', 'json',
-      '-p', prompt,
-    ],
-    // 60s, not 30s: the batched 10-13 article scan routinely needed 30-35s and
-    // hit a 30s wall, SIGTERM-killing (exit 143) ~28% of cycles and losing all
-    // stock-entity extraction for them. The input tokens are already billed by
-    // then — the kill just discarded paid-for output. Stage budget is 180s, so
-    // 60s leaves ample headroom for the entity-haiku call that follows.
-    { encoding: 'utf-8', timeout: 60_000, maxBuffer: 512 * 1024, env },
-  )
+  // 60s, not 30s: the batched 10-13 article scan routinely needed 30-35s and
+  // hit a 30s wall, SIGTERM-killing (exit 143) ~28% of cycles and losing all
+  // stock-entity extraction for them. The input tokens are already billed by
+  // then — the kill just discarded paid-for output. Stage budget is 180s, so
+  // 60s leaves ample headroom for the entity-haiku call that follows.
+  const res = runHaiku(prompt, { timeout: 60_000, maxBuffer: 512 * 1024 })
 
   if (res.status !== 0) {
     console.error(`  ✗ stocks-haiku ${invocationId}: exit ${res.status}`)
     return new Map()
   }
   try {
-    const envelope = JSON.parse(res.stdout)
-    const raw = envelope.result ?? envelope.text ?? res.stdout
-    const cleaned = String(raw).replace(/^```(?:json)?\s*|\s*```$/g, '').trim()
-    const start = cleaned.indexOf('{')
-    const end = cleaned.lastIndexOf('}')
-    if (start === -1 || end === -1) throw new Error('no JSON object in output')
-    const obj = JSON.parse(cleaned.slice(start, end + 1))
+    const obj = parseClaudeEnvelope(res.stdout)
     const out = new Map()
     for (const slug of Object.keys(obj)) {
       const arr = Array.isArray(obj[slug]) ? obj[slug] : []

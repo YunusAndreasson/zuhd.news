@@ -23,19 +23,10 @@
 // that claim has to keep covering.
 
 import { shareLinks, type ShareTarget } from '@shared/share'
+import { el } from './_dom'
 
 export type { ShareTarget }
 
-const el = <K extends keyof HTMLElementTagNameMap>(
-  tag: K,
-  className?: string,
-  text?: string,
-): HTMLElementTagNameMap[K] => {
-  const node = document.createElement(tag)
-  if (className) node.className = className
-  if (text != null) node.textContent = text
-  return node
-}
 
 const canNativeShare = (t: ShareTarget): boolean => {
   if (typeof navigator === 'undefined' || typeof navigator.share !== 'function') return false

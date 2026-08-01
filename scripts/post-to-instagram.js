@@ -30,7 +30,8 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { parseFrontmatter } from './lib/frontmatter.js'
-import { buildIgJpeg, IG_FEED, IG_STORY } from './lib/ig-image.js'
+import { buildIgJpeg, IG_FEED, IG_STORY, igLead } from './lib/ig-image.js'
+import { argAt, hasFlag } from './lib/argv.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const IG_LOG = join(ROOT, 'content/.instagram-log.json')
@@ -40,11 +41,6 @@ const GRAPH = 'https://graph.facebook.com/v21.0'
 const MAX_CAPTION = 2000 // Instagram hard limit is 2200; leave headroom.
 
 // --- args ---
-const argAt = (name) => {
-  const i = process.argv.indexOf(`--${name}`)
-  return i !== -1 ? process.argv[i + 1] : undefined
-}
-const hasFlag = (name) => process.argv.includes(`--${name}`)
 const slug = argAt('slug')
 const dryRun = hasFlag('dry-run')
 
@@ -99,25 +95,6 @@ const headline = meta.socialTitle || meta.title || 'Breaking News'
 // Story lead (first 1-2 sentences) rendered as the card's dek — dateline and
 // markdown links stripped, cut to ~200 chars. Only used for the --dry-run
 // preview; the published card is the build artifact (build.js does the same).
-const igLead = (b) => {
-  let t = String(b || '')
-    .trim()
-    .split(/\n\n+/)
-    .slice(0, 2)
-    .join(' ')
-    .replace(/^[A-Z][\w .,'-]{0,28}\s—\s/, '')
-    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
-    .replace(/[*_`]/g, '')
-    .replace(/\s+/g, ' ')
-    .trim()
-  if (t.length > 260) {
-    const cut = t.slice(0, 260)
-    const end = cut.lastIndexOf('. ')
-    t = end > 130 ? cut.slice(0, end + 1) : `${cut.replace(/\s+\S*$/, '')}…`
-  }
-  return t
-}
-
 const article = {
   headline,
   summary: igLead(body),

@@ -14,29 +14,14 @@
 
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { build } from 'esbuild'
 import { JSDOM } from 'jsdom'
-import { mkdtempSync, rmSync, readFileSync } from 'node:fs'
+import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { tmpdir } from 'node:os'
+import { bundleIsland, scratchDir } from './island-bundle.js'
 
 const ROOT = new URL('../..', import.meta.url).pathname
-const dir = mkdtempSync(join(tmpdir(), 'zuhd-chart-'))
-process.on('exit', () => rmSync(dir, { recursive: true, force: true }))
-
-const bundle = async (entry, out) => {
-  const outfile = join(dir, out)
-  await build({
-    entryPoints: [join(ROOT, entry)],
-    outfile,
-    bundle: true,
-    format: 'esm',
-    platform: 'neutral',
-    logLevel: 'silent',
-    alias: { '@shared': join(ROOT, 'shared') },
-  })
-  return outfile
-}
+const dir = scratchDir('chart')
+const bundle = (entry, out) => bundleIsland(dir, entry, out)
 
 const series = await import(await bundle('shared/chart/series.ts', 'series.mjs'))
 const rankMod = await import(await bundle('shared/chart/rank-strip.ts', 'rank.mjs'))

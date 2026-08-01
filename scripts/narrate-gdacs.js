@@ -22,6 +22,7 @@ import { createHash } from 'node:crypto'
 import { spawnSync } from 'node:child_process'
 import { loadShared } from './build/shared-ts.js'
 import { parseClaudeEnvelopeWithUsage } from './lib/claude-envelope.js'
+import { runWithConcurrency } from './lib/concurrency.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const SNAPSHOT_PATH = join(ROOT, 'content', '.gdacs.json')
@@ -402,16 +403,4 @@ function validateGrounding(narrative, bundle) {
     return `number "${raw}" not in input`
   }
   return null
-}
-
-async function runWithConcurrency(items, limit, worker) {
-  const queue = items.slice()
-  const runners = Array.from({ length: Math.min(limit, queue.length) }, async () => {
-    while (queue.length > 0) {
-      const next = queue.shift()
-      if (next === undefined) return
-      await worker(next)
-    }
-  })
-  await Promise.all(runners)
 }

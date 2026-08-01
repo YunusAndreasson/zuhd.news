@@ -17,26 +17,11 @@
 
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { build } from 'esbuild'
 import { JSDOM } from 'jsdom'
-import { mkdtempSync, rmSync } from 'node:fs'
-import { join } from 'node:path'
-import { tmpdir } from 'node:os'
+import { bundleIsland, scratchDir } from './island-bundle.js'
 
-const ROOT = new URL('../..', import.meta.url).pathname
-const dir = mkdtempSync(join(tmpdir(), 'zuhd-app-prompt-'))
-const bundlePath = join(dir, 'app-prompt.mjs')
-
-await build({
-  entryPoints: [join(ROOT, 'public/islands/_app-prompt.ts')],
-  outfile: bundlePath,
-  bundle: true,
-  format: 'esm',
-  platform: 'neutral',
-  logLevel: 'silent',
-  alias: { '@shared': join(ROOT, 'shared') },
-})
-process.on('exit', () => rmSync(dir, { recursive: true, force: true }))
+const dir = scratchDir('app-prompt')
+const bundlePath = await bundleIsland(dir, 'public/islands/_app-prompt.ts', 'app-prompt.mjs')
 
 /** A fresh document and a fresh, empty localStorage for each case. */
 async function freshModule({ storage = 'working' } = {}) {

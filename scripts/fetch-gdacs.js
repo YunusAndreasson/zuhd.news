@@ -14,6 +14,7 @@
 
 import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { runWithConcurrency } from './lib/concurrency.js'
 import {
   GDACS_GEOJSON_URL,
   collectionToAlerts,
@@ -107,15 +108,3 @@ console.log(
     failed > 0 ? ` (${failed} failed)` : ''
   } in ${elapsed}s`,
 )
-
-async function runWithConcurrency(items, limit, worker) {
-  const queue = items.slice()
-  const runners = Array.from({ length: Math.min(limit, queue.length) }, async () => {
-    while (queue.length > 0) {
-      const next = queue.shift()
-      if (next === undefined) return
-      await worker(next)
-    }
-  })
-  await Promise.all(runners)
-}

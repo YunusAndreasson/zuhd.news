@@ -26,34 +26,48 @@
   // trigger is removed so it can be re-clicked after the sheet closes.
   const inFlight = new WeakSet();
 
-  const parseProps = (trigger) => {
+  // Every `data-*` on the node except the one that named the island, dash-case
+  // rewritten to camelCase. `skip` is that one attribute — `data-island` on a
+  // click trigger, `data-island-auto` on an auto-mount container. The two paths
+  // each had their own copy of this loop with a different name hardcoded.
+  const parseProps = (node, skip) => {
     const props = {};
-    for (const { name, value } of trigger.attributes) {
-      if (!name.startsWith('data-') || name === 'data-island') continue;
+    for (const { name, value } of node.attributes) {
+      if (!name.startsWith('data-') || name === skip) continue;
       const key = name.slice(5).replace(/-([a-z])/g, (_, c) => c.toUpperCase());
       props[key] = value;
     }
     return props;
   };
 
-  const activate = async (trigger) => {
-    if (inFlight.has(trigger)) return;
-    inFlight.add(trigger);
-    const name = trigger.getAttribute('data-island');
-    if (!name || !/^[a-z0-9-]+$/.test(name)) {
-      inFlight.delete(trigger);
-      return;
-    }
+  // Mount a named island into a fresh container appended to <body>.
+  //
+  // Both entry points below did this inline — the click path and the
+  // `zuhd:mount-island` event path — with the same name validation, the same
+  // container, the same dynamic import and the same "remove the container if
+  // the module throws" cleanup. The name check is the part worth having once:
+  // `name` reaches `import()` as a URL segment, so the character class is what
+  // keeps a `data-island` attribute from naming a path.
+  const mountNamed = async (name, props) => {
+    if (!name || !/^[a-z0-9-]+$/.test(name)) return;
     const container = document.createElement('div');
     container.className = 'island-container';
     container.dataset.island = name;
     document.body.appendChild(container);
     try {
       const mod = await import(islandUrl(name));
-      mod.mount?.(container, parseProps(trigger));
+      mod.mount?.(container, props);
     } catch (err) {
       console.error(`[island:${name}]`, err);
       container.remove();
+    }
+  };
+
+  const activate = async (trigger) => {
+    if (inFlight.has(trigger)) return;
+    inFlight.add(trigger);
+    try {
+      await mountNamed(trigger.getAttribute('data-island'), parseProps(trigger, 'data-island'));
     } finally {
       inFlight.delete(trigger);
     }
@@ -78,18 +92,7 @@
   // the loader directly.
   document.addEventListener('zuhd:mount-island', async (e) => {
     const { name, props } = e.detail || {};
-    if (!name || !/^[a-z0-9-]+$/.test(name)) return;
-    const container = document.createElement('div');
-    container.className = 'island-container';
-    container.dataset.island = name;
-    document.body.appendChild(container);
-    try {
-      const mod = await import(islandUrl(name));
-      mod.mount?.(container, props || {});
-    } catch (err) {
-      console.error(`[island:${name}]`, err);
-      container.remove();
-    }
+    await mountNamed(name, props || {});
   });
 
   // Auto-mount pattern: any `[data-island-auto]` container boots the
@@ -104,15 +107,12 @@
       if (autoMounted.has(node)) continue;
       autoMounted.add(node);
       const name = node.getAttribute('data-island-auto');
+      // Auto-mount cannot go through `mountNamed`: the container is already in
+      // the document and is the island's own element, so there is nothing to
+      // create and nothing to remove on failure.
       if (!name || !/^[a-z0-9-]+$/.test(name)) continue;
-      const props = {};
-      for (const { name: n, value } of node.attributes) {
-        if (!n.startsWith('data-') || n === 'data-island-auto') continue;
-        const key = n.slice(5).replace(/-([a-z])/g, (_, c) => c.toUpperCase());
-        props[key] = value;
-      }
       import(islandUrl(name))
-        .then((mod) => mod.mount?.(node, props))
+        .then((mod) => mod.mount?.(node, parseProps(node, 'data-island-auto')))
         .catch((err) => {
           console.error(`[island:${name}]`, err);
           autoMounted.delete(node);

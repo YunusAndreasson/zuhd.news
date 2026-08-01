@@ -16,8 +16,8 @@
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { join, basename } from 'node:path'
-import { spawnSync } from 'node:child_process'
 import { randomUUID } from 'node:crypto'
+import { runHaiku } from './lib/claude-envelope.js'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { fetchSourceText } from './lib/fetch-source-text.js'
 
@@ -121,19 +121,7 @@ ${blocks}
 
 Return ONLY the JSON object. No commentary, no markdown fences.`
 
-  const env = { ...process.env }
-  delete env.CLAUDECODE
-  const res = spawnSync(
-    'claude',
-    [
-      '--model', 'claude-haiku-4-5-20251001',
-      '--no-session-persistence',
-      '--max-turns', '1',
-      '--output-format', 'json',
-      '-p', prompt,
-    ],
-    { encoding: 'utf-8', timeout: 120_000, maxBuffer: 1024 * 1024, env },
-  )
+  const res = runHaiku(prompt, { timeout: 120_000, maxBuffer: 1024 * 1024 })
 
   if (res.status !== 0) {
     console.error(`  ✗ angles-haiku ${invocationId}: exit ${res.status}`)

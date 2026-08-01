@@ -11,8 +11,54 @@
 import { fileURLToPath } from 'node:url'
 import { Resvg } from '@resvg/resvg-js'
 import jpeg from 'jpeg-js'
-import { themeFor, buildGlobe, escXml, formatLongDate } from './og-image.js'
+import { escXml } from './html.js'
+import { themeFor, buildGlobe, formatLongDate } from './og-image.js'
 import { fitText, loadFont } from './font-metrics.js'
+
+/**
+ * The card's dek: the article's opening, trimmed to whole sentences.
+ *
+ * Three copies of this — `build.js`, `post-to-instagram.js`,
+ * `post-to-twitter.js` — and **they had already parted**. `build.js` was fixed
+ * to never emit an ellipsis (see the note below); the two posters were not, so
+ * they still cut mid-phrase on `…`. That meant the card the build renders and
+ * caches and the card the pipeline actually posts to X and Instagram could
+ * carry different dek text for the same story, with the posted one wearing the
+ * truncation this file's header says was removed. Nothing about a rendered card
+ * reveals which of the two produced it.
+ *
+ * Trim to whole sentences, never to an ellipsis. The card's type is fitted to
+ * whatever arrives (see `font-metrics.js`), so the only job left here is
+ * deciding how much of the lead to carry — and a dek that stops mid-phrase on
+ * "…" reads as a truncated card rather than as a chosen excerpt.
+ *
+ * If no sentence boundary falls inside the budget, the first sentence is
+ * carried whole however long it is. That is the one case where the old code
+ * reached for the ellipsis, and the fitter absorbs the length instead.
+ */
+export const igLead = (body) => {
+  let t = String(body || '')
+    .trim()
+    .split(/\n\n+/)
+    .slice(0, 2)
+    .join(' ')
+    .replace(/^[A-Z][\w .,'-]{0,28}\s—\s/, '') // strip 'Washington — ' dateline
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1') // markdown links -> text
+    .replace(/[*_`]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+  if (t.length > 260) {
+    const cut = t.slice(0, 260)
+    const end = cut.lastIndexOf('. ')
+    if (end > 130) {
+      t = cut.slice(0, end + 1)
+    } else {
+      const firstStop = t.indexOf('. ')
+      t = firstStop > 0 ? t.slice(0, firstStop + 1) : t
+    }
+  }
+  return t
+}
 
 // Static Source Sans 3 weights loaded by PATH. resvg-js 2.6.2 renders fonts
 // passed as `fontBuffers` with uniform (monospace-like) advances — a known

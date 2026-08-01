@@ -21,6 +21,7 @@
 // is clipped rather than scrolled.
 
 import { displaySourceName, EVENT_TYPE_EYEBROW, parseSeverityHero } from '@shared/gdacs'
+import { el } from '../_dom'
 import { appPrompt } from '../_app-prompt'
 import { createChart, type ChartOptions } from '../_chart'
 import * as fmt from './format'
@@ -53,16 +54,6 @@ export interface Sheet {
   destroy(): void
 }
 
-const el = <K extends keyof HTMLElementTagNameMap>(
-  tag: K,
-  className?: string,
-  text?: string,
-): HTMLElementTagNameMap[K] => {
-  const node = document.createElement(tag)
-  if (className) node.className = className
-  if (text != null) node.textContent = text
-  return node
-}
 
 /**
  * Fire radiative power, in the precision the figure deserves.

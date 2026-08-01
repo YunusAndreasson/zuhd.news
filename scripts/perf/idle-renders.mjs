@@ -23,11 +23,8 @@
 //   node scripts/perf/idle-renders.mjs [--base URL] [--settle MS] [--window MS] [--headless]
 
 import { chromium } from 'playwright'
+import { argAt as arg } from '../lib/argv.js'
 
-const arg = (n, d) => {
-  const i = process.argv.indexOf(`--${n}`)
-  return i === -1 ? d : process.argv[i + 1]
-}
 const BASE = arg('base', 'http://127.0.0.1:8788')
 const SETTLE = Number(arg('settle', 16000))
 const WINDOW = Number(arg('window', 10000))

@@ -55,21 +55,26 @@ export function terminatorLat(lng: number, sun: { lat: number; lng: number }) {
 }
 
 /**
- * The unlit hemisphere as a single GeoJSON polygon.
+ * One hemisphere: the terminator ring, closed over a pole.
  *
- * Walking the terminator west to east gives its southern or northern edge; the
- * shape is then closed along whichever pole is currently in darkness. Which
- * pole that is flips with the season — in northern summer the sun never sets
- * over the Arctic, so the night cap is the *southern* one — and getting it
- * backwards lights the wrong half of the planet.
+ * `nightPolygon` and `dayPolygon` were the same twenty lines twice, differing
+ * only in the sign of the pole they close over — and that sign is the whole
+ * correctness of both. Reversed, the map lights the wrong half of the planet
+ * and nothing throws; `map-geo.test.js` pins it precisely because the failure
+ * is silent. One copy makes the relationship between the two a `* side` rather
+ * than two independently-maintained ternaries free to disagree.
  *
- * At an equinox `terminatorLat` degenerates, and the honest answer is to draw
- * nothing for the few hours it takes the declination to move off zero.
+ * `side` is +1 for the lit half and −1 for the dark one. The ring is walked
+ * west to east at 1° and closed at the appropriate pole, latitudes clamped to
+ * ±89.9 — which is why, at an equinox, the cap can only be identified by the
+ * closing vertex being at *exactly* ±90.
+ *
+ * Returns null where `terminatorLat` degenerates, which is a twelve-second
+ * window twice a year; the honest answer there is to draw nothing.
  */
-export function nightPolygon(date: Date): Feature<Polygon> | null {
+function hemisphere(date: Date, side: 1 | -1): Feature<Polygon> | null {
   const sun = subsolarPoint(date)
-  const probe = terminatorLat(0, sun)
-  if (probe === null) return null
+  if (terminatorLat(0, sun) === null) return null
 
   const ring: Array<[number, number]> = []
   for (let lng = -180; lng <= 180; lng += 1) {
@@ -78,15 +83,32 @@ export function nightPolygon(date: Date): Feature<Polygon> | null {
     ring.push([lng, Math.max(-89.9, Math.min(89.9, lat))])
   }
 
-  // Night lies on the far side of the terminator from the sub-solar latitude.
-  const nightPole = sun.lat >= 0 ? -90 : 90
-  ring.push([180, nightPole], [-180, nightPole], ring[0])
+  const pole = (sun.lat >= 0 ? 90 : -90) * side
+  ring.push([180, pole], [-180, pole], ring[0])
 
   return {
     type: 'Feature',
     properties: {},
     geometry: { type: 'Polygon', coordinates: [ring] },
   }
+}
+
+/**
+ * The unlit hemisphere as a single GeoJSON polygon.
+ *
+ * Walking the terminator west to east gives its southern or northern edge; the
+ * shape is then closed along whichever pole is currently in darkness. Which
+ * pole that is flips with the season — in northern summer the sun never sets
+ * over the Arctic, so the night cap is the *southern* one — and getting it
+ * backwards lights the wrong half of the planet.
+ *
+ * At an equinox `terminatorLat` degenerates and this draws nothing. That window
+ * is about twelve seconds, twice a year — `prayer.ts` measured it; the comment
+ * here used to say "a few hours".
+ */
+export function nightPolygon(date: Date): Feature<Polygon> | null {
+  // Night lies on the far side of the terminator from the sub-solar latitude.
+  return hemisphere(date, -1)
 }
 
 /**
@@ -104,23 +126,6 @@ export function nightPolygon(date: Date): Feature<Polygon> | null {
  * terminator; `--map-ground` and the CSS seam that depends on it are untouched.
  */
 export function dayPolygon(date: Date): Feature<Polygon> | null {
-  const sun = subsolarPoint(date)
-  if (terminatorLat(0, sun) === null) return null
-
-  const ring: Array<[number, number]> = []
-  for (let lng = -180; lng <= 180; lng += 1) {
-    const lat = terminatorLat(lng, sun)
-    if (lat === null) return null
-    ring.push([lng, Math.max(-89.9, Math.min(89.9, lat))])
-  }
-
   // The mirror of `nightPolygon`: day closes over the pole the sun is on.
-  const dayPole = sun.lat >= 0 ? 90 : -90
-  ring.push([180, dayPole], [-180, dayPole], ring[0])
-
-  return {
-    type: 'Feature',
-    properties: {},
-    geometry: { type: 'Polygon', coordinates: [ring] },
-  }
+  return hemisphere(date, +1)
 }
