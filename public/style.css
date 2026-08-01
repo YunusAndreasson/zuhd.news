@@ -2132,7 +2132,11 @@ body.archetype-page-body .article-page-header {
    timeline, out of the rail's way, and only exists once the view has moved. */
 .map-reset {
   position: absolute;
-  right: var(--space-sm);
+  /* Clears the instrument rail, which is 0 wide until there is one. Without the
+     term this control is the one piece of chrome that would sit *behind* the
+     rail — it is the only absolutely-positioned thing on the map anchored to the
+     right edge of the root rather than to the canvas. */
+  right: calc(var(--map-aside-w) + var(--space-sm));
   /* Cleared the scrubber when it was one row tall. It is now one to three,
      depending on where the money ribbon wraps, so a fixed 5.5rem put this
      button on top of the time readout at every desktop width and hid the Hijri
@@ -2501,7 +2505,30 @@ body.map-page {
      hand, and a missed one is a HUD that overhangs the rail or a strip of
      canvas the scrubber never covers. The phone block below already couples
      its three heights this way. */
-  --map-rail-w: 21rem;
+  /* The story rail's width, in three parts.
+
+     `--map-rail-base` is the layout's own answer and steps with the viewport
+     (see the ladder below). `--map-rail-user` is the reader's, written by the
+     seam and absent until they have dragged it. `--map-rail-w` is what every
+     rule reads, and the `clamp()` is what makes handing the number over safe:
+     a width dragged on a 2560 monitor arrives on a 1280 laptop bounded, and no
+     drag can produce a rail wider than the window or narrower than a headline.
+
+     15rem is where a two-line headline starts becoming three; 34rem is past the
+     28rem typographic cap on purpose, because a cap on what the *layout* should
+     choose is not a cap on what a reader may ask for. */
+  --map-rail-base: 21rem;
+  --map-rail-w: clamp(15rem, var(--map-rail-user, var(--map-rail-base)), 34rem);
+  /* The instrument rail's width, and zero is its resting value.
+
+     `body.map-wide` (set by the island, which measures — see `syncWide`) turns
+     this into a real column and gives it a width. Declaring it here at 0px is
+     what lets every rule that has to clear it — the scrubber's right edge, the
+     "whole world" button, the seam — be written *once*, as
+     `calc(var(--map-aside-w) + …)`, instead of once per layout. A property that
+     only exists inside a media query is a property every such rule needs a
+     fallback for, and a fallback is a second copy of the number. */
+  --map-aside-w: 0px;
   /* The height of the HUD's first row, and the reason it needs a name.
 
      The row's height is set by the range chips — the tallest thing on it — and
@@ -2540,7 +2567,9 @@ body.map-page {
   inset: 0;
   overflow: hidden;
   display: grid;
-  grid-template-columns: minmax(0, var(--map-rail-w)) minmax(0, 1fr);
+  /* Stories · planet · instruments. The third column is 0 until the island
+     says there is room for it, so this one declaration serves both layouts. */
+  grid-template-columns: minmax(0, var(--map-rail-w)) minmax(0, 1fr) var(--map-aside-w);
   /* An auto row collapses to zero here: MapLibre's canvas is absolutely
      positioned, so the row has no content to measure. */
   grid-template-rows: minmax(0, 1fr);
@@ -2555,16 +2584,18 @@ body.map-page {
    at 3440**, and none of it can be given back to the planet: the globe is
    `min(canvasW, canvasH)` and the width is never the smaller one.
 
-   Moving the HUD or the scrubber into that gap was the obvious idea and it buys
-   almost nothing. Both are *overlays*, not grid items, so neither takes any
-   height from the canvas — the HUD clips the globe's top by 23–35px and the
-   scrubber its bottom by about 13. Relocating them would fill pixels without
-   making the map any bigger or any clearer.
+   **The corollary is what this layout is built on, and it went unwritten for a
+   week.** If the globe is bound by the *shorter* side, then width taken away
+   from the canvas costs it nothing at all until the canvas is square. At 1920
+   the canvas is 1512×935, so there are **577px of width that the planet is not
+   using and cannot use** — free, in the strict sense that removing them changes
+   not one rendered pixel of the Earth. `body.map-wide` spends them on the
+   instrument rail; see `--map-aside-w` below.
 
-   So the space goes to the one thing on this page that is content: the rail. It
-   was a flat 21rem from 1600 to 3440, which is about 39 characters of a 16px
-   headline — enough that most rail titles wrapped to two lines on a monitor with
-   900px of unused canvas beside them.
+   What is left over goes to the story rail. It was a flat 21rem from 1600 to
+   3440, which is about 39 characters of a 16px headline — enough that most rail
+   titles wrapped to two lines on a monitor with 900px of unused canvas beside
+   them.
 
    **The cap is typographic, not spatial.** 28rem is ~54 characters of measure,
    which is inside the comfortable range for a scanned list; going further would
@@ -2577,10 +2608,240 @@ body.map-page {
    inside the rail, and the left edge of the HUD, the scrubber and the peek card
    are all laid out against it, which is the whole reason it has a name. */
 @media (min-width: 1600px) {
-  body.map-page { --map-rail-w: 24rem; }
+  body.map-page { --map-rail-base: 24rem; }
 }
 @media (min-width: 2000px) {
-  body.map-page { --map-rail-w: 28rem; }
+  body.map-page { --map-rail-base: 28rem; }
+}
+
+/* --- The instrument rail -------------------------------------------------
+
+   Everything that was a strip of chrome *over* the map becomes a column
+   *beside* it: the time range, the category and layer chips, the ground picker,
+   the money readout and the clock. The scrubber stays where it is, because a
+   time axis reads left to right and nothing about a wide screen changes that —
+   it simply stops spanning the whole window and spans the globe's column, which
+   is a denser fortnight rather than a stretched one.
+
+   ── The rail takes what it needs, and the surplus goes back to the map ────
+   The first version of this took the *whole* leftover — `viewport − stories −
+   globe` — on the reasoning that spending all of it lands the canvas at 1:1,
+   which is the frame a disc wants. That produced a 512px rail at 1920 for
+   content whose widest element is a five-column prayer strip needing about 300,
+   and a column of 11px small-caps labels with 200px of air beside them reads as
+   a panel nobody finished rather than as a generous one.
+
+   So the cap is the content's, not the viewport's: **21rem**, which is the
+   prayer strip's five columns plus the rail's padding, and every other block
+   here is narrower. The floor is 18rem, where those columns start to collide;
+   `syncWide` refuses to enter this layout below it, so the clamp's low end only
+   ever catches a window mid-drag.
+
+   The leftover is not wasted, and it also cannot be given to the planet — that
+   is the arithmetic at the top of this section, and it is worth restating
+   because the instinct is so strong: **the globe is bound by the shorter side,
+   which is the height, so widening the canvas grows the margin and never the
+   Earth.** What the leftover buys is exactly that margin — 306px a side became
+   106px when the rail took everything, and comes back to about 190 here. A disc
+   needs room around its limb; the note on `GLOBE_FIT` makes the same point from
+   the other direction.
+
+   Measured: canvas 1176×913 at 1920×1080 and 1968×1295 at 2560×1440, against
+   1512×935 and 2112×1295 before — so the frame is materially squarer, the
+   planet is unchanged to the pixel, and the rail is the size of its contents. */
+body.map-wide {
+  --map-aside-w: clamp(18rem, var(--map-aside-user, calc(100vw - var(--map-rail-w) - 100dvh)), 21rem);
+}
+
+/* --- Folded --------------------------------------------------------------
+
+   The column goes to zero and its contents go with it — including, on the left,
+   the wordmark and the document links, because they live in that column and a
+   panel that folds while keeping some of itself is not folded.
+
+   `body.map-page.map-rail-off` rather than `body.map-rail-off`, so this beats
+   the `clamp()` above on specificity rather than on source order. Two rules of
+   equal weight setting the same custom property is a layout that depends on
+   which one a future edit happens to move.
+
+   The instrument rail folds only where it exists: outside `body.map-wide` the
+   HUD is a strip over the map and there is nothing here to shut. */
+body.map-page.map-rail-off {
+  --map-rail-w: 0px;
+
+  & .map-feed,
+  & > header,
+  & > footer { display: none; }
+}
+
+body.map-page.map-wide.map-aside-off {
+  --map-aside-w: 0px;
+
+  & .map-hud { display: none; }
+}
+
+/* --- The seams -----------------------------------------------------------
+
+   Nine pixels straddling each edge of the canvas, which is a mouse target
+   rather than a hairline — the visible mark is the 1px rule the rail already
+   draws, and this is the reach around it.
+
+   It sits over the canvas and under the cards. `.map-timeline` is the only
+   thing it crosses, and it crosses only that strip's 1.1rem padding: the
+   scrubber's own track starts 17.6px inside its box, so nothing draggable is
+   ever under a seam.
+
+   ── The grip is permanent, and the first version's was not ────────────────
+   It was drawn on hover only, on the reasoning that a seam has nothing to say
+   until you want to adjust something. That is the argument for a door with no
+   handle. An affordance a reader cannot perceive is one they do not have: no
+   part of a border says "this one moves", so hiding the only mark that does
+   means the feature is discoverable exclusively by sweeping the pointer along
+   an edge nobody has a reason to sweep. The grip is a 24px run of the rail's
+   own hairline colour, quieter than the border it sits on — present enough to
+   be found, quiet enough that the map stays the subject — and it brightens to
+   the full hover treatment when the pointer arrives. */
+.map-seam {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 9px;
+  z-index: 10;
+  cursor: col-resize;
+  /* Half of it on each side of the edge, so the target is symmetrical about
+     the rule the reader can see. */
+  transform: translateX(-50%);
+
+  &[data-side='left'] { left: var(--map-rail-w); }
+  &[data-side='right'] { left: auto; right: var(--map-aside-w); transform: translateX(50%); }
+
+  /* The grip: a short vertical run at the seam's midpoint, which is also where
+     the fold control sits, so the two read as one handle rather than as a mark
+     and a button that happen to share a coordinate. */
+  &::before {
+    content: '';
+    position: absolute;
+    top: calc(50% - 34px);
+    height: 68px;
+    left: 4px;
+    width: 1px;
+    background: var(--map-ink-dim);
+    transition: opacity var(--dur-fast), height var(--dur-fast);
+    opacity: 0.55;
+  }
+
+  &:hover::before,
+  &:focus-within::before,
+  &.is-dragging::before {
+    opacity: 1;
+    height: 108px;
+    top: calc(50% - 54px);
+  }
+}
+
+/* While a drag is live the pointer leaves the seam within the first few pixels,
+   so the cursor has to be claimed above everything. A full-screen pseudo-element
+   does it without an `!important` sweep over every node in the document, and
+   earns its place twice over: it also swallows the `mousemove` the map would
+   otherwise keep hit-testing, so dragging a seam across the globe no longer
+   previews every beacon it passes. */
+body.is-pane-dragging {
+  user-select: none;
+
+  /* Under the seam (z-index 10), over everything else. It has to lose to the
+     seam or the thing being dragged is the one element the drag cannot reach. */
+  &::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 8;
+    cursor: col-resize;
+  }
+}
+
+/* The fold control, on the grip. Half-lit at rest for the reason the grip is
+   drawn at all — a control nobody can see is a control nobody has — and fully
+   lit on hover or once its pane is shut, which is the one state where it is the
+   only route back. */
+.map-seam-toggle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 34px;
+  padding: 0;
+  color: var(--map-ink-dim);
+  background: var(--map-panel);
+  border: 1px solid var(--map-line-card);
+  border-radius: 2px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity var(--dur-fast), color var(--dur-fast), border-color var(--dur-fast);
+
+  & svg { width: 7px; height: 10px; }
+
+  &:hover { color: var(--map-ink); border-color: var(--map-line-loud); }
+
+  &:focus-visible {
+    outline: 1px solid var(--map-focus);
+    outline-offset: 2px;
+  }
+
+  /* Pointing at the edge it would move the pane toward, so the glyph states a
+     direction rather than a state the reader has to remember the meaning of. */
+  &[aria-expanded='false'] svg { rotate: 180deg; }
+
+  .map-seam[data-side='right'] & svg { rotate: 180deg; }
+  .map-seam[data-side='right'] &[aria-expanded='false'] svg { rotate: 0deg; }
+}
+
+.map-seam:hover .map-seam-toggle,
+.map-seam:focus-within .map-seam-toggle,
+.map-seam-toggle[aria-expanded='false'] { opacity: 1; }
+
+/* A folded seam stops straddling and sits wholly inside the window.
+
+   The seam is centred on the edge it marks, which is right while there is a
+   pane on both sides of it — and wrong the moment the pane is gone, because the
+   edge is then the edge of the *screen* and half the control is outside it. The
+   toggle is 15px in a 9px seam, so at rest 7.5px of it was off-screen and the
+   only route back to a folded pane was a 7px sliver. */
+body.map-page.map-rail-off .map-seam[data-side='left'],
+body.map-page.map-wide.map-aside-off .map-seam[data-side='right'] {
+  transform: none;
+}
+
+body.map-page.map-rail-off .map-seam[data-side='left'] .map-seam-toggle {
+  left: 0;
+  translate: 0 -50%;
+}
+
+body.map-page.map-wide.map-aside-off .map-seam[data-side='right'] .map-seam-toggle {
+  left: auto;
+  right: 0;
+  translate: 0 -50%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-seam::before,
+  .map-seam-toggle { transition: none; }
+}
+
+/* The right seam exists only where the pane it bounds does. Outside
+   `body.map-wide` the HUD is a strip over the map and `--map-aside-w` is 0, so
+   this would be a grip at the window's right edge offering to resize nothing —
+   and, worse, offering to *fold* a pane whose contents are the map's only
+   controls. */
+body.map-page:not(.map-wide) .map-seam[data-side='right'] { display: none; }
+
+/* No seams on a phone. There is one column, the rail is a drawer with its own
+   handle, and a 9px drag target beside a thumb is not a control. */
+@media (max-width: 900px) {
+  .map-seam { display: none; }
 }
 
 .map-canvas-host {
@@ -2612,6 +2873,33 @@ body.map-page {
      The consequence is deliberate: with space and ocean equal, the planet's
      edge is drawn by the atmosphere alone. See `MAP_COLOURS.horizon`. */
   background: var(--map-ground);
+}
+
+/* The sky — stars, the sun, the moon and the outward half of the atmosphere.
+   `_map/starfield.ts` paints it; this rule only has to keep it in the one place
+   where all of that is free.
+
+   **It carries no `z-index`, and that is deliberate.** It and
+   `.maplibregl-canvas-container` below are both `position: absolute` with
+   `z-index: auto`, so tree order alone decides which paints over which — and
+   the island appends this element to the host *before* constructing the map,
+   so MapLibre's canvas lands after it and paints on top. That ordering is the
+   whole design: MapLibre's canvas is transparent outside the limb and opaque
+   on the planet, so the globe occludes the sky in hardware, at the true edge
+   and at the true moment, including the partial clip while a body is halfway
+   over. Giving either one a `z-index` here would express the same order in a
+   second place that nothing checks against the first.
+
+   `pointer-events: none` because the sky is queried through the map's own
+   `click`/`mousemove` handlers (there is exactly one of each, and the reason is
+   in `situation-map.ts`), not by being a target itself. A canvas that took the
+   pointer would take it from MapLibre entirely. */
+.map-sky {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 /* Minimal MapLibre positioning. The library's own stylesheet is not shipped —
@@ -3196,6 +3484,17 @@ body.map-page > footer .footer-social a {
   }
 }
 
+/* The box a chip's silhouettes sit in.
+   On the strip it is sized to its contents and changes nothing — the row is
+   horizontal, so a wider mark simply takes more of the row. It exists for the
+   rail, where it becomes a fixed column; see `body.map-wide .map-filter-mark`. */
+.map-filter-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  flex: 0 0 auto;
+}
+
 /* The constraint belongs to the group, not to whichever chip happens to be the
    last one lit — which is where it lived, as a `title` on a moving target that
    a touch reader could never reach. */
@@ -3510,6 +3809,497 @@ body.map-page > footer .footer-social a {
   pointer-events: none;
 }
 
+/* --- The HUD as a column ---------------------------------------------------
+
+   Same DOM, different axis. `body.map-wide` is set by the island when it has
+   measured enough surplus width for one (`syncWide`), and everything below is
+   the strip re-read as a rail.
+
+   Why re-read rather than rebuild: the strip's markup was already the right
+   markup. Its problem was never what it contained, it was that a row has one
+   dimension to group in. Thirteen chips, four separators and a picker in a wrap
+   run can only say "these are all controls"; the same thirteen in a column, at
+   the same rhythm, with the separators drawn as rules across it, say which
+   three groups they are — grouping by proximity and a common region, which is
+   free vertically and cost a whole row horizontally (see `.map-key` above,
+   which was evicted from the strip for exactly that).
+
+   It also ends three width negotiations at once, and each of them was a bug
+   this stylesheet still carries the scar of: the clock's measured
+   `padding-right` reservation (`--map-status-w`), the money ribbon's swept
+   `flex-basis: 34rem`, and the ≤1300px cull of the two comparison currencies.
+   None of them can arise in a column — a rail is the same width at 1400px as at
+   3440, so there is nothing left for width to break. */
+body.map-wide .map-hud {
+  position: relative;
+  grid-column: 3;
+  grid-row: 1;
+  inset: auto;
+  z-index: 2;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 0.9rem;
+  padding: 0.95rem clamp(0.9rem, 1.1vw, 1.15rem) 1.1rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--map-sunken);
+  border-left: 1px solid var(--map-line-soft);
+  /* The strip was `pointer-events: none` so the map stayed draggable through
+     the gaps between its chips. A rail has no gaps over the map. */
+  pointer-events: auto;
+}
+
+/* The scrim was the strip's whole defence — a HUD chip is 11px letterspaced
+   caps and so is a MapLibre place label, so anything laid over the canvas had
+   to darken it first. A column beside the canvas is over nothing, and the
+   gradient would just be a soft edge on a panel that already has a hard one. */
+body.map-wide .map-hud::after { display: none; }
+
+/* Reading order, which is not DOM order and cannot be.
+   `.map-hud-more` is `display: contents` here, so the picker, the chips and the
+   legend are siblings of the range group — but the legend is built *inside*
+   that box (the phone needs it there) and therefore precedes the button that
+   opens it. A panel above its own disclosure is the one arrangement that reads
+   as unrelated, so the order is stated rather than inherited.
+
+   The sequence is by how often a hand reaches for it: now, then the range, then
+   what is drawn, then what the land means, then the money, then the
+   explanation. */
+body.map-wide {
+  & .map-status { order: 0; }
+  & .map-ranges { order: 1; }
+  & .map-filters { order: 2; }
+  & .map-ground { order: 3; }
+  & .map-more { order: 4; }
+  & .map-hud-legend { order: 5; }
+}
+
+/* The Hijri date is the rail's alone. On the strip the clock is one
+   absolutely-positioned line with no room beside it, and the scrubber's readout
+   already carries the date — so it is `display: none` there, out of the
+   accessibility tree with the pixels, the bargain `.map-more`'s two labels
+   make. */
+.map-now-hijri { display: none; }
+
+/* The clock stops being painted over the strip and becomes the head of the
+   rail. Everything the absolute positioning was for goes with it: the box no
+   longer has to be exactly one HUD row tall to centre itself against the chips,
+   and `.map-hud` no longer has to reserve `--map-status-w` of padding on every
+   row to stop the chips running underneath it.
+
+   It is the loudest thing in the rail, and it should be: the only line here
+   that is a *fact about the world* rather than a control or a legend, and every
+   reading of the map is relative to it. The Hijri date is the same instant in
+   the other calendar, at the ink the labels use and pushed to the far end, so
+   the two bracket the row rather than running together — two answers to one
+   question, not a phrase.
+
+   It carried the day's five prayer times in Makkah for a while; see the note on
+   `status` in the island for why a column of times for one unnamed place was
+   the wrong thing on a news map, and why the lines on the globe are the right
+   one. */
+body.map-wide .map-status {
+  position: static;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  min-height: 0;
+  padding: 0 0 0.85rem;
+  border-bottom: 1px solid var(--map-line-soft);
+  font-size: var(--size-sm);
+  font-variant-caps: all-small-caps;
+  letter-spacing: var(--track-wide);
+  color: var(--map-ink);
+  pointer-events: auto;
+}
+
+body.map-wide .map-now-hijri {
+  display: inline;
+  font-size: var(--size-xs);
+  color: var(--map-ink-dim);
+  white-space: nowrap;
+}
+
+/* Group names exist only in the rail — see `groupLabel` in the island for why a
+   rule between two lists is not enough there and was enough on the strip.
+
+   The register is `.map-markets-label`'s, deliberately: this map already had an
+   idiom for "the name of a group of readouts" and inventing a second one would
+   be two vocabularies for one job. No glyph column, so the name starts at the
+   rail's left edge while every chip's label starts 22px in — which is what
+   separates a heading from an unlit chip, since both are `--map-ink-dim`. */
+.map-group-label { display: none; }
+
+body.map-wide .map-group-label {
+  display: block;
+  margin-bottom: 0.15rem;
+  font-size: var(--size-2xs);
+  font-variant-caps: all-small-caps;
+  letter-spacing: var(--track-wide);
+  font-weight: 600;
+  color: var(--map-ink-dim);
+}
+
+
+
+/* A segmented control across the rail, rather than four chips that happen to
+   touch. The border was always drawn around the group; giving each chip an
+   equal share of a known width is what makes it read as one switch with four
+   positions — and the width is known here, which it never was on the strip. */
+body.map-wide .map-ranges {
+  margin-right: 0;
+  align-self: stretch;
+
+  & .map-range {
+    flex: 1 1 0;
+    text-align: center;
+    padding: 0.3rem 0.4rem;
+  }
+}
+
+/* A box again. `display: contents` exists on the strip so the chips can pack
+   into its wrap run and each line can fill before the next begins — a column
+   has no such problem, and dissolving the group here would only cost the ability
+   to order it as one. */
+body.map-wide .map-filters {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.1rem;
+}
+
+/* A row, not a word: the whole line is the target, the glyph holds a column of
+   its own so the marks align down the rail, and the hover state has somewhere
+   to land. On the strip a chip could only be as tall as its type. */
+body.map-wide .map-filter {
+  gap: 0.45rem;
+  padding: 0.25rem 0.4rem;
+  margin: 0 -0.4rem;
+  border-radius: 2px;
+
+  & svg { width: 14px; height: 14px; }
+
+  &:hover:not(.is-locked) { background: var(--map-row-hover); }
+}
+
+/* One column for every mark, so eight labels share one left edge.
+
+   Two of the eight layers draw *two* silhouettes — `markets` is a two-valued
+   scale that no single tone stands for, `famine` puts the phase on shape — so
+   their marks are wider and, on a row, that is simply what they are. In a
+   column it pushed those two labels 12px right of the other six, and two rows
+   out of alignment in a list of eight do not read as wider rows, they read as
+   rows that are not in the list.
+
+   1.45rem is the pair at a legible size, and the pair is what sets it: two 10px
+   glyphs and 3px between them. A single mark keeps its full 14px and sits at the
+   column's left edge rather than centred in it — so the *marks* line up as well
+   as the labels, and a pair reads as one mark made of two parts rather than as a
+   mark and a half. Nothing is merged away: both silhouettes are still drawn, at
+   the only size at which two of them fit where one did.
+
+   `:has(svg + svg)` rather than the `[data-mark]` attribute the market chip
+   already carries — the rule is "this mark is made of more than one glyph",
+   which is what it should key on, and `famine` has no such attribute to add
+   without inventing one. */
+body.map-wide .map-filter-mark {
+  flex: 0 0 1.45rem;
+  gap: 3px;
+
+  &:has(svg + svg) svg { width: 10px; height: 10px; }
+}
+
+/* The market chip's own rule has to be answered rather than inherited from.
+   It sets `gap: 0.28rem` on the *button* and 11px on its glyphs — both correct
+   on a strip, where the gap it tightens is the one between its two ticks and
+   the button has no other children to space. With the glyphs boxed, that gap is
+   now the one between the mark and the label, so left alone it would put this
+   one chip's word 2.7px left of the other seven — the same misalignment, in
+   miniature, arriving from the opposite direction. And its 11px beats the pair
+   rule above on specificity, so the size has to be restated here too. */
+body.map-wide .map-filter[data-mark='market'] {
+  gap: 0.45rem;
+
+  & .map-filter-mark svg { width: 10px; height: 10px; }
+}
+
+/* The group boundary, drawn rather than implied. This is the phone panel's own
+   treatment — the separator that is a 1px vertical tick between chips on a strip
+   is a rule across the column here, which is the same fact stated in the
+   dimension that has room for it. */
+body.map-wide .map-filter-sep {
+  width: 100%;
+  height: 1px;
+  margin: 0.5rem 0;
+}
+
+/* Genocide joins the layers, and the separator that used to fence it off is
+   gone from this layout.
+
+   On the strip the fence was load-bearing: the row is one continuous wrap run
+   of chips and the only thing that could say "the controls end here" was a
+   tick between them. A column has stronger ways to say it — the mark sits in
+   the same 14px glyph column as every layer above, at the same rhythm, and it
+   is a `<span>` with no hover state and no pressed state, so it looks like a
+   member of the group and behaves like a caption of it. Which is the truth:
+   it is drawn like a layer and cannot be switched, because a determination is a
+   condition rather than a feed.
+
+   Only this separator goes; the one between the categories and the layers is
+   still doing its job. */
+body.map-wide .map-filter-sep.is-genocide { display: none; }
+
+body.map-wide .map-key-item.is-layer-note {
+  gap: 0.45rem;
+  /* The chips' own outdent, restated. Every `.map-filter` pulls itself back by
+     its horizontal padding so the *glyph* lands on the rail's content edge and
+     the row's hover box still extends past it; without the same negative margin
+     this item sat 6.4px right of every mark above it — which is exactly the
+     misalignment that makes one row of a list read as not belonging to it. */
+  margin: 0 -0.4rem;
+  padding: 0.25rem 0.4rem;
+  font-size: var(--size-xs);
+  font-weight: 600;
+  font-feature-settings: "case" 1;
+
+  /* The same box every layer chip's silhouette gets, so the marks line up down
+     the rail rather than this one sitting 2px off its neighbours. */
+  & svg {
+    width: 14px;
+    height: 14px;
+    flex: 0 0 auto;
+    opacity: 1;
+  }
+
+  /* The hue reaches only the mark, exactly as `--cat` does on a chip. It was on
+     the whole item — the one red *word* in a column of neutral ones, which made
+     the gravest thing on this map look like an alert about the interface. The
+     label now sits at the ink an unlit chip uses; what is unmuted is the mark,
+     which is the thing the map draws.
+
+     `:not(.map-filter-mark)`, because this item has two span children now: the
+     mark box and the word. The bare `> span` it used to be would have dimmed the
+     box too, and the ring inside it is `fill: currentColor` — so the one mark on
+     this map that is deliberately unmuted would have inherited the quietest ink
+     in the palette, silently, from a rule written to colour a label. */
+  & > span:not(.map-filter-mark) { color: var(--map-ink-dim); }
+}
+
+/* Picker over ramp. Side by side they are ~300px, which is most of the rail and
+   leaves the `<select>` too narrow to show a long metric name; stacked, the
+   select takes the full column and the scale reads underneath it as the legend
+   to the thing named above — which is the relationship, and the horizontal
+   version had it as adjacency. */
+body.map-wide .map-ground {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.4rem;
+  /* The pill goes. On the strip this group floats over the canvas and the
+     translucent box is what stops a picker and a 150px gradient from having to
+     be read against whatever ocean the reader has panned to. In a rail there is
+     no map underneath, so it is a box around nothing — and its 0.6rem of
+     horizontal padding was pushing the one group here that has a background
+     9.6px right of every other left edge in the column. */
+  padding: 0;
+  background: none;
+
+  /* The 12rem cap is a strip rule — there it stops one `<select>` from taking
+     a third of the row and pushing the chips onto another line. In a column the
+     cap is the column, and a truncated metric name is the one thing this
+     control cannot afford: "refugees produced" and "refugees hosted" share
+     their first word. */
+  & .map-ground-select { width: 100%; max-width: none; }
+  & .map-ground-scale { width: 100%; }
+  & .map-ground-ramp { flex: 1 1 auto; }
+}
+
+/* The money readout, stacked. On the strip this was one wrap run of eleven
+   quotes and three labels sharing a line with the clock, and the whole of
+   `.map-markets`'s history is width management: the `flex: 1 1 34rem` basis
+   swept against real line counts, the ≤1300px cull of EUR and JPY, the phone
+   dropping the named movers. A column ends all of it — each group is a line,
+   the line is as wide as the rail at every viewport, and nothing has to be
+   dropped to make it fit. */
+/* The breadth bar is the top bar's alone; the scrubber's line has no room
+   for a shape and states the counts instead. Declared before the bar's own rule
+   rather than after it, so the override reads as an override — both orders work
+   on specificity, only one of them reads. */
+.map-markets-signal { display: none; }
+
+/* --- The money bar -------------------------------------------------------
+
+   One line across the head of the canvas: four groups, each a direction, a
+   name and a breadth bar. It exists only in the wide layout — everywhere else
+   the strip is a line of the scrubber and this box is not rendered at all.
+
+   `pointer-events` is the strip's own trick: the box spans the canvas so the
+   map stays draggable between the groups, and each group takes the pointer
+   back. */
+.map-marketbar { display: none; }
+
+body.map-wide .map-marketbar {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: var(--map-rail-w);
+  right: var(--map-aside-w);
+  z-index: 2;
+  padding: 0.55rem 1.1rem 0.6rem;
+  pointer-events: none;
+
+  > * { pointer-events: auto; }
+}
+
+/* The scrim, flat over the line and fading in an overhang below it — the same
+   construction `.map-hud::after` used when the HUD was a strip, and for the
+   same reason: a group label here is 11px letterspaced caps and so is a
+   MapLibre place label. It matters less at the world view, where the globe's
+   limb is 70px down, and it matters entirely once the reader zooms in. */
+body.map-wide .map-marketbar::after {
+  content: '';
+  position: absolute;
+  inset: 0 0 -1.4rem;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--map-ground) 96%, transparent) calc(100% - 1.4rem),
+    transparent
+  );
+}
+
+body.map-wide .map-marketbar .map-markets {
+  margin-right: 0;
+  flex-wrap: nowrap;
+
+  & .map-markets-row {
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0 1.4rem;
+    width: 100%;
+  }
+
+  /* Equal shares, so the four groups sit on a rhythm rather than at whatever
+     widths their labels happen to want — which is what makes a bar scannable:
+     the eye learns one interval and stops re-finding it per group. */
+  /* Equal shares up to a limit. `flex: 1 1 0` alone spreads four groups across
+     whatever the canvas is, which on a 3440 monitor — or with both rails folded
+     — puts 470px between a label and the next one and the row stops reading as a
+     row. The cap is a little over the widest group's content, so the rhythm
+     holds and the slack collects at the end. */
+  & .map-markets-group {
+    flex: 1 1 0;
+    max-width: 16rem;
+    align-items: center;
+    flex-wrap: nowrap;
+    min-width: 0;
+    gap: 0.45rem;
+  }
+
+  /* Content packed left inside an equal share, rather than justified across it.
+     Justified, each group's four tokens spread to whatever width the group got
+     and the breadth bar stretched with them — a 200px bar reads as a rule
+     someone drew under the label, not as a quantity. Packed, every group has the
+     same short shape and the spare width falls between groups, where it does the
+     separating. */
+  & .map-markets-summary {
+    justify-content: flex-start;
+    padding: 0.2rem 0.4rem;
+    margin: 0 -0.4rem;
+    border-radius: 2px;
+
+    &:hover { background: var(--map-row-hover); }
+
+    /* Always present, not hover-revealed. On the scrubber these four sit among
+       controls that are plainly pressable; alone on a bar of readouts the caret
+       is the only thing saying they are doors, and a touch reader has no hover
+       to reveal it with. */
+    &::after {
+      opacity: 1;
+      flex: 0 0 auto;
+    }
+  }
+
+  /* The counts are the drawer's job here — see `breadth` in `_map/markets.ts`
+     for why the bar must not carry both. The reverse holds in the scrubber,
+     where there is no room for a shape and the counts are the whole readout. */
+  & .map-markets-tally { display: none; }
+  & .map-markets-signal { display: flex; flex: 0 0 4.5rem; }
+  & .map-markets-note { flex: 0 0 auto; }
+}
+
+/* Risen · flat · fallen, at true share. 5px so it reads as a bar rather than as
+   a rule, and `border-radius` on the ends only, so the three segments stay one
+   object. The tones are `--map-pos`/`--map-neg`, the pair this site already
+   uses for a signed change, so the bar cannot mean something different from the
+   tick beside it or the marks on the map. */
+.map-markets-breadth {
+  display: flex;
+  align-items: stretch;
+  gap: 1px;
+  width: 100%;
+  height: 5px;
+  min-width: 1.5rem;
+  align-self: center;
+}
+
+.map-markets-breadth-seg {
+  /* `flex-grow` from a custom property: the share *is* the count, so the bar is
+     the proportion by construction and there is no percentage to keep in step
+     with the numbers in the drawer. */
+  flex: var(--share, 1) 1 0;
+  border-radius: 1px;
+  background: var(--map-line-loud);
+
+  &.is-pos { background: var(--map-pos); }
+  &.is-neg { background: var(--map-neg); }
+}
+
+/* In flow, under its button, at the rail's own width. It is a floating panel on
+   the strip because the strip has no room to grow downward without covering a
+   control; a column grows downward by definition. So the box, the shadow and
+   the blur all go — they were saying "this is over something", and it is not —
+   and `anchorLegend`'s measured `--legend-x` stops applying, since `left` does
+   nothing to a static box. */
+body.map-wide .map-hud-legend {
+  position: static;
+  width: auto;
+  max-width: none;
+  margin-top: -0.35rem;
+  padding: 0;
+  gap: 0.45rem;
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+/* Pushed to the foot of the rail, which is a grouping decision rather than a
+   spacing one. Everything above it either changes the map or reports on it;
+   this explains it, and it is the only thing here a reader stops needing once
+   they have read it. `margin-top: auto` puts the rail's leftover height between
+   the two kinds — so on a tall screen the gap is the separation, and on a short
+   one it collapses to nothing and the rule above still does the work. */
+body.map-wide .map-more {
+  align-self: flex-start;
+  margin-left: -0.5rem;
+  margin-top: auto;
+  padding-top: 0.2rem;
+}
+
+/* Both keys become columns for the reason the chips do. The beacon key's three
+   items are a legend read once and then scanned for — a row of them at the foot
+   of a rail is three lines of nothing, where a column is three labelled marks
+   under the marks they label. */
+body.map-wide .map-key {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+}
+
 /* --- Waiting for the coastline ---
    The basemap is a single ~540 KB fetch rather than a coarse placeholder that
    gets replaced, which is the better trade — but on a cold visit it leaves the
@@ -3519,6 +4309,10 @@ body.map-page > footer .footer-social a {
    pass the time, and a map that draws in under a second would only flash it. */
 .map-loading {
   position: absolute;
+  /* `inset: 0` means the canvas, because this lives *in* the canvas host — see
+     the note beside `loading` in the island. As a child of the root it was
+     centred over the rails too: 24px off while there was one of them, and a
+     line of type sitting under the instrument rail once there were two. */
   inset: 0;
   z-index: 1;
   display: grid;
@@ -3571,10 +4365,16 @@ body.map-page > footer .footer-social a {
 .map-prayer-tip[hidden] { display: none; }
 
 /* --- Map timeline --- */
+/* It spans the globe's column, not the window. A fortnight stretched across
+   1477px gives each day 105px of axis and each two-hour bucket a sliver with a
+   gap either side, which reads as a sparse chart rather than a dense one; the
+   same fourteen days across the canvas are the same information at a legible
+   rhythm. Left to right stays — a time axis has one honest direction, and no
+   amount of spare width on the right is a reason to turn it. */
 .map-timeline {
   position: absolute;
   left: var(--map-rail-w);
-  right: 0;
+  right: var(--map-aside-w);
   bottom: 0;
   z-index: 2;
   padding: 0.5rem 1.1rem 0.6rem;
@@ -3887,6 +4687,51 @@ body.map-page > footer .footer-social a {
   @media (prefers-reduced-motion: reduce) {
     &[open] { animation: none; }
   }
+
+  /* --- As a drawer ---
+     Under the money bar, sharing its two edges, growing downward. Everything
+     that made it a popover is undone: it is no longer sized to its rows (it is
+     sized to the bar), it no longer hangs off one corner, and it unfolds from
+     the *top* because that is now the edge it is anchored by.
+
+     Wide enough for columns, so eleven quotes are a block to scan rather than a
+     list to scroll — which is the whole reason a drawer beats a popover here.
+     `column-fill: balance` is the default and is what keeps a 3-row group from
+     rendering as one tall column beside two empty ones. */
+  &.is-drawer {
+    width: auto;
+    max-width: none;
+    max-height: min(22rem, calc(100dvh - 12rem));
+    border-radius: 0 0 4px 4px;
+    border-top: 0;
+    box-shadow: 0 14px 34px rgb(0 0 0 / 0.5);
+
+    &[open] { animation: map-markets-unroll 140ms ease-out; }
+
+    @media (prefers-reduced-motion: reduce) {
+      &[open] { animation: none; }
+    }
+
+    & .map-markets-panel-list {
+      display: block;
+      columns: 3;
+      column-gap: var(--space-md);
+    }
+
+    & .map-markets-row-item {
+      /* `inline-grid` + full width: a `grid` item is a block, and a block inside
+         a multicol container can be split across a column boundary — half a row
+         at the foot of one column and half at the head of the next. */
+      display: inline-grid;
+      break-inside: avoid;
+    }
+  }
+}
+
+/* The drawer's counterpart to `map-markets-unfold`: same motion, other edge. */
+@keyframes map-markets-unroll {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
 }
 
 @keyframes map-markets-unfold {

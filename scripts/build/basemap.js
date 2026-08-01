@@ -10,7 +10,7 @@
 // fed (`/api/basemap.json`) had stopped being written — so it was deleted
 // rather than left to look load-bearing.
 
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { loadShared } from './shared-ts.js'
 
@@ -300,7 +300,49 @@ export async function buildMapSources(root) {
     lakes: await lakePolygons(root, feature),
     rivers: await riverLines(root, feature),
     seas: seaLabels(root),
+    stars: await starCatalogue(root),
   }
+}
+
+/**
+ * The star catalogue, plus the two naming tables that are editorial.
+ *
+ * `shared/data/stars.json` is generated (`scripts/generate-stars.js`, from the
+ * Bright Star Catalogue and the IAU's name list) and carries positions,
+ * magnitudes, colours and proper names. What it cannot carry is where a name
+ * came from, because nobody publishes that in machine-readable form — so
+ * `shared/star-lore.ts` is hand-written, and it is merged here.
+ *
+ * Merged at build rather than imported by the island for one reason: this is
+ * card text, reachable only by clicking a star, and the island's bundle is
+ * downloaded by every reader of the homepage. In the payload it is idle-
+ * deferred with the rest of the sky; in the bundle it would be first paint.
+ *
+ * Only the lore whose key actually matches a star in the catalogue is emitted,
+ * so a name the IAU revises drops its entry rather than attaching it to
+ * nothing — and `stars.test.js` fails on the same mismatch rather than letting
+ * it pass quietly here.
+ */
+async function starCatalogue(root) {
+  const file = join(root, 'shared', 'data', 'stars.json')
+  if (!existsSync(file)) return null
+  const data = JSON.parse(readFileSync(file, 'utf8'))
+  const { CONSTELLATIONS, STAR_LORE } = await loadShared('star-lore.ts')
+
+  const named = new Set(Object.values(data.proper ?? {}))
+  const lore = {}
+  for (const [name, entry] of Object.entries(STAR_LORE)) {
+    if (named.has(name)) lore[name] = entry
+  }
+  // Only the constellations the catalogue actually reaches — all 88 at this
+  // magnitude, but the filter is what keeps the two in step if the cut moves.
+  const used = new Set(data.con ?? [])
+  const conNames = {}
+  for (const [abbr, name] of Object.entries(CONSTELLATIONS)) {
+    if (used.has(abbr)) conNames[abbr] = name
+  }
+
+  return { ...data, lore, conNames }
 }
 
 /**

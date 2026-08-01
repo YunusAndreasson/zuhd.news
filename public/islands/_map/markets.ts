@@ -573,6 +573,14 @@ export interface MarketStrip {
   update(markets: MapExchange[], now?: number): void
   setTrends(indicators: TrendIndicator[]): void
   setVisible(on: boolean): void
+  /**
+   * The box the detail panel should open under, or `null` to open it as a
+   * popover above whichever summary was pressed.
+   *
+   * Set by whoever re-parents the strip: the placement follows where the strip
+   * is standing, and only the island knows that.
+   */
+  setDock(box: HTMLElement | null): void
   destroy(): void
 }
 
@@ -652,8 +660,9 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * third and `15 closed` on the fourth. A heading on a line of its own is a
    * heading that has stopped labelling anything.
    */
+  const tallyBar = el('span', 'map-markets-signal')
   const tallyGroup = el('button', 'map-markets-group map-markets-summary')
-  tallyGroup.append(label, tally, note)
+  tallyGroup.append(label, tally, tallyBar, note)
   row.append(tallyGroup)
   root.append(row)
 
@@ -702,12 +711,42 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * Clamped into the viewport so the last summary on the row does not open a
    * panel half off the right edge.
    */
+  /**
+   * Where the detail opens, which depends on where the strip is standing.
+   *
+   * Two placements, because the strip has two homes and they face opposite
+   * ways. In the scrubber it is at the foot of the screen, so the panel rises
+   * from the control that summoned it — a popover, sized to its rows. On the
+   * top bar it is at the head of the map, so it comes *down*, spanning the bar
+   * it belongs to: a drawer. That is not decoration. A popover hanging off the
+   * left edge of a full-width bar reads as a thing that happened near the bar;
+   * a panel that shares the bar's two edges reads as the bar opening, which is
+   * what pressing a summary means.
+   *
+   * `dock` is the element to align to — the island passes the bar when it puts
+   * the strip there, and null when it does not, so this module never has to ask
+   * which layout is live.
+   */
+  let dock: HTMLElement | null = null
+
   const placePanel = (btn: HTMLElement) => {
     const r = btn.getBoundingClientRect()
-    const w = panel.offsetWidth
     const gap = 10
-    const left = Math.max(gap, Math.min(r.left, window.innerWidth - w - gap))
-    panel.style.left = `${left}px`
+    panel.classList.toggle('is-drawer', dock !== null)
+
+    if (dock) {
+      const d = dock.getBoundingClientRect()
+      panel.style.left = `${Math.round(d.left)}px`
+      panel.style.right = `${Math.round(window.innerWidth - d.right)}px`
+      panel.style.top = `${Math.round(d.bottom)}px`
+      panel.style.bottom = 'auto'
+      return
+    }
+
+    const w = panel.offsetWidth
+    panel.style.right = 'auto'
+    panel.style.top = 'auto'
+    panel.style.left = `${Math.max(gap, Math.min(r.left, window.innerWidth - w - gap))}px`
     panel.style.bottom = `${Math.max(gap, window.innerHeight - r.top + gap)}px`
   }
 
@@ -743,6 +782,45 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * learned that `⌃15 ⌄9 6 flat` means the exchanges should not have to learn a
    * second shape to read the same fact about the currencies.
    */
+  /**
+   * Breadth, as a shape.
+   *
+   * The one figure a glance actually wants from a group of quotes is *how much
+   * of it moved which way* — and that is a proportion, which a bar states in no
+   * time at all and three numerals state only after they have been read. Three
+   * segments at true share: risen, flat, fallen, left to right.
+   *
+   * It **replaces** the counts on the top bar rather than joining them. Two
+   * encodings of one number on one line is the cluster-glow mistake this map
+   * deleted twice — a gold ramp over a numeral that already said the count —
+   * and it would be that mistake again in miniature. The counts are a press
+   * away, in the drawer, where they are the reason to have opened it.
+   *
+   * `aria-hidden`, with the numbers carried on the summary's own `aria-label`:
+   * a bar has nothing to say to a screen reader and the label has everything.
+   */
+  const breadth = (s: ReturnType<typeof summarise>) => {
+    const bar = el('span', 'map-markets-breadth')
+    bar.setAttribute('aria-hidden', 'true')
+    for (const [n, cls] of [
+      [s.up, 'is-pos'],
+      [s.flat, ''],
+      [s.down, 'is-neg'],
+    ] as Array<[number, string]>) {
+      if (!n) continue
+      const seg = el('span', `map-markets-breadth-seg ${cls}`)
+      seg.style.setProperty('--share', String(n))
+      bar.append(seg)
+    }
+    return bar
+  }
+
+  /** The counts as a sentence, for the label a bar cannot provide. */
+  const countsText = (s: ReturnType<typeof summarise>) =>
+    [s.up && `${s.up} up`, s.down && `${s.down} down`, s.flat && `${s.flat} flat`]
+      .filter(Boolean)
+      .join(', ')
+
   const countsInto = (host: HTMLElement, s: ReturnType<typeof summarise>) => {
     for (const [dir, n, cls] of [
       [1, s.up, 'is-pos'],
@@ -882,12 +960,23 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     const t = marketTally(markets, now)
     allExchanges = [...markets].sort((a, b) => (b.changePct ?? 0) - (a.changePct ?? 0))
 
+    const s = { up: t.up, down: t.down, flat: t.flat, net: 0 as const }
     tally.replaceChildren()
-    countsInto(tally, { up: t.up, down: t.down, flat: t.flat, net: 0 })
+    countsInto(tally, s)
+    // Two renderings of the same summary, one per layout: the counts for the
+    // scrubber's line, the bar for the top strip. Both are built and CSS shows
+    // one, because which layout is live is a media query the island resolves
+    // and this module has no business asking about.
+    tallyBar.replaceChildren(breadth(s))
+    tallyGroup.setAttribute(
+      'aria-label',
+      `Exchanges — ${countsText(s)}${t.closed ? `, ${t.closed} closed` : ''}`,
+    )
 
     // The caveat on the whole readout: at any given moment most exchanges are
     // shut, and those numbers are last night's. One number rather than thirty
-    // mark-states.
+    // mark-states. It stays on the bar with the shape, because it is not a
+    // re-encoding of breadth — it says how much of the breadth is yesterday's.
     note.textContent = t.closed ? `${t.closed} closed` : ''
   }
 
@@ -928,7 +1017,10 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
       // went, ahead of the counts saying how unanimous that was. A group can be
       // 4 up and 3 down and still net down, and those are two different facts —
       // which is the whole reason the tick is not derived from the counts.
-      summary.append(tick(s.net), el('span', 'map-markets-label', name), counts)
+      const signal = el('span', 'map-markets-signal')
+      signal.append(breadth(s))
+      summary.append(tick(s.net), el('span', 'map-markets-label', name), counts, signal)
+      summary.setAttribute('aria-label', `${name} — ${countsText(s)}`)
       trigger(summary, name, () => items.map(quoteRow))
       row.append(summary)
     }
@@ -940,6 +1032,13 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     setTrends,
     setVisible(on: boolean) {
       root.hidden = !on
+    },
+    setDock(box: HTMLElement | null) {
+      dock = box
+      // A panel open across a move would keep the geometry of the layout it was
+      // opened in — and the two are not adjustments of each other, they are a
+      // popover and a drawer. Shutting it is the honest answer.
+      closePanel()
     },
     destroy() {
       root.remove()

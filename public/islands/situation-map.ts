@@ -36,6 +36,7 @@ import {
   densityCssRamp,
   densityRamp,
   globeFitZoom,
+  GLOBE_ZOOM,
   LAND_NO_DATA,
   LAND_RAMP,
   MAP_COLOURS,
@@ -51,6 +52,8 @@ import {
   type StoryPlace,
 } from './_map/places'
 import { createFeed, type Feed } from './_map/feed'
+import { graticuleLines } from './_map/graticule'
+import { createStarfield, type SkyHit } from './_map/starfield'
 import { createReadState } from './_map/read-state'
 import { glyphImages, glyphSvg, type GlyphId } from './_map/glyphs'
 import {
@@ -61,12 +64,14 @@ import {
   type MarketStrip,
   type TrendIndicator,
 } from './_map/markets'
+import { createPaneSeam, type PaneSeam } from './_map/panes'
 import { createTimeline, type Timeline } from './_map/timeline'
 import { createSheet, type Sheet } from './_map/sheet'
 import { MAKKAH_LABEL, MAKKAH_TZ, solarClock, zoneOffset } from './_map/format'
 import { createStoryPopup, type CountryStanding, type StoryPopup } from './_map/popup'
 import { dayPolygon, nightPolygon } from './_map/solar'
 import { PRAYER_NOTE, PRAYERS, type PrayerId, prayerInstantAt, prayerLines } from './_map/prayer'
+import { HIJRI_NOTE, hijriLabel } from './_map/hijri'
 import {
   CONTESTED_D,
   DEFAULT_METRIC,
@@ -358,6 +363,32 @@ export function mount(
   const mapEl = document.createElement('div')
   mapEl.className = 'map-canvas-host'
 
+  /**
+   * The sky, and it must be the **first child of the canvas host**.
+   *
+   * MapLibre appends its own canvas container to this element when the map is
+   * constructed, which is after this line runs — and both are `position:
+   * absolute` with no `z-index`, so tree order alone decides which paints over
+   * which. That ordering *is* the design: MapLibre's canvas is transparent
+   * outside the limb and opaque on the planet, so a canvas underneath it is
+   * occluded by the globe in hardware, exactly at the edge and exactly at the
+   * moment. Move this after `new MapLibreMap` and the sky paints over the
+   * earth, with nothing failing and nothing logged.
+   *
+   * `map-island.test.js` asserts the position rather than the existence.
+   */
+  const sky = createStarfield({
+    project: (lngLat) => map.project(lngLat),
+    centre: () => {
+      const c = map.getCenter()
+      return [c.lng, c.lat]
+    },
+    bearing: () => map.getBearing(),
+    pitch: () => map.getPitch(),
+    zoom: () => map.getZoom(),
+  })
+  mapEl.append(sky.element)
+
   // What a prayer line says when the pointer rests on it. Inside the canvas
   // host rather than the root because MapLibre reports pointer positions
   // relative to the canvas, and the host is the only ancestor those numbers
@@ -511,17 +542,26 @@ export function mount(
    * "controls end here", which is the fact that needed conveying.
    */
   const genocideKeySep = document.createElement('span')
-  genocideKeySep.className = 'map-filter-sep'
+  // `is-genocide` names *which* separator this is, and the rail needs to know:
+  // there it is the only one that has to go, because the mark it fences off
+  // belongs among the layers it was fencing it from. A `:last-of-type` rule
+  // cannot pick it out — the last `<span>` in `.map-filters` is the lock note,
+  // not this — and a positional selector standing for an identity is how a
+  // future chip inserted at the end would silently move a rule.
+  genocideKeySep.className = 'map-filter-sep is-genocide'
   genocideKeySep.setAttribute('aria-hidden', 'true')
   const genocideKey = document.createElement('span')
   genocideKey.className = 'map-key-item is-layer-note'
   genocideKey.title =
     'A situation a named UN body has determined to be genocide — click the mark for the finding'
   genocideKey.style.color = OVERLAY_COLOUR.genocide
+  // The same mark box the chips use (see `chipGlyph`), so this sits in the
+  // layers column on the column's own left edge rather than 6px inside it.
   genocideKey.innerHTML =
+    '<span class="map-filter-mark">' +
     '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="currentColor">' +
     '<circle cx="8" cy="8" r="5.2" fill="none" stroke="currentColor" stroke-width="1.8"/>' +
-    '<circle cx="8" cy="8" r="1.9"/></svg><span>genocide</span>'
+    '<circle cx="8" cy="8" r="1.9"/></svg></span><span>genocide</span>'
   // Hidden until the record is on the wire, separator and all. A legend for a
   // mark that is not drawn is the same lie in either direction — and a lone
   // divider hanging off the end of the row is its own small piece of nonsense.
@@ -624,7 +664,22 @@ export function mount(
    * sentence rather than two thirds of one, and where the source line beside it
    * is not competing with the map for a row.
    */
-  ground.append(groundSelect, groundScale)
+  /**
+   * The picker's visible name, in the rail only.
+   *
+   * On the strip it needed none: the `<select>` sits among chips that are
+   * plainly the map's controls, and it names its own value. In a column, a bare
+   * dropdown reading `population` above a gradient is a control with no subject
+   * — the reader can see *what it is set to* and not *what it sets*. The
+   * accessible name ("Shade countries by") has always said so; this is that
+   * sentence made visible, in the register the other group names use.
+   */
+  const groundLabel = document.createElement('span')
+  groundLabel.className = 'map-group-label'
+  groundLabel.textContent = 'ground'
+  groundLabel.setAttribute('aria-hidden', 'true')
+
+  ground.append(groundLabel, groundSelect, groundScale)
 
   /** Fills the picker once the index has landed. */
   const buildMetricPicker = () => {
@@ -829,6 +884,37 @@ export function mount(
   // gesture it was in the way of is a panel you have to dismiss twice.
   mapEl.addEventListener('pointerdown', () => setMoreOpen(false))
 
+  /**
+   * The head of the instrument rail: what time it is, in both calendars.
+   *
+   * The Hijri date is `display: none` outside `body.map-wide` — the strip has
+   * one absolutely-positioned line and the scrubber's readout already carries
+   * the date there, so it would be the same fact three times on one screen.
+   *
+   * ── What this is not ──────────────────────────────────────────────────────
+   * It carried the day's five prayer times in Makkah for a while, on the
+   * reasoning that the map draws `prayer-lines` and never says what they are.
+   * Removed: a column of five times has to be *for* somewhere, and a reader
+   * arriving at a news map has no reason to assume the rail means Makkah rather
+   * than where they are — so the block's first effect was to raise a question it
+   * answered nowhere on screen. The lines already carry the fact in the one form
+   * that cannot be misread, because each one is drawn where it is true, and
+   * hovering one names it and times it. This is a news map that keeps a Makkah
+   * clock, not a prayer-times app, and the difference is exactly a set of times
+   * for one place.
+   */
+  const status = document.createElement('div')
+  status.className = 'map-status'
+
+  const clockEl = document.createElement('span')
+  clockEl.className = 'map-clock'
+
+  const hijriEl = document.createElement('span')
+  hijriEl.className = 'map-now-hijri'
+  hijriEl.title = HIJRI_NOTE
+
+  status.append(clockEl, hijriEl)
+
   legend.append(key, groundNote)
   more.append(filters, ground, legend)
   // The button is last, which is a desktop fact: `.map-hud-more` is a
@@ -836,7 +922,14 @@ export function mount(
   // appended before them would sit between the time range and the chips. On the
   // phone the panel is out of flow and the button's `margin-left: auto` puts it
   // at the right end regardless of where it appears in the markup.
-  hud.append(ranges, more, moreBtn)
+  //
+  // The clock is first, and it is *in* the strip now rather than beside it. It
+  // was a child of the root, absolutely positioned over the HUD's top-right —
+  // which is the same pixel either way while the HUD is a strip pinned to the
+  // same corner, so nothing about the narrow layout changes. What it buys is the
+  // wide one: as a child it can simply become the rail's first line, where a
+  // box positioned against the root would have gone on hanging in the canvas.
+  hud.append(status, ranges, more, moreBtn)
 
   /**
    * Back to the whole world.
@@ -858,12 +951,6 @@ export function mount(
     '<path d="M2.4 8h11.2M8 2.4c1.6 1.7 2.4 3.6 2.4 5.6S9.6 12.3 8 13.6C6.4 12.3 5.6 10 5.6 8S6.4 4.1 8 2.4Z" fill="none" stroke="currentColor" stroke-width="1.1"/>' +
     '</svg><span>whole world</span>'
 
-  const status = document.createElement('div')
-  status.className = 'map-status'
-  const clockEl = document.createElement('span')
-  clockEl.className = 'map-clock'
-  status.append(clockEl)
-
   /**
    * Says the canvas is empty on purpose.
    *
@@ -873,13 +960,44 @@ export function mount(
    * Silence there reads as breakage, and the reader has no way to tell a slow
    * network from a map that has failed. A line of type is the whole fix; it is
    * removed the moment the coastline is on screen.
+   *
+   * **Inside the canvas host**, like `.map-prayer-tip` and for the same reason:
+   * what it wants to be centred in is the canvas, and only the host is that box
+   * in every layout. On the root it was `inset: 0` and so centred across the
+   * rails as well — 24px off with one rail, and once there were two, either a
+   * pair of `var()` terms that the phone layout would then have to unset, or a
+   * line of type sitting under the instrument rail. The element it belongs to
+   * knows its own width; nothing has to be told.
    */
   const loading = document.createElement('p')
   loading.className = 'map-loading'
   loading.setAttribute('role', 'status')
   loading.textContent = 'Drawing the world…'
 
-  container.append(mapEl, hud, status, resetBtn, loading)
+  /**
+   * The money bar: one thin line across the head of the map.
+   *
+   * It was a row of the scrubber, and before that two rows of it, and the whole
+   * of its recorded history is width management — a `flex: 1 1 34rem` basis swept
+   * against real line counts, a ≤1300px cull of two currencies, a phone that
+   * drops the named movers. All of it came from sharing a line with the clock at
+   * the foot of a map.
+   *
+   * It is not a control and it is not a legend, so neither rail is its home: it
+   * is a *readout about the world*, the same kind of thing as the stories on the
+   * left and the marks on the globe, and it belongs across the top where a
+   * reader meets it before they start working the map rather than after. One
+   * line, four groups, and each group states its whole answer as a shape — see
+   * `breadth` in `_map/markets.ts` for why a shape and not the counts.
+   *
+   * Empty until `/api/markets.json` lands (`root.hidden`), so nothing reserves
+   * space for a bar that may not arrive.
+   */
+  const marketBar = document.createElement('div')
+  marketBar.className = 'map-marketbar'
+
+  mapEl.append(loading)
+  container.append(mapEl, marketBar, hud, resetBtn)
 
   // --- State --------------------------------------------------------------
   let points: MapPoint[] = []
@@ -1061,6 +1179,55 @@ export function mount(
   })
   container.append(feed.element)
 
+  /**
+   * Is there enough width to spare for an instrument rail?
+   *
+   * Measured, not asked of a media query, because the question is not about the
+   * viewport's width — it is about what is left of it once the story rail and
+   * the planet have taken theirs, and one of those two is a *height*. The globe
+   * is `min(canvasW, canvasH)` and the canvas is as tall as the window, so the
+   * surplus is `viewportW − railW − viewportH`, and every pixel of it is free in
+   * the strict sense: spending it cannot make the Earth one pixel smaller,
+   * because the Earth is not bound by width until the canvas is square. At 1920
+   * that is 577px the planet is not using and cannot use.
+   *
+   * A media query cannot express it. The condition mixes a width, a height and a
+   * rem-valued column, so the aspect ratio that satisfies it moves with the
+   * viewport's height — 1.99 at 600px tall, 1.74 at 800, 1.46 at 1295. Every
+   * fixed threshold tried either excluded 1920×1080, which clears the natural
+   * one by 0.03, or admitted a 5:4 monitor, where the rail would come out of the
+   * globe. The rule is arithmetic, so it is written as arithmetic and the
+   * stylesheet is handed the answer as a class.
+   *
+   * The surplus is *not* what the rail then takes — it is capped at the width
+   * its own contents want (see `--map-aside-w`), and the rest stays as margin
+   * around the planet. This is only the gate: is there enough spare width that
+   * a rail costs the map nothing at all?
+   *
+   * `RAIL_MIN` is the floor the stylesheet's clamp uses: below it the prayer
+   * strip's five columns start to collide, and a rail that cannot hold its
+   * widest block is worse than the strip it replaced. The width gate under it
+   * is belt and braces — a landscape phone can produce a surplus this large and
+   * wants the phone layout regardless of the arithmetic.
+   *
+   * **It runs here, before the map is constructed**, and that ordering is the
+   * whole reason this block sits between the rail and the camera rather than
+   * beside `onResize` with the other measurements. `fitZoom` reads
+   * `mapEl.clientWidth`, so the opening zoom — which is also `minZoom` — is
+   * derived from whatever the canvas measured at that instant. Setting the class
+   * afterwards would open every wide screen at a zoom fitted to a canvas a rail
+   * too wide, and since it is the floor, the reader could not pull back out of
+   * it.
+   */
+  const RAIL_MIN = 288
+  const syncWide = () => {
+    const box = container.getBoundingClientRect()
+    const wide =
+      box.width >= 1100 && box.width - feed.element.offsetWidth - box.height >= RAIL_MIN
+    document.body.classList.toggle('map-wide', wide)
+  }
+  syncWide()
+
   // --- Map ----------------------------------------------------------------
   /**
    * The zoom at which exactly one Earth spans the canvas.
@@ -1109,8 +1276,23 @@ export function mount(
     return globeFitZoom(Math.min(w, h), lat)
   }
 
-  /** The view the map opens on, and the one the wordmark returns you to. */
-  const HOME_CENTER: [number, number] = [12, 22]
+  /**
+   * The view the map opens on, and the one the wordmark returns you to.
+   *
+   * **Makkah** (2026-08-01). It was `[12, 22]` — a point in the Libyan desert,
+   * chosen for framing: it put the Atlantic on one edge and India on the other,
+   * which is a good hemisphere and stands for nothing. A globe has to be
+   * *pointed* at somewhere, and unlike a flat map it cannot decline to choose —
+   * the half it faces is the half that exists. So the choice is the site's to
+   * make rather than the framing's, and this site already keeps one frame:
+   * `MAKKAH_TZ` for the clock, the scrubber and the Hijri date, Umm al-Qura for
+   * the prayer lines. The camera now agrees with the clock.
+   *
+   * It costs almost nothing in coverage — 27.8° east of the old centre, so the
+   * hemisphere gains east and south Asia and loses the eastern Pacific, which is
+   * where this map has the least to say. The latitude moves 0.6°.
+   */
+  const HOME_CENTER: [number, number] = [39.826, 21.423]
   const HOME_VIEW = { center: HOME_CENTER, zoom: fitZoom(HOME_CENTER[1]) }
 
   const map = new MapLibreMap({
@@ -1125,7 +1307,7 @@ export function mount(
     // MapLibre clamps to `minZoom + getZoomAdjustment(0, lat)`, which is
     // `minZoom + log2(cos lat)` — it re-applies the latitude term itself, to
     // keep the planet the same size as the reader moves north or south. At the
-    // home latitude of 22° that is −0.109, so the reader can pull out about 11%
+    // home latitude (21.4°, Makkah) that is −0.105, so the reader can pull out ~10%
     // past a perfect fit and see a slightly smaller globe. That is harmless
     // here, because on this projection the space around the disc is the design
     // rather than a failure to fill the frame — but it is worth writing down,
@@ -1669,6 +1851,14 @@ export function mount(
     map.addSource('genocide', { type: 'geojson', data: empty })
     map.addSource('night', { type: 'geojson', data: empty })
     map.addSource('day', { type: 'geojson', data: empty })
+    // Built here rather than fetched: 761 points of arithmetic, so a file would
+    // be a request and an entry in `BASEMAP_V` bought for something the client
+    // can produce before the first frame. It never changes, so unlike `night`
+    // and `day` it is filled at declaration and no tick ever rewrites it.
+    map.addSource('graticule', {
+      type: 'geojson',
+      data: { type: 'FeatureCollection', features: graticuleLines() },
+    })
     // `promoteId` so hover can address a whole prayer by name. The geometry is
     // a MultiLineString cut at the antimeridian and at the poles, so a segment
     // is not a thing a reader would ever mean to point at.
@@ -1808,6 +1998,78 @@ export function mount(
         paint: { 'fill-color': '#000', 'fill-opacity': 0.28 },
       },
       'borders',
+    )
+
+    /**
+     * The graticule — what makes the sphere read as one.
+     *
+     * The argument for having it at all is in `_map/graticule.ts`; this is where
+     * it sits and how loud it is, and both are decided by what it must not
+     * disturb.
+     *
+     * **Inserted before `land`, so it only ever reaches the ocean** — the trick
+     * `day-shade` above uses, for a related reason and a different one.
+     *
+     * The related one: there is no tone that works flat for a grid line, which
+     * is the argument `MAP_COLOURS.water` already makes about rivers. A line
+     * quiet enough on `#080a0d` sea is *darker than every stop of the land ramp*
+     * and vanishes over the continents; anything that survives the ramp's
+     * bright end is loud over water, where the beacons are. Drawn first, the
+     * question does not arise: it has exactly one ground and is tuned against
+     * it.
+     *
+     * The different one is better. Sending the grid under the land means it
+     * **crosses not one country**, so the map gains a curvature cue and loses no
+     * legibility anywhere the data actually is — and the ocean is where the cue
+     * was needed, because it is the empty half of the picture and the half the
+     * limb runs through. A graticule over the continents would have been a net
+     * across every mark this file spends its length rationing.
+     *
+     * `night-shade` sits above it and is black at 0.28 over near-black water,
+     * which this file measures at about two values in 255 — so the grid is
+     * effectively undimmed at night, which is exactly the hemisphere it exists
+     * to give an edge to.
+     *
+     * **Solid, not dashed.** The dash is `prayer-lines`' silhouette and the one
+     * mark nothing else here uses (`MAP_COLOURS.prayer`); a second dashed line
+     * family at a similar weight would make five meaningful curves
+     * indistinguishable from a coordinate grid at a glance. Solid and far
+     * quieter is the pairing that keeps both readable — and those lines are
+     * drawn above the land where this one is below it, so they never share a
+     * ground either.
+     *
+     * **`line-width` is constant** for the reason every other line here is: a
+     * varying width would imply a varying quantity, and one meridian is not more
+     * of anything than another.
+     *
+     * **It fades out with the projection**, and the numbers are the projection's
+     * own: `GLOBE_ZOOM.sphere` (3) to `GLOBE_ZOOM.plane` (5) is where MapLibre
+     * interpolates the sphere into Mercator, so the grid is gone at exactly the
+     * zoom the thing it explains stops existing. On a flat map at street scale a
+     * graticule is a grid over a city, which is noise. Read from the constants
+     * rather than typed, so this cannot drift from the interpolation in
+     * `_map/style.ts` the way `DENSITY_FADE_OUT` was made to match `.plane`.
+     */
+    map.addLayer(
+      {
+        id: 'graticule',
+        type: 'line',
+        source: 'graticule',
+        paint: {
+          'line-color': MAP_COLOURS.graticule,
+          'line-width': 0.6,
+          'line-opacity': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            GLOBE_ZOOM.sphere,
+            1,
+            GLOBE_ZOOM.plane,
+            0,
+          ],
+        },
+      },
+      'land',
     )
 
     /**
@@ -2533,6 +2795,12 @@ export function mount(
     // so the state map has to be rewritten rather than replayed onto a feature
     // order that may no longer match it.
     syncPrayerHover(true)
+    // The sky is on this tick for exactly the reason the terminator is: it is a
+    // function of where the sun is, and 120 seconds is 0.5° of sky rotation,
+    // which is under a pixel where the sky is drawn most precisely. It is *not*
+    // on `scrubNow` either — a Tuesday moon over tonight's earth would be the
+    // same two clocks in one picture.
+    sky.draw(now)
   }
 
   // --- Interaction --------------------------------------------------------
@@ -2571,6 +2839,22 @@ export function mount(
     }
     return null
   }
+
+  /**
+   * What of the sky is under the pointer.
+   *
+   * Asks the canvas what it last *drew*, not the catalogue what exists — which
+   * is the same discipline `queryRenderedFeatures` enforces one layer up, and
+   * for the same reason: a star behind the earth, past the sky's outer edge or
+   * faded out by the zoom is not on screen, and a hit test that could find one
+   * would open a card pointing at nothing.
+   *
+   * `e.point` is relative to MapLibre's canvas and the sky canvas is `inset: 0`
+   * inside the same host, so the two coordinate systems are the same one. If
+   * that ever stops being true this is where it goes wrong silently.
+   */
+  const skyAt = (point: { x: number; y: number }): SkyHit | null =>
+    sky.hit(point.x, point.y)
 
   /**
    * A short hop toward the story rather than a jump to a fixed zoom: from the
@@ -2875,6 +3159,12 @@ export function mount(
       if (area) return sheet.showFamine(area, pin)
     }
 
+    /** The sun, the moon or a star, in the same two densities as every mark. */
+    const showSky = (h: SkyHit, pin: boolean) => {
+      if (h.kind === 'star') return sheet.showStar(h, pin)
+      return sheet.showBody(h, hijriLabel(new Date()), pin)
+    }
+
     /**
      * The one hit test, and the one precedence.
      *
@@ -2972,6 +3262,21 @@ export function mount(
         return
       }
 
+      // The sky is not a MapLibre layer and must not join `MARKER_LAYERS` —
+      // `map-island.test.js` asserts that set equals `HIT_ORDER`, and the sky
+      // has no layer to rank. It is queried here instead, inside the one
+      // pointer path, and only outside the globe's limb, where `topHit` and
+      // `countryAt` are both guaranteed to find nothing. So the precedence is
+      // geometric rather than declared: there is nothing for it to contend with.
+      const star = skyAt(e.point)
+      if (star) {
+        openSlug = null
+        clearPeekClose()
+        peekId = `sky:${star.kind === 'star' ? star.designation : star.kind}`
+        showSky(star, true)
+        return
+      }
+
       if (popup?.isOpen() || sheet.isOpen()) {
         openSlug = null
         popup?.close()
@@ -3025,6 +3330,17 @@ export function mount(
         }
       } else {
         setHoverSlug(null)
+        const star = skyAt(e.point)
+        if (star) {
+          map.getCanvas().style.cursor = 'pointer'
+          const id = `sky:${star.kind === 'star' ? star.designation : star.kind}`
+          if (id !== peekId) {
+            peekId = id
+            clearPeekClose()
+            showSky(star, false)
+          }
+          return
+        }
         releasePeek()
       }
 
@@ -3121,6 +3437,14 @@ export function mount(
     // adds nothing to a map whose whole point is restraint.
     map.on('move', syncResetButton)
     syncResetButton()
+
+    // The sky follows the camera, and `move` is the only event it needs: it
+    // fires on a frame MapLibre is already drawing, so this adds a repaint to
+    // work in flight rather than scheduling work of its own. Nothing here
+    // touches a source, a layer or a feature state, so the map's idle stays
+    // exactly as quiet as it was — which is the invariant that was once worth
+    // 57% of a core.
+    map.on('move', () => sky.draw())
   }
 
   // --- Chrome -------------------------------------------------------------
@@ -3195,11 +3519,60 @@ export function mount(
       lockNote.hidden = !sole
     }
 
-    /** A chip's mark, drawn from the table the map rasterises. */
+    /**
+     * A chip's mark, drawn from the table the map rasterises.
+     *
+     * The glyphs go in a box of their own rather than straight into the button,
+     * and the box is what makes a column of chips line up. Two of the eight
+     * layers are drawn with *two* silhouettes — `markets`, because the layer is
+     * a two-valued scale and no single tone stands for it, and `famine`, because
+     * the phase rides on shape — so on a row they are simply wider, and in a
+     * column they pushed their labels 12px right of the other six. Six labels on
+     * one edge and two off it reads as two rows that do not belong to the list,
+     * which is the exact failure the genocide item's missing outdent produced
+     * one entry above.
+     *
+     * A named box also lets the *marks* share a left edge as well as the labels,
+     * which is the stronger alignment: the eye follows the column of
+     * silhouettes, and a pair that starts where every other mark starts reads as
+     * one mark made of two parts rather than as a mark and a half.
+     */
     const chipGlyph = (btn: HTMLButtonElement, ids: GlyphId[], label: string) => {
-      btn.innerHTML = ids.map(glyphSvg).join('')
+      btn.innerHTML = `<span class="map-filter-mark">${ids.map(glyphSvg).join('')}</span>`
       btn.append(document.createTextNode(label))
     }
+
+    /**
+     * A group's name, in the rail only.
+     *
+     * On the strip there was no room and no need: four chips, a 1px tick, seven
+     * chips, read left to right as one run of controls, and the tick was enough
+     * to say a boundary had been crossed. In a column the two groups are two
+     * *lists*, and a rule between two lists says they are different without
+     * saying how — a reader who has not learned this map cannot tell that the
+     * first four decide which stories are on it and the next seven decide what
+     * else is drawn over them. That is a conceptual-model gap, and one word
+     * each closes it.
+     *
+     * It is set one rung below an unlit chip and, crucially, **without the
+     * glyph column** — so a heading begins at the rail's own left edge while
+     * every chip's label begins 22px in. The indent is what separates the two,
+     * which matters because a dim heading and an unlit chip are otherwise the
+     * same ink at nearly the same size.
+     *
+     * `aria-hidden`, because `.map-filters` already carries a group label and
+     * every chip states its own name and pressed state. A screen reader has the
+     * structure; this is the sighted reader's copy of it.
+     */
+    const groupLabel = (text: string) => {
+      const span = document.createElement('span')
+      span.className = 'map-group-label'
+      span.textContent = text
+      span.setAttribute('aria-hidden', 'true')
+      return span
+    }
+
+    filters.append(groupLabel('stories'))
 
     for (const cat of CATEGORY_ORDER) {
       const btn = document.createElement('button')
@@ -3227,7 +3600,7 @@ export function mount(
     const sep = document.createElement('span')
     sep.className = 'map-filter-sep'
     sep.setAttribute('aria-hidden', 'true')
-    filters.append(sep)
+    filters.append(sep, groupLabel('layers'))
 
     // Each overlay chip now draws its layer's own silhouette, from the same
     // vertex table `map.addImage` rasterises. Before this they were all a 6px
@@ -3298,14 +3671,17 @@ export function mount(
     syncLock()
   }
 
+  /** An instant as Makkah wall-clock `HH:MM`, which is the only frame here. */
+  const makkahHm = (t: number) =>
+    new Date(t + zoneOffset(t, MAKKAH_TZ)).toISOString().slice(11, 16)
+
   const updateClock = () => {
     // Makkah, like the scrubber readout and the Hijri date beside it. The three
     // are the map's only statements about what time it is and they have to
     // agree; see `MAKKAH_TZ` in `_map/format.ts` for why this frame.
     const now = Date.now()
-    clockEl.textContent = `${new Date(now + zoneOffset(now, MAKKAH_TZ))
-      .toISOString()
-      .slice(11, 16)} ${MAKKAH_LABEL}`
+    clockEl.textContent = `${makkahHm(now)} ${MAKKAH_LABEL}`
+    hijriEl.textContent = hijriLabel(now, MAKKAH_TZ)
   }
 
   // --- Data ---------------------------------------------------------------
@@ -3357,6 +3733,7 @@ export function mount(
     })
     timeline.setPoints(points)
     container.append(timeline.element)
+    placeMarketStrip()
     watchChrome()
     refresh()
     coreLoaded = true
@@ -3566,6 +3943,29 @@ export function mount(
   }
 
   /**
+   * The star catalogue, after everything the map is for.
+   *
+   * ~45 KB gzipped of positions, magnitudes, colours and names — the same
+   * treatment the water, the conflict feed and the lead sentences get, and for
+   * the stronger version of the same reason: the sun, the moon and the
+   * atmosphere are arithmetic and are drawn from the first frame, so what waits
+   * here is the one part of the sky nobody is looking for yet.
+   *
+   * A failed or absent fetch is a globe with a sun, a moon and no stars. That
+   * is a complete picture, so there is nothing to report and nothing to retry.
+   */
+  const loadStars = () => {
+    whenIdle(() => {
+      void (async () => {
+        const data = await json<unknown>(basemapUrl('stars.json', basemapV), abort.signal)
+        if (!data || !mounted) return
+        sky.setCatalogue(data)
+        sky.draw()
+      })()
+    }, 8000)
+  }
+
+  /**
    * Check for new stories in place.
    *
    * The reader has built a view — a camera, a time slice, a set of categories,
@@ -3630,6 +4030,7 @@ export function mount(
         timeline.setPoints(points)
         old.element.replaceWith(timeline.element)
         old.destroy()
+        placeMarketStrip()
         watchChrome()
       } else {
         timeline?.setPoints(points)
@@ -3866,6 +4267,12 @@ export function mount(
     loadConflict()
     loadLeads()
     loadWater()
+    loadStars()
+    // The sky's canvas has a box only once MapLibre has laid the host out, so
+    // it is measured here rather than at construction. The first paint is a
+    // sun, a moon and an atmosphere; the stars arrive with `loadStars`.
+    sky.resize()
+    sky.draw()
     // Currencies, metals and crypto for the ribbon.
     //
     // `/api/trends.json` already carries all of it — the ummah currency basket,
@@ -3946,6 +4353,31 @@ export function mount(
     root.style.setProperty('--map-status-w', `${Math.round(status.offsetWidth)}px`)
   }
 
+  /**
+   * Which end of the map the money readout sits at.
+   *
+   * Two parents, and the choice has to be re-made rather than made once: the
+   * scrubber is rebuilt from scratch whenever a refresh moves the window, and a
+   * rebuild hands `lead` to the *new* head — so a strip that had been moved to
+   * the top bar would silently return to the scrubber the first time a story
+   * arrived, taking the whole width negotiation back with it. Re-placing after
+   * every rebuild and every resize is the only version of this that stays true.
+   *
+   * `append` and `prepend` move the node rather than copying it, so there is
+   * never a second strip to keep in step — which matters, because
+   * `marketStrip.update` writes into whichever one it is holding.
+   *
+   * The dock goes with it, because the detail panel's placement is a fact about
+   * where the strip is standing: a drawer under the bar at the top, a popover
+   * over the scrubber at the foot.
+   */
+  const placeMarketStrip = () => {
+    const wide = document.body.classList.contains('map-wide')
+    if (wide) marketBar.append(marketStrip.element)
+    else timeline?.head.prepend(marketStrip.element)
+    marketStrip.setDock(wide ? marketBar : null)
+  }
+
   // The scrubber is replaced wholesale when a refresh moves the window, so the
   // observer follows the current element rather than holding the first one.
   const chromeObserver = new ResizeObserver(measureChrome)
@@ -3958,12 +4390,25 @@ export function mount(
   watchChrome()
 
   const onResize = () => {
+    // Before `map.resize()`, never after: the class decides whether there is a
+    // third grid column, so the canvas the resize measures is only the right one
+    // once the layout has settled. Reversed, every resize across the threshold
+    // sizes the drawing buffer to the previous layout and the map draws into a
+    // frame that is a rail too wide until the next resize event happens to come.
+    syncWide()
+    placeMarketStrip()
     // MapLibre sizes its drawing buffer from the container, and nothing else
     // here tells it the container moved — `applyPadding` and `globeFitZoom`
     // both *read* dimensions, they don't apply them. Without this the canvas
     // kept whatever size it was built at: widen the window and the map went on
     // drawing into a 900px corner of a 1544px frame, with dead space beside it.
     map.resize()
+    // After `map.resize()`, because the sky's own canvas is sized off its
+    // rendered box and that box is the one MapLibre just settled. It re-reads
+    // `devicePixelRatio` too — a window dragged to a second monitor changes it
+    // without changing a single CSS pixel.
+    sky.resize()
+    sky.draw()
     measureChrome()
     applyPadding()
     // "Whole world" has to keep meaning the whole world after a resize, or the
@@ -3982,6 +4427,64 @@ export function mount(
   }
   window.addEventListener('resize', onResize, { passive: true })
 
+  /**
+   * The same path, driven by the box rather than by the window.
+   *
+   * `window.resize` is the event for "the viewport changed", and it is not the
+   * same statement as "this element changed size" — a page zoom, a virtual
+   * keyboard, a browser UI that resizes the tab without a resize event, all
+   * move this box without necessarily firing it. That gap is expensive here in
+   * a way it was not before: the layout now *branches* on the box's width
+   * against its height (`syncWide`), so a missed event does not merely leave a
+   * stale measurement, it leaves the wrong layout — the rail standing in a
+   * window with no room for it, or absent from one that has room.
+   *
+   * Safe against the obvious loop: this observes `.map-root`, which is `inset:
+   * 0` on a fixed parent and therefore sized by the viewport alone. Nothing
+   * `onResize` does — `map.resize()`, the class, the padding — can change it,
+   * so the callback cannot re-arm itself.
+   */
+  const rootObserver = new ResizeObserver(onResize)
+  rootObserver.observe(container)
+
+  /**
+   * The two seams.
+   *
+   * Built here rather than beside the rails they bound, because what a seam
+   * needs is not either rail — it is `onResize`, the one function that knows
+   * everything a width change invalidates: the drawing buffer, the camera's
+   * floor, the chrome measurements and, through `syncWide`, whether the
+   * instrument rail should exist at this width at all. Dragging the story rail
+   * wide enough eats the surplus the instrument rail is made of, so a drag on
+   * the left can legitimately fold the right away; running the same path a
+   * window resize runs is what makes that come out right instead of leaving one
+   * rail sized for a layout the other has left.
+   *
+   * `edge()` reads the seam's live position rather than the rail's width,
+   * because the two are only equal when the reader has not dragged yet — and a
+   * drag that starts by snapping the pane to the pointer is a drag that throws
+   * away wherever they grabbed it.
+   */
+  const seams: PaneSeam[] = [
+    createPaneSeam({
+      side: 'left',
+      prop: '--map-rail-user',
+      id: 'rail',
+      name: 'story list',
+      edge: () => feed.element.getBoundingClientRect().width,
+      onChange: onResize,
+    }),
+    createPaneSeam({
+      side: 'right',
+      prop: '--map-aside-user',
+      id: 'aside',
+      name: 'instruments',
+      edge: () => hud.getBoundingClientRect().width,
+      onChange: onResize,
+    }),
+  ]
+  container.append(...seams.map((s) => s.element))
+
   void loadCore()
 
   const onKeyDown = (e: KeyboardEvent) => {
@@ -3992,6 +4495,21 @@ export function mount(
     // only papered over it.
     const target = e.target
     if (target instanceof HTMLElement && target.matches('input, textarea, select')) return
+    /**
+     * `[` and `]` fold the rail on that side.
+     *
+     * The bracket keys because they point at the edge they act on, which is the
+     * only mnemonic available for a control with no letter of its own — and
+     * because they are unmodified keys this page has no other use for. Guarded
+     * on the modifiers regardless: `Ctrl+]` and `Cmd+]` are browser navigation
+     * and a page-level handler swallowing them is a page that has broken the
+     * back button.
+     */
+    if ((e.key === '[' || e.key === ']') && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      seams[e.key === '[' ? 0 : 1]?.toggle()
+      e.preventDefault()
+      return
+    }
     if (e.key !== 'Escape') return
     // Escape closes what is open; with nothing open it means "get me out of
     // here", which on a map is the whole world. Innermost first — the layers
@@ -4026,9 +4544,13 @@ export function mount(
     if (refreshFrame) cancelAnimationFrame(refreshFrame)
     clearPeekClose()
     chromeObserver.disconnect()
+    rootObserver.disconnect()
+    sky.destroy()
     window.removeEventListener('resize', onResize)
     document.removeEventListener('keydown', onKeyDown)
     document.removeEventListener('click', onWordmarkClick)
+    document.body.classList.remove('map-wide')
+    for (const seam of seams) seam.destroy()
     timeline?.destroy()
     feed.destroy()
     popup?.destroy()

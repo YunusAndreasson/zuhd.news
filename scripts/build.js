@@ -548,6 +548,11 @@ const BASEMAP_V = (() => {
     join(ROOT, 'shared', 'data', 'lakes-50m.json'),
     join(ROOT, 'shared', 'data', 'rivers-50m.json'),
     join(ROOT, 'shared', 'data', 'seas-50m.json'),
+    // The sky is served from /basemap/ and is built from two files, one
+    // generated and one hand-written. Both belong here for the reason above:
+    // a star catalogue left out of the hash is one that goes stale for a day.
+    join(ROOT, 'shared', 'data', 'stars.json'),
+    join(ROOT, 'shared', 'star-lore.ts'),
   ]
   const h = createHash('sha256')
   for (const f of inputs) if (existsSync(f)) h.update(readFileSync(f))
@@ -1418,7 +1423,7 @@ console.log(`  Built: api/map-leads.json (${Object.keys(mapLeads).length} leads)
 // `scripts/build/basemap.js` for why one good fetch beat two.
 {
   mkdirSync(join(DIST_DIR, 'basemap'), { recursive: true })
-  const { countries, countriesUltra, countryLabels, places, lakes, rivers, seas } =
+  const { countries, countriesUltra, countryLabels, places, lakes, rivers, seas, stars } =
     await buildMapSources(ROOT)
   const emit = (name, data) => {
     writeFileSync(join(DIST_DIR, 'basemap', name), JSON.stringify(data))
@@ -1431,10 +1436,14 @@ console.log(`  Built: api/map-leads.json (${Object.keys(mapLeads).length} leads)
   const l = emit('lakes.geojson', lakes)
   const r = emit('rivers.geojson', rivers)
   const s = emit('seas.geojson', seas)
+  // The sky. Idle-deferred by the island, so its weight is not first paint —
+  // and absent entirely if `shared/data/stars.json` has not been generated,
+  // which draws a globe with a sun, a moon and no stars rather than failing.
+  const st = stars ? emit('stars.json', stars) : 0
   console.log(
     `  Built: basemap/ (countries ${a}KB, ultra ${d}KB, ${places.features.length} places ${c}KB, ` +
       `${lakes.features.length} lakes ${l}KB, ${rivers.features.length} rivers ${r}KB, ` +
-      `${seas.features.length} seas ${s}KB)`,
+      `${seas.features.length} seas ${s}KB, ${stars ? `${stars.count} stars ${st}KB` : 'no stars'})`,
   )
 }
 

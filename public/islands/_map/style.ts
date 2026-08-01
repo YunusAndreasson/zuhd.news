@@ -132,6 +132,28 @@ export const MAP_COLOURS = {
    */
   prayer: '#c0c4ca',
   /**
+   * The graticule.
+   *
+   * 216°, the blue-grey this map's furniture is already in — `border` and
+   * `prayer` are both at that hue, and a coordinate grid is the last thing on a
+   * map that should spend one. What separates it from them is weight, not hue:
+   * **1.44:1 against the ocean**, against a frontier's 3.3 and a prayer
+   * hairline's ~1.5.
+   *
+   * It has exactly one ground and that is why it can be tuned at all. The layer
+   * is drawn *under* `land`, so this value never meets the ramp — the same
+   * escape `day-shade` takes, and the reason the long argument on
+   * `MAP_COLOURS.water` (there is no tone that works flat for a line crossing
+   * six possible grounds) does not have to be had again here.
+   *
+   * Below a week-old beacon's 1.89:1 on the same water, which is the figure that
+   * matters: the grid must never be the thing a reader's eye finds first in an
+   * empty sea. And the cue does not depend on the number anyway — a graticule
+   * reads as curvature through the *shape* of its lines, not their contrast, so
+   * unlike the terminator over water there is no floor to clear.
+   */
+  graticule: '#272d38',
+  /**
    * Inland water — river threads, and the rim of a lake.
    *
    * There is no colour that works flat here, and finding that out is the whole
@@ -248,7 +270,74 @@ export const MAP_COLOURS = {
    * softer than the token. These figures bound it; the screen decides it.
    */
   horizon: '#222e40',
+  /**
+   * A star, at the top of the magnitude ramp.
+   *
+   * The one place on this map where the "quiet furniture" bar is deliberately
+   * not applied, and the reason is that the bar is about *area*. Every other
+   * argument in this file is about a mark or a wash big enough to change what
+   * the ground reads as — a thousand-pixel atmosphere crescent, a continent of
+   * density, a 7px beacon. A magnitude-1 star is **1.6px across**: the whole
+   * visible sky at the opening view spends about 300 square pixels of ink on a
+   * canvas of a million, which is 0.03%. Holding a point of light to 1.5:1
+   * would not make the map quieter, it would make it starless.
+   *
+   * What *is* rationed is the ramp: alpha falls with magnitude, so the sky is
+   * a handful of legible stars and a great many that are barely there — which
+   * is what a sky is. Sub-pixel discs are drawn by alpha rather than by radius,
+   * because a 0.4px arc is a 1px arc the browser has quietly rounded up.
+   */
+  star: '#d8dce4',
+  /**
+   * The two ends of the colour a star is actually seen at, from its B−V index.
+   *
+   * Real, and rationed the way everything else here is: these are the *anchors*,
+   * and `STAR_TINT` caps how far toward them any star is allowed to travel, so
+   * the reddest star on the map lands well short of the token. Betelgeuse and
+   * Antares come out faintly warm and Rigel faintly cool, which is the one
+   * thing that separates a star field from a scatter of dots — and the reason
+   * to spend hue here at all is that this hue is not *encoding* anything. It is
+   * the measurement. A star's colour is its temperature.
+   */
+  starWarm: '#ffb46b',
+  starCool: '#9db4ff',
+  /**
+   * The sun's disc, and the moon's lit limb.
+   *
+   * Both are drawn at true angular size — 0.53° and 0.52°, which is about 13px
+   * against a 913px earth — so the brightest thing on the map is also one of
+   * the smallest, and the ink it spends is 130 square pixels. Warm-white rather
+   * than white: the disc is a photograph of a G2 star, not a highlight.
+   *
+   * `moonDark` is earthshine, and it is the reason the moon is a *disc* with a
+   * crescent on it rather than a floating crescent. From here the earth-lit
+   * side of the moon is the side facing us, so the unlit part is genuinely
+   * faintly visible — 1.16:1 against space, which is about where it belongs.
+   */
+  sun: '#ffeccc',
+  moon: '#e6e2d8',
+  moonDark: '#14171d',
 } as const
+
+/**
+ * How far a star may travel from `star` toward `starWarm` / `starCool`.
+ *
+ * The cap, not the colour. At 0.35 the extremes render around `#e6cec2` and
+ * `#c8d0e8` — a channel spread of 44 and 32 against the map's most chromatic
+ * furniture (`water`, at 100) — so the sky reads as varied rather than tinted.
+ * Swept against the render at 0.6 (a fairground) and 0.15 (indistinguishable).
+ */
+export const STAR_TINT = 0.35
+
+/**
+ * The B−V colour index the tint is normalised against.
+ *
+ * The catalogue runs about −0.4 (hot, blue) to +2.0 (cool, red) at this
+ * magnitude, and the ends are sparse: clamping to ±1.4 puts the great mass of
+ * the main sequence across the middle of the ramp rather than crowding it into
+ * one step while four rare stars own the extremes.
+ */
+export const STAR_BV_RANGE = 1.4
 
 /** Category hues, low-saturation so four of them can coexist without shouting. */
 export const CATEGORY_COLOUR: Record<string, string> = {

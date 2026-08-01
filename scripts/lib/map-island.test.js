@@ -106,6 +106,43 @@ writeFileSync(
     queryRenderedFeatures() { return [] }
     getZoom() { return 2 }
     getCenter() { return { lng: 12, lat: 22 } }
+    getBearing() { return 0 }
+    getPitch() { return 0 }
+    resize() {}
+    setMinZoom() {}
+    // A real perspective-sphere projection, and it has to be real.
+    //
+    // The sky solves the camera from this and nothing else -- it deliberately
+    // does not read MapLibre's transform internals -- and it refuses to draw
+    // at all when the three-point check says the answer is not a sphere
+    // camera. So a stub returning zeros, or a linear one, would leave the
+    // whole painter silently unexercised: no stars, no halo, no bodies, and a
+    // passing test. f and d are a desktop-shaped camera.
+    project(lngLat) {
+      var D = Math.PI / 180
+      var f = 1369, d = 3.17, cx = 600, cy = 300
+      var unit = function (lng, lat) {
+        var a = lng * D, b = lat * D, k = Math.cos(b)
+        return [k * Math.cos(a), k * Math.sin(a), Math.sin(b)]
+      }
+      var dot = function (u, v) { return u[0] * v[0] + u[1] * v[1] + u[2] * v[2] }
+      var c = this.getCenter()
+      var C = unit(c.lng, c.lat)
+      var n = [-C[2] * C[0], -C[2] * C[1], 1 - C[2] * C[2]]
+      var nl = Math.hypot(n[0], n[1], n[2]) || 1
+      n = [n[0] / nl, n[1] / nl, n[2] / nl]
+      var e = [
+        n[1] * C[2] - n[2] * C[1],
+        n[2] * C[0] - n[0] * C[2],
+        n[0] * C[1] - n[1] * C[0],
+      ]
+      var p = unit(lngLat[0], lngLat[1])
+      var th = Math.acos(Math.max(-1, Math.min(1, dot(p, C))))
+      var r = f * Math.sin(th) / (d - Math.cos(th))
+      var pe = dot(p, e), pn = dot(p, n)
+      var l = Math.hypot(pe, pn) || 1
+      return { x: cx + pe / l * r, y: cy - pn / l * r }
+    }
     flyTo() {}
     easeTo() {}
     isStyleLoaded() { return true }
@@ -171,6 +208,12 @@ function stubContext() {
     lineTo: () => {},
     quadraticCurveTo: () => {},
     arc: () => {},
+    // The sky's own calls. Without these the Proxy hands back `undefined` and
+    // the painter dies on the first frame — which, since the island swallows
+    // nothing, would surface as a mount failure rather than a missing sky.
+    ellipse: () => {},
+    rotate: () => {},
+    createRadialGradient: () => ({ addColorStop: () => {} }),
     save: () => {},
     restore: () => {},
     scale: () => {},
@@ -199,6 +242,14 @@ function setupDom() {
   window.HTMLCanvasElement.prototype.getContext = function () {
     if (!this.__ctx) this.__ctx = stubContext()
     return this.__ctx
+  }
+  // jsdom reports a zero box for everything, and the sky sizes its buffer from
+  // one — so without this it measures 0×0, returns before it has drawn
+  // anything, and every assertion about it passes against a canvas that never
+  // ran. `clientWidth`/`clientHeight` below are stubbed for the same reason;
+  // this is the same lie told to the one caller that asks a different way.
+  window.HTMLCanvasElement.prototype.getBoundingClientRect = function () {
+    return { x: 0, y: 0, top: 0, left: 0, right: 1200, bottom: 600, width: 1200, height: 600, toJSON() {} }
   }
   window.ResizeObserver = class {
     observe() {}
@@ -848,6 +899,79 @@ test('an idle tick with nothing to change writes nothing to the map', async () =
     )
 
     teardown()
+  } finally {
+    env.restore()
+    delete globalThis.__zuhdMaps
+  }
+})
+
+test('the sky is painted behind MapLibre, and paints nothing into it', async () => {
+  // Three separate claims, and the first one is the whole design.
+  //
+  // **Paint order.** `.map-sky` and MapLibre's canvas container are both
+  // `position: absolute` with no `z-index`, so tree order alone decides which
+  // paints over which — and the island appends the sky *before* constructing
+  // the map so MapLibre lands after it. That is what makes the globe occlude
+  // the sky in hardware, at the true edge and at the true moment, including
+  // the partial clip while a body is halfway over the limb. Move the append
+  // after `new MapLibreMap` and the sky draws over the earth, with nothing
+  // thrown and nothing logged. Hence: assert the *position*, not the presence.
+  //
+  // **Nothing reaches MapLibre.** No source, no layer, no image, no feature
+  // state. The sky is a 2D canvas and a `move` listener; if it ever starts
+  // writing to the engine it inherits every constraint this file pins about
+  // idle quiet, collision flags and hit ordering.
+  //
+  // **It is not in the hit path.** `MARKER_LAYERS` and `HIT_ORDER` must stay
+  // the same set (asserted elsewhere in this file), and the sky has no layer to
+  // rank — it is queried by geometry inside the one `click`/`mousemove` pair.
+  globalThis.__zuhdMaps = []
+  const env = setupDom()
+  try {
+    const { mount, MARKER_LAYERS, HIT_ORDER } = await import(bundlePath)
+    const teardown = mount(env.host)
+    env.pump()
+    await settle()
+    env.pump()
+
+    const host = env.host.querySelector('.map-canvas-host')
+    const sky = host.querySelector('canvas.map-sky')
+    assert.ok(sky, 'the sky canvas is mounted')
+    assert.equal(host.firstElementChild, sky, 'the sky is the first child of the canvas host')
+    assert.ok(
+      sky.compareDocumentPosition(host.querySelector('.maplibregl-canvas-container') ?? host) &
+        4 /* DOCUMENT_POSITION_FOLLOWING */ ||
+        !host.querySelector('.maplibregl-canvas-container'),
+      'MapLibre’s canvas comes after the sky in tree order',
+    )
+    // It painted. The harness gives canvases a real box precisely so this can
+    // be true — with jsdom's zero box the painter returns before drawing and
+    // every assertion here would pass against a canvas that never ran.
+    assert.ok(sky.width > 0 && sky.height > 0, 'the sky sized its drawing buffer')
+    assert.ok(sky.getContext('2d').calls.includes('fill'), 'the sky drew something')
+
+    const map = globalThis.__zuhdMaps.at(-1)
+    assert.ok(!('sky' in map.sources) && !('stars' in map.sources), 'the sky adds no source')
+    assert.ok(
+      !map.layers.some((l) => /sky|star|moon|sun|halo|airglow/i.test(l.id)),
+      'the sky adds no layer',
+    )
+    assert.ok(
+      !Object.keys(map.images).some((id) => /sky|star|moon|sun/i.test(id)),
+      'the sky registers no image',
+    )
+    assert.ok(
+      !MARKER_LAYERS.some((l) => /sky|star/i.test(l)) && !HIT_ORDER.some((l) => /sky|star/i.test(l)),
+      'the sky is not in the layer hit path',
+    )
+
+    // Repainting is free of the engine: a `move` must not write feature state.
+    map.stateWrites = 0
+    for (const f of map.handlers.move || []) f({ type: 'move' })
+    assert.equal(map.stateWrites, 0, 'a move repaints the sky and writes nothing to the map')
+
+    teardown()
+    assert.equal(env.host.querySelector('canvas.map-sky'), null, 'teardown removes the sky')
   } finally {
     env.restore()
     delete globalThis.__zuhdMaps

@@ -25,6 +25,17 @@ const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
 export interface Timeline {
   element: HTMLElement
+  /**
+   * The readout row, exposed so the island can move the markets strip out of it.
+   *
+   * On a wide screen the strip belongs in the instrument rail, where its four
+   * summaries stack instead of competing with the clock for one line — but the
+   * rail only exists at some viewports and the scrubber is rebuilt whenever a
+   * refresh moves the window, so which parent the strip has is a decision that
+   * has to be re-made rather than made once at construction. `lead` still puts
+   * it here by default, which is the right answer everywhere else.
+   */
+  head: HTMLElement
   setPoints(points: MapPoint[]): void
   /**
    * The slice of the rail the map is currently drawing, as a start time.
@@ -435,6 +446,7 @@ export function createTimeline(opts: TimelineOptions): Timeline {
 
   return {
     element: root,
+    head,
     setPoints(next) {
       points = next
       scheduleDraw()

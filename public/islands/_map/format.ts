@@ -167,6 +167,31 @@ export const vessels = (n: number | undefined): string =>
 export const rank = (r: number, total: number): string => `${r} / ${total}`
 
 /**
+ * A coordinate, as a place rather than as two numbers.
+ *
+ * `21.4°N 39.8°E`, not `21.423, 39.826`. One decimal is about 11 km, which is
+ * the honest precision for a sub-point that moves 15° an hour and is stated on
+ * a card a reader glances at — and a signed pair with no hemisphere letters is
+ * the form that gets read backwards.
+ */
+export const coordinate = (lat: number, lng: number): string =>
+  `${Math.abs(lat).toFixed(1)}°${lat >= 0 ? 'N' : 'S'} ` +
+  `${Math.abs(lng).toFixed(1)}°${lng >= 0 ? 'E' : 'W'}`
+
+/**
+ * A stellar magnitude. `−1.46`, `2.50`.
+ *
+ * Not `signed()`, which is the *other* thing a sign can mean on this map: there
+ * it carries a direction and always prints one, so a magnitude would come out
+ * `+2.50` and read as a rise. Here the minus is part of the value — Sirius is
+ * brighter than zero, not "up 1.46" — so a positive magnitude takes no sign.
+ * The glyph is still U+2212, for the reason `signed` states: `toFixed` emits an
+ * ASCII hyphen, which is the wrong width beside the site's own minus.
+ */
+export const magnitude = (n: number): string =>
+  `${n < 0 ? '−' : ''}${Math.abs(n).toFixed(2)}`
+
+/**
  * A source's sentiment, as a signed two-decimal number.
  *
  * Only ever shown on stories the map has already marked contested, where the

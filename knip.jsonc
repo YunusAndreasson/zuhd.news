@@ -91,6 +91,12 @@
     "scripts/fetch-country-cards.js",
     "scripts/dry-run-augment.js",
     "scripts/shoot.mjs",
+    // generate-stars.js regenerates the committed shared/data/stars.json from
+    // the Bright Star Catalogue and the IAU's name list. Committed because its
+    // output is: shared/countries/country-augmented.ts names a generator that
+    // is *not* in this repo, so it cannot be regenerated and 32 countries have
+    // been hatched on every metric ever since.
+    "scripts/generate-stars.js",
     // merge-palestine.mjs is a one-shot data edit, already applied, that
     // rewrote the bundled Natural Earth TopoJSON to carry one Palestine
     // feature. scripts/build/basemap.js does the same merge at build time with
