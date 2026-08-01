@@ -74,7 +74,7 @@ export interface SeriesOptions {
    * silently, because a rule that has drifted off the top of the data still
    * looks like a rule.
    */
-  reference?: number | 'open'
+  reference?: number | 'open' | undefined
   /** What the rule is, in a few words — "the 90-day average", "the window's
    *  open". Read out beside the hovered point's change against it. */
   referenceLabel?: string
@@ -88,7 +88,7 @@ export interface SeriesOptions {
    * observations. 30 days." — a label contradicting itself in one breath, and
    * only for the readers who cannot see the chart to check.
    */
-  label?: string
+  label?: string | undefined
   /**
    * Which way the series has moved, as a signed fractional change. Tints the
    * line and the fill, so the chart reads as the thing the reader just clicked
@@ -98,7 +98,7 @@ export interface SeriesOptions {
    * turns around with the range control rather than reporting the quarter's
    * direction over a fortnight's chart.
    */
-  direction?: number | 'window'
+  direction?: number | 'window' | undefined
   /**
    * `straits` is the chokepoint vocabulary — gold for traffic falling away,
    * teal for a surge. `signed` is `--chart-pos` / `--chart-neg`, for a series
@@ -117,7 +117,7 @@ export interface SeriesOptions {
    * A unit appended to the readout and the table, never to the axis — the axis
    * has room for a number and not for a number and a noun.
    */
-  unit?: string
+  unit?: string | undefined
   /**
    * What one step along the x-axis is, as a plural noun: `days`, `sessions`,
    * `months`. Used by the range control's accessible names, which is the only
@@ -663,8 +663,8 @@ export const stepChange = (values: number[], i: number): number | null => {
  */
 export interface MarkupNode {
   tag: string
-  attrs?: Record<string, string | number | boolean | null | undefined>
-  text?: string
+  attrs?: Record<string, string | number | boolean | null | undefined> | undefined
+  text?: string | undefined
   children?: MarkupNode[]
 }
 
@@ -695,7 +695,7 @@ export const renderMarkup = (node: MarkupNode | MarkupNode[] | null | undefined)
 }
 
 export interface StaticFigureOptions {
-  caption?: string
+  caption?: string | undefined
   /** Extra classes for the `<figure>`, matching `_chart.ts`'s `className`. */
   className?: string
   /** Whether to emit the `<details>` table. On by default. */

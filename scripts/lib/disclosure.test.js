@@ -98,10 +98,12 @@ function setupDom() {
     globalThis[k] = k === 'window' ? window : window[k]
   }
   saved.fetch = globalThis.fetch
-  globalThis.fetch = async (url) =>
+  // A stub answering exactly the two shapes the island reads. Cast because it
+  // is deliberately not a whole Response.
+  globalThis.fetch = /** @type {typeof fetch} */ (/** @type {unknown} */ (async (url) =>
     String(url).includes('/api/entity/')
       ? { ok: true, json: async () => RECORD }
-      : { ok: false, json: async () => ({}) }
+      : { ok: false, json: async () => ({}) }))
 
   return {
     window,
@@ -267,7 +269,7 @@ test("the article's follows chip unfolds the series under the strip", async () =
     const block = document.querySelector('.article-entities-block')
     mount(block)
 
-    const panel = block.querySelector('.article-entity-panel')
+    const panel = /** @type {HTMLElement | null} */ (block.querySelector('.article-entity-panel'))
     assert.ok(panel, 'the panel is a sibling of the chip row, not inside its flex line')
     assert.equal(panel.hidden, true)
 
@@ -289,7 +291,7 @@ test("the article's follows chip unfolds the series under the strip", async () =
     assert.equal(full.getAttribute('href'), '/e/brent', 'still a real link for a modified click')
     click(full)
     await settle()
-    const more = panel.querySelector('.article-entity-more')
+    const more = /** @type {HTMLElement} */ (panel.querySelector('.article-entity-more'))
     assert.equal(more.hidden, false)
     assert.match(more.textContent, /as of 2026-07-27/, 'when the last observation was taken')
     assert.match(more.textContent, /Cited in · 30/, 'and what cites it')

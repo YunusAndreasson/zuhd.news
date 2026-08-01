@@ -2,9 +2,9 @@
 // Read the session's runs.jsonl + per-iter diffs, write a human-review summary
 // at /tmp/zuhd-autoresearch/<session>/session-<id>.md ranked by Δ-RVS.
 
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'fs'
-import { dirname, join } from 'path'
-import { fileURLToPath } from 'url'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 const argv = process.argv.slice(2)
 function flag(name) {

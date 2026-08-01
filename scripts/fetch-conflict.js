@@ -21,8 +21,8 @@
 //        WINDOW_DAYS=3 node scripts/fetch-conflict.js
 //        FORCE=1 node scripts/fetch-conflict.js  (bypass mtime cache)
 
-import { writeFileSync, statSync, existsSync } from 'fs'
-import { join } from 'path'
+import { writeFileSync, statSync, existsSync } from 'node:fs'
+import { join } from 'node:path'
 import { filterRecentWindow, mapUcdpRow, parseCsv, rowsToObjects } from './lib/conflict.js'
 
 const ROOT = new URL('..', import.meta.url).pathname

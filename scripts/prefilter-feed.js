@@ -2,7 +2,7 @@
 // Pre-filter: removes feed stories that match already-published articles.
 // Runs after merge-feeds.js, before the selector, so the LLM never wastes
 // picks on stories that would be deduped downstream.
-import { readFileSync, writeFileSync, existsSync } from 'fs'
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { loadDedupContext, wouldDedup } from './lib/dedup.js'
 
 const FEED = '/tmp/zuhd-feed.json'

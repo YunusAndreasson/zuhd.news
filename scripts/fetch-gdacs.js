@@ -12,8 +12,8 @@
 // skips the API mirror when the file is absent, and mobile renders an empty
 // alert list when /api/gdacs.json 404s — same fail-soft path as chokepoints.
 
-import { writeFileSync } from 'fs'
-import { join } from 'path'
+import { writeFileSync } from 'node:fs'
+import { join } from 'node:path'
 import {
   GDACS_GEOJSON_URL,
   collectionToAlerts,
@@ -86,7 +86,7 @@ await runWithConcurrency(detailCandidates, DETAIL_CONCURRENCY, async (alert) => 
     const detail = await fetchGdacsDetail(alert)
     details[`${alert.eventtype}:${alert.eventid}`] = detail
     succeeded++
-  } catch (err) {
+  } catch {
     // Per-event failure is non-fatal — sheet just renders without the
     // population line, same as if mobile had failed the lazy fetch before.
     failed++
@@ -99,7 +99,7 @@ const payload = {
   details,
 }
 
-writeFileSync(OUTPUT_PATH, JSON.stringify(payload) + '\n')
+writeFileSync(OUTPUT_PATH, `${JSON.stringify(payload)}\n`)
 
 const elapsed = ((Date.now() - started) / 1000).toFixed(1)
 console.log(

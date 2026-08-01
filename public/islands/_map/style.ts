@@ -293,6 +293,38 @@ export const OVERLAY_COLOUR = {
   /** The dark core the ring encloses, so the mark reads over any land tone. */
   genocideCore: '#0b0d11',
   /**
+   * An area the IPC has classified at Emergency or worse.
+   *
+   * **Violet, and the hue is the argument.** Every other overlay on this map is
+   * warm — gdacs and thermal at 27°, straits 44°, marketDown 24°, conflict and
+   * genocide at 0–4° — with one teal for a surging strait and one sage for a
+   * rising index. So a warm tone would have landed inside the family that already
+   * means *violence or a hazard*, and famine is neither: it is a determination
+   * about people's food, made by a technical body, and a reader who has learned
+   * that red on this map means people being killed must not have to unlearn it
+   * here. At 269° this sits **87° from its nearest neighbour**, which is the
+   * largest separation the wheel still had, and clear of the 216° blue-grey the
+   * furniture occupies.
+   *
+   * It is deliberately **not the IPC's own five-phase palette** (pale green →
+   * yellow → orange → red → dark red). That palette is internationally
+   * recognised, which is a real argument for it, and it loses to two others: its
+   * top two stops are the red family this map has already spent on conflict and
+   * genocide — Phase 5's dark red would sit a few points from `conflict` and
+   * inside the 20-saturation-point corridor `map-geo.test.js` reserves for the
+   * genocide mark — and five saturated hues for one layer is most of the map's
+   * remaining colour budget. `glyphs.ts` already says how to avoid paying it:
+   * once the silhouette identifies the layer, the phase can ride on shape. So
+   * the famine glyph is a filled level and this is one tone.
+   *
+   * Muted like every mark that is not genocide: s = 0.37 against that mark's
+   * 0.91. And measured where it matters — **6.94:1 against `labelHalo`**, which
+   * `MAP_COLOURS.neutral` explains is the real invariant for a haloed overlay
+   * mark, plus 6.82:1 on the ocean and 5.68:1 on the brightest tone the land ramp
+   * can take. A ramp-stop bar is not the standard here; the halo is.
+   */
+  famine: '#a98bc9',
+  /**
    * A market's direction on the day.
    *
    * These are `--map-pos` and `--map-neg` from style.css, not new colours: the
@@ -430,12 +462,25 @@ export const LAND_NO_DATA = '#0d1015'
  * straight to `map.addImage` — no 2D context, no `data:` URL, nothing the CSP
  * has an opinion about.
  */
+export const NODATA_HATCH = {
+  /** Tile size, in pixels. One diagonal per tile. */
+  tile: 8,
+  /**
+   * The border's colour, so an unmeasured country reads as drawn rather than
+   * as shaded. Kept faint; the hatch has to be findable, not loud.
+   *
+   * Read from `MAP_COLOURS.border` rather than written out again — this was a
+   * second copy of `#5c6470` three hundred lines from the first.
+   */
+  ink: MAP_COLOURS.border,
+  alpha: 90 / 255,
+} as const
+
 export const nodataHatch = (): { width: number; height: number; data: Uint8Array } => {
-  const N = 8
+  const N = NODATA_HATCH.tile
   const data = new Uint8Array(N * N * 4)
-  // `#5c6470` — the border's colour, so an unmeasured country reads as drawn
-  // rather than as shaded. Kept faint; the hatch has to be findable, not loud.
-  const [r, g, b, a] = [0x5c, 0x64, 0x70, 90]
+  const [r, g, b] = [1, 3, 5].map((i) => parseInt(NODATA_HATCH.ink.slice(i, i + 2), 16))
+  const a = Math.round(NODATA_HATCH.alpha * 255)
   for (let y = 0; y < N; y++) {
     for (let x = 0; x < N; x++) {
       // One diagonal per tile. `(x + y) % N` gives a 45° line that tiles

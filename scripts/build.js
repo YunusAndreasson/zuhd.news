@@ -1,11 +1,12 @@
-import { readFileSync, writeFileSync, mkdirSync, readdirSync, cpSync, existsSync, rmSync, statSync } from 'fs'
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, cpSync, existsSync, rmSync, statSync } from 'node:fs'
 import { transformSync } from 'esbuild'
-import { join, basename } from 'path'
-import { createHash } from 'crypto'
+import { join, basename } from 'node:path'
+import { createHash } from 'node:crypto'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { isThermallyRelevant, nearestStories } from './lib/firms.js'
+import { ISO3_TO_ISO2, PHASE_NAMES, publishable, windowCoveringDay } from './lib/ipc.js'
 import { splitBlocks } from './lib/blocks.js'
-import { buildCategoryOgPng, buildOgPng } from './lib/og-image.js'
+import { buildCategoryOgPng, buildOgPng, buildSiteOgPng } from './lib/og-image.js'
 import { buildIgJpeg, IG_FEED, IG_STORY } from './lib/ig-image.js'
 import { buildIslands } from './build/islands.js'
 import { buildMapSources } from './build/basemap.js'
@@ -48,9 +49,9 @@ const MIN_PER_CATEGORY = 10
 const MAX_PER_CATEGORY = 13
 
 const smartQuotes = (text) => text
-  .replace(/(^|[\s(\[{])"(\S)/gm, '$1\u201C$2')
+  .replace(/(^|[\s([{])"(\S)/gm, '$1\u201C$2')
   .replace(/"/g, '\u201D')
-  .replace(/(^|[\s(\[{])'(\S)/gm, '$1\u2018$2')
+  .replace(/(^|[\s([{])'(\S)/gm, '$1\u2018$2')
   .replace(/'/g, '\u2019')
 
 // Pipeline-emitted country tags use the `country:XX` href scheme
@@ -115,7 +116,6 @@ const buildArticle = (filename) => {
   const { meta, body } = parseFrontmatter(raw)
 
   const sources = Array.isArray(meta.sources) ? meta.sources : []
-  const primarySource = sources[0]?.name || ''
 
   const corrections = parseCorrections(meta)
   const sourcemark = renderCorrections(corrections) + renderIsnad(sources, body)
@@ -170,6 +170,7 @@ const groupByWindow = (sorted, cutoff) => {
   const grouped = {}
   for (const a of sorted) {
     const cat = a.meta.category || 'uncategorised'
+    // biome-ignore lint/suspicious/noAssignInExpressions: the (x ??= []) group-by idiom, in statement position. The rule is here for `if (a = b)`.
     const list = grouped[cat] ??= []
     if (list.length >= MAX_PER_CATEGORY) continue
     if (a.addedAt >= cutoff || list.length < MIN_PER_CATEGORY) list.push(a)
@@ -204,7 +205,7 @@ const buildDescription = (body) => {
   if (plain.length <= 170) return plain
   const cut = plain.slice(0, 167)
   const lastSpace = cut.lastIndexOf(' ')
-  return (lastSpace > 120 ? cut.slice(0, lastSpace) : cut) + '…'
+  return `${lastSpace > 120 ? cut.slice(0, lastSpace) : cut}…`
 }
 
 // Background disclosure — matches the homepage reader's plain
@@ -332,7 +333,10 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap) =
     .replace(/{{bodyHtml}}/g, bodyHtml)
     .replace(/{{entityStrip}}/g, entityStripHtml(meta.entities, indicatorMap))
     .replace(/{{threadBlock}}/g, threadBlockHtml(thread?.threadContext))
-    .replace(/{{shareRow}}/g, shareRowHtml(`/a/${slug}`, title))
+    // The map, not this page. A reader on the article is looking at the
+    // canonical surface and sharing the front door — see `shareUrl` in
+    // shared/share.ts for why both surfaces send the same link.
+    .replace(/{{shareRow}}/g, shareRowHtml(SHARE.shareUrl(slug), title))
     .replace(/{{prevLink}}/g, prevLink)
     .replace(/{{nextLink}}/g, nextLink)
 }
@@ -422,7 +426,7 @@ const headCommon = `<meta charset="utf-8">
  * `#080808` nor the map's ground.)
  */
 const headCommonDark = headCommon.replace(
-  /  <meta name="theme-color"[^\n]*\n  <meta name="theme-color"[^\n]*/,
+  / {2}<meta name="theme-color"[^\n]*\n {2}<meta name="theme-color"[^\n]*/,
   '  <meta name="theme-color" content="#080a0d">',
 )
 
@@ -487,8 +491,10 @@ const ROUTABLE_COUNTRIES = await (async () => {
  * — present on first paint, present in the cached page, present if the bundle
  * never arrives.
  */
-const shareRowHtml = (path, title) => {
-  const url = `${SHARE.SITE_URL}${path}`
+const shareRowHtml = (target, title) => {
+  // Absolute already (`shareUrl`) or a site-relative path (the category pages,
+  // which share themselves).
+  const url = target.startsWith('http') ? target : `${SHARE.SITE_URL}${target}`
   const links = SHARE.shareLinks({ url, title })
     .map(({ label, href, aria }) => {
       // mailto: must open in place; _blank on it leaves an empty tab behind.
@@ -651,7 +657,7 @@ if (existsSync(briefingMetaPath)) {
     const genHour = new Date(meta.generated).getUTCHours()
     const cycles = [3, 9, 15, 21]
     const cycleHour = cycles.reduce((prev, c) => c <= genHour ? c : prev, 0)
-    const briefingKey = meta.date + '-' + String(cycleHour).padStart(2, '0') + '00'
+    const briefingKey = `${meta.date}-${String(cycleHour).padStart(2, '0')}00`
     const playSvg = '<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><polygon points="3,1 12,7 3,13"/></svg>'
     const pauseSvg = '<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><rect x="2" y="1" width="3.5" height="12"/><rect x="8.5" y="1" width="3.5" height="12"/></svg>'
     audioBriefingHtml = `<div class="audio-briefing" data-key="${briefingKey}">
@@ -1196,6 +1202,90 @@ if (existsSync(firmsSrc)) {
   )
 }
 
+// Acute food insecurity — the IPC's own area classifications, at Emergency and
+// above. Beside the disaster and thermal mirrors rather than in the corpus join
+// above, because unlike `firms.json` this layer is not *about* the corpus: an IPC
+// determination stands whether or not we happened to write about that district
+// this fortnight, in exactly the way a genocide determination does.
+//
+// `content/.ipc.json` holds every gated area at every phase — 1,852 across 25
+// countries on the snapshot this was built against — and only the grave end is
+// published: 105 areas, being the 101 the IPC classifies at Phase 4 or worse plus
+// the four Gaza areas it classifies at Phase 3 while counting tens of thousands
+// of people in Catastrophe. `publishable` in `lib/ipc.js` carries the argument for
+// that compound bar. Same treatment `.firms.json` and `.ioda.json` get: the
+// evidence stays inspectable, only what can be accounted for is drawn.
+const ipcSrc = join(ROOT, 'content', '.ipc.json')
+if (existsSync(ipcSrc)) {
+  const raw = JSON.parse(readFileSync(ipcSrc, 'utf8'))
+  const today = generated.slice(0, 10)
+  const all = raw.areas ?? []
+  const ipcAreas = []
+  for (const a of all) {
+    if (!publishable(a)) continue
+    // The projection covering today, if the same analysis published one. Used for
+    // one line on the card and never to pick a phase — see `lib/ipc.js`, which
+    // owns the comparison so this is not a second copy of it.
+    const supersedes = windowCoveringDay(a.projections, today)
+    ipcAreas.push({
+      // Stable and explicit, rather than derived in the island: this is the key
+      // the hit test resolves a clicked mark through, and an id computed on the
+      // client from a name is an id that changes when the name is tidied.
+      id: `${a.iso3}:${a.area}`,
+      area: a.area,
+      level1: a.level1 || '',
+      iso3: a.iso3,
+      // Absent rather than guessed when the code is outside the IPC's own list,
+      // so the card renders no country link instead of a broken one.
+      iso2: ISO3_TO_ISO2[a.iso3] ?? undefined,
+      phase: a.phase,
+      phaseName: PHASE_NAMES[a.phase],
+      confidence: a.confidence ?? undefined,
+      prolongedCrisis: a.prolongedCrisis || undefined,
+      lat: a.lat,
+      lng: a.lng,
+      vintage: a.vintage,
+      ageMonths: a.ageMonths,
+      from: a.from,
+      to: a.to,
+      // Only the figures a card states. The full per-phase breakdown stays in
+      // `.ipc.json`; shipping twenty numbers per area to draw four of them is the
+      // `feed.json` / `feed-lite.json` lesson applied before it costs anything.
+      pop: {
+        total: a.population?.total ?? null,
+        p3plus: a.population?.p3plus ?? null,
+        p4: a.population?.p4 ?? null,
+        p5: a.population?.p5 ?? null,
+      },
+      ...(supersedes ? { supersededBy: supersedes } : {}),
+    })
+  }
+  // Gravest first, then newest — so the reader of a truncated payload, and the
+  // symbol layer's own sort, both lead with what matters most.
+  ipcAreas.sort((a, b) => b.phase - a.phase || a.ageMonths - b.ageMonths)
+  writeFileSync(
+    join(DIST_DIR, 'api', 'ipc.json'),
+    JSON.stringify({
+      generated,
+      source: raw.source,
+      license: raw.license,
+      ageLimitMonths: raw.ageLimitMonths,
+      countries: [...new Set(ipcAreas.map((a) => a.iso3))].sort(),
+      areas: ipcAreas,
+      skipped: {
+        ...(raw.skipped ?? {}),
+        // What the publication bar itself dropped, which the fetcher cannot know.
+        belowBar: all.length - ipcAreas.length,
+      },
+    }),
+  )
+  console.log(
+    `  Built: api/ipc.json (${ipcAreas.length} areas at Emergency or worse across ` +
+      `${new Set(ipcAreas.map((a) => a.iso3)).size} countries, ` +
+      `${all.length - ipcAreas.length} below the bar)`,
+  )
+}
+
 // Indicator map: id → {label, kind}. Drives the entity strip on both the
 // article page and the map's story card, so only chips that actually resolve
 // to a /e/{id} page + /api/entity/{id}.json blob are ever surfaced.
@@ -1534,10 +1624,12 @@ if (process.env.SKIP_OG === '1') {
       lat: article.meta.lat != null ? Number(article.meta.lat) : null,
       lng: article.meta.lng != null ? Number(article.meta.lng) : null,
     }
-    for (const [suffix, size] of [
+    /** @type {[string, { width: number, height: number }][]} */
+    const igSizes = [
       ['jpg', IG_FEED],
       ['story.jpg', IG_STORY],
-    ]) {
+    ]
+    for (const [suffix, size] of igSizes) {
       const key = createHash('sha1').update(JSON.stringify({ ...inputs, size: suffix })).digest('hex')
       const cachePath = join(IG_CACHE_DIR, `${key}.jpg`)
       const dstPath = join(DIST_DIR, 'api', 'ig', `${article.slug}.${suffix}`)
@@ -1630,6 +1722,7 @@ mkdirSync(join(DIST_DIR, 'c'), { recursive: true })
 const byCategory = {}
 for (const a of sorted) {
   const cat = a.meta.category || 'politics'
+  // biome-ignore lint/suspicious/noAssignInExpressions: the (x ??= []) group-by idiom, in statement position. The rule is here for `if (a = b)`.
   ;(byCategory[cat] ??= []).push(a)
 }
 // Group rows under a date heading so a 14-day archive scans without the
@@ -1691,6 +1784,30 @@ for (const cat of CATEGORY_ORDER) {
   }
 }
 console.log(`  Built: c/ (${CATEGORY_ORDER.filter(c => (byCategory[c]||[]).length > 0).length} category pages)`)
+
+/**
+ * The card for the site itself, overwriting the one copied out of `public/`.
+ *
+ * `/og-image.png` is what a bare `zuhd.news` link renders as, and what every
+ * static page, `/e/{id}` and `/get` still point at. It was a hand-made PNG last
+ * touched in April — a grey capital Z, a mark this site replaced everywhere
+ * else, on a dark field no other generated card uses. So the front door had the
+ * exact problem the note at the head of `og-image.js`'s second section was
+ * written about, and was the one page that section never reached.
+ *
+ * Generated rather than checked in, so it cannot drift from the card family
+ * again, and unconditional — `SKIP_OG` guards the 718 per-article renders
+ * because they are the expensive part of a cycle; this is one rectangle, one
+ * globe and three lines of type.
+ *
+ * The meta tags point at `?v=2`. Scrapers cache a card by URL and this URL is
+ * permanent, so without the token X, Facebook and WhatsApp would go on serving
+ * the Z they scraped months ago. Bump it when the card's design changes; do not
+ * make it a build stamp, or every deploy invalidates every cached card for no
+ * reason.
+ */
+writeFileSync(join(DIST_DIR, 'og-image.png'), buildSiteOgPng('light'))
+console.log('  Built: og-image.png (site share card)')
 
 // Per-entity pages at /e/{id}.html — stock/commodity/index/chokepoint.
 // Renders a monochrome inline SVG sparkline + the articles that

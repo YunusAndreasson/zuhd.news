@@ -13,8 +13,8 @@
 // leaving any previous .chokepoints.json intact (build.js skips the mirror
 // when the file is absent, so a missing snapshot degrades gracefully).
 
-import { writeFileSync } from 'fs'
-import { join } from 'path'
+import { writeFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { CHOKEPOINT_BY_ID, CHOKEPOINT_CATALOG } from './lib/chokepoint-metadata.js'
 import { fetchAllChokepointsSnapshot } from './lib/trends-sources/portwatch.js'
 
@@ -38,6 +38,7 @@ if (!rows || rows.length === 0) {
   process.exit(0)
 }
 
+/** @type {import('../shared/types.ts').Chokepoint[]} */
 const chokepoints = rows.map((r) => {
   const meta = CHOKEPOINT_BY_ID[r.id]
   return {
@@ -47,7 +48,9 @@ const chokepoints = rows.map((r) => {
     lat: meta.lat,
     lng: meta.lng,
     topicTags: meta.topicTags,
-    primaryField: meta.primaryField,
+    // The catalog stores this as a plain string; the published type
+    // constrains it to the VesselField union. This is where the two meet.
+    primaryField: /** @type {import('../shared/types.ts').VesselField} */ (meta.primaryField),
     last7Avg: r.last7Avg,
     baseline90Avg: r.baseline90Avg,
     delta7vs90: r.delta7vs90,
@@ -78,7 +81,7 @@ const payload = {
   chokepoints,
 }
 
-writeFileSync(OUTPUT_PATH, JSON.stringify(payload, null, 2) + '\n')
+writeFileSync(OUTPUT_PATH, `${JSON.stringify(payload, null, 2)}\n`)
 
 const missing = CHOKEPOINT_CATALOG.length - chokepoints.length
 const note = missing > 0 ? ` (${missing} missing)` : ''

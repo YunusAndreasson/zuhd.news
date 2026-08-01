@@ -23,7 +23,7 @@ const OUT = join(ROOT, 'shared', 'data', 'country-cards.json')
  *  (it is on POSIX local filesystems). */
 function writeCheckpoint(data) {
   mkdirSync(dirname(OUT), { recursive: true })
-  const tmp = OUT + '.tmp'
+  const tmp = `${OUT}.tmp`
   writeFileSync(tmp, JSON.stringify(data))
   // Node's renameSync is atomic on POSIX.
   renameSync(tmp, OUT)

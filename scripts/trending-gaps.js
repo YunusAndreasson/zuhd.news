@@ -9,8 +9,8 @@
 // Output: up to 10 lines of "Title — 1.2M views" on stdout; empty output
 // (exit 0) on any failure so run-cycle.sh simply skips the injection.
 
-import { readdirSync, readFileSync } from 'fs'
-import { join } from 'path'
+import { readdirSync, readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { parseFrontmatter } from './lib/frontmatter.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
@@ -149,7 +149,7 @@ async function main() {
     const c = candidates[i]
     lines.push(`- ${c.title.replace(/_/g, ' ')}${desc ? ` (${desc})` : ''} — ${fmtViews(c.views)} views`)
   }
-  if (lines.length > 0) process.stdout.write(lines.join('\n') + '\n')
+  if (lines.length > 0) process.stdout.write(`${lines.join('\n')}\n`)
 }
 
 main().catch(() => {}) // fail-soft: empty output, exit 0

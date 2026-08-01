@@ -35,8 +35,8 @@
 // per-cycle series is what would let someone eventually calibrate a threshold
 // against events whose cause is known. Cost is two requests and ~20 KB a cycle.
 
-import { writeFileSync } from 'fs'
-import { join } from 'path'
+import { writeFileSync } from 'node:fs'
+import { join } from 'node:path'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const OUTPUT_PATH = join(ROOT, 'content', '.ioda.json')

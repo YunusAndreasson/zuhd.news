@@ -310,6 +310,52 @@ const dash = (x0: number, x1: number): Part => ({
 })
 const PRAYER_DASH: Glyph = { parts: [dash(1, 4), dash(6.5, 9.5), dash(12, 15)] }
 
+/**
+ * An IPC phase: a column filled from the bottom.
+ *
+ * A phase is a **position on a five-point scale**, which is the one quantity in
+ * this alphabet that is neither a magnitude nor a direction, and the only
+ * silhouette family untouched here is a column standing up. Everything else is
+ * radial, triangular, square or a stroke.
+ *
+ * **The frame is what makes it a level rather than three different marks.** Filled
+ * blocks alone would draw Phase 3 as a small bar and Phase 5 as a tall one, which
+ * reads as size — a magnitude channel this map already spends on coverage and
+ * radiative power. Outlining the whole column turns it into one-of-three,
+ * two-of-three, three-of-three, so the reader sees the unfilled capacity and the
+ * mark states a ratio the way the phase does.
+ *
+ * Three blocks, not five. Only Phases 3, 4 and 5 can reach the map at all — the
+ * publication bar in `lib/ipc.js` — so authoring the two the layer never draws
+ * would spend a third of the column's height on marks that cannot exist, and at
+ * this size each block is already only ~3px.
+ *
+ * Which is also why this glyph is drawn larger than a beacon. Five blocks at 7px
+ * would be sub-pixel; three at 10–14px, the range the conflict square already
+ * uses, are legible, and the layer can afford it — 105 marks, against that
+ * layer's thousands.
+ */
+const IPC_BLOCKS = 3
+const ipcBlock = (level: number): Part => {
+  const bottom = 14.3 - level * 4.4
+  return {
+    kind: 'fill',
+    poly: [[4.6, bottom - 3.2], [11.4, bottom - 3.2], [11.4, bottom], [4.6, bottom]],
+  }
+}
+const famine = (phase: number): Glyph => {
+  // Phase 3 fills one block, 4 fills two, 5 fills all three. Clamped rather than
+  // trusted: an out-of-range phase must draw a frame with no fill — visibly
+  // "classified, level unknown" — not an empty `parts` array or a full column.
+  const filled = Math.max(0, Math.min(IPC_BLOCKS, Math.round(phase) - 2))
+  return {
+    parts: [
+      { kind: 'outline', poly: [[3, 1], [13, 1], [13, 15], [3, 15]], width: 1.3 },
+      ...Array.from({ length: filled }, (_, i) => ipcBlock(i)),
+    ],
+  }
+}
+
 export const GLYPHS = {
   dot: DOT,
   'prayer-line': PRAYER_DASH,
@@ -319,6 +365,9 @@ export const GLYPHS = {
   'strait-pinch': strait(1.4),
   'strait-surge': strait(6.4),
   'conflict-mark': CONFLICT,
+  'famine-3': famine(3),
+  'famine-4': famine(4),
+  'famine-5': famine(5),
   'tick-up': TICK_UP,
   'tick-down': TICK_DOWN,
   'tick-flat': TICK_FLAT,
@@ -411,6 +460,16 @@ export const glyphSvg = (id: GlyphId): string => {
           return `<polyline points="${part.path.map(([x, y]) => `${n(x)},${n(y)}`).join(' ')}" fill="none" stroke="currentColor" stroke-width="${part.width}" stroke-linecap="round" stroke-linejoin="round"/>`
         case 'disc':
           return `<circle cx="${n(part.c[0])}" cy="${n(part.c[1])}" r="${n(part.r)}" fill="currentColor"/>`
+        default: {
+          // A `Part` kind with no arm here falls out of the `.map()` as
+          // `undefined` and `.join('')` prints it into the SVG — so the chip
+          // renders the word "undefined" and nothing anywhere reports it. That
+          // is the legend-drifting-from-the-mark failure this module exists to
+          // end, happening inside the module. The assignment makes a new kind a
+          // compile error instead.
+          const unreachable: never = part
+          throw new Error(`glyphSvg: unhandled part ${JSON.stringify(unreachable)}`)
+        }
       }
     })
     .join('')

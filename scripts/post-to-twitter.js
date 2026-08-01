@@ -20,10 +20,10 @@
 //
 // Usage: node scripts/post-to-twitter.js --slug <slug> [--text "..."] [--dry-run]
 
-import { readFileSync, writeFileSync, existsSync } from 'fs'
-import { join } from 'path'
-import { spawnSync } from 'child_process'
-import { createHmac, randomBytes } from 'crypto'
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { join } from 'node:path'
+import { spawnSync } from 'node:child_process'
+import { createHmac, randomBytes } from 'node:crypto'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { buildIgJpeg, IG_FEED } from './lib/ig-image.js'
 
@@ -74,7 +74,7 @@ const readLog = () => {
 }
 const writeLog = (log) => {
   const trimmed = log.length > 100 ? log.slice(-100) : log
-  writeFileSync(TWEET_LOG, JSON.stringify(trimmed, null, 2) + '\n')
+  writeFileSync(TWEET_LOG, `${JSON.stringify(trimmed, null, 2)}\n`)
 }
 const log = readLog()
 if (log.some((e) => e.slug === slug && e.sent)) {
@@ -94,11 +94,11 @@ function truncate(text, max) {
   const wordCut = cut.slice(0, max - 1)
   const lastSpace = wordCut.lastIndexOf(' ')
   const base = lastSpace > max * 0.6 ? wordCut.slice(0, lastSpace) : wordCut
-  return base.replace(/[\s,;:—–-]+$/, '') + '…'
+  return `${base.replace(/[\s,;:—–-]+$/, '')}…`
 }
 
 function condenseViaClaude(articleText) {
-  const prompt = readFileSync(PROMPT_PATH, 'utf8') + '\n' + articleText
+  const prompt = `${readFileSync(PROMPT_PATH, 'utf8')}\n${articleText}`
   const env = { ...process.env }
   // The Haiku/Sonnet micro-task callers drop CLAUDECODE so the subprocess
   // doesn't inherit the parent Claude session marker (see backfill-country-tags.js).
@@ -152,7 +152,7 @@ const igLead = (b) => {
   if (t.length > 260) {
     const cut = t.slice(0, 260)
     const end = cut.lastIndexOf('. ')
-    t = end > 130 ? cut.slice(0, end + 1) : cut.replace(/\s+\S*$/, '') + '…'
+    t = end > 130 ? cut.slice(0, end + 1) : `${cut.replace(/\s+\S*$/, '')}…`
   }
   return t
 }
@@ -178,7 +178,7 @@ function tweetText() {
 
 // --- OAuth 1.0a signing ---
 const rfc3986 = (str) =>
-  encodeURIComponent(str).replace(/[!*'()]/g, (c) => '%' + c.charCodeAt(0).toString(16).toUpperCase())
+  encodeURIComponent(str).replace(/[!*'()]/g, (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`)
 
 function authHeader(method, url) {
   const oauth = {

@@ -45,7 +45,7 @@ async function serveDist() {
       let path = decodeURIComponent(req.url.split('?')[0])
       if (path.endsWith('/')) path += 'index.html'
       let file = join(DIST, path)
-      if (!existsSync(file) && existsSync(file + '.html')) file += '.html'
+      if (!existsSync(file) && existsSync(`${file}.html`)) file += '.html'
       const body = await readFile(file)
       res.writeHead(200, { 'content-type': MIME[extname(file)] || 'application/octet-stream' })
       res.end(body)
@@ -53,8 +53,11 @@ async function serveDist() {
       res.writeHead(404).end('not found')
     }
   })
-  await new Promise((r) => server.listen(0, r))
-  return { server, base: `http://127.0.0.1:${server.address().port}` }
+  await new Promise((r) => {
+    server.listen(0, () => r(undefined))
+  })
+  const addr = /** @type {import('node:net').AddressInfo} */ (server.address())
+  return { server, base: `http://127.0.0.1:${addr.port}` }
 }
 
 const VIEWS = [
@@ -70,7 +73,7 @@ await mkdir(outDir, { recursive: true })
 const browser = await chromium.launch()
 const shots = []
 
-for (const scheme of ['light', 'dark']) {
+for (const scheme of /** @type {('light'|'dark')[]} */ (['light', 'dark'])) {
   for (const v of VIEWS) {
     if (scheme === 'dark' && v.name === 'laptop') continue
     const ctx = await browser.newContext({
@@ -85,7 +88,7 @@ for (const scheme of ['light', 'dark']) {
     })
     page.on('pageerror', (e) => errors.push(String(e)))
 
-    await page.goto(base + '/', { waitUntil: 'load' })
+    await page.goto(`${base}/`, { waitUntil: 'load' })
     // Give the map a beat to fetch its data and paint a few frames.
     await page.waitForTimeout(4500)
 

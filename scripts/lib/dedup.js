@@ -1,7 +1,7 @@
 // Shared dedup logic — used by prefilter-feed.js, dedup-selection.js, and backfill-selection.js.
 // Single source of truth for matching rules and category floors.
-import { readdirSync, readFileSync, existsSync } from 'fs'
-import { join } from 'path'
+import { readdirSync, readFileSync, existsSync } from 'node:fs'
+import { join } from 'node:path'
 import { parseFrontmatter } from './frontmatter.js'
 
 // Must mirror the category-floor lines in select-prompt.md (tech raised 2→3 by
@@ -163,7 +163,7 @@ export function wouldDedup(story, ctx) {
   const { recentSlugs, ledgerEventUris, recentWordSets, recentTitleSets, ledgerLabelSets } = ctx
   const slug = story.suggestedSlug
   // Layer 1: exact slug match
-  if (existsSync(join(ARTICLES_DIR, slug + '.md'))) {
+  if (existsSync(join(ARTICLES_DIR, `${slug}.md`))) {
     return { deduped: true, reason: 'exact', match: slug }
   }
   // Layer 2: eventUri match — same event covered by a recent article

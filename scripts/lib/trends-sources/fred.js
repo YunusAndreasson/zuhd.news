@@ -27,7 +27,7 @@ function ymd(d) {
 /** Format a period label from a FRED observation date. Daily series render
  *  "Mar 18"; monthly series render "Mar 2026". */
 function formatPeriod(dateStr, cadence) {
-  const d = new Date(dateStr + 'T00:00:00Z')
+  const d = new Date(`${dateStr}T00:00:00Z`)
   const month = d.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' })
   if (cadence === 'monthly') return `${month} ${d.getUTCFullYear()}`
   return `${month} ${d.getUTCDate()}`

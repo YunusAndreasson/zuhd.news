@@ -262,15 +262,15 @@ function setupDom() {
   globalThis.ResizeObserver = window.ResizeObserver
   // jsdom ships no Path2D; the renderer only builds and hands them to the
   // (stubbed) context, so a shape that swallows path commands is enough.
-  globalThis.Path2D = class {
+  globalThis.Path2D = /** @type {any} */ (class {
     moveTo() {}
     lineTo() {}
     closePath() {}
     arc() {}
     quadraticCurveTo() {}
-  }
+  })
   globalThis.devicePixelRatio = 2
-  globalThis.fetch = async () => ({ ok: false, json: async () => ({}) })
+  globalThis.fetch = /** @type {typeof fetch} */ (/** @type {unknown} */ (async () => ({ ok: false, json: async () => ({}) })))
 
   return {
     window,
@@ -328,7 +328,7 @@ test('the island mounts, renders, and tears down cleanly', async () => {
     const layers = [...env.host.querySelectorAll('.map-filter[data-kind="layer"]')]
     assert.deepEqual(
       layers.map((b) => b.textContent),
-      ['prayers', 'disasters', 'thermal', 'straits', 'markets', 'conflict'],
+      ['prayers', 'disasters', 'thermal', 'straits', 'markets', 'conflict', 'famine'],
     )
     for (const f of layers) assert.equal(f.getAttribute('aria-pressed'), 'true')
 
@@ -433,7 +433,14 @@ test('every symbol mark layer opts out of collision, both ways', async () => {
     await settle()
 
     const map = globalThis.__zuhdMaps.at(-1)
-    const MARKS = ['gdacs-marks', 'thermal-marks', 'chokepoint-marks', 'conflict-marks', 'market-marks']
+    const MARKS = [
+      'gdacs-marks',
+      'thermal-marks',
+      'chokepoint-marks',
+      'conflict-marks',
+      'market-marks',
+      'famine-marks',
+    ]
     for (const id of MARKS) {
       const layer = map.getLayer(id)
       assert.ok(layer, `${id} should be added`)
@@ -452,9 +459,11 @@ test('every symbol mark layer opts out of collision, both ways', async () => {
     for (const id of ['gdacs-marks', 'conflict-marks', 'thermal-marks']) {
       assert.ok(map.filters[id], `${id} should carry a time filter`)
     }
-    // Chokepoints and markets are statements about now, and genocide is a
-    // condition rather than an event. None of them may be filtered by time.
-    for (const id of ['chokepoint-marks', 'market-marks', 'genocide-marks']) {
+    // Chokepoints and markets are statements about now; genocide and famine are
+    // conditions rather than events. None of them may be filtered by time — an
+    // IPC classification was as true on Tuesday as it is at the live edge, so
+    // scrubbing back must not take a district out of Emergency.
+    for (const id of ['chokepoint-marks', 'market-marks', 'genocide-marks', 'famine-marks']) {
       assert.equal(map.filters[id], undefined, `${id} must not be filtered by time`)
     }
 
@@ -607,6 +616,61 @@ test('the density wash is a ground, and the place numeral is a droppable mark', 
  * and not the other is a bug in either direction: hittable with no stated
  * precedence, or ranked but never queried.
  */
+/**
+ * The famine layer's own invariants.
+ *
+ * Three of these pin decisions that a later edit would find perfectly reasonable
+ * to undo, and each was a live finding rather than a precaution. The layer is
+ * absent from the time filters because a classification is a condition; it draws
+ * above the stories because IPC areas sit in exactly the places that generate the
+ * most coverage; and its phase-to-glyph mapping is a `match` in the layer rather
+ * than a property on the feature, because a `['get', …]` image is invisible to
+ * the walk that guards the whole alphabet.
+ */
+test('the famine layer draws a phase, above the stories, outside the scrubber', async () => {
+  const env = setupDom()
+  globalThis.__zuhdMaps = []
+  try {
+    const { mount } = await import(bundlePath)
+    const teardown = mount(env.host)
+    env.pump()
+    await settle()
+
+    const map = globalThis.__zuhdMaps.at(-1)
+    const layer = map.getLayer('famine-marks')
+    assert.ok(layer, 'famine-marks should be added')
+
+    // The three silhouettes the publication bar can produce, and no others: the
+    // bar admits Phase 3 only for an area with a Catastrophe caseload, so a
+    // reader can meet any of 3, 4 or 5 and must not meet 1 or 2.
+    const image = JSON.stringify(layer.layout['icon-image'])
+    for (const id of ['famine-3', 'famine-4', 'famine-5']) {
+      assert.ok(image.includes(id), `famine-marks should draw ${id}`)
+    }
+    for (const id of ['famine-1', 'famine-2']) {
+      assert.ok(!image.includes(id), `${id} is below the publication bar and must not be drawn`)
+    }
+
+    // Draw order. Above the stories for the reason `market-marks` is: a story
+    // pile survives a glyph crossing it and a single famine mark, covered, is
+    // simply absent. Below genocide, the one mark nothing may cover.
+    const ids = map.layers.map((l) => l.id)
+    assert.ok(
+      ids.indexOf('famine-marks') > ids.indexOf('story-points'),
+      'famine marks must draw above the story beacons',
+    )
+    assert.ok(
+      ids.indexOf('famine-marks') < ids.indexOf('genocide-marks'),
+      'nothing may draw over the genocide mark',
+    )
+
+    teardown()
+  } finally {
+    delete globalThis.__zuhdMaps
+    env.restore()
+  }
+})
+
 test('the hit test and its precedence describe the same set of layers', async () => {
   const { MARKER_LAYERS, HIT_ORDER } = await import(bundlePath)
   assert.equal(

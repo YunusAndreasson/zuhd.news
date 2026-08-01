@@ -10,7 +10,7 @@
 // failures mean "something new has broken", not "the pipeline isn't perfect".
 import { test } from 'node:test'
 import { strict as assert } from 'node:assert'
-import { readFileSync, readdirSync, existsSync } from 'fs'
+import { readFileSync, readdirSync, existsSync } from 'node:fs'
 
 const LOG_DIR = 'logs'
 const WINDOW = 14 // last N cycles
@@ -53,6 +53,25 @@ test('no new silent stage failures', () => {
     // rejected chunk as plain text and drops just that chunk on a second failure
     // instead of crashing. Entry kept only until this log rotates out of the 14-cycle window.
     'cycle-2026-06-12_0403.log: Briefing exit=1',
+    // Writer emitted a malformed tool call and the CLI's own retry failed too —
+    // 9s and 8s, nothing written. Two of the five zero-publish cycles in
+    // 2026-07-25→30; the other three exited 0 and are pinned in "no cycle
+    // reaches the writer and writes nothing" below, which is the test that
+    // exists because this one could not see them. run-cycle.sh now retries the
+    // writer on zero articles regardless of exit code.
+    'cycle-2026-07-29_1204.log: Writer exit=1',
+    'cycle-2026-07-30_0803.log: Writer exit=1',
+    // Cloudflare's own API answered `wrangler pages deploy` with an HTTP 522 —
+    // a connection timeout on their side, returned as an HTML error page, which
+    // wrangler reports as "Received a malformed response from the API". Nothing
+    // of ours failed: Build exit=0, all 13 articles were written, validated,
+    // committed and pushed (07c947e7), and the 17:00 cycle deployed them with
+    // Deploy exit=0. The Funnel's "Published: 0" counts the deploy, not the
+    // corpus. Same class as the Writer stalls above — transient upstream, no
+    // fix available on this side beyond the next cycle, which is the recovery
+    // path that already worked. Entry kept until this log rotates out of the
+    // window.
+    'cycle-2026-07-31_1203.log: Deploy exit=1',
   ])
   const failures = []
   // 'Edu context' dropped 2026-06-19: that stage was removed from run-cycle.sh
@@ -96,6 +115,22 @@ test('git push failure rate does not grow', () => {
     `git push failures ${failed.length} > baseline ${BASELINE}; new:\n  ${failed.slice(BASELINE).join('\n  ')}`)
 })
 
+// The typecheck stage added to run-cycle.sh on 2026-08-01 is non-blocking by
+// design — build+commit+deploy must run even when it fails, or a checker
+// becomes the thing that stops the site publishing. The cost of that choice is
+// that its failure is a line in a log nobody reads, which is exactly the class
+// of silent failure the test above this one exists for. So it gets a ratchet of
+// its own, and the baseline is zero: unlike a git push rejected by an upstream
+// nobody here controls, a type error is ours and there is no reason for one to
+// reach this box at all — CI rejects it on push, and the only way past that is
+// a direct commit on the server.
+test('no cycle typechecked dirty', () => {
+  const failed = readdirSync(LOG_DIR)
+    .filter(f => f.startsWith('cycle-') && f.endsWith('.log'))
+    .filter(f => /WARNING: typecheck failed/.test(readFileSync(`${LOG_DIR}/${f}`, 'utf8')))
+  assert.deepEqual(failed, [], `cycles that built with type errors:\n  ${failed.join('\n  ')}`)
+})
+
 // Validator SKIPs move files to .bad. Every SKIP is an article lost.
 // Pre-sentence-splitter-fix the SKIP lines were: 2026-04-13, 2026-04-19.
 // Post-fix there should be zero SKIPs in new cycles; if one appears it's
@@ -132,6 +167,45 @@ test('publish rate does not collapse', () => {
   const mean = counts.reduce((a, b) => a + b, 0) / counts.length
   const FLOOR = 7 // historical mean 9.4, min 3; 7 = two-thirds of mean
   assert.ok(mean >= FLOOR, `publish mean ${mean.toFixed(1)} < floor ${FLOOR} over last ${counts.length} cycles`)
+})
+
+// A cycle that reached the writer and wrote nothing.
+//
+// The two tests above cannot see this, and the comment on `publish rate does
+// not collapse` asserts that one of them can: it skips any cycle without
+// `Editor exit: 0` on the grounds that an abort "is a pipeline-reliability
+// problem... and `no new silent stage failures` above is the test that catches
+// it". That is only true of aborts with a *non-zero* exit. Over
+// 2026-07-25→30 five cycles published zero and **three of them exited 0** —
+// the writer answered "what would you like me to do?", or asked for approval to
+// run a command, and the CLI called that success. So the whole suite passed
+// while 17% of cycles shipped nothing, which is the exact failure mode this
+// file was written to end.
+//
+// The condition is the funnel's own arithmetic: the selection survived dedup
+// (an empty one exits before Stage 2), so `Written: 0` past that point is
+// always a failure, whatever the status line says.
+test('no cycle reaches the writer and writes nothing', () => {
+  const KNOWN_BAD = new Set([
+    // All five predate the retry generalisation in run-cycle.sh (2026-07-30),
+    // which now reruns the writer on zero articles regardless of exit code.
+    // Kept only until they rotate out of the 14-cycle window.
+    'cycle-2026-07-25_0404.log', // exit 0, 17s — asked approval to inspect the selection file
+    'cycle-2026-07-26_0404.log', // exit 0, 6s — "I don't see a specific request in your message"
+    'cycle-2026-07-28_2202.log', // exit 0, 6s — "no actual request yet"
+    'cycle-2026-07-29_1204.log', // exit 1, 9s — tool call could not be parsed
+    'cycle-2026-07-30_0803.log', // exit 1, 8s — tool call could not be parsed
+  ])
+  const failures = []
+  for (const { f, raw } of loadRecent()) {
+    if (KNOWN_BAD.has(f)) continue
+    // Only cycles that actually got to the writer: an all-deduped selection
+    // exits at Stage 1.5 and never prints a Writer line.
+    if (!/^Writer exit: /m.test(raw)) continue
+    const written = num(raw, /^Written:\s+(\d+)/m)
+    if (written === 0) failures.push(`${f}: reached the writer, wrote 0`)
+  }
+  assert.deepEqual(failures, [], `writer produced nothing:\n  ${failures.join('\n  ')}`)
 })
 
 // Feed-volume drops signal upstream source issues (RSS parser broke, API

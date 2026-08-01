@@ -18,6 +18,52 @@
     "noEmit": true,
     // Third-party .d.ts files are not ours to fix, and maplibre-gl's are large.
     "skipLibCheck": true,
+
+    // `strict` is not the whole of strictness. Every flag below was measured
+    // against this tree on 2026-08-01 before being turned on; the seven from
+    // noUnusedParameters down cost nothing at all, which is the argument for
+    // enabling them rather than waiting for a reason.
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+
+    // These three exist because esbuild, not tsc, is the real compiler here
+    // (scripts/build/islands.js) and it transpiles one file at a time with no
+    // type information at all. They are the constraints that keep the
+    // typechecker's model of a module and the bundler's model of it the same
+    // — a type-only import that survives into the output, or an enum that
+    // needs whole-program knowledge to erase, is a class of bug the
+    // typechecker would otherwise never see because it is not a type error.
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "erasableSyntaxOnly": true,
+
+    // Cost 11 errors when turned on. Ten were options-object plumbing — the
+    // chart, ticker and timeline bags, whose callers legitimately hand a key
+    // through as undefined, so the declarations now say `?: T | undefined`.
+    // The eleventh was `{ signal: AbortSignal | undefined }` handed to fetch()
+    // in situation-map.ts, which fetch tolerates: not a live fault, but the
+    // shape of one, and the flag is what separates absent from
+    // present-and-undefined anywhere it does matter.
+    "exactOptionalPropertyTypes": true,
+
+    // NOT enabled, deliberately, and this is the one gap worth writing down.
+    // `noUncheckedIndexedAccess` costs 96 errors, concentrated in _map/prayer.ts
+    // (22), shared/chart/series.ts (18) and _map/places.ts (17) — the modules
+    // whose geometry map-geo.test.js pins against adhan to within 20 seconds.
+    // It is the highest-value flag left, precisely because this code
+    // destructures [lat, lng] tuples everywhere and `undefined` leaking into a
+    // `number` is its characteristic failure. It belongs in its own change,
+    // with the tests watched, not bundled into a tooling rollout.
+    //
+    // Note that mobile/tsconfig.json ALREADY sets it and already includes
+    // `../shared/**/*.ts`, so `shared/chart/series.ts` is checked under it
+    // today and reports 18 errors there — measured 2026-08-01, unchanged by
+    // this work. `npm run typecheck` in mobile/ has been red on those the whole
+    // time. Landing the flag here closes both at once, which is the argument
+    // for doing it soon rather than never.
     // Mirrors the `@shared` alias scripts/build/islands.js gives esbuild. If the
     // two ever disagree, this is the one that will notice first.
     "paths": { "@shared/*": ["./shared/*"] }

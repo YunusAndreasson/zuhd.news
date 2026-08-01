@@ -2,7 +2,7 @@
 // Post-dedup backfill: when dedup drops stories below category floors,
 // picks the best available replacement from the feed.
 // Runs after dedup-selection.js, before update-ledger.js.
-import { readFileSync, writeFileSync, existsSync } from 'fs'
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { CATEGORY_FLOORS, loadDedupContext, wouldDedup } from './lib/dedup.js'
 import { fingerprint } from './lib/utils.js'
 

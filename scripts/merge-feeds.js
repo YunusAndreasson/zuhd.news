@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Merges API feed (/tmp/zuhd-feed-api.json) and RSS feed (/tmp/zuhd-feed-rss.json)
 // into a single /tmp/zuhd-feed.json. Deduplicates by title fingerprint.
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs'
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs'
 import { fingerprint } from './lib/utils.js'
 
 function loadFeed(path) {
@@ -40,7 +40,7 @@ const MAX_AGE_MS = 48 * 60 * 60 * 1000
 const now = Date.now()
 const fresh = stories.filter(s => {
   const age = now - new Date(s.pubDate).getTime()
-  return !isNaN(age) && age < MAX_AGE_MS
+  return !Number.isNaN(age) && age < MAX_AGE_MS
 })
 const stale = stories.length - fresh.length
 

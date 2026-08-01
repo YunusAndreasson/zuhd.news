@@ -5,19 +5,18 @@
 // the live cycle would do. Models pinned by ID (no aliases) for the same
 // reason as run-cycle.sh: comparable iteration deltas across a session.
 
-import { spawnSync } from 'child_process'
+import { spawnSync } from 'node:child_process'
 import {
   copyFileSync,
   existsSync,
-  lstatSync,
   mkdirSync,
   readFileSync,
   rmSync,
   symlinkSync,
   writeFileSync,
-} from 'fs'
-import { dirname, join } from 'path'
-import { fileURLToPath } from 'url'
+} from 'node:fs'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 export const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 export const SANDBOX_ROOT = '/tmp/zuhd-autoresearch'
@@ -160,6 +159,10 @@ export function stageTrendsDigest(trendsSnapshotPath) {
 
 // --- Claude CLI invocation matching production stage args ---
 
+/**
+ * @param {{ prompt: string, model: string, allowedTools: string, maxTurns: number,
+ *          timeoutSec: number, cwd: string, env?: Record<string, string|undefined> }} opts
+ */
 export function runClaude({ prompt, model, allowedTools, maxTurns, timeoutSec, cwd, env }) {
   const fullEnv = { ...process.env, ...(env || {}) }
   // Production runs without CLAUDECODE so the headless CLI is honored

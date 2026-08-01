@@ -120,6 +120,16 @@
 /api/firms.json
   Cache-Control: public, max-age=900, stale-while-revalidate=3600, stale-if-error=86400
 
+# The longest max-age of any overlay feed, because it is the slowest-moving thing
+# on the map by two orders of magnitude. An IPC analysis is a determination made
+# once and superseded months later — the published set changed twice in the last
+# quarter — so revalidating every fifteen minutes would be asking a question whose
+# answer cannot have changed. `stale-if-error` runs a week for the same reason: a
+# classification a few days stale is still the current classification, and going
+# blank on the famine layer is the worse failure.
+/api/ipc.json
+  Cache-Control: public, max-age=21600, stale-while-revalidate=86400, stale-if-error=604800
+
 /api/trends.json
   Cache-Control: public, max-age=900, stale-while-revalidate=3600, stale-if-error=86400
 

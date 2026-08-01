@@ -6,10 +6,10 @@
 // Usage:
 //   node scripts/autoresearch/propose.js --session <id> --runs <runs.jsonl-path>
 
-import { existsSync, readFileSync } from 'fs'
-import { join, dirname } from 'path'
-import { spawnSync } from 'child_process'
-import { fileURLToPath } from 'url'
+import { existsSync, readFileSync } from 'node:fs'
+import { join, dirname } from 'node:path'
+import { spawnSync } from 'node:child_process'
+import { fileURLToPath } from 'node:url'
 
 const argv = process.argv.slice(2)
 function flag(name) {

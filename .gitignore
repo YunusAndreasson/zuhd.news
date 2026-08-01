@@ -36,6 +36,8 @@ pnpm-lock.yaml
 # and in scripts/ every time an article-length question comes up.
 check_*.py
 check_*.sh
+check_*.js
+count_*.js
 checklen*.py
 checklen*.sh
 count_chars.*

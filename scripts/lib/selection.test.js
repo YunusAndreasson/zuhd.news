@@ -12,7 +12,7 @@
 // stops being a corpus-level property and becomes a blocking precondition.
 import { test } from 'node:test'
 import { strict as assert } from 'node:assert'
-import { readFileSync, existsSync } from 'fs'
+import { readFileSync, existsSync } from 'node:fs'
 import { slugWords } from './dedup.js'
 
 const SELECTION = '/tmp/zuhd-selection.json'

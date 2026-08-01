@@ -10,7 +10,7 @@
 // - Add new entries for selected stories not in ledger
 // - Keep 15-30 active entries
 // - Collect conceptUris from selection concepts
-import { readFileSync, writeFileSync, existsSync } from 'fs'
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 
 const LEDGER_PATH = 'content/.story-ledger.json'
 const SELECTION_PATH = '/tmp/zuhd-selection.json'
@@ -133,6 +133,6 @@ if (removed > 0) changes.push(`Removed ${removed} entries at importance 0`)
 // Sort by importance desc, then lastCovered desc
 ledger.stories.sort((a, b) => (b.importance - a.importance) || (b.lastCovered || '').localeCompare(a.lastCovered || ''))
 
-writeFileSync(LEDGER_PATH, JSON.stringify(ledger, null, 2) + '\n')
+writeFileSync(LEDGER_PATH, `${JSON.stringify(ledger, null, 2)}\n`)
 console.log(`Story ledger: ${ledger.stories.length} entries`)
 for (const c of changes) console.log(`  ${c}`)

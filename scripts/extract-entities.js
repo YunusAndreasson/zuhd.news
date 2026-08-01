@@ -10,10 +10,10 @@
 // predictable. Ambiguous mentions (rupee, peso, pound) are skipped; a Haiku
 // disambiguation pass lands in a later revision.
 
-import { readFileSync, writeFileSync, existsSync } from 'fs'
-import { join, basename } from 'path'
-import { spawnSync } from 'child_process'
-import { randomUUID } from 'crypto'
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { join, basename } from 'node:path'
+import { spawnSync } from 'node:child_process'
+import { randomUUID } from 'node:crypto'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { ENTITY_RULES_SORTED, mentionToRegex } from './lib/entity-registry.js'
 import { fetchYahooStock } from './lib/trends-sources/stocks.js'
@@ -261,7 +261,7 @@ Return ONLY the JSON object. No commentary, no markdown fences.`
           c &&
           typeof c.mention === 'string' &&
           typeof c.ticker === 'string' &&
-          /^[A-Z0-9.\-]{1,15}$/i.test(c.ticker) &&
+          /^[A-Z0-9.-]{1,15}$/i.test(c.ticker) &&
           typeof c.name === 'string',
       )
       if (clean.length > 0) out.set(slug, clean)
@@ -294,7 +294,7 @@ function appendIndicatorsToSnapshot(newIndicators) {
     const byId = new Map(existing.map((i) => [i.id, i]))
     for (const ind of newIndicators) byId.set(ind.id, ind)
     snapshot.indicators = [...byId.values()]
-    writeFileSync(TRENDS_SNAPSHOT_PATH, JSON.stringify(snapshot, null, 2) + '\n')
+    writeFileSync(TRENDS_SNAPSHOT_PATH, `${JSON.stringify(snapshot, null, 2)}\n`)
     console.log(
       `  · stocks: appended ${newIndicators.length} indicator(s) → ${basename(TRENDS_SNAPSHOT_PATH)} (${snapshot.indicators.length} total)`,
     )
@@ -311,9 +311,9 @@ function appendIndicatorsToSnapshot(newIndicators) {
  */
 function writeEntitiesToFrontmatter(raw, entities) {
   const yamlBlock = entities.length > 0
-    ? 'entities:\n' + entities.map(e =>
+    ? `entities:\n${entities.map(e =>
         `  - mention: "${e.mention.replace(/"/g, '\\"')}"\n    indicatorId: "${e.indicatorId}"\n    kind: "${e.kind}"`
-      ).join('\n')
+      ).join('\n')}`
     : 'entities: []'
 
   const fmMatch = raw.match(/^---\n([\s\S]*?)\n---\n/)
@@ -339,7 +339,7 @@ function writeEntitiesToFrontmatter(raw, entities) {
     stripped.push(line)
   }
 
-  const updatedFm = stripped.join('\n').trimEnd() + '\n' + yamlBlock
+  const updatedFm = `${stripped.join('\n').trimEnd()}\n${yamlBlock}`
   return `---\n${updatedFm}\n---\n${rest}`
 }
 
@@ -408,7 +408,7 @@ for (const item of ambiguousQueue) {
 // EntitySheet can chart them, (b) stock entity entries added to per-article
 // frontmatter so the mention is tappable.
 let stocksHits = new Map()
-let newStockIndicators = []
+const newStockIndicators = []
 if (files.length > 0) {
   console.log(`  · stocks-haiku: scanning ${files.length} article(s) for tickers`)
   stocksHits = extractStocksViaHaiku(

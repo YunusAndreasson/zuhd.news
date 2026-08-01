@@ -3,11 +3,23 @@
 // (logged, then dropped) rather than silently disappearing when the app loads
 // the brief. Keep this in sync with mobile — the runtime contract is the same.
 
+// These four are declared as *type predicates*, not as `boolean`, and that is
+// what makes this file checkable at all. `parseArticleBlock` has always taken
+// `unknown` — it parses whatever the writer stage emitted — so without a
+// predicate the very first `if (!isObject(v))` narrows nothing and every
+// property read after it is an error against `unknown`. There were 122 of them.
+// Saying `v is Record<string, unknown>` costs one line and buys the narrowing
+// the code was already written to rely on.
+
+/** @param {unknown} v @returns {v is Record<string, unknown>} */
 const isObject = (v) => typeof v === 'object' && v !== null && !Array.isArray(v)
+/** @param {unknown} v @returns {v is string[]} */
 const isStringArray = (v) => Array.isArray(v) && v.every((s) => typeof s === 'string')
+/** @param {unknown} v @returns {v is number[]} */
 const isNumberArray = (v) =>
   Array.isArray(v) && v.every((n) => typeof n === 'number' && Number.isFinite(n))
 
+/** @param {unknown} v @returns {v is 'favorable' | 'unfavorable' | 'neutral'} */
 const isTone = (v) => v === 'favorable' || v === 'unfavorable' || v === 'neutral'
 
 const isCompareSegment = (v) => {
@@ -84,11 +96,17 @@ export function parseArticleBlock(v) {
       // A trend block carries either `values` (single series) or `series`
       // (multi). Series capped at 3 — beyond that it reads as noise on a
       // 360px viewport.
-      const hasValues = isNumberArray(v.values) && v.values.length >= 2
+      // Bound to locals before being tested, so the checks below narrow. A
+      // guard written against `v.values` narrows nothing that survives, because
+      // `v` is a Record and a property access off one is not a reference
+      // TypeScript will track; a `const` is.
+      const rawValues = v.values
+      const rawSeries = /** @type {{ label: string, values: number[], highlight?: string }[]} */ (v.series)
+      const hasValues = isNumberArray(rawValues) && rawValues.length >= 2
       const hasSeries =
-        Array.isArray(v.series) &&
-        v.series.length > 0 &&
-        v.series.every(
+        Array.isArray(rawSeries) &&
+        rawSeries.length > 0 &&
+        rawSeries.every(
           (s) =>
             isObject(s) &&
             typeof s.label === 'string' &&
@@ -99,13 +117,16 @@ export function parseArticleBlock(v) {
         return { block: null, reason: 'trend needs `values` (≥2 numbers) or non-empty `series`' }
       }
       if (typeof v.label !== 'string') return { block: null, reason: 'trend.label must be string' }
-      const primaryValues = hasSeries
-        ? v.series.reduce((longest, s) => (s.values.length > longest.length ? s.values : longest), v.series[0].values)
-        : v.values
+      // Narrowed by the `!hasValues && !hasSeries` early return five lines up,
+      // which TypeScript cannot carry into a ternary's alternative branch.
+      const primaryValues = /** @type {number[]} */ (hasSeries
+        ? rawSeries.reduce((longest, s) => (s.values.length > longest.length ? s.values : longest), rawSeries[0].values)
+        : rawValues)
+      /** @type {Record<string, any>} */
       const block = { type: 'trend', label: v.label }
-      if (hasValues) block.values = v.values
+      if (hasValues) block.values = rawValues
       if (hasSeries) {
-        block.series = v.series.slice(0, 3).map((s) => {
+        block.series = rawSeries.slice(0, 3).map((s) => {
           const out = { values: s.values, label: s.label }
           if (
             s.highlight === 'last' ||
@@ -141,8 +162,8 @@ export function parseArticleBlock(v) {
         // the band — silently downgrade to linear if anything fails.
         if (v.scale === 'log') {
           const allPositive =
-            (!hasValues || v.values.every((n) => n > 0)) &&
-            (!hasSeries || v.series.every((s) => s.values.every((n) => n > 0)))
+            (!hasValues || rawValues.every((n) => n > 0)) &&
+            (!hasSeries || rawSeries.every((s) => s.values.every((n) => n > 0)))
           if (allPositive) block.scale = 'log'
         } else {
           block.scale = 'linear'
@@ -322,7 +343,7 @@ export function parseArticleBlock(v) {
       if (peers.length < 5) return { block: null, reason: 'rank needs ≥5 peers (incl. subject)' }
       const subjectInPeers = peers.some((p) =>
         hasSubjectCc
-          ? typeof p.cc === 'string' && p.cc.toUpperCase() === v.subjectCc.toUpperCase()
+          ? typeof p.cc === 'string' && p.cc.toUpperCase() === String(v.subjectCc).toUpperCase()
           : typeof p.label === 'string' && p.label === v.subjectLabel,
       )
       if (!subjectInPeers) {

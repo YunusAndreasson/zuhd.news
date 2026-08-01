@@ -11,9 +11,9 @@
 // Sandboxed: writes to /tmp/zuhd-autoresearch/<session>/<iter>/. Never touches
 // the production repo's content/.
 
-import { existsSync, mkdirSync, readFileSync, writeFileSync, copyFileSync, appendFileSync } from 'fs'
-import { join, basename } from 'path'
-import { spawnSync } from 'child_process'
+import { existsSync, mkdirSync, readFileSync, writeFileSync, copyFileSync } from 'node:fs'
+import { join } from 'node:path'
+import { spawnSync } from 'node:child_process'
 import {
   REPO_ROOT,
   MODELS,

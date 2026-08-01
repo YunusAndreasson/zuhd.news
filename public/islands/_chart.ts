@@ -70,7 +70,7 @@ export interface ChartOptions extends SeriesOptions {
    * The line under the chart naming what it is — source, cadence, what the
    * rule marks. Static; the readout above the chart is what moves.
    */
-  caption?: string
+  caption?: string | undefined
   /**
    * Offer the range control when the series is long enough for it. Off for a
    * chart in a space too tight to hold a row of buttons.

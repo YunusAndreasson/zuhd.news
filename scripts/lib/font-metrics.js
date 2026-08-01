@@ -28,13 +28,12 @@
 // overestimates width slightly, and every error this module makes should be in
 // the direction of "the text fits".
 
-import { readFileSync } from 'fs'
+import { readFileSync } from 'node:fs'
 
 const cache = new Map()
 
 const u16 = (b, o) => b.readUInt16BE(o)
 const u32 = (b, o) => b.readUInt32BE(o)
-const i16 = (b, o) => b.readInt16BE(o)
 
 /** Character code → glyph id, from a format 4 (BMP) cmap subtable. */
 const parseCmap4 = (buf, off, map) => {

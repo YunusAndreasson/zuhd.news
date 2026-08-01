@@ -2,7 +2,7 @@
 // Fetches news from NewsAPI.ai (Event Registry).
 // Strategy: events endpoint for story discovery + article queries for source diversity.
 // Output: /tmp/zuhd-feed-api.json
-import { writeFileSync, mkdirSync, readdirSync, statSync, unlinkSync } from 'fs'
+import { writeFileSync, mkdirSync, readdirSync, statSync, unlinkSync } from 'node:fs'
 import { slugify, zuhdCategory } from './lib/utils.js'
 
 const API_KEY = process.env.NEWSAPI_KEY
@@ -195,7 +195,7 @@ async function apiPost(endpoint, params, tag = 'other') {
     // Surface a sliver of the body so 401/429/5xx are diagnosable from logs.
     let detail = ''
     try { detail = (await res.text()).slice(0, 200) } catch {}
-    throw new Error(`NewsAPI.ai ${endpoint} ${res.status} ${res.statusText}${detail ? ' — ' + detail : ''}`)
+    throw new Error(`NewsAPI.ai ${endpoint} ${res.status} ${res.statusText}${detail ? ` — ${detail}` : ''}`)
   }
   return res.json()
 }
@@ -576,7 +576,7 @@ async function main() {
         title,
         description: event.summary?.eng || (medoid?.body || '').slice(0, 300),
         link: medoid?.url || '',
-        pubDate: medoid?.dateTimePub || medoid?.dateTime || eventDate + 'T00:00:00Z',
+        pubDate: medoid?.dateTimePub || medoid?.dateTime || `${eventDate}T00:00:00Z`,
         category: mapCategory(eventCategories),
         source: medoid?.source?.title || '',
         suggestedSlug: slugify(title, eventDate),
@@ -606,7 +606,7 @@ async function main() {
       title: storyTitle,
       description: (primary.body || '').slice(0, 300),
       link: primary.url || '',
-      pubDate: primary.dateTimePub || primary.dateTime || eventDate + 'T00:00:00Z',
+      pubDate: primary.dateTimePub || primary.dateTime || `${eventDate}T00:00:00Z`,
       eventDate: eventDate,
       socialScore: event.socialScore ?? null,
       category: mapCategory(primary.categories || eventCategories),

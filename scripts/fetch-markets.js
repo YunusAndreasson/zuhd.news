@@ -19,8 +19,8 @@
 // leaving any previous .markets.json intact (build.js skips the endpoint when
 // the file is absent, so a missing snapshot degrades to "no layer this run").
 
-import { writeFileSync } from 'fs'
-import { join } from 'path'
+import { writeFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { MARKET_CATALOG, MARKET_TRACKED, instrumentMismatch } from './lib/market-metadata.js'
 import { fetchYahooStock } from './lib/trends-sources/stocks.js'
 
@@ -103,7 +103,7 @@ if (exchanges.length === 0) {
 
 writeFileSync(
   OUTPUT_PATH,
-  JSON.stringify({ generated: new Date().toISOString(), exchanges }, null, 2) + '\n',
+  `${JSON.stringify({ generated: new Date().toISOString(), exchanges }, null, 2)}\n`,
 )
 
 for (const r of rejected) console.error(`  ✗ rejected ${r}`)

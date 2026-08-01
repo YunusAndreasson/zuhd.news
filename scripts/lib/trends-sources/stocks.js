@@ -13,7 +13,7 @@
 // "9988.HK"). The caller can namespace them into indicator ids (we use
 // `stocks:<TICKER>` so the id stays unique against other sources' ids).
 
-import { readFileSync, writeFileSync, existsSync } from 'fs'
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 
 const YAHOO_HOSTS = ['https://query1.finance.yahoo.com', 'https://query2.finance.yahoo.com']
 const USER_AGENT =
@@ -120,7 +120,7 @@ async function fetchFromHost(host, symbol, range) {
  * Fetch daily closes for one Yahoo Finance symbol.
  *
  * @param {string} symbol  Yahoo ticker (e.g. "META", "2222.SR", "^TASI.SR")
- * @param {{ range?: string }} [opts]  Yahoo range token — "1mo" (default,
+ * @param {{ range?: string }} [opts]  Yahoo range token - "1mo" (default,
  *   ~21 closes) or "3mo" (~62), which is what the markets layer asks for so a
  *   sparkline has a shape rather than a wobble.
  * @returns {Promise<{

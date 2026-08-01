@@ -20,9 +20,9 @@
 //
 // Usage: node scripts/pick-breaking-social.js [--dry-run]
 
-import { readFileSync, writeFileSync, existsSync } from 'fs'
-import { join } from 'path'
-import { spawnSync } from 'child_process'
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { join } from 'node:path'
+import { spawnSync } from 'node:child_process'
 import { parseFrontmatter } from './lib/frontmatter.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
@@ -50,7 +50,7 @@ function leadOf(body) {
   if (t.length > 320) {
     const cut = t.slice(0, 320)
     const end = cut.lastIndexOf('. ')
-    t = end > 160 ? cut.slice(0, end + 1) : cut.replace(/\s+\S*$/, '') + '…'
+    t = end > 160 ? cut.slice(0, end + 1) : `${cut.replace(/\s+\S*$/, '')}…`
   }
   return t
 }
@@ -68,7 +68,7 @@ function candidates() {
       const path = join(ARTICLES_DIR, `${slug}.md`)
       if (!existsSync(path)) continue
       const { meta, body } = parseFrontmatter(readFileSync(path, 'utf8'))
-      const eventCoverage = parseInt(meta.eventCoverage) || 0
+      const eventCoverage = parseInt(meta.eventCoverage, 10) || 0
       out.push({
         slug,
         title: meta.title || s.label || '',
@@ -187,7 +187,7 @@ try {
     }
   }
 
-  writeFileSync(PICK_PATH, JSON.stringify(record, null, 2) + '\n')
+  writeFileSync(PICK_PATH, `${JSON.stringify(record, null, 2)}\n`)
   note(`picked ${chosen.slug} (score ${record.score ?? '?'}) of ${cands.length} candidates.`)
 } catch (e) {
   note(`${e.message} — non-fatal, cycle continues with legacy selection.`)

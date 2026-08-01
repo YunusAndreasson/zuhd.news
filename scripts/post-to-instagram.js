@@ -26,9 +26,9 @@
 //
 // Usage: node scripts/post-to-instagram.js --slug <slug> [--dry-run]
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs'
-import { join } from 'path'
-import { spawnSync } from 'child_process'
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs'
+import { join } from 'node:path'
+import { spawnSync } from 'node:child_process'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { buildIgJpeg, IG_FEED, IG_STORY } from './lib/ig-image.js'
 
@@ -74,7 +74,7 @@ const readLog = () => {
 }
 const writeLog = (log) => {
   const trimmed = log.length > 100 ? log.slice(-100) : log
-  writeFileSync(IG_LOG, JSON.stringify(trimmed, null, 2) + '\n')
+  writeFileSync(IG_LOG, `${JSON.stringify(trimmed, null, 2)}\n`)
 }
 const log = readLog()
 if (log.some((e) => e.slug === slug && e.sent)) {
@@ -113,7 +113,7 @@ const igLead = (b) => {
   if (t.length > 260) {
     const cut = t.slice(0, 260)
     const end = cut.lastIndexOf('. ')
-    t = end > 130 ? cut.slice(0, end + 1) : cut.replace(/\s+\S*$/, '') + '…'
+    t = end > 130 ? cut.slice(0, end + 1) : `${cut.replace(/\s+\S*$/, '')}…`
   }
   return t
 }
@@ -131,7 +131,7 @@ const article = {
 // --- caption ---
 function captionViaClaude() {
   const articleText = `${meta.title || ''}\n\n${body}`.trim()
-  const prompt = readFileSync(PROMPT_PATH, 'utf8') + '\n' + articleText
+  const prompt = `${readFileSync(PROMPT_PATH, 'utf8')}\n${articleText}`
   const env = { ...process.env }
   // Drop CLAUDECODE so the subprocess doesn't inherit the parent session marker
   // (same micro-task idiom as post-to-twitter.js / backfill-country-tags.js).
@@ -221,6 +221,7 @@ async function waitForPublicImage(url, tries = 6, delayMs = 5000) {
 }
 
 // Publish a single image (feed or story). Returns the published media id.
+/** @param {{ imageUrl: string, mediaType?: string, extra?: Record<string, any> }} opts */
 async function publishImage({ imageUrl, mediaType, extra = {} }) {
   const container = await graphPost(`${creds.userId}/media`, {
     image_url: imageUrl,

@@ -188,6 +188,73 @@ export interface ThermalEvent {
 }
 
 /**
+ * One IPC-classified area, from `/api/ipc.json`.
+ *
+ * A determination rather than an event, which is why there is no `t` on it and
+ * why `ipc-marks` is absent from `applyTimeFilters`. What it carries instead is a
+ * *vintage*: the analysis this classification came from, and how old it is.
+ */
+export interface IpcArea {
+  /** `${iso3}:${area}` — assigned in build.js, resolved by the map's hit test. */
+  id: string
+  /** The IPC's own area name, which is the join key behind the scenes too. */
+  area: string
+  /** The admin-1 it sits in, where the analysis states one. Often empty. */
+  level1: string
+  iso3: string
+  /** The country profile to link to, absent when the code is outside IPC's list. */
+  iso2?: string
+  /** 3, 4 or 5 — the IPC's `overall_phase`, read and never derived. */
+  phase: number
+  /** `Crisis` | `Emergency` | `Catastrophe`, as the IPC names them. */
+  phaseName: string
+  /** IPC's own 1–3 evidence rating, ascending. Absent when unstated. */
+  confidence?: number
+  /** Set where the analysis flags a protracted crisis. */
+  prolongedCrisis?: boolean
+  lat: number
+  lng: number
+  /** `"Nov 2025"` — the analysis, to the month, which is all IPC publishes. */
+  vintage: string
+  /** How many months old that analysis is. Drives the mark's opacity. */
+  ageMonths: number
+  /** The window the classification describes, ISO dates. */
+  from: string | null
+  to: string | null
+  /** Population figures the card states. `null` where IPC published none. */
+  pop: {
+    total: number | null
+    p3plus: number | null
+    p4: number | null
+    p5: number | null
+  }
+  /**
+   * A projection from the same analysis that covers today.
+   *
+   * Reported on the card and never used to pick a phase — a projection has no
+   * published `overall_phase`, so drawing one means deriving a classification.
+   * Its presence is what tells a reader whether an eight-month-old analysis has
+   * a forward statement behind it or simply ran out.
+   */
+  supersededBy?: { from: string; to: string }
+}
+
+/**
+ * On the famine chip's `title`, and the head of its card.
+ *
+ * Three things a reader has to know before the mark means anything, and the third
+ * is the one nothing else on this map has to say: **the bar is compound.** An area
+ * appears at Phase 4 or worse, *or* where the IPC counts anyone in Catastrophe —
+ * which is why Gaza is here at Phase 3. Without that sentence the layer looks
+ * like it is drawing one thing and is drawing two.
+ */
+export const FAMINE_NOTE =
+  'IPC acute food insecurity, as classified by national Technical Working ' +
+  'Groups. Areas at Phase 4 (Emergency) or above, plus any area where the IPC ' +
+  'counts people in Phase 5 (Catastrophe). Each mark carries the date of the ' +
+  'analysis behind it, which can be months old.'
+
+/**
  * On the chip's `title`, the way `PRAYER_NOTE` and `HIJRI_NOTE` sit on theirs.
  *
  * This is the short form; the card carries the fuller caveat, because a reader

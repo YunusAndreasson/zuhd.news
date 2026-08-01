@@ -14,11 +14,10 @@
 //   1  fatal error before baseline
 //   2  baseline failed (cannot continue)
 
-import { existsSync, mkdirSync, readFileSync, writeFileSync, appendFileSync } from 'fs'
-import { join } from 'path'
-import { spawnSync } from 'child_process'
-import { fileURLToPath } from 'url'
-import { REPO_ROOT, makeSandbox } from './replay-utils.js'
+import { existsSync, mkdirSync, readFileSync, writeFileSync, appendFileSync } from 'node:fs'
+import { join } from 'node:path'
+import { spawnSync } from 'node:child_process'
+import { REPO_ROOT } from './replay-utils.js'
 
 const argv = process.argv.slice(2)
 function flag(name, def) {
@@ -228,5 +227,5 @@ function proposeDiff() {
 }
 
 function appendRun(rec) {
-  appendFileSync(RUNS_LOG, JSON.stringify({ ts: new Date().toISOString(), ...rec }) + '\n')
+  appendFileSync(RUNS_LOG, `${JSON.stringify({ ts: new Date().toISOString(), ...rec })}\n`)
 }

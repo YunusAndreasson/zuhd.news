@@ -4,8 +4,8 @@
 // Without args: tests all Chirp 3 HD voices
 // With arg: tests just that voice, e.g. node scripts/test-voice.js Fenrir
 
-import { writeFileSync, mkdirSync } from 'fs'
-import { join } from 'path'
+import { writeFileSync, mkdirSync } from 'node:fs'
+import { join } from 'node:path'
 import textToSpeech from '@google-cloud/text-to-speech'
 
 const ROOT = new URL('..', import.meta.url).pathname

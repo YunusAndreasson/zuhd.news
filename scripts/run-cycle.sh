@@ -58,6 +58,45 @@ mkdir -p "$LOG_DIR"
 TIMESTAMP=$(date +%Y-%m-%d_%H%M)
 LOG_FILE="$LOG_DIR/cycle-$TIMESTAMP.log"
 
+# Commit exactly the paths named, leaving anything else a person has staged
+# alone.
+#
+# `git add X && git commit` does *not* commit only X. A bare `git commit` writes
+# the whole index, so any change already staged in the working tree rides along
+# under this cycle's message. Not hypothetical: on 2026-07-30 a staged
+# `public/og-image.png` deletion, mid-edit and not ready, was published inside
+# "Editorial cycle 2026-07-30 17:21 UTC: 12 articles". Five cycles a day, each
+# able to commit someone's half-finished work under an editorial message — and
+# the message is the part that makes it hard to find afterwards.
+#
+# `--only` is the fix and has one sharp edge: a pathspec matching nothing known
+# to git aborts the entire commit. `content/.context-briefs.json` is exactly
+# that risk — frozen since the edu-context stage was removed on 2026-06-19 — so
+# one absent file would stop the cycle committing anything at all. Hence the
+# filter: a path is passed on only if it exists on disk or git already tracks
+# it. An empty list is a no-op rather than a `git commit` with no pathspec,
+# which would be the original bug again.
+commit_only() {
+  local msg="$1"; shift
+  local paths=() p
+  for p in "$@"; do
+    if [ -e "$p" ] || git ls-files --error-unmatch "$p" >/dev/null 2>&1; then
+      paths+=("$p")
+    fi
+  done
+  if [ "${#paths[@]}" -eq 0 ]; then
+    echo "commit_only: no existing paths among: $* — nothing committed" | tee -a "$LOG_FILE"
+    return 0
+  fi
+  # The `git add` is still required and is not the bug. `--only` restricts the
+  # commit to these paths, but it only sees what git already knows about, so a
+  # *new* article — an untracked file, which is most of what a cycle produces —
+  # is silently skipped without it. Dropping the add and keeping `--only` commits
+  # nothing at all, which is how this was first written and why it is tested.
+  git add "${paths[@]}" 2>&1 | tee -a "$LOG_FILE"
+  git commit --only "${paths[@]}" -m "$msg" 2>&1 | tee -a "$LOG_FILE"
+}
+
 cleanup() {
   echo "" | tee -a "$LOG_FILE"
   # Funnel summary — one glance to see where stories were gained or lost
@@ -233,20 +272,45 @@ run_writer
 WRITE_EXIT=$?
 echo "Writer exit: $WRITE_EXIT — $((SECONDS - T2))s" | tee -a "$LOG_FILE"
 
-# Retry once on timeout if the writer produced nothing. This is the documented
-# API-stall failure mode (2026-05-24, 2026-05-26, 2026-06-09): the `claude -p`
-# request idle-blocks with zero output for the full 1800s, the outer timeout
-# kills it (exit 124), and the cycle publishes 0. Gate on "no articles written"
-# so a slow-but-productive run (partial output present) is kept, not discarded.
-if [ "$WRITE_EXIT" -eq 124 ]; then
-  WRITER_PRODUCED=$( { git diff --name-only content/articles/ 2>/dev/null; git ls-files --others --exclude-standard content/articles/ 2>/dev/null; } | grep -c . )
-  if [ "$WRITER_PRODUCED" -eq 0 ]; then
-    echo "Writer timed out with zero output — retrying once (transient API-stall mode)" | tee -a "$LOG_FILE"
-    T2R=$SECONDS
-    run_writer
-    WRITE_EXIT=$?
-    echo "Writer retry exit: $WRITE_EXIT — $((SECONDS - T2R))s" | tee -a "$LOG_FILE"
-  fi
+# Retry once if the writer produced nothing, whatever its exit code.
+#
+# This was gated on `-eq 124`, the API-stall mode (2026-05-24, 2026-05-26,
+# 2026-06-09) where `claude -p` idle-blocks for the full 1800s and the outer
+# timeout kills it. That is one way to write nothing and it turned out to be the
+# rare one. Over 2026-07-25→30, **five of 29 cycles published zero** and the
+# retry fired for none of them, because the writer died in the first seventeen
+# seconds every time and only twice with a non-zero status:
+#
+#   07-25 04:04  exit 0, 17s  "The command needs your approval to run — please
+#                              approve it so I can inspect /tmp/zuhd-selection.json"
+#                              (reached for Bash, which is not in TOOLS_WRITER,
+#                              when the prompt says to Read the file)
+#   07-26 04:04  exit 0,  6s  "I don't see a specific request in your message —
+#                              just system context. What would you like me to do?"
+#   07-28 22:02  exit 0,  6s  "I see the project context loaded but no actual
+#                              request yet — what would you like me to do?"
+#   07-29 12:04  exit 1,  9s  "The model's tool call could not be parsed
+#                              (retry also failed)."
+#   07-30 08:03  exit 1,  8s  same
+#
+# Three different transient flakes, one outcome, and an exit code that says
+# nothing useful about any of them — two report success. So the condition that
+# matters is the one the old code already computed and then guarded behind the
+# status: **did this run write an article**. That is also exactly the shape of
+# the selector's own retry above ("returned 0 but produced no selection file"),
+# which has been catching the same class of failure for months.
+#
+# Safe to retry unconditionally here: an empty selection already exited the
+# cycle back at Stage 1.5, so reaching this line having written nothing is
+# always a failure and never a legitimate quiet cycle. A slow-but-productive
+# run keeps its partial output, as before — the gate is articles, not time.
+WRITER_PRODUCED=$( { git diff --name-only content/articles/ 2>/dev/null; git ls-files --others --exclude-standard content/articles/ 2>/dev/null; } | grep -c . )
+if [ "$WRITER_PRODUCED" -eq 0 ]; then
+  echo "Writer wrote no articles (exit $WRITE_EXIT) — retrying once" | tee -a "$LOG_FILE"
+  T2R=$SECONDS
+  run_writer
+  WRITE_EXIT=$?
+  echo "Writer retry exit: $WRITE_EXIT — $((SECONDS - T2R))s" | tee -a "$LOG_FILE"
 fi
 
 if [ "$WRITE_EXIT" -ne 0 ]; then
@@ -399,6 +463,20 @@ $BODY_LENGTHS
   FIRMS_EXIT=$?
   echo "FIRMS exit: $FIRMS_EXIT — $((SECONDS - T34C4))s" | tee -a "$LOG_FILE"
 
+  # Stage 3.4c5: IPC acute food insecurity — the famine layer. One CKAN
+  # catalogue call, one global CSV, then geometry for the countries holding an
+  # Emergency or Catastrophe caseload. CC0 and keyless, so unlike FIRMS there is
+  # no credential branch to skip on. Fail-soft: a bad pass leaves the previous
+  # snapshot and exits 0. Runs every cycle rather than daily because it is cheap
+  # (~13s) and because the alternative — a schedule of its own — is a second
+  # place for the layer to go stale silently.
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.4c5: IPC food insecurity snapshot ---" | tee -a "$LOG_FILE"
+  T34C5=$SECONDS
+  timeout 240 node scripts/fetch-ipc.js >> "$LOG_FILE" 2>&1
+  IPC_EXIT=$?
+  echo "IPC exit: $IPC_EXIT — $((SECONDS - T34C5))s" | tee -a "$LOG_FILE"
+
   # Stage 3.4d: GDACS narration — Opus writes a 2-3 sentence narrative for
   # each Orange/Red alert grounded in country profile + recent weather +
   # nearby chokepoint. Cached by inputs-hash so multi-day events aren't
@@ -468,6 +546,22 @@ $BODY_LENGTHS
   timeout 60 node scripts/pick-breaking-social.js 2>&1 | tee -a "$LOG_FILE" \
     || echo "WARNING: social pick failed (non-fatal, legacy selection applies)" | tee -a "$LOG_FILE"
 
+  # Typecheck — reports, never blocks. Both tsconfigs, ~5s on the Go compiler.
+  #
+  # This exists because a type error reaches this box the same way a content
+  # change does: `git pull --rebase` a few lines below, followed by `npm
+  # install`. CI catches it on push, but the cycle is what runs next, and a
+  # silent WARNING in the log is how the dashboard's Logs tab surfaces drift.
+  #
+  # The `|| echo` is mandatory and so is the timeout. Everything from here to
+  # the deploy is written so that build+commit+deploy always runs even when an
+  # earlier stage times out — that property is what stops a timeout turning
+  # into a no-publish cascade, and a checker must never be the thing that
+  # breaks it. If the types are wrong the build usually still emits a correct
+  # site; if it doesn't, BUILD_EXIT below is what stops the deploy.
+  timeout 120 npm run typecheck 2>&1 | tee -a "$LOG_FILE" \
+    || echo "WARNING: typecheck failed (non-fatal — see above)" | tee -a "$LOG_FILE"
+
   # Build
   node scripts/build.js 2>&1 | tee -a "$LOG_FILE"
   BUILD_EXIT=$?
@@ -475,9 +569,9 @@ $BODY_LENGTHS
 
   if [ "$BUILD_EXIT" -eq 0 ]; then
     # Commit
-    git add content/articles/ content/.last-cycle.json content/.story-ledger.json content/.context-briefs.json 2>&1 | tee -a "$LOG_FILE"
     CYCLE_TIME=$(date -u +"%Y-%m-%d %H:%M UTC")
-    git commit -m "Editorial cycle $CYCLE_TIME: $NEW_COUNT articles" 2>&1 | tee -a "$LOG_FILE"
+    commit_only "Editorial cycle $CYCLE_TIME: $NEW_COUNT articles" \
+      content/articles/ content/.last-cycle.json content/.story-ledger.json content/.context-briefs.json
     # --autostash: the working tree always carries uncommitted churn (.analytics.json,
     # .block-cache.json, rotated feed-snapshots) that a plain `pull --rebase` refuses to
     # run over ("You have unstaged changes"), which let the remote drift unmerged and every
@@ -669,15 +763,14 @@ $ARTICLE_TEXT" 2>/dev/null)
         fi
       fi
       # Commit push + social logs
-      git add content/.push-log.json content/.tweet-log.json content/.instagram-log.json 2>/dev/null
-      git diff --cached --quiet content/.push-log.json content/.tweet-log.json content/.instagram-log.json || git commit -m "Push log $(date -u +%Y-%m-%dT%H:%M)" 2>&1 | tee -a "$LOG_FILE"
+      commit_only "Push log $(date -u +%Y-%m-%dT%H:%M)" \
+        content/.push-log.json content/.tweet-log.json content/.instagram-log.json
 
       # Stage 3c: Production RVS — score this cycle's output against the
       # autoresearch rubric (deterministic clusters only, zero token cost),
       # append to content/.rvs-trend.json. Fail-soft: never blocks the cycle.
       timeout 60 node scripts/score-production-cycle.js 2>&1 | tee -a "$LOG_FILE"
-      git add content/.rvs-trend.json 2>/dev/null
-      git diff --cached --quiet content/.rvs-trend.json || git commit -m "RVS trend $(date -u +%Y-%m-%dT%H:%M)" 2>&1 | tee -a "$LOG_FILE"
+      commit_only "RVS trend $(date -u +%Y-%m-%dT%H:%M)" content/.rvs-trend.json
     fi
   else
     echo "Build failed — skipping deploy" | tee -a "$LOG_FILE"
@@ -708,8 +801,7 @@ if [ "${START_HOUR:-$HOUR_UTC}" = "04" ]; then
   if [ "$BRIEFING_EXIT" -eq 0 ]; then
     echo "Rebuilding and redeploying with audio..." | tee -a "$LOG_FILE"
     node scripts/build.js 2>&1 | tee -a "$LOG_FILE"
-    git add content/audio/ 2>&1 | tee -a "$LOG_FILE"
-    git commit -m "Audio briefing $(date -u +%Y-%m-%d)" 2>&1 | tee -a "$LOG_FILE"
+    commit_only "Audio briefing $(date -u +%Y-%m-%d)" content/audio/
     git pull --rebase --autostash origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git pull --rebase failed (likely a mobile/backend file overlap — investigate)" | tee -a "$LOG_FILE"
     # Install any new build deps the pull may have added (fast no-op when
     # unchanged) so the next build.js doesn't crash on a missing module.
@@ -847,9 +939,9 @@ if [ "$START_HOUR" = "22" ]; then
     AUDIT_CHANGES=$(git diff --name-only content/.experiments.json content/.daily-audit.json content/.daily-audit.md 2>/dev/null | wc -l)
     AUDIT_UNTRACKED=$(git ls-files --others --exclude-standard content/.daily-audit.json 2>/dev/null | wc -l)
     if [ "$((AUDIT_CHANGES + AUDIT_UNTRACKED))" -gt 0 ]; then
-      git add content/.experiments.json content/.daily-audit.json content/.daily-audit.md 2>/dev/null
       AUDIT_DATE=$(date -u +%Y-%m-%d)
-      git commit -m "Daily audit $AUDIT_DATE" 2>&1 | tee -a "$LOG_FILE"
+      commit_only "Daily audit $AUDIT_DATE" \
+        content/.experiments.json content/.daily-audit.json content/.daily-audit.md
       git pull --rebase --autostash origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git pull --rebase failed (likely a mobile/backend file overlap — investigate)" | tee -a "$LOG_FILE"
       # Install any new build deps the pull may have added (fast no-op when unchanged).
       npm install --no-audit --no-fund 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: npm install after pull failed" | tee -a "$LOG_FILE"

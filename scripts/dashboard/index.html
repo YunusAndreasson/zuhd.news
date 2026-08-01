@@ -359,8 +359,8 @@ let activeTab = 'pipeline'
 function switchTab(tabName, scrollTargetId) {
   const targetBtn = Array.from(tabs).find(b => b.dataset.tab === tabName)
   if (!targetBtn) return
-  tabs.forEach(b => b.setAttribute('aria-selected', 'false'))
-  panels.forEach(p => p.classList.remove('active'))
+  tabs.forEach(b => { b.setAttribute('aria-selected', 'false') })
+  panels.forEach(p => { p.classList.remove('active') })
   targetBtn.setAttribute('aria-selected', 'true')
   activeTab = tabName
   document.getElementById(`panel-${tabName}`).classList.add('active')
@@ -401,7 +401,7 @@ document.getElementById('home-link')?.addEventListener('click', () => {
 
 // ── Clock ─────────────────────────────────────────────────────
 function updateClock() {
-  document.getElementById('clock').textContent = new Date().toISOString().slice(0, 19).replace('T', ' ') + ' utc'
+  document.getElementById('clock').textContent = `${new Date().toISOString().slice(0, 19).replace('T', ' ')} utc`
 }
 updateClock()
 setInterval(updateClock, 1000)
@@ -554,47 +554,6 @@ function renderStackedBars(container, data, keys, colors, opts = {}) {
   // Legend
   const legendY = 8
   let legendX = CHART.w - s.p.r
-  keys.slice().reverse().forEach((k, ki) => {
-    const c = colors[keys.length - 1 - ki]
-    const tw = k.length * 6 + 16
-    legendX -= tw
-    html += `<rect x="${legendX}" y="${legendY - 4}" width="8" height="8" fill="${c}" rx="1"/>`
-    html += `<text x="${legendX + 11}" y="${legendY + 4}" class="chart-label">${k}</text>`
-  })
-  html += '</svg>'
-  container.innerHTML = html
-}
-
-function renderGroupedBars(container, data, keys, colors, opts = {}) {
-  if (!data.length) { container.innerHTML = '<span class="empty">no data</span>'; return }
-  const allVals = data.flatMap(d => keys.map(k => d[k] || 0))
-  const yMax = Math.max(...allVals, 1) * 1.1
-  const p = CHART.pad, pw = CHART.w - p.l - p.r, ph = CHART.h - p.t - p.b
-  const yFn = (v) => p.t + ph - (v / yMax) * ph
-  const groupW = pw / data.length
-  const barW = Math.max((groupW - 4) / keys.length, 2)
-  const labelFn = opts.labelFn || (d => d.label || '')
-
-  let html = svgOpen()
-  for (let i = 0; i <= 4; i++) {
-    const v = Math.round((yMax / 4) * i)
-    const y = yFn(v)
-    html += `<line x1="${p.l}" x2="${CHART.w - p.r}" y1="${y}" y2="${y}" class="chart-grid"/>`
-    html += `<text x="${p.l - 6}" y="${y + 3}" class="chart-label" text-anchor="end">${v}</text>`
-  }
-  data.forEach((d, i) => {
-    const gx = p.l + i * groupW + 2
-    keys.forEach((k, ki) => {
-      const v = d[k] || 0
-      if (v === 0) return
-      const barH = yFn(0) - yFn(v)
-      html += `<rect x="${gx + ki * barW}" y="${yFn(v)}" width="${barW - 1}" height="${barH}" fill="${colors[ki]}" rx="1"><title>${k}: ${v}</title></rect>`
-    })
-  })
-  html += xLabels(data, labelFn, { x: (i) => p.l + (i + 0.5) * groupW })
-  // Legend
-  const legendY = 8
-  let legendX = CHART.w - p.r
   keys.slice().reverse().forEach((k, ki) => {
     const c = colors[keys.length - 1 - ki]
     const tw = k.length * 6 + 16
@@ -808,8 +767,8 @@ function renderGlance(overview, cycles) {
   let html = ''
   html += auditStat(published, 'published today')
   html += auditStat(`${completed.length}/${todayCycles.length}`, 'cycles')
-  html += auditStat(avgDuration ? avgDuration + 's' : '\u2014', 'avg duration')
-  html += auditStat(overview.metaAge !== null ? overview.metaAge.toFixed(1) + 'h' : '\u2014', 'site age')
+  html += auditStat(avgDuration ? `${avgDuration}s` : '\u2014', 'avg duration')
+  html += auditStat(overview.metaAge !== null ? `${overview.metaAge.toFixed(1)}h` : '\u2014', 'site age')
   el.innerHTML = html
 
   // Alerts from audit data + cycle failures
@@ -892,7 +851,7 @@ function formatSystemdTime(raw) {
   if (!raw || raw === 'n/a') return 'unknown'
   try {
     const d = new Date(raw)
-    return d.toISOString().slice(11, 16) + ' utc'
+    return `${d.toISOString().slice(11, 16)} utc`
   } catch { return raw }
 }
 
@@ -920,8 +879,8 @@ function renderCycleGrid(cycles) {
     const dayCycles = days[d]
     const dots = dayCycles.map(c => {
       if (!c.completed && !c.aborted) return '<span class="cycle-dot cycle-dot-running" title="running"></span>'
-      if (c.aborted || (c.stages.selector?.exit && c.stages.selector.exit !== 0)) return '<span class="cycle-dot cycle-dot-red" title="' + (c.aborted || 'failed') + '"></span>'
-      if (c.completed && c.stages.deploy?.exit === 0) return '<span class="cycle-dot cycle-dot-green" title="' + c.funnel.published + ' published, ' + c.totalSeconds + 's"></span>'
+      if (c.aborted || (c.stages.selector?.exit && c.stages.selector.exit !== 0)) return `<span class="cycle-dot cycle-dot-red" title="${c.aborted || 'failed'}"></span>`
+      if (c.completed && c.stages.deploy?.exit === 0) return `<span class="cycle-dot cycle-dot-green" title="${c.funnel.published} published, ${c.totalSeconds}s"></span>`
       return '<span class="cycle-dot cycle-dot-gray" title="incomplete"></span>'
     }).join('')
     return `<div class="cycle-grid-row"><span class="cycle-grid-date">${d.slice(5)}</span>${dots}</div>`
@@ -935,7 +894,7 @@ function renderBriefing(briefing) {
 
   let html = '<div class="audit-row">'
   html += auditStat(briefing.date, 'date')
-  html += auditStat(briefing.durationMin ? briefing.durationMin + 'm' : null, 'duration')
+  html += auditStat(briefing.durationMin ? `${briefing.durationMin}m` : null, 'duration')
   html += auditStat(briefing.articles, 'articles')
   html += auditStat(briefing.ageHours ? timeAgo(briefing.ageHours) : null, 'generated')
   html += '</div>'
@@ -967,7 +926,7 @@ function renderPushHistory(pushHistory) {
   }).join('')
 }
 
-function cycleLabel(c) { return (c.date?.slice(5) || '?') + ' ' + (c.scheduledHour || '') + 'h' }
+function cycleLabel(c) { return `${c.date?.slice(5) || '?'} ${c.scheduledHour || ''}h` }
 
 function renderDurationChart(cycles) {
   renderLineChart(document.getElementById('chart-duration'), cycles, 'totalSeconds', {
@@ -1086,8 +1045,8 @@ async function loadQuality() {
   if (q.eduContext) {
     const e = q.eduContext
     eduEl.innerHTML = `<div class="audit-row">
-      ${auditStat(e.totalBriefs + '/' + e.totalArticles, 'all time', e.coveragePct + '% coverage')}
-      ${auditStat(e.recentBriefs + '/' + e.recentArticles, 'last 7 days', e.recentPct + '% coverage')}
+      ${auditStat(`${e.totalBriefs}/${e.totalArticles}`, 'all time', `${e.coveragePct}% coverage`)}
+      ${auditStat(`${e.recentBriefs}/${e.recentArticles}`, 'last 7 days', `${e.recentPct}% coverage`)}
     </div>`
   } else {
     eduEl.innerHTML = '<span class="empty">no edu context data</span>'
@@ -1439,7 +1398,7 @@ function connectSSE() {
         badge.hidden = true
       } else if (msg.type === 'line') {
         if (activeTab === 'logs') {
-          pre.textContent += msg.text + '\n'
+          pre.textContent += `${msg.text}\n`
           pre.scrollTop = pre.scrollHeight
         }
       } else if (msg.type === 'complete') {
@@ -1523,7 +1482,7 @@ async function loadEditorial() {
     } else {
       auditMetrics.innerHTML = ''
       auditExperiment.innerHTML = ''
-      auditProse.innerHTML = '<div class="editorial-content">' + md(data.audit.content) + '</div>'
+      auditProse.innerHTML = `<div class="editorial-content">${md(data.audit.content)}</div>`
     }
   } else {
     auditMetrics.innerHTML = '<span class="empty">no daily audit found</span>'
@@ -1532,10 +1491,6 @@ async function loadEditorial() {
 }
 
 // ── Audit JSON Renderer ──────────────────────────────────────
-function metricDot(met) {
-  return met === true ? dotHTML('green') : met === false ? dotHTML('red') : ''
-}
-
 function renderAuditJSON(d, metricsEl, expEl, proseEl) {
   const m = d.metrics || {}
 
@@ -1547,16 +1502,16 @@ function renderAuditJSON(d, metricsEl, expEl, proseEl) {
   html += auditStat(m.articles?.value, 'articles', m.articles?.detail)
   html += auditStat(m.uniqueSources, 'sources')
   html += auditStat(m.duplicates, 'duplicates', null, m.duplicates === 0)
-  html += auditStat(m.avgCycleDuration ? m.avgCycleDuration + 's' : null, 'avg cycle')
+  html += auditStat(m.avgCycleDuration ? `${m.avgCycleDuration}s` : null, 'avg cycle')
   html += '</div>'
 
   // Row 2: target metrics
   html += '<div class="audit-targets">'
   html += auditTarget('freshness', `${m.freshness?.median}d median`, `p90 ${m.freshness?.p90}d`, m.freshness?.met, `target \u2264 ${m.freshness?.target}d`)
   html += auditTarget('multi-source', m.multiSource?.value, null, m.multiSource?.met, `target \u2265 ${m.multiSource?.target}`)
-  html += auditTarget('regions', m.regions?.count + ' unique', regionBreakdown(m.regions?.breakdown), m.regions?.met, `target \u2265 ${m.regions?.target}`)
-  html += auditTarget('sci+tech', m.sciTech?.ratio + '%', null, m.sciTech?.met, `target \u2265 ${m.sciTech?.target}%`)
-  html += auditTarget('top source', m.topSourceShare?.pct + '%', m.topSourceShare?.source, m.topSourceShare?.met, `target < ${m.topSourceShare?.target}%`)
+  html += auditTarget('regions', `${m.regions?.count} unique`, regionBreakdown(m.regions?.breakdown), m.regions?.met, `target \u2265 ${m.regions?.target}`)
+  html += auditTarget('sci+tech', `${m.sciTech?.ratio}%`, null, m.sciTech?.met, `target \u2265 ${m.sciTech?.target}%`)
+  html += auditTarget('top source', `${m.topSourceShare?.pct}%`, m.topSourceShare?.source, m.topSourceShare?.met, `target < ${m.topSourceShare?.target}%`)
   html += '</div>'
 
   // Categories breakdown
@@ -1743,7 +1698,7 @@ async function loadExperiment() {
           <span class="exp-change">${esc(String(e.oldValue ?? ''))} → ${esc(String(e.newValue ?? ''))}</span>
           <span class="exp-result">starts ${esc(startWhen)}</span>
         </div>
-        <div class="exp-meta">file: ${esc(e.file || '')} · metric: ${esc(e.targetMetric || '')} ${e.targetDirection || ''} ${blockedNote ? '· ' + blockedNote : ''}</div>
+        <div class="exp-meta">file: ${esc(e.file || '')} · metric: ${esc(e.targetMetric || '')} ${e.targetDirection || ''} ${blockedNote ? `· ${blockedNote}` : ''}</div>
         ${e.baseline ? `<div class="exp-baseline-section"><span class="label">baseline</span>${Object.entries(e.baseline).map(([k, v]) => `<span class="exp-baseline-item">${k}: <strong>${esc(String(v))}</strong></span>`).join('')}</div>` : ''}
         <div class="exp-detail">${esc(e.hypothesis || e.blockedReason || '')}</div>
       </div>`
@@ -1864,12 +1819,6 @@ function updateExpTabDot() {
 updateExpTabDot()
 
 
-function mdInline(text) {
-  return esc(text)
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.+?)\*/g, '<em>$1</em>')
-}
-
 // ── Status Tab ────────────────────────────────────────────────
 async function loadStatus() {
   const [overview, cycles] = await Promise.all([
@@ -1946,7 +1895,7 @@ function fmtAge(ms) {
   const m = Math.floor(ms / 60_000)
   if (m < 60) return `${m}m`
   const h = Math.floor(m / 60)
-  return `${h}h${m % 60 ? (m % 60) + 'm' : ''}`
+  return `${h}h${m % 60 ? `${m % 60}m` : ''}`
 }
 
 async function updateStatusBar(overview) {
@@ -1993,7 +1942,7 @@ async function updateStatusBar(overview) {
       const active = exp.activeAll?.length || (exp.active ? 1 : 0)
       const queued = exp.queued?.length || 0
       const txt = active === 0 && queued === 0 ? 'none'
-        : `${active} active${queued ? ' · ' + queued + ' queued' : ''}`
+        : `${active} active${queued ? ` · ${queued} queued` : ''}`
       setChip('chip-exp', active > 0 ? 'green' : 'unknown', txt)
     }
   } catch {}
@@ -2019,7 +1968,7 @@ async function updateStatusBar(overview) {
         n === 0 ? 'all targets met' : `${n} breach${n > 1 ? 'es' : ''}`,
         n === 0 ? null : n <= 2 ? 'amber' : 'red')
       const el = document.getElementById('chip-quality')
-      if (el) el.title = breaches.length ? 'breaches: ' + breaches.join(', ') : 'all targets met'
+      if (el) el.title = breaches.length ? `breaches: ${breaches.join(', ')}` : 'all targets met'
     }
   } catch {}
 }

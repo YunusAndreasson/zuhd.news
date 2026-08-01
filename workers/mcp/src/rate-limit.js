@@ -27,12 +27,10 @@ export async function checkRateLimit(request, env) {
   const record = await kv.get(`rl:${key}`, 'json')
 
   let tokens = bucketSize
-  let lastRefill = now
 
   if (record) {
     const elapsed = (now - record.ts) / 60000 // minutes
     tokens = Math.min(bucketSize, record.tokens + elapsed * refillRate)
-    lastRefill = record.ts
   }
 
   if (tokens < 1) {

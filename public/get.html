@@ -19,14 +19,14 @@
   bare link. The card is the cheapest thing on the page and the only part of it
   most people ever see.
 -->
-<meta property="og:image" content="https://zuhd.news/og-image.png">
+<meta property="og:image" content="https://zuhd.news/og-image.png?v=2">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="zuhd.news — global news, no noise">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@zuhd_news">
-<meta name="twitter:image" content="https://zuhd.news/og-image.png">
+<meta name="twitter:image" content="https://zuhd.news/og-image.png?v=2">
 <meta name="twitter:image:alt" content="zuhd.news — global news, no noise">
 <script>
 // Fast path: redirect mobile visitors to their store from <head>, BEFORE the body
@@ -44,8 +44,8 @@
   var isAndroid = /Android/i.test(ua);
   var isIOS = /iPhone|iPad|iPod/i.test(ua) ||
     (/Macintosh/.test(ua) && "ontouchend" in document); // iPadOS desktop-mode
-  if (isAndroid) location.replace(PLAY + "&referrer=" + encodeURIComponent(qs));
-  else if (isIOS) location.replace(IOS + "?" + qs);
+  if (isAndroid) location.replace(`${PLAY}&referrer=${encodeURIComponent(qs)}`);
+  else if (isIOS) location.replace(`${IOS}?${qs}`);
 })();
 </script>
 <style>
@@ -93,8 +93,8 @@
     var IOS = "https://apps.apple.com/app/id6760964753";
     var qs = (location.search || "").replace(/^\?/, "");
     if (!qs) qs = "utm_source=facebook&utm_medium=paid&utm_content=bridge";
-    document.getElementById("play").href = PLAY + "&referrer=" + encodeURIComponent(qs);
-    document.getElementById("ios").href = IOS + "?" + qs;
+    document.getElementById("play").href = `${PLAY}&referrer=${encodeURIComponent(qs)}`;
+    document.getElementById("ios").href = `${IOS}?${qs}`;
   })();
   </script>
 </body>

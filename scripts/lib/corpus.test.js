@@ -7,7 +7,7 @@
 // on the pre-existing debt.
 import { test } from 'node:test'
 import { strict as assert } from 'node:assert'
-import { readFileSync, readdirSync } from 'fs'
+import { readFileSync, readdirSync } from 'node:fs'
 import { parseFrontmatter } from './frontmatter.js'
 import { slugWords, fuzzyMatch, buildWordSets } from './dedup.js'
 

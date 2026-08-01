@@ -12,11 +12,22 @@
 // Shorter aliases listed before their longer forms is fine — extractor
 // dedupes by resolved id per article.
 
+/** @typedef {Object} EntityCandidate
+ *  @property {string} id            An indicator id in the trends-registry catalog.
+ *  @property {string} label         How Haiku is asked to tell them apart.
+ */
+
 /** @typedef {Object} EntityRule
  *  @property {string} mention       What to match in the article body.
  *  @property {string} indicatorId   Matching id in the trends-registry catalog.
  *  @property {string} kind          Semantic class for the mobile EntitySheet.
  *  @property {boolean} [ambiguous]  If true, only emit when disambiguation agrees.
+ *  @property {EntityCandidate[]} [candidates]
+ *        The ordered options an ambiguous mention resolves between; the first
+ *        is the fallback when Haiku errors out. Present on every `ambiguous`
+ *        rule and read by scripts/extract-entities.js — and missing from this
+ *        typedef until 2026-08-01, which is what made the rules below fail to
+ *        typecheck against their own declared shape.
  */
 
 /** @type {EntityRule[]} */

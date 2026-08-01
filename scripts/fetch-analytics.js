@@ -5,7 +5,7 @@
 // Fail-soft: if the token lacks permission or the API is down, writes an error marker
 // and exits 0 so it never breaks the cycle.
 
-import { writeFileSync, existsSync, readFileSync } from 'fs'
+import { writeFileSync, existsSync, readFileSync } from 'node:fs'
 
 const ZONE_ID = '2e290179ae62b061719437bb31373426'  // zuhd.news
 const TOKEN = process.env.CLOUDFLARE_API_TOKEN

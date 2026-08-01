@@ -5,7 +5,7 @@
 // Design: skip after 5 consecutive blocks within 7 days, but ALWAYS try
 // with 5% probability so we notice if the outlet un-blocks us. Writing
 // off a domain forever would mean citations slowly rot without signal.
-import { readFileSync, writeFileSync, existsSync } from 'fs'
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 
 const CACHE_PATH = 'content/.block-cache.json'
 const BLOCK_THRESHOLD = 5
@@ -32,7 +32,7 @@ function domainOf(url) {
 /**
  * Should we skip this URL based on prior block history?
  * @param {string} url
- * @param {() => number} [rand] — injectable RNG for tests
+ * @param {() => number} [rand] - injectable RNG for tests
  */
 export function shouldSkip(url, rand = Math.random) {
   const domain = domainOf(url)

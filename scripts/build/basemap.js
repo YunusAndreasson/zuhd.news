@@ -10,8 +10,8 @@
 // fed (`/api/basemap.json`) had stopped being written — so it was deleted
 // rather than left to look load-bearing.
 
-import { readFileSync } from 'fs'
-import { join } from 'path'
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { loadShared } from './shared-ts.js'
 
 /**
@@ -254,14 +254,14 @@ export async function buildMapSources(root) {
   // comfortably sub-pixel: megabytes spent on detail nobody can see.
   const tier = (file, dp, tol = 0) => {
     const topo = JSON.parse(readFileSync(join(root, 'shared', 'data', file), 'utf8'))
-    const fc = feature(topo, topo.objects.countries)
+    const fc = /** @type {import('geojson').FeatureCollection} */ (/** @type {unknown} */ (feature(topo, topo.objects.countries)))
 
     const palestine = mergePalestine(topo, merge)
     if (palestine) {
       const kept = fc.features.filter(
         (f) => f.properties?.name !== 'Israel' && f.properties?.name !== 'Palestine',
       )
-      fc.features = [...kept, palestine]
+      fc.features = /** @type {import('geojson').Feature[]} */ ([...kept, palestine])
     }
 
     return {

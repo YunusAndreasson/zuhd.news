@@ -1,0 +1,64 @@
+{
+  // Typecheck for everything that runs in Node or on a Cloudflare edge — the
+  // pipeline scripts, the SSG, the tests, the Pages Functions, the MCP worker.
+  //
+  // Until 2026-08-01 this was 112 files checked by nothing at all: no linter, no
+  // compiler, no `// @ts-check`. That included scripts/build.js, which produces
+  // the entire site, and functions/s/[slug].js, the only dynamic path we serve.
+  // The islands had tsconfig.islands.json; this half of the codebase had the
+  // absence of one.
+  //
+  // `strict` and `noImplicitAny` are OFF, and that is the design rather than a
+  // concession. These are untyped JavaScript files and the value here is in what
+  // TypeScript *infers* — a call with the wrong arity, a property read off a
+  // shape that does not have it, arithmetic on a boolean — not in extracting
+  // annotations from 20,000 lines of working pipeline. Turning `strict` on would
+  // bury those findings under thousands of implicit-any reports and the whole
+  // gate would go unread. Where a file wants real types it gets JSDoc, which
+  // this config then enforces; nineteen files already carry it as prose.
+  //
+  // noEmit only. Nothing here is ever built by tsc — esbuild bundles the
+  // islands, and Node runs these files directly with no transpile step, which is
+  // a property worth keeping.
+  "compilerOptions": {
+    "target": "ES2023",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2023", "DOM"],
+    "types": ["node"],
+
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+
+    // scripts/fetch-country-cards.js imports shared/*.ts by its real extension,
+    // which is legal only under this flag and only alongside noEmit.
+    "allowImportingTsExtensions": true,
+
+    "strict": false,
+    "noImplicitAny": false,
+
+    // The two that cost nothing and catch something: a `case` that runs into the
+    // next one, and a branch that forgets to return.
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+
+    // Mirrors the `@shared` alias esbuild is given in scripts/build/islands.js
+    // and scripts/build/shared-ts.js.
+    "paths": { "@shared/*": ["./shared/*"] }
+  },
+  "include": [
+    "scripts/**/*.js",
+    "scripts/**/*.mjs",
+    "functions/**/*.js",
+    "workers/mcp/src/**/*.js",
+    "types/**/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    // Gitignored scratch that keeps reappearing at the top of scripts/.
+    "scripts/tmp-*",
+    "scripts/_*"
+  ]
+}

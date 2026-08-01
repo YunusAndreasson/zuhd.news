@@ -6,7 +6,7 @@
 // 1. Exact slug match — article file already exists
 // 2. eventUri match — same event already covered by a published article
 // 3. Fuzzy title match — title word overlap ≥ 60% with a recent article's slug
-import { readFileSync, writeFileSync, existsSync } from 'fs'
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { CATEGORY_FLOORS, loadDedupContext, wouldDedup } from './lib/dedup.js'
 
 const SELECTION = '/tmp/zuhd-selection.json'

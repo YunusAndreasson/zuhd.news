@@ -48,6 +48,43 @@
 // forgotten — the same treatment `shared/genocide.ts` gives its `risk` entries,
 // which are recorded and deliberately not drawn.
 
+/**
+ * One exchange. Every field is described in the prose above; this restates the
+ * shape so a typechecker can hold the table to it.
+ *
+ * It is not a formality. TypeScript infers an array's element type from what it
+ * finds, so before this existed the catalog's type was whatever the *first*
+ * entry happened to carry — Tadawul, which is `available: true` and therefore
+ * has no `reason`. Every `reason` in the twelve unavailable rows, and the
+ * `holidays` on the four other Islamic-calendar exchanges, read as an unknown
+ * property. The fields the file's own header spends a paragraph each on were
+ * the ones nothing could check.
+ *
+ * @typedef {Object} MarketEntry
+ * @property {string} id
+ * @property {string} name
+ * @property {string} indexName
+ * @property {string} city
+ * @property {string} iso2
+ * @property {number} lat
+ * @property {number} lng
+ * @property {string|null} symbol   Null on a row with no usable Yahoo symbol.
+ * @property {string|null} currency
+ * @property {string|null} tz         IANA zone Yahoo is known to report.
+ * @property {string|null} sessionStart Local wall-clock "HH:MM".
+ * @property {string|null} sessionEnd  Local wall-clock "HH:MM".
+ * @property {number[]} days          JS getDay() convention, 0 = Sunday.
+ * @property {string} blurb
+ * @property {string[]} topicTags
+ * @property {string[]} countryTags
+ * @property {boolean} available      False means recorded but not drawn.
+ * @property {'islamic'} [holidays]   Shuts for the two Eids. Editorial, never
+ *       derived from iso2 — TASE runs Sunday–Thursday exactly as Tadawul does.
+ * @property {string} [reason]        Why an `available: false` row is not drawn.
+ *       Required in spirit on every one of them; the gap is the point.
+ */
+
+/** @type {MarketEntry[]} */
 export const MARKET_CATALOG = [
   // ─── Muslim-majority markets ──────────────────────────────────────────────
   {
@@ -699,7 +736,7 @@ export const MARKET_CATALOG = [
     reason:
       'The symbol exists but Yahoo answers it with HTTP 429 on both hosts, persistently and across retries. Worth re-probing.',
   },
-  ...[
+  .../** @type {[string, string, string, string, string, number, number][]} */ ([
     ['qse', 'Qatar Stock Exchange', 'QE Index', 'Doha', 'QA', 25.2854, 51.531],
     ['adx', 'Abu Dhabi Securities Exchange', 'FTSE ADX General', 'Abu Dhabi', 'AE', 24.4539, 54.3773],
     ['boursa-kuwait', 'Boursa Kuwait', 'Premier Market Index', 'Kuwait City', 'KW', 29.3759, 47.9774],
@@ -711,7 +748,7 @@ export const MARKET_CATALOG = [
     ['ase', 'Amman Stock Exchange', 'ASE Index', 'Amman', 'JO', 31.9454, 35.9284],
     ['ngx', 'Nigerian Exchange', 'NGX All-Share', 'Lagos', 'NG', 6.5244, 3.3792],
     ['moex', 'Moscow Exchange', 'IMOEX', 'Moscow', 'RU', 55.7558, 37.6173],
-  ].map(([id, name, indexName, city, iso2, lat, lng]) => ({
+  ]).map(([id, name, indexName, city, iso2, lat, lng]) => ({
     id,
     name,
     indexName,

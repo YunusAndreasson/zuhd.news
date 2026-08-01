@@ -11,8 +11,8 @@
 //  - Missing API keys → skip that source with a warning (graceful), do not abort.
 //  - Idempotent: writing the same day twice overwrites the snapshot.
 
-import { writeFileSync, mkdirSync } from 'fs'
-import { join } from 'path'
+import { writeFileSync, mkdirSync } from 'node:fs'
+import { join } from 'node:path'
 import { INDICATORS, SOURCES } from './lib/trends-registry.js'
 import { fetchFredReleaseCalendar } from './lib/trends-sources/fred.js'
 

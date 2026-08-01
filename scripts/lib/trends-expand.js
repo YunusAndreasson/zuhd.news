@@ -6,8 +6,8 @@
 // Designed to fail gracefully: if the snapshot/digest files are missing the
 // edu-context stage still runs, just without charts.
 
-import { existsSync, readFileSync } from 'fs'
-import { join } from 'path'
+import { existsSync, readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { parseArticleBlock } from './validate-blocks.js'
 
 /** Load the most recent trends snapshot. Returns null if missing. */
@@ -31,6 +31,16 @@ export function loadTrendsDigest(path) {
     return null
   }
 }
+
+/**
+ * The published snapshot shape, taken from the type the site actually
+ * publishes rather than restated here. `{object}` — which these three
+ * parameters carried until 2026-08-01 — is TypeScript's *non-primitive with no
+ * known properties*, not "a JSON object": every `snapshot.indicators` read
+ * against it was an error, and before anything typechecked this file it simply
+ * meant the annotation documented nothing.
+ * @typedef {import('../../shared/types.ts').TrendsSnapshot} TrendsSnapshot
+ */
 
 /**
  * Build the "## Live indicators" section appended to the edu-context prompt.
@@ -61,7 +71,7 @@ export function buildTrendsPromptSection(digest) {
   const offered = selectOfferedIndicators(digest)
 
   const lines = offered.map((i) => {
-    const latest = i.latest != null ? ` — latest ${i.latest}${i.unit ? ' ' + i.unit : ''}` : ''
+    const latest = i.latest != null ? ` — latest ${i.latest}${i.unit ? ` ${i.unit}` : ''}` : ''
     const tags = i.topicTags?.length ? ` · tags: ${i.topicTags.slice(0, 6).join(', ')}` : ''
     const countries = i.countryTags?.length ? ` · countries: ${i.countryTags.join(', ')}` : ''
     return `- \`${i.id}\` — ${i.label}${latest}${tags}${countries}`
@@ -100,7 +110,7 @@ function indicatorSourceLabel(indicator) {
  * has no values.
  *
  * @param {{type:'chart',ref:string}} chartBlock
- * @param {object} snapshot         Full snapshot loaded by loadTrendsSnapshot.
+ * @param {TrendsSnapshot} snapshot Full snapshot loaded by loadTrendsSnapshot.
  * @param {{sourceIndex: Map<string,number>, sources: string[]}} sourceCtx
  *        Mutable bookkeeping so we can share one `sources` array across all
  *        blocks in a brief and point each block's `source` to the right index.
@@ -148,7 +158,7 @@ export function expandChartRef(chartBlock, snapshot, sourceCtx) {
  * truncated series. Returns null if fewer than 2 valid indicators resolve.
  *
  * @param {{type:'multi-chart',refs:string[],label?:string}} block
- * @param {object} snapshot
+ * @param {TrendsSnapshot} snapshot
  * @param {{sourceIndex: Map<string,number>, sources: string[]}} sourceCtx
  * @returns {object | null}
  */
@@ -202,7 +212,7 @@ export function expandMultiChartRef(block, snapshot, sourceCtx) {
  *      Malformed blocks are dropped with a warn.
  *
  * @param {Array<{heading?: string, body: string, blocks?: unknown[]}>} entries
- * @param {object | null} snapshot   Loaded by loadTrendsSnapshot. Null → skip
+ * @param {TrendsSnapshot | null} snapshot   Loaded by loadTrendsSnapshot. Null → skip
  *                                   chart expansion; literal blocks still pass.
  * @param {(msg: string) => void} [warn]   Logger for drops.
  * @returns {{
@@ -227,13 +237,18 @@ export function buildTimelineWithCharts(entries, snapshot, warn = () => {}) {
       if (!Array.isArray(e.blocks) || e.blocks.length === 0) return out
 
       const expanded = []
-      for (const b of e.blocks) {
-        if (!b || typeof b !== 'object') {
+      for (const raw of e.blocks) {
+        if (!raw || typeof raw !== 'object') {
           const reason = 'not an object'
           dropped.push({ type: 'unknown', heading, reason })
           warn(`dropping non-object block under '${e.heading || 'entry'}'`)
           continue
         }
+        // `typeof x === 'object'` narrows to TypeScript's `object`, which is
+        // "non-primitive" and carries no properties at all — so every `b.type`
+        // below reads as an error against it. The block is arbitrary parsed
+        // JSON and this says so.
+        const b = /** @type {Record<string, any>} */ (raw)
         if (b.type === 'chart') {
           if (!snapshot) {
             const reason = 'no trends snapshot loaded'
@@ -241,7 +256,7 @@ export function buildTimelineWithCharts(entries, snapshot, warn = () => {}) {
             warn(`dropping chart ref '${b.ref}' — ${reason}`)
             continue
           }
-          const trend = expandChartRef(b, snapshot, sourceCtx)
+          const trend = expandChartRef(/** @type {{type:'chart',ref:string}} */ (b), snapshot, sourceCtx)
           if (trend) {
             expanded.push(trend)
             picked.push({ id: b.ref, heading })
@@ -259,7 +274,7 @@ export function buildTimelineWithCharts(entries, snapshot, warn = () => {}) {
             warn(`dropping multi-chart refs ${JSON.stringify(b.refs)} — ${reason}`)
             continue
           }
-          const trend = expandMultiChartRef(b, snapshot, sourceCtx)
+          const trend = expandMultiChartRef(/** @type {{type:'multi-chart',refs:string[],label?:string}} */ (b), snapshot, sourceCtx)
           if (trend) {
             expanded.push(trend)
             picked.push({ id: (b.refs || []).join('+'), heading })
@@ -271,15 +286,17 @@ export function buildTimelineWithCharts(entries, snapshot, warn = () => {}) {
           continue
         }
         const { block, reason } = parseArticleBlock(b)
+        // parseArticleBlock declares `object|null`, which has no properties.
+        const lit = /** @type {Record<string, any>|null} */ (block)
         if (block) {
           expanded.push(block)
-          literals.push({ type: block.type, heading })
+          literals.push({ type: lit?.type, heading })
         } else {
           dropped.push({ type: b.type || 'unknown', heading, reason: reason || 'unknown' })
           warn(`dropping malformed ${b.type || 'unknown'} block under '${e.heading || 'entry'}': ${reason}`)
         }
       }
-      if (expanded.length) out.blocks = expanded
+      if (expanded.length) /** @type {Record<string, any>} */ (out).blocks = expanded
       return out
     })
 

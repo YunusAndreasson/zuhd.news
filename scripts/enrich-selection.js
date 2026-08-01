@@ -9,7 +9,7 @@
 // 3. Source URL overlap — the selector sometimes uses a source URL instead of
 //    the feed entry's primary link
 // 4. Title fingerprint match
-import { readFileSync, writeFileSync } from 'fs'
+import { readFileSync, writeFileSync } from 'node:fs'
 
 const feed = JSON.parse(readFileSync('/tmp/zuhd-feed.json', 'utf-8'))
 const selection = JSON.parse(readFileSync('/tmp/zuhd-selection.json', 'utf-8'))

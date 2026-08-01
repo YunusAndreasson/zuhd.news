@@ -1,0 +1,136 @@
+// Unreferenced files, exports and dependencies across the web surface.
+//
+// Biome catches an unused variable inside a file. Nothing caught an unused
+// *file* — which is how five scripts totalling 704 lines sat in scripts/
+// untouched since May, referenced by nothing and noticed by no one.
+//
+// The config is almost entirely `entry`, and that is the shape of the problem
+// rather than laziness. Nothing in this repo imports the things that run: the
+// pipeline scripts are invoked by name from a shell script, the islands are
+// globbed by the bundler and then fetched by string path at runtime, and
+// shared/ is imported by a second application in another workspace. A tool that
+// only follows `import` statements sees a codebase that is almost entirely
+// dead. Every entry below is a real execution path; a script missing from this
+// list is a script knip will call dead, so add here when you add there.
+{
+  "$schema": "https://unpkg.com/knip@6/schema.jsonc",
+
+  "entry": [
+    // ── The editorial cycle. Extracted from scripts/run-cycle.sh, which
+    //    invokes each of these by name. Keep in sync with that file.
+    //
+    //    Five of them (build, fetch-news, generate-briefing, watch, test-voice)
+    //    knip also finds through package.json's scripts, and it will say so as
+    //    a "redundant entry pattern" hint. They stay listed: this block's job is
+    //    to be a readable mirror of run-cycle.sh, and a list with holes in it
+    //    wherever npm happens to agree is not one. `npm run deadcode` passes
+    //    --no-config-hints so the command reports findings, not config advice.
+    "scripts/backfill-selection.js",
+    "scripts/build.js",
+    "scripts/compute-metrics.js",
+    "scripts/coverage-map.js",
+    "scripts/dedup-selection.js",
+    "scripts/enrich-selection.js",
+    "scripts/extract-entities.js",
+    "scripts/extract-source-angles.js",
+    "scripts/fetch-analytics.js",
+    "scripts/fetch-chokepoints.js",
+    "scripts/fetch-conflict.js",
+    "scripts/fetch-firms.js",
+    "scripts/fetch-gdacs.js",
+    "scripts/fetch-ioda.js",
+    "scripts/fetch-ipc.js",
+    "scripts/fetch-markets.js",
+    "scripts/fetch-news-api.js",
+    "scripts/fetch-news.js",
+    "scripts/fetch-trends.js",
+    "scripts/generate-briefing.js",
+    "scripts/measure-quality.js",
+    "scripts/merge-feeds.js",
+    "scripts/narrate-gdacs.js",
+    "scripts/pick-breaking-social.js",
+    "scripts/post-to-instagram.js",
+    "scripts/post-to-twitter.js",
+    "scripts/prefilter-feed.js",
+    "scripts/scaffold-articles.js",
+    "scripts/score-production-cycle.js",
+    "scripts/trending-gaps.js",
+    "scripts/update-ledger.js",
+    "scripts/validate-articles.js",
+    "scripts/write-last-cycle.js",
+
+    // ── npm scripts and the dashboard.
+    "scripts/watch.js",
+    "scripts/test-voice.js",
+    "scripts/dashboard/server.js",
+
+    // ── The autoresearch session driver, run by the /autoresearch skill.
+    "scripts/autoresearch/*.js",
+
+    // ── Stage 3.5 was removed from run-cycle.sh on 2026-06-19 (it outgrew its
+    //    1200s budget as .context-briefs.json inflated each prompt), but this
+    //    is not dead: scripts/autoresearch/run-replay.js:207 still runs it via
+    //    spawnSync, which is a string, not an import edge. knip called it
+    //    unused; it is the reason this file leads with the warning it does.
+    "scripts/generate-edu-context.js",
+
+    // ── Tests.
+    "scripts/lib/*.test.js",
+
+    // ── Manual tools. Unreferenced by design, and each one is the only way to
+    //    do the thing it does: fetch-country-cards.js regenerates the committed
+    //    shared/data/country-cards.json, dry-run-augment.js exercises one
+    //    article through the augment prompt, shoot.mjs is the visual-regression
+    //    shooter map-island.test.js points at.
+    "scripts/fetch-country-cards.js",
+    "scripts/dry-run-augment.js",
+    "scripts/shoot.mjs",
+    // merge-palestine.mjs is a one-shot data edit, already applied, that
+    // rewrote the bundled Natural Earth TopoJSON to carry one Palestine
+    // feature. scripts/build/basemap.js does the same merge at build time with
+    // its own local mergePalestine(), so this is unreferenced — and it is kept
+    // because the edit it performs is a stated editorial position (see
+    // "Cartography of historic Palestine" in CLAUDE.md) and the tool that
+    // makes it reproducible is worth more than the eight lines it costs.
+    "scripts/merge-palestine.mjs",
+
+    // ── The browser. scripts/build/islands.js globs the non-underscore island
+    //    sources as esbuild entry points, and public/island-loader.js imports
+    //    the built bundles by string path at runtime — neither is an import
+    //    edge any tool can follow.
+    "public/islands/*.ts",
+    "public/island-loader.js",
+
+    // ── The edge.
+    "functions/**/*.js",
+    "workers/mcp/src/index.js",
+
+    // ── shared/ is declared entry rather than analysed, and the trade is
+    //    deliberate. It is imported by mobile/ through the `@shared/*` alias —
+    //    mobile/components/globe/storyDots.ts, mobile/components/ArticlePage.tsx
+    //    and others — and this workspace cannot see those edges, so an analysed
+    //    shared/ would report most of types.ts, globe/coordinates.ts and
+    //    countries/iso.ts as dead. They are not. Declaring it entry means knip
+    //    reports nothing here at all, which is the honest of the two failures.
+    //    Adding mobile as a second knip workspace is what buys real coverage
+    //    back; it is a follow-up, not a prerequisite.
+    "shared/**/*.ts"
+  ],
+
+  "project": [
+    "scripts/**/*.{js,mjs}",
+    "public/**/*.{js,ts}",
+    "shared/**/*.ts",
+    "functions/**/*.js",
+    "workers/mcp/src/**/*.js",
+    "!scripts/tmp-*",
+    "!scripts/_*"
+  ],
+
+  // mobile/ has its own package.json and is out of scope here; everything else
+  // knip would otherwise walk is already outside `project` above.
+  "ignore": ["mobile/**"],
+
+  // Resolved through a tsconfig rather than an import.
+  "ignoreDependencies": ["@types/.*"]
+}

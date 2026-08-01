@@ -72,6 +72,11 @@ export const SOURCES = {
  *  @property {string} [unit]        Axis unit (TrendBlock.unit).
  *  @property {'fred'|'oer'|'polymarket'|'portwatch'|'crypto'|'wikipedia'} source
  *  @property {string} [seriesId]    Source-specific identifier (FRED series, OER currency, etc.)
+ *  @property {string} [field]       PortWatch only: which vessel column to read
+ *        (`n_container`, `n_tanker`, …). Read by trends-sources/portwatch.js,
+ *        which falls back to `n_total` when it is absent or unrecognised — and
+ *        undeclared here until 2026-08-01, so the two chokepoint entries that
+ *        set it did not match their own type.
  *  @property {'daily'|'monthly'}    cadence
  *  @property {string[]} topicTags   Lowercased tags matched against article concepts/title/body.
  *  @property {string[]} [countryTags] ISO-2 codes matched against article.location/sources.

@@ -1,7 +1,7 @@
 // Run: node --test scripts/lib/blocks.test.js
 import { test } from 'node:test'
 import { strict as assert } from 'node:assert'
-import { readFileSync, readdirSync } from 'fs'
+import { readFileSync, readdirSync } from 'node:fs'
 import { splitBlocks } from './blocks.js'
 
 const count = s => splitBlocks(s).filter(x => x.length > 5).length

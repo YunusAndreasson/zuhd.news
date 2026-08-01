@@ -2,8 +2,8 @@
 // Post-writer: fills missing frontmatter fields from the selection JSON.
 // Concepts, eventCoverage, and empty sources are copied mechanically —
 // no reason to spend LLM tokens on data the pipeline already has.
-import { readFileSync, writeFileSync, existsSync } from 'fs'
-import { resolve } from 'path'
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { resolve } from 'node:path'
 
 const SELECTION_PATH = '/tmp/zuhd-selection.json'
 const NEW_ARTICLES_PATH = '/tmp/zuhd-new-articles.txt'
@@ -43,19 +43,19 @@ for (const f of files) {
   const hasConcepts = yaml.match(/^concepts:\s*\n\s+- /m)
   if (story.concepts?.length > 0 && !hasConcepts) {
     yaml = yaml.replace(/^concepts:.*$/m, '').trimEnd()
-    yaml += '\nconcepts:\n' + story.concepts.slice(0, 5).map(c => `  - "${typeof c === 'object' ? c.label : c}"`).join('\n')
+    yaml += `\nconcepts:\n${story.concepts.slice(0, 5).map(c => `  - "${typeof c === 'object' ? c.label : c}"`).join('\n')}`
     changed = true
   }
 
   // Fill missing eventCoverage
   if (story.eventCoverage && !yaml.includes('eventCoverage:')) {
-    yaml = yaml.trimEnd() + `\neventCoverage: ${story.eventCoverage}`
+    yaml = `${yaml.trimEnd()}\neventCoverage: ${story.eventCoverage}`
     changed = true
   }
 
   // Fill missing sentimentDivergence
   if (story.sentimentDivergence != null && !yaml.includes('sentimentDivergence:')) {
-    yaml = yaml.trimEnd() + `\nsentimentDivergence: ${story.sentimentDivergence}`
+    yaml = `${yaml.trimEnd()}\nsentimentDivergence: ${story.sentimentDivergence}`
     changed = true
   }
 
@@ -77,7 +77,7 @@ for (const f of files) {
       const insertAfter = countryLine ? countryLine[0] : (urlLine ? urlLine[0] : null)
       if (insertAfter) {
         const insertIdx = yaml.indexOf(insertAfter, nameIdx) + insertAfter.length
-        yaml = yaml.slice(0, insertIdx) + `\n    sentiment: ${selSrc.sentiment.toFixed(2)}` + yaml.slice(insertIdx)
+        yaml = `${yaml.slice(0, insertIdx)}\n    sentiment: ${selSrc.sentiment.toFixed(2)}${yaml.slice(insertIdx)}`
         changed = true
       }
     }
@@ -103,7 +103,7 @@ for (const f of files) {
         const insertIdx = yaml.indexOf(insertAfter, nameIdx) + insertAfter.length
         // YAML-escape the URL: quote it
         const escaped = String(selSrc.image).replace(/"/g, '\\"')
-        yaml = yaml.slice(0, insertIdx) + `\n    image: "${escaped}"` + yaml.slice(insertIdx)
+        yaml = `${yaml.slice(0, insertIdx)}\n    image: "${escaped}"${yaml.slice(insertIdx)}`
         changed = true
       }
     }
@@ -111,11 +111,11 @@ for (const f of files) {
 
   // Fill empty sources array from selection
   if (yaml.includes('sources: []') && story.sources?.length > 0) {
-    const sourcesYaml = 'sources:\n' + story.sources.map(s => {
+    const sourcesYaml = `sources:\n${story.sources.map(s => {
       let entry = `  - name: "${s.name}"\n    url: "${s.url}"`
       if (s.country) entry += `\n    country: "${s.country}"`
       return entry
-    }).join('\n')
+    }).join('\n')}`
     yaml = yaml.replace(/^sources:\s*\[\]/m, sourcesYaml)
     changed = true
   }

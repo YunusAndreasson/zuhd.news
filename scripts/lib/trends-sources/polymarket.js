@@ -87,7 +87,7 @@ function sanitizeSlug(s) {
 function shortenTitleRegex(raw) {
   if (!raw || typeof raw !== 'string') return 'Untitled market'
   const TARGET = 42
-  let s = raw.trim()
+  const s = raw.trim()
     .replace(/^Will\s+(the\s+)?/i, '')
     .replace(/^the\s+U\.?S\.?\s+/i, 'US ')
     .replace(/\bU\.S\./g, 'US')
@@ -96,7 +96,7 @@ function shortenTitleRegex(raw) {
   const cut = s.slice(0, TARGET - 1)
   const lastSpace = cut.lastIndexOf(' ')
   const head = lastSpace > TARGET - 15 ? cut.slice(0, lastSpace) : cut
-  return head.replace(/[?.!,;:]+$/, '') + '…'
+  return `${head.replace(/[?.!,;:]+$/, '')}…`
 }
 
 /** Batch-shorten Polymarket titles via Haiku. One call, all titles, ~2s.
@@ -109,8 +109,8 @@ function shortenTitleRegex(raw) {
  */
 async function shortenTitlesViaHaiku(titles) {
   if (titles.length === 0) return []
-  const { spawnSync } = await import('child_process')
-  const { randomUUID } = await import('crypto')
+  const { spawnSync } = await import('node:child_process')
+  const { randomUUID } = await import('node:crypto')
 
   const items = titles.map((t, i) => `${i + 1}. ${t}`).join('\n')
   const prompt = `You are shortening prediction-market question titles so they fit as chart headers on a mobile phone.

@@ -345,8 +345,8 @@ export interface TickerEntry {
   flag: string
   pct: number
   /** Carried through from `TickerItem.comparison` — see that field. */
-  comparison?: boolean
-  unit?: string
+  comparison?: boolean | undefined
+  unit?: string | undefined
   level: number
   /**
    * The series as the card should *draw* it, which for FX is not the series as
@@ -359,8 +359,8 @@ export interface TickerEntry {
    */
   values: number[]
   periods: string[]
-  asOf?: string
-  sourceLabel?: string
+  asOf?: string | undefined
+  sourceLabel?: string | undefined
 }
 
 /**

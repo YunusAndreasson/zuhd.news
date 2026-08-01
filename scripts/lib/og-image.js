@@ -7,11 +7,11 @@
 // type exactly. Map inset uses d3-geo orthographic centered on the
 // article's lat/lng, from shared/data/countries-110m.json (108 KB).
 
-import { readFileSync } from 'fs'
-import { join } from 'path'
-import { fileURLToPath } from 'url'
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { Resvg } from '@resvg/resvg-js'
-import { geoOrthographic, geoPath, geoCircle } from 'd3-geo'
+import { geoOrthographic, geoPath } from 'd3-geo'
 import { feature } from 'topojson-client'
 
 const ROOT = new URL('../..', import.meta.url).pathname
@@ -28,16 +28,30 @@ let _assets = null
 export const getAssets = () => {
   if (_assets) return _assets
   const topo = JSON.parse(readFileSync(join(ROOT, 'shared', 'data', 'countries-110m.json'), 'utf8'))
-  const countries = feature(topo, topo.objects.countries).features
+  const countries = /** @type {import('geojson').FeatureCollection} */ (/** @type {unknown} */ (feature(topo, topo.objects.countries))).features
   _assets = { countries }
   return _assets
 }
 
-/** The two-tone palette shared by every share card. */
+/**
+ * The two-tone palette shared by every share card.
+ *
+ * `soft` and `land` are the globe and nothing else — the disc and the
+ * landmasses, here and in `ig-image.js`. They were `#f6f6f6` and `#ececec` on a
+ * white card: **1.02:1 between the disc and the page, 1.03:1 between land and
+ * sea.** So the one picture on an article card was a ghost, and what little of
+ * it read at timeline size was the country outlines rather than the continents.
+ * The dark IG variant had already overridden both with a real step (`#1e1e1e` /
+ * `#383838`, 1.6:1) and left the light values as they were, which is the tell.
+ * 1.14:1 now for the disc against the page and **1.45:1 for land against sea**,
+ * which is a globe you can recognise at the 250px a timeline actually renders.
+ * Nothing else moves: `rule` still draws the hairlines and the country outlines,
+ * so the only thing this changes is the picture.
+ */
 export const themeFor = (variant = 'light') =>
   variant === 'dark'
     ? { bg: '#141414', fg: '#d4d4d4', soft: '#1a1a1a', rule: '#2a2a2a', dim: '#a3a3a3', dot: '#e8b84c', land: '#2a2a2a' }
-    : { bg: '#ffffff', fg: '#1a1a1a', soft: '#f6f6f6', rule: '#e2e2e2', dim: '#555555', dot: '#c9a84c', land: '#ececec' }
+    : { bg: '#ffffff', fg: '#1a1a1a', soft: '#f0f0f0', rule: '#e2e2e2', dim: '#555555', dot: '#c9a84c', land: '#c9c9c9' }
 
 const W = 1200
 const H = 630
@@ -60,7 +74,7 @@ export const escXml = (s) =>
 export const clipText = (text, max) => {
   const t = String(text ?? '').trim()
   if (t.length <= max) return t
-  return t.slice(0, max - 1).replace(/\s+\S*$/, '') + '…'
+  return `${t.slice(0, max - 1).replace(/\s+\S*$/, '')}…`
 }
 
 export const wrapTitle = (text, maxCharsPerLine, maxLines) => {
@@ -98,20 +112,21 @@ export const formatLongDate = (iso) => {
  *
  * @param {number} lat
  * @param {number} lng
- * @param {Object} theme — palette (see themeFor)
- * @param {Object} opts
- * @param {number} opts.cx — disc center x
- * @param {number} opts.cy — disc center y
- * @param {number} opts.r  — disc radius
- * @param {number} [opts.scaleMul=2.2] — projection.scale = r * scaleMul (zoom)
- * @param {string} [opts.clipId='globe-clip'] — must be unique within the SVG
- * @param {string} [opts.ocean=theme.soft] — disc (water) fill
- * @param {string} [opts.land=theme.land] — landmass fill
- * @param {string|null} [opts.landStroke=theme.rule] — land outline (null = none)
+ * @param {Object} theme - palette (see themeFor)
+ * @param {Object} [opts]
+ * @param {number} [opts.cx] - disc center x
+ * @param {number} [opts.cy] - disc center y
+ * @param {number} [opts.r]  - disc radius
+ * @param {string} [opts.crossColor] - crosshair colour; defaults to theme.dot
+ * @param {number} [opts.scaleMul=2.2] - projection.scale = r * scaleMul (zoom)
+ * @param {string} [opts.clipId='globe-clip'] - must be unique within the SVG
+ * @param {string} [opts.ocean=theme.soft] - disc (water) fill
+ * @param {string} [opts.land=theme.land] - landmass fill
+ * @param {string|null} [opts.landStroke=theme.rule] - land outline (null = none)
  * @param {number} [opts.landStrokeWidth=0.6]
- * @param {string|null} [opts.rim=theme.rule] — disc rim stroke (null = none)
+ * @param {string|null} [opts.rim=theme.rule] - disc rim stroke (null = none)
  * @param {number} [opts.rimWidth=1]
- * @param {boolean} [opts.showCross=true] — gold anchor crosshair at center
+ * @param {boolean} [opts.showCross=true] - gold anchor crosshair at center
  */
 export const buildGlobe = (lat, lng, theme, opts = {}) => {
   if (lat == null || lng == null || Number.isNaN(lat) || Number.isNaN(lng)) return ''
@@ -175,7 +190,7 @@ const buildMapInset = (lat, lng, theme) =>
 
 /**
  * Build an SVG string for an article's OG card.
- * @param {Object} article — requires title, category, date; optional location, lat, lng
+ * @param {Object} article - requires title, category, date; optional location, lat, lng
  * @param {'light'|'dark'} variant
  */
 export const buildOgSvg = (article, variant = 'light') => {
@@ -257,7 +272,7 @@ const COL_RIGHT = MAP_CX - MAP_R - 44
  * so a regional-indicator pair has no glyph to resolve to and renders as two
  * empty boxes — the emoji reads perfectly in the terminal and ships as tofu.
  *
- * @param {Object} c — { name, region, metaLine, metrics: [{label,value,rank,total}], lat, lng }
+ * @param {Object} c - { name, region, metaLine, metrics: [{label,value,rank,total}], lat, lng }
  */
 export const buildCountryOgSvg = (c, variant = 'light') => {
   const theme = themeFor(variant)
@@ -311,7 +326,7 @@ export const buildCountryOgSvg = (c, variant = 'light') => {
  * thing the page is — a name and how much of it there is — set large enough
  * that the card works at the size a timeline actually renders it.
  *
- * @param {Object} c — { category, count, days }
+ * @param {Object} c - { category, count, days }
  */
 export const buildCategoryOgSvg = (c, variant = 'light') => {
   const theme = themeFor(variant)
@@ -334,6 +349,73 @@ export const buildCategoryOgSvg = (c, variant = 'light') => {
   ${line ? `<text x="${PAD_X}" y="${H / 2 + 106}" font-family="Source Sans 3" font-size="24" font-weight="400" fill="${theme.dim}" letter-spacing="1">${escXml(line)}</text>` : ''}
 
   ${wordmark(theme)}
+</svg>`
+}
+
+/**
+ * The card for the site itself — `/og-image.png`, which is what a bare
+ * `zuhd.news` link renders as, plus every static page, `/e/{id}` and
+ * `/get`.
+ *
+ * The note at the head of this section fixed country and category cards and
+ * left this one, so the front door kept shipping a **grey capital Z on
+ * near-black, last written 2026-04-12** — a mark the site does not use anywhere
+ * any more (`favicon.svg`, `logo.svg` and the app icon are the three-piece
+ * angular Z), in a palette no other generated card uses, saying nothing about
+ * what is behind the link. The same argument `shareUrl` makes about `/s/{slug}`
+ * applies to the picture as well as the destination: this site's front door is
+ * a live map of the world, and a share that shows a letterform shows a stranger
+ * the one thing it is not.
+ *
+ * **Evergreen, and that is a constraint rather than a preference.** The URL is
+ * permanent and hardcoded in four templates, and social scrapers cache a card
+ * by URL — so a story count or a date would be frozen at whatever the first
+ * scrape happened to see and could never be corrected. Everything here is a
+ * standing fact about the site.
+ *
+ * **The globe is centred on Makkah**, which is the frame this site already
+ * keeps: the clock, the Hijri date, the currency basket and the first-class
+ * exchanges are all read from there. It is also simply the better projection
+ * for the coverage — Africa, Europe, the Middle East and South Asia all land on
+ * the disc, where a `[0, 0]` default spends half of it on the Atlantic. No
+ * crosshair: on an article card it marks the story, here there is no single
+ * story, and the map itself does not mark Makkah either.
+ *
+ * The masthead is the headline, so there is no second wordmark on the baseline
+ * — it would be the same word twice on one card.
+ */
+const MAKKAH = { lat: 21.4225, lng: 39.8262 }
+
+export const buildSiteOgSvg = (variant = 'light') => {
+  const theme = themeFor(variant)
+  // The homepage's own `og:description`, minus the clause the picture makes
+  // redundant — a card that draws a globe does not need to say "a live map".
+  const lines = ['The last 14 days of world news,', 'from 40 sources, curated by AI.']
+  const titleY = 300
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
+  <rect width="${W}" height="${H}" fill="${theme.bg}"/>
+
+  ${buildGlobe(MAKKAH.lat, MAKKAH.lng, theme, {
+    cx: MAP_CX,
+    cy: MAP_CY,
+    r: MAP_R,
+    clipId: 'site-og-clip',
+    scaleMul: 1.0,
+    showCross: false,
+  })}
+
+  ${kickerText(['global news', 'no noise'], theme)}
+
+  <text x="${PAD_X}" y="${titleY}" font-family="Source Sans 3" font-size="104" font-weight="700" fill="${theme.fg}" letter-spacing="-0.03em">zuhd<tspan fill="${theme.dot}">.</tspan>news</text>
+  <line x1="${PAD_X}" y1="${titleY + 44}" x2="${COL_RIGHT}" y2="${titleY + 44}" stroke="${theme.rule}" stroke-width="1"/>
+  ${lines
+    .map(
+      (line, i) =>
+        `<text x="${PAD_X}" y="${titleY + 88 + i * 34}" font-family="Source Sans 3" font-size="26" font-weight="400" fill="${theme.dim}">${escXml(line)}</text>`,
+    )
+    .join('\n  ')}
 </svg>`
 }
 
@@ -373,6 +455,7 @@ export const rasterizeSvg = (svgString) => {
 }
 
 /** Convenience: build + rasterize in one call. Returns a Buffer. */
+/** @param {any} article @param {'light'|'dark'} [variant] */
 export const buildOgPng = (article, variant = 'light') =>
   rasterizeSvg(buildOgSvg(article, variant))
 
@@ -381,3 +464,5 @@ export const buildCountryOgPng = (country, variant = 'light') =>
 
 export const buildCategoryOgPng = (category, variant = 'light') =>
   rasterizeSvg(buildCategoryOgSvg(category, variant))
+
+export const buildSiteOgPng = (variant = 'light') => rasterizeSvg(buildSiteOgSvg(variant))

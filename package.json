@@ -10,8 +10,11 @@
     "dev:og": "node scripts/build.js && npx wrangler pages dev dist",
     "build": "node scripts/build.js",
     "test": "node --test scripts/lib/*.test.js",
-    "typecheck": "tsc -p tsconfig.islands.json",
-    "verify": "npm run typecheck && npm test",
+    "lint": "biome check",
+    "lint:fix": "biome check --write",
+    "deadcode": "knip --include files,dependencies --no-config-hints",
+    "typecheck": "tsc -p tsconfig.islands.json && tsc -p tsconfig.node.json",
+    "verify": "npm run lint && npm run typecheck && npm test",
     "fetch": "node scripts/fetch-news.js",
     "deploy": "npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true",
     "publish": "node scripts/build.js && npm run deploy",
@@ -21,9 +24,7 @@
   "dependencies": {
     "@google-cloud/text-to-speech": "^6.4.1",
     "@mozilla/readability": "^0.6.0",
-    "@preact/signals": "^2.9.1",
     "@resvg/resvg-js": "^2.6.2",
-    "@resvg/resvg-wasm": "^2.6.2",
     "d3-geo": "^3.1.1",
     "esbuild": "^0.28.0",
     "fast-xml-parser": "^5.8.0",
@@ -33,14 +34,16 @@
     "jsdom": "^29.1.1",
     "maplibre-gl": "^6.0.0",
     "preact": "^10.29.2",
-    "satori": "^0.28.2",
     "topojson-client": "^3.1.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.5.5",
     "@types/d3-geo": "^3.1.0",
+    "@types/node": "^26.1.2",
     "@types/topojson-client": "^3.1.5",
     "@types/topojson-specification": "^1.0.5",
     "adhan": "^4.4.4",
+    "knip": "^6.31.0",
     "playwright": "^1.61.1",
     "typescript": "^7.0.2"
   }

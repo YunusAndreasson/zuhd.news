@@ -7,9 +7,9 @@
 // pipeline can import and invoke it without growing further.
 
 import { build } from 'esbuild'
-import { copyFileSync, existsSync } from 'fs'
-import { readdirSync, mkdirSync } from 'fs'
-import { join } from 'path'
+import { copyFileSync, existsSync } from 'node:fs'
+import { readdirSync, mkdirSync } from 'node:fs'
+import { join } from 'node:path'
 
 const ROOT = new URL('../..', import.meta.url).pathname
 const ISLAND_DIR = join(ROOT, 'public', 'islands')

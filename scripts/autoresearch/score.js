@@ -8,10 +8,9 @@
 // produced for them, not the full corpus — production measure-quality.js runs
 // over a 7-day window which would be insensitive to per-iteration changes.
 
-import { existsSync, readFileSync } from 'fs'
-import { join, basename } from 'path'
-import { spawnSync } from 'child_process'
-import { fileURLToPath } from 'url'
+import { existsSync, readFileSync } from 'node:fs'
+import { join, basename } from 'node:path'
+import { spawnSync } from 'node:child_process'
 import { MODELS, REPO_ROOT } from './replay-utils.js'
 
 const SELECTION_JUDGE_PROMPT = readFileSync(
@@ -195,7 +194,12 @@ function scoreWriting(articles) {
       })(),
     }
     const brevPts = ((flags.charInRange ? 1 : 0) + (flags.wordInRange ? 1 : 0)) / 2 * 50
-    const voicePenalty = (flags.passive + flags.hedge + flags.pressEra + flags.titleEcho) / 2
+    const voicePenalty =
+      ((flags.passive ? 1 : 0) +
+        (flags.hedge ? 1 : 0) +
+        (flags.pressEra ? 1 : 0) +
+        (flags.titleEcho ? 1 : 0)) /
+      2
     const voicePts = (1 - clamp01(voicePenalty)) * 50
     perArticle[a.slug] = { score: brevPts + voicePts, charLen: len, wordCount: wc, ...flags }
   }
@@ -247,7 +251,7 @@ function scoreCoverage(articles) {
   for (const a of articles) {
     const src = Date.parse(a.sourcePubDate)
     const pub = Date.parse(a.pubDate)
-    const ageDays = !isNaN(src) && !isNaN(pub) ? Math.max(0, (pub - src) / 86400_000) : null
+    const ageDays = !Number.isNaN(src) && !Number.isNaN(pub) ? Math.max(0, (pub - src) / 86400_000) : null
     if (ageDays !== null) ages.push(ageDays)
     const region = locationToRegion(a)
     perArticle[a.slug] = { ageDays, region, freshness: ageDays !== null ? 1 / (1 + ageDays) : null }
@@ -364,6 +368,7 @@ async function scoreBriefing(briefs, { skipJudges = false } = {}) {
 
 async function scorePicking(worktree, articles, cycle, { skipJudges = false } = {}) {
   let judgeScore = 50 // default if judge fails
+  /** @type {Record<string, any>} */
   let judgeDetail = { error: null }
   if (!skipJudges) {
     try {
@@ -521,7 +526,7 @@ const REGION_MAP = {
 }
 // Bbox match used by production compute-metrics.js — story-location signal.
 function coordsToRegion(lat, lng) {
-  if (lat === null || lng === null || isNaN(lat) || isNaN(lng)) return null
+  if (lat === null || lng === null || Number.isNaN(Number(lat)) || Number.isNaN(Number(lng))) return null
   if (lat > 15 && lat < 45 && lng > 25 && lng < 75) return 'ME'
   if (lat > -10 && lat < 55 && lng > 60 && lng < 150) return 'AS'
   if (lat > -40 && lat < 40 && lng > -20 && lng < 55) return 'AF'

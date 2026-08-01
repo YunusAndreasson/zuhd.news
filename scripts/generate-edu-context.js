@@ -3,9 +3,9 @@
 // Reads this cycle's new articles, identifies candidates for educational context,
 // calls Opus to select 2-4 and generate explainer briefs, saves to .context-briefs.json.
 
-import { readFileSync, writeFileSync, existsSync, appendFileSync, mkdirSync } from 'fs'
-import { join, basename, dirname } from 'path'
-import { spawnSync } from 'child_process'
+import { readFileSync, writeFileSync, existsSync, appendFileSync, mkdirSync } from 'node:fs'
+import { join, basename, dirname } from 'node:path'
+import { spawnSync } from 'node:child_process'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { buildTimelineWithCharts, loadTrendsSnapshot, buildTrendsPromptSection, selectOfferedIndicators } from './lib/trends-expand.js'
 import { parseClaudeEnvelopeWithUsage } from './lib/claude-envelope.js'
@@ -140,7 +140,7 @@ ${lines}
 const allCandidateConcepts = [...new Set(candidates.flatMap(c => c.concepts))]
 const conceptLibrary = buildConceptLibrary(briefs, allCandidateConcepts)
 if (conceptLibrary) {
-  console.log(`  Concept library: ${allCandidateConcepts.length} concepts, ${(conceptLibrary.match(/\n  "/g) || []).length} matching entries from existing briefs`)
+  console.log(`  Concept library: ${allCandidateConcepts.length} concepts, ${(conceptLibrary.match(/\n {2}"/g) || []).length} matching entries from existing briefs`)
 }
 
 // --- Load trends digest + snapshot (optional — graceful if missing) ---
@@ -272,7 +272,7 @@ for (const candidate of candidates) {
   console.log(`  ✓ ${candidate.slug} [${secs}s] (${validEntries.length} entries, ${headings} headings${chartNote}${literalNote}${dropNote})`)
 
   try {
-    appendFileSync(TRENDS_PICKS_LOG, JSON.stringify({
+    appendFileSync(TRENDS_PICKS_LOG, `${JSON.stringify({
       ts: new Date().toISOString(),
       slug: candidate.slug,
       category: candidate.category,
@@ -284,7 +284,7 @@ for (const candidate of candidates) {
       picked,
       literals,
       dropped,
-    }) + '\n')
+    })}\n`)
   } catch (err) {
     console.error(`  ✗ trends-picks log append failed for ${candidate.slug}: ${err.message}`)
   }
@@ -310,7 +310,7 @@ if (trendsDigest?.indicators?.length) {
 }
 
 if (generated > 0) {
-  writeFileSync(BRIEFS_PATH, JSON.stringify(briefs, null, 2) + '\n')
+  writeFileSync(BRIEFS_PATH, `${JSON.stringify(briefs, null, 2)}\n`)
   console.log(`\n=== Saved ${generated} edu brief(s) — ${Object.keys(briefs).length} total in briefs file ===`)
 } else {
   console.log('\n=== No edu briefs generated this cycle ===')

@@ -14,8 +14,8 @@
 // fetches pageviews for each, and emits them as indicators. Our corpus
 // drives which topics are charted.
 
-import { readdirSync, readFileSync } from 'fs'
-import { join } from 'path'
+import { readdirSync, readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { parseFrontmatter } from '../frontmatter.js'
 
 const WIKI_BASE = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents'
@@ -63,12 +63,12 @@ function toWikiSlug(label) {
 
 /** Stable id from a Wiki slug — lowercased, dashes, no unicode. */
 function toIndicatorId(slug) {
-  return 'wiki-' + slug
+  return `wiki-${slug
     .toLowerCase()
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '')
-    .slice(0, 40)
+    .slice(0, 40)}`
 }
 
 /** Scan recent articles, count concept frequency, return top N. */

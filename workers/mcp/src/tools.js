@@ -94,7 +94,7 @@ export function registerTools(server) {
       articles = await getAllArticles()
     }
 
-    articles.sort((a, b) => new Date(b.date) - new Date(a.date))
+    articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     const result = articles.slice(0, limit).map(a => summarizeArticle(a, full))
 
     return {

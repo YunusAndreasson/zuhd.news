@@ -2,9 +2,9 @@
 // zuhd.news daily audio briefing generator
 // Three stages: collect articles → Claude SSML → Google TTS MP3
 
-import { readFileSync, writeFileSync, readdirSync, mkdirSync, unlinkSync, existsSync, statSync, cpSync, rmdirSync } from 'fs'
-import { join, basename } from 'path'
-import { spawnSync } from 'child_process'
+import { readFileSync, writeFileSync, readdirSync, mkdirSync, unlinkSync, existsSync, statSync, rmdirSync } from 'node:fs'
+import { join, basename } from 'node:path'
+import { spawnSync } from 'node:child_process'
 import textToSpeech from '@google-cloud/text-to-speech'
 import { parseFrontmatter } from './lib/frontmatter.js'
 
@@ -54,7 +54,7 @@ if (articles.length > 30) {
   console.log(`Trimmed from ${articles.length} to 30 articles (most recent)`)
   articles = articles.slice(0, 30)
 }
-articles.forEach(a => delete a.addedTime) // strip internal field before sending to Claude
+for (const a of articles) delete a.addedTime // strip internal field before sending to Claude
 
 if (articles.length === 0) {
   console.log('No articles in last 24h — skipping briefing.')
@@ -108,7 +108,7 @@ const promptTemplate = readFileSync(PROMPT_PATH, 'utf-8')
 // Inline article data directly into the prompt to avoid tool-call round-trip
 const prompt = promptTemplate.replace(
   /The article data and editorial context are provided inline below by the system\. The JSON object contains:/,
-  'Here is the article data as JSON:\n\n```json\n' + JSON.stringify(payload, null, 2) + '\n```\n\nThe JSON object contains:'
+  `Here is the article data as JSON:\n\n\`\`\`json\n${JSON.stringify(payload, null, 2)}\n\`\`\`\n\nThe JSON object contains:`
 )
 let claudeOutput
 try {
@@ -213,9 +213,9 @@ if (pBlocks.length === 0) {
   const lastBlock = pBlocks[pBlocks.length - 1]
   const signoffContent = innerSsml.slice(lastBlock.index + lastBlock[0].length).trim()
   if (signoffContent && ssmlSections.length > 0) {
-    ssmlSections[ssmlSections.length - 1].ssml += '\n' + signoffContent + '\n<break time="2s"/>'
+    ssmlSections[ssmlSections.length - 1].ssml += `\n${signoffContent}\n<break time="2s"/>`
   } else if (signoffContent) {
-    ssmlSections.push({ type: 'signoff', ssml: signoffContent + '\n<break time="2s"/>' })
+    ssmlSections.push({ type: 'signoff', ssml: `${signoffContent}\n<break time="2s"/>` })
   }
 }
 
@@ -289,9 +289,13 @@ async function synthesizeChunk(ssml, label) {
     sampleRateHertz: 24000,
     effectsProfileId: ['headphone-class-device'],
   }
+  // Typed explicitly: the generated protobuf interface takes enum-or-string
+  // unions, and a bare object literal here resolves onto the callback overload
+  // of synthesizeSpeech, whose return is void and cannot be destructured.
+  const audioConfigTyped = /** @type {any} */ (audioConfig)
   const voice = { languageCode: 'en-US', name: VOICE_NAME }
   try {
-    const [response] = await client.synthesizeSpeech({ input: { ssml }, voice, audioConfig })
+    const [response] = await client.synthesizeSpeech({ input: { ssml }, voice, audioConfig: audioConfigTyped })
     return Buffer.from(response.audioContent)
   } catch (err) {
     console.error(`  ⚠ ${label}: SSML synthesis rejected (${err.message?.split('\n')[0]}) — retrying as plain text`)
@@ -302,7 +306,7 @@ async function synthesizeChunk(ssml, label) {
     }
     try {
       const [response] = await client.synthesizeSpeech({
-        input: { ssml: `<speak>${plain}</speak>` }, voice, audioConfig,
+        input: { ssml: `<speak>${plain}</speak>` }, voice, audioConfig: audioConfigTyped,
       })
       return Buffer.from(response.audioContent)
     } catch (err2) {

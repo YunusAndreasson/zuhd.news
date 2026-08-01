@@ -1,0 +1,114 @@
+// Static checking for the web surface.
+//
+// mobile/ has its own biome.json and is deliberately not claimed here — Biome
+// resolves the nearest config walking up, and listing only the web directories
+// below removes the ambiguity. Both pin 2.5.5, so the two cannot disagree about
+// what a rule means.
+//
+// The formatter is OFF, and that is a decision rather than an omission. This
+// codebase is hand-aligned in places where the alignment is the point — the
+// vertex tables in _map/glyphs.ts, the ramp stops in _map/style.ts, the comment
+// prose that CLAUDE.md is built out of. A format pass over 171 files would
+// produce a diff nobody can review and would throw away the blame that makes
+// those decisions traceable. Turning it on is one line, later, if the trade ever
+// changes. organizeImports is off for the same reason: reordering imports is
+// churn, not a fix.
+//
+// What the linter is here for is the class of defect that renders perfectly and
+// is wrong — a duplicated CSS property where the first declaration is dead, a
+// switch inside a .map() with no default returning undefined into a template,
+// isNaN's coercion where Number.isNaN's would have caught it.
+//
+// It is JSONC because Biome rejects an unknown key anywhere in the config,
+// including the `"//"` convention, so a comment has to be a real comment.
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.5/schema.json",
+  "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
+
+  "files": {
+    "includes": [
+      "public/**",
+      "shared/**",
+      "scripts/**",
+      "functions/**",
+      "workers/mcp/src/**",
+      // Multi-megabyte Natural Earth TopoJSON. Data, not source.
+      "!shared/data",
+      // Gitignored scratch files that keep reappearing at the top of scripts/.
+      "!scripts/tmp-*",
+      "!scripts/_*",
+      "!**/node_modules",
+      // templates/*.html carry {{placeholders}}, which Biome's HTML parser
+      // rejects outright ("Text expressions aren't supported") — every line with
+      // one becomes a parse error, and 200 of those bury the real findings. The
+      // built pages are what would be worth linting and they only exist in
+      // dist/. scripts/dashboard/index.html is plain HTML and stays in scope.
+      "!templates",
+      // A favicon has no accessible context to describe; the rule wants a
+      // <title> in it and there is nothing true to put there.
+      "!**/*.svg"
+    ]
+  },
+
+  "formatter": { "enabled": false },
+  "assist": { "actions": { "source": { "organizeImports": "off" } } },
+
+  "linter": {
+    "enabled": true,
+    "domains": { "test": "recommended" },
+    "rules": {
+      "preset": "recommended",
+
+      "correctness": {
+        "noUnusedVariables": "error",
+        "noUnusedImports": "error",
+        "noUnusedFunctionParameters": "warn",
+        "useParseIntRadix": "error"
+      },
+
+      "suspicious": {
+        "useIterableCallbackReturn": "error",
+        "noAssignInExpressions": "error",
+        "noDuplicateProperties": "error",
+        "noGlobalIsNan": "error",
+        "noPrototypeBuiltins": "error",
+        "noDoubleEquals": "error"
+      },
+
+      "style": {
+        "useNodejsImportProtocol": "error",
+        "useTemplate": "error",
+        "useConst": "error",
+        "noDescendingSpecificity": "warn",
+        "noNonNullAssertion": "warn"
+      },
+
+      "complexity": {
+        "useOptionalChain": "warn",
+        "noAdjacentSpacesInRegex": "error",
+        "noUselessEscapeInRegex": "error"
+      },
+
+      "a11y": "warn"
+    }
+  },
+
+  // The public site is held to the a11y bar; the localhost dashboard is not.
+  // And in a test an `await` is often structure rather than a promise, while a
+  // `!` after a fixture lookup is the whole point of a fixture.
+  "overrides": [
+    {
+      "includes": ["public/**"],
+      "linter": { "rules": { "a11y": "error" } }
+    },
+    {
+      "includes": ["scripts/lib/*.test.js"],
+      "linter": {
+        "rules": {
+          "suspicious": { "useAwait": "off" },
+          "style": { "noNonNullAssertion": "off" }
+        }
+      }
+    }
+  ]
+}

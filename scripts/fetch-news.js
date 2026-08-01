@@ -2,8 +2,8 @@
 // RSS fetcher — niche sources not in the NewsAPI.ai index.
 // These provide editorial taste: specialist tech, investigative, Muslim world.
 // Output: /tmp/zuhd-feed-rss.json (merged with API feed by merge-feeds.js)
-import { readFileSync, writeFileSync, readdirSync, existsSync } from 'fs'
-import { join, basename } from 'path'
+import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs'
+import { join } from 'node:path'
 import { XMLParser } from 'fast-xml-parser'
 import { Readability } from '@mozilla/readability'
 import { JSDOM } from 'jsdom'
@@ -192,12 +192,24 @@ function normalizeItem(raw, source) {
 }
 
 function isRelevant(item) {
-  const text = (item.category || '') + ' ' + (item.title || '')
+  const text = `${item.category || ''} ${item.title || ''}`
   if (EXCLUDE_RE.test(text)) return false
   if (/^live:/i.test(item.title || '')) return false
   return true
 }
 
+/**
+ * What a feed fetcher returns: the items, or an empty array carrying `_error`.
+ *
+ * The expando is deliberate and load-bearing — `sourceStats` uses it to tell a
+ * source that returned nothing from one that failed, which are different facts
+ * about a feed and are reported differently in the cycle log. Declaring it here
+ * is what lets both return paths agree on one type.
+ *
+ * @typedef {any[] & { _error?: string }} FeedResult
+ */
+
+/** @returns {Promise<FeedResult>} */
 async function fetchSource(source, retries = 1) {
   try {
     const res = await fetch(source.url, { signal: AbortSignal.timeout(10000), headers: { 'User-Agent': 'zuhd-news/1.0 (+https://zuhd.news)' } })
@@ -216,6 +228,7 @@ async function fetchSource(source, retries = 1) {
       return fetchSource(source, retries - 1)
     }
     console.error(`  ✗ ${source.name}: ${err.message}`)
+    /** @type {any[] & { _error?: string }} */
     const empty = []
     empty._error = err.message
     return empty
@@ -227,6 +240,7 @@ async function fetchSource(source, retries = 1) {
 const HN_SKIP_DOMAINS = /^(self|github\.com|gist\.github\.com|old\.reddit\.com|reddit\.com|twitter\.com|x\.com|youtube\.com)$/
 const HN_SKIP_TITLE = /^(Show HN|Ask HN|Launch HN|Tell HN):/i
 
+/** @returns {Promise<FeedResult>} */
 async function fetchHackerNews() {
   try {
     const cutoff = Math.floor(Date.now() / 1000) - 24 * 3600
@@ -290,6 +304,7 @@ async function fetchHackerNews() {
     }))
   } catch (err) {
     console.error(`  ✗ Hacker News: ${err.message}`)
+    /** @type {FeedResult} */
     const empty = []
     empty._error = err.message
     return empty

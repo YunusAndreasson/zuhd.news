@@ -14,8 +14,8 @@
 // when a reader opens an entity sheet (from an article's entity strip
 // or a future globe affordance) without leaving the page they're on.
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'fs'
-import { join } from 'path'
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 'node:fs'
+import { join } from 'node:path'
 import { loadShared } from './shared-ts.js'
 
 const ROOT = new URL('../..', import.meta.url).pathname
@@ -49,11 +49,11 @@ const escHtml = (s) =>
 
 const formatValue = (v, unit) => {
   if (v == null || !Number.isFinite(v)) return '—'
-  if (Math.abs(v) >= 1e9) return (v / 1e9).toFixed(2).replace(/\.?0+$/, '') + 'B' + (unit ? ` ${unit}` : '')
-  if (Math.abs(v) >= 1e6) return (v / 1e6).toFixed(2).replace(/\.?0+$/, '') + 'M' + (unit ? ` ${unit}` : '')
-  if (Math.abs(v) >= 1e3) return (v / 1e3).toFixed(2).replace(/\.?0+$/, '') + 'K' + (unit ? ` ${unit}` : '')
-  if (Number.isInteger(v) || Math.abs(v) >= 100) return `${v.toFixed(0)}${unit ? ' ' + unit : ''}`
-  return `${v.toFixed(2)}${unit ? ' ' + unit : ''}`
+  if (Math.abs(v) >= 1e9) return `${(v / 1e9).toFixed(2).replace(/\.?0+$/, '')}B${unit ? ` ${unit}` : ''}`
+  if (Math.abs(v) >= 1e6) return `${(v / 1e6).toFixed(2).replace(/\.?0+$/, '')}M${unit ? ` ${unit}` : ''}`
+  if (Math.abs(v) >= 1e3) return `${(v / 1e3).toFixed(2).replace(/\.?0+$/, '')}K${unit ? ` ${unit}` : ''}`
+  if (Number.isInteger(v) || Math.abs(v) >= 100) return `${v.toFixed(0)}${unit ? ` ${unit}` : ''}`
+  return `${v.toFixed(2)}${unit ? ` ${unit}` : ''}`
 }
 
 /**
@@ -97,7 +97,6 @@ const buildEntityRecord = (ind, mentions) => {
   const values = ind.values
   const periods = Array.isArray(ind.periods) ? ind.periods : []
   const last = values[values.length - 1]
-  const first = values[0]
   const prev = values[values.length - 2]
   const dayChange = last != null && prev != null ? ((last - prev) / prev) * 100 : null
   const deltaTone = dayChange == null ? '' : dayChange > 0 ? 'pos' : dayChange < 0 ? 'neg' : ''
@@ -157,14 +156,14 @@ __HEAD__
   <meta property="og:title" content="__LABEL__ — zuhd.news">
   <meta property="og:description" content="__DESC__">
   <meta property="og:url" content="https://zuhd.news/e/__ID__">
-  <meta property="og:image" content="https://zuhd.news/og-image.png">
+  <meta property="og:image" content="https://zuhd.news/og-image.png?v=2">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="__LABEL__ on zuhd.news">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://zuhd.news/og-image.png">
+  <meta name="twitter:image" content="https://zuhd.news/og-image.png?v=2">
   <meta name="twitter:image:alt" content="__LABEL__ on zuhd.news">
 </head>
 <body class="archetype-page-body">
@@ -233,6 +232,16 @@ __HEAD__
 </body>
 </html>`
 
+/**
+ * @param {{ sorted: any[], distDir: string, headCommon: string,
+ *           islandV?: string,
+ *           shareRowHtml?: (target: string, title: string) => string }} opts
+ *        `shareRowHtml` is passed in rather than imported because build.js owns
+ *        it; the default is a no-op for callers that do not want a share row.
+ *        Its signature has to be declared here — a default of `() => ''` infers
+ *        a zero-argument function, which makes the two real call sites read as
+ *        passing two arguments too many.
+ */
 export const buildEntityPages = async ({
   sorted,
   distDir,
@@ -255,6 +264,7 @@ export const buildEntityPages = async ({
     const entities = Array.isArray(a.meta.entities) ? a.meta.entities : []
     for (const e of entities) {
       if (!e?.indicatorId) continue
+      // biome-ignore lint/suspicious/noAssignInExpressions: the (x ??= []) group-by idiom, in statement position. The rule is here for `if (a = b)`.
       ;(mentionsByEntity[e.indicatorId] ??= []).push(a)
     }
   }

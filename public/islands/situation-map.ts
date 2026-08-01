@@ -36,6 +36,7 @@ import {
   LAND_NO_DATA,
   LAND_RAMP,
   MAP_COLOURS,
+  NODATA_HATCH,
   nodataHatch,
   OVERLAY_COLOUR,
 } from './_map/style'
@@ -72,7 +73,9 @@ import {
   type ConflictEvent,
   type GdacsAlert,
   type GdacsDetail,
+  FAMINE_NOTE,
   type GenocideSituation,
+  type IpcArea,
   type MapChokepoint,
   type MapExchange,
   type MapPoint,
@@ -84,6 +87,17 @@ import { detailKey } from '@shared/gdacs'
 
 /** Where the 1:10m coastline replaces 1:50m — see the zoomend handler. */
 const ULTRA_ZOOM = 5.5
+
+/**
+ * The oldest analysis the famine layer draws, in months.
+ *
+ * Must equal `AGE_LIMIT_MONTHS` in `scripts/lib/ipc.js`, which is what the
+ * fetcher gates on. It is repeated rather than imported because that module is
+ * Node-side and this bundle must not pull it in; the payload carries
+ * `ageLimitMonths` so the two can be checked against each other, and
+ * `map-island.test.js` does.
+ */
+const FAMINE_AGE_MONTHS = 12
 
 /**
  * Where the density wash has finished fading out.
@@ -107,6 +121,7 @@ const OVERLAY_LAYERS = [
   'chokepoint-marks',
   'market-marks',
   'conflict-marks',
+  'famine-marks',
   'genocide-marks',
   'genocide-core',
 ]
@@ -149,6 +164,11 @@ export const MARKER_LAYERS = ['story-points', 'story-place-count', ...OVERLAY_LA
 export const HIT_ORDER = [
   'genocide-core',
   'genocide-marks',
+  // Under genocide, over everything else: a famine classification is a
+  // determination too, so it must not be coverable by a burst of stories or a
+  // market tick — but where the two coincide, which over Gaza they do, the
+  // graver finding takes the pointer.
+  'famine-marks',
   'thermal-marks',
   'market-marks',
   'story-place-count',
@@ -249,7 +269,15 @@ const json = async <T>(
   revalidate = false,
 ): Promise<T | null> => {
   try {
-    const res = await fetch(url, revalidate ? { signal, cache: 'no-cache' } : { signal })
+    // Built up rather than spread, because `RequestInit.signal` is optional and
+    // `{ signal: undefined }` is a different thing from `{}` — present-and-
+    // undefined, which is what exactOptionalPropertyTypes exists to separate.
+    // fetch happens to tolerate it, so this was never a live fault; it is the
+    // shape of one, and the same construction elsewhere would not be so lucky.
+    const init: RequestInit = {}
+    if (signal) init.signal = signal
+    if (revalidate) init.cache = 'no-cache'
+    const res = await fetch(url, init)
     if (!res.ok) return null
     return (await res.json()) as T
   } catch {
@@ -290,9 +318,23 @@ const catColour = (fallback: string) =>
 const densityWeight = (): ExpressionSpecification =>
   ['*', ['get', 'amax'], ['sqrt', ['get', 'n']]] as unknown as ExpressionSpecification
 
-export function mount(container: HTMLElement, props: { basemap?: string } = {}) {
+export function mount(
+  container: HTMLElement,
+  props: { basemap?: string; story?: string } = {},
+) {
   /** Cache key for the basemap files — see `basemapUrl`. */
   const basemapV = props.basemap
+  /**
+   * The story a shared link asked for, from `data-story` on the shell.
+   *
+   * Only ever set by `functions/s/[slug].js`, which is the route `shareUrl()`
+   * hands out. The homepage never carries it, so the map's own first view is
+   * untouched: this is a landing, not a mode.
+   */
+  const sharedStory = props.story || null
+  /** Both halves of the landing's precondition, and a latch so it runs once. */
+  let coreLoaded = false
+  let sharedDone = false
   container.classList.add('map-root')
   container.removeAttribute('aria-hidden')
 
@@ -511,8 +553,33 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
    * the metric's own units, and can't disagree with the paint because the build
    * reads them off the same projection.
    */
+  /**
+   * The no-data key shows the hatch, not just the tone under it.
+   *
+   * It was a flat `LAND_NO_DATA` square whose own `title` began "Hatched: no
+   * figure for this metric" — a legend naming a mark it did not draw. And of
+   * every mark on this map that is the one where the gap matters most, because
+   * the argument `nodataHatch` is built on is that the tone alone *cannot* do
+   * this job: "no tone, however chosen, can say 'not measured' to a reader who
+   * has just been taught that dark means little". `LAND_NO_DATA` is `#0d1015`,
+   * two points off the ocean. On a ramp whose dark end is also near-black, a
+   * reader checking the key against the land saw a dark chip beside a dark
+   * gradient and had nothing to tell them apart — the difference of kind was on
+   * the map and missing from the thing explaining it.
+   *
+   * Both values come from the constant the sprite is rasterised from, the way
+   * `--c` and `--ramp` already come from `LAND_NO_DATA` and `LAND_RAMP`, so the
+   * key cannot drift from the fill. The period is the tile's diagonal —
+   * `(x + y) % 8` puts one line every `8 / √2` px measured across it.
+   */
+  const hatchRgb = [1, 3, 5].map((i) => parseInt(NODATA_HATCH.ink.slice(i, i + 2), 16)).join(' ')
+  const hatchStyle =
+    `--c:${LAND_NO_DATA};` +
+    `--hatch:rgb(${hatchRgb} / ${NODATA_HATCH.alpha.toFixed(3)});` +
+    `--hatch-gap:${(NODATA_HATCH.tile / Math.SQRT2).toFixed(2)}px`
+
   groundScale.innerHTML =
-    `<span class="map-ground-swatch" data-none="1" style="--c:${LAND_NO_DATA}"></span>` +
+    `<span class="map-ground-swatch" data-none="1" style="${hatchStyle}"></span>` +
     `<span class="map-ground-end" data-end="dark"></span>` +
     `<span class="map-ground-ramp" style="--ramp:${LAND_RAMP.join(',')}"></span>` +
     `<span class="map-ground-end" data-end="light"></span>`
@@ -813,6 +880,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   let conflictNewest = 0
   let genocide: GenocideSituation[] = []
   let thermal: ThermalEvent[] = []
+  let famine: IpcArea[] = []
 
   /** The metric currently tinting the land, and its payload once fetched. */
   let metricKey = DEFAULT_METRIC
@@ -837,6 +905,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     straits: true,
     markets: true,
     conflict: true,
+    famine: true,
   }
   let rangeHours: number | null = DEFAULT_RANGE_HOURS
   let scrubNow = Date.now()
@@ -1122,7 +1191,16 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     // A padding that swallows the canvas leaves MapLibre no viewport to centre
     // in; two thirds is the most the chrome may claim of the camera.
     const bottom = Math.min(canvas.bottom - top, canvas.height * 0.66)
-    writePadding({ top: 0, bottom, right: 0, left: 0 })
+    // The phone's header is fixed *over* the canvas, and it was never in here:
+    // top padding was a flat 0, so `flyTo` centred a story in a box whose top
+    // edge sits under the wordmark, and a story card — which MapLibre draws
+    // upward from a bottom-anchored marker — landed across it. Invisible until
+    // a shared link made that card the first thing a phone reader sees. It is
+    // measured rather than read off `--map-head-h`, for the reason the rail is:
+    // what matters is the header's actual intersection with the canvas.
+    const header = inset(document.querySelector('body.map-page > header'))
+    const headTop = header && header.w >= canvas.width - 1 ? header.h : 0
+    writePadding({ top: Math.min(headTop, canvas.height * 0.2), bottom, right: 0, left: 0 })
   }
 
   // --- Data shaping -------------------------------------------------------
@@ -1295,6 +1373,38 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   })
 
   /**
+   * IPC-classified areas.
+   *
+   * No `t`, because there is nothing here for the scrubber to filter: a
+   * classification is a condition. What the mark carries instead is `age` — how
+   * old the analysis behind it is, normalised against the twelve-month bound the
+   * fetcher gates on — which rides on opacity. That is the same channel the
+   * thermal layer gives the instrument's confidence and for the same reason: a
+   * statement the publisher made eleven months ago must not arrive at the weight
+   * of one made last month.
+   *
+   * The phase-to-glyph mapping is stated in the layer rather than baked into a
+   * property here, so `map-island.test.js` can walk `icon-image` and see which
+   * glyphs the layer actually draws. A `['get', 'glyph']` string is invisible to
+   * that walk — which is the check that caught `glyphs.ts` registering four
+   * silhouettes that no layer referenced — so a data-driven image would have
+   * bought one template literal at the price of the test that guards the whole
+   * alphabet.
+   */
+  const famineCollection = () => ({
+    type: 'FeatureCollection' as const,
+    features: famine.map((a) => ({
+      type: 'Feature' as const,
+      properties: {
+        id: a.id,
+        phase: Math.max(3, Math.min(5, Math.round(a.phase))),
+        age: Math.max(0, Math.min(1, a.ageMonths / FAMINE_AGE_MONTHS)),
+      },
+      geometry: { type: 'Point' as const, coordinates: [a.lng, a.lat] },
+    })),
+  })
+
+  /**
    * Conflict events, sized by fatalities.
    *
    * Recency is measured against the newest event in the *dataset*, not the wall
@@ -1370,6 +1480,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     set('chokepoint-marks', layersOn.straits)
     set('market-marks', layersOn.markets)
     set('conflict-marks', layersOn.conflict)
+    set('famine-marks', layersOn.famine)
     // Both halves, or the labels float over a map with no lines under them.
     // Hiding the line layer also takes it out of `queryRenderedFeatures`, which
     // is what stops the hover probe finding a line the reader turned off.
@@ -1455,6 +1566,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     src('chokepoints')?.setData(chokeCollection())
     src('markets')?.setData(marketCollection(markets))
     src('conflict')?.setData(conflictCollection())
+    src('famine')?.setData(famineCollection())
     src('genocide')?.setData(genocideCollection())
     // Separator and label together — revealing the mark's name while leaving
     // its divider hidden would put the label inside the toggle group, which is
@@ -1506,6 +1618,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     map.addSource('chokepoints', { type: 'geojson', data: empty })
     map.addSource('markets', { type: 'geojson', data: empty })
     map.addSource('conflict', { type: 'geojson', data: empty })
+    map.addSource('famine', { type: 'geojson', data: empty })
     map.addSource('genocide', { type: 'geojson', data: empty })
     map.addSource('night', { type: 'geojson', data: empty })
     map.addSource('day', { type: 'geojson', data: empty })
@@ -2159,6 +2272,79 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     })
 
     /**
+     * Acute food insecurity.
+     *
+     * **No filter, by design.** A classification is a condition, not an event, so
+     * this joins `genocide` in being absent from `applyTimeFilters` — scrubbing
+     * back to Tuesday must not hide the fact that a district is in Emergency,
+     * because that was as true on Tuesday as it is now. `map-island.test.js`
+     * fails if a time filter appears on it.
+     *
+     * Drawn above the stories and the markets for the reason both of those are:
+     * these areas are in exactly the places that generate the most coverage, and
+     * the damage from an overlap is asymmetric — a story pile survives a 12px
+     * glyph crossing it, and a single famine mark, covered, is simply absent.
+     * Below `genocide`, which is the one thing on this map that covers everything.
+     *
+     * Larger than the other overlay glyphs, at 10–14px against their 7. The
+     * silhouette is a three-block level and each block has to survive on its own
+     * — see `glyphs.ts` — and the layer can afford the room, being 105 marks
+     * where `conflict-marks` is thousands.
+     */
+    map.addLayer({
+      id: 'famine-marks',
+      type: 'symbol',
+      source: 'famine',
+      layout: {
+        // The alphabet, stated. Phase 4 is the fallback rather than a lower one:
+        // an area that reached this layer at all cleared the publication bar, so
+        // an unreadable phase must not draw as the mildest mark on it.
+        'icon-image': [
+          'match',
+          ['get', 'phase'],
+          3, 'famine-3',
+          4, 'famine-4',
+          5, 'famine-5',
+          'famine-4',
+        ],
+        // `wantedCssPx / GLYPH_BOX`, on two inputs.
+        //
+        // Phase is the one that matters and zoom is the one that was missing.
+        // Sudan alone is 56 areas and Somalia 24, so at the opening zoom the full
+        // 10–14px columns pile into a single violet mass over the Horn — the mark
+        // still reads as *this layer*, which is the conflict layer's bargain and
+        // fine, but the level meter inside each glyph is unreadable in the pile,
+        // and the level is the whole reason the silhouette is a column. Smaller at
+        // world zoom, so the pile is a texture rather than a merge; full size by
+        // z5, where the camera has earned the individual marks. Zoom must be the
+        // outer `interpolate` — MapLibre only accepts it at the top level.
+        'icon-size': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          0, ['interpolate', ['linear'], ['get', 'phase'], 3, 0.40, 5, 0.52],
+          5, ['interpolate', ['linear'], ['get', 'phase'], 3, 0.63, 5, 0.88],
+        ],
+        'icon-allow-overlap': true,
+        'icon-ignore-placement': true,
+        // Gravest on top. Where two areas' marks overlap at world zoom — which in
+        // Darfur they do — the one that yields must be the less severe.
+        'symbol-sort-key': ['-', 0, ['get', 'phase']],
+      } as never,
+      paint: {
+        'icon-color': OVERLAY_COLOUR.famine,
+        // How old the analysis is. A determination the IPC made eleven months ago
+        // is still the current classification of that place — which is why it is
+        // drawn at all — and it is not the same claim as one made last month. The
+        // floor is high on purpose: this layer's quietest mark still has to be a
+        // mark, unlike a fortnight-old story beacon which may fade to a hint.
+        'icon-opacity': ['interpolate', ['linear'], ['get', 'age'], 0, 1, 1, 0.55],
+        'icon-halo-color': MAP_COLOURS.labelHalo,
+        'icon-halo-width': 1.4,
+      } as never,
+    })
+
+    /**
      * Genocide.
      *
      * Added last, so it draws over every other layer — a mark that a cluster
@@ -2577,6 +2763,8 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       if (gen) return sheet.showGenocide(gen, pin)
       const heat = thermal.find((x) => x.id === key)
       if (heat) return sheet.showThermal(heat, pin)
+      const area = famine.find((x) => x.id === key)
+      if (area) return sheet.showFamine(area, pin)
     }
 
     /**
@@ -2835,18 +3023,33 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       btn.type = 'button'
       btn.className = hours === rangeHours ? 'map-range is-on' : 'map-range'
       btn.dataset.kind = 'range'
+      // Read back by `syncRangeChips`, which has no closure over the loop.
+      btn.dataset.hours = hours === null ? '' : String(hours)
       btn.textContent = label
       btn.setAttribute('aria-pressed', String(hours === rangeHours))
       btn.addEventListener('click', () => {
         rangeHours = hours
-        for (const b of ranges.querySelectorAll('.map-range')) {
-          const on = b === btn
-          b.classList.toggle('is-on', on)
-          b.setAttribute('aria-pressed', String(on))
-        }
+        syncRangeChips()
         refresh()
       })
       ranges.append(btn)
+    }
+  }
+
+  /**
+   * Put the range row in step with `rangeHours`.
+   *
+   * Lifted out of the click handler because a shared link can widen the range
+   * without anything being pressed — and a chip row that still says `3d` over a
+   * map showing a fortnight is the legend-disagreeing-with-the-mark failure in
+   * its plainest form.
+   */
+  const syncRangeChips = () => {
+    for (const b of ranges.querySelectorAll('.map-range')) {
+      const on = Number((b as HTMLElement).dataset.hours) === rangeHours ||
+        ((b as HTMLElement).dataset.hours === '' && rangeHours === null)
+      b.classList.toggle('is-on', on)
+      b.setAttribute('aria-pressed', String(on))
     }
   }
 
@@ -2944,6 +3147,11 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       ['straits', 'straits', OVERLAY_COLOUR.straits, ['strait-rest'], ''],
       ['markets', 'markets', '', ['tick-up', 'tick-down'], ''],
       ['conflict', 'conflict', OVERLAY_COLOUR.conflict, ['conflict-mark'], ''],
+      // Last of the feed toggles and directly before the genocide separator, so
+      // the row ends on the two determination layers. It shows two glyphs for the
+      // reason `markets` does: the silhouette *is* the phase here, so a single
+      // swatch would name the layer and withhold the one thing the chip can teach.
+      ['famine', 'famine', OVERLAY_COLOUR.famine, ['famine-3', 'famine-5'], FAMINE_NOTE],
     ] as Array<[keyof typeof layersOn, string, string, GlyphId[], string]>) {
       const btn = document.createElement('button')
       btn.type = 'button'
@@ -3044,6 +3252,60 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     container.append(timeline.element)
     watchChrome()
     refresh()
+    coreLoaded = true
+    openSharedStory()
+  }
+
+  /**
+   * A shared link's landing: fly to the story and open its card.
+   *
+   * Runs once, here, because this is the first moment `pointBySlug` means
+   * anything — before `/api/map.json` lands, "is this story on the map" has no
+   * answer, and asking early would answer *no* for every link.
+   *
+   * **A slug that is not here leaves for the article.** The map holds fourteen
+   * days; a link passed around for a fortnight and a day is a link to a story
+   * that is genuinely not on this surface any more. Landing on the map with
+   * nothing open would show a stranger something other than what was shared,
+   * which is the one thing a share route must never do. `replace`, not `assign`,
+   * so the back button returns to wherever the link was opened from rather than
+   * to a map that is about to redirect again.
+   *
+   * **The range widens if it has to.** The map opens on 3d, so a story from last
+   * Tuesday would fly the camera to a card whose beacon is outside the visible
+   * slice — the mark missing under its own card. `flyToStory` deliberately does
+   * not check the scrubber, because a reader asking for a story by name has
+   * overruled the filters; a *shared* link is the same request made by someone
+   * who has not seen the filters at all. So the slice moves to admit it, and the
+   * chip row is told, because a row still reading `3d` over a fortnight of
+   * beacons is a legend contradicting its own map.
+   */
+  const openSharedStory = () => {
+    if (!sharedStory || sharedDone) return
+    // Two independent arrivals have to have happened: `/api/map.json`, which is
+    // what makes `pointBySlug` mean anything, and MapLibre's `load`, which is
+    // what creates the popup. Neither waits on the other, so whichever lands
+    // second calls this — and the first call returns here. Without the second
+    // condition the camera flew to the story and no card ever opened, because
+    // `popup?.preview` and `popup?.open` were both optional-chaining past a
+    // `null` that would exist a few hundred milliseconds later.
+    if (!coreLoaded || !popup) return
+    sharedDone = true
+    const p = pointBySlug.get(sharedStory)
+    if (!p) {
+      location.replace(`/a/${sharedStory}`)
+      return
+    }
+    const age = scrubNow - p.t
+    if (rangeHours !== null && age > rangeHours * 3_600_000) {
+      // The widest range that still admits it, rather than always the whole
+      // fortnight: a story from yesterday should not open the map on 14d.
+      const fit = RANGES.find(([, hours]) => hours === null || age <= hours * 3_600_000)
+      rangeHours = fit ? fit[1] : null
+      syncRangeChips()
+      refresh()
+    }
+    flyToStory(p)
   }
 
   /**
@@ -3087,7 +3349,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
   }
 
   const loadLayers = async () => {
-    const [g, c, gen, mk, th] = await Promise.all([
+    const [g, c, gen, mk, th, ipc] = await Promise.all([
       json<{ alerts: GdacsAlert[]; details?: Record<string, GdacsDetail> }>(
         '/api/gdacs.json',
         abort.signal,
@@ -3100,6 +3362,13 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       // of the beacons, and arriving a second late reads as a glitch rather
       // than as loading.
       json<{ events: ThermalEvent[] }>('/api/firms.json', abort.signal),
+      // 34 KB, in the main batch alongside `genocide` rather than idle-deferred
+      // like the conflict feed. Not a size judgement — it is smaller than the
+      // markets payload that also rides here — but a kind one: this and genocide
+      // are the map's two determination layers, and a reader who sees one mark
+      // over Gaza appear a second before the other is watching the map disagree
+      // with itself about what it knows.
+      json<{ areas: IpcArea[] }>('/api/ipc.json', abort.signal),
     ])
     if (!mounted) return
     if (g?.alerts) gdacs = g.alerts
@@ -3119,6 +3388,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
       marketStrip.setVisible(layersOn.markets)
     }
     if (th?.events) thermal = th.events
+    if (ipc?.areas) famine = ipc.areas.filter((a) => Number.isFinite(a.lat) && Number.isFinite(a.lng))
     setOverlayData()
   }
 
@@ -3471,6 +3741,7 @@ export function mount(container: HTMLElement, props: { basemap?: string } = {}) 
     applyPadding()
     drawSolar()
     applyRefresh()
+    openSharedStory()
     // The land tint needs the countries source to have finished loading, which
     // `load` does not promise for a GeoJSON source fetched over the network —
     // and the tier swap replaces that data twice more as the reader zooms in,

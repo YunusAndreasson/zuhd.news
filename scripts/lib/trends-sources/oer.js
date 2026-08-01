@@ -9,8 +9,8 @@
 // covers every currency for 30 days). Subsequent runs: 1 call/day, merged
 // into the cache.
 
-import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'fs'
-import { dirname } from 'path'
+import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs'
+import { dirname } from 'node:path'
 
 const OER_BASE = 'https://openexchangerates.org/api'
 const USER_AGENT = 'zuhd-news/1.0 (+https://zuhd.news)'
@@ -21,7 +21,7 @@ function ymd(d) {
 }
 
 function formatPeriod(dateStr) {
-  const d = new Date(dateStr + 'T00:00:00Z')
+  const d = new Date(`${dateStr}T00:00:00Z`)
   const month = d.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' })
   return `${month} ${d.getUTCDate()}`
 }

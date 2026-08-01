@@ -561,7 +561,6 @@ footer {
 
 /* --- Article Body --- */
 .article-body {
-  line-height: 1.75;
   hyphens: auto;
   text-wrap: pretty;
   content-visibility: auto;
@@ -569,6 +568,11 @@ footer {
   font-variant-ligatures: common-ligatures contextual;
   font-variant-numeric: oldstyle-nums proportional-nums;
   font-size: clamp(1.375rem, 0.4vw + 1.2rem, 1.5rem);
+  /* 1.6, not the 1.75 that stood at the top of this rule until 2026-08-01.
+     The commit that introduced the clamp above set 1.6 in the same breath —
+     bigger type is paid for out of the leading — and left the old value in
+     place, where it has been dead ever since. Deleting it changes nothing on
+     screen; it makes the rule say what the page has always done. */
   line-height: 1.6;
 
   p {
@@ -741,55 +745,6 @@ footer {
 }
 .context-body .context-heading:first-child { margin-top: 0; }
 .context-body p { margin: 0 0 0.3em 0; }
-/* --- App banner (hidden on iOS Safari; native smart banner shows instead) --- */
-.app-banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-sm);
-  font-size: var(--size-sm);
-  color: var(--text-secondary);
-  padding: 0.35rem 0 0.5rem;
-  margin-bottom: var(--space-sm);
-  border-bottom: 1px solid var(--rule);
-}
-
-.app-banner-text {
-  line-height: 1.4;
-}
-
-.app-banner-text a {
-  color: var(--text);
-  text-decoration-color: var(--accent);
-  text-underline-offset: 0.2em;
-}
-
-.app-banner-close {
-  flex-shrink: 0;
-  background: none;
-  border: none;
-  color: var(--text-secondary);
-  font-family: inherit;
-  font-size: 1.15rem;
-  line-height: 1;
-  cursor: pointer;
-  /* Tap target extends left + top/bottom; no right padding so the
-     × glyph is flush with the banner right edge — the same vertical
-     line the layout's right edge sits on. */
-  padding: 0.5rem 0 0.5rem 0.75rem;
-  margin: 0;
-  transition: color 0.15s;
-}
-
-.app-banner-close:hover {
-  color: var(--text);
-}
-
-.app-banner-close:focus-visible {
-  outline: 1px solid var(--focus);
-  outline-offset: 2px;
-}
-
 /* --- Share ---
    Set in the same footnote register as `.footer-social`: a step below the
    document links, no icons, no coloured brand marks. On a site whose whole
@@ -2564,7 +2519,6 @@ body.map-page {
   background: var(--map-ground);
 }
 
-body.map-page .app-banner { display: none; }
 
 .map-main {
   position: fixed;
@@ -3022,9 +2976,48 @@ body.map-page > footer .footer-social a {
      the first frame. */
   padding-right: calc(var(--map-status-w, 6.5rem) + var(--space-sm));
   pointer-events: none;
-  background: linear-gradient(to bottom, color-mix(in srgb, var(--map-ground) 90%, transparent), color-mix(in srgb, var(--map-ground) 55%, transparent) 60%, transparent);
 
   > * { pointer-events: auto; }
+}
+
+/* The scrim holds over the rows and fades *below* them.
+   It was a background on the box itself, running 90% at the top to 55% at 60%
+   of its height and transparent at the bottom — so it covered row one and
+   abandoned every row under it. The HUD is two rows at 1440 and three at 1024,
+   and measured on the real map the layer chips had DHUHR printed through them
+   and the ground legend had ASR sitting between "1.4B" and the key. A HUD chip
+   is 11px letterspaced caps and so is a MapLibre place label: at that point the
+   reader cannot tell which words are the control and which are the map.
+
+   This is the same correction the map's own type just had — the palette had
+   been audited against the surfaces CSS paints and never against the ground
+   MapLibre paints — arriving one layer up. Contrast is not a property of an ink
+   alone, and a scrim that stops before the text does is the ground moving.
+
+   A pseudo-element rather than a taller box, because the height is read: the
+   legend hangs at `top: 100%` off `anchorLegend`'s measurement of this element,
+   and padding-bottom would open a gap between the strip and the panel it
+   summons. The overhang is the fade, so the content sits entirely in the flat
+   part and the ramp is spent on map the HUD is not using.
+
+   96%, and the four points are the whole tuning. The flat part started at 92
+   and a place label at `--map-ink`-brightness still ghosted through it at 1.30:1
+   against the ground — enough to make out DHUHR behind the layer chips, which
+   is the failure this fixes, only quieter. At 96 the same label lifts the ground
+   1.15:1, under what a reader can resolve as letterforms. Not 100: the fade band
+   is what says the map continues underneath, and a fully opaque strip is a
+   toolbar. */
+.map-hud::after {
+  content: '';
+  position: absolute;
+  inset: 0 0 -1.6rem;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--map-ground) 96%, transparent) calc(100% - 1.6rem),
+    transparent
+  );
 }
 
 .map-ranges {
@@ -3367,20 +3360,39 @@ body.map-page > footer .footer-social a {
   gap: 0.35rem;
 }
 
-/* No data sits apart from the ramp, and is drawn from the same constant the
-   fill uses, so the legend cannot claim a tone the map doesn't paint. */
+/* No data sits apart from the ramp, and is drawn from the same constants the
+   fill uses — the tone *and the hatch over it* — so the legend cannot claim a
+   mark the map doesn't paint. `--hatch` and `--hatch-gap` arrive from the
+   island, off `NODATA_HATCH`, which is also what the sprite is rasterised from;
+   see the note beside `hatchStyle` in `situation-map.ts` for why the tone alone
+   was never enough here.
+
+   16px wide rather than 9: at the tile's 5.66px period a square chip holds one
+   and a half strokes, and one stroke through a box reads as a defect. Three is
+   a hatch. `135deg` because CSS bands run perpendicular to the gradient line,
+   and `(x + y) % 8` on the sprite is the "/" diagonal. */
 .map-ground-swatch {
-  width: 9px;
+  width: 16px;
   height: 9px;
-  background: var(--c);
-  border: 1px solid var(--map-line);
+  background-color: var(--c);
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent 0 calc(var(--hatch-gap) - 1px),
+    var(--hatch) calc(var(--hatch-gap) - 1px) var(--hatch-gap)
+  );
+  border: 1px solid var(--map-line-loud);
 }
 
 .map-ground-ramp {
   width: 72px;
   height: 9px;
   background: linear-gradient(to right, var(--ramp));
-  border: 1px solid var(--map-line);
+  /* `--map-line-loud`, not `--map-line`. Both of these are samples of the map's
+     ground and both start near-black at their dark end, so at 1.42:1 the old
+     hairline left the low end of the ramp with no edge at all — the swatch read
+     as an empty outline and the gradient as a bar that begins a third of the
+     way in. An edge is what makes a sample a sample. */
+  border: 1px solid var(--map-line-loud);
 }
 
 /* The value at each end of the ramp, in the metric's own units.
@@ -3502,12 +3514,36 @@ body.map-page > footer .footer-social a {
   bottom: 0;
   z-index: 2;
   padding: 0.5rem 1.1rem 0.6rem;
-  /* Holds to full strength further up than it used to. The head row is now
-     three lines rather than one — the exchange tally, the money ribbon, and the
-     time readout — and the old ramp began fading before the top of them, so
-     small type was landing on Patagonia and the South Atlantic islands. */
-  background: linear-gradient(to top, color-mix(in srgb, var(--map-ground) 94%, transparent) 78%, transparent);
   pointer-events: auto;
+}
+
+/* The scrim holds over the rows and fades *above* them.
+   Same correction as `.map-hud::after`, from the other edge. The gradient held
+   94% to 78% of the box and was transparent at its top — which is the top of
+   the markets tally, the widest and quietest line on the strip. Measured on the
+   phone, where this row is a quarter of the viewport: WEDDELL printed through
+   "markets · 5 ▲ 19 ▼ 6 flat" and ANTARCTICA through the day ticks. The note
+   this replaces already knew the shape of the problem — "the old ramp began
+   fading before the top of them" — and answered it by moving the stop rather
+   than by moving the fade off the content, so it came back the next time the
+   row grew a line.
+
+   The overhang is where the ramp goes, so it cannot come back: content sits in
+   the flat part whatever the strip wraps to. It has to be a pseudo-element
+   because `--map-scrub-h` is this element's `offsetHeight` and the peek card
+   clears the scrubber by it — padding-top would push every peek card up by the
+   height of a gradient. */
+.map-timeline::before {
+  content: '';
+  position: absolute;
+  inset: -2rem 0 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--map-ground) 96%, transparent) calc(100% - 2rem),
+    transparent
+  );
 }
 
 /* --- The readout line ---
@@ -3817,15 +3853,23 @@ body.map-page > footer .footer-social a {
   .map-markets-quote[data-comparison] { display: none; }
 }
 
+/* No `opacity`. It was 0.6 at rest, lifting to 1 on hover — the composite-and-
+   hope trick this stylesheet has now caught three times (the filter chips at
+   2.33:1, the scrubber head, the footer links), and `colour-system.test.js`
+   cannot see any of them because opacity is not a colour literal. Here it
+   dimmed the whole control at once: the day labels landed at **1.51:1**, the
+   window band at 0.072 alpha, and the scrub head — the one mark saying where in
+   the fortnight the reader is standing — went with them. Every element on this
+   canvas already carries its own alpha against its own tone, so the wrapper was
+   a second, untested dimming on top of a tuned one.
+
+   The hover cue moves to the head, which is the only part of this control that
+   answers a pointer. A slider whose track brightens is announcing that it is
+   interactive; a slider whose *handle* thickens is showing you what to grab. */
 .map-timeline-track {
   position: relative;
   height: 2.15rem;
-  opacity: 0.6;
-  transition: opacity var(--dur-normal);
 }
-
-.map-timeline:hover .map-timeline-track,
-.map-timeline.is-scrubbed .map-timeline-track { opacity: 1; }
 
 .map-timeline-canvas {
   position: absolute;
@@ -3851,6 +3895,7 @@ body.map-page > footer .footer-social a {
     background: var(--map-ink);
     border: none;
     border-radius: 0;
+    transition: width var(--dur-normal);
   }
 
   &::-moz-range-thumb {
@@ -3859,10 +3904,19 @@ body.map-page > footer .footer-social a {
     background: var(--map-ink);
     border: none;
     border-radius: 0;
+    transition: width var(--dur-normal);
   }
 
   &:focus-visible { outline: 1px solid var(--map-focus); outline-offset: 2px; }
 }
+
+/* The head thickens under the pointer — 2px to 4px, the whole hover state of
+   this control now that the track no longer fades in. Two pixels is the right
+   mark for a position on a 1069px rail and the wrong target to aim at, so the
+   grab affordance has to appear before the grab; `cursor: ew-resize` says the
+   same thing and only after the pointer has already arrived. */
+.map-timeline:hover .map-timeline-range::-webkit-slider-thumb { width: 4px; }
+.map-timeline:hover .map-timeline-range::-moz-range-thumb { width: 4px; }
 
 /* --- Map popup ---
    MapLibre's own stylesheet is not shipped, so the popup's positioning,
@@ -5538,8 +5592,20 @@ body.doc-page .chart {
      height is spent from whatever is above or below that point — 52vh of prose
      plus a headline is taller than either half of a phone, and MapLibre flips
      the anchor but cannot shrink the card, so the tail ran off the bottom of
-     the screen with no way to reach it. */
-  .map-popup-prose { max-height: 30vh; }
+     the screen with no way to reach it.
+
+     It scrolls, and until now nothing said so. A scroll container whose last
+     visible line is cut mid-sentence with a hard edge under it reads as a
+     broken card, not a full one — and since a shared link makes this the first
+     thing a phone reader sees, "looks broken" is the whole first impression.
+     The mask fades the final few millimetres out, which is the one signal that
+     costs no height: there is more, and it is that way. `to bottom` in a mask
+     is the only place this file paints a gradient over content, and it is
+     doing an affordance's job rather than a decoration's. */
+  .map-popup-prose {
+    max-height: 32vh;
+    mask-image: linear-gradient(to bottom, #000 calc(100% - 1.6rem), transparent);
+  }
 }
 
 /* A drawer that slides is a drawer; one that jumps is a repaint. Both end in

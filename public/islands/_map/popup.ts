@@ -15,8 +15,9 @@
 import { rankStrip } from '@shared/chart/rank-strip'
 import { Popup, type Map as MapLibreMap } from 'maplibre-gl'
 import { appPrompt } from '../_app-prompt'
-import { createChart, type Chart } from '../_chart'
+import { createChart } from '../_chart'
 import { disclosure, el, growTo, moreLink, type Built } from '../_disclosure'
+import { shareUrl } from '@shared/share'
 import { renderShare } from '../_share'
 import { CONTESTED_D, type MapPoint } from './types'
 import type { StoryPlace } from './places'
@@ -306,16 +307,17 @@ const sourceBlock = (story: Story, p: MapPoint): Node[] => {
  *
  * The map deliberately never changes its URL, which is right for the view and
  * wrong for the story: a reader who wants to send this one to someone has
- * nothing to copy, because the address bar says `/` and always has. So the
- * share targets the canonical `/a/{slug}` page, which is also the URL carrying
- * the generated OG card, so what arrives at the other end is the headline over
- * its own patch of globe rather than a bare link.
+ * nothing to copy, because the address bar says `/` and always has. So the share
+ * targets `shareUrl(slug)` — `/s/{slug}`, which opens this same map with this
+ * same card already up, and which carries the article's generated OG card so
+ * what arrives at the other end is still the headline over its own patch of
+ * globe. `/a/{slug}` stays canonical underneath it.
  */
-const cardFoot = (path: string, title: string): Node[] => {
+const cardFoot = (url: string, title: string): Node[] => {
   const nodes: Node[] = []
   const row = document.createElement('div')
   row.className = 'map-popup-share'
-  renderShare(row, { url: new URL(path, location.origin).href, title })
+  renderShare(row, { url: new URL(url, location.origin).href, title })
   nodes.push(row)
   const prompt = appPrompt()
   if (prompt) nodes.push(prompt)
@@ -1068,7 +1070,7 @@ export function createStoryPopup(map: MapLibreMap, opts: StoryPopupOptions = {})
         // Only on a card that rendered. A story that failed to load is not one
         // the reader has read, so it must not count towards the app line and
         // there is nothing worth passing on.
-        root.append(...cardFoot(`/a/${p.slug}`, story.title || p.title))
+        root.append(...cardFoot(shareUrl(p.slug), story.title || p.title))
       } else {
         // Only when the card itself cannot render does the standalone page
         // become worth offering — otherwise it holds nothing this does not.

@@ -8,45 +8,14 @@
 // Since the build is Node and /shared/* is TypeScript, we transpile on
 // import via a small esbuild wrapper in scripts/build/shared-ts.js.
 
-import { createHash } from 'crypto'
-import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'fs'
-import { join } from 'path'
+import { createHash } from 'node:crypto'
+import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs'
+import { join } from 'node:path'
+import { largestPolygonCentroid } from '../lib/geo-point.js'
 import { buildCountryOgPng } from '../lib/og-image.js'
 import { loadShared } from './shared-ts.js'
 
 const ROOT = new URL('../..', import.meta.url).pathname
-
-/**
- * Where to point the card's globe.
- *
- * `geoCentroid` over the whole feature is wrong for exactly the countries
- * people share most: the United States averages the mainland with Alaska and
- * Hawaii and lands in the Pacific, France averages in its overseas
- * départements and lands in the Atlantic. Taking the centroid of the *largest*
- * polygon instead puts the globe over the landmass a reader would recognise,
- * which is the only job this projection has.
- */
-const largestPolygonCentroid = (feat, geoCentroid, geoArea) => {
-  const g = feat?.geometry
-  if (!g) return null
-  let target = null
-  if (g.type === 'Polygon') {
-    target = g
-  } else if (g.type === 'MultiPolygon') {
-    let bestArea = -1
-    for (const coordinates of g.coordinates) {
-      const poly = { type: 'Polygon', coordinates }
-      const area = geoArea(poly)
-      if (area > bestArea) {
-        bestArea = area
-        target = poly
-      }
-    }
-  }
-  if (!target) return null
-  const [lng, lat] = geoCentroid(target)
-  return Number.isFinite(lat) && Number.isFinite(lng) ? { lat, lng } : null
-}
 
 const escHtml = (s) =>
   String(s ?? '')
@@ -104,6 +73,16 @@ const resolveArticleCountry = (feat, countries, lat, lng) => {
   return null
 }
 
+/**
+ * @param {{ sorted: any[], distDir: string, templatesDir: string,
+ *           headCommon: string, islandV?: string, skipOg?: boolean,
+ *           shareRowHtml?: (target: string, title: string) => string }} opts
+ *        `shareRowHtml` is passed in rather than imported because build.js owns
+ *        it; the default is a no-op for callers that do not want a share row.
+ *        Its signature has to be declared here — a default of `() => ''` infers
+ *        a zero-argument function, which makes the two real call sites read as
+ *        passing two arguments too many.
+ */
 export const buildCountryPages = async ({
   sorted,
   distDir,
@@ -115,8 +94,7 @@ export const buildCountryPages = async ({
 }) => {
   const [
     { COUNTRY_DATA },
-    { COUNTRY_AUGMENTED },
-    { METRICS, getMetricValue, getRanking, parseStat },
+    { METRICS, getMetricValue, getRanking },
     { codeFromTopojsonName },
     { displayCountryName },
     { rankStrip },
@@ -124,7 +102,9 @@ export const buildCountryPages = async ({
     { feature },
   ] = await Promise.all([
     loadShared('countries/country-data.ts'),
-    loadShared('countries/country-augmented.ts'),
+    // country-augmented.ts is deliberately not loaded here: country-ranking.ts
+    // imports it directly, and the only thing this module ever did with it was
+    // bind a variable that nothing read.
     loadShared('countries/country-ranking.ts'),
     loadShared('countries/iso.ts'),
     loadShared('place-names.ts'),
@@ -134,7 +114,7 @@ export const buildCountryPages = async ({
   ])
 
   const topo = JSON.parse(readFileSync(join(ROOT, 'shared', 'data', 'countries-110m.json'), 'utf8'))
-  const countries = feature(topo, topo.objects.countries)
+  const countries = /** @type {import('geojson').FeatureCollection} */ (/** @type {unknown} */ (feature(topo, topo.objects.countries)))
 
   // Map datelined articles to their containing country (best-effort).
   // Linking lat/lng → country lets country pages surface real coverage.
@@ -143,6 +123,7 @@ export const buildCountryPages = async ({
     if (a.meta.lat == null || a.meta.lng == null) continue
     const name = resolveArticleCountry(geoContains, countries, Number(a.meta.lat), Number(a.meta.lng))
     if (!name) continue
+    // biome-ignore lint/suspicious/noAssignInExpressions: the (x ??= []) group-by idiom, in statement position. The rule is here for `if (a = b)`.
     ;(articlesByCountry[name] ??= []).push(a)
   }
 
@@ -189,7 +170,6 @@ export const buildCountryPages = async ({
     const label = displayCountryName(name) ?? name
     if (!iso2) continue // country we can't route
 
-    const aug = COUNTRY_AUGMENTED[name] || {}
     const metaLine = [
       data.capital,
       data.population ? `pop. ${data.population}` : null,

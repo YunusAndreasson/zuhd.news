@@ -17,9 +17,9 @@
 // (SKIP_OG=1 is the default rebuild — flip it off if you want OG images
 // to regenerate on every save, but cold-cache OG is ~3 minutes.)
 
-import { spawn } from 'child_process'
-import { watch as fsWatch } from 'fs'
-import { join } from 'path'
+import { spawn } from 'node:child_process'
+import { watch as fsWatch } from 'node:fs'
+import { join } from 'node:path'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const NODE = process.execPath

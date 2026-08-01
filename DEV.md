@@ -31,7 +31,7 @@
 | `templates/article.html` | Article page template |
 | `templates/index.html` | Homepage template |
 | `public/style.css` | Typography-first CSS design system |
-| `public/reader.js` | Spatial keyboard/touch navigation engine |
+| `public/islands/situation-map.ts` | The homepage map (replaced `public/reader.js`, deleted 2026-07-24) |
 | `content/.last-cycle.json` | Published articles from last cycle (selector dedup signal) |
 | `content/.story-ledger.json` | Cross-cycle story deduplication ledger |
 

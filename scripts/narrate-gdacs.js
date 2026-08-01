@@ -16,10 +16,10 @@
 //   NARRATE_GDACS_MAX=N             cap total narrations this run
 //   NARRATE_GDACS_FORCE=1           ignore the cache (re-narrate everything)
 
-import { readFileSync, writeFileSync, existsSync } from 'fs'
-import { join } from 'path'
-import { createHash } from 'crypto'
-import { spawnSync } from 'child_process'
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { join } from 'node:path'
+import { createHash } from 'node:crypto'
+import { spawnSync } from 'node:child_process'
 import { loadShared } from './build/shared-ts.js'
 import { parseClaudeEnvelopeWithUsage } from './lib/claude-envelope.js'
 
@@ -151,8 +151,8 @@ function applyCacheToSnapshot() {
 }
 
 function writeAll() {
-  writeFileSync(SNAPSHOT_PATH, JSON.stringify(snapshot) + '\n')
-  writeFileSync(CACHE_PATH, JSON.stringify(cache, null, 2) + '\n')
+  writeFileSync(SNAPSHOT_PATH, `${JSON.stringify(snapshot)}\n`)
+  writeFileSync(CACHE_PATH, `${JSON.stringify(cache, null, 2)}\n`)
 }
 
 async function buildBundle(alert) {

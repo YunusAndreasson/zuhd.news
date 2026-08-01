@@ -4,7 +4,7 @@
 
 import { createServer } from 'node:http'
 import { readFileSync, readdirSync, existsSync, statSync, watch, writeFileSync } from 'node:fs'
-import { join, extname } from 'node:path'
+import { join } from 'node:path'
 import { execSync } from 'node:child_process'
 import { parseFrontmatter } from '../lib/frontmatter.js'
 import { scoreDir } from '../lib/quality-score.js'
@@ -71,37 +71,37 @@ function parseCycleLog(filepath) {
     scheduledHour,
     startedAt: started ? started[1] : null,
     finishedAt: finished ? finished[1] : null,
-    totalSeconds: finished ? parseInt(finished[2]) : null,
+    totalSeconds: finished ? parseInt(finished[2], 10) : null,
     completed: !!finished,
     aborted: aborted ? aborted[0] : null,
     stages: {
-      feed:      { seconds: feed ? parseInt(feed[1]) : null },
-      selector:  { exit: selector ? parseInt(selector[1]) : null, seconds: selector ? parseInt(selector[2]) : null },
-      writer:    { exit: writer ? parseInt(writer[1]) : null, seconds: writer ? parseInt(writer[2]) : null },
-      editor:    { exit: editor ? parseInt(editor[1]) : null, seconds: editor ? parseInt(editor[2]) : null },
-      edu:       { exit: edu ? parseInt(edu[1]) : null, seconds: edu ? parseInt(edu[2]) : null },
-      trends:    { offered: trends ? parseInt(trends[1]) : null, picked: trends ? parseInt(trends[2]) : null, articles: trends ? parseInt(trends[3]) : null },
-      build:     { exit: build ? parseInt(build[1]) : null },
-      deploy:    { exit: deploy ? parseInt(deploy[1]) : null },
-      briefing:  { exit: briefing ? parseInt(briefing[1]) : null },
-      tuning:    { exit: tuning ? parseInt(tuning[1]) : null },
+      feed:      { seconds: feed ? parseInt(feed[1], 10) : null },
+      selector:  { exit: selector ? parseInt(selector[1], 10) : null, seconds: selector ? parseInt(selector[2], 10) : null },
+      writer:    { exit: writer ? parseInt(writer[1], 10) : null, seconds: writer ? parseInt(writer[2], 10) : null },
+      editor:    { exit: editor ? parseInt(editor[1], 10) : null, seconds: editor ? parseInt(editor[2], 10) : null },
+      edu:       { exit: edu ? parseInt(edu[1], 10) : null, seconds: edu ? parseInt(edu[2], 10) : null },
+      trends:    { offered: trends ? parseInt(trends[1], 10) : null, picked: trends ? parseInt(trends[2], 10) : null, articles: trends ? parseInt(trends[3], 10) : null },
+      build:     { exit: build ? parseInt(build[1], 10) : null },
+      deploy:    { exit: deploy ? parseInt(deploy[1], 10) : null },
+      briefing:  { exit: briefing ? parseInt(briefing[1], 10) : null },
+      tuning:    { exit: tuning ? parseInt(tuning[1], 10) : null },
     },
-    selectionCount: selCount ? parseInt(selCount[1]) : null,
-    dedupBefore: dedupSel ? parseInt(dedupSel[1]) : null,
-    dedupAfter: dedupSel ? parseInt(dedupSel[2]) : null,
-    articlesWritten: newArticles ? parseInt(newArticles[1]) : null,
-    newsApiTokens: newsApiTokens ? parseInt(newsApiTokens[1]) : null,
-    backfillAdded: backfillFires.reduce((sum, m) => sum + parseInt(m[1]), 0),
+    selectionCount: selCount ? parseInt(selCount[1], 10) : null,
+    dedupBefore: dedupSel ? parseInt(dedupSel[1], 10) : null,
+    dedupAfter: dedupSel ? parseInt(dedupSel[2], 10) : null,
+    articlesWritten: newArticles ? parseInt(newArticles[1], 10) : null,
+    newsApiTokens: newsApiTokens ? parseInt(newsApiTokens[1], 10) : null,
+    backfillAdded: backfillFires.reduce((sum, m) => sum + parseInt(m[1], 10), 0),
     backfillFailed,
     funnel: {
       feed: funnelFeed ? funnelFeed[1] : null,
-      selected: funnelSel ? parseInt(funnelSel[1]) : 0,
-      deduped: funnelDed ? parseInt(funnelDed[1]) : 0,
+      selected: funnelSel ? parseInt(funnelSel[1], 10) : 0,
+      deduped: funnelDed ? parseInt(funnelDed[1], 10) : 0,
       dedupNote: funnelDed ? funnelDed[2] || null : null,
-      written: funnelWrit ? parseInt(funnelWrit[1]) : 0,
-      validated: funnelVal ? parseInt(funnelVal[1]) : 0,
+      written: funnelWrit ? parseInt(funnelWrit[1], 10) : 0,
+      validated: funnelVal ? parseInt(funnelVal[1], 10) : 0,
       validNote: funnelVal ? funnelVal[2] || null : null,
-      published: funnelPub ? parseInt(funnelPub[1]) : 0,
+      published: funnelPub ? parseInt(funnelPub[1], 10) : 0,
     },
   }
 }
@@ -212,7 +212,7 @@ function categoriesPerDay(days = 7) {
       try {
         const content = readFileSync(join(ARTICLES_DIR, f), 'utf-8')
         const catMatch = content.match(/^category:\s*["']?(\w+)["']?/m)
-        if (catMatch && cats.hasOwnProperty(catMatch[1])) cats[catMatch[1]]++
+        if (catMatch && Object.hasOwn(cats, catMatch[1])) cats[catMatch[1]]++
       } catch {}
     }
     result.push(cats)
@@ -344,7 +344,7 @@ function handleQuality() {
         const ledger = JSON.parse(readFileSync(ledgerPath, 'utf-8'))
         const arcs = { breaking: 0, developing: 0, ongoing: 0, fading: 0 }
         for (const s of (ledger.stories || [])) {
-          if (arcs.hasOwnProperty(s.arc)) arcs[s.arc]++
+          if (Object.hasOwn(arcs, s.arc)) arcs[s.arc]++
         }
         result.arcs = arcs
       } catch {}
@@ -503,7 +503,7 @@ function handleArticleImages() {
           if (nextTopKey >= 0) sourcesBlock = sourcesBlock.slice(0, nextTopKey)
         }
         const sourceImages = []
-        const sourceMatches = sourcesBlock.matchAll(/  - name:\s*"([^"]+)"([\s\S]*?)(?=\n  - name:|$)/g)
+        const sourceMatches = sourcesBlock.matchAll(/ {2}- name:\s*"([^"]+)"([\s\S]*?)(?=\n {2}- name:|$)/g)
         for (const sm of sourceMatches) {
           const name = sm[1]
           const block = sm[2]
@@ -578,7 +578,7 @@ function handleExperiment() {
           try {
             const content = readFileSync(join(ARTICLES_DIR, f), 'utf-8')
             const catMatch = content.match(/^category:\s*["']?(\w+)["']?/m)
-            if (catMatch && cats.hasOwnProperty(catMatch[1])) cats[catMatch[1]]++
+            if (catMatch && Object.hasOwn(cats, catMatch[1])) cats[catMatch[1]]++
             cats.total++
           } catch {}
         }
@@ -622,7 +622,7 @@ function handleMedia() {
             const dateMatch = f.match(/cycle-(\d{4}-\d{2}-\d{2})_(\d{2})(\d{2})/)
             result.pushHistory.push({
               date: dateMatch ? dateMatch[1] : null,
-              hour: dateMatch ? dateMatch[2] + ':' + dateMatch[3] : null,
+              hour: dateMatch ? `${dateMatch[2]}:${dateMatch[3]}` : null,
               articles: payload.articles || [],
               pushed: response?.pushed ?? null,
               skipped: response?.skipped ?? null,
@@ -638,7 +638,6 @@ function handleMedia() {
     if (existsSync(metaPath)) {
       try {
         const meta = JSON.parse(readFileSync(metaPath, 'utf-8'))
-        const stat = statSync(metaPath)
         // List available briefing files
         const audioDir = join(ROOT, 'content', 'audio')
         const mp3s = readdirSync(audioDir)
@@ -679,7 +678,6 @@ function handleFeedHealth() {
     // Parse historical per-source data from logs (look for ✗ errors)
     const logFiles = getLogFiles().slice(0, 35) // Last 7 days
     const sourceFails = {} // source name → count of cycles where it failed
-    const sourceOK = {}
     for (const f of logFiles) {
       try {
         const content = readFileSync(join(LOGS_DIR, f), 'utf-8')
@@ -924,7 +922,7 @@ function handleReach() {
         // Small per-article additions only; don't read every body.
         const articlesDir = join(ROOT, 'content', 'articles')
         const withMeta = (data.articles || []).slice(0, 100).map(a => {
-          const md = join(articlesDir, a.slug + '.md')
+          const md = join(articlesDir, `${a.slug}.md`)
           let meta = {}
           if (existsSync(md)) {
             const { meta: fm } = parseFrontmatter(readFileSync(md, 'utf-8'))
@@ -1082,7 +1080,6 @@ function handleLive(req, res) {
 
 // ── HTTP Server ─────────────────────────────────────────────────────
 
-const MIME = { '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript', '.woff2': 'font/woff2' }
 
 function sendJSON(res, data, status = 200) {
   const body = JSON.stringify(data)

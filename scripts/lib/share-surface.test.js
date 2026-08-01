@@ -100,7 +100,12 @@ test('the card a page names is a file the build actually wrote', (t) => {
     if (!path) continue
     const html = readFileSync(path, 'utf8')
     for (const url of [og(html, 'og:image'), tw(html, 'twitter:image')].filter(Boolean)) {
-      const rel = url.replace(/^https:\/\/zuhd\.news/, '')
+      // The query is a cache-buster, not part of the path. `/og-image.png?v=2`
+      // exists to make X and Facebook re-scrape a card whose URL is permanent
+      // and whose old contents they have held since April; on disk it is still
+      // `/og-image.png`, and a test that resolved the query would fail the day
+      // the token was bumped rather than the day the file went missing.
+      const rel = url.replace(/^https:\/\/zuhd\.news/, '').replace(/\?.*$/, '')
       // Generated cards are skipped by SKIP_OG, which is what `npm run dev`
       // uses: build.js still makes the directory, then writes nothing into it.
       // Absent because nobody asked for them is not a failure.
@@ -211,4 +216,88 @@ test('every hardcoded store and account link names the right thing', () => {
   }
   // A regex that stops matching is a test that passes by finding nothing.
   assert.ok(seen > 10, `only ${seen} store/account links found — the patterns have gone stale`)
+})
+
+// ---------------------------------------------------------------------------
+// The share route
+// ---------------------------------------------------------------------------
+//
+// A shared link now opens the map with the story's card up (`/s/{slug}`) rather
+// than the reader page. That is the one change here that can go wrong invisibly
+// in *two* directions at once: the link can stop carrying the story's own OG
+// card, so every share arrives in a timeline looking identical; or the article
+// can stop being canonical, so a crawler indexes seven hundred variants of the
+// map instead of the seven hundred articles.
+
+test('the article page shares the map and stays canonical itself', (t) => {
+  const pages = samples()
+  if (!pages.article) {
+    t.skip('dist not built')
+    return
+  }
+  const html = readFileSync(pages.article, 'utf8')
+  const slug = pages.article.split('/').pop().replace(/\.html$/, '')
+
+  const url = html.match(/<div class="share"[\s\S]*?data-url="([^"]+)"/)?.[1]
+  assert.equal(url, SHARE.shareUrl(slug), 'the article page does not share the map route')
+
+  // And the page still points search engines at itself. Sharing the map must not
+  // cost the article its own identity.
+  const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1]
+  assert.equal(canonical, SHARE.articleUrl(slug), 'the article page lost its canonical URL')
+  assert.equal(
+    meta(html, 'property', 'og:url'),
+    SHARE.articleUrl(slug),
+    'the article page names something other than itself as its own og:url',
+  )
+})
+
+test('the share route and _headers state the same security headers', () => {
+  // `public/_headers` applies to static assets; a Pages Function's response is
+  // not one, so `functions/s/[slug].js` restates every header itself. Two copies
+  // of a string whose whole job is to be exact — and the CSP is what keeps this
+  // site's `default-src 'none'` claim true, so it is the one most worth pinning.
+  const fn = readFileSync(join(ROOT, 'functions/s/[slug].js'), 'utf8')
+  const headers = readFileSync(join(ROOT, 'public/_headers'), 'utf8')
+
+  const wildcard = headers.slice(headers.indexOf('\n/*\n'))
+  const stated = (name) => {
+    const m = wildcard.match(new RegExp(`^\\s*${name}:\\s*(.+)$`, 'm'))
+    return m ? m[1].trim() : null
+  }
+  // The function builds the CSP by concatenating string literals across lines,
+  // so compare on collapsed whitespace rather than on the source text.
+  const collapse = (s) => s.replace(/\s+/g, ' ').trim()
+  const fnLiterals = collapse(
+    // Join the concatenated literals back together — either quote style.
+    fn.match(/const SECURITY_HEADERS = \{[\s\S]*?\n\}/)[0].replace(/["']\s*\+\s*["']/g, ''),
+  )
+
+  for (const name of [
+    'X-Content-Type-Options',
+    'X-Frame-Options',
+    'Referrer-Policy',
+    'Permissions-Policy',
+    'Content-Security-Policy',
+  ]) {
+    const value = stated(name)
+    assert.ok(value, `_headers no longer states ${name} on /*`)
+    assert.ok(
+      fnLiterals.includes(collapse(value)),
+      `functions/s/[slug].js has drifted from _headers on ${name}:\n  _headers: ${value}`,
+    )
+  }
+})
+
+test('the share URL is the map route and the article URL is not', () => {
+  const slug = '2026-07-30-a-story'
+  assert.equal(SHARE.shareUrl(slug), `${SHARE.SITE_URL}/s/${slug}`)
+  assert.equal(SHARE.articleUrl(slug), `${SHARE.SITE_URL}/a/${slug}`)
+  // Absolute, both of them: a share is read somewhere else, and a relative URL
+  // in someone else's timeline resolves against their site.
+  for (const u of [SHARE.shareUrl(slug), SHARE.articleUrl(slug)]) {
+    assert.ok(u.startsWith('https://'), `${u} is not absolute`)
+  }
+  // No campaign parameters, ever — the site's claim is that it tracks nobody.
+  assert.ok(!SHARE.shareUrl(slug).includes('?'), 'the share URL carries a query string')
 })

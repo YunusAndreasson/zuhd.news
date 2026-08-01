@@ -13,8 +13,8 @@
 // Reads the same datasets as scripts/build/country-pages.js via the same
 // esbuild-on-import wrapper; adds no data of its own.
 
-import { writeFileSync, mkdirSync } from 'fs'
-import { join } from 'path'
+import { writeFileSync, mkdirSync } from 'node:fs'
+import { join } from 'node:path'
 import { loadShared } from './shared-ts.js'
 
 /**

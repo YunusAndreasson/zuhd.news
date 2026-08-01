@@ -30,6 +30,7 @@ import type {
   GdacsAlert,
   GdacsDetail,
   GenocideSituation,
+  IpcArea,
   MapChokepoint,
   MapExchange,
   ThermalEvent,
@@ -45,6 +46,7 @@ export interface Sheet {
   showConflict(event: ConflictEvent, window: string | null, pinned: boolean): void
   showGenocide(situation: GenocideSituation, pinned: boolean): void
   showThermal(event: ThermalEvent, pinned: boolean): void
+  showFamine(area: IpcArea, pinned: boolean): void
   close(): void
   isOpen(): boolean
   isPinned(): boolean
@@ -91,6 +93,19 @@ const VESSEL_NOUN: Record<VesselField, string> = {
   n_cargo: 'cargo ships',
   n_general_cargo: 'general-cargo ships',
   n_roro: 'ro-ro ships',
+}
+
+/**
+ * IPC's own 1–3 evidence rating, in words.
+ *
+ * Ascending in reliability, and stated rather than printed as a numeral: "2" on a
+ * card is a number with no scale attached, and the reader has no way to know
+ * whether it is two of three or two of ten.
+ */
+const FAMINE_CONFIDENCE: Record<number, string> = {
+  1: 'limited',
+  2: 'moderate',
+  3: 'strong',
 }
 
 const WEATHER_PHRASE: Record<string, string> = {
@@ -688,6 +703,148 @@ export function createSheet(): Sheet {
         // is already in the hero, which is the calibration that matters — the
         // join is 75 km wide and the card has to admit it.
         nodes.push(...relatedList(event.relatedArticles ?? [], 'Reported near here'))
+      }
+      render(nodes, pin)
+    },
+
+    /**
+     * An IPC-classified area.
+     *
+     * Two things make this card different from every other one here, and both are
+     * about the gap between what the mark says and what the reader will assume.
+     *
+     * **It leads with the classification, then immediately dates it.** Every other
+     * overlay on this map is a statement about now — a strait running today, an
+     * exchange that moved this morning, a pass a satellite made this afternoon.
+     * This is a determination made on a month that can be eleven months back, and
+     * a reader who takes "Emergency" as current without knowing that is reading
+     * the mark wrong. So the vintage is not provenance filed at the bottom; it is
+     * the line under the figure.
+     *
+     * **And where the phase and the caseload disagree, the caseload leads.** Gaza's
+     * four areas classify at Phase 3 while the same analysis counts tens of
+     * thousands of people in Phase 5 — because an area phase is a threshold on the
+     * whole population, so a district can hold a Catastrophe caseload and classify
+     * at Crisis. That is a correct use of the scale and it is the single most
+     * misleading thing this card could print without comment, since a mark drawn
+     * for its Catastrophe caseload would otherwise read as the mildest on the
+     * layer. `publishable` in `scripts/lib/ipc.js` carries the same argument for
+     * why the mark exists at all.
+     */
+    showFamine(area, pin) {
+      const nodes: Node[] = []
+      const catastrophe = area.pop?.p5 ?? 0
+      nodes.push(
+        kicker([
+          'famine',
+          // "IPC Phase 4", not "IPC emergency" — lowercasing the phase name turns
+          // a classification into a description, and "IPC emergency" reads as an
+          // emergency *at* the IPC. The name in full is on the line below.
+          `IPC Phase ${area.phase}`,
+          // Not "8.9 months" — the analysis is published to the month, so a
+          // decimal claims a precision the source does not have.
+          `analysis ${area.vintage}`,
+        ]),
+      )
+      nodes.push(el('h2', 'island-sheet-title', area.area))
+
+      // The hero is the caseload the mark is really about, which is not always the
+      // one the phase names. Where the IPC counts anyone in Catastrophe that is
+      // the figure; otherwise it is the Emergency caseload the phase refers to.
+      if (catastrophe > 0) {
+        nodes.push(
+          hero(fmt.grouped(catastrophe), `in Phase 5 · Catastrophe — of ${
+            fmt.grouped(area.pop?.total ?? 0)
+          } assessed`),
+        )
+      } else if ((area.pop?.p4 ?? 0) > 0) {
+        nodes.push(
+          hero(fmt.grouped(area.pop.p4 ?? 0), `in Phase 4 · Emergency — of ${
+            fmt.grouped(area.pop?.total ?? 0)
+          } assessed`),
+        )
+      }
+
+      // The classification, and the window it describes. Printed together because
+      // apart they are each half a fact: "Emergency" with no window is undated,
+      // and a window with no phase is a date range with nothing in it.
+      const standing = el('p', 'map-sheet-stat')
+      standing.append(
+        el('strong', undefined, `Phase ${area.phase} · ${area.phaseName}`),
+        area.from && area.to ? ` for ${fmt.monthLabel(area.from)} – ${fmt.monthLabel(area.to)}` : '',
+      )
+      nodes.push(standing)
+
+      if (pin) {
+        // The sentence that stops the mark being misread. Only where the two
+        // disagree — printing it everywhere would make the exception look like the
+        // rule, and on a Phase 4 area with no Catastrophe caseload it says nothing.
+        if (catastrophe > 0 && area.phase < 5) {
+          nodes.push(
+            el(
+              'p',
+              'map-sheet-lead',
+              `The IPC classifies this area at Phase ${area.phase} — an area phase is a ` +
+                'threshold on the whole assessed population, so a place can hold a ' +
+                'Catastrophe caseload and still classify below it. This area is drawn ' +
+                'because of that caseload, not because of its phase.',
+            ),
+          )
+        }
+        nodes.push(
+          el(
+            'p',
+            'map-sheet-lead',
+            'A national IPC Technical Working Group classified this area from ' +
+              'evidence it publishes. The classification describes the window above ' +
+              'and stands until the next analysis replaces it — it is not a reading ' +
+              'taken today.',
+          ),
+        )
+        // Whether the same analysis has a forward statement covering now. This is
+        // the difference between a classification that ran out and one that was
+        // extended, which is exactly what a reader weighing an old vintage needs.
+        const forward = el('p', 'map-sheet-stat')
+        if (area.supersededBy) {
+          forward.append(
+            el('strong', undefined, 'Projected'),
+            ` through ${fmt.monthLabel(area.supersededBy.to)} by the same analysis`,
+          )
+        } else {
+          forward.append(
+            el('strong', undefined, 'No current projection'),
+            ' — the last window this analysis published has closed',
+          )
+        }
+        nodes.push(forward)
+
+        nodes.push(
+          el(
+            'p',
+            'map-sheet-meta',
+            [
+              'IPC / Cadre Harmonisé, via OCHA HDX',
+              area.level1 || null,
+              // IPC's own 1–3 evidence rating, in words. A bare "2" on a card is a
+              // number with no scale attached to it.
+              area.confidence ? `${FAMINE_CONFIDENCE[area.confidence] ?? '—'} evidence` : null,
+              area.prolongedCrisis ? 'protracted crisis' : null,
+              `${area.ageMonths < 1 ? 'under a month' : `${Math.round(area.ageMonths)} months`} old`,
+            ]
+              .filter(Boolean)
+              .join(' · '),
+          ),
+        )
+        const links = el('p', 'map-sheet-links')
+        const ipcLink = readMore(
+          `https://www.ipcinfo.org/ipc-country-analysis/en/?country=${area.iso3}`,
+          'This analysis on IPC',
+        )
+        ipcLink.target = '_blank'
+        ipcLink.rel = 'noopener noreferrer'
+        links.append(ipcLink)
+        if (area.iso2) links.append(readMore(`/country/${area.iso2}`, 'Country in profile'))
+        nodes.push(links)
       }
       render(nodes, pin)
     },

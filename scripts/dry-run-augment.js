@@ -9,9 +9,9 @@
 //   - .env with FRED_API_KEY / OER_APP_ID (optional — fetcher skips missing)
 //   - an article markdown file at content/articles/<slug>.md
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync, appendFileSync } from 'fs'
-import { join, dirname } from 'path'
-import { spawnSync } from 'child_process'
+import { readFileSync, writeFileSync, existsSync, mkdirSync, appendFileSync } from 'node:fs'
+import { join, dirname } from 'node:path'
+import { spawnSync } from 'node:child_process'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { buildTimelineWithCharts, loadTrendsSnapshot, loadTrendsDigest, buildTrendsPromptSection } from './lib/trends-expand.js'
 import { parseClaudeEnvelope } from './lib/claude-envelope.js'
@@ -33,9 +33,9 @@ function flag(name) {
 
 const slug = flag('article')
 const skipFetch = !!flag('skip-fetch')
-const model = flag('model') || 'claude-opus-5'
+const model = /** @type {string} */ (flag('model') || 'claude-opus-5')
 
-if (!slug) {
+if (typeof slug !== 'string') {
   console.error('Usage: node scripts/dry-run-augment.js --article <slug> [--skip-fetch] [--model <id>]')
   process.exit(2)
 }
@@ -157,13 +157,13 @@ writeFileSync(DEV_DEMO_JSON, JSON.stringify(brief, null, 2))
 // Append to the picks log so multiple dry-runs accumulate for analysis.
 try {
   mkdirSync(dirname(PICKS_LOG), { recursive: true })
-  appendFileSync(PICKS_LOG, JSON.stringify({
+  appendFileSync(PICKS_LOG, `${JSON.stringify({
     ts: new Date().toISOString(),
     kind: 'dry-run',
     slug,
     offered: digest?.indicators?.map((i) => i.id) || [],
     picked,
-  }) + '\n')
+  })}\n`)
 } catch (err) {
   console.warn(`  ⚠ picks log: ${err.message}`)
 }
@@ -174,7 +174,7 @@ console.log('')
 console.log(`Dry-run brief written: ${DEV_DEMO_JSON}`)
 console.log(`  label: ${brief.label}`)
 console.log(`  entries: ${timeline.length}`)
-console.log(`  charts picked: ${picked.length}${picked.length ? ' — ' + picked.map((p) => p.id).join(', ') : ''}`)
+console.log(`  charts picked: ${picked.length}${picked.length ? ` — ${picked.map((p) => p.id).join(', ')}` : ''}`)
 console.log(`  sources: ${brief.sources?.length || 0}`)
 console.log('')
 console.log('Reload the mobile dev app and tap any article → ContextSheet renders this brief.')

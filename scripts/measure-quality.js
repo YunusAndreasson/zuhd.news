@@ -6,8 +6,8 @@
 //
 // Every metric maps to a rule in write-prompt.md or check-prompt.md.
 
-import { readFileSync, writeFileSync, readdirSync, existsSync } from 'fs'
-import { join } from 'path'
+import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs'
+import { join } from 'node:path'
 
 const ARTICLES_DIR = 'content/articles'
 const TREND_PATH = 'content/.quality-trend.json'
@@ -28,7 +28,7 @@ for (const f of files) {
   const dateStr = (yaml.match(/^date:\s*"([^"]+)"/m) || [])[1]
   if (!dateStr) continue
   const ts = Date.parse(dateStr)
-  if (isNaN(ts) || ts < cutoff) continue
+  if (Number.isNaN(ts) || ts < cutoff) continue
 
   const title = (yaml.match(/^title:\s*"([^"]+)"/m) || [])[1] || ''
   const category = (yaml.match(/^category:\s*"([^"]+)"/m) || [])[1] || ''

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Outputs a compact topic-grouped coverage map of articles published in the last 24 hours.
 // Uses frontmatter date (not mtime — git ops change mtime, breaking the window).
-import { readdirSync, readFileSync } from 'fs'
+import { readdirSync, readFileSync } from 'node:fs'
 import { parseFrontmatter } from './lib/frontmatter.js'
 
 const cutoff = Date.now() - 24 * 60 * 60 * 1000
@@ -31,6 +31,6 @@ for (const s of slugs) {
 
 const lines = Object.entries(groups)
   .sort((a, b) => b[1].length - a[1].length)
-  .map(([k, v]) => k + ': ' + v.slice(0, 3).join('; ') + (v.length > 3 ? ` (+${v.length - 3} more)` : ''))
+  .map(([k, v]) => `${k}: ${v.slice(0, 3).join('; ')}${v.length > 3 ? ` (+${v.length - 3} more)` : ''}`)
 
-process.stdout.write(lines.join('\n') + '\n')
+process.stdout.write(`${lines.join('\n')}\n`)

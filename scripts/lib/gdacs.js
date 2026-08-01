@@ -267,6 +267,14 @@ function findBufferImpactUrl(props, kind) {
   return null
 }
 
+/**
+ * @param {string} url
+ * @param {(v: any) => boolean} validate
+ * @param {{ signal?: AbortSignal, timeoutMs?: number }} [opts]
+ *        Annotated because a destructured bag with an `= {}` default infers
+ *        only the keys that carry their own default — `signal` was silently
+ *        not part of this function's type.
+ */
 async function fetchJson(url, validate, { signal, timeoutMs = 8000 } = {}) {
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), timeoutMs)

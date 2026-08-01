@@ -9,9 +9,9 @@
 // Reads /tmp/zuhd-new-articles.txt (set earlier in the cycle) for the list
 // of paths. Slugs map to entries in content/.context-briefs.json.
 
-import { existsSync, readFileSync, writeFileSync } from 'fs'
-import { join, dirname } from 'path'
-import { fileURLToPath } from 'url'
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
+import { join, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { scoreReplay } from './autoresearch/score.js'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')

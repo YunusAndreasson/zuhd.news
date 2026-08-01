@@ -69,7 +69,7 @@ export interface TimelineOptions {
    * somewhere they did not ask to go, which is the one thing this map's
    * interaction rules keep refusing to do.
    */
-  value?: number
+  value?: number | undefined
 }
 
 export function createTimeline(opts: TimelineOptions): Timeline {
@@ -234,6 +234,21 @@ export function createTimeline(opts: TimelineOptions): Timeline {
    * interaction where the frame budget is already spent rebuilding the story
    * layer. None of these values can change while the map is open: the page
    * commits to `color-scheme: dark` and the tokens are static.
+   *
+   * **The map's tokens, not the site's.** These were `--rule`, `--text-dim` and
+   * `--text` — the palette for pages that follow the reader, on the one page
+   * that commits to dark regardless of them. `--rule` resolves to `#181818` on
+   * this surface: 1.03:1 against the ocean, and *darker than the land*. It was
+   * painting the day columns and every bar outside the visible window, so the
+   * axis this rail is built around — "a bare slider gives you no sense of
+   * *when*", per the header — was drawn in a colour that does not exist on
+   * screen. `--text-dim` is a neutral grey where the whole chrome is blue-grey,
+   * and it carried the tick labels.
+   *
+   * The dark-surface palette exists for exactly this: chrome sitting on the
+   * map's ground rather than on a CSS surface. `--map-ink-dim` is its floor —
+   * 5.52:1 against `--map-ground`, so a label drawn in it at full strength is
+   * readable rather than merely present.
    */
   const readPalette = () => {
     const probe = document.createElement('span')
@@ -245,9 +260,9 @@ export function createTimeline(opts: TimelineOptions): Timeline {
       return getComputedStyle(probe).color || fallback
     }
     const palette = {
-      dim: colour('--rule', '#ddd'),
-      mid: colour('--text-dim', '#777'),
-      bright: colour('--text', '#222'),
+      dim: colour('--map-line', '#232936'),
+      mid: colour('--map-ink-dim', '#7f8896'),
+      bright: colour('--map-ink', '#e6eaf0'),
       family: getComputedStyle(probe).fontFamily || 'sans-serif',
     }
     probe.remove()
@@ -285,14 +300,26 @@ export function createTimeline(opts: TimelineOptions): Timeline {
     // while the rail shows fourteen days of bars, and nothing connects the
     // two — the reader has no way to see that most of this histogram is not
     // on the map.
+    //
+    // **It has to be visible to do that.** The band was `--text-dim` at
+    // `globalAlpha` 0.12, under a `.map-timeline-track` wrapper at `opacity`
+    // 0.6 — 0.072 of a neutral grey over near-black, which is a rectangle
+    // nobody can see. On the default 3d view that is the whole answer to "which
+    // of these fourteen days am I looking at", and it was not on screen. Now it
+    // is `--map-ink-dim` at 0.16 with the wrapper opacity gone, and it carries
+    // a rule at its left edge: the right edge is already drawn by the scrub
+    // head, so one rule closes the shape.
     const headT = scrubTime()
-    if (windowFrom !== null && windowFrom > start) {
-      const x0 = Math.max(0, xOf(windowFrom))
+    const windowStart = windowFrom !== null && windowFrom > start ? windowFrom : start
+    if (windowStart > start) {
+      const x0 = Math.max(0, xOf(windowStart))
       const x1 = Math.min(w, xOf(headT))
       if (x1 > x0) {
         ctx.fillStyle = mid
-        ctx.globalAlpha = 0.12
+        ctx.globalAlpha = 0.16
         ctx.fillRect(x0, 0, x1 - x0, barH + 3)
+        ctx.globalAlpha = 0.55
+        ctx.fillRect(Math.round(x0), 0, 1, barH + 3)
         ctx.globalAlpha = 1
       }
     }
@@ -304,7 +331,7 @@ export function createTimeline(opts: TimelineOptions): Timeline {
       const x = xOf(day)
       const isCurrent = headT >= day && headT < day + DAY_MS
       ctx.strokeStyle = isCurrent ? mid : dim
-      ctx.globalAlpha = isCurrent ? 0.9 : 0.5
+      ctx.globalAlpha = isCurrent ? 0.9 : 1
       ctx.beginPath()
       ctx.moveTo(Math.round(x) + 0.5, 0)
       ctx.lineTo(Math.round(x) + 0.5, barH + 3)
@@ -313,7 +340,13 @@ export function createTimeline(opts: TimelineOptions): Timeline {
       const d = local(day)
       const label = d.getUTCDate() === 1 ? MONTHS[d.getUTCMonth()] : String(d.getUTCDate())
       ctx.fillStyle = isCurrent ? bright : mid
-      ctx.globalAlpha = isCurrent ? 1 : 0.55
+      // 0.9, not the 0.55 this was. These are the dates — the thing that makes
+      // the rail a calendar rather than a slider — set at 9px, and under the
+      // old stack (site `--text-dim`, 0.55 here, 0.6 on the wrapper) they
+      // composited to **1.51:1** against the ground. `--map-ink-dim` at 0.9 is
+      // 4.65:1, which clears AA; the day under the head stays `--map-ink` so
+      // "which day am I on" is still the loudest thing on the axis.
+      ctx.globalAlpha = isCurrent ? 1 : 0.9
       ctx.textAlign = 'left'
       if (x + 18 < w) ctx.fillText(label, x + 3, h - 2)
     }
@@ -331,9 +364,23 @@ export function createTimeline(opts: TimelineOptions): Timeline {
     for (let i = 0; i < buckets; i++) {
       if (!counts[i]) continue
       const bh = (counts[i] / max) * barH
-      const past = start + i * BUCKET_MS <= headT
-      ctx.fillStyle = past ? mid : dim
-      ctx.globalAlpha = past ? 0.75 : 0.35
+      // Drawn or not drawn — the same question the band above answers, asked
+      // per bar. It used to split on `bucket <= headT`, which is *before or
+      // after the scrub head*: two states, and the wrong two. The map draws
+      // `windowStart … headT`, so on the 3d view the rail was painting eleven
+      // days of bars at the same weight as the three that were on screen, and
+      // dimming only the bars in the future of the head — of which, at the live
+      // edge, there are none. A reader taking the histogram at its word saw a
+      // fortnight of activity claimed for a map showing three days of it.
+      const t = start + i * BUCKET_MS
+      const shown = t >= windowStart && t <= headT
+      ctx.fillStyle = shown ? mid : dim
+      // The out-of-window weight is high for a `--map-line` bar rather than low
+      // for an ink one: those days are still the shape of the fortnight, which
+      // is what makes the window legible as a slice *of* something, and the
+      // separation is carried by the two tones being a step apart rather than
+      // by fading one of them out.
+      ctx.globalAlpha = shown ? 0.85 : 0.9
       ctx.fillRect(i * barW, barH - bh, Math.max(1, barW - 0.7), bh)
     }
     ctx.globalAlpha = 1

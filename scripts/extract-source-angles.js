@@ -14,10 +14,10 @@
 // one from Haiku, but now at least the fetched-successfully sources
 // also gain a distinctive-angle sentence.
 
-import { readFileSync, writeFileSync, existsSync } from 'fs'
-import { join, basename } from 'path'
-import { spawnSync } from 'child_process'
-import { randomUUID } from 'crypto'
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { join, basename } from 'node:path'
+import { spawnSync } from 'node:child_process'
+import { randomUUID } from 'node:crypto'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { fetchSourceText } from './lib/fetch-source-text.js'
 

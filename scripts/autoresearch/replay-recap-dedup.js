@@ -24,9 +24,9 @@
 //     [--mode published|snapshot] [--from 2026-05-02] [--to 2026-05-09] \
 //     [--out /tmp/zuhd-replay-recap-dedup.json]
 
-import { existsSync, readdirSync, readFileSync, writeFileSync } from 'fs'
-import { join, dirname } from 'path'
-import { fileURLToPath } from 'url'
+import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { join, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import {
   NICHE_SOURCES,
   buildWordSets,

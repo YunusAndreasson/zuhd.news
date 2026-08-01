@@ -38,8 +38,8 @@
 // So the layer's claim is narrow and checkable: heat the satellite saw, beside a
 // story we published, close enough in time to be the same event.
 
-import { existsSync, readdirSync, readFileSync, writeFileSync } from 'fs'
-import { join } from 'path'
+import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import {
   aoiCells,
@@ -212,7 +212,7 @@ const payload = {
   skipped: { ...skipped, unattached },
 }
 
-writeFileSync(OUTPUT_PATH, JSON.stringify(payload) + '\n')
+writeFileSync(OUTPUT_PATH, `${JSON.stringify(payload)}\n`)
 
 const elapsed = ((Date.now() - started) / 1000).toFixed(1)
 console.log(

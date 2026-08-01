@@ -8,7 +8,7 @@
 // globe geometry, fonts, palette and text helpers are all reused from
 // og-image.js so the two cards stay a single source of truth.
 
-import { fileURLToPath } from 'url'
+import { fileURLToPath } from 'node:url'
 import { Resvg } from '@resvg/resvg-js'
 import jpeg from 'jpeg-js'
 import { themeFor, buildGlobe, escXml, formatLongDate } from './og-image.js'
@@ -110,9 +110,9 @@ const fitPair = (headline, summary, { maxWidth, box, headMax = HEAD_RAMP.max }) 
 /**
  * Compose the Instagram card SVG: kicker, headline, a story dek (summary text
  * rendered ON the card), a delicate full-bleed globe, and location + wordmark.
- * @param {Object} article — { headline, summary, category, date, location, lat, lng }
+ * @param {Object} article - { headline, summary, category, date, location, lat, lng }
  *   headline is the article title; summary is the lead/first sentences of the story.
- * @param {Object} [size=IG_FEED] — { width, height }
+ * @param {Object} [size=IG_FEED] - { width, height }
  * @param {'light'|'dark'} [variant='light']
  */
 export const buildIgSvg = (article, size = IG_FEED, variant = 'dark') => {
@@ -297,5 +297,6 @@ export const rasterizeIgJpeg = (svgString, size = IG_FEED, variant = 'dark', qua
 }
 
 /** Convenience: build + rasterize in one call. Returns a JPEG Buffer. */
+/** @param {any} article @param {{width:number,height:number}} [size] @param {'light'|'dark'} [variant] */
 export const buildIgJpeg = (article, size = IG_FEED, variant = 'dark') =>
   rasterizeIgJpeg(buildIgSvg(article, size, variant), size, variant)

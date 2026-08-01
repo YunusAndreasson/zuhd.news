@@ -630,13 +630,13 @@ test('the Asr difference from adhan is the one we chose, and no other', () => {
   }
 
   let checked = 0
-  for (const [lat, lng, iso] of [
+  for (const [lat, lng, iso] of /** @type {[number, number, string][]} */ ([
     [-54, -70, '2026-04-30T15:00:00Z'],
     [21.42, 39.83, '2026-07-26T12:00:00Z'],
     [45, 10, '2026-11-05T13:00:00Z'],
     [-8, 115, '2026-02-14T06:00:00Z'],
     [33, -84, '2026-09-09T19:00:00Z'],
-  ]) {
+  ])) {
     const t = Date.parse(iso)
     const u = new Date(t)
     const day = new Date(u.getUTCFullYear(), u.getUTCMonth(), u.getUTCDate())
@@ -2179,6 +2179,38 @@ test('the genocide mark owns its colour outright', () => {
 
   // And it still has to survive the ground it is drawn on, which is #080a0d.
   assert.ok(mark.l > 0.42, `genocide mark too dark for the map's ground (l ${mark.l.toFixed(2)})`)
+
+  // ── The famine tone ──────────────────────────────────────────────────────
+  //
+  // Violet, and the hue is the whole argument. Every other overlay is warm —
+  // 0–27° for the hazard and violence family, 44° for the straits — with one
+  // teal and one sage. A warm famine mark would have landed inside the family
+  // that already means *violence or hazard*, and a reader who has learned that
+  // red here means people being killed must not have to unlearn it for a
+  // classification about food.
+  const famine = hsl(M.OVERLAY_COLOUR.famine)
+  const warmNeighbours = Object.entries(M.OVERLAY_COLOUR)
+    // `genocideCore` is a near-black used as a disc under the ring, not a hue.
+    .filter(([k]) => k !== 'famine' && k !== 'genocideCore')
+    .map(([k, v]) => {
+      const d = Math.abs(hsl(v).h - famine.h)
+      return { k, d: Math.min(d, 360 - d) }
+    })
+  const nearest = warmNeighbours.reduce((a, b) => (b.d < a.d ? b : a))
+  assert.ok(
+    nearest.d >= 60,
+    `famine is only ${Math.round(nearest.d)}° of hue from ${nearest.k} — ` +
+      'a food classification reading as a hazard',
+  )
+  // And clear of the 216° blue-grey the basemap furniture occupies, or the mark
+  // reads as a frontier, a river or the density wash rather than as data.
+  for (const furniture of ['border', 'prayer', 'water', 'density']) {
+    const d = Math.abs(hsl(M.MAP_COLOURS[furniture]).h - famine.h)
+    assert.ok(
+      Math.min(d, 360 - d) >= 40,
+      `famine is within 40° of MAP_COLOURS.${furniture} — a mark in the furniture's family`,
+    )
+  }
 })
 
 // ---------------------------------------------------------------------------

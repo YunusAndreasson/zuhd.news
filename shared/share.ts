@@ -44,6 +44,33 @@ export interface ShareTarget {
 }
 
 /**
+ * Where a shared story lands: the map, with that story's card open.
+ *
+ * A link used to point at `/a/{slug}`, and the note in `_share.ts` argued for it
+ * — that page carries the generated OG card, and the map's own URL is `/` no
+ * matter what is open, so the address bar is the one thing a reader must not
+ * copy. Both halves of that are still true. What was wrong was the conclusion:
+ * this site's front door is the map, and a link that opens the reader page shows
+ * a stranger the one surface that is *not* the thing being built. So the share
+ * URL is its own route, and the reader page stays canonical underneath it.
+ *
+ * `/s/{slug}` is served by `functions/s/[slug].js`, which hands back the map
+ * shell carrying that story's OG meta lifted from `/a/{slug}` and a
+ * `<link rel="canonical">` pointing at it. Three things therefore stay true:
+ * what arrives in a timeline is still the headline over its own patch of globe,
+ * a crawler is still sent to the article, and a reader with no JavaScript still
+ * gets somewhere real.
+ *
+ * Deliberately *not* `/?story={slug}`. A query on `/` would put a Function in
+ * front of the homepage for every visitor, and the homepage is the one path on
+ * this site that must stay a static file served straight off the edge.
+ */
+export const shareUrl = (slug: string): string => `${SITE_URL}/s/${slug}`
+
+/** The canonical article URL — crawlers, modified clicks, and the no-JS route. */
+export const articleUrl = (slug: string): string => `${SITE_URL}/a/${slug}`
+
+/**
  * The share targets, in the order a reader is most likely to want them.
  *
  * `via` puts the masthead's account in the post rather than leaving the story

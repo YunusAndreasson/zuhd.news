@@ -3,8 +3,8 @@
 // Reads today's articles + cycle logs, outputs JSON to stdout
 // No LLM calls — pure data extraction
 
-import { readFileSync, readdirSync, existsSync } from 'fs'
-import { join, basename } from 'path'
+import { readFileSync, readdirSync, existsSync } from 'node:fs'
+import { join, basename } from 'node:path'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const ARTICLES_DIR = join(ROOT, 'content', 'articles')
@@ -72,7 +72,7 @@ function computeFreshness(articles) {
       const pubDate = new Date(a.date).getTime()
       // Article filename date = when we published it
       const publishDate = new Date(a.slug.slice(0, 10)).getTime()
-      if (isNaN(pubDate) || isNaN(publishDate)) return null
+      if (Number.isNaN(pubDate) || Number.isNaN(publishDate)) return null
       return (publishDate - pubDate) / 86400000  // days between source pub and our pub
     })
     .filter(a => a !== null && a >= 0)
@@ -125,7 +125,8 @@ function computeEducational(articles) {
 function findDuplicates(articles) {
   const urlMap = {}
   for (const a of articles) {
-    if (a.sourceUrl) (urlMap[a.sourceUrl] = urlMap[a.sourceUrl] || []).push(a.slug)
+    // biome-ignore lint/suspicious/noAssignInExpressions: the (x ??= []) group-by idiom, in statement position. The rule is here for `if (a = b)`.
+    if (a.sourceUrl) (urlMap[a.sourceUrl] ??= []).push(a.slug)
   }
   const dupes = Object.entries(urlMap).filter(([, slugs]) => slugs.length > 1)
   return { count: dupes.length, details: dupes.map(([url, slugs]) => ({ url: url.slice(0, 80), slugs })) }
@@ -151,17 +152,16 @@ function parseLogs(datePrefix) {
       const dedupMatch = content.match(/Deduped selection: (\d+) → (\d+)/)
       const deployMatch = content.match(/Deploy exit: (\d+)/)
       // Funnel (bottom of log)
-      const funnelSelected = content.match(/Selected:\s+(\d+)/)
       const funnelWritten = content.match(/Written:\s+(\d+)/)
       const funnelPublished = content.match(/Published:\s+(\d+)/)
 
       return {
         file: f,
-        totalSeconds: totalMatch ? parseInt(totalMatch[1]) : null,
-        feedSeconds: feedMatch ? parseInt(feedMatch[1]) : null,
-        selectorSeconds: selectorMatch ? parseInt(selectorMatch[1]) : null,
-        writerSeconds: writerMatch ? parseInt(writerMatch[1]) : null,
-        editorSeconds: editorMatch ? parseInt(editorMatch[1]) : null,
+        totalSeconds: totalMatch ? parseInt(totalMatch[1], 10) : null,
+        feedSeconds: feedMatch ? parseInt(feedMatch[1], 10) : null,
+        selectorSeconds: selectorMatch ? parseInt(selectorMatch[1], 10) : null,
+        writerSeconds: writerMatch ? parseInt(writerMatch[1], 10) : null,
+        editorSeconds: editorMatch ? parseInt(editorMatch[1], 10) : null,
         selected: selectedMatch ? +selectedMatch[1] : null,
         dedupBefore: dedupMatch ? +dedupMatch[1] : null,
         dedupAfter: dedupMatch ? +dedupMatch[2] : null,

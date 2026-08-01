@@ -7,9 +7,9 @@
 // (country pages, thread pages, …) shares one transform pass.
 
 import { build } from 'esbuild'
-import { join } from 'path'
-import { writeFileSync, mkdtempSync } from 'fs'
-import { tmpdir } from 'os'
+import { join } from 'node:path'
+import { writeFileSync, mkdtempSync } from 'node:fs'
+import { tmpdir } from 'node:os'
 
 const ROOT = new URL('../..', import.meta.url).pathname
 const SHARED = join(ROOT, 'shared')
