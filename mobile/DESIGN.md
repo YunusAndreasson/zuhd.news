@@ -50,6 +50,24 @@ The sentiment palette splits into background and foreground variants:
 
 **Severity** (GDACS / conflict / weather) is single-tier: only the most editorially urgent state — Red disaster, fatal conflict, very-rough seas — earns the `toneUnfavorableText` hue. Lower tiers read in monochrome (`text` / `textEmphasis` / `textSecondary`); severity remains legible from the focal number, eyebrow, and metadata. This is the "color carries meaning only" rule from `foundation.md` taken literally.
 
+On the globe itself, severity is **not colour at all**: the disaster layer draws Green/Orange/Red as stroke weight (1.0 / 1.4 / 1.8) and opacity, plus an alarm ring at the top tier, and the rationale is written at the render site in `MiniGlobe.tsx`. Don't "fix" that by adding alert hues.
+
+### `determination` — the one red
+
+`colors.determination` (`#f5372b` dark / `#c62518` light) is the app's only red and belongs to exactly one thing: a situation a named UN body has **determined** to be genocide (`@shared/genocide`, `finding: 'determination'`). The value is the web map's `OVERLAY_COLOUR.genocide` unchanged, so the two surfaces cannot drift on the gravest mark either draws.
+
+It is **not a severity tier and must never be reached for by one.** A GDACS Red is an event graded on a scale; a determination is a categorical finding about a place, published in a numbered document on a date. `lib/severity.ts` grades the former and has no access to this token — keep it that way, or the ration is spent and the mark means nothing.
+
+Where it may appear: the globe ring and its label, the `GenocideSheet` focal line, and the `DisambiguationSheet` row *icon*. Nowhere else. Not as body copy, not as a background fill, not as a `TextTone`. Even in the chooser the row's text stays monochrome — a red headline in a list of neutral ones reads as an alert about the interface rather than about the world.
+
+The corollary is the rule that makes it work: **every other layer earns its meaning without a hue.** That is why the market layer below is symbol-only.
+
+### Market direction is a symbol, never a hue
+
+The web map tints an exchange sage or terracotta by direction. The app cannot, because the licence above is already spent. Direction rides on shape instead (`disaster-glyphs.ts` §Market direction): a shared baseline stroke is the layer's identity, and the figure above it is a triangle up, a triangle down, or a second bar for "went nowhere". `toneFavorable`/`toneUnfavorable` were available and deliberately not used — the point is that direction is legible with no hue at all, and half-taking that position would be worse than either.
+
+Magnitude has no channel on the globe. It lives in `MarketSheet` as the signed percentage; scaling the glyph by percent would draw a +17.9% session eight times the size of a fatal conflict event.
+
 ## Primitives — `components/primitives/`
 
 Eight primitives. Composition over configuration.
@@ -107,6 +125,8 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 - Vertical rhythm inside a sheet has exactly two tiers: `SPACING.md` (16) between paragraphs of one thought, `SPACING.lg` (24) between labeled sections. `SheetAboutPage`, `SheetInfoPage`, `ChokepointSheet` and `EntitySheet` all key off this — a section that carries its own heading gets `lg`, never `md`.
 - Nav rows and info rows in `MenuSheet` are the same control (padding, chevron, pushes a page) and share `label`. Don't size the secondary group down — the divider carries the hierarchy, and shrinking it drops the tap target under 44pt.
 - Event sheets (`ConflictSheet`, `DisasterSheet`) share `SheetHero` / `SheetFlagRow` / `SheetSourceFooter` from `SheetContent.tsx` so the "one family" hero/flags/footer read identically. The severity → focal-tint decision routes through `severityTint` (`lib/severity.ts`) — the "only Red / fatal earns the rose hue" rule lives there, never inline.
+- **Every mark on the globe opens a sheet, and the sheet is where the mark is explained.** A glyph the reader has not seen before is not self-evident, and the app has no legend, no layer list and no tutorial mode — the sheet is the only place the vocabulary can live. So each carries a short labelled section naming what its own shape encodes (`MarketSheet` §Reading the mark) and, where the layer has a bar for inclusion, what it excludes (`GenocideSheet` §What this mark requires — a reader who knows "risk" is a different statement from "determination" can read the *absence* of a mark correctly, which is most of what makes the presence of one mean anything). Keep these to a labelled heading and a paragraph or two: a legend, not an essay. `GenocideSheet` and `MarketSheet` are the references.
+- `GenocideSheet` deliberately does **not** use `SheetHero`. That component's focal is a large number, and there is no number that belongs at the top of that sheet — it leads with the body that made the finding, because the first question about a mark that grave is "says who", not "how many".
 - Staggered row entrances use `staggerEnter(i)` / `makeStaggerEnter()` (drop-in `FadeInDown`) or `staggerFadeIn(i)` (opacity-only, for in-place block rows) from `lib/stagger.ts` — never re-inline `FadeInDown.duration(...).delay(staggerDelay(...))`.
 - Swipe-back and Android hardware back are already wired in `MenuSheet` — copy that pattern for multi-page sheets.
 

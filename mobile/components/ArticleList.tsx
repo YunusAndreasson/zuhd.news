@@ -1,3 +1,4 @@
+import type { GenocideSituation } from '@shared/genocide';
 import type {
   Article,
   Chokepoint,
@@ -5,6 +6,7 @@ import type {
   Entity,
   GdacsAlert,
   HeatmapPoint,
+  MarketExchange,
 } from '@shared/types';
 import { Canvas, LinearGradient, Rect, vec } from '@shopify/react-native-skia';
 import {
@@ -64,6 +66,8 @@ interface ArticleListProps {
   chokepoints?: Chokepoint[];
   gdacsAlerts?: GdacsAlert[];
   conflictEvents?: ConflictEvent[];
+  exchanges?: MarketExchange[];
+  genocideSituations?: GenocideSituation[];
   viewportHeight: number;
   catIndex: number;
   lastSeenAt: number;
@@ -88,6 +92,8 @@ export const ArticleList = memo(function ArticleList({
   chokepoints,
   gdacsAlerts,
   conflictEvents,
+  exchanges,
+  genocideSituations,
   viewportHeight,
   catIndex,
   lastSeenAt,
@@ -374,6 +380,8 @@ export const ArticleList = memo(function ArticleList({
         chokepoints={chokepoints}
         gdacsAlerts={gdacsAlerts}
         conflictEvents={conflictEvents}
+        exchanges={exchanges}
+        genocideSituations={genocideSituations}
         scrollY={scrollY}
         itemHeight={itemHeight}
         width={screenWidth}

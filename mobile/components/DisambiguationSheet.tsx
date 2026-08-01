@@ -1,4 +1,5 @@
-import type { Chokepoint, ConflictEvent, GdacsAlert } from '@shared/types';
+import type { GenocideSituation } from '@shared/genocide';
+import type { Chokepoint, ConflictEvent, GdacsAlert, MarketExchange } from '@shared/types';
 import { Canvas, Circle, Path } from '@shopify/react-native-skia';
 import { memo, useCallback, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -7,6 +8,7 @@ import { ANIMATION, SPACING } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import { SUB_EVENT_LABEL } from '../lib/conflict';
+import { type MarketDirection, marketDirection } from '../lib/markets';
 import { displayCountryName } from '../lib/place-names';
 import { severityTint } from '../lib/severity';
 import { staggerEnter } from '../lib/stagger';
@@ -14,9 +16,13 @@ import {
   CHOKEPOINT_PATH,
   CONFLICT_FAMILY_LABEL,
   EVENT_TYPE_LABEL,
+  GENOCIDE_CORE_R,
+  GENOCIDE_RING_PATH,
   GLYPH_HALF,
   getConflictGlyphPath,
   getGlyphPath,
+  getMarketGlyphPath,
+  MARKET_DIRECTION_LABEL,
 } from './globe/disaster-glyphs';
 import type { TapResult } from './globe/MiniGlobe';
 import { Pressable, Text } from './primitives';
@@ -33,6 +39,8 @@ interface DisambiguationSheetProps extends BaseSheetProps {
   chokepoints: Chokepoint[];
   alerts: GdacsAlert[];
   conflictEvents: ConflictEvent[];
+  exchanges: MarketExchange[];
+  genocideSituations: GenocideSituation[];
   /** Fires when a row is tapped. Parent should dismiss this sheet and
    *  re-dispatch the candidate through its existing tap handler. */
   onSelect: (result: TapResult) => void;
@@ -47,7 +55,7 @@ interface DisplayRow {
   result: TapResult;
   primary: string;
   secondary: string;
-  kind: 'gdacs' | 'chokepoint' | 'conflict' | 'article' | 'hotspot';
+  kind: 'gdacs' | 'chokepoint' | 'conflict' | 'article' | 'hotspot' | 'market' | 'genocide';
   /** GDACS-only — drives the glyph + tint inside the icon canvas. */
   eventtype?: GdacsAlert['eventtype'];
   alertlevel?: GdacsAlert['alertlevel'];
@@ -55,6 +63,8 @@ interface DisplayRow {
   conflictFamily?: ConflictEvent['family'];
   /** Conflict-only — non-zero fatalities tilt the row tint to unfavorable. */
   fatalities?: number;
+  /** Market-only — direction is the glyph, never a hue. */
+  marketDir?: MarketDirection;
 }
 
 function buildRow(
@@ -63,7 +73,23 @@ function buildRow(
   chokepointsById: Map<string, Chokepoint>,
   alertsById: Map<string, GdacsAlert>,
   conflictById: Map<string, ConflictEvent>,
+  exchangesById: Map<string, MarketExchange>,
+  genocideById: Map<string, GenocideSituation>,
 ): DisplayRow | null {
+  // Genocide first, so a determination is never buried under the events that
+  // overlap it — over Gaza this row shares a coordinate with conflict marks on
+  // most days, and the chooser's order is the only hierarchy it has.
+  if (result.genocideId) {
+    const g = genocideById.get(result.genocideId);
+    if (!g) return null;
+    return {
+      key: `genocide-${g.id}`,
+      result,
+      primary: `Genocide · ${g.name}`,
+      secondary: 'as determined by the United Nations',
+      kind: 'genocide',
+    };
+  }
   if (result.gdacsEventId) {
     const alert = alertsById.get(result.gdacsEventId);
     if (!alert) return null;
@@ -107,6 +133,21 @@ function buildRow(
       kind: 'chokepoint',
     };
   }
+  if (result.marketExchangeId) {
+    const e = exchangesById.get(result.marketExchangeId);
+    if (!e) return null;
+    const dir = marketDirection(e.changePct);
+    return {
+      key: `market-${e.id}`,
+      result,
+      primary: `${e.indexName} · ${e.city}`,
+      // The direction in words, because the chooser is a list of text rows and
+      // the row's own glyph is 28px of it. The percentage stays on the sheet.
+      secondary: `${MARKET_DIRECTION_LABEL[dir].toLowerCase()} · stock exchange`,
+      kind: 'market',
+      marketDir: dir,
+    };
+  }
   if (result.isHotspot) {
     const country = displayCountryName(result.countryName) ?? result.countryName;
     const stories = result.hotspotLabels ?? [];
@@ -138,6 +179,61 @@ interface RowIconProps {
 
 function RowIcon({ row, tint }: RowIconProps) {
   const { colors } = useTheme();
+  if (row.kind === 'genocide') {
+    // The only coloured row icon in the chooser, and the same annulus the
+    // globe draws — a reader who taps a red ring and gets a list must be able
+    // to find the ring again in it. `determination`, never `severityTint`:
+    // this row is not on the severity ladder the other rows share.
+    return (
+      <Canvas style={{ width: ROW_ICON, height: ROW_ICON }}>
+        <Circle
+          cx={ROW_ICON / 2}
+          cy={ROW_ICON / 2}
+          r={ROW_ICON / 2}
+          color={colors.determination}
+          opacity={0.16}
+        />
+        <Circle cx={ROW_ICON / 2} cy={ROW_ICON / 2} r={GENOCIDE_CORE_R} color={colors.sheetBg} />
+        <Path
+          path={GENOCIDE_RING_PATH}
+          color={colors.determination}
+          style="stroke"
+          strokeWidth={2}
+          strokeJoin="round"
+          strokeCap="round"
+          transform={[
+            { translateX: ROW_ICON / 2 - GLYPH_HALF },
+            { translateY: ROW_ICON / 2 - GLYPH_HALF },
+          ]}
+        />
+      </Canvas>
+    );
+  }
+  if (row.kind === 'market' && row.marketDir) {
+    return (
+      <Canvas style={{ width: ROW_ICON, height: ROW_ICON }}>
+        <Circle
+          cx={ROW_ICON / 2}
+          cy={ROW_ICON / 2}
+          r={ROW_ICON / 2}
+          color={colors.textSecondary}
+          opacity={0.12}
+        />
+        <Path
+          path={getMarketGlyphPath(row.marketDir)}
+          color={colors.textSecondary}
+          style="stroke"
+          strokeWidth={1.6}
+          strokeJoin="round"
+          strokeCap="round"
+          transform={[
+            { translateX: ROW_ICON / 2 - GLYPH_HALF },
+            { translateY: ROW_ICON / 2 - GLYPH_HALF },
+          ]}
+        />
+      </Canvas>
+    );
+  }
   if (row.kind === 'gdacs' && row.eventtype) {
     return (
       <Canvas style={{ width: ROW_ICON, height: ROW_ICON }}>
@@ -262,6 +358,12 @@ function CandidateRow({
   // (the most editorially urgent signal). Lower-tier disasters read in
   // `textSecondary` — severity is still legible from the focal numbers
   // and labels in the row body.
+  //
+  // The genocide row is not on this ladder at all and does not pass through
+  // here: `RowIcon` reaches for `colors.determination` directly, and the row's
+  // TEXT stays monochrome like every other row's. The mark carries the hue;
+  // a red headline in a list of neutral ones would read as an alert about the
+  // interface, which is the same mistake the web map's filter row corrected.
   const tint = severityTint(
     colors,
     {
@@ -300,6 +402,8 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
   chokepoints,
   alerts,
   conflictEvents,
+  exchanges,
+  genocideSituations,
   bottomInset,
   renderBackdrop,
   onDismiss,
@@ -311,13 +415,28 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
     const cpById = new Map(chokepoints.map((c) => [c.id, c]));
     const alertById = new Map(alerts.map((a) => [a.eventid, a]));
     const conflictById = new Map(conflictEvents.map((e) => [e.id, e]));
+    const exchangeById = new Map(exchanges.map((e) => [e.id, e]));
+    const genocideById = new Map(genocideSituations.map((g) => [g.id, g]));
     const out: DisplayRow[] = [];
     for (let i = 0; i < candidates.length; i++) {
-      const row = buildRow(candidates[i] as TapResult, i, cpById, alertById, conflictById);
+      const row = buildRow(
+        candidates[i] as TapResult,
+        i,
+        cpById,
+        alertById,
+        conflictById,
+        exchangeById,
+        genocideById,
+      );
       if (row) out.push(row);
     }
+    // A determination outranks everything it overlaps. `hitTest` appends it
+    // last so it lands nearest the thumb; here it is pulled to the top, where
+    // reading order puts it first. Both are deliberate, and they are not in
+    // conflict — one is about the hand, the other about the eye.
+    out.sort((a, b) => Number(b.kind === 'genocide') - Number(a.kind === 'genocide'));
     return out;
-  }, [candidates, chokepoints, alerts, conflictEvents]);
+  }, [candidates, chokepoints, alerts, conflictEvents, exchanges, genocideSituations]);
 
   const handleSelect = useCallback(
     (result: TapResult) => {

@@ -1,3 +1,4 @@
+import type { GenocideSituation, GenocideSnapshot } from '@shared/genocide';
 import type {
   Article,
   Category,
@@ -14,6 +15,8 @@ import type {
   GdacsSnapshot,
   HeatmapPoint,
   Indicator,
+  MarketExchange,
+  MarketsSnapshot,
   MetaResponse,
   TrendsSnapshot,
 } from '@shared/types';
@@ -242,6 +245,66 @@ const isIndicator = (v: unknown): v is Indicator => {
   if (v.values.length < 2) return false;
   return true;
 };
+
+// Genocide determinations. The bar for what may carry the mark is enforced
+// upstream in `@shared/genocide` (`finding === 'determination'`), and the
+// endpoint publishes only what cleared it — but a validator that trusted that
+// would let a malformed or truncated payload through to the one mark on the
+// globe that must never be wrong. So `finding` is checked here too, and every
+// citation field is required: a determination without its body, document and
+// date is not a determination, it is an assertion, and this app does not draw
+// those. Anything short of the full record fails the whole snapshot and the
+// hook falls back to the bundled copy.
+
+const isGenocideSituation = (v: unknown): v is GenocideSituation => {
+  if (!isObject(v)) return false;
+  if (typeof v.id !== 'string' || v.id.length === 0) return false;
+  if (typeof v.name !== 'string' || v.name.length === 0) return false;
+  if (v.iso2 !== undefined && typeof v.iso2 !== 'string') return false;
+  if (v.profile !== undefined && typeof v.profile !== 'string') return false;
+  if (!isFiniteNumber(v.lat) || !isFiniteNumber(v.lng)) return false;
+  if (v.finding !== 'determination') return false;
+  if (typeof v.body !== 'string' || v.body.length === 0) return false;
+  if (typeof v.document !== 'string' || v.document.length === 0) return false;
+  if (typeof v.date !== 'string' || v.date.length === 0) return false;
+  if (typeof v.summary !== 'string' || v.summary.length === 0) return false;
+  if (typeof v.url !== 'string' || v.url.length === 0) return false;
+  if (typeof v.since !== 'string') return false;
+  return true;
+};
+
+export const isGenocideSnapshot = (v: unknown): v is GenocideSnapshot =>
+  isObject(v) && Array.isArray(v.situations) && v.situations.every(isGenocideSituation);
+
+// Markets. `series`, `blurb` and `relatedArticles` are optional because the
+// lite endpoint drops them — the app must accept both shapes from one
+// validator, or the fallback to the full endpoint could not reuse it.
+
+const isMarketExchange = (v: unknown): v is MarketExchange => {
+  if (!isObject(v)) return false;
+  if (typeof v.id !== 'string' || v.id.length === 0) return false;
+  if (typeof v.name !== 'string' || typeof v.indexName !== 'string') return false;
+  if (typeof v.city !== 'string' || typeof v.iso2 !== 'string') return false;
+  if (!isFiniteNumber(v.lat) || !isFiniteNumber(v.lng)) return false;
+  if (!isFiniteNumber(v.level) || !isFiniteNumber(v.changePct)) return false;
+  if (typeof v.currency !== 'string' || typeof v.tz !== 'string') return false;
+  if (typeof v.sessionStart !== 'string' || typeof v.sessionEnd !== 'string') return false;
+  if (!isNumberArray(v.days)) return false;
+  if (typeof v.asOf !== 'string' || typeof v.sourceLabel !== 'string') return false;
+  if (v.series !== undefined) {
+    if (!isObject(v.series)) return false;
+    if (!isStringArray(v.series.periods) || !isNumberArray(v.series.values)) return false;
+  }
+  if (v.blurb !== undefined && typeof v.blurb !== 'string') return false;
+  if (v.relatedArticles !== undefined && !Array.isArray(v.relatedArticles)) return false;
+  return true;
+};
+
+export const isMarketsSnapshot = (v: unknown): v is MarketsSnapshot =>
+  isObject(v) &&
+  typeof v.generated === 'string' &&
+  Array.isArray(v.exchanges) &&
+  v.exchanges.every(isMarketExchange);
 
 export const isTrendsSnapshot = (v: unknown): v is TrendsSnapshot =>
   isObject(v) &&

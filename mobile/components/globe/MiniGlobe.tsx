@@ -1,6 +1,14 @@
 import { COUNTRY_DATA, type CountryData } from '@shared/countries/country-data';
+import type { GenocideSituation } from '@shared/genocide';
 import { CITY_TZ, COUNTRY_TZ, SOURCE_COORDS } from '@shared/globe/coordinates';
-import type { Article, Chokepoint, ConflictEvent, GdacsAlert, HeatmapPoint } from '@shared/types';
+import type {
+  Article,
+  Chokepoint,
+  ConflictEvent,
+  GdacsAlert,
+  HeatmapPoint,
+  MarketExchange,
+} from '@shared/types';
 import {
   Atlas,
   BlurMask,
@@ -60,6 +68,7 @@ import { BLACK, WHITE, withAlpha } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { eventAgeDays } from '../../lib/conflict';
 import { alertAgeDays } from '../../lib/gdacs';
+import { type MarketDirection, marketDirection } from '../../lib/markets';
 import { displayCountryName, displayLocation, wrapCountryLabel } from '../../lib/place-names';
 import {
   CITY_LIGHT_COORDS,
@@ -74,7 +83,14 @@ import {
   getRiverLabels,
   getSeas,
 } from './detail-geo';
-import { CHOKEPOINT_PATH, GLYPH_HALF, getGlyphPath } from './disaster-glyphs';
+import {
+  CHOKEPOINT_PATH,
+  GENOCIDE_CORE_R,
+  GENOCIDE_RING_PATH,
+  GLYPH_HALF,
+  getGlyphPath,
+  getMarketGlyphPath,
+} from './disaster-glyphs';
 import {
   ANCHOR_COUNTRY_AREA,
   ANCHOR_NAMES_EXTRA,
@@ -367,6 +383,12 @@ export interface TapResult {
   /** Set when the tap landed on a conflict-event marker. The parent
    *  resolves the id against the events list and opens ConflictSheet. */
   conflictEventId?: string;
+  /** Set when the tap landed on a market mark. The parent resolves the id
+   *  against the exchange list and opens MarketSheet. */
+  marketExchangeId?: string;
+  /** Set when the tap landed on a genocide determination. The parent resolves
+   *  the id against the situations list and opens GenocideSheet. */
+  genocideId?: string;
   /** Populated when the tap lands on 2+ overlapping markers. The parent
    *  presents a chooser sheet listing these candidates; tapping one
    *  re-dispatches that candidate through the same hit handler. When set,
@@ -386,6 +408,8 @@ interface MiniGlobeProps {
   chokepoints?: Chokepoint[];
   gdacsAlerts?: GdacsAlert[];
   conflictEvents?: ConflictEvent[];
+  exchanges?: MarketExchange[];
+  genocideSituations?: GenocideSituation[];
   scrollY: SharedValue<number>;
   itemHeight: number;
   width: number;
@@ -488,6 +512,28 @@ interface GlobeState {
     y: number;
     id: string;
     recencyAlpha: number;
+  }[];
+  /** Market marks — one per exchange the free data commons covers. Direction
+   *  is a glyph, never a hue: see `disaster-glyphs.ts` §Market direction. No
+   *  recency channel, because a close has no age worth drawing — it is either
+   *  the latest close or the endpoint is stale, and the sheet says which. */
+  marketMarks: {
+    x: number;
+    y: number;
+    id: string;
+    label: string;
+    direction: MarketDirection;
+    /** Zoom-band fade, folded in the same way `neighborLabels` folds it. */
+    opacity: number;
+  }[];
+  /** Genocide determinations. Always projected, never gated, never faded —
+   *  a determination is a condition rather than an event, so neither the
+   *  zoom band nor the passage of time may quiet it. The set is 2. */
+  genocideMarks: {
+    x: number;
+    y: number;
+    id: string;
+    label: string;
   }[];
   /** Neighbour-country labels — every country within the camera's visible
    *  hemisphere EXCEPT the highlighted one. Emerges when the camera is
@@ -688,6 +734,8 @@ const EMPTY_GLOBE: GlobeState = {
   chokepoints: [],
   gdacsMarks: [],
   conflictMarks: [],
+  marketMarks: [],
+  genocideMarks: [],
   neighborLabels: [],
   waterLabels: [],
   riversPath: null,
@@ -947,6 +995,8 @@ function projectInitial(
     chokepoints: [],
     gdacsMarks: [],
     conflictMarks: [],
+    marketMarks: [],
+    genocideMarks: [],
     neighborLabels: [],
     waterLabels: [],
     riversPath: null,
@@ -963,6 +1013,8 @@ export const MiniGlobe = memo(function MiniGlobe({
   chokepoints,
   gdacsAlerts,
   conflictEvents,
+  exchanges,
+  genocideSituations,
   scrollY,
   itemHeight,
   width,
@@ -1314,6 +1366,39 @@ export const MiniGlobe = memo(function MiniGlobe({
   }, [conflictEvents]);
   const conflictEventsRef = useRef(enrichedConflict);
   conflictEventsRef.current = enrichedConflict;
+  // Market exchanges — coords tuple + the direction bucket, both resolved once
+  // per snapshot. `changePct` never reaches the render path: it is bucketed
+  // here so the glyph lookup is a table read rather than three comparisons per
+  // mark per frame, and so the flat band is applied in exactly one place.
+  // `city` arrives already translated by the build (`displayLocation`), which
+  // is what prints Yafa rather than Tel Aviv — do not re-translate it.
+  const enrichedMarkets = useMemo(
+    () =>
+      (exchanges ?? []).map((e) => ({
+        id: e.id,
+        label: e.city,
+        coords: [e.lng, e.lat] as [number, number],
+        direction: marketDirection(e.changePct),
+      })),
+    [exchanges],
+  );
+  const marketsRef = useRef(enrichedMarkets);
+  marketsRef.current = enrichedMarkets;
+  // Genocide determinations. No recency, no severity, no bucketing — there is
+  // nothing about one of these that varies, which is the point. `name` is the
+  // place as the people there name it (Gaza, Rakhine), not the country page it
+  // links to; the sheet handles that distinction.
+  const enrichedGenocide = useMemo(
+    () =>
+      (genocideSituations ?? []).map((s) => ({
+        id: s.id,
+        label: s.name,
+        coords: [s.lng, s.lat] as [number, number],
+      })),
+    [genocideSituations],
+  );
+  const genocideRef = useRef(enrichedGenocide);
+  genocideRef.current = enrichedGenocide;
   const layoutRef = useRef({ globeRadius, cx, cy });
   layoutRef.current = { globeRadius, cx, cy };
   // Mirror of last reproject args — avoids reading SharedValues outside worklets
@@ -1847,6 +1932,41 @@ export const MiniGlobe = memo(function MiniGlobe({
         });
       }
 
+      // Market marks — same cull + project pattern, 30 exchanges. Zoom-gated
+      // like the Green GDACS tier and for the same reason: a session change is
+      // ambient reference, not an event, and thirty glyphs over the world view
+      // would be the busiest thing on a globe whose whole argument is that a
+      // reader can see what matters at a glance. They fade in with the places.
+      const marketMarks: GlobeState['marketMarks'] = [];
+      if (labelOpacity > 0) {
+        for (const m of marketsRef.current) {
+          if (geoDistance(m.coords, cameraCoords) >= clipRad) continue;
+          const pt = proj(m.coords);
+          if (!pt) continue;
+          marketMarks.push({
+            x: pt[0],
+            y: pt[1],
+            id: m.id,
+            label: m.label,
+            direction: m.direction,
+            opacity: labelOpacity,
+          });
+        }
+      }
+
+      // Genocide determinations — culled against the visible hemisphere and
+      // nothing else. No zoom gate (unlike every layer above it), because the
+      // world view is precisely where this mark has the most to say, and no
+      // recency term, because there is no age at which a determination becomes
+      // less true. The set is 2, so the loop costs nothing.
+      const genocideMarks: GlobeState['genocideMarks'] = [];
+      for (const g of genocideRef.current) {
+        if (geoDistance(g.coords, cameraCoords) >= clipRad) continue;
+        const pt = proj(g.coords);
+        if (!pt) continue;
+        genocideMarks.push({ x: pt[0], y: pt[1], id: g.id, label: g.label });
+      }
+
       // Country + water-feature labels.
       //   • Anchor-tier countries (`area ≥ ANCHOR_COUNTRY_AREA`) render at
       //     all zooms with a floor opacity, so the reader always has
@@ -2162,6 +2282,8 @@ export const MiniGlobe = memo(function MiniGlobe({
         chokepoints: chokepointMarks,
         gdacsMarks,
         conflictMarks,
+        marketMarks,
+        genocideMarks,
         neighborLabels: keptNeighbours,
         waterLabels: keptWaters,
         riversPath,
@@ -2539,6 +2661,39 @@ export const MiniGlobe = memo(function MiniGlobe({
             localTime: null,
             data: null,
             conflictEventId: m.id,
+          });
+        }
+      }
+
+      // Market marks — same 36px tap zone as the other glyph tiers.
+      for (const m of state.marketMarks) {
+        if (isNear(x, y, m.x, m.y, 1296)) {
+          candidates.push({
+            countryName: '',
+            location: null,
+            localTime: null,
+            data: null,
+            marketExchangeId: m.id,
+          });
+        }
+      }
+
+      // Genocide determinations — a wider 44px zone than every other marker
+      // tier. Not because the ring is bigger (it is, slightly), but because
+      // this is the one mark on the globe where a missed tap costs the reader
+      // the thing the layer exists to tell them, and there are only two of
+      // them, so a generous target cannot crowd anything. Placed last so that
+      // when it overlaps a conflict event — which over Gaza it always will —
+      // the determination is the last candidate the chooser lists, sitting
+      // closest to the reader's thumb.
+      for (const g of state.genocideMarks) {
+        if (isNear(x, y, g.x, g.y, 1936)) {
+          candidates.push({
+            countryName: '',
+            location: null,
+            localTime: null,
+            data: null,
+            genocideId: g.id,
           });
         }
       }
@@ -3174,6 +3329,45 @@ export const MiniGlobe = memo(function MiniGlobe({
         />
       )}
 
+      {/* Market marks — one per exchange, zoom-gated in with the place labels.
+          Monochrome by rule, not by omission: direction is the glyph's shape
+          (triangle up, triangle down, bar) and the app's one chromatic licence
+          is spent on the determination ring below. `rule` ink at chokepoint
+          weight puts these at the quietest tier on the globe, which is where a
+          session change belongs — it is reference, not news, and the number
+          itself lives in the sheet. City label rather than exchange name: at
+          this size "Riyadh" reads and "Saudi Exchange" does not, and the
+          reader is looking at a map. */}
+      {state.marketMarks.map((m) => {
+        const labelTx = waterFont
+          ? m.x - waterFont.getTextWidth(m.label) / 2
+          : m.x - m.label.length * 2.5;
+        return (
+          <Group key={`market-${m.id}`}>
+            <Path
+              path={getMarketGlyphPath(m.direction)}
+              color={colors.rule}
+              style="stroke"
+              strokeWidth={1.0}
+              strokeJoin="round"
+              strokeCap="round"
+              opacity={(light ? 0.85 : 0.7) * m.opacity}
+              transform={[{ translateX: m.x - GLYPH_HALF }, { translateY: m.y - GLYPH_HALF }]}
+            />
+            <HaloLabel
+              x={labelTx}
+              y={m.y + 20}
+              text={m.label}
+              font={waterFont}
+              color={colors.text}
+              haloColor={colors.bg}
+              opacity={(light ? 0.7 : 0.55) * m.opacity}
+              haloOpacity={(light ? LABEL_HALO_OPACITY_LIGHT : LABEL_HALO_OPACITY_DARK) * m.opacity}
+            />
+          </Group>
+        );
+      })}
+
       {/* Country highlight — opacity scales with area so small nations pop */}
       {state.countryPath && (
         <CountryHighlight
@@ -3480,6 +3674,67 @@ export const MiniGlobe = memo(function MiniGlobe({
           />
         </>
       )}
+
+      {/* Genocide determinations — LAST, and that is load-bearing.
+          A situation a named UN body has determined to be genocide, drawn as a
+          heavy ring around a background-filled core with the place name always
+          beside it. Everything about it is the opposite of the layers above:
+
+            • Drawn after every other mark, so nothing can cover it. A
+              determination hidden behind a disaster triangle reads as an
+              absence, and an absence is the one thing this layer must never
+              say. Over Gaza it will overlap a conflict event on most days.
+
+            • Full opacity, no recency term, no zoom gate. A determination is a
+              condition rather than an event — the passage of time does not
+              make it less true, and the world view is exactly where it has
+              most to say. It is the only mark here that never fades.
+
+            • The only red in the app (`colors.determination` — see the token
+              for why the palette affords precisely one). Note the hue reaches
+              the ring and the label and stops: the core is `bg` so the mark
+              reads as an annulus rather than a red dot, because a dot on this
+              globe already means a story.
+
+          Never gate this on a toggle, a time filter, or a zoom band. */}
+      {state.genocideMarks.map((g) => {
+        const labelTx = waterFont
+          ? g.x - waterFont.getTextWidth(g.label) / 2
+          : g.x - g.label.length * 2.5;
+        return (
+          <Group key={`genocide-${g.id}`}>
+            <Circle
+              cx={g.x}
+              cy={g.y}
+              r={GENOCIDE_CORE_R}
+              color={colors.bg}
+              opacity={light ? 0.9 : 0.95}
+            />
+            <Path
+              path={GENOCIDE_RING_PATH}
+              color={colors.determination}
+              style="stroke"
+              strokeWidth={2.2}
+              strokeJoin="round"
+              strokeCap="round"
+              transform={[{ translateX: g.x - GLYPH_HALF }, { translateY: g.y - GLYPH_HALF }]}
+            />
+            <HaloLabel
+              x={labelTx}
+              y={g.y + 22}
+              text={g.label}
+              font={waterFont}
+              color={colors.determination}
+              haloColor={colors.bg}
+              // Full strength. Every other label on this globe is multiplied
+              // by a zoom band or a recency term; this one is not, for the
+              // same reason the ring is not.
+              opacity={1}
+              haloOpacity={light ? LABEL_HALO_OPACITY_LIGHT_STRONG : LABEL_HALO_OPACITY_DARK_STRONG}
+            />
+          </Group>
+        );
+      })}
     </Canvas>
   );
 });

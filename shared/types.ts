@@ -326,6 +326,67 @@ export interface ChokepointSnapshot {
   chokepoints: Chokepoint[];
 }
 
+// ── Markets (world exchanges) ──────────────────────────────────────────────
+//
+// One entry per stock exchange the free data commons actually covers, from
+// `scripts/lib/market-metadata.js` + a daily quote fetch. The catalog carries
+// unavailable exchanges too (Doha, Karachi, Cairo, Lagos and nine more) with a
+// reason each, so the gap in coverage stays visible instead of quietly
+// becoming a fact about the world; only the available ones reach an endpoint.
+//
+// Two endpoints, one shape. `/api/markets.json` is the full record the web map
+// reads. `/api/markets-lite.json` is the same objects with `series`, `blurb`
+// and `relatedArticles` dropped — those three are ~72 KB of the 79 KB, and the
+// mobile app charges every decoded byte to the data meter that its central
+// privacy claim is measured by. The optional fields below are what the lite
+// endpoint omits; the app degrades to the full one when lite is missing, the
+// same fallback `lib/feed-source.ts` makes for `feed-lite` → `feed`.
+
+export interface MarketExchange {
+  id: string;
+  /** The institution, spelled out — "Saudi Exchange", not "Tadawul". */
+  name: string;
+  /** The index quoted, as it is quoted: TASI, FTSE 100, S&P 500. */
+  indexName: string;
+  /** Already run through `displayLocation` upstream — this is what prints
+   *  Yafa rather than Tel Aviv beside the TA-125. Do not re-translate. */
+  city: string;
+  iso2: string;
+  lat: number;
+  lng: number;
+  /** Index level at `asOf`. */
+  level: number;
+  /** Session change in percent, signed. The app encodes its *direction* as a
+   *  glyph and never as a hue — see `DESIGN.md` §Sentiment. */
+  changePct: number;
+  currency: string;
+  /** IANA zone, e.g. `Asia/Riyadh`. With `sessionStart`/`sessionEnd`/`days`
+   *  this is enough to say whether the exchange is open right now. */
+  tz: string;
+  sessionStart: string;
+  sessionEnd: string;
+  /** Trading days, `Date.getDay()` convention (0 = Sunday). Per-exchange, not
+   *  per-region: Riyadh runs Sunday–Thursday while Dubai moved to
+   *  Monday–Friday in 2022, so a Gulf-wide rule is wrong about half the Gulf. */
+  days: number[];
+  /** ISO timestamp of the close this quote describes. */
+  asOf: string;
+  sourceLabel: string;
+  /** Full endpoint only. */
+  series?: { periods: string[]; values: number[] };
+  /** Full endpoint only. */
+  blurb?: string;
+  /** Full endpoint only. */
+  relatedArticles?: { slug: string; title: string; date: string; dateFormatted: string }[];
+  topicTags?: string[];
+  countryTags?: string[];
+}
+
+export interface MarketsSnapshot {
+  generated: string;
+  exchanges: MarketExchange[];
+}
+
 // ── GDACS (Global Disaster Alert and Coordination System) ──────────────────
 //
 // Pre-fetched server-side once per cycle (scripts/fetch-gdacs.js) and served
