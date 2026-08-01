@@ -38,7 +38,9 @@ In Claude Desktop, Cursor, or any MCP client, add zuhd-news as a remote server w
 
 ## Rate limits
 
-30 requests per minute. No key required.
+A burst of 30 requests, then 10 per minute as the bucket refills. No key required.
+
+Every response carries **X-RateLimit-Remaining**. A 429 carries **X-RateLimit-Reset**, in seconds.
 
 For higher limits, email [contact@zuhd.news](mailto:contact@zuhd.news) with your use case.
 
