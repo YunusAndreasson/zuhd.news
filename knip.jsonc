@@ -77,6 +77,12 @@
     // ── Tests.
     "scripts/lib/*.test.js",
 
+    // ── The measuring instruments. Run by hand against a built `dist` (or
+    //    against the deployed site) rather than by anything in the repo, for
+    //    the same reason shoot.mjs is: what they measure needs a real browser
+    //    and, for the idle check, a real GPU and a visible window.
+    "scripts/perf/*.mjs",
+
     // ── Manual tools. Unreferenced by design, and each one is the only way to
     //    do the thing it does: fetch-country-cards.js regenerates the committed
     //    shared/data/country-cards.json, dry-run-augment.js exercises one
@@ -132,5 +138,11 @@
   "ignore": ["mobile/**"],
 
   // Resolved through a tsconfig rather than an import.
-  "ignoreDependencies": ["@types/.*"]
+  //
+  // `geojson` is the bare specifier for @types/geojson — a types-only package
+  // with no runtime half, so there is no `geojson` dependency for knip to find
+  // however correctly it is declared. `@shared/*` is the path alias the island
+  // bundler and mobile both resolve; it is a directory in this repo, not a
+  // package.
+  "ignoreDependencies": ["@types/.*", "geojson", "@shared/.*"]
 }

@@ -15,6 +15,9 @@
     "deadcode": "knip --include files,dependencies --no-config-hints",
     "typecheck": "tsc -p tsconfig.islands.json && tsc -p tsconfig.node.json",
     "verify": "npm run lint && npm run typecheck && npm test",
+    "perf": "node scripts/perf/probe.mjs",
+    "perf:idle": "node scripts/perf/idle-renders.mjs",
+    "perf:profile": "node scripts/perf/idle-profile.mjs",
     "fetch": "node scripts/fetch-news.js",
     "deploy": "npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true",
     "publish": "node scripts/build.js && npm run deploy",
@@ -30,21 +33,22 @@
     "fast-xml-parser": "^5.8.0",
     "htm": "^3.1.1",
     "jpeg-js": "^0.4.4",
-    "js-yaml": "^4.3.0",
+    "js-yaml": "^5.2.3",
     "jsdom": "^29.1.1",
-    "maplibre-gl": "^6.0.0",
-    "preact": "^10.29.2",
+    "maplibre-gl": "^6.1.0",
+    "preact": "^10.29.8",
     "topojson-client": "^3.1.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.5",
-    "@types/d3-geo": "^3.1.0",
+    "@biomejs/biome": "^2.5.6",
+    "@types/d3-geo": "^3.1.1",
+    "@types/geojson": "^7946.0.16",
     "@types/node": "^26.1.2",
     "@types/topojson-client": "^3.1.5",
     "@types/topojson-specification": "^1.0.5",
     "adhan": "^4.4.4",
     "knip": "^6.31.0",
-    "playwright": "^1.61.1",
+    "playwright": "^1.62.1",
     "typescript": "^7.0.2"
   }
 }

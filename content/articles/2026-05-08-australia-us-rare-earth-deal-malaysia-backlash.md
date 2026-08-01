@@ -7,8 +7,7 @@ lat: 3.81
 lng: 103.33
 sources:
   - name: "The Diplomat"
-    url: "https://thediplomat.com/2026/05/why-an-australia-us-rare-earth-deal-sparked-backlash-in-malaysia/
-"
+    url: "https://thediplomat.com/2026/05/why-an-australia-us-rare-earth-deal-sparked-backlash-in-malaysia/"
     country: "US"
 eventCoverage: null
 concepts:

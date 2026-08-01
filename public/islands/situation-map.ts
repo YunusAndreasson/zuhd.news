@@ -934,6 +934,24 @@ export function mount(
   let hoverIso: string | null = null
   /** Which prayer line the pointer is on, if any. */
   let hoverPrayer: string | null = null
+  /**
+   * What is actually written into each source's feature-state map.
+   *
+   * `syncHoverState` and `syncPrayerHover` run on every `idle`, and
+   * `Map.removeFeatureState` ends in `_update()` whether or not it removed
+   * anything. So an unconditional clear per idle tick dirtied the source,
+   * scheduled a render, and fired `idle` again — a 60fps loop on a map nobody
+   * was touching, holding ~57% of a core for as long as the tab stayed open,
+   * with no animation on screen to account for it. Comparing against what was
+   * last written makes the overwhelmingly common case — the pointer has not
+   * moved since the last frame — cost nothing at all.
+   *
+   * These track the *source's* state map, which survives `setData`; the one
+   * place that is not true is the scrub path, which clears the map explicitly
+   * and sets `hoverStateWritten` back to null with it.
+   */
+  let hoverStateWritten: string | null = null
+  let prayerStateWritten: string | null = null
   let peekCloseTimer: number | null = null
   // The map moves under a stationary pointer during a flight, which would
   // otherwise drag the cursor across other markers and chain more flights.
@@ -1530,6 +1548,7 @@ export function mount(
     // — see `syncHoverState`. Restored by the `idle` handler once the new
     // tiles are in.
     map.removeFeatureState({ source: 'stories' })
+    hoverStateWritten = null
     // Stories and their places are the layers whose *features* change with the
     // scrub head: decay alpha is baked per feature, and a place's count has to
     // reflect the filtered set. Everything else moves by filter above.
@@ -2441,7 +2460,11 @@ export function mount(
     // seconds wide, twice a year — the Maghrib line is the only terminator on
     // the map, which is the more correct of the two.
     src('prayer')?.setData({ type: 'FeatureCollection', features: prayerLines(now) })
-    syncPrayerHover()
+    // Forced, unlike the idle path: the line set changes shape across the year
+    // — a prayer with no time at that latitude contributes no feature at all —
+    // so the state map has to be rewritten rather than replayed onto a feature
+    // order that may no longer match it.
+    syncPrayerHover(true)
   }
 
   // --- Interaction --------------------------------------------------------
@@ -2571,8 +2594,10 @@ export function mount(
    */
   const syncHoverState = () => {
     if (!layersReady || !map.isSourceLoaded('stories')) return
+    if (hoverStateWritten === hoverSlug) return
     map.removeFeatureState({ source: 'stories' })
     if (hoverSlug) map.setFeatureState({ source: 'stories', id: hoverSlug }, { hover: true })
+    hoverStateWritten = hoverSlug
   }
 
   const setHoverSlug = (slug: string | null) => {
@@ -2590,10 +2615,12 @@ export function mount(
    * bit was never restored during a scrub, which is precisely when the source
    * has just been rewritten.
    */
-  const syncPrayerHover = () => {
+  const syncPrayerHover = (rewrite = false) => {
     if (!layersReady || !map.isSourceLoaded('prayer')) return
+    if (!rewrite && prayerStateWritten === hoverPrayer) return
     map.removeFeatureState({ source: 'prayer' })
     if (hoverPrayer) map.setFeatureState({ source: 'prayer', id: hoverPrayer }, { hover: true })
+    prayerStateWritten = hoverPrayer
   }
 
   const setHoverPrayer = (id: string | null) => {
@@ -2955,7 +2982,10 @@ export function mount(
     // Cheap — it compares one slug and, at most, writes one feature's state.
     map.on('idle', syncHoverState)
     // Its own listener, not a line inside that one — see `syncPrayerHover`.
-    map.on('idle', syncPrayerHover)
+    // Wrapped rather than passed directly: MapLibre hands the listener an event
+    // object, which as `rewrite` is truthy, and would force the unconditional
+    // clear this pair exists to avoid.
+    map.on('idle', () => syncPrayerHover())
 
     /**
      * Coastline detail, swapped in as the camera earns it.

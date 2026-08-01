@@ -83,6 +83,7 @@ writeFileSync(
     setLayoutProperty(id, k, v) { (this.layout[id] ||= {})[k] = v }
     setFilter(id, f) { this.filters[id] = f }
     setFeatureState(ref, state) {
+      this.stateWrites = (this.stateWrites || 0) + 1
       Object.assign((this.featureState[ref.id] ||= {}), state)
     }
     // The island clears the whole source's state before every setData and only
@@ -92,7 +93,14 @@ writeFileSync(
     // bounds" from inside MapLibre. The stub has to model both calls, and
     // isSourceLoaded, or the island throws here instead.
     // (No backticks in here either -- see the note above.)
+    // Counted, not just applied. In MapLibre both of these end in _update(),
+    // which dirties the source and schedules a render whether or not anything
+    // actually changed -- so a handler on 'idle' that clears unconditionally
+    // re-triggers 'idle' forever. What a test has to be able to see is the
+    // *call*, not its effect, because the effect of the redundant call is
+    // nil by definition.
     removeFeatureState(ref) {
+      this.stateWrites = (this.stateWrites || 0) + 1
       if (ref && ref.id != null) delete this.featureState[ref.id]
       else this.featureState = {}
     }
@@ -720,5 +728,49 @@ test('a failed data fetch degrades to an empty map rather than throwing', async 
     teardown()
   } finally {
     env.restore()
+  }
+})
+
+test('an idle tick with nothing to change writes nothing to the map', async () => {
+  // The map is a static picture until someone touches it, and MapLibre only
+  // draws a frame when something has told it to. Both `idle` handlers cleared
+  // their source's feature state unconditionally, and in MapLibre
+  // `removeFeatureState` ends in `_update()` whether or not it removed
+  // anything -- so each idle tick dirtied a source, scheduled a render, and
+  // fired `idle` again. Measured on hardware that was 56.8 renders/second and
+  // ~57% of a core, indefinitely, on a map showing no animation at all.
+  //
+  // The assertion is deliberately about *writes attempted*, not about the
+  // resulting state: a redundant clear leaves the state identical, which is
+  // exactly why nothing caught this.
+  globalThis.__zuhdMaps = []
+  const env = setupDom()
+  try {
+    const { mount } = await import(bundlePath)
+    const teardown = mount(env.host)
+    env.pump()
+    await settle()
+    env.pump()
+
+    const map = globalThis.__zuhdMaps.at(-1)
+    const idle = map.handlers.idle || []
+    assert.ok(idle.length >= 2, 'the island should sync hover state on idle')
+
+    // Let the first tick do whatever setting-up it needs, then hold still.
+    for (const f of idle) f({ type: 'idle' })
+    map.stateWrites = 0
+    for (let i = 0; i < 25; i++) for (const f of idle) f({ type: 'idle' })
+
+    assert.equal(
+      map.stateWrites,
+      0,
+      `25 idle ticks with an unmoved pointer wrote ${map.stateWrites} times; ` +
+        'each write re-dirties the source and schedules the next frame',
+    )
+
+    teardown()
+  } finally {
+    env.restore()
+    delete globalThis.__zuhdMaps
   }
 })
