@@ -147,6 +147,26 @@ have gone the other way and a measurement that decided it. The map itself is
   what it said, and `atmosphere-blend` stays at its measured 0.34 for the half
   MapLibre draws on the planet — two tokens for one substance is exactly how the
   two halves would drift apart.
+- **The two halves were pointing in different directions the whole time**
+  (2026-08-02). This file's crescent is placed from `sunPosition` and has always
+  been right. MapLibre's is placed from `style.light`, and the style declared
+  `sky` and never declared `light` — so `getSunPos` skipped its camera rotation
+  (`anchor` defaults to `'viewport'`), `u_sun_pos` became a constant in view
+  space, and **MapLibre's crescent sat in the upper-left corner of the screen at
+  every hour, on every date, from every camera.** Ours swept with the sun
+  underneath it. Nothing could catch it: both are atmospheres, both are faint,
+  and the wrong one is only wrong *relative to* a terminator you have to look
+  for. `drawSolar` now calls `map.setLight({ anchor: 'map', … })` from
+  `sunLightPosition` on the same 120-second tick, and the halo here is what the
+  night half of that same edge is made of. The reason the airglow could not
+  simply be turned up to cover for it: MapLibre's shader is a Rayleigh/Mie
+  integral, so it returns **zero** where the sun is behind the planet, and no
+  value of `atmosphere-blend` will ever light the night limb.
+- **A missing `light` is the cheapest possible failure to write down and the
+  hardest to see.** It is not a wrong value, it is an absent declaration, so
+  there is no line to review, nothing in the console, and a default that renders
+  something plausible. The general form is worth keeping: **an engine default
+  that produces a picture is more dangerous than one that produces nothing.**
 - **The crescent is 72 wedges sharing one radial gradient, drawn `lighter`.**
   Carving a crescent out of a ring means `destination-out`, which would take the
   stars underneath with it. `lighter` is both what light does and what makes

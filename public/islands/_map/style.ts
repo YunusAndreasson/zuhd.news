@@ -1182,15 +1182,63 @@ export function buildStyle(v?: string): StyleSpecification {
         ],
         layout: {
           'text-field': ['get', 'name'],
-          'text-font': ['Noto Sans Bold'],
+          /**
+           * Regular, not Bold, and the weight is the half of this that matters.
+           *
+           * Measured off the rendered canvas at the view the map opens on: of
+           * every pixel at **11:1 or better against the ocean, 100% was neutral
+           * grey** — which is to say all of it was this layer and `sea-labels`.
+           * Not one story beacon, conflict mark, famine glyph or genocide ring
+           * reached that band, and the top 1% of ink on the whole map came out
+           * 88% neutral. The loudest thing on a news map was the names of the
+           * countries, which are the one layer here carrying no news at all.
+           *
+           * It got there by stacking every emphasis channel typography has —
+           * bold, uppercase, letterspaced, near-white ink, and a halo *darker
+           * than the ocean* — over a ground whose own encoding (`LAND_RAMP`)
+           * spans 1.36:1 end to end. Four of the five are spent down here.
+           *
+           * The ink is deliberately **not** one of them, because it is the only
+           * channel that cannot be spent: `labelDim` measures 9.87:1 on the
+           * ramp's darkest stop and **4.90:1 on its brightest**, which is the AA
+           * floor with 0.4 to spare, while `neutral` — the obvious step down —
+           * measures **2.76:1** there. That is the wall the note on
+           * `MAP_COLOURS.label` already hit from the other side, and it is why
+           * this layer gets quieter without getting dimmer.
+           */
+          'text-font': ['Noto Sans Regular'],
           // 8.5px was too small for the most prominent text on the map, and small
           // type is the other half of why it was hard to read — contrast and size
           // trade against each other, and this was short on both.
+          //
+          // Left alone when the weight came down: size is a shout channel too,
+          // and spending both at once leaves no way to tell which one was doing
+          // the shouting.
           'text-size': ['interpolate', ['linear'], ['zoom'], 1.2, 10, 6, 14],
-          'text-letter-spacing': 0.14,
+          // 0.14 is display letterspacing — it was set for a bold cap line and
+          // reads as tracking-out at Regular, which is a second way of saying
+          // "look at this". 0.08 keeps caps from setting tight and stops there.
+          'text-letter-spacing': 0.08,
           'text-transform': 'uppercase',
           'text-max-width': 7,
-          'text-padding': 6,
+          /**
+           * Doubled, and this is the layer's density control now.
+           *
+           * The obvious lever was the `area` gate above, and it is the wrong
+           * one: raising it from 0.00008 to 0.0003 drops **17 of 176**
+           * candidates, and the seventeen are Lebanon, Qatar, Cyprus, Kosovo,
+           * the Gambia, Trinidad, Jamaica and the Bahamas — small states, which
+           * on a news map is not the same thing as unimportant ones. A gate
+           * deletes a country at every zoom the gate covers.
+           *
+           * Padding thins by *collision* instead, so what it removes is
+           * crowding rather than countries: `symbol-sort-key` already sorts on
+           * area, so the labels that survive a tight world view are the large
+           * ones, and Lebanon arrives as the camera earns it. That is the
+           * arrangement the gate's own note describes and the gate cannot
+           * actually deliver.
+           */
+          'text-padding': 12,
           // Without this, collision resolution is arbitrary and India loses to
           // Timor-Leste. Larger countries sort first and therefore survive.
           'symbol-sort-key': ['-', 1, ['get', 'area']],
@@ -1198,10 +1246,18 @@ export function buildStyle(v?: string): StyleSpecification {
         paint: {
           'text-color': MAP_COLOURS.labelDim,
           'text-halo-color': MAP_COLOURS.labelHalo,
-          // Thicker, because the halo is now the second line of defence rather
-          // than the only one: the ink carries the letterform and this keeps the
-          // edge crisp where the ground comes up under it.
-          'text-halo-width': 1.6,
+          /**
+           * Back to 1, because 1.6 was the loudest single number in this block.
+           *
+           * `labelHalo` is `#05070a` — *darker than the ocean* — so the halo is
+           * not a softening, it is a second contrast edge drawn around every
+           * letterform at **12.13:1** against the ink it surrounds. That is the
+           * highest local contrast anywhere on this map, and it was being spent
+           * on the basemap. At 1 the ink still carries the letterform, which is
+           * what the previous note here had right; what it had wrong was that a
+           * second line of defence is free.
+           */
+          'text-halo-width': 1,
         },
       },
       {

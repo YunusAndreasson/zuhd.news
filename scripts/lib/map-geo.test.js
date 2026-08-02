@@ -93,6 +93,55 @@ test('subsolar point tracks the seasons', () => {
   assert.ok(Math.abs(mar.lat) < 1.2, `March declination ${mar.lat}`)
 })
 
+/**
+ * The light MapLibre's atmosphere is aimed with.
+ *
+ * Pinned by round-tripping through MapLibre's own `sphericalToCartesian` and
+ * its `negate`, because that pair is the entire contract and neither half is
+ * checkable by eye: the map declared no `light` for a month, `getSunPos` fell
+ * back to `anchor: 'viewport'`, and the crescent sat in the upper-left corner
+ * of the screen at every hour of every day. Nothing threw, nothing logged, and
+ * the picture looked like an atmosphere.
+ *
+ * Two independent ways to get this wrong and both are silent: the antisolar
+ * inversion (MapLibre negates before the shader sees it) and the azimuth
+ * convention. So the assertion is not on the numbers this returns — it is that
+ * running them through MapLibre's own formula lands on the **sub-solar** point
+ * in the world frame `Rx(lat)·Ry(−lng)` maps from.
+ */
+test('the atmosphere light points at the sun, through MapLibre’s own conversion', () => {
+  // Verbatim from maplibre-gl-shared: azimuth is offset 90° before use.
+  const sphericalToCartesian = ([r, azimuthal, polar]) => {
+    const a = ((azimuthal + 90) * Math.PI) / 180
+    const p = (polar * Math.PI) / 180
+    return [r * Math.cos(a) * Math.sin(p), r * Math.sin(a) * Math.sin(p), r * Math.cos(p)]
+  }
+  for (const iso of [
+    '2026-06-21T12:00:00Z',
+    '2026-12-21T00:00:00Z',
+    '2026-03-20T18:00:00Z',
+    '2026-08-02T23:40:00Z',
+  ]) {
+    const when = new Date(iso)
+    const sun = M.subsolarPoint(when)
+    // `getSunPos` negates `position`, so this is what the shader receives.
+    const got = sphericalToCartesian(M.sunLightPosition(when)).map((v) => -v)
+    // The sub-solar point in the frame that solves `Rx(lat)·Ry(-lng)·v = +Z`.
+    const D = Math.PI / 180
+    const want = [
+      Math.cos(sun.lat * D) * Math.sin(sun.lng * D),
+      Math.sin(sun.lat * D),
+      Math.cos(sun.lat * D) * Math.cos(sun.lng * D),
+    ]
+    for (let i = 0; i < 3; i++) {
+      assert.ok(
+        Math.abs(got[i] - want[i]) < 1e-9,
+        `${iso}: axis ${i} was ${got[i]}, expected ${want[i]} — the light is not on the sun`,
+      )
+    }
+  }
+})
+
 test('subsolar longitude sweeps westward through the day', () => {
   const base = new Date('2026-06-21T00:00:00Z')
   const a = M.subsolarPoint(base)

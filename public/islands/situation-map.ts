@@ -69,7 +69,7 @@ import { createTimeline, type Timeline } from './_map/timeline'
 import { createSheet, type Sheet } from './_map/sheet'
 import { MAKKAH_LABEL, MAKKAH_TZ, solarClock, zoneOffset } from './_map/format'
 import { createStoryPopup, type CountryStanding, type StoryPopup } from './_map/popup'
-import { dayPolygon, nightPolygon } from './_map/solar'
+import { dayPolygon, nightPolygon, sunLightPosition, terminatorBand } from './_map/solar'
 import { PRAYER_NOTE, PRAYERS, type PrayerId, prayerInstantAt, prayerLines } from './_map/prayer'
 import { HIJRI_NOTE, hijriLabel } from './_map/hijri'
 import {
@@ -94,6 +94,18 @@ import { detailKey } from '@shared/gdacs'
 
 /** Where the 1:10m coastline replaces 1:50m — see the zoomend handler. */
 const ULTRA_ZOOM = 5.5
+
+/**
+ * The tone the lit side is lifted with, on the water and along the terminator.
+ *
+ * One constant because `day-shade` and `twilight` are two drawings of one fact
+ * — where the sun is — and a second literal for the second layer is exactly the
+ * arrangement the shared-modules table in `CLAUDE.md` exists to stop. It is not
+ * in `MAP_COLOURS`: that block is what `colour-system.test.js` reads, and a
+ * token there is a claim about a *mark* a reader can see and name. This is a
+ * wash at 0.055 and 0.07 that never appears at full strength anywhere.
+ */
+const DAYLIGHT = '#7f9dc4'
 
 /**
  * The oldest analysis the famine layer draws, in months.
@@ -1851,6 +1863,10 @@ export function mount(
     map.addSource('genocide', { type: 'geojson', data: empty })
     map.addSource('night', { type: 'geojson', data: empty })
     map.addSource('day', { type: 'geojson', data: empty })
+    // The same curve the two hemispheres are cut from, kept open — see
+    // `terminatorBand`. A separate source rather than a filter on `night`,
+    // because one is a polygon and the other is the line around it.
+    map.addSource('terminator', { type: 'geojson', data: empty })
     // Built here rather than fetched: 761 points of arithmetic, so a file would
     // be a request and an entry in `BASEMAP_V` bought for something the client
     // can produce before the first frame. It never changes, so unlike `night`
@@ -1982,7 +1998,7 @@ export function mount(
         id: 'day-shade',
         type: 'fill',
         source: 'day',
-        paint: { 'fill-color': '#7f9dc4', 'fill-opacity': 0.055 },
+        paint: { 'fill-color': DAYLIGHT, 'fill-opacity': 0.055 },
       },
       'land',
     )
@@ -1990,12 +2006,91 @@ export function mount(
     // Night sits on the ground and under everything else: it darkens the land,
     // never the data. Over water it is `day-shade` above that carries the
     // terminator.
+    //
+    // It stays a flat 0.28 and that is deliberate: `twilight` below cuts the
+    // ramp *upward* out of this, so deep night is the same value it has always
+    // been and every contrast measured against it still holds.
     map.addLayer(
       {
         id: 'night-shade',
         type: 'fill',
         source: 'night',
         paint: { 'fill-color': '#000', 'fill-opacity': 0.28 },
+      },
+      'borders',
+    )
+
+    /**
+     * Twilight — the ramp the terminator never had.
+     *
+     * `night-shade` above is one fill at one opacity with a hard boundary, so
+     * until this layer the map's whole lighting model was a **step function**:
+     * every point on the night side darkened by exactly the same amount, and
+     * the change from day to night happening across zero degrees. That is the
+     * flattest lighting a sphere can be given, and it is a large part of why
+     * the globe read as a disc with a shape on it. The reason it is a blurred
+     * band along the curve rather than the three real twilight caps is in
+     * `terminatorBand`, and it comes down to those caps only existing for part
+     * of the year.
+     *
+     * Everything about the sizing is one expression evaluated three times, so
+     * the band cannot come apart from its own offset. It **doubles per zoom
+     * level** (`['exponential', 2]`) because the twilight zone is a fixed
+     * angular width on the planet and screen pixels are not: anything else
+     * would draw a band that means ~20° at the opening view and something else
+     * at every other. At the zoom the map opens on this is about 60px of width
+     * against 5.78 px/degree, so the visible ramp — width plus blur — spans
+     * roughly the twenty degrees of real twilight.
+     *
+     * Offset by half its own width so the band sits *inside* the night rather
+     * than straddling the boundary; `side` comes from the feature and flips
+     * with the season, which is the one number here that fails silently.
+     */
+    /**
+     * The two stops both expressions are built from, so the band and the offset
+     * that pushes it off the terminator cannot come apart.
+     *
+     * They are written twice rather than once and divided, and that is not a
+     * style choice: **`['zoom']` is only legal as the direct input of a
+     * top-level `step` or `interpolate`**. The obvious form —
+     * `['*', ['get', 'side'], ['/', width, 2]]` — buries the interpolate two
+     * levels down, and MapLibre rejects the *whole layer* for it. It is the
+     * same trap `story-place-count` records for its own `step`, and it cost
+     * more here: `addLayer` throws from inside `addDataLayers`, so every layer
+     * after this one — the stories, the disasters, the conflict marks — was
+     * never added and the map sat on "Drawing the world…" forever.
+     */
+    const TWILIGHT_PX = { near: 12, far: 96 } as const
+    const twilightWidth: ExpressionSpecification = [
+      'interpolate',
+      ['exponential', 2],
+      ['zoom'],
+      0, TWILIGHT_PX.near,
+      3, TWILIGHT_PX.far,
+    ]
+    map.addLayer(
+      {
+        id: 'twilight',
+        type: 'line',
+        source: 'terminator',
+        paint: {
+          'line-color': DAYLIGHT,
+          'line-width': twilightWidth,
+          'line-blur': twilightWidth,
+          // Legal because the interpolate is top-level and `['get', 'side']`
+          // rides in its *outputs*, which is the zoom-and-property form.
+          'line-offset': [
+            'interpolate',
+            ['exponential', 2],
+            ['zoom'],
+            0, ['*', ['get', 'side'], TWILIGHT_PX.near / 2],
+            3, ['*', ['get', 'side'], TWILIGHT_PX.far / 2],
+          ],
+          // Lighter than `day-shade`'s 0.055, because this one is spread over a
+          // blur rather than laid flat: the peak is what is quoted and most of
+          // the band is well under it.
+          'line-opacity': 0.07,
+        },
       },
       'borders',
     )
@@ -2025,10 +2120,22 @@ export function mount(
      * limb runs through. A graticule over the continents would have been a net
      * across every mark this file spends its length rationing.
      *
-     * `night-shade` sits above it and is black at 0.28 over near-black water,
-     * which this file measures at about two values in 255 — so the grid is
-     * effectively undimmed at night, which is exactly the hemisphere it exists
-     * to give an edge to.
+     * `night-shade` sits above it, and the note that used to be here said the
+     * grid was "effectively undimmed at night" because 0.28 black over
+     * near-black water moves it about two values in 255. **That is an argument
+     * about the ground, and the grid is not the ground.** A multiply takes 28%
+     * of whatever it lands on, so it costs the ocean three values and the line
+     * eleven — the absolute step is negligible and the *ratio* is not.
+     * Measured: 1.43:1 by day and **1.24:1 at night**, on the hemisphere this
+     * layer exists for.
+     *
+     * It stays under `land` anyway, because the alternative is worse. Above
+     * `night-shade` means above `land`, and there is no tone that works there —
+     * the argument two paragraphs up, unchanged. Hiding it again would mean a
+     * second `land` fill drawn over it, which is a duplicate of the ramp
+     * expression with nothing checking that the two agree: the failure this
+     * repo has recorded eleven times. 1.24:1 is the price of one ground, and it
+     * is written down rather than absorbed.
      *
      * **Solid, not dashed.** The dash is `prayer-lines`' silhouette and the one
      * mark nothing else here uses (`MAP_COLOURS.prayer`); a second dashed line
@@ -2057,7 +2164,44 @@ export function mount(
         source: 'graticule',
         paint: {
           'line-color': MAP_COLOURS.graticule,
-          'line-width': 0.6,
+          /**
+           * 1.2, and 0.6 was never the width this line was measured at.
+           *
+           * `MAP_COLOURS.graticule` states its value as "1.44:1 against the
+           * ocean", and that is true of the **tone**. It was not true of
+           * anything on screen, because MapLibre's line shader extrudes to
+           *
+           *     ANTIALIASING = 1.0 / u_device_pixel_ratio / 2.0
+           *     outset = halfwidth + ANTIALIASING
+           *
+           * so at `line-width: 0.6` the solid core is 0.3px against 0.5px of
+           * falloff on a 1× display: **the line never reaches full alpha
+           * anywhere along its length**. Composited that is 1.20:1 by day and
+           * 1.11:1 under `night-shade` — two or three values at 8-bit, and
+           * measured off the rendered canvas over open water it came back at
+           * **1.00–1.06:1**. The one mark added to say the world is a sphere
+           * was, on the hemisphere it was added for, not on the screen at all.
+           * A 16× exposure boost shows it perfectly; nothing else does.
+           *
+           * `ANTIALIASING` is 0.25 at DPR 2, and the arithmetic says a 0.3
+           * half-width should therefore clear it — so the first version of this
+           * note said the bug was a 1× display's alone. **Measured off a
+           * `shoot.mjs` capture at DPR 2, it is not**: the line came out
+           * `rgb(28,32,40)` at 1.2 and `rgb(18,21,26)` at 0.6, which is 47% of
+           * the tone, not 100%. A half-width under one *device* pixel loses
+           * coverage to the rasteriser whatever the falloff term says. Both
+           * densities were short; the retina one was merely less short.
+           *
+           * 1.2 leaves margin on both without becoming a second line family
+           * beside the frontiers. Measured after: **1.24:1 on the night ocean
+           * against 1.10:1 before**, which is the register this was always
+           * meant to sit in.
+           *
+           * The tone is deliberately left alone. It was measured correctly and
+           * the defect was never in it — raising it now would spend a second
+           * change on the same symptom and leave nothing to attribute.
+           */
+          'line-width': 1.2,
           'line-opacity': [
             'interpolate',
             ['linear'],
@@ -2499,6 +2643,7 @@ export function mount(
       },
     })
 
+
     /**
      * How many stories share this place.
      *
@@ -2784,6 +2929,11 @@ export function mount(
     // The same boundary from the other side, for the water. See `dayPolygon`.
     const day = dayPolygon(now)
     src('day')?.setData(day ? { type: 'FeatureCollection', features: [day] } : empty)
+    // And the boundary itself, for the twilight ramp drawn along it. All three
+    // come back null together at the equinox, so the shade, the lift and the
+    // band appear and disappear as one picture rather than in pieces.
+    const band = terminatorBand(now)
+    src('terminator')?.setData(band ? { type: 'FeatureCollection', features: [band] } : empty)
     // Note these keep drawing at the equinox, when `terminatorLat` degenerates
     // and the two polygons above come back null: the closed form behind them
     // has no such singularity. Across that instant — a window about twelve
@@ -2795,6 +2945,22 @@ export function mount(
     // so the state map has to be rewritten rather than replayed onto a feature
     // order that may no longer match it.
     syncPrayerHover(true)
+    // MapLibre's own atmosphere, aimed at the same sun as everything above it.
+    //
+    // Until this line the globe's crescent came from an undeclared `light`,
+    // which meant `anchor: 'viewport'` and a `u_sun_pos` that never moved — a
+    // lit limb pinned to the upper-left of the screen at every hour of every
+    // day, over a terminator drawn from the real sun and beside `starfield`'s
+    // own crescent, which was right the whole time. The derivation, and the
+    // reason the antisolar point is the thing handed over, are in
+    // `sunLightPosition`.
+    //
+    // It belongs on this tick and not on `move`: `anchor: 'map'` means the
+    // position is in the world frame and MapLibre re-rotates it into view space
+    // itself, every frame, so panning cannot stale it. What staleness there is
+    // is the sun's own 0.5° per tick, the same figure the sky and the shade
+    // above are already drawn at.
+    map.setLight({ anchor: 'map', position: sunLightPosition(now) })
     // The sky is on this tick for exactly the reason the terminator is: it is a
     // function of where the sun is, and 120 seconds is 0.5° of sky rotation,
     // which is under a pixel where the sky is drawn most precisely. It is *not*

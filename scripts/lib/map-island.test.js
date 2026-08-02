@@ -77,6 +77,13 @@ writeFileSync(
     getSource(id) { return this.sources[id] }
     getCanvas() { return { style: {} } }
     setPaintProperty() {}
+    // Where the atmosphere is lit from, written by drawSolar on the solar tick.
+    // The stub lacked it, and the failure was the shape this class already
+    // records for addImage: drawSolar threw partway through, so the prayer
+    // hover, the sky and everything after it in mount silently never ran, and
+    // the tests that noticed were two unrelated ones about a time filter and a
+    // star. A missing method on this stub does not read as a missing method.
+    setLight(l) { this.light = l }
     setLayoutProperty(id, k, v) { (this.layout[id] ||= {})[k] = v }
     setFilter(id, f) { this.filters[id] = f }
     setFeatureState(ref, state) {
@@ -902,6 +909,43 @@ test('an idle tick with nothing to change writes nothing to the map', async () =
   } finally {
     env.restore()
     delete globalThis.__zuhdMaps
+  }
+})
+
+test('the atmosphere is aimed, and aimed in the map frame', async () => {
+  // The bug this pins is an *absent declaration*, which is the cheapest thing
+  // to miss in review and the hardest to see on screen: with no `light` in the
+  // style MapLibre falls back to `anchor: 'viewport'`, `getSunPos` skips its
+  // camera rotation, and `u_sun_pos` is a constant in view space — a lit
+  // crescent nailed to the upper-left corner of the screen at every hour of
+  // every day, over a terminator drawn from the real sun. Nothing throws and
+  // the picture still looks like an atmosphere.
+  //
+  // `anchor` is asserted separately from the position because it is the half
+  // that silently undoes the other: hand MapLibre a perfect world-frame vector
+  // with `'viewport'` set and it is ignored just as completely as no vector at
+  // all. The arithmetic itself is pinned in `map-geo.test.js`, against
+  // MapLibre's own `sphericalToCartesian`.
+  const env = setupDom()
+  globalThis.__zuhdMaps = []
+  try {
+    const { mount } = await import(bundlePath)
+    const teardown = mount(env.host)
+    env.pump()
+    await settle()
+
+    const map = globalThis.__zuhdMaps.at(-1)
+    assert.ok(map.light, 'the island should set a light — an undeclared one is a fixed crescent')
+    assert.equal(map.light.anchor, 'map', 'a viewport-anchored light ignores where the sun is')
+    const [r, azimuth, polar] = map.light.position
+    assert.ok(r > 0, `radius was ${r}`)
+    assert.ok(azimuth >= 0 && azimuth < 360, `azimuth ${azimuth} is outside MapLibre's domain`)
+    assert.ok(polar >= 0 && polar <= 180, `polar ${polar} is outside MapLibre's domain`)
+
+    teardown()
+  } finally {
+    delete globalThis.__zuhdMaps
+    env.restore()
   }
 })
 
