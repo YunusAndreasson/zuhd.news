@@ -1,33 +1,31 @@
 {
-  "date": "2026-08-01",
+  "date": "2026-08-02",
   "metrics": {
-    "articles": { "value": 51, "detail": "5 cycles, all 5 completed, avg 9 published/cycle — down from yesterday's 69" },
-    "freshness": { "median": 0.7, "p90": 1.5, "max": 1.5, "target": 1.0, "met": true },
-    "categories": { "politics": 20, "economy": 10, "tech": 9, "science": 12 },
-    "multiSource": { "value": 12, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 18, "ME": 16, "AS": 7, "AF": 5, "EU": 5 } },
-    "sciTech": { "ratio": 41, "target": 25, "met": true },
-    "topSourceShare": { "source": "Hindustan Times", "pct": 12, "target": 20, "met": true },
-    "uniqueSources": 46,
+    "articles": { "value": 59, "detail": "5 cycles, all 5 completed, avg 9 published/cycle — up from yesterday's 51" },
+    "freshness": { "median": 0.6, "p90": 1.5, "max": 1.8, "target": 1.0, "met": true },
+    "categories": { "politics": 23, "economy": 16, "science": 9, "tech": 11 },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "ME": 19, "AM": 18, "EU": 11, "AF": 6, "AS": 5 } },
+    "multiSource": { "value": 11, "target": 4, "met": true },
+    "sciTech": { "ratio": 34, "target": 25, "met": true },
+    "topSourceShare": { "source": "Nature", "pct": 9, "target": 20, "met": true },
+    "uniqueSources": 47,
     "duplicates": 0,
-    "avgCycleDuration": 1078
+    "avgCycleDuration": 1068
   },
-  "experiment": "Skipped. No experiment was active to evaluate, no pause gate is set, and every goal metric cleared its target — skip-if-healthy applies. The one queued candidate (2026-05-08-numerical-density) edits scripts/write-prompt.md, which is outside the parameter set this audit may touch, so it stays queued.",
-  "weakestArea": "Freshness, in the sense that it is the only metric that moved materially the wrong way: median 0.2 → 0.7 and p90 0.8 → 1.5, still inside the ≤1.0 median target but with the whole distribution shifted about half a day older. The caveat is the same one this file has carried all week and it bites harder today — freshness is computed over 12 of 51 articles, a 24% sample, so a single cycle of older standalone picks moves the median. Nothing here justifies touching the standalone cap, which experiment 2026-04-26-standalone-cap-22 already tuned for exactly this; one day inside target is drift, not a signal.",
+  "experiment": "Skipped. No experiment is active, no pause gate is set, and every goal metric cleared its target — skip-if-healthy applies. The one queued candidate (2026-05-08-numerical-density) edits scripts/write-prompt.md, which is outside the parameter set this audit may touch, so it stays queued.",
+  "weakestArea": "Regional spread carries the thinnest margin. Five regions clears the target of four, but Asia fell 7 → 5 and Oceania was absent for a second consecutive day, while the Middle East (19) and the Americas (18) took 63% of the board between them. Science is the other soft spot at 9, its lowest of the week, down from 12 — sci+tech held at 34% only because tech absorbed the difference (9 → 11). Neither is a parameter fault: the selector's category floors were met and the feed simply supplied what it supplied, so this is a supply observation rather than a tuning target.",
   "watching": [
-    "The Gaza withdrawal clause still names no verifier, and today's Sheikh Radwan drone strike and the Lebanon demolitions both test the same unmonitored ceasefire from two directions.",
-    "Interceptor depth is now a stated constraint in two places at once — EUCOM's magazine warning and the Kyiv barrage's civilian toll; the supply-side story is becoming the story.",
-    "Iran's founding of WAICO gives the AI-standards split a formal bloc with a charter, which is a durable institutional peg rather than a one-day filing.",
-    "Two consecutive cold-wallet sweeps ($70M then $89M) plus generative fraud erasing stylistic tells suggest one campaign, not three incidents; the ledger-versus-agency framing should hold across the next wave.",
-    "The CPC storage fill and drone strikes on the Kazakh export route make a single-point failure legible in the chokepoint layer, which currently has no mark for it.",
-    "Venezuela's transition talks exclude Machado, so the legitimacy question is being decided before the negotiation is, and that is what will need re-reporting."
+    "Hormuz and the Red Sea produced blockade-arithmetic, escort-queue and thirty-five-hulls filings across separate cycles, with the corridor condition confirmed by only one side — worth tracking for source symmetry as the count rises.",
+    "Sudan's RSF designation coverage is aimed at the suppliers rather than the militia, and alongside Radio Dabanga and the famine-access reporting it reads as the opening of an IPC declaration fight.",
+    "Pakistan recurs through Swat militancy and the rally against it; Dawn was the corpus top outlet for two straight weekly snapshots, so the regional voice and the concentration risk are the same outlet.",
+    "Two 2026-08-12 eclipse articles are already filed ahead of date — check at publication that they are not restating each other.",
+    "Weekly multiSourceRatePct fell 24.3% (wk 07-19) → 19.2% (wk 07-26) even though today's daily count is a healthy 11; if the weekly figure stays below 20 it becomes the strongest candidate for the next experiment."
   ],
   "coverageGaps": [
-    "Oceania filed nothing at all today — region count fell 6 → 5 and neither Australia nor the Pacific island states appear.",
-    "Europe and Africa sit at 5 datelines each against the Americas' 18 and the Middle East's 16; the board is genuinely two-region-heavy today.",
-    "South Asia is heavily India-weighted through Hindustan Times, NDTV, India.com, India Today, Firstpost, News18, Times of India and mint — eight Indian outlets, no single one dominant, but the country's share of the source base is well ahead of its share of stories.",
-    "Central Asia and the Caucasus produce only the CPC route and a single APA filing — the sixth day with almost nothing between Ankara and Delhi.",
-    "Economy is the smallest category at 10 and is carried by Saudi, Egypt, South Africa and India; no European or East Asian macro filing appeared."
+    "Oceania filed nothing for the second day running — no Australia, no New Zealand, no Pacific island states.",
+    "The Americas bucket is almost entirely North American; a single InSight Crime filing carried Latin America.",
+    "Central Asia and the Caucasus reached readers only through TASS and NEWS.am, so the region arrives largely in Russian-aligned framing.",
+    "Science volume rests on a narrow base — Nature and Phys.org supply most of it, with the remainder coming from general outlets covering science incidentally."
   ],
-  "context": "A lighter day than yesterday — 51 articles against 69 — but with all five cycles completing rather than four, so the drop is per-cycle yield (9 vs the prior day's higher count) rather than a failed run. Quality of spread held: 46 unique sources, zero duplicates, top source at 12%, multi-source at 12, sci+tech at 41% for the second straight day. Cycle timing is stable at 1078s (selector 351s, writer 247s, editor 75s); the low-effort Sonnet-5 editor remains a non-factor in wall-time. The only real movement is freshness aging half a day and Oceania dropping out, and neither breaches a target. No experiment has been active since 2026-05-18. TOP_EVENTS_TO_FETCH stays at 8 — each unit is one NewsAPI token per cycle against a capped spend."
+  "context": "A heavier day than yesterday (59 vs 51) with all five cycles completing and timing stable at 1068s (selector 288s, writer 287s, editor 96s). Spread quality held: 47 unique sources, zero duplicates, top source at 9%, multi-source at 11. No experiment has been active since the 2026-05-18 editor-effort entry was voided, and history says the obvious levers are tapped — selector multi-source floors were raised twice and reverted once, with the conclusion that the feed's ~9 multi-source stories per cycle cap the published rate near 22%, and the standalone cap is already trimmed to 22 for a freshness target now comfortably met. The next experiment should therefore target upstream feed composition (event clustering, or the regional source lists in fetch-news-api.js) rather than the selector. TOP_EVENTS_TO_FETCH stays at 8 — each unit is one NewsAPI token per cycle against a capped spend. Housekeeping: a stray content/articles/_check.py.bad plus several scripts/_tmp* scratch files sit untracked in the working tree; the build globs *.md so nothing is at risk, but they want cleaning up."
 }
