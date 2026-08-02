@@ -371,6 +371,10 @@ export const FLAG = {
 /** Non-radius, non-icon layout primitives. */
 export const LAYOUT = {
   progressBarHeight: 2,
+  /** Ceiling for a content-sized sheet, as a fraction of window height.
+   *  `SheetLayout` applies it; see the note there for why the native sheet
+   *  cannot supply this itself. */
+  sheetMaxFraction: 0.7,
   handleWidth: 36,
   handleHeight: 4,
   inputHeight: 40,

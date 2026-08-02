@@ -111,21 +111,29 @@ export const CategoryBar = memo(function CategoryBar({
     [handleTabLayout],
   );
 
+  // These two arrays are built HERE and not inside the worklet below, and that
+  // is load-bearing rather than tidiness. `tabLayouts.map((l) => l.x)` written
+  // inside `useAnimatedStyle` puts an arrow function in an auto-workletized
+  // body; the Babel plugin does not workletize a callback handed to an array
+  // method, so it is serialized as a Remote Function. react-native-worklets
+  // throws the moment the UI runtime calls one synchronously:
+  //
+  //   [Worklets] Tried to synchronously call a Remote Function.
+  //   Called "…" on the UI Runtime.
+  //
+  // Uncaught on the UI runtime that is std::terminate -> SIGABRT, which is the
+  // ~0.4s-after-launch abort in TestFlight builds 288, 289 and 292. The code is
+  // unchanged since the app's first commit; what changed is that worklets made
+  // this a hard error, so it went from silently working to fatal on upgrade.
+  // Hoisting also stops both arrays being rebuilt on every frame.
+  const tabXs = useMemo(() => tabLayouts.map((l) => l.x), [tabLayouts]);
+  const tabWidths = useMemo(() => tabLayouts.map((l) => l.width), [tabLayouts]);
+
   // Track: interpolated (smooth slide). Fill: snapped (both left + width from same index).
   const trackPos = useAnimatedStyle(() => {
     if (!allMeasured) return { width: 0 };
-    const x = interpolate(
-      pagerOffset.value,
-      TAB_INDICES,
-      tabLayouts.map((l) => l.x),
-      'clamp',
-    );
-    const w = interpolate(
-      pagerOffset.value,
-      TAB_INDICES,
-      tabLayouts.map((l) => l.width),
-      'clamp',
-    );
+    const x = interpolate(pagerOffset.value, TAB_INDICES, tabXs, 'clamp');
+    const w = interpolate(pagerOffset.value, TAB_INDICES, tabWidths, 'clamp');
     return { left: x, width: w, opacity: OPACITY.soft };
   });
 

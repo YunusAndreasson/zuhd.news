@@ -1,6 +1,8 @@
 import { BottomSheetModal, type BottomSheetProps } from '@expo/ui/community/bottom-sheet';
 import type { ComponentType } from 'react';
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
+import { useWindowDimensions, View } from 'react-native';
+import { LAYOUT } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { SheetHandle } from './SheetHandle';
 
@@ -42,6 +44,30 @@ export const SheetLayout = memo(function SheetLayout({
   ...rest
 }: SheetLayoutProps) {
   const { sheetStyles } = useTheme();
+  const { height } = useWindowDimensions();
+  // A content-sized sheet needs a ceiling, and the native side cannot give it
+  // one. `enableDynamicSizing` with no `snapPoints` puts the library in
+  // `fitToContents`, which measures the RN content's *natural* height and makes
+  // the sheet that tall — so a long page (About, privacy, contact) grows past
+  // the window and pushes its own handle, title and back chevron off the top of
+  // the screen, leaving prose running under the status bar with no way back.
+  //
+  // gorhom's `maxDynamicContentSize` used to cap this. It was dropped on the
+  // reasoning that iOS bounds a fitted detent itself and Android's partial
+  // state is a fixed ~50%; the second half is only true for a sheet that is
+  // *not* fit-to-content, so on Android nothing bounded it at all. The cap is
+  // back, applied here rather than passed down, because only this component
+  // knows which sizing mode the sheet is in.
+  //
+  // Fixed-snap sheets must NOT get the wrapper: they are handed a bounded
+  // column already, and `SheetScrollView`'s `flexShrink: 1` fits the content to
+  // it. Capping those at 70% would leave dead space inside an 85% sheet.
+  const fitToContents =
+    (rest.enableDynamicSizing ?? true) && !(rest.snapPoints && rest.snapPoints.length > 0);
+  const capStyle = useMemo(
+    () => ({ maxHeight: Math.round(height * LAYOUT.sheetMaxFraction) }),
+    [height],
+  );
   // `handleComponent` is deliberately pinned to `null` and our handle rendered
   // as ordinary content instead. Native sheets do not render a custom handle —
   // `@expo/ui` only reads null-vs-non-null off that prop to decide whether to
@@ -59,8 +85,17 @@ export const SheetLayout = memo(function SheetLayout({
       handleComponent={null}
       {...rest}
     >
-      {Handle ? <Handle /> : <SheetHandle title={handleTitle} />}
-      {children}
+      {fitToContents ? (
+        <View style={capStyle}>
+          {Handle ? <Handle /> : <SheetHandle title={handleTitle} />}
+          {children}
+        </View>
+      ) : (
+        <>
+          {Handle ? <Handle /> : <SheetHandle title={handleTitle} />}
+          {children}
+        </>
+      )}
     </BottomSheetModal>
   );
 });
