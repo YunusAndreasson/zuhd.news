@@ -42,6 +42,21 @@ rung below it went up one step on 2026-07-27, and `--size-md` (18px) is new.
   links that reach /about, /sources and /privacy. `colour-system.test.js` cannot
   see this class of bug, because opacity is not a colour literal. That is what
   makes it worth restating rather than assuming.
+- **The footer was not the last holdout** (2026-08-02). `.map-seam-toggle` — the
+  fold button on the pane seam, and the *only* control that reopens a folded
+  rail — was `--map-ink-dim` at `opacity: 0.5`. Measured off the rendered page:
+  **2.97:1** on the left seam, under the 3:1 that WCAG 2.2 SC 1.4.11 sets for a
+  control and that this site already holds its focus rings to. The comment
+  directly above it read *"a control nobody can see is a control nobody has"* —
+  the rule stated correctly and then implemented in the one channel nothing
+  could check. Both states are ink now (**5.53:1** measured after), and the
+  element opacity had also been halving the border that says the thing is a
+  button. **A rule with no reader is a comment**, so the fix ships with one:
+  `colour-system.test.js` asserts *structurally* that this control carries no
+  `opacity` at all, precisely because what it cannot do is measure one. The grip
+  hairline beside it keeps its alpha deliberately — decoration on a 9px drag
+  target rather than the control, and no token reproduces the 2.41:1 it was
+  tuned to (its neighbours are 1.96:1 and 5.47:1).
 - **Bigger type is paid for, not absorbed.** Leading and padding are the budget:
   `.map-feed-item` gave back 0.2rem of vertical padding and tightened both
   leadings, so the rail row went from ~60px to ~58px while its headline grew

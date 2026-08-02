@@ -159,6 +159,41 @@ test('focus rings meet the non-text threshold wherever they land', () => {
   }
 })
 
+/**
+ * The one control on the map that is only reachable by finding it.
+ *
+ * This file's whole method is reading colour *literals*, and an alpha is not
+ * one — which `design-system.md` states as a rule ("quiet is an ink step, never
+ * opacity") and this suite has no way to enforce. The pane seam's fold button
+ * was the rule's own counter-example: `opacity: 0.5` over `--map-ink-dim`,
+ * measured off the rendered page at **2.97:1**, under the `NON_TEXT` floor
+ * every other control here is held to, on the only handle either rail has —
+ * with a comment above it asserting that a control nobody can see is a control
+ * nobody has.
+ *
+ * So the assertion is structural rather than numeric: the resting state must be
+ * expressed in tokens this suite can read. It cannot check what `opacity` does
+ * to it, which is exactly why `opacity` may not be what says it.
+ */
+test('the seam control is quiet by ink, not by alpha', () => {
+  const block = css.match(/\.map-seam-toggle\s*\{[^}]*\}/)
+  assert.ok(block, '.map-seam-toggle should exist — it is the only way to unfold a pane')
+  assert.ok(
+    !/\bopacity\s*:/.test(block[0]),
+    'the seam toggle is dimmed with opacity, which this suite cannot measure — use an ink step',
+  )
+  assertContrast(
+    '--map-ink-dim', token('--map-ink-dim'),
+    '--map-panel', token('--map-panel'),
+    NON_TEXT,
+  )
+  assertContrast(
+    '--map-ink-dim', token('--map-ink-dim'),
+    '--map-ground', token('--map-ground'),
+    NON_TEXT,
+  )
+})
+
 test('decoration and data marks meet the non-text threshold', () => {
   for (const surface of ['--map-ground', '--map-panel']) {
     assertContrast('--map-underline', token('--map-underline'), surface, token(surface), NON_TEXT)

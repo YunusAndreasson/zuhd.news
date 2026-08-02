@@ -2759,10 +2759,33 @@ body.is-pane-dragging {
   }
 }
 
-/* The fold control, on the grip. Half-lit at rest for the reason the grip is
-   drawn at all — a control nobody can see is a control nobody has — and fully
-   lit on hover or once its pane is shut, which is the one state where it is the
-   only route back. */
+/* The fold control, on the grip. Quiet at rest for the reason the grip is drawn
+   at all — a control nobody can see is a control nobody has — and fully lit on
+   hover or once its pane is shut, which is the one state where it is the only
+   route back.
+
+   It was quiet by `opacity: 0.5`, and that is the one way of being quiet this
+   codebase has written down as wrong: `design-system.md` says quiet is an ink
+   step, never opacity, precisely because `colour-system.test.js` reads colour
+   literals and an alpha is not one. So the rule had no reader. Measured off the
+   rendered page, the glyph came out **2.97:1 against its backdrop on the left
+   seam** — under the 3:1 that WCAG 2.2 SC 1.4.11 sets for a control and that
+   this site already holds its focus rings to, on the only handle either pane
+   has. The comment above it asserted the opposite and had done since it shipped.
+
+   Both states are ink now, which is also what the two hover declarations below
+   were already doing — the opacity was a third channel saying the same thing
+   less legibly. `--map-ink-dim` is the ramp's quietest step and is what this
+   rule already named: **5.10:1 on its own chip, 5.53:1 against the map**. The
+   chip and border come up with it, which is the incidental gain — an element
+   opacity dims the whole button, so the border that says "this is a control"
+   was being halved along with the glyph.
+
+   The grip hairline above keeps its `opacity`, deliberately. It is decoration
+   on a 9px drag target rather than the control itself, no token reproduces the
+   2.41:1 it was tuned to (the neighbours are 1.96:1 and 5.47:1), and changing a
+   measured appearance to satisfy a rule it is not the subject of is how a
+   cleanup becomes a regression. */
 .map-seam-toggle {
   position: absolute;
   top: 50%;
@@ -2779,8 +2802,7 @@ body.is-pane-dragging {
   border: 1px solid var(--map-line-card);
   border-radius: 2px;
   cursor: pointer;
-  opacity: 0.5;
-  transition: opacity var(--dur-fast), color var(--dur-fast), border-color var(--dur-fast);
+  transition: color var(--dur-fast), border-color var(--dur-fast);
 
   & svg { width: 7px; height: 10px; }
 
@@ -2799,9 +2821,16 @@ body.is-pane-dragging {
   .map-seam[data-side='right'] &[aria-expanded='false'] svg { rotate: 0deg; }
 }
 
+/* Pointer anywhere on the seam, or a pane already shut, lights the control the
+   same way hovering the button itself does. Ink and border, matching the
+   `:hover` block above — the three states are one vocabulary now rather than
+   two channels that have to be kept in step by hand. */
 .map-seam:hover .map-seam-toggle,
 .map-seam:focus-within .map-seam-toggle,
-.map-seam-toggle[aria-expanded='false'] { opacity: 1; }
+.map-seam-toggle[aria-expanded='false'] {
+  color: var(--map-ink);
+  border-color: var(--map-line-loud);
+}
 
 /* A folded seam stops straddling and sits wholly inside the window.
 
