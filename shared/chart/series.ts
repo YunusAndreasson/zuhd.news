@@ -373,6 +373,14 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
   }
   if (finite.length < 2) return empty
 
+  // Lifted into locals so the window's ends narrow off `number | undefined`
+  // once rather than at every use. `finite.length >= 2` is guaranteed directly
+  // above, so the guard cannot fire — it is here to carry that fact into the
+  // type, which `mobile/` checks with `noUncheckedIndexedAccess`.
+  const firstFinite = finite[0]
+  const lastFinite = finite[finite.length - 1]
+  if (firstFinite === undefined || lastFinite === undefined) return empty
+
   let lo = Math.min(...finite)
   let hi = Math.max(...finite)
   const obsLo = lo
@@ -381,9 +389,9 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
   // Resolved against the *drawn* window, not the source series, so both follow
   // the range control. `'open'` is by construction inside the domain and needs
   // none of the widening below.
-  const reference = opts.reference === 'open' ? finite[0] : opts.reference
+  const reference = opts.reference === 'open' ? firstFinite : opts.reference
   const windowPct =
-    finite[0] !== 0 ? ((finite[finite.length - 1] - finite[0]) / Math.abs(finite[0])) * 100 : 0
+    firstFinite !== 0 ? ((lastFinite - firstFinite) / Math.abs(firstFinite)) * 100 : 0
   const direction = opts.direction === 'window' ? windowPct : opts.direction
 
   // The reference only widens the domain when it already sits inside a
@@ -409,13 +417,18 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
   // The extremes are read off the observations, not off the domain: with a
   // reference outside the data the domain ends belong to the rule, and marking
   // them would put a ring on a value nobody reported.
-  let peak = points[0]
-  let trough = points[0]
+  // One point is pushed per finite value and `finite.length >= 2` above, so
+  // both ends exist; the guard is what says so in the type.
+  const firstPoint = points[0]
+  const latest = points[points.length - 1]
+  if (firstPoint === undefined || latest === undefined) return empty
+
+  let peak = firstPoint
+  let trough = firstPoint
   for (const p of points) {
     if (p.value > peak.value) peak = p
     if (p.value < trough.value) trough = p
   }
-  const latest = points[points.length - 1]
 
   const [down, up] =
     palette === 'signed'
@@ -438,8 +451,7 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
   const referenceY = refInDomain ? yAt(reference) : null
 
   const nearest = (x: number): SeriesPoint | null => {
-    if (!points.length) return null
-    let best = points[0]
+    let best = firstPoint
     let bestD = Math.abs(best.x - x)
     for (const p of points) {
       const d = Math.abs(p.x - x)
@@ -479,7 +491,7 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
       tag: 'polygon',
       attrs: {
         class: 'chart-area',
-        points: `${round(points[0].x)},${floor} ${pts} ${round(latest.x)},${floor}`,
+        points: `${round(firstPoint.x)},${floor} ${pts} ${round(latest.x)},${floor}`,
       },
     })
     nodes.push({ tag: 'polyline', attrs: { class: 'chart-line', points: pts } })
@@ -641,6 +653,9 @@ export const stepChange = (values: number[], i: number): number | null => {
   if (i <= 0) return null
   const now = values[i]
   const prev = values[i - 1]
+  // `Number.isFinite` rejects `undefined` at runtime but does not narrow it,
+  // so an out-of-range `i` needs saying out loud.
+  if (now === undefined || prev === undefined) return null
   if (!Number.isFinite(now) || !Number.isFinite(prev) || prev === 0) return null
   return ((now - prev) / Math.abs(prev)) * 100
 }
