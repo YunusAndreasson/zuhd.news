@@ -371,10 +371,12 @@ export const FLAG = {
 /** Non-radius, non-icon layout primitives. */
 export const LAYOUT = {
   progressBarHeight: 2,
-  /** Ceiling for a content-sized sheet, as a fraction of window height.
-   *  `SheetLayout` applies it; see the note there for why the native sheet
-   *  cannot supply this itself. */
-  sheetMaxFraction: 0.7,
+  /** Ceiling for a sheet, as a fraction of window height. Every sheet is
+   *  content-sized now (see `useSheetSnaps`), so this is the only thing
+   *  bounding a long one — it is the height the old fixed `'85%'` snap used
+   *  to give search, saved and the country rankings, and short pages never
+   *  reach it because they hug their content. `SheetLayout` applies it. */
+  sheetMaxFraction: 0.85,
   handleWidth: 36,
   handleHeight: 4,
   inputHeight: 40,

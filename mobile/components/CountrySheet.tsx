@@ -400,8 +400,11 @@ export const CountrySheet = memo(function CountrySheet({
 const styles = StyleSheet.create({
   // Host view so GestureDetector has a ref-holding child to attach the
   // swipe-back to; flex:1 lets the ranking list fill the sheet body.
+  // `flexShrink`, not `flex` — the sheet is content-sized, so this sits in an
+  // auto-height box with a `maxHeight` cap, where `flex: 1`'s `flexBasis: 0`
+  // would measure the ranking list as zero and collapse it.
   rankingWrap: {
-    flex: 1,
+    flexShrink: 1,
   },
   handleRow: {
     flexDirection: 'row',

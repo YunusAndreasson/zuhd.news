@@ -194,11 +194,16 @@ const styles = StyleSheet.create({
     // Spacing before the clear button comes from the row `gap`.
     paddingLeft: 0,
   },
+  // `flexShrink`, not `flex`. Every sheet is content-sized now, so the box
+  // these sit in has an auto height with a `maxHeight` cap — and `flex: 1`
+  // carries `flexBasis: 0`, which measures to nothing in an auto-height column
+  // and collapses the list to zero. `flexShrink: 1` fits the list to the cap
+  // when the results overflow it and is inert when they don't.
   emptyFill: {
-    flex: 1,
+    flexShrink: 1,
   },
   list: {
-    flex: 1,
+    flexShrink: 1,
   },
   listContent: {
     paddingHorizontal: SPACING.screenPadding,
