@@ -828,13 +828,37 @@ export const TILE_PX = 512
  * in screen pixels: a 7.5px beacon on a 929px globe claims 1.65× the share of
  * the world it claimed on the flat map. Overview was lost twice over.
  *
- * 1.12 draws it at ~96% of the shorter side. What that spends is the poles: the
- * HUD scrim covers the top of the disc and the scrubber the bottom, and at a
+ * 1.12 drew it at ~97% of the shorter side. What that spent was the poles: the
+ * HUD scrim covered the top of the disc and the scrubber the bottom, and at a
  * centre latitude of 22°N those are the Arctic Ocean and the Southern Ocean —
  * the two regions this map has the least to say about. The alternative was to
  * leave the planet small so that empty sea could stay uncovered.
+ *
+ * **1.15 since 2026-08-02, and the reason is that the top of the canvas is now
+ * empty.** The money readout was a bar across the head of the map — 34px of
+ * strip over a 1.4rem scrim overhang — and it sat exactly on the disc's
+ * northern cap. It has moved into the instrument rail, so in the wide layout
+ * *nothing* covers the top of the globe: `body.map-wide .map-hud::after` turns
+ * the strip's own scrim off, and there is no bar left to draw one.
+ *
+ * Measured off the built map at 2361x984, canvas 1577x984: the rendered
+ * diameter was **959px, 97.4% of the canvas height**, with 13px of clear space
+ * above the disc and 56px of it hidden under chrome that no longer exists. So
+ * the headroom this number could ever have claimed was 2.6%, and 1.15 claims
+ * all of it — **984px, tangent to the canvas's top and bottom edges**. +26px at
+ * 1920x1080, +25px here.
+ *
+ * Two things it deliberately does not do. It does not go past tangency: a disc
+ * larger than its frame is a disc with its caps cut off by a rectangle, which
+ * is a different claim from one whose caps are under a readout. And it changes
+ * nothing at all above about 2560x1440, where `GLOBE_ZOOM.sphere` is already
+ * the binding constraint and the globe stops growing whatever this says — so
+ * the note above about space growing instead of the Earth still holds exactly
+ * where it held before. The margin the paragraph above argues for is still
+ * there and is still deliberate; it is now entirely on the long axis, which is
+ * the axis that had ~310px a side to spare and no globe to give it to.
  */
-export const GLOBE_FIT = 1.12
+export const GLOBE_FIT = 1.15
 
 /**
  * The zoom at which the globe fills `span` pixels, centred at `lat`.

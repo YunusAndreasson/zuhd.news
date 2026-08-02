@@ -414,6 +414,18 @@ test('the island mounts, renders, and tears down cleanly', async () => {
       0,
       'teardown must remove the sheet from <body>',
     )
+    // The market strip's panel is the *other* dialog on `<body>`, and it was
+    // leaking for as long as the strip existed: `marketStrip.destroy()` was
+    // never called, so every teardown left the panel in the document along with
+    // three listeners — `keydown`, a capture-phase `pointerdown` and `resize`.
+    // Nothing caught it because this block only ever asked about `.map-sheet`,
+    // which is exactly the shape of bug an assertion naming one instance of a
+    // class of thing produces.
+    assert.equal(
+      env.window.document.querySelectorAll('dialog.map-markets-panel').length,
+      0,
+      'teardown must remove the market panel from <body>',
+    )
   } finally {
     env.restore()
   }

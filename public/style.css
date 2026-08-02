@@ -2674,11 +2674,13 @@ body.map-page.map-rail-off {
   & > footer { display: none; }
 }
 
-body.map-page.map-wide.map-aside-off {
-  --map-aside-w: 0px;
-
-  & .map-hud { display: none; }
-}
+/* The instrument rail's folded width, declared here beside the open one.
+   What it holds is in "The spine" further down; this is only the number, and
+   it lives with `--map-aside-w` because the two are the same measurement in
+   two states and a reader looking for one wants the other. 5.5rem is the
+   widest group label (`currencies`, 11px at `--track-wide`) plus the reduced
+   padding either side, measured rather than chosen. */
+body.map-page { --map-spine-w: 5.5rem; }
 
 /* --- The seams -----------------------------------------------------------
 
@@ -2838,20 +2840,20 @@ body.is-pane-dragging {
    pane on both sides of it — and wrong the moment the pane is gone, because the
    edge is then the edge of the *screen* and half the control is outside it. The
    toggle is 15px in a 9px seam, so at rest 7.5px of it was off-screen and the
-   only route back to a folded pane was a 7px sliver. */
-body.map-page.map-rail-off .map-seam[data-side='left'],
-body.map-page.map-wide.map-aside-off .map-seam[data-side='right'] {
+   only route back to a folded pane was a 7px sliver.
+
+   **The story rail alone, since 2026-08-02.** The instrument rail no longer
+   goes to zero — it narrows to a spine — so its seam still has a pane on both
+   sides of it and straddling is still what it should do. Leaving the aside in
+   this rule would have pushed the one seam that is *not* at the edge of the
+   screen half a control away from the edge it marks, and nothing would have
+   reported it: both positions look deliberate. */
+body.map-page.map-rail-off .map-seam[data-side='left'] {
   transform: none;
 }
 
 body.map-page.map-rail-off .map-seam[data-side='left'] .map-seam-toggle {
   left: 0;
-  translate: 0 -50%;
-}
-
-body.map-page.map-wide.map-aside-off .map-seam[data-side='right'] .map-seam-toggle {
-  left: auto;
-  right: 0;
   translate: 0 -50%;
 }
 
@@ -3892,16 +3894,25 @@ body.map-wide .map-hud::after { display: none; }
    opens it. A panel above its own disclosure is the one arrangement that reads
    as unrelated, so the order is stated rather than inherited.
 
-   The sequence is by how often a hand reaches for it: now, then the range, then
-   what is drawn, then what the land means, then the money, then the
-   explanation. */
+   The sequence is by how often a hand reaches for it: now, then what the world
+   is doing, then the range, then what is drawn, then what the land means, then
+   the explanation.
+
+   The money block is second, directly under the clock, and that placement is
+   the whole argument for moving it off the top bar. The bar's own note said a
+   readout belongs "where a reader meets it before they start working the map";
+   above every control in the rail is that place, and the rail is where a
+   readout can carry a shape. Readings, then instruments — which is also the
+   order the fold now respects, since the spine keeps exactly the block at the
+   top and drops everything under it. */
 body.map-wide {
   & .map-status { order: 0; }
-  & .map-ranges { order: 1; }
-  & .map-filters { order: 2; }
-  & .map-ground { order: 3; }
-  & .map-more { order: 4; }
-  & .map-hud-legend { order: 5; }
+  & .map-money { order: 1; }
+  & .map-ranges { order: 2; }
+  & .map-filters { order: 3; }
+  & .map-ground { order: 4; }
+  & .map-more { order: 5; }
+  & .map-hud-legend { order: 6; }
 }
 
 /* The Hijri date is the rail's alone. On the strip the clock is one
@@ -4144,146 +4155,246 @@ body.map-wide .map-ground {
   & .map-ground-ramp { flex: 1 1 auto; }
 }
 
-/* The money readout, stacked. On the strip this was one wrap run of eleven
-   quotes and three labels sharing a line with the clock, and the whole of
-   `.map-markets`'s history is width management: the `flex: 1 1 34rem` basis
-   swept against real line counts, the ≤1300px cull of EUR and JPY, the phone
-   dropping the named movers. A column ends all of it — each group is a line,
-   the line is as wide as the rail at every viewport, and nothing has to be
-   dropped to make it fit. */
-/* The breadth bar is the top bar's alone; the scrubber's line has no room
-   for a shape and states the counts instead. Declared before the bar's own rule
-   rather than after it, so the override reads as an override — both orders work
-   on specificity, only one of them reads. */
-.map-markets-signal { display: none; }
+/* --- The money block ------------------------------------------------------
 
-/* --- The money bar -------------------------------------------------------
+   Four groups and three world series, one per line, at the head of the
+   instrument rail.
 
-   One line across the head of the canvas: four groups, each a direction, a
-   name and a breadth bar. It exists only in the wide layout — everywhere else
-   the strip is a line of the scrubber and this box is not rendered at all.
+   It has been a row of the scrubber, then two rows of it, then a bar across the
+   top of the canvas, and every rule any of those needed was width management:
+   a `flex: 1 1 34rem` basis swept against real line counts, a ≤1300px cull of
+   EUR and JPY, a phone that dropped the named movers, then `flex: 1 1 0` with a
+   16rem cap so four groups on a 3440 monitor did not drift 470px apart. All of
+   it came from laying a readout along the axis it had least of. A column ends
+   the lot: each group is a line, the line is as wide as the rail at every
+   viewport, and nothing has to be dropped to make it fit.
 
-   `pointer-events` is the strip's own trick: the box spans the canvas so the
-   map stays draggable between the groups, and each group takes the pointer
-   back. */
-.map-marketbar { display: none; }
+   ── Why the rail, when the bar's note said neither rail was its home ──────
+   Because that note was true about the rail as it then was — "it is not a
+   control and it is not a legend" — and this is what changes. The rail is the
+   *instrument* rail, and an instrument is a thing that shows a reading. The
+   block sits at `order: 1`, above every control in the column, so a reader
+   still meets it before they start working the map; what the column adds is
+   the dimension a readout needs to carry a **shape** as well as a number.
 
-body.map-wide .map-marketbar {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: var(--map-rail-w);
-  right: var(--map-aside-w);
-  z-index: 2;
-  padding: 0.55rem 1.1rem 0.6rem;
-  pointer-events: none;
+   ── And it is what the fold leaves behind ────────────────────────────────
+   `body.map-aside-off` used to take the rail to `0px` and leave a 15px
+   triangle stating nothing at all. It narrows to a spine of these sparklines
+   now — see the block after this one. That is the whole reason the money
+   readout is here rather than anywhere else: it is the part of this rail worth
+   keeping on screen when the rest of it is in the way. */
 
-  > * { pointer-events: auto; }
-}
+/* Outside the rail none of this exists. The strip is a line of the scrubber
+   there and this box would be an empty flex item spending a gap; the parts
+   below are built into the DOM in every layout and shown in one, the same
+   bargain `.map-markets-tally` strikes from the other side. */
+.map-money,
+.map-markets-head,
+.map-markets-world,
+.map-markets-spark { display: none; }
 
-/* The scrim, flat over the line and fading in an overhang below it — the same
-   construction `.map-hud::after` used when the HUD was a strip, and for the
-   same reason: a group label here is 11px letterspaced caps and so is a
-   MapLibre place label. It matters less at the world view, where the globe's
-   limb is 70px down, and it matters entirely once the reader zooms in. */
-body.map-wide .map-marketbar::after {
-  content: '';
-  position: absolute;
-  inset: 0 0 -1.4rem;
-  z-index: -1;
-  pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    color-mix(in srgb, var(--map-ground) 96%, transparent) calc(100% - 1.4rem),
-    transparent
-  );
-}
+body.map-wide {
+  & .map-money { display: block; }
 
-body.map-wide .map-marketbar .map-markets {
-  margin-right: 0;
-  flex-wrap: nowrap;
-
-  & .map-markets-row {
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: 0 1.4rem;
-    width: 100%;
-  }
-
-  /* Equal shares, so the four groups sit on a rhythm rather than at whatever
-     widths their labels happen to want — which is what makes a bar scannable:
-     the eye learns one interval and stops re-finding it per group. */
-  /* Equal shares up to a limit. `flex: 1 1 0` alone spreads four groups across
-     whatever the canvas is, which on a 3440 monitor — or with both rails folded
-     — puts 470px between a label and the next one and the row stops reading as a
-     row. The cap is a little over the widest group's content, so the rhythm
-     holds and the slack collects at the end. */
-  & .map-markets-group {
-    flex: 1 1 0;
-    max-width: 16rem;
-    align-items: center;
-    flex-wrap: nowrap;
+  /* The wrap run goes. `.map-markets` was a baseline-aligned flex box whose
+     whole job was deciding where a row of quotes could break, and in a column
+     there is nothing to break. */
+  & .map-markets {
+    display: block;
+    margin-right: 0;
     min-width: 0;
-    gap: 0.45rem;
   }
 
-  /* Content packed left inside an equal share, rather than justified across it.
-     Justified, each group's four tokens spread to whatever width the group got
-     and the breadth bar stretched with them — a 200px bar reads as a rule
-     someone drew under the label, not as a quantity. Packed, every group has the
-     same short shape and the spare width falls between groups, where it does the
-     separating. */
+  & .map-markets-head {
+    display: block;
+    margin-bottom: 0.15rem;
+
+    /* Every other heading in this rail is followed by items that outdent
+       themselves by their own padding, so the word starts on the content edge
+       and the rows' hover boxes reach past it. These do the same, so `money`
+       lines up with `stories`, `layers` and `ground` down the column. */
+    &:not(:first-child) { margin-top: 0.7rem; }
+  }
+
+  & .map-markets-row,
+  & .map-markets-world {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    min-width: 0;
+  }
+
+  /* The attribute beats the layout, or a `world` block the trends payload has
+     not filled yet renders as a heading over nothing. Restated inside this
+     block because `body.map-wide .map-markets-world` would otherwise outrank a
+     bare `[hidden]` rule. */
+  & .map-markets-world[hidden],
+  & .map-markets-head[hidden] { display: none; }
+
   & .map-markets-summary {
-    justify-content: flex-start;
-    padding: 0.2rem 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    min-height: var(--map-hud-row-h);
+    /* The chips' outdent, restated — see `.map-key-item.is-layer-note` for the
+       same correction. Without it these rows sit 6.4px right of every mark
+       above them, which is exactly the misalignment that makes one part of a
+       column read as not belonging to it. */
     margin: 0 -0.4rem;
+    padding: 0.1rem 0.4rem;
     border-radius: 2px;
 
     &:hover { background: var(--map-row-hover); }
 
-    /* Always present, not hover-revealed. On the scrubber these four sit among
-       controls that are plainly pressable; alone on a bar of readouts the caret
-       is the only thing saying they are doors, and a touch reader has no hover
-       to reveal it with. */
+    /* Always present, not hover-revealed. Alone in a block of readouts the
+       caret is the only thing saying these are doors, and a touch reader has
+       no hover to reveal it with. */
     &::after {
       opacity: 1;
       flex: 0 0 auto;
     }
   }
 
-  /* The counts are the drawer's job here — see `breadth` in `_map/markets.ts`
-     for why the bar must not carry both. The reverse holds in the scrubber,
+  /* The direction tick goes, and the line takes over saying it.
+     A glyph beside a tinted sparkline is the same fact twice — the
+     cluster-glow mistake in miniature — and it costs alignment as well:
+     the exchange group has no tick to draw, so with the other six carrying one
+     its label would start 13px left of theirs. Direct child only: the ticks
+     inside `.map-markets-count` and every row of the panel are untouched. */
+  & .map-markets-summary > .map-markets-tick { display: none; }
+
+  & .map-markets-label { flex: 0 0 auto; }
+
+  /* The counts are the panel's job here. The reverse holds in the scrubber,
      where there is no room for a shape and the counts are the whole readout. */
-  & .map-markets-tally { display: none; }
-  & .map-markets-signal { display: flex; flex: 0 0 4.5rem; }
-  & .map-markets-note { flex: 0 0 auto; }
+  & .map-markets-tally,
+  & .map-markets-note { display: none; }
+
+  /* Shape, then the change across it, on one line. The svg takes the slack so
+     every row's line starts and ends on the same two columns whatever its
+     label is doing — an interval the eye learns once and stops re-finding. */
+  & .map-markets-spark {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    gap: 0.45rem;
+    min-width: 0;
+
+    /* The tone lands here and reaches the line and the figure — one fact in
+       one channel, and the channel that survives the fold. `--map-ink-dim` at
+       rest rather than an alpha: a flat month is quiet, not translucent. */
+    color: var(--map-ink-dim);
+
+    &.is-pos { color: var(--map-pos); }
+    &.is-neg { color: var(--map-neg); }
+  }
+
+  & .map-markets-window {
+    flex: 0 0 auto;
+    font-size: var(--size-2xs);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0;
+  }
 }
 
-/* Risen · flat · fallen, at true share. 5px so it reads as a bar rather than as
-   a rule, and `border-radius` on the ends only, so the three segments stay one
-   object. The tones are `--map-pos`/`--map-neg`, the pair this site already
-   uses for a signed change, so the bar cannot mean something different from the
-   tick beside it or the marks on the map. */
-.map-markets-breadth {
-  display: flex;
-  align-items: stretch;
-  gap: 1px;
-  width: 100%;
-  height: 5px;
-  min-width: 1.5rem;
-  align-self: center;
+/* --- The spine -----------------------------------------------------------
+
+   A folded instrument rail is not an empty one.
+
+   It used to be: `--map-aside-w: 0px` and `.map-hud { display: none }`, so
+   what a reader got back for folding was a 15x34 triangle saying nothing —
+   not which layers were on, not what was shading the land, not what the world
+   was doing. And the same press took away the only on-screen route to the
+   time range, the layer toggles and the ground picker, which is a lot to
+   spend on tidiness.
+
+   So the fold narrows instead of hiding. Everything that is a *control* goes
+   and the money block stays, because those are two different kinds of thing
+   and only one of them was in the way. The label sits over its own sparkline
+   and the percentage drops: at this width the shape and its tone are the whole
+   readout, which is why the tone was put on a box that holds both.
+
+   It costs the map nothing, exactly as the full rail does — the globe is bound
+   by the shorter side, so the 15rem this hands back is margin either way. */
+body.map-page.map-wide.map-aside-off {
+  --map-aside-w: var(--map-spine-w);
+
+  & .map-hud {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    gap: 0.6rem;
+  }
+
+  /* The controls, and the clock with them. The scrubber's readout carries the
+     same instant in the same frame with more of it, which is the argument the
+     ≤1250px block already makes about the clock for the same reason. */
+  & .map-status,
+  & .map-ranges,
+  & .map-hud-more,
+  & .map-more { display: none; }
+
+  & .map-markets-summary {
+    flex-wrap: wrap;
+    gap: 0.1rem;
+    margin: 0;
+    padding: 0.1rem 0;
+
+    /* No room, and nothing for it to point at: at this width a press opens a
+       panel over the map, and the panel is its own answer to "is this a
+       door". */
+    &::after { display: none; }
+  }
+
+  /* Its own line, above the shape it names. */
+  & .map-markets-label { flex: 1 0 100%; }
+
+  & .map-markets-spark { gap: 0; }
+
+  & .map-markets-window { display: none; }
 }
 
-.map-markets-breadth-seg {
-  /* `flex-grow` from a custom property: the share *is* the count, so the bar is
-     the proportion by construction and there is no percentage to keep in step
-     with the numbers in the drawer. */
-  flex: var(--share, 1) 1 0;
-  border-radius: 1px;
-  background: var(--map-line-loud);
+/* --- The sparkline -------------------------------------------------------
 
-  &.is-pos { background: var(--map-pos); }
-  &.is-neg { background: var(--map-neg); }
+   A line, and nothing else. `public/islands/_spark.ts` builds it over
+   `seriesModel`, so it cannot disagree with the full chart a press opens about
+   where a point falls.
+
+   `aspect-ratio` matches the viewBox exactly (100 x 20), which is what lets
+   `preserveAspectRatio="xMidYMid meet"` never letterbox — the ban on `none`
+   costs nothing here and the geometry is uniform at every rail width. */
+.spark {
+  display: block;
+  /* Height fixed, width taken. That order is the whole of it: a sparkline is a
+     line *in a line of type*, so its height belongs to the row's rhythm and
+     never to how much horizontal room the row happened to have. Tying the two
+     together — `aspect-ratio` against a uniformly-scaled viewBox — drew a 47px
+     chart per row in an open rail and overflowed the column by 436px. See
+     `preserveAspectRatio` in `_spark.ts` for why `none` is safe for this one
+     shape and stays banned for every other. */
+  flex: 1 1 0;
+  min-width: 0;
+  width: auto;
+  height: 1.05rem;
+  /* The stroke reaches half its width past the outermost point, and INSET in
+     the module reserves room for that inside the box. This is the belt to that
+     brace where a rounded join lands a fraction over. */
+  overflow: visible;
+}
+
+.spark-line {
+  fill: none;
+  stroke: currentColor;
+  /* `non-scaling-stroke`, so the width is in CSS pixels and does not shrink
+     with the box: at the spine's 80px a scaled 1.25 unit stroke would render
+     around a device pixel, which is the coverage cliff `line-width` on the
+     graticule records — a half-width under one device pixel loses alpha
+     whatever the antialiasing arithmetic says. */
+  stroke-width: 1.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
 }
 
 /* In flow, under its button, at the rail's own width. It is a floating panel on
@@ -4478,6 +4589,82 @@ body.map-wide .map-key {
 
 .map-timeline.is-scrubbed .map-timeline-head { color: var(--map-ink-muted); }
 .map-timeline.is-scrubbed .map-timeline-readout { color: var(--map-ink); }
+
+/* --- The readout is revealed, not reserved ------------------------------
+
+   A line of type that is *always* on screen to say what time it is now, at the
+   foot of a map whose whole subject is what is happening now. It is the answer
+   to a question a reader asks occasionally, holding a row of the strip
+   permanently for it.
+
+   **It does not make the globe bigger, and the first version of this note said
+   it did.** `.map-timeline` is `position: absolute; bottom: 0` over a canvas
+   that is `inset: 0` — so the scrubber floats *over* a full-bleed map and its
+   height has never entered `fitZoom`, which reads `mapEl.clientHeight`.
+   Measured before and after: globe diameter 990 → 990, `minZoom` 2.4996 →
+   2.4996, canvas height 884 → 884. What the 22px actually buys is **occlusion**
+   — that much less chrome lying across the bottom of the planet — and a
+   `--map-scrub-h` of 52px against 76px, which is 24px more room for every peek
+   card, since the card clears the scrubber by that measurement.
+
+   **Out of flow rather than collapsed, and that is the load-bearing part.**
+   Collapsing its height on hover would change `.map-timeline`'s `offsetHeight`,
+   which is `--map-scrub-h`, which `applyPadding` feeds to `Map.setPadding` —
+   and `setPadding` is `jumpTo` underneath, which begins by calling `stop()`.
+   A reader brushing the scrubber mid-flight would silently cancel the camera
+   animation, which is the exact failure the note on `writePadding` records.
+   Absolute keeps the measured geometry constant, so hovering costs no layout
+   and no camera.
+
+   It carries its own ground because it now sits in the scrim's *overhang* —
+   the 2rem above the box where `.map-timeline::before` is ramping to
+   transparent, not the flat 96% the content was tuned against.
+
+   Three ways back: hover, keyboard focus, and **`is-scrubbed`, which is not
+   optional**. Scrubbed away from live, this line is the only thing on screen
+   saying which day is drawn; a reader who moves the pointer off must not lose
+   that. `.map-timeline-live` ("back to live") lives here too and is reachable
+   the same three ways.
+
+   **This defers the money ribbon too, and that was the decision rather than an
+   oversight.** The row is one flex line holding four things — `.map-markets`,
+   the clock, the Hijri date and the live button — and this row is the ribbon's
+   only home *in this layout*: the money block in the instrument rail exists
+   only under `body.map-wide`, and this rule is what every narrower desktop
+   gets. Sharing the line means sharing the height: keeping the tally
+   glanceable at rest keeps the 22px, and the 22px was the whole point. So the
+   ribbon is a hover readout here as well. It survives the trade better than
+   most things would — every exchange on it is also a mark on the map with a
+   card behind it, which is the same test the `layers` disclosure has to pass:
+   nothing hidden that the reader cannot get to.
+
+   Pointer-capable and non-phone only. A phone has no hover and the phone block
+   already drops `.map-status`, so hiding this there would remove the clock and
+   the Hijri date outright rather than defer them. */
+@media (hover: hover) and (min-width: 901px) {
+  .map-timeline-head {
+    position: absolute;
+    right: 1.1rem;
+    bottom: 100%;
+    margin-bottom: 0;
+    padding: 0.1rem 0.45rem 0.2rem;
+    background: color-mix(in srgb, var(--map-ground) 92%, transparent);
+    opacity: 0;
+    transition: opacity 120ms ease;
+    pointer-events: none;
+  }
+
+  .map-timeline:hover .map-timeline-head,
+  .map-timeline:focus-within .map-timeline-head,
+  .map-timeline.is-scrubbed .map-timeline-head {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .map-timeline-head { transition: none; }
+  }
+}
 
 /* One line each.
    "Makkah" is three characters longer than the "UTC" this row used to print,
@@ -4717,49 +4904,35 @@ body.map-wide .map-key {
     &[open] { animation: none; }
   }
 
-  /* --- As a drawer ---
-     Under the money bar, sharing its two edges, growing downward. Everything
-     that made it a popover is undone: it is no longer sized to its rows (it is
-     sized to the bar), it no longer hangs off one corner, and it unfolds from
-     the *top* because that is now the edge it is anchored by.
+  /* --- Out of the rail ---
+     Anchored to the rail's inner edge, on the row that summoned it, opening
+     over the map.
 
-     Wide enough for columns, so eleven quotes are a block to scan rather than a
-     list to scroll — which is the whole reason a drawer beats a popover here.
-     `column-fill: balance` is the default and is what keeps a 3-row group from
-     rendering as one tall column beside two empty ones. */
-  &.is-drawer {
-    width: auto;
-    max-width: none;
-    max-height: min(22rem, calc(100dvh - 12rem));
-    border-radius: 0 0 4px 4px;
-    border-top: 0;
+     This replaced a drawer, and the drawer could not come with the block. It
+     worked by sharing the top bar's two edges — which is what made it read as
+     the bar opening rather than as something that happened near it — and it
+     needed the canvas's whole width to hold `columns: 3`. A rail is 18–21rem
+     and folds to a spine, so sharing *its* edges would be a 5.5rem drawer.
+     What is left is the one dimension the rail is not using, which is also
+     where the reader is already looking.
+
+     So the popover's own geometry comes back: sized to its rows, capped, and
+     unfolding from the side it is anchored by. Only the axis changes. */
+  &.is-rail {
     box-shadow: 0 14px 34px rgb(0 0 0 / 0.5);
 
-    &[open] { animation: map-markets-unroll 140ms ease-out; }
+    &[open] { animation: map-markets-unslide 140ms ease-out; }
 
     @media (prefers-reduced-motion: reduce) {
       &[open] { animation: none; }
     }
-
-    & .map-markets-panel-list {
-      display: block;
-      columns: 3;
-      column-gap: var(--space-md);
-    }
-
-    & .map-markets-row-item {
-      /* `inline-grid` + full width: a `grid` item is a block, and a block inside
-         a multicol container can be split across a column boundary — half a row
-         at the foot of one column and half at the head of the next. */
-      display: inline-grid;
-      break-inside: avoid;
-    }
   }
 }
 
-/* The drawer's counterpart to `map-markets-unfold`: same motion, other edge. */
-@keyframes map-markets-unroll {
-  from { opacity: 0; transform: translateY(-6px); }
+/* The rail's counterpart to `map-markets-unfold`: same motion, other edge. It
+   comes out of the rail rather than up off a control, so it travels on x. */
+@keyframes map-markets-unslide {
+  from { opacity: 0; transform: translateX(6px); }
   to { opacity: 1; transform: none; }
 }
 
@@ -4769,12 +4942,30 @@ body.map-wide .map-key {
 }
 
 .map-markets-panel-title {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 0.5rem;
   margin: 0 0 0.35rem;
   font-size: var(--size-2xs);
   font-variant-caps: all-small-caps;
   letter-spacing: var(--track-wide);
   font-weight: 600;
   color: var(--map-ink-dim);
+}
+
+/* The counts, which the rail's row spends its width on a shape instead of.
+   A step quieter than the name beside them and in the same line, because they
+   are what that name resolves to rather than a second heading — and `:empty`
+   so a group with nothing to say about breadth does not leave a gap where a
+   figure should be. */
+.map-markets-panel-meta {
+  font-variant-caps: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--map-ink-muted);
+
+  &:empty { display: none; }
 }
 
 /* No close button. The control that opened it closes it, Escape closes it, and
@@ -6277,6 +6468,56 @@ body.doc-page .chart {
   padding: var(--space-md);
   max-width: var(--measure);
   margin: 0 auto;
+}
+
+/* --- The homepage when the map cannot be drawn ---------------------------
+
+   A browser with no WebGL2 runs the island perfectly and simply has no engine
+   to give it, so `<noscript>` never fires and the shell would otherwise sit
+   empty forever. `canRenderMap` in `situation-map.ts` catches that and adopts
+   the `<noscript>` markup into this container; these rules are what make a
+   column of prose survive a box built for a canvas.
+
+   `.map-shell` is `position: absolute; inset: 0; overflow: hidden` and a
+   three-column grid — so untouched it clips the list to the viewport with no
+   way to reach the rest of it. */
+.map-shell.is-fallback,
+.map-root.is-fallback {
+  display: block;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--map-ground);
+}
+
+.map-fallback {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: var(--space-md);
+  color: var(--map-ink-body);
+}
+
+.map-fallback-note {
+  margin: 0 0 var(--space-md);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--map-line);
+  color: var(--map-ink-muted);
+  font-size: var(--size-sm);
+}
+
+/* `.article-preview` is written for pages that follow the reader, so its rule
+   and its dateline resolve through the *site* palette. On `body.map-page` that
+   is the trap `readPalette` hit on the scrubber's canvas: `--rule` is #181818
+   here — darker than the ground it would be drawn on — and in light mode the
+   inherited ink is dark type on a near-black page. Restated in the
+   dark-surface palette, which is the one this page actually commits to. */
+.map-fallback .article-preview {
+  border-bottom-color: var(--map-line-soft);
+
+  .category { color: var(--map-ink-muted); }
+
+  h2 a { color: var(--map-ink); }
+
+  time { color: var(--map-ink-dim); }
 }
 
 /* --- The chrome strip, once the width stops paying for it ---

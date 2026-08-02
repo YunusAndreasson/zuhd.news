@@ -22,6 +22,22 @@
 // at the planet and nothing else — and both toggles stay on screen while their
 // pane is shut, because a control that hides the only route back to itself is
 // not a disclosure, it is a trapdoor.
+//
+// ── And the two panes fold differently ────────────────────────────────────
+//
+// The story rail goes to zero: it is content, and a reader who folds it has
+// said they are done reading for now. The instrument rail narrows to a spine
+// instead, because what it holds is not all of one kind — controls, which the
+// fold is *about*, and readings, which it was silently taking with them. A
+// folded aside used to be a 15px triangle stating nothing: not which layers
+// were on, not what was shading the land, not what the world was doing. It is
+// a column of sparklines now.
+//
+// This module does not know any of that — the width and the contents are the
+// stylesheet's, keyed on `body.map-aside-off`. What it has to get right is the
+// *word*, which is why `verbs` exists: a button offering to "show the
+// instruments" while four of them are on screen is describing a layout that no
+// longer exists.
 
 import { el } from '../_dom'
 
@@ -91,6 +107,22 @@ export interface PaneSeamOptions {
   id: 'rail' | 'aside'
   /** Named in the toggle's label: "Hide the {name}". */
   name: string
+  /**
+   * What folding this pane actually does to it, in the two words the button
+   * says.
+   *
+   * The two panes no longer fold the same way and the label must not claim they
+   * do. The story rail goes to zero and takes the wordmark and the document
+   * links with it — that is *hidden*. The instrument rail narrows to a spine of
+   * sparklines and keeps showing them — that is *collapsed*, and a button
+   * promising to "show the instruments" while four of them are on screen is a
+   * button describing a different layout.
+   *
+   * Defaulted rather than required, because hide/show is what a fold meant
+   * before this and is still the right answer for any pane that genuinely
+   * disappears.
+   */
+  verbs?: { off: string; on: string }
   /** Where the drag is measured from — the seam's own live position. */
   edge: () => number
   /** Relayout: whatever has to be re-measured once a width has moved. */
@@ -105,7 +137,7 @@ export interface PaneSeam {
 }
 
 export function createPaneSeam(opts: PaneSeamOptions): PaneSeam {
-  const { side, prop, id, name } = opts
+  const { side, prop, id, name, verbs = { off: 'Show', on: 'Hide' } } = opts
   const root = el('div', 'map-seam')
   root.dataset.side = side
 
@@ -126,8 +158,9 @@ export function createPaneSeam(opts: PaneSeamOptions): PaneSeam {
     state.off = off
     document.body.classList.toggle(`map-${id}-off`, off)
     toggle.setAttribute('aria-expanded', String(!off))
-    toggle.setAttribute('aria-label', off ? `Show the ${name}` : `Hide the ${name}`)
-    toggle.title = off ? `Show the ${name}` : `Hide the ${name}`
+    const words = `${off ? verbs.off : verbs.on} the ${name}`
+    toggle.setAttribute('aria-label', words)
+    toggle.title = words
   }
 
   const setWidth = (px: number | undefined) => {

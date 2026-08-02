@@ -196,6 +196,40 @@ adapter per surface. Pinned in `scripts/lib/chart.test.js`.
   histogram under a real `<input type="range">` — a control, not a chart to
   read values off, and already keyboard- and screen-reader-operable through the
   input. It stays as it is.
+- **`_spark.ts` is the second shape, and it is a second module rather than a
+  flag on the first** (2026-08-02). Seven rows at the head of the map's
+  instrument rail draw a line and nothing else — no axis, no dots, no rings, no
+  readout, no table. It could not be `createChart({ ranges: false, table: false })`:
+  those are the only two shrink levers that exist and neither touches the
+  geometry, so the box would still be 640×112 with its right **62 units — 27%
+  of the width — a blank y-axis gutter**, plus axis text, date text, extreme
+  rings and a caption row, in a column 5.5 to 21rem wide. What it *does* reuse
+  is `seriesModel`, by dividing the points back out of the big chart's box and
+  multiplying them into its own. So the domain, the windowing and the
+  "fewer than two finite points is a dot pretending to be a trend" rule are
+  still decided in one place, and a sparkline cannot disagree with the full
+  figure a press opens about where a point falls.
+- **`preserveAspectRatio="none"` is right for exactly this one shape.** The ban
+  above is real and was earned twice, and the reason it gives is what does not
+  apply: it was "drawing its axis labels stretched and its end dots as
+  ellipses". A bare `<polyline>` with `vector-effect: non-scaling-stroke` has
+  nothing in it that a non-uniform scale can distort. The first version obeyed
+  the letter of the rule — `xMidYMid meet` against a matched `aspect-ratio` —
+  and that ties the height to the width, which for a row spanning 71px in the
+  folded spine and 240px in an open rail meant **a 47px-tall line per row and
+  an instrument rail overflowing its own column by 436px**, measured at
+  2361×984. A sparkline is a line *in a line of type*: its height belongs to
+  the row's rhythm and never to how much horizontal room the row happened to
+  have. It is 1.05rem, and the width is whatever is left.
+- **Each one autoscales to its own domain, so amplitude is not comparable
+  across rows and the printed percentage is what carries magnitude.** A
+  30-exchange composite moving 0.3% and Brent moving 14.1% draw with the same
+  visual swing, because `seriesModel` fits the domain to what is actually in the
+  window — which is the behaviour that makes a small series legible at 17px and
+  the reason every sparkline anywhere works this way. What must not drift is the
+  *period*: all seven draw `SPARK_WINDOW` observations, because a column of
+  lines covering different spans is seven incomparable pictures at one rhythm
+  with nothing on screen saying so.
 
 ## The disclosure mechanism
 

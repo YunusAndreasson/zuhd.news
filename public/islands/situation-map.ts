@@ -334,6 +334,103 @@ const catColour = (fallback: string) =>
 const densityWeight = (): ExpressionSpecification =>
   ['*', ['get', 'amax'], ['sqrt', ['get', 'n']]] as unknown as ExpressionSpecification
 
+/**
+ * Whether this browser can draw the map at all.
+ *
+ * **MapLibre requires WebGL2 and does not throw when it is missing.** The
+ * constructor fires a `GPUInitializationError` on the map's own event bus —
+ * which, per the note on `map.on('error')` in `map.md`, deliberately has no
+ * listener — and then *returns a half-built object*. So the failure surfaces
+ * hundreds of lines later at the first line that touches a handler,
+ * `map.touchZoomRotate.disableRotation()`, as a bare `TypeError: Cannot read
+ * properties of undefined`. `island-loader.js` catches that and logs it, which
+ * aborts `mount` with the DOM in the state this function now prevents: the
+ * chrome up, `.map-loading` still saying "Drawing the world…", and **not one
+ * story anywhere on the page** — permanently, with nothing on screen admitting
+ * it. Measured with WebGL disabled: 120 story links before, 0 after.
+ *
+ * The fallback that was supposed to cover this is the `<noscript>` block in
+ * `templates/index.html`, and it structurally cannot: a browser renders
+ * `<noscript>` when *scripting* is off, and here scripting is on and working
+ * perfectly — it is the GPU that is absent. Nothing else on the homepage is
+ * server-rendered (`build.js`: "The only server-rendered content left is the
+ * <noscript>"), so the one reader who most needs the plain list is the one
+ * reader neither surface gives it to.
+ *
+ * Asked before `prewarm()`, so a browser that cannot use the engine does not
+ * spawn its worker pool either.
+ */
+function canRenderMap(): boolean {
+  let probe: WebGL2RenderingContext | null = null
+  try {
+    probe = document.createElement('canvas').getContext('webgl2')
+  } catch {
+    return false
+  }
+  if (!probe) return false
+  // A GL context is a real driver resource and browsers cap how many may be
+  // live at once, so the probe hands its own back immediately rather than
+  // leaving it for a collection that would otherwise race the map's own.
+  //
+  // **Released in its own `try`, deliberately.** Folded into the one above,
+  // this line decides the answer: `getExtension` is absent from the test
+  // harness's context stub, so calling it threw, the catch returned `false`,
+  // and every map assertion in `map-island.test.js` ran against the fallback
+  // instead of the map — 12 suites failing to report a browser that has a GPU
+  // as one that has none. Releasing early is an optimisation; whether the
+  // browser can draw was already answered above.
+  try {
+    probe.getExtension('WEBGL_lose_context')?.loseContext()
+  } catch {
+    /* The context is the collector's problem now. */
+  }
+  return true
+}
+
+/**
+ * The news, on a browser that cannot draw the map.
+ *
+ * It **adopts the server's own `<noscript>` payload** rather than rendering a
+ * second list. While scripting is enabled the contents of `<noscript>` are
+ * parsed as *text*, so that markup — `build.js`'s, already escaped by it — is
+ * simply sitting in `textContent` waiting to be used. That keeps one source of
+ * truth for what a fallback story row is, which is the rule the shared modules
+ * exist to enforce: a second copy here would be a list that could disagree
+ * with the one a JS-less reader gets, and nothing would be checking that it
+ * did not. The two can never both paint — if `<noscript>` renders, this island
+ * never ran.
+ *
+ * The notice says what happened in the reader's terms, because the failure is
+ * on their machine and is usually one they can act on. Silence here is what
+ * made the original bug read as a dead site rather than an unavailable map.
+ */
+function renderFallback(container: HTMLElement): () => void {
+  const wrap = document.createElement('div')
+  wrap.className = 'map-fallback'
+
+  const note = document.createElement('p')
+  note.className = 'map-fallback-note'
+  note.setAttribute('role', 'status')
+  note.textContent =
+    'The map needs WebGL2, which this browser has not made available — most often because hardware acceleration is switched off. The last 14 days of stories are below.'
+  wrap.append(note)
+
+  const markup = document.querySelector('noscript')?.textContent
+  if (markup) {
+    const list = document.createElement('div')
+    list.innerHTML = markup
+    wrap.append(list)
+  }
+
+  container.classList.add('is-fallback')
+  container.append(wrap)
+
+  return () => {
+    container.replaceChildren()
+    container.classList.remove('is-fallback')
+  }
+}
+
 export function mount(
   container: HTMLElement,
   props: { basemap?: string; story?: string } = {},
@@ -353,6 +450,10 @@ export function mount(
    * in 6.1.0 — which is upstream and untouchable from here. This is the part
    * that *is* ours: overlapping a startup we control with one we do not.
    */
+  // Before anything is built or fetched: a browser with no WebGL2 gets the
+  // stories rather than a permanent "Drawing the world…". See `canRenderMap`.
+  if (!canRenderMap()) return renderFallback(container)
+
   prewarm()
 
   /** Cache key for the basemap files — see `basemapUrl`. */
@@ -987,29 +1088,43 @@ export function mount(
   loading.textContent = 'Drawing the world…'
 
   /**
-   * The money bar: one thin line across the head of the map.
+   * The money block, at the head of the instrument rail.
    *
-   * It was a row of the scrubber, and before that two rows of it, and the whole
-   * of its recorded history is width management — a `flex: 1 1 34rem` basis swept
-   * against real line counts, a ≤1300px cull of two currencies, a phone that
-   * drops the named movers. All of it came from sharing a line with the clock at
-   * the foot of a map.
+   * It was a row of the scrubber, then two rows of it, then a bar across the
+   * top of the canvas, and the whole of that history is width management — a
+   * `flex: 1 1 34rem` basis swept against real line counts, a ≤1300px cull of
+   * two currencies, a phone that drops the named movers. All of it came from
+   * being laid out along the axis it had least of.
    *
-   * It is not a control and it is not a legend, so neither rail is its home: it
-   * is a *readout about the world*, the same kind of thing as the stories on the
-   * left and the marks on the globe, and it belongs across the top where a
-   * reader meets it before they start working the map rather than after. One
-   * line, four groups, and each group states its whole answer as a shape — see
-   * `breadth` in `_map/markets.ts` for why a shape and not the counts.
+   * The bar's argument for the top was that a readout is not a control, so
+   * neither rail is its home. That was a true statement about the rail as it
+   * then was, and it is what this changes: the rail is the *instrument* rail,
+   * an instrument shows a reading, and this block sits **above** every control
+   * in it — so a reader still meets it before they start working the map, in
+   * the one dimension that lets a readout carry a shape as well as a number.
+   * A bar could hold breadth; a column holds a line, and a line is the thing
+   * the reader cannot get anywhere else on this map.
+   *
+   * It is also what the fold now leaves behind. `body.map-aside-off` used to
+   * take the whole rail to zero and leave a 15px triangle saying nothing at
+   * all; it narrows to a spine of these sparklines instead, so collapsing the
+   * controls no longer collapses the readings with them.
    *
    * Empty until `/api/markets.json` lands (`root.hidden`), so nothing reserves
-   * space for a bar that may not arrive.
+   * space for a block that may not arrive.
    */
-  const marketBar = document.createElement('div')
-  marketBar.className = 'map-marketbar'
+  const moneyBox = document.createElement('div')
+  moneyBox.className = 'map-money'
+
+  // Appended on its own rather than into the call above, because it is declared
+  // down here with its reasoning. Nothing depends on the position: the rail's
+  // reading order is `order` (see `body.map-wide` in the stylesheet), and in
+  // every other layout this box is `display: none` and the strip is a line of
+  // the scrubber instead.
+  hud.append(moneyBox)
 
   mapEl.append(loading)
-  container.append(mapEl, marketBar, hud, resetBtn)
+  container.append(mapEl, hud, resetBtn)
 
   // --- State --------------------------------------------------------------
   let points: MapPoint[] = []
@@ -1726,10 +1841,18 @@ export function mount(
     // is what stops the hover probe finding a line the reader turned off.
     set('prayer-lines', layersOn.prayers)
     set('prayer-labels', layersOn.prayers)
-    // The strip is the layer's readout, so it goes with the layer. Missing this
-    // would leave a ranked list of exchanges over a map that no longer draws
-    // any.
-    marketStrip.setVisible(layersOn.markets)
+    // The money block is deliberately NOT switched here, and it used to be.
+    //
+    // While the strip was chrome over the canvas, "the strip is the layer's
+    // readout, so it goes with the layer" was right: a ranked list of exchanges
+    // floating over a map that no longer draws any is a caption for a picture
+    // that is not there. In the rail it is not a caption. It is a block of
+    // readings — currencies, metals, crypto and three world series, none of
+    // which the `markets` layer has ever drawn — and taking all of it away
+    // because the reader turned off thirty marks on the globe answers a
+    // question they did not ask. `setVisible` still exists and is still called;
+    // what it now reports is whether the *data* arrived (`loadLayers`), which
+    // is the one thing that should be able to empty this box.
   }
 
   /** Moves the dated overlays with the scrub head, style-side. */
@@ -4251,6 +4374,52 @@ export function mount(
    */
   let metricApplied = false
 
+  /**
+   * Takes "Drawing the world…" down the moment the world is actually drawn.
+   *
+   * The label used to be removed by `applyMetric`, on the reasoning that the
+   * coastline is up as soon as its source has loaded. It is not.
+   * `isSourceLoaded('countries')` does not mean "the land has painted", it
+   * means "every tile this source owes the current viewport has arrived" — and
+   * against 1.6 MB and 99k points on a worker also parsing the conflict feed,
+   * the lakes, the rivers and the metric, that lands far later than the first
+   * paint. Measured against the built map: **land rendered at 10 s, story
+   * beacons at 14 s, `isSourceLoaded` first true at 21 s.** So for eleven
+   * seconds the reader saw a finished globe, its coastlines, its countries and
+   * its stories, with a line of type over the middle of it saying the world
+   * was still being drawn — the one state this label exists to deny. It is
+   * worse on a cold connection, where it is the whole first impression, and it
+   * is indistinguishable from a map that has failed.
+   *
+   * There is no event for "a layer has painted", so the condition is asked
+   * rather than awaited, on two signals that are already cheap: `idle`, which
+   * this island listens to anyway, and `sourcedata` for `countries`. Both
+   * detach on the first success, so the query runs a handful of times and never
+   * again.
+   *
+   * **`getLayer` is checked first, and that is not defensive noise.**
+   * `queryRenderedFeatures` against a layer id the style does not have fires a
+   * MapLibre `ErrorEvent`, and this map deliberately registers no `error`
+   * listener — so `Evented.fire` prints it to `console.error`, which is exactly
+   * what `scripts/perf/probe.mjs` treats as a failed run. A plain lookup asks
+   * the same question and fires nothing.
+   */
+  const clearLoading = () => {
+    if (!loading.isConnected) return
+    if (!map.getLayer('land')) return
+    if (map.queryRenderedFeatures({ layers: ['land'] }).length === 0) return
+    loading.remove()
+    map.off('idle', clearLoading)
+    map.off('sourcedata', onLoadingProbe)
+  }
+  /** Narrows the `sourcedata` firehose to the source the label is waiting on. */
+  const onLoadingProbe = (e: { sourceId?: string }) => {
+    if (e.sourceId !== 'countries') return
+    clearLoading()
+  }
+  map.on('idle', clearLoading)
+  map.on('sourcedata', onLoadingProbe)
+
   const applyMetric = () => {
     // `load` means the *style* is ready, not that a GeoJSON source has fetched
     // and parsed its data — countries.geojson is 210 KB over the network. Feature
@@ -4260,9 +4429,18 @@ export function mount(
     // `sourcedata` listener re-runs this the moment the source is ready.
     if (metricApplied) return true
     if (!map.getSource('countries') || !map.isSourceLoaded('countries')) return false
-    // The coastline is on screen the moment its source is loaded, so this is
-    // where "drawing the world" stops being true.
-    loading.remove()
+    // The label is not this function's business — see `clearLoading`. It was
+    // removed here, and the sentence justifying it ("the coastline is on screen
+    // the moment its source is loaded") is the part that turned out to be
+    // false: `isSourceLoaded` is not "the coastline has painted", it is "every
+    // tile this source owes the viewport has arrived", which on 1.6 MB and 99k
+    // points parsed against a contended worker lands **long** after the world
+    // is on screen. Measured against the built map: land features rendered at
+    // 10 s, story beacons at 14 s, `isSourceLoaded` first true at 21 s — so a
+    // finished map wore "Drawing the world…" for eleven seconds. Kept as a
+    // backstop only: `clearLoading` will normally have run already, and
+    // `remove()` on a detached node is a no-op.
+    clearLoading()
     metricApplied = true
     // Clearing first is what makes switching metrics correct: a country with a
     // figure for press freedom but none for Gini would otherwise keep its old
@@ -4539,9 +4717,14 @@ export function mount(
    */
   const placeMarketStrip = () => {
     const wide = document.body.classList.contains('map-wide')
-    if (wide) marketBar.append(marketStrip.element)
+    if (wide) moneyBox.append(marketStrip.element)
     else timeline?.head.prepend(marketStrip.element)
-    marketStrip.setDock(wide ? marketBar : null)
+    // The dock is the *rail*, not the box the strip sits in. `placePanel`
+    // anchors the panel's outer edge to the dock's inner one, and the money box
+    // is inside the rail's padding — docking to it put the panel's right edge
+    // 9px inside the rail, measured, which reads as a panel that failed to
+    // clear the thing it came out of rather than as one attached to it.
+    marketStrip.setDock(wide ? hud : null)
   }
 
   // The scrubber is replaced wholesale when a refresh moves the window, so the
@@ -4645,6 +4828,10 @@ export function mount(
       prop: '--map-aside-user',
       id: 'aside',
       name: 'instruments',
+      // This one narrows rather than disappears — the money block stays as a
+      // spine of sparklines. See the stylesheet's `body.map-aside-off`, and the
+      // note on `verbs` for why the button must not go on saying "show".
+      verbs: { off: 'Expand', on: 'Collapse' },
       edge: () => hud.getBoundingClientRect().width,
       onChange: onResize,
     }),
@@ -4721,6 +4908,13 @@ export function mount(
     feed.destroy()
     popup?.destroy()
     sheet.destroy()
+    // Missing for as long as the strip has existed. Its panel is a `<dialog>`
+    // on `document.body`, so `container.replaceChildren()` below never took it,
+    // and it registers three listeners — `keydown`, a capture-phase
+    // `pointerdown` and `resize` — that outlived every teardown. Nothing caught
+    // it because `map-island.test.js` asserts `dialog.map-sheet` is gone from
+    // the body and never asked about this one; it does now.
+    marketStrip.destroy()
     map.remove()
     // The other half of `prewarm`. The pool it created is process-wide and
     // outlives the map, so without this a torn-down island leaves a worker

@@ -15,6 +15,7 @@
 // was only a matter of time.
 
 import { el } from '../_dom'
+import { sparkline } from '../_spark'
 import { isTrading } from './format'
 import { glyphSvg } from './glyphs'
 import type { GLYPHS } from './glyphs'
@@ -282,15 +283,6 @@ interface TickerItem {
    * they say "the lira is down".
    */
   invert?: boolean
-  /**
-   * Shown only where the row has width for it — see the `fx-eur` entry below.
-   * Reaches the DOM as `data-comparison`, which the narrow-desktop rule in the
-   * stylesheet hides. In the table rather than in CSS because *which* quotes are
-   * expendable is an editorial fact about this ribbon, not a fact about a
-   * viewport, and a positional `nth-child` cull would quietly start dropping a
-   * different pair the next time the basket is reordered.
-   */
-  comparison?: boolean
 }
 
 /**
@@ -316,16 +308,20 @@ const TICKER: Array<{ group: string; items: TickerItem[] }> = [
       { id: 'fx-egp', label: 'EGP', iso2: 'EG', invert: true },
       { id: 'fx-pkr', label: 'PKR', iso2: 'PK', invert: true },
       { id: 'fx-idr', label: 'IDR', iso2: 'ID', invert: true },
-      // Comparison, not subject — and therefore the first thing the row gives
-      // up when the window stops paying for it. The basket above is what this
-      // site is for; USD, spliced in at the head, is the denominator all six are
-      // quoted against and so can never be the thing that goes. These two are
-      // here to say what the basket moved *relative to*, which is worth two
-      // quotes on a wide desktop and worth less than a wrapped line on a narrow
-      // one. Marked in the table rather than culled by position, so reordering
-      // the basket cannot silently change which pair disappears.
-      { id: 'fx-eur', label: 'EUR', iso2: 'EU', invert: true, comparison: true },
-      { id: 'fx-jpy', label: 'JPY', iso2: 'JP', invert: true, comparison: true },
+      // Comparison, not subject. The basket above is what this site is for;
+      // USD, spliced in at the head, is the denominator all six are quoted
+      // against and so can never be the thing that goes. These two are here to
+      // say what the basket moved *relative to*.
+      //
+      // They used to carry `comparison: true`, a flag marking them as the first
+      // quotes the row would give up when the window stopped paying for them —
+      // in the table rather than in CSS, so that reordering the basket could
+      // not silently change which pair disappeared. The ≤1300px cull it drove
+      // was deleted on 2026-08-01 when the row became four summaries, and the
+      // flag has been written and read by nobody since. The editorial fact it
+      // encoded is worth keeping and is this paragraph; the field was not.
+      { id: 'fx-eur', label: 'EUR', iso2: 'EU', invert: true },
+      { id: 'fx-jpy', label: 'JPY', iso2: 'JP', invert: true },
     ],
   },
   {
@@ -344,6 +340,42 @@ const TICKER: Array<{ group: string; items: TickerItem[] }> = [
     ],
   },
 ]
+
+/**
+ * The world the money is moving in, as three series the map never surfaced.
+ *
+ * `/api/trends.json` carries 54 indicators and the ribbon read eleven of them.
+ * These three are the ones a news map is actually read *against*: the price of
+ * oil, the price of fear, and the price of money. Each is a single instrument
+ * rather than a group, so a press opens its card directly — there is no set
+ * behind it to summarise.
+ *
+ * Short labels, because these sit in a column that folds to a spine and a
+ * truncated instrument name is worse than a code. Unlike the currency codes
+ * above, all three of these are how the thing is actually referred to.
+ */
+const WORLD: TickerItem[] = [
+  { id: 'brent', label: 'BRENT' },
+  { id: 'vix', label: 'VIX' },
+  { id: 'us-10y', label: 'US 10Y' },
+]
+
+/**
+ * How many observations every sparkline on the rail draws.
+ *
+ * One number for all of them, and that is the point. The series behind these
+ * rows are 30 to 66 points long — the FX basket publishes 30 days, an exchange
+ * publishes a quarter of sessions — so drawn at their natural lengths a column
+ * of sparklines would be four pictures of four different periods set to one
+ * rhythm, with nothing on screen saying so and every reason for a reader to
+ * assume otherwise. 30 is the shortest, so it is the only window all of them
+ * can actually show.
+ *
+ * It is 30 *observations*, not 30 days: an exchange's 30 sessions is about six
+ * weeks. The cards behind these rows draw the full series with its dates, which
+ * is where a reader who needs the exact period goes.
+ */
+const SPARK_WINDOW = 30
 
 /** The latest move in a series, as a signed percentage. */
 export const seriesChangePct = (values: number[], invert = false): number | null => {
@@ -366,8 +398,6 @@ export interface TickerEntry {
   name: string
   flag: string
   pct: number
-  /** Carried through from `TickerItem.comparison` — see that field. */
-  comparison?: boolean | undefined
   unit?: string | undefined
   level: number
   /**
@@ -386,30 +416,27 @@ export interface TickerEntry {
 }
 
 /**
- * The dollar, as an index over the basket it is quoted against.
+ * A set of series as one index: each normalised to its own first value, the
+ * lot averaged, and the result rebased to 100.
  *
- * There is no dollar index in the payload and the obvious entry is impossible:
- * every rate in this row is `X / USD`, so the dollar against itself is 0.0%
- * every day forever. But the row already contains the answer — if all six
- * currencies fell, the dollar rose — so the index is derived from exactly the
- * series printed beside it rather than fetched from somewhere that would not
- * agree with them.
+ * Normalising first is what makes the average mean anything. A raw mean over
+ * an exchange level near 3.3 million and one near 1,400 is the first exchange
+ * with a rounding error attached — the arithmetic would run, the line would
+ * have a shape, and the shape would be one member's.
  *
- * Each `X / USD` series is normalised to its own first value and the six are
- * averaged. `X / USD` rising means more of X per dollar, so the average rising
- * means the dollar strengthening — the index needs no inversion, unlike the
- * currencies themselves.
+ * The inputs need not be the same length, so the last N points are taken,
+ * where N is the shortest. Aligning on *dates* would be the better answer and
+ * is not available here: thirty exchanges keep thirty holiday calendars, and
+ * nothing drawn from this has an axis for a date to land on.
  *
- * Two things this is *not*, both stated on the card rather than left to be
- * assumed: it is not DXY, and it is not trade-weighted. It is an unweighted
- * mean over an editorially chosen basket, which makes it exactly as broad as
- * the row it summarises and no broader.
+ * Two things any index built this way is *not*, and both belong wherever it is
+ * printed rather than being left to be assumed: it is unweighted, and its
+ * membership is editorial. It is exactly as broad as the set it summarises and
+ * no broader.
  */
-const dollarIndex = (series: number[][]): number[] | null => {
+const meanIndex = (series: number[][]): number[] | null => {
   const usable = series.filter((s) => s.length > 1 && Number.isFinite(s[0]) && s[0] !== 0)
-  if (usable.length < 2) return null
-  // Align on the most recent N points, since the basket's series need not be
-  // the same length.
+  if (!usable.length) return null
   const n = Math.min(...usable.map((s) => s.length))
   const out: number[] = []
   for (let i = 0; i < n; i++) {
@@ -486,6 +513,58 @@ const flagOf = (iso2?: string): string =>
     : ''
 
 /**
+ * One table row and its published series, as the entry both the ribbon and the
+ * card read.
+ *
+ * Extracted rather than written twice when the world block arrived: the
+ * inversion below is the single most consequential line in this module — get it
+ * wrong and a collapsing lira draws green — and a second copy of it is a second
+ * chance to get it wrong for one of the two callers only.
+ */
+const entryFrom = (
+  group: string,
+  item: TickerItem,
+  ind: TrendIndicator,
+  pct: number,
+): TickerEntry => ({
+  group,
+  id: item.id,
+  label: item.label,
+  name: ind.label,
+  flag: flagOf(item.iso2),
+  pct,
+  unit: ind.unit,
+  level: ind.values[ind.values.length - 1],
+  values: item.invert
+    ? ind.values.map((v) => (Number.isFinite(v) && v !== 0 ? 1 / v : Number.NaN))
+    : ind.values,
+  periods: ind.periods ?? [],
+  asOf: ind.asOf,
+  sourceLabel: (ind as { sourceLabel?: string }).sourceLabel,
+})
+
+/**
+ * The world block's rows — three instruments, no groups.
+ *
+ * Same daily-cadence rule as the ribbon and for the same reason, which matters
+ * more here than there: `wheat`, `rice` and `copper` are monthly and sit in the
+ * same payload, so a future addition to `WORLD` that forgot this would put a
+ * month's move in a column of six-week sparklines with no visible difference.
+ */
+export const worldEntries = (indicators: TrendIndicator[]): TickerEntry[] => {
+  const byId = new Map(indicators.map((i) => [i.id, i]))
+  const out: TickerEntry[] = []
+  for (const item of WORLD) {
+    const ind = byId.get(item.id)
+    if (!ind || (ind.cadence && ind.cadence !== 'daily')) continue
+    const pct = seriesChangePct(ind.values, item.invert)
+    if (pct == null) continue
+    out.push(entryFrom('world', item, ind, pct))
+  }
+  return out
+}
+
+/**
  * The ribbon's rows, from the trends payload.
  *
  * Anything the payload does not carry is dropped rather than shown empty: the
@@ -515,24 +594,7 @@ export const tickerEntries = (indicators: TrendIndicator[]): TickerEntry[] => {
         basketAsOf = ind.asOf
         basketSource = (ind as { sourceLabel?: string }).sourceLabel
       }
-      const values = item.invert
-        ? ind.values.map((v) => (Number.isFinite(v) && v !== 0 ? 1 / v : Number.NaN))
-        : ind.values
-      out.push({
-        group,
-        id: item.id,
-        label: item.label,
-        name: ind.label,
-        flag: flagOf(item.iso2),
-        pct,
-        comparison: item.comparison,
-        unit: ind.unit,
-        level: ind.values[ind.values.length - 1],
-        values,
-        periods: ind.periods ?? [],
-        asOf: ind.asOf,
-        sourceLabel: (ind as { sourceLabel?: string }).sourceLabel,
-      })
+      out.push(entryFrom(group, item, ind, pct))
     }
   }
 
@@ -540,7 +602,20 @@ export const tickerEntries = (indicators: TrendIndicator[]): TickerEntry[] => {
   // measured against. Its percentage is read off the derived series rather than
   // averaged from the six printed figures, so the number and the chart on its
   // card cannot disagree — the same rule the exchange sparkline follows.
-  const usd = dollarIndex(basket)
+  //
+  // There is no dollar index in the payload and the obvious entry is
+  // impossible: every rate in this row is `X / USD`, so the dollar against
+  // itself is 0.0% every day forever. But the row already contains the answer —
+  // if all six currencies fell, the dollar rose — so it is derived from exactly
+  // the series printed beside it rather than fetched from somewhere that would
+  // not agree with them. `X / USD` rising means more of X per dollar, so the
+  // mean rising means the dollar strengthening: this one needs no inversion,
+  // unlike the currencies themselves.
+  //
+  // Two or more, because a "dollar index" over one currency is that currency
+  // upside down wearing a different name. `meanIndex` itself is happy with one,
+  // which is right for a group summary and wrong here.
+  const usd = basket.length >= 2 ? meanIndex(basket) : null
   const usdPct = usd ? seriesChangePct(usd) : null
   if (usd && usdPct != null) {
     const firstCurrency = out.findIndex((e) => e.group === 'currencies')
@@ -660,11 +735,32 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * third and `15 closed` on the fourth. A heading on a line of its own is a
    * heading that has stopped labelling anything.
    */
-  const tallyBar = el('span', 'map-markets-signal')
+  const tallySpark = el('span', 'map-markets-spark')
   const tallyGroup = el('button', 'map-markets-group map-markets-summary')
-  tallyGroup.append(label, tally, tallyBar, note)
+  tallyGroup.append(label, tally, tallySpark, note)
   row.append(tallyGroup)
-  root.append(row)
+
+  /**
+   * Two headings and a second block, which exist only in the rail.
+   *
+   * They are `.map-group-label` — the same class `stories`, `layers` and
+   * `ground` use — so the money block reads as a member of the rail rather than
+   * as something parked in it, and a change to that heading's rhythm reaches
+   * all five at once. In the scrubber's line the stylesheet hides them: a
+   * heading over a single wrapped row is a heading that has stopped labelling
+   * anything, which is the failure `map-markets-group` already exists to
+   * prevent one level down.
+   *
+   * `world` starts hidden rather than empty. The trends payload is
+   * idle-deferred, so for the first seconds of every load there is genuinely no
+   * world block, and an empty heading is a promise the page has not kept.
+   */
+  const moneyHead = el('span', 'map-group-label map-markets-head', 'money')
+  const worldHead = el('span', 'map-group-label map-markets-head', 'world')
+  worldHead.hidden = true
+  const world = el('div', 'map-markets-world')
+  world.hidden = true
+  root.append(moneyHead, row, worldHead, world)
 
   /**
    * The panel the summaries open, folded up from the strip.
@@ -687,6 +783,18 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    */
   const panel = el('dialog', 'map-markets-panel')
   const panelTitle = el('h2', 'map-markets-panel-title')
+  const panelName = el('span', 'map-markets-panel-name')
+  /**
+   * The counts, and what share of them is yesterday's.
+   *
+   * They used to be on the strip. They are here because the rail's row spends
+   * its width on a shape instead, and because this is where they were always
+   * the reason to have opened something: a reader who has pressed `currencies`
+   * is asking how unanimous the move was, which is exactly what
+   * `7 up, 3 down` answers and what a line cannot.
+   */
+  const panelMeta = el('span', 'map-markets-panel-meta')
+  panelTitle.append(panelName, panelMeta)
   const panelList = el('div', 'map-markets-panel-list')
   panel.append(panelTitle, panelList)
   document.body.append(panel)
@@ -716,30 +824,43 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    *
    * Two placements, because the strip has two homes and they face opposite
    * ways. In the scrubber it is at the foot of the screen, so the panel rises
-   * from the control that summoned it — a popover, sized to its rows. On the
-   * top bar it is at the head of the map, so it comes *down*, spanning the bar
-   * it belongs to: a drawer. That is not decoration. A popover hanging off the
-   * left edge of a full-width bar reads as a thing that happened near the bar;
-   * a panel that shares the bar's two edges reads as the bar opening, which is
-   * what pressing a summary means.
+   * from the control that summoned it — a popover, sized to its rows. In the
+   * rail it is at the side, so the panel comes *out* of the rail's inner edge,
+   * over the map, with its top on the row that summoned it.
    *
-   * `dock` is the element to align to — the island passes the bar when it puts
-   * the strip there, and null when it does not, so this module never has to ask
-   * which layout is live.
+   * The drawer this replaced belonged to the top bar and could not survive the
+   * move: it worked by sharing the bar's two edges, which is what made it read
+   * as the bar opening rather than as something that happened near it, and it
+   * needed the whole width of the canvas to hold `columns: 3`. A rail is
+   * 18–21rem and folds to a spine. Sharing *its* edges would be a 96px-wide
+   * drawer, so the panel takes the one dimension the rail is not using.
+   *
+   * Anchoring to the rail's edge rather than to the button's own left is what
+   * makes the spine work: at 6rem the rows are 80px wide and four panels opened
+   * from four of them would each start at a different place three pixels apart.
+   * The row decides the *top*, the rail decides the side.
+   *
+   * `dock` is the element to align to — the island passes the money box when it
+   * puts the strip in the rail, and null when it does not, so this module never
+   * has to ask which layout is live.
    */
   let dock: HTMLElement | null = null
 
   const placePanel = (btn: HTMLElement) => {
     const r = btn.getBoundingClientRect()
     const gap = 10
-    panel.classList.toggle('is-drawer', dock !== null)
+    panel.classList.toggle('is-rail', dock !== null)
 
     if (dock) {
       const d = dock.getBoundingClientRect()
-      panel.style.left = `${Math.round(d.left)}px`
-      panel.style.right = `${Math.round(window.innerWidth - d.right)}px`
-      panel.style.top = `${Math.round(d.bottom)}px`
+      const h = panel.offsetHeight
+      panel.style.left = 'auto'
+      panel.style.right = `${Math.round(Math.max(gap, window.innerWidth - d.left + gap))}px`
       panel.style.bottom = 'auto'
+      // Pinned to the row, then pushed back inside the window — a group near
+      // the foot of a scrolled rail would otherwise open a panel whose bottom
+      // is below the viewport, and this dialog does not scroll the page.
+      panel.style.top = `${Math.round(Math.max(gap, Math.min(r.top, window.innerHeight - h - gap)))}px`
       return
     }
 
@@ -783,36 +904,40 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * second shape to read the same fact about the currencies.
    */
   /**
-   * Breadth, as a shape.
+   * A group's path, and the change across it.
    *
-   * The one figure a glance actually wants from a group of quotes is *how much
-   * of it moved which way* — and that is a proportion, which a bar states in no
-   * time at all and three numerals state only after they have been read. Three
-   * segments at true share: risen, flat, fallen, left to right.
+   * What replaced the breadth bar on the rail, and the two answer different
+   * questions: breadth is *how much of the group moved which way today*, which
+   * a bar states in no time at all; a sparkline is *where the group has been*,
+   * which no bar and no numeral can state at any length. On a row there was
+   * only ever space for one shape and breadth was the better one. A column has
+   * room for a line, and a line is the thing a reader cannot get anywhere else
+   * on this map — the counts go where the user put them, in the panel.
    *
-   * It **replaces** the counts on the top bar rather than joining them. Two
-   * encodings of one number on one line is the cluster-glow mistake this map
-   * deleted twice — a gold ramp over a numeral that already said the count —
-   * and it would be that mistake again in miniature. The counts are a press
-   * away, in the drawer, where they are the reason to have opened it.
+   * The tone lands on this box rather than on the row, so it reaches the line
+   * and the figure and nothing else: the group's name is not a signed quantity
+   * and colouring it would make a falling basket read as an alert about the
+   * interface, which is the mistake the genocide caption records one file over.
+   * It is one fact in one channel — and it is the channel that survives the
+   * fold, where the figure is dropped and the shape is all there is.
    *
-   * `aria-hidden`, with the numbers carried on the summary's own `aria-label`:
-   * a bar has nothing to say to a screen reader and the label has everything.
+   * `null` when the constituents have no drawable series between them, so the
+   * caller can leave the row unshaped rather than reserving space for a gap.
    */
-  const breadth = (s: ReturnType<typeof summarise>) => {
-    const bar = el('span', 'map-markets-breadth')
-    bar.setAttribute('aria-hidden', 'true')
-    for (const [n, cls] of [
-      [s.up, 'is-pos'],
-      [s.flat, ''],
-      [s.down, 'is-neg'],
-    ] as Array<[number, string]>) {
-      if (!n) continue
-      const seg = el('span', `map-markets-breadth-seg ${cls}`)
-      seg.style.setProperty('--share', String(n))
-      bar.append(seg)
+  const sparkInto = (host: HTMLElement, series: number[][]): number | null => {
+    const index = meanIndex(series)
+    const spark = index ? sparkline(index, SPARK_WINDOW) : null
+    if (!spark) {
+      host.className = 'map-markets-spark'
+      host.replaceChildren()
+      return null
     }
-    return bar
+    host.className = `map-markets-spark${toneClass(spark.windowPct)}`
+    host.replaceChildren(
+      spark.element,
+      el('span', 'map-markets-window', ribbonPct(spark.windowPct)),
+    )
+    return spark.windowPct
   }
 
   /** The counts as a sentence, for the label a bar cannot provide. */
@@ -850,7 +975,12 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * fifteen rows off data the island is already holding; there is nothing to
    * amortise.
    */
-  const openPanel = (btn: HTMLElement, name: string, rows: () => HTMLElement[]) => {
+  const openPanel = (
+    btn: HTMLElement,
+    name: string,
+    meta: () => string,
+    rows: () => HTMLElement[],
+  ) => {
     // A second press on the control that opened it closes it. Pressing a
     // *different* summary swaps the contents rather than stacking a second
     // panel, which is the behaviour a row of four peers should have.
@@ -859,22 +989,32 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
       return
     }
     closePanel()
-    panelTitle.textContent = name
+    panelName.textContent = name
+    // Read at open rather than cached with the trigger, for the reason the rows
+    // are built fresh: the counts must not be able to describe a state the
+    // strip behind the panel has already replaced.
+    panelMeta.textContent = meta()
     panelList.replaceChildren(...rows())
     panel.show()
     openOn = btn
     btn.classList.add('is-open')
     btn.setAttribute('aria-expanded', 'true')
-    // After `show()`, so `offsetWidth` is the laid-out width and not zero.
+    // After `show()`, so `offsetWidth`/`offsetHeight` are the laid-out box and
+    // not zero.
     placePanel(btn)
   }
 
-  const trigger = (btn: HTMLButtonElement, name: string, rows: () => HTMLElement[]) => {
+  const trigger = (
+    btn: HTMLButtonElement,
+    name: string,
+    meta: () => string,
+    rows: () => HTMLElement[],
+  ) => {
     btn.setAttribute('type', 'button')
     btn.setAttribute('aria-haspopup', 'dialog')
     btn.setAttribute('aria-expanded', 'false')
     btn.setAttribute('aria-label', `${name}, show detail`)
-    btn.addEventListener('click', () => openPanel(btn, name, rows))
+    btn.addEventListener('click', () => openPanel(btn, name, meta, rows))
   }
 
   /**
@@ -955,6 +1095,8 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
 
   /** The whole exchange set, ranked, not the four the strip used to name. */
   let allExchanges: MapExchange[] = []
+  /** What the panel's meta line says about the exchanges, set by `update`. */
+  let exchangeMeta = ''
 
   const update = (markets: MapExchange[], now = Date.now()) => {
     const t = marketTally(markets, now)
@@ -963,24 +1105,41 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     const s = { up: t.up, down: t.down, flat: t.flat, net: 0 as const }
     tally.replaceChildren()
     countsInto(tally, s)
-    // Two renderings of the same summary, one per layout: the counts for the
-    // scrubber's line, the bar for the top strip. Both are built and CSS shows
+    // Two renderings of the same group, one per layout: the counts for the
+    // scrubber's line, the shape for the rail. Both are built and CSS shows
     // one, because which layout is live is a media query the island resolves
     // and this module has no business asking about.
-    tallyBar.replaceChildren(breadth(s))
+    //
+    // The world's equity market as one line, from the thirty indices this map
+    // already draws. `series.values` has been in the payload since the layer
+    // shipped and nothing but the exchange card ever read it.
+    const pct = sparkInto(
+      tallySpark,
+      markets.flatMap((m) => (Array.isArray(m.series?.values) ? [m.series.values] : [])),
+    )
     tallyGroup.setAttribute(
       'aria-label',
-      `Exchanges — ${countsText(s)}${t.closed ? `, ${t.closed} closed` : ''}`,
+      `Exchanges — ${countsText(s)}${t.closed ? `, ${t.closed} closed` : ''}${
+        pct == null ? '' : `, ${ribbonPct(pct)} over ${SPARK_WINDOW} sessions`
+      }`,
     )
 
     // The caveat on the whole readout: at any given moment most exchanges are
     // shut, and those numbers are last night's. One number rather than thirty
-    // mark-states. It stays on the bar with the shape, because it is not a
-    // re-encoding of breadth — it says how much of the breadth is yesterday's.
+    // mark-states. In the scrubber it sits on the line beside the counts; in
+    // the rail the line is spent on a shape, so it travels with the counts into
+    // the panel — it is not a re-encoding of either, it says how much of them
+    // is yesterday's.
     note.textContent = t.closed ? `${t.closed} closed` : ''
+    exchangeMeta = countsText(s) + (t.closed ? ` · ${t.closed} closed` : '')
   }
 
-  trigger(tallyGroup, 'markets', () => allExchanges.map(exchangeRow))
+  trigger(
+    tallyGroup,
+    'markets',
+    () => exchangeMeta,
+    () => allExchanges.map(exchangeRow),
+  )
 
   /**
    * The three money groups, as three more summaries on the same row.
@@ -996,11 +1155,10 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    */
   const setTrends = (indicators: TrendIndicator[]) => {
     for (const stale of row.querySelectorAll('.map-markets-group[data-trend]')) stale.remove()
-    const entries = tickerEntries(indicators)
-    if (!entries.length) return
+    const quotes = tickerEntries(indicators)
 
     const byGroup = new Map<string, TickerEntry[]>()
-    for (const e of entries) {
+    for (const e of quotes) {
       const list = byGroup.get(e.group)
       if (list) list.push(e)
       else byGroup.set(e.group, [e])
@@ -1017,12 +1175,65 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
       // went, ahead of the counts saying how unanimous that was. A group can be
       // 4 up and 3 down and still net down, and those are two different facts —
       // which is the whole reason the tick is not derived from the counts.
-      const signal = el('span', 'map-markets-signal')
-      signal.append(breadth(s))
-      summary.append(tick(s.net), el('span', 'map-markets-label', name), counts, signal)
-      summary.setAttribute('aria-label', `${name} — ${countsText(s)}`)
-      trigger(summary, name, () => items.map(quoteRow))
+      const spark = el('span', 'map-markets-spark')
+      // `values` and not the raw series: FX is published `X / USD` and inverted
+      // on the way into the entry, so this is the basket the way the row reads
+      // it. `usd-index` is excluded because it is *derived from* the other six —
+      // it moves opposite to them by construction, so averaging it back in
+      // cancels a seventh of the signal the line exists to carry.
+      const pct = sparkInto(
+        spark,
+        items.filter((e) => e.id !== 'usd-index').map((e) => e.values),
+      )
+      summary.append(tick(s.net), el('span', 'map-markets-label', name), counts, spark)
+      summary.setAttribute(
+        'aria-label',
+        `${name} — ${countsText(s)}${
+          pct == null ? '' : `, ${ribbonPct(pct)} over ${SPARK_WINDOW} days`
+        }`,
+      )
+      trigger(
+        summary,
+        name,
+        () => countsText(s),
+        () => items.map(quoteRow),
+      )
       row.append(summary)
+    }
+
+    /**
+     * The world block: three instruments, no groups, no panel.
+     *
+     * A press opens the indicator's own card, because there is nothing to
+     * summarise — the row *is* the instrument. That also means these carry no
+     * `aria-expanded`: the card is the sheet's dialog, not this module's, and
+     * claiming to own its state would be a lie a screen reader has no way to
+     * check.
+     */
+    const worldRows = worldEntries(indicators)
+    world.replaceChildren()
+    world.hidden = worldRows.length === 0
+    worldHead.hidden = world.hidden
+    for (const entry of worldRows) {
+      const item = el('button', 'map-markets-group map-markets-summary')
+      item.setAttribute('type', 'button')
+      item.setAttribute('aria-haspopup', 'dialog')
+      const spark = el('span', 'map-markets-spark')
+      const pct = sparkInto(spark, [entry.values])
+      item.append(
+        tick(marketDirection(entry.pct)),
+        el('span', 'map-markets-label', entry.label),
+        spark,
+      )
+      item.setAttribute(
+        'aria-label',
+        `${entry.name}${pct == null ? '' : ` — ${ribbonPct(pct)} over ${SPARK_WINDOW} days`}, show detail`,
+      )
+      item.addEventListener('click', () => {
+        closePanel()
+        opts.onQuote(entry)
+      })
+      world.append(item)
     }
   }
 
