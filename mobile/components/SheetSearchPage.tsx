@@ -1,8 +1,7 @@
-import { BottomSheetFlatList, BottomSheetTextInput } from '@gorhom/bottom-sheet';
+import { BottomSheetFlatList, BottomSheetTextInput } from '@expo/ui/community/bottom-sheet';
 import type { Article, Category } from '@shared/types';
 import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
-import { AccessibilityInfo, Pressable, StyleSheet, View } from 'react-native';
-import type { TextInput } from 'react-native-gesture-handler';
+import { AccessibilityInfo, Pressable, StyleSheet, type TextInput, View } from 'react-native';
 import { IS_ANDROID } from '../constants/platform';
 import { CATEGORIES, HIT_SLOP, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
@@ -153,6 +152,13 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
           data={results}
           renderItem={renderItem}
           keyExtractor={keyExtractor}
+          // `flex: 1` is load-bearing under native sheets. The sheet gives its
+          // content a bounded column; a list with no flex would measure to its
+          // own content height, overflow the sheet and stop scrolling at the
+          // fold. gorhom used to supply this from inside its scrollable HOC —
+          // `BottomSheetFlatList` is now a plain RN `FlatList`, so it doesn't.
+          // The `emptyFill` siblings below already assume the same bounded box.
+          style={styles.list}
           contentContainerStyle={[styles.listContent, { paddingBottom: bottomInset + SPACING.lg }]}
           indicatorStyle={resolvedAppearance === 'dark' ? 'white' : 'black'}
           keyboardShouldPersistTaps="handled"
@@ -189,6 +195,9 @@ const styles = StyleSheet.create({
     paddingLeft: 0,
   },
   emptyFill: {
+    flex: 1,
+  },
+  list: {
     flex: 1,
   },
   listContent: {

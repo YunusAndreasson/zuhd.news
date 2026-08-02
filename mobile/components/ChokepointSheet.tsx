@@ -61,7 +61,6 @@ export const ChokepointSheet = memo(function ChokepointSheet({
   chokepoint,
   articles,
   bottomInset,
-  renderBackdrop,
   onDismiss,
   onArticlePress,
 }: ChokepointSheetProps) {
@@ -106,7 +105,6 @@ export const ChokepointSheet = memo(function ChokepointSheet({
     <SheetLayout
       sheetRef={sheetRef}
       {...snapProps}
-      renderBackdrop={renderBackdrop}
       onDismiss={onDismiss}
       handleTitle={chokepoint?.name}
     >

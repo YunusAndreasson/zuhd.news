@@ -1,8 +1,3 @@
-import {
-  BottomSheetBackdrop,
-  type BottomSheetBackdropProps,
-  type BottomSheetModal,
-} from '@gorhom/bottom-sheet';
 import { COUNTRY_DATA, type CountryData } from '@shared/countries/country-data';
 import type {
   Article,
@@ -40,9 +35,10 @@ import { HintOverlay } from '../components/HintOverlay';
 import { MenuSheet } from '../components/MenuSheet';
 import { NotificationPrimerSheet } from '../components/NotificationPrimerSheet';
 import { Screen } from '../components/primitives';
+import type { BottomSheetMethodsRef } from '../components/SheetLayout';
 import { SourcesSheet } from '../components/SourcesSheet';
 import { Toast, type ToastRef } from '../components/Toast';
-import { CATEGORIES, EDITORIAL, OPACITY } from '../constants/theme';
+import { CATEGORIES, EDITORIAL } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useChokepoints } from '../hooks/useChokepoints';
@@ -78,15 +74,15 @@ export default function HomeScreen() {
   const { colors } = useTheme();
   const { preferences } = usePreferences();
   const { current: currentZoom, toggle: handleZoomToggle } = useZoomCycle();
-  const menuSheetRef = useRef<BottomSheetModal>(null);
-  const primerSheetRef = useRef<BottomSheetModal>(null);
-  const sourcesSheetRef = useRef<BottomSheetModal>(null);
-  const countrySheetRef = useRef<BottomSheetModal>(null);
-  const chokepointSheetRef = useRef<BottomSheetModal>(null);
-  const disasterSheetRef = useRef<BottomSheetModal>(null);
-  const conflictSheetRef = useRef<BottomSheetModal>(null);
-  const disambiguationSheetRef = useRef<BottomSheetModal>(null);
-  const entitySheetRef = useRef<BottomSheetModal>(null);
+  const menuSheetRef = useRef<BottomSheetMethodsRef>(null);
+  const primerSheetRef = useRef<BottomSheetMethodsRef>(null);
+  const sourcesSheetRef = useRef<BottomSheetMethodsRef>(null);
+  const countrySheetRef = useRef<BottomSheetMethodsRef>(null);
+  const chokepointSheetRef = useRef<BottomSheetMethodsRef>(null);
+  const disasterSheetRef = useRef<BottomSheetMethodsRef>(null);
+  const conflictSheetRef = useRef<BottomSheetMethodsRef>(null);
+  const disambiguationSheetRef = useRef<BottomSheetMethodsRef>(null);
+  const entitySheetRef = useRef<BottomSheetMethodsRef>(null);
   const pagerRef = useRef<PagerView>(null);
   const pendingArticleNavigationRef = useRef<{ page: number; slug: string } | null>(null);
   const completeArticleNavigation = useCallback((page: number) => {
@@ -95,18 +91,6 @@ export default function HomeScreen() {
     pendingArticleNavigationRef.current = null;
     listRefs[page]?.current?.scrollToSlug(pending.slug);
   }, []);
-  const renderBackdrop = useCallback(
-    (props: BottomSheetBackdropProps) => (
-      <BottomSheetBackdrop
-        {...props}
-        disappearsOnIndex={-1}
-        appearsOnIndex={0}
-        pressBehavior="close"
-        opacity={OPACITY.backdrop}
-      />
-    ),
-    [],
-  );
   const {
     grouped,
     briefing,
@@ -661,7 +645,6 @@ export default function HomeScreen() {
       <MenuSheet
         sheetRef={menuSheetRef}
         bottomInset={insets.bottom}
-        renderBackdrop={renderBackdrop}
         onDismiss={() => setMenuOpen(false)}
         grouped={grouped}
         onSelectArticle={handleSelectArticle}
@@ -674,7 +657,6 @@ export default function HomeScreen() {
         activeAlerts={countryAlerts}
         onAlertPress={handleCountryAlertPress}
         bottomInset={insets.bottom}
-        renderBackdrop={renderBackdrop}
         onDismiss={() => setCountrySheet(null)}
       />
 
@@ -683,7 +665,6 @@ export default function HomeScreen() {
         alert={activeAlert}
         details={gdacsDetails}
         bottomInset={insets.bottom}
-        renderBackdrop={renderBackdrop}
         onDismiss={() => setActiveAlert(null)}
         onCountryPress={(countryName) => {
           // Hop from disaster → country: dismiss this sheet, then present
@@ -699,7 +680,6 @@ export default function HomeScreen() {
         sheetRef={conflictSheetRef}
         event={activeConflict}
         bottomInset={insets.bottom}
-        renderBackdrop={renderBackdrop}
         onDismiss={() => setActiveConflict(null)}
         onCountryPress={(countryName) => {
           conflictSheetRef.current?.dismiss();
@@ -714,7 +694,6 @@ export default function HomeScreen() {
         alerts={gdacsAlerts}
         conflictEvents={conflictEvents}
         bottomInset={insets.bottom}
-        renderBackdrop={renderBackdrop}
         onDismiss={() => setChooserCandidates([])}
         onSelect={(candidate) => {
           // Dismiss the chooser first so its dismiss animation overlaps
@@ -731,7 +710,6 @@ export default function HomeScreen() {
         chokepoint={activeChokepoint}
         articles={flatArticles}
         bottomInset={insets.bottom}
-        renderBackdrop={renderBackdrop}
         onDismiss={() => setActiveChokepoint(null)}
         onArticlePress={(slug, category) => {
           chokepointSheetRef.current?.dismiss();
@@ -745,7 +723,6 @@ export default function HomeScreen() {
         indicator={activeIndicator}
         articles={flatArticles}
         bottomInset={insets.bottom}
-        renderBackdrop={renderBackdrop}
         onDismiss={() => setActiveEntity(null)}
         onArticlePress={(slug, category) => {
           entitySheetRef.current?.dismiss();
@@ -757,14 +734,12 @@ export default function HomeScreen() {
         sheetRef={sourcesSheetRef}
         sources={sheetSources}
         bottomInset={insets.bottom}
-        renderBackdrop={renderBackdrop}
         onDismiss={() => setSheetSources([])}
       />
 
       <NotificationPrimerSheet
         sheetRef={primerSheetRef}
         bottomInset={insets.bottom}
-        renderBackdrop={renderBackdrop}
         onDismiss={() => setPrimerOpen(false)}
         onToast={handleMenuToast}
       />

@@ -1,4 +1,3 @@
-import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { useFonts } from 'expo-font';
 import * as Notifications from 'expo-notifications';
@@ -92,10 +91,13 @@ export default function RootLayout() {
             client={queryClient}
             persistOptions={{ persister, maxAge: PERSIST_MAX_AGE_MS }}
           >
+            {/* No BottomSheetModalProvider: gorhom needed one to own the portal
+                every modal sheet rendered into. Platform sheets present
+                themselves, and `@expo/ui` keeps the export only as a
+                compat no-op that renders its children — so the wrapper was a
+                tree level that did nothing. */}
             <ThemeProvider fontsAvailable={fontsLoaded}>
-              <BottomSheetModalProvider>
-                <ThemedShell />
-              </BottomSheetModalProvider>
+              <ThemedShell />
             </ThemeProvider>
           </PersistQueryClientProvider>
         </Suspense>

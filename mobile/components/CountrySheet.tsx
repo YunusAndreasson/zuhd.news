@@ -221,7 +221,6 @@ export const CountrySheet = memo(function CountrySheet({
   activeAlerts,
   onAlertPress,
   bottomInset,
-  renderBackdrop,
   onDismiss,
 }: CountrySheetProps) {
   const { resolvedAppearance } = useTheme();
@@ -341,7 +340,6 @@ export const CountrySheet = memo(function CountrySheet({
     <SheetLayout
       sheetRef={sheetRef}
       {...snapProps}
-      renderBackdrop={renderBackdrop}
       handleComponent={CountryHandle}
       onDismiss={handleDismiss}
       onChange={handleSheetChange}

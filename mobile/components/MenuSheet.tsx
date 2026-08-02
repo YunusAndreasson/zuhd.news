@@ -492,7 +492,6 @@ interface MenuSheetProps extends BaseSheetProps {
 export const MenuSheet = memo(function MenuSheet({
   sheetRef,
   bottomInset,
-  renderBackdrop,
   onDismiss,
   grouped,
   onSelectArticle,
@@ -556,15 +555,9 @@ export const MenuSheet = memo(function MenuSheet({
     <SheetLayout
       sheetRef={sheetRef}
       {...snapProps}
-      enableOverDrag={false}
-      renderBackdrop={renderBackdrop}
       handleComponent={Handle}
       onDismiss={handleDismiss}
       onChange={handleSheetChange}
-      keyboardBehavior="extend"
-      keyboardBlurBehavior="none"
-      enableBlurKeyboardOnGesture
-      android_keyboardInputMode="adjustResize"
     >
       {nav.current === 'search' ? (
         <SheetSearchPage

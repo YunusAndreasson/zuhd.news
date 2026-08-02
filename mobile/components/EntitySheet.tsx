@@ -79,7 +79,6 @@ export const EntitySheet = memo(function EntitySheet({
   indicator,
   articles,
   bottomInset,
-  renderBackdrop,
   onDismiss,
   onArticlePress,
 }: EntitySheetProps) {
@@ -98,13 +97,7 @@ export const EntitySheet = memo(function EntitySheet({
   const handleTitle = indicator?.label ?? entity?.mention ?? '';
 
   return (
-    <SheetLayout
-      sheetRef={sheetRef}
-      {...snapProps}
-      renderBackdrop={renderBackdrop}
-      onDismiss={onDismiss}
-      handleTitle={handleTitle}
-    >
+    <SheetLayout sheetRef={sheetRef} {...snapProps} onDismiss={onDismiss} handleTitle={handleTitle}>
       <SheetScrollView bottomInset={bottomInset}>
         {indicator && (
           <>

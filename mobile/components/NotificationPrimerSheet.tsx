@@ -24,7 +24,6 @@ interface NotificationPrimerSheetProps extends BaseSheetProps {
 export const NotificationPrimerSheet = memo(function NotificationPrimerSheet({
   sheetRef,
   bottomInset,
-  renderBackdrop,
   onDismiss,
   onToast,
 }: NotificationPrimerSheetProps) {
@@ -65,7 +64,6 @@ export const NotificationPrimerSheet = memo(function NotificationPrimerSheet({
     <SheetLayout
       sheetRef={sheetRef}
       {...snapProps}
-      renderBackdrop={renderBackdrop}
       onDismiss={handleDismiss}
       handleTitle="briefings"
     >

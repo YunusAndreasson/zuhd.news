@@ -1,4 +1,4 @@
-import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
+import { BottomSheetFlatList } from '@expo/ui/community/bottom-sheet';
 import {
   getRanking,
   METRICS,

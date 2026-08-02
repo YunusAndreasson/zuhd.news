@@ -31,7 +31,6 @@ export const ConflictSheet = memo(function ConflictSheet({
   sheetRef,
   event,
   bottomInset,
-  renderBackdrop,
   onDismiss,
   onCountryPress,
 }: ConflictSheetProps) {
@@ -79,13 +78,7 @@ export const ConflictSheet = memo(function ConflictSheet({
   const enter = makeStaggerEnter();
 
   return (
-    <SheetLayout
-      sheetRef={sheetRef}
-      {...snapProps}
-      renderBackdrop={renderBackdrop}
-      onDismiss={onDismiss}
-      handleTitle={handleTitle}
-    >
+    <SheetLayout sheetRef={sheetRef} {...snapProps} onDismiss={onDismiss} handleTitle={handleTitle}>
       <SheetScrollView bottomInset={bottomInset}>
         {event && (
           <>

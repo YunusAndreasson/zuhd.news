@@ -371,7 +371,6 @@ export const FLAG = {
 /** Non-radius, non-icon layout primitives. */
 export const LAYOUT = {
   progressBarHeight: 2,
-  sheetMaxFraction: 0.7,
   handleWidth: 36,
   handleHeight: 4,
   inputHeight: 40,
@@ -420,17 +419,18 @@ export const EASING = {
 /**
  * Opacity scale. Grouped by intent:
  *   - Interactive state (disabled / pressed / hover)
- *   - Chrome (backdrop)
  *   - Decorative layers (glow, heatmap, subtle tint)
  * Prefer named tokens over inline decimals so visual hierarchy stays auditable.
+ *
+ * There is no `backdrop` step any more. It set the sheet scrim's opacity, and
+ * sheets are platform sheets now — the scrim is drawn by SwiftUI / Material3
+ * and takes no value from here.
  */
 export const OPACITY = {
   // Interactive states
   disabled: 0.5,
   pressed: 0.7,
   hover: 0.85,
-  // Chrome
-  backdrop: 0.3,
   // Decorative / chrome layers
   barely: 0.03,
   faint: 0.08,

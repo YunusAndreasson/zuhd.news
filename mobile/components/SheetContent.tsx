@@ -1,4 +1,4 @@
-import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
+import { BottomSheetScrollView } from '@expo/ui/community/bottom-sheet';
 import type { ComponentProps } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
@@ -15,24 +15,38 @@ type EnteringAnimation = ComponentProps<typeof Animated.View>['entering'];
 // `bottomInset + SPACING.lg` safe-area tail. That recipe was copy-pasted into
 // ten sheets; owning it here keeps the content rhythm in one place. Extra props
 // (e.g. `indicatorStyle`) and additional `contentContainerStyle` pass through.
+//
+// `flexShrink: 1` is the one style that has to be here rather than at a call
+// site, because this component serves both sheet modes and they disagree about
+// what `flex` means. A fixed-snap sheet ('85%') hands its content a bounded
+// column, and a scroll view with no flex would measure to its own content
+// height, overflow the sheet and stop scrolling at the fold — gorhom supplied
+// that flex from inside its scrollable HOC, and `BottomSheetScrollView` is now
+// a plain RN `ScrollView`. But a content-sized sheet hands down an *auto*
+// height, where `flex: 1`'s `flexBasis: 0` would measure the content as zero
+// and collapse the sheet. `flexShrink: 1` is correct in both: it shrinks to fit
+// when the box is bounded, and is inert when it isn't.
 // ---------------------------------------------------------------------------
 
 type ScrollViewProps = ComponentProps<typeof BottomSheetScrollView>;
 
-interface SheetScrollViewProps extends Omit<ScrollViewProps, 'contentContainerStyle'> {
+interface SheetScrollViewProps extends Omit<ScrollViewProps, 'contentContainerStyle' | 'style'> {
   bottomInset: number;
   contentContainerStyle?: ScrollViewProps['contentContainerStyle'];
+  style?: ScrollViewProps['style'];
 }
 
 export function SheetScrollView({
   bottomInset,
   contentContainerStyle,
+  style,
   children,
   ...rest
 }: SheetScrollViewProps) {
   const { sheetStyles } = useTheme();
   return (
     <BottomSheetScrollView
+      style={[styles.scroll, style]}
       contentContainerStyle={[
         sheetStyles.content,
         { paddingBottom: bottomInset + SPACING.lg },
@@ -192,6 +206,9 @@ export function SheetLink({ label, onPress, accessibilityLabel }: SheetLinkProps
 }
 
 const styles = StyleSheet.create({
+  scroll: {
+    flexShrink: 1,
+  },
   eyebrow: {
     marginBottom: SPACING.xs,
   },

@@ -1,8 +1,8 @@
-import type { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { useEffect, useMemo } from 'react';
 import { BackHandler } from 'react-native';
 import { Gesture } from 'react-native-gesture-handler';
 import { scheduleOnRN } from 'react-native-worklets';
+import type { BottomSheetMethodsRef } from '../components/SheetLayout';
 import { IS_ANDROID } from '../constants/platform';
 
 interface SheetBackNavigation {
@@ -13,7 +13,7 @@ interface SheetBackNavigation {
   canGoBack: boolean;
   /** Pop one sub-page back toward the sheet's root. */
   onBack: () => void;
-  sheetRef: React.RefObject<BottomSheetModal | null>;
+  sheetRef: React.RefObject<BottomSheetMethodsRef | null>;
 }
 
 /** Multi-page-sheet back navigation, shared verbatim by MenuSheet and

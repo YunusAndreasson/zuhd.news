@@ -21,7 +21,6 @@ export const SourcesSheet = memo(function SourcesSheet({
   sheetRef,
   sources,
   bottomInset,
-  renderBackdrop,
   onDismiss,
 }: SourcesSheetProps) {
   const snapProps = useSheetSnaps(false);
@@ -33,12 +32,7 @@ export const SourcesSheet = memo(function SourcesSheet({
   }, [sources]);
 
   return (
-    <SheetLayout
-      sheetRef={sheetRef}
-      {...snapProps}
-      renderBackdrop={renderBackdrop}
-      onDismiss={onDismiss}
-    >
+    <SheetLayout sheetRef={sheetRef} {...snapProps} onDismiss={onDismiss}>
       <SheetScrollView bottomInset={bottomInset}>
         {sources.length > 0 && (
           <>

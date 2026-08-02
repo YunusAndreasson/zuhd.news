@@ -301,7 +301,6 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
   alerts,
   conflictEvents,
   bottomInset,
-  renderBackdrop,
   onDismiss,
   onSelect,
 }: DisambiguationSheetProps) {
@@ -330,7 +329,6 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
     <SheetLayout
       sheetRef={sheetRef}
       {...snapProps}
-      renderBackdrop={renderBackdrop}
       onDismiss={onDismiss}
       handleTitle="multiple items here"
     >

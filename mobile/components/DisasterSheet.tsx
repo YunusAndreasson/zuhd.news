@@ -74,7 +74,6 @@ export const DisasterSheet = memo(function DisasterSheet({
   alert,
   details,
   bottomInset,
-  renderBackdrop,
   onDismiss,
   onCountryPress,
 }: DisasterSheetProps) {
@@ -132,7 +131,6 @@ export const DisasterSheet = memo(function DisasterSheet({
     <SheetLayout
       sheetRef={sheetRef}
       {...snapProps}
-      renderBackdrop={renderBackdrop}
       onDismiss={onDismiss}
       handleTitle={alert?.name ?? ''}
     >
