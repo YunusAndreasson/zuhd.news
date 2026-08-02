@@ -79,4 +79,21 @@ config.resolver = {
   ),
 };
 
+// DIAGNOSTIC ONLY — remove alongside scripts/patch-worklets-diagnostic.js.
+// That patch makes worklets report which non-worklet function was called on
+// the UI runtime; `keep_fnames` is what stops the release minifier renaming
+// it to a single letter first. Terser's keep_fnames is semantics-preserving —
+// it exists precisely for code that reads `fn.name`.
+config.transformer = {
+  ...config.transformer,
+  minifierConfig: {
+    ...(config.transformer?.minifierConfig ?? {}),
+    keep_fnames: true,
+    mangle: {
+      ...(config.transformer?.minifierConfig?.mangle ?? {}),
+      keep_fnames: true,
+    },
+  },
+};
+
 module.exports = config;
