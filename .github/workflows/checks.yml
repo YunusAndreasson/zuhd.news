@@ -35,6 +35,18 @@ jobs:
 
       - run: npm ci
 
+      # The MCP worker is a separate package with its own deps and its own
+      # lock file, and tsconfig.node.json deliberately typechecks it
+      # ("workers/mcp/src/**/*.js" — the config's own header names it). A root
+      # `npm ci` does not reach it, so Typecheck could not resolve
+      # @modelcontextprotocol/sdk and failed on an import rather than on
+      # anything a commit had changed. Installing it here keeps the worker
+      # inside the gate; excluding it from the tsconfig would have taken the
+      # only dynamic surface we deploy back out of CI to make CI go green.
+      - name: Install MCP worker deps
+        working-directory: workers/mcp
+        run: npm ci
+
       - name: Lint
         run: npm run lint
 
