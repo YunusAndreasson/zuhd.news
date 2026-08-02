@@ -895,36 +895,6 @@ if (existsSync(marketsSrc)) {
   console.log(
     `  Built: api/markets.json (${enriched.exchanges.length} exchanges, ${withCoverage} with coverage)`,
   )
-  // Mobile-shaped twin. Same objects, three fields lighter: `series` (a
-  // quarter of daily closes per exchange), `blurb` and `relatedArticles` are
-  // ~72 KB of the 79 KB above, and the app draws a direction glyph on a globe
-  // rather than a chart. It is not a size optimisation for its own sake — the
-  // app counts every decoded byte it downloads and shows the reader the total,
-  // so an endpoint it does not need in full is a claim it pays for and cannot
-  // use. Same argument, same shape and the same fallback as feed-lite → feed.
-  //
-  // Add fields here only if the app renders them; the full endpoint is where
-  // completeness lives, and the two must never disagree about a *shared* field.
-  // `topicTags`/`countryTags` go too: they exist to drive the article join two
-  // lines above, which has already happened by the time this runs, and the app
-  // renders neither. Keeping them cost 3 KB to ship a matcher's working notes.
-  const lite = {
-    generated: enriched.generated,
-    exchanges: enriched.exchanges.map(
-      ({
-        series: _series,
-        blurb: _blurb,
-        relatedArticles: _related,
-        topicTags: _topics,
-        countryTags: _countries,
-        ...rest
-      }) => rest,
-    ),
-  }
-  writeFileSync(join(DIST_DIR, 'api', 'markets-lite.json'), JSON.stringify(lite))
-  const fullKb = Math.round(JSON.stringify(enriched).length / 1024)
-  const liteKb = Math.round(JSON.stringify(lite).length / 1024)
-  console.log(`  Built: api/markets-lite.json (${liteKb} KB, against ${fullKb} KB full)`)
 }
 
 // GDACS disaster snapshot — pre-fetched alert list + EQ/TC population

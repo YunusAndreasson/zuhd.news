@@ -4,7 +4,6 @@ import {
   type BottomSheetModal,
 } from '@gorhom/bottom-sheet';
 import { COUNTRY_DATA, type CountryData } from '@shared/countries/country-data';
-import type { GenocideSituation } from '@shared/genocide';
 import type {
   Article,
   ArticleSource,
@@ -13,7 +12,6 @@ import type {
   ConflictEvent,
   Entity,
   GdacsAlert,
-  MarketExchange,
 } from '@shared/types';
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
@@ -37,10 +35,8 @@ import { DisasterSheet } from '../components/DisasterSheet';
 import { EmptyState } from '../components/EmptyState';
 import { EntitySheet } from '../components/EntitySheet';
 import { ErrorState } from '../components/ErrorState';
-import { GenocideSheet } from '../components/GenocideSheet';
 import type { TapResult } from '../components/globe/MiniGlobe';
 import { HintOverlay } from '../components/HintOverlay';
-import { MarketSheet } from '../components/MarketSheet';
 import { MenuSheet } from '../components/MenuSheet';
 import { NotificationPrimerSheet } from '../components/NotificationPrimerSheet';
 import { Screen } from '../components/primitives';
@@ -52,9 +48,7 @@ import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useChokepoints } from '../hooks/useChokepoints';
 import { useConflictEvents } from '../hooks/useConflictEvents';
 import { useGdacsAlerts } from '../hooks/useGdacsAlerts';
-import { useGenocide } from '../hooks/useGenocide';
 import { useHeatmap } from '../hooks/useHeatmap';
-import { useMarkets } from '../hooks/useMarkets';
 import { useOnboardingHints } from '../hooks/useOnboardingHints';
 import { usePendingNotification } from '../hooks/usePendingNotification';
 import { usePreferences, useTheme } from '../hooks/useTheme';
@@ -91,8 +85,6 @@ export default function HomeScreen() {
   const chokepointSheetRef = useRef<BottomSheetModal>(null);
   const disasterSheetRef = useRef<BottomSheetModal>(null);
   const conflictSheetRef = useRef<BottomSheetModal>(null);
-  const marketSheetRef = useRef<BottomSheetModal>(null);
-  const genocideSheetRef = useRef<BottomSheetModal>(null);
   const disambiguationSheetRef = useRef<BottomSheetModal>(null);
   const entitySheetRef = useRef<BottomSheetModal>(null);
   const pagerRef = useRef<PagerView>(null);
@@ -131,8 +123,6 @@ export default function HomeScreen() {
   const { chokepoints } = useChokepoints();
   const { alerts: gdacsAlerts, details: gdacsDetails } = useGdacsAlerts();
   const { events: conflictEvents } = useConflictEvents();
-  const { exchanges } = useMarkets();
-  const { situations: genocideSituations } = useGenocide();
   const { byId: indicatorsById } = useTrendsSnapshot();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
@@ -150,8 +140,6 @@ export default function HomeScreen() {
   const [activeChokepoint, setActiveChokepoint] = useState<Chokepoint | null>(null);
   const [activeAlert, setActiveAlert] = useState<GdacsAlert | null>(null);
   const [activeConflict, setActiveConflict] = useState<ConflictEvent | null>(null);
-  const [activeExchange, setActiveExchange] = useState<MarketExchange | null>(null);
-  const [activeGenocide, setActiveGenocide] = useState<GenocideSituation | null>(null);
   const [chooserCandidates, setChooserCandidates] = useState<TapResult[]>([]);
   const [activeEntity, setActiveEntity] = useState<Entity | null>(null);
   // The two payload-less sheets need explicit open flags so the hint overlay
@@ -280,10 +268,6 @@ export default function HomeScreen() {
   gdacsAlertsRef.current = gdacsAlerts;
   const conflictEventsRef = useRef(conflictEvents);
   conflictEventsRef.current = conflictEvents;
-  const exchangesRef = useRef(exchanges);
-  exchangesRef.current = exchanges;
-  const genocideRef = useRef(genocideSituations);
-  genocideRef.current = genocideSituations;
 
   // Flat feed across categories — memoized so downstream memos keyed on it
   // (e.g. ChokepointSheet's findRelatedArticles) don't invalidate every render.
@@ -374,22 +358,6 @@ export default function HomeScreen() {
         if (cp) {
           setActiveChokepoint(cp);
           chokepointSheetRef.current?.present();
-        }
-        return;
-      }
-      if (result.marketExchangeId) {
-        const e = exchangesRef.current.find((x) => x.id === result.marketExchangeId);
-        if (e) {
-          setActiveExchange(e);
-          marketSheetRef.current?.present();
-        }
-        return;
-      }
-      if (result.genocideId) {
-        const g = genocideRef.current.find((s) => s.id === result.genocideId);
-        if (g) {
-          setActiveGenocide(g);
-          genocideSheetRef.current?.present();
         }
         return;
       }
@@ -642,8 +610,6 @@ export default function HomeScreen() {
                 chokepoints={chokepoints}
                 gdacsAlerts={gdacsAlerts}
                 conflictEvents={conflictEvents}
-                exchanges={exchanges}
-                genocideSituations={genocideSituations}
                 viewportHeight={pagerHeight}
                 catIndex={catIndex}
                 lastSeenAt={lastSeenAt}
@@ -741,45 +707,12 @@ export default function HomeScreen() {
         }}
       />
 
-      <MarketSheet
-        sheetRef={marketSheetRef}
-        exchange={activeExchange}
-        articles={flatArticles}
-        bottomInset={insets.bottom}
-        renderBackdrop={renderBackdrop}
-        onDismiss={() => setActiveExchange(null)}
-        onArticlePress={(slug, category) => {
-          marketSheetRef.current?.dismiss();
-          handleSelectArticle(slug, category);
-        }}
-        onCountryPress={(countryName) => {
-          marketSheetRef.current?.dismiss();
-          openCountry(countryName);
-        }}
-      />
-
-      <GenocideSheet
-        sheetRef={genocideSheetRef}
-        situation={activeGenocide}
-        bottomInset={insets.bottom}
-        renderBackdrop={renderBackdrop}
-        onDismiss={() => setActiveGenocide(null)}
-        onCountryPress={(countryName) => {
-          // The chip carries the country PROFILE name (Palestine, Myanmar),
-          // not the mark's own place name (Gaza, Rakhine) — see GenocideSheet.
-          genocideSheetRef.current?.dismiss();
-          openCountry(countryName);
-        }}
-      />
-
       <DisambiguationSheet
         sheetRef={disambiguationSheetRef}
         candidates={chooserCandidates}
         chokepoints={chokepoints}
         alerts={gdacsAlerts}
         conflictEvents={conflictEvents}
-        exchanges={exchanges}
-        genocideSituations={genocideSituations}
         bottomInset={insets.bottom}
         renderBackdrop={renderBackdrop}
         onDismiss={() => setChooserCandidates([])}

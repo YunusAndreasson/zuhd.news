@@ -139,25 +139,6 @@
 /api/markets.json
   Cache-Control: public, max-age=900, stale-while-revalidate=3600, stale-if-error=86400
 
-# The mobile-shaped twin of the rule above, and it takes the same numbers on
-# purpose: two endpoints built from one snapshot that expired on different
-# schedules would let the app and the map disagree about the same session.
-/api/markets-lite.json
-  Cache-Control: public, max-age=900, stale-while-revalidate=3600, stale-if-error=86400
-  Access-Control-Allow-Origin: *
-
-# Slower-moving than the IPC layer below by another order of magnitude: two
-# determinations, the most recent made in September 2025, and the record is a
-# hand-edited file rather than a feed. A day's max-age still picks up a new
-# finding within one cycle of it being written. `stale-if-error` runs a month
-# because there is no version of this going blank that is the better failure —
-# an unreachable origin is not a finding being withdrawn, and the app's own
-# fallback (the bundled copy in `@shared/genocide`) makes the same argument
-# one layer down.
-/api/genocide.json
-  Cache-Control: public, max-age=86400, stale-while-revalidate=604800, stale-if-error=2592000
-  Access-Control-Allow-Origin: *
-
 /api/heatmap.json
   Cache-Control: public, max-age=300, stale-while-revalidate=3600, stale-if-error=86400
   Access-Control-Allow-Origin: *

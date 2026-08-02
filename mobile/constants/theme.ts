@@ -124,36 +124,6 @@ export const DARK_COLORS = {
   toneFavorableText: '#82a98a',
   toneUnfavorableText: '#a98080',
   toneNeutralText: '#8298a9',
-  /**
-   * The only red in the app. Reserved for one thing: a situation a named UN
-   * body has *determined* to be genocide (`@shared/genocide`, `finding:
-   * 'determination'`).
-   *
-   * ── Why this exists when nothing else here is chromatic ──────────────────
-   *
-   * `foundation.md`: "Color is not a design element. It appears only where it
-   * carries information." This is that case taken literally — the whole
-   * monochrome palette is what buys the app the right to spend one unmuted
-   * hue, and spending it twice spends it to zero.
-   *
-   * Value is the web map's `OVERLAY_COLOUR.genocide`, unchanged, so the two
-   * surfaces cannot drift on the gravest mark either of them draws.
-   *
-   * ── This is NOT a severity tier ──────────────────────────────────────────
-   *
-   * `MiniGlobe`'s disaster layer deliberately rejects GDACS alert hues and
-   * encodes Green/Orange/Red as stroke weight and opacity instead, and
-   * `lib/severity.ts` gives the single most-urgent tier the muted
-   * `toneUnfavorableText` rose. None of that changes, and this token must
-   * never be reached for by any of it. A GDACS Red is an event graded on a
-   * scale; a determination is a categorical finding about a place, published
-   * by a named body in a numbered document on a date. Different kind of
-   * claim, different channel.
-   *
-   * Never use as body copy, never as a background fill, never as a `tone`.
-   * A mark, its label, and a sheet's focal line — that is the whole licence.
-   */
-  determination: '#f5372b',
 } as const satisfies Record<string, string>;
 
 export const LIGHT_COLORS = {
@@ -200,12 +170,6 @@ export const LIGHT_COLORS = {
   toneFavorableText: '#3f6b48',
   toneUnfavorableText: '#884d51',
   toneNeutralText: '#475f70',
-  // See DARK_COLORS.determination for what this is and why the app has
-  // exactly one red. Deepened for cream by the same rule as the `*Text`
-  // tones above: the dark-mode #f5372b measures 4.98:1 on #0F0F11 but only
-  // 3.44:1 on cream — AA-large, and this mark carries a label. #c62518 is
-  // the same hue at 5.11:1. Hue-aligned, so it is still one red.
-  determination: '#c62518',
 } as const satisfies Record<string, string>;
 
 export type ColorPalette = { [K in keyof typeof DARK_COLORS]: string };

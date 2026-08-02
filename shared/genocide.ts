@@ -137,23 +137,3 @@ export const GENOCIDE_SITUATIONS: GenocideSituation[] = [
 export const GENOCIDE_MARKED: GenocideSituation[] = GENOCIDE_SITUATIONS.filter(
   (s) => s.finding === 'determination',
 )
-
-/**
- * The published shape at `/api/genocide.json`, written by `scripts/build.js`
- * straight from `GENOCIDE_MARKED`.
- *
- * It lives here rather than in `types.ts` because it is this file's own
- * contract: the endpoint exists so a consumer that cannot import TypeScript —
- * or that must see a new determination without waiting for a release — reads
- * the same record, filtered by the same bar. The mobile app does both: it
- * fetches this, and falls back to the bundled `GENOCIDE_MARKED` when the
- * network is gone.
- *
- * Deliberately has no `generated` field. Every other snapshot on this site is
- * a machine's reading of the world at a moment; this one is a list of findings
- * that were true before the build ran and stay true after it, so a build
- * timestamp would only invite a reader to treat a determination as stale.
- */
-export interface GenocideSnapshot {
-  situations: GenocideSituation[]
-}
