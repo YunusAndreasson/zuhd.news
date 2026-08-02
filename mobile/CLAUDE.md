@@ -15,6 +15,38 @@ React Native + Expo app for zuhd.news. Voice + philosophy in root `../foundation
 - No inline `fontSize`. Use `<Text variant>` from `components/primitives/`.
 - No raw `<Ionicons>` — go through `<Icon>`.
 - One typeface: Source Sans 3. No second family.
+- **Gestures use the Gesture Handler 3 hook API** — `usePanGesture({…})`,
+  `useTapGesture({…})`, `useCompetingGestures(a, b)` — never the v2 builder
+  chain. `Gesture.Pan()` is still exported and `GestureDetector` still accepts
+  what it returns: it detects a builder gesture and quietly routes it to the
+  *legacy* detector. So the old API compiles, runs, and silently opts that one
+  gesture out of the new native pipeline — which is the whole reason the app
+  moved. Nothing will warn you.
+
+  The callback names changed with it: `onStart` → `onActivate`, `onEnd` →
+  `onDeactivate`, `onChange` → `onUpdate` (`changeX`/`changeY` ride along on
+  the update event now), and a tap's old `onEnd((e, success) => …)` is
+  `onDeactivate` plus the `canceled` flag the end event carries. `onBegin` and
+  `onFinalize` keep their names but get the *plain* handler data — `translationX`
+  and `velocityX` exist only on the extended data the middle three receive.
+
+  Keep the config object in a `useMemo`. The hook owns the handler tag, so
+  there is no gesture object to keep stable any more, but a fresh config
+  identity re-pushes the whole config to the native side on every render.
+
+## Dependencies Expo does not manage
+
+`react-native-gesture-handler` is pinned **off** the SDK 57 set (3.1.0 vs the
+prescribed ~2.32.0) and listed in `expo.install.exclude` so `expo install
+--fix` — which `npm run deps:update` runs — cannot drag it back. Both its
+in-tree dependents accept it (`expo-router` peers `*` optional,
+`react-native-drawer-layout` peers `>= 2.0.0`), so there is one deduped copy,
+which matters: two copies would mean two native gesture registries.
+
+`expo install --check` will keep reporting `react-native`, `react-native-reanimated`
+and `react-native-worklets` as behind the SDK pin. That is deliberate and
+predates this: builds 288/289 shipped the pinned set (0.86.2 / 4.5.1 / 0.10.1)
+and crashed on launch anyway.
 
 ## Primitives live at
 

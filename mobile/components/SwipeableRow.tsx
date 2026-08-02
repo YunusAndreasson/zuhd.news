@@ -1,6 +1,10 @@
 import { memo, type ReactNode, useCallback, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import {
+  GestureDetector,
+  type PanGestureConfig,
+  usePanGesture,
+} from 'react-native-gesture-handler';
 import Animated, {
   Extrapolation,
   interpolate,
@@ -39,48 +43,49 @@ export const SwipeableRow = memo(function SwipeableRow({
     onSwipeAction();
   }, [onSwipeAction]);
 
-  const panGesture = useMemo(
-    () =>
-      Gesture.Pan()
-        .activeOffsetX([-12, 999])
-        .failOffsetY([-10, 10])
-        .onStart(() => {
-          'worklet';
+  const panConfig = useMemo<PanGestureConfig>(
+    () => ({
+      activeOffsetX: [-12, 999],
+      failOffsetY: [-10, 10],
+      onActivate: () => {
+        'worklet';
+        ratchetStartFired.value = false;
+        ratchetThresholdFired.value = false;
+      },
+      onUpdate: (e) => {
+        'worklet';
+        const next = Math.min(0, Math.max(-ACTION_WIDTH, e.translationX));
+        translateX.value = next;
+        if (!ratchetStartFired.value && next <= RATCHET_START) {
+          ratchetStartFired.value = true;
+          scheduleOnRN(hapticTick);
+        }
+        if (!ratchetThresholdFired.value && next <= SWIPE_THRESHOLD) {
+          ratchetThresholdFired.value = true;
+          scheduleOnRN(hapticTick);
+        }
+        if (ratchetStartFired.value && next > RATCHET_START) {
           ratchetStartFired.value = false;
+        }
+        if (ratchetThresholdFired.value && next > SWIPE_THRESHOLD) {
           ratchetThresholdFired.value = false;
-        })
-        .onUpdate((e) => {
-          'worklet';
-          const next = Math.min(0, Math.max(-ACTION_WIDTH, e.translationX));
-          translateX.value = next;
-          if (!ratchetStartFired.value && next <= RATCHET_START) {
-            ratchetStartFired.value = true;
-            scheduleOnRN(hapticTick);
-          }
-          if (!ratchetThresholdFired.value && next <= SWIPE_THRESHOLD) {
-            ratchetThresholdFired.value = true;
-            scheduleOnRN(hapticTick);
-          }
-          if (ratchetStartFired.value && next > RATCHET_START) {
-            ratchetStartFired.value = false;
-          }
-          if (ratchetThresholdFired.value && next > SWIPE_THRESHOLD) {
-            ratchetThresholdFired.value = false;
-          }
-        })
-        .onEnd(() => {
-          'worklet';
-          // Latch the released offset before starting the spring: once
-          // `withSpring` is assigned, reading `.value` yields the in-flight
-          // animated value, not where the finger let go.
-          const released = translateX.value;
-          translateX.value = withSpring(0, ANIMATION.spring);
-          if (released < SWIPE_THRESHOLD) {
-            scheduleOnRN(fireAction);
-          }
-        }),
+        }
+      },
+      onDeactivate: () => {
+        'worklet';
+        // Latch the released offset before starting the spring: once
+        // `withSpring` is assigned, reading `.value` yields the in-flight
+        // animated value, not where the finger let go.
+        const released = translateX.value;
+        translateX.value = withSpring(0, ANIMATION.spring);
+        if (released < SWIPE_THRESHOLD) {
+          scheduleOnRN(fireAction);
+        }
+      },
+    }),
     [translateX, ratchetStartFired, ratchetThresholdFired, fireAction],
   );
+  const panGesture = usePanGesture(panConfig);
 
   const rowStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: translateX.value }],

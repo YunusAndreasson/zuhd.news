@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import { BackHandler } from 'react-native';
-import { Gesture } from 'react-native-gesture-handler';
+import { type PanGestureConfig, usePanGesture } from 'react-native-gesture-handler';
 import { scheduleOnRN } from 'react-native-worklets';
 import type { BottomSheetMethodsRef } from '../components/SheetLayout';
 import { IS_ANDROID } from '../constants/platform';
@@ -19,7 +19,7 @@ interface SheetBackNavigation {
 /** Multi-page-sheet back navigation, shared verbatim by MenuSheet and
  *  CountrySheet (DESIGN.md §Sheets): Android hardware-back pops a sub-page or
  *  dismisses at the root, and a left-edge swipe pops a sub-page. Returns the
- *  swipe-back `Pan` gesture to attach via `GestureDetector`. The 20/±10/80/800
+ *  swipe-back pan gesture to attach via `GestureDetector`. The 20/±10/80/800
  *  thresholds live here so both sheets can't drift apart. */
 export function useSheetBackNavigation({
   isOpen,
@@ -40,21 +40,25 @@ export function useSheetBackNavigation({
     return () => sub.remove();
   }, [isOpen, canGoBack, onBack, sheetRef]);
 
-  // Memoized so the sheet's per-page re-renders don't hand `GestureDetector` a
-  // fresh gesture object each time — only a real `canGoBack` / `onBack` change
-  // reconfigures the handler.
-  return useMemo(
-    () =>
-      Gesture.Pan()
-        .enabled(canGoBack)
-        .activeOffsetX(20)
-        .failOffsetY([-10, 10])
-        .onEnd(({ translationX, velocityX }) => {
-          'worklet';
-          if (translationX > 80 || velocityX > 800) {
-            scheduleOnRN(onBack);
-          }
-        }),
+  // The config object is memoized, not the gesture. Under the v3 hook API the
+  // handler tag is stable for the component's lifetime — that is what the hook
+  // owns, and it is why there is no longer a gesture object to keep identical.
+  // The config still has to be, though: `usePanGesture` re-pushes it to the
+  // native side whenever its identity changes, and an inline object literal
+  // with an inline worklet is a fresh identity on every render.
+  const config = useMemo<PanGestureConfig>(
+    () => ({
+      enabled: canGoBack,
+      activeOffsetX: 20,
+      failOffsetY: [-10, 10],
+      onDeactivate: ({ translationX, velocityX }) => {
+        'worklet';
+        if (translationX > 80 || velocityX > 800) {
+          scheduleOnRN(onBack);
+        }
+      },
+    }),
     [canGoBack, onBack],
   );
+  return usePanGesture(config);
 }

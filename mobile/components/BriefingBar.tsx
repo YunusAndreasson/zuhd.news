@@ -1,7 +1,14 @@
 import { BlurView } from 'expo-blur';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { type LayoutChangeEvent, Platform, StyleSheet, View } from 'react-native';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import {
+  GestureDetector,
+  type PanGestureConfig,
+  type TapGestureConfig,
+  useCompetingGestures,
+  usePanGesture,
+  useTapGesture,
+} from 'react-native-gesture-handler';
 import Animated, {
   FadeInDown,
   FadeOut,
@@ -134,13 +141,13 @@ export const BriefingBar = memo(function BriefingBar({
   const lastDetent = useSharedValue(-1);
   const lastCommitSec = useSharedValue(-1);
 
-  const scrubGesture = useMemo(() => {
-    // Advance the visual fill every frame (UI thread, never gated), then fire
-    // the haptic and the JS-side commit only on a real detent / second change.
-    // The three used to run on independent cadences; now the notch the finger
-    // feels, the label it reads, and the audio position all land on the same
-    // frame.
-    const track = (x: number) => {
+  // Advance the visual fill every frame (UI thread, never gated), then fire
+  // the haptic and the JS-side commit only on a real detent / second change.
+  // The three used to run on independent cadences; now the notch the finger
+  // feels, the label it reads, and the audio position all land on the same
+  // frame.
+  const track = useMemo(() => {
+    const fn = (x: number) => {
       'worklet';
       const fraction = computeScrubFraction(x, barWidthSV.value, durationSV.value);
       if (fraction == null) return;
@@ -162,13 +169,16 @@ export const BriefingBar = memo(function BriefingBar({
         scheduleOnRN(commitSeek, seconds);
       }
     };
+    return fn;
+  }, [barWidthSV, durationSV, progressSV, lastDetent, lastCommitSec, commitSeek]);
 
-    const panGesture = Gesture.Pan()
+  const panConfig = useMemo<PanGestureConfig>(
+    () => ({
       // Low threshold so the scrub engages as soon as the finger moves —
       // vertical fail-offset still lets the parent list steal vertical pans.
-      .activeOffsetX([-2, 2])
-      .failOffsetY([-10, 10])
-      .onStart((e) => {
+      activeOffsetX: [-2, 2],
+      failOffsetY: [-10, 10],
+      onActivate: (e) => {
         'worklet';
         isScrubbing.value = withSpring(1, ANIMATION.springSoft);
         tooltipScale.value = withSpring(1, { damping: 8, stiffness: 260, mass: 0.7 });
@@ -178,43 +188,43 @@ export const BriefingBar = memo(function BriefingBar({
         lastDetent.value = -1;
         lastCommitSec.value = -1;
         track(e.x);
-      })
-      .onChange((e) => {
+      },
+      onUpdate: (e) => {
         'worklet';
         scrubX.value = e.x;
         track(e.x);
-      })
-      .onFinalize(() => {
+      },
+      onFinalize: () => {
         'worklet';
         isScrubbing.value = withTiming(0, { duration: ANIMATION.fast });
         tooltipScale.value = withTiming(0.8, { duration: ANIMATION.fast });
-      });
+      },
+    }),
+    [track, scrubX, isScrubbing, tooltipScale, lastDetent, lastCommitSec],
+  );
 
-    // Tap-to-seek: instant jump. No tooltip — the progress bar fill moving
-    // to the new position is feedback enough; the tooltip is reserved for
-    // drag scrubbing where the user needs a preview before committing.
-    const tapGesture = Gesture.Tap()
-      .maxDuration(400)
-      .onEnd((e, success) => {
+  // Tap-to-seek: instant jump. No tooltip — the progress bar fill moving
+  // to the new position is feedback enough; the tooltip is reserved for
+  // drag scrubbing where the user needs a preview before committing.
+  const tapConfig = useMemo<TapGestureConfig>(
+    () => ({
+      maxDuration: 400,
+      // v2's `onEnd((e, success) => …)` is now `onDeactivate` plus the
+      // `canceled` flag the end event carries — same moment, same guard.
+      onDeactivate: (e) => {
         'worklet';
-        if (!success) return;
+        if (e.canceled) return;
         lastDetent.value = -1;
         lastCommitSec.value = -1;
         track(e.x);
-      });
+      },
+    }),
+    [track, lastDetent, lastCommitSec],
+  );
 
-    return Gesture.Race(panGesture, tapGesture);
-  }, [
-    barWidthSV,
-    durationSV,
-    progressSV,
-    scrubX,
-    isScrubbing,
-    tooltipScale,
-    lastDetent,
-    lastCommitSec,
-    commitSeek,
-  ]);
+  const panGesture = usePanGesture(panConfig);
+  const tapGesture = useTapGesture(tapConfig);
+  const scrubGesture = useCompetingGestures(panGesture, tapGesture);
 
   // Tooltip rides the finger horizontally (clamped to bar edges) and lifts
   // in/out with the scrub gesture.

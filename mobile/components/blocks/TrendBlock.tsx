@@ -5,7 +5,11 @@ import { scaleLinear, scaleLog, scaleTime } from 'd3-scale';
 import { curveMonotoneX, area as d3Area, line as d3Line } from 'd3-shape';
 import { memo, useCallback, useMemo, useState } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import {
+  GestureDetector,
+  type PanGestureConfig,
+  usePanGesture,
+} from 'react-native-gesture-handler';
 import {
   type SharedValue,
   useAnimatedReaction,
@@ -442,12 +446,12 @@ export const TrendBlock = memo(function TrendBlock({
   const scrubPt = scrubInfo ? points[scrubInfo.idx] : null;
   const scrubLeft = scrubPt ? Math.max(0, Math.min(width - scrubW, scrubPt.x - scrubW / 2)) : 0;
 
-  const pan = useMemo(() => {
+  const panConfig = useMemo<PanGestureConfig>(() => {
     const pointsX = points.map((p) => p.x);
-    return Gesture.Pan()
-      .activeOffsetX([-5, 5])
-      .failOffsetY([-10, 10])
-      .onStart((e) => {
+    return {
+      activeOffsetX: [-5, 5],
+      failOffsetY: [-10, 10],
+      onActivate: (e) => {
         'worklet';
         if (pointsX.length === 0) return;
         let best = 0;
@@ -460,8 +464,8 @@ export const TrendBlock = memo(function TrendBlock({
           }
         }
         scrubIdx.value = best;
-      })
-      .onChange((e) => {
+      },
+      onUpdate: (e) => {
         'worklet';
         if (pointsX.length === 0) return;
         let best = 0;
@@ -474,12 +478,14 @@ export const TrendBlock = memo(function TrendBlock({
           }
         }
         scrubIdx.value = best;
-      })
-      .onFinalize(() => {
+      },
+      onFinalize: () => {
         'worklet';
         scrubIdx.value = -1;
-      });
+      },
+    };
   }, [points, scrubIdx]);
+  const pan = usePanGesture(panConfig);
 
   const firstPeriod = periods?.[0];
   const lastPeriod = periods?.[periods.length - 1];
