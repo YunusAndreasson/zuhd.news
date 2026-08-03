@@ -62,8 +62,6 @@ import {
   marketLayout,
   marketPaint,
   ribbonPct,
-  seriesChangePct,
-  sparkInput,
   type MarketStrip,
   type TrendIndicator,
 } from './_map/markets'
@@ -1050,7 +1048,29 @@ export function mount(
 
   status.append(clockEl, hijriEl)
 
-  legend.append(key, groundNote)
+  /**
+   * What the prayer lines are, now that no chip says it.
+   *
+   * The note used to sit on the `prayers` chip's `title`, which was the right
+   * place while there was a chip: the marks are lines with nothing to open, so
+   * the control was the only thing a reader could interrogate. With the toggle
+   * gone — see `layersOn` — the explanation has to go where this rail already
+   * puts explanations rather than follow the control into the bin.
+   *
+   * It is a `.map-key-item is-layer-note`, the same shape the genocide note
+   * takes: a mark, a word, and the claim on the `title`. Not in the `key`
+   * group, whose `aria-label` is "How the stories are drawn" and whose other
+   * members each decode a channel a story beacon spends ink on — the same
+   * distinction that keeps the genocide chip out of it.
+   */
+  const prayerNote = document.createElement('span')
+  prayerNote.className = 'map-key-item is-layer-note'
+  prayerNote.title = PRAYER_NOTE
+  prayerNote.style.color = MAP_COLOURS.prayer
+  prayerNote.innerHTML =
+    `<span class="map-filter-mark">${glyphSvg('prayer-line')}</span><span>prayer lines</span>`
+
+  legend.append(key, prayerNote, groundNote)
   more.append(filters, ground, legend)
   // The button is last, which is a desktop fact: `.map-hud-more` is a
   // pass-through there, so `more`'s children *are* strip items and a button
@@ -1176,13 +1196,22 @@ export function mount(
   // ninety-eight weather alerts, eleven straits. This is two marks, drawn from
   // a finding by a named UN body, and a toggle that switches it off is a toggle
   // whose only function is to make the map more comfortable. The layer stays.
-  // The prayer lines *do* get a toggle, unlike the terminator they are drawn
-  // against. The terminator is an unlabelled wash; these are five named lines
-  // crossing every continent, which is a larger footprint than any feed here
-  // and a claim besides. A reader who does not want them should be able to say
-  // so, and the row of layer toggles is where this map already takes that.
+  // The prayer lines lost their toggle (2026-08-03), and the argument that gave
+  // them one was about footprint: five named lines crossing every continent is
+  // a larger mark than any feed here and a claim besides, so a reader who did
+  // not want them should be able to say so.
+  //
+  // What that missed is what the lines *are*. Every other member of this object
+  // switches a **feed** — events we fetched, which arrive, decay and stop — and
+  // a prayer line is geometry, computed from the sun's position for the instant
+  // on the clock. It is true in the same way the terminator beside it is true,
+  // and the terminator has never had a switch. A control over a constant is a
+  // control that only ever answers "yes"; what it really offered was a way to
+  // tidy the map, which is what the fold is for.
+  //
+  // The note the chip carried is not lost — it moved to the key panel, which is
+  // where this rail already puts an explanation rather than a control.
   const layersOn = {
-    prayers: true,
     gdacs: true,
     thermal: true,
     straits: true,
@@ -1289,6 +1318,29 @@ export function mount(
       sheet.showMarket(ex, true, marketStrip.rangeDays())
     },
     onQuote: (entry) => sheet.showIndicator(entry, true, marketStrip.rangeDays()),
+    // The money block owns these two switches now — see the `layers` group in
+    // `buildFilters`, which is hazards and determinations and nothing else.
+    layers: { markets: layersOn.markets, straits: layersOn.straits },
+    onToggleLayer: (key, on) => {
+      layersOn[key] = on
+      const chip = filters.querySelector(`.map-filter[data-key="${key}"]`)
+      if (chip instanceof HTMLElement) {
+        chip.classList.toggle('is-on', on)
+        chip.setAttribute('aria-pressed', String(on))
+      }
+      applyLayerVisibility()
+    },
+    // A chokepoint is a place, so this flies the way an exchange does: the
+    // reader picked a name out of a list with no map context, and landing them
+    // on the card without showing them where it is answers half the question.
+    onStrait: (id) => {
+      const cp = chokepoints.find((c) => c.id === id)
+      if (!cp) return
+      feed.setExpanded(false, true)
+      flying = true
+      map.flyTo({ center: [cp.lng, cp.lat], zoom: Math.max(map.getZoom(), 3.2), duration: 900 })
+      sheet.showChokepoint(cp, true)
+    },
   })
 
   const readState = createReadState()
@@ -1855,11 +1907,9 @@ export function mount(
     set('market-marks', layersOn.markets)
     set('conflict-marks', layersOn.conflict)
     set('famine-marks', layersOn.famine)
-    // Both halves, or the labels float over a map with no lines under them.
-    // Hiding the line layer also takes it out of `queryRenderedFeatures`, which
-    // is what stops the hover probe finding a line the reader turned off.
-    set('prayer-lines', layersOn.prayers)
-    set('prayer-labels', layersOn.prayers)
+    // `prayer-lines` and `prayer-labels` are deliberately absent: they are
+    // declared visible in the style and nothing here may hide them. See
+    // `layersOn` for why a geometry is not a feed.
     // The money block is deliberately NOT switched here, and it used to be.
     //
     // While the strip was chrome over the canvas, "the strip is the layer's
@@ -3898,36 +3948,9 @@ export function mount(
     // worse of the two errors by a distance.
     countTrend('gdacs', gdacs.map((a) => Date.parse(a.fromDate)), from, to)
 
-    // Straits, which unlike the two above have a *published* series — eleven
-    // chokepoints, eighty daily vessel-transit counts each — so this goes
-    // through the money block's own arithmetic rather than a second copy of it:
-    // date-windowed, composited by `meanIndex`, short members set aside. The
-    // day step needs each member's own last-against-previous, which is what
-    // `seriesChangePct` is; `delta7vs90` is on the payload and is a different
-    // quantity, a week against a quarter, and passing it here would print a
-    // figure the line does not draw.
-    const straitInput = sparkInput(
-      chokepoints.flatMap((c) => {
-        const vals = c.series?.total
-        if (!Array.isArray(vals) || vals.length < 2) return []
-        return [{
-          values: vals,
-          periods: c.series?.periods,
-          asOf: c.asOf,
-          pct: seriesChangePct(vals) ?? 0,
-        }]
-      }),
-      rangeHours / 24,
-    )
-    chipTrend(
-      'straits',
-      straitInput?.values ?? null,
-      straitInput?.span ?? [0, 1],
-      // A published level, so the change is the drawn line's own — except at
-      // the day step, where `sparkInput` hands back the move it drew the slope
-      // from and `windowPct` would be a percentage of zero.
-      straitInput ? (straitInput.pct ?? 'window') : null,
-    )
+    // Straits are no longer here: they became the money block's fifth row, where
+    // a published vessel-transit series belongs, and `createMarketStrip` draws
+    // them through the same `sparkInput` this used to call.
   }
 
   function setRange(hours: number) {
@@ -4110,31 +4133,37 @@ export function mount(
     sep.setAttribute('aria-hidden', 'true')
     filters.append(sep, groupLabel('layers'))
 
-    // Each overlay chip now draws its layer's own silhouette, from the same
-    // vertex table `map.addImage` rasterises. Before this they were all a 6px
-    // disc with a hollow variant, which meant `disasters` and `straits` were
-    // the same ring and there was nothing connecting the word to the mark.
+    // Each overlay chip draws its layer's own silhouette, from the same vertex
+    // table `map.addImage` rasterises. Before this they were all a 6px disc
+    // with a hollow variant, so there was nothing connecting the word to the
+    // mark.
     //
-    // `markets` was worse than uninformative: it was a *grey* ring, chosen on
-    // the reasoning that the layer is olive and terracotta in equal measure so
-    // neither tone stands for it. True, and the conclusion does not follow —
-    // the answer is to show both, because a two-valued scale is exactly what
-    // this layer means and the one chip that refused to say so was the one
-    // whose colours the reader had no other way to learn.
-    //
-    // `prayers` leads because it is drawn first — these lines sit on the ground
-    // under every mark, and the order of this row is the order of the map.
+    // **This group is hazards and determinations now, and that is the whole of
+    // it** (2026-08-03). Three chips left it. `prayers` was a switch over a
+    // geometry — see `layersOn`. `markets` and `straits` went to the money
+    // block, where their subject is: both are economic series with a published
+    // line, and the exchange composite was already drawn *there* as one of the
+    // four money rows, so a `markets` chip carrying a trend would have been the
+    // same line twice, fifteen rows apart. What is left is what a reader means
+    // by "what else is drawn over the news": four hazards and, past its own
+    // separator, one determination.
     for (const [key, label, colour, glyphs, note] of [
-      ['prayers', 'prayers', MAP_COLOURS.prayer, ['prayer-line'], PRAYER_NOTE],
       ['gdacs', 'disasters', OVERLAY_COLOUR.gdacs, ['hazard'], ''],
       // Beside `disasters`, because that adjacency is the whole point of its
       // colour: same hue, one step lighter, same subject seen by a different
       // kind of witness. Read apart, two warm marks; read together, a pair.
       // Same argument as the genocide chip sitting next to conflict.
       ['thermal', 'thermal', OVERLAY_COLOUR.thermal, ['thermal'], THERMAL_NOTE],
-      ['straits', 'straits', OVERLAY_COLOUR.straits, ['strait-rest'], ''],
-      ['markets', 'markets', '', ['tick-up', 'tick-down'], ''],
       ['conflict', 'conflict', OVERLAY_COLOUR.conflict, ['conflict-mark'], ''],
+      // These two are the money block's on a desktop and the stylesheet hides
+      // them there. They stay in the markup because the phone has no money
+      // block — the strip is one wrapped line of the scrubber with no room for
+      // a switch — and the `layers` panel is the only place a phone reader can
+      // reach a layer at all. The alternative was a control that exists on one
+      // surface and simply is not offered on the other, which is the test this
+      // panel already has to pass: nothing hidden that the reader cannot get to.
+      ['markets', 'markets', '', ['tick-up', 'tick-down'], ''],
+      ['straits', 'straits', OVERLAY_COLOUR.straits, ['strait-rest'], ''],
       // Last of the feed toggles and directly before the genocide separator, so
       // the row ends on the two determination layers. It shows two glyphs for the
       // reason `markets` does: the silhouette *is* the phase here, so a single
@@ -4154,6 +4183,9 @@ export function mount(
         btn.title = note
         btn.setAttribute('aria-label', `${label} — ${note}`)
       }
+      // `markets` is the one layer whose meaning is a two-valued scale, so no
+      // single tone stands for it and it carries both ticks in both tones —
+      // the `[data-mark='market']` rule, shared with the money block's switch.
       if (colour) btn.style.setProperty('--cat', colour)
       else {
         btn.dataset.mark = 'market'
@@ -4166,6 +4198,10 @@ export function mount(
         layersOn[key] = !layersOn[key]
         btn.classList.toggle('is-on', layersOn[key])
         btn.setAttribute('aria-pressed', String(layersOn[key]))
+        // Two surfaces, one state: `markets` and `straits` are switched from
+        // the money block on a desktop and from here on a phone, and a reader
+        // who resizes across the breakpoint must not find the two disagreeing.
+        if (key === 'markets' || key === 'straits') marketStrip.setLayerState(key, layersOn[key])
         applyLayerVisibility()
       })
       filters.append(btn)
@@ -4489,7 +4525,10 @@ export function mount(
     // Shipped in the same blob the alerts arrive in — no extra request, and it
     // was already on the wire before anything read it.
     if (g?.details) gdacsDetails = g.details
-    if (c?.chokepoints) chokepoints = c.chokepoints
+    if (c?.chokepoints) {
+      chokepoints = c.chokepoints
+      marketStrip.setStraits(chokepoints)
+    }
     // Two features and no dependants — it rides along with the other two
     // rather than earning a request of its own.
     if (gen?.situations) genocide = gen.situations

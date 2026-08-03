@@ -21,7 +21,7 @@ import { coverage, DAY_MS, seriesDates, windowByDate } from './series-window'
 import { glyphSvg } from './glyphs'
 import type { GLYPHS } from './glyphs'
 import { MAP_COLOURS, OVERLAY_COLOUR } from './style'
-import type { MapExchange } from './types'
+import type { MapChokepoint, MapExchange } from './types'
 import type { ExpressionSpecification, SymbolLayerSpecification } from 'maplibre-gl'
 
 /**
@@ -825,6 +825,10 @@ export interface MarketStrip {
   element: HTMLElement
   update(markets: MapExchange[], now?: number): void
   setTrends(indicators: TrendIndicator[]): void
+  /** The chokepoint set, as the money block's fifth row. */
+  setStraits(points: MapChokepoint[]): void
+  /** Follow a toggle made somewhere else — the phone keeps chips for these. */
+  setLayerState(key: 'markets' | 'straits', on: boolean): void
   setVisible(on: boolean): void
   /**
    * The box the detail panel should open under, or `null` to open it as a
@@ -864,6 +868,21 @@ export interface MarketStripOptions {
    * where the ladder starts.
    */
   rangeDays: number
+  /**
+   * Which of the two map layers this block now switches, at mount.
+   *
+   * `markets` and `straits` moved here from the layer chips (2026-08-03),
+   * because both are economic series with a published line and the exchange
+   * composite was already drawn here as one of the four money rows — so a
+   * `markets` chip carrying a trend would have been the same line twice,
+   * fifteen rows apart. The island keeps `layersOn` as the source of truth;
+   * this is the opening state and `onToggleLayer` is how it hears about a
+   * press.
+   */
+  layers: { markets: boolean; straits: boolean }
+  onToggleLayer: (key: 'markets' | 'straits', on: boolean) => void
+  /** Fly to a chokepoint and pin its card, the way `onSelect` does an exchange. */
+  onStrait: (id: string) => void
 }
 
 /**
@@ -937,7 +956,78 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
   const tallySpark = el('span', 'map-markets-spark')
   const tallyGroup = el('button', 'map-markets-group map-markets-summary')
   tallyGroup.append(label, tally, tallySpark, note)
-  row.append(tallyGroup)
+
+  /** The two layers this block switches, mirrored from the island's `layersOn`. */
+  const layerState = { ...opts.layers }
+  /** Each switch's own repaint, so `setLayerState` can drive it from outside. */
+  const syncToggles: Partial<Record<'markets' | 'straits', () => void>> = {}
+
+  /**
+   * A row's layer switch: the silhouette, and pressing it toggles.
+   *
+   * One grammar for the whole rail — **a mark means there is something to
+   * switch**. A row with no mark (currencies, metals, crypto, Brent) has
+   * nothing on the map to turn off, and a reader can read that off the column
+   * without being told. It is why the story chips have a dot and the world
+   * instruments do not.
+   *
+   * A sibling of the summary, never inside it: a `<button>` within a `<button>`
+   * is invalid and browsers drop the inner one, which is the same trap the rail
+   * head records for its disclosure and refresh pair. So the two controls sit
+   * in one flex box and each keeps its own hit area, its own pressed state and
+   * its own accessible name.
+   *
+   * It borrows `.map-filter-mark`, which is the chips' glyph column, so the
+   * switch here and the switch there are the same object at the same width —
+   * and it is what makes every label down the rail start on one edge.
+   */
+  const layerToggle = (key: 'markets' | 'straits', glyphs: Array<keyof typeof GLYPHS>, name: string) => {
+    const btn = el('button', 'map-filter-mark map-markets-toggle')
+    btn.setAttribute('type', 'button')
+    // The same inline-`--cat` channel the chips take, so a switch cannot
+    // disagree with the mark it names and no hue enters the stylesheet.
+    if (key === 'markets') {
+      btn.dataset.mark = 'market'
+      btn.style.setProperty('--cat-up', OVERLAY_COLOUR.marketUp)
+      btn.style.setProperty('--cat-down', OVERLAY_COLOUR.marketDown)
+    } else {
+      btn.style.setProperty('--cat', OVERLAY_COLOUR.straits)
+    }
+    btn.innerHTML = glyphs.map(glyphSvg).join('')
+    const sync = () => {
+      const on = layerState[key]
+      btn.classList.toggle('is-on', on)
+      btn.setAttribute('aria-pressed', String(on))
+      btn.setAttribute('aria-label', `${name} on the map`)
+    }
+    btn.addEventListener('click', () => {
+      layerState[key] = !layerState[key]
+      sync()
+      opts.onToggleLayer(key, layerState[key])
+    })
+    sync()
+    syncToggles[key] = sync
+    return btn
+  }
+
+  /**
+   * One row of the money block: a switch column, then the summary.
+   *
+   * Every row gets the column, including the rows with nothing in it — an empty
+   * `.map-filter-mark` rather than no element. Without it the labels of the
+   * four rows that have a switch would start 22px right of the three that do
+   * not, and a column whose left edge moves twice reads as three lists rather
+   * than one.
+   */
+  const moneyItem = (summary: HTMLElement, toggle: HTMLElement | null) => {
+    const box = el('div', 'map-markets-item')
+    box.append(toggle ?? el('span', 'map-filter-mark'), summary)
+    return box
+  }
+
+  row.append(
+    moneyItem(tallyGroup, layerToggle('markets', ['tick-up', 'tick-down'], 'exchanges')),
+  )
 
   /**
    * Two headings and a second block, which exist only in the rail.
@@ -1412,6 +1502,82 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * A `Map` rather than a running `current` string, so a payload that ever
    * interleaves groups still produces three summaries rather than six.
    */
+  /**
+   * The chokepoints, as the fifth money row.
+   *
+   * They were a layer chip, filed between `thermal` and `conflict` in a group
+   * that is otherwise disasters, war and famine — and a chokepoint series is
+   * daily vessel transits, which is a fact about trade. It reads as one of
+   * these rows and never read as one of those chips.
+   *
+   * A summary with a panel behind it, exactly like `markets`: eleven members,
+   * each a place on the map with a card, so a press has somewhere to go. The
+   * composite is `sparkInput` over the eleven — the same date-windowing, the
+   * same short-member filter, the same short-draw — because these are published
+   * series and not a pile of timestamps.
+   *
+   * `series.total` and not `series.values`: the payload names this one
+   * differently from every other series on the site, which is the sort of
+   * detail that reads as a typo until it silently draws nothing.
+   */
+  let lastStraits: MapChokepoint[] = []
+  const straitsSummary = el('button', 'map-markets-group map-markets-summary')
+  const straitsSpark = el('span', 'map-markets-spark')
+  const straitsItem = moneyItem(straitsSummary, layerToggle('straits', ['strait-rest'], 'straits'))
+  straitsItem.classList.add('is-straits')
+  straitsItem.hidden = true
+
+  const setStraits = (points: MapChokepoint[]) => {
+    lastStraits = points
+    straitsItem.hidden = points.length === 0
+    if (!points.length) return
+    straitsSummary.replaceChildren(el('span', 'map-markets-label', 'straits'), straitsSpark)
+    const pct = sparkInto(
+      straitsSpark,
+      points.flatMap((c) => {
+        const vals = c.series?.total
+        if (!Array.isArray(vals) || vals.length < 2) return []
+        return [{
+          values: vals,
+          periods: c.series?.periods,
+          asOf: c.asOf,
+          // The day step wants this member's own last-against-previous.
+          // `delta7vs90` is on the payload and is a week against a quarter —
+          // a different quantity, and printing it here would caption a line
+          // that does not draw it.
+          pct: seriesChangePct(vals) ?? 0,
+        }]
+      }),
+    )
+    straitsSummary.setAttribute(
+      'aria-label',
+      `Straits${pct == null ? '' : ` — ${ribbonPct(pct)} over ${rangeLabel()}${sparkNote}`}`,
+    )
+    trigger(
+      straitsSummary,
+      'straits',
+      () => `${points.length} chokepoints`,
+      () =>
+        [...points]
+          .sort((a, b) => (b.delta7vs90?.n_total ?? 0) - (a.delta7vs90?.n_total ?? 0))
+          .map((c) => {
+            const d = (c.delta7vs90?.n_total ?? 0) * 100
+            const btn = el('button', `map-markets-row-item${toneClass(d)}`)
+            btn.setAttribute('type', 'button')
+            btn.append(
+              tick(marketDirection(d)),
+              el('span', 'map-markets-row-name', c.name),
+              el('span', 'map-markets-row-pct', ribbonPct(d)),
+            )
+            btn.addEventListener('click', () => {
+              closePanel()
+              opts.onStrait(c.id)
+            })
+            return btn
+          }),
+    )
+  }
+
   const setTrends = (indicators: TrendIndicator[]) => {
     lastIndicators = indicators
     for (const stale of row.querySelectorAll('.map-markets-group[data-trend]')) stale.remove()
@@ -1458,8 +1624,12 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
         () => countsText(s),
         () => items.map(quoteRow),
       )
-      row.append(summary)
+      row.append(moneyItem(summary, null))
     }
+
+    // Last of the money rows, and re-appended on every `setTrends` so it stays
+    // under the three groups that rebuild above it.
+    row.append(straitsItem)
 
     /**
      * The world block: three instruments, no groups, no panel.
@@ -1493,7 +1663,7 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
         closePanel()
         opts.onQuote(entry)
       })
-      world.append(item)
+      world.append(moneyItem(item, null))
     }
   }
 
@@ -1520,12 +1690,18 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
   function redraw() {
     if (lastMarkets) update(lastMarkets)
     if (lastIndicators) setTrends(lastIndicators)
+    if (lastStraits.length) setStraits(lastStraits)
   }
 
   return {
     element: root,
     update,
     setTrends,
+    setStraits,
+    setLayerState(key, on) {
+      layerState[key] = on
+      syncToggles[key]?.()
+    },
     rangeDays: () => rangeDays,
     setRangeDays(days: number) {
       if (days === rangeDays) return

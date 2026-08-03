@@ -2479,6 +2479,21 @@ body.map-page {
      to, so a segmented control and a sparkline row come out the same height as
      each other down the rail. Change the chip padding and the two still agree. */
   --map-hud-row-h: 27px;
+  /* The label column every rail row sets to, so no sparkline's left edge
+     depends on how long its own name is.
+
+     It used to: `.map-markets-label` and the chip's name were both
+     `flex: 0 0 auto`, so a line began where its word stopped and twelve rows
+     started at twelve different x. The lines still *ended* on one column,
+     which is what hid it — a ragged left against a flush right reads as
+     centring rather than as misalignment.
+
+     4.8rem is measured, not chosen: `currencies` renders 72px at `--size-xs`
+     in all-small-caps at `--track-wide`, and it is the widest name either
+     family has (`disasters` is 61). The first value here was 6.2rem, guessed
+     from `--map-spine-w`, which is measured at 11px — a different size for a
+     different job — and it spent 27px of every line on nothing. */
+  --map-row-label-w: 4.8rem;
   max-width: none;
   height: 100dvh;
   overflow: hidden;
@@ -3476,17 +3491,6 @@ body.map-wide .map-range-group { display: block; }
     & svg { color: var(--cat, currentColor); }
   }
 
-  /* Two silhouettes, because this layer's meaning is a two-valued scale and no
-     single tone stands for it. The chip that showed a flat grey ring was the
-     one chip on the strip that taught the reader nothing at all. */
-  &[data-kind='layer'][data-mark='market'] {
-    gap: 0.28rem;
-
-    & svg { width: 11px; height: 11px; }
-    &.is-on svg:first-of-type { color: var(--cat-up, currentColor); }
-    &.is-on svg:nth-of-type(2) { color: var(--cat-down, currentColor); }
-  }
-
   /* The last category on cannot be switched off, or the map goes blank. It
      stays legible — it is still the active filter — but it stops offering the
      pointer of a control that will answer. */
@@ -4052,15 +4056,68 @@ body.map-wide .map-filter-spark {
    reason to turn a layer on is that something is happening in it. */
 body.map-wide .map-filter.is-on .map-filter-spark { color: var(--cat, var(--map-ink-dim)); }
 
-/* The market chip has no single `--cat` — its scale is two-valued and the chip
-   draws both silhouettes — so its trend stays in ink rather than picking one of
-   the pair. It has a line of its own in the money block above in any case. */
-body.map-wide .map-filter[data-mark='market'] .map-filter-spark { color: var(--map-ink-dim); }
+/* The same column the money rows set to, so a chip's line and a money row's
+   line begin on one edge down the whole rail. Both families put a
+   `.map-filter-mark` before it — the chips always had one, and the money rows
+   gained one (empty where there is nothing to switch) for exactly this. */
+body.map-wide .map-filter-label {
+  flex: 0 0 var(--map-row-label-w);
+  min-width: 0;
+  text-align: left;
+}
 
-body.map-wide .map-filter-label { flex: 0 0 auto; }
+/* The money block's layer switch: the chips' glyph column, made pressable.
+   Off is an ink step and a hollow mark, never opacity — the rule the filter
+   chips already keep, and the one `colour-system.test.js` cannot measure. */
+/* The market mark is a two-valued scale, so it draws both ticks in both tones —
+   the one thing about that layer a reader has no other way to learn, and the
+   reason it is not a flat grey ring. One rule for both consumers: the money
+   block's switch on a desktop and the chip in the phone's panel. Written once
+   because two copies of a colour mapping is how a legend starts disagreeing
+   with the mark it names.
+
+   First of the three, because the two below are more specific and CSS reads a
+   lower-specificity rule placed after a higher one as a mistake — which, often
+   enough, it is. */
+[data-mark='market'] {
+  & svg { width: 10px; height: 10px; }
+  &.is-on svg:first-of-type { color: var(--cat-up, currentColor); }
+  &.is-on svg:nth-of-type(2) { color: var(--cat-down, currentColor); }
+}
+
+/* The money block's layer switch: the chips' glyph column, made pressable.
+   Off is an ink step and a hollow mark, never opacity — the rule the filter
+   chips already keep, and the one `colour-system.test.js` cannot measure. */
+.map-markets-toggle {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: var(--map-ink-dim);
+
+  &.is-on { color: var(--cat, currentColor); }
+
+  &[data-mark='market'] { gap: 3px; }
+
+  &:focus-visible {
+    outline: 1px solid var(--map-focus);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+body.map-wide .map-markets-toggle { display: inline-flex; }
+body.map-wide .map-markets-toggle svg { width: 14px; height: 14px; }
+body.map-wide .map-markets-toggle[data-mark='market'] svg { width: 10px; height: 10px; }}
 
 body.map-wide .map-filter-pct {
-  flex: 0 0 auto;
+  /* A count's change is unbounded — a quiet week followed by a busy one is a
+     real +350% — so this is the one figure on the rail that can outgrow its
+     column. It may shrink and the line gives way first; what it must not do is
+     push the row past the rail's edge, where the `%` is simply cut off. */
+  flex: 0 1 auto;
+  white-space: nowrap;
   font-size: var(--size-2xs);
   font-variant-numeric: tabular-nums;
   letter-spacing: 0;
@@ -4093,19 +4150,18 @@ body.map-wide .map-filter-mark {
   &:has(svg + svg) svg { width: 10px; height: 10px; }
 }
 
-/* The market chip's own rule has to be answered rather than inherited from.
-   It sets `gap: 0.28rem` on the *button* and 11px on its glyphs — both correct
-   on a strip, where the gap it tightens is the one between its two ticks and
-   the button has no other children to space. With the glyphs boxed, that gap is
-   now the one between the mark and the label, so left alone it would put this
-   one chip's word 2.7px left of the other seven — the same misalignment, in
-   miniature, arriving from the opposite direction. And its 11px beats the pair
-   rule above on specificity, so the size has to be restated here too. */
-body.map-wide .map-filter[data-mark='market'] {
-  gap: 0.45rem;
+/* `body.map-wide .map-filter[data-mark='market']` stood here, correcting the
+   gap and glyph size the market chip's own rule set. All three `data-mark`
+   rules went with that chip on 2026-08-03 — it is a row of the money block now,
+   and its switch is `.map-markets-toggle`, which carries its own copy of the
+   two-valued treatment. Nothing on a `.map-filter` sets `data-mark` any more;
+   the island's `else` branch that did is gone too. */
 
-  & .map-filter-mark svg { width: 10px; height: 10px; }
-}
+/* `markets` and `straits` are the money block's rows on a desktop, switch and
+   all, so their chips would be the same control twice in one column. They stay
+   in the markup for the phone, which has no money block to put them in. */
+body.map-wide .map-filter[data-key='markets'],
+body.map-wide .map-filter[data-key='straits'] { display: none; }
 
 /* The group boundary, drawn rather than implied. This is the phone panel's own
    treatment — the separator that is a 1px vertical tick between chips on a strip
@@ -4235,6 +4291,29 @@ body.map-wide .map-ground {
 .map-markets-world,
 .map-markets-spark { display: none; }
 
+/* Outside the rail the row wrapper dissolves and its switch goes with it.
+
+   `display: contents` and not `block`: the phone's money line is one wrap run
+   whose groups inherit its `gap`, and a block box between the run and a group
+   put every group on a line of its own and collapsed the spacing inside it —
+   `markets 13 14 3 flat18 closed` with the gaps gone. Same trick, and the same
+   reason, as `.map-range-group`.
+
+   The switch is hidden rather than shrunk: this line is a readout, not a
+   control surface, and the phone reaches these two layers through the `layers`
+   panel, where their chips still are. */
+/* `gap: inherit` on `.map-markets-group` reads its *parent's* gap, and this box
+   is now that parent — so without this the groups inherited a gap of nothing
+   and the phone's line closed up to `markets13 14 3 flat18 closed`. Passed
+   through rather than restated, so the run's rhythm is still declared once. */
+.map-markets-item { display: contents; gap: inherit; }
+.map-markets-toggle { display: none; }
+
+/* Straits has counts nowhere — it is a label and a line, and the line is a
+   desktop thing — so on the phone it would print a heading with nothing under
+   it. The other four groups all carry their tallies there. */
+.map-markets-item.is-straits { display: none; }
+
 body.map-wide {
   & .map-money { display: block; }
 
@@ -4274,10 +4353,49 @@ body.map-wide {
   & .map-markets-world[hidden],
   & .map-markets-head[hidden] { display: none; }
 
+  /* A money row is now a switch column and a summary, side by side — the
+     switch is a sibling because a `<button>` inside a `<button>` is invalid and
+     browsers drop the inner one. The box is what makes the pair behave as one
+     row for hover and for alignment. */
+  & .map-markets-item,
+  & .map-markets-item.is-straits {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0 -0.4rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 2px;
+    min-height: var(--map-hud-row-h);
+
+    &:hover { background: var(--map-row-hover); }
+  }
+
+  /* The summary already carried the outdent and the hover; inside the box they
+     belong to the box, or a row would draw two nested highlights. */
+  & .map-markets-item .map-markets-summary {
+    margin: 0;
+    padding: 0;
+    min-height: 0;
+
+    &:hover { background: none; }
+  }
+
   & .map-markets-summary {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    /* `.map-markets-group` sets `flex-wrap: wrap`, which is right in the
+       scrubber's line — that box exists to keep a group's members together
+       across a wrap run — and wrong here, where the row is a fixed label column
+       and a line that fills what is left. With it, the moment the label got a
+       fixed width the sparkline no longer fit beside it and dropped to a second
+       line *underneath its own label*, which read as a row of double height
+       rather than as a wrap. Both then measured from the same left edge, which
+       is exactly the alignment this was meant to produce and the reason it took
+       a measurement to see. */
+    flex-wrap: nowrap;
+    /* Matched to the chips' gap, so a money line and a chip line begin on one
+       column rather than one pixel apart. */
+    gap: 0.45rem;
     width: 100%;
     min-height: var(--map-hud-row-h);
     /* The chips' outdent, restated — see `.map-key-item.is-layer-note` for the
@@ -4307,7 +4425,21 @@ body.map-wide {
      inside `.map-markets-count` and every row of the panel are untouched. */
   & .map-markets-summary > .map-markets-tick { display: none; }
 
-  & .map-markets-label { flex: 0 0 auto; }
+  & .map-markets-label {
+    flex: 0 0 var(--map-row-label-w);
+    min-width: 0;
+    /* Both row families are `<button>`s, and a button centres its text. That
+       was invisible while the label box was content-sized and became the whole
+       problem the moment it was not: short names floated in the middle of a
+       fixed column, so fixing the sparklines' left edge produced a ragged one
+       for the words. */
+    text-align: left;
+    /* The chips' register, not the group heading's. These rows are controls
+       that open a panel, and they now sit in one column with the chips — at
+       `--size-2xs` beside a `--size-xs` chip the two read as different kinds of
+       row, which is exactly what this restructure exists to stop. */
+    font-size: var(--size-xs);
+  }
 
   /* The counts are the panel's job here. The reverse holds in the scrubber,
      where there is no room for a shape and the counts are the whole readout. */

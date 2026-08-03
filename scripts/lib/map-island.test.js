@@ -395,20 +395,45 @@ test('the island mounts, renders, and tears down cleanly', async () => {
     // and is asserted rather than sorted so that adding a layer is a deliberate
     // edit to this line — `thermal` sits next to `disasters` because it shares
     // that layer's hue one step lighter, and the pair is only legible adjacent.
+    //
+    // `prayers` left this group on 2026-08-03 and did not leave the map: it is
+    // a geometry rather than a feed, so it has no switch at all and its note
+    // moved to the key panel.
+    //
+    // `markets` and `straits` are still here and are **hidden on the desktop**
+    // by the stylesheet, because there they are rows of the money block and
+    // carry their switch on it — the same control twice in one column is what
+    // that move existed to stop. They stay in the markup because the phone has
+    // no money block to put them in, and this panel has to pass the test it
+    // has always had: nothing hidden that the reader cannot get to. Asserted
+    // on the markup rather than on what is visible, since jsdom resolves no
+    // media query and both layouts ship the same DOM.
     const layers = [...env.host.querySelectorAll('.map-filter[data-kind="layer"]')]
     assert.deepEqual(
       layers.map((b) => b.textContent),
-      ['prayers', 'disasters', 'thermal', 'straits', 'markets', 'conflict', 'famine'],
+      ['disasters', 'thermal', 'conflict', 'markets', 'straits', 'famine'],
     )
     for (const f of layers) assert.equal(f.getAttribute('aria-pressed'), 'true')
 
-    // The prayer chip carries the calculation method. The lines are drawn to
-    // one school's angles and no single method is right everywhere, so a chip
-    // that names the layer without naming the authority is making a claim it
-    // does not attribute.
-    const prayers = layers[0]
-    assert.match(prayers.title, /Umm al-Qura/, 'the prayer chip names its method')
-    assert.match(prayers.getAttribute('aria-label') ?? '', /Umm al-Qura/)
+    // The two switches the money block took, and the rule that governs them:
+    // a mark means there is something to switch. They are siblings of their
+    // summaries, never inside them — a `<button>` in a `<button>` is invalid
+    // and browsers drop the inner one.
+    // The two switches the money block took — `markets` and `straits` — are
+    // deliberately *not* asserted here: this harness mounts without the market
+    // payload, so `.map-markets` never enters `env.host` and the assertion
+    // would pass by finding nothing whichever way the code went. They are
+    // checked by driving the built page instead. A test that cannot see its
+    // subject is worse than no test, because it reports green.
+
+    // The prayer lines lost their chip and kept their claim. The method is not
+    // optional detail — the lines are drawn to one school's angles and no
+    // single method is right everywhere — so it moved to the key panel, which
+    // is where this rail puts an explanation rather than a control.
+    const prayerNote = [...env.host.querySelectorAll('.map-key-item.is-layer-note')]
+      .find((n) => /prayer/i.test(n.textContent))
+    assert.ok(prayerNote, 'the prayer note survives the chip')
+    assert.match(prayerNote.title, /Umm al-Qura/, 'and still names its method')
 
     await settle()
     assert.equal(typeof teardown, 'function', 'mount must return a teardown')
