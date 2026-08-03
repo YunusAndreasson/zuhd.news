@@ -3361,6 +3361,24 @@ body.map-page > footer .footer-social a {
   );
 }
 
+/* The range and its heading travel together, so the rail can order them as one
+   line of the column and the fold can take both.
+
+   Outside the rail the heading is hidden (`.map-group-label` is `display: none`
+   below) and the wrapper has nothing left to do, so it dissolves: `.map-ranges`
+   goes back to being the flex item of the phone's HUD row that it always was,
+   with its own `margin-right`. Same trick `.map-filters` used to escape the
+   strip's wrap run, and it is safe for the same reason — one layout wants a box
+   here and the other wants no box at all.
+
+   Declared here, ahead of the rail block, rather than beside the heading it
+   wraps: the rail gives this same selector an `order`, and a lower-specificity
+   rule after a higher one is a descending-specificity warning even when the two
+   set different properties and neither can shadow the other. */
+.map-range-group { display: contents; }
+
+body.map-wide .map-range-group { display: block; }
+
 .map-ranges {
   display: flex;
   align-items: center;
@@ -3863,9 +3881,14 @@ body.map-wide .map-hud::after { display: none; }
    order the fold now respects, since the spine keeps exactly the block at the
    top and drops everything under it. */
 body.map-wide {
+  /* The time range leads, and the readings follow it.
+     It sat at 2, under the money block, back when it moved the beacons and
+     nothing else — one of four peer groups in the column. It governs every
+     row below it now, including the seven sparklines, so it goes where a
+     control that governs a column goes: at the top of it, under the head. */
   & .map-status { order: 0; }
-  & .map-money { order: 1; }
-  & .map-ranges { order: 2; }
+  & .map-range-group { order: 1; }
+  & .map-money { order: 2; }
   & .map-filters { order: 3; }
   & .map-ground { order: 4; }
   & .map-more { order: 5; }
@@ -3974,10 +3997,73 @@ body.map-wide .map-filter {
   padding: 0.25rem 0.4rem;
   margin: 0 -0.4rem;
   border-radius: 2px;
+  /* The row has three parts now — mark, name, trend — and the trend takes the
+     slack, so every line *ends* on the same column whatever its label is doing.
+     Not the same start: the label keeps its natural width, so a line begins
+     where its own name stops, exactly as the money rows above have always
+     behaved. Worth stating because the obvious next step — a fixed label
+     column — would align twelve rows at the cost of setting `genocide` and
+     `currencies` against the same rule as `tech`, and the widest name here is
+     nearly twice the narrowest.
+
+     The height is pinned so a chip and a sparkline row come out the same
+     height down the whole rail, which is what `--map-hud-row-h` is for. */
+  min-height: var(--map-hud-row-h);
 
   & svg { width: 14px; height: 14px; }
+  /* Never the mark's 14px rule: the sparkline is an svg too, and inheriting it
+     would draw every trend as a 14px square. */
+  & .map-filter-spark svg { width: auto; height: 1.05rem; }
 
   &:hover:not(.is-locked) { background: var(--map-row-hover); }
+}
+
+/* A chip's trend: the shape, then the change across it.
+
+   Outside the rail there is no room for either — the phone's chips sit in a
+   wrap run across the top of the map — so this exists in the DOM at every
+   width and is shown in one, the same bargain `.map-markets-spark` strikes. */
+.map-filter-spark { display: none; }
+
+body.map-wide .map-filter-spark {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+  /* The layer's own hue, taken from the same `--cat` its glyph is drawn from,
+     so a chip cannot disagree with the mark it names. **Not** `--map-pos` and
+     `--map-neg`: those mean "a signed change" and read as good and bad, which
+     on a market is a convention and on a hazard count is a claim — a green
+     "disasters +40%" is the map telling the reader that more disasters is good
+     news. Identity is in the hue, direction is in the shape, magnitude is in
+     the figure, and none of the three is a verdict.
+
+     `--map-ink-dim` is the fallback rather than `currentColor`: an unlit chip's
+     label steps down to that ink, and a line at `currentColor` would follow the
+     *label* into the ink step while a lit chip's line would follow `--cat` —
+     two different rules for one channel depending on state. */
+  color: var(--map-ink-dim);
+}
+
+/* Lit: the line takes the layer's colour. Unlit: it keeps the ink above, which
+   is the same step the label takes — so a switched-off layer still shows what
+   it is doing, quietly. That is the reason the trend is on the chip at all: the
+   reason to turn a layer on is that something is happening in it. */
+body.map-wide .map-filter.is-on .map-filter-spark { color: var(--cat, var(--map-ink-dim)); }
+
+/* The market chip has no single `--cat` — its scale is two-valued and the chip
+   draws both silhouettes — so its trend stays in ink rather than picking one of
+   the pair. It has a line of its own in the money block above in any case. */
+body.map-wide .map-filter[data-mark='market'] .map-filter-spark { color: var(--map-ink-dim); }
+
+body.map-wide .map-filter-label { flex: 0 0 auto; }
+
+body.map-wide .map-filter-pct {
+  flex: 0 0 auto;
+  font-size: var(--size-2xs);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
 }
 
 /* One column for every mark, so eight labels share one left edge.
@@ -4287,7 +4373,7 @@ body.map-page.map-wide.map-aside-off {
      same instant in the same frame with more of it, which is the argument the
      ≤1250px block already makes about the clock for the same reason. */
   & .map-status,
-  & .map-ranges,
+  & .map-range-group,
   & .map-hud-more,
   & .map-more { display: none; }
 
@@ -4317,9 +4403,13 @@ body.map-page.map-wide.map-aside-off {
    `seriesModel`, so it cannot disagree with the full chart a press opens about
    where a point falls.
 
-   `aspect-ratio` matches the viewBox exactly (100 x 20), which is what lets
-   `preserveAspectRatio="xMidYMid meet"` never letterbox — the ban on `none`
-   costs nothing here and the geometry is uniform at every rail width. */
+   This paragraph used to describe the opposite of what ships: it said an
+   `aspect-ratio` matched to the viewBox is "what lets
+   `preserveAspectRatio='xMidYMid meet'` never letterbox", and that arrangement
+   was measured, found to draw a 47px line per row, and replaced with `none`
+   and a fixed height on the same day. The comment on `.spark` below is the
+   correct account. A stale comment beside working code is the cheapest kind of
+   wrong thing to leave behind and the most expensive to read. */
 .spark {
   display: block;
   /* Height fixed, width taken. That order is the whole of it: a sparkline is a

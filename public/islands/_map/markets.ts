@@ -17,6 +17,7 @@
 import { el } from '../_dom'
 import { sparkline } from '../_spark'
 import { isTrading } from './format'
+import { coverage, DAY_MS, seriesDates, windowByDate } from './series-window'
 import { glyphSvg } from './glyphs'
 import type { GLYPHS } from './glyphs'
 import { MAP_COLOURS, OVERLAY_COLOUR } from './style'
@@ -361,21 +362,58 @@ const WORLD: TickerItem[] = [
 ]
 
 /**
- * How many observations every sparkline on the rail draws.
+ * How far back the money lines reach, in days.
  *
- * One number for all of them, and that is the point. The series behind these
- * rows are 30 to 66 points long — the FX basket publishes 30 days, an exchange
- * publishes a quarter of sessions — so drawn at their natural lengths a column
- * of sparklines would be four pictures of four different periods set to one
- * rhythm, with nothing on screen saying so and every reason for a reader to
- * assume otherwise. 30 is the shortest, so it is the only window all of them
- * can actually show.
+ * This replaced a constant — `SPARK_WINDOW = 30` — whose docblock argued,
+ * correctly, that a column of sparklines covering different periods is several
+ * incomparable pictures set to one rhythm, and then failed to prevent it. It
+ * counted *observations*, and thirty observations is thirty calendar days on
+ * the FX basket and about six weeks on an exchange trading five days in seven.
+ * The rule was right and the unit was wrong; every row on the rail has been
+ * covering a different period the whole time, with the printed percentage
+ * beside each measuring a different span.
  *
- * It is 30 *observations*, not 30 days: an exchange's 30 sessions is about six
- * weeks. The cards behind these rows draw the full series with its dates, which
- * is where a reader who needs the exact period goes.
+ * Windowing by date fixes that as a side effect of doing what a reader asked
+ * for. All seven rows now cover exactly the period named on the control, and
+ * where a series cannot fill it the line is drawn short rather than stretched —
+ * see `coverage` in `series-window.ts`, which is what keeps the shortfall
+ * visible instead of silent.
+ *
+ * The ladder is bounded by the data at both ends. Everything here is daily
+ * closes, so the bottom rung is a single day's move (below) and there is
+ * nothing finer to offer; the FX basket publishes 30 days and the exchanges a
+ * quarter, so 90 is the widest step where anything at all fills the window.
  */
-const SPARK_WINDOW = 30
+const RANGES: Array<[label: string, days: number]> = [
+  ['24h', 1],
+  ['7d', 7],
+  ['30d', 30],
+  ['90d', 90],
+]
+
+/**
+ * The slope scale for the 24h step, in percent, symmetric about zero.
+ *
+ * At one day there are exactly two closes, which is a real line and a useless
+ * one if it autoscales: two points scaled to their own domain are a full-height
+ * diagonal whatever they are, so a −0.02% day and a −2.9% day draw the same
+ * picture and only the figure beside them separates them. Against a fixed
+ * domain the same pair draws a slope proportional to the move — a calm day
+ * reads flat, a violent one reads steep — which is the one thing a sparkline of
+ * a single day's change has to say.
+ *
+ * Fixed rather than fitted to the day's own range, for the reason the map's
+ * density field is not rescaled to the visible set: rows then compare with each
+ * other *and* across days, and a quiet day is allowed to look quiet. Moves past
+ * it clamp, which costs the difference between "very large" and "enormous" on a
+ * shape that is not carrying magnitude to more precision than that anyway.
+ *
+ * 3 is measured against the payload rather than chosen: across a real trends
+ * file the daily moves run to ~0.5% on the FX basket, ~1% on the metals and the
+ * exchanges, and 2–3% on crypto — so the cap is where the busiest group's
+ * ordinary day lands, and the quieter groups keep their whole range inside it.
+ */
+const DAY_SLOPE_CAP = 3
 
 /** The latest move in a series, as a signed percentage. */
 export const seriesChangePct = (values: number[], invert = false): number | null => {
@@ -453,6 +491,146 @@ const meanIndex = (series: number[][]): number[] | null => {
     out.push(count ? (sum / count) * 100 : Number.NaN)
   }
   return out
+}
+
+/**
+ * One constituent of a sparkline row, as the row already holds it.
+ *
+ * A group is several of these and a world instrument is one, which is why the
+ * arithmetic below takes a list in both cases — the alternative was two code
+ * paths differing only in an array length.
+ */
+export interface SparkMember {
+  values: number[]
+  periods?: string[] | undefined
+  asOf?: string | undefined
+  /** The day's move, as the row prints it. Only the 24h step reads it. */
+  pct: number
+}
+
+export interface SparkInput {
+  values: number[]
+  span: [number, number]
+  domain?: [number, number] | undefined
+  /**
+   * The change to print, when it is not the one the drawn line states.
+   *
+   * `null` everywhere except the 24h step, where the line is a slope in percent
+   * space and its own last-against-first is meaningless — the figure there is
+   * the day's move, clamped for the drawing and printed unclamped.
+   */
+  pct: number | null
+  /**
+   * How many of the row's members the line was actually raised from.
+   *
+   * Equal to `total` on almost every row and almost every step; it differs when
+   * a member's published series has holes wide enough that its window is not
+   * the window — see the completeness filter below. Reported rather than
+   * swallowed, because a set that has quietly shrunk still reads as the whole.
+   */
+  members?: { drawn: number; total: number } | undefined
+}
+
+/**
+ * A row's members, resolved into one line over one calendar window.
+ *
+ * The whole of the range control's arithmetic, kept out of the DOM so it can be
+ * tested against real payload shapes.
+ */
+export const sparkInput = (members: SparkMember[], days: number): SparkInput | null => {
+  if (!members.length) return null
+
+  // --- The day step ------------------------------------------------------
+  // Two closes, drawn as the segment between them against a fixed scale. The
+  // group's figure is the mean of its members' displayed percentages — the same
+  // quantity `summarise()` derives `net` from, so the slope and the tick above
+  // it cannot disagree about which way the basket went.
+  if (days <= 1) {
+    const pcts = members.map((m) => m.pct).filter((p) => Number.isFinite(p))
+    if (!pcts.length) return null
+    const mean = pcts.reduce((a, b) => a + b, 0) / pcts.length
+    const drawn = Math.max(-DAY_SLOPE_CAP, Math.min(DAY_SLOPE_CAP, mean))
+    return {
+      values: [0, drawn],
+      span: [0, 1],
+      domain: [-DAY_SLOPE_CAP, DAY_SLOPE_CAP],
+      pct: mean,
+    }
+  }
+
+  // --- The calendar steps ------------------------------------------------
+  const dated = members.map((m) => {
+    const dates = seriesDates(m.periods, m.asOf)
+    return dates && dates.length === m.values.length ? { values: m.values, dates } : null
+  })
+
+  // All or none. A composite mixing date-windowed members with count-windowed
+  // ones is the incomparable-periods bug rebuilt inside a single row, and a
+  // source that changes its date format should cost the range control's
+  // precision rather than its correctness — so the whole row falls back to the
+  // count window the rail used before there was one.
+  if (dated.some((d) => d === null)) {
+    const index = meanIndex(members.map((m) => m.values))
+    return index ? { values: index, span: [0, 1], pct: null } : null
+  }
+
+  const usable = dated.flatMap((d) => (d ? [d] : []))
+  const ends = usable.flatMap((d) => {
+    const last = d.dates[d.dates.length - 1]
+    return last === undefined ? [] : [last]
+  })
+  if (!ends.length) return null
+  const to = Math.max(...ends)
+  const from = to - days * DAY_MS
+
+  const all = usable.flatMap((d) => {
+    const w = windowByDate(d.values, d.dates, from)
+    return w ? [w] : []
+  })
+  if (!all.length) return null
+
+  /**
+   * Members whose window is materially the window everyone else has.
+   *
+   * `meanIndex` aligns by index and takes the last N where N is the *shortest*
+   * member, so one gappy series decides the shape of the whole composite — and
+   * measured against a real payload that is not hypothetical. Four exchanges
+   * (Tadawul, DFM, SET, PSE) publish series with multi-week holes in them, so
+   * inside a 7-day window they hold **one** observation against a median of six,
+   * and the world's thirty equity indices were drawing as a two-point straight
+   * line: a clean trend, stated confidently, sourced from the one member least
+   * able to support it.
+   *
+   * So a member joins if it carries at least four fifths of what the median
+   * member carries. Not half, which was tried and still let an 11-session
+   * member set N for a 21-session window; four fifths is "substantially the
+   * same period", which is the actual condition for averaging two series
+   * together. Below two survivors the filter is abandoned rather than trusted —
+   * a rule that can empty its own input is not a rule.
+   *
+   * What is dropped is dropped for a fact about the data, so the row says so
+   * where it can: `sparkInput` reports the membership and the caller puts it in
+   * the label. A bounded set that does not state its bound reads as the whole.
+   */
+  const counts = all.map((w) => w.values.length).sort((a, b) => a - b)
+  const median = counts[Math.floor(counts.length / 2)] ?? 0
+  const kept = all.filter((w) => w.values.length >= median * 0.8)
+  const windows = kept.length >= 2 ? kept : all
+
+  const index = meanIndex(windows.map((w) => w.values))
+  if (!index) return null
+
+  // `meanIndex` takes the last N of every member where N is the shortest, so
+  // the composite covers the period of its *shortest* member — the latest
+  // start, not the earliest. Taking the earliest would draw a line claiming a
+  // reach that only one constituent has.
+  const drawnFrom = Math.max(...windows.map((w) => w.from))
+  return {
+    values: index,
+    span: coverage(drawnFrom, to, from),
+    pct: null,
+    members: { drawn: windows.length, total: members.length },
+  }
 }
 
 // --- Nisab -----------------------------------------------------------------
@@ -656,6 +834,17 @@ export interface MarketStrip {
    * is standing, and only the island knows that.
    */
   setDock(box: HTMLElement | null): void
+  /**
+   * The window the rail is showing, in days, so a card opened from a row can
+   * draw the same period the row does.
+   *
+   * A reader who has set the money to a week and then presses a row is still
+   * asking about that week; opening the card on the whole published series
+   * answers a question they moved away from.
+   */
+  rangeDays(): number
+  /** Follow the rail's one time range. Redraws from the payloads it holds. */
+  setRangeDays(days: number): void
   destroy(): void
 }
 
@@ -665,6 +854,16 @@ export interface MarketStripOptions {
   /** Open a currency, metal or coin's card. Nothing to fly to — these are not
    *  places — so this only opens the sheet. */
   onQuote: (entry: TickerEntry) => void
+  /**
+   * The window the rail opens on, in days.
+   *
+   * Passed in rather than defaulted here, because there is one range on this
+   * page and two defaults would be a disagreement waiting for a first paint:
+   * the control would read `3d` over lines drawn across a month, and only a
+   * press would reconcile them. The island owns `RANGES`, so the island owns
+   * where the ladder starts.
+   */
+  rangeDays: number
 }
 
 /**
@@ -676,7 +875,7 @@ export interface MarketStripOptions {
  * fell. Below the flat band the tone goes neutral too, so the colour agrees
  * with the tick beside it rather than tinting a flat bar.
  */
-const ribbonPct = (pct: number): string => {
+export const ribbonPct = (pct: number): string => {
   const abs = Math.abs(pct).toFixed(1)
   return abs === '0.0' ? '0.0%' : `${pct > 0 ? '+' : '−'}${abs}%`
 }
@@ -760,6 +959,23 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
   worldHead.hidden = true
   const world = el('div', 'map-markets-world')
   world.hidden = true
+
+  /**
+   * How far back the lines reach.
+   *
+   * Owned here, set from outside. The money block briefly had a switch of its
+   * own on the reasoning that stories and money are different clocks measured
+   * against different data — which is true, and it produced two segmented
+   * controls in one column, four positions apart, each governing half of what
+   * was under it. A reader adjusting "the time range" on a map has adjusted the
+   * time range; being told that the beacons heard them and the lines did not is
+   * an explanation of the implementation.
+   *
+   * So there is one control, at the head of the rail, and this is the strip's
+   * end of it. The ladder is the island's `RANGES`, and so is the opening step.
+   */
+  let rangeDays = opts.rangeDays
+
   root.append(moneyHead, row, worldHead, world)
 
   /**
@@ -924,20 +1140,39 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * `null` when the constituents have no drawable series between them, so the
    * caller can leave the row unshaped rather than reserving space for a gap.
    */
-  const sparkInto = (host: HTMLElement, series: number[][]): number | null => {
-    const index = meanIndex(series)
-    const spark = index ? sparkline(index, SPARK_WINDOW) : null
-    if (!spark) {
+  /**
+   * What the last `sparkInto` left out, as a phrase, or `''` when it left out
+   * nothing. Read straight afterwards by the caller building the label — the
+   * two calls are adjacent and single-threaded, which is the whole reason this
+   * can be a variable rather than another return value threaded through three
+   * call sites.
+   */
+  let sparkNote = ''
+
+  const sparkInto = (host: HTMLElement, members: SparkMember[]): number | null => {
+    const input = sparkInput(members, rangeDays)
+    const m = input?.members
+    sparkNote =
+      m && m.drawn < m.total ? `, from ${m.drawn} of ${m.total} with a full window` : ''
+    const spark = input
+      ? sparkline({
+          values: input.values,
+          window: input.values.length,
+          span: input.span,
+          domain: input.domain,
+        })
+      : null
+    if (!spark || !input) {
       host.className = 'map-markets-spark'
       host.replaceChildren()
       return null
     }
-    host.className = `map-markets-spark${toneClass(spark.windowPct)}`
-    host.replaceChildren(
-      spark.element,
-      el('span', 'map-markets-window', ribbonPct(spark.windowPct)),
-    )
-    return spark.windowPct
+    // The drawn line's own change, except at the day step, where the line is a
+    // slope in percent space and `windowPct` would be a percentage of zero.
+    const pct = input.pct ?? spark.windowPct
+    host.className = `map-markets-spark${toneClass(pct)}`
+    host.replaceChildren(spark.element, el('span', 'map-markets-window', ribbonPct(pct)))
+    return pct
   }
 
   /** The counts as a sentence, for the label a bar cannot provide. */
@@ -1098,7 +1333,20 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
   /** What the panel's meta line says about the exchanges, set by `update`. */
   let exchangeMeta = ''
 
+  /**
+   * The last payloads, held so a range press can redraw.
+   *
+   * Neither was retained before, because nothing ever needed to re-render from
+   * them: `update` ran on the markets fetch and `setTrends` exactly once, on
+   * the idle one. A control that changes how the same numbers are drawn needs
+   * the numbers, and refetching to answer a button press would put a network
+   * round trip behind a control that is pure arithmetic.
+   */
+  let lastMarkets: MapExchange[] | null = null
+  let lastIndicators: TrendIndicator[] | null = null
+
   const update = (markets: MapExchange[], now = Date.now()) => {
+    lastMarkets = markets
     const t = marketTally(markets, now)
     allExchanges = [...markets].sort((a, b) => (b.changePct ?? 0) - (a.changePct ?? 0))
 
@@ -1115,12 +1363,23 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     // shipped and nothing but the exchange card ever read it.
     const pct = sparkInto(
       tallySpark,
-      markets.flatMap((m) => (Array.isArray(m.series?.values) ? [m.series.values] : [])),
+      markets.flatMap((m) =>
+        Array.isArray(m.series?.values)
+          ? [
+              {
+                values: m.series.values,
+                periods: m.series.periods,
+                asOf: m.asOf,
+                pct: m.changePct ?? 0,
+              },
+            ]
+          : [],
+      ),
     )
     tallyGroup.setAttribute(
       'aria-label',
       `Exchanges — ${countsText(s)}${t.closed ? `, ${t.closed} closed` : ''}${
-        pct == null ? '' : `, ${ribbonPct(pct)} over ${SPARK_WINDOW} sessions`
+        pct == null ? '' : `, ${ribbonPct(pct)} over ${rangeLabel()}${sparkNote}`
       }`,
     )
 
@@ -1154,6 +1413,7 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * interleaves groups still produces three summaries rather than six.
    */
   const setTrends = (indicators: TrendIndicator[]) => {
+    lastIndicators = indicators
     for (const stale of row.querySelectorAll('.map-markets-group[data-trend]')) stale.remove()
     const quotes = tickerEntries(indicators)
 
@@ -1183,13 +1443,13 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
       // cancels a seventh of the signal the line exists to carry.
       const pct = sparkInto(
         spark,
-        items.filter((e) => e.id !== 'usd-index').map((e) => e.values),
+        items.filter((e) => e.id !== 'usd-index'),
       )
       summary.append(tick(s.net), el('span', 'map-markets-label', name), counts, spark)
       summary.setAttribute(
         'aria-label',
         `${name} — ${countsText(s)}${
-          pct == null ? '' : `, ${ribbonPct(pct)} over ${SPARK_WINDOW} days`
+          pct == null ? '' : `, ${ribbonPct(pct)} over ${rangeLabel()}${sparkNote}`
         }`,
       )
       trigger(
@@ -1219,7 +1479,7 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
       item.setAttribute('type', 'button')
       item.setAttribute('aria-haspopup', 'dialog')
       const spark = el('span', 'map-markets-spark')
-      const pct = sparkInto(spark, [entry.values])
+      const pct = sparkInto(spark, [entry])
       item.append(
         tick(marketDirection(entry.pct)),
         el('span', 'map-markets-label', entry.label),
@@ -1227,7 +1487,7 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
       )
       item.setAttribute(
         'aria-label',
-        `${entry.name}${pct == null ? '' : ` — ${ribbonPct(pct)} over ${SPARK_WINDOW} days`}, show detail`,
+        `${entry.name}${pct == null ? '' : ` — ${ribbonPct(pct)} over ${rangeLabel()}${sparkNote}`}, show detail`,
       )
       item.addEventListener('click', () => {
         closePanel()
@@ -1237,10 +1497,41 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     }
   }
 
+  /**
+   * The window in words, for the labels a screen reader hears.
+   *
+   * These used to read "over 30 days" and "over 30 sessions" off one constant —
+   * two different nouns for one number, which was the count bug stated out loud
+   * and heard by nobody who could check it. A calendar window has one noun.
+   */
+  function rangeLabel(): string {
+    if (rangeDays <= 1) return 'the past day'
+    const found = RANGES.find(([, d]) => d === rangeDays)
+    return found ? `the past ${found[0].replace('d', ' days')}` : `the past ${rangeDays} days`
+  }
+
+  /**
+   * Redraw both blocks from what is already held.
+   *
+   * `update` is given no `now`, so the tally re-reads the clock: a reader who
+   * has left the map open across an opening bell should not have a range press
+   * restore the session states from whenever the payload landed.
+   */
+  function redraw() {
+    if (lastMarkets) update(lastMarkets)
+    if (lastIndicators) setTrends(lastIndicators)
+  }
+
   return {
     element: root,
     update,
     setTrends,
+    rangeDays: () => rangeDays,
+    setRangeDays(days: number) {
+      if (days === rangeDays) return
+      rangeDays = days
+      redraw()
+    },
     setVisible(on: boolean) {
       root.hidden = !on
     },

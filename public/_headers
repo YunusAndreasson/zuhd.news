@@ -98,6 +98,16 @@
 /api/map-leads.json
   Cache-Control: public, max-age=300, stale-while-revalidate=3600, stale-if-error=86400
 
+# The story archive is 250 KB gzipped and almost entirely settled: it starts
+# where the build window ends, so nothing in it can still be edited and the only
+# thing a cycle changes is the fortnight-old tail rolling in at one end. A
+# five-minute max-age would make a reader who walks the range steps pay for it
+# repeatedly for text that has not moved. An hour, and a day of stale-while-
+# revalidate, because a beacon three months old arriving a cycle late is not a
+# thing any reader can perceive.
+/api/map-archive.json
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400, stale-if-error=604800
+
 # Story cards are immutable once written — a slug's body never changes after
 # publication — so the map's reading card should never refetch one twice.
 /api/story/*

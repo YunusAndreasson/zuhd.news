@@ -153,6 +153,35 @@ test('an external reference is not recomputed', () => {
   assert.equal(seriesModel({ ...opts, window: 20 }).reference, 100)
 })
 
+test('a fixed domain replaces the scale and nothing else', () => {
+  // What the money rail's 24h step needs: two points whose *magnitude* is the
+  // fact. Autoscaled they are a full-height diagonal whatever they are, so a
+  // −0.02% day and a −2.9% day draw identically.
+  const at = (values, domain) => {
+    const m = seriesModel({ values, domain })
+    return m.points[1].y - m.points[0].y
+  }
+  const calm = at([0, -0.02], [-3, 3])
+  const violent = at([0, -2.9], [-3, 3])
+  assert.ok(Math.abs(calm) < Math.abs(violent) / 10, 'the slope carries the magnitude')
+  assert.ok(Math.abs(at([0, -0.02], undefined)) > Math.abs(calm), 'autoscaled, it would not')
+
+  // The observations still own the axis: a domain widened past the data must
+  // not put a number on the gutter that nobody reported.
+  const m = seriesModel({ values: [10, 20], domain: [0, 100] })
+  assert.equal(m.lo, 0)
+  assert.equal(m.hi, 100)
+  assert.equal(m.peak.value, 20)
+  assert.equal(m.trough.value, 10)
+
+  // A domain that is not one is ignored rather than obeyed into a broken chart.
+  for (const bad of [[3, -3], [Number.NaN, 3], [1, 1]]) {
+    const fell = seriesModel({ values: [10, 20], domain: bad })
+    assert.equal(fell.lo, 10, `${JSON.stringify(bad)} falls back to autoscale`)
+    assert.equal(fell.hi, 20)
+  }
+})
+
 test('a range is only offered when it would change the chart', () => {
   assert.deepEqual(rangeOptions(20), [], 'nothing to choose between')
   assert.deepEqual(rangeOptions(86), [30, 0])

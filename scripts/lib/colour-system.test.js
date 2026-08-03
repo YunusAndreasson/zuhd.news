@@ -175,6 +175,35 @@ test('focus rings meet the non-text threshold wherever they land', () => {
  * expressed in tokens this suite can read. It cannot check what `opacity` does
  * to it, which is exactly why `opacity` may not be what says it.
  */
+/**
+ * The same guard, on the switch the money block borrows.
+ *
+ * `.map-range` is now two controls — the map's story window and the money
+ * rail's — so an `opacity` added to it to quieten an unpressed position would
+ * dim both, and this suite cannot see it happen. The unlit state is
+ * `--map-ink-muted` and the lit one `--map-ink` on `--map-raised`; both are
+ * measured below, and neither means anything if an alpha is composited over
+ * them afterwards.
+ */
+test('the range switch is quiet by ink, not by alpha', () => {
+  const block = css.match(/(?:^|\n)\.map-range\s*\{[^}]*\}/)
+  assert.ok(block, '.map-range should exist — it is the window switch on two controls')
+  assert.ok(
+    !/\bopacity\s*:/.test(block[0]),
+    'a range position is dimmed with opacity, which this suite cannot measure — use an ink step',
+  )
+  assertContrast(
+    '--map-ink-muted', token('--map-ink-muted'),
+    '--map-sunken', token('--map-sunken'),
+    NON_TEXT,
+  )
+  assertContrast(
+    '--map-ink', token('--map-ink'),
+    '--map-raised', token('--map-raised'),
+    NON_TEXT,
+  )
+})
+
 test('the seam control is quiet by ink, not by alpha', () => {
   const block = css.match(/\.map-seam-toggle\s*\{[^}]*\}/)
   assert.ok(block, '.map-seam-toggle should exist — it is the only way to unfold a pane')

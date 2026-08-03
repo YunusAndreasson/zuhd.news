@@ -64,6 +64,34 @@ export interface Spark {
   windowPct: number
 }
 
+export interface SparkOptions {
+  values: number[]
+  /**
+   * How many observations to draw. Required, not optional, and the reason has
+   * moved: it used to be the guarantee that a column of sparklines covered one
+   * period, and it could not be — an exchange trades five days in seven, so
+   * thirty of its points is six weeks against the FX basket's thirty days.
+   *
+   * The period is `span`'s job now, and this is what it always actually was: a
+   * cap on how much of the series is drawn.
+   */
+  window: number
+  /**
+   * Where the line sits in the box, as a 0–1 pair, when the series does not
+   * fill the window the reader asked for.
+   *
+   * The honest answer to "90 days please" from a series holding 30 is to draw
+   * thirty days' worth in the last third and leave the rest empty. Stretched to
+   * the full width instead, it is indistinguishable from a series that really
+   * does cover the window — the same picture standing for two different facts.
+   *
+   * Defaults to the whole box, which is the common case.
+   */
+  span?: [number, number] | undefined
+  /** A fixed vertical domain — see `SeriesOptions.domain`. */
+  domain?: [number, number] | undefined
+}
+
 /**
  * One series as a bare polyline, or `null` when there is nothing to draw.
  *
@@ -71,14 +99,9 @@ export interface Spark {
  * than two finite points is a dot pretending to be a trend, and a caller that
  * reserved space for a shape that never arrived would leave a gap reading as a
  * layout fault rather than as missing data.
- *
- * `window` is required, not optional. Every row that draws one of these sits
- * beside others, and a column of sparklines covering different periods is
- * four incomparable pictures at one rhythm — the reader has no way to see that
- * the lengths differ and every reason to assume they do not.
  */
-export const sparkline = (values: number[], window: number): Spark | null => {
-  const model = seriesModel({ values, window })
+export const sparkline = (opts: SparkOptions): Spark | null => {
+  const model = seriesModel({ values: opts.values, window: opts.window, domain: opts.domain })
   if (!model.ok) return null
 
   const { pad } = model
@@ -86,10 +109,14 @@ export const sparkline = (values: number[], window: number): Spark | null => {
   const ih = model.height - pad.t - pad.b
   if (iw <= 0 || ih <= 0) return null
 
+  const [x0, x1] = opts.span ?? [0, 1]
+  const left = x0 * SPARK_W
+  const width = Math.max(0, (x1 - x0) * SPARK_W)
+
   const plot = SPARK_H - INSET * 2
   const points = model.points
     .map((p) => {
-      const x = ((p.x - pad.l) / iw) * SPARK_W
+      const x = left + ((p.x - pad.l) / iw) * width
       const y = INSET + ((p.y - pad.t) / ih) * plot
       return `${round(x)},${round(y)}`
     })

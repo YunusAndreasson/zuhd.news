@@ -362,17 +362,23 @@ test('the island mounts, renders, and tears down cleanly', async () => {
     assert.ok(env.host.querySelector('.map-status'), 'status readout present')
     assert.ok(env.host.querySelector('.map-feed'), 'event rail present')
 
-    // Four time-range presets, and the map opens on neither end of them. Not the
-    // full fortnight, because the widest range is the one view where nothing
-    // stands out — 700-odd mostly cold stories burying the dozen that broke
-    // today. And not 24h either, which measured at 29 stories against a real
-    // payload and about seven twelve hours after a build: a near-empty world
-    // under a rail reading "29 STORIES", and far too few points to raise a
-    // density field from. 3d is 135.
+    // Five time-range presets, and the map opens on neither end of them. Not the
+    // widest, because that is the one view where nothing stands out — mostly
+    // cold stories burying the dozen that broke today. And not 24h either,
+    // which measured at 29 stories against a real payload and about seven
+    // twelve hours after a build: a near-empty world under a rail reading
+    // "29 STORIES", and far too few points to raise a density field from.
+    // 3d is 135.
+    //
+    // `14d` is gone and `30d`/`90d` contain it. The ladder is shared with the
+    // money block's sparklines since 2026-08-03 — one range for everything in
+    // the rail below it — and those are daily closes going back a quarter, so
+    // the two steps past the fortnight are the money's and the story layer
+    // reaches them through its own archive.
     const rangeBtns = [...env.host.querySelectorAll('.map-range')]
     assert.deepEqual(
       rangeBtns.map((b) => b.textContent),
-      ['24h', '3d', '7d', '14d'],
+      ['24h', '3d', '7d', '30d', '90d'],
     )
     const pressed = rangeBtns.filter((b) => b.getAttribute('aria-pressed') === 'true')
     assert.equal(pressed.length, 1, 'exactly one range is selected')

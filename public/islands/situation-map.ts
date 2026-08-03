@@ -61,9 +61,14 @@ import {
   marketCollection,
   marketLayout,
   marketPaint,
+  ribbonPct,
+  seriesChangePct,
+  sparkInput,
   type MarketStrip,
   type TrendIndicator,
 } from './_map/markets'
+import { bucketCounts, coverage, halfOverHalf } from './_map/series-window'
+import { sparkline } from './_spark'
 import { createPaneSeam, type PaneSeam } from './_map/panes'
 import { createTimeline, type Timeline } from './_map/timeline'
 import { createSheet, type Sheet } from './_map/sheet'
@@ -211,12 +216,30 @@ const PRAYER_HOVER: ExpressionSpecification = ['boolean', ['feature-state', 'hov
 /** How wide, in pixels, the pointer may miss a hairline by and still find it. */
 const PRAYER_GRAB_PX = 7
 
-/** Time-range presets, in hours. `null` means the whole 14-day window. */
-const RANGES: Array<[string, number | null]> = [
+/**
+ * Time-range presets, in hours. One ladder, for everything in the rail below it.
+ *
+ * It used to be four steps ending in `null` — "the whole 14-day window" — and
+ * it governed the beacons alone, while the money block underneath drew a fixed
+ * thirty observations that no gesture on this page could move. Two windows in
+ * one column, and only one of them had a control.
+ *
+ * The merge costs each side something and neither cost is silent. The stories
+ * keep every step they had except `14d`, which `30d` and `90d` now contain; the
+ * money gains four steps and loses nothing, since `3d` of daily closes is three
+ * points and draws. What it buys is that "the time range" on this map means the
+ * time range.
+ *
+ * `null` is gone with `14d`. It existed to say "no lower bound" when the corpus
+ * *was* the bound; with real steps past the fortnight the bound has to be a
+ * number the story archive can be fetched against.
+ */
+const RANGES: Array<[label: string, hours: number]> = [
   ['24h', 24],
   ['3d', 72],
   ['7d', 168],
-  ['14d', null],
+  ['30d', 720],
+  ['90d', 2160],
 ]
 
 /**
@@ -237,7 +260,7 @@ const RANGES: Array<[string, number | null]> = [
  * 72 hours is 135, which is enough for the field to show a real pattern on first
  * paint while still being the news. 24h is one press away.
  */
-const DEFAULT_RANGE_HOURS: number | null = 72
+const DEFAULT_RANGE_HOURS = 72
 
 /** How often the terminator is redrawn. The sun moves 0.25° a minute. */
 const SUN_TICK_MS = 120_000
@@ -519,10 +542,30 @@ export function mount(
   const hud = document.createElement('div')
   hud.className = 'map-hud'
 
+  /**
+   * The rail's one time range, and the heading that says what it governs.
+   *
+   * The control had no heading while it was one of several groups in a column
+   * — `stories`, `layers` and `ground` each named their own, and the ranges sat
+   * between them naming nothing. That was survivable when it moved the beacons
+   * only. It is at the head of the rail now, above the money and above every
+   * layer control, and a bare row of five buttons at the top of a column is a
+   * control with no stated subject; the word is what says the five positions
+   * below it are all one answer.
+   */
+  const rangeHead = document.createElement('div')
+  rangeHead.className = 'map-range-group'
+
+  const rangeLabel = document.createElement('span')
+  rangeLabel.className = 'map-group-label'
+  rangeLabel.textContent = 'time range'
+  rangeLabel.setAttribute('aria-hidden', 'true')
+
   const ranges = document.createElement('div')
   ranges.className = 'map-ranges'
   ranges.setAttribute('role', 'group')
   ranges.setAttribute('aria-label', 'Time range')
+  rangeHead.append(rangeLabel, ranges)
 
   const filters = document.createElement('div')
   filters.className = 'map-filters'
@@ -1021,7 +1064,7 @@ export function mount(
   // same corner, so nothing about the narrow layout changes. What it buys is the
   // wide one: as a child it can simply become the rail's first line, where a
   // box positioned against the root would have gone on hanging in the canvas.
-  hud.append(status, ranges, more, moreBtn)
+  hud.append(status, rangeHead, more, moreBtn)
 
   /**
    * Back to the whole world.
@@ -1147,7 +1190,7 @@ export function mount(
     conflict: true,
     famine: true,
   }
-  let rangeHours: number | null = DEFAULT_RANGE_HOURS
+  let rangeHours: number = DEFAULT_RANGE_HOURS
   let scrubNow = Date.now()
   let mounted = true
   let ultraLoaded = false
@@ -1228,6 +1271,7 @@ export function mount(
    * payload lands; filled in later, when the exchanges arrive.
    */
   const marketStrip: MarketStrip = createMarketStrip({
+    rangeDays: DEFAULT_RANGE_HOURS / 24,
     onSelect: (id) => {
       const ex = markets.find((m) => m.id === id)
       if (!ex) return
@@ -1238,9 +1282,13 @@ export function mount(
       feed.setExpanded(false, true)
       flying = true
       map.flyTo({ center: [ex.lng, ex.lat], zoom: Math.max(map.getZoom(), 3.2), duration: 900 })
-      sheet.showMarket(ex, true)
+      // Both of these carry the rail's window in, so the card opens on the
+      // period the row the reader pressed was drawing. An exchange card opened
+      // from a mark on the map takes no argument and still draws the whole
+      // quarter — there the reader came from the globe, not from the money.
+      sheet.showMarket(ex, true, marketStrip.rangeDays())
     },
-    onQuote: (entry) => sheet.showIndicator(entry, true),
+    onQuote: (entry) => sheet.showIndicator(entry, true, marketStrip.rangeDays()),
   })
 
   const readState = createReadState()
@@ -1531,9 +1579,9 @@ export function mount(
 
   // --- Data shaping -------------------------------------------------------
   const visiblePoints = (): MapPoint[] => {
-    const from = rangeHours === null ? -Infinity : scrubNow - rangeHours * 3_600_000
+    const from = scrubNow - rangeHours * 3_600_000
     // Tell the rail which slice of itself is on the map.
-    timeline?.setWindow(rangeHours === null ? null : from)
+    timeline?.setWindow(from)
     return points.filter((p) => p.t <= scrubNow && p.t >= from && enabled.has(p.cat))
   }
 
@@ -3715,16 +3763,194 @@ export function mount(
       btn.className = hours === rangeHours ? 'map-range is-on' : 'map-range'
       btn.dataset.kind = 'range'
       // Read back by `syncRangeChips`, which has no closure over the loop.
-      btn.dataset.hours = hours === null ? '' : String(hours)
+      btn.dataset.hours = String(hours)
       btn.textContent = label
       btn.setAttribute('aria-pressed', String(hours === rangeHours))
-      btn.addEventListener('click', () => {
-        rangeHours = hours
-        syncRangeChips()
-        refresh()
-      })
+      btn.addEventListener('click', () => setRange(hours))
       ranges.append(btn)
     }
+  }
+
+  /**
+   * The one place the range is set, whoever asked.
+   *
+   * It has three consequences now rather than one, and they were being written
+   * out at each of the three call sites — a press, a shared link, and the
+   * initial paint — which is how the money block came to be missed by two of
+   * them while the beacons were updated by all three.
+   */
+  /**
+   * A chip's trend, drawn beside the control that switches it.
+   *
+   * The money block had the only lines on the rail, and the two groups under it
+   * — the categories and the layers — are the same kind of question asked about
+   * a different quantity: *is there more of this than there was*. A reader
+   * deciding whether to turn a layer on has no way to know it is spiking, and
+   * the chip is the one place that answer belongs, because it is the place the
+   * decision is made.
+   *
+   * **The tone is the layer's own hue, never the money's green and orange**, and
+   * that is a correctness rule rather than a preference. `--map-pos`/`--map-neg`
+   * mean "a signed change" and read as good and bad, which on a market is a
+   * convention old enough to be invisible and on a hazard count is a claim: a
+   * green **DISASTERS +40%** says more disasters is good news. The same trap
+   * this file records for the genocide caption, where colour on a label made the
+   * gravest mark on the map read as an alert about the interface. So identity
+   * rides on hue — the chip's own `--cat`, which its glyph already carries — and
+   * direction rides on the shape, which is the one thing a sparkline is for. The
+   * signed figure states the magnitude in words beside it, and claims nothing.
+   *
+   * A switched-off chip keeps its line, in the ink its label already stepped
+   * down to. That is the whole value of putting it here: the reason to turn a
+   * layer on is that something is happening in it, and a rail that hid the
+   * evidence behind the switch would be asking the reader to guess.
+   */
+  const chipTrend = (
+    key: string,
+    values: number[] | null,
+    span: [number, number],
+    /**
+     * The figure to print: a number, `'window'` to take the drawn line's own
+     * last-against-first, or `null` to print none.
+     *
+     * Three cases and not two, because the two kinds of series here answer
+     * "which way" differently. A published series — the straits' vessel counts —
+     * is a level, and last-against-first is exactly its change, which
+     * `seriesModel` has already computed over what it drew. A bucketed count is
+     * a rate, where that comparison is one bucket against one other bucket, so
+     * it gets `halfOverHalf` instead. And `null` is for a first half with
+     * nothing in it: a rise from nothing has no percentage, and printing one
+     * would be a division dressed up as a finding.
+     */
+    pct: number | 'window' | null,
+  ) => {
+    const host = filters.querySelector(`[data-key="${key}"] .map-filter-spark`)
+    if (!(host instanceof HTMLElement)) return
+    const spark = values ? sparkline({ values, window: values.length, span }) : null
+    if (!spark) {
+      host.replaceChildren()
+      return
+    }
+    const fig = document.createElement('span')
+    fig.className = 'map-filter-pct'
+    const shown = pct === 'window' ? spark.windowPct : pct
+    fig.textContent = shown == null ? '' : ribbonPct(shown)
+    host.replaceChildren(spark.element, fig)
+  }
+
+  /**
+   * A pile of event times as a line placed inside the asked-for window.
+   *
+   * The buckets are laid across what the payload **covers**, not across what the
+   * reader asked for, and that distinction was a bug before it was a rule.
+   * GDACS publishes a rolling window of about sixteen days; bucketed across a
+   * 30-day range, the fourteen days it does not hold came out as empty buckets,
+   * they landed almost entirely in the earlier half, and the chip read
+   * **+911.1%** — a real division over an absence, which is the most convincing
+   * kind of wrong number. Bucketing over the covered period instead makes the
+   * comparison one between two halves of the same evidence, and `coverage`
+   * still places the shorter line in the right part of the box, so the reader
+   * can see it does not reach.
+   */
+  const countTrend = (key: string, times: number[], from: number, to: number) => {
+    const usable = times.filter((t) => Number.isFinite(t) && t <= to)
+    if (!usable.length) return chipTrend(key, null, [0, 1], null)
+    const drawnFrom = Math.max(from, Math.min(...usable))
+    const counts = bucketCounts(usable, drawnFrom, to)
+    chipTrend(key, counts, coverage(drawnFrom, to, from), halfOverHalf(counts))
+  }
+
+  /**
+   * Every chip trend, from whatever the island is currently holding.
+   *
+   * Anchored on `windowEnd` rather than on `scrubNow`, so a chip says "the last
+   * N days" whatever the scrubber is doing — the same anchor the money rows use,
+   * and the alternative would be seven rows following the clock and eleven
+   * following the reader's thumb.
+   *
+   * Three of the eleven chips can support a line and the other eight are left
+   * deliberately blank, each for a reason worth stating rather than discovering:
+   * **conflict** is UCDP, which publishes months in arrears — the newest event
+   * in a real payload is 125 days old, so every range this control offers is
+   * empty, and the layer already decays against its own dataset's newest event
+   * for exactly this reason; **thermal** is eleven detections from a single
+   * satellite pass; **famine** and **genocide** are determinations rather than
+   * events, which is why `map-island.test.js` fails if a time filter ever
+   * appears on them, and a trend line is a time filter with a picture; and
+   * **prayers** is a geometry, not a quantity. `markets` has its line in the
+   * money block above, where it is one of seven rather than the only one.
+   */
+  function paintTrends() {
+    const to = windowEnd || Date.now()
+    const from = to - rangeHours * 3_600_000
+
+    // Stories, per category. Before the archive lands the corpus is a fortnight,
+    // so a 30d chip draws fourteen days of shape in the right half of its box
+    // rather than fourteen days stretched across it.
+    for (const cat of CATEGORY_ORDER) {
+      countTrend(cat, points.flatMap((p) => (p.cat === cat ? [p.t] : [])), from, to)
+    }
+
+    // Disasters. GDACS publishes a rolling window — about sixteen days against
+    // a real payload — so beyond that the line is short-drawn from its own
+    // oldest alert. Zero-filling to the window's edge instead would draw "we do
+    // not hold this" as "nothing happened", which on a disaster layer is the
+    // worse of the two errors by a distance.
+    countTrend('gdacs', gdacs.map((a) => Date.parse(a.fromDate)), from, to)
+
+    // Straits, which unlike the two above have a *published* series — eleven
+    // chokepoints, eighty daily vessel-transit counts each — so this goes
+    // through the money block's own arithmetic rather than a second copy of it:
+    // date-windowed, composited by `meanIndex`, short members set aside. The
+    // day step needs each member's own last-against-previous, which is what
+    // `seriesChangePct` is; `delta7vs90` is on the payload and is a different
+    // quantity, a week against a quarter, and passing it here would print a
+    // figure the line does not draw.
+    const straitInput = sparkInput(
+      chokepoints.flatMap((c) => {
+        const vals = c.series?.total
+        if (!Array.isArray(vals) || vals.length < 2) return []
+        return [{
+          values: vals,
+          periods: c.series?.periods,
+          asOf: c.asOf,
+          pct: seriesChangePct(vals) ?? 0,
+        }]
+      }),
+      rangeHours / 24,
+    )
+    chipTrend(
+      'straits',
+      straitInput?.values ?? null,
+      straitInput?.span ?? [0, 1],
+      // A published level, so the change is the drawn line's own — except at
+      // the day step, where `sparkInput` hands back the move it drew the slope
+      // from and `windowPct` would be a percentage of zero.
+      straitInput ? (straitInput.pct ?? 'window') : null,
+    )
+  }
+
+  function setRange(hours: number) {
+    rangeHours = hours
+    syncRangeChips()
+    // The strip holds its own payloads and redraws from them; it does not
+    // refetch, so this is arithmetic on data already in hand.
+    marketStrip.setRangeDays(hours / 24)
+    // A range past the build window has stories the payload does not carry.
+    // Fired and not awaited: the beacons the map *does* have should move on the
+    // press rather than after a 250 KB round trip, and `loadArchive` refreshes
+    // again when it lands.
+    if (hours > BUILD_WINDOW_HOURS) void loadArchive()
+    // The axis follows the range once the range leaves the fortnight. Cheap
+    // when it has not: `railStart()` returns the same instant and this returns
+    // without touching the DOM.
+    const start = railStart()
+    if (timeline && start !== windowStart) {
+      windowStart = start
+      rebuildTimeline(start, windowEnd)
+    }
+    paintTrends()
+    refresh()
   }
 
   /**
@@ -3737,8 +3963,7 @@ export function mount(
    */
   const syncRangeChips = () => {
     for (const b of ranges.querySelectorAll('.map-range')) {
-      const on = Number((b as HTMLElement).dataset.hours) === rangeHours ||
-        ((b as HTMLElement).dataset.hours === '' && rangeHours === null)
+      const on = Number((b as HTMLElement).dataset.hours) === rangeHours
       b.classList.toggle('is-on', on)
       b.setAttribute('aria-pressed', String(on))
     }
@@ -3797,9 +4022,28 @@ export function mount(
      * silhouettes, and a pair that starts where every other mark starts reads as
      * one mark made of two parts rather than as a mark and a half.
      */
+    /**
+     * The chip's mark, its name, and room for a trend beside it.
+     *
+     * The name used to be a bare text node. It is a `<span>` now because the
+     * rail's chip is a flex row and a trend line has to be able to take the
+     * slack between the label and the right edge — an anonymous flex item made
+     * of loose text can be laid out but not sized, so the lines would have
+     * started at a different x on every chip and the interval the eye learns
+     * once would have had to be re-found per row.
+     *
+     * The spark host is always appended, never conditionally: a chip that can
+     * draw a trend and a chip that cannot must occupy the same box, or the
+     * column develops two row heights for a reason no reader can see.
+     */
     const chipGlyph = (btn: HTMLButtonElement, ids: GlyphId[], label: string) => {
       btn.innerHTML = `<span class="map-filter-mark">${ids.map(glyphSvg).join('')}</span>`
-      btn.append(document.createTextNode(label))
+      const name = document.createElement('span')
+      name.className = 'map-filter-label'
+      name.textContent = label
+      const spark = document.createElement('span')
+      spark.className = 'map-filter-spark'
+      btn.append(name, spark)
     }
 
     /**
@@ -3839,6 +4083,10 @@ export function mount(
       btn.type = 'button'
       btn.className = 'map-filter is-on'
       btn.dataset.kind = 'category'
+      // What `paintTrends` finds this chip by. A data key rather than a
+      // registry because the painter lives outside `buildFilters` and a
+      // closure-scoped Map would have to be hoisted out of it to be reached.
+      btn.dataset.key = cat
       btn.style.setProperty('--cat', CATEGORY_COLOUR[cat])
       chipGlyph(btn, ['dot'], cat)
       btn.setAttribute('aria-pressed', 'true')
@@ -3897,6 +4145,7 @@ export function mount(
       btn.type = 'button'
       btn.className = 'map-filter is-on'
       btn.dataset.kind = 'layer'
+      btn.dataset.key = key
       // Which school's angles the lines are drawn to is provenance, not a
       // constraint the reader has to act on, so it goes where `HIJRI_NOTE`
       // goes — and it is on the chip rather than on a mark, because the marks
@@ -3969,6 +4218,127 @@ export function mount(
    */
   const liveEdge = (dataEnd: number) => Math.max(dataEnd, Date.now())
 
+  /**
+   * How much of the corpus the build ships in `map.json`.
+   *
+   * `BUILD_WINDOW_DAYS` in `build.js`, quoted here because the island has to
+   * know which range steps it can answer from the payload it already has and
+   * which need the archive fetched. If the build's window ever moves, this is
+   * the other end of that decision.
+   */
+  const BUILD_WINDOW_HOURS = 14 * 24
+
+  /** `idle` until a range past the fortnight asks for it; `done` even when it
+   *  arrives empty, so a quiet archive is not refetched on every press. */
+  let archiveState: 'idle' | 'loading' | 'done' = 'idle'
+
+  /** The archive's own points, held apart so a refresh of `map.json` — which
+   *  carries only the fortnight — cannot drop them. */
+  let archivePoints: MapPoint[] = []
+
+  /**
+   * The oldest story loaded, which is not the same as the oldest published.
+   *
+   * The rail is drawn against it rather than against `map.json`'s window, so
+   * the axis can grow when the archive lands without anything else having to
+   * know where the points came from.
+   */
+  let corpusStart = 0
+
+  /**
+   * How far back the scrub rail reaches, given the range.
+   *
+   * Deliberately **not** just the range. The rail has spanned the whole
+   * fortnight at every range since it existed, and the shaded band is what says
+   * which slice of it is on the map — "the reader has no way to see that most
+   * of this histogram is not on the map" is the bug that band was added for. So
+   * the three ranges that fit inside the build window keep exactly the rail they
+   * have always had, and only the two that do not get a wider one.
+   *
+   * The alternative — a rail that is always the range — was rejected on the
+   * geometry: at 24h against a 90-day axis the band is 12px of 1100, which is
+   * not a slice a reader can see, and shrinking the rail to the range instead
+   * would delete the band's whole subject. Clamped to what is actually loaded,
+   * so an axis never runs out past the oldest story on it.
+   */
+  const railStart = () => {
+    const hours = Math.max(rangeHours, BUILD_WINDOW_HOURS)
+    return Math.max(corpusStart, windowEnd - hours * 3_600_000)
+  }
+
+  /**
+   * A new rail over the same reader.
+   *
+   * Every tick, day label and histogram bucket derives from a fixed span, so a
+   * span that has moved needs a new component rather than a mutated one. What
+   * must survive it is where the reader was standing: at the live edge they
+   * follow the new end, and scrubbed back to Tuesday they stay on Tuesday.
+   * `isLive()` is asked rather than cached, for the reason `map-feed.test.js`
+   * pins — a flag written from `onChange` is an assumption until the reader has
+   * touched the scrubber.
+   */
+  const rebuildTimeline = (start: number, end: number) => {
+    if (!timeline) return
+    const wasLive = timeline.isLive()
+    const held = scrubNow
+    const old = timeline
+    timeline = createTimeline({
+      start,
+      end,
+      value: wasLive ? undefined : Math.min(held, end),
+      onChange: onScrub,
+      lead: marketStrip.element,
+    })
+    timeline.setPoints(points)
+    old.element.replaceWith(timeline.element)
+    old.destroy()
+    placeMarketStrip()
+    watchChrome()
+    timeline.setWindow(scrubNow - rangeHours * 3_600_000)
+  }
+
+  /**
+   * The stories between the build window and ninety days back.
+   *
+   * Fetched the first time a range asks for something older than `map.json`
+   * carries, and never before: it is 3,997 points and 251 KB gzipped against
+   * that payload's 47, and it is the answer to a question most readers never
+   * put. The homepage's preload is untouched.
+   *
+   * Failure is left recoverable — `idle` again, so the next press retries —
+   * because unlike the initial load there is already a map on screen, and the
+   * honest degradation is "this range shows what the fortnight had" rather than
+   * an empty world.
+   */
+  const loadArchive = async () => {
+    if (archiveState !== 'idle') return
+    archiveState = 'loading'
+    const data = await json<{ window: { start: number }; points: MapPoint[] }>(
+      '/api/map-archive.json',
+      abort.signal,
+    )
+    if (!data || !mounted) {
+      archiveState = 'idle'
+      return
+    }
+    archiveState = 'done'
+    // By slug, because the archive is built from a strictly older slice of the
+    // corpus than `map.json` and the two should not intersect at all — but a
+    // build that straddles midnight can put one story in both, and a duplicate
+    // here is two beacons on one coordinate and two rows in the rail.
+    const have = new Set(points.map((p) => p.slug))
+    const older = data.points.filter((p) => !have.has(p.slug))
+    if (!older.length) return
+    archivePoints = older
+    points = [...older, ...points].sort((a, b) => a.t - b.t)
+    pointBySlug = new Map(points.map((p) => [p.slug, p]))
+    placeIndex = buildPlaceIndex(points)
+    corpusStart = Math.min(corpusStart, data.window.start)
+    rebuildTimeline(railStart(), windowEnd)
+    paintTrends()
+    refresh()
+  }
+
   const loadCore = async () => {
     const data = await json<{ window: { start: number; end: number }; points: MapPoint[] }>(
       '/api/map.json',
@@ -3984,6 +4354,7 @@ export function mount(
     scrubNow = end
     windowStart = data.window.start
     windowEnd = end
+    corpusStart = data.window.start
 
     timeline = createTimeline({
       start: data.window.start,
@@ -3995,6 +4366,7 @@ export function mount(
     container.append(timeline.element)
     placeMarketStrip()
     watchChrome()
+    paintTrends()
     refresh()
     coreLoaded = true
     openSharedStory()
@@ -4041,13 +4413,11 @@ export function mount(
       return
     }
     const age = scrubNow - p.t
-    if (rangeHours !== null && age > rangeHours * 3_600_000) {
-      // The widest range that still admits it, rather than always the whole
-      // fortnight: a story from yesterday should not open the map on 14d.
-      const fit = RANGES.find(([, hours]) => hours === null || age <= hours * 3_600_000)
-      rangeHours = fit ? fit[1] : null
-      syncRangeChips()
-      refresh()
+    if (age > rangeHours * 3_600_000) {
+      // The narrowest range that still admits it, rather than always the widest:
+      // a story from yesterday should not open the map on 90d.
+      const fit = RANGES.find(([, hours]) => age <= hours * 3_600_000)
+      setRange(fit ? fit[1] : RANGES[RANGES.length - 1][1])
     }
     flyToStory(p)
   }
@@ -4134,6 +4504,10 @@ export function mount(
     if (th?.events) thermal = th.events
     if (ipc?.areas) famine = ipc.areas.filter((a) => Number.isFinite(a.lat) && Number.isFinite(a.lng))
     setOverlayData()
+    // The disasters and straits chips have nothing to draw until this lands;
+    // the story chips were painted from `map.json` several hundred milliseconds
+    // ago and are repainted here for free rather than tracked separately.
+    paintTrends()
   }
 
   // The conflict feed is the largest payload the map pulls — a quarter of a
@@ -4256,49 +4630,43 @@ export function mount(
 
       const before = new Set(points.map((p) => p.slug))
       const fresh = data.points.filter((p) => !before.has(p.slug))
-      points = data.points
+      // The archive is *kept*, not refetched and not dropped. This used to be a
+      // bare `points = data.points`, which was right while `map.json` was the
+      // whole corpus and is a regression the moment anything older has been
+      // merged into it: a reader on 90d who pressed refresh would have watched
+      // three months of beacons collapse back to a fortnight, and the button
+      // exists precisely so that pressing it costs the reader nothing.
+      points = archivePoints.length
+        ? [...archivePoints.filter((p) => !data.points.some((q) => q.slug === p.slug)),
+           ...data.points].sort((a, b) => a.t - b.t)
+        : data.points
       pointBySlug = new Map(points.map((p) => [p.slug, p]))
-    // Resolved once per payload, not per frame: which place a story belongs to
-    // is a fact about the story.
-    placeIndex = buildPlaceIndex(points)
+      // Resolved once per payload, not per frame: which place a story belongs
+      // to is a fact about the story.
+      placeIndex = buildPlaceIndex(points)
 
       // The scrub head is the reader's, except at the live edge. Asked, never
       // assumed — see `onScrub`.
       const wasLive = timeline ? timeline.isLive() : true
-      const held = scrubNow
-      const start = data.window.start
       // Now, for the same reason as on load — and it advances between presses,
       // so a refresh rebuilds the rail even when the story set is unchanged.
       // That is the point: the head of the rail is where the reader is
       // standing, and a scrubber that stopped tracking the clock after the
       // first paint would drift out of step with the header over a long visit.
       const end = liveEdge(data.window.end)
+      corpusStart = Math.min(corpusStart || data.window.start, data.window.start)
+      windowEnd = end
+      const start = railStart()
 
       if (timeline && (start !== windowStart || end !== windowEnd)) {
-        // The rail is drawn against a fixed span, so a window that has moved
-        // needs a new one. Rebuilt rather than mutated because every tick, day
-        // label and histogram bucket is derived from that span — and rebuilt
-        // in place, restoring where the reader was standing.
-        const old = timeline
-        timeline = createTimeline({
-          start,
-          end,
-          value: wasLive ? undefined : Math.min(held, end),
-          onChange: onScrub,
-          lead: marketStrip.element,
-        })
-        timeline.setPoints(points)
-        old.element.replaceWith(timeline.element)
-        old.destroy()
-        placeMarketStrip()
-        watchChrome()
+        rebuildTimeline(start, end)
       } else {
         timeline?.setPoints(points)
       }
 
       windowStart = start
-      windowEnd = end
       if (wasLive) scrubNow = end
+      paintTrends()
 
       // Only when something arrived: the lead prose is 85 KB and re-fetching it
       // to learn nothing changed is exactly the cost this button exists to

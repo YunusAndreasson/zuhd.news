@@ -133,6 +133,26 @@ export interface SeriesOptions {
    * scaled to itself is a cliff.
    */
   window?: number
+  /**
+   * A fixed vertical domain, in the units of `values`, instead of the one the
+   * data would choose for itself.
+   *
+   * Autoscaling is right almost everywhere and is exactly wrong where the
+   * *magnitude* is the fact and there are too few points to carry it. Two
+   * observations autoscaled are a full-height diagonal whatever they are: a
+   * −0.02% day and a −2.9% day draw the same picture, and only the printed
+   * figure separates them. Handed a domain, the same pair draws a slope
+   * proportional to the move — which is the one thing a sparkline of a single
+   * day's change has to say.
+   *
+   * It also makes rows comparable *across* renders rather than only within one,
+   * for the reason the map's density field is not rescaled to the visible set:
+   * a quiet day is allowed to look quiet.
+   *
+   * Ignored when it is not a finite ascending pair. `reference` may still widen
+   * it — a rule drawn outside the box is not a rule — but nothing else will.
+   */
+  domain?: [number, number] | undefined
 }
 
 export interface SeriesPoint {
@@ -385,6 +405,18 @@ export function seriesModel(opts: SeriesOptions): SeriesModel {
   let hi = Math.max(...finite)
   const obsLo = lo
   const obsHi = hi
+
+  // A caller-supplied domain replaces the one the data chose, and replaces
+  // *only* that: `obsLo`/`obsHi` stay the observations, so the axis still
+  // prints numbers somebody reported and the rings still land on the real
+  // extremes. Ascending and finite or it is not a domain, and a silent
+  // fallback to autoscale is the right failure here — the alternative is a
+  // chart that refuses to draw because a constant was fat-fingered.
+  const fixed = opts.domain
+  if (fixed && Number.isFinite(fixed[0]) && Number.isFinite(fixed[1]) && fixed[0] < fixed[1]) {
+    lo = fixed[0]
+    hi = fixed[1]
+  }
 
   // Resolved against the *drawn* window, not the source series, so both follow
   // the range control. `'open'` is by construction inside the domain and needs

@@ -1130,6 +1130,86 @@ writeFileSync(join(DIST_DIR, 'api', 'map.json'),
   JSON.stringify({ generated, window: mapWindow, points: mapPoints }))
 console.log(`  Built: api/map.json (${mapPoints.length} points, ${BUILD_WINDOW_DAYS}d)`)
 
+// The story archive — everything between the build window and 90 days back.
+//
+// The map's time range used to stop at the fortnight because the corpus the
+// build produces stops there. Once that control also drives the money block's
+// sparklines it grew a 30d and a 90d step, and a range whose two widest
+// positions showed the same beacons as the third would be a control lying about
+// half of what it governs.
+//
+// **A separate endpoint, not a wider `map.json`.** The 14-day payload is 147 KB
+// (47 KB gzipped) and is `<link rel=preload>`ed — it is what the homepage
+// blocks on. Ninety days is 4,700 stories, which measured at roughly six and a
+// half times that, so folding them in would put ~250 KB of gzipped JSON in
+// front of first paint for stories most readers will never ask for. This is the
+// bargain `map-leads.json`, the conflict feed and the water layers all already
+// strike: ship what the opening view needs, fetch the rest when something asks.
+// Nobody who stays inside a week ever downloads it.
+//
+// Parsed light and separately: `buildArticle` renders markdown, an isnad and a
+// page, and none of that reaches a beacon. Frontmatter alone across 4,000 files
+// measured at 411 ms, against the seconds a full build of them would cost on
+// every one of five daily cycles.
+const MAP_ARCHIVE_DAYS = 90
+const archiveCutoffDate = new Date(Date.now() - MAP_ARCHIVE_DAYS * 24 * 60 * 60 * 1000)
+  .toISOString().slice(0, 10)
+const archivePoints = readdirSync(CONTENT_DIR)
+  .filter(f =>
+    f.endsWith('.md') &&
+    f !== 'example.md' &&
+    // Strictly older than the build window: `map.json` owns everything from
+    // `buildCutoffDate` on, and a story in both payloads would draw twice —
+    // two beacons on one coordinate, and two rows in the rail.
+    f.slice(0, 10) < buildCutoffDate &&
+    f.slice(0, 10) >= archiveCutoffDate)
+  .map(f => {
+    const { meta } = parseFrontmatter(readFileSync(join(CONTENT_DIR, f), 'utf8'))
+    if (meta.lat == null || meta.lng == null) return null
+    // No mtime fallback here, unlike `eventTime`. That fallback exists because
+    // a rewritten file's date can be unparseable and the story is still today's
+    // news; a story three months old with no readable date has nothing a
+    // `statSync` on 4,000 files would recover, and the scrubber would place it
+    // at the moment of the build.
+    const t = meta.date ? Date.parse(meta.date) : NaN
+    if (!Number.isFinite(t)) return null
+    const cov = Number(meta.eventCoverage)
+    const hasCov = Number.isFinite(cov) && cov > 0
+    const div = Number(meta.sentimentDivergence)
+    return {
+      lat: Number(meta.lat),
+      lng: Number(meta.lng),
+      t,
+      c: hasCov ? cov : 0,
+      cat: meta.category || 'politics',
+      slug: f.replace(/\.md$/, ''),
+      title: meta.title || '',
+      loc: displayLocation(meta.location || '') || '',
+      n: Array.isArray(meta.sources) ? meta.sources.length : 0,
+      // The *same* percentile function the 14-day set is ranked by, deliberately.
+      // Ranking the archive against its own distribution would make a radius
+      // mean one thing inside the fortnight and another outside it, on a map
+      // that draws both at once — the "same numeral, two different facts"
+      // objection the ground metric's default already turns on.
+      ...(hasCov && coverageRanks ? { w: coverageRanks(cov) } : {}),
+      ...(Number.isFinite(div) && div > 0 ? { d: Math.round(div * 100) / 100 } : {}),
+    }
+  })
+  .filter(Boolean)
+  .sort((a, b) => a.t - b.t)
+writeFileSync(join(DIST_DIR, 'api', 'map-archive.json'),
+  JSON.stringify({
+    generated,
+    window: {
+      start: archivePoints.length ? archivePoints[0].t : mapWindow.start,
+      end: mapWindow.start,
+    },
+    points: archivePoints,
+  }))
+console.log(
+  `  Built: api/map-archive.json (${archivePoints.length} points, ${BUILD_WINDOW_DAYS}–${MAP_ARCHIVE_DAYS}d)`,
+)
+
 // Thermal anomalies — NASA FIRMS active-fire detections, joined to the stories
 // they may corroborate. Here rather than beside the GDACS mirror because this is
 // the one overlay that is *about* the corpus: the join needs `eventTime` and the

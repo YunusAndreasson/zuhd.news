@@ -179,7 +179,15 @@ export function createTimeline(opts: TimelineOptions): Timeline {
       : Math.max(0, Math.min(slots, Math.round((opts.value - start) / SLOT_MS)))
   range.value = String(initialSlot)
   range.className = 'map-timeline-range'
-  range.setAttribute('aria-label', 'Scrub through the last 14 days')
+  // Derived, not stated: this read "the last 14 days" while the span was a
+  // constant, and the span is an input now — a fortnight, a month or a quarter
+  // depending on the time range. A control that names a window it is not
+  // showing is worse to a screen reader than one that names none, because there
+  // is nothing else on it to check the claim against.
+  range.setAttribute(
+    'aria-label',
+    `Scrub through the last ${Math.max(1, Math.round(span / DAY_MS))} days`,
+  )
 
   track.append(canvas, range)
   root.append(head, track)
@@ -338,9 +346,35 @@ export function createTimeline(opts: TimelineOptions): Timeline {
     // Day columns first — the axis the histogram sits on.
     ctx.font = `9px ${family}`
     ctx.textBaseline = 'alphabetic'
+    /**
+     * How many days a drawn column stands for.
+     *
+     * One per day is right for a fortnight and impossible for a quarter. The
+     * rail spanned exactly fourteen days for as long as it existed, so this
+     * loop drew a hairline and a numeral for every day unconditionally and was
+     * correct by the span being a constant. Once the time range gained a 30d and
+     * a 90d step the span became an input: ninety days across ~1100px is 12px a
+     * day, and a 9px "23" is about 11px wide before the 3px offset — so every
+     * label overlapped its neighbour and ninety hairlines drew a picket fence
+     * where a calendar had been.
+     *
+     * 20px is the measured floor for a two-digit label plus its offset and a
+     * gap. What comes out: 1 at a fortnight (unchanged), 2 at a month, 4 at a
+     * quarter — so the axis thins to every other day and then to roughly weekly,
+     * and stays a calendar at every step.
+     */
+    const dayPx = (DAY_MS / span) * w
+    const stride = Math.max(1, Math.ceil(20 / Math.max(dayPx, 1)))
+    let dayIndex = -1
     for (let day = start; day <= end; day += DAY_MS) {
+      dayIndex++
       const x = xOf(day)
       const isCurrent = headT >= day && headT < day + DAY_MS
+      // The day under the head is always drawn, whatever the stride: it is the
+      // one column that answers "which day am I on", and losing it to an
+      // interval would make the scrub head the only thing on the axis that
+      // moves without anything to move against.
+      if (dayIndex % stride !== 0 && !isCurrent) continue
       ctx.strokeStyle = isCurrent ? mid : dim
       ctx.globalAlpha = isCurrent ? 0.9 : 1
       ctx.beginPath()

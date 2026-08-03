@@ -227,9 +227,23 @@ adapter per surface. Pinned in `scripts/lib/chart.test.js`.
   visual swing, because `seriesModel` fits the domain to what is actually in the
   window — which is the behaviour that makes a small series legible at 17px and
   the reason every sparkline anywhere works this way. What must not drift is the
-  *period*: all seven draw `SPARK_WINDOW` observations, because a column of
-  lines covering different spans is seven incomparable pictures at one rhythm
-  with nothing on screen saying so.
+  *period*: all seven cover the same **calendar window**, taken from the map's
+  one time range, because a column of lines covering different spans is seven
+  incomparable pictures at one rhythm with nothing on screen saying so. That
+  used to be `SPARK_WINDOW` observations, which is a different quantity and did
+  not deliver it — see `map.md`, where the unit was the bug.
+- **`domain` is the one place autoscaling is wrong, and it is narrow** (2026-08-03).
+  `SeriesOptions.domain` replaces the scale the data would choose with a fixed
+  one, for the case where the *magnitude* is the fact and there are too few
+  points to carry it: the money rail's 24h step is two closes, and two points
+  fitted to their own domain are a full-height diagonal whatever they are. It
+  replaces the scale and nothing else — `obsLo`/`obsHi` stay the observations,
+  so the axis still prints numbers somebody reported and the extreme rings still
+  land on real data. A domain that is not finite and ascending is ignored rather
+  than obeyed into a broken chart, since the alternative is a figure that
+  refuses to draw because a constant was fat-fingered. It lives here rather than
+  in `_spark.ts` for the reason that file opens with: it owns no scale
+  arithmetic, and this record already says what three copies of it cost.
 
 ## The disclosure mechanism
 

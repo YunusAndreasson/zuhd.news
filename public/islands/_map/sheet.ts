@@ -26,6 +26,7 @@ import { appPrompt } from '../_app-prompt'
 import { createChart, type ChartOptions } from '../_chart'
 import * as fmt from './format'
 import { nisab, type TickerEntry } from './markets'
+import { windowPoints } from './series-window'
 import type {
   ConflictEvent,
   GdacsAlert,
@@ -47,8 +48,14 @@ export interface Sheet {
   element: HTMLDialogElement
   showGdacs(alert: GdacsAlert, detail: GdacsDetail | null, pinned: boolean): void
   showChokepoint(cp: MapChokepoint, pinned: boolean): void
-  showMarket(exchange: MapExchange, pinned: boolean): void
-  showIndicator(entry: TickerEntry, pinned: boolean): void
+  /**
+   * `rangeDays` is the money rail's window, carried in so the card opens on the
+   * period the reader was already looking at. Absent — a card opened from a map
+   * mark rather than from the rail — means the whole published series, which is
+   * what these cards have always drawn.
+   */
+  showMarket(exchange: MapExchange, pinned: boolean, rangeDays?: number): void
+  showIndicator(entry: TickerEntry, pinned: boolean, rangeDays?: number): void
   showConflict(event: ConflictEvent, window: string | null, pinned: boolean): void
   showGenocide(situation: GenocideSituation, pinned: boolean): void
   showThermal(event: ThermalEvent, pinned: boolean): void
@@ -61,6 +68,34 @@ export interface Sheet {
   destroy(): void
 }
 
+
+/**
+ * The shortest window a card is allowed to open on, in days.
+ *
+ * The rail's bottom rung is a single day, and a single day of daily closes is
+ * two points — which is a legible *slope* in a 100×20 box beside a figure and
+ * is not a chart. Given an axis, three date labels, rings on the extremes and a
+ * y-gutter, two observations produce a diagonal in a large frame that looks
+ * like a rendering fault.
+ *
+ * So the card floors at a week. The reader loses nothing by it: the hero above
+ * the chart prints the day's move, which is the number they pressed, and the
+ * shape underneath is the context a card is for.
+ */
+const CARD_MIN_DAYS = 7
+
+/**
+ * The rail's window, as the point count `createChart` takes.
+ *
+ * `0` — draw everything — when the rail has no opinion, which is a card opened
+ * from a mark on the map rather than from a row of the money block.
+ */
+const cardWindow = (
+  periods: string[] | undefined,
+  asOf: string | undefined,
+  rangeDays: number | undefined,
+): number =>
+  rangeDays === undefined ? 0 : windowPoints(periods, asOf, Math.max(rangeDays, CARD_MIN_DAYS))
 
 /**
  * Fire radiative power, in the precision the figure deserves.
@@ -393,7 +428,7 @@ export function createSheet(): Sheet {
       render(nodes, pin)
     },
 
-    showMarket(ex, pin) {
+    showMarket(ex, pin, rangeDays) {
       const nodes: Node[] = []
       // The kicker carries freshness, because on a world map that is the first
       // ambiguity: at any given moment most exchanges are shut, and "+0.8%"
@@ -444,6 +479,7 @@ export function createSheet(): Sheet {
           ...chartFigure({
             values,
             periods: ex.series?.periods ?? [],
+            window: cardWindow(ex.series?.periods, ex.asOf, rangeDays),
             reference: 'open',
             referenceLabel: 'the window’s open',
             direction: 'window',
@@ -485,7 +521,7 @@ export function createSheet(): Sheet {
      * to tell a blip from a slide. Same shape as the exchange card, because it
      * is the same kind of fact.
      */
-    showIndicator(entry, pin) {
+    showIndicator(entry, pin, rangeDays) {
       const nodes: Node[] = []
       nodes.push(kicker([entry.group, entry.asOf ? fmt.shortDate(entry.asOf) : null]))
       nodes.push(el('h2', 'island-sheet-title', `${entry.flag} ${entry.name}`.trim()))
@@ -504,6 +540,7 @@ export function createSheet(): Sheet {
           ...chartFigure({
             values: entry.values,
             periods: entry.periods,
+            window: cardWindow(entry.periods, entry.asOf, rangeDays),
             reference: 'open',
             referenceLabel: 'the window’s open',
             direction: 'window',
