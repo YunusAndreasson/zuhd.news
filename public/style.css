@@ -2366,7 +2366,10 @@ body.doc-page {
 
   /* Ink, brightest to quietest. Every step clears AA on `--map-panel`, which
      is the lightest surface any of them lands on. */
-  --map-ink: #e6eaf0;           /* headings, an active chip, the answer */
+  /* Headings and the answer. **Not an active chip any more** — see
+     `.map-filter.is-on`: in the rail's column that made the switches louder
+     than every reading above them. */
+  --map-ink: #e6eaf0;
   --map-ink-strong: #d3d8e0;
   --map-ink-body: #c3c9d3;      /* prose */
   --map-ink-soft: #aab2be;
@@ -3497,8 +3500,26 @@ body.map-wide .map-range-group { display: block; }
 
   &:hover { color: var(--map-ink-soft); }
 
+  /* **`--map-ink-body`, not `--map-ink`** (2026-08-03), and this overrides the
+     palette's own note, which lists "an active chip" among the things at the
+     top of the ink ladder. That was written when the chips were a horizontal
+     strip of four beside the clock. In a column of eleven, under fourteen rows
+     of readings, it made the *switches* the loudest text in the rail: measured
+     off the render, a lit chip label sits at `rgb(230,234,240)` while the
+     brightest reading above it — a level like `$91.82` — is `rgb(195,201,211)`.
+     So the rail's own reading order (what the world is doing, then what is
+     drawn) was inverted in ink, and the eye went to the vocabulary rather than
+     to the numbers. The same mistake this map's record already logs twice: the
+     loudest ink on the canvas was the names of the countries, and a coloured
+     genocide caption made the gravest mark read as an alert about the
+     interface.
+
+     One rung down puts nothing in the rail above the data. The on/off step is
+     still `rgb(195,201,211)` against `rgb(127,136,150)`, and it was never
+     carrying that signal alone — the glyph takes the layer's own hue when lit
+     and grey when not, which is the channel a reader actually reads. */
   &.is-on {
-    color: var(--map-ink);
+    color: var(--map-ink-body);
 
     & svg { color: var(--cat, currentColor); }
   }
@@ -3997,7 +4018,16 @@ body.map-wide .map-now-hijri {
 
 body.map-wide .map-group-label {
   display: block;
-  margin-bottom: 0.15rem;
+  /* **Zero, so the heading belongs to what follows it** (2026-08-03). Measured
+     down the rail, a heading sat 11.2-17.1px below the previous block and
+     2.4-5.1px above its own first row — a ratio as low as **2.2:1** at `world`,
+     which is not enough for proximity to decide the grouping, and proximity
+     decides grouping before anything else does. Closing the gap below is the
+     cheaper half of the fix than opening the one above: it costs no vertical
+     space in a column that is already 1,300px tall, and it raises every ratio at
+     once rather than one heading at a time. The type's own leading is what keeps
+     the word off its first row. */
+  margin-bottom: 0;
   font-size: var(--size-2xs);
   font-variant-caps: all-small-caps;
   letter-spacing: var(--track-wide);
@@ -4039,7 +4069,20 @@ body.map-wide .map-ranges {
 body.map-wide .map-filters {
   flex-direction: column;
   align-items: stretch;
-  gap: 0.1rem;
+  /* **No gap, because the row *is* the grid** (2026-08-03). The rail had two
+     rhythms and claimed to have one: measured top-to-top, a money row repeats
+     every 27px and a chip repeated every 31.3px, so the readings and the
+     controls — one column, one list to the eye — ran on grids 4.3px apart, and
+     the layers block read as looser than the money block for no reason a reader
+     could recover. The chip's own comment asserted the opposite ("the height is
+     pinned so a chip and a sparkline row come out the same height"), which was
+     true of `min-height` and untrue of the box, because 0.25rem of padding put
+     it 2.7px over the pin.
+
+     Padding comes down to the money rows' 0.1rem so `--map-hud-row-h` binds
+     again, and the gap goes, so the pitch *is* the row height for both. Hover
+     boxes then touch, which is what a column of controls should do anyway. */
+  gap: 0;
 }
 
 /* The shared label column: what puts a story chip's line and a money row's
@@ -4060,7 +4103,9 @@ body.map-wide .map-filter[data-kind='category'] .map-filter-label {
    to land. On the strip a chip could only be as tall as its type. */
 body.map-wide .map-filter {
   gap: 0.45rem;
-  padding: 0.25rem 0.4rem;
+  /* The money rows' padding, so `--map-hud-row-h` decides this box rather than
+     the type inside it. See `.map-filters` above for the 4.3px this closes. */
+  padding: 0.1rem 0.4rem;
   margin: 0 -0.4rem;
   border-radius: 2px;
   /* The row has three parts now — mark, name, trend — and the trend takes the
@@ -4407,13 +4452,19 @@ body.map-wide {
 
   & .map-markets-head {
     display: block;
-    margin-bottom: 0.15rem;
+    /* Zero for the reason `.map-group-label` states — these are the same
+       heading and must not drift apart on the one property that decides which
+       block a reader reads them into. */
+    margin-bottom: 0;
 
     /* Every other heading in this rail is followed by items that outdent
        themselves by their own padding, so the word starts on the content edge
        and the rows' hover boxes reach past it. These do the same, so `money`
        lines up with `stories`, `layers` and `ground` down the column. */
-    &:not(:first-child) { margin-top: 0.7rem; }
+    /* 0.85rem, not 0.7: `world` came out 11.2px below the money block's closing
+       `next` line against 5.0px above its own first row, the weakest grouping in
+       the rail. */
+    &:not(:first-child) { margin-top: 0.85rem; }
   }
 
   & .map-markets-row,
