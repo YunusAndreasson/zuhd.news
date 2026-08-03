@@ -2253,12 +2253,32 @@ export function mount(
     // It stays a flat 0.28 and that is deliberate: `twilight` below cuts the
     // ramp *upward* out of this, so deep night is the same value it has always
     // been and every contrast measured against it still holds.
+    //
+    // **The wash is the sea's colour, not black** (2026-08-03), and the reason
+    // is that black is not a thing this picture contains. Measured off a headed
+    // render: space is `(8,10,13)` and the night sea was `(6,7,9)` — 0.28 of
+    // pure black over `#080a0d` — so **the planet's dark half was darker than
+    // the sky behind it**. A solid body in front of a starfield can be as dark
+    // as space and no darker; that inversion is why the night limb needs a rim
+    // to exist at all, and it is the one measurable thing about this hemisphere
+    // that could not happen.
+    //
+    // Night darkens things toward the colour of the unlit sea, which is the
+    // darkest real substance here. Tinting the wash with `ocean` makes 0.28 mean
+    // "72% of the way to the unlit sea" rather than "72% of the way to nothing",
+    // so the sea lands exactly on space instead of below it and the land keeps
+    // the two or three values of separation from it that pure black crushed —
+    // at night the ramp's darkest countries had collapsed onto the sea and the
+    // coast went with them. Nothing measured against deep night gets worse: the
+    // composite moves at most **+3.6/255 and upward**, which is more contrast
+    // for a dark mark and 9.87:1 → ~9.6:1 for the brightest label on the
+    // darkest stop.
     map.addLayer(
       {
         id: 'night-shade',
         type: 'fill',
         source: 'night',
-        paint: { 'fill-color': '#000', 'fill-opacity': 0.28 },
+        paint: { 'fill-color': MAP_COLOURS.ocean, 'fill-opacity': 0.28 },
       },
       'borders',
     )
