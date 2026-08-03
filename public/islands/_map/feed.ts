@@ -234,81 +234,203 @@ export function createFeed(opts: FeedOptions): Feed {
     li.querySelector('.map-feed-body')?.append(note)
   }
 
-  const build = (points: MapPoint[], now: number) => {
-    rows.clear()
-    const frag = document.createDocumentFragment()
+  /**
+   * The list is patched in place now, not rebuilt (2026-08-03).
+   *
+   * Measured with a 40-move scrubber drag against the built page: this list was
+   * torn down and rebuilt **17 times**, and a rebuild is 120 rows x 4 elements x
+   * 3 listeners — about 2,000 nodes and 6,000 listeners created and discarded
+   * per gesture. That is the rail's flicker: `replaceChildren` drops scroll
+   * anchoring, any running transition, the hover the pointer is sitting on and
+   * the `is-active` mark, so the rail strobes under the cursor while the map
+   * underneath moves smoothly.
+   *
+   * **The first attempt was to skip identical rebuilds, and it collected
+   * nothing**, which is the useful part of the record: scrubbing changes the set
+   * on every frame by construction — the head moves, so the count moves and the
+   * newest row drops out — so all 17 rebuilds were "necessary" and every one of
+   * them re-made 120 rows to change one. The waste was never redundancy, it was
+   * that the unit of work was the whole list.
+   *
+   * So: a keyed patch. Rows are reused by slug, their mutable text is written
+   * only when it differs, survivors are moved into place and the rest removed.
+   * Scrubbing back takes rows off the top and adds them at the bottom, so nearly
+   * every row survives every frame and the DOM work per frame goes from 2,000
+   * nodes to a handful.
+   *
+   * **`moveBefore` where it exists** — the state-preserving move (Chrome 133+):
+   * `insertBefore` unloads and reloads the node it moves, which restarts CSS
+   * transitions and drops focus, and a row being moved is exactly a row the
+   * reader may be pointing at. `insertBefore` is the fallback and is correct,
+   * just less kind.
+   */
+  const moveInto = (parent: Element, node: Element, before: Node | null) => {
+    // `moveBefore` throws if the node is not already in a document; a fresh row
+    // has to be inserted the ordinary way. Feature-detected per call rather than
+    // once, because the check is a property read and the branch is predictable.
+    const mv = (parent as unknown as { moveBefore?: (n: Node, b: Node | null) => void }).moveBefore
+    if (mv && node.isConnected) mv.call(parent, node, before)
+    else parent.insertBefore(node, before)
+  }
 
-    for (const p of points.slice(0, MAX_ROWS)) {
-      const li = document.createElement('li')
-      li.className = 'map-feed-item'
-      li.dataset.slug = p.slug
+  const metaOf = (p: MapPoint, now: number) =>
+    [p.loc, relativeTime(p.t, now)].filter(Boolean).join(' \u00b7 ')
 
+  /**
+   * The points currently on screen, by slug.
+   *
+   * This exists because the row listeners are **delegated to the list** rather
+   * than bound per row. Three listeners on 120 rows is 360 registrations thrown
+   * away on every rebuild, and — worse for a patch — a per-row closure captures
+   * the `MapPoint` it was built with, so a reused row would go on reporting the
+   * object it first saw. One listener reading the live map cannot go stale.
+   */
+  const points = new Map<string, MapPoint>()
 
-      const dot = document.createElement('span')
-      dot.className = 'map-feed-dot'
-      // Handed in as `--cat` rather than written straight to `background`, the
-      // same way the HUD chips take their layer's colour — so a read row can
-      // switch the dot from a disc to a ring in the stylesheet without the
-      // stylesheet ever naming a category hue.
-      dot.style.setProperty('--cat', CATEGORY_COLOUR[p.cat] ?? '#888')
+  let emptyRow: HTMLLIElement | null = null
 
-      const body = document.createElement('div')
-      body.className = 'map-feed-body'
-
-      const link = document.createElement('a')
-      link.className = 'map-feed-title'
-      link.href = `/a/${p.slug}`
-      link.textContent = p.title
-
-      const meta = document.createElement('p')
-      meta.className = 'map-feed-meta'
-      meta.textContent = [p.loc, relativeTime(p.t, now)].filter(Boolean).join(' · ')
-
-      body.append(link, meta)
-      li.append(dot, body)
-
-      // Already opened. Greyed rather than hidden or reordered: the rail is a
-      // chronological record of what happened, and dropping a story because
-      // this reader has seen it would make the list disagree with the map it
-      // is captioning — the beacon stays exactly where it was.
-      if (opts.isRead?.(p.slug)) applyRead(li)
-
-      // Clicking anywhere in the row — headline included — flies to the story
-      // and opens it on the map rather than navigating away. The href stays a
-      // real URL so Cmd-click, middle-click and right-click still open the
-      // full page, and the link works with JS disabled.
-      li.addEventListener('click', (e) => {
-        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
-        e.preventDefault()
-        opts.onSelect(p)
-      })
-      li.addEventListener('mouseenter', () => opts.onHover(p))
-      li.addEventListener('mouseleave', () => opts.onHover(null))
-
-      rows.set(p.slug, li)
-      frag.append(li)
+  const rowFor = (p: MapPoint, now: number): HTMLLIElement => {
+    const existing = rows.get(p.slug)
+    if (existing) {
+      // Only the parts that can change. `title` and `href` are fixed for a slug;
+      // the dateline moves because `relativeTime` is relative to the scrub head,
+      // and writing it unconditionally would dirty the row on every frame.
+      const meta = existing.querySelector<HTMLElement>('.map-feed-meta')
+      const text = metaOf(p, now)
+      if (meta && meta.textContent !== text) meta.textContent = text
+      if (opts.isRead?.(p.slug)) applyRead(existing)
+      return existing
     }
 
+    const li = document.createElement('li')
+    li.className = 'map-feed-item'
+    li.dataset.slug = p.slug
+
+    const dot = document.createElement('span')
+    dot.className = 'map-feed-dot'
+    // Handed in as `--cat` rather than written straight to `background`, the
+    // same way the HUD chips take their layer's colour — so a read row can
+    // switch the dot from a disc to a ring in the stylesheet without the
+    // stylesheet ever naming a category hue.
+    dot.style.setProperty('--cat', CATEGORY_COLOUR[p.cat] ?? '#888')
+
+    const body = document.createElement('div')
+    body.className = 'map-feed-body'
+
+    const link = document.createElement('a')
+    link.className = 'map-feed-title'
+    link.href = `/a/${p.slug}`
+    link.textContent = p.title
+
+    const meta = document.createElement('p')
+    meta.className = 'map-feed-meta'
+    meta.textContent = metaOf(p, now)
+
+    body.append(link, meta)
+    li.append(dot, body)
+
+    // Already opened. Greyed rather than hidden or reordered: the rail is a
+    // chronological record of what happened, and dropping a story because
+    // this reader has seen it would make the list disagree with the map it
+    // is captioning — the beacon stays exactly where it was.
+    if (opts.isRead?.(p.slug)) applyRead(li)
+
+    rows.set(p.slug, li)
+    return li
+  }
+
+  const build = (sorted: MapPoint[], now: number) => {
+    const shown = sorted.slice(0, MAX_ROWS)
+
+    points.clear()
+    for (const p of shown) points.set(p.slug, p)
+
+    // Walk the wanted order against the DOM's order, moving only what is out of
+    // place. `cursor` is the node the next row should land before; when it is
+    // already the right row, nothing is touched at all.
+    let cursor = list.firstChild
+    for (const p of shown) {
+      const li = rowFor(p, now)
+      if (cursor === li) cursor = li.nextSibling
+      else moveInto(list, li, cursor)
+    }
+
+    // Whatever the walk did not claim is no longer in the slice. Collected
+    // first and removed after, because removing while walking `nextSibling`
+    // steps off the node that was just detached.
+    const stale: ChildNode[] = []
+    for (let n = cursor; n; n = n.nextSibling) stale.push(n)
+    for (const n of stale) {
+      n.remove()
+      const slug = (n as HTMLElement).dataset?.slug
+      if (slug) rows.delete(slug)
+    }
     // Nothing matched. A rail that just goes blank reads as a failure to load
     // rather than a filter that excluded everything — and leaves the reader
     // with no idea which of the three controls to move to get back.
-    if (!points.length) {
-      const empty = document.createElement('li')
-      empty.className = 'map-feed-empty'
-      empty.textContent = 'No stories in this slice. Widen the range, or turn a category back on.'
-      frag.append(empty)
+    if (!sorted.length) {
+      // Reused across empties rather than recreated: the sweep above detaches
+      // it with everything else, and re-appending the same node is one DOM op.
+      emptyRow ??= document.createElement('li')
+      emptyRow.className = 'map-feed-empty'
+      emptyRow.textContent =
+        'No stories in this slice. Widen the range, or turn a category back on.'
+      list.append(emptyRow)
     }
 
-    list.replaceChildren(frag)
-    const n = points.length
+    const n = sorted.length
     // The count describes the map; the rail stops at MAX_ROWS. Saying "722
     // stories" over a list that ends at 120 makes the reader think they have
     // reached the end of the corpus, so the cap is stated rather than hidden.
-    count.textContent =
+    const label =
       n > MAX_ROWS
-        ? `${n} stories · newest ${MAX_ROWS} listed`
+        ? `${n} stories \u00b7 newest ${MAX_ROWS} listed`
         : `${n} ${n === 1 ? 'story' : 'stories'}`
+    // Guarded because `count` is an `aria-live` region: writing the same text
+    // back into it re-announces it, and a scrub would then read the story count
+    // aloud on every frame.
+    if (count.textContent !== label) count.textContent = label
   }
+
+  /**
+   * One set of listeners on the list, resolving the row from the event.
+   *
+   * See `points` for why these are not per row. `closest` walks at most four
+   * levels here and only on events the reader actually generates.
+   */
+  const pointAt = (target: EventTarget | null): MapPoint | null => {
+    const li = (target as Element | null)?.closest?.('.map-feed-item')
+    const slug = (li as HTMLElement | null)?.dataset?.slug
+    return slug ? points.get(slug) ?? null : null
+  }
+
+  // Clicking anywhere in the row — headline included — flies to the story and
+  // opens it on the map rather than navigating away. The href stays a real URL
+  // so Cmd-click, middle-click and right-click still open the full page, and
+  // the link works with JS disabled.
+  list.addEventListener('click', (e) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
+    const p = pointAt(e.target)
+    if (!p) return
+    e.preventDefault()
+    opts.onSelect(p)
+  })
+  // `mouseover`/`mouseout` rather than `mouseenter`/`mouseleave`: the enter pair
+  // does not bubble, so it cannot be delegated. The guard is that a move
+  // *within* one row reports the same slug, so the hover is only re-sent when
+  // the row under the pointer actually changes.
+  let hovered: string | null = null
+  list.addEventListener('mouseover', (e) => {
+    const p = pointAt(e.target)
+    if (p?.slug === hovered) return
+    hovered = p?.slug ?? null
+    opts.onHover(p)
+  })
+  list.addEventListener('mouseleave', () => {
+    if (hovered === null) return
+    hovered = null
+    opts.onHover(null)
+  })
 
   return {
     element: root,
@@ -337,6 +459,7 @@ export function createFeed(opts: FeedOptions): Feed {
       narrowQuery.removeEventListener('change', syncDisclosure)
       root.remove()
       rows.clear()
+      points.clear()
     },
   }
 }

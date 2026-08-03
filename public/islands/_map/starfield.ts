@@ -266,10 +266,39 @@ const TINTS: string[] = Array.from({ length: TINT_STEPS }, (_, i) => {
   return `${c[0]} ${c[1]} ${c[2]}`
 })
 
-const tintFor = (bv: number): string => {
-  if (!Number.isFinite(bv)) return TINTS[(TINT_STEPS - 1) >> 1]
+const tintIndexFor = (bv: number): number => {
+  if (!Number.isFinite(bv)) return (TINT_STEPS - 1) >> 1
   const t = Math.max(-1, Math.min(1, bv / STAR_BV_RANGE))
-  return TINTS[Math.round(((t + 1) / 2) * (TINT_STEPS - 1))]
+  return Math.round(((t + 1) / 2) * (TINT_STEPS - 1))
+}
+
+/**
+ * Every `fillStyle` a star can be set to, built once and then only looked up.
+ *
+ * The draw loop used to compose `rgb(${tint} / ${alpha.toFixed(3)})` per star
+ * per frame. Measured on a 40-move drag against the built page: **41 sky
+ * repaints of about 200 drawn stars each**, so ~8,000 template strings and
+ * ~8,000 `toFixed` calls in under a second, every one of them a CSS colour the
+ * canvas then has to parse because it has never seen that exact string before.
+ * It is the whole of this file's allocation pressure and it buys nothing — the
+ * eye cannot resolve the difference between alpha 0.412 and 0.406.
+ *
+ * So alpha is quantised to `ALPHA_STEPS` and the product is a flat table filled
+ * on first use. After the first frame the loop allocates nothing at all and
+ * every string handed to `fillStyle` is one the canvas has already parsed. The
+ * table is at most 16 x 65 entries and only the reachable ones are ever built.
+ */
+const ALPHA_STEPS = 64
+const STAR_STYLES: string[] = new Array(TINT_STEPS * (ALPHA_STEPS + 1))
+
+const starStyle = (tint: number, alpha: number): string => {
+  const step = Math.round(Math.max(0, Math.min(1, alpha)) * ALPHA_STEPS)
+  const key = tint * (ALPHA_STEPS + 1) + step
+  const hit = STAR_STYLES[key]
+  if (hit !== undefined) return hit
+  const built = `rgb(${TINTS[tint]} / ${(step / ALPHA_STEPS).toFixed(3)})`
+  STAR_STYLES[key] = built
+  return built
 }
 
 /**
@@ -287,10 +316,17 @@ const tintFor = (bv: number): string => {
  * order of magnitude down.
  */
 const MAG_BRIGHT = -1.5
-const starWeight = (mag: number) => {
-  const t = Math.max(0, Math.min(1, (STAR_MAG_LIMIT - mag) / (STAR_MAG_LIMIT - MAG_BRIGHT)))
-  return { alpha: 0.16 + 0.74 * t * t, radius: 0.7 + 0.9 * t }
-}
+/**
+ * Split into three, and the reason is allocation rather than taste: this used
+ * to return `{ alpha, radius }`, which is an object per star per frame — about
+ * 200 of them per repaint, on the same hot path as the colour strings above.
+ * `t` is three operations, so computing it once at the call site and passing it
+ * to two pure functions costs nothing and allocates nothing.
+ */
+const starRamp = (mag: number) =>
+  Math.max(0, Math.min(1, (STAR_MAG_LIMIT - mag) / (STAR_MAG_LIMIT - MAG_BRIGHT)))
+const starAlpha = (t: number) => 0.16 + 0.74 * t * t
+const starRadius = (t: number) => 0.7 + 0.9 * t
 
 // --- the island's half -----------------------------------------------------
 
@@ -388,10 +424,10 @@ export function createStarfield(view: SkyView): Starfield {
       if (!p || p.hidden) continue
       if (p.x < -pad || p.y < -pad || p.x > width + pad || p.y > height + pad) continue
 
-      const w = starWeight(cat.mag[i])
-      ctx.fillStyle = `rgb(${tintFor(cat.bv[i])} / ${(w.alpha * fade * p.edge).toFixed(3)})`
+      const t = starRamp(cat.mag[i])
+      ctx.fillStyle = starStyle(tintIndexFor(cat.bv[i]), starAlpha(t) * fade * p.edge)
       ctx.beginPath()
-      ctx.arc(p.x, p.y, w.radius, 0, Math.PI * 2)
+      ctx.arc(p.x, p.y, starRadius(t), 0, Math.PI * 2)
       ctx.fill()
 
       hitX[hitCount] = p.x
