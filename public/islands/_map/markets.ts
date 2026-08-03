@@ -827,8 +827,6 @@ export interface MarketStrip {
   setTrends(indicators: TrendIndicator[]): void
   /** The chokepoint set, as the money block's fifth row. */
   setStraits(points: MapChokepoint[]): void
-  /** Follow a toggle made somewhere else — the phone keeps chips for these. */
-  setLayerState(key: 'markets' | 'straits', on: boolean): void
   setVisible(on: boolean): void
   /**
    * The box the detail panel should open under, or `null` to open it as a
@@ -868,19 +866,6 @@ export interface MarketStripOptions {
    * where the ladder starts.
    */
   rangeDays: number
-  /**
-   * Which of the two map layers this block now switches, at mount.
-   *
-   * `markets` and `straits` moved here from the layer chips (2026-08-03),
-   * because both are economic series with a published line and the exchange
-   * composite was already drawn here as one of the four money rows — so a
-   * `markets` chip carrying a trend would have been the same line twice,
-   * fifteen rows apart. The island keeps `layersOn` as the source of truth;
-   * this is the opening state and `onToggleLayer` is how it hears about a
-   * press.
-   */
-  layers: { markets: boolean; straits: boolean }
-  onToggleLayer: (key: 'markets' | 'straits', on: boolean) => void
   /** Fly to a chokepoint and pin its card, the way `onSelect` does an exchange. */
   onStrait: (id: string) => void
 }
@@ -957,85 +942,32 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
   const tallyGroup = el('button', 'map-markets-group map-markets-summary')
   tallyGroup.append(label, tally, tallySpark, note)
 
-  /** The two layers this block switches, mirrored from the island's `layersOn`. */
-  const layerState = { ...opts.layers }
-  /** Each switch's own repaint, so `setLayerState` can drive it from outside. */
-  const syncToggles: Partial<Record<'markets' | 'straits', () => void>> = {}
-
   /**
-   * A row's layer switch: the silhouette, and pressing it toggles.
+   * One row of the money block.
    *
-   * One grammar for the whole rail — **a mark means there is something to
-   * switch**. A row with no mark (currencies, metals, crypto, Brent) has
-   * nothing on the map to turn off, and a reader can read that off the column
-   * without being told. It is why the story chips have a dot and the world
-   * instruments do not.
+   * **No switches live here, and the two that briefly did are why this comment
+   * exists.** `markets` and `straits` are the only money rows with a layer on
+   * the map, so they carried its silhouette and toggled it — which left the
+   * other six rows with an empty 23px column reserved purely to keep the labels
+   * on one edge, and a blank square beside seven silhouettes reads as an icon
+   * that failed to load. Building the column only where it was real fixed the
+   * emptiness and bought a second problem: two rows indented and six flush.
    *
-   * A sibling of the summary, never inside it: a `<button>` within a `<button>`
-   * is invalid and browsers drop the inner one, which is the same trap the rail
-   * head records for its disclosure and refresh pair. So the two controls sit
-   * in one flex box and each keeps its own hit area, its own pressed state and
-   * its own accessible name.
-   *
-   * It borrows `.map-filter-mark`, which is the chips' glyph column, so the
-   * switch here and the switch there are the same object at the same width —
-   * and it is what makes every label down the rail start on one edge.
+   * The way out is that a reading and a switch are different jobs and were
+   * never owed the same row. The value lives here, where the reader asks what
+   * the world's money is doing; the switch lives with every other switch in
+   * `layers`, where the reader asks what is drawn on the map. Neither group
+   * repeats the other — the chip carries no line — and this block goes back to
+   * being what it reads as: one column of readings, every label flush, every
+   * sparkline on one edge.
    */
-  const layerToggle = (key: 'markets' | 'straits', glyphs: Array<keyof typeof GLYPHS>, name: string) => {
-    const btn = el('button', 'map-filter-mark map-markets-toggle')
-    btn.setAttribute('type', 'button')
-    // The same inline-`--cat` channel the chips take, so a switch cannot
-    // disagree with the mark it names and no hue enters the stylesheet.
-    if (key === 'markets') {
-      btn.dataset.mark = 'market'
-      btn.style.setProperty('--cat-up', OVERLAY_COLOUR.marketUp)
-      btn.style.setProperty('--cat-down', OVERLAY_COLOUR.marketDown)
-    } else {
-      btn.style.setProperty('--cat', OVERLAY_COLOUR.straits)
-    }
-    btn.innerHTML = glyphs.map(glyphSvg).join('')
-    const sync = () => {
-      const on = layerState[key]
-      btn.classList.toggle('is-on', on)
-      btn.setAttribute('aria-pressed', String(on))
-      btn.setAttribute('aria-label', `${name} on the map`)
-    }
-    btn.addEventListener('click', () => {
-      layerState[key] = !layerState[key]
-      sync()
-      opts.onToggleLayer(key, layerState[key])
-    })
-    sync()
-    syncToggles[key] = sync
-    return btn
-  }
-
-  /**
-   * One row of the money block: a switch where there is one, then the summary.
-   *
-   * The first version gave *every* row the column and left it empty on the six
-   * that have nothing to switch, so the labels would all start on one edge.
-   * That bought alignment with six blank 23px boxes down the block, which reads
-   * as a glyph that failed to load rather than as space deliberately kept — the
-   * emptiness is louder than the misalignment it was buying off.
-   *
-   * So the element is only built when it is real, and the stylesheet gives a
-   * switchless row's label the column's width instead: the sparklines still
-   * begin on one line, which is what alignment here was ever for, and the only
-   * thing that moves is the word. The two rows that are indented are exactly
-   * the two that also drive the map, so the indent is the grammar made visible
-   * rather than a hole.
-   */
-  const moneyItem = (summary: HTMLElement, toggle: HTMLElement | null) => {
+  const moneyItem = (summary: HTMLElement) => {
     const box = el('div', 'map-markets-item')
-    if (toggle) box.append(toggle)
     box.append(summary)
     return box
   }
 
-  row.append(
-    moneyItem(tallyGroup, layerToggle('markets', ['tick-up', 'tick-down'], 'exchanges')),
-  )
+  row.append(moneyItem(tallyGroup))
 
   /**
    * Two headings and a second block, which exist only in the rail.
@@ -1531,7 +1463,7 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
   let lastStraits: MapChokepoint[] = []
   const straitsSummary = el('button', 'map-markets-group map-markets-summary')
   const straitsSpark = el('span', 'map-markets-spark')
-  const straitsItem = moneyItem(straitsSummary, layerToggle('straits', ['strait-rest'], 'straits'))
+  const straitsItem = moneyItem(straitsSummary)
   straitsItem.classList.add('is-straits')
   straitsItem.hidden = true
 
@@ -1632,7 +1564,7 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
         () => countsText(s),
         () => items.map(quoteRow),
       )
-      row.append(moneyItem(summary, null))
+      row.append(moneyItem(summary))
     }
 
     // Last of the money rows, and re-appended on every `setTrends` so it stays
@@ -1671,7 +1603,7 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
         closePanel()
         opts.onQuote(entry)
       })
-      world.append(moneyItem(item, null))
+      world.append(moneyItem(item))
     }
   }
 
@@ -1706,10 +1638,6 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     update,
     setTrends,
     setStraits,
-    setLayerState(key, on) {
-      layerState[key] = on
-      syncToggles[key]?.()
-    },
     rangeDays: () => rangeDays,
     setRangeDays(days: number) {
       if (days === rangeDays) return

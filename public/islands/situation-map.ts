@@ -1318,18 +1318,6 @@ export function mount(
       sheet.showMarket(ex, true, marketStrip.rangeDays())
     },
     onQuote: (entry) => sheet.showIndicator(entry, true, marketStrip.rangeDays()),
-    // The money block owns these two switches now — see the `layers` group in
-    // `buildFilters`, which is hazards and determinations and nothing else.
-    layers: { markets: layersOn.markets, straits: layersOn.straits },
-    onToggleLayer: (key, on) => {
-      layersOn[key] = on
-      const chip = filters.querySelector(`.map-filter[data-key="${key}"]`)
-      if (chip instanceof HTMLElement) {
-        chip.classList.toggle('is-on', on)
-        chip.setAttribute('aria-pressed', String(on))
-      }
-      applyLayerVisibility()
-    },
     // A chokepoint is a place, so this flies the way an exchange does: the
     // reader picked a name out of a list with no map context, and landing them
     // on the card without showing them where it is answers half the question.
@@ -3941,12 +3929,12 @@ export function mount(
       countTrend(cat, points.flatMap((p) => (p.cat === cat ? [p.t] : [])), from, to)
     }
 
-    // Disasters. GDACS publishes a rolling window — about sixteen days against
-    // a real payload — so beyond that the line is short-drawn from its own
-    // oldest alert. Zero-filling to the window's edge instead would draw "we do
-    // not hold this" as "nothing happened", which on a disaster layer is the
-    // worse of the two errors by a distance.
-    countTrend('gdacs', gdacs.map((a) => Date.parse(a.fromDate)), from, to)
+    // Nothing in `layers` draws a line. `disasters` briefly did — GDACS is the
+    // one hazard whose payload can support one — and the group reads better
+    // without it: every other member is a switch and nothing else, so one row
+    // carrying a trend made the other five look like rows with data missing.
+    // A group where one member answers a question the rest cannot is a group
+    // that has to be read twice.
 
     // Straits are no longer here: they became the money block's fifth row, where
     // a published vessel-transit series belongs, and `createMarketStrip` draws
@@ -4147,16 +4135,6 @@ export function mount(
     // same line twice, fifteen rows apart. What is left is what a reader means
     // by "what else is drawn over the news": four hazards and, past its own
     // separator, one determination.
-    /**
-     * The layer chips that can carry a trend, which is one of them.
-     *
-     * Read by two places that must agree — the markup, which gives a trended
-     * chip a full row and the rest a place in a wrap run, and `paintTrends`,
-     * which draws them. A chip laid out for a line nothing ever paints is the
-     * empty-mark-column mistake again, one channel over.
-     */
-    const TRENDED_LAYERS = new Set(['gdacs'])
-
     for (const [key, label, colour, glyphs, note] of [
       ['gdacs', 'disasters', OVERLAY_COLOUR.gdacs, ['hazard'], ''],
       // Beside `disasters`, because that adjacency is the whole point of its
@@ -4185,10 +4163,6 @@ export function mount(
       btn.className = 'map-filter is-on'
       btn.dataset.kind = 'layer'
       btn.dataset.key = key
-      // Present means "this row has a line", which is what the stylesheet lays
-      // the row out for. Absent means the chip is a switch and nothing else,
-      // and it goes in the compact run.
-      if (TRENDED_LAYERS.has(key)) btn.dataset.trend = ''
       // Which school's angles the lines are drawn to is provenance, not a
       // constraint the reader has to act on, so it goes where `HIJRI_NOTE`
       // goes — and it is on the chip rather than on a mark, because the marks
@@ -4212,10 +4186,6 @@ export function mount(
         layersOn[key] = !layersOn[key]
         btn.classList.toggle('is-on', layersOn[key])
         btn.setAttribute('aria-pressed', String(layersOn[key]))
-        // Two surfaces, one state: `markets` and `straits` are switched from
-        // the money block on a desktop and from here on a phone, and a reader
-        // who resizes across the breakpoint must not find the two disagreeing.
-        if (key === 'markets' || key === 'straits') marketStrip.setLayerState(key, layersOn[key])
         applyLayerVisibility()
       })
       filters.append(btn)

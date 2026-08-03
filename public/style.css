@@ -3987,62 +3987,34 @@ body.map-wide .map-ranges {
    into its wrap run and each line can fill before the next begins — a column
    has no such problem, and dissolving the group here would only cost the ability
    to order it as one. */
-/* Rows for the chips that carry a line, a compact run for the ones that do not.
+/* One item per row, which is what a column of switches is.
 
-   The column used to be uniform, and four of its members had nothing to put in
-   the two thirds of the row a sparkline occupies — `thermal`, `conflict`,
-   `famine` and the `genocide` note are switches and nothing else. A full-width
-   row for a switch reserves a line's worth of space for a line that will never
-   be drawn, which is the empty-mark-column mistake one channel over and four
-   rows deep.
-
-   So the group wraps instead of stacking, and *width* is what says which kind
-   of row a member is: `flex: 0 0 100%` for anything with a trend (every story
-   category, and `disasters`), auto for a bare switch. A group label takes a
-   full line too, or it would sit inline with the first chip it names.
-
-   `column-gap` is wider than `row-gap` on purpose: the run's members are
-   separated by space alone, where the stacked rows have their own hover box to
-   separate them. */
+   It wrapped for a while, so the members with no sparkline could pair up and
+   stop reserving a line's worth of space they had nothing to put in. The
+   simpler answer arrived from the other end: **no member of this group draws a
+   line at all** now, so there is no reserved space to reclaim and no reason for
+   two kinds of row. Every switch is a row, the group reads as one list, and
+   `genocide` is told apart by the thing that told it apart before — being a
+   `<span>` with no hover and no pressed state, in a column, which is the
+   argument the separator note below makes. */
 body.map-wide .map-filters {
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.1rem 0.75rem;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.1rem;
 }
 
-body.map-wide .map-filters > .map-group-label,
-body.map-wide .map-filters > .map-filter-sep:not(.is-genocide),
-body.map-wide .map-filters > .map-filters-note,
-body.map-wide .map-filter[data-kind='category'],
-body.map-wide .map-filter[data-trend] { flex: 0 0 100%; }
+/* The shared label column: what puts a story chip's line and a money row's
+   line on the same edge.
 
-/* The shared label column, so a chip's line and a money row's line begin on
-   one edge. Declared before the compact-chip override below, which is more
-   specific and must come after it to read as the cascade intends. */
-body.map-wide .map-filter-label {
+   Only the chips that draw one need it. A `layers` switch has no sparkline —
+   nothing in that group does — so its label is left to its own width; a fixed
+   column there would be paying for an alignment it takes no part in, which is
+   how four of them once came out an identical 127px. */
+body.map-wide .map-filter[data-kind='category'] .map-filter-label {
   flex: 0 0 var(--map-row-label-w);
   min-width: 0;
   text-align: left;
 }
-
-/* A switch with no line: only as wide as it needs to be, and it keeps the row
-   treatment's padding so its hover box still reads as a target.
-
-   Its label drops the shared column too. `--map-row-label-w` exists to put
-   every *sparkline* on one edge, and a chip with no sparkline is paying a
-   76.8px box for an alignment it takes no part in — which set all four to an
-   identical 127px, one pixel too wide for two of them to share a line. Natural
-   width, and they pair up. */
-body.map-wide .map-filter[data-kind='layer']:not([data-trend]) {
-  flex: 0 0 auto;
-  margin: 0;
-
-  & .map-filter-label { flex: 0 0 auto; }
-}
-
-/* The genocide note travels with the run — same shape, same rhythm — and is
-   told apart from the four switches by the tick before it, not by sitting on a
-   line of its own. */
 
 /* A row, not a word: the whole line is the target, the glyph holds a column of
    its own so the marks align down the rail, and the hover state has somewhere
@@ -4202,11 +4174,11 @@ body.map-wide .map-filter-mark {
    two-valued treatment. Nothing on a `.map-filter` sets `data-mark` any more;
    the island's `else` branch that did is gone too. */
 
-/* `markets` and `straits` are the money block's rows on a desktop, switch and
-   all, so their chips would be the same control twice in one column. They stay
-   in the markup for the phone, which has no money block to put them in. */
-body.map-wide .map-filter[data-key='markets'],
-body.map-wide .map-filter[data-key='straits'] { display: none; }
+/* `markets` and `straits` are switches here and readings in the money block,
+   which is not the same control twice: the chip carries no line and the money
+   row carries no switch. A reading answers "what is the world's money doing"
+   and a switch answers "what is drawn on the map", and they were only ever
+   sharing a row because both happened to be about markets. */
 
 /* The group boundary, drawn rather than implied. This is the phone panel's own
    treatment — the separator that is a 1px vertical tick between chips on a strip
@@ -4233,20 +4205,14 @@ body.map-wide .map-filter-sep {
    Only this separator goes; the one between the categories and the layers is
    still doing its job.
 
-   **That reasoning expired on 2026-08-03 and the fence is back.** It rested on
-   the group being a column, and the four switches with no line are a wrap run
-   now — so `genocide` sits inline beside `famine`, at the same rhythm, and the
-   one thing that said it is not a fifth toggle was the column itself. This is
-   the strip's situation exactly, so it takes the strip's answer: the tick, kept
-   at its base width and height rather than stretched into the full-width rule
-   the stacked rows use. `is-genocide` is what picks it out, which is the reason
-   that class was given an identity rather than a position. */
-body.map-wide .map-filter-sep.is-genocide {
-  width: 1px;
-  height: 0.85rem;
-  margin: 0;
-  flex: 0 0 auto;
-}
+   That reasoning briefly expired and came back. For part of 2026-08-03 the
+   group was a wrap run — the members with no sparkline paired up to stop
+   reserving space — and inline beside `famine`, at the same rhythm as four
+   things that *are* switches, `genocide` needed the strip's 1px tick again.
+   The group is a column once more, so the premise holds and the tick goes.
+   Worth leaving written down: this rule is contingent on the layout, not on
+   the mark, and it is the layout that has moved twice. */
+body.map-wide .map-filter-sep.is-genocide { display: none; }
 
 body.map-wide .map-key-item.is-layer-note {
   gap: 0.45rem;
@@ -4366,7 +4332,6 @@ body.map-wide .map-ground {
    and the phone's line closed up to `markets13 14 3 flat18 closed`. Passed
    through rather than restated, so the run's rhythm is still declared once. */
 .map-markets-item { display: contents; gap: inherit; }
-.map-markets-toggle { display: none; }
 
 /* Straits has counts nowhere — it is a label and a line, and the line is a
    desktop thing — so on the phone it would print a heading with nothing under
@@ -4500,16 +4465,11 @@ body.map-wide {
     font-size: var(--size-xs);
   }
 
-  /* A row with no switch has no mark column either, so its label takes the
-     column's width plus the gap that would have followed it. Same result at
-     the sparkline — one left edge for all thirteen lines — with nothing blank
-     to explain. `:has()` rather than a class because the condition genuinely
-     is "this row has a switch in it", and a class would be a second thing to
-     keep true. After the rule it overrides, not before: equal-or-higher
-     specificity placed later is how the cascade is meant to read. */
-  & .map-markets-item:not(:has(.map-markets-toggle)) .map-markets-label {
-    flex-basis: calc(var(--map-row-label-w) + 1.45rem + 0.45rem);
-  }
+  /* No money row has a mark, so every one of them takes the mark column's
+     width and its gap into the label instead. That is what puts a money line
+     and a story chip's line on the same edge while the money block itself
+     stays flush against the rail — one rule, no exceptions, nothing blank. */
+  & .map-markets-label { flex-basis: calc(var(--map-row-label-w) + 1.45rem + 0.45rem); }
 
   /* The counts are the panel's job here. The reverse holds in the scrubber,
      where there is no room for a shape and the counts are the whole readout. */
