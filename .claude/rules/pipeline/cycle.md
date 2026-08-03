@@ -37,6 +37,22 @@ paths:
 Five runs a day on a remote server, committing only `content/`. The stage list
 is in the root CLAUDE.md; this is what the stages assume about each other.
 
+## Polymarket's `active` flag does not mean live
+
+- **A market whose deadline has passed keeps `active: true, closed: false`**
+  until UMA resolves it, which can take months. Probed against the live Gamma
+  API: *"Will Adanech Abiebie be the next Prime Minister of Ethiopia?"* carried
+  `endDate: 2026-06-01` — two months gone — with both flags saying it was live.
+  On the rail this showed as *"US x Iran Effective Ceasefire by July 31"* sitting
+  at **62% four days after July 31**. A probability on a question whose date has
+  passed is not a forecast; it is the last price before everyone stopped caring,
+  and beside live markets it makes the whole block untrustworthy in a way a
+  reader has no means to check.
+- **The source's own `endDate` is the test**, so nothing is inferred from the
+  question text and no model is involved. Markets carrying no end date are
+  **kept**: an open-ended market is a real thing, and dropping one for a missing
+  field would be reading absence as expiry.
+
 ## The trends payload's country tags
 
 - **Only the currency basket knew what country it was about, and that was 15 of

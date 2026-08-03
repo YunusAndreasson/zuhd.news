@@ -793,7 +793,26 @@ export const sparkInput = (
    * there is nothing to test, and taking the strict reading would empty a row
    * for a label-format change rather than for a fact about the data.
    */
-  const recent = to - FRESH_DAYS * DAY_MS
+  /**
+   * How far behind the window's right edge a member may be and still answer
+   * "what did this do today".
+   *
+   * Two rules, because there are two kinds of block. **Without a `blockEdge`**
+   * the edge is the wall clock, and the tolerance has to absorb the weekend or
+   * a Monday drops every exchange on earth — that is what `FRESH_DAYS` is for
+   * and it stays. **With one**, the edge is already the last day this block
+   * traded, so the weekend is accounted for and no tolerance is left to spend:
+   * a member that printed on the edge has a reading for it and a member that
+   * did not, does not.
+   *
+   * That is stricter than what shipped an hour ago, and deliberately: with the
+   * edge at Friday, `us-10y` last printing Thursday drew its Wed→Thu move
+   * captioned as the latest day, beside `vix` drawing Thu→Fri. Two different
+   * days under one label is the `BRENT −8.46%` error in miniature — the thing
+   * the shared right edge exists to prevent — and it costs a line at the 24h
+   * step that was never entitled to be there. The row prints `4d` instead.
+   */
+  const recent = blockEdge != null ? to : to - FRESH_DAYS * DAY_MS
   const current = undated
     ? members
     : dated.flatMap((d) => (d && (d.dates[d.dates.length - 1] ?? 0) >= recent ? [d] : []))
@@ -1069,8 +1088,27 @@ const selectEntries = (
   group: string,
   days: number,
   now: number,
-  /** How the ranking reads a move — a difference in points, or a percentage. */
-  metric: 'points' | 'percent',
+  /**
+   * How the ranking reads a move.
+   *
+   * `points` for odds: a probability's points are comparable across markets by
+   * construction — 20→25 and 70→75 are both five points of probability.
+   *
+   * `volume` for attention, and it replaced `percent` because `percent` was
+   * measuring the wrong thing. Ranked by percentage, **Wildfire's 219 views
+   * moved outranked Donald Trump's 2,365** — measured on a live payload, a move
+   * eleven times smaller winning because the base was thirty times smaller. That
+   * is small-denominator bias, and in a block whose whole subject is *how much
+   * attention moved* it is a measurement error rather than a preference: it
+   * structurally promotes the least-read articles, which is the opposite of what
+   * the block is for. `volume` ranks on the change in views themselves.
+   *
+   * The **figure printed stays a percentage**, because a reader cannot do
+   * anything with "−8,766 views" — but the level is printed beside it, so the
+   * ordering is now derivable from the two numbers on the row rather than from
+   * a third that is nowhere on screen.
+   */
+  metric: 'points' | 'percent' | 'volume',
   shorten: (label: string) => string,
   note: string,
 ): TickerEntry[] => {
@@ -1090,7 +1128,11 @@ const selectEntries = (
     if (!input || !ends) continue
     const [open, last] = ends
     const move =
-      metric === 'points' ? last - open : open === 0 ? 0 : ((last - open) / open) * 100
+      metric === 'points' || metric === 'volume'
+        ? last - open
+        : open === 0
+          ? 0
+          : ((last - open) / open) * 100
     if (!Number.isFinite(move)) continue
     scored.push({
       entry: {
@@ -1103,7 +1145,8 @@ const selectEntries = (
         // The tick's direction, and it is the *window's* move rather than the
         // last day's: these rows have no other figure, so a green tick over a
         // falling week would be the row disagreeing with its own line.
-        pct: metric === 'points' ? (open === 0 ? 0 : ((last - open) / open) * 100) : move,
+        pct:
+          metric === 'percent' ? move : open === 0 ? 0 : ((last - open) / open) * 100,
         unit: ind.unit,
         level: ind.values[ind.values.length - 1],
         values: ind.values,
@@ -1203,7 +1246,8 @@ export const attentionEntries = (
         'attention',
         days,
         now,
-        'percent',
+        // See `metric`: ranked on views moved, printed as a percentage.
+        'volume',
         attentionShort,
         ATTENTION_NOTE,
       )

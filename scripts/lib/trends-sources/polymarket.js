@@ -265,6 +265,28 @@ export async function fetchPolymarketTop() {
 
   const filtered = markets
     .filter((m) => m.active && !m.closed)
+    /**
+     * **`active` and `closed` do not track expiry, and the API says so.**
+     *
+     * A market whose deadline has passed keeps `active: true, closed: false`
+     * until UMA resolves it, which can take months. Probed live: *"Will Adanech
+     * Abiebie be the next Prime Minister of Ethiopia?"* carried
+     * `endDate: 2026-06-01` — two months gone — alongside both flags saying it
+     * was live, and on the rail *"US x Iran Effective Ceasefire by July 31"* sat
+     * at 62% four days after July 31. A probability on a question whose date has
+     * passed is not a forecast; it is the last price before everyone stopped
+     * caring, and printing it beside live markets makes the block untrustworthy
+     * in a way a reader cannot check.
+     *
+     * The source's own `endDate` is the test, so nothing has to be inferred from
+     * the question text. Markets with no end date are kept: an open-ended market
+     * is a real thing, and dropping one for a missing field would be reading
+     * absence as expiry.
+     */
+    .filter((m) => {
+      const end = Date.parse(m.endDate ?? m.endDateIso ?? '')
+      return !Number.isFinite(end) || end >= Date.now()
+    })
     .filter((m) => {
       const cat = (m.category || m.groupItemCategory || '').toLowerCase()
       const title = m.question || m.title || ''

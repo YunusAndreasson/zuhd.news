@@ -603,7 +603,47 @@ test('attention has no answer at the day step', () => {
   assert.deepEqual(attentionEntries(feed, 1, NOW), [])
   const week = attentionEntries(feed, 7, NOW)
   assert.equal(week.length, 2)
-  assert.equal(week[0].label, 'Ukraine', 'ranked as a percentage, since views have no fixed scale')
+  // Ukraine either way — it moved 221 views against Iran's 111 *and* 42% against
+  // 38% — so this line pins the day-step rule above it and says nothing about
+  // the metric. It used to claim it was pinning "ranked as a percentage", which
+  // it never was. The metric is pinned by the test below.
+  assert.equal(week[0].label, 'Ukraine', 'and the block ranks by how far a series moved')
+})
+
+test('attention ranks on views moved, not on percentage', () => {
+  // The bug this pins, measured on a live payload: **Wildfire** at 1,132 views
+  // moved 219 and **Donald Trump** at 34,427 moved 2,365 — eleven times more
+  // attention — and Wildfire ranked *above* him, because 219/1,132 beats
+  // 2,365/34,427. Ranking a block about how much attention moved by a ratio
+  // structurally promotes the least-read articles, which is the opposite of
+  // what it is for.
+  //
+  // Constructed so the two metrics disagree outright rather than by a margin:
+  // the small series wins on percentage and loses on views, so a revert to
+  // `percent` fails this line rather than squeaking past it.
+  const wiki = (id, values) => ({
+    id,
+    label: `${id} — Wikipedia views`,
+    source: 'wikipedia',
+    cadence: 'daily',
+    unit: 'views/day',
+    values,
+    periods: dailyPeriods('2026-07-30', values.length),
+    asOf: '2026-07-30',
+    sourceLabel: 'Wikipedia pageviews',
+  })
+  const flatThen = (base, last) => [...Array(19).fill(base), last]
+  const feed = [
+    wiki('Wildfire', flatThen(1000, 1200)), // +200 views, +20%
+    wiki('Trump', flatThen(30000, 27000)), // −3000 views, −10%
+  ]
+  const rows = attentionEntries(feed, 7, NOW)
+  assert.equal(rows.length, 2)
+  assert.equal(rows[0].label, 'Trump', 'the bigger movement of attention leads')
+  // And the figure is still a percentage, because "−3,000 views" is not a thing
+  // a reader can do anything with — the level beside it is what makes the
+  // ordering derivable from the row instead of from a number nowhere on screen.
+  assert.ok(Math.abs(rows[0].pct + 10) < 0.01, 'printed as its own percentage')
 })
 
 // --- The release calendar --------------------------------------------------
