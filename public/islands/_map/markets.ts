@@ -20,7 +20,7 @@ import { FRESH_DAYS, isTrading, quoteLevel, shortDate, staleLabel } from './form
 import { coverage, DAY_MS, seriesDates, windowByDate } from './series-window'
 import { glyphSvg } from './glyphs'
 import type { GLYPHS } from './glyphs'
-import { MAP_COLOURS, OVERLAY_COLOUR } from './style'
+import { CATEGORY_COLOUR, MAP_COLOURS, OVERLAY_COLOUR } from './style'
 import type { MapChokepoint, MapExchange } from './types'
 import type { ExpressionSpecification, SymbolLayerSpecification } from 'maplibre-gl'
 
@@ -1456,14 +1456,39 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * differs is only which series fill them, which is a selection rule rather
    * than a second row grammar.
    */
+  /**
+   * These two blocks are tinted from the **topic palette**, never from the
+   * money's green and orange, and that is a correctness rule rather than a
+   * preference.
+   *
+   * `--map-pos`/`--map-neg` mean "a signed change" and read as good and bad. On
+   * a market that is a convention old enough to be invisible; on the odds of an
+   * invasion it is a verdict — a green **US invade Iran +35 pts** is this map
+   * telling a reader that a war becoming likelier is good news. It is exactly
+   * the trap the layer trends already record for a green *DISASTERS +40%*, and
+   * exactly why those carry their layer's own hue instead. Attention is the
+   * same case one step milder: more people reading about a famine is not good
+   * and not bad, it is more.
+   *
+   * So identity rides on hue, direction on the shape, magnitude on the figure,
+   * and none of the three is a judgement. The hues come from `CATEGORY_COLOUR`
+   * so the rail reads as one palette rather than as a money block and two
+   * strangers — **economy's gold** for a block of prices-of-opinions, and
+   * **tech's blue-violet** for attention, which is the coolest and quietest
+   * thing here and belongs to the block furthest from a fact. Set as `--cat`,
+   * inline, the way a filter chip receives its layer's colour, so the
+   * stylesheet never names a hue.
+   */
   const oddsHead = el('span', 'map-group-label map-markets-head', 'odds')
   oddsHead.hidden = true
   const odds = el('div', 'map-markets-odds')
   odds.hidden = true
+  odds.style.setProperty('--cat', CATEGORY_COLOUR.economy ?? '')
   const attentionHead = el('span', 'map-group-label map-markets-head', 'attention')
   attentionHead.hidden = true
   const attention = el('div', 'map-markets-attention')
   attention.hidden = true
+  attention.style.setProperty('--cat', CATEGORY_COLOUR.tech ?? '')
 
   /**
    * The two blocks stand apart from the money, at the foot of the rail, and
@@ -2213,8 +2238,8 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     // that kept its 90d membership while drawing 24h lines would be ranking on
     // one period and drawing another where nothing could see it.
     const now = Date.now()
-    fillInstruments(odds, oddsHead, oddsEntries(indicators, rangeDays, now))
-    fillInstruments(attention, attentionHead, attentionEntries(indicators, rangeDays, now))
+    fillInstruments(odds, oddsHead, oddsEntries(indicators, rangeDays, now), true)
+    fillInstruments(attention, attentionHead, attentionEntries(indicators, rangeDays, now), true)
   }
 
   /**
@@ -2231,7 +2256,7 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * costs — the footnote without the sentence. `entry.level` and `entry.unit`
    * were on the entry the whole time and reached only the card.
    */
-  const instrumentRow = (entry: TickerEntry) => {
+  const instrumentRow = (entry: TickerEntry, caption = false) => {
     const item = el('button', 'map-markets-group map-markets-summary')
     item.setAttribute('type', 'button')
     item.setAttribute('aria-haspopup', 'dialog')
@@ -2242,8 +2267,47 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     const level = quoteLevel(entry.level, entry.unit)
     item.append(
       tick(marketDirection(entry.pct)),
-      el('span', 'map-markets-label', entry.label),
+      /**
+       * A code sits in the shared label column; a *phrase* becomes a caption
+       * over its own reading, and that is a level of hierarchy rather than a
+       * layout escape.
+       *
+       * `BRENT` and `currencies` fit 4.8rem because they are codes. A
+       * prediction market is only readable as the question it asks and a
+       * Wikipedia series as the article it counts, and neither survives that
+       * column — `US–Iran nuclear deal` truncates to `US–Iran nu…`, which is a
+       * row that kept its alignment and lost its subject. Inventing a short
+       * label instead is worse: two of the six live markets are ceasefires, so
+       * any table of subjects short enough to fit produces two rows reading
+       * CEASEFIRE.
+       *
+       * So the phrase takes a line of its own, set one rung down and out of
+       * small caps so it reads as a caption, and the **reading indents to the
+       * shared grid** — see `.map-markets-caption` in the stylesheet. Every
+       * level, line and figure in the rail then stands in the same three
+       * columns whichever block it is in, which is the alignment a column of
+       * readings is for; the captions are a second, subordinate rhythm the eye
+       * separates by weight rather than by position.
+       */
+      el('span', `map-markets-label${caption ? ' map-markets-caption' : ''}`, entry.label),
       ...(level ? [el('span', 'map-markets-level', level)] : []),
+      /**
+       * A zero-height flex break, so the trend starts a line without taking the
+       * whole of it.
+       *
+       * The obvious way to break a flex line is `flex-basis: 100%` on the item
+       * you want moved down — and it moves everything *after* it down too. The
+       * disclosure caret is a `::after` and therefore always the last item, so
+       * it landed on a third line of its own: 11px tall, invisible, and enough
+       * to let the change figure run 10px right of every other figure in the
+       * rail because nothing followed it on its own line. Measured at 50px
+       * against a money row's 22.
+       *
+       * An empty item with `flex: 1 0 100%; height: 0` is the idiom that does
+       * only the one thing. The line it occupies costs nothing, and the trend
+       * and the caret then sit together exactly as they do on a money row.
+       */
+      ...(caption ? [el('span', 'map-markets-break')] : []),
       spark,
     )
     item.setAttribute(
@@ -2271,8 +2335,13 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * idle-deferred, so for the first seconds of every load there is genuinely no
    * block, and a heading over nothing is a promise the page has not kept.
    */
-  const fillInstruments = (host: HTMLElement, head: HTMLElement, rows: TickerEntry[]) => {
-    host.replaceChildren(...rows.map(instrumentRow))
+  const fillInstruments = (
+    host: HTMLElement,
+    head: HTMLElement,
+    rows: TickerEntry[],
+    caption = false,
+  ) => {
+    host.replaceChildren(...rows.map((r) => instrumentRow(r, caption)))
     host.hidden = rows.length === 0
     head.hidden = host.hidden
   }

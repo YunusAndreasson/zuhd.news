@@ -3905,23 +3905,23 @@ body.map-wide {
   & .map-status { order: 0; }
   & .map-range-group { order: 1; }
   & .map-money { order: 2; }
-  & .map-filters { order: 3; }
-  & .map-ground { order: 4; }
-  /* The odds and attention blocks sit *below* every control, which is the one
-     place in this order where a reading does not lead.
+  /* Every reading, then every control, and the boundary falls here.
 
-     They were built into the money box, at order 2 with the rest of the
-     readings, and measured: the rail then wanted 1299px of a 1080px column and
-     what fell off the bottom was the ground picker and the legend. Two more
-     blocks of readings had buried every remaining control — the folded rail's
-     bargain ("the controls go and the readings stay") running backwards, and
-     paid for by the reader having to discover that the column scrolls.
+     `.map-signals` sat at 5, below the ground picker, because two more blocks
+     of readings above the controls took the rail to 1299px in a 1080px column
+     and pushed the picker off the bottom. That solved a height problem by
+     breaking the grouping: `money`, `world`, `odds` and `attention` are four
+     answers to *what is the world doing*, and three of them stood together
+     while the fourth sat past two control groups with a picker between them.
+     Proximity is the strongest grouping cue there is, and it was saying these
+     were different kinds of thing.
 
-     It is also the honest order. Everything above this line is a price, a
-     count or a switch; below it is what people are betting and what people are
-     reading, which are the two things on this rail furthest from a fact. A
-     reader who never scrolls has lost the least valuable half. */
-  & .map-signals { order: 5; }
+     So the readings are one region and the controls are another, and the
+     height is paid for in the rows themselves — one line each, on the shared
+     grid — rather than by exiling a block. See `.map-markets-caption`. */
+  & .map-signals { order: 3; }
+  & .map-filters { order: 4; }
+  & .map-ground { order: 5; }
   & .map-more { order: 6; }
   & .map-hud-legend { order: 7; }
 }
@@ -4204,6 +4204,28 @@ body.map-wide .map-filter-sep {
   width: 100%;
   height: 1px;
   margin: 0.5rem 0;
+}
+
+/* Where the readings end and the controls begin.
+
+   The rail is now two regions and the boundary had nothing marking it: `money`,
+   `world`, `odds` and `attention` all answer *what is the world doing*, and
+   `stories`, `layers` and `ground` all answer *what is on the map* — but every
+   heading in the column looked exactly like every other, so the eye read seven
+   peers rather than two families. A rule between two lists says they are
+   different, which is the argument the group headings themselves were added
+   under; this is the same argument one level up.
+
+   The same 1px it already uses between `stories` and `layers`, so the column
+   has one vocabulary for a boundary rather than two — and the extra room above
+   it is what makes it read as a division rather than as an underline on the
+   block above. `border-top` rather than a fifth element in the markup: nothing
+   is being separated *within* `.map-filters`, so there is nothing for an
+   element to sit between. */
+body.map-wide .map-filters {
+  margin-top: 0.35rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--map-line);
 }
 
 /* Genocide joins the layers, and the separator that used to fence it off is
@@ -4596,47 +4618,124 @@ body.map-wide {
     &:only-child { margin-left: auto; }
   }
 
-  /* Two blocks whose rows are named rather than coded, so the name takes a line.
+  /* A caption, and the reading it captions — two levels, not two layouts.
 
-     Every other row on this rail is labelled with something that fits a 4.8rem
-     column because it *is* a code — `currencies`, `BRENT`, `US 10Y`. These two
-     are not: a prediction market is only readable as the question it asks, and
-     a Wikipedia series is only readable as the article it counts. Truncated to
-     the shared column, `US–Iran nuclear deal` reads `US–Iran nu…` and `Artificial
-     intelligence` reads `Artificial…` — which is a row that has kept its
+     Every other row on this rail is labelled with something that fits the
+     4.8rem column because it *is* a code: `currencies`, `BRENT`, `US 10Y`. A
+     prediction market is only readable as the question it asks and a Wikipedia
+     series as the article it counts, and neither survives that column —
+     `US–Iran nuclear deal` truncates to `US–Iran nu…`, a row that kept its
      alignment and lost its subject.
 
-     So the name takes the full width and the reading follows underneath, which
-     is the treatment the spine already applies to every row for the same reason
-     — the label does not fit beside the shape, so it goes above it. The split
-     is legible as a rule rather than as an inconsistency: **coded rows are one
-     line, named rows are two.**
+     So the phrase takes a line of its own and the reading indents to the grid
+     underneath it. What makes that a hierarchy rather than a ragged exception
+     is the second half: **the level, the line and the figure stand in exactly
+     the same three columns as every other row in the rail**, so a reader's eye
+     runs down one set of columns from `markets` to the last attention row
+     without re-finding them. The captions are a second rhythm, separated by
+     weight and case rather than by position — one ink step down, out of small
+     caps, at the label's own size.
 
      `nowrap` on the summary is overridden here rather than removed there. That
-     rule exists because a *fixed-width* label plus a line does not fit, which is
-     still true of every block it governs; this is the case where the wrap is the
-     intent instead of the symptom. */
+     rule exists because a *fixed-width* label plus a line does not fit, which
+     is still true of every block it governs; here the wrap is the intent
+     instead of the symptom. */
   & .map-markets-odds .map-markets-summary,
   & .map-markets-attention .map-markets-summary {
     flex-wrap: wrap;
     row-gap: 0;
+    align-items: baseline;
+    /* The one-line rows set their own rhythm through `--map-hud-row-h`; a
+       two-line row that also claimed it came out at 50px against a money row's
+       22, so six of them spent 300px saying what the block above says in 110.
+       The floor is per *row*, and these rows have two lines to put it in. */
+    min-height: 0;
   }
 
-  /* The summary is named in the selector so this outranks the fixed-width
-     `.map-markets-label` rule above it rather than merely following it —
-     ascending specificity, which is the ordering `noDescendingSpecificity`
-     exists to keep and which this file has broken three times. */
-  & .map-markets-odds .map-markets-summary .map-markets-label,
-  & .map-markets-attention .map-markets-summary .map-markets-label {
-    flex: 1 0 100%;
+  /* The question, and its probability, on one line; the trend on the next.
+
+     The first arrangement put the caption alone on line 1 and indented the
+     whole reading — level, line and figure — to the grid underneath. It aligned
+     perfectly at 21rem and **wrapped to a third line at the rail's 18rem
+     floor**, because flex decides wrapping on an item's *base* size before it
+     shrinks anything: the indent plus a 3.1rem level left 81px for a box whose
+     content wants 103, so the line jumped to a row of its own. Measured, not
+     reasoned — the geometry probe reported `lineL` at the rail's own left edge
+     where every other row reported the grid column.
+
+     The level moves up beside its subject instead, which is where it reads
+     better anyway (*this question is at 60%*) and leaves line 2 holding only
+     the shape and its change. Line 2 then starts on the same column every
+     money and world line starts on, and ends on the same column every figure
+     ends on, with 217px of need against 245px of room at the floor. */
+  & .map-markets-caption {
+    /* Basis zero, not `auto`, and it is the same trap as the wrap above: flex
+       wraps on an item's *base* size, so a caption based on its own text pushed
+       the probability beside it onto a line of its own — measured, two of the
+       three odds rows. At zero the caption can never displace anything and the
+       ellipsis does the work it is there for. */
+    flex: 1 1 0;
+    min-width: 0;
     overflow: hidden;
+    /* The **label's** ink, not a step brighter. `--map-ink-muted` was the first
+       choice, on the reasoning that a caption is a caption — and it is one step
+       *lighter* than `--map-ink-dim`, so the phrases came out brighter than the
+       codes above them while also reading larger for being out of small caps.
+       That is a hierarchy inversion: the loudest thing in a column of readings
+       was the block furthest from a fact. Same ink as every other row label
+       now, so the difference between them reads as a difference of kind rather
+       than of importance. */
+    color: var(--map-ink-dim);
     /* Sentence case, not the all-small-caps every other label wears: these are
        phrases rather than tickers, and small caps on a phrase is a headline
        treatment on something that is not a headline. */
     font-variant-caps: normal;
+    font-weight: 400;
     letter-spacing: 0;
+    line-height: 1.3;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+
+  /* `flex-basis: 100%` is what breaks the line — an item that cannot share a
+     row with anything always starts a new one — and the margin is the indent
+     that lands it on the grid. One derived term rather than a literal: the
+     label's own basis plus the row's gap, because that column has already moved
+     twice (6.2rem guessed from `--map-spine-w`, then 4.8rem measured off
+     `currencies`) and a number typed here would be right only for the layout it
+     was typed against. */
+  /* The break itself: a line with nothing on it and no height. See
+     `map-markets-break` in `_map/markets.ts` for what it is instead of. */
+  & .map-markets-break {
+    flex: 1 0 100%;
+    height: 0;
+  }
+
+  & .map-markets-summary .map-markets-caption ~ .map-markets-spark {
+    margin-left: calc(var(--map-row-label-w) + 1.9rem + 0.45rem);
+  }
+
+  /* The tone is the block's own hue, never the money's signed pair.
+
+     `--map-pos`/`--map-neg` read as good and bad. On a basket of currencies
+     that is a convention; on the odds of an invasion it is a verdict, and a
+     green **US invade Iran +35 pts** is this map calling a likelier war good
+     news — the trap the layer trends already record for a green
+     *DISASTERS +40%*. Identity rides on hue, direction on the shape, magnitude
+     on the figure, and none of the three is a judgement.
+
+     `--cat` arrives inline from `CATEGORY_COLOUR`, the way a filter chip
+     receives its layer's colour, so the rail is one palette and no hue is
+     named here. The `.is-pos`/`.is-neg` classes are still written by
+     `sparkInto` — they are how the money rows work — so these have to outrank
+     them, which is what the extra compound is for. */
+  & .map-markets-odds .map-markets-spark,
+  & .map-markets-attention .map-markets-spark,
+  & .map-markets-odds .map-markets-spark.is-pos,
+  & .map-markets-odds .map-markets-spark.is-neg,
+  & .map-markets-attention .map-markets-spark.is-pos,
+  & .map-markets-attention .map-markets-spark.is-neg {
+    color: var(--cat, var(--map-ink-dim));
   }
 
   /* The one forward-looking line in the rail, closing the money block.
