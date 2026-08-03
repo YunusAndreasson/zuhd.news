@@ -36,6 +36,19 @@ export interface Timeline {
    * it here by default, which is the right answer everywhere else.
    */
   head: HTMLElement
+  /**
+   * A permanently visible slot beside the scrubber, for controls rather than
+   * readouts.
+   *
+   * **Not `head`**, and the difference is the whole reason this exists: above
+   * 900px with a pointer, `.map-timeline-head` is `opacity: 0` and revealed on
+   * hover, focus or scrub — it defers the readout and the live button until the
+   * reader is actually using the axis. A *control* cannot live there. The range
+   * chips were put in `head` first and measured at `x=1071, y=992, opacity 0`:
+   * present, laid out, hit-testable and painted by nothing, which is the most
+   * expensive kind of invisible.
+   */
+  controls: HTMLElement
   setPoints(points: MapPoint[]): void
   /**
    * The slice of the rail the map is currently drawing, as a start time.
@@ -159,6 +172,10 @@ export function createTimeline(opts: TimelineOptions): Timeline {
   if (opts.lead) head.append(opts.lead)
   head.append(readout, hijri, liveBtn)
 
+  // See `controls` on the interface for why this is not `head`.
+  const controls = document.createElement('div')
+  controls.className = 'map-timeline-controls'
+
   const track = document.createElement('div')
   track.className = 'map-timeline-track'
 
@@ -190,7 +207,7 @@ export function createTimeline(opts: TimelineOptions): Timeline {
   )
 
   track.append(canvas, range)
-  root.append(head, track)
+  root.append(head, controls, track)
 
   let points: MapPoint[] = []
   let value = initialSlot
@@ -480,6 +497,7 @@ export function createTimeline(opts: TimelineOptions): Timeline {
 
   return {
     element: root,
+    controls,
     head,
     setPoints(next) {
       points = next

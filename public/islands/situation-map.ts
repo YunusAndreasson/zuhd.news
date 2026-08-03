@@ -1154,6 +1154,18 @@ export function mount(
   // same corner, so nothing about the narrow layout changes. What it buys is the
   // wide one: as a child it can simply become the rail's first line, where a
   // box positioned against the root would have gone on hanging in the canvas.
+  /**
+   * `rangeHead` starts here and does not stay.
+   *
+   * It belongs on the scrubber — see `placeRangeGroup` — but the scrubber does
+   * not exist until `loadCore` resolves, and a control that only appears once a
+   * fetch succeeds is a control a slow connection does not have and a failed
+   * one never gets. `map-island.test.js` mounts with no payload at all and found
+   * exactly that: **zero range chips in the document.** So the rail is its home
+   * until there is somewhere better, and `placeRangeGroup` moves it the moment
+   * there is. `order: 1` keeps that first placement under the clock, which is
+   * where it used to live, rather than somewhere a reader has to re-find.
+   */
   hud.append(status, rangeHead, more, moreBtn)
 
   /**
@@ -4507,6 +4519,7 @@ export function mount(
     old.element.replaceWith(timeline.element)
     old.destroy()
     placeMarketStrip()
+    placeRangeGroup()
     watchChrome()
     timeline.setWindow(scrubNow - rangeHours * 3_600_000)
   }
@@ -4579,6 +4592,7 @@ export function mount(
     timeline.setPoints(points)
     container.append(timeline.element)
     placeMarketStrip()
+    placeRangeGroup()
     watchChrome()
     paintTrends()
     refresh()
@@ -5271,6 +5285,32 @@ export function mount(
    * where the strip is standing: a drawer under the bar at the top, a popover
    * over the scrubber at the foot.
    */
+  /**
+   * The range chips live on the scrubber, not in the rail (2026-08-03).
+   *
+   * They sat at the top of the instrument rail, and a reader reported the
+   * obvious consequence: **a control in the right pane changes the left one.**
+   * It changes all three — which stories are on the map, which are in the list,
+   * and the window every sparkline draws — so it is not a rail control that
+   * leaks, it is a page control that was living in a pane.
+   *
+   * The scrubber is already the page's other time control, spanning the map at
+   * the foot of the screen, and the two are halves of one idea: the scrubber
+   * says *when*, the chips say *how much*. Together they read as one group whose
+   * scope is the page, which is a thing position can say and no label can.
+   *
+   * Re-placed rather than appended once, for the reason `placeMarketStrip`
+   * records directly below: the timeline is rebuilt wholesale whenever a refresh
+   * moves the window, so which parent this has is a decision that must be made
+   * again each time. It is a DOM *move*, so the chips keep their listeners and
+   * their pressed state across every rebuild.
+   */
+  const placeRangeGroup = () => {
+    // A move, so the chips keep their listeners and their pressed state. Before
+    // the first call the rail is holding it; see `hud.append` above for why.
+    timeline?.controls.prepend(rangeHead)
+  }
+
   const placeMarketStrip = () => {
     const wide = wideQuery.matches
     if (wide) moneyBox.append(marketStrip.element)
@@ -5302,6 +5342,7 @@ export function mount(
     // happens to come.
     syncWide()
     placeMarketStrip()
+    placeRangeGroup()
     // MapLibre sizes its drawing buffer from the container, and nothing else
     // here tells it the container moved — `applyPadding` and `globeFitZoom`
     // both *read* dimensions, they don't apply them. Without this the canvas

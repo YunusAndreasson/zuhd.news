@@ -3987,6 +3987,7 @@ body.map-wide {
      row below it now, including the seven sparklines, so it goes where a
      control that governs a column goes: at the top of it, under the head. */
   & .map-status { order: 0; }
+  /* Only until the scrubber exists to take it — see `placeRangeGroup`. */
   & .map-range-group { order: 1; }
   & .map-money { order: 2; }
   /* Every reading, then every control, and the boundary falls here.
@@ -5401,6 +5402,34 @@ body.map-wide .map-key {
    against the phone's 224. Wrapping puts the strip on a full-width line of its
    own the moment the clock stops fitting beside it, which is what the phone block
    already did and what the desktop needed for the same reason. */
+/* The range chips, on the scrubber (2026-08-03).
+
+   They were at the top of the instrument rail, and a reader named the problem:
+   a control in the right pane changes the left one. It changes all three — the
+   beacons, the story list and the window every sparkline draws — so it was never
+   a rail control that leaked, it was a page control living in a pane. The
+   scrubber is the page's other time control; the two are halves of one idea, the
+   scrubber saying *when* and these saying *how much*, and side by side across
+   the foot of the map their scope is legible from position alone.
+
+   `margin-right: auto` because the head is `justify-content: flex-end`: the
+   chips take the left, the readout, the Hijri date and the live button keep the
+   right. Specificity beats `body.map-wide .map-range-group`'s `display: block`
+   (0,2,1) with three classes rather than by source order, which is the trap the
+   feed's own chip rule already records. */
+/* Three classes, not two: `body.map-wide .map-range-group` sets `display: block`
+   and scores (0,2,1) because **`body` is an element** — the same trap the story
+   rail's chip rule records, hit twice in one day. */
+.map-timeline .map-timeline-controls .map-range-group {
+  display: flex;
+  align-items: baseline;
+
+  /* The heading goes. Beside the chips on one line it names what the chips
+     already say, and the scope it used to have to state is now stated by where
+     the group sits. */
+  & .map-group-label { display: none; }
+}
+
 .map-timeline-head {
   display: flex;
   align-items: baseline;
@@ -5490,6 +5519,20 @@ body.map-wide .map-key {
   .map-timeline.is-scrubbed .map-timeline-head {
     opacity: 1;
     pointer-events: auto;
+  }
+
+  /* The controls slot is the head's mirror and its opposite in the one property
+     that matters: same strip above the track, same scrim, **left instead of
+     right, and never deferred**. The head hides a readout until the reader
+     touches the axis, which is right for a readout and impossible for a control
+     — the range chips spent one build in there at `opacity: 0`, laid out and
+     painted by nothing. */
+  .map-timeline-controls {
+    position: absolute;
+    left: 1.1rem;
+    bottom: 100%;
+    padding: 0.1rem 0.45rem 0.2rem;
+    background: color-mix(in srgb, var(--map-ground) 92%, transparent);
   }
 
   @media (prefers-reduced-motion: reduce) {
