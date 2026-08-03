@@ -101,3 +101,129 @@ nothing at all, including `build.js`.
   bundle. Seven suites had their own copy.
 - **CI `paths-ignore: content/**` is load-bearing** — without it the workflow
   runs ~1,800 times a year to check nothing.
+
+## Deleting code safely
+
+Four kinds of dead code, three tools, and the gaps are as important as the
+coverage. Established 2026-08-03, after removing the map's top-strip layout —
+where `--map-status-w`, `--legend-x`, `anchorLegend`, the `max-width: 1250px`
+block and `.map-filters { display: contents }` were all found **by reading**,
+because the only tool that could have found any of them was switched off and the
+one that could have found the rest did not exist.
+
+| What | Caught by | Gated in CI |
+|---|---|---|
+| Unused file | `npm run deadcode` (knip) | yes |
+| Unused dependency | `npm run deadcode` | yes |
+| Unused **export** | `npm run deadcode` — **on since 2026-08-03** | yes |
+| Unused local / import / parameter | `npm run lint` (Biome `noUnusedVariables`) | yes |
+| Unused **CSS rule** | `npm run deadcode:css` — report only, run by hand | **no** |
+| Unused custom property | nothing | no |
+
+**Exports were off because the report was 79 findings of noise.** Nearly all of
+them were module-internal constants that happen to carry `export`
+(`markets.ts` alone had fourteen). `ignoreExportsUsedInFile: true` takes it to
+**2**, and a 2-finding report is one somebody reads. The two survivors were
+*both false positives*, which is the whole reason there is a protocol below
+rather than a habit of trusting the tool:
+
+- `placeDensity` is pinned by six assertions in `map-geo.test.js`, reached
+  through the esbuild bundle `island-bundle.js` builds at run time — a string
+  path, not an import edge.
+- `MARKET_CHIP_GLYPHS` is a `satisfies` assertion whose value is never read on
+  purpose; deleting it deletes a compile-time check.
+
+Both are suppressed with `@knipignore`, and **the rule is that the comment above
+the tag says why**. The tag records that a human checked; the sentence is what
+the next person needs. A bare tag is worse than the finding it silences.
+
+**The protocol.** Before deleting anything the tools have not proved dead:
+
+1. **Grep the whole repo, not the workspace** — including `mobile/`, `scripts/`
+   and `.claude/`. `shared/**` is declared `entry` to knip precisely because
+   mobile's `@shared/*` imports are invisible here, so knip reports *nothing*
+   about it and a grep is the only check there is.
+2. **Ask what reaches it that is not an import.** This repo is full of edges no
+   analyser can follow: `run-cycle.sh` invokes scripts by name, `spawnSync` in
+   `run-replay.js`, `island-loader.js` fetching bundles by string path,
+   `island-bundle.js` re-bundling modules for tests, `data-island` attributes,
+   CSS class names assembled from data. Every one of those has produced a false
+   "dead" finding at least once.
+3. **Ask whether the value is the point.** A `satisfies` const, a type-only
+   export and a rule that exists to be overridden all look unreferenced.
+4. **Delete, then run the gate that would have caught the mistake** — for CSS,
+   that is a `deadcode:css` re-run *and* a `shoot.mjs` pass, because a stylesheet
+   has no type system and a wrong deletion renders silently.
+5. **If it survives all four and still cannot be deleted, tag it and write the
+   reason.** The next person then inherits the answer instead of the question.
+
+**`npm run deadcode:css` is a candidate list, never a verdict**, and it is
+report-only for that reason. It drives a real browser over the built `dist/` and
+uses `CSS.startRuleUsageTracking` — the mechanism behind DevTools' Coverage
+panel — to record which rules ever *matched*, then reports the difference. A
+static approach is not available: class names are built from data
+(`map-markets-spark${toneClass(pct)}`), so a grep finds strings that never
+render and misses rules that do. PurgeCSS is exactly that static approach and is
+the reason it was not used.
+
+**It reports uncovered *byte spans*, not unused selectors, and that was the
+second correction.** Two earlier versions tried to name what was unused by
+slicing each covered range and taking the text before its `{` — which is a CSS
+parser written badly. A covered range can span a *grouping* rule, so the
+"selector" came back as `(min-width: 641px)`; `.article-sources`, plainly on the
+article page and plainly covered, never produced a key that could cancel the one
+the rule list produced; and the run confidently reported 273 dead rules of which
+the first dozen checked were all alive. **A dead-code tool that reports live code
+is worse than none**, because the next person deletes something. DevTools'
+Coverage panel and Puppeteer's `stopCSSCoverage` both report bytes for exactly
+this reason. Merging the used intervals and inverting them needs no parser at
+all, and because the harness serves the *source* stylesheet the gaps are line
+ranges in the file you edit.
+
+Before that, the first version reported nothing at all: `stopRuleUsageTracking`
+returns **only the rules that were used** — 395 of 395 matched — so "all minus
+used" over that array is empty by construction, and a report that cannot produce
+a finding reads as proof there is nothing to find.
+
+Comments are never "covered", and this stylesheet is more prose than declaration
+in places, so a gap whose text is only comment and whitespace is dropped. That is
+the difference between a report of real spans and one mostly saying "the
+paragraph above `.map-hud` is not a rule".
+
+Its accuracy is entirely the state sweep in `STATES`, and its failure mode is
+one-directional: **a rule can be reported unused because the sweep never opened
+the panel it belongs to, but a rule that matched is never reported.** So the
+report prints the states it drove beside the findings, and the first question to
+ask of any line in it is "which state would have matched this, and did I run
+it?". Adding a state is the cheapest way to improve it — the first run reported
+the rail ladder's own `(min-width: 901px) and (max-width: 1199px)` block and the
+whole 4.4 KB `prefers-reduced-motion` block as dead, both correctly, because no
+viewport in the sweep sat in that band and no context had asked for reduced
+motion. Adding those two states cancelled both.
+
+**Judge a new state by the byte figure, not the span count.** Coverage is
+monotonic; the count is not. Those two states took coverage from 104,716 to
+105,143 bytes and the span count from 95 to **105**, because covering the middle
+of a large gap splits it into two smaller ones.
+
+Three things about the mechanism, each of which produced a wrong answer first:
+
+- **Tracking must start before the navigation.** Enable `CSS` and call
+  `startRuleUsageTracking` on the CDP session, then `goto` — the other order
+  parses the stylesheet with nothing counting and the whole file reads as dead.
+- **The stylesheet is inlined and minified**, not linked: `build.js` puts an
+  86 KB `<style>` block on the page from 240 KB of source. So matching sheets on
+  a `/style.css` sourceURL finds nothing (the first run reported a stylesheet of
+  zero rules), and `startOffset` is an offset into a text that is *not* the file
+  — line numbers derived from it point at the wrong rules.
+- **The harness serves the source stylesheet, not the built one**
+  (`serveDist({ transformHtml })`). With the minified block swapped back, a byte
+  offset *is* a position in `public/style.css` and a line number is a newline
+  count. Nothing about which rules match changes — minification is
+  selector-preserving — and the report names the rule as written rather than as
+  esbuild rewrote it.
+
+Custom properties (`--map-status-w` and friends) are caught by nothing at all,
+in either direction — a `var()` with no declaration falls back silently, and a
+declaration nothing reads costs nothing visible. Grep both names when you touch
+one.

@@ -37,7 +37,8 @@ operator/dev detail in `DEV.md`.
 | `npm run lint` | Biome 2.5.5, **linter only** (`biome.jsonc`); formatter is off on purpose |
 | `npm run typecheck` | two projects: `tsconfig.islands.json` (islands + `shared/`, strict) and `tsconfig.node.json` (`allowJs`+`checkJs`, `strict` OFF) |
 | `npm test` | `node --test scripts/lib/*.test.js` |
-| `npm run deadcode` | knip (`knip.jsonc`) — catches unused *files*, which Biome cannot |
+| `npm run deadcode` | knip (`knip.jsonc`) — unused *files* and *exports*, which Biome cannot |
+| `npm run deadcode:css` | dead CSS, measured in a browser — report only, never a gate |
 | `npm run publish` | build + `wrangler pages deploy dist` (branch `master`) |
 | `npm run perf` / `perf:idle` / `perf:profile` | browser instruments; see `.claude/rules/web/map.md` |
 
@@ -47,6 +48,15 @@ is deliberately **not** in CI — `logs.test.js` reads gitignored `logs/` and
 
 ## Gotchas that cost real bugs
 
+- **Dead code has four kinds and three tools, and the gaps are the point.**
+  `deadcode` covers files and exports, Biome covers locals, and **nothing covers
+  a CSS rule or a custom property** — which is why `--map-status-w`, `--legend-x`
+  and a whole `@media` block survived until someone read them. `deadcode:css`
+  measures the stylesheet in a real browser and is a *candidate list*: its
+  failure mode is calling a rule dead because the sweep never opened the panel it
+  belongs to. **The protocol for acting on any of it is "Deleting code safely" in
+  `.claude/rules/web/build.md`** — every tool here has produced a confident false
+  positive at least once.
 - **`knip.jsonc` is almost entirely `entry`, and that is the design.** Pipeline
   scripts are invoked by name from `run-cycle.sh`, islands are globbed by the
   bundler and fetched by string path, `shared/` is imported by `mobile/`. **A
@@ -72,8 +82,8 @@ is deliberately **not** in CI — `logs.test.js` reads gitignored `logs/` and
 
 ## Shared modules — check before writing a helper
 
-Ten small files, each holding one thing that used to be held in several. Four of
-the eleven groups they replaced **had already parted**, and in each case the
+Eleven small files, each holding one thing that used to be held in several. Four
+of the twelve groups they replaced **had already parted**, and in each case the
 wrong copy looked exactly like the right one. The rationale for each is in its
 own header; this is the index.
 
@@ -90,6 +100,7 @@ own header; this is the index.
 | `scripts/lib/ig-image.js` → `igLead` | 3 copies; **two still cut on an ellipsis**, so the posted card and the cached one could differ |
 | `public/islands/_dom.ts` | `el` / `svgEl` — 5 copies |
 | `public/islands/_entity-panel.ts` | the `follows` panel — 2 copies whose comments promised they could not disagree |
+| `scripts/lib/serve-dist.js` | the local `dist/` server + its MIME table — 2 copies, caught at the second |
 
 **Rule: duplication is only free while the copies agree, and nothing here was
 checking that they did.** Prefer a parameter (class names, a link renderer) over

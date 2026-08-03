@@ -143,6 +143,43 @@
   // knip would otherwise walk is already outside `project` above.
   "ignore": ["mobile/**"],
 
+  // An export used inside its own file is not dead code, and reporting it as
+  // such is what kept export analysis switched off for months.
+  //
+  // Measured: with this false the repo reports **79 unused exports**, and
+  // essentially all of them are `_map/*.ts` and `scripts/lib/*.js` constants and
+  // helpers that the module itself uses — `FLAT_PCT`, `marketSign`,
+  // `MOVERS_PER_SIDE`, fourteen in `markets.ts` alone. They are exported because
+  // this codebase treats `export` as "this is a named thing with a reason above
+  // it", which is the same convention the tests rely on when they bundle a
+  // module and assert against its constants. None of it is unreachable code;
+  // at worst the `export` keyword is broader than it needs to be, which is a
+  // different and much smaller problem than the one this tool is for.
+  //
+  // With it true the report is **2**, and 79 findings that are all noise is a
+  // report nobody reads, which is how a real one gets missed. See "Deleting
+  // code safely" in `.claude/rules/web/build.md`.
+  "ignoreExportsUsedInFile": true,
+
+  // `@knipignore` on a JSDoc comment suppresses one export, and the rule is
+  // that **the comment above it must say why** — the tag records that a human
+  // checked, and the sentence is what the next person needs. Two live examples,
+  // and they are two different kinds of false positive:
+  //
+  //   · `placeDensity` (_map/places.ts) is asserted against six ways over in
+  //     map-geo.test.js, but the test reaches it through the esbuild bundle
+  //     `scripts/lib/island-bundle.js` builds at run time. That is not a static
+  //     import edge and no tool can follow it — the same class of blindness
+  //     that made knip call `generate-edu-context.js` dead.
+  //   · `MARKET_CHIP_GLYPHS` (_map/markets.ts) is a `satisfies` assertion whose
+  //     *value* is never meant to be read. Deleting it because nothing imports
+  //     it would delete a compile-time check that the chip glyph names are keys
+  //     of the glyph table.
+  //
+  // Both would have been "safe" deletions by the tool's own reasoning. That is
+  // the argument for the protocol rather than for trusting the report.
+  "tags": ["-knipignore"],
+
   // Resolved through a tsconfig rather than an import.
   //
   // `geojson` is the bare specifier for @types/geojson — a types-only package

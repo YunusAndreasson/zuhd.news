@@ -1265,7 +1265,17 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
   }
 }
 
-/** Kept honest against the table the marks are drawn from. */
+/**
+ * Kept honest against the table the marks are drawn from.
+ *
+ * Nothing reads this value and nothing is meant to: the whole of it is the
+ * `satisfies` clause, which fails the build if either chip glyph name stops
+ * being a key of `GLYPHS`. `@knipignore` because an export analyser can only
+ * see that no module imports it, and deleting it on that basis would delete
+ * the check rather than dead code.
+ *
+ * @knipignore
+ */
 export const MARKET_CHIP_GLYPHS = ['tick-up', 'tick-down'] as const satisfies ReadonlyArray<
   keyof typeof GLYPHS
 >

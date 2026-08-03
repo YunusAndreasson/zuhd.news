@@ -171,6 +171,13 @@ export const DENSITY_INTENSITY = 0.085 / GAUSS_COEF
  * 2 → 0.120, 3 → 0.147, 5 → 0.190, 10 → 0.269, 20 → 0.380, 40 → 0.538, and
  * Washington's 62 → 0.669. London + Paris + Brussels, whose kernels overlap at
  * world zoom, reach about 0.98. Nothing clips.
+ *
+ * `@knipignore` because the six assertions that pin those figures live in
+ * `map-geo.test.js`, which reaches this through the esbuild bundle
+ * `scripts/lib/island-bundle.js` builds at run time — a string path, not an
+ * import edge, so an export analyser sees nothing and calls it dead.
+ *
+ * @knipignore
  */
 export const placeDensity = (count: number, amax = 1): number =>
   placeWeight(count, amax) * DENSITY_INTENSITY * GAUSS_COEF
