@@ -3884,6 +3884,18 @@ body.map-wide .map-hud::after { display: none; }
    readout can carry a shape. Readings, then instruments — which is also the
    order the fold now respects, since the spine keeps exactly the block at the
    top and drops everything under it. */
+/* Outside the rail the odds and attention blocks do not exist, for the reason
+   the money box does not: the phone's readout is a wrap run in the scrubber's
+   head, and a block of questions has no width there.
+
+   Declared here rather than in the shared hide list four hundred lines down,
+   and that is about ordering rather than tidiness: the reading order below sets
+   `body.map-wide .map-signals`, so a base rule placed after it is a lower
+   specificity arriving later — which `noDescendingSpecificity` flags and which
+   this file has already had to unpick three times. Base first, override
+   second. */
+.map-signals { display: none; }
+
 body.map-wide {
   /* The time range leads, and the readings follow it.
      It sat at 2, under the money block, back when it moved the beacons and
@@ -3895,8 +3907,23 @@ body.map-wide {
   & .map-money { order: 2; }
   & .map-filters { order: 3; }
   & .map-ground { order: 4; }
-  & .map-more { order: 5; }
-  & .map-hud-legend { order: 6; }
+  /* The odds and attention blocks sit *below* every control, which is the one
+     place in this order where a reading does not lead.
+
+     They were built into the money box, at order 2 with the rest of the
+     readings, and measured: the rail then wanted 1299px of a 1080px column and
+     what fell off the bottom was the ground picker and the legend. Two more
+     blocks of readings had buried every remaining control — the folded rail's
+     bargain ("the controls go and the readings stay") running backwards, and
+     paid for by the reader having to discover that the column scrolls.
+
+     It is also the honest order. Everything above this line is a price, a
+     count or a switch; below it is what people are betting and what people are
+     reading, which are the two things on this rail furthest from a fact. A
+     reader who never scrolls has lost the least valuable half. */
+  & .map-signals { order: 5; }
+  & .map-more { order: 6; }
+  & .map-hud-legend { order: 7; }
 }
 
 /* The Hijri date is the rail's alone. On the strip the clock is one
@@ -4102,31 +4129,15 @@ body.map-wide .map-filter.is-on .map-filter-spark { color: var(--cat, var(--map-
   &.is-on svg:nth-of-type(2) { color: var(--cat-down, currentColor); }
 }
 
-/* The money block's layer switch: the chips' glyph column, made pressable.
-   Off is an ink step and a hollow mark, never opacity — the rule the filter
-   chips already keep, and the one `colour-system.test.js` cannot measure. */
-.map-markets-toggle {
-  appearance: none;
-  background: none;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-  color: var(--map-ink-dim);
-
-  &.is-on { color: var(--cat, currentColor); }
-
-  &[data-mark='market'] { gap: 3px; }
-
-  &:focus-visible {
-    outline: 1px solid var(--map-focus);
-    outline-offset: 2px;
-    border-radius: 2px;
-  }
-}
-
-body.map-wide .map-markets-toggle { display: inline-flex; }
-body.map-wide .map-markets-toggle svg { width: 14px; height: 14px; }
-body.map-wide .map-markets-toggle[data-mark='market'] svg { width: 10px; height: 10px; }}
+/* `.map-markets-toggle` stood here — the money block's layer switch, styled in
+   twenty-four lines for a control that was deleted on 2026-08-03 when the
+   switches moved to `layers` and the money rows became readings with nothing to
+   press. Nothing in the repo has emitted that class since; the rules were still
+   here, and the last of them carried a **stray `}`** that made the whole
+   declaration a parse error. Browsers recover from a top-level `}` by ignoring
+   it, so the only symptom was one Biome error in a file that has 31 warnings —
+   which is precisely the way CSS goes dead, and precisely why `deadcode:css`
+   exists and is a candidate list rather than a gate. */
 
 body.map-wide .map-filter-pct {
   /* A count's change is unbounded — a quiet week followed by a busy one is a
@@ -4168,11 +4179,16 @@ body.map-wide .map-filter-mark {
 }
 
 /* `body.map-wide .map-filter[data-mark='market']` stood here, correcting the
-   gap and glyph size the market chip's own rule set. All three `data-mark`
-   rules went with that chip on 2026-08-03 — it is a row of the money block now,
-   and its switch is `.map-markets-toggle`, which carries its own copy of the
-   two-valued treatment. Nothing on a `.map-filter` sets `data-mark` any more;
-   the island's `else` branch that did is gone too. */
+   gap and glyph size the market chip's own rule set, and it is gone because the
+   base `[data-mark='market']` block above already says both.
+
+   This comment used to add that "nothing on a `.map-filter` sets `data-mark`
+   any more", which was never true and is easy to check: `buildFilters` sets
+   `btn.dataset.mark = 'market'` on the one layer with no single `--cat`, so the
+   markets chip carries it in both layouts and the base block is what paints its
+   two ticks. A note asserting that a selector is dead is the most expensive
+   kind of wrong comment there is — it invites the next reader to delete a live
+   rule. */
 
 /* `markets` and `straits` are switches here and readings in the money block,
    which is not the same control twice: the chip carries no line and the money
@@ -4314,6 +4330,9 @@ body.map-wide .map-ground {
 .map-money,
 .map-markets-head,
 .map-markets-world,
+.map-markets-odds,
+.map-markets-attention,
+.map-markets-next,
 .map-markets-spark { display: none; }
 
 /* Outside the rail the row wrapper dissolves and its switch goes with it.
@@ -4339,7 +4358,8 @@ body.map-wide .map-ground {
 .map-markets-item.is-straits { display: none; }
 
 body.map-wide {
-  & .map-money { display: block; }
+  & .map-money,
+  & .map-signals { display: block; }
 
   /* The wrap run goes. `.map-markets` was a baseline-aligned flex box whose
      whole job was deciding where a row of quotes could break, and in a column
@@ -4362,7 +4382,9 @@ body.map-wide {
   }
 
   & .map-markets-row,
-  & .map-markets-world {
+  & .map-markets-world,
+  & .map-markets-odds,
+  & .map-markets-attention {
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -4370,11 +4392,17 @@ body.map-wide {
     min-width: 0;
   }
 
-  /* The attribute beats the layout, or a `world` block the trends payload has
-     not filled yet renders as a heading over nothing. Restated inside this
-     block because `body.map-wide .map-markets-world` would otherwise outrank a
-     bare `[hidden]` rule. */
+  & .map-markets-next { display: block; }
+
+  /* The attribute beats the layout, or a block the trends payload has not
+     filled yet renders as a heading over nothing. Restated inside this block
+     because `body.map-wide .map-markets-world` would otherwise outrank a bare
+     `[hidden]` rule — and every block added since inherits that hazard, which
+     is why they are enumerated rather than left to a shared selector. */
   & .map-markets-world[hidden],
+  & .map-markets-odds[hidden],
+  & .map-markets-attention[hidden],
+  & .map-markets-next[hidden],
   & .map-markets-head[hidden] { display: none; }
 
   /* A money row is now a switch column and a summary, side by side — the
@@ -4476,6 +4504,45 @@ body.map-wide {
   & .map-markets-tally,
   & .map-markets-note { display: none; }
 
+  /* The reading itself, on the rows that are one instrument rather than a
+     group.
+
+     It sits between the name and the line because that is the order the row is
+     read in — what it is, what it costs, where it has been — and because the
+     alternative, putting it at the end beside the change, would give the row
+     two numerals in the same column meaning different things.
+
+     `--map-ink-body` and *not* the spark box's tone: a level is not a signed
+     quantity. $91.82 painted orange because the last week was down would be the
+     row asserting that the price itself is bad news, which is the same mistake
+     the layer trends record for a green DISASTERS +40%.
+
+     A fixed basis rather than content width, so a column of levels sets flush
+     and the lines beside them still begin on one edge — the alignment the whole
+     block is arranged around. Four figures plus a symbol is what these series
+     produce (`$91.82`, `17.09`, `4.68%`); anything wider is an ellipsis rather
+     than a wider column, because the card carries the exact figure. */
+  & .map-markets-level {
+    flex: 0 0 3.1rem;
+    overflow: hidden;
+    color: var(--map-ink-body);
+    font-size: var(--size-2xs);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /* Right, and the reason is the same one `.map-markets-label` records: these
+       rows are `<button>`s and **a button centres its text**, which is invisible
+       while a box is content-sized and is the whole problem once it is not.
+       Measured off the rail at 1440, `$91.82` floated in the middle of its own
+       50px column while `4.68%` floated in the middle of the next row's.
+
+       Right rather than left because a column of numerals aligns on its units
+       digit: `$91.82`, `17.09` and `4.68%` share a right edge and can be read
+       down, where flush left puts the decimal point in three places. */
+    text-align: right;
+  }
+
   /* Shape, then the change across it, on one line. The svg takes the slack so
      every row's line starts and ends on the same two columns whatever its
      label is doing — an interval the eye learns once and stops re-finding. */
@@ -4499,6 +4566,91 @@ body.map-wide {
     flex: 0 0 auto;
     font-size: var(--size-2xs);
     font-variant-numeric: tabular-nums;
+    letter-spacing: 0;
+  }
+
+  /* How old the freshest reading in the row is, when that is worth saying.
+
+     `--map-ink-muted` regardless of the row's tone, and that is the point: the
+     box around it carries green or orange for the direction of the change, and
+     an age is not a signed quantity — a `7d` inherited into `--map-neg` would
+     read as part of the fall. It is a caveat about the number, so it is set in
+     the ink caveats are set in, one rung under the label.
+
+     An ink step and never `opacity`, which `colour-system.test.js` cannot see
+     and which has put a control at 2.33:1 twice on this surface already. The
+     structural guard for that is in that suite. */
+  & .map-markets-age {
+    flex: 0 0 auto;
+    color: var(--map-ink-muted);
+    font-size: var(--size-2xs);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0;
+
+    /* Standing alone — no line drawn, so the age *is* the row's figure — it
+       takes the column the change would have been in. Left where it fell it
+       sat mid-row with empty space either side, and three of those in a column
+       read as three rows that failed to render rather than as three
+       instruments that have not reported. A column of figures with one edge is
+       what makes the age legible as an answer. */
+    &:only-child { margin-left: auto; }
+  }
+
+  /* Two blocks whose rows are named rather than coded, so the name takes a line.
+
+     Every other row on this rail is labelled with something that fits a 4.8rem
+     column because it *is* a code — `currencies`, `BRENT`, `US 10Y`. These two
+     are not: a prediction market is only readable as the question it asks, and
+     a Wikipedia series is only readable as the article it counts. Truncated to
+     the shared column, `US–Iran nuclear deal` reads `US–Iran nu…` and `Artificial
+     intelligence` reads `Artificial…` — which is a row that has kept its
+     alignment and lost its subject.
+
+     So the name takes the full width and the reading follows underneath, which
+     is the treatment the spine already applies to every row for the same reason
+     — the label does not fit beside the shape, so it goes above it. The split
+     is legible as a rule rather than as an inconsistency: **coded rows are one
+     line, named rows are two.**
+
+     `nowrap` on the summary is overridden here rather than removed there. That
+     rule exists because a *fixed-width* label plus a line does not fit, which is
+     still true of every block it governs; this is the case where the wrap is the
+     intent instead of the symptom. */
+  & .map-markets-odds .map-markets-summary,
+  & .map-markets-attention .map-markets-summary {
+    flex-wrap: wrap;
+    row-gap: 0;
+  }
+
+  /* The summary is named in the selector so this outranks the fixed-width
+     `.map-markets-label` rule above it rather than merely following it —
+     ascending specificity, which is the ordering `noDescendingSpecificity`
+     exists to keep and which this file has broken three times. */
+  & .map-markets-odds .map-markets-summary .map-markets-label,
+  & .map-markets-attention .map-markets-summary .map-markets-label {
+    flex: 1 0 100%;
+    overflow: hidden;
+    /* Sentence case, not the all-small-caps every other label wears: these are
+       phrases rather than tickers, and small caps on a phrase is a headline
+       treatment on something that is not a headline. */
+    font-variant-caps: normal;
+    letter-spacing: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* The one forward-looking line in the rail, closing the money block.
+
+     Set like a caption rather than a row: no glyph column, no fixed label
+     width, flush with the block's own left edge, so it reads as a note under
+     the readings rather than as a reading with three columns missing. That is
+     the same distinction `.map-group-label`'s missing indent draws one level
+     up, which is why this borrows its ink and its size and not its tracking —
+     the headings are all-caps and this is a sentence fragment. */
+  & .map-markets-next {
+    margin: 0.15rem 0 0;
+    color: var(--map-ink-muted);
+    font-size: var(--size-2xs);
     letter-spacing: 0;
   }
 }
@@ -4533,10 +4685,17 @@ body.map-page.map-wide.map-aside-off {
 
   /* The controls, and the clock with them. The scrubber's readout carries the
      same instant in the same frame with more of it, which is the argument the
-     ≤1250px block already makes about the clock for the same reason. */
+     ≤1250px block already makes about the clock for the same reason.
+
+     `.map-signals` goes with them, and it is the one *reading* the fold drops.
+     The spine keeps what cannot be got anywhere else on this map — a shape for
+     the world's money — and its rows are 71px wide, which is not a width a
+     question fits in. A block whose every label would ellipsis to two words is
+     not a reading at that size, it is a list of stubs. */
   & .map-status,
   & .map-range-group,
   & .map-hud-more,
+  & .map-signals,
   & .map-more { display: none; }
 
   & .map-markets-summary {
@@ -4556,7 +4715,19 @@ body.map-page.map-wide.map-aside-off {
 
   & .map-markets-spark { gap: 0; }
 
-  & .map-markets-window { display: none; }
+  /* At 71px the shape and its tone are the whole readout, so everything that
+     is a figure goes — the change, the level and the age alike. The level is
+     the newest of the three and follows the same rule for the same reason: a
+     3.1rem column of digits inside a 4.4rem row leaves the line 20px, which is
+     a smudge, and the spine's whole bargain is that the *readings* survive the
+     fold. A shape is a reading; a numeral needs room to be read. */
+  & .map-markets-window,
+  & .map-markets-level,
+  & .map-markets-age,
+  /* Measured folded: `next · US jobs · 7 Aug` wraps to three lines and 37px in
+     a 71px column, which is a sentence rendered as a stack. It is words rather
+     than a figure, and the spine's bargain is that a *shape* survives. */
+  & .map-markets-next { display: none; }
 }
 
 /* --- The sparkline -------------------------------------------------------
@@ -4582,7 +4753,14 @@ body.map-page.map-wide.map-aside-off {
      `preserveAspectRatio` in `_spark.ts` for why `none` is safe for this one
      shape and stays banned for every other. */
   flex: 1 1 0;
-  min-width: 0;
+  /* A shape needs somewhere to be a shape. `min-width: 0` was right while the
+     row was a label and a line; with a level between them the rail's 18rem floor
+     leaves the line about 52px, and below roughly 3rem a thirty-point series is
+     a smudge that states nothing and still costs a row. At the floor the level
+     ellipses before the line disappears, which is the right order: a truncated
+     figure is still a figure and the card has the exact one, while a line
+     truncated to nothing is the row's entire subject gone. */
+  min-width: 3rem;
   width: auto;
   height: 1.05rem;
   /* The stroke reaches half its width past the outermost point, and INSET in

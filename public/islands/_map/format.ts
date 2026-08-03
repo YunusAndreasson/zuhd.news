@@ -270,6 +270,48 @@ export const lagLabel = (iso: string, now = Date.now()): string | null => {
 }
 
 /**
+ * How old a reading is *relative to the window it is being drawn in* — `7d`, or
+ * null when it is current enough for the question being asked.
+ *
+ * A second function rather than a widened `lagLabel`, because the two are asked
+ * different questions. `lagLabel` captions a card's provenance line, where a
+ * fortnight is the point at which "when" starts to matter; this captions a rail
+ * row under a control that can be set to **one day**, where four days stale is
+ * the whole answer and a fortnight is far too late to say so.
+ *
+ * The threshold is therefore a tenth of the window, floored at `FRESH_DAYS`:
+ * at 24h anything that did not print this week is late, at 90d a week's lag is
+ * inside the noise and saying so would put an age token beside a row whose line
+ * is 92% of the box. Measured on a real payload that is `brent 7d` and `vix 4d`
+ * at 24h, 7d and 30d, and nothing at all at 90d — which is the right shape.
+ *
+ * `FRESH_DAYS` exists because "daily" series do not print on weekends: a Friday
+ * close read on a Monday is two days old and is the freshest observation that
+ * exists, so flagging it would put a stale mark on a series doing everything
+ * right.
+ *
+ * Exported because `sparkInput` needs the same threshold to decide whether a
+ * member can still answer "what did this do today". Two copies of it would let
+ * a row draw no line and print no age, or print an age beside a line it drew —
+ * the caveat and the omission disagreeing about the same instrument.
+ */
+export const FRESH_DAYS = 3
+
+export const staleLabel = (
+  iso: string | undefined,
+  windowDays: number,
+  now = Date.now(),
+): string | null => {
+  if (!iso) return null
+  const t = Date.parse(`${iso}T00:00:00Z`)
+  if (!Number.isFinite(t)) return null
+  const days = Math.floor((now - t) / 86_400_000)
+  const limit = Math.max(FRESH_DAYS, Math.round(windowDays / 10))
+  if (days <= limit) return null
+  return days >= 60 ? `${Math.round(days / 30)}mo` : `${days}d`
+}
+
+/**
  * An index level, in the units the exchange quotes it in.
  *
  * Two decimals is the convention for an index, but the MERVAL trades above
@@ -288,6 +330,35 @@ export const indexLevel = (n: number, currency?: string): string => {
 
 /** A signed percent move, always carrying its sign. `0.82` → `+0.82%`. */
 export const pctChange = (n: number): string => (Number.isFinite(n) ? `${signed(n, 2)}%` : '')
+
+/**
+ * A trends level for a rail row: the number, and only the part of its unit that
+ * fits on a line of chrome.
+ *
+ * The rail printed a *change* and never a level — so it said Brent was up 1.2%
+ * and never said what a barrel costs, which is the fact, with the percentage as
+ * its footnote. Both are in the entry already; only one reached the row.
+ *
+ * `indexLevel` above is the same idea for an exchange and is not reusable here,
+ * because it takes a currency code to append and these units are not codes:
+ * `$/bbl`, `$/oz`, `index`, `%`, `views/day`. Spelled out they are wider than
+ * the number, so the rule is that a unit is printed only where it changes how
+ * the figure is read — a leading `$` and a trailing `%` do, and `index` does
+ * not. The full unit is on the card, where there is room for it.
+ */
+export const quoteLevel = (n: number, unit?: string): string => {
+  if (!Number.isFinite(n)) return ''
+  const abs = Math.abs(n)
+  // Four significant figures is what a rail row can hold and what these series
+  // want: 91.82, 17.09, 4.68, and 62,485 for a crypto level where the pennies
+  // are noise on a five-figure number.
+  const body =
+    abs >= 1000
+      ? grouped(n)
+      : n.toLocaleString('en-US', { maximumFractionDigits: abs >= 100 ? 1 : 2 })
+  if (unit === '%') return `${body}%`
+  return unit?.startsWith('$') ? `$${body}` : body
+}
 
 
 const WEEKDAY_INDEX: Record<string, number> = {

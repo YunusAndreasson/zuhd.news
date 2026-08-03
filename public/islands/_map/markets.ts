@@ -16,7 +16,7 @@
 
 import { el } from '../_dom'
 import { sparkline } from '../_spark'
-import { isTrading } from './format'
+import { FRESH_DAYS, isTrading, quoteLevel, shortDate, staleLabel } from './format'
 import { coverage, DAY_MS, seriesDates, windowByDate } from './series-window'
 import { glyphSvg } from './glyphs'
 import type { GLYPHS } from './glyphs'
@@ -262,9 +262,73 @@ export interface TrendIndicator {
   label: string
   unit?: string
   cadence?: string
+  source?: string
   values: number[]
   periods?: string[]
   asOf?: string
+}
+
+/** One entry of `/api/trends.json`'s `releaseCalendar` — a date and a name. */
+export interface TrendRelease {
+  date: string
+  release: string
+}
+
+/**
+ * The releases worth naming, and what to call them.
+ *
+ * FRED's calendar is fetched every cycle, published in `/api/trends.json`, and
+ * has been rendered by nothing anywhere on this site since it landed. It is the
+ * only forward-looking field in the whole payload — every other thing in this
+ * rail is a record of what already happened — and one line of it answers the
+ * question a reader has after looking at the money: *what is next*.
+ *
+ * It has to be an editorial shortlist rather than "the nearest entry", because
+ * most of what FRED schedules is plumbing. The nearest entry today is **"H.4.1
+ * Factors Affecting Reserve Balances"** — a weekly Fed balance-sheet statement,
+ * forty-three characters of jargon standing where a reader expects a fact. So
+ * an unrecognised release is skipped and the next one is offered instead, and
+ * the rail says nothing rather than something unreadable.
+ *
+ * **Every name carries `US`**, and that is not decoration. These are all US
+ * federal releases; an unqualified "CPI" on a world map claims a scope it has
+ * not got, on the one line of the rail that is about a country rather than the
+ * world. `^` anchors on the price indices because FRED also publishes "Research
+ * Consumer Price Index", which is a methodological series and not the print
+ * anyone is waiting for.
+ */
+const RELEASES: Array<[test: RegExp, label: string]> = [
+  [/^consumer price index/i, 'US CPI'],
+  [/^producer price index/i, 'US PPI'],
+  [/^employment situation/i, 'US jobs'],
+  [/^gross domestic product/i, 'US GDP'],
+  [/^personal income and outlays/i, 'US PCE'],
+  [/^advance monthly sales|^retail sales/i, 'US retail sales'],
+  [/federal open market|^fomc/i, 'Fed decision'],
+]
+
+/**
+ * The next release a reader would recognise, or `null`.
+ *
+ * Compared at day granularity, so a release scheduled for today still counts as
+ * next — it is published at 8:30 Eastern and the rail may well be read before
+ * that, and "today" is the answer in either case.
+ */
+export const nextRelease = (
+  calendar: readonly TrendRelease[] | undefined,
+  now = Date.now(),
+): { label: string; date: string } | null => {
+  if (!calendar?.length) return null
+  const today = Math.floor(now / DAY_MS) * DAY_MS
+  let best: { label: string; date: string; t: number } | null = null
+  for (const entry of calendar) {
+    const t = Date.parse(`${entry.date}T00:00:00Z`)
+    if (!Number.isFinite(t) || t < today) continue
+    const hit = RELEASES.find(([re]) => re.test(entry.release))
+    if (!hit) continue
+    if (!best || t < best.t) best = { label: hit[1], date: entry.date, t }
+  }
+  return best ? { label: best.label, date: best.date } : null
 }
 
 interface TickerItem {
@@ -299,9 +363,30 @@ interface TickerItem {
  * Copper is deliberately absent despite being in the payload: it is a *monthly*
  * series, and a monthly change sitting in a row of daily ones would be read as
  * today's move. Silver has arrived: `xag` is published daily in `$/oz` as of
- * 2026-07, so the `silver`/`xag` pair below resolves and — since
- * `NISAB_WEIGHTS` was already keyed for it — the silver threshold on the metals
- * card computes with no code change, exactly as that note predicted.
+ * 2026-07, so the metals group below resolves and — since `NISAB_WEIGHTS` was
+ * already keyed for it — the silver threshold on the metals card computes with
+ * no code change, exactly as that note predicted. Its `silver` twin, an id
+ * nothing has ever published, was carried here for months on the "it will
+ * appear the day the series exists" bargain the exchange catalog makes; the
+ * series appeared under the other name, and a lookup that can never resolve is
+ * not a placeholder, it is a dead row that costs a `seen` guard to suppress.
+ *
+ * ── The basket is fifteen, and was six of fifteen ─────────────────────────
+ *
+ * `/api/trends.json` publishes fifteen daily FX series and this table read six
+ * of them, so a row labelled `currencies` was the unweighted mean of a quarter
+ * of the currencies the site had already fetched — and the nine it dropped
+ * include the naira, the taka and the Lebanese pound, which is to say the
+ * currencies whose moves are the story on a site covering Nigeria, Bangladesh
+ * and Lebanon. The paragraph above says a money row that opens EUR/JPY and
+ * stops is a Western money row; a basket that stops at four is a smaller
+ * version of the same objection.
+ *
+ * The order is the editorial claim and survives the widening: the ummah basket
+ * leads, the rest of the global south follows, and EUR/JPY stay last as the
+ * comparison the others are read against. The pegged and managed ones (LBP,
+ * CNY) will draw flat much of the time — which is a true statement about a peg
+ * and worth seeing, not a reason to leave them out.
  */
 const TICKER: Array<{ group: string; items: TickerItem[] }> = [
   {
@@ -311,8 +396,17 @@ const TICKER: Array<{ group: string; items: TickerItem[] }> = [
       { id: 'fx-egp', label: 'EGP', iso2: 'EG', invert: true },
       { id: 'fx-pkr', label: 'PKR', iso2: 'PK', invert: true },
       { id: 'fx-idr', label: 'IDR', iso2: 'ID', invert: true },
+      { id: 'fx-bdt', label: 'BDT', iso2: 'BD', invert: true },
+      { id: 'fx-ngn', label: 'NGN', iso2: 'NG', invert: true },
+      { id: 'fx-lbp', label: 'LBP', iso2: 'LB', invert: true },
+      { id: 'fx-inr', label: 'INR', iso2: 'IN', invert: true },
+      { id: 'fx-zar', label: 'ZAR', iso2: 'ZA', invert: true },
+      { id: 'fx-brl', label: 'BRL', iso2: 'BR', invert: true },
+      { id: 'fx-mxn', label: 'MXN', iso2: 'MX', invert: true },
+      { id: 'fx-rub', label: 'RUB', iso2: 'RU', invert: true },
+      { id: 'fx-cny', label: 'CNY', iso2: 'CN', invert: true },
       // Comparison, not subject. The basket above is what this site is for;
-      // USD, spliced in at the head, is the denominator all six are quoted
+      // USD, spliced in at the head, is the denominator all of them are quoted
       // against and so can never be the thing that goes. These two are here to
       // say what the basket moved *relative to*.
       //
@@ -331,7 +425,6 @@ const TICKER: Array<{ group: string; items: TickerItem[] }> = [
     group: 'metals',
     items: [
       { id: 'paxg', label: 'GOLD' },
-      { id: 'silver', label: 'SILVER' },
       { id: 'xag', label: 'SILVER' },
     ],
   },
@@ -559,6 +652,21 @@ export interface SparkInput {
    * swallowed, because a set that has quietly shrunk still reads as the whole.
    */
   members?: { drawn: number; total: number } | undefined
+  /**
+   * The first and last drawn observation **in the series' own units**, for a
+   * row that is one instrument rather than a composite.
+   *
+   * `values` cannot answer this: at the calendar steps it is `meanIndex`
+   * output, which is rebased to 100 by construction, so a difference taken
+   * across it is a percentage wearing the units of an index. A row that has to
+   * print a change in points — a probability going 20 → 25 moved **five
+   * points**, and `+25%` there would be a real error of kind — needs the raw
+   * ends, and it needs *these* ends rather than the payload's last two, or the
+   * figure would describe a period the line beside it does not draw.
+   *
+   * Absent for a composite, where "the units" is not a thing that exists.
+   */
+  ends?: [number, number] | undefined
 }
 
 /**
@@ -567,31 +675,38 @@ export interface SparkInput {
  * The whole of the range control's arithmetic, kept out of the DOM so it can be
  * tested against real payload shapes.
  */
-export const sparkInput = (members: SparkMember[], days: number): SparkInput | null => {
+export const sparkInput = (
+  members: SparkMember[],
+  days: number,
+  /**
+   * The window's right edge — the rail's, never the data's.
+   *
+   * This used to be `Math.max(...ends)`: each row ended at its own last
+   * observation, so the world block drew last week while the money block drew
+   * this week, in one column, under one control naming one period. Measured on
+   * 2026-08-03, `brent` was seven days stale and `vix` four beside a currency
+   * basket published that morning, and nothing on screen said so. It is the
+   * incomparable-periods bug the calendar window was built to end, moved to the
+   * other edge of the box — and it could not be seen, because every line ended
+   * flush against the same column whatever period it covered.
+   *
+   * Floored to UTC midnight, because that is the unit the reconstructed dates
+   * are in: comparing a wall-clock instant against a midnight would make "the
+   * last day" mean 24 hours ending at whatever time the reader loaded the page,
+   * and today's close would fall in or out of it depending on the hour.
+   */
+  now = Date.now(),
+): SparkInput | null => {
   if (!members.length) return null
 
-  // --- The day step ------------------------------------------------------
-  // Two closes, drawn as the segment between them against a fixed scale. The
-  // group's figure is the mean of its members' displayed percentages — the same
-  // quantity `summarise()` derives `net` from, so the slope and the tick above
-  // it cannot disagree about which way the basket went.
-  if (days <= 1) {
-    const pcts = members.map((m) => m.pct).filter((p) => Number.isFinite(p))
-    if (!pcts.length) return null
-    const mean = pcts.reduce((a, b) => a + b, 0) / pcts.length
-    const drawn = Math.max(-DAY_SLOPE_CAP, Math.min(DAY_SLOPE_CAP, mean))
-    return {
-      values: [0, drawn],
-      span: [0, 1],
-      domain: [-DAY_SLOPE_CAP, DAY_SLOPE_CAP],
-      pct: mean,
-    }
-  }
+  const to = Math.floor(now / DAY_MS) * DAY_MS
+  const from = to - days * DAY_MS
 
-  // --- The calendar steps ------------------------------------------------
   const dated = members.map((m) => {
     const dates = seriesDates(m.periods, m.asOf)
-    return dates && dates.length === m.values.length ? { values: m.values, dates } : null
+    return dates && dates.length === m.values.length
+      ? { values: m.values, dates, pct: m.pct }
+      : null
   })
 
   // All or none. A composite mixing date-windowed members with count-windowed
@@ -599,21 +714,93 @@ export const sparkInput = (members: SparkMember[], days: number): SparkInput | n
   // source that changes its date format should cost the range control's
   // precision rather than its correctness — so the whole row falls back to the
   // count window the rail used before there was one.
-  if (dated.some((d) => d === null)) {
+  const undated = dated.some((d) => d === null)
+
+  /**
+   * The two freshness gates, which are two questions and not one.
+   *
+   * Both exist because `to` is the rail's edge rather than the data's, and both
+   * turn a wrong number into no number — but a row answering *"what did this do
+   * today"* and a row answering *"where has this been over a month"* are
+   * disqualified by different facts, and one gate serving both was wrong in
+   * whichever direction it was tuned.
+   *
+   * **`current`** is the day step's: has this printed recently enough for its
+   * last move to *be* today's move. It has to tolerate the weekend, or on a
+   * Monday every exchange in the world is disqualified — the freshest close that
+   * exists is Friday's, and a row that empties because the market was shut is a
+   * row punishing the calendar. `FRESH_DAYS` is the same tolerance `staleLabel`
+   * uses to decide whether to print an age, so a row that draws no line and a
+   * row that prints `7d` are answering to one threshold rather than two that can
+   * drift apart.
+   *
+   * **`covered`** is the calendar steps': does the window actually contain a
+   * segment of this series — two observations, not one. `windowByDate` has a
+   * two-point floor, so a window landing inside a holiday returns the last two
+   * points regardless and the row says "here is what there is" rather than "no
+   * data"; that was written when the window ended at the series' own last point,
+   * where a gap could only mean a holiday. With the window ending at *now*, a
+   * gap can also mean the series stopped, and those are not the same fact.
+   * Measured: at the 7d step `brent`'s newest print (Jul 27) fell exactly on the
+   * window's left edge, one point cleared a `>= from` test, the floor pulled in
+   * Jul 24 to keep it company, and the row drew a **3px line in a 61px box**
+   * captioned −8.5% — the Jul 24→27 move, labelled as the week.
+   *
+   * Undated members are exempt from both rather than dropped: with no dates
+   * there is nothing to test, and taking the strict reading would empty a row
+   * for a label-format change rather than for a fact about the data.
+   */
+  const recent = to - FRESH_DAYS * DAY_MS
+  const current = undated
+    ? members
+    : dated.flatMap((d) => (d && (d.dates[d.dates.length - 1] ?? 0) >= recent ? [d] : []))
+  const covered = dated.flatMap((d) => (d && d.dates.filter((t) => t >= from).length >= 2 ? [d] : []))
+
+  // --- The day step ------------------------------------------------------
+  // Two closes, drawn as the segment between them against a fixed scale. The
+  // group's figure is the mean of its members' displayed percentages — the same
+  // quantity `summarise()` derives `net` from, so the slope and the tick above
+  // it cannot disagree about which way the basket went.
+  //
+  // It reads `pct`, which is last-against-previous whatever the dates say — so
+  // before the gate above a row with no print for a week still answered "what
+  // did this do today". Today that was `BRENT −8.46%` at the 24h step: a real
+  // number, correctly computed, describing Jul 24 → Jul 27 and captioned as the
+  // past day, beside crypto's genuinely-yesterday −0.51%.
+  if (days <= 1) {
+    const source = current
+    const pcts = source.map((m) => m.pct).filter((p) => Number.isFinite(p))
+    if (!pcts.length) return null
+    const mean = pcts.reduce((a, b) => a + b, 0) / pcts.length
+    const drawn = Math.max(-DAY_SLOPE_CAP, Math.min(DAY_SLOPE_CAP, mean))
+    // The one member's own last two closes, which is exactly the pair the slope
+    // above is drawn from — so a row printing points and a row printing percent
+    // are describing the same two observations.
+    const only = source.length === 1 ? source[0] : undefined
+    const raw = only?.values ?? []
+    const pair: [number, number] | undefined =
+      raw.length >= 2
+        ? [raw[raw.length - 2] as number, raw[raw.length - 1] as number]
+        : undefined
+    return {
+      values: [0, drawn],
+      span: [0, 1],
+      domain: [-DAY_SLOPE_CAP, DAY_SLOPE_CAP],
+      pct: mean,
+      members: { drawn: pcts.length, total: members.length },
+      ends: pair,
+    }
+  }
+
+  // --- The calendar steps ------------------------------------------------
+  if (undated) {
     const index = meanIndex(members.map((m) => m.values))
     return index ? { values: index, span: [0, 1], pct: null } : null
   }
 
-  const usable = dated.flatMap((d) => (d ? [d] : []))
-  const ends = usable.flatMap((d) => {
-    const last = d.dates[d.dates.length - 1]
-    return last === undefined ? [] : [last]
-  })
-  if (!ends.length) return null
-  const to = Math.max(...ends)
-  const from = to - days * DAY_MS
+  if (!covered.length) return null
 
-  const all = usable.flatMap((d) => {
+  const all = covered.flatMap((d) => {
     const w = windowByDate(d.values, d.dates, from)
     return w ? [w] : []
   })
@@ -655,11 +842,23 @@ export const sparkInput = (members: SparkMember[], days: number): SparkInput | n
   // start, not the earliest. Taking the earliest would draw a line claiming a
   // reach that only one constituent has.
   const drawnFrom = Math.max(...windows.map((w) => w.from))
+  // The right edge is the *furthest* member, which is the mirror of the rule
+  // above rather than an exception to it. `meanIndex` aligns by index from the
+  // right, so the composite's last point is every member's last point — a group
+  // reaches as far as the member that reaches furthest, and the one lagging
+  // behind is reported through `members` and named by the row's age token.
+  const drawnTo = Math.max(...windows.map((w) => w.to))
+  const sole = windows.length === 1 ? windows[0] : undefined
+  const soleEnds: [number, number] | undefined =
+    sole && sole.values.length >= 2
+      ? [sole.values[0] as number, sole.values[sole.values.length - 1] as number]
+      : undefined
   return {
     values: index,
-    span: coverage(drawnFrom, to, from),
+    span: coverage(drawnFrom, drawnTo, from, to),
     pct: null,
     members: { drawn: windows.length, total: members.length },
+    ends: soleEnds,
   }
 }
 
@@ -751,6 +950,191 @@ const entryFrom = (
   asOf: ind.asOf,
   sourceLabel: (ind as { sourceLabel?: string }).sourceLabel,
 })
+
+/**
+ * How many rows a selected block may hold.
+ *
+ * Three, and it is a layout number rather than an editorial one. The money
+ * block is five rows and the world three; two more open-ended blocks would put
+ * the ground picker and the legend below the fold of a 1080p rail, and the
+ * rail's stated reading order stops being what the reader sees. Three is enough
+ * for a block to read as a set rather than as a single fact.
+ */
+const BLOCK_ROWS = 3
+
+/**
+ * The shortest series a selected block will draw.
+ *
+ * Polymarket publishes a market from the day it opens, so the payload routinely
+ * carries a question with **seven** points beside one with thirty-two. Ranked
+ * on change, a young market wins almost by construction — its whole history is
+ * the move that created it — so without a floor the block would fill with
+ * whatever opened this week. Fourteen is a fortnight, which is also the corpus
+ * the map itself opens on.
+ */
+const MIN_SELECT_POINTS = 14
+
+/**
+ * The most-moved members of a source, as instrument rows.
+ *
+ * A *rule over the payload* rather than a catalog of ids, and that is forced
+ * rather than preferred: `trends-sources/polymarket.js` fetches the top twenty
+ * markets by 24-hour volume and emits `poly-<slug>` with no registry entry, so
+ * the ids rotate as attention rotates. A `WORLD`-style table would have gone
+ * quietly blank the first week a question closed. The row names its own
+ * subject, so a changed subject is visible rather than silent — which is the
+ * condition under which a rotating set is honest at all.
+ *
+ * Ranked through `sparkInput` rather than through the payload's own last-two,
+ * so the ordering is computed over exactly the window the line will be drawn
+ * across. Ranking on one period and drawing another is the `reference: 'open'`
+ * trap in `charts.md` arriving at the selection step, where it would be
+ * invisible: the rows would simply be the wrong three.
+ */
+const selectEntries = (
+  indicators: TrendIndicator[],
+  source: string,
+  group: string,
+  days: number,
+  now: number,
+  /** How the ranking reads a move — a difference in points, or a percentage. */
+  metric: 'points' | 'percent',
+  shorten: (label: string) => string,
+  note: string,
+): TickerEntry[] => {
+  const scored: Array<{ entry: TickerEntry; score: number }> = []
+  for (const ind of indicators) {
+    if (ind.source !== source) continue
+    if (ind.cadence && ind.cadence !== 'daily') continue
+    if (ind.values.length < MIN_SELECT_POINTS) continue
+    const member: SparkMember = {
+      values: ind.values,
+      periods: ind.periods,
+      asOf: ind.asOf,
+      pct: seriesChangePct(ind.values) ?? 0,
+    }
+    const input = sparkInput([member], days, now)
+    const ends = input?.ends
+    if (!input || !ends) continue
+    const [open, last] = ends
+    const move =
+      metric === 'points' ? last - open : open === 0 ? 0 : ((last - open) / open) * 100
+    if (!Number.isFinite(move)) continue
+    scored.push({
+      entry: {
+        group,
+        id: ind.id,
+        label: shorten(ind.label),
+        name: ind.label,
+        flag: '',
+        note,
+        // The tick's direction, and it is the *window's* move rather than the
+        // last day's: these rows have no other figure, so a green tick over a
+        // falling week would be the row disagreeing with its own line.
+        pct: metric === 'points' ? (open === 0 ? 0 : ((last - open) / open) * 100) : move,
+        unit: ind.unit,
+        level: ind.values[ind.values.length - 1],
+        values: ind.values,
+        periods: ind.periods ?? [],
+        asOf: ind.asOf,
+        sourceLabel: (ind as { sourceLabel?: string }).sourceLabel,
+      },
+      score: Math.abs(move),
+    })
+  }
+  // Ties break on id so a payload that scores two rows identically still
+  // produces the same three rows on every render — a block whose membership
+  // flickers between two redraws of the same data is a block nobody can read.
+  scored.sort((a, b) => b.score - a.score || (a.entry.id < b.entry.id ? -1 : 1))
+  return scored.slice(0, BLOCK_ROWS).map((s) => s.entry)
+}
+
+/**
+ * What traders are paying for a question about the world — the `odds` block.
+ *
+ * Six live probability series sit in the payload, about exactly what this map
+ * draws: whether the US invades Iran, whether the Israel–Iran ceasefire holds,
+ * whether there is a nuclear deal, what the Fed does. Nothing on the site has
+ * ever surfaced them.
+ *
+ * **It gets its own block rather than a seat in `world`, and the reason is
+ * provenance.** Every other reading on this rail comes from an institution that
+ * published a number and put its name to it — FRED, the IMF, an exchange, a
+ * central bank. A prediction market is a *price*, set by people with money on
+ * the outcome, and it is the weakest chain of transmission anywhere in this
+ * rail. Mixing it into a column that opens with Brent would lend it the
+ * standing of the rows above it. Its own heading, its own note on every row,
+ * and a position below the instruments says what it is.
+ *
+ * The label is the question, shortened: a market is only readable as the thing
+ * it is asking, so unlike every other row here the label cannot be a code.
+ *
+ * **The horizon stays.** The obvious shortening is to drop the deadline —
+ * "Fed raises rates 25 bps after Sept 2026" becomes a tidy "Fed raises 25bp" —
+ * and it changes the question. A probability without a date is not a shorter
+ * statement of the same claim, it is a different and unanswerable one, and 56%
+ * against a September deadline says something 56% on its own does not. So what
+ * is cut is only what carries no information: the question mark, the "Will the"
+ * every market opens with, and the year on a deadline that already names a
+ * month and a day. "before 2027" keeps its year, because there the year *is*
+ * the horizon.
+ */
+const oddsShort = (label: string): string =>
+  label
+    .replace(/\?\s*$/, '')
+    .replace(/^will\s+(the\s+)?/i, '')
+    .replace(/(\b[A-Z][a-z]{2,8}\.?\s+\d{1,2}),?\s+\d{4}\b/g, '$1')
+    .trim()
+
+const ODDS_NOTE =
+  'The price of a bet, not a forecast: what traders on Polymarket are currently paying for this outcome, read as a probability. It moves with money and attention, and nobody has put their name to it.'
+
+export const oddsEntries = (
+  indicators: TrendIndicator[],
+  days: number,
+  now = Date.now(),
+): TickerEntry[] =>
+  selectEntries(indicators, 'polymarket', 'odds', days, now, 'points', oddsShort, ODDS_NOTE)
+
+/**
+ * What the world is reading — the `attention` block.
+ *
+ * Fifteen daily Wikipedia pageview series, one day in arrears, about Iran, the
+ * Strait of Hormuz, wildfires, Ukraine, Nigeria. It is the only measurement on
+ * this rail of *the audience* rather than of the world, which is both why it is
+ * interesting on a news map and why it is last: attention is not an event, and a
+ * spike in it is a fact about readers rather than about Iran.
+ *
+ * The label is already short — Wikipedia titles the article, and the fetcher
+ * appends the suffix — so these fit the row shape unchanged.
+ */
+const attentionShort = (label: string): string => label.replace(/\s*—\s*Wikipedia views$/i, '')
+
+const ATTENTION_NOTE =
+  'How many people read this article on Wikipedia each day. It measures the audience rather than the event, and it runs on a weekly rhythm — weekdays are busier than weekends — so a single day against the one before it is mostly the calendar.'
+
+export const attentionEntries = (
+  indicators: TrendIndicator[],
+  days: number,
+  now = Date.now(),
+): TickerEntry[] =>
+  days <= 1
+    ? // Nothing at the day step, and this is the caveat handled rather than
+      // noted. Pageviews are strongly day-of-week seasonal, so "yesterday
+      // against the day before" on a Sunday is the weekend, not the news — a
+      // real number measuring the calendar. The block simply has no answer at
+      // 24h, which is the same reply a stale row gives and for the same reason.
+      []
+    : selectEntries(
+        indicators,
+        'wikipedia',
+        'attention',
+        days,
+        now,
+        'percent',
+        attentionShort,
+        ATTENTION_NOTE,
+      )
 
 /**
  * The world block's rows — three instruments, no groups.
@@ -854,8 +1238,26 @@ export const tickerEntries = (indicators: TrendIndicator[]): TickerEntry[] => {
 
 export interface MarketStrip {
   element: HTMLElement
+  /**
+   * The `odds` and `attention` blocks, which live at the foot of the rail
+   * rather than inside the money box.
+   *
+   * A second element rather than a second component: they are built from the
+   * same payload, redrawn by the same range press and made of the same rows, so
+   * splitting the module would be two copies of `instrumentRow` kept in step by
+   * hand. Only their *placement* differs, and placement is the island's.
+   */
+  signals: HTMLElement
   update(markets: MapExchange[], now?: number): void
-  setTrends(indicators: TrendIndicator[]): void
+  /**
+   * The trends payload: every series, and the release calendar beside them.
+   *
+   * The calendar is optional because it is the newer half of the same fetch and
+   * an older cached payload may not carry it — a rail that threw on a snapshot
+   * from last week would be a strictly worse failure than one that omits a line
+   * about next week.
+   */
+  setTrends(indicators: TrendIndicator[], releases?: TrendRelease[]): void
   /** The chokepoint set, as the money block's fifth row. */
   setStraits(points: MapChokepoint[]): void
   setVisible(on: boolean): void
@@ -913,6 +1315,30 @@ export interface MarketStripOptions {
 export const ribbonPct = (pct: number): string => {
   const abs = Math.abs(pct).toFixed(1)
   return abs === '0.0' ? '0.0%' : `${pct > 0 ? '+' : '−'}${abs}%`
+}
+
+/**
+ * The change on a row whose value is *already* a percentage, in points.
+ *
+ * A percentage of a percentage is an error of kind, not of arithmetic, and the
+ * rail was making it before this block existed: **US 10Y** is quoted in percent,
+ * so a yield going 4.60 to 4.68 was printed as `+1.7%` — a true statement about
+ * the ratio and a wrong one about the instrument, which moved eight basis
+ * points. The odds block would have made it far louder, since a market going
+ * 20% to 25% moved *five points* and `+25.0%` beside a level reading `25%` is
+ * two numbers that cannot both be about the same thing.
+ *
+ * So the rule is the unit's, not the block's: when a series is published in `%`,
+ * its change is a difference. One word for it — `pts` — rather than `pts` here
+ * and `bp` on the yield, because those are the same quantity at two scales and
+ * a rail with two vocabularies for one thing is a rail that has to be learned
+ * twice. The decimals adapt instead: a five-point swing in a market needs none
+ * and eight basis points needs two.
+ */
+export const ribbonPoints = (delta: number): string => {
+  const abs = Math.abs(delta)
+  const body = abs >= 1 ? abs.toFixed(0) : abs.toFixed(2)
+  return Number(body) === 0 ? '0 pts' : `${delta > 0 ? '+' : '−'}${body} pts`
 }
 
 /** `is-pos` / `is-neg` / neither — the same threshold the tick shape uses. */
@@ -1022,6 +1448,65 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
   world.hidden = true
 
   /**
+   * The two instrument blocks the payload has always carried and nothing read.
+   *
+   * Same construction as `world` — a heading and a box, both hidden until there
+   * is something in them — because they are the same kind of thing: a short
+   * column of rows that *are* instruments, each opening its own card. What
+   * differs is only which series fill them, which is a selection rule rather
+   * than a second row grammar.
+   */
+  const oddsHead = el('span', 'map-group-label map-markets-head', 'odds')
+  oddsHead.hidden = true
+  const odds = el('div', 'map-markets-odds')
+  odds.hidden = true
+  const attentionHead = el('span', 'map-group-label map-markets-head', 'attention')
+  attentionHead.hidden = true
+  const attention = el('div', 'map-markets-attention')
+  attention.hidden = true
+
+  /**
+   * The two blocks stand apart from the money, at the foot of the rail, and
+   * that placement was decided by a measurement rather than by taste.
+   *
+   * Built into the money box first, where they read correctly — each block a
+   * step further from a price and closer to an opinion. Measured at 1920×1080
+   * the rail then wanted **1299px of a 1080px column**, and what fell off the
+   * bottom was the ground picker and the legend: two more blocks of *readings*
+   * had buried every remaining *control*. That is the same complaint this rail
+   * already records about the folded pane — the readings should survive and the
+   * controls should go, never the reverse — running backwards.
+   *
+   * So they take their own box at the end of the reading order. The controls
+   * stay where the reader can reach them without discovering that the column
+   * scrolls, and what a reader scrolls to is the material this rail trusts
+   * least. The spine drops it entirely, unlike `.map-money`: at 71px the fold is
+   * keeping the readings that cannot be got anywhere else, and a bet is not one
+   * of those.
+   */
+  const signals = el('div', 'map-signals')
+  signals.append(oddsHead, odds, attentionHead, attention)
+
+  /**
+   * What the money is waiting for — the one forward-looking line on this map.
+   *
+   * Everything else in the rail is a record: a beacon is a story that ran, a
+   * sparkline is a month that happened, the scrubber is a fortnight already
+   * spent. `releaseCalendar` is the only field in any payload the site fetches
+   * that points the other way, and it has been published and drawn by nothing
+   * since it landed.
+   *
+   * A closing line for the money block rather than a row of it: it has no
+   * value, no direction and no series, so giving it a row would be a row with
+   * three of its four columns empty — the reserved-but-blank failure the mark
+   * column already records. `aria-live` is deliberately absent; it changes
+   * about once a week and announcing it would interrupt a reader for something
+   * that is not news.
+   */
+  const nextLine = el('p', 'map-markets-next')
+  nextLine.hidden = true
+
+  /**
    * How far back the lines reach.
    *
    * Owned here, set from outside. The money block briefly had a switch of its
@@ -1037,7 +1522,12 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    */
   let rangeDays = opts.rangeDays
 
-  root.append(moneyHead, row, worldHead, world)
+  // Reading order, and it is the order of the argument: what the money did,
+  // what it is waiting for, and the world it is moving in. `signals` continues
+  // the sequence — what is being bet on that world, then what the world is
+  // reading about it — but from its own box at the foot of the rail, for the
+  // reason given where it is built.
+  root.append(moneyHead, row, nextLine, worldHead, world)
 
   /**
    * The panel the summaries open, folded up from the strip.
@@ -1210,11 +1700,61 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    */
   let sparkNote = ''
 
-  const sparkInto = (host: HTMLElement, members: SparkMember[]): number | null => {
-    const input = sparkInput(members, rangeDays)
+  /**
+   * The change exactly as the row printed it, for the label a screen reader
+   * hears.
+   *
+   * A sibling of `sparkNote` and read the same way — straight after the call,
+   * single-threaded — because the alternative is every caller re-deriving a
+   * figure `sparkInto` has already chosen the units for, which is how a row
+   * comes to say `+25.0%` aloud while printing `+5 pts`.
+   */
+  let sparkFigure = ''
+
+  /**
+   * How old the freshest reading behind a row is, as a token, or `''`.
+   *
+   * The **newest** `asOf`, not the oldest, and the difference matters on the
+   * thirty-member exchange row: one index that stopped publishing in May would
+   * make an otherwise-current composite report three months, when what is
+   * actually true is that the row is up to date and one constituent was left
+   * out. That second fact already has a channel — `members.drawn < total`, which
+   * `sparkNote` states in words — so this one answers only its own question:
+   * *the most recent observation anywhere in this row is N days old*, which is a
+   * floor on the age of everything the row says.
+   */
+  const rowAge = (members: SparkMember[], now: number): string => {
+    let newest: string | undefined
+    for (const m of members) {
+      if (m.asOf && (newest === undefined || m.asOf > newest)) newest = m.asOf
+    }
+    return staleLabel(newest, rangeDays, now) ?? ''
+  }
+
+  const sparkInto = (
+    host: HTMLElement,
+    members: SparkMember[],
+    /**
+     * The series' published unit, where the row is one instrument.
+     *
+     * Read for one thing only: whether the change belongs in points rather than
+     * as a percentage. See `ribbonPoints`.
+     */
+    unit?: string,
+  ): number | null => {
+    // Read once per row rather than taken as an argument: `redraw` runs every
+    // row off one press, and a clock read per row could in principle straddle a
+    // midnight and window two rows against two different days.
+    const now = Date.now()
+    const input = sparkInput(members, rangeDays, now)
     const m = input?.members
     sparkNote =
-      m && m.drawn < m.total ? `, from ${m.drawn} of ${m.total} with a full window` : ''
+      m && m.drawn < m.total
+        ? rangeDays <= 1
+          ? `, from ${m.drawn} of ${m.total} that printed today`
+          : `, from ${m.drawn} of ${m.total} with a full window`
+        : ''
+    const age = rowAge(members, now)
     const spark = input
       ? sparkline({
           values: input.values,
@@ -1225,14 +1765,42 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
       : null
     if (!spark || !input) {
       host.className = 'map-markets-spark'
-      host.replaceChildren()
+      sparkFigure = ''
+      /**
+       * No line, and the age is the answer rather than the excuse.
+       *
+       * A row that simply empties reads as a layout fault or a failed fetch. A
+       * row that prints `7d` where its figure was has told the reader the one
+       * true thing available: this instrument has not reported inside the
+       * period you asked about. That is the honest reply to "what did oil do
+       * today" when the last print is a week old, and it is strictly more than
+       * the confident wrong percentage it replaces.
+       */
+      host.replaceChildren(...(age ? [el('span', 'map-markets-age', age)] : []))
+      if (age) sparkNote = `, ${age} old`
       return null
     }
     // The drawn line's own change, except at the day step, where the line is a
     // slope in percent space and `windowPct` would be a percentage of zero.
     const pct = input.pct ?? spark.windowPct
+    // A percent-quoted series states its change as a difference. The tone and
+    // the tick still ride on `pct`, because "which way" is the same question
+    // whichever unit answers "how far".
+    const ends = input.ends
+    const figure =
+      unit === '%' && ends ? ribbonPoints(ends[1] - ends[0]) : ribbonPct(pct)
+    sparkFigure = figure
     host.className = `map-markets-spark${toneClass(pct)}`
-    host.replaceChildren(spark.element, el('span', 'map-markets-window', ribbonPct(pct)))
+    host.replaceChildren(
+      spark.element,
+      el('span', 'map-markets-window', figure),
+      // Drawn *and* late: the line is short at its right-hand end, which says
+      // the shortfall without naming it, and the token names it. Both, because
+      // the gap is only legible against a neighbouring row that fills the box —
+      // and at 90d the gap is 8% of the width, which nothing would notice.
+      ...(age ? [el('span', 'map-markets-age', age)] : []),
+    )
+    if (age) sparkNote += `, ${age} old`
     return pct
   }
 
@@ -1411,6 +1979,7 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    */
   let lastMarkets: MapExchange[] | null = null
   let lastIndicators: TrendIndicator[] | null = null
+  let lastReleases: TrendRelease[] = []
 
   const update = (markets: MapExchange[], now = Date.now()) => {
     lastMarkets = markets
@@ -1556,8 +2125,19 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     )
   }
 
-  const setTrends = (indicators: TrendIndicator[]) => {
+  const setTrends = (indicators: TrendIndicator[], releases: TrendRelease[] = lastReleases) => {
     lastIndicators = indicators
+    lastReleases = releases
+
+    const next = nextRelease(releases)
+    nextLine.hidden = next === null
+    if (next) {
+      // A `·` between the three parts and no verb: the heading above it says
+      // this is the money block, the word `next` says which direction in time,
+      // and a sentence would be three times the ink for the same statement.
+      nextLine.textContent = `next · ${next.label} · ${shortDate(next.date)}`
+      nextLine.title = `The next scheduled US release the money above will move on, from FRED's calendar`
+    }
     // The *row box*, not the group inside it. When these summaries were direct
     // children of `row` this line was right; wrapping them left the wrapper
     // behind on every rebuild, so each press of the time range added three
@@ -1590,9 +2170,9 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
       const spark = el('span', 'map-markets-spark')
       // `values` and not the raw series: FX is published `X / USD` and inverted
       // on the way into the entry, so this is the basket the way the row reads
-      // it. `usd-index` is excluded because it is *derived from* the other six —
-      // it moves opposite to them by construction, so averaging it back in
-      // cancels a seventh of the signal the line exists to carry.
+      // it. `usd-index` is excluded because it is *derived from* the rest of the
+      // basket — it moves opposite to them by construction, so averaging it back
+      // in cancels a fifteenth of the signal the line exists to carry.
       const pct = sparkInto(
         spark,
         items.filter((e) => e.id !== 'usd-index'),
@@ -1626,35 +2206,75 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
      * claiming to own its state would be a lie a screen reader has no way to
      * check.
      */
-    const worldRows = worldEntries(indicators)
-    world.replaceChildren()
-    world.hidden = worldRows.length === 0
-    worldHead.hidden = world.hidden
-    for (const entry of worldRows) {
-      const item = el('button', 'map-markets-group map-markets-summary')
-      item.setAttribute('type', 'button')
-      item.setAttribute('aria-haspopup', 'dialog')
-      const spark = el('span', 'map-markets-spark')
-      const pct = sparkInto(spark, [entry])
-      item.append(
-        tick(marketDirection(entry.pct)),
-        el('span', 'map-markets-label', entry.label),
-        spark,
-      )
-      item.setAttribute(
-        'aria-label',
-        `${entry.name}${pct == null ? '' : ` — ${ribbonPct(pct)} over ${rangeLabel()}${sparkNote}`}, show detail`,
-      )
-      // The same sentence the card leads with, where a pointer can find it
-      // without committing to a press — the treatment `PRAYER_NOTE` and
-      // `THERMAL_NOTE` already get on their chips.
-      if (entry.note) item.title = entry.note
-      item.addEventListener('click', () => {
-        closePanel()
-        opts.onQuote(entry, item)
-      })
-      world.append(moneyItem(item))
-    }
+    fillInstruments(world, worldHead, worldEntries(indicators))
+    // Both selected blocks are re-derived on every redraw rather than chosen
+    // once, because "the three that moved most" is a question about the *window*
+    // — at 24h and at 90d they are legitimately different three, and a block
+    // that kept its 90d membership while drawing 24h lines would be ranking on
+    // one period and drawing another where nothing could see it.
+    const now = Date.now()
+    fillInstruments(odds, oddsHead, oddsEntries(indicators, rangeDays, now))
+    fillInstruments(attention, attentionHead, attentionEntries(indicators, rangeDays, now))
+  }
+
+  /**
+   * A row that *is* an instrument: a tick, a name, the level, the line.
+   *
+   * Three blocks are built from this — `world`, `odds` and `attention` — and it
+   * was written out once for the first of them. Extracting it is the rule this
+   * file's own header states: duplication is only free while the copies agree,
+   * and the thing three copies would have had to agree about is the row's
+   * grammar, which is the one thing the rail is arranged around.
+   *
+   * **The level is new, and it is the fact.** The rail printed a change and
+   * never a value, so it could say Brent rose 1.2% and never say what a barrel
+   * costs — the footnote without the sentence. `entry.level` and `entry.unit`
+   * were on the entry the whole time and reached only the card.
+   */
+  const instrumentRow = (entry: TickerEntry) => {
+    const item = el('button', 'map-markets-group map-markets-summary')
+    item.setAttribute('type', 'button')
+    item.setAttribute('aria-haspopup', 'dialog')
+    const spark = el('span', 'map-markets-spark')
+    const pct = sparkInto(spark, [entry], entry.unit)
+    const figure = sparkFigure
+    const note = sparkNote
+    const level = quoteLevel(entry.level, entry.unit)
+    item.append(
+      tick(marketDirection(entry.pct)),
+      el('span', 'map-markets-label', entry.label),
+      ...(level ? [el('span', 'map-markets-level', level)] : []),
+      spark,
+    )
+    item.setAttribute(
+      'aria-label',
+      `${entry.name}${level ? `, ${level} ${entry.unit ?? ''}`.trimEnd() : ''}${
+        pct == null ? '' : ` — ${figure} over ${rangeLabel()}${note}`
+      }, show detail`,
+    )
+    // The same sentence the card leads with, where a pointer can find it
+    // without committing to a press — the treatment `PRAYER_NOTE` and
+    // `THERMAL_NOTE` already get on their chips. The full name goes with it,
+    // because these labels are codes and a `title` is where a code is expanded.
+    item.title = entry.note ? `${entry.name} — ${entry.note}` : entry.name
+    item.addEventListener('click', () => {
+      closePanel()
+      opts.onQuote(entry, item)
+    })
+    return moneyItem(item)
+  }
+
+  /**
+   * Fill one instrument block, or hide it and its heading together.
+   *
+   * `hidden` on both rather than an empty box: the trends payload is
+   * idle-deferred, so for the first seconds of every load there is genuinely no
+   * block, and a heading over nothing is a promise the page has not kept.
+   */
+  const fillInstruments = (host: HTMLElement, head: HTMLElement, rows: TickerEntry[]) => {
+    host.replaceChildren(...rows.map(instrumentRow))
+    host.hidden = rows.length === 0
+    head.hidden = host.hidden
   }
 
   /**
@@ -1685,6 +2305,7 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
 
   return {
     element: root,
+    signals,
     update,
     setTrends,
     setStraits,

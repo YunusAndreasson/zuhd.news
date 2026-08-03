@@ -538,8 +538,20 @@ export interface Indicator {
   marketUrl?: string;
 }
 
+/** One scheduled statistical release, from FRED's calendar. */
+export interface TrendRelease {
+  /** ISO date the release is published on. */
+  date: string;
+  /** The releasing agency's own name for it — "Consumer Price Index". */
+  release: string;
+}
+
 export interface TrendsSnapshot {
   fetchedAt: string;
   asOf: string;
+  /** Major US releases in the next ten days. Absent from snapshots written
+   *  before this field existed, and from any cycle that ran without a
+   *  `FRED_API_KEY`, so every reader must treat it as optional. */
+  releaseCalendar?: TrendRelease[];
   indicators: Indicator[];
 }

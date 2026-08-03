@@ -232,6 +232,17 @@ export const halfOverHalf = (counts: readonly number[]): number | null => {
  * third of the other. Handed back as a span, the short one draws in the
  * right-hand third and the empty left is the statement.
  *
+ * **Both edges, and for a month only one of them existed.** `windowTo` used to
+ * be `drawnTo` by construction — the caller took the window's right edge from
+ * the data itself — so the fraction returned was always `[start, 1]` and a
+ * series that stopped a week ago was drawn flush against the same right edge as
+ * one that printed this morning. Measured on 2026-08-03: `brent` was seven days
+ * stale and `vix` four, beside a currency basket published that day, all four
+ * ending on the same column under one control naming one period. That is the
+ * incomparable-periods bug the calendar window was built to end, at the other
+ * edge of the box. A short row now stops short at *whichever* end it falls
+ * short of, and the empty space is the statement in both directions.
+ *
  * `[0, 1]` whenever the series covers the window, which is the common case and
  * the one the caller can ignore.
  */
@@ -239,13 +250,19 @@ export const coverage = (
   drawnFrom: number,
   drawnTo: number,
   windowFrom: number,
+  windowTo = drawnTo,
 ): [number, number] => {
-  const total = drawnTo - windowFrom
+  const total = windowTo - windowFrom
   if (!(total > 0)) return [0, 1]
-  const start = (drawnFrom - windowFrom) / total
   // Clamped rather than trusted: `windowByDate`'s two-point floor can hand back
   // a series that starts *before* the window when the window is narrower than
   // the gap between two observations, and a negative x would draw outside the
   // box.
-  return [Math.min(Math.max(start, 0), 0.95), 1]
+  const start = Math.min(Math.max((drawnFrom - windowFrom) / total, 0), 0.95)
+  const end = Math.min(Math.max((drawnTo - windowFrom) / total, 0.05), 1)
+  // A line needs somewhere to be drawn. The clamps above are independent, so a
+  // window narrower than the gap between two observations can put `end` at or
+  // below `start`; the floor keeps a sliver rather than handing `_spark.ts` a
+  // zero-width box, which renders as nothing at all and reads as no data.
+  return [start, Math.max(end, start + 0.05)]
 }

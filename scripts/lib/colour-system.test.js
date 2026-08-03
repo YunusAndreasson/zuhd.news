@@ -204,6 +204,37 @@ test('the range switch is quiet by ink, not by alpha', () => {
   )
 })
 
+/**
+ * The two caveats the money rows print, and the reason they are structural.
+ *
+ * `.map-markets-age` says how old a reading is and `.map-markets-level` says
+ * what the instrument costs. Both are *quieter* than the figure beside them by
+ * design — an age is a footnote and a level is not a signed quantity — and
+ * "quieter" is exactly the instruction that has been carried out with `opacity`
+ * three times on this surface: the filter chips at 2.33:1, the scrubber track's
+ * day labels at 1.51:1, the seam toggle at 2.97:1. Each survived because this
+ * suite reads colour *literals* and an alpha is not one.
+ *
+ * So the assertion is what it can be — that the resting state is expressed in
+ * tokens — plus the measurement of the tokens themselves. The rail sits on
+ * `--map-sunken`; the rows also open a panel over `--map-raised`.
+ */
+test('the money rows’ caveats are quiet by ink, not by alpha', () => {
+  for (const cls of ['map-markets-age', 'map-markets-level']) {
+    const block = css.match(new RegExp(`\\.${cls}\\s*\\{[^}]*\\}`))
+    assert.ok(block, `.${cls} should exist — it is what a stale or unpriced row says`)
+    assert.ok(
+      !/\bopacity\s*:/.test(block[0]),
+      `.${cls} is dimmed with opacity, which this suite cannot measure — use an ink step`,
+    )
+  }
+  // The age is the quietest of the two and is still text on the rail.
+  for (const surface of ['--map-sunken', '--map-raised', '--map-panel']) {
+    assertContrast('--map-ink-muted', token('--map-ink-muted'), surface, token(surface), AA)
+    assertContrast('--map-ink-body', token('--map-ink-body'), surface, token(surface), AA)
+  }
+})
+
 test('the seam control is quiet by ink, not by alpha', () => {
   const block = css.match(/\.map-seam-toggle\s*\{[^}]*\}/)
   assert.ok(block, '.map-seam-toggle should exist — it is the only way to unfold a pane')

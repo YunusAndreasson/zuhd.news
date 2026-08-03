@@ -64,6 +64,7 @@ import {
   ribbonPct,
   type MarketStrip,
   type TrendIndicator,
+  type TrendRelease,
 } from './_map/markets'
 import { bucketCounts, coverage, halfOverHalf } from './_map/series-window'
 import { sparkline } from './_spark'
@@ -1338,6 +1339,22 @@ export function mount(
       sheet.showChokepoint(cp, true, docked())
     },
   })
+
+  /**
+   * The odds and attention blocks, at the foot of the rail rather than in the
+   * money box.
+   *
+   * Appended once and never re-parented, unlike `marketStrip.element`: it is a
+   * desktop-only box (`display: none` outside `body.map-wide`) and the phone's
+   * money line is a wrap run in the scrubber with no room for a block of
+   * questions. `placeMarketStrip` therefore has nothing to say about it.
+   *
+   * Its place in the reading order is `order: 5` in the stylesheet — after the
+   * ground picker and before the legend — because two more blocks of readings
+   * above the controls took the rail to 1299px in a 1080px column and pushed
+   * the picker off the bottom. See `signals` in `_map/markets.ts`.
+   */
+  hud.append(marketStrip.signals)
 
   const readState = createReadState()
 
@@ -5013,26 +5030,27 @@ export function mount(
     // sun, a moon and an atmosphere; the stars arrive with `loadStars`.
     sky.resize()
     sky.draw()
-    // Currencies, metals and crypto for the ribbon.
+    // Every block of the money rail, from one payload.
     //
-    // `/api/trends.json` already carries all of it — the ummah currency basket,
-    // gold and the crypto tier — so this is a read of something the build
-    // publishes rather than a new source. 12 KB gzipped, and nothing on screen
-    // waits for it, so it goes behind the idle callback with the metric index.
+    // `/api/trends.json` carries all of it — the currency basket, the metals,
+    // the crypto tier, the three world instruments, the Polymarket questions,
+    // the Wikipedia attention series and the release calendar — so this is a
+    // read of something the build already publishes rather than a new source.
+    // 12 KB gzipped, and nothing on screen waits for it, so it goes behind the
+    // idle callback with the metric index.
     //
-    // Silver is the one thing asked for that is not in there: nothing in the
-    // registry fetches it. It is listed in the ribbon's table anyway and simply
-    // does not render, so the day a silver series exists it appears without a
-    // second edit — the same treatment `market-metadata.js` gives the thirteen
-    // exchanges the free data commons does not reach.
+    // **56 indicators, of which the rail read 13** for as long as this fetch
+    // existed. The blocks below the world are what the other 43 were for; the
+    // fetch itself did not change, because the data was never the thing that
+    // was missing.
     whenIdle(() => {
       void (async () => {
-        const t = await json<{ indicators: TrendIndicator[] }>(
-          '/api/trends.json',
-          abort.signal,
-        )
+        const t = await json<{
+          indicators: TrendIndicator[]
+          releaseCalendar?: TrendRelease[]
+        }>('/api/trends.json', abort.signal)
         if (!mounted || !t?.indicators) return
-        marketStrip.setTrends(t.indicators)
+        marketStrip.setTrends(t.indicators, t.releaseCalendar ?? [])
       })()
     })
     // The picker only needs a list of names, and nothing depends on it until
