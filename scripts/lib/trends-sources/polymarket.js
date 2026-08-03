@@ -7,6 +7,8 @@
 // market) so the orchestrator can treat them the same as static FRED/OER
 // indicators.
 
+import { CC_TO_TOPOJSON_NAME } from '../../../shared/countries/iso.ts'
+
 const GAMMA_BASE = 'https://gamma-api.polymarket.com'
 const CLOB_BASE = 'https://clob.polymarket.com'
 const USER_AGENT = 'zuhd-news/1.0 (+https://zuhd.news)'
@@ -107,6 +109,35 @@ function shortenTitleRegex(raw) {
  *  @param {string[]} titles  Raw market questions.
  *  @returns {Promise<string[]>}
  */
+/**
+ * The shape every path out of the shortener returns, so a caller never has to
+ * ask which one it got. The regex fallback cannot infer a country, and an empty
+ * list is the truthful answer rather than a missing one.
+ */
+function fallbackLabels(titles) {
+  return titles.map((t) => ({ label: shortenTitleRegex(t), countryTags: [] }))
+}
+
+/**
+ * Keep only codes the map can actually resolve.
+ *
+ * A model asked for ISO-2 will occasionally answer `UK`, `EU`, `PS-GZ` or a
+ * country's name in full, and an unresolvable tag is worse than no tag: it
+ * looks like coverage and silently matches nothing. `CC_TO_TOPOJSON_NAME` is
+ * the same table the map draws its countries from, so a code that survives this
+ * is a code something on the page can key on.
+ */
+function validCodes(list) {
+  if (!Array.isArray(list)) return []
+  const out = []
+  for (const raw of list) {
+    if (typeof raw !== 'string') continue
+    const cc = raw.trim().toUpperCase()
+    if (CC_TO_TOPOJSON_NAME[cc] && !out.includes(cc)) out.push(cc)
+  }
+  return out
+}
+
 async function shortenTitlesViaHaiku(titles) {
   if (titles.length === 0) return []
   const { spawnSync } = await import('node:child_process')
@@ -131,7 +162,16 @@ Examples:
 Titles to shorten:
 ${items}
 
-Return ONLY a JSON array of the shortened strings, in the same order, same length as the input. No commentary, no markdown fences.`
+Also identify which countries each question is *about* — the states whose
+conduct or territory the market turns on, not every place mentioned in passing.
+Use ISO 3166-1 alpha-2 codes. A question about the Fed is about US; a question
+about an Israel-Iran ceasefire is about IL and IR; a question about Bitcoin is
+about no country at all. Return an empty array when none applies — that is the
+common case and guessing is worse than leaving it empty.
+
+Return ONLY a JSON array, same order and same length as the input, of objects:
+  [{"title": "US invade Iran by 2027?", "countries": ["US","IR"]}, ...]
+No commentary, no markdown fences.`
 
   const env = { ...process.env }
   delete env.CLAUDECODE
@@ -150,7 +190,7 @@ Return ONLY a JSON array of the shortened strings, in the same order, same lengt
 
   if (res.status !== 0) {
     console.error(`  ✗ polymarket-haiku ${tmpId}: exit ${res.status} — falling back to regex`)
-    return titles.map(shortenTitleRegex)
+    return fallbackLabels(titles)
   }
   try {
     // Claude envelope: outer JSON wrapping result text
@@ -165,10 +205,18 @@ Return ONLY a JSON array of the shortened strings, in the same order, same lengt
     if (!Array.isArray(arr) || arr.length !== titles.length) {
       throw new Error(`expected ${titles.length} titles, got ${arr?.length}`)
     }
-    return arr.map((s, i) => (typeof s === 'string' && s.length > 0 ? s : shortenTitleRegex(titles[i])))
+    return arr.map((row, i) => {
+      // Tolerant of the older bare-string shape, because the model occasionally
+      // answers the question it was asked last week rather than this one.
+      const label = typeof row === 'string' ? row : row?.title
+      return {
+        label: typeof label === 'string' && label.length > 0 ? label : shortenTitleRegex(titles[i]),
+        countryTags: validCodes(row?.countries),
+      }
+    })
   } catch (err) {
     console.error(`  ✗ polymarket-haiku ${tmpId}: ${err.message} — falling back to regex`)
-    return titles.map(shortenTitleRegex)
+    return fallbackLabels(titles)
   }
 }
 
@@ -316,11 +364,23 @@ export async function fetchPolymarketTop() {
   // 42-char header budget skip the call — smaller batches finish inside the
   // 40s spawn timeout that used to SIGTERM full batches (exit 143), and a
   // cycle where every title fits skips the Haiku call entirely.
-  const needShorten = deduped.filter((r) => r.rawTitle.length > 42)
-  if (needShorten.length > 0) {
-    const shortened = await shortenTitlesViaHaiku(needShorten.map((r) => r.rawTitle))
-    for (let i = 0; i < needShorten.length; i++) needShorten[i].label = shortened[i]
-    console.log(`  · polymarket: ${needShorten.length}/${deduped.length} labels shortened via Haiku`)
+  // **Every deduped row now, not only the long ones.** The call also returns the
+  // countries each question is about, and that is worth having for a title that
+  // already fits — skipping those left the shortest, most quotable markets as
+  // the only untagged ones. It is the same single call and the same batch size
+  // order of magnitude, so the token cost is unchanged in kind.
+  if (deduped.length > 0) {
+    const enriched = await shortenTitlesViaHaiku(deduped.map((r) => r.rawTitle))
+    let tagged = 0
+    for (let i = 0; i < deduped.length; i++) {
+      // A title already inside the header budget keeps its own words: the model
+      // is here for the countries, and re-writing a label that did not need it
+      // is a change nobody asked for and nobody can review.
+      if (deduped[i].rawTitle.length > 42) deduped[i].label = enriched[i].label
+      deduped[i].countryTags = enriched[i].countryTags
+      if (enriched[i].countryTags.length) tagged++
+    }
+    console.log(`  · polymarket: ${tagged}/${deduped.length} questions tagged with a country`)
   }
   for (const r of deduped) delete r.rawTitle
 

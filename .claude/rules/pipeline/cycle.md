@@ -37,6 +37,49 @@ paths:
 Five runs a day on a remote server, committing only `content/`. The stage list
 is in the root CLAUDE.md; this is what the stages assume about each other.
 
+## The trends payload's country tags
+
+- **Only the currency basket knew what country it was about, and that was 15 of
+  56** (2026-08-03). Every indicator carries `topicTags`; `countryTags` existed
+  in the type and on exactly one source, OER's FX pairs, covering 19 countries.
+  So anything keyed on country — a country profile, a viewport-aware rail, a
+  click on the land — could reach a quarter of the payload. Two sources are now
+  tagged and the reasoning differs for each, which is the point of writing it
+  down.
+- **Wikipedia is a lookup, not a classifier.** The attention series are fetched
+  *by article title*, and measured against a live payload **10 of the 15 are
+  country articles** — Iran, India, Russia, China, Pakistan, Saudi Arabia,
+  Israel, Ukraine, United States, Nigeria — with the other five being
+  `Artificial intelligence`, `Bitcoin`, `Donald Trump`, `Strait of Hormuz` and
+  `Wildfire`. So the title *is* the answer and `codeFromTopojsonName` resolves
+  nine of the ten outright. `TITLE_ALIASES` covers only genuine divergences
+  between Wikipedia's name and Natural Earth's — `United States` →
+  `United States of America`, `Eswatini` → `eSwatini` (case, not spelling), the
+  two Congos, Ireland, Côte d'Ivoire, Timor-Leste, Palestine. **No identity
+  entries**: `Czechia`, `Myanmar`, `Turkey` and both Koreas resolve directly, and
+  an alias for them would be dead weight that reads as coverage. Verified: 21 of
+  27 candidate titles resolve, the six that do not being the five non-countries
+  plus Cabo Verde, which the 1:110m set does not carry at all.
+- **Polymarket rides the call it was already making.** The subject of a
+  prediction market lives in its question text, so this needs a model — and one
+  was already there, shortening titles to fit a 42-character header. It now
+  returns `{title, countries}` instead of a bare string, at the same batch size
+  and the same single call, so **the token cost is unchanged in kind**. Three
+  things that had to come with it: every deduped row goes through now rather
+  than only the over-long ones (the call is there for the countries, and
+  skipping short titles left the most quotable markets as the only untagged
+  ones) — but a title already inside the budget **keeps its own words**, because
+  rewriting a label that did not need it is a change nobody asked for; the
+  parser still accepts a bare string, because a model occasionally answers last
+  week's question; and every code is filtered through `CC_TO_TOPOJSON_NAME`,
+  because a model asked for ISO-2 will offer `UK` or `EU`, and **an unresolvable
+  tag is worse than no tag — it looks like coverage and matches nothing.**
+  Dry-run against Haiku with five live questions: correct shape, correct codes,
+  and `Bitcoin` correctly empty.
+- **It reaches the payload on the next cycle, not on deploy.** These are
+  fetchers; `content/trends/*.json` is written by stage 3.4 and the site serves
+  what the last cycle wrote.
+
 ## The shape of a stage
 
 - **A stage must not be able to stop the publish.** `run-cycle.sh` is written so

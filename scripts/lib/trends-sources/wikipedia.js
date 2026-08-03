@@ -17,6 +17,7 @@
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseFrontmatter } from '../frontmatter.js'
+import { codeFromTopojsonName } from '../../../shared/countries/iso.ts'
 
 const WIKI_BASE = 'https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents'
 const USER_AGENT = 'zuhd-news/1.0 (+https://zuhd.news; editorial@zuhd.news)'
@@ -37,6 +38,52 @@ const GENERIC_DENYLIST = new Set([
   'Technology', 'Science', 'Research',
   'United Nations', // too broad — UN agencies are more useful
 ])
+
+/**
+ * Wikipedia article titles that are countries, but not under the name Natural
+ * Earth uses.
+ *
+ * `codeFromTopojsonName` is the whole lookup and it resolves 9 of the 10
+ * country articles a live payload carries — the tenth is `United States`, which
+ * Natural Earth calls `United States of America`. A handful of others diverge
+ * the same way and are listed here rather than discovered one cycle at a time,
+ * because the failure is silent: an untagged country series is not an error, it
+ * is a series that quietly never reaches anything keyed on country.
+ *
+ * Deliberately small, and **only genuine divergences**: `Czechia`, `Myanmar`,
+ * `Turkey`, `Palestine` and both Koreas resolve directly, so an identity entry
+ * for them would be dead weight that reads as coverage. Anything this misses
+ * falls through to no tag, which is the same state every non-country article is
+ * in. Verified against the table: 21 of 27 candidate titles resolve, and the
+ * six that do not are the five non-countries plus Cabo Verde, which Natural
+ * Earth's 1:110m set does not carry at all.
+ */
+const TITLE_ALIASES = {
+  'United States': 'United States of America',
+  'Democratic Republic of the Congo': 'Dem. Rep. Congo',
+  'Republic of the Congo': 'Congo',
+  'Republic of Ireland': 'Ireland',
+  'Ivory Coast': "Côte d'Ivoire",
+  'East Timor': 'Timor-Leste',
+  'State of Palestine': 'Palestine',
+  // Case, not spelling: the lookup is exact and Natural Earth lowercases the e.
+  Eswatini: 'eSwatini',
+}
+
+/**
+ * The ISO-2 code an article is about, when it is about a country at all.
+ *
+ * Returns `[]` rather than `null` so the caller can spread it straight into the
+ * indicator: **the overwhelming majority of these series are not countries** —
+ * `Artificial intelligence`, `Bitcoin`, `Wildfire`, `Donald Trump`,
+ * `Strait of Hormuz` — and an empty tag list is the honest description of that,
+ * not a missing value.
+ */
+function countryTagsFor(label) {
+  const name = TITLE_ALIASES[label] ?? label
+  const code = codeFromTopojsonName(name)
+  return code ? [code] : []
+}
 
 function ymd(d) {
   return d.toISOString().slice(0, 10).replace(/-/g, '')
@@ -198,6 +245,12 @@ export async function fetchWikipediaTrendingConcepts() {
       // Tag the concept label itself plus common variants — Claude matches
       // articles against these to pick charts.
       topicTags: [label.toLowerCase()],
+      // What this series is *about*, when that is a country. See
+      // `countryTagsFor`: 10 of the 15 concepts a live payload carries are
+      // country articles, and until now none of them said so — the only source
+      // in the payload carrying `countryTags` was the currency basket, so
+      // anything keyed on country could see 15 of 56 indicators.
+      countryTags: countryTagsFor(label),
       defaultHighlight: 'max',
       sourceLabel: 'Wikipedia pageviews',
       values: pv.values,
