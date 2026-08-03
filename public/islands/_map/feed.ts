@@ -11,6 +11,21 @@ import { relativeTime } from './format'
 
 export interface Feed {
   element: HTMLElement
+  /**
+   * Where the category filters go.
+   *
+   * They used to sit in the instrument rail, under a `stories` heading, between
+   * the readings and the layers. That put the one control on the page that
+   * decides *which stories exist* two panes away from the list of them — and in
+   * a column whose every other member is a fact about the world rather than a
+   * choice about the news. Here it sits directly over the list it filters and
+   * beside the map beacons it filters, which is the whole of the argument.
+   *
+   * A host owned by the feed rather than an element the island inserts, because
+   * the position matters: **outside the scrolling `<ol>` and under the head**,
+   * so the filters do not scroll away from the rows they are acting on.
+   */
+  filterHost: HTMLElement
   setItems(points: MapPoint[], now: number): void
   /** Scrolls to and marks a row, e.g. when its marker is clicked on the map. */
   highlight(slug: string | null): void
@@ -133,7 +148,12 @@ export function createFeed(opts: FeedOptions): Feed {
   refresh.addEventListener('click', () => opts.onRefresh?.())
 
   head.append(disclosure, refresh)
-  root.append(head, list)
+
+  // Between the head and the list, and outside both: see `filterHost`.
+  const filterHost = document.createElement('div')
+  filterHost.className = 'map-feed-filters'
+
+  root.append(head, filterHost, list)
 
   /**
    * The result of a refresh, said once and then withdrawn.
@@ -434,6 +454,7 @@ export function createFeed(opts: FeedOptions): Feed {
 
   return {
     element: root,
+    filterHost,
     setItems(points, now) {
       build([...points].sort((a, b) => b.t - a.t), now)
     },

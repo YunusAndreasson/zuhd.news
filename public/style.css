@@ -2588,11 +2588,23 @@ body.map-page {
 @media (min-width: 901px) and (max-width: 1199px) {
   body.map-page { --map-rail-base: 17rem; }
 }
+/* **The story rail gives up three rem and the instrument rail takes them**
+   (2026-08-03), and the measurement is what decided it is free. Censused at
+   1920 against a real payload, every one of the 120 headlines sets on **one
+   line** at 24rem, at 22rem and at 21rem; at 20rem six of them wrap and at 18rem
+   twelve do. So the column had 48px above the width its own content needs, and
+   the instrument rail — four figure columns, a caption that truncates, and now
+   one group fewer — is where that width does work.
+
+   The map is untouched by construction: 1920 − 336 − 384 is the same 1200px
+   canvas as 1920 − 384 − 336. Worth stating because the instinct is to take the
+   width from the middle, and on a height-bound globe the middle is the one place
+   width is genuinely free — just not needed here. */
 @media (min-width: 1600px) {
-  body.map-page { --map-rail-base: 24rem; }
+  body.map-page { --map-rail-base: 21rem; }
 }
 @media (min-width: 2000px) {
-  body.map-page { --map-rail-base: 28rem; }
+  body.map-page { --map-rail-base: 24rem; }
 }
 
 /* --- The instrument rail -------------------------------------------------
@@ -2649,7 +2661,11 @@ body.map-page {
    1512×935 and 2112×1295 before — so the frame is materially squarer, the
    planet is unchanged to the pixel, and the rail is the size of its contents. */
 body.map-wide {
-  --map-aside-w: clamp(18rem, var(--map-aside-user, calc(100vw - var(--map-rail-w) - 100dvh)), 21rem);
+  /* The cap is 24rem, not 21 — see the story rail's ladder for the three rem
+     that moved and why they were free. The `clamp` is unchanged in kind: the
+     leftover after a square canvas is still what this asks for, and the cap is
+     still what binds at every width a desktop actually has. */
+  --map-aside-w: clamp(18rem, var(--map-aside-user, calc(100vw - var(--map-rail-w) - 100dvh)), 24rem);
 }
 
 /* --- Folded --------------------------------------------------------------
@@ -3086,6 +3102,34 @@ body.map-page.map-rail-off .map-seam[data-side='left'] .map-seam-toggle {
    phone's own panel rather than a box nested inside it. See the comment on
    `more` in `situation-map.ts`. */
 .map-hud-more { display: contents; }
+
+/* The category filters, over the list they filter.
+
+   They lived in the instrument rail until 2026-08-03, under a `stories` heading
+   and behind a 1px tick that existed only to say a boundary had been crossed
+   inside one column. Here the boundary is a pane, so the tick is gone and the
+   grouping is free: the chips sit directly above the rows they act on and
+   beside the beacons they act on, and the rail is left meaning one thing.
+
+   Between the head and the list and outside both, so they never scroll away
+   from what they are filtering. The horizontal padding is the rows' own —
+   `clamp(0.9rem, 1.4vw, 1.15rem)`, quoted rather than re-derived — so a chip's
+   mark stands in the same column as a story's dot.
+
+   `display: none` by default and shown per layout, the rule `.map-filters` and
+   `.map-group-label` already follow: this box has different work to do on a
+   phone, where the whole rail is a drawer. */
+.map-feed-filters {
+  display: flex;
+  flex-direction: column;
+  /* Zero, because the row *is* the grid — the argument is `.map-filters`'. */
+  gap: 0;
+  flex: 0 0 auto;
+  padding: 0.1rem clamp(0.9rem, 1.4vw, 1.15rem) 0.55rem;
+  /* The same rule that divides one story from the next, so the filters read as
+     the list's header rather than as a block parked above it. */
+  border-bottom: 1px solid var(--map-line-soft);
+}
 
 .map-feed-list {
   flex: 1 1 auto;
@@ -4083,6 +4127,48 @@ body.map-wide .map-filters {
      again, and the gap goes, so the pitch *is* the row height for both. Hover
      boxes then touch, which is what a column of controls should do anyway. */
   gap: 0;
+}
+
+/* The chips outdent by their own padding so the *mark* lands on the content
+   edge and the hover box still reaches past it — the correction every other
+   chip column in this stylesheet carries, restated where the column is new.
+
+   Placed **after** `body.map-wide .map-filter` rather than beside the rest of
+   `.map-feed-filters`, because it has to beat that rule's padding and the two
+   have the same specificity: source order is the whole of the difference, and up
+   there it also read as a descending-specificity mistake to Biome. */
+/* `body.map-wide` and not a bare `.map-feed-filters .map-filter`: **`body` is an
+   element**, so `body.map-wide .map-filter` scores (0,2,1) and a two-class
+   selector scores (0,2,0) and loses however late it is placed. Written the short
+   way, three of the four declarations below were dead and the fourth only looked
+   right because the rail's padding and this block's happened to land the mark on
+   the same pixel. */
+body.map-wide .map-feed-filters .map-filter {
+  padding: 0.1rem clamp(0.9rem, 1.4vw, 1.15rem);
+  margin: 0 calc(-1 * clamp(0.9rem, 1.4vw, 1.15rem));
+  min-height: var(--map-hud-row-h);
+  border-radius: 0;
+  /* The story row's gap, not the rail's, so a chip's word starts on the same
+     column as a headline. */
+  gap: 0.55rem;
+
+  /* **One dot column for the pane.** A category's colour is drawn twice here —
+     as a chip's glyph and as the dot on every story of that category — and
+     measured off the render the two sat 4px apart: story dot centred at 21.4,
+     chip glyph at 25.4. The same mark in two columns is the one misalignment the
+     eye catches without being asked to, because the reader is meant to connect
+     them. The rail's 1.45rem mark box is right there, where the marks are 13px
+     silhouettes that have to line up with each other; here the box is the story
+     dot's own 6px and the glyph is *centred* in it, overflowing symmetrically,
+     so both discs share a centre line. */
+  & .map-filter-mark {
+    flex: 0 0 6px;
+    /* `auto` is the default and it is the content's width, so a 6px basis under
+       a 13px glyph produced a 13px box and moved nothing. */
+    min-width: 0;
+    justify-content: center;
+    overflow: visible;
+  }
 }
 
 /* The shared label column: what puts a story chip's line and a money row's

@@ -569,7 +569,10 @@ export function mount(
   const filters = document.createElement('div')
   filters.className = 'map-filters'
   filters.setAttribute('role', 'group')
-  filters.setAttribute('aria-label', 'Filter by category')
+  // Layers only, since the categories moved to the story rail — see
+  // `feed.filterHost`. A group whose name outlives its members is how a screen
+  // reader ends up announcing a control set that is not there.
+  filters.setAttribute('aria-label', 'Map layers')
 
   /**
    * The key.
@@ -3945,7 +3948,18 @@ export function mount(
      */
     pct: number | 'window' | null,
   ) => {
-    const host = filters.querySelector(`[data-key="${key}"] .map-filter-spark`)
+    /**
+     * Searched from the root, not from `.map-filters`.
+     *
+     * The chips this paints live in **two panes** since the categories moved to
+     * the story rail: a `filters.querySelector` finds the seven layer chips and
+     * silently misses the four category ones, so the trend the whole function
+     * exists to draw simply does not appear and nothing anywhere reports it.
+     * That is exactly how it shipped for one build. A `data-key` is unique
+     * within the island by construction, so the mount container is the honest
+     * scope for it.
+     */
+    const host = container.querySelector(`[data-key="${key}"] .map-filter-spark`)
     if (!(host instanceof HTMLElement)) return
     // Counts, so bars — and a domain floored at zero, because a count's zero is
     // zero. Autoscaled, a run of buckets whose smallest is three would draw
@@ -4186,7 +4200,30 @@ export function mount(
       return span
     }
 
-    filters.append(groupLabel('stories'))
+    /**
+     * The categories go to the story rail, not the instrument rail (2026-08-03).
+     *
+     * They were the first group in `.map-filters`, under a `stories` heading,
+     * with a 1px tick between them and `layers`. That put the only control on
+     * the page that decides *which stories exist* two panes away from the list
+     * of them, inside a column whose every other member is a fact about the
+     * world rather than a choice about the news — and the tick was there to say
+     * a boundary had been crossed that a reader could not otherwise see.
+     *
+     * Over the list, the boundary needs no tick: a different pane says it. What
+     * the move buys beyond that is the whole conceptual split the rail has been
+     * groping toward all day — **left is the news, the middle is where, right is
+     * the world.** `layers` and `ground` stay in the rail because they decide
+     * what is drawn *over* the map, which is not the same question.
+     *
+     * `feed.filterHost` rather than an insertion by hand: the position is load
+     * bearing (outside the scrolling `<ol>`, under the head) and the feed is
+     * what owns that.
+     */
+    const stories = feed.filterHost
+    stories.setAttribute('role', 'group')
+    stories.setAttribute('aria-label', 'Filter by category')
+    stories.append(groupLabel('stories'))
 
     for (const cat of CATEGORY_ORDER) {
       const btn = document.createElement('button')
@@ -4212,13 +4249,17 @@ export function mount(
         refresh()
       })
       catButtons.set(cat, btn)
-      filters.append(btn)
+      stories.append(btn)
     }
 
-    const sep = document.createElement('span')
-    sep.className = 'map-filter-sep'
-    sep.setAttribute('aria-hidden', 'true')
-    filters.append(sep, groupLabel('layers'))
+    // The lock note belongs to the categories and travels with them: it is what
+    // says why the last lit chip refuses, and a live region announcing that in
+    // a pane the chips are no longer in would be a sentence about nothing.
+    stories.append(lockNote)
+
+    // No separator any more. It existed to fence the categories off from the
+    // layers inside one column; two panes say it by construction.
+    filters.append(groupLabel('layers'))
 
     // Each overlay chip draws its layer's own silhouette, from the same vertex
     // table `map.addImage` rasterises. Before this they were all a 6px disc
@@ -4302,7 +4343,6 @@ export function mount(
     })
     filters.append(genocideChip)
 
-    filters.append(lockNote)
     syncLock()
   }
 
