@@ -3864,7 +3864,18 @@ export function mount(
   ) => {
     const host = filters.querySelector(`[data-key="${key}"] .map-filter-spark`)
     if (!(host instanceof HTMLElement)) return
-    const spark = values ? sparkline({ values, window: values.length, span }) : null
+    // Counts, so bars — and a domain floored at zero, because a count's zero is
+    // zero. Autoscaled, a run of buckets whose smallest is three would draw
+    // that three as no bar at all and exaggerate every difference above it.
+    const spark = values
+      ? sparkline({
+          values,
+          window: values.length,
+          span,
+          shape: 'bars',
+          domain: [0, Math.max(1, ...values)],
+        })
+      : null
     if (!spark) {
       host.replaceChildren()
       return

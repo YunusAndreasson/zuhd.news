@@ -4605,6 +4605,57 @@ body.map-page.map-wide.map-aside-off {
   vector-effect: non-scaling-stroke;
 }
 
+/* Weight under the line — see `_spark.ts` for the two things drawn here before
+   it, an area against the open and then a hairline marking that open, and why
+   neither survived.
+
+   **`fill-opacity` here is not the rule this stylesheet keeps breaking.** "Quiet
+   is an ink step, never opacity" is about ink — labels, chips, controls, the
+   things a reader has to *read* — where an alpha composites a token into a
+   contrast this suite cannot measure and AA quietly fails. This is a decorative
+   fill behind a line, carrying no fact of its own, and there is no token for "a
+   row's own hue at a tenth". An ink step is not available and would not be an
+   improvement: the whole requirement is that it stay below everything.
+
+   0.11 is the whole budget. The tone on this element is the row's — the same
+   `currentColor` the line takes — so the fill is the line's own hue at a
+   sixteenth strength, which reads as weight under the stroke rather than as a
+   second mark. Anything heavier and thirteen of these down a rail become the
+   loudest thing in it, which is the density-glow mistake in a new medium: the
+   fill is not carrying a fact the line and the figure do not already carry, it
+   is making a 17px shape findable. */
+.spark-area {
+  fill: currentColor;
+  fill-opacity: 0.11;
+  stroke: none;
+}
+
+/* The latest observation.
+
+   A zero-length stroke with a round cap, not a `<circle>` — the box is scaled
+   non-uniformly and a circle would render as an ellipse that changes shape with
+   the rail's width, which is exactly the failure `preserveAspectRatio: none` is
+   banned for everywhere else on the site. With `non-scaling-stroke` the cap is
+   a disc of precisely `stroke-width` CSS pixels at every width.
+
+   2.4 rather than the line's 1.25: a dot the same weight as the stroke it
+   terminates is not a dot, it is the line stopping. */
+.spark-dot {
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* A count per bucket, which is not a level and does not want a line between
+   its observations — see `shape` in `_spark.ts`. Standing on the floor of the
+   box, because a count's zero is zero and no autoscaled minimum may stand in
+   for it. Squared ends: a rounded 3px bar is mostly cap. */
+.spark-bar {
+  fill: currentColor;
+  stroke: none;
+}
+
 /* Pushed to the foot of the rail, which is a grouping decision rather than a
    spacing one. Everything above it either changes the map or reports on it;
    this explains it, and it is the only thing here a reader stops needing once

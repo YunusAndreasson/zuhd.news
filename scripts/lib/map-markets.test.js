@@ -162,6 +162,42 @@ test('the shortfall reaches the drawn polyline, which is the only visible sign',
   assert.ok(a > 60, `a 30-day series in a 90-day window starts two thirds in, got ${a}`)
 })
 
+// --- The two marks ---------------------------------------------------------
+
+test('a level draws a line with weight under it and a dot on the latest', () => {
+  withDom(() => {
+    const s = sparkline({ values: [10, 12, 11, 15], window: 4 })
+    const kids = [...s.element.children].map((c) => c.getAttribute('class'))
+    assert.deepEqual(kids, ['spark-area', 'spark-line', 'spark-dot'])
+    // The dot is a zero-length stroke, never a <circle>: the box is scaled
+    // non-uniformly, so a circle would render as an ellipse whose shape depends
+    // on how wide the rail happens to be — the exact failure
+    // `preserveAspectRatio: none` is banned for everywhere else.
+    const dot = s.element.querySelector('.spark-dot')
+    assert.equal(dot.tagName.toLowerCase(), 'line')
+    assert.equal(dot.getAttribute('x1'), dot.getAttribute('x2'))
+    assert.equal(dot.getAttribute('y1'), dot.getAttribute('y2'))
+    assert.equal(s.element.querySelector('circle'), null, 'no circle may enter this box')
+  })
+})
+
+test('a count draws bars, one per bucket, standing on the floor', () => {
+  withDom(() => {
+    const counts = [3, 0, 5, 2]
+    const s = sparkline({ values: counts, window: 4, shape: 'bars', domain: [0, 5] })
+    const bars = [...s.element.querySelectorAll('.spark-bar')]
+    assert.equal(bars.length, counts.length, 'one bar per bucket')
+    assert.equal(s.element.querySelector('.spark-line'), null, 'a count is not a level')
+    // Nothing connects one bucket to the next, so an empty one is still drawn:
+    // zero stories in an hour is an observation, and a gap in the run reads as
+    // a bucket that was never measured.
+    const heights = bars.map((b) => Number(b.getAttribute('height')))
+    assert.ok(heights.every((h) => h > 0), 'even an empty bucket marks itself')
+    const tops = bars.map((b) => Number(b.getAttribute('y')))
+    assert.ok(tops[2] < tops[0] && tops[0] < tops[1], 'taller count, higher bar')
+  })
+})
+
 // --- The day step ----------------------------------------------------------
 
 test('24h draws the day’s move as a slope, not an autoscaled diagonal', () => {

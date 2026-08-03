@@ -232,6 +232,44 @@ adapter per surface. Pinned in `scripts/lib/chart.test.js`.
   incomparable pictures at one rhythm with nothing on screen saying so. That
   used to be `SPARK_WINDOW` observations, which is a different quantity and did
   not deliver it — see `map.md`, where the unit was the bug.
+- **A level gets a line, a count gets bars** (2026-08-03). `_spark.ts` drew
+  everything as a polyline, and half of what it draws is not a level. A price,
+  an index, a day's vessel transits — the line *between* two of those means
+  something, the value passed through it. A count per bucket is not a level,
+  nothing connects one bucket to the next, and joining them draws a slope where
+  there is only a pair of independent tallies; at thirty buckets of story volume
+  that came out a seismograph, legible as "busy" and useless as a shape. The map
+  already agreed with itself about this — the scrubber draws story volume as a
+  histogram from the same points — so `shape: 'bars'` makes the rail and the
+  rail below it one vocabulary. **A count's domain is floored at zero by the
+  caller**, or a run whose smallest bucket is three draws that three as no bar
+  and exaggerates every difference above it. This is a `type` field on a module
+  whose header says a second shape gets a second module, and the exception is
+  argued rather than assumed: that rule earned itself because `createChart`'s
+  shrink levers could not touch its *geometry*, and here bars and line share the
+  model, the box, the span, the domain, the tone and the renormalisation, and
+  differ in which children are appended.
+- **The end dot is a zero-length stroke, and it has to be.** A sparkline's most
+  valuable pixel is the latest observation, and the box is scaled
+  non-uniformly — so a `<circle>` renders as an ellipse whose eccentricity
+  depends on how wide the rail happens to be, which is precisely the failure
+  `preserveAspectRatio="none"` is banned for everywhere else. A zero-length
+  subpath with `stroke-linecap: round` and `vector-effect: non-scaling-stroke`
+  is a disc of exactly its stroke width in CSS pixels at every width. Pinned:
+  the suite asserts no `<circle>` enters that box.
+- **The area under a sparkline is decoration, and two more honest ideas were
+  worse.** It was first drawn *between* the line and the window's open, on the
+  sound reasoning that area to the floor measures from an arbitrary place — the
+  floor is the window's minimum, not zero. These series mostly move one way
+  across a short window, so that region came out a wedge with a hard horizontal
+  lid and every row read as a shaded rectangle with a diagonal cut. The open
+  then survived as a hairline across the fill, and sat at the top edge of every
+  falling row where it read as a box lid rather than a datum — and it was the
+  third thing on the row stating direction, after the tone and the printed
+  figure. What ships is area under the curve at 0.11 of the row's own hue:
+  plainly weight, stating nothing, making a 17px shape findable. `fill-opacity`
+  is not the "quiet is an ink step" rule being broken — that rule is about ink a
+  reader has to read, and there is no token for a hue at a tenth.
 - **`domain` is the one place autoscaling is wrong, and it is narrow** (2026-08-03).
   `SeriesOptions.domain` replaces the scale the data would choose with a fixed
   one, for the case where the *magnitude* is the fact and there are too few
