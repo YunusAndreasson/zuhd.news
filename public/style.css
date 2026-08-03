@@ -6156,6 +6156,40 @@ a.map-popup-source-name {
   box-shadow: 0 14px 44px rgb(0 0 0 / 0.5);
 }
 
+/* A card the reader reached from the rail, opened beside it rather than over
+   everything.
+
+   `show()` not `showModal()`, so there is no backdrop and the map stays live —
+   the same bargain the markets panel struck, for the same reason: a backdrop
+   makes the page inert and takes focus, which is right for a document and far
+   too much ceremony for one series read off a row the reader is still standing
+   on. It matters twice over on the exchange and chokepoint cards, which fly the
+   camera before they open: dimming the map you were just flown to is the card
+   hiding its own answer.
+
+   It borrows the peek card's anchor — above the scrubber, clear of the rail,
+   both measured rather than guessed — because that is already the one place on
+   this map a box can sit without covering the thing it is about. What it does
+   not borrow is the 55vh ceiling: a peek is a glance and this is the whole
+   card, so it takes 70vh and scrolls, which is what `.map-sheet:not(.is-peek)`
+   already provides. */
+.map-sheet.is-docked {
+  position: fixed;
+  inset: auto auto calc(var(--map-scrub-h, 5.5rem) + var(--space-xs))
+    calc(var(--map-rail-w) + var(--space-md));
+  margin: 0;
+  width: min(32rem, calc(100vw - var(--map-rail-w) - 4rem));
+  max-height: 70vh;
+  border-radius: 2px;
+  border: 1px solid var(--map-line);
+  box-shadow: 0 14px 44px rgb(0 0 0 / 0.5);
+}
+
+/* A non-modal dialog paints no backdrop, so there is none to suppress — this is
+   here to say that out loud, because the rule below it styles one and the two
+   sitting together otherwise reads as an omission. */
+.map-sheet.is-docked::backdrop { background: none; }
+
 /* The card's own margin.
    `.island-sheet-inner` carries no padding of its own — the entity and doc
    sheets each add theirs in their own block, and this one never did, so every

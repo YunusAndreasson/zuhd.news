@@ -47,15 +47,26 @@ import { SKY_NOTE } from './sky'
 export interface Sheet {
   element: HTMLDialogElement
   showGdacs(alert: GdacsAlert, detail: GdacsDetail | null, pinned: boolean): void
-  showChokepoint(cp: MapChokepoint, pinned: boolean): void
+  /**
+   * `docked` opens the card as a box beside the rail instead of a modal.
+   *
+   * A backdrop makes the page inert and takes focus, which is the right
+   * ceremony for a document and far too much for one series read off a row the
+   * reader is still standing on — the same objection the markets panel already
+   * makes about `showModal()`. It is the *origin* that decides: a card reached
+   * from a mark on the map is a commitment and keeps its backdrop; a card
+   * reached from the rail keeps the map live, because the rail row and the map
+   * are the two halves of what the reader is doing.
+   */
+  showChokepoint(cp: MapChokepoint, pinned: boolean, docked?: boolean): void
   /**
    * `rangeDays` is the money rail's window, carried in so the card opens on the
    * period the reader was already looking at. Absent — a card opened from a map
    * mark rather than from the rail — means the whole published series, which is
    * what these cards have always drawn.
    */
-  showMarket(exchange: MapExchange, pinned: boolean, rangeDays?: number): void
-  showIndicator(entry: TickerEntry, pinned: boolean, rangeDays?: number): void
+  showMarket(exchange: MapExchange, pinned: boolean, rangeDays?: number, docked?: boolean): void
+  showIndicator(entry: TickerEntry, pinned: boolean, rangeDays?: number, docked?: boolean): void
   showConflict(event: ConflictEvent, window: string | null, pinned: boolean): void
   showGenocide(situation: GenocideSituation, pinned: boolean): void
   showThermal(event: ThermalEvent, pinned: boolean): void
@@ -197,6 +208,8 @@ export function createSheet(): Sheet {
   document.body.append(dialog)
 
   let pinned = false
+  /** Whether the open card is the non-modal, rail-anchored kind. */
+  let isDocked = false
   // `close` is *queued*, not dispatched synchronously — so a bare
   // `pinned = false` here fired one task after the promotion below had already
   // set `pinned = true`, and silently unpinned a sheet the reader had just
@@ -213,21 +226,58 @@ export function createSheet(): Sheet {
   // the pointer can move straight to the next beacon. Clicking promotes the
   // same sheet to a real modal — committed reading, backdrop and all. A
   // pinned sheet ignores hover entirely, so it never vanishes mid-read.
-  const open = (pin: boolean) => {
+  const open = (pin: boolean, docked = false) => {
     if (pin) {
       // `showModal` throws on an already-open dialog, so a peek has to be shut
       // before it can be promoted.
       if (dialog.open) dialog.close()
       pinned = true
+      isDocked = docked
       dialog.classList.remove('is-peek')
-      dialog.showModal()
+      dialog.classList.toggle('is-docked', docked)
+      // `show()` leaves the map live and the page interactive; the platform
+      // then stops doing three things for us, and they are wired below.
+      if (docked) dialog.show()
+      else dialog.showModal()
     } else {
+      isDocked = false
+      dialog.classList.remove('is-docked')
       dialog.classList.add('is-peek')
       if (!dialog.open) dialog.show()
     }
   }
 
-  const render = (nodes: Node[], pin: boolean) => {
+  /**
+   * Escape and the light dismiss, which `show()` does not give us.
+   *
+   * Registered once at construction rather than per open, and both no-ops
+   * unless a docked card is up. `stopPropagation` on Escape is load-bearing:
+   * the island listens for the same key to reset the camera, and a reader
+   * shutting a card has not asked to be sent back to the whole world. Same
+   * ordering the markets panel relies on — registered earlier, so it runs
+   * first.
+   *
+   * The dismiss is `pointerdown` in the capture phase. It cannot close the card
+   * that is being opened, because at the pointerdown that precedes that click
+   * the dialog is not yet open and the guard returns; pressing a *different*
+   * row while one is up closes the first and opens the second, which is the
+   * behaviour a column of peers should have.
+   */
+  const onDocKey = (e: KeyboardEvent) => {
+    if (!isDocked || !dialog.open || e.key !== 'Escape') return
+    e.stopPropagation()
+    dialog.close()
+  }
+  const onDocDown = (e: Event) => {
+    if (!isDocked || !dialog.open) return
+    const t = e.target
+    if (t instanceof Node && dialog.contains(t)) return
+    dialog.close()
+  }
+  document.addEventListener('keydown', onDocKey)
+  document.addEventListener('pointerdown', onDocDown, true)
+
+  const render = (nodes: Node[], pin: boolean, docked = false) => {
     if (pinned && !pin) return
     // The app line used to hang off the story sheet, which the map no longer
     // opens — stories now read in a popup anchored to their own coordinate. It
@@ -241,7 +291,7 @@ export function createSheet(): Sheet {
       if (app) nodes = [...nodes, app]
     }
     inner.replaceChildren(...nodes)
-    open(pin)
+    open(pin, docked)
   }
 
   const kicker = (parts: Array<string | null | undefined>) =>
@@ -357,7 +407,7 @@ export function createSheet(): Sheet {
       render(nodes, pin)
     },
 
-    showChokepoint(cp, pin) {
+    showChokepoint(cp, pin, docked) {
       const nodes: Node[] = []
       const field = cp.primaryField
       const delta = cp.delta7vs90?.[field]
@@ -425,10 +475,10 @@ export function createSheet(): Sheet {
         )
         nodes.push(...relatedList(cp.relatedArticles ?? [], 'Related coverage'))
       }
-      render(nodes, pin)
+      render(nodes, pin, docked)
     },
 
-    showMarket(ex, pin, rangeDays) {
+    showMarket(ex, pin, rangeDays, docked) {
       const nodes: Node[] = []
       // The kicker carries freshness, because on a world map that is the first
       // ambiguity: at any given moment most exchanges are shut, and "+0.8%"
@@ -508,7 +558,7 @@ export function createSheet(): Sheet {
         )
         nodes.push(...relatedList(ex.relatedArticles ?? [], 'Related coverage'))
       }
-      render(nodes, pin)
+      render(nodes, pin, docked)
     },
 
     /**
@@ -521,7 +571,7 @@ export function createSheet(): Sheet {
      * to tell a blip from a slide. Same shape as the exchange card, because it
      * is the same kind of fact.
      */
-    showIndicator(entry, pin, rangeDays) {
+    showIndicator(entry, pin, rangeDays, docked) {
       const nodes: Node[] = []
       nodes.push(kicker([entry.group, entry.asOf ? fmt.shortDate(entry.asOf) : null]))
       nodes.push(el('h2', 'island-sheet-title', `${entry.flag} ${entry.name}`.trim()))
@@ -579,7 +629,7 @@ export function createSheet(): Sheet {
 
         if (entry.sourceLabel) nodes.push(el('p', 'map-sheet-meta', entry.sourceLabel))
       }
-      render(nodes, pin)
+      render(nodes, pin, docked)
     },
 
     showConflict(event, windowLabel, pin) {
@@ -1010,6 +1060,11 @@ export function createSheet(): Sheet {
     isOpen: () => dialog.open,
     isPinned: () => pinned,
     destroy() {
+      // The two the docked mode wired by hand. `show()` gave us the card
+      // without the platform's Escape or light dismiss, and a listener left on
+      // `document` outlives the island that needed it.
+      document.removeEventListener('keydown', onDocKey)
+      document.removeEventListener('pointerdown', onDocDown, true)
       dialog.remove()
     },
   }

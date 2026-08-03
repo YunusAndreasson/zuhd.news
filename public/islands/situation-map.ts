@@ -1315,9 +1315,12 @@ export function mount(
       // period the row the reader pressed was drawing. An exchange card opened
       // from a mark on the map takes no argument and still draws the whole
       // quarter — there the reader came from the globe, not from the money.
-      sheet.showMarket(ex, true, marketStrip.rangeDays())
+      // Docked: reached from a rail row, not from a mark. The camera has just
+      // flown to this exchange, and dimming the map the reader was flown to is
+      // the card hiding its own answer. Desktop only — see `docked()`.
+      sheet.showMarket(ex, true, marketStrip.rangeDays(), docked())
     },
-    onQuote: (entry) => sheet.showIndicator(entry, true, marketStrip.rangeDays()),
+    onQuote: (entry) => sheet.showIndicator(entry, true, marketStrip.rangeDays(), docked()),
     // A chokepoint is a place, so this flies the way an exchange does: the
     // reader picked a name out of a list with no map context, and landing them
     // on the card without showing them where it is answers half the question.
@@ -1327,7 +1330,7 @@ export function mount(
       feed.setExpanded(false, true)
       flying = true
       map.flyTo({ center: [cp.lng, cp.lat], zoom: Math.max(map.getZoom(), 3.2), duration: 900 })
-      sheet.showChokepoint(cp, true)
+      sheet.showChokepoint(cp, true, docked())
     },
   })
 
@@ -1408,6 +1411,21 @@ export function mount(
    * to lay out on its own — and because `placeMarketStrip` has to answer the
    * same question about which parent the readout hangs from.
    */
+  /**
+   * Whether a card reached from the rail should open beside it rather than over
+   * everything.
+   *
+   * Desktop only, and the reason is geometry rather than taste: the docked
+   * card's anchor is `--map-rail-w` and `--map-scrub-h`, which describe a
+   * column beside the map and a strip beneath it. On a phone the rail *is* the
+   * width of the screen and the money block lives inside the scrubber, so the
+   * same offsets place the card off its own edges. A phone reader opening a
+   * quote from the strip's panel gets the modal sheet, which is the right
+   * shape there anyway — at 390px a card is the screen, and a backdrop under
+   * something occupying the screen is describing what has already happened.
+   */
+  const docked = () => wideQuery.matches
+
   const wideQuery = matchMedia(`(min-width: ${NARROW_PX + 1}px)`)
   const syncWide = () => {
     document.body.classList.toggle('map-wide', wideQuery.matches)
