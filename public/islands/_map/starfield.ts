@@ -135,9 +135,41 @@ const HALO_WEDGES = 72
  * answer: the scattering crescent above is a 25px gradient over it, so the lit
  * limb is a band and the dark limb is a line. The terminator keeps saying what
  * it said.
+ *
+ * ── The line had two hard edges, and one of them was a lie (2026-08-03) ──────
+ *
+ * Drawn as a stroke, this was 2.2px of flat `horizon` between a black planet
+ * and black space — **hard on both sides**. Measured off a headed render along a
+ * ray through the night limb: `(6,7,9)` for the planet, then `(34,46,64)`,
+ * `(34,46,64)`, then `(8,10,13)` for space, with nothing in between. Against the
+ * day limb on the same frame, which ramps from `(102,113,132)` down to space
+ * over 24px, it read as what it literally was — a circle stroked around the
+ * globe — and it was the only hard edge anywhere in the sky.
+ *
+ * The inner edge is right and has to stay: the planet is opaque and its limb is
+ * a real discontinuity. The outer one is not. Airglow is a *shell* seen edge-on,
+ * so its brightness falls off with the atmosphere above it rather than stopping;
+ * that soft outer edge is what the band looks like in every orbital photograph
+ * the rest of this note appeals to.
+ *
+ * So the stroke becomes an annulus with a graded alpha, and **the peak is
+ * unchanged and still on the limb** — the token's 1.45:1 measurement is what the
+ * first stop is, so nothing measured against it moves. What changes is only what
+ * happens outside: half strength half a width out, a sixth at one and a half,
+ * gone by `AIRGLOW_REACH`. The area under that curve is 1.73px of full-strength
+ * ink against the stroke's 1.65, so it does not read fainter — only softer. The
+ * effective width a reader sees is still about two pixels, which is what the
+ * sweep found; the ring is now made of light rather than drawn with a pen.
+ *
+ * `AIRGLOW_REACH` is **not** free to grow into the answer for the day side. Past
+ * ~3px of *uniform* width this stopped being an edge and became a ring, and a
+ * long enough tail reintroduces that at lower alpha. It is a falloff on a
+ * hairline, not a halo.
  */
 const AIRGLOW_WIDTH = 2.2
 const AIRGLOW_ALPHA = 1
+/** How far out the falloff runs before it is gone, px. See above. */
+const AIRGLOW_REACH = AIRGLOW_WIDTH * 2.5
 
 interface Catalogue {
   n: number
@@ -401,14 +433,30 @@ export function createStarfield(view: SkyView): Starfield {
     // Airglow first, uniform around the whole limb. Inside the wedge loop it
     // would be a floor on the crescent's alpha, which is a different picture:
     // the two are separate emissions and the scattering adds to this one.
-    // Stroked half-in, half-out of the limb so the globe covers the inner half
-    // and what shows is a hairline sitting exactly on the edge.
+    //
+    // An annulus rather than a stroke, and it starts *inside* the limb: the
+    // globe covers the inner ramp in hardware, so the profile a reader sees
+    // begins at full strength on the edge itself with no seam where MapLibre's
+    // antialiased disc ends. Outside, it falls off — see `AIRGLOW_REACH`.
+    const rimInner = cam.r - 0.6
+    const rimOuter = cam.r + AIRGLOW_REACH
+    const span = rimOuter - rimInner
+    // Where a radius lands on the gradient's 0..1 parameter.
+    const at = (px: number) => (cam.r + px - rimInner) / span
+    const rim = ctx.createRadialGradient(cam.cx, cam.cy, rimInner, cam.cx, cam.cy, rimOuter)
+    const horizon = `rgb(${HALO_RGB[0]} ${HALO_RGB[1]} ${HALO_RGB[2]}`
+    rim.addColorStop(0, `${horizon} / 1)`)
+    // Full through the limb, so the peak is exactly the token's measurement.
+    rim.addColorStop(at(0), `${horizon} / 1)`)
+    rim.addColorStop(at(AIRGLOW_WIDTH * 0.5), `${horizon} / 0.5)`)
+    rim.addColorStop(at(AIRGLOW_WIDTH * 1.5), `${horizon} / 0.16)`)
+    rim.addColorStop(1, `${horizon} / 0)`)
     ctx.globalAlpha = AIRGLOW_ALPHA * fade
-    ctx.strokeStyle = `rgb(${HALO_RGB[0]} ${HALO_RGB[1]} ${HALO_RGB[2]})`
-    ctx.lineWidth = AIRGLOW_WIDTH
+    ctx.fillStyle = rim
     ctx.beginPath()
-    ctx.arc(cam.cx, cam.cy, cam.r + AIRGLOW_WIDTH / 4, 0, Math.PI * 2)
-    ctx.stroke()
+    ctx.arc(cam.cx, cam.cy, rimOuter, 0, Math.PI * 2)
+    ctx.arc(cam.cx, cam.cy, rimInner, 0, Math.PI * 2, true)
+    ctx.fill()
 
     const step = (Math.PI * 2) / HALO_WEDGES
     for (let i = 0; i < HALO_WEDGES; i++) {

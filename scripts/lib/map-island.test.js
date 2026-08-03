@@ -408,10 +408,20 @@ test('the island mounts, renders, and tears down cleanly', async () => {
     // has always had: nothing hidden that the reader cannot get to. Asserted
     // on the markup rather than on what is visible, since jsdom resolves no
     // media query and both layouts ship the same DOM.
+    //
+    // `genocide` joined the group on 2026-08-03 and is last, which is where it
+    // was as a caption — beside `conflict`'s far end, which is the whole point
+    // of its colour. It was a `<span>` for eight days on the argument that a
+    // determination must not wear the affordance of a control; it wore it
+    // anyway, being a chip-shaped thing in the chip column, so readers pressed
+    // it and nothing happened. The half of that argument that still holds is
+    // about the *scrubber*, and the test for it is `no time filter reaches a
+    // determination` below — this line is not that test and must not be read
+    // as relaxing it.
     const layers = [...env.host.querySelectorAll('.map-filter[data-kind="layer"]')]
     assert.deepEqual(
       layers.map((b) => b.textContent),
-      ['disasters', 'thermal', 'conflict', 'markets', 'straits', 'famine'],
+      ['disasters', 'thermal', 'conflict', 'markets', 'straits', 'famine', 'genocide'],
     )
     for (const f of layers) assert.equal(f.getAttribute('aria-pressed'), 'true')
 

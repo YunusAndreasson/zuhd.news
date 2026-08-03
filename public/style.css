@@ -2494,6 +2494,18 @@ body.map-page {
      from `--map-spine-w`, which is measured at 11px — a different size for a
      different job — and it spent 27px of every line on nothing. */
   --map-row-label-w: 4.8rem;
+
+  /* The disclosure caret's own box, named because two rules have to agree
+     about it and only one of them can see it.
+
+     The caret is a `::after`, so it is always the row's last flex item — which
+     means on a two-line row it lands at the end of line *two* and line one has
+     nothing holding its place. Measured: every figure in the rail ends at
+     1876.3 and the probability on an odds caption ended at 1886.6, so the one
+     number set larger than its neighbours was also the one sticking 10px past
+     them. The caption line reserves this plus the row's gap; the caret takes it
+     as a basis. One term, two uses, and no literal in either. */
+  --map-caret-w: 0.2rem;
   max-width: none;
   height: 100dvh;
   overflow: hidden;
@@ -4145,6 +4157,16 @@ body.map-wide .map-filter-pct {
      column. It may shrink and the line gives way first; what it must not do is
      push the row past the rail's edge, where the `%` is simply cut off. */
   flex: 0 1 auto;
+  /* **Deliberately not given the money block's figure column**, which was tried
+     and measured and made things worse. A chip's bar chart is a fixed-size
+     `<svg>` rather than a flexing one, so the slack in the row sits *after* the
+     figure rather than before it: a `min-width` there pads the short figures
+     from the left and leaves the long ones where they were, which is a column
+     ragged at both edges instead of one flush left. Reaching the money block's
+     right edge would need the chips to reserve a caret column for a disclosure
+     they do not have — space held open for a control that does not exist. The
+     two groups have different anatomy and a rule between them; flush left is
+     the honest answer here. */
   white-space: nowrap;
   font-size: var(--size-2xs);
   font-variant-numeric: tabular-nums;
@@ -4228,29 +4250,20 @@ body.map-wide .map-filters {
   border-top: 1px solid var(--map-line);
 }
 
-/* Genocide joins the layers, and the separator that used to fence it off is
-   gone from this layout.
+/* The genocide separator is gone from both layouts, and so is the rule that
+   used to hide it in this one.
 
-   On the strip the fence was load-bearing: the row is one continuous wrap run
-   of chips and the only thing that could say "the controls end here" was a
-   tick between them. A column has stronger ways to say it — the mark sits in
-   the same 14px glyph column as every layer above, at the same rhythm, and it
-   is a `<span>` with no hover state and no pressed state, so it looks like a
-   member of the group and behaves like a caption of it. Which is the truth:
-   it is drawn like a layer and cannot be switched, because a determination is a
-   condition rather than a feed.
+   It existed to say "the controls end here" on a strip where the chips are one
+   continuous wrap run — which was load-bearing for as long as the mark beside
+   it was a caption rather than a switch. It is a switch now (see `genocideChip`
+   in the island: a `<span>` at chip rhythm in the chip column *is* a chip to
+   anybody reading the rail, and readers pressed it), so there is no boundary
+   left to draw and no element left to hide. The separator between the
+   categories and the layers is untouched and still doing its job.
 
-   Only this separator goes; the one between the categories and the layers is
-   still doing its job.
-
-   That reasoning briefly expired and came back. For part of 2026-08-03 the
-   group was a wrap run — the members with no sparkline paired up to stop
-   reserving space — and inline beside `famine`, at the same rhythm as four
-   things that *are* switches, `genocide` needed the strip's 1px tick again.
-   The group is a column once more, so the premise holds and the tick goes.
-   Worth leaving written down: this rule is contingent on the layout, not on
-   the mark, and it is the layout that has moved twice. */
-body.map-wide .map-filter-sep.is-genocide { display: none; }
+   Left written down because this rule outlived two layouts before it outlived
+   its subject: the fence was contingent on the arrangement around the mark,
+   never on the mark, and the arrangement moved three times in nine days. */
 
 body.map-wide .map-key-item.is-layer-note {
   gap: 0.45rem;
@@ -4487,7 +4500,10 @@ body.map-wide {
        no hover to reveal it with. */
     &::after {
       opacity: 1;
-      flex: 0 0 auto;
+      /* A named basis rather than the glyph's own width, because the two-line
+         rows have to reserve this column on a line the caret is not on. See
+         `--map-caret-w`. */
+      flex: 0 0 var(--map-caret-w);
     }
   }
 
@@ -4584,11 +4600,40 @@ body.map-wide {
     &.is-neg { color: var(--map-neg); }
   }
 
+  /* The change, in a column of its own — which is what makes the *lines* line
+     up, not the figures.
+
+     The figures were already flush right; the box holding them was not. At
+     `auto` its width is its text, so `0.0%` reserved 23.5px and `+14.7%` 34.8,
+     and since the svg beside it takes the slack every sparkline in the rail
+     ended on a different column — measured across twelve rows, 11px of rag on a
+     158px box. The note on `--map-row-label-w` records the mirror of this on the
+     left edge and says the lines "still ended on one column, which is what hid
+     it"; that stopped being true the moment the figure moved inside the spark
+     box, and nothing was checking.
+
+     A `min-width` rather than a fixed basis, and **2.2rem rather than the 2.6
+     that would fit every figure this rail can print**. Both halves are the same
+     constraint, which is the 18rem rail floor: flex decides wrapping on an
+     item's base size, and a base size clamped upward by `min-width` raises the
+     wrap threshold with it. At 2.6 the two-line odds rows wrapped a third time
+     at 1200px and put the caret alone on an 11px line at the rail's left edge —
+     the exact failure `.map-markets-break` exists to prevent, recreated from the
+     other end. 2.2rem is 35.2px, which is the widest figure the block *naturally*
+     produces (`+37 pts`, `−24.1%`, both 34.8), so no row can now be wider than
+     the widest row that already fitted. A seven-character figure — `−100.0%` at
+     40.6, a yield's `+0.08 pts` at 50 — still grows past it from the same right
+     edge, costing its own line and no other row's. */
   & .map-markets-window {
     flex: 0 0 auto;
+    min-width: 2.2rem;
     font-size: var(--size-2xs);
     font-variant-numeric: tabular-nums;
     letter-spacing: 0;
+    /* These rows are `<button>`s and a button centres its text — invisible
+       while the box is content-sized and the whole problem once it is not. The
+       same correction `.map-markets-level` and `.map-markets-label` each carry.  */
+    text-align: right;
   }
 
   /* How old the freshest reading in the row is, when that is worth saying.
@@ -4604,10 +4649,20 @@ body.map-wide {
      structural guard for that is in that suite. */
   & .map-markets-age {
     flex: 0 0 auto;
+    /* **No `min-width` here, unlike the change beside it**, and the asymmetry is
+       measured rather than an oversight. An age is two or three characters —
+       `7d` is 12px against a figure's 35 — so holding it to the figure's column
+       adds 23px to a row that has already spent its width on a label, a level
+       and a line: at the 17rem rail below 1200px `BRENT` and `US 10Y` overflowed
+       their own box by 19px, which is the age clipped at the rail's edge. The
+       dotted rule takes the slack instead and the age still lands flush right,
+       one column short of the figures above it. Alignment is worth a lot and it
+       is not worth a clipped number. */
     color: var(--map-ink-muted);
     font-size: var(--size-2xs);
     font-variant-numeric: tabular-nums;
     letter-spacing: 0;
+    text-align: right;
 
     /* Standing alone — no line drawn, so the age *is* the row's figure — it
        takes the column the change would have been in. Left where it fell it
@@ -4734,6 +4789,14 @@ body.map-wide {
     white-space: nowrap;
   }
 
+  /* The caret's column, held open on the line the caret is not on.
+
+     A `::after` is always the last flex item, so on these two-line rows it sits
+     at the end of line two and line one runs the full width of the row. The
+     probability is the last thing on line one — so the biggest numeral in the
+     block was also the only one in the rail overhanging its column, by exactly
+     the caret plus the row's gap. Derived from both rather than typed as the
+     10.3px it measures, since either can move. */
   /* `flex-basis: 100%` is what breaks the line — an item that cannot share a
      row with anything always starts a new one — and the margin is the indent
      that lands it on the grid. One derived term rather than a literal: the
@@ -4750,6 +4813,20 @@ body.map-wide {
 
   & .map-markets-summary .map-markets-caption ~ .map-markets-spark {
     margin-left: calc(var(--map-row-label-w) + 1.9rem + 0.45rem);
+    /* Basis zero, and it is the third time this file has had to say it: flex
+       decides wrapping on an item's *base* size, before it shrinks anything. At
+       `auto` this box is based on its own svg plus its own figure, and with the
+       indent above that came to exactly the width of the row — so the caret,
+       being a `::after` and therefore last, wrapped to a **third** line, 11px
+       tall, alone at the rail's left edge. Present on every odds and attention
+       row at 1280 and 1366, where `--map-rail-base` steps down to 17rem, and
+       invisible at 1920 where it does not.
+
+       At zero the line is based on the indent, the figure and the caret — 167px
+       against 243 of room — and the shape then grows into whatever is left,
+       which is what a sparkline is for. Same fix, same reason, as
+       `.map-markets-caption`'s own basis directly above. */
+    flex: 1 1 0;
   }
 
   /* The tone is the block's own hue, never the money's signed pair.
@@ -4789,6 +4866,23 @@ body.map-wide {
     font-size: var(--size-2xs);
     letter-spacing: 0;
   }
+}
+
+/* The caret's column, held open on the line the caret is not on.
+
+   A `::after` is always the last flex item, so on a two-line odds or attention
+   row it sits at the end of line two and line one runs the full width. The
+   probability is the last thing on line one — so the biggest numeral in the
+   block was the only figure in the rail overhanging its column, by exactly the
+   caret plus the row's gap. Measured: every other figure ends at 1876.3 and
+   this ended at 1886.6. Derived from both terms rather than typed as the 10.3px
+   it comes to, since either can move.
+
+   Outside the `body.map-wide` block above for the reason stated there — a
+   compound `&` selector is scored without its parent — which is why this reads
+   from the body class rather than continuing the nesting. */
+body.map-wide .map-markets-caption ~ .map-markets-level {
+  margin-right: calc(var(--map-caret-w) + 0.45rem);
 }
 
 /* --- The spine -----------------------------------------------------------

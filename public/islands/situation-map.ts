@@ -691,39 +691,57 @@ export function mount(
    * from the two chips being adjacent, and they were as far apart as this HUD
    * can place them, on separate rows at opposite ends.
    *
-   * Past its own separator, and a `<span>` rather than a `<button>`: the four
-   * chips before it are toggles and this one is deliberately not. Genocide has
-   * no toggle and no time filter — a determination is a condition, not an event
-   * — so it must not acquire the affordance of one. The separator is what says
-   * "controls end here", which is the fact that needed conveying.
+   * **It is a toggle now, and it was a caption for eight days** (2026-08-03).
+   *
+   * The argument for the caption was that a determination is a condition rather
+   * than an event, so it must not acquire the affordance of a control — and
+   * that argument is still right about the *scrubber*, which is why
+   * `applyTimeFilters` still leaves this layer alone and `map-island.test.js`
+   * still fails if a time filter appears on it. It was wrong about the switch,
+   * and a reader found the flaw the design record could not: a `<span>` set at
+   * the same rhythm, in the same glyph column, one rung under a run of chips
+   * **is** a chip as far as anyone reading the rail is concerned. So it was
+   * pressed, nothing happened, and the fence that was supposed to say "controls
+   * end here" was a 1px tick the rail had already dropped for a different and
+   * also good reason. A control that silently does nothing is worse than either
+   * a control or a caption; the honest repair is the one the reader was already
+   * asking for.
+   *
+   * What the switch does *not* do is make the mark optional in the sense the
+   * caption feared. It ships on, like every other layer; hiding it is a
+   * deliberate act by a reader who wants a quieter map, exactly as it is for
+   * `conflict` — which is the layer this one shares a hue with, sits beside, and
+   * is now finally symmetrical with. The record it opens is unchanged, and the
+   * mark still draws above everything else on the canvas.
    */
-  const genocideKeySep = document.createElement('span')
-  // `is-genocide` names *which* separator this is, and the rail needs to know:
-  // there it is the only one that has to go, because the mark it fences off
-  // belongs among the layers it was fencing it from. A `:last-of-type` rule
-  // cannot pick it out — the last `<span>` in `.map-filters` is the lock note,
-  // not this — and a positional selector standing for an identity is how a
-  // future chip inserted at the end would silently move a rule.
-  genocideKeySep.className = 'map-filter-sep is-genocide'
-  genocideKeySep.setAttribute('aria-hidden', 'true')
-  const genocideKey = document.createElement('span')
-  genocideKey.className = 'map-key-item is-layer-note'
-  genocideKey.title =
-    'A situation a named UN body has determined to be genocide — click the mark for the finding'
-  genocideKey.style.color = OVERLAY_COLOUR.genocide
-  // The same mark box the chips use (see `chipGlyph`), so this sits in the
-  // layers column on the column's own left edge rather than 6px inside it.
-  genocideKey.innerHTML =
-    '<span class="map-filter-mark">' +
+  /**
+   * The ring and core the layer draws, as chip markup.
+   *
+   * Not an entry in `GLYPHS` like every other chip's silhouette: `genocide-marks`
+   * and `genocide-core` are MapLibre `circle` layers, so there is no vertex table
+   * to share and nothing for `addImage` to serve — the same situation `dot` is in
+   * for `story-points`. The one thing it does share is the box: `.map-filter-mark`,
+   * so the mark lands on the column every other mark in the rail lands on.
+   */
+  const GENOCIDE_MARK =
     '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="currentColor">' +
     '<circle cx="8" cy="8" r="5.2" fill="none" stroke="currentColor" stroke-width="1.8"/>' +
-    '<circle cx="8" cy="8" r="1.9"/></svg></span><span>genocide</span>'
-  // Hidden until the record is on the wire, separator and all. A legend for a
-  // mark that is not drawn is the same lie in either direction — and a lone
-  // divider hanging off the end of the row is its own small piece of nonsense.
-  genocideKeySep.hidden = true
-  genocideKey.hidden = true
-  keyItems.set('genocide', genocideKey)
+    '<circle cx="8" cy="8" r="1.9"/></svg>'
+
+  const genocideChip = document.createElement('button')
+  genocideChip.type = 'button'
+  genocideChip.className = 'map-filter is-on'
+  genocideChip.dataset.kind = 'layer'
+  genocideChip.dataset.key = 'genocide'
+  genocideChip.title =
+    'A situation a named UN body has determined to be genocide — click the mark for the finding'
+  // The hue reaches the mark and not the word, which is what `--cat` does on
+  // every other chip. As `color` on the whole item it made the gravest thing on
+  // the map read as an alert about the interface.
+  genocideChip.style.setProperty('--cat', OVERLAY_COLOUR.genocide)
+  // Hidden until the record is on the wire. A control for a layer with nothing
+  // in it is a switch that turns off an empty map.
+  genocideChip.hidden = true
 
   /**
    * The ground's own legend.
@@ -1219,6 +1237,10 @@ export function mount(
     markets: true,
     conflict: true,
     famine: true,
+    // A determination, and a switch all the same — see `genocideChip`. What it
+    // must never gain is a *time* filter: a finding is a condition, not an
+    // event, and `map-island.test.js` fails if the scrubber reaches it.
+    genocide: true,
   }
   let rangeHours: number = DEFAULT_RANGE_HOURS
   let scrubNow = Date.now()
@@ -1935,6 +1957,12 @@ export function mount(
     set('market-marks', layersOn.markets)
     set('conflict-marks', layersOn.conflict)
     set('famine-marks', layersOn.famine)
+    // All three parts together. The name is drawn unconditionally beside the
+    // mark rather than on hover, so leaving `genocide-labels` visible under a
+    // hidden ring would leave place names floating on the ocean.
+    for (const id of ['genocide-marks', 'genocide-core', 'genocide-labels']) {
+      set(id, layersOn.genocide)
+    }
     // `prayer-lines` and `prayer-labels` are deliberately absent: they are
     // declared visible in the style and nothing here may hide them. See
     // `layersOn` for why a geometry is not a feed.
@@ -2029,12 +2057,7 @@ export function mount(
     src('conflict')?.setData(conflictCollection())
     src('famine')?.setData(famineCollection())
     src('genocide')?.setData(genocideCollection())
-    // Separator and label together — revealing the mark's name while leaving
-    // its divider hidden would put the label inside the toggle group, which is
-    // the grouping this was moved out of `.map-key` to fix.
-    const showGenocide = genocide.length > 0
-    genocideKey.hidden = !showGenocide
-    genocideKeySep.hidden = !showGenocide
+    genocideChip.hidden = genocide.length === 0
     applyTimeFilters()
     applyLayerVisibility()
   }
@@ -4098,8 +4121,13 @@ export function mount(
      * draw a trend and a chip that cannot must occupy the same box, or the
      * column develops two row heights for a reason no reader can see.
      */
-    const chipGlyph = (btn: HTMLButtonElement, ids: GlyphId[], label: string) => {
-      btn.innerHTML = `<span class="map-filter-mark">${ids.map(glyphSvg).join('')}</span>`
+    const chipGlyph = (btn: HTMLButtonElement, mark: GlyphId[] | string, label: string) => {
+      // A string arm for the one chip whose layer MapLibre draws natively, so
+      // it gets this row grammar — mark box, label, spark host — rather than a
+      // second, nearly identical one written out beside it. See `GENOCIDE_MARK`.
+      btn.innerHTML = `<span class="map-filter-mark">${
+        typeof mark === 'string' ? mark : mark.map(glyphSvg).join('')
+      }</span>`
       const name = document.createElement('span')
       name.className = 'map-filter-label'
       name.textContent = label
@@ -4242,10 +4270,17 @@ export function mount(
       filters.append(btn)
     }
 
-    // Last in the row, past its own separator: a mark the map draws, named
-    // where the other marks are named, but not a control. See its construction
-    // above for why it is not in `.map-key`.
-    filters.append(genocideKeySep, genocideKey)
+    // Last in the group, and no separator: it is a layer chip like the six
+    // above it now. See its construction for why the fence went with the span.
+    chipGlyph(genocideChip, GENOCIDE_MARK, 'genocide')
+    genocideChip.setAttribute('aria-pressed', 'true')
+    genocideChip.addEventListener('click', () => {
+      layersOn.genocide = !layersOn.genocide
+      genocideChip.classList.toggle('is-on', layersOn.genocide)
+      genocideChip.setAttribute('aria-pressed', String(layersOn.genocide))
+      applyLayerVisibility()
+    })
+    filters.append(genocideChip)
 
     filters.append(lockNote)
     syncLock()

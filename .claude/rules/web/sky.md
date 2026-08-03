@@ -141,6 +141,24 @@ have gone the other way and a measurement that decided it. The map itself is
   costs nothing but its own pixels. **2.2px**, swept: 1.6 read as an artefact of
   the circle, past ~3 it stops being an edge and becomes a ring drawn round the
   planet.
+- **It was a *stroke*, and a stroke has two hard edges** (2026-08-03). Measured
+  off a headed render along a ray through the night limb: `(6,7,9)` planet,
+  `(34,46,64)`, `(34,46,64)`, `(8,10,13)` space — the token's value at full
+  strength for two pixels and then nothing, between a black planet and black
+  space. The day limb on the same frame ramps from `(102,113,132)` to space over
+  24px. So the only hard edge anywhere in this sky was the one thing here that
+  is supposed to be made of light, and it read as exactly what it literally was:
+  a circle stroked around the globe. The **inner** edge is right and stays — the
+  planet is opaque and its limb is a real discontinuity. The outer one is not:
+  airglow is a shell seen edge-on, so it fades with the atmosphere above it. It
+  is an annulus with a graded alpha now, **peak unchanged and still on the limb**
+  so the 1.45:1 measurement above is untouched, then half strength half a width
+  out, a sixth at one and a half, gone by `AIRGLOW_REACH` (2.5 widths). The area
+  under that curve is 1.73px of full-strength ink against the stroke's 1.65, so
+  it does not read fainter — only softer. Measured after: `(33,45,63)` on the
+  limb, then 21, 17, 12, 10, back to space over five pixels. **`AIRGLOW_REACH`
+  is not free to grow into an answer for the day side** — a long enough tail
+  reintroduces at low alpha exactly the ring the 3px sweep above rejected.
 - **Day and night still read differently**, which is the objection this has to
   answer. The scattering crescent is a ~25px gradient over the airglow, so the
   lit limb is a band and the dark limb is a line. The terminator keeps saying
