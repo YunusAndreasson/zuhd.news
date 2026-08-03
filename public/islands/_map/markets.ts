@@ -1520,7 +1520,15 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
 
   const setTrends = (indicators: TrendIndicator[]) => {
     lastIndicators = indicators
-    for (const stale of row.querySelectorAll('.map-markets-group[data-trend]')) stale.remove()
+    // The *row box*, not the group inside it. When these summaries were direct
+    // children of `row` this line was right; wrapping them left the wrapper
+    // behind on every rebuild, so each press of the time range added three
+    // empty 27px rows between `markets` and `currencies` and kept them. Found
+    // by measuring row offsets, which is the only way an empty box that is
+    // exactly a row tall ever shows up.
+    for (const stale of row.querySelectorAll('.map-markets-group[data-trend]')) {
+      ;(stale.closest('.map-markets-item') ?? stale).remove()
+    }
     const quotes = tickerEntries(indicators)
 
     const byGroup = new Map<string, TickerEntry[]>()

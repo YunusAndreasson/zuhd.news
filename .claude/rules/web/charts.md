@@ -266,10 +266,28 @@ adapter per surface. Pinned in `scripts/lib/chart.test.js`.
   then survived as a hairline across the fill, and sat at the top edge of every
   falling row where it read as a box lid rather than a datum — and it was the
   third thing on the row stating direction, after the tone and the printed
-  figure. What ships is area under the curve at 0.11 of the row's own hue:
-  plainly weight, stating nothing, making a 17px shape findable. `fill-opacity`
-  is not the "quiet is an ink step" rule being broken — that rule is about ink a
-  reader has to read, and there is no token for a hue at a tenth.
+  figure. What ships is area under the curve, plainly weight, stating nothing.
+- **The fill is a gradient, and a flat one is what made the money rows look
+  wrong.** At the range the map opens on, a money series is **four points** —
+  three segments of daily closes — so constant alpha under it is not an area
+  under a curve, it is a trapezoid: hard top, hard sides, hard floor, filling
+  most of a 17px box. Every row read as a bar with a diagonal lid, which is what
+  it geometrically was. Fading from 0.3 against the line to nothing by the floor
+  makes it behave like what it is for, and does so identically at four points
+  and at sixty, which a conditional fill would not. Two consequences. The stops
+  are `currentColor`, so the row's hue arrives the one way this component allows
+  — `fill="url(#…)"` is an attribute naming *where* the colour comes from, not
+  what it is, which is not what "colour is a class, never an attribute" forbids.
+  And **each spark needs its own gradient id**: an `id` is document-scoped even
+  inside its own `<svg>`, so one shared id would draw thirteen fills in whichever
+  row parsed last. Pinned.
+- **Wrapping a row in a box means the rebuild has to remove the box.**
+  `setTrends` cleared its stale summaries by `.remove()`ing the summary, which
+  was right while those were direct children and left an orphan the moment they
+  gained a wrapper — so every press of the time range added three empty 27px
+  rows between `markets` and `currencies` and kept them. Nothing looked broken:
+  an empty box exactly one row tall reads as spacing. Found by measuring row
+  offsets, which is the only thing that finds it.
 - **`domain` is the one place autoscaling is wrong, and it is narrow** (2026-08-03).
   `SeriesOptions.domain` replaces the scale the data would choose with a fixed
   one, for the case where the *magnitude* is the fact and there are too few

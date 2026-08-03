@@ -4599,7 +4599,10 @@ body.map-page.map-wide.map-aside-off {
      around a device pixel, which is the coverage cliff `line-width` on the
      graticule records — a half-width under one device pixel loses alpha
      whatever the antialiasing arithmetic says. */
-  stroke-width: 1.25;
+  /* 1.5, not the 1.25 it was: with a fill behind it the stroke has to be the
+     thing the eye lands on, and a hairline over a tint reads as the edge of the
+     tint rather than as the line it is. */
+  stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
@@ -4617,7 +4620,7 @@ body.map-page.map-wide.map-aside-off {
    row's own hue at a tenth". An ink step is not available and would not be an
    improvement: the whole requirement is that it stay below everything.
 
-   0.11 is the whole budget. The tone on this element is the row's — the same
+   0.3 against the line, nothing by the floor. The tone on this element is the row's — the same
    `currentColor` the line takes — so the fill is the line's own hue at a
    sixteenth strength, which reads as weight under the stroke rather than as a
    second mark. Anything heavier and thirteen of these down a rail become the
@@ -4625,8 +4628,9 @@ body.map-page.map-wide.map-aside-off {
    fill is not carrying a fact the line and the figure do not already carry, it
    is making a 17px shape findable. */
 .spark-area {
-  fill: currentColor;
-  fill-opacity: 0.11;
+  /* `fill` is set per instance to a `url(#…)` gradient whose stops are
+     `currentColor` — see `_spark.ts`. The row's hue still arrives the one way
+     this component allows; what the attribute names is where, not what. */
   stroke: none;
 }
 

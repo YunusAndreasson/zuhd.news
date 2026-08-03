@@ -167,8 +167,8 @@ test('the shortfall reaches the drawn polyline, which is the only visible sign',
 test('a level draws a line with weight under it and a dot on the latest', () => {
   withDom(() => {
     const s = sparkline({ values: [10, 12, 11, 15], window: 4 })
-    const kids = [...s.element.children].map((c) => c.getAttribute('class'))
-    assert.deepEqual(kids, ['spark-area', 'spark-line', 'spark-dot'])
+    const kids = [...s.element.children].map((c) => c.getAttribute('class') ?? c.tagName)
+    assert.deepEqual(kids, ['defs', 'spark-area', 'spark-line', 'spark-dot'])
     // The dot is a zero-length stroke, never a <circle>: the box is scaled
     // non-uniformly, so a circle would render as an ellipse whose shape depends
     // on how wide the rail happens to be — the exact failure
@@ -178,6 +178,20 @@ test('a level draws a line with weight under it and a dot on the latest', () => 
     assert.equal(dot.getAttribute('x1'), dot.getAttribute('x2'))
     assert.equal(dot.getAttribute('y1'), dot.getAttribute('y2'))
     assert.equal(s.element.querySelector('circle'), null, 'no circle may enter this box')
+  })
+})
+
+test('each fill gradient gets its own id, or every row wears one hue', () => {
+  withDom(() => {
+    // An `id` is document-scoped even inside its own `<svg>`, so thirteen
+    // sparks sharing one would all resolve to whichever parsed last — and the
+    // rail would draw every line's fill in the first row's colour.
+    const ids = [1, 2, 3].map(() => {
+      const s = sparkline({ values: [1, 2, 3], window: 3 })
+      return s.element.querySelector('defs > *').id
+    })
+    assert.equal(new Set(ids).size, 3, `ids must differ, got ${ids.join()}`)
+    for (const id of ids) assert.match(id, /^spark-fill-\d+$/)
   })
 })
 

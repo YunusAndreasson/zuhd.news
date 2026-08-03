@@ -51,6 +51,17 @@ const INSET = 1.5
 
 const round = (n: number): number => Number(n.toFixed(1))
 
+/**
+ * Makes each spark's fill gradient a unique target for `url(#…)`.
+ *
+ * An `id` is document-scoped even when it sits inside its own `<svg>`, so
+ * thirteen sparks sharing one would all resolve to whichever was parsed last —
+ * and every line on the rail would wear the first row's hue. It only ever
+ * increments; a remount continues the sequence rather than restarting it,
+ * because a torn-down spark's id may still be referenced by a paint in flight.
+ */
+let fillSeq = 0
+
 export interface Spark {
   element: SVGSVGElement
   /**
@@ -237,7 +248,35 @@ export const sparkline = (opts: SparkOptions): Spark | null => {
       `M${round(first[0])},${round(floor)} ` +
       pts.map(([x, y]) => `L${round(x)},${round(y)}`).join(' ') +
       ` L${round(last[0])},${round(floor)} Z`
-    svg.append(svgEl('path', { class: 'spark-area', d }))
+
+    /**
+     * The fill fades downward, and a flat one is what made this look wrong.
+     *
+     * At the range the map opens on, a money series is **four points** — three
+     * segments of daily closes — so a fill of constant alpha under it is not an
+     * area under a curve, it is a trapezoid: hard top, hard sides, hard floor,
+     * occupying most of a 17px box. Every row read as a filled bar with a
+     * diagonal lid, which is what it geometrically was.
+     *
+     * A gradient makes it behave like what it is for. Strongest against the
+     * line, gone by the floor, so what the reader sees is the line carrying a
+     * shadow rather than a block carrying an edge — and at four points or at
+     * sixty it is the same treatment, which a conditional fill would not be.
+     *
+     * The stops take `currentColor`, so the row's hue still arrives the one way
+     * this component allows and no literal enters the markup. `fill` has to be
+     * an attribute rather than a class because the target is per-instance;
+     * `charts.md`'s "colour is a class, never an attribute" is about colour, and
+     * a `url(#…)` is a reference to where the colour is already coming from.
+     */
+    const gid = `spark-fill-${++fillSeq}`
+    const grad = svgEl('linearGradient', { id: gid, x1: '0', y1: '0', x2: '0', y2: '1' })
+    grad.append(svgEl('stop', { offset: '0', 'stop-color': 'currentColor', 'stop-opacity': '0.3' }))
+    grad.append(svgEl('stop', { offset: '1', 'stop-color': 'currentColor', 'stop-opacity': '0' }))
+    const defs = svgEl('defs', {})
+    defs.append(grad)
+    svg.append(defs)
+    svg.append(svgEl('path', { class: 'spark-area', d, fill: `url(#${gid})` }))
     svg.append(
       svgEl('polyline', {
         class: 'spark-line',
