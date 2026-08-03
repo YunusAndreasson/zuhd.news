@@ -4441,6 +4441,17 @@ body.map-wide {
     font-size: var(--size-xs);
   }
 
+  /* A row with no switch has no mark column either, so its label takes the
+     column's width plus the gap that would have followed it. Same result at
+     the sparkline — one left edge for all thirteen lines — with nothing blank
+     to explain. `:has()` rather than a class because the condition genuinely
+     is "this row has a switch in it", and a class would be a second thing to
+     keep true. After the rule it overrides, not before: equal-or-higher
+     specificity placed later is how the cascade is meant to read. */
+  & .map-markets-item:not(:has(.map-markets-toggle)) .map-markets-label {
+    flex-basis: calc(var(--map-row-label-w) + 1.45rem + 0.45rem);
+  }
+
   /* The counts are the panel's job here. The reverse holds in the scrubber,
      where there is no room for a shape and the counts are the whole readout. */
   & .map-markets-tally,

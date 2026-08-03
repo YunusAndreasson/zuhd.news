@@ -1011,17 +1011,25 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
   }
 
   /**
-   * One row of the money block: a switch column, then the summary.
+   * One row of the money block: a switch where there is one, then the summary.
    *
-   * Every row gets the column, including the rows with nothing in it — an empty
-   * `.map-filter-mark` rather than no element. Without it the labels of the
-   * four rows that have a switch would start 22px right of the three that do
-   * not, and a column whose left edge moves twice reads as three lists rather
-   * than one.
+   * The first version gave *every* row the column and left it empty on the six
+   * that have nothing to switch, so the labels would all start on one edge.
+   * That bought alignment with six blank 23px boxes down the block, which reads
+   * as a glyph that failed to load rather than as space deliberately kept — the
+   * emptiness is louder than the misalignment it was buying off.
+   *
+   * So the element is only built when it is real, and the stylesheet gives a
+   * switchless row's label the column's width instead: the sparklines still
+   * begin on one line, which is what alignment here was ever for, and the only
+   * thing that moves is the word. The two rows that are indented are exactly
+   * the two that also drive the map, so the indent is the grammar made visible
+   * rather than a hole.
    */
   const moneyItem = (summary: HTMLElement, toggle: HTMLElement | null) => {
     const box = el('div', 'map-markets-item')
-    box.append(toggle ?? el('span', 'map-filter-mark'), summary)
+    if (toggle) box.append(toggle)
+    box.append(summary)
     return box
   }
 
