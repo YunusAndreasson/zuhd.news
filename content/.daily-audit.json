@@ -1,31 +1,31 @@
 {
-  "date": "2026-08-02",
+  "date": "2026-08-03",
   "metrics": {
-    "articles": { "value": 59, "detail": "5 cycles, all 5 completed, avg 9 published/cycle — up from yesterday's 51" },
-    "freshness": { "median": 0.6, "p90": 1.5, "max": 1.8, "target": 1.0, "met": true },
-    "categories": { "politics": 23, "economy": 16, "science": 9, "tech": 11 },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "ME": 19, "AM": 18, "EU": 11, "AF": 6, "AS": 5 } },
-    "multiSource": { "value": 11, "target": 4, "met": true },
-    "sciTech": { "ratio": 34, "target": 25, "met": true },
-    "topSourceShare": { "source": "Nature", "pct": 9, "target": 20, "met": true },
-    "uniqueSources": 47,
+    "articles": { "value": 62, "detail": "5 cycles, 13 selected and written in every one; 4 deployed in-cycle — the 17:02 build failed and its 13 articles shipped with the 22:02 build" },
+    "freshness": { "median": 0, "p90": 0.4, "max": 0.4, "target": 1.0, "met": true },
+    "categories": { "politics": 21, "economy": 18, "tech": 12, "science": 11 },
+    "multiSource": { "value": 18, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 18, "ME": 14, "AS": 12, "EU": 12, "AF": 4, "OC": 2 } },
+    "sciTech": { "ratio": 37, "target": 25, "met": true },
+    "topSourceShare": { "source": "Nature", "pct": 13, "target": 20, "met": true },
+    "uniqueSources": 58,
     "duplicates": 0,
-    "avgCycleDuration": 1068
+    "avgCycleDuration": 1040
   },
-  "experiment": "Skipped. No experiment is active, no pause gate is set, and every goal metric cleared its target — skip-if-healthy applies. The one queued candidate (2026-05-08-numerical-density) edits scripts/write-prompt.md, which is outside the parameter set this audit may touch, so it stays queued.",
-  "weakestArea": "Regional spread carries the thinnest margin. Five regions clears the target of four, but Asia fell 7 → 5 and Oceania was absent for a second consecutive day, while the Middle East (19) and the Americas (18) took 63% of the board between them. Science is the other soft spot at 9, its lowest of the week, down from 12 — sci+tech held at 34% only because tech absorbed the difference (9 → 11). Neither is a parameter fault: the selector's category floors were met and the feed simply supplied what it supplied, so this is a supply observation rather than a tuning target.",
+  "experiment": "Skipped. No experiment is active, no pause gate is set, and every goal metric cleared its target — skip-if-healthy applies. Today's failures were a stale working-tree edit and two writer turn caps, neither of which any tunable parameter reaches; the one queued candidate (2026-05-08-numerical-density) edits scripts/write-prompt.md, out of scope here, so it stays queued.",
+  "weakestArea": "The weakest number is not on the goal list. Daily multi-source is 18, its best reading in weeks, but the weekly rate sits at 19.3% (24.3 wk 07-19 → 19.2 wk 07-26 → 19.3 wk 08-02) and the cause is visible in the funnel: the feed supplied 4, 7, 7 and 13 multi-source stories across the four logged cycles against a historical median of 9. The selector cannot pick what clustering does not bundle, and history already records that pushing its floors twice moved rejections rather than coverage — so the lever, if one is wanted, is upstream in fetch-news-api.js source composition. Of the goal metrics proper, regional spread is thinnest: six regions clears four, but Africa fell to 4 and Oceania supplied 2, both on a handful of filings.",
   "watching": [
-    "Hormuz and the Red Sea produced blockade-arithmetic, escort-queue and thirty-five-hulls filings across separate cycles, with the corridor condition confirmed by only one side — worth tracking for source symmetry as the count rises.",
-    "Sudan's RSF designation coverage is aimed at the suppliers rather than the militia, and alongside Radio Dabanga and the famine-access reporting it reads as the opening of an IPC declaration fight.",
-    "Pakistan recurs through Swat militancy and the rally against it; Dawn was the corpus top outlet for two straight weekly snapshots, so the regional voice and the concentration risk are the same outlet.",
-    "Two 2026-08-12 eclipse articles are already filed ahead of date — check at publication that they are not restating each other.",
-    "Weekly multiSourceRatePct fell 24.3% (wk 07-19) → 19.2% (wk 07-26) even though today's daily count is a healthy 11; if the weekly figure stays below 20 it becomes the strongest candidate for the next experiment."
+    "Hormuz produced three filings in one day from different angles — Iran talks on the port blockade, Oman mediating, and a piece built entirely on the claims diverging — so the corridor is now a source-symmetry problem rather than a coverage one.",
+    "Russia's Black Sea escort expansion and the Bab el-Mandeb traffic drop are the same maritime-risk story reaching readers through two unconnected desks; watch whether they stay separate as the shipping picture consolidates.",
+    "Two 2026-08-12 eclipse articles remain filed ahead of date, carried over from yesterday's watch item — check at publication that they are not restating each other.",
+    "Ethiopia-Tigray clashes resuming, alongside Boko Haram command localization and the Nigeria USAID mortality count, is the most Africa coverage in days but rests on three unrelated filings rather than sustained attention.",
+    "Psychosis appears twice in one day from different substrates (tau markers, NLP marker variance); specialist science clustering like this is where duplicate risk usually starts."
   ],
   "coverageGaps": [
-    "Oceania filed nothing for the second day running — no Australia, no New Zealand, no Pacific island states.",
-    "The Americas bucket is almost entirely North American; a single InSight Crime filing carried Latin America.",
-    "Central Asia and the Caucasus reached readers only through TASS and NEWS.am, so the region arrives largely in Russian-aligned framing.",
-    "Science volume rests on a narrow base — Nature and Phys.org supply most of it, with the remainder coming from general outlets covering science incidentally."
+    "Africa fell to 4 filings, its thinnest of the week, with nothing from the Sahel beyond the Boko Haram piece and no follow-through on Sudan after yesterday's RSF thread.",
+    "Oceania reached readers through 2 filings — an Australian halal-export story and bird flu arriving in Antarctica — neither of which is Pacific reporting.",
+    "Latin America improved on yesterday's single filing (megaprison boom, Cuba's grid) but still arrives mostly through outside outlets rather than regional ones.",
+    "Science volume continues to rest on Nature and Phys.org; the remaining science slots came from general outlets covering research incidentally."
   ],
-  "context": "A heavier day than yesterday (59 vs 51) with all five cycles completing and timing stable at 1068s (selector 288s, writer 287s, editor 96s). Spread quality held: 47 unique sources, zero duplicates, top source at 9%, multi-source at 11. No experiment has been active since the 2026-05-18 editor-effort entry was voided, and history says the obvious levers are tapped — selector multi-source floors were raised twice and reverted once, with the conclusion that the feed's ~9 multi-source stories per cycle cap the published rate near 22%, and the standalone cap is already trimmed to 22 for a freshness target now comfortably met. The next experiment should therefore target upstream feed composition (event clustering, or the regional source lists in fetch-news-api.js) rather than the selector. TOP_EVENTS_TO_FETCH stays at 8 — each unit is one NewsAPI token per cycle against a capped spend. Housekeeping: a stray content/articles/_check.py.bad plus several scripts/_tmp* scratch files sit untracked in the working tree; the build globs *.md so nothing is at risk, but they want cleaning up."
+  "context": "The busiest day of the week (62 articles, 58 unique sources, zero duplicates, top source at 13%) and also the least reliable. The 17:02 cycle wrote and validated 13 articles and published none: the build died on `public/islands/_map/starfield.ts:442 — the symbol \"outer\" has already been declared`, a duplicate const from an in-flight working-tree edit to the starfield. Nothing was lost — the file was fixed before 22:02 and those articles went out with that build, roughly five hours late — but a code edit sitting uncommitted on the pipeline server is a live no-publish risk, and it is worth confirming that whoever was editing the sky is done. Separately, the 08:02 and 12:02 writers exited 1 on `Reached max turns (60)`; both had already written all 13 articles and the cap only truncated the Sonnet self-revision pass, so throughput was unaffected, but two turn caps in one day suggests the writer's revision loop is running close to its ceiling. Timing was otherwise stable at 1040s (selector 286s, writer 253s, editor 85s)."
 }
