@@ -392,8 +392,10 @@ export const CONTESTED_D = 0.35
  * Kept in step with the `max-width: 900px` block in style.css by hand. Almost
  * every consequence of that line is CSS and needs nothing here — which edge the
  * rail takes and how tall the drawer is are both read back off the geometry —
- * but two things cannot be measured after the fact: the zoom floor, which is a
- * number the island has to choose, and whether the rail's header is a
- * disclosure at all, which decides what it may claim to assistive technology.
+ * but three things cannot be measured after the fact: the zoom floor, which is a
+ * number the island has to choose; whether the rail's header is a disclosure at
+ * all, which decides what it may claim to assistive technology; and, since the
+ * instrument rail stopped being gated on measured surplus width, which of the
+ * two layouts the map is in at all (`syncWide`).
  */
 export const NARROW_PX = 900

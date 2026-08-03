@@ -2519,31 +2519,30 @@ body.map-page {
      choose is not a cap on what a reader may ask for. */
   --map-rail-base: 21rem;
   --map-rail-w: clamp(15rem, var(--map-rail-user, var(--map-rail-base)), 34rem);
-  /* The instrument rail's width, and zero is its resting value.
+  /* The instrument rail's width, and zero is its resting value — which is now
+     the phone's value and nothing else's.
 
-     `body.map-wide` (set by the island, which measures — see `syncWide`) turns
-     this into a real column and gives it a width. Declaring it here at 0px is
-     what lets every rule that has to clear it — the scrubber's right edge, the
-     "whole world" button, the seam — be written *once*, as
+     `body.map-wide` (the island's name for "not a phone", set from the same
+     900px breakpoint the block at the foot of this file uses) turns this into a
+     real column and gives it a width. Declaring it here at 0px is what lets
+     every rule that has to clear it — the scrubber's right edge, the "whole
+     world" button, the seam — be written *once*, as
      `calc(var(--map-aside-w) + …)`, instead of once per layout. A property that
      only exists inside a media query is a property every such rule needs a
      fallback for, and a fallback is a second copy of the number. */
   --map-aside-w: 0px;
-  /* The height of the HUD's first row, and the reason it needs a name.
+  /* The height of a control row, and the reason it needs a name.
 
-     The row's height is set by the range chips — the tallest thing on it — and
-     everything else in the flow is centred against them by `.map-hud`'s
-     `align-items: center`. The clock is not in that flow: it is absolutely
-     positioned so it never eats width from the chips, which meant its vertical
-     position was a hand-tuned `padding: 0.95rem` guessing at where the row's
-     centre line fell. It guessed 2.59px high, and had been that way as long as
-     the clock has existed — visible the moment the beacon key wraps up onto row
-     one and lands beside it, which is what a wide viewport does.
+     It was the top strip's first row — set by the range chips, the tallest thing
+     on it — and it existed because the clock was *not* in that flow: absolutely
+     positioned so it never ate width from the chips, which left its vertical
+     position a hand-tuned `padding: 0.95rem` guessing at where the row's centre
+     line fell. It guessed 2.59px high for as long as the clock had existed.
 
-     Naming the height lets both sides derive from it instead of approximating
-     each other: the chips are pinned to it, and the clock centres itself in a
-     box of exactly that height at exactly the HUD's own padding. Change the
-     chip padding and the two still agree. */
+     The clock is the head of the rail now and centres itself, but the number
+     outlived the bug: it is what the range group and each money row are pinned
+     to, so a segmented control and a sparkline row come out the same height as
+     each other down the rail. Change the chip padding and the two still agree. */
   --map-hud-row-h: 27px;
   max-width: none;
   height: 100dvh;
@@ -2606,7 +2605,24 @@ body.map-page {
 
    Only the custom property moves. The grid column, the fixed header and footer
    inside the rail, and the left edge of the HUD, the scrubber and the peek card
-   are all laid out against it, which is the whole reason it has a name. */
+   are all laid out against it, which is the whole reason it has a name.
+
+   **The bottom of the ladder is new, and it is what pays for the instrument
+   rail at a laptop width** (2026-08-03). The rail used to be gated on measured
+   surplus — below about 1100px there was none, so those widths got the top strip
+   instead and 21rem of story rail was affordable because nothing stood on the
+   other side. Now both columns are always there, and at 1024×768 a 336px story
+   rail beside an 18rem instrument rail leaves the canvas 400px: a globe smaller
+   than the chrome around it. 17rem is the same reasoning as the cap at the other
+   end, run downward — the widest a headline column may be *here* is what the map
+   can spare, and at 272px it is still ~32 characters, one rung above the 15rem
+   floor `--map-rail-w` clamps to. Measured at 1024: canvas 400 → 464px.
+
+   Bounded below as well as above, because a phone has no instrument rail to make
+   room for and its own block already decides what the drawer does. */
+@media (min-width: 901px) and (max-width: 1199px) {
+  body.map-page { --map-rail-base: 17rem; }
+}
 @media (min-width: 1600px) {
   body.map-page { --map-rail-base: 24rem; }
 }
@@ -2616,12 +2632,26 @@ body.map-page {
 
 /* --- The instrument rail -------------------------------------------------
 
-   Everything that was a strip of chrome *over* the map becomes a column
-   *beside* it: the time range, the category and layer chips, the ground picker,
-   the money readout and the clock. The scrubber stays where it is, because a
-   time axis reads left to right and nothing about a wide screen changes that —
-   it simply stops spanning the whole window and spans the globe's column, which
-   is a denser fortnight rather than a stretched one.
+   Everything that was a strip of chrome *over* the map is a column *beside*
+   it: the time range, the category and layer chips, the ground picker, the
+   money readout and the clock. The scrubber stays where it is, because a time
+   axis reads left to right and nothing about a wide screen changes that — it
+   simply stops spanning the whole window and spans the globe's column, which is
+   a denser fortnight rather than a stretched one.
+
+   ── There is no other desktop layout, and there used to be ───────────────
+   This was gated on *measured surplus width* — `viewportW − railW − viewportH ≥
+   18rem`, computed by `syncWide` in the island because the condition mixes a
+   width, a height and a rem-valued column and no media query can express it.
+   The arithmetic was right and the gate was the mistake: every desktop that
+   failed it fell back to a strip of chips across the top of the map with the
+   money readout exiled to the scrubber's readout line, so which side of the map
+   the controls stood on — and whether the sparklines were on screen at all —
+   depended on the shape of the reader's window. A layout with no rule a reader
+   can learn is the same complaint this file already makes about the strip's own
+   height, one level up. The rail is the desktop layout at every desktop width
+   now, and the only question left is the phone's, which is the `max-width:
+   900px` block at the foot of this file.
 
    ── The rail takes what it needs, and the surplus goes back to the map ────
    The first version of this took the *whole* leftover — `viewport − stories −
@@ -2633,9 +2663,13 @@ body.map-page {
 
    So the cap is the content's, not the viewport's: **21rem**, which is the
    prayer strip's five columns plus the rail's padding, and every other block
-   here is narrower. The floor is 18rem, where those columns start to collide;
-   `syncWide` refuses to enter this layout below it, so the clamp's low end only
-   ever catches a window mid-drag.
+   here is narrower. The floor is 18rem, where those columns start to collide,
+   and since the gate went it is a floor the layout actually stands on: from
+   about 1400px down the surplus term is negative and every desktop narrower than
+   that gets exactly 18rem. That is what the bottom step of the rail ladder above
+   is for — the story column gives way first, because a headline that wraps to
+   three lines is a worse loss than a column of instruments that cannot hold its
+   widest block.
 
    The leftover is not wasted, and it also cannot be given to the planet — that
    is the arithmetic at the top of this section, and it is worth restating
@@ -2664,8 +2698,8 @@ body.map-wide {
    equal weight setting the same custom property is a layout that depends on
    which one a future edit happens to move.
 
-   The instrument rail folds only where it exists: outside `body.map-wide` the
-   HUD is a strip over the map and there is nothing here to shut. */
+   The instrument rail folds only where it exists: on a phone the HUD is a strip
+   over the map and there is nothing here to shut. */
 body.map-page.map-rail-off {
   --map-rail-w: 0px;
 
@@ -2862,15 +2896,14 @@ body.map-page.map-rail-off .map-seam[data-side='left'] .map-seam-toggle {
   .map-seam-toggle { transition: none; }
 }
 
-/* The right seam exists only where the pane it bounds does. Outside
-   `body.map-wide` the HUD is a strip over the map and `--map-aside-w` is 0, so
-   this would be a grip at the window's right edge offering to resize nothing —
-   and, worse, offering to *fold* a pane whose contents are the map's only
-   controls. */
-body.map-page:not(.map-wide) .map-seam[data-side='right'] { display: none; }
-
 /* No seams on a phone. There is one column, the rail is a drawer with its own
-   handle, and a 9px drag target beside a thumb is not a control. */
+   handle, and a 9px drag target beside a thumb is not a control. This is also
+   the only place the right seam has ever needed hiding: it used to carry its own
+   `:not(.map-wide)` rule, because outside the wide layout `--map-aside-w` was 0
+   and the grip would have sat at the window's right edge offering to resize
+   nothing — and, worse, to *fold* a pane whose contents are the map's only
+   controls. The pane it bounds is now on screen at every width this block does
+   not cover. */
 @media (max-width: 900px) {
   .map-seam { display: none; }
 }
@@ -3321,43 +3354,33 @@ body.map-page > footer .footer-social a {
   &:hover { color: var(--map-ink); }
 }
 
+/* The strip: one row of chrome laid over the top of the map.
+
+   It is the *phone's* layout since 2026-08-03 — the rail below is what every
+   width above 900px gets — but the base rule stays base rather than moving into
+   the phone block, because the rail is written as a re-reading of it and a
+   re-reading needs something to read. What the phone keeps of the strip is the
+   time range and the disclosure; everything else folds into `.map-hud-more`.
+
+   `flex-wrap: wrap` and the two-axis gap are the strip's own, from when it was
+   also a desktop layout and had thirteen chips to pack: the run had to fill each
+   line before starting the next, or `.map-ranges`, `.map-filters` and
+   `.map-ground` broke to fresh lines as units and the strip stood four rows deep
+   at 1440px with ~600px of slack beside the range chips. The phone block sets
+   `nowrap` over it and there is nothing left above 900px to want it — but the
+   two rules that made it work, the gap here and `.map-filters { display: flex }`
+   in each layout, are cheap and the alternative is a base rule that cannot be
+   read on its own. */
 .map-hud {
   position: absolute;
   top: 0;
-  left: var(--map-rail-w);
   right: 0;
   z-index: 2;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  /* One continuous wrap run, at every width — which is what `.map-filters
-     { display: contents }` below buys, and why the chip gap has to be declared
-     here rather than on the box that used to supply it.
-
-     This was a 1250px-only treatment until 2026-07-30, and having it apply only
-     under that width was most of why the strip thrashed rather than degraded.
-     `.map-ranges`, `.map-filters` and `.map-ground` were three flex *items*
-     above 1250, so each broke to a fresh line as a unit: at 1440px the four
-     range chips sat alone on row one with ~600px of slack beside them, because
-     the chip group was 814px wide and could not fit in what was left. Four rows
-     to hold what two would take. Below 1250 the same strip packed into two —
-     a narrower window producing a *shorter* HUD, 193px at 1400 against 125px at
-     1200, which is a layout with no rule a reader could learn.
-
-     Now every chip, separator, range group and picker is an item in one run, so
-     each line fills before the next begins and height falls monotonically as
-     width grows. Grouping survives because `.map-filter-sep` is a real element
-     and simply becomes an item too. */
   gap: 0.45rem 0.85rem;
   padding: 0.85rem 1.1rem;
-  /* The clock is painted over this row, not laid out in it (`.map-status` is
-     absolutely positioned), so the chips had no idea it was there and ran
-     straight under it: from ~1220px to ~1330px wide — 1280 among them — the
-     genocide chip and the time printed through each other. Reserving the
-     clock's measured width makes the row break before it reaches the time
-     instead. `--map-status-w` comes from the island; the fallback is only for
-     the first frame. */
-  padding-right: calc(var(--map-status-w, 6.5rem) + var(--space-sm));
   pointer-events: none;
 
   > * { pointer-events: auto; }
@@ -3438,10 +3461,14 @@ body.map-page > footer .footer-social a {
   &.is-on { color: var(--map-ink); background: var(--map-raised); }
 }
 
-/* Dissolved, so the chips pack into the HUD's own wrap run instead of breaking
-   as one indivisible 814px block. The phone block restates `display: flex` —
-   there the chips get a column inside the panel and the box has to exist. */
-.map-filters { display: contents; }
+/* A box, which is the base it should always have had. It was `display:
+   contents`, dissolving the group so its chips packed into the top strip's wrap
+   run instead of breaking as one indivisible 814px block — and both layouts that
+   survive want the box back: the phone gives the chips a column inside the
+   panel, the rail gives them a column in the rail. So the display is stated once
+   here and each layout says only how it flows, rather than each of them having
+   to restate `display: flex` to escape a dissolve neither wanted. */
+.map-filters { display: flex; }
 
 /* A chip is a toggle and a legend at once, so both jobs have to be legible.
 
@@ -3602,31 +3629,24 @@ body.map-page > footer .footer-social a {
    is shading the land. Both were on the strip until 2026-07-30 and between them
    they cost two of its four rows — see `.map-hud` above for the measurements.
 
-   It hangs under the *strip*, so it can never cover a control, and is aligned
-   horizontally to the button that opened it — `--legend-x` is measured and
-   clamped by `anchorLegend` in the island, because the button is the last item
-   in a wrap run and lands somewhere different at every width. The fallback is
-   the left gutter; the panel is never off-screen even if the script that
-   measures it never runs. Sized to its contents up to a readable measure: the
-   note is a sentence and wants a column, not the width of the canvas. */
+   It is in flow in both surviving layouts, and that removed a measurement. It
+   used to be a floating panel — `position: absolute`, `top: 100%` so it hung
+   under the strip and could never cover a control, `left: var(--legend-x)` from
+   `anchorLegend` in the island, because the button that opens it is the last
+   item in a wrap run and landed somewhere different at every width. That wrap
+   run was the top strip's. In the rail a column grows downward by definition, so
+   the panel is simply the next block; on the phone the box is `display:
+   contents` and dissolves into the panel the reader already opened. No box, no
+   shadow, no blur and nothing to align: what said "this is over something" is
+   gone because it is not. */
 .map-hud-legend {
   display: none;
-  position: absolute;
-  top: 100%;
-  left: var(--legend-x, 1.1rem);
-  z-index: 4;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.7rem;
-  width: max-content;
-  max-width: min(24rem, calc(100% - 2.2rem));
-  margin-top: 0.35rem;
-  padding: 0.75rem 0.85rem;
-  background: color-mix(in srgb, var(--map-inset) 96%, transparent);
-  border: 1px solid var(--map-line);
-  border-radius: 3px;
-  box-shadow: 0 16px 40px rgb(0 0 0 / 0.5);
-  backdrop-filter: blur(8px);
+  gap: 0.45rem;
+  /* Closes the rail's own 0.9rem gap under the disclosure, so the panel reads as
+     the button's continuation rather than as the next item in the column. */
+  margin-top: -0.35rem;
 
   &.is-open { display: flex; }
 }
@@ -3820,31 +3840,33 @@ body.map-page > footer .footer-social a {
 
 .map-ground-source { color: var(--map-ink-dim); }
 
+/* The clock has one home now, and it is the head of the rail below.
+
+   It used to have two. On the top strip it was `position: absolute` in the
+   HUD's top-right — painted *over* the row rather than laid out in it, so it
+   never took width from the chips, and the chips in turn had no idea it was
+   there and ran straight under it: from ~1220px to ~1330px the genocide chip and
+   the time printed through each other. The fix was `--map-status-w`, a measured
+   width the island published so every row of the strip could reserve it as
+   `padding-right` — 116px of every line to clear something that only ever sat on
+   the first. Both the measurement and the reservation are gone with the layout
+   that needed them; the phone drops the clock outright, because the scrubber's
+   readout carries the same instant in the same frame with more of it. */
 .map-status {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 3;
-  /* Aligned to the HUD's first row by construction, not by a tuned padding.
-     Same padding as `.map-hud`, a box exactly as tall as that row, and the text
-     centred in it — so the clock sits on the row's centre line for the same
-     reason every chip does. The old `0.95rem` was 2.59px high against every
-     element on the row. */
-  display: flex;
-  align-items: center;
-  min-height: calc(var(--map-hud-row-h) + 0.85rem * 2);
-  padding: 0.85rem 1.1rem;
-  font-size: var(--size-xs);
-  color: var(--map-ink-muted);
   font-variant-numeric: lining-nums tabular-nums;
-  pointer-events: none;
 }
 
 /* --- The HUD as a column ---------------------------------------------------
 
-   Same DOM, different axis. `body.map-wide` is set by the island when it has
-   measured enough surplus width for one (`syncWide`), and everything below is
-   the strip re-read as a rail.
+   Same DOM, different axis. `body.map-wide` is the island's name for "not a
+   phone" — it is set from the same 900px breakpoint the block at the foot of
+   this file uses, and everything below is the strip re-read as a rail.
+
+   It is a class rather than a media query for one reason: the whole of this
+   chrome is built by `situation-map.ts`, so there is no server-rendered HUD for
+   a stylesheet to lay out on its own, and the island has to answer the same
+   question anyway to decide which parent the money readout hangs from. One
+   threshold, quoted in both places (`NARROW_PX`).
 
    Why re-read rather than rebuild: the strip's markup was already the right
    markup. Its problem was never what it contained, it was that a row has one
@@ -3856,11 +3878,11 @@ body.map-page > footer .footer-social a {
    which was evicted from the strip for exactly that).
 
    It also ends three width negotiations at once, and each of them was a bug
-   this stylesheet still carries the scar of: the clock's measured
-   `padding-right` reservation (`--map-status-w`), the money ribbon's swept
-   `flex-basis: 34rem`, and the ≤1300px cull of the two comparison currencies.
-   None of them can arise in a column — a rail is the same width at 1400px as at
-   3440, so there is nothing left for width to break. */
+   this stylesheet carried the scar of until the strip stopped being a desktop
+   layout: the clock's measured `padding-right` reservation (`--map-status-w`),
+   the money ribbon's swept `flex-basis: 34rem`, and the ≤1300px cull of the two
+   comparison currencies. None of them can arise in a column — a rail is the same
+   width at 1400px as at 3440, so there is nothing left for width to break. */
 body.map-wide .map-hud {
   position: relative;
   grid-column: 3;
@@ -4004,7 +4026,6 @@ body.map-wide .map-ranges {
    has no such problem, and dissolving the group here would only cost the ability
    to order it as one. */
 body.map-wide .map-filters {
-  display: flex;
   flex-direction: column;
   align-items: stretch;
   gap: 0.1rem;
@@ -4397,26 +4418,6 @@ body.map-page.map-wide.map-aside-off {
   vector-effect: non-scaling-stroke;
 }
 
-/* In flow, under its button, at the rail's own width. It is a floating panel on
-   the strip because the strip has no room to grow downward without covering a
-   control; a column grows downward by definition. So the box, the shadow and
-   the blur all go — they were saying "this is over something", and it is not —
-   and `anchorLegend`'s measured `--legend-x` stops applying, since `left` does
-   nothing to a static box. */
-body.map-wide .map-hud-legend {
-  position: static;
-  width: auto;
-  max-width: none;
-  margin-top: -0.35rem;
-  padding: 0;
-  gap: 0.45rem;
-  background: none;
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  backdrop-filter: none;
-}
-
 /* Pushed to the foot of the rail, which is a grouping decision rather than a
    spacing one. Everything above it either changes the map or reports on it;
    this explains it, and it is the only thing here a reader stops needing once
@@ -4626,17 +4627,12 @@ body.map-wide .map-key {
    that. `.map-timeline-live` ("back to live") lives here too and is reachable
    the same three ways.
 
-   **This defers the money ribbon too, and that was the decision rather than an
-   oversight.** The row is one flex line holding four things — `.map-markets`,
-   the clock, the Hijri date and the live button — and this row is the ribbon's
-   only home *in this layout*: the money block in the instrument rail exists
-   only under `body.map-wide`, and this rule is what every narrower desktop
-   gets. Sharing the line means sharing the height: keeping the tally
-   glanceable at rest keeps the 22px, and the 22px was the whole point. So the
-   ribbon is a hover readout here as well. It survives the trade better than
-   most things would — every exchange on it is also a mark on the map with a
-   card behind it, which is the same test the `layers` disclosure has to pass:
-   nothing hidden that the reader cannot get to.
+   It used to defer the money ribbon with them, and that was a decision rather
+   than an oversight: this row was the ribbon's only home on a desktop narrow
+   enough to miss the instrument rail, and sharing the line meant sharing the
+   height. That layout is gone — above 900px the money block is always in the
+   rail — so what this hides is the readout and the live button, which is what it
+   was written for.
 
    Pointer-capable and non-phone only. A phone has no hover and the phone block
    already drops `.map-status`, so hiding this there would remove the clock and
@@ -6520,33 +6516,6 @@ body.doc-page .chart {
   time { color: var(--map-ink-dim); }
 }
 
-/* --- The chrome strip, once the width stops paying for it ---
-   Between the phone layout and a wide desktop there is a band — laptops at
-   1152, 1280, 1366 — where the strip is still the desktop's (a rail beside the
-   map, chips across the top) but no longer has the width that made it
-   affordable. At 1200px the HUD gets 719px of a 1200px window: the rail takes
-   336 and the clock reserves another 116.
-
-   Most of what this breakpoint used to do is now unconditional — `.map-filters`
-   is dissolved in the base rule and `.map-key` is off the strip entirely, so
-   the "groups stop being boxes" treatment applies at every width. What is left
-   here is the one thing that is genuinely a width judgement:
-
-   ── The clock, because the scrubber already is one ─────────────────────────
-   `.map-status` prints "22:33 Makkah" over the HUD's right edge; the scrubber's
-   readout prints "live · Mon 27 Jul 22:33 Makkah · 13 Safar 1448" across the
-   foot. Same instant, same frame, more of it. The phone block drops the clock
-   for exactly this reason and the reasoning does not start being true at 900px.
-   What it buys is out of proportion to what it costs: the clock is painted over
-   the strip rather than laid out in it, so the HUD reserves its measured width
-   as `padding-right` on *every* row to stop the chips running under it — 116px
-   of every line, to clear something that only ever sits on the first. */
-@media (max-width: 1250px) {
-  .map-status { display: none; }
-
-  .map-hud { padding-right: var(--space-md); }
-}
-
 /* --- The map on a phone ---
 
    The desktop layout is a rail beside a map with a strip of chrome across the
@@ -6687,14 +6656,11 @@ body.doc-page .chart {
     &.is-open { display: contents; }
   }
 
-  /* Inside the panel the chips have a column to themselves, so they can be
-     spaced for thumbs rather than crammed onto a strip.
-
-     `display: flex` is restated, not inherited: the base rule dissolves this box
-     with `display: contents` so its chips can pack into the HUD's own wrap run.
-     Without this line the panel would open onto chips that had escaped it. */
+  /* Inside the panel the chips have room to themselves, so they can be spaced
+     for thumbs rather than crammed onto a strip: a wrap run rather than the
+     rail's column, which is the only thing this layout has to say about the box.
+     The display is the base rule's. */
   .map-filters {
-    display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.35rem 1.1rem;

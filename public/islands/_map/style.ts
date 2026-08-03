@@ -837,9 +837,11 @@ export const TILE_PX = 512
  * **1.15 since 2026-08-02, and the reason is that the top of the canvas is now
  * empty.** The money readout was a bar across the head of the map — 34px of
  * strip over a 1.4rem scrim overhang — and it sat exactly on the disc's
- * northern cap. It has moved into the instrument rail, so in the wide layout
+ * northern cap. It has moved into the instrument rail, so on a desktop
  * *nothing* covers the top of the globe: `body.map-wide .map-hud::after` turns
- * the strip's own scrim off, and there is no bar left to draw one.
+ * the strip's own scrim off, and there is no bar left to draw one. The strip is
+ * the phone's layout since 2026-08-03, where the canvas is the whole window and
+ * this number is the one that decides the fit either way.
  *
  * Measured off the built map at 2361x984, canvas 1577x984: the rendered
  * diameter was **959px, 97.4% of the canvas height**, with 13px of clear space

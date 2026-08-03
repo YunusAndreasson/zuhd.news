@@ -88,6 +88,7 @@ import {
   type MapPoint,
   type MetricIndexEntry,
   type MetricPayload,
+  NARROW_PX,
   type ThermalEvent,
 } from './_map/types'
 import { detailKey } from '@shared/gdacs'
@@ -947,45 +948,23 @@ export function mount(
     '</svg><span data-for="wide">key</span><span data-for="narrow">layers</span>'
 
   /**
-   * The legend hangs under the strip, aligned to the button that opened it.
+   * The legend is in flow in both layouts, which is what removed a measurement.
    *
-   * It cannot be a child of the button — it has to sit inside `.map-hud-more`
-   * so the phone can dissolve it into its own panel — and the button's position
-   * is not a constant: it is the last item in a wrap run, so it lands anywhere
-   * from x=911 at 1400px to the middle of row three at 920px. Pinned to the
-   * HUD's right edge (the first version of this) the panel opened 150px clear of
-   * the control that summoned it, with no horizontal overlap at all, which reads
-   * as two unrelated things happening at once.
-   *
-   * So the island measures, the way it already does for `--map-status-w`. `top`
-   * stays `100%` — the whole strip, not the button's row — so the panel can
-   * never cover a control, and only the horizontal alignment is computed. It is
-   * clamped into the HUD on both sides, because the button can sit near the
-   * right edge and the panel is up to 24rem wide.
-   *
-   * No-op on the phone, where the box is `display: contents` and has no
-   * geometry of its own.
+   * It used to be a floating panel hung under the top strip and aligned to the
+   * button that opened it — the button is the last item in a wrap run and landed
+   * anywhere from x=911 at 1400px to the middle of row three at 920px, so
+   * `anchorLegend` measured it and published `--legend-x`, having found that
+   * pinning the panel to the HUD's right edge opened it 150px clear of the
+   * control that summoned it. That wrap run was the top strip's, and the strip is
+   * the phone's layout now: on a phone the box is `display: contents` and
+   * dissolves into the panel the reader opened, and in the rail a column grows
+   * downward by definition, so the panel is simply the next block. Nothing left
+   * to measure and nothing left to clamp.
    */
-  const anchorLegend = () => {
-    if (!legend.offsetParent) return
-    const b = moreBtn.getBoundingClientRect()
-    const h = hud.getBoundingClientRect()
-    const gutter = 12
-    const max = Math.max(gutter, h.width - legend.offsetWidth - gutter)
-    legend.style.setProperty(
-      '--legend-x',
-      `${Math.round(Math.min(Math.max(gutter, b.left - h.left), max))}px`,
-    )
-  }
-
   const setMoreOpen = (open: boolean) => {
     more.classList.toggle('is-open', open)
     legend.classList.toggle('is-open', open)
     moreBtn.setAttribute('aria-expanded', String(open))
-    // After the class, never before: the panel is `display: none` until then and
-    // `offsetWidth` on a box with no frame is 0, which would clamp it to the
-    // gutter every time.
-    if (open) anchorLegend()
   }
 
   moreBtn.addEventListener('click', () => {
@@ -1307,51 +1286,43 @@ export function mount(
   container.append(feed.element)
 
   /**
-   * Is there enough width to spare for an instrument rail?
+   * Which of the two layouts this viewport gets.
    *
-   * Measured, not asked of a media query, because the question is not about the
-   * viewport's width — it is about what is left of it once the story rail and
-   * the planet have taken theirs, and one of those two is a *height*. The globe
-   * is `min(canvasW, canvasH)` and the canvas is as tall as the window, so the
-   * surplus is `viewportW − railW − viewportH`, and every pixel of it is free in
-   * the strict sense: spending it cannot make the Earth one pixel smaller,
-   * because the Earth is not bound by width until the canvas is square. At 1920
-   * that is 577px the planet is not using and cannot use.
+   * There are two, and there used to be three. The instrument rail was gated on
+   * *measured surplus width* — `viewportW − railW − viewportH ≥ 18rem`, on the
+   * argument that the globe is `min(canvasW, canvasH)` and so width taken from
+   * the canvas costs the Earth nothing until the canvas is square. The
+   * arithmetic was right and what it bought was a third layout: every desktop
+   * that failed the test fell back to a strip of chips across the top of the map
+   * with the money readout exiled to the scrubber, so which side the controls
+   * stood on depended on the reader's window shape. Removed — the rail is the
+   * desktop layout at every desktop width. The surplus argument survives it
+   * intact and is now the argument for `--map-aside-w`'s cap rather than for a
+   * gate: what the rail takes is what its contents want, and the remainder goes
+   * back to the map as margin.
    *
-   * A media query cannot express it. The condition mixes a width, a height and a
-   * rem-valued column, so the aspect ratio that satisfies it moves with the
-   * viewport's height — 1.99 at 600px tall, 1.74 at 800, 1.46 at 1295. Every
-   * fixed threshold tried either excluded 1920×1080, which clears the natural
-   * one by 0.03, or admitted a 5:4 monitor, where the rail would come out of the
-   * globe. The rule is arithmetic, so it is written as arithmetic and the
-   * stylesheet is handed the answer as a class.
-   *
-   * The surplus is *not* what the rail then takes — it is capped at the width
-   * its own contents want (see `--map-aside-w`), and the rest stays as margin
-   * around the planet. This is only the gate: is there enough spare width that
-   * a rail costs the map nothing at all?
-   *
-   * `RAIL_MIN` is the floor the stylesheet's clamp uses: below it the prayer
-   * strip's five columns start to collide, and a rail that cannot hold its
-   * widest block is worse than the strip it replaced. The width gate under it
-   * is belt and braces — a landscape phone can produce a surplus this large and
-   * wants the phone layout regardless of the arithmetic.
+   * So the only question left is the one the stylesheet was already asking — is
+   * this a phone? — and 901px is `style.css`'s own phone breakpoint, quoted here
+   * rather than re-derived. A rail 18rem wide beside a 336px story rail is not a
+   * bargain a 390px screen can make, which is what the `max-width: 900px` block
+   * exists to say.
    *
    * **It runs here, before the map is constructed**, and that ordering is the
    * whole reason this block sits between the rail and the camera rather than
    * beside `onResize` with the other measurements. `fitZoom` reads
    * `mapEl.clientWidth`, so the opening zoom — which is also `minZoom` — is
    * derived from whatever the canvas measured at that instant. Setting the class
-   * afterwards would open every wide screen at a zoom fitted to a canvas a rail
-   * too wide, and since it is the floor, the reader could not pull back out of
-   * it.
+   * afterwards would open every desktop at a zoom fitted to a canvas a rail too
+   * wide, and since it is the floor, the reader could not pull back out of it.
+   *
+   * A class rather than the media query alone because the whole of this chrome
+   * is built by this island — there is no server-rendered HUD for a stylesheet
+   * to lay out on its own — and because `placeMarketStrip` has to answer the
+   * same question about which parent the readout hangs from.
    */
-  const RAIL_MIN = 288
+  const wideQuery = matchMedia(`(min-width: ${NARROW_PX + 1}px)`)
   const syncWide = () => {
-    const box = container.getBoundingClientRect()
-    const wide =
-      box.width >= 1100 && box.width - feed.element.offsetWidth - box.height >= RAIL_MIN
-    document.body.classList.toggle('map-wide', wide)
+    document.body.classList.toggle('map-wide', wideQuery.matches)
   }
   syncWide()
 
@@ -4663,24 +4634,23 @@ export function mount(
   /**
    * Publish the two chrome sizes that CSS cannot measure for itself.
    *
-   * Both were magic numbers, and both had already drifted:
-   *
-   * `--map-scrub-h` — the scrubber's real height. "Whole world" sat at a
-   * hardcoded `bottom: 5.5rem`, which cleared the rail as it stood the day it
-   * was written. The scrubber has since grown a markets strip and a money
+   * It was a magic number, and it had already drifted: "whole world" sat at a
+   * hardcoded `bottom: 5.5rem`, which cleared the scrubber as it stood the day
+   * it was written. The scrubber has since grown a markets strip and a money
    * ribbon that *wraps*, so its height runs from **97px at 1920 to 228px at
    * 360**, and 88px cleared none of them: the button landed on the time readout
    * and covered the Hijri date outright at every desktop size.
    *
-   * `--map-status-w` — the clock's. It is positioned over the HUD rather than
-   * in it, so the filter row happily ran underneath: between about 1220px and
-   * 1330px — 1280 among them — "genocide" and the time printed through each
-   * other, which is the one chip on this map that must never be unreadable.
+   * Measured rather than guessed because it depends on the rendered text — the
+   * ribbon's wrap point moves with the viewport. A number typed into the
+   * stylesheet is right only for the layout it was typed against.
    *
-   * Measured rather than guessed because both depend on the rendered text: the
-   * ribbon's wrap point moves with the viewport, and the clock's width moves
-   * with the reader's font size. A number typed into the stylesheet is right
-   * only for the layout it was typed against.
+   * There were two. `--map-status-w` published the clock's width, because on the
+   * top strip the clock was painted *over* the HUD rather than laid out in it
+   * and every row had to reserve that much `padding-right` or the chips ran
+   * underneath — which is how "genocide" and the time printed through each other
+   * between about 1220px and 1330px. The strip is the phone's layout now and the
+   * phone has no clock, so there is nothing left to clear.
    *
    * **On `body`, not on the container** (2026-07-30). `.map-sheet` is appended
    * to `document.body` by `createSheet`, so a property published on `.map-root`
@@ -4692,9 +4662,9 @@ export function mount(
    */
   const measureChrome = () => {
     const scrub = timeline?.element
-    const root = document.body
-    if (scrub) root.style.setProperty('--map-scrub-h', `${Math.round(scrub.offsetHeight)}px`)
-    root.style.setProperty('--map-status-w', `${Math.round(status.offsetWidth)}px`)
+    if (scrub) {
+      document.body.style.setProperty('--map-scrub-h', `${Math.round(scrub.offsetHeight)}px`)
+    }
   }
 
   /**
@@ -4703,7 +4673,7 @@ export function mount(
    * Two parents, and the choice has to be re-made rather than made once: the
    * scrubber is rebuilt from scratch whenever a refresh moves the window, and a
    * rebuild hands `lead` to the *new* head — so a strip that had been moved to
-   * the top bar would silently return to the scrubber the first time a story
+   * the rail would silently return to the scrubber the first time a story
    * arrived, taking the whole width negotiation back with it. Re-placing after
    * every rebuild and every resize is the only version of this that stays true.
    *
@@ -4716,7 +4686,7 @@ export function mount(
    * over the scrubber at the foot.
    */
   const placeMarketStrip = () => {
-    const wide = document.body.classList.contains('map-wide')
+    const wide = wideQuery.matches
     if (wide) moneyBox.append(marketStrip.element)
     else timeline?.head.prepend(marketStrip.element)
     // The dock is the *rail*, not the box the strip sits in. `placePanel`
@@ -4733,7 +4703,6 @@ export function mount(
   const watchChrome = () => {
     chromeObserver.disconnect()
     if (timeline?.element) chromeObserver.observe(timeline.element)
-    chromeObserver.observe(status)
     measureChrome()
   }
   watchChrome()
@@ -4741,9 +4710,10 @@ export function mount(
   const onResize = () => {
     // Before `map.resize()`, never after: the class decides whether there is a
     // third grid column, so the canvas the resize measures is only the right one
-    // once the layout has settled. Reversed, every resize across the threshold
-    // sizes the drawing buffer to the previous layout and the map draws into a
-    // frame that is a rail too wide until the next resize event happens to come.
+    // once the layout has settled. Reversed, every resize across the phone
+    // breakpoint sizes the drawing buffer to the previous layout and the map
+    // draws into a frame that is a rail too wide until the next resize event
+    // happens to come.
     syncWide()
     placeMarketStrip()
     // MapLibre sizes its drawing buffer from the container, and nothing else
@@ -4770,9 +4740,6 @@ export function mount(
     // the view the reader is already looking at and not just to the next reset.
     map.setMinZoom(HOME_VIEW.zoom)
     syncResetButton()
-    // The strip rewraps, so the button the legend is aligned to has moved. Only
-    // matters while it is open, which is what `anchorLegend` checks.
-    if (legend.classList.contains('is-open')) anchorLegend()
   }
   window.addEventListener('resize', onResize, { passive: true })
 
@@ -4783,10 +4750,10 @@ export function mount(
    * same statement as "this element changed size" — a page zoom, a virtual
    * keyboard, a browser UI that resizes the tab without a resize event, all
    * move this box without necessarily firing it. That gap is expensive here in
-   * a way it was not before: the layout now *branches* on the box's width
-   * against its height (`syncWide`), so a missed event does not merely leave a
-   * stale measurement, it leaves the wrong layout — the rail standing in a
-   * window with no room for it, or absent from one that has room.
+   * a way it was not before: the layout *branches* on the box (`syncWide`,
+   * `placeMarketStrip`), so a missed event does not merely leave a stale
+   * measurement, it leaves the wrong layout — a rail standing in a window with
+   * no room for it, or a phone with the money readout in two places.
    *
    * Safe against the obvious loop: this observes `.map-root`, which is `inset:
    * 0` on a fixed parent and therefore sized by the viewport alone. Nothing
@@ -4802,12 +4769,11 @@ export function mount(
    * Built here rather than beside the rails they bound, because what a seam
    * needs is not either rail — it is `onResize`, the one function that knows
    * everything a width change invalidates: the drawing buffer, the camera's
-   * floor, the chrome measurements and, through `syncWide`, whether the
-   * instrument rail should exist at this width at all. Dragging the story rail
-   * wide enough eats the surplus the instrument rail is made of, so a drag on
-   * the left can legitimately fold the right away; running the same path a
-   * window resize runs is what makes that come out right instead of leaving one
-   * rail sized for a layout the other has left.
+   * floor and the chrome measurements. Dragging the story rail wide enough eats
+   * into what the instrument rail leaves the canvas, so a drag on the left is a
+   * layout change on the right; running the same path a window resize runs is
+   * what makes that come out right instead of leaving one rail sized for a
+   * layout the other has left.
    *
    * `edge()` reads the seam's live position rather than the rail's width,
    * because the two are only equal when the reader has not dragged yet — and a
@@ -4923,10 +4889,9 @@ export function mount(
     clearPrewarmedResources()
     container.replaceChildren()
     container.classList.remove('map-root')
-    // `measureChrome` writes these onto `body` so the sheet — which lives
-    // outside the container — can read them. Teardown used to be free because
-    // clearing the container took them with it; now it has to say so.
+    // `measureChrome` writes this onto `body` so the sheet — which lives
+    // outside the container — can read it. Teardown used to be free because
+    // clearing the container took it with it; now it has to say so.
     document.body.style.removeProperty('--map-scrub-h')
-    document.body.style.removeProperty('--map-status-w')
   }
 }

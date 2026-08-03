@@ -61,21 +61,20 @@ rung below it went up one step on 2026-07-27, and `--size-md` (18px) is new.
   `.map-feed-item` gave back 0.2rem of vertical padding and tightened both
   leadings, so the rail row went from ~60px to ~58px while its headline grew
   14.4 → 16px and its dateline 12 → 14px. More readable *and* denser.
-- **The HUD folds when width stops paying for it** (`@media (max-width: 1250px)`).
-  Between the phone layout and a wide desktop, the strip is still the desktop's
-  but no longer has the room that made it affordable: at 1200px it gets 719px of
-  the window, because the rail takes 336 and the clock reserves another 116.
-  **One thing goes now** — most of what this block used to do became
-  unconditional on 2026-07-30 (see "The strip is one continuous wrap run" and
-  "The strip carries controls" above), so `.map-filters` is dissolved in the base
-  rule and `.map-key` is off the strip entirely. What is left is the **clock**,
-  which is the one genuine width judgement: the scrubber readout carries the same
-  instant in the same frame with more of it, and the clock is *painted over* the
-  strip rather than laid out in it, so the HUD reserves its measured width as
-  `padding-right` on every row to clear something that only sits on the first.
-  The phone block must restate `display: flex` on `.map-filters` — every phone
-  width also matches the base rule that dissolved it, and without the restatement
-  the panel opens onto chips that have escaped it.
+- **The map's HUD has two layouts and one breakpoint** (2026-08-03). It had three
+  and two. `@media (max-width: 1250px)` existed for the band between the phone
+  and a screen wide enough for the instrument rail — laptops at 1152, 1280, 1366,
+  where the strip was still the desktop's but at 1200px got 719px of the window
+  because the rail took 336 and the clock reserved another 116 — and it hid the
+  **clock**, on the argument that the scrubber readout carries the same instant
+  in the same frame with more of it. That band is gone: the rail is the desktop
+  layout at every width above 900px, so the block would now hide the rail's own
+  head, and it is deleted along with the measured `padding-right` reservation it
+  was compensating for. `.map-rail-base` steps down to 17rem below 1200px
+  instead, which is a width judgement about the *story* column rather than about
+  a piece of chrome. One threshold now — `NARROW_PX`, 900 — quoted by the island
+  and the stylesheet, and `.map-filters` states `display: flex` in each of the
+  two layouts rather than escaping a base rule that dissolved it.
 - Sizes are not pinned by a test. `colour-system.test.js` covers contrast, and
   the contrast of every rung was checked in a browser at the sizes above; the
   quietest ink now measures 4.91:1 (the isnad) against a 4.5:1 floor.
