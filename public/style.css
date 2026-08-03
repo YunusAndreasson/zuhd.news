@@ -4618,6 +4618,29 @@ body.map-wide {
     &:only-child { margin-left: auto; }
   }
 
+  /* The line that is not there, drawn.
+
+     `.map-markets-age` put the date in the right column and left 140px of
+     nothing where the shape belongs — and at the 24h step four rows of nine
+     were that shape, which reads as content that failed to arrive however true
+     each row is. A dotted rule says the opposite: this was measured, and the
+     answer for this window is nothing.
+
+     `--map-line` and a 1px height, so it is the same weight and the same ink as
+     every other rule in this column — the gaps in the dashes are what separate
+     it from a flat sparkline, which is a solid stroke in a data colour. No
+     literal: the dashes are a repeating gradient over the token. */
+  & .map-markets-nil {
+    flex: 1 1 auto;
+    min-width: 3rem;
+    height: 1px;
+    background: repeating-linear-gradient(
+      to right,
+      var(--map-line) 0 2px,
+      transparent 2px 5px
+    );
+  }
+
   /* A caption, and the reading it captions — two levels, not two layouts.
 
      Every other row on this rail is labelled with something that fits the
@@ -4650,6 +4673,18 @@ body.map-wide {
        22, so six of them spent 300px saying what the block above says in 110.
        The floor is per *row*, and these rows have two lines to put it in. */
     min-height: 0;
+
+    /* Which line belongs to which question — asymmetric padding, and it is the
+       whole of the grouping.
+
+       A two-line row set with equal space above and below sits exactly as far
+       from its own trend as from the next row's caption, so the eye has nothing
+       to go on and reads `Wildfire` as the label of Bitcoin's line. Proximity
+       decides grouping before anything else does, and here it was saying the
+       wrong thing. Tight above, loose below: ~2px inside a row against ~9px
+       between them. The hover box covers both lines, which is the same
+       statement made a second way. */
+    padding-block: 0.1rem 0.4rem;
   }
 
   /* The question, and its probability, on one line; the trend on the next.
@@ -4692,7 +4727,9 @@ body.map-wide {
     font-variant-caps: normal;
     font-weight: 400;
     letter-spacing: 0;
-    line-height: 1.3;
+    /* Tight, because every unit of leading here is space between a question and
+       its own answer — see the padding rule on the summary. */
+    line-height: 1.15;
     text-overflow: ellipsis;
     white-space: nowrap;
   }

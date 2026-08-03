@@ -25,7 +25,7 @@ import { el } from '../_dom'
 import { appPrompt } from '../_app-prompt'
 import { createChart, type ChartOptions } from '../_chart'
 import * as fmt from './format'
-import { nisab, type TickerEntry } from './markets'
+import { nisab, ribbonPoints, sparkInput, type TickerEntry } from './markets'
 import { windowPoints } from './series-window'
 import type {
   ConflictEvent,
@@ -627,13 +627,57 @@ export function createSheet(): Sheet {
       const nodes: Node[] = []
       nodes.push(kicker([entry.group, entry.asOf ? fmt.shortDate(entry.asOf) : null]))
       nodes.push(el('h2', 'island-sheet-title', `${entry.flag} ${entry.name}`.trim()))
+
+      /**
+       * The hero states the same change, over the same window, in the same
+       * units as the row that opened it — and until a browser was pointed at it
+       * it stated none of the three.
+       *
+       * Measured on the live page: the rail printed `+35 pts` for a ceasefire
+       * market and the card it opened printed **`+140.00%`** in green. Two
+       * numbers about one thing, disagreeing about the unit (a percentage of a
+       * percentage — the error `ribbonPoints` exists to end), about the period
+       * (`entry.pct` is last-against-previous, while the row and the chart below
+       * both draw the window the reader selected), and about whether a war
+       * becoming likelier is good news.
+       *
+       * So it is derived from `sparkInput` — the rail's own arithmetic, over the
+       * card's own window — rather than read off a field that answers a
+       * different question.
+       */
+      const days = Math.max(rangeDays ?? CARD_MIN_DAYS, CARD_MIN_DAYS)
+      const drawn = sparkInput([entry], days)
+      const ends = drawn?.ends
+      const windowPct =
+        ends && ends[0] !== 0 ? ((ends[1] - ends[0]) / Math.abs(ends[0])) * 100 : entry.pct
+      const focal =
+        entry.unit === '%' && ends ? ribbonPoints(ends[1] - ends[0]) : fmt.pctChange(windowPct)
+      /**
+       * Neutral for the two blocks whose direction is not a verdict.
+       *
+       * Green and red mean good and bad. On a currency basket that is a
+       * convention; on *US invade Iran* it is the card telling a reader that a
+       * likelier war is good news — the objection the rail already answers by
+       * tinting those two blocks from the topic palette instead. The card has no
+       * hue to spend on identity, so it spends none on direction either: the
+       * sign is in the figure and the shape is in the chart below.
+       */
+      const verdict = entry.group === 'odds' || entry.group === 'attention'
       nodes.push(
         hero(
-          fmt.pctChange(entry.pct),
-          [entry.label, Number.isFinite(entry.level) ? fmt.indexLevel(entry.level) : null, entry.unit]
+          focal,
+          [
+            // The label is dropped where it is merely the name shortened — a
+            // question repeated under its own heading is not a second fact.
+            entry.name.startsWith(entry.label) ? null : entry.label,
+            Number.isFinite(entry.level) ? fmt.quoteLevel(entry.level, entry.unit) : null,
+            // `%` is already on the level; anything else says what the level is
+            // measured in and is worth the four characters.
+            entry.unit === '%' ? null : entry.unit,
+          ]
             .filter(Boolean)
             .join(' · '),
-          entry.pct < 0 ? 'neg' : 'pos',
+          verdict ? undefined : windowPct < 0 ? 'neg' : 'pos',
         ),
       )
 

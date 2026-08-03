@@ -1800,8 +1800,20 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
        * period you asked about. That is the honest reply to "what did oil do
        * today" when the last print is a week old, and it is strictly more than
        * the confident wrong percentage it replaces.
+       *
+       * The age alone was not enough, which a browser said and no measurement
+       * could. At the 24h step four rows of the nine — straits, brent, vix and
+       * the 10-year — carried a level, a hundred and forty pixels of nothing,
+       * and a date. Four holes in a column of lines reads as content that
+       * failed to arrive, however true each row is. `.map-markets-nil` fills
+       * the slot with a *mark*: a dotted rule where the line would have been,
+       * in the ink the rail draws its rules in. A drawn absence is a
+       * measurement; a gap is a bug.
        */
-      host.replaceChildren(...(age ? [el('span', 'map-markets-age', age)] : []))
+      host.replaceChildren(
+        el('span', 'map-markets-nil'),
+        ...(age ? [el('span', 'map-markets-age', age)] : []),
+      )
       if (age) sparkNote = `, ${age} old`
       return null
     }
