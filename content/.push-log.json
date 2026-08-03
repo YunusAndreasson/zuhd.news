@@ -1,119 +1,5 @@
 [
   {
-    "timestamp": "2026-07-11T17:22:37.569Z",
-    "candidateCount": 13,
-    "candidates": [
-      {
-        "slug": "2026-07-10-bahamas-flamingo-air-crash-north-andros-ten-dead",
-        "title": "Bahamas Plane Crash Kills 10",
-        "category": "politics",
-        "eventCoverage": 123,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-11-trump-subpoenas-nyt-journalists-air-force-one",
-        "title": "US Subpoenas Times Reporters",
-        "category": "politics",
-        "eventCoverage": 106,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-11-ro-khanna-detained-israeli-settlers-west-bank-sinjil",
-        "title": "Settlers Detain US Congressman",
-        "category": "politics",
-        "eventCoverage": 75,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-11-us-housing-act-supply-shortage-prices",
-        "title": "Congress Passes Housing Act",
-        "category": "economy",
-        "eventCoverage": 74,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-11-malaysia-barisan-nasional-johor-win-anwar-setback",
-        "title": "Old Party Wins Johor Vote",
-        "category": "politics",
-        "eventCoverage": 56,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-11-gaza-yellow-line-osama-al-shafi-war-trauma",
-        "title": "Father Carries Son Toward Line",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-11-pakistan-pvara-mufti-taqi-usmani-crypto-shariah",
-        "title": "Regulator Meets Scholar On Crypto",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-11-empery-digital-bitcoin-treasury-sell-off",
-        "title": "Bitcoin Treasury Firm Turns Seller",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-11-tabbys-star-mystery-solved-giant-planet",
-        "title": "Star's Dimming Mystery Solved",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-11-wd1856b-planet-survived-white-dwarf-jwst",
-        "title": "Planet Survives Its Star's Death",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-11-ethereum-ai-agents-validator-bug-audit",
-        "title": "AI Flags Ethereum Crash Bug",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-11-robot-gram-classification-bacteria-touch",
-        "title": "Robot Reads Bacteria By Touch",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-11-prosodic-recitation-sensorimotor-brain-fnirs",
-        "title": "Recitation Rewires Reading Brain",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-07-10-bahamas-flamingo-air-crash-north-andros-ten-dead",
-      "title": "Bahamas Plane Crash Kills 10",
-      "category": "politics",
-      "body": "A Cessna crashed on approach, killing",
-      "eventCoverage": 123,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "Small plane crashes in Bahamas, killing 10, officials say",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 21
-    }
-  },
-  {
     "timestamp": "2026-07-11T22:22:02.790Z",
     "candidateCount": 11,
     "candidates": [
@@ -10329,6 +10215,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Trump pardons former Honduran president Hernández, convicted on drug trafficking charges",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 15
+    }
+  },
+  {
+    "timestamp": "2026-08-03T08:27:16.514Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-08-03-an-acquittal-answers-the-prosecution-not-the-conduct",
+        "title": "Court Acquits Brij Bhushan",
+        "category": "politics",
+        "eventCoverage": 104,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-03-forty-kilometres-from-the-canal-what-the-ground-is-made-of",
+        "title": "Quake Strikes Near Suez",
+        "category": "science",
+        "eventCoverage": 97,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-03-a-photograph-issued-by-the-captor-proof-of-life-as-a-message",
+        "title": "Junta Releases Suu Kyi Photos",
+        "category": "politics",
+        "eventCoverage": 66,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-03-the-last-continent-a-flyway-you-cannot-cull",
+        "title": "Bird Flu Reaches Last Continent",
+        "category": "science",
+        "eventCoverage": 39,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-03-a-weapon-travels-inward-pellet-rounds-reach-the-capital",
+        "title": "Opposition Demands Pellet Gun Answers",
+        "category": "politics",
+        "eventCoverage": 31,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-03-a-treasury-that-is-collateral-what-the-10-q-must-resolve",
+        "title": "Trump Media Bitcoin Nears Zero",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-03-a-surplus-you-cannot-spend-sanctions-substitution-as-plumbing",
+        "title": "India Exporters Eye Russia",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-03-a-port-does-not-close-it-becomes-uninsurable",
+        "title": "Russia Boosts Black Sea Escort",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-02-a-needle-instead-of-a-memory-measuring-what-kills-children",
+        "title": "Karachi Van Tests Infant Deaths",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-03-triage-not-chemistry-searching-a-space-of-ten-to-the-sixty",
+        "title": "AI Screen Finds Virus Inhibitors",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-03-not-your-keys-what-self-custody-removes-along-with-the-bank",
+        "title": "Coldcard Losses Drag Bitcoin",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-03-the-under-dosed-pill-a-fraud-recorded-as-disease",
+        "title": "Agency Seals Fake Drug Plant",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-08-03-forty-kilometres-from-the-canal-what-the-ground-is-made-of",
+      "title": "Quake Strikes Near Suez",
+      "category": "science",
+      "body": "tremors reached Cairo, Gaza and Jordan",
+      "eventCoverage": 97,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Magnitude 5.5 earthquake strikes near Suez, felt across Egypt, Israel, Jordan",
     "response": {
       "pushed": 1,
       "skipped": 0,
