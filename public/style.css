@@ -3987,11 +3987,62 @@ body.map-wide .map-ranges {
    into its wrap run and each line can fill before the next begins — a column
    has no such problem, and dissolving the group here would only cost the ability
    to order it as one. */
+/* Rows for the chips that carry a line, a compact run for the ones that do not.
+
+   The column used to be uniform, and four of its members had nothing to put in
+   the two thirds of the row a sparkline occupies — `thermal`, `conflict`,
+   `famine` and the `genocide` note are switches and nothing else. A full-width
+   row for a switch reserves a line's worth of space for a line that will never
+   be drawn, which is the empty-mark-column mistake one channel over and four
+   rows deep.
+
+   So the group wraps instead of stacking, and *width* is what says which kind
+   of row a member is: `flex: 0 0 100%` for anything with a trend (every story
+   category, and `disasters`), auto for a bare switch. A group label takes a
+   full line too, or it would sit inline with the first chip it names.
+
+   `column-gap` is wider than `row-gap` on purpose: the run's members are
+   separated by space alone, where the stacked rows have their own hover box to
+   separate them. */
 body.map-wide .map-filters {
-  flex-direction: column;
-  align-items: stretch;
-  gap: 0.1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.1rem 0.75rem;
 }
+
+body.map-wide .map-filters > .map-group-label,
+body.map-wide .map-filters > .map-filter-sep:not(.is-genocide),
+body.map-wide .map-filters > .map-filters-note,
+body.map-wide .map-filter[data-kind='category'],
+body.map-wide .map-filter[data-trend] { flex: 0 0 100%; }
+
+/* The shared label column, so a chip's line and a money row's line begin on
+   one edge. Declared before the compact-chip override below, which is more
+   specific and must come after it to read as the cascade intends. */
+body.map-wide .map-filter-label {
+  flex: 0 0 var(--map-row-label-w);
+  min-width: 0;
+  text-align: left;
+}
+
+/* A switch with no line: only as wide as it needs to be, and it keeps the row
+   treatment's padding so its hover box still reads as a target.
+
+   Its label drops the shared column too. `--map-row-label-w` exists to put
+   every *sparkline* on one edge, and a chip with no sparkline is paying a
+   76.8px box for an alignment it takes no part in — which set all four to an
+   identical 127px, one pixel too wide for two of them to share a line. Natural
+   width, and they pair up. */
+body.map-wide .map-filter[data-kind='layer']:not([data-trend]) {
+  flex: 0 0 auto;
+  margin: 0;
+
+  & .map-filter-label { flex: 0 0 auto; }
+}
+
+/* The genocide note travels with the run — same shape, same rhythm — and is
+   told apart from the four switches by the tick before it, not by sitting on a
+   line of its own. */
 
 /* A row, not a word: the whole line is the target, the glyph holds a column of
    its own so the marks align down the rail, and the hover state has somewhere
@@ -4060,12 +4111,6 @@ body.map-wide .map-filter.is-on .map-filter-spark { color: var(--cat, var(--map-
    line begin on one edge down the whole rail. Both families put a
    `.map-filter-mark` before it — the chips always had one, and the money rows
    gained one (empty where there is nothing to switch) for exactly this. */
-body.map-wide .map-filter-label {
-  flex: 0 0 var(--map-row-label-w);
-  min-width: 0;
-  text-align: left;
-}
-
 /* The money block's layer switch: the chips' glyph column, made pressable.
    Off is an ink step and a hollow mark, never opacity — the rule the filter
    chips already keep, and the one `colour-system.test.js` cannot measure. */
@@ -4186,8 +4231,22 @@ body.map-wide .map-filter-sep {
    condition rather than a feed.
 
    Only this separator goes; the one between the categories and the layers is
-   still doing its job. */
-body.map-wide .map-filter-sep.is-genocide { display: none; }
+   still doing its job.
+
+   **That reasoning expired on 2026-08-03 and the fence is back.** It rested on
+   the group being a column, and the four switches with no line are a wrap run
+   now — so `genocide` sits inline beside `famine`, at the same rhythm, and the
+   one thing that said it is not a fifth toggle was the column itself. This is
+   the strip's situation exactly, so it takes the strip's answer: the tick, kept
+   at its base width and height rather than stretched into the full-width rule
+   the stacked rows use. `is-genocide` is what picks it out, which is the reason
+   that class was given an identity rather than a position. */
+body.map-wide .map-filter-sep.is-genocide {
+  width: 1px;
+  height: 0.85rem;
+  margin: 0;
+  flex: 0 0 auto;
+}
 
 body.map-wide .map-key-item.is-layer-note {
   gap: 0.45rem;

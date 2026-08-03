@@ -4147,6 +4147,16 @@ export function mount(
     // same line twice, fifteen rows apart. What is left is what a reader means
     // by "what else is drawn over the news": four hazards and, past its own
     // separator, one determination.
+    /**
+     * The layer chips that can carry a trend, which is one of them.
+     *
+     * Read by two places that must agree — the markup, which gives a trended
+     * chip a full row and the rest a place in a wrap run, and `paintTrends`,
+     * which draws them. A chip laid out for a line nothing ever paints is the
+     * empty-mark-column mistake again, one channel over.
+     */
+    const TRENDED_LAYERS = new Set(['gdacs'])
+
     for (const [key, label, colour, glyphs, note] of [
       ['gdacs', 'disasters', OVERLAY_COLOUR.gdacs, ['hazard'], ''],
       // Beside `disasters`, because that adjacency is the whole point of its
@@ -4175,6 +4185,10 @@ export function mount(
       btn.className = 'map-filter is-on'
       btn.dataset.kind = 'layer'
       btn.dataset.key = key
+      // Present means "this row has a line", which is what the stylesheet lays
+      // the row out for. Absent means the chip is a switch and nothing else,
+      // and it goes in the compact run.
+      if (TRENDED_LAYERS.has(key)) btn.dataset.trend = ''
       // Which school's angles the lines are drawn to is provenance, not a
       // constraint the reader has to act on, so it goes where `HIJRI_NOTE`
       // goes — and it is on the chip rather than on a mark, because the marks
