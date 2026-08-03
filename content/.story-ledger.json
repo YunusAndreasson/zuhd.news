@@ -2,13 +2,266 @@
   "version": 1,
   "stories": [
     {
+      "id": "trump-claims-us-fully-controls-strait-of-hormuz",
+      "label": "Trump claims US fully controls Strait of Hormuz",
+      "firstSeen": "2026-08-03T17:10:34.807Z",
+      "lastCovered": "2026-08-03T17:10:34.807Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-03-trump-claims-us-fully-controls-strait-of-hormuz"
+      ],
+      "eventUri": "eng-11886218",
+      "summary": "Two claims collide on the same day: Washington says it fully controls Hormuz and that Iran privately agreed to talks; Tehran says there are no US negotiations, only Omani mediation. Lead with the contradiction itself — 718 outlets carried a corridor condition that only one side confirms. Who is affected: the Gulf states and the shipping that pays the war premium. The mechanism to highlight is that 'control of Hormuz' is being asserted rhetorically while the escort queue and rerouting data say otherwise. Follows our earlier corridor-arithmetic and war-premium reporting: the new development is the negotiation channel being described in incompatible terms by Washington and Tehran.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/Oman",
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Washington,_D.C."
+      ]
+    },
+    {
+      "id": "israel-kills-19-palestinians-in-gaza-hours-after-trump-annou",
+      "label": "Israel kills 19 Palestinians in Gaza hours after Trump announces his latest 'peace plan'",
+      "firstSeen": "2026-08-03T17:10:34.807Z",
+      "lastCovered": "2026-08-03T17:10:34.807Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-03-israel-kills-19-palestinians-in-gaza-hours-after-trump-annou"
+      ],
+      "eventUri": "eng-11888322",
+      "summary": "Nineteen Palestinians killed in a single day of strikes, hours after a 'historic' disarmament-and-withdrawal agreement was announced on July 31. Lead with the interval — the gap between the announcement and the airstrikes is the story, not the plan's text. Who holds power: Washington announces, Israel strikes, and no clause in the agreement binds the interval. Name the dead where the sources name them, and state plainly what the agreement obliges each party to do and by when. Continues our coverage of what an agenda concedes versus what a ceasefire enforces.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Hamas",
+        "http://en.wikipedia.org/wiki/Gaza_Strip",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Palestinians",
+        "http://en.wikipedia.org/wiki/Ceasefire",
+        "http://en.wikipedia.org/wiki/Israel_Defense_Forces",
+        "http://en.wikipedia.org/wiki/Benjamin_Netanyahu"
+      ]
+    },
+    {
+      "id": "more-than-10-killed-as-russia-and-ukraine-trade-heavy-attack",
+      "label": "More than 10 killed as Russia and Ukraine trade heavy attacks",
+      "firstSeen": "2026-08-03T17:10:34.807Z",
+      "lastCovered": "2026-08-03T17:10:34.807Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-03-more-than-10-killed-as-russia-and-ukraine-trade-heavy-attack"
+      ],
+      "eventUri": "spa-4291142",
+      "summary": "The Krasnodar toll we reported at four is now at least six to fourteen depending on which side's count you read, with three dead in Ukraine — and the Russian casualties fell on a public beach. Lead with the counting problem: Moscow says 14 killed and 59 injured, Ukrainian officials give different figures, and the four sources here diverge sharply in framing (sentiment spread 0.32). Count both sides' dead symmetrically and say who is claiming what. The mechanism to highlight is that drone exchange has moved decisively onto civilian leisure and residential space on both sides of the line.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Crimea",
+        "http://en.wikipedia.org/wiki/Moscow",
+        "http://en.wikipedia.org/wiki/Governor",
+        "http://en.wikipedia.org/wiki/Black_Sea",
+        "http://en.wikipedia.org/wiki/Krasnodar"
+      ]
+    },
+    {
+      "id": "cuba-suffers-fourth-nationwide-blackout-in-less-than-a-month",
+      "label": "Cuba Suffers Fourth Nationwide Blackout in Less Than a Month",
+      "firstSeen": "2026-08-03T17:10:34.807Z",
+      "lastCovered": "2026-08-03T17:10:34.807Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-03-cuba-suffers-fourth-nationwide-blackout-in-less-than-a-month"
+      ],
+      "eventUri": "fra-1330658",
+      "summary": "Four island-wide grid collapses in under a month — not four local outages, four total failures of a national grid serving 11 million people. Lead with that frequency, then the mechanism: thermal plants decades past design life that cannot be maintained because US energy restrictions cut off both fuel imports and replacement parts, so each restart stresses the next component to fail. Who holds power: Washington sets the restriction, Havana's energy ministry owns the decrepit plant, and neither bears the cost of a hospital or a refrigerator going dark. Fills a Latin America gap our own audit flags — the Americas coverage has been almost entirely North American.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Cuba",
+        "http://en.wikipedia.org/wiki/Power_outage",
+        "http://en.wikipedia.org/wiki/Havana",
+        "http://en.wikipedia.org/wiki/Electricity",
+        "http://en.wikipedia.org/wiki/Electrical_grid",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Blockade"
+      ]
+    },
+    {
+      "id": "myanmar-leader-criticizes-five-point-consensus-accuses-asean",
+      "label": "Myanmar Leader Criticizes Five-Point Consensus, Accuses ASEAN of 'Discrimination'",
+      "firstSeen": "2026-08-03T17:10:34.807Z",
+      "lastCovered": "2026-08-03T17:10:34.807Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-03-myanmar-leader-criticizes-five-point-consensus-accuses-asean"
+      ],
+      "eventUri": null,
+      "summary": "On his 100th day as president, Min Aung Hlaing told parliament he will pursue his own 'solution' — which is a formal repudiation of the Five-Point Consensus ASEAN has used as its entire diplomatic framework on Myanmar since 2021. Lead with what the consensus actually required (cessation of violence, ASEAN envoy access, dialogue) and what five years of it delivered. The structural why: ASEAN's non-interference principle gave it no instrument beyond the consensus, so a member state discarding it leaves the bloc with nothing to enforce. Who is affected: the displaced and the conscripted inside Myanmar, for whom ASEAN mediation was the only external channel.",
+      "conceptUris": []
+    },
+    {
+      "id": "us-signs-deal-to-triple-patriot-production-as-wars-deplete-s",
+      "label": "US signs deal to triple Patriot production as wars deplete stockpiles",
+      "firstSeen": "2026-08-03T17:10:34.807Z",
+      "lastCovered": "2026-08-03T17:10:34.807Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-03-us-signs-deal-to-triple-patriot-production-as-wars-deplete-s"
+      ],
+      "eventUri": "eng-11888490",
+      "summary": "A $3bn contract to Lockheed Martin and Northrop Grumman for Patriot and THAAD interceptor parts is an admission in procurement form: two simultaneous wars have drawn down US interceptor stockpiles faster than they can be replaced. Lead with the number and what it buys — parts, specifically solid-rocket motors and seekers, which are the actual bottleneck, not final assembly. The structural why: interceptor supply is a years-long industrial constraint, so every day of the Iran and Ukraine air wars spends a magazine that takes 24-36 months to refill, and allies queued for the same lines wait longer. Note the four-source sentiment spread of 0.51 — TRT reads this as escalation, the US and Gulf outlets as reassurance.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/MIM-104_Patriot",
+        "http://en.wikipedia.org/wiki/Northrop_Grumman",
+        "http://en.wikipedia.org/wiki/Terminal_High_Altitude_Area_Defense",
+        "http://en.wikipedia.org/wiki/Lockheed_Martin",
+        "http://en.wikipedia.org/wiki/Interceptor_aircraft",
+        "http://en.wikipedia.org/wiki/The_Pentagon",
+        "http://en.wikipedia.org/wiki/Solid-propellant_rocket",
+        "http://en.wikipedia.org/wiki/Missile_defense"
+      ]
+    },
+    {
+      "id": "bakeries-voice-concerns-that-new-direct-debit-system-could-d",
+      "label": "Bakeries voice concerns that new direct debit system could disrupt subsidized bread production",
+      "firstSeen": "2026-08-03T17:10:34.807Z",
+      "lastCovered": "2026-08-03T17:10:34.807Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-03-bakeries-voice-concerns-that-new-direct-debit-system-could-d"
+      ],
+      "eventUri": null,
+      "summary": "Egypt changed how money moves between the state, the mills and the bakeries on 1 August — a plumbing change, and the first practical step toward phasing out the subsidy that feeds roughly 64 million people. Lead with that ratio: one payment-system change standing between a majority of Egyptians and the price of bread. The mechanism to explain is why direct debit is the lever — it converts a state-guaranteed flour allocation into a cash-timing problem the bakery carries, and a bakery short of working capital simply bakes less. Bakery operators, not officials, are the sources describing the disruption. The structural why: subsidy reform in Egypt has historically been attempted through the settlement layer rather than the announced price, because the announced price is what triggers unrest.",
+      "conceptUris": []
+    },
+    {
+      "id": "spacex-is-set-to-acquire-130-000-acres-of-marshland-in-south",
+      "label": "SpaceX is set to acquire 130,000 acres of marshland in southern Louisiana",
+      "firstSeen": "2026-08-03T17:10:34.807Z",
+      "lastCovered": "2026-08-03T17:10:34.807Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-03-spacex-is-set-to-acquire-130-000-acres-of-marshland-in-south"
+      ],
+      "eventUri": "eng-11888701",
+      "summary": "A launch company is about to become one of the larger private landowners on the US Gulf coast — 130,000 acres of coastal marsh, an area roughly the size of a small country's arable land. Lead with the acreage and what marshland is: storm buffer, fishery nursery, and the most rapidly disappearing land in North America. The structural why: launch operations need exclusion zones, and buying the buffer is cheaper and more permanent than negotiating with the people who live in it — Boca Chica is the precedent for what follows. Who is affected: Louisiana coastal communities and the state that hands over the deed. Flag what the Times-Picayune reporting does and does not confirm about the terms.",
+      "conceptUris": []
+    },
+    {
+      "id": "why-a-flock-worker-quit-they-lied",
+      "label": "Why a Flock Worker Quit: 'They Lied'",
+      "firstSeen": "2026-08-03T17:10:34.807Z",
+      "lastCovered": "2026-08-03T17:10:34.807Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-03-why-a-flock-worker-quit-they-lied"
+      ],
+      "eventUri": null,
+      "summary": "The man whose job was selling automatic licence-plate readers to city councils quit because of what he learned about how the cameras are actually used. Lead with his role, not his opinion — a salesperson is the person present for every promise made to a city, so his account is evidence about the sales representations themselves. The mechanism: Flock's network makes each city's cameras searchable by other agencies, so a council that approves a local camera has in practice joined a national surveillance database it did not vote on. Accountability angle: name what was promised in procurement and what the system does. Directly relevant to readers in any municipality weighing the same contract.",
+      "conceptUris": []
+    },
+    {
+      "id": "biotech-giant-amgen-says-patient-data-stolen-from-third-part",
+      "label": "Biotech giant Amgen says patient data stolen from third-party cloud systems",
+      "firstSeen": "2026-08-03T17:10:34.807Z",
+      "lastCovered": "2026-08-03T17:10:34.807Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-03-biotech-giant-amgen-says-patient-data-stolen-from-third-part"
+      ],
+      "eventUri": null,
+      "summary": "Amgen told the SEC that patient information and proprietary research were taken — not from Amgen's systems, but from a third party's cloud. Lead with that distinction, because it is the whole lesson: the company that holds the regulatory duty and the company that holds the data are different companies, and patients consented to neither arrangement. The mechanism: pharmaceutical firms push trial and patient data to vendor-run cloud tenancies, so one vendor compromise yields many sponsors' data at once. Follow-up context to give the reader: what an 8-K disclosure obliges Amgen to say and, more usefully, what it does not — vendor name, record count, and notification timeline are all typically absent.",
+      "conceptUris": []
+    },
+    {
+      "id": "openai-announces-solutions-to-10-longstanding-maths-problems",
+      "label": "OpenAI announces solutions to 10 longstanding maths problems",
+      "firstSeen": "2026-08-03T17:10:34.807Z",
+      "lastCovered": "2026-08-03T17:10:34.807Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-03-openai-announces-solutions-to-10-longstanding-maths-problems"
+      ],
+      "eventUri": "eng-11885867",
+      "summary": "Consolidates the New Scientist news (OpenAI's prototype model Astra resolved 10 open problems) with Quanta's structural explanation of why these particular problems are the ones falling. Lead with the count and the caveat in the same breath: several are counterexamples, and finding a counterexample is a search problem, which is exactly what these systems are good at and is not the same as proving a theorem. The mechanism worth teaching: Erdős problems are unusually susceptible because they are combinatorial, cheaply stated, and verifiable once an answer exists — so the machine searches and a human checks in an afternoon. The structural why: this reallocates mathematical labour from finding to verifying, and mathematicians are openly divided on what that does to the field. Do not let the number carry the claim that AI is 'doing mathematics'.",
+      "conceptUris": []
+    },
+    {
+      "id": "evaluating-the-reliability-and-quality-of-rheumatoid-arthrit",
+      "label": "Evaluating the reliability and quality of rheumatoid arthritis educational content on TikTok and Bilibili: a cross-sectional content analysis",
+      "firstSeen": "2026-08-03T17:10:34.807Z",
+      "lastCovered": "2026-08-03T17:10:34.807Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-03-evaluating-the-reliability-and-quality-of-rheumatoid-arthrit"
+      ],
+      "eventUri": null,
+      "summary": "A controlled comparison of the same disease explained on two platforms in two information environments — TikTok and China's Bilibili — scored against clinical reliability instruments. Lead with the measured gap rather than the platforms' reputations, and say which instrument was used, because 'quality' here is a defined score, not a judgement. Who is affected: people with a chronic, painful, treatable disease who are making treatment decisions from short video. The structural why: recommendation systems optimise for watch time, and the content that holds attention on a chronic illness is testimonial and remedy-shaped, not clinical — so the failure is architectural rather than a matter of individual bad actors. Note this is an unedited early-access manuscript.",
+      "conceptUris": []
+    },
+    {
+      "id": "a-composite-splenomegaly-and-platelet-score-for-thrombosis-r",
+      "label": "A composite splenomegaly and platelet score for thrombosis risk in myeloproliferative neoplasms in Saudi Arabia",
+      "firstSeen": "2026-08-03T17:10:34.807Z",
+      "lastCovered": "2026-08-03T17:10:34.807Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-03-a-composite-splenomegaly-and-platelet-score-for-thrombosis-r"
+      ],
+      "eventUri": null,
+      "summary": "A Saudi cohort produced a thrombosis risk score built from two things any hospital already measures — spleen size and platelet count — for blood cancers where clotting, not the cancer, is what kills. Lead with that cheapness: the existing international risk models lean on molecular testing that most hospitals in the region cannot run, which is why patients get stratified by a model built on populations unlike them. The structural why: clinical risk scores travel worldwide but are validated on European cohorts, so a locally derived score is both a medical and a sovereignty story. Note for the editor: the feed carried no regional outlet for this paper — Nature is the only source available, which is a feed-side gap on Gulf science coverage worth auditing, not a reason to drop the story. Flag that this is an unedited early-access manuscript.",
+      "conceptUris": []
+    },
+    {
       "id": "the-zero-people-who-died-after-usaid-was-dismantled",
       "label": "The ‘Zero’ People Who Died After USAID Was Dismantled",
       "firstSeen": "2026-08-03T12:12:13.229Z",
       "lastCovered": "2026-08-03T12:12:13.229Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-03-the-zero-people-who-died-after-usaid-was-dismantled"
@@ -24,7 +277,7 @@
       "lastCovered": "2026-08-03T12:12:13.229Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-03-boko-haram-s-cameroonian-commanders-are-extending-the-group"
@@ -40,7 +293,7 @@
       "lastCovered": "2026-08-03T12:12:13.229Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-03-four-people-died-in-a-drone-attack-near-gelendzhik"
@@ -65,7 +318,7 @@
       "lastCovered": "2026-08-03T12:12:13.229Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-03-how-prashant-kishor-built-a-poll-machinery-to-breach-bjp-s-3"
@@ -90,7 +343,7 @@
       "lastCovered": "2026-08-03T12:12:13.229Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-03-anwar-ibrahim-s-coalition-suffers-another-state-level-electo"
@@ -106,7 +359,7 @@
       "lastCovered": "2026-08-03T12:12:13.229Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-03-the-u-s-helped-prop-up-the-yen-can-it-last"
@@ -131,7 +384,7 @@
       "lastCovered": "2026-08-03T12:12:13.229Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-03-shell-agrees-to-sell-european-onshore-renewables-business"
@@ -156,7 +409,7 @@
       "lastCovered": "2026-08-03T12:12:13.229Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-03-australian-halal-cosmetic-and-pharma-industries-outpace-glob"
@@ -172,7 +425,7 @@
       "lastCovered": "2026-08-03T12:12:13.229Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-03-socioeconomic-position-genetic-susceptibility-and-epigenetic"
@@ -188,7 +441,7 @@
       "lastCovered": "2026-08-03T12:12:13.229Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-03-high-prevalence-of-tau-pathologies-in-late-onset-psychosis-a"
@@ -204,7 +457,7 @@
       "lastCovered": "2026-08-03T12:12:13.229Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-03-why-silicon-valley-is-divided-over-china-s-powerful-cheap-ai"
@@ -220,7 +473,7 @@
       "lastCovered": "2026-08-03T12:12:13.229Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-03-qwen3-8-max-a-new-bar-for-coding-and-cowork"
@@ -236,7 +489,7 @@
       "lastCovered": "2026-08-03T12:12:13.229Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-03-how-headlights-got-brighter-whiter-and-more-blinding-after-d"
@@ -252,7 +505,7 @@
       "lastCovered": "2026-08-03T08:11:35.386Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-03-a-photograph-issued-by-the-captor-proof-of-life-as-a-message"
@@ -277,7 +530,7 @@
       "lastCovered": "2026-08-03T08:11:35.386Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-03-an-acquittal-answers-the-prosecution-not-the-conduct"
@@ -302,7 +555,7 @@
       "lastCovered": "2026-08-03T08:11:35.386Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-03-a-weapon-travels-inward-pellet-rounds-reach-the-capital"
@@ -327,7 +580,7 @@
       "lastCovered": "2026-08-03T08:11:35.386Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-03-a-treasury-that-is-collateral-what-the-10-q-must-resolve"
@@ -343,7 +596,7 @@
       "lastCovered": "2026-08-03T08:11:35.386Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-03-a-surplus-you-cannot-spend-sanctions-substitution-as-plumbing"
@@ -359,7 +612,7 @@
       "lastCovered": "2026-08-03T08:11:35.386Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-03-a-port-does-not-close-it-becomes-uninsurable"
@@ -375,7 +628,7 @@
       "lastCovered": "2026-08-03T08:11:35.386Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-03-forty-kilometres-from-the-canal-what-the-ground-is-made-of"
@@ -400,7 +653,7 @@
       "lastCovered": "2026-08-03T08:11:35.386Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-03-the-last-continent-a-flyway-you-cannot-cull"
@@ -425,7 +678,7 @@
       "lastCovered": "2026-08-03T08:11:35.386Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-02-a-needle-instead-of-a-memory-measuring-what-kills-children"
@@ -441,7 +694,7 @@
       "lastCovered": "2026-08-03T08:11:35.386Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-03-triage-not-chemistry-searching-a-space-of-ten-to-the-sixty"
@@ -457,7 +710,7 @@
       "lastCovered": "2026-08-03T08:11:35.386Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-03-not-your-keys-what-self-custody-removes-along-with-the-bank"
@@ -473,7 +726,7 @@
       "lastCovered": "2026-08-03T08:11:35.386Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-03-the-under-dosed-pill-a-fraud-recorded-as-disease"
@@ -489,7 +742,7 @@
       "lastCovered": "2026-08-03T08:11:35.386Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-08-02-the-corridor-changes-hands-a-road-decides-what-reaches-obeid",
@@ -515,7 +768,7 @@
       "lastCovered": "2026-08-03T04:13:17.047Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-03-inside-city-gripped-by-deadly-protests-kashmir-rawalakot"
@@ -531,7 +784,7 @@
       "lastCovered": "2026-08-03T04:13:17.047Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-03-kabul-classrooms-rebuilt-in-the-taliban-own-image"
@@ -547,7 +800,7 @@
       "lastCovered": "2026-08-03T04:13:17.047Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-03-farmers-to-back-ji-protest-call-in-punjab"
@@ -563,7 +816,7 @@
       "lastCovered": "2026-08-03T04:13:17.047Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-01-a-pardon-that-crosses-a-border-hernandez-honduras"
@@ -579,7 +832,7 @@
       "lastCovered": "2026-08-03T04:13:17.047Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-03-over-speeding-caused-82-124-road-accidents-in-india-in-2025"
@@ -595,7 +848,7 @@
       "lastCovered": "2026-08-03T04:13:17.047Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-03-crude-falls-4-5-percent-on-a-sentence-the-war-premium-priced"
@@ -620,7 +873,7 @@
       "lastCovered": "2026-08-03T04:13:17.047Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-03-ship-traffic-drops-sharply-at-bab-el-mandeb"
@@ -636,7 +889,7 @@
       "lastCovered": "2026-08-03T04:13:17.047Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-03-china-factory-growth-slows-to-4-month-low-in-july"
@@ -661,7 +914,7 @@
       "lastCovered": "2026-08-03T04:13:17.047Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-03-westjet-flight-attendants-strike-the-hours-before-the-door"
@@ -677,7 +930,7 @@
       "lastCovered": "2026-08-03T04:13:17.047Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-03-effects-of-different-temperature-treatments-on-physiological"
@@ -693,7 +946,7 @@
       "lastCovered": "2026-08-03T04:13:17.047Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-02-nepal-s-community-forests-offer-climate-solutions-one-leaf-a"
@@ -709,7 +962,7 @@
       "lastCovered": "2026-08-03T04:13:17.047Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-03-effects-of-cooling-rate-on-the-biocorrosion-microstructure-a"
@@ -725,7 +978,7 @@
       "lastCovered": "2026-08-03T04:13:17.047Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-03-how-fitness-speed-and-position-shape-competition-in-expandin"
@@ -741,7 +994,7 @@
       "lastCovered": "2026-08-02T22:09:21.872Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-02-a-permit-is-an-act-sanctions-that-immigration-does-not-reach"
@@ -757,7 +1010,7 @@
       "lastCovered": "2026-08-02T22:09:21.872Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-02-a-resignation-that-is-a-procedure-and-the-mandate-it-carries"
@@ -782,7 +1035,7 @@
       "lastCovered": "2026-08-02T22:09:21.872Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-02-the-treaty-that-worked-because-it-could-not-be-used"
@@ -805,7 +1058,7 @@
       "lastCovered": "2026-08-02T22:09:21.872Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-08-02-a-ban-with-an-end-date-the-season-is-the-emergency",
@@ -829,7 +1082,7 @@
       "lastCovered": "2026-08-02T22:09:21.872Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-02-a-corridor-two-coasts-can-agree-and-a-navy-they-cannot-bind"
@@ -852,7 +1105,7 @@
       "lastCovered": "2026-08-02T22:09:21.872Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-02-whose-money-a-fund-where-the-pensioner-has-no-exit"
@@ -868,7 +1121,7 @@
       "lastCovered": "2026-08-02T22:09:21.872Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-02-a-harm-in-people-who-are-not-sick-and-who-was-in-the-trial"
@@ -884,7 +1137,7 @@
       "lastCovered": "2026-08-02T22:09:21.872Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-02-writing-a-bit-without-a-current-where-the-leverage-is"
@@ -900,7 +1153,7 @@
       "lastCovered": "2026-08-02T22:09:21.872Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-02-a-standard-its-own-authors-enforce-containment-off-world"
@@ -916,7 +1169,7 @@
       "lastCovered": "2026-08-02T22:09:21.872Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-02-a-dollar-that-is-not-one-dollar-fragmentation-as-a-business"
@@ -932,7 +1185,7 @@
       "lastCovered": "2026-08-02T17:08:45.996Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-02-a-rally-against-militancy-as-the-target-swat-returns"
@@ -957,7 +1210,7 @@
       "lastCovered": "2026-08-02T17:08:45.996Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-02-six-hundred-drones-when-mass-is-the-cheap-variable"
@@ -982,7 +1235,7 @@
       "lastCovered": "2026-08-02T17:08:45.996Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-02-famine-you-cannot-declare-access-as-the-measurement-problem"
@@ -998,7 +1251,7 @@
       "lastCovered": "2026-08-02T17:08:45.996Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-02-a-fourth-term-and-no-successor-deferral-has-a-date"
@@ -1014,7 +1267,7 @@
       "lastCovered": "2026-08-02T17:08:45.996Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-02-thirty-five-hulls-the-blockade-publishes-its-own-arithmetic"
@@ -1030,7 +1283,7 @@
       "lastCovered": "2026-08-02T17:08:45.996Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-02-a-shortage-or-a-price-the-pharmacy-counter-takes-the-devaluation"
@@ -1046,7 +1299,7 @@
       "lastCovered": "2026-08-02T17:08:45.996Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-02-the-instrument-that-depreciates-import-substitution-under-embargo"
@@ -1062,7 +1315,7 @@
       "lastCovered": "2026-08-02T17:08:45.996Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-02-a-share-you-cannot-touch-as-margin-rehypothecation-returns"
@@ -1078,7 +1331,7 @@
       "lastCovered": "2026-08-02T17:08:45.996Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-02-what-a-soil-bacterium-does-at-room-temperature"
@@ -1094,7 +1347,7 @@
       "lastCovered": "2026-08-02T17:08:45.996Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-02-local-or-regional-a-split-that-decides-which-policy-can-work"
@@ -1110,7 +1363,7 @@
       "lastCovered": "2026-08-02T17:08:45.996Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-02-ten-claims-and-one-referee-who-checks-a-proof"
@@ -1126,7 +1379,7 @@
       "lastCovered": "2026-08-02T17:08:45.996Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-02-private-and-still-sorting-what-the-guarantee-does-not-cover"
@@ -1142,275 +1395,13 @@
       "lastCovered": "2026-08-02T17:08:45.996Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-02-invisible-payments-what-disappears-with-the-on-ramp"
       ],
       "eventUri": null,
       "summary": "A payments firm processing over $3 billion a month — it powers Polymarket withdrawals and deposits into Aave's largest vaults — argues that standalone on-ramps and blockchain bridges are about to vanish into the applications that use them. Lead with what 'invisible' costs, because the word is doing concealment work: an on-ramp is the point at which a transaction is identified, sanctioned-screened and taxed, and a bridge is the point at which a cross-chain transfer can be audited. Making both disappear into an app does not delete those functions — it moves them inside a private intermediary where the user cannot see the rate, the route, or who took a spread. Teach the mechanism concretely: a visible on-ramp shows an exchange rate you can compare; an embedded one quotes an all-in price, and the difference between that price and the market mid is revenue that used to be a line item. Establish the record: what the firm actually operates, the $3bn figure's basis, which licences it holds and in which jurisdictions, how bridge hacks (the single largest category of crypto loss by value) change when the bridge is not user-facing, and what regulators say about embedded custody. Then the frame for our reader: the corridors where this lands first are remittance corridors — Gulf to South Asia, Nigeria, Egypt — where the visible fee has been the one thing a migrant worker could compare, and a CEO's claim is a business plan, not a finding.",
-      "conceptUris": []
-    },
-    {
-      "id": "return-is-not-durable-the-transfer-of-a-funding-collapse",
-      "label": "Afghanistan's Return Crisis: Why Sending People Back Is Not a Durable Solution",
-      "firstSeen": "2026-08-02T08:12:53.920Z",
-      "lastCovered": "2026-08-02T22:09:21.872Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-08-02-return-is-not-durable-the-transfer-of-a-funding-collapse",
-        "2026-08-02-the-brain-of-a-carer-is-made-by-carrying-not-by-bearing"
-      ],
-      "eventUri": null,
-      "summary": "The international refugee framework has quietly shifted from protection to return, and the assumption doing the work is that return is a durable solution. Lead by testing that assumption against the arithmetic, because it is a technical term with a legal definition and it is being used as a slogan: UNHCR's 'durable solutions' are voluntary repatriation, local integration and resettlement, and repatriation counts as durable only where it is voluntary, safe and dignified — three conditions Afghanistan meets for almost nobody, which makes most of these returns not a solution but a transfer of the problem to the least capable state involved. Establish the record with numbers: how many Afghans have been returned from Pakistan and Iran and over what period, how many were registered refugees versus undocumented, the absorption capacity on the receiving side (jobs, housing, winter shelter, the female-education bar that makes return categorically different for half of returnees), and what Islamabad, Tehran and the UNHCR each say. The mechanism to teach is why the pressure exists at all: Pakistan and Iran hosted these populations for four decades on international financing that has collapsed, so a hosting state's decision to expel is the downstream effect of a donor state's decision to stop paying — and the accountability question belongs to the donors, not only to the expellers. Then the frame for our reader: this is the largest forced-return movement in the world happening with almost no coverage, entirely inside the ummah, host and returnee both.",
-      "conceptUris": []
-    },
-    {
-      "id": "addiction-as-attack-securitisation-and-the-treatment-gap",
-      "label": "'Drugs being used to hurt India's interests': PM Modi launches 'Nasha Mukt Yuva Abhiyan', urges youths to lead movement",
-      "firstSeen": "2026-08-02T08:12:53.920Z",
-      "lastCovered": "2026-08-02T12:13:31.715Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-08-02-addiction-as-attack-securitisation-and-the-treatment-gap",
-        "2026-08-02-who-checks-the-proof-provenance-and-the-vendor-as-referee"
-      ],
-      "eventUri": "eng-11874202",
-      "summary": "Launching a national youth anti-drugs campaign, Modi described the drug supply as part of hostile countries' 'terror plan' against India. Lead with that sentence and with what it does, because the framing is the policy: an addiction problem described as an external attack is answered with interdiction, policing and prosecution, while an addiction problem described as a health problem is answered with treatment capacity — and India's actual epidemic, the opioid and synthetic-drug crisis in Punjab, Manipur and the north-east, has been met overwhelmingly with the first. Establish the record with the state's own numbers: the national household survey's estimate of users needing treatment, the number of functioning de-addiction beds and OST centres against it, NDPS Act arrest and conviction figures and the share of those arrested who are users rather than traffickers, and the budget line for this campaign versus for treatment. The mechanism to teach is securitisation itself — the process by which naming a problem a national-security matter moves it out of the ministry that could treat it and into the one that can only arrest — and it generalises: the same move has been made about migration, about protest, and in this file's own recent filings about exam-leak demonstrations. Note the carrier divergence honestly (0.47 across three Indian outlets on the same launch). Then the frame: the 'hostile countries' are unnamed in the quote — establish whether the government has named them elsewhere and what the seizure data actually shows about routes, rather than repeating the implication.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Narendra_Modi",
-        "http://en.wikipedia.org/wiki/Substance_abuse",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Crore",
-        "http://en.wikipedia.org/wiki/New_Delhi",
-        "http://en.wikipedia.org/wiki/Meditation",
-        "http://en.wikipedia.org/wiki/Videotelephony",
-        "http://en.wikipedia.org/wiki/Addiction"
-      ]
-    },
-    {
-      "id": "hormuz-corridor-a-condition-only-one-side-confirms",
-      "label": "Iran denies reaching compromise deal with US on opening Strait of Hormuz",
-      "firstSeen": "2026-08-02T12:13:31.715Z",
-      "lastCovered": "2026-08-02T12:13:31.715Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-02-hormuz-corridor-a-condition-only-one-side-confirms"
-      ],
-      "eventUri": "rus-2103357",
-      "summary": "Yesterday Washington cancelled a strike on Iran conditional on a Hormuz framework; today Tehran, through Fars, says no such agreement exists. Lead with the gap itself, because it is the mechanism: a use of force suspended on a condition that only one party says has been met is not a de-escalation, it is a deadline whose clock the other side cannot see. Establish precisely what each carrier claims — Israeli Channel 12 (via TASS) reports a corridor split in which inbound vessels transit Iranian territorial waters and outbound vessels transit Oman's, which if true is a specific, checkable arrangement with named third-party consequences for Muscat; Fars denies any deal; Mehr's foreign-ministry readout promises a 'decisive and proportionate response' to renewed attack and was delivered in a call to Saudi FM Faisal bin Farhan, not to Washington. That routing is the second story: Riyadh is the channel, and Middle East Eye's filing has MBS on the phone to Trump stressing regional de-escalation. Teach what a territorial-waters corridor actually is under UNCLOS — transit passage through an international strait is not a privilege a coastal state grants, so an arrangement described as Iran 'permitting' passage restates the legal position Iran has always contested, which is why a denial and an agreement can both be honest descriptions of the same conversation. Continues this file's conditional-cancellation and blockade filings: the naval blockade is a standing measure that no announcement has lifted, and the departure advisories, war-risk premia and interceptor-depth repricings do not unwind on a headline. Attribute every claim to its carrier; verify the denial against Fars and IRNA directly, and put the corridor question to CENTCOM and to Oman's foreign ministry.",
-      "conceptUris": []
-    },
-    {
-      "id": "strikes-on-the-day-of-the-breakthrough-a-ceasefire-that-permits",
-      "label": "Israeli strikes kill nine in Gaza, Israeli minister says no deal to halt attacks",
-      "firstSeen": "2026-08-02T12:13:31.715Z",
-      "lastCovered": "2026-08-02T12:13:31.715Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-02-strikes-on-the-day-of-the-breakthrough-a-ceasefire-that-permits"
-      ],
-      "eventUri": "eng-11877152",
-      "summary": "Nine Palestinians killed in a second consecutive day of airstrikes, hours after a breakthrough was announced in implementing last year's ceasefire — and an Israeli minister stating on the record that no deal exists to halt the attacks. Lead with the two facts held together and count the dead first, by name and place where the reporting allows: the announcement and the strikes are describing the same week, and only one of them has a body count. The mechanism to teach is what this file has now documented four times from four directions — a ceasefire whose withdrawal clause names no verifier, whose disarmament clause was conceded to a committee Israel has not accepted, and whose violations are therefore adjudicated by the parties themselves. Establish the record: which strikes, which locations (Deir al-Balah, Gaza City), the health ministry's count and Israel's account of each target, which minister said what and whether the statement was disowned, and what Washington says now about the breakthrough it announced. Then the accountability frame, stated plainly: a ceasefire that permits strikes on the days it is being celebrated is not being violated, it is being demonstrated — the terms allow this, and the party that wrote the enforcement gap benefits from it. Continues the Sheikh Radwan and phased-disarmament filings; go to the Gaza health ministry, to UN OCHA's casualty series and to the IDF for its account of each strike. SOURCING NOTE: no Palestinian or regional outlet in today's feed carries this filing — seek Mada Masr, Middle East Eye or Al Jazeera at the writing stage and flag as a feed-side gap.",
-      "conceptUris": []
-    },
-    {
-      "id": "madura-ferry-fire-the-recommendation-issued-twice",
-      "label": "Five dead, 41 missing, after Indonesia ferry catches fire",
-      "firstSeen": "2026-08-02T12:13:31.715Z",
-      "lastCovered": "2026-08-02T12:13:31.715Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-02-madura-ferry-fire-the-recommendation-issued-twice"
-      ],
-      "eventUri": "eng-11885974",
-      "summary": "A ferry carrying 271 people caught fire off Madura island on the Surabaya-to-Makassar run; five dead, 41 missing, 225 rescued. Lead with the arithmetic that does not close — 5 plus 41 plus 225 is 271, so the manifest and the count agree for once, and that is itself the reportable fact in a country where they routinely do not. Teach the mechanism a maritime state's safety regime actually runs on: Indonesia moves tens of millions of passengers a year across 17,000 islands on a fleet whose average hull age, manifest discipline and lifejacket provision are enforced by a directorate-general that inspects a fraction of departures, and the recurring pattern in its casualty record is not collision but fire — engine-room and vehicle-deck fires on ageing ro-pax hulls, where the fixed suppression system is the single component whose failure converts a survivable incident into a mass-casualty one. Establish the record: the vessel's name, age, operator and last inspection, where the fire started, whether suppression activated, how long the abandon-ship took, sea state, and how the 225 were recovered and by whom. Then the accountability frame: KNKT, Indonesia's transport safety committee, has issued the same recommendations after successive ferry fires — establish which of them were implemented and which were not, because a repeated recommendation is a finding about the regulator, not the operator. Indonesia is the world's largest Muslim-majority country and its domestic ferry network is the ummah's largest single mass-transit system; it is covered as weather, and it is regulation.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Indonesia",
-        "http://en.wikipedia.org/wiki/Ferry",
-        "http://en.wikipedia.org/wiki/Surabaya",
-        "http://en.wikipedia.org/wiki/Madura_Island",
-        "http://en.wikipedia.org/wiki/Search_and_rescue",
-        "http://en.wikipedia.org/wiki/Makassar",
-        "http://en.wikipedia.org/wiki/East_Java",
-        "http://en.wikipedia.org/wiki/National_Search_and_Rescue_Agency"
-      ]
-    },
-    {
-      "id": "eighty-six-troops-what-a-legitimising-deployment-buys",
-      "label": "Nigeria deploys 86 troops to ECOWAS peace mission in Guinea-Bissau",
-      "firstSeen": "2026-08-02T12:13:31.715Z",
-      "lastCovered": "2026-08-02T12:13:31.715Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-02-eighty-six-troops-what-a-legitimising-deployment-buys"
-      ],
-      "eventUri": null,
-      "summary": "Nigeria has sent 86 soldiers to an ECOWAS stabilisation mission in Guinea-Bissau. Lead with the number, because the smallness is the story: 86 troops is a company, and a company cannot stabilise a state — it can secure a presidential palace, an airport and a count of ballots, which tells you exactly what the mission is for and what it is not. Teach the instrument: ECOWAS's standby force was designed for exactly this, a small, fast, legitimising deployment that substitutes political recognition for military capacity, and its record across Liberia, Sierra Leone, The Gambia and Bissau is that it works when the host government wants it and fails when it does not. Establish the record: what the mission's mandate and end date are, who commands and who pays, what Bissau's transition timetable is after the November 2025 coup, what the other troop contributors are sending, and whether the mission is protecting an electoral process or an incumbent. Then the contradiction our reader should be handed rather than told: ECOWAS suspended Mali, Burkina Faso and Niger over coups and lost them to the Alliance of Sahel States, and it is now deploying to underwrite the order that followed a coup in Bissau — the difference is consent, and a regional body whose sanction regime is calibrated to whether a junta invites it is a body enforcing a rule about invitations, not about coups. Nigeria and Guinea-Bissau are both OIC members and West Africa is this file's standing coverage gap; go to the ECOWAS Commission's own communiqué and to the Nigerian Army's deployment order rather than the press release.",
-      "conceptUris": []
-    },
-    {
-      "id": "a-border-held-by-someone-else-the-externalisation-bargain",
-      "label": "60,000 migrants cross from Morocco into Spanish territory",
-      "firstSeen": "2026-08-02T12:13:31.715Z",
-      "lastCovered": "2026-08-02T12:13:31.715Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-02-a-border-held-by-someone-else-the-externalisation-bargain"
-      ],
-      "eventUri": null,
-      "summary": "A reported 60,000 people crossing from Morocco into Spanish territory is not a border incident, it is a movement larger than most single-year asylum caseloads in Europe, and it happened at a frontier whose entire function is to be closed. Lead with the number and then with what makes it possible, because the mechanism is the whole story and it is not about migrants: the Ceuta and Melilla perimeters are held shut by Moroccan gendarmerie on the Moroccan side under an EU-financed externalisation bargain, so a mass crossing is evidence of a decision in Rabat, not an absence of one in Madrid — the 2021 Ceuta crossing followed exactly this pattern and was widely read as leverage over Western Sahara. Establish the record hard before repeating the figure: who counted 60,000 and how, over what period, how many were pushed back and under what legal authority (Spain's 'hot returns' regime and the ECtHR's N.D. and N.T. judgment permitting them), how many were minors, the casualty count, and what Rabat, Madrid and the Commission each say. The accountability frame is the money: the EU pays a third state to hold a border, which converts a human-rights obligation into a service contract and makes the people at the fence a bargaining instrument between two governments neither of which they are citizens of. Then the ummah frame our reader will want stated without sentiment — most of those crossing are West and Central African, moving through a Muslim-majority state into Europe, and the deaths at this frontier are not counted by anyone with an obligation to count them. Morocco is an OIC member; source-of-record here is a daily digest, so go to the primary reporting, to Moroccan outlets and to Spain's Interior Ministry figures, and do not run the 60,000 unless it can be sourced to a named authority.",
-      "conceptUris": []
-    },
-    {
-      "id": "quota-is-not-capacity-spending-the-buffer-during-the-war",
-      "label": "OPEC+ Makes Small Quota Hike to Finish Unwinding 2023 Oil Cuts",
-      "firstSeen": "2026-08-02T12:13:31.715Z",
-      "lastCovered": "2026-08-02T12:13:31.715Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-02-quota-is-not-capacity-spending-the-buffer-during-the-war"
-      ],
-      "eventUri": "eng-11885576",
-      "summary": "Seven OPEC+ members led by Saudi Arabia and Russia approved a sixth consecutive increase, completing the theoretical restoration of the barrels withheld since 2023 — and the reporting says it gives them scope to add more once the Middle East war ends. Lead with the word 'theoretical', because it carries the entire story: a quota is permission to produce, not production, and several members have no capacity to reach their new ceilings, so the group's headline supply increase overstates the barrels that will actually arrive by the gap between quota and capacity. Teach that gap as the number that matters — effective spare capacity, almost all of it Saudi and Emirati, is the world's only physical buffer against a Hormuz interruption, and every quota unwind converts buffer into flow. That is the mechanism to hand the reader: producing more today means having less in reserve on the day the strait closes, and OPEC+ is drawing down the insurance while the event it insures against is live. Establish the record from the filings: the September increment in barrels per day, cumulative restoration since the cuts began, each member's quota against its estimated capacity, current Brent and the futures curve's shape, and what the group says about compensation cuts for prior overproduction. Then the frame for our reader: the fiscal breakevens of Riyadh, Baghdad, Algiers and Abuja sit above current prices, so a group adding supply into a war premium is choosing market share over price at the exact moment its members' budgets need the price — set that against this file's Saudi-deficit and CPC-route filings. Divergence 0.35 across three carriers on one announcement; note it.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/OPEC",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Kazakhstan",
-        "http://en.wikipedia.org/wiki/Kuwait",
-        "http://en.wikipedia.org/wiki/Middle_East",
-        "http://en.wikipedia.org/wiki/Iraq"
-      ]
-    },
-    {
-      "id": "escort-queue-when-the-target-rule-stops-predicting",
-      "label": "Red Sea Maritime Security Task Force Commander Talks Major Jump In Escort Requests",
-      "firstSeen": "2026-08-02T12:13:31.715Z",
-      "lastCovered": "2026-08-02T12:13:31.715Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-02-escort-queue-when-the-target-rule-stops-predicting"
-      ],
-      "eventUri": null,
-      "summary": "The commander of the Red Sea escort task force says escort requests have jumped sharply, and the reason is a target change: the Houthis have begun attacking Saudi tankers. Lead with that shift, because it reprices the entire waterway — a campaign framed since 2023 as pressure on Israel-linked shipping now touches the cargo of a Gulf state, which means the risk model every underwriter and charterer built on vessel affiliation no longer predicts who gets hit. Teach the escort mechanism concretely, because almost no coverage does: a warship escort is a scarce, scheduled, convoy-shaped resource, so a jump in requests is not a jump in protection — it is a queue, and the vessels that cannot wait for a slot either sail unescorted or take the Cape, which adds roughly ten days and the fuel to match. Establish the record from the interview: the task force's name, composition and hull count, requests before and after the shift, how many can actually be met, what a transit costs in war-risk premium now against six months ago, Suez transit volumes against the 2023 baseline, and what the Saudi operators say. Then the frame for our reader, and it is the distributional one: added freight cost and insurance are passed into landed prices, so the households that pay for a Red Sea risk premium are in Egypt, Sudan, Yemen, Somalia and Djibouti — importers of grain and fuel with no alternative routing and no fiscal room, while Suez transit fees are Egypt's hard-currency line and it is falling in the same motion. Named-commander original reporting, not an advocacy claim; go to the task force directly, to Lloyd's List and to the SCA's own transit series. Continues this file's FESCO merchant-status, departure-advisory and Hormuz-insurance filings.",
-      "conceptUris": []
-    },
-    {
-      "id": "proving-an-absence-who-pays-for-due-diligence",
-      "label": "Guilty until proven innocent: Pakistan's textile trade on trial",
-      "firstSeen": "2026-08-02T12:13:31.715Z",
-      "lastCovered": "2026-08-02T12:13:31.715Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-02-proving-an-absence-who-pays-for-due-diligence"
-      ],
-      "eventUri": null,
-      "summary": "European due-diligence rules are being applied to Pakistan's garment exports, and the complaint from Karachi is that a documented child-labour problem in one segment is being treated as a verdict on the whole industry. Do not write the grievance; write the instrument, because the mechanism is what makes this general. A supply-chain due-diligence regime does one specific thing: it moves the burden of proof from the regulator to the supplier, so a producer must now document the absence of forced labour rather than a regulator prove its presence — and documenting an absence has a fixed cost, in audits, traceability systems and certification, that does not scale with firm size. The predictable result is not less child labour; it is fewer small suppliers, because only large exporters can amortise compliance, and the smallest units simply move down the chain into subcontracting where the audit does not reach. Establish the record with numbers rather than the column's framing: Pakistan's textile and garment export value and its share of total exports and of formal employment, GSP+ status and the conditions attached, which EU instruments actually apply and from what date, the documented child-labour findings and their sector and geography, audit and certification cost per unit, and what the Commission and the PRGMEA each say. Then the frame for our reader: Bangladesh, Vietnam, Egypt and Morocco face the identical instrument, and the honest question is not whether the rules are unfair but who inside the exporting country pays for them and who inside the importing country benefits — a rule that consolidates supply into large compliant mills is a rule that a large compliant mill wants. Source is a Dawn column: build on the regulation text, the Bureau of Statistics export series and the ILO's own findings, and put the consolidation question to the industry association directly.",
-      "conceptUris": []
-    },
-    {
-      "id": "the-record-that-keeps-falling-and-the-night-that-does-not-cool",
-      "label": "South Korea records its highest-ever temperature of 42.5C",
-      "firstSeen": "2026-08-02T12:13:31.715Z",
-      "lastCovered": "2026-08-02T12:13:31.715Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-02-the-record-that-keeps-falling-and-the-night-that-does-not-cool"
-      ],
-      "eventUri": "tur-1346454",
-      "summary": "South Korea has recorded 42.5C, its highest temperature in the instrumental record, with the extreme concentrated in the southern regions. Lead with what a national record actually is and why this one is not a curiosity: records in a stationary climate fall at a decreasing rate — each new one is harder than the last — so a distribution whose records keep falling is not producing rare events, it has moved, and the correct reading of 42.5C is that the whole curve shifted, not that one afternoon was unlucky. Teach the second mechanism, which is the one that kills: heat mortality tracks the overnight minimum more closely than the daytime maximum, because the body clears accumulated heat load at night and a tropical night removes that window — so establish the minima alongside the maxima, and the excess-death series rather than the heatstroke count, since heat deaths are recorded as cardiac and renal events and the official toll is always the smaller number. Establish the record from KMA: the previous national record and where it stood, the station and its siting, how many stations broke local records, consecutive tropical nights, peak grid load against capacity, and the emergency-response threshold and who it protects. Then the frame that makes this a global filing rather than a Korean one: 42.5C is survivable with air conditioning and a working grid, and Korea has both — the same reading arriving in Sindh, Khuzestan, the Gulf or the Sahel, where outdoor labour is not optional and the grid is not firm, is a mass-casualty event, and the wet-bulb threshold is the variable to name because it is the one that decides whether shade and water are enough. Set it against this file's cooling-load filing: peak, not total, is the constraint.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/South_Korea",
-        "http://en.wikipedia.org/wiki/Yangsan",
-        "http://en.wikipedia.org/wiki/Temperature",
-        "http://en.wikipedia.org/wiki/Heat_wave",
-        "http://en.wikipedia.org/wiki/Korea_Meteorological_Administration",
-        "http://en.wikipedia.org/wiki/Busan",
-        "http://en.wikipedia.org/wiki/Celsius",
-        "http://en.wikipedia.org/wiki/Seoul"
-      ]
-    },
-    {
-      "id": "the-line-on-the-map-tenure-as-a-conservation-instrument",
-      "label": "Indigenous territory maintains ecological stability amid agricultural expansion in the Brazilian savanna",
-      "firstSeen": "2026-08-02T12:13:31.715Z",
-      "lastCovered": "2026-08-02T12:13:31.715Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-02-the-line-on-the-map-tenure-as-a-conservation-instrument"
-      ],
-      "eventUri": null,
-      "summary": "A study finds the Pimentel Barbosa Indigenous Territory — 329,000 hectares in Mato Grosso, home to 2,369 people in 2022 — has held its vegetation cover and settlement pattern essentially unchanged for four decades, while the land around it was converted to soy, cattle and the BR-158 and BR-163 highways. Lead with the four decades and the boundary, because the finding is a natural experiment and that is rare enough to say so: same soils, same rainfall, same market access, one legal difference — collective inalienable tenure — and the vegetation cover diverges. Teach why the Cerrado is the right place to notice this and the wrong place to have missed it: it is a savanna, not forest, so it falls outside the Amazon's legal protections and outside most deforestation monitoring, it holds a third of Brazil's biodiversity and the recharge zones of the aquifers feeding three major basins, and it has been cleared faster than the Amazon for a decade with a fraction of the attention. Establish the record from the paper: the authors and institutions, the imagery series and years, how cover was classified, the comparison landscape and how it was chosen, what the Xavante occupation pattern actually is (fire management, village mobility, cultivation cycles), and what the authors say the design cannot establish — a boundary comparison shows association, not the mechanism inside it. Then the frame for our reader: the policy conclusion that keeps arriving from this literature is unwelcome to everyone selling conservation as a technology — the most reliable predictor of intact land is secure indigenous tenure, which is a legal instrument and costs nothing to operate, and it is precisely the instrument under active legislative attack in Brasília through the marco temporal. Name the researchers and the institutions and go to the paper and to IBGE's own series.",
-      "conceptUris": []
-    },
-    {
-      "id": "advice-priced-in-questions-who-can-afford-to-ask-well",
-      "label": "AI financial advice is surprisingly good, especially if you ask right questions",
-      "firstSeen": "2026-08-02T12:13:31.715Z",
-      "lastCovered": "2026-08-02T12:13:31.715Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-02-advice-priced-in-questions-who-can-afford-to-ask-well"
-      ],
-      "eventUri": null,
-      "summary": "MIT Sloan research finds large models give competent personal financial advice — conditional on the quality of the question. Lead with the conditional, because it inverts the promise being made for these systems: an advice tool whose output quality depends on the user's ability to specify the problem transfers value to people who already know what to ask, which is the same population that could already afford an adviser. The mechanism to teach is why that happens rather than that it does — a model answers the question posed, has no fiduciary duty, cannot ask for the disclosure a regulated adviser is required to obtain (debts, dependants, tax residency, time horizon, risk capacity), and will not tell an unprompted user that the right answer to 'which fund' is 'clear the credit card first'. The omission is invisible: a confident, well-structured, wrong-frame answer reads exactly like a right one. Establish the record from the study: sample and method, what 'good' was scored against and by whom, which question types degraded and how far, whether the models flagged their own limits, and what the researchers say it cannot support. Then the accountability frame, which is where this stops being a productivity story: financial advice is a regulated activity in most jurisdictions precisely because the harm is delayed and uninsurable, and a tool that provides it without a licence, a suitability obligation or a complaints route is not a cheaper adviser, it is an adviser with the liability removed — and the first jurisdictions where it becomes the default advice channel are the ones with the thinnest adviser coverage and the weakest consumer-redress regimes, across South Asia, Africa and the Gulf. Go to the paper and to the securities regulators for whether this is regulated activity in their view.",
-      "conceptUris": []
-    },
-    {
-      "id": "verifying-everyone-to-exclude-some-the-age-gate-as-registry",
-      "label": "Safeguarding Children Online: Beyond Singapore's Social Media Ban Debate",
-      "firstSeen": "2026-08-02T12:13:31.715Z",
-      "lastCovered": "2026-08-02T12:13:31.715Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-02-verifying-everyone-to-exclude-some-the-age-gate-as-registry"
-      ],
-      "eventUri": null,
-      "summary": "Singapore is weighing an under-16 social media ban on the Australian model, and the argument worth making is the one the ban debate skips: enforcement, not principle. Lead with what an age ban actually requires, because the cost lands on people the policy never names — to know a user is over 16 a platform must verify the age of every user, so a measure aimed at children becomes an identity-verification requirement for adults, and the anonymity that protects a dissident, an abuse survivor or a domestic worker reporting an employer is removed as a side effect of protecting a teenager. Teach the three enforcement architectures and their distinct failure modes: document upload (creates a retained identity database and therefore a breach surface), facial age estimation (error bands of several years, and the error is not uniform across skin tone or ethnicity, so the misclassified are systematically the same people), and device- or OS-level attestation (works, but hands the age gate to Apple and Google and makes two firms the arbiters of who is a minor). Establish the record: what Singapore's IMDA has actually proposed and at what stage, what Australia's implementation has produced in its first months of operation, the evidence base linking usage to adolescent harm and how contested it is, and what the platforms say. Then the frame our reader will recognise from this file's Chat Control filing a cycle ago: a child-safety instrument built in a jurisdiction with courts and a data-protection authority gets exported to jurisdictions with neither, and Indonesia, Malaysia, Pakistan and the Gulf states are all drafting from the same template — where a verified identity attaches to every post, the ban's durable output is not safer children, it is a registry.",
       "conceptUris": []
     }
   ]
