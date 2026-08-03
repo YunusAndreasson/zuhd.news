@@ -60,6 +60,11 @@ export interface Sheet {
    */
   showChokepoint(cp: MapChokepoint, pinned: boolean, docked?: boolean): void
   /**
+   * Which row a docked card should open beside. Cleared with `null`, in which
+   * case the stylesheet's own position stands.
+   */
+  dockTo(anchor: HTMLElement | null): void
+  /**
    * `rangeDays` is the money rail's window, carried in so the card opens on the
    * period the reader was already looking at. Absent — a card opened from a map
    * mark rather than from the rail — means the whole published series, which is
@@ -210,6 +215,41 @@ export function createSheet(): Sheet {
   let pinned = false
   /** Whether the open card is the non-modal, rail-anchored kind. */
   let isDocked = false
+  /** The row it was opened from, which decides where it sits. */
+  let dockAnchor: HTMLElement | null = null
+
+  /**
+   * Put a docked card beside the row that opened it.
+   *
+   * It was pinned to the bottom-left of the canvas, which is where the *peek*
+   * card lives — and a peek is a card about a mark the pointer is resting on,
+   * so it has nowhere better to be. This one is about a row, and the row is on
+   * screen: opening a card at the far corner from the thing pressed makes the
+   * reader find it, and on a tall rail the pressed row can be six hundred
+   * pixels from where the answer appeared.
+   *
+   * The same arithmetic the markets panel uses, and the same division of
+   * labour: **the row decides the top, the row's own left edge decides the
+   * side.** That edge is the rail's inner edge — the anchor is always a rail
+   * row — so the card needs to know nothing about the layout to sit against it.
+   * The top is clamped back inside the window, because a row near the foot of a
+   * scrolled rail would otherwise open a card whose bottom is off-screen and
+   * this dialog does not scroll the page.
+   */
+  const placeDocked = () => {
+    if (!isDocked || !dialog.open || !dockAnchor) return
+    const r = dockAnchor.getBoundingClientRect()
+    const gap = 10
+    const h = dialog.offsetHeight
+    dialog.style.left = 'auto'
+    dialog.style.bottom = 'auto'
+    dialog.style.right = `${Math.round(Math.max(gap, window.innerWidth - r.left + gap))}px`
+    dialog.style.top = `${Math.round(Math.max(gap, Math.min(r.top, window.innerHeight - h - gap)))}px`
+  }
+  // The card is fixed to a measured point, so anything that moves what it is
+  // pointing at moves it too.
+  const onReflow = () => placeDocked()
+  window.addEventListener('resize', onReflow, { passive: true })
   // `close` is *queued*, not dispatched synchronously — so a bare
   // `pinned = false` here fired one task after the promotion below had already
   // set `pinned = true`, and silently unpinned a sheet the reader had just
@@ -237,8 +277,20 @@ export function createSheet(): Sheet {
       dialog.classList.toggle('is-docked', docked)
       // `show()` leaves the map live and the page interactive; the platform
       // then stops doing three things for us, and they are wired below.
-      if (docked) dialog.show()
-      else dialog.showModal()
+      if (docked) {
+        dialog.show()
+        // After `show()`, so `offsetHeight` is the card's real height rather
+        // than zero — the clamp needs it and a hidden dialog has none.
+        placeDocked()
+      } else {
+        // Inline offsets belong to the docked mode alone; left behind they
+        // would fight the modal's own centring.
+        dialog.style.removeProperty('top')
+        dialog.style.removeProperty('right')
+        dialog.style.removeProperty('left')
+        dialog.style.removeProperty('bottom')
+        dialog.showModal()
+      }
     } else {
       isDocked = false
       dialog.classList.remove('is-docked')
@@ -584,6 +636,11 @@ export function createSheet(): Sheet {
           entry.pct < 0 ? 'neg' : 'pos',
         ),
       )
+
+      // Before the chart, because a reader who cannot name the instrument
+      // cannot read the line either. Only the instruments that need one carry
+      // it — see `TickerEntry.note`.
+      if (entry.note) nodes.push(el('p', 'map-sheet-lead', entry.note))
 
       if (pin) {
         nodes.push(
@@ -1059,7 +1116,11 @@ export function createSheet(): Sheet {
     },
     isOpen: () => dialog.open,
     isPinned: () => pinned,
+    dockTo(anchor) {
+      dockAnchor = anchor
+    },
     destroy() {
+      window.removeEventListener('resize', onReflow)
       // The two the docked mode wired by hand. `show()` gave us the card
       // without the platform's Escape or light dismiss, and a listener left on
       // `document` outlives the island that needed it.

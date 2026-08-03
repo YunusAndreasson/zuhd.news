@@ -1301,7 +1301,8 @@ export function mount(
    */
   const marketStrip: MarketStrip = createMarketStrip({
     rangeDays: DEFAULT_RANGE_HOURS / 24,
-    onSelect: (id) => {
+    onSelect: (id, anchor) => {
+      sheet.dockTo(anchor)
       const ex = markets.find((m) => m.id === id)
       if (!ex) return
       // Unlike a marker click, this one flies. The reader has picked a name out
@@ -1320,11 +1321,15 @@ export function mount(
       // the card hiding its own answer. Desktop only — see `docked()`.
       sheet.showMarket(ex, true, marketStrip.rangeDays(), docked())
     },
-    onQuote: (entry) => sheet.showIndicator(entry, true, marketStrip.rangeDays(), docked()),
+    onQuote: (entry, anchor) => {
+      sheet.dockTo(anchor)
+      sheet.showIndicator(entry, true, marketStrip.rangeDays(), docked())
+    },
     // A chokepoint is a place, so this flies the way an exchange does: the
     // reader picked a name out of a list with no map context, and landing them
     // on the card without showing them where it is answers half the question.
-    onStrait: (id) => {
+    onStrait: (id, anchor) => {
+      sheet.dockTo(anchor)
       const cp = chokepoints.find((c) => c.id === id)
       if (!cp) return
       feed.setExpanded(false, true)

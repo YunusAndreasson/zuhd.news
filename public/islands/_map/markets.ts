@@ -270,6 +270,8 @@ export interface TrendIndicator {
 interface TickerItem {
   id: string
   label: string
+  /** A sentence saying what the instrument is — see `TickerEntry.note`. */
+  note?: string
   /** For the flag. A three-letter code is not a thing most readers can place —
    *  PKR and IDR especially — and a flag costs no width at all. */
   iso2?: string
@@ -356,9 +358,24 @@ const TICKER: Array<{ group: string; items: TickerItem[] }> = [
  * above, all three of these are how the thing is actually referred to.
  */
 const WORLD: TickerItem[] = [
-  { id: 'brent', label: 'BRENT' },
-  { id: 'vix', label: 'VIX' },
-  { id: 'us-10y', label: 'US 10Y' },
+  {
+    id: 'brent',
+    label: 'BRENT',
+    note: 'The price of a barrel of North Sea crude, and the benchmark most of the world’s oil is sold against. It moves on supply — a strike, a sanction, a strait — and fuel, freight and fertiliser move after it.',
+  },
+  {
+    id: 'vix',
+    label: 'VIX',
+    // "The price of fear" is the phrase this block's own docblock uses, and it
+    // is a nickname rather than a definition — the card has room to say what
+    // the number actually measures, which is where the nickname comes from.
+    note: 'How much movement traders are paying to insure against in US stocks over the coming month. It rises when the market expects turbulence, not when prices fall, which is why a calm decline can leave it flat.',
+  },
+  {
+    id: 'us-10y',
+    label: 'US 10Y',
+    note: 'What it costs the US government to borrow for ten years, as a yearly percentage. It is the rate most other borrowing on earth is priced against, so mortgages, corporate debt and the currencies above all take their cue from it.',
+  },
 ]
 
 /**
@@ -427,6 +444,19 @@ export const seriesChangePct = (values: number[], invert = false): number | null
 
 export interface TickerEntry {
   group: string
+  /**
+   * A sentence saying what this instrument *is*, for the card.
+   *
+   * Only where the name does not carry it. `GOLD` and `BTC` need nothing;
+   * `VIX` and `US 10Y` are opaque unless you already know them, and a rail
+   * that prints a figure against a name a reader cannot decode is asking them
+   * to take it on trust. The chokepoint and exchange cards already do this
+   * with a `blurb` from their payloads — the trends feed carries no such
+   * field, so these are ours, and they sit in the catalog beside the label for
+   * the same reason the exchange gaps do: editorial text belongs with the
+   * editorial decision.
+   */
+  note?: string | undefined
   /** The registry id behind it. `usd-index` for the one derived entry. */
   id: string
   /** The short code the ribbon prints — `TRY`, `GOLD`, `BTC`. */
@@ -710,6 +740,7 @@ const entryFrom = (
   label: item.label,
   name: ind.label,
   flag: flagOf(item.iso2),
+  note: item.note,
   pct,
   unit: ind.unit,
   level: ind.values[ind.values.length - 1],
@@ -852,10 +883,10 @@ export interface MarketStrip {
 
 export interface MarketStripOptions {
   /** Fly to an exchange and pin its card. */
-  onSelect: (id: string) => void
+  onSelect: (id: string, anchor: HTMLElement) => void
   /** Open a currency, metal or coin's card. Nothing to fly to — these are not
    *  places — so this only opens the sheet. */
-  onQuote: (entry: TickerEntry) => void
+  onQuote: (entry: TickerEntry, anchor: HTMLElement) => void
   /**
    * The window the rail opens on, in days.
    *
@@ -867,7 +898,7 @@ export interface MarketStripOptions {
    */
   rangeDays: number
   /** Fly to a chokepoint and pin its card, the way `onSelect` does an exchange. */
-  onStrait: (id: string) => void
+  onStrait: (id: string, anchor: HTMLElement) => void
 }
 
 /**
@@ -1333,8 +1364,9 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
       el('span', 'map-markets-row-pct', ribbonPct(m.changePct)),
     )
     btn.addEventListener('click', () => {
+      const from = openOn ?? btn
       closePanel()
-      opts.onSelect(m.id)
+      opts.onSelect(m.id, from)
     })
     return btn
   }
@@ -1352,8 +1384,13 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
       el('span', 'map-markets-row-pct', ribbonPct(e.pct)),
     )
     btn.addEventListener('click', () => {
+      // `openOn` and not `btn`: the panel is about to close, so the row pressed
+      // is on its way out of the document and the card would be anchored to a
+      // rectangle that no longer exists. The summary that opened the panel is a
+      // rail row and stays put.
+      const from = openOn ?? btn
       closePanel()
-      opts.onQuote(e)
+      opts.onQuote(e, from)
     })
     return btn
   }
@@ -1510,8 +1547,9 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
               el('span', 'map-markets-row-pct', ribbonPct(d)),
             )
             btn.addEventListener('click', () => {
+              const from = openOn ?? btn
               closePanel()
-              opts.onStrait(c.id)
+              opts.onStrait(c.id, from)
             })
             return btn
           }),
@@ -1607,9 +1645,13 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
         'aria-label',
         `${entry.name}${pct == null ? '' : ` — ${ribbonPct(pct)} over ${rangeLabel()}${sparkNote}`}, show detail`,
       )
+      // The same sentence the card leads with, where a pointer can find it
+      // without committing to a press — the treatment `PRAYER_NOTE` and
+      // `THERMAL_NOTE` already get on their chips.
+      if (entry.note) item.title = entry.note
       item.addEventListener('click', () => {
         closePanel()
-        opts.onQuote(entry)
+        opts.onQuote(entry, item)
       })
       world.append(moneyItem(item))
     }

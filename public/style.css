@@ -6167,16 +6167,19 @@ a.map-popup-source-name {
    camera before they open: dimming the map you were just flown to is the card
    hiding its own answer.
 
-   It borrows the peek card's anchor — above the scrubber, clear of the rail,
-   both measured rather than guessed — because that is already the one place on
-   this map a box can sit without covering the thing it is about. What it does
-   not borrow is the 55vh ceiling: a peek is a glance and this is the whole
-   card, so it takes 70vh and scrolls, which is what `.map-sheet:not(.is-peek)`
-   already provides. */
+   **Where it sits is measured, not declared.** It opened at the bottom-left of
+   the canvas at first, which is the *peek* card's corner — and a peek is about
+   a mark the pointer is resting on, so it has nowhere better to be. This one is
+   about a row that is on screen, and on a tall rail the row pressed can be six
+   hundred pixels from the corner the answer appeared in. `placeDocked` in
+   `_map/sheet.ts` anchors it to that row, the way the markets panel already
+   anchors to its summary; the inset here only has to keep the box out of the
+   flow until it does. What it does not borrow from the peek is the 55vh
+   ceiling: a peek is a glance and this is the whole card, so it takes 70vh and
+   scrolls, which is what `.map-sheet:not(.is-peek)` already provides. */
 .map-sheet.is-docked {
   position: fixed;
-  inset: auto auto calc(var(--map-scrub-h, 5.5rem) + var(--space-xs))
-    calc(var(--map-rail-w) + var(--space-md));
+  inset: 0 auto auto 0;
   margin: 0;
   width: min(32rem, calc(100vw - var(--map-rail-w) - 4rem));
   max-height: 70vh;
