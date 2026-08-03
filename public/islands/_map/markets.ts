@@ -550,6 +550,14 @@ export interface TickerEntry {
    * editorial decision.
    */
   note?: string | undefined
+  /**
+   * The last day this row's *block* traded, when that is not today.
+   *
+   * Set by the block builder rather than by the row, because it is a fact about
+   * the set: rows drawn side by side have to share a right edge or their
+   * periods are not comparable. See `sparkInput`'s `blockEdge`.
+   */
+  edge?: number | undefined
   /** The registry id behind it. `usd-index` for the one derived entry. */
   id: string
   /** The short code the ribbon prints — `TRY`, `GOLD`, `BTC`. */
@@ -694,12 +702,47 @@ export const sparkInput = (
    * are in: comparing a wall-clock instant against a midnight would make "the
    * last day" mean 24 hours ending at whatever time the reader loaded the page,
    * and today's close would fall in or out of it depending on the hour.
+   *
+   * ── The edge is the market's, not the wall clock's (2026-08-03) ────────────
+   *
+   * "The rail's, never the data's" was right about *staleness* and wrong about
+   * *weekends*, and the second failure is far more common than the first. These
+   * are weekday series: `brent`, `vix` and `us-10y` print Monday to Friday. A
+   * three-day window ending on a Monday is `[Fri, Mon]` — **one close and two
+   * days on which nothing traded anywhere** — so `covered` finds fewer than two
+   * observations and every row in the `world` block draws a dotted rule. Not
+   * occasionally: **every Sunday and every Monday, at the default range.**
+   *
+   * The day step already knows this — its `FRESH_DAYS` tolerance exists because
+   * "a Monday would drop every exchange" — and the calendar steps never got the
+   * equivalent. That asymmetry is the whole bug, and a reader hit it twice.
+   *
+   * So `blockEdge` moves the window's right edge to the last day the block
+   * *actually traded*, computed once from the rows being drawn together rather
+   * than per row. Every property of the original fix survives: the rows in a
+   * block still share one edge, so the periods are still comparable, and a row
+   * that is genuinely behind still ends short of it and still prints its age
+   * against the real clock. What changes is that the edge is now a fact about
+   * the instruments instead of a fact about when the page was opened. Measured
+   * on the Monday this was written, at the 3d step: `vix` 1 observation → 4,
+   * `us-10y` 0 → 3, and `brent` 0 → 0, which is correct, because `brent` last
+   * printed four trading days before the edge and being dotted is what that is.
+   *
+   * It is deliberately **per block, not per row**: a row-level edge would let a
+   * stale series quietly redraw itself as fresh, which is the bug the paragraph
+   * above exists to prevent.
    */
   now = Date.now(),
+  /**
+   * The last day this block traded, when that is not today. See above. Omitted,
+   * the window ends at `now` — which is right for anything trading every day.
+   */
+  blockEdge?: number,
 ): SparkInput | null => {
   if (!members.length) return null
 
-  const to = Math.floor(now / DAY_MS) * DAY_MS
+  const clock = Math.floor(now / DAY_MS) * DAY_MS
+  const to = blockEdge != null && blockEdge < clock ? blockEdge : clock
   const from = to - days * DAY_MS
 
   const dated = members.map((m) => {
@@ -1173,17 +1216,40 @@ export const attentionEntries = (
  * same payload, so a future addition to `WORLD` that forgot this would put a
  * month's move in a column of six-week sparklines with no visible difference.
  */
+/**
+ * The last day any series in a set actually printed, as a UTC midnight.
+ *
+ * Weekday instruments stop on Friday and a calendar window ending on a Monday
+ * contains one close and two days of nothing — see `sparkInput`'s `blockEdge`
+ * for the failure this exists to end. Undefined when no member carries usable
+ * dates, which leaves the window ending at the clock, as it did before.
+ */
+const lastTradedDay = (inds: TrendIndicator[]): number | undefined => {
+  let max = 0
+  for (const ind of inds) {
+    const dates = seriesDates(ind.periods, ind.asOf)
+    const last = dates?.[dates.length - 1]
+    if (last && last > max) max = last
+  }
+  return max || undefined
+}
+
 export const worldEntries = (indicators: TrendIndicator[]): TickerEntry[] => {
   const byId = new Map(indicators.map((i) => [i.id, i]))
   const out: TickerEntry[] = []
+  const used: TrendIndicator[] = []
   for (const item of WORLD) {
     const ind = byId.get(item.id)
     if (!ind || (ind.cadence && ind.cadence !== 'daily')) continue
     const pct = seriesChangePct(ind.values, item.invert)
     if (pct == null) continue
     out.push(entryFrom('world', item, ind, pct))
+    used.push(ind)
   }
-  return out
+  // One edge for the block, applied after the members are known — the whole
+  // point is that these rows share it.
+  const edge = lastTradedDay(used)
+  return edge == null ? out : out.map((e) => ({ ...e, edge }))
 }
 
 /**
@@ -1795,12 +1861,18 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
      * as a percentage. See `ribbonPoints`.
      */
     unit?: string,
+    /**
+     * The last day this row's block traded, when that is not today. Passed
+     * through untouched — see `sparkInput`'s `blockEdge` for why a weekday
+     * instrument cannot be windowed against the wall clock.
+     */
+    edge?: number,
   ): number | null => {
     // Read once per row rather than taken as an argument: `redraw` runs every
     // row off one press, and a clock read per row could in principle straddle a
     // midnight and window two rows against two different days.
     const now = Date.now()
-    const input = sparkInput(members, rangeDays, now)
+    const input = sparkInput(members, rangeDays, now, edge)
     const m = input?.members
     sparkNote =
       m && m.drawn < m.total
@@ -2302,7 +2374,7 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     item.setAttribute('type', 'button')
     item.setAttribute('aria-haspopup', 'dialog')
     const spark = el('span', 'map-markets-spark')
-    const pct = sparkInto(spark, [entry], entry.unit)
+    const pct = sparkInto(spark, [entry], entry.unit, entry.edge)
     const figure = sparkFigure
     const note = sparkNote
 

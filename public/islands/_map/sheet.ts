@@ -657,7 +657,10 @@ export function createSheet(): Sheet {
        * different question.
        */
       const days = Math.max(rangeDays ?? CARD_MIN_DAYS, CARD_MIN_DAYS)
-      const drawn = sparkInput([entry], days)
+      // `entry.edge` too, or the card and the row it opened from window against
+      // two different right edges — the disagreement this hero was rewritten to
+      // end, coming back through the other door.
+      const drawn = sparkInput([entry], days, Date.now(), entry.edge)
       const ends = drawn?.ends
       const windowPct =
         ends && ends[0] !== 0 ? ((ends[1] - ends[0]) / Math.abs(ends[0])) * 100 : entry.pct
