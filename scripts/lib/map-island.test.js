@@ -418,7 +418,19 @@ test('the island mounts, renders, and tears down cleanly', async () => {
     // about the *scrubber*, and the test for it is `no time filter reaches a
     // determination` below — this line is not that test and must not be read
     // as relaxing it.
-    const layers = [...env.host.querySelectorAll('.map-filter[data-kind="layer"]')]
+    // **The panel has to be opened first, and that is the point of the test.**
+    // The layer group moved into a `<dialog>` on 2026-08-03 — it configures the
+    // map rather than reading it, and seven blank toggles were 223px of a rail
+    // whose job is what the world is doing. The group is built at mount and held
+    // *detached* until the trigger moves it in, so a query before the click
+    // finds nothing: written the obvious way round this assertion goes
+    // green-on-empty and stops covering the thing it names. It also means the
+    // one route to the layers is this button, on both surfaces, so the button
+    // failing is the whole feature failing.
+    const layersOpen = env.host.querySelector('.map-layers-open')
+    assert.ok(layersOpen, 'the layers group has a control that opens it')
+    layersOpen.dispatchEvent(new env.window.MouseEvent('click', { bubbles: true }))
+    const layers = [...env.window.document.querySelectorAll('.map-filter[data-kind="layer"]')]
     assert.deepEqual(
       layers.map((b) => b.textContent),
       ['disasters', 'thermal', 'conflict', 'markets', 'straits', 'famine', 'genocide'],

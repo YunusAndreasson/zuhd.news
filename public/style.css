@@ -2135,6 +2135,13 @@ body.archetype-page-body .article-page-header {
   color: var(--map-ink-muted);
 
   &:hover { color: var(--map-ink); }
+
+  /* Where the layers group stood, and it has to be said explicitly: on a
+     desktop `.map-hud-more` is `display: contents`, so this button is a rail
+     item in its own right and an unset `order` is 0 — which sorted it above the
+     clock. Nested here rather than in the order block above so the two rules
+     about this element sit together and Biome sees one specificity. */
+  body.map-wide & { order: 4; }
 }
 
 .doc-sheet-inner {
@@ -4137,6 +4144,34 @@ body.map-wide .map-filters {
    `.map-feed-filters`, because it has to beat that rule's padding and the two
    have the same specificity: source order is the whole of the difference, and up
    there it also read as a descending-specificity mistake to Biome. */
+/* A settings panel is as wide as its widest switch. The card width is set for a
+   chart, a paragraph and a source line; seven two-word rows in that box is a
+   third of a screen of nothing beside them, which reads as content that failed
+   to arrive rather than as a short list. */
+.island-sheet.is-panel {
+  width: max-content;
+  max-width: min(22rem, calc(100vw - 2rem));
+}
+
+/* The group, inside the sheet. It keeps its column shape — the chips are the
+   same rows they were in the rail — and only loses the rail's outdent, which
+   was pulling them against a pane edge that is no longer there. */
+.island-sheet .map-filters {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  & .map-filter {
+    margin: 0;
+    padding: 0.1rem 0;
+    min-height: var(--map-hud-row-h);
+  }
+}
+
 /* `body.map-wide` and not a bare `.map-feed-filters .map-filter`: **`body` is an
    element**, so `body.map-wide .map-filter` scores (0,2,1) and a two-class
    selector scores (0,2,0) and loses however late it is placed. Written the short
@@ -4651,6 +4686,19 @@ body.map-wide {
      its label would start 13px left of theirs. Direct child only: the ticks
      inside `.map-markets-count` and every row of the panel are untouched. */
   & .map-markets-summary > .map-markets-tick { display: none; }
+
+  /* …but a tick *inside* the spark box stays, and only the caption blocks put
+     one there. See `instrumentRow`: odds and attention refuse the signed palette
+     on purpose, which left them saying magnitude and identity and never
+     direction. A direct-child selector is what makes this possible without an
+     override — the rule above never reached here. */
+  & .map-markets-spark .map-markets-tick {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+
+    & svg { width: 9px; height: 9px; }
+  }
 
   & .map-markets-label {
     flex: 0 0 var(--map-row-label-w);
@@ -5631,6 +5679,34 @@ body.map-wide .map-key {
      information when hidden, not a dimming of live text. */
   &:hover .map-markets-label,
   &:focus-visible .map-markets-label { color: var(--map-ink-body); }
+}
+
+/* Placed here, after `.map-markets-summary`, and not beside the rest of the
+   rail's rules: both carry an `&::after` caret at the same specificity, and with
+   this one first Biome reads the pair as a descending-specificity mistake. The
+   cascade is indifferent — the two selectors never match the same element — so
+   source order is free to satisfy the linter. */
+/* The layers trigger: a rail row that opens a sheet, not a switch.
+
+   It stands where the group did, so the reading order is unchanged, and it wears
+   the chips' own row shape because it *is* one of that column's rows — the mark
+   column, the label, the same 27px box. What it must not wear is a pressed
+   state: nothing here is on or off, and `.map-filter`'s `is-on` ink would say
+   otherwise. The caret is the same `::after` the money rows use to say a row is
+   a door, and it is permanent for the same reason: alone in a column of
+   readouts, the caret is the only thing saying this one opens. */
+.map-layers-open {
+  width: 100%;
+  color: var(--map-ink-body);
+
+  & .map-layers-caret {
+    margin-left: auto;
+    font-size: var(--size-2xs);
+    line-height: 1;
+    color: var(--map-ink-dim);
+  }
+
+  &:hover { color: var(--map-ink); }
 }
 
 /* Hidden with `hidden`, so it leaves the accessibility tree with the pixels.

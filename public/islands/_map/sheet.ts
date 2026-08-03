@@ -76,6 +76,16 @@ export interface Sheet {
   showGenocide(situation: GenocideSituation, pinned: boolean): void
   showThermal(event: ThermalEvent, pinned: boolean): void
   showFamine(area: IpcArea, pinned: boolean): void
+  /**
+   * A configuration panel rather than a card about a mark.
+   *
+   * Every other `show*` here answers "what is this thing on the map"; this one
+   * carries a control group the rail has no room to keep open. It takes the
+   * caller's own element and moves it in — the layer chips are live buttons with
+   * listeners and pressed state, and a DOM move preserves both, so there is no
+   * second copy to keep in step with the first.
+   */
+  showPanel(title: string, body: HTMLElement): void
   showStar(star: StarHit, pinned: boolean): void
   showBody(body: BodyHit, hijri: string | null, pinned: boolean): void
   close(): void
@@ -331,6 +341,7 @@ export function createSheet(): Sheet {
 
   const render = (nodes: Node[], pin: boolean, docked = false) => {
     if (pinned && !pin) return
+    dialog.classList.remove('is-panel')
     // The app line used to hang off the story sheet, which the map no longer
     // opens — stories now read in a popup anchored to their own coordinate. It
     // belongs on whichever sheet the reader has actually committed to, and only
@@ -770,6 +781,17 @@ export function createSheet(): Sheet {
      * finding in the body's own terms, and the link goes to where it can be
      * read in full. The map asserts nothing it did not source.
      */
+    showPanel(title, body) {
+      // `render` is deliberately not used: it appends the app prompt on a
+      // pinned open, and a download offer under a set of layer switches is an
+      // advert in a settings panel. This is the same two lines without it.
+      // A settings panel is as wide as its widest switch, not as wide as a card
+      // that has to hold a chart and a paragraph. `render` clears the class, so
+      // the next card opened after this one comes back at its own size.
+      dialog.classList.add('is-panel')
+      inner.replaceChildren(el('h2', 'island-sheet-title', title), body)
+      open(true, false)
+    },
     showGenocide(situation, pin) {
       const nodes: Node[] = []
       nodes.push(kicker(['genocide', `UN finding · ${fmt.fullDate(situation.date)}`]))

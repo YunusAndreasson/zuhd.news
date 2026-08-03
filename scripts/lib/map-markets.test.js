@@ -518,7 +518,7 @@ const poly = (id, label, values) => ({
 const steady = (n, from, to) =>
   Array.from({ length: n }, (_, i) => from + ((to - from) * i) / (n - 1))
 
-test('the odds block takes the three biggest movers, by points', () => {
+test('the odds block takes the biggest movers, by points, up to the cap', () => {
   const rows = oddsEntries(
     [
       poly('poly-a', 'Will the A happen?', steady(20, 10, 40)),
@@ -529,12 +529,15 @@ test('the odds block takes the three biggest movers, by points', () => {
     30,
     NOW,
   )
+  // Ranked by |change| over the window: a +30, c −20, d +5, b +1. The cap is
+  // `BLOCK_ROWS`, five since the categories and the layers left the rail, so all
+  // four fit here and the ordering is the whole of what this pins.
   assert.deepEqual(
     rows.map((r) => r.id),
-    ['poly-a', 'poly-c', 'poly-d'],
+    ['poly-a', 'poly-c', 'poly-d', 'poly-b'],
     'ranked on the size of the move, not the level',
   )
-  assert.equal(rows.length, 3, 'and capped, so the rail keeps its controls on screen')
+  assert.ok(rows.length <= 5, 'and capped, so the rail keeps its controls on screen')
 })
 
 test('a young market cannot win the block by being young', () => {

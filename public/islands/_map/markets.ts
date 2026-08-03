@@ -754,6 +754,26 @@ export const sparkInput = (
   const current = undated
     ? members
     : dated.flatMap((d) => (d && (d.dates[d.dates.length - 1] ?? 0) >= recent ? [d] : []))
+  /**
+   * **A carry-in was tried here and reverted** (2026-08-03).
+   *
+   * The complaint it answered is real and stands: `vix`, last printing three
+   * days back, drew a line at 24h, a **dotted rule at 3d** and a line again at
+   * 7d — a range control whose middle rung is emptier than the rungs either side
+   * of it is one a reader cannot form a model of. Letting the observation
+   * *before* the window count toward the pair fixed the monotonicity and
+   * recreated the failure the paragraph above records: both of `vix`'s points
+   * sit at the window's left edge, so `coverage` clamps the span to its 5% floor
+   * and the row draws **a 12px line in a 250px box**. A stub is not more
+   * informative than a dotted rule; it is the same absence drawn as though it
+   * were a reading.
+   *
+   * The residual inconsistency belongs to the *day* step, not to this gate: it
+   * tests `FRESH_DAYS` rather than the window, and that tolerance exists so a
+   * Monday does not blank every exchange over the weekend. Narrowing it to
+   * genuine non-trading gaps needs each series' own calendar, which the FRED
+   * dailies do not carry. Left written down rather than guessed at.
+   */
   const covered = dated.flatMap((d) => (d && d.dates.filter((t) => t >= from).length >= 2 ? [d] : []))
 
   // --- The day step ------------------------------------------------------
@@ -954,13 +974,22 @@ const entryFrom = (
 /**
  * How many rows a selected block may hold.
  *
- * Three, and it is a layout number rather than an editorial one. The money
- * block is five rows and the world three; two more open-ended blocks would put
- * the ground picker and the legend below the fold of a 1080p rail, and the
- * rail's stated reading order stops being what the reader sees. Three is enough
- * for a block to read as a set rather than as a single fact.
+ * **Five since 2026-08-03**, and it is still a layout number rather than an
+ * editorial one. It was three because two open-ended blocks any larger put the
+ * ground picker below the fold of a 1080p rail, and the rail's stated reading
+ * order stopped being what the reader saw. Two groups have since left that
+ * column — the categories to the story rail, the layers to a sheet — and the
+ * second of those alone freed 223px against the 50.4px a two-line row costs.
+ * Four more rows is 202px of it, which is the trade stated plainly: seven
+ * switches a reader touches rarely, for four readings they look at constantly.
+ *
+ * The ceiling is real and worth keeping. The selection rule ranks by absolute
+ * change over the window, so a larger `BLOCK_ROWS` is not more information, it
+ * is a longer tail — and both blocks draw from feeds whose interesting end is
+ * short: six live Polymarket series and fifteen Wikipedia ones. Past five the
+ * rows stop being the ones that moved and start being the ones that are left.
  */
-const BLOCK_ROWS = 3
+const BLOCK_ROWS = 5
 
 /**
  * The shortest series a selected block will draw.
@@ -2276,6 +2305,34 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     const pct = sparkInto(spark, [entry], entry.unit)
     const figure = sparkFigure
     const note = sparkNote
+
+    /**
+     * Direction as a **shape**, on the blocks that refuse to say it in colour.
+     *
+     * The money rows paint their figure green or orange, and odds and attention
+     * deliberately do not: `--map-pos`/`--map-neg` read as good and bad, and a
+     * green *US invade Iran +35 pts* is this map calling a likelier war good
+     * news. That argument holds and is not being reopened. What it left behind
+     * is a block where every figure is the same hue whichever way it moved, so
+     * "up or down" had to be read off a 100×20 sparkline or off the sign of a
+     * number — true at a glance to nobody, which is what a reader reported.
+     *
+     * So the third channel gets used: identity in the hue, magnitude in the
+     * figure, and **direction in the tick**, which is the split this file
+     * already states and had spent only two thirds of. The glyph is the one the
+     * map draws for a rising and falling market, and it inherits the block's own
+     * `--cat` through `currentColor` — so it says which way without saying
+     * whether that is good.
+     *
+     * Inside the spark box rather than at the row's head: the head is the label
+     * column, and `.map-markets-summary > .map-markets-tick` is `display: none`
+     * there precisely because a glyph beside a tinted line was the same fact
+     * twice. Beside the figure it is the fact the line is too small to carry.
+     */
+    if (caption && pct != null && spark.lastElementChild) {
+      const dir = marketDirection(pct)
+      if (dir !== 0) spark.insertBefore(tick(dir), spark.lastElementChild)
+    }
     const level = quoteLevel(entry.level, entry.unit)
     item.append(
       tick(marketDirection(entry.pct)),

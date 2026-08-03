@@ -994,21 +994,25 @@ export function mount(
   // question, and the answer is in a media query the button cannot read.
   moreBtn.setAttribute('aria-controls', 'map-hud-more map-hud-legend')
   /**
-   * Two words and two glyphs, one of each per layout — because the panel holds
-   * different things on either side of 900px and a control has to say which.
-   * On the desktop it reveals the legend and is called "key"; on the phone it
-   * also swallows the chips and the picker, so "layers" stays the honest word
-   * and the stacked-planes glyph stays the honest mark. The hidden one is
-   * `display: none`, so it leaves the accessibility tree with the pixels and
-   * the button announces one name rather than both.
+   * Two words, one glyph, one per layout — because the panel holds different
+   * things on either side of 900px and a control has to say which. On the
+   * desktop it reveals the legend and is called "key". On the phone it also
+   * holds the ground picker and the row that opens the layers, so **"layers" is
+   * no longer the honest word**: it would put the same word on a button and on
+   * the first row of the panel that button opens, which is a two-level menu
+   * saying one thing at both levels. "more" covers a mixed panel and matches
+   * what the box is called in the markup.
+   *
+   * The stacked-planes glyph went with the word, for the same reason and to the
+   * same place: it means *layers*, and it now appears exactly once, on the row
+   * that opens them. The hidden span is `display: none`, so it leaves the
+   * accessibility tree with the pixels and the button announces one name.
    */
   moreBtn.innerHTML =
-    '<svg viewBox="0 0 16 16" data-for="wide" aria-hidden="true" focusable="false" fill="currentColor">' +
+    '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="currentColor">' +
     '<circle cx="3.4" cy="8" r="1.5"/><circle cx="8" cy="8" r="2.4" opacity="0.5"/>' +
     '<circle cx="13" cy="8" r="2.4" fill="none" stroke="currentColor" stroke-width="1"/></svg>' +
-    '<svg viewBox="0 0 16 16" data-for="narrow" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.2">' +
-    '<path d="M8 1.8 14.4 5 8 8.2 1.6 5Z"/><path d="m2.4 8 5.6 2.8L13.6 8"/><path d="m2.4 11 5.6 2.8L13.6 11"/>' +
-    '</svg><span data-for="wide">key</span><span data-for="narrow">layers</span>'
+    '<span data-for="wide">key</span><span data-for="narrow">more</span>'
 
   /**
    * The legend is in flow in both layouts, which is what removed a measurement.
@@ -1093,7 +1097,51 @@ export function mount(
     `<span class="map-filter-mark">${glyphSvg('prayer-line')}</span><span>prayer lines</span>`
 
   legend.append(key, prayerNote, groundNote)
-  more.append(filters, ground, legend)
+  /**
+   * `layers` is a configuration now, not a column of readings (2026-08-03).
+   *
+   * Seven chips and a heading were 223px of the instrument rail — and, since the
+   * categories moved to the story rail, **223px of blank toggles**: not one of
+   * the seven can carry a trend line, so the argument that put chips in this
+   * column ("a reader deciding whether to switch a layer on has no way to know
+   * it is spiking") no longer describes anything here. What it describes is a
+   * settings panel that happened to be always open, in a column whose whole job
+   * is what the world is doing.
+   *
+   * The trigger goes where the group was and the group goes into a sheet over
+   * the map — which is also where it belongs, since what it configures is the
+   * map rather than the rail. `filters` is **moved**, not copied: the chips are
+   * live buttons with listeners and a pressed state, and one element in two
+   * places is the duplication this codebase keeps a rule about.
+   *
+   * One control for both surfaces. On a desktop `.map-more` is a pass-through,
+   * so this row *is* a rail row in the reading order; on a phone `.map-more` is
+   * the panel behind the `layers` button, so the same row sits inside it. The
+   * alternative was a rail row on one surface and a different route on the
+   * other, with `filters` needing to exist in two parents.
+   */
+  const layersTrigger = document.createElement('button')
+  layersTrigger.type = 'button'
+  layersTrigger.className = 'map-filter map-layers-open'
+  layersTrigger.setAttribute('aria-haspopup', 'dialog')
+  layersTrigger.title = 'Choose what is drawn over the map'
+  layersTrigger.innerHTML =
+    '<span class="map-filter-mark">' +
+    '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false" fill="none" ' +
+    'stroke="currentColor" stroke-width="1.3" stroke-linejoin="round">' +
+    '<path d="M8 1.8 14.4 5 8 8.2 1.6 5z"/><path d="M2.4 8 8 10.8 13.6 8"/>' +
+    '<path d="M2.4 11 8 13.8 13.6 11"/></svg></span>' +
+    '<span class="map-filter-label">layers</span>' +
+    // A real element rather than an `::after`, unlike the money rows' caret.
+    // Two pseudo carets at the same specificity read to Biome as a descending
+    // specificity mistake, and the caret here is a permanent affordance rather
+    // than a hover reveal — so it may as well be a node this file controls.
+    '<span class="map-layers-caret" aria-hidden="true">\u203a</span>'
+  layersTrigger.addEventListener('click', () => {
+    sheet.showPanel('What is drawn over the map', filters)
+  })
+
+  more.append(layersTrigger, ground, legend)
   // The button is last, which is a desktop fact: `.map-hud-more` is a
   // pass-through there, so `more`'s children *are* strip items and a button
   // appended before them would sit between the time range and the chips. On the
@@ -4257,9 +4305,9 @@ export function mount(
     // a pane the chips are no longer in would be a sentence about nothing.
     stories.append(lockNote)
 
-    // No separator any more. It existed to fence the categories off from the
-    // layers inside one column; two panes say it by construction.
-    filters.append(groupLabel('layers'))
+    // No heading and no separator. The sheet's own title names the group, and
+    // the separator existed to fence the categories off inside one column — two
+    // panes and a dialog say both by construction.
 
     // Each overlay chip draws its layer's own silhouette, from the same vertex
     // table `map.addImage` rasterises. Before this they were all a 6px disc
