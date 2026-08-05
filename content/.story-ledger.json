@@ -2,13 +2,229 @@
   "version": 1,
   "stories": [
     {
+      "id": "lebanon-strikes-resume-ceasefire-sequencing-soldiers-killed",
+      "label": "Israel hits Lebanon, claims 'blatant' Hezbollah truce breach",
+      "firstSeen": "2026-08-05T22:13:03.090Z",
+      "lastCovered": "2026-08-05T22:13:03.090Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-05-lebanon-strikes-resume-ceasefire-sequencing-soldiers-killed"
+      ],
+      "eventUri": "eng-11894253",
+      "summary": "Israel resumed strikes on southern Lebanon hours after the Rome talks stalled, and a bomb blast killed at least two Israeli soldiers and wounded seven — the first Israeli military deaths since the ceasefire. Lead with the sequence, not either side's framing: our 17:17 filing today reported talks suspended over sequencing and a drone strike on a cemetery prayer area; this is the same policy escalating within hours. The mechanism to teach is that a ceasefire whose disarmament clause is demanded first and whose withdrawal clause is deferred has no stable state — each side's compliance is conditioned on the other's, so 'violation' is what both sides call the other's response to their own. Count the Lebanese dead and the Israeli dead in the same paragraph, with the same precision. Sources diverge sharply (divergence 0.48) on who breached first — attribute every claim: the IDF says it was 'compelled to act', Al Jazeera reports at least one Lebanese killed, Mehr reports the soldiers' deaths from local Lebanese media, Times of Israel carries the IDF account. State plainly that no independent verification exists for the initiating incident.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Lebanon",
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Hezbollah",
+        "http://en.wikipedia.org/wiki/Rome",
+        "http://en.wikipedia.org/wiki/Israel_Defense_Forces",
+        "http://en.wikipedia.org/wiki/Southern_Lebanon",
+        "http://en.wikipedia.org/wiki/Ceasefire",
+        "http://en.wikipedia.org/wiki/United_States"
+      ]
+    },
+    {
+      "id": "north-korea-missile-unit-voronezh-interceptor-arithmetic",
+      "label": "Russia plans to deploy 6 launchers and 120 missiles from North Korea in Voronezh region - HUR",
+      "firstSeen": "2026-08-05T22:13:03.090Z",
+      "lastCovered": "2026-08-05T22:13:03.090Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-05-north-korea-missile-unit-voronezh-interceptor-arithmetic"
+      ],
+      "eventUri": "spa-4293718",
+      "summary": "Ukrainian military intelligence says Russia will station a North Korean missile unit in Voronezh region — six launchers and 120 North Korean-made ballistic missiles. Lead with the arithmetic against our own filing from this morning: allied air-defence missile deliveries to Ukraine fell by two-thirds in the first half of 2026, and 120 incoming ballistic missiles is a number that only means something against the interceptor stock available to meet it. That is the whole story — supply rising on one side while supply falls on the other, and the gap is measured in cities. The mechanism to teach is that ballistic-missile defence is an attrition arithmetic, not a capability: a Patriot battery that exists but has no interceptors is a map symbol, and each intercept costs several times what the incoming missile cost, so the exchange ratio favours the attacker before any missile flies. The structural why is that Pyongyang has become a munitions supplier with production capacity the European defence industrial base has not matched in four years of trying — a state under the heaviest sanctions regime in the world is out-producing the coalition arming the other side. Establish the record carefully: this is a HUR claim, not an observed deployment; say so, date it, and note that Interfax-Ukraine, Fox, NDTV and Meduza are all relaying the same single intelligence statement. TWZ's assessment is worth citing on why the timing matters.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Ballistic_missile",
+        "http://en.wikipedia.org/wiki/Kiev",
+        "http://en.wikipedia.org/wiki/Missile",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/North_Korea",
+        "http://en.wikipedia.org/wiki/Moscow"
+      ]
+    },
+    {
+      "id": "new-mexico-doj-epstein-evidence-federalism-gap",
+      "label": "New Mexico sues US Justice Department for impeding Epstein probe",
+      "firstSeen": "2026-08-05T22:13:03.090Z",
+      "lastCovered": "2026-08-05T22:13:03.090Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-05-new-mexico-doj-epstein-evidence-federalism-gap"
+      ],
+      "eventUri": "eng-11896371",
+      "summary": "New Mexico's attorney general sued the US Department of Justice and acting Attorney General Todd Blanche, alleging the federal government is 'stonewalling' the state's own investigation into Jeffrey Epstein — whose Zorro Ranch sat in New Mexico. Lead with the direction of the obstruction, because it inverts what readers expect: the usual accountability story is a state failing to act and the federal government stepping in, and here a state is in court to force the federal law-enforcement agency to hand over what it holds. Teach the mechanism our reader should carry — American federalism gives states independent criminal jurisdiction but no power to compel federal evidence, so when a case's records sit in a federal file, a state prosecution can be strangled without anyone declining to prosecute. That structure is the accountability gap; the lawsuit is a test of whether it can be forced open. Establish the record: what New Mexico is specifically seeking, what it says it has been refused, what conduct on its territory it is investigating, Blanche's own prior role as Trump's defence lawyer and his confirmation status, and what DOJ has said. Then the frame: the victims are the named and unnamed women whose accounts are in those files, and the passage of time is the mechanism by which the case is closed without ever being decided.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/New_Mexico",
+        "http://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+        "http://en.wikipedia.org/wiki/Jeffrey_Epstein",
+        "http://en.wikipedia.org/wiki/Lawsuit",
+        "http://en.wikipedia.org/wiki/United_States_Attorney_General",
+        "http://en.wikipedia.org/wiki/Zorro",
+        "http://en.wikipedia.org/wiki/Federal_government_of_the_United_States",
+        "http://en.wikipedia.org/wiki/Attorney_General_of_New_Mexico"
+      ]
+    },
+    {
+      "id": "pakistan-fuel-price-petroleum-levy-regressive-imf",
+      "label": "Govt raises petrol price by Rs4.45, cuts HSD by Rs2",
+      "firstSeen": "2026-08-05T22:13:03.090Z",
+      "lastCovered": "2026-08-05T22:13:03.090Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-05-pakistan-fuel-price-petroleum-levy-regressive-imf"
+      ],
+      "eventUri": "eng-11888142",
+      "summary": "Petrol in Pakistan now retails at Rs333.01 a litre and high-speed diesel at Rs383.86, after the government raised petrol Rs4.45 and cut diesel Rs2 — and it continues to levy Rs110 per litre in petroleum development levy. Lead with the levy, not the price move: roughly a third of what a Pakistani motorist pays at the pump is a tax that exists because the IMF programme requires revenue and the government has no politically survivable way to raise it directly. That is the mechanism our reader should carry — a fuel levy is a consumption tax collected without a tax administration, which is why fiscally cornered states everywhere reach for it, and why it is regressive by construction: the same rupees per litre are paid by a rickshaw driver and by an importer. The split direction matters too and should be explained rather than reported: diesel down and petrol up moves cost from freight and agriculture onto private transport, which is a deliberate choice about where inflation is allowed to land, because diesel prices pass into food prices within weeks. Establish the record: the fortnightly pricing mechanism and who sets it, the current levy against its statutory ceiling, what the IMF programme actually commits Islamabad to, and the international price movement over the same fortnight that these changes did or did not track. Frame against this file's running thread on Pakistan's exposure — the same state mediating between Tehran and Washington and reopening its Iranian border crossings is one whose fuel bill is set by corridors it does not control. Dawn on a Pakistani story: regional-outlet requirement met.",
+      "conceptUris": []
+    },
+    {
+      "id": "binance-redotpay-stablecoin-card-user-exposure",
+      "label": "Crypto firm RedotPay says it will defend itself 'vigorously' against Binance lawsuit",
+      "firstSeen": "2026-08-05T22:13:03.090Z",
+      "lastCovered": "2026-08-05T22:13:03.090Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-05-binance-redotpay-stablecoin-card-user-exposure"
+      ],
+      "eventUri": "eng-11895604",
+      "summary": "Binance is suing RedotPay for $470 million, alleging it used Binance Pay funds to top up its own prepaid cards in breach of contract; RedotPay — which calls itself the world's largest stablecoin payment card issuer — says it will fight. Lead past the corporate quarrel to who is standing underneath it: RedotPay's customers are overwhelmingly people in Nigeria, Argentina, Turkey, Pakistan and Southeast Asia who use a stablecoin card because their own banking system cannot give them a dollar-denominated way to pay for anything. The mechanism our reader should carry is that this 'card' is a stack of dependencies invisible to the person holding it — a stablecoin issuer, a payment processor, a card network, and a sponsoring bank — and a contract dispute at any layer can freeze spending for users who never signed it and have no standing in the court where it is heard. That is the structural difference between a crypto card and a bank account: there is no deposit insurance, no regulator with jurisdiction over the user, and no obligation to keep the rails running while lawyers argue. Establish the record: what Binance actually alleges and in which court, RedotPay's answer, the sums and user counts involved, which issuing bank and network the cards run on, and whether any cardholder funds are affected right now. Do not restate today's Circle/Arc filing — that was about who owns settlement infrastructure; this is about what happens to users when the infrastructure's owners fall out.",
+      "conceptUris": []
+    },
+    {
+      "id": "spacex-first-public-earnings-starlink-revenue-concentration",
+      "label": "SpaceX Is Quietly Becoming a 'Neocloud,' Veteran Analyst Says: Here's What That Means",
+      "firstSeen": "2026-08-05T22:13:03.090Z",
+      "lastCovered": "2026-08-05T22:13:03.090Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-05-spacex-first-public-earnings-starlink-revenue-concentration"
+      ],
+      "eventUri": "eng-11895720",
+      "summary": "SpaceX beat revenue estimates in its first earnings report as a publicly listed company, and an analyst's read is that the rocket maker is turning into an AI-infrastructure business — a 'neocloud' — rather than a launch company. Build from the filing, not the analyst note: the hard news is that the world's dominant launch provider now has a share price, quarterly disclosure obligations and public shareholders, and this is the first time anyone outside it has seen its numbers. Lead with what the segment breakdown actually shows about where the revenue comes from, because the answer — overwhelmingly Starlink subscriptions rather than launch — is the finding, and it reframes the company as a telecoms utility that happens to own rockets. The mechanism our reader should carry: a single private firm now controls the majority of active satellites, most of the West's launch capacity, and a consumer connectivity network sold in over a hundred countries, and the public listing is what finally attaches disclosure and fiduciary duty to that concentration — an accountability gain, not only a financing event. Then the frame that matters for this reader: Starlink is the connectivity of last resort in Yemen, Sudan, Gaza and rural Nigeria, and terminals have been switched off and on as instruments of policy before; a listed company answering to shareholders is a different kind of actor to petition than a private one answering to its owner. Treat the 'neocloud' thesis as one analyst's characterisation and attribute it — the earnings numbers are the story, the label is commentary.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/SpaceX",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Starlink"
+      ]
+    },
+    {
+      "id": "deepmind-hassabis-chair-jeff-dean-departs-research-charter",
+      "label": "Google's AI shakeup: DeepMind's Hassabis steps aside, senior scientists depart",
+      "firstSeen": "2026-08-05T22:13:03.090Z",
+      "lastCovered": "2026-08-05T22:13:03.090Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-05-deepmind-hassabis-chair-jeff-dean-departs-research-charter"
+      ],
+      "eventUri": "eng-11896207",
+      "summary": "Demis Hassabis moves from CEO of Google DeepMind to chair and Jeff Dean is departing — announced by Sundar Pichai in a company blog post, and the highest-attention item on Hacker News today. Lead with who Jeff Dean is, because the reader who does not follow Google will not otherwise register the size of this: he is the engineer behind MapReduce, Bigtable, TensorFlow and much of the infrastructure the modern web and modern machine learning are built on, and he had been at Google for over twenty-five years. The mechanism to teach is that frontier AI labs are not interchangeable with the companies that own them — DeepMind was acquired with an explicit research charter and a degree of independence, and a Nobel-laureate research leader being elevated to a non-executive chair is the standard corporate form for ending that independence without saying so. Establish the record precisely and resist the narrative: exactly what titles change and who now reports to whom, what Pichai's post says the reason is, which other senior scientists have left and where they went, and what Hassabis himself has said. Then the frame our reader should hold — the concentration of AI capability inside three or four American firms means the governance of that capability is corporate governance, decided in blog posts, with no external process at all; a research organisation's charter is worth exactly what its parent company's org chart says it is.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Google",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/DeepMind",
+        "http://en.wikipedia.org/wiki/Demis_Hassabis",
+        "http://en.wikipedia.org/wiki/Alphabet_Inc.",
+        "http://en.wikipedia.org/wiki/Jeff_Dean",
+        "http://en.wikipedia.org/wiki/Chief_executive_officer",
+        "http://en.wikipedia.org/wiki/Artificial_general_intelligence"
+      ]
+    },
+    {
+      "id": "chinese-telcos-us-peering-salt-typhoon-licence-gap",
+      "label": "Chinese telcos maintain deep US presence despite Salt Typhoon links, House committee says",
+      "firstSeen": "2026-08-05T22:13:03.090Z",
+      "lastCovered": "2026-08-05T22:13:03.090Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-05-chinese-telcos-us-peering-salt-typhoon-licence-gap"
+      ],
+      "eventUri": null,
+      "summary": "A House committee report finds three Chinese state telecoms giants still hold footholds in the US internet ecosystem years after the Salt Typhoon campaign that compromised American carriers and the lawful-intercept systems inside them. Lead with the gap between the finding and the response: their consumer licences were revoked years ago, and the report's point is that revoking a licence to sell phone service does nothing about the parts that actually matter — points of presence, peering arrangements, undersea cable landing stakes and cloud interconnects, which are commercial arrangements between private networks that no regulator systematically reviews. The mechanism our reader should carry is that the internet has no border: traffic between two cities in one country routinely transits a third, routing is announced by trust rather than enforced, and a carrier with peering relationships sees flows regardless of whether it has any local customers. That is why the Salt Typhoon intrusion was so consequential — it reached the wiretap infrastructure US law requires carriers to build, which is the standing lesson that a mandated backdoor is a backdoor for whoever finds it first. Establish the record: which three firms, what specific presence the committee documents, what Salt Typhoon actually compromised and when, what actions FCC and Commerce have taken, and what the companies say. Then the frame: the same architecture of dependency the committee is alarmed about in Washington is the ordinary condition of most of Africa, South Asia and the Gulf, where the backbone, the handsets and the surveillance equipment are all Chinese or American and neither choice comes with standing to object.",
+      "conceptUris": []
+    },
+    {
+      "id": "youtube-ai-labels-photorealism-wrong-axis-disclosure",
+      "label": "Hank Green found the AI problem that YouTube labels can't catch",
+      "firstSeen": "2026-08-05T22:13:03.090Z",
+      "lastCovered": "2026-08-05T22:13:03.090Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-05-youtube-ai-labels-photorealism-wrong-axis-disclosure"
+      ],
+      "eventUri": "eng-11896948",
+      "summary": "YouTube requires disclosure when AI 'meaningfully alters or generates photorealistic content' — and the policy's boundaries are incoherent on their own terms: it captures AI-generated music, which is not photorealistic, and exempts a person riding a unicorn through a fantasy world, which is. Lead with that pair, because the contradiction is the finding and it takes one sentence to see. The mechanism our reader should carry is that photorealism is the wrong axis entirely: what makes synthetic media dangerous is a claim to have recorded something that happened, and that claim is carried by framing, context and captioning, not by pixel fidelity — a low-resolution clip captioned as phone footage from a protest does more work than a flawless render captioned as art. A disclosure rule keyed to how real something looks will therefore always miss the deceptions that matter while burdening the ones that do not. Establish the record: the exact policy text and when it was introduced, what Green actually demonstrated, what enforcement YouTube applies and what happens when a label is omitted, and whether C2PA provenance signalling is being used instead of or alongside it. Then the frame our reader should hold: this is the labelling regime most of the world's video will be governed by, written by one company, and every state now drafting synthetic-media law — India, Indonesia, the EU, the Gulf — is drafting against a definition that its author cannot make coherent.",
+      "conceptUris": []
+    },
+    {
+      "id": "folded-surface-code-shuttling-error-correction-overhead",
+      "label": "A folded surface code architecture for 2D quantum hardware - npj Quantum Information",
+      "firstSeen": "2026-08-05T22:13:03.090Z",
+      "lastCovered": "2026-08-05T22:13:03.090Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-05-folded-surface-code-shuttling-error-correction-overhead"
+      ],
+      "eventUri": null,
+      "summary": "A proposed 'folded' surface-code layout that makes quantum error correction fit two-dimensional hardware without the qubit shuttling that current architectures depend on. Lead with the constraint being attacked, because it is the reason quantum computing has not arrived and almost no coverage explains it: a physical qubit holds its state for microseconds, so a useful logical qubit has to be built from a large lattice of physical ones that constantly check each other — and the checking requires qubits far apart on a chip to interact, which on a flat 2D device means physically moving them. Shuttling is slow, it is where errors are introduced, and it is the bottleneck that sets how many logical qubits a chip can carry. Teach the geometry plainly: 'folding' means laying the code out so that qubits which must talk are already adjacent, buying connectivity with layout rather than motion. Establish the record with scepticism: this is an unedited manuscript posted ahead of final editing, and it is an architecture proposal — say clearly whether anything was built or only simulated, what the claimed overhead reduction is against the standard surface code, what hardware platform it assumes, and what the authors list as unresolved. Then what's next: the number that matters is physical qubits per logical qubit, so give the reader the current figure and what this would change it to, and note that error-correction overhead — not raw qubit count — is the quantity that decides whether the cryptographic timelines everyone plans around are right.",
+      "conceptUris": []
+    },
+    {
+      "id": "orexin-agonist-narcolepsy-approval-first-causal-treatment",
+      "label": "Takeda's narcolepsy drug approved by the FDA, a boon for new class of treatments",
+      "firstSeen": "2026-08-05T22:13:03.090Z",
+      "lastCovered": "2026-08-05T22:13:03.090Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-05-orexin-agonist-narcolepsy-approval-first-causal-treatment"
+      ],
+      "eventUri": "eng-11887740",
+      "summary": "The FDA approved Takeda's twice-daily orexin receptor agonist for narcolepsy — the first drug that treats the disease's cause rather than its symptoms. Lead with what narcolepsy actually is, because the popular understanding is wrong and the correction is the story: type 1 narcolepsy is an autoimmune condition in which the roughly 20,000 to 70,000 neurons that produce orexin — the peptide that holds the brain in a waking state — are destroyed, permanently. Every existing treatment has been a stimulant or a sedative managing the consequences of that loss. This drug replaces the missing signal at the receptor. Teach the mechanism and then the reason it matters far beyond a rare disease: orexin is the switch between sleep and wakefulness for everyone, so a molecule that can turn that switch on pharmacologically is a tool aimed at a much wider set of conditions, and the same target read in reverse — orexin antagonists — is already how the newest insomnia drugs work. Establish the record with proper scepticism: the trial endpoints and effect sizes, the adverse events and why an earlier compound in this class was halted, whether type 2 and idiopathic hypersomnia patients are covered by the label, and the price. Then the access frame this reader should get and rarely does: narcolepsy is diagnosed late or never across South Asia, Africa and the Middle East because diagnosis requires an overnight sleep laboratory and a lumbar puncture, so a first-in-class drug arrives in health systems that cannot yet identify the patients it is for.",
+      "conceptUris": []
+    },
+    {
       "id": "hormuz-lane-split-iran-oman-administered-transit",
       "label": "Iran, Oman, US 'close' to Hormuz deal: What do they all want?",
       "firstSeen": "2026-08-05T17:08:33.600Z",
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-05-hormuz-lane-split-iran-oman-administered-transit"
@@ -33,7 +249,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-05-ukraine-air-defence-interceptor-supply-two-thirds-drop"
@@ -58,7 +274,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-05-lebanon-rome-talks-sequencing-cemetery-drone-strike"
@@ -83,7 +299,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-05-sinaloa-cartel-fragmentation-territorial-rivals"
@@ -99,7 +315,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-05-kwara-woro-abductees-released-six-months-terms-undisclosed"
@@ -115,7 +331,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-05-el-nino-wfp-49-million-acute-food-insecurity-southern-africa"
@@ -140,7 +356,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-05-syria-fuel-queues-iraqi-transit-route-bypassing-hormuz"
@@ -156,7 +372,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-05-pakistan-iran-border-crossings-round-the-clock-trade"
@@ -172,7 +388,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-05-flock-alpr-travel-pattern-manufactured-probable-cause"
@@ -188,7 +404,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-05-icloud-private-relay-ip-address-leak-verified"
@@ -204,7 +420,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-05-india-panel-meta-modi-video-moderation-leverage"
@@ -220,7 +436,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-05-coral-cilia-vortices-oxygen-transport-warming"
@@ -236,7 +452,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-05-crispr-beagles-can-f-1-allergen-companion-animal-precedent"
@@ -252,7 +468,7 @@
       "lastCovered": "2026-08-05T12:11:37.250Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-05-el-sayed-michigan-primary-aipac-record-spend-defeat"
@@ -268,7 +484,7 @@
       "lastCovered": "2026-08-05T12:11:37.250Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-05-pakistan-iran-us-mediation-islamabad-channel"
@@ -284,7 +500,7 @@
       "lastCovered": "2026-08-05T12:11:37.250Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-05-china-internet-addiction-camps-adult-detention"
@@ -300,7 +516,7 @@
       "lastCovered": "2026-08-05T12:11:37.250Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-05-privatised-naval-provocation-startup-escalation-asia"
@@ -316,7 +532,7 @@
       "lastCovered": "2026-08-05T12:11:37.250Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-05-china-drone-export-controls-us-sanctions-supply-leverage"
@@ -341,7 +557,7 @@
       "lastCovered": "2026-08-05T12:11:37.250Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-05-leipzig-halle-drone-detonator-air-cargo-hub"
@@ -366,7 +582,7 @@
       "lastCovered": "2026-08-05T12:11:37.250Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-05-circle-arc-stablecoin-issuer-owned-settlement-rails"
@@ -382,7 +598,7 @@
       "lastCovered": "2026-08-05T12:11:37.250Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-05-coldcard-hack-self-custody-mempool-fee-externality"
@@ -398,7 +614,7 @@
       "lastCovered": "2026-08-05T12:11:37.250Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-05-federated-learning-differential-privacy-lung-cancer-imaging"
@@ -414,7 +630,7 @@
       "lastCovered": "2026-08-05T12:11:37.250Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-05-llms-amplify-expertise-not-substitute-skill-gap"
@@ -430,7 +646,7 @@
       "lastCovered": "2026-08-05T12:11:37.250Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-05-falcon-9-stage-moon-impact-debris-accountability"
@@ -446,7 +662,7 @@
       "lastCovered": "2026-08-05T12:11:37.250Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-05-focused-ultrasound-amygdala-emotion-recognition-neuromodulation"
@@ -462,7 +678,7 @@
       "lastCovered": "2026-08-05T12:11:37.250Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-05-venus-polygonal-terrain-lost-ocean-runaway-greenhouse"
@@ -472,13 +688,39 @@
       "conceptUris": []
     },
     {
+      "id": "ecuador-kingpin-strategy-fragmentation-los-lobos",
+      "label": "The InSight Take: Ecuador's Kingpin Strategy Has Tactical Wins, but Strategic Uncertainty",
+      "firstSeen": "2026-08-05T04:10:56.392Z",
+      "lastCovered": "2026-08-05T22:13:03.090Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-08-05-ecuador-kingpin-strategy-fragmentation-los-lobos",
+        "2026-08-05-cjng-bounties-kingpin-strategy-fragmentation-record-reward"
+      ],
+      "eventUri": null,
+      "summary": "Ecuador captured Wilmer Chavarria, alias 'Pipo', the country's most wanted crime boss — and InSight Crime's investigators argue the arrest will accelerate the fragmentation of his organisation rather than end it. Lead with that counterintuitive claim, because it inverts what every government says on the day it parades a captured leader. Teach the mechanism our reader should carry into every drug-war headline: a large criminal organisation is, among other things, a system for resolving disputes without shooting — territory, routes and prices are allocated internally — so removing the man who allocates them does not remove the business, it removes the arbitration, and the successor factions establish their claims the only other way available. This is why homicide rates in Mexico, Colombia and now Ecuador have repeatedly risen after decapitation operations. Establish the record: who Chavarria is and how Los Lobos grew, how and where he was captured and what he had been doing under a false identity, Ecuador's homicide rate before and after Noboa's security escalation and the state-of-emergency architecture, what happened after previous kingpin captures in the region, the cocaine flow through Guayaquil and Posorja and its European destination, and what Noboa's government says the strategy will deliver. Then the frame: Ecuador was one of Latin America's safest countries a decade ago and its collapse was driven by container ports serving European demand — our reader should note that the consuming market bears none of the cost. Latin America reached this file only through a volcano yesterday; this is the region's political and institutional story. Analysis format from a specialist investigative outlet — take the reporting, keep the co-directors' judgements attributed.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Jalisco_New_Generation_Cartel",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/United_States_dollar",
+        "http://en.wikipedia.org/wiki/Mexico",
+        "http://en.wikipedia.org/wiki/Drug_cartel",
+        "http://en.wikipedia.org/wiki/United_States_Department_of_State",
+        "http://en.wikipedia.org/wiki/Valencia",
+        "http://en.wikipedia.org/wiki/Pseudonym"
+      ]
+    },
+    {
       "id": "kyiv-strikes-civilian-warehouses-logistics-targets",
       "label": "Russian strikes on Kyiv kill 17 as civilian warehouses bear the brunt",
       "firstSeen": "2026-08-05T08:10:34.901Z",
       "lastCovered": "2026-08-05T08:10:34.901Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-05-kyiv-strikes-civilian-warehouses-logistics-targets"
@@ -503,7 +745,7 @@
       "lastCovered": "2026-08-05T08:10:34.901Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-05-ceuta-crossings-morocco-migration-leverage"
@@ -519,7 +761,7 @@
       "lastCovered": "2026-08-05T08:10:34.901Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-05-qalandiya-raid-journalist-assaulted-west-bank"
@@ -535,7 +777,7 @@
       "lastCovered": "2026-08-05T08:10:34.901Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-05-starbucks-korea-raid-gwangju-memory-law"
@@ -560,7 +802,7 @@
       "lastCovered": "2026-08-05T08:10:34.901Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-05-icc-next-prosecutor-enforcement-without-police"
@@ -576,7 +818,7 @@
       "lastCovered": "2026-08-05T08:10:34.901Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-05-aramco-profit-war-premium-saudi-fiscal-transfer"
@@ -592,7 +834,7 @@
       "lastCovered": "2026-08-05T08:10:34.901Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-05-bitcoin-equities-decoupling-store-of-value"
@@ -608,7 +850,7 @@
       "lastCovered": "2026-08-05T08:10:34.901Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-05-uk-charity-commission-inquiry-settlement-funding"
@@ -624,7 +866,7 @@
       "lastCovered": "2026-08-05T08:10:34.901Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-05-ai-agents-fake-identities-uk-security-institute"
@@ -648,7 +890,7 @@
       "lastCovered": "2026-08-05T08:10:34.901Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-05-xbox-outage-disc-licence-check-ownership"
@@ -664,7 +906,7 @@
       "lastCovered": "2026-08-05T08:10:34.901Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-05-indonesia-ai-strategy-womens-labour-displacement"
@@ -680,7 +922,7 @@
       "lastCovered": "2026-08-05T08:10:34.901Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-05-colorectal-staging-survival-paradox-chemotherapy"
@@ -696,7 +938,7 @@
       "lastCovered": "2026-08-05T08:10:34.901Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-05-eurosuit-iss-test-european-spacesuit-dependency"
@@ -712,7 +954,7 @@
       "lastCovered": "2026-08-05T04:10:56.392Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-jebel-ali-blasts-dubai-port-transshipment"
@@ -728,7 +970,7 @@
       "lastCovered": "2026-08-05T04:10:56.392Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-tigray-fighting-resumes-amnesty-pretoria-agreement"
@@ -744,7 +986,7 @@
       "lastCovered": "2026-08-05T04:10:56.392Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-germany-afghan-deportation-precedent-taliban"
@@ -760,7 +1002,7 @@
       "lastCovered": "2026-08-05T04:10:56.392Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-osun-election-killings-allegations-policing-gap"
@@ -779,29 +1021,13 @@
       ]
     },
     {
-      "id": "ecuador-kingpin-strategy-fragmentation-los-lobos",
-      "label": "The InSight Take: Ecuador's Kingpin Strategy Has Tactical Wins, but Strategic Uncertainty",
-      "firstSeen": "2026-08-05T04:10:56.392Z",
-      "lastCovered": "2026-08-05T04:10:56.392Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-ecuador-kingpin-strategy-fragmentation-los-lobos"
-      ],
-      "eventUri": null,
-      "summary": "Ecuador captured Wilmer Chavarria, alias 'Pipo', the country's most wanted crime boss — and InSight Crime's investigators argue the arrest will accelerate the fragmentation of his organisation rather than end it. Lead with that counterintuitive claim, because it inverts what every government says on the day it parades a captured leader. Teach the mechanism our reader should carry into every drug-war headline: a large criminal organisation is, among other things, a system for resolving disputes without shooting — territory, routes and prices are allocated internally — so removing the man who allocates them does not remove the business, it removes the arbitration, and the successor factions establish their claims the only other way available. This is why homicide rates in Mexico, Colombia and now Ecuador have repeatedly risen after decapitation operations. Establish the record: who Chavarria is and how Los Lobos grew, how and where he was captured and what he had been doing under a false identity, Ecuador's homicide rate before and after Noboa's security escalation and the state-of-emergency architecture, what happened after previous kingpin captures in the region, the cocaine flow through Guayaquil and Posorja and its European destination, and what Noboa's government says the strategy will deliver. Then the frame: Ecuador was one of Latin America's safest countries a decade ago and its collapse was driven by container ports serving European demand — our reader should note that the consuming market bears none of the cost. Latin America reached this file only through a volcano yesterday; this is the region's political and institutional story. Analysis format from a specialist investigative outlet — take the reporting, keep the co-directors' judgements attributed.",
-      "conceptUris": []
-    },
-    {
       "id": "south-africa-vet-clinics-undelivered-milestone-payments",
       "label": "Eleven years on, the Department of Agriculture's R26m mobile vet clinics remain undelivered",
       "firstSeen": "2026-08-05T04:10:56.392Z",
       "lastCovered": "2026-08-05T04:10:56.392Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-south-africa-vet-clinics-undelivered-milestone-payments"
@@ -817,7 +1043,7 @@
       "lastCovered": "2026-08-05T04:10:56.392Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-kazakhstan-unions-courts-labour-organising"
@@ -833,7 +1059,7 @@
       "lastCovered": "2026-08-05T04:10:56.392Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-islamabad-cda-sanitation-outsourcing-workers"
@@ -849,7 +1075,7 @@
       "lastCovered": "2026-08-05T04:10:56.392Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-flock-alpr-police-concealment-parallel-construction"
@@ -865,7 +1091,7 @@
       "lastCovered": "2026-08-05T04:10:56.392Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-openai-mathematics-advances-verification"
@@ -881,7 +1107,7 @@
       "lastCovered": "2026-08-05T04:10:56.392Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-army-supergun-hypersonic-test-iteration-rate"
@@ -897,7 +1123,7 @@
       "lastCovered": "2026-08-05T04:10:56.392Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-metal-free-mordant-plant-dyes-textile-effluent"
@@ -913,7 +1139,7 @@
       "lastCovered": "2026-08-05T04:10:56.392Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-pcos-decidualization-tspyl2-implantation-failure"
@@ -929,7 +1155,7 @@
       "lastCovered": "2026-08-04T22:12:09.941Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-04-hormuz-oman-mediation-rubio-talks-progress"
@@ -954,7 +1180,7 @@
       "lastCovered": "2026-08-04T22:12:09.941Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-04-netanyahu-rejects-gaza-withdrawal-sequencing-disarm-first"
@@ -979,7 +1205,7 @@
       "lastCovered": "2026-08-04T22:12:09.941Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-04-un-official-leaked-reports-israel-unicef-washington"
@@ -995,7 +1221,7 @@
       "lastCovered": "2026-08-04T22:12:09.941Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-04-us-revokes-brazil-ambassador-visa-agrement-leverage"
@@ -1020,7 +1246,7 @@
       "lastCovered": "2026-08-04T22:12:09.941Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-04-25-states-sue-trump-tariffs-emergency-authority"
@@ -1045,7 +1271,7 @@
       "lastCovered": "2026-08-04T22:12:09.941Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-04-palantir-short-squeeze-defence-ai-gaza-contracts"
@@ -1070,7 +1296,7 @@
       "lastCovered": "2026-08-04T22:12:09.941Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-04-red-sea-indian-flagged-vessel-sunk-war-risk-premium"
@@ -1095,7 +1321,7 @@
       "lastCovered": "2026-08-04T22:12:09.941Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-04-malami-forfeited-assets-efcc-custody-gap-kano"
@@ -1111,7 +1337,7 @@
       "lastCovered": "2026-08-04T22:12:09.941Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-04-sasol-npa-warrants-seven-year-contamination-case"
@@ -1127,7 +1353,7 @@
       "lastCovered": "2026-08-04T22:12:09.941Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-04-world-bank-climate-target-retreat-adaptation-finance-gap"
@@ -1143,7 +1369,7 @@
       "lastCovered": "2026-08-04T22:12:09.941Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-04-texas-data-center-grid-connection-moratorium-ercot"
@@ -1159,7 +1385,7 @@
       "lastCovered": "2026-08-04T22:12:09.941Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-04-openai-cambodia-scam-compounds-trafficked-workers-fraud"
@@ -1175,257 +1401,13 @@
       "lastCovered": "2026-08-04T22:12:09.941Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-04-screen-act-age-verification-identity-internet"
       ],
       "eventUri": null,
       "summary": "A bill heading to Senate Commerce markup on Wednesday would extend age-verification requirements from adult sites to a nearly unlimited range of websites. Lead with the scope, not the sponsor's stated purpose, because the two are far apart: the mechanism a child-protection bill installs is a requirement that every visitor prove who they are before reading. Teach our reader the architecture, since it is the part that will outlive this bill and this country: age verification has no anonymous implementation at scale — it resolves either to uploading a government ID to a private vendor, or to a face scan, or to a device-level attestation, and each creates a permanent record linking a legal identity to a browsing session held by a company that is not the government and is not bound by its restraints. Once that infrastructure exists it is content-neutral: the same check that gates pornography gates a news site, a VPN download, or a page about a protest. Establish the record: what the SCREEN Act actually requires and of whom, how it differs from the state laws already in force and what the Supreme Court has said about them, who is backing it and the Project 2025 connection the reporting documents, which verification vendors stand to be mandated, and what the bill's sponsors say. Then the frame our reader should recognise immediately: the UK, Indonesia, Pakistan, Turkey and the Gulf have each built identity-linked internet controls on a child-safety rationale, and this is the same design arriving in the jurisdiction that hosts most of the world's platforms — which means it will be exported by compliance, not by law. Specialist tech-policy outlet; the headline is combative, so lead on the statutory text and keep the political characterisation attributed.",
-      "conceptUris": []
-    },
-    {
-      "id": "gaza-sabra-block-112-buried-mass-funeral",
-      "label": "Mass funeral held for 112 people whose bodies were recovered from single Gaza residential block bombed by Israel",
-      "firstSeen": "2026-08-04T17:13:18.795Z",
-      "lastCovered": "2026-08-04T17:13:18.795Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-04-gaza-sabra-block-112-buried-mass-funeral"
-      ],
-      "eventUri": null,
-      "summary": "One residential block in Sabra, southern Gaza City. 112 bodies, 40 of them children, from two extended families — Abu Sharia and Hassaineh — recovered from beneath the rubble over recent weeks and buried together on Tuesday. Lead with the arithmetic of a single address: this is what one unwarned strike on one building produced, and it took until now to count because counting requires digging. Teach the mechanism our reader should carry through every casualty dispute: the toll of an aerial campaign is not knowable at the time it happens — bodies under collapsed concrete are recorded as missing, not dead, so every figure published during a bombardment is a floor, and the true number arrives years later through recovery work by a civil defence directorate with no heavy machinery. That lag is why 'disputed casualty figures' is almost always an argument about excavation capacity rather than about facts. Establish the record: the date and circumstances of the 2023 strike on the Sabra block, what warning was or was not given, how the two families are related and how many households the block held, the recovery timeline and who performed it, Gaza's Civil Defence methodology and its equipment shortfall, the current recovered-versus-missing totals for the enclave, and what Israel has said about this specific strike. Then the frame: karāmah requires that these 112 be named and counted to the same standard this file applies to every civilian killed anywhere — and the reason they were not counted for nearly three years is that no one with the machinery to lift the slab was permitted in. Egyptian regional outlet reporting from the funeral; single-source ground report, so attribute the Civil Defence figures to it and state what is uncorroborated.",
-      "conceptUris": []
-    },
-    {
-      "id": "kherson-drone-human-safari-street-vendor",
-      "label": "Video shows Russian drone chasing Ukrainian street vendor in 'human safari' attack",
-      "firstSeen": "2026-08-04T17:13:18.795Z",
-      "lastCovered": "2026-08-04T17:13:18.795Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-04-kherson-drone-human-safari-street-vendor"
-      ],
-      "eventUri": "eng-11891334",
-      "summary": "A drone pursues a man selling vegetables on a street in Kherson, and the video is released by Ukraine's president as evidence of a pattern its residents call 'human safari'. Lead with the vendor and what he was doing, because the finding is the target selection: this is not a strike on infrastructure that killed a civilian nearby, it is an operator with a live camera choosing a person. Teach the mechanism precisely, since it is the one thing that separates FPV drones from every previous battlefield weapon: the operator sees the target's face at the moment of the decision, which removes the distance that artillery and aviation have always provided — so the doctrine question is no longer whether a strike discriminates but whether a chain of command reviews individual operator choices at all. Kherson has lived under this since the 2022 withdrawal across the Dnipro left the city in range of the opposite bank. Establish the record: what the video shows and where and when it was filmed, whether the man survived, how the footage was obtained and verified, the documented count of civilian drone casualties in Kherson and what UN monitors have recorded on this specific pattern, Russia's response, and how the Ukrainian presidency is using the release. Then the frame our reader should hold alongside this file's coverage of the drone deaths in Chekhov and Gelendzhik yesterday: both militaries now reach civilians routinely, and this file counts them symmetrically — but a recorded pursuit of an identified individual is a distinct legal category from an intercepted strike drone falling on a beach, and the difference should be stated rather than blurred. Two carriers, divergence 0.21; Express is tabloid, so take the BBC's verification and go to the original footage sourcing rather than either headline.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Kherson",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
-        "http://en.wikipedia.org/wiki/Russians",
-        "http://en.wikipedia.org/wiki/Police",
-        "http://en.wikipedia.org/wiki/War_crime"
-      ]
-    },
-    {
-      "id": "channel-migrant-boat-fire-160-aboard",
-      "label": "Major rescue operation launched as boat 'carrying 160 migrants' catches fire in Channel",
-      "firstSeen": "2026-08-04T17:13:18.795Z",
-      "lastCovered": "2026-08-04T17:13:18.795Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-04-channel-migrant-boat-fire-160-aboard"
-      ],
-      "eventUri": "eng-11891357",
-      "summary": "More than 150 people were pulled from a burning boat off Boulogne-sur-Mer on Tuesday morning. Lead with the number aboard a single inflatable — around 160 — because that figure is the mechanism, not the misfortune: overloading is the direct consequence of enforcement, since every increase in the cost and risk of a crossing pushes smugglers to put more people on fewer boats, and a vessel carrying 160 has no freeboard, no capacity to manoeuvre and a fuel arrangement that is exactly why it caught fire. Deterrence policy does not reduce crossings so much as it concentrates them. Establish the record: how many were aboard and how many rescued, the confirmed dead or missing, nationalities where known, which French and British services responded and under what coordination arrangement, the crossing and death totals for 2026 against previous years, what the RNLI and French maritime prefecture state, and what both governments say about the current returns agreement. Then the frame this file should press: the people on that boat are overwhelmingly from Sudan, Afghanistan, Syria, Eritrea and Iran — the same wars and sieges this file covers on the other end — and the Channel is where the ummah's displaced meet a policy designed to make the water do what the law will not. Two carriers, divergence 0.09; Yahoo relays the Evening Standard, so go to the French maritime prefecture's own statement for the count.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/English_Channel",
-        "http://en.wikipedia.org/wiki/France",
-        "http://en.wikipedia.org/wiki/Boulogne-sur-Mer",
-        "http://en.wikipedia.org/wiki/Human_migration",
-        "http://en.wikipedia.org/wiki/Royal_National_Lifeboat_Institution",
-        "http://en.wikipedia.org/wiki/Search_and_rescue",
-        "http://en.wikipedia.org/wiki/Lifeboat_(rescue)"
-      ]
-    },
-    {
-      "id": "pakistan-foreign-media-noc-permit-regime",
-      "label": "All foreign media personnel to require NOC from info ministry for news coverage outside Islamabad, Lahore and Karachi",
-      "firstSeen": "2026-08-04T17:13:18.795Z",
-      "lastCovered": "2026-08-04T17:13:18.795Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-04-pakistan-foreign-media-noc-permit-regime"
-      ],
-      "eventUri": null,
-      "summary": "New Foreign Media Facilitation Guidelines require any foreign journalist to obtain a No Objection Certificate from Pakistan's information ministry before reporting anywhere outside Islamabad, Lahore or Karachi. Lead with the geography the rule draws, because that is the whole finding: the three permitted cities are precisely where nothing contested happens, and the permission regime falls on Balochistan, Khyber Pakhtunkhwa, the tribal districts, Azad Kashmir and rural Sindh. Advance the arc this file opened with the Kalat reporter told to order a coffin in advance — that piece showed the informal cost of filing from Balochistan; this is the same closure written as administrative procedure. Teach the mechanism our reader should recognise in any state that prefers deniability to censorship: a licensing requirement never refuses coverage, it merely delays it past the news cycle and makes the refusal unattributable, and because the certificate can be withheld without a stated reason there is no decision to appeal and no censor to name. The effect on the record is identical to a ban; the accountability is nil. Establish the record: what the guidelines actually say and when they were issued, which authority grants the NOC and on what criteria and timeline, the penalty for reporting without one, whether local stringers working for foreign outlets are covered, what the information ministry says the purpose is, how this compares with the previous permission regime for restricted areas, and what Pakistani press bodies and the international press freedom organisations say. Then the frame: the districts now behind a permit are where military operations, enforced disappearances and the insurgency are — and once foreign coverage requires a signature, the only remaining witnesses are the local reporters who are already being threatened. Dawn on a Pakistani story, reporting on a restriction aimed at its own beat; the single-source exception applies squarely.",
-      "conceptUris": []
-    },
-    {
-      "id": "nigeria-qnet-trafficking-network-arrests",
-      "label": "Nigerian authorities dismantle alleged transnational human trafficking network, arrest 12 foreigners",
-      "firstSeen": "2026-08-04T17:13:18.795Z",
-      "lastCovered": "2026-08-04T17:13:18.795Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-04-nigeria-qnet-trafficking-network-arrests"
-      ],
-      "eventUri": null,
-      "summary": "The Nigeria Immigration Service says it has broken up a QNET/IGNITE-linked ring and arrested twelve foreign nationals, describing it as a transnational syndicate that recruited through fraudulent employment and business offers. Lead with the recruitment method rather than the arrests, because that is what makes this systemic: nobody in this network was abducted — they answered a job advertisement, paid a registration fee, and were moved across borders into debt they could not discharge. Teach the mechanism our reader should be able to recognise anywhere in West Africa and the Gulf: multi-level marketing and trafficking share an identical structure — an upfront payment, a promise of income that depends on recruiting others, and a recruit who is legally complicit in their own recruitment — which is why these operations are prosecuted as immigration offences rather than as trafficking, and why the people at the top are almost never in the country where the harm lands. Establish the record: what the NIS alleges and on what evidence, the nationalities and roles of the twelve arrested and the charges filed, how many Nigerians the service says were recruited and where they were being routed, QNET's corporate structure and its documented history of similar allegations across Ghana, Côte d'Ivoire and India and what the company says, and what Nigeria's 2015 trafficking act and NAPTIP's remit require here. Then the frame: unemployment in northern and central Nigeria is the recruiting substrate for both this and the armed groups this file covers, and a scheme that charges a young person for the privilege of being trafficked is a tax on the same desperation. Nigerian investigative outlet doing original reporting; fills the Africa gap the audit has now flagged for five consecutive days. Attribute every allegation as an allegation and seek QNET's response.",
-      "conceptUris": []
-    },
-    {
-      "id": "damietta-strike-egypt-cyprus-gas-hub",
-      "label": "Damietta drone strike underscores precarity of Egypt's 'regional hub' ambitions after energy link-up to Cyprus",
-      "firstSeen": "2026-08-04T17:13:18.795Z",
-      "lastCovered": "2026-08-04T17:13:18.795Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-04-damietta-strike-egypt-cyprus-gas-hub"
-      ],
-      "eventUri": null,
-      "summary": "TotalEnergies and Eni took a final investment decision last week to pipe Cypriot gas to Egyptian liquefaction plants for export by 2028 — and then a drone hit Damietta, one of the two plants the whole plan runs through. Lead with that sequence, because the juxtaposition is the finding: Europe has just bought its energy security by routing it through a coastline inside the war's reach. Teach the mechanism our reader should carry into every 'hub' announcement: liquefaction is the chokepoint of the gas trade, since a field without an LNG train can only sell to a pipeline neighbour, so Egypt's leverage comes entirely from owning Idku and Damietta — and that same concentration means two facilities, not a border, are the single point of failure for Cypriot supply, Israeli transit gas and Egypt's own balance of payments at once. A hub is a chokepoint viewed from the other side. Establish the record: what the Damietta strike actually damaged and who is assessed to have launched it, the terms and volumes of the Cyprus FID and the 2028 timeline, Egypt's swing from LNG exporter to net importer and what it now pays for gas, how much of the feedstock is Israeli and under which agreements, what TotalEnergies, Eni and the Egyptian petroleum ministry say, and the war-risk insurance position on the eastern Mediterranean. Then the frame: Egypt is being made the load-bearing wall of Europe's post-Russia gas supply while carrying none of the security guarantees that would normally come with it, and it is Egyptian households already paying the subsidy cuts who will absorb the cost if the wall gives. Egyptian outlet reporting on Egypt's own energy position with the scepticism the state press will not print.",
-      "conceptUris": []
-    },
-    {
-      "id": "hormuz-reopening-bessent-deal-claim-oil",
-      "label": "Oil eases, stocks gain on Hormuz reopening hopes",
-      "firstSeen": "2026-08-04T17:13:18.795Z",
-      "lastCovered": "2026-08-04T17:13:18.795Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-04-hormuz-reopening-bessent-deal-claim-oil"
-      ],
-      "eventUri": "eng-11891836",
-      "summary": "US Treasury Secretary Scott Bessent said a deal with Tehran on reopening the Strait of Hormuz could be reached by Wednesday, and oil reversed its gains within the hour. Lead with the speed of the reversal rather than the claim, because the mechanism is the story: the price of crude is now set by expectations about a single negotiation, which means a sentence from one official moves the import bill of every country in South Asia and the Levant more than any change in barrels actually shipped. Establish what is and is not known — a treasury secretary's timeline on a television channel is not an agreement, Tehran has not confirmed it, and this file has already covered two rounds of talks that produced nothing. Teach the arithmetic our reader needs: the strait carries roughly a fifth of global oil consumption, and the war-risk premium built into every cargo since the closure is a transfer from importers to producers, so 'reopening' is not a return to normal but the removal of a levy that has been running for months — the accumulated cost of which does not come back. Establish the record: exactly what Bessent said and where, what Iranian officials have said in response, the current transit count through Hormuz against the pre-closure baseline, where Brent sat before and after the remark, what the reported terms of any deal are and who is mediating, and what the previous rounds produced. Then the frame this file should hold to: our recent filings showed Aramco's and BP's profits rising on precisely this premium, so the parties with the strongest balance-sheet interest in a slow negotiation are not at the table — and the reader in Karachi, Cairo or Dhaka should judge this news by transit counts, not by statements. Turkish regional outlet, single carrier and relaying CNBC; go to Bessent's own remarks and to Iranian statements directly, and treat the Wednesday timeline as a claim, not a schedule.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/United_States_Secretary_of_the_Treasury",
-        "http://en.wikipedia.org/wiki/CNBC",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Petroleum"
-      ]
-    },
-    {
-      "id": "wells-fargo-tokenized-deposits-settlement-rails",
-      "label": "Wells Fargo joins JPMorgan and Citi in the race to tokenize Wall Street's settlement rails",
-      "firstSeen": "2026-08-04T17:13:18.795Z",
-      "lastCovered": "2026-08-04T17:13:18.795Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-04-wells-fargo-tokenized-deposits-settlement-rails"
-      ],
-      "eventUri": "eng-11892039",
-      "summary": "Wells Fargo will offer tokenized deposits to corporate clients, making it the third of America's largest banks to move settlement onto a ledger it controls. Lead with what this is not: these are not stablecoins and not public-chain assets, they are ordinary bank deposits represented on a permissioned ledger — which means the technology that was sold for a decade as a way around banks is being adopted by banks as a way to keep the float. Teach the mechanism our reader should carry, because it is the most consequential and least covered shift in payments: correspondent banking moves money between institutions in batches during business hours, and the delay is where the fees, the FX spread and the counterparty risk live; a tokenized deposit collapses that to instant, round-the-clock settlement inside one bank's perimeter — so the winner is whoever has the most corporate clients already, and the losers are the correspondent intermediaries that emerging-market banks depend on to reach the dollar system at all. Establish the record: what Wells Fargo is actually launching and for whom, what 'when fully deployed' leaves undelivered, its stated 2027 expansion to more countries and currencies, what JPMorgan's and Citi's equivalent systems settle today in volume, how these ledgers interoperate — or do not — with each other, the regulatory basis for treating a token as a deposit, and what the bank says about programmable payments. Then the frame our reader should act on: remittance corridors into Pakistan, Egypt, Nigeria and Bangladesh run on correspondent chains that take days and take a cut, and the institutions building the replacement are three American banks building three incompatible systems — the risk is not that de-banked regions are left on the old rails, it is that the new rails are private property with a gatekeeper.",
-      "conceptUris": []
-    },
-    {
-      "id": "heatwaves-power-generation-derating-grids",
-      "label": "Factcheck: How nuclear, gas, wind and solar power are affected during heatwaves",
-      "firstSeen": "2026-08-04T17:13:18.795Z",
-      "lastCovered": "2026-08-04T17:13:18.795Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-04-heatwaves-power-generation-derating-grids"
-      ],
-      "eventUri": null,
-      "summary": "Every generating technology loses output in extreme heat, and the reasons are different for each one — which is the finding, because the public argument treats heat as a problem for renewables alone. Lead with the counterintuitive pair: thermal plants, including nuclear, derate or shut down because they need cool water and cool air to reject waste heat, while solar panels lose roughly half a percent of efficiency per degree above their rating and gas turbines lose mass flow as air thins. Teach the mechanism our reader can carry into any grid debate: a power station is a heat engine, and the efficiency of a heat engine is set by the temperature difference between its source and its sink — when the sink is a river or the outside air and both are hotter, the plant makes less electricity from the same fuel, at exactly the hour air conditioning is drawing the most. That correlation, not the individual derating figure, is what makes heatwaves a grid-failure risk. Establish the record: the quantified derating for each technology as the factcheck sets it out, the documented cases from this and previous summers including European reactor shutdowns on river temperature limits, what happens to transmission line capacity and transformer life in heat, how storage and demand-response change the picture, and what the source states as uncertainty. Then the frame our reader should hold: this file has covered a European reactor curtailed by warm water and a US city that lost neighbourhoods to fire in the same week, and the grids that will be tested hardest — Pakistan's, Iraq's, Egypt's, Nigeria's — run overwhelmingly on gas turbines in the hottest air on earth, with the least reserve margin and the least ability to import power when a plant derates. Specialist climate outlet doing the arithmetic no wire will; keep every number attributed to its underlying study.",
-      "conceptUris": []
-    },
-    {
-      "id": "fuego-eruption-evacuations-pyroclastic-warning",
-      "label": "Evacuations as Guatemala volcano erupts",
-      "firstSeen": "2026-08-04T17:13:18.795Z",
-      "lastCovered": "2026-08-04T17:13:18.795Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-04-fuego-eruption-evacuations-pyroclastic-warning"
-      ],
-      "eventUri": "eng-11890816",
-      "summary": "Guatemala has raised its second-highest alert level as Volcán de Fuego erupts, with lava flows and ash columns intensifying overnight and villages on its flanks being evacuated. Lead with the alert level and the evacuation, not the spectacle, because the number that matters is how much warning the people below the mountain got. Teach the mechanism our reader should carry, since it is what killed hundreds here in 2018: Fuego's danger is not lava, which moves slowly enough to walk away from, but pyroclastic density currents — collapsing columns of gas and ash at several hundred degrees moving down established ravines faster than a vehicle — so survival depends entirely on being out of the barrancas before the column collapses, which is a monitoring and evacuation-order problem rather than a geological one. That is why the same volcano can erupt annually with no deaths and then kill in the hundreds. Establish the record: the alert level and what it obliges, which communities were evacuated and how many people, whether pyroclastic flows have been observed and down which drainages, ash fall and the status of La Aurora airport, INSIVUMEH's monitoring capacity and what its bulletins said and when, the 2018 death toll and the findings of the inquiry into that warning failure, and what CONRED says now. Then the frame: Guatemala monitors one of the world's most active volcanoes on a budget a fraction of that of comparable programmes in Japan or Italy, and this file's readers live beside Merapi, Semeru, Sinabung and Taal — where the same physics meets denser settlement and thinner instrumentation. Two carriers, divergence 0.24; both are photo and video packages, so go to INSIVUMEH's own bulletins for the hazard picture rather than the wire captions.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Guatemala",
-        "http://en.wikipedia.org/wiki/Volcano",
-        "http://en.wikipedia.org/wiki/Volcán_de_Fuego",
-        "http://en.wikipedia.org/wiki/Types_of_volcanic_eruptions",
-        "http://en.wikipedia.org/wiki/Lava",
-        "http://en.wikipedia.org/wiki/Volcanic_ash",
-        "http://en.wikipedia.org/wiki/Gas",
-        "http://en.wikipedia.org/wiki/Central_America"
-      ]
-    },
-    {
-      "id": "sec-bought-airline-ticketing-data-surveillance",
-      "label": "The SEC Bought Airline Data to Monitor Flights Worldwide",
-      "firstSeen": "2026-08-04T17:13:18.795Z",
-      "lastCovered": "2026-08-04T17:13:18.795Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-04-sec-bought-airline-ticketing-data-surveillance"
-      ],
-      "eventUri": null,
-      "summary": "The US Securities and Exchange Commission bought access to worldwide airline ticketing records — sold, according to the reporting, by a data broker owned by the airlines themselves, including Delta, United and American. Lead with who the seller is, because that is the finding: this is not a leak or a subpoena, it is a product, and the passengers whose itineraries were sold are the airlines' own customers. Teach the mechanism our reader should carry into every privacy question: a warrant requirement binds the government's power to compel, not its power to purchase, so an agency that could not lawfully demand global travel records can simply buy them from a private intermediary — and the intermediary's terms of service, agreed at checkout, are the only consent in the chain. The travel-records broker model is the same one that put location data from ordinary apps into federal hands. Establish the record: which entity sold the data and its ownership by the carriers, what the SEC's contract covers and what it cost, which records are included — name, itinerary, payment method — and whether non-US bookings are in scope, what legal authority the SEC cites and for what investigations, whether any court has ruled on purchased travel data, and what the SEC, the broker and the named airlines say. Then the frame this file should press: a booking made in Lahore, Cairo, Istanbul or Jakarta on a US-affiliated carrier or through a global distribution system lands in the same database, subject to no foreign-national protections and no notification — so the practical question for our reader is not whether their government surveils them but which other governments have bought the record of where they flew. 404 Media original documents reporting; the single-source exception applies squarely.",
-      "conceptUris": []
-    },
-    {
-      "id": "microsoft-internal-ai-token-budget-limits",
-      "label": "Microsoft Tells Engineers 'Tokenmaxxing Is Not What We Are Optimizing For'",
-      "firstSeen": "2026-08-04T17:13:18.795Z",
-      "lastCovered": "2026-08-04T17:13:18.795Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-04-microsoft-internal-ai-token-budget-limits"
-      ],
-      "eventUri": null,
-      "summary": "Microsoft is imposing internal budget limits on how much AI its own engineers may consume, while continuing to describe itself as an 'AI-first' company. Lead with the contradiction as the company itself phrases it — 'tokenmaxxing is not what we are optimizing for' — because a firm that sells AI capacity metering its own staff's use of it is the clearest available evidence about what inference actually costs. Teach the mechanism our reader should carry, since it governs every AI product they will be sold: the marginal cost of a token is real electricity and real accelerator time, so 'AI-first' at scale is a compute budget rather than a strategy, and the internal price signal a company sets for its own engineers is the honest version of the number its customers are shown. When the vendor rations, the buyer should ask what the unrationed price would be. Establish the record: what the guidance actually says and to whom it was sent, which tools and quotas are affected and what the limits are, how this sits against Microsoft's disclosed capital spending on data centres and its stated AI revenue, whether the constraint is cost, capacity or power, and what the company says publicly versus what the internal message says. Then the frame our reader should apply: the AI capability being offered to developers and institutions in Pakistan, Nigeria, Indonesia and the Gulf is priced today on a subsidy that the vendor is now visibly unwilling to extend to its own staff — which is the strongest argument yet for weighing open-weight models you can run on hardware you own against a metered dependency whose price is set elsewhere. 404 Media internal-documents reporting; attribute the quoted guidance precisely and seek Microsoft's on-record response.",
-      "conceptUris": []
-    },
-    {
-      "id": "fcc-39-percent-tv-ownership-cap-repeal",
-      "label": "Can Trump FCC repeal 39% TV ownership cap? Republican who wrote cap into law says no.",
-      "firstSeen": "2026-08-04T17:13:18.795Z",
-      "lastCovered": "2026-08-04T17:13:18.795Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-04-fcc-39-percent-tv-ownership-cap-repeal"
-      ],
-      "eventUri": null,
-      "summary": "The FCC is expected to vote this week to eliminate the rule barring any broadcaster from reaching more than 39 percent of US television households — and Tom DeLay, the Republican who put that number into statute as House majority leader, says the agency has no legal authority to touch it. Lead with DeLay's objection, because the accountability question here is not partisan: the author of the law is saying the regulator is repealing an act of Congress by rulemaking. Teach the mechanism our reader should carry into every regulatory fight, in any country: an agency's power is delegated, so the live question is always whether a limit sits in the agency's own rules — which it may revise — or in legislation, which it may not, and a regulator that erases the distinction has effectively acquired legislative power that no election reaches. That is a precedent about administrative authority that will outlast whichever companies benefit from it. Establish the record: what the National Television Ownership Rule is and how the 39 percent figure entered the 2004 appropriations act, what the FCC is actually scheduled to vote on and Chairman Carr's stated legal theory, DeLay's argument and who else has filed against it, which broadcast groups stand to consolidate immediately and to what reach, the litigation certain to follow and which court would hear it, and what the FCC says. Then the frame: local television remains the primary news source for most American households, and the outcome determines how few owners may speak to how many — a question this file's readers should recognise from every state where broadcast licensing became the quiet instrument of media control. Specialist tech-policy outlet doing the legal reporting the wires skip; keep the statutory-versus-regulatory distinction explicit throughout.",
       "conceptUris": []
     }
   ]
