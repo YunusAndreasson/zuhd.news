@@ -1,31 +1,32 @@
 {
-  "date": "2026-08-04",
+  "date": "2026-08-05",
   "metrics": {
-    "articles": { "value": 52, "detail": "5 cycles, all 5 completed and deployed in-cycle, avg 10.4/cycle" },
-    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 21, "economy": 14, "tech": 10, "science": 7 },
-    "multiSource": { "value": 16, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 17, "ME": 13, "AS": 9, "EU": 8, "AF": 5, "OC": 0 } },
-    "sciTech": { "ratio": 33, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 10, "target": 20, "met": true },
-    "uniqueSources": 48,
+    "articles": { "value": 63, "detail": "5 cycles, all 5 completed and deployed in-cycle, avg 10/cycle" },
+    "freshness": { "median": 0.4, "p90": 1.1, "max": 1.3, "target": 1.0, "met": true },
+    "categories": { "politics": 22, "economy": 16, "tech": 14, "science": 11 },
+    "multiSource": { "value": 12, "target": 4, "met": true },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 21, "EU": 17, "ME": 10, "AS": 9, "AF": 6, "OC": 0 } },
+    "sciTech": { "ratio": 40, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 13, "target": 20, "met": true },
+    "uniqueSources": 53,
     "duplicates": 0,
-    "avgCycleDuration": 1087
+    "avgCycleDuration": 979
   },
-  "experiment": "Skipped. No experiment is active, no pause gate is set, and every goal metric cleared its target. The one lever today's logs point at — the feed's multi-source cluster supply — sits in fetch-news-api.js event discovery, and the obvious move there (lowering minArticlesInEvent from 10) is the inverse of the 2026-03-24 experiment that raised it to suppress duplicates; with duplicates at zero for a second straight day that is not a trade worth opening on a day when nothing is failing.",
-  "weakestArea": "Science is the thinnest goal metric: 7 filings against a floor of 5, down from 12 yesterday, pulling sci-tech from 39% to 33%. It is also the shallowest-sourced — only Nature, Phys.org and Carbon Brief are specialist outlets, with the remaining science slots filled by Al Jazeera, BBC, the Daily Maverick and The Diplomat covering research incidentally. The same pattern was flagged yesterday, so this is now a two-day trend rather than a light-feed day: science clears its floor on volume while the outlets behind it narrow.",
+  "experiment": "Skipped. No experiment is active, no pause gate is set, and every goal metric cleared its target. The standing irritant — selector multi-source floor misses in four of five cycles — is not a supply problem the tunables can reach: the feed delivered 8 to 13 multiSourceStories per cycle, and the selector rejected most on consequence, not on count (a Disney Q3 earnings beat filed as politics, a Mallorca eclipse travel feature rejected for a fourth consecutive cycle, a Trump golf-course arrest filed as economy). Lowering minArticlesInEvent from 10 would add smaller and less-corroborated events, which is the wrong direction for usable multi-source hard news; eventsCount is already at its 50 ceiling and TOP_EVENTS_TO_FETCH is held at 8 by the API token cap. The binding constraint is cluster category-fit, which lives in the selector prompt and is out of scope for daily tuning.",
+  "weakestArea": "Regional spread is the thinnest goal metric at 5 of 6 regions against a floor of 4 — the only target not cleared with margin. Oceania has now produced nothing for three consecutive days, and Africa's 6 filings against 63 total is the narrowest that region has run this week. The Americas' 21 is also softer than it looks: a third of it is cartel and US-domestic coverage rather than reporting from Latin America itself.",
   "watching": [
-    "Two separate filings treat the Oman-brokered Hormuz arrangement — one reporting the deal as near, one reporting that the claim itself moved oil — while Gulf shipping traffic is measured as steady; the corridor is now a claims-versus-observation story.",
-    "The 12 August eclipse has been rejected by the selector in three consecutive cycles as a travel feature while two eclipse articles remain filed ahead of date; check at publication that those two do not restate each other.",
-    "AI supply politics split three ways in one day — Xi's open-stack pitch, cheap Chinese models unsettling US valuations, and Microsoft rationing its own capacity — which is one story reaching readers through three desks.",
-    "Nigeria's coup cash trail and the trafficking-ring bust both run through the same security apparatus and may consolidate into one thread.",
-    "Russia-Ukraine strikes moved toward deep-rear and civilian-adjacent targets (Chekhov and Moscow-area drones, a Kherson vendor, a Crimea barracks shooting) rather than the front."
+    "Two Lebanon filings landed the same day — one on stalled talks with continuing strikes, one on the ceasefire fracturing again — and they should be checked for restatement rather than genuine sequence.",
+    "The Hormuz lane split and Iraqi oil bypassing the Syrian pumps are the same energy-routing story reaching readers through two desks; yesterday's claims-versus-observation framing on Hormuz is still unresolved.",
+    "Drones ran through three categories in one day — China's export controls, the DHL hub shutdown, the Jebel Ali port blasts — which is a single supply-and-security thread being covered as three unrelated economy items.",
+    "Mexico's cartel coverage arrived as two halves of one thread: the US targeting a cartel leader and the Sinaloa organisation splitting into open fighting.",
+    "Nigeria filed twice on political violence — the Kwara captives released without announcement and the Osun rivals trading killing claims — with no connective reporting between them.",
+    "The two eclipse articles filed ahead of the 12 August date remain unpublished; the selector has now rejected the eclipse cluster in four straight cycles, so those two are the only coverage and should be checked against each other before they run."
   ],
   "coverageGaps": [
-    "Oceania produced nothing today after 2 filings yesterday; it is the only region that regularly drops out of the daily set entirely.",
-    "Latin America reached readers through the Fuego eruption alone — a hazard story, with no political or economic reporting from the region.",
-    "Unique sources fell from 65 to 48 day-over-day, concentrating output on a narrower outlet set even though no single source came near the 20% share cap.",
-    "The multi-source funnel opened light: the 04:00 selector found four usable clusters against a historical median of nine and met neither the politics nor the economy floor, and the 12:03 and 17:01 cycles filled economy entirely from single-source niche picks."
+    "Oceania produced nothing for a third consecutive day, and is the only region that regularly drops out of the daily set entirely.",
+    "Latin America reached readers almost entirely through organised crime; no political or economic reporting from the region cleared selection.",
+    "The economy multi-source floor was missed in three of five cycles — in each case the selector declined to pad with a weak cluster and filled from single-source niche picks instead, which is the right call but leaves economy structurally thin on corroboration.",
+    "Event Registry is mis-categorising a visible share of its clusters (earnings filed as politics, a police blotter item filed as economy), which shrinks the usable multi-source pool below what the raw cluster count suggests."
   ],
-  "context": "A quieter but fully clean day — 52 articles against 69 yesterday, with all five cycles completing and deploying in-cycle, no build failures and no writer turn caps, which is the reliability yesterday's audit was worried about. Timing was steady at 1087s (selector 375s, writer 247s, editor 77s). The multi-source cluster supply the last two audits flagged as an upstream constraint recovered through the day — 9, 11, 11, 13, 13 clusters across the five cycles — and the 22:02 selector met every floor including both multi-source floors, so the shortfall is looking like a morning-feed characteristic rather than a sustained regression. No experiment has been active since 2026-05-26; the queued numerical-density candidate stays queued because scripts/write-prompt.md is out of scope for daily tuning."
+  "context": "The strongest day this week on volume and speed: 63 articles against 52 yesterday, all five cycles completing and deploying in-cycle, and the fastest average cycle in recent memory at 979s (selector 271s, writer 181s, editor 111s). Science recovered from yesterday's flagged narrowing — 11 filings against 7, with Nature, Quanta, New Scientist, STAT, Phys.org and European Spaceflight all back as specialist spines rather than general outlets covering research incidentally, which resolves the two-day trend the last audit called out. Unique sources rose 48 to 53 and top-source share held at 13%. No experiment has been active since 2026-05-26; the queued numerical-density candidate stays queued because scripts/write-prompt.md is out of scope for daily tuning."
 }
