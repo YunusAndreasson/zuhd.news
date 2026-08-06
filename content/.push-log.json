@@ -1,70 +1,5 @@
 [
   {
-    "timestamp": "2026-07-15T04:18:23.162Z",
-    "candidateCount": 6,
-    "candidates": [
-      {
-        "slug": "2026-07-15-india-uk-ceta-trade-agreement-enters-force",
-        "title": "India-UK Trade Pact Begins",
-        "category": "economy",
-        "eventCoverage": 65,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-15-cxmt-crypto-pre-ipo-perpetual-futures-chips",
-        "title": "Crypto Markets Price CXMT",
-        "category": "tech",
-        "eventCoverage": 27,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-15-india-e20-ethanol-fuel-mandate-consumer-cost",
-        "title": "Pure Petrol Costs More",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-15-sindh-high-court-afghan-repatriation-due-process",
-        "title": "Court Demands Due Process",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-15-nigeria-journalist-ugagbe-remanded-cyberstalking",
-        "title": "Nigeria Remands Reporter",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-07-15-uk-teen-social-media-midnight-curfew-design",
-        "title": "UK Sets Teen Curfew",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-07-15-india-uk-ceta-trade-agreement-enters-force",
-      "title": "India-UK Trade Pact Begins",
-      "category": "economy",
-      "body": "Indian textiles enter [Britain](country:GB) duty-free from",
-      "eventCoverage": 65,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "India-UK free trade agreement takes effect, eliminating tariffs on 99% of exports",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 21
-    }
-  },
-  {
     "timestamp": "2026-07-15T08:17:00.804Z",
     "candidateCount": 12,
     "candidates": [
@@ -10371,6 +10306,120 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Ukraine drones strike two Russian oil refineries overnight",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 13
+    }
+  },
+  {
+    "timestamp": "2026-08-06T17:17:28.549Z",
+    "candidateCount": 13,
+    "candidates": [
+      {
+        "slug": "2026-08-06-tejpal-conviction-bombay-high-court-acquittal-overturned",
+        "title": "Tejpal Convicted After 13 Years",
+        "category": "politics",
+        "eventCoverage": 204,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-06-tinubu-efcc-osun-account-freeze-executive-override",
+        "title": "Tinubu Overrides Osun Freeze",
+        "category": "politics",
+        "eventCoverage": 196,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-06-board-of-peace-gaza-sequencing-reversal-article-8",
+        "title": "Board Rewrites Gaza Sequencing",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-06-sudan-kordofan-blackout-financing-planting-season",
+        "title": "Sudan Blackout Threatens Planting",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-06-quneitra-massacre-officers-identified-accountability-gap",
+        "title": "Quneitra Massacre Officers Named",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-06-hormuz-closure-gulf-crude-malaysia-import-substitution",
+        "title": "Hormuz Closure Hits Malaysia",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-06-tether-saudi-real-estate-tokenization-settlement-layer",
+        "title": "Tether Tokenizes Saudi Property",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-06-china-steel-scrap-transition-australia-iron-ore-demand",
+        "title": "China Steel Shift Skips Ore",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-06-china-15th-five-year-plan-climate-binding-targets",
+        "title": "China Issues Climate-Only Plan",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-06-x2370-pseudoscalar-glueball-besiii-qcd",
+        "title": "Particle Made of Pure Force",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-06-cities-flock-to-axon-alpr-invisible-cameras",
+        "title": "Cities Swap Flock for Axon",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-06-ransom-cartel-operator-16-years-jurisdiction",
+        "title": "Ransom Cartel Operator Sentenced",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-08-06-cloudflare-os-open-source-agent-code-containment",
+        "title": "Cloudflare Opens Vibe-Code Sandbox",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-08-06-tinubu-efcc-osun-account-freeze-executive-override",
+      "title": "Tinubu Overrides Osun Freeze",
+      "category": "politics",
+      "body": "A court order lasted one day.",
+      "eventCoverage": 196,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Tinubu orders EFCC to reverse Osun state account freeze",
     "response": {
       "pushed": 1,
       "skipped": 0,
