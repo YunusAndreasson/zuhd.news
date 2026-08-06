@@ -1,32 +1,36 @@
 {
-  "date": "2026-08-05",
+  "date": "2026-08-06",
   "metrics": {
-    "articles": { "value": 63, "detail": "5 cycles, all 5 completed and deployed in-cycle, avg 10/cycle" },
-    "freshness": { "median": 0.4, "p90": 1.1, "max": 1.3, "target": 1.0, "met": true },
-    "categories": { "politics": 22, "economy": 16, "tech": 14, "science": 11 },
-    "multiSource": { "value": 12, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 21, "EU": 17, "ME": 10, "AS": 9, "AF": 6, "OC": 0 } },
-    "sciTech": { "ratio": 40, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 13, "target": 20, "met": true },
-    "uniqueSources": 53,
+    "articles": { "value": 56, "detail": "5 cycles completed, avg 11/cycle (64 yesterday)" },
+    "freshness": { "median": 0.2, "p90": 1.3, "max": 1.3, "target": 1.0, "met": true },
+    "categories": { "politics": 19, "economy": 14, "tech": 13, "science": 10 },
+    "multiSource": { "value": 11, "target": 4, "met": true },
+    "regions": {
+      "count": 6,
+      "target": 4,
+      "met": true,
+      "breakdown": { "AM": 22, "AS": 15, "ME": 10, "EU": 6, "AF": 2, "OC": 1 }
+    },
+    "sciTech": { "ratio": 41, "target": 25, "met": true },
+    "topSourceShare": { "source": "Bloomberg Business", "pct": 9, "target": 20, "met": true },
+    "uniqueSources": 55,
     "duplicates": 0,
-    "avgCycleDuration": 979
+    "avgCycleDuration": 966
   },
-  "experiment": "Skipped. No experiment is active, no pause gate is set, and every goal metric cleared its target. The standing irritant — selector multi-source floor misses in four of five cycles — is not a supply problem the tunables can reach: the feed delivered 8 to 13 multiSourceStories per cycle, and the selector rejected most on consequence, not on count (a Disney Q3 earnings beat filed as politics, a Mallorca eclipse travel feature rejected for a fourth consecutive cycle, a Trump golf-course arrest filed as economy). Lowering minArticlesInEvent from 10 would add smaller and less-corroborated events, which is the wrong direction for usable multi-source hard news; eventsCount is already at its 50 ceiling and TOP_EVENTS_TO_FETCH is held at 8 by the API token cap. The binding constraint is cluster category-fit, which lives in the selector prompt and is out of scope for daily tuning.",
-  "weakestArea": "Regional spread is the thinnest goal metric at 5 of 6 regions against a floor of 4 — the only target not cleared with margin. Oceania has now produced nothing for three consecutive days, and Africa's 6 filings against 63 total is the narrowest that region has run this week. The Americas' 21 is also softer than it looks: a third of it is cartel and US-domestic coverage rather than reporting from Latin America itself.",
+  "experiment": "Skipped — every goal metric is inside target and no experiment is active. Freshness 0.2d, sci-tech 41%, multi-source 11, six regions, top source 9%. Introducing a variable today would only add noise.",
+  "weakestArea": "Africa, at 2 of 56 articles (3.6%), down from 6 yesterday and the thinnest region after Oceania's 1. The region-count target of 4 is met on breadth, so this does not trip a gate, but the Americas hold 39% of output and the AF tail is where a genuinely under-covered continent gets squeezed. Sudan's blackout and Tinubu's Osun override were the only two African datelines; Sahel security, Horn drought, and DRC all went unrepresented despite live developments.",
   "watching": [
-    "Two Lebanon filings landed the same day — one on stalled talks with continuing strikes, one on the ceasefire fracturing again — and they should be checked for restatement rather than genuine sequence.",
-    "The Hormuz lane split and Iraqi oil bypassing the Syrian pumps are the same energy-routing story reaching readers through two desks; yesterday's claims-versus-observation framing on Hormuz is still unresolved.",
-    "Drones ran through three categories in one day — China's export controls, the DHL hub shutdown, the Jebel Ali port blasts — which is a single supply-and-security thread being covered as three unrelated economy items.",
-    "Mexico's cartel coverage arrived as two halves of one thread: the US targeting a cartel leader and the Sinaloa organisation splitting into open fighting.",
-    "Nigeria filed twice on political violence — the Kwara captives released without announcement and the Osun rivals trading killing claims — with no connective reporting between them.",
-    "The two eclipse articles filed ahead of the 12 August date remain unpublished; the selector has now rejected the eclipse cluster in four straight cycles, so those two are the only coverage and should be checked against each other before they run."
+    "Hormuz — tanker blast reports plus Malaysia's exposure suggest an escalating chokepoint story with real freight and energy consequences.",
+    "Ukraine's refinery campaign hit Yaroslavl and other Russian refining capacity twice today; the discount story is refining, not crude.",
+    "US munitions-shortage denial versus reporting that the shortage is surfacing — a contradiction worth tracking across sources.",
+    "Cyclospora outbreak has passed 6,000 cases and is still climbing.",
+    "12 August total solar eclipse across Greenland, Iceland and Spain — two pre-written articles already staged."
   ],
   "coverageGaps": [
-    "Oceania produced nothing for a third consecutive day, and is the only region that regularly drops out of the daily set entirely.",
-    "Latin America reached readers almost entirely through organised crime; no political or economic reporting from the region cleared selection.",
-    "The economy multi-source floor was missed in three of five cycles — in each case the selector declined to pad with a weak cluster and filled from single-source niche picks instead, which is the right call but leaves economy structurally thin on corroboration.",
-    "Event Registry is mis-categorising a visible share of its clusters (earnings filed as politics, a police blotter item filed as economy), which shrinks the usable multi-source pool below what the raw cluster count suggests."
+    "Africa fell to 2 articles; Sahel, Horn of Africa and DRC produced no coverage today.",
+    "Oceania at 1 article remains a persistent structural thin spot.",
+    "Latin America appears only inside the aggregate AM bucket, which is dominated by US datelines — worth separating in future metrics.",
+    "Climate coverage was strong (Canada fire attribution, China's climate-only plan) but energy-transition finance went untouched."
   ],
-  "context": "The strongest day this week on volume and speed: 63 articles against 52 yesterday, all five cycles completing and deploying in-cycle, and the fastest average cycle in recent memory at 979s (selector 271s, writer 181s, editor 111s). Science recovered from yesterday's flagged narrowing — 11 filings against 7, with Nature, Quanta, New Scientist, STAT, Phys.org and European Spaceflight all back as specialist spines rather than general outlets covering research incidentally, which resolves the two-day trend the last audit called out. Unique sources rose 48 to 53 and top-source share held at 13%. No experiment has been active since 2026-05-26; the queued numerical-density candidate stays queued because scripts/write-prompt.md is out of scope for daily tuning."
+  "context": "Output eased from 64 to 56 articles across the same five completed cycles, with average cycle duration at 966s (selector 245s, writer 159s, editor 84s) — comfortably inside all stage timeouts and notably faster than historical baselines. Freshness improved to a 0.2-day median. The experiment slate is empty and the queued numerical-density experiment remains blocked on its own preflight requirement to replicate the bench gain at n≥20 before promotion; it touches scripts/write-prompt.md, which is outside daily-tuning scope in any case."
 }
