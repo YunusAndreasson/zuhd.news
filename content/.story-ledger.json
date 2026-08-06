@@ -2,13 +2,239 @@
   "version": 1,
   "stories": [
     {
+      "id": "tinubu-efcc-osun-account-freeze-executive-override",
+      "label": "BREAKING: Tinubu orders EFCC to vacate Osun account freeze order",
+      "firstSeen": "2026-08-06T17:08:12.573Z",
+      "lastCovered": "2026-08-06T17:08:12.573Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-tinubu-efcc-osun-account-freeze-executive-override"
+      ],
+      "eventUri": "eng-11897887",
+      "summary": "Nigeria's president ordered the anti-corruption agency to unwind a court order it had lawfully obtained the day before, freezing Osun State's government accounts. The mechanism is the story: the EFCC acted on judicial authority, and the executive overrode it by directive, not by appeal. Lead with the 24-hour reversal. Who is affected: a state government of ~5m people whose payroll and services depend on those accounts, and every future corruption case where the presidency can be lobbied faster than a court can rule. Note Tinubu's own framing — 'embarrassed not by the EFCC's mandate but by the timing' — which concedes the political motive. Nigeria filed twice this week on Osun political violence without connective reporting; this is the institutional thread underneath.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Economic_and_Financial_Crimes_Commission",
+        "http://en.wikipedia.org/wiki/Osun_State",
+        "http://en.wikipedia.org/wiki/Governor",
+        "http://en.wikipedia.org/wiki/Bola_Tinubu",
+        "http://en.wikipedia.org/wiki/Statute",
+        "http://en.wikipedia.org/wiki/State_government",
+        "http://en.wikipedia.org/wiki/Democracy",
+        "http://en.wikipedia.org/wiki/Nigeria"
+      ]
+    },
+    {
+      "id": "board-of-peace-gaza-sequencing-reversal-article-8",
+      "label": "As the Board of Peace Cosplays Diplomacy, Israel Once Again Ramps Up Killing in Gaza",
+      "firstSeen": "2026-08-06T17:08:12.573Z",
+      "lastCovered": "2026-08-06T17:08:12.573Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-board-of-peace-gaza-sequencing-reversal-article-8"
+      ],
+      "eventUri": null,
+      "summary": "The Board of Peace rewrote its own roadmap five days after announcing it. Article 8 of the BOP text says decommissioning is 'linked to a phased Israeli withdrawal'; Monday's BOP statement now says withdrawal happens 'only once decommissioning is complete.' Lead with that textual reversal — it is checkable, and it is the whole story. Who holds power: the BOP and High Representative Mladenov, who negotiated the parallel-sequencing clause over eight months and then adopted Israel's rejection of it wholesale. Who is affected: 2.2 million people in Gaza, with at least 1,250 Palestinians killed since the October ceasefire was signed, aid still restricted and reconstruction indefinitely deferred. The structural why: the sequencing clause existed precisely so neither party held a veto; removing it hands one to Israel. Drop Site is the primary; Responsible Statecraft corroborates the same reversal independently.",
+      "conceptUris": []
+    },
+    {
+      "id": "sudan-kordofan-blackout-financing-planting-season",
+      "label": "Sudan Nashra: Military builds on North Kordofan gains, prepares push into West Kordofan; third nationwide blackout in a week as financing impasse stalls electricity sector recovery",
+      "firstSeen": "2026-08-06T17:08:12.573Z",
+      "lastCovered": "2026-08-06T17:08:12.573Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-sudan-kordofan-blackout-financing-planting-season"
+      ],
+      "eventUri": null,
+      "summary": "Do not write this as a battlefield update. The connective tissue is that Sudan's third nationwide blackout in one week is a financing impasse, not bomb damage — grid repairs are stalled for lack of money, and the stalled repairs now put the planting season at risk in Sudan's largest rain-fed farming state. Lead with the blackout count and the planting deadline: a war is converting into a famine through an unpaid electricity bill. The military's capture of Jabal al-Dayer near Rahad consolidates North Kordofan and the Saderat Road linking Khartoum to Kordofan, which is what determines whether seed and fuel can move at all. Also note the second front nobody is counting: fighting in Ethiopia threatening that same farming state. Africa was the thinnest region this week at 6 filings in 63.",
+      "conceptUris": []
+    },
+    {
+      "id": "quneitra-massacre-officers-identified-accountability-gap",
+      "label": "Unmasking Two Butchers of Quneitra",
+      "firstSeen": "2026-08-06T17:08:12.573Z",
+      "lastCovered": "2026-08-06T17:08:12.573Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-quneitra-massacre-officers-identified-accountability-gap"
+      ],
+      "eventUri": null,
+      "summary": "An original investigation names two officers in Bashar al-Assad's army responsible for the 2013 Quneitra massacre — thirteen years on, with the regime gone and the men identified, the families still have no route to a courtroom. Lead with the method: how the identification was made, because that is the transferable part for every other unadjudicated massacre in Syria. The accountability gap is the structural why — identification is now the easy half; jurisdiction, custody and a functioning prosecution are the half that does not exist. Named victims, named perpetrators, symmetrical weight.",
+      "conceptUris": []
+    },
+    {
+      "id": "tejpal-conviction-bombay-high-court-acquittal-overturned",
+      "label": "High profile Indian journalist convicted of raping colleague in 2013",
+      "firstSeen": "2026-08-06T17:08:12.573Z",
+      "lastCovered": "2026-08-06T17:08:12.573Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-tejpal-conviction-bombay-high-court-acquittal-overturned"
+      ],
+      "eventUri": "eng-11897415",
+      "summary": "The Bombay High Court overturned a 2021 sessions-court acquittal and convicted Tarun Tejpal, once India's most celebrated investigative editor, of raping a junior colleague in a Goa hotel in 2013. Lead with the thirteen years, and with the fact that the trial court's acquittal was itself criticised for reasoning about how a victim 'should' behave — the appellate reversal is a precedent about that reasoning, not just about this man. Who holds power: an editor over a junior staffer, and a media establishment that closed around him. Tejpal says he will go to the Supreme Court, so this is not final. Note the sentiment spread across outlets (0.31) — Indian and British coverage frame the same verdict differently.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Tarun_Tejpal",
+        "http://en.wikipedia.org/wiki/Goa",
+        "http://en.wikipedia.org/wiki/Tehelka",
+        "http://en.wikipedia.org/wiki/Acquittal",
+        "http://en.wikipedia.org/wiki/Bombay_High_Court",
+        "http://en.wikipedia.org/wiki/Rape",
+        "http://en.wikipedia.org/wiki/Sexual_assault",
+        "http://en.wikipedia.org/wiki/Sessions_Court"
+      ]
+    },
+    {
+      "id": "hormuz-closure-gulf-crude-malaysia-import-substitution",
+      "label": "Gulf's crude oil exports to Malaysia dip on Hormuz closure",
+      "firstSeen": "2026-08-06T17:08:12.573Z",
+      "lastCovered": "2026-08-06T17:08:12.573Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-hormuz-closure-gulf-crude-malaysia-import-substitution"
+      ],
+      "eventUri": null,
+      "summary": "This is the Hormuz story reaching its far end. We have covered the strait itself — transit counts, war-risk premium, the Kumzar explosions; this is the first measurable landfall on an Asian buyer. Lead with the volume drop in Gulf crude arriving in Malaysia and what replaces it, because that substitution is the mechanism: closure does not destroy demand, it re-routes supply at a price, and the price is paid by refiners and consumers 6,000km from the shooting. Who is affected: Malaysian refiners, and by extension every Southeast Asian importer whose contracts assume the strait. Follow-up context: this connects the energy-routing thread the audit flagged — Hormuz and the Iraqi crude bypassing Syrian pumps are one story arriving through two desks.",
+      "conceptUris": []
+    },
+    {
+      "id": "tether-saudi-real-estate-tokenization-settlement-layer",
+      "label": "Tether expands tokenization platform to Saudi Arabia, starting with real estate",
+      "firstSeen": "2026-08-06T17:08:12.573Z",
+      "lastCovered": "2026-08-06T17:08:12.573Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-tether-saudi-real-estate-tokenization-settlement-layer"
+      ],
+      "eventUri": null,
+      "summary": "The issuer of the world's most-used stablecoin is moving into Saudi property, with First Data as issuer and market operator and BKN301 wiring it into banks and compliance systems. Lead with the plumbing, not the announcement: what makes this different from previous tokenization pilots is that the settlement layer and the compliance layer are both named and both local, which is what a pilot needs to become a market. The structural why for our reader: tokenized real estate turns an illiquid, historically family-held Gulf asset class into something tradeable in fractions — and it puts a private, offshore stablecoin issuer inside the settlement path for Saudi property. Ask what happens to that claim if the token issuer fails. No regional Gulf outlet in today's feed covered this; the sourcing is Western crypto press only.",
+      "conceptUris": []
+    },
+    {
+      "id": "china-steel-scrap-transition-australia-iron-ore-demand",
+      "label": "Beyond green iron: What China's steel transition really means for Australia",
+      "firstSeen": "2026-08-06T17:08:12.573Z",
+      "lastCovered": "2026-08-06T17:08:12.573Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-china-steel-scrap-transition-australia-iron-ore-demand"
+      ],
+      "eventUri": null,
+      "summary": "Australia's export economy is built on the assumption that decarbonising Chinese steel means Chinese demand for premium Australian ore. The argument here is that it mostly means scrap — China's accumulated steel stock is now old enough to recycle at scale, and electric-arc furnaces fed by domestic scrap need no iron ore at all. Lead with that substitution, because it inverts the 'green iron' story Canberra has been telling itself. Who is affected: Pilbara ore producers, and the Australian federal budget that leans on their royalties. The structural why: a commodity exporter's risk is not the transition being slow, it is the transition taking a route that skips them. Oceania has produced nothing for three consecutive days.",
+      "conceptUris": []
+    },
+    {
+      "id": "china-15th-five-year-plan-climate-binding-targets",
+      "label": "Q&A: What is in China's new five-year plan for climate change?",
+      "firstSeen": "2026-08-06T17:08:12.573Z",
+      "lastCovered": "2026-08-06T17:08:12.573Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-china-15th-five-year-plan-climate-binding-targets"
+      ],
+      "eventUri": null,
+      "summary": "China has issued its 15th five-year plan as a dedicated climate plan — the first time the instrument that actually governs Chinese industrial output has been pointed at emissions as its own subject rather than as a chapter inside an energy plan. Lead with the specific targets and, more importantly, with which ones are binding versus indicative, because in the five-year-plan system that distinction is the whole difference between a signal and a quota. Who is affected: everyone, since China's trajectory sets the achievable ceiling for global mitigation. Pair naturally with the Australian iron-ore piece — same transition, opposite ends of the supply chain.",
+      "conceptUris": []
+    },
+    {
+      "id": "x2370-pseudoscalar-glueball-besiii-qcd",
+      "label": "X(2370) emerges as glueball-dominated particle in collider experiments",
+      "firstSeen": "2026-08-06T17:08:12.573Z",
+      "lastCovered": "2026-08-06T17:08:12.573Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-x2370-pseudoscalar-glueball-besiii-qcd"
+      ],
+      "eventUri": null,
+      "summary": "After fifteen years, the BESIII collaboration reports that X(2370) is dominated by a pseudoscalar glueball — spin-parity 0-+, matching the lattice-QCD prediction. Lead with what a glueball is and why it is strange: a particle made of force carriers and no matter at all, predicted by QCD in the 1970s and unconfirmed ever since. The mechanism to highlight is why it took fifteen years — glueballs mix with ordinary mesons of the same quantum numbers, so the finding is a decomposition argument, not a sighting. Note this is a conference report from ICHEP in Brazil, so state the evidentiary status plainly rather than calling it settled.",
+      "conceptUris": []
+    },
+    {
+      "id": "cities-flock-to-axon-alpr-invisible-cameras",
+      "label": "Cities Are Ditching Flock, Immediately Replacing It With Axon License Plate Readers",
+      "firstSeen": "2026-08-06T17:08:12.573Z",
+      "lastCovered": "2026-08-06T17:08:12.573Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-cities-flock-to-axon-alpr-invisible-cameras"
+      ],
+      "eventUri": null,
+      "summary": "Cities that cancelled Flock contracts after public campaigns against automated licence-plate surveillance are signing with Axon instead — and Axon's cameras mount to existing streetlamps, so they disappear into the streetscape. Lead with that design detail, because it is the mechanism by which the accountability win was reversed: the organising worked against a vendor, not against the surveillance, and the replacement is engineered to be unnoticeable. Who holds power: Axon, which also sells the body cameras and the evidence platform, consolidating the whole chain. Who is affected: residents of towns that believed they had won.",
+      "conceptUris": []
+    },
+    {
+      "id": "ransom-cartel-operator-16-years-jurisdiction",
+      "label": "Belarusian cybercriminal behind Ransom Cartel gets 16-year prison sentence",
+      "firstSeen": "2026-08-06T17:08:12.573Z",
+      "lastCovered": "2026-08-06T17:08:12.573Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-ransom-cartel-operator-16-years-jurisdiction"
+      ],
+      "eventUri": null,
+      "summary": "Sixteen years is at the top of the range ever handed down for ransomware, and the defendant is a Belarusian national who operated for decades — so lead with how he ended up in a US courtroom at all, because extradition and jurisdiction are the binding constraint on ransomware enforcement, not detection. Who is affected: the hospitals, municipalities and firms Ransom Cartel encrypted. The structural why: sentences this long are meant as deterrence signalling against operators who assume they are permanently out of reach, and the reader should be able to judge whether that assumption actually changed.",
+      "conceptUris": []
+    },
+    {
+      "id": "cloudflare-os-open-source-agent-code-containment",
+      "label": "Cloudflare open-sources vibe-coding platform for people who aren't coders",
+      "firstSeen": "2026-08-06T17:08:12.573Z",
+      "lastCovered": "2026-08-06T17:08:12.573Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-cloudflare-os-open-source-agent-code-containment"
+      ],
+      "eventUri": "eng-11893291",
+      "summary": "Cloudflare has open-sourced the internal platform its non-engineer staff use to build working apps with AI agents. The interesting part is not the vibe-coding, it is the security framework shipped alongside it — an explicit admission that the risk of letting non-engineers deploy agent-written code inside a company is real enough to need its own containment model. Lead with what that framework actually constrains. Who is affected: every organisation about to do this without one. Connects to our recent piece on agents escaping sandboxes: same problem, seen from the vendor's side.",
+      "conceptUris": []
+    },
+    {
       "id": "malaysia-rohingya-repatriation-non-refoulement",
       "label": "Malaysia Says It Will Not Deport Rohingya if There Are Risks to Their Safety",
       "firstSeen": "2026-08-06T12:07:58.476Z",
       "lastCovered": "2026-08-06T12:07:58.476Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-malaysia-rohingya-repatriation-non-refoulement"
@@ -24,7 +250,7 @@
       "lastCovered": "2026-08-06T12:07:58.476Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-north-korea-wonsan-launch-us-south-korea-drills"
@@ -49,7 +275,7 @@
       "lastCovered": "2026-08-06T12:07:58.476Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-india-comprehensive-national-power-gdp-gap-2047"
@@ -65,7 +291,7 @@
       "lastCovered": "2026-08-06T12:07:58.476Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-russia-far-east-eastern-economic-forum-80bn-pivot"
@@ -81,7 +307,7 @@
       "lastCovered": "2026-08-06T12:07:58.476Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-cyclospora-outbreak-6000-cases-irrigation-water"
@@ -97,7 +323,7 @@
       "lastCovered": "2026-08-06T12:07:58.476Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-cnes-full-flow-staged-combustion-2028-hot-fire"
@@ -113,7 +339,7 @@
       "lastCovered": "2026-08-06T12:07:58.476Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-bluetooth-mesh-india-shutdown-github-geoblock"
@@ -129,7 +355,7 @@
       "lastCovered": "2026-08-06T12:07:58.476Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-ai-moderation-slop-asymmetry-volunteer-moderators"
@@ -145,7 +371,7 @@
       "lastCovered": "2026-08-06T12:07:58.476Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-xq-58-valkyrie-crash-dugway-attritable-autonomy"
@@ -161,7 +387,7 @@
       "lastCovered": "2026-08-06T12:07:58.476Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-man-charged-with-murder-of-scottish-woman-in-athens-remanded"
@@ -186,7 +412,7 @@
       "lastCovered": "2026-08-06T12:07:58.476Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-ukraine-says-two-russian-oil-refineries-hit-as-moscow-target"
@@ -211,7 +437,7 @@
       "lastCovered": "2026-08-06T08:12:39.985Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-06-trump-denies-munitions-shortage-leakers-jail-disclosure"
@@ -236,7 +462,7 @@
       "lastCovered": "2026-08-06T08:12:39.985Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-06-thailand-min-aung-hlaing-asean-consensus-rohingya"
@@ -261,7 +487,7 @@
       "lastCovered": "2026-08-06T08:12:39.985Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-06-asad-toor-nccia-inquiry-peca-process-as-punishment"
@@ -277,7 +503,7 @@
       "lastCovered": "2026-08-06T08:12:39.985Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-06-yaroslavl-refinery-strike-refining-not-crude-discount"
@@ -302,7 +528,7 @@
       "lastCovered": "2026-08-06T08:12:39.985Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-06-commerzbank-unicredit-mittelstand-credit-banking-union"
@@ -327,7 +553,7 @@
       "lastCovered": "2026-08-06T08:12:39.985Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-06-canada-fire-attribution-doubled-odds-not-ignition"
@@ -343,7 +569,7 @@
       "lastCovered": "2026-08-06T08:12:39.985Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-06-cfdna-hpv-cervical-cancer-monitoring-low-resource-limits"
@@ -359,7 +585,7 @@
       "lastCovered": "2026-08-06T08:12:39.985Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-06-bitcoin-audit-85-critical-bugs-ai-review-asymmetry"
@@ -375,7 +601,7 @@
       "lastCovered": "2026-08-06T08:12:39.985Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-06-ai-jobs-outsourcing-decoupling-global-south-labour"
@@ -391,7 +617,7 @@
       "lastCovered": "2026-08-06T08:12:39.985Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-06-clinical-and-radiographic-evaluation-of-natural-bovine-bone"
@@ -407,7 +633,7 @@
       "lastCovered": "2026-08-06T08:12:39.985Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-04-the-screen-act-is-a-christian-nationalist-nightmare"
@@ -423,7 +649,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-06-us-munitions-shortage-iran-war-production-rate-constraint"
@@ -448,7 +674,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-06-hormuz-kumzar-explosions-transit-count-war-risk-premium"
@@ -464,7 +690,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-06-sambhal-inquiry-report-mosque-survey-places-of-worship-act"
@@ -480,7 +706,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-06-hiroshima-81st-matsui-deterrence-intimidation-npt-asymmetry"
@@ -505,7 +731,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-06-iepa-tariff-refunds-importers-not-consumers-pass-through"
@@ -521,7 +747,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-06-indonesia-salt-harvest-el-nino-uneven-redistribution"
@@ -537,7 +763,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-06-moderna-mrna-flu-approval-strain-lag-prasad-reversal"
@@ -553,7 +779,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-06-heatwave-grid-derating-thermodynamics-every-technology"
@@ -569,7 +795,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-06-ai-agents-escape-sandbox-zero-day-evaluation-containment"
@@ -585,7 +811,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-06-india-ccpa-dark-patterns-basket-sneaking-drip-pricing"
@@ -601,7 +827,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-06-google-assistant-shutdown-gemini-on-device-to-cloud"
@@ -626,7 +852,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-05-channel-islands-eclipse-a-once-or-twice-in-a-lifetime-event"
@@ -651,7 +877,7 @@
       "lastCovered": "2026-08-05T22:13:03.090Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-lebanon-strikes-resume-ceasefire-sequencing-soldiers-killed"
@@ -676,7 +902,7 @@
       "lastCovered": "2026-08-05T22:13:03.090Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-north-korea-missile-unit-voronezh-interceptor-arithmetic"
@@ -701,7 +927,7 @@
       "lastCovered": "2026-08-05T22:13:03.090Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-new-mexico-doj-epstein-evidence-federalism-gap"
@@ -726,7 +952,7 @@
       "lastCovered": "2026-08-05T22:13:03.090Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-pakistan-fuel-price-petroleum-levy-regressive-imf"
@@ -742,7 +968,7 @@
       "lastCovered": "2026-08-05T22:13:03.090Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-binance-redotpay-stablecoin-card-user-exposure"
@@ -758,7 +984,7 @@
       "lastCovered": "2026-08-05T22:13:03.090Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-spacex-first-public-earnings-starlink-revenue-concentration"
@@ -778,7 +1004,7 @@
       "lastCovered": "2026-08-05T22:13:03.090Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-deepmind-hassabis-chair-jeff-dean-departs-research-charter"
@@ -803,7 +1029,7 @@
       "lastCovered": "2026-08-05T22:13:03.090Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-chinese-telcos-us-peering-salt-typhoon-licence-gap"
@@ -819,7 +1045,7 @@
       "lastCovered": "2026-08-05T22:13:03.090Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-youtube-ai-labels-photorealism-wrong-axis-disclosure"
@@ -835,7 +1061,7 @@
       "lastCovered": "2026-08-05T22:13:03.090Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-folded-surface-code-shuttling-error-correction-overhead"
@@ -851,7 +1077,7 @@
       "lastCovered": "2026-08-05T22:13:03.090Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-orexin-agonist-narcolepsy-approval-first-causal-treatment"
@@ -867,7 +1093,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-hormuz-lane-split-iran-oman-administered-transit"
@@ -892,7 +1118,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-ukraine-air-defence-interceptor-supply-two-thirds-drop"
@@ -917,7 +1143,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-lebanon-rome-talks-sequencing-cemetery-drone-strike"
@@ -942,7 +1168,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-sinaloa-cartel-fragmentation-territorial-rivals"
@@ -958,7 +1184,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-kwara-woro-abductees-released-six-months-terms-undisclosed"
@@ -974,7 +1200,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-el-nino-wfp-49-million-acute-food-insecurity-southern-africa"
@@ -999,7 +1225,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-syria-fuel-queues-iraqi-transit-route-bypassing-hormuz"
@@ -1015,7 +1241,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-pakistan-iran-border-crossings-round-the-clock-trade"
@@ -1031,7 +1257,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-flock-alpr-travel-pattern-manufactured-probable-cause"
@@ -1047,7 +1273,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-icloud-private-relay-ip-address-leak-verified"
@@ -1063,7 +1289,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-india-panel-meta-modi-video-moderation-leverage"
@@ -1079,7 +1305,7 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-coral-cilia-vortices-oxygen-transport-warming"
@@ -1095,239 +1321,13 @@
       "lastCovered": "2026-08-05T17:08:33.600Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-crispr-beagles-can-f-1-allergen-companion-animal-precedent"
       ],
       "eventUri": "eng-11895261",
       "summary": "Two beagles, Alfie and Bailey, were CRISPR-edited to lack Can f 1 — the dominant dog allergen — and turn two in September with no reported adverse effects, per the company that made them, Kindred Companion Sciences. Lead with the fact that the claim is the company's and the sample is two animals. The precedent is the story: this is germline editing of a companion animal for a human convenience trait, arriving through a commercial route with no equivalent of the oversight that governs human editing. Two dogs and two years is not a safety record.",
-      "conceptUris": []
-    },
-    {
-      "id": "el-sayed-michigan-primary-aipac-record-spend-defeat",
-      "label": "El-Sayed overcomes $30 million AIPAC spend, wins Michigan primary",
-      "firstSeen": "2026-08-05T12:11:37.250Z",
-      "lastCovered": "2026-08-05T12:11:37.250Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-el-sayed-michigan-primary-aipac-record-spend-defeat"
-      ],
-      "eventUri": "eng-11893666",
-      "summary": "Abdul El-Sayed beat Haley Stevens 48.6% to 47.3% for Michigan's Democratic Senate nomination after AIPAC's United Democracy Project spent a record $30.6 million against him — the largest sum ever deployed in a US primary by the pro-Israel lobby, and it lost. Lead with the arithmetic of the defeat, because that is the finding: roughly $30 million bought a 1.3-point loss in a statewide race in a swing state, which is the first hard evidence that the deterrent has stopped working. Teach the mechanism our reader should carry: AIPAC's power was never mostly about the money spent in any one race, it was the expectation of the money — the anticipatory silence of candidates who did not want to become the next target. That deterrent is a belief, and a belief is falsified by a single counter-example in a race that mattered. Establish the record: the final count and turnout, what UDP actually spent and where the money came from (the Quincy Institute's reporting found it came disproportionately from Republicans and out-of-state donors), AIPAC's $60m total across the 2026 cycle against $40m in 2024, Stevens's own framing as a 'proud pro-Israel Democrat' and her vote against the NDAA amendment cutting $3.3bn in aid to Israel, and the counter-case on the same night — Wesley Bell beating Cori Bush in Missouri's first district by more than 20 points, where AIPAC spent only $2m against $9m in 2024. Then the frame: El-Sayed is the son of Egyptian immigrants and a physician who ran on Gaza explicitly, and he now faces Mike Rogers in a race that may decide Senate control in 2027 — so the test of whether this is a turning point is not the primary, it is whether the position survives a general election. SOURCING: the result is a verifiable election outcome carried by Dawn and Drop Site as well as Responsible Statecraft; take the count from the wire and keep the Quincy Institute's and Ben Rhodes's characterisations attributed to them. Public-attention signal: El-Sayed was among yesterday's most-read uncovered Wikipedia entries at 97k views.",
-      "conceptUris": []
-    },
-    {
-      "id": "pakistan-iran-us-mediation-islamabad-channel",
-      "label": "Pakistan to host Iranian officials as Trump's patience wears thin",
-      "firstSeen": "2026-08-05T12:11:37.250Z",
-      "lastCovered": "2026-08-05T12:11:37.250Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-pakistan-iran-us-mediation-islamabad-channel"
-      ],
-      "eventUri": "eng-11888410",
-      "summary": "Pakistan has invited Iran's parliament speaker Mohammad Bagher Ghalibaf — Tehran's chief negotiator — and its foreign minister to Islamabad for urgent consultations, and Tehran now describes Pakistan as its primary mediator with Washington. Lead with that designation, because it moves this file's Hormuz thread: we have been covering Oman as the channel, and a second one has opened that nobody was watching. Teach the mechanism our reader should carry: mediation capacity is not diplomatic skill, it is the possession of something both belligerents need — Oman's asset is fifty years of refusing to join anyone's coalition, Pakistan's is entirely different and more precarious, a nuclear-armed Sunni-majority state that shares a 900km border with Iran, depends on Gulf Arab deposits and remittances to stay solvent, and hosts a US relationship it cannot afford to lose. A mediator with that many creditors is not neutral; it is exposed, which is why Islamabad's leverage over Tehran is real and its leverage over Washington is close to nil. Establish the record: exactly who was invited by whom and when, what Iranian officials have said about Pakistan's role, what Pakistan's foreign office states its mandate is, the state of the Oman track as of today, and what Trump officials have said about the deadline the headline invokes. Then the frame: Pakistan is OIC, is Iran's neighbour, and is one of the importing economies paying the war premium this file has been tracking — it is mediating a corridor its own fuel and food bills depend on. Dawn on a Pakistani story: regional-outlet requirement met. Cross-check against Iranian statements (IRNA, Mehr) at the writing stage; keep the 'primary mediator' claim attributed to Tehran rather than asserted.",
-      "conceptUris": []
-    },
-    {
-      "id": "china-internet-addiction-camps-adult-detention",
-      "label": "China's 'Internet Addiction' Schools Are Now Locking Up Adults",
-      "firstSeen": "2026-08-05T12:11:37.250Z",
-      "lastCovered": "2026-08-05T12:11:37.250Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-china-internet-addiction-camps-adult-detention"
-      ],
-      "eventUri": null,
-      "summary": "China's private 'internet addiction' boot camps, built in the 2000s to discipline teenagers, are now taking adults — detained at their families' request and paid for by their parents, because their life choices conflict with family expectations. Lead with the age, because it is what makes this new: an adult with full legal capacity is being confined by a commercial operator on a relative's instruction, which is imprisonment with an invoice attached. Teach the mechanism our reader should recognise, since it is not unique to China: where a state treats the family rather than the individual as the unit it recognises, a private industry grows in the gap — the coercion is not carried out by the state, so no warrant, no hearing and no appeal exists, and no law is technically broken because the state never claims to be the one holding the door shut. This is the same structure behind conversion facilities, 'rehabilitation' centres and forced-marriage confinement in a dozen countries; the institutional form is different, the legal void is identical. Establish the record: what the reporting documents about specific facilities, who is being sent and on what grounds, what fees are charged, what treatment methods are used, what Chinese law says about unlawful detention and why prosecutions are rare, the 2009 death that led to the ban on electroshock and what replaced it, and what regulators have said. Then the frame: China has an estimated cohort of young adults in the 'lying flat' withdrawal from work and marriage that this industry now serves — so the story is a society outsourcing a generational conflict to a market. Specialist single-source analysis; keep the reporter's judgements attributed and seek the underlying Chinese-language reporting at the writing stage.",
-      "conceptUris": []
-    },
-    {
-      "id": "privatised-naval-provocation-startup-escalation-asia",
-      "label": "The trigger for Asia's next war, privatised",
-      "firstSeen": "2026-08-05T12:11:37.250Z",
-      "lastCovered": "2026-08-05T12:11:37.250Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-privatised-naval-provocation-startup-escalation-asia"
-      ],
-      "eventUri": null,
-      "summary": "A venture-funded startup is deliberately provoking Chinese warships — running uncrewed vessels into contested waters to generate footage that proves its product works — and no war doctrine accounts for a private company creating the incident. Lead with the incentive, because that is the finding: escalation is this firm's marketing budget, and a demonstration that goes wrong is indistinguishable from an act of war to the crew on the other ship. Teach the mechanism our reader should carry: deterrence and crisis management assume the actors are states, because a state can be signalled to, punished, and made to stand down through a chain of command — a company cannot, and the navy that responds has no way to know in the first minutes whether it is facing a government probe or a Series B pitch. Attribution is the whole of crisis stability, and the venture model has quietly removed it. Establish the record: which company, what it operates and where, who funds it, what specific incidents have occurred and how the PLA Navy responded, whether any government authorised or disavowed the activity, the existing rules — UNCLOS, the Code for Unplanned Encounters at Sea — and what they say about non-state vessels, and what regional defence officials state. Then the frame our reader should hold: the same defence-tech investment wave is arriving in the Gulf, the Red Sea and the Malacca Strait, where this file has spent a year covering shipping corridors that were closed by state decisions — the next one may be closed by a company. Australian institute analysis, single source, and the only Oceania-origin reporting in today's feed against a standing regional gap; keep the author's judgements attributed and go to the named firm and to naval statements for facts.",
-      "conceptUris": []
-    },
-    {
-      "id": "china-drone-export-controls-us-sanctions-supply-leverage",
-      "label": "Another US-China Trade Clash Brews as Beijing Tightens Drone Exports",
-      "firstSeen": "2026-08-05T12:11:37.250Z",
-      "lastCovered": "2026-08-05T12:11:37.250Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-china-drone-export-controls-us-sanctions-supply-leverage"
-      ],
-      "eventUri": "eng-11894989",
-      "summary": "Beijing has imposed tighter export controls on drones, sanctioned six American entities and added further trade restrictions, in answer to US FCC actions and Xinjiang-related measures. Lead with the drone control, because it is the one with physical consequences: China manufactures the overwhelming majority of the world's commercial drones and, more decisively, the motors, flight controllers, gimbals and batteries inside the ones assembled elsewhere — so an export rule written in Beijing reaches every agricultural sprayer in Punjab, every survey drone in Nigeria and every FPV airframe on the Ukrainian front simultaneously. Teach the mechanism our reader should carry: export controls are the mirror image of sanctions and they work on the same logic — whoever holds the narrowest point in a supply chain can impose costs without firing anything, and the West spent four years discovering this against Russia while China spent them mapping which points it holds. Rare earths were the demonstration; drones are the second, and the pattern is that Beijing now answers regulatory action with supply action rather than tariffs. Establish the record: exactly which categories and components the controls cover and when they take effect, which six US entities were sanctioned and what for, the FCC and Xinjiang actions that prompted the response, China's share of global drone and drone-component production, what DJI and the affected firms say, and what Washington has said. Then the frame: the states that buy Chinese drones and Chinese surveillance hardware because it is cheap — across the Gulf, South Asia and Africa — are acquiring a dependency whose terms are set by a licensing office they have no standing in. Two Indian carriers on the same event, divergence 0.2; go to MOFCOM's own announcement for the text of the controls rather than to either summary.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Beijing",
-        "http://en.wikipedia.org/wiki/National_security",
-        "http://en.wikipedia.org/wiki/Washington_(state)",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Xinjiang"
-      ]
-    },
-    {
-      "id": "leipzig-halle-drone-detonator-air-cargo-hub",
-      "label": "Flights diverted after 'security-related' incident at German airport",
-      "firstSeen": "2026-08-05T12:11:37.250Z",
-      "lastCovered": "2026-08-05T12:11:37.250Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-leipzig-halle-drone-detonator-air-cargo-hub"
-      ],
-      "eventUri": "deu-2158695",
-      "summary": "A drone and what was reported as a detonator were found beside a parked Ukrainian Antonov cargo aircraft at Leipzig/Halle, closing a runway and diverting flights, while a DHL cargo plane struck an object on the ground. Lead with what Leipzig/Halle is, because that is the consequence and almost no reader knows it: it is DHL's global express hub and one of Europe's largest freight airports, a night-cargo operation where a few hours of closure does not delay one airport's flights but breaks a continent-wide next-morning delivery network that has no second node. Teach the mechanism our reader should carry: air freight is hub-and-spoke by economic necessity — consolidating every parcel through one field at 02:00 is what makes overnight delivery affordable — and the same consolidation means a single device on a single apron reaches every spoke at once. This is the aviation version of the transshipment lesson this file drew at Jebel Ali. Then the second thread: the device was beside a Ukrainian Antonov, the aircraft type that moves outsize military cargo, which places this in the sabotage campaign against Ukraine-linked logistics across Europe — the incendiary parcels in DHL's own network in 2024, the rail and warehouse arson cases, the drone sightings that closed Nordic and German airports. Establish the record: what German police and the airport have confirmed versus what is reported, whether an investigation has been opened and by whom, what the DHL aircraft struck, the operator of the Antonov and its cargo, and the prior incidents prosecutors have attributed. Then the frame: nobody has been named, so do not name anyone — state what is established, and state plainly that attribution is absent. Five carriers across GB, US, IN, SG and HK; sentiment divergence 0.1, so the facts are not in dispute, only unknown.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Leipzig",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Airport",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Leipzig/Halle_Airport",
-        "http://en.wikipedia.org/wiki/Germany",
-        "http://en.wikipedia.org/wiki/Police",
-        "http://en.wikipedia.org/wiki/Airplane"
-      ]
-    },
-    {
-      "id": "circle-arc-stablecoin-issuer-owned-settlement-rails",
-      "label": "Circle shares jump as earnings beat offsets revenue miss, Arc blockchain gains Wall Street backing",
-      "firstSeen": "2026-08-05T12:11:37.250Z",
-      "lastCovered": "2026-08-05T12:11:37.250Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-circle-arc-stablecoin-issuer-owned-settlement-rails"
-      ],
-      "eventUri": "eng-11889878",
-      "summary": "Circle's shares rose about 10% premarket on a profit beat with revenue slightly short, and Wall Street institutions are backing Arc, the settlement chain Circle is building for its own stablecoin. Lead past the earnings line to what Circle actually is, because the reader almost certainly has it filed wrong: Circle does not make money from crypto trading, it makes money from the interest on the Treasury bills backing USDC — it is a money-market fund with an API, and its revenue line is a bet on US rates, which is why a profit beat alongside a revenue miss is the shape it is. Teach the mechanism our reader should carry: a stablecoin issuer that also owns the rails the coin settles on is assembling the two halves that regulated banking deliberately keeps apart — issuance and settlement — and the institutions now backing Arc are buying into a private clearing system whose operator is also the issuer of the asset being cleared. Establish the record: the actual EPS and revenue figures against consensus, the composition and size of USDC reserves and the share of revenue that is interest income, what Arc is technically and who has committed to it, the Circle Payments Network's stated volumes, and how the GENIUS Act framework treats issuer-operated settlement. Then the frame our reader should hold: dollar stablecoins are already the cheapest way to hold and move dollars in Nigeria, Turkey, Argentina, Pakistan and Lebanon, so this is not a Wall Street story — it is the construction of dollar payment infrastructure for economies whose own currencies are failing, owned by a US-regulated company that can freeze any address. Note this is the weakest of today's economy picks: it is an earnings report, and the writer should lead on the structure rather than the share move. Do not restate this morning's bitcoin-equities decoupling filing; this is a different mechanism.",
-      "conceptUris": []
-    },
-    {
-      "id": "coldcard-hack-self-custody-mempool-fee-externality",
-      "label": "The $120 million Coldcard wallet hack lights up Bitcoin's memory pool",
-      "firstSeen": "2026-08-05T12:11:37.250Z",
-      "lastCovered": "2026-08-05T12:11:37.250Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-coldcard-hack-self-custody-mempool-fee-externality"
-      ],
-      "eventUri": null,
-      "summary": "A hack of Coldcard hardware wallets that began on 30 July is still running, has taken about $120 million, and has so congested Bitcoin's memory pool that ordinary transaction fees have risen for everyone. Lead with the second-order effect, because it is the part no other coverage will explain: the theft is not just a loss to the victims, the attacker's own transactions are competing for block space against every other user, so the cost of the crime is being socialised across the network in fees. Teach the mechanism our reader should carry, and be precise about what broke: a hardware wallet exists to keep the private key on a device that never touches the internet, which defeats every remote attack — and that guarantee is exactly why a compromise at the device or firmware or supply-chain layer is catastrophic rather than merely bad, since the one assumption the whole self-custody model rests on is the one that failed. 'Not your keys, not your coins' has an unstated second clause about who made the box. Establish the record carefully: what the attack vector actually is and what Coldcard's manufacturer Coinkite has stated, which models and firmware versions are affected, how the $120m figure was arrived at and by whom, whether affected users had any signal before funds moved, the mempool and fee data showing the congestion, and what holders are being advised to do right now. Then the frame our reader should hold: hardware wallets are the standard advice given to people in countries with capital controls and failing banks — Nigeria, Turkey, Lebanon, Argentina — precisely because they remove the need to trust an institution. This is what happens when the thing replacing the institution is itself a single vendor. The attack is ongoing; date every claim and say what remains unverified.",
-      "conceptUris": []
-    },
-    {
-      "id": "federated-learning-differential-privacy-lung-cancer-imaging",
-      "label": "A privacy-preserving federated learning approach with multilevel differential privacy for lung cancer detection",
-      "firstSeen": "2026-08-05T12:11:37.250Z",
-      "lastCovered": "2026-08-05T12:11:37.250Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-federated-learning-differential-privacy-lung-cancer-imaging"
-      ],
-      "eventUri": null,
-      "summary": "Researchers report a lung-cancer detection model trained across multiple hospitals without any hospital sending its patient scans anywhere, using federated learning with layered differential privacy. Lead with the constraint this dissolves, because it is the reason medical AI has underperformed its promise: the models need scale, the data is patient records, and privacy law and institutional liability mean no hospital will hand over its imaging archive — so the best models have been trained on whatever data one large Western institution happened to hold. Teach the mechanism plainly: in federated learning the model travels to the data and only the updated weights come back, and differential privacy adds calibrated noise to those weights so that no individual patient can be reconstructed from them — 'multilevel' means noise is applied at more than one stage, which buys privacy at a measurable cost in accuracy. That trade-off is the whole engineering problem and the paper should be judged on where it lands, not on the architecture. Establish the record with scepticism: what datasets were used and whether they are real multi-hospital data or a simulated partition of one public set, the sensitivity and specificity achieved, the privacy budget (epsilon) chosen and what it actually guarantees, the accuracy lost against centralised training, and what the authors list as limitations. Note this is an unedited manuscript posted ahead of final editing. Then the frame our reader should hold: the countries with the largest untapped medical imaging archives and the fewest transferable datasets are in South Asia, the Gulf and Africa, where lung cancer is diagnosed late and radiologists are scarce — a training method that never requires the data to leave the country is the only one those health systems can legally and politically use, and that, not the accuracy number, is why this matters.",
-      "conceptUris": []
-    },
-    {
-      "id": "llms-amplify-expertise-not-substitute-skill-gap",
-      "label": "LLMs reward expertise",
-      "firstSeen": "2026-08-05T12:11:37.250Z",
-      "lastCovered": "2026-08-05T12:11:37.250Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-llms-amplify-expertise-not-substitute-skill-gap"
-      ],
-      "eventUri": null,
-      "summary": "An engineer's argument that large language models return better work to people who already know the subject — 1,357 points and 561 comments on Hacker News, the highest-attention technical item in today's feed. Lead with the claim and the mechanism together, because our reader is being told the opposite everywhere else: the pitch for these tools is that they level the field, and the observation here is that they steepen it. The mechanism to explain: an LLM produces a plausible answer at roughly constant quality regardless of who asks, so the variance that matters sits entirely on the human side — an expert asks a specified question, recognises the wrong answer, and rejects it; a novice asks a vague one, cannot evaluate the output, and ships it. The model is an amplifier, and an amplifier applied to judgement returns more of whatever judgement was there. Establish the record: what the author actually argues and what evidence he offers, the substantive objections in the comment thread (including the strongest counter — that novices report large gains on well-specified, well-trodden tasks, which is a real effect and not a contradiction), and what the controlled studies show, notably the trials where experienced developers were measurably slower with AI assistance while believing they were faster. Then the frame our reader should hold, because it is the consequential one: if these tools multiply existing expertise rather than substituting for it, the policy conclusion drawn across the Gulf, Pakistan, Indonesia and Nigeria — that AI lets a country skip the expensive work of building deep technical training — is exactly backwards, and the countries buying compute instead of educating engineers are buying the amplifier without the signal. This is a single engineer's essay, not a study; attribute the argument to him and let the evidence carry the weight.",
-      "conceptUris": []
-    },
-    {
-      "id": "falcon-9-stage-moon-impact-debris-accountability",
-      "label": "Piece of SpaceX rocket believed to have crashed into the moon",
-      "firstSeen": "2026-08-05T12:11:37.250Z",
-      "lastCovered": "2026-08-05T12:11:37.250Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-falcon-9-stage-moon-impact-debris-accountability"
-      ],
-      "eventUri": "eng-11888527",
-      "summary": "A school-bus-sized Falcon 9 second stage, adrift since last year, was expected to strike the Moon at high speed early Wednesday — and confirmation was not expected for hours, because nobody was watching it happen. Lead with that gap, because it is the finding: an object massing several tonnes hit another world and the impact has to be inferred afterwards from orbital imagery, since no one is required to track spent upper stages and no one is liable for where they land. Teach the mechanism our reader should carry: a second stage that puts a payload beyond Earth orbit usually has no fuel left to deorbit itself, so it is abandoned in a chaotic solar orbit where small solar-radiation and gravitational nudges make its position unpredictable years out — which is why these impacts are announced as probabilities rather than plans, and why the 2022 impact was misattributed to a Falcon 9 for months before it turned out to be a Chinese Long March stage. Establish the record precisely: which mission the stage came from, the predicted impact site, time and velocity, who calculated it and with what uncertainty, how confirmation would come (Lunar Reconnaissance Orbiter imaging of a fresh crater) and when, and what the previous confirmed case showed. Then the frame our reader should hold: the Outer Space Treaty makes launching states responsible for their objects and the Registration Convention requires them to be listed, yet neither produces tracking, cleanup or consequence for the Moon — and the same lunar south pole now being targeted by American, Chinese, Indian and Japanese landers is the surface accumulating this debris. The governance question is not who owns the Moon; it is that nobody is counting what is being thrown at it. Dawn carrying wire science; go to the astronomers who computed the trajectory (Bill Gray's work is usually the origin of these predictions) and to NASA for confirmation.",
-      "conceptUris": []
-    },
-    {
-      "id": "focused-ultrasound-amygdala-emotion-recognition-neuromodulation",
-      "label": "Focused ultrasound stimulation of the centromedial amygdala disrupts facial emotion recognition via reduced amygdala-insula connectivity",
-      "firstSeen": "2026-08-05T12:11:37.250Z",
-      "lastCovered": "2026-08-05T12:11:37.250Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-focused-ultrasound-amygdala-emotion-recognition-neuromodulation"
-      ],
-      "eventUri": null,
-      "summary": "Transcranial focused ultrasound aimed at the centromedial amygdala measurably impaired participants' ability to read emotion in faces, and the effect tracked a drop in connectivity between the amygdala and the insula. Lead with what was done, because the reader will not believe it on first reading: a beam of sound directed through an intact skull reached a structure deep in the brain and changed a specific social capability, with no surgery and no drug. Teach the mechanism, and be precise about why it is a genuine advance rather than a variation on existing methods: transcranial magnetic and electrical stimulation cannot reach beyond the cortex — the field spreads and weakens with depth — whereas ultrasound can be focused to a small volume centimetres in, which for the first time puts subcortical structures like the amygdala within reach of reversible, non-invasive intervention in healthy people. That is why the finding matters more than the specific deficit it produced. Establish the record with proper scepticism: the sample size, whether it was sham-controlled and blinded, how the target was localised and verified, the effect size on the emotion-recognition task, how connectivity was measured, how long the effect lasted, and what the authors say they cannot conclude. Note this is an unedited manuscript posted ahead of final editing, and that a single small study demonstrating a transient deficit is not a therapy. Then the frame our reader should hold, stated plainly and without alarm: the clinical hope is real — the amygdala is the target of interest in PTSD and severe anxiety, and a reversible non-invasive method would be a serious advance for people who currently have drugs or nothing. But the same capability is a device that can be pointed at a person's brain from outside their skull to alter how they read other people, and the regulatory framework for non-invasive neuromodulation is thin. Say both, and let the reader weigh them.",
-      "conceptUris": []
-    },
-    {
-      "id": "venus-polygonal-terrain-lost-ocean-runaway-greenhouse",
-      "label": "Venus's polygonal plains could point to a watery past",
-      "firstSeen": "2026-08-05T12:11:37.250Z",
-      "lastCovered": "2026-08-05T12:11:37.250Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-venus-polygonal-terrain-lost-ocean-runaway-greenhouse"
-      ],
-      "eventUri": null,
-      "summary": "Polygonal fracture patterns across Venus's plains are being read as evidence that the planet once had water — and possibly oceans — before it became the 460°C, crushing-pressure world it is now. Lead with the shapes themselves, because they are the evidence and they are readable: polygons of this kind form on Earth and Mars when a surface repeatedly wets and dries or freezes and thaws, so a landform is being used as a fossil of a climate that left no other trace. Teach the mechanism our reader should carry, since it is the point of studying Venus at all: Venus and Earth are near-twins in mass, composition and distance from the Sun, and one of them ran a runaway greenhouse to completion — water vapour is itself a greenhouse gas, so warming that evaporates an ocean traps more heat, which evaporates more ocean, until the hydrogen escapes to space and the water is gone permanently. That is not a metaphor for Earth's climate, it is the same physics with different initial conditions, and Venus is the only place where the endpoint can be observed rather than modelled. Establish the record with scepticism: what the study actually analysed and from which mission data (Magellan radar, and what newer observations add), what alternative non-aqueous explanations exist for polygonal terrain — thermal contraction of cooling lava is the main competitor and must be stated fairly — how the authors distinguish between them, and what confidence they claim. Then what's next, concretely: NASA's VERITAS and DAVINCI and ESA's EnVision are the missions built to settle this, so give their status and dates, including any budget threat to them, because the answer depends on hardware that has not launched.",
       "conceptUris": []
     }
   ]
