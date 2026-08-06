@@ -2,13 +2,250 @@
   "version": 1,
   "stories": [
     {
+      "id": "birthright-citizenship-orders-after-supreme-court-loss",
+      "label": "Trump signs executive orders targeting birthright citizenship",
+      "firstSeen": "2026-08-06T22:10:36.130Z",
+      "lastCovered": "2026-08-06T22:10:36.130Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-birthright-citizenship-orders-after-supreme-court-loss"
+      ],
+      "eventUri": "eng-11900389",
+      "summary": "Lead with the sequence, not the order: the Supreme Court rejected this restriction one month ago, and the response is an executive order that expands the categories of people deemed ineligible rather than an appeal. The mechanism to teach is what jus soli actually is — a constitutional guarantee under the Fourteenth Amendment, not a statute the executive can define — and therefore what an order like this can and cannot do: it cannot change who is a citizen, but it can instruct agencies to refuse documents, which produces the same result for a newborn until a court says otherwise. Who is affected: children born in the US to non-citizen parents, whose passports and Social Security registration run through those agencies. Sources diverge 0.42 — Reuters reports the mechanics, Al Jazeera the rights frame, SCMP the birth-tourism angle aimed at Chinese and Russian visitors. Attribute rather than blend. Note that Event Registry filed this cluster as economy; it is not.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Executive_order_(United_States)",
+        "http://en.wikipedia.org/wiki/Citizenship",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Supreme_Court_of_the_United_States",
+        "http://en.wikipedia.org/wiki/Jus_soli",
+        "http://en.wikipedia.org/wiki/Birth_tourism",
+        "http://en.wikipedia.org/wiki/Tourism"
+      ]
+    },
+    {
+      "id": "erdogan-riyadh-sharif-munir-iran-mediation-track",
+      "label": "Erdogan to visit Saudi Arabia for talks with MBS, Pakistan's PM",
+      "firstSeen": "2026-08-06T22:10:36.130Z",
+      "lastCovered": "2026-08-06T22:10:36.130Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-erdogan-riyadh-sharif-munir-iran-mediation-track"
+      ],
+      "eventUri": "eng-11897613",
+      "summary": "Three of the largest Muslim-majority states — Turkey, Saudi Arabia and Pakistan — put their leaders in one room in Riyadh on a single day, with US–Iran mediation on the agenda and Pakistan's army chief Asim Munir in the delegation. Lead with the composition, not the itinerary: Ankara and Riyadh spent a decade as rivals, and Islamabad's presence with its field marshal signals the security-guarantee track, not a trade visit. The mechanism our reader should carry is that mediation capacity is now held by states that can talk to both Washington and Tehran, and that this is the practical replacement for a Gulf security architecture the US no longer underwrites alone. Establish what each party wants: Turkey a role it has been denied, Saudi Arabia insulation from a war on its coastline, Pakistan financing and a nuclear-adjacent guarantee. Follows this file's Hormuz and US-munitions threads — the diplomacy is the other half of the war coverage. Regional sourcing is strong here: TRT and Al Jazeera both carry it.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/Shehbaz_Sharif",
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Asim_Munir_(general)",
+        "http://en.wikipedia.org/wiki/Crown_Prince_of_Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/Mohammed_bin_Salman",
+        "http://en.wikipedia.org/wiki/Islamabad",
+        "http://en.wikipedia.org/wiki/Field_marshal"
+      ]
+    },
+    {
+      "id": "china-ethnic-unity-law-uyghurs-codification",
+      "label": "China's 'Ethnic Unity' Law is Already Harming Uyghurs",
+      "firstSeen": "2026-08-06T22:10:36.130Z",
+      "lastCovered": "2026-08-06T22:10:36.130Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-china-ethnic-unity-law-uyghurs-codification"
+      ],
+      "eventUri": null,
+      "summary": "Lead with the legal move, not the abuses: measures that operated as regional campaigns in Xinjiang are now written into national legislation. The mechanism our reader should carry is why codification is worse than campaign even when the conduct is identical — a campaign is deniable, reversible and locally attributable, while a statute is enforceable everywhere in China, gives officials outside Xinjiang a positive duty to act, and converts every future objection from a complaint about excess into a demand that China break its own law. That is also what makes it harder to challenge diplomatically: states that criticised 'measures' must now criticise legislation. Establish the record precisely: what the law requires, what conduct it makes mandatory rather than permitted, what has already changed since it took effect, and what the drafters say it is for. Then the frame: the ummah's largest surveilled Muslim population is being moved from an emergency footing to a permanent legal one, and permanence is the point. Single-source (The Diplomat); no regional or Chinese-language outlet in today's feed covered it.",
+      "conceptUris": []
+    },
+    {
+      "id": "jaramana-minibus-bombing-druze-transition-security",
+      "label": "Bus explosion near Damascus kills at least two, injures 13",
+      "firstSeen": "2026-08-06T22:10:36.130Z",
+      "lastCovered": "2026-08-06T22:10:36.130Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-jaramana-minibus-bombing-druze-transition-security"
+      ],
+      "eventUri": "eng-11900092",
+      "summary": "An explosive device on a passenger minibus in Jaramana — a majority-Druze suburb of Damascus — killed two and wounded 13. Lead with the location, because that is what makes it more than a casualty count: Jaramana is one of the places where the post-Assad state's claim to protect minorities is being tested in practice, and a bomb on a civilian bus is aimed at that claim rather than at a target. The mechanism to explain is who benefits from unattributed violence during a transition: no group need claim it for it to work, because the effect is to persuade a community that the new authorities cannot keep it safe, which drives it toward its own armed protection and toward outside patrons. Establish what is actually known — the health ministry's account, the forensic status, whether anyone has claimed it — and say plainly what is not. Follows this file's Quneitra accountability piece: the same country, the older crime and the newer one, both turning on whether a state exists that can investigate.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Damascus",
+        "http://en.wikipedia.org/wiki/Syria",
+        "http://en.wikipedia.org/wiki/Jaramana",
+        "http://en.wikipedia.org/wiki/Minibus",
+        "http://en.wikipedia.org/wiki/Bomb",
+        "http://en.wikipedia.org/wiki/Druze",
+        "http://en.wikipedia.org/wiki/Ambulance",
+        "http://en.wikipedia.org/wiki/Bashar_al-Assad"
+      ]
+    },
+    {
+      "id": "offshore-wind-cancellation-refunds-policy-risk",
+      "label": "Trump Refunds $4 Billion to Cancel US Offshore Wind Projects",
+      "firstSeen": "2026-08-06T22:10:36.130Z",
+      "lastCovered": "2026-08-06T22:10:36.130Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-offshore-wind-cancellation-refunds-policy-risk"
+      ],
+      "eventUri": "eng-11899815",
+      "summary": "The US government is paying developers roughly $4 billion this year to not build offshore wind — including $1.22bn to Germany's RWE — and that inversion is the lead: subsidy usually buys construction, and here public money buys cancellation. The mechanism our reader should carry is why the refunds exist at all: these are lease payments and permitting outlays companies made to the federal government under a prior policy, and unwinding a signed federal lease means giving the money back, so the cost of the reversal is fixed by contract rather than chosen by the administration. That is the structural point — an energy policy that changes every four years is expensive in exactly this way, and the bill is paid by the treasury regardless of which direction the change runs. Establish the record: the total settled, the projects cancelled and their planned capacity, how much more is still at risk, and what RWE and the other developers say. Then the frame our reader should hold: sovereign policy risk is normally a thing priced into emerging markets, and foreign utilities are now pricing it into the United States.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/RWE",
+        "http://en.wikipedia.org/wiki/Offshore_wind_power",
+        "http://en.wikipedia.org/wiki/Presidency_of_Donald_Trump",
+        "http://en.wikipedia.org/wiki/Louisiana",
+        "http://en.wikipedia.org/wiki/California",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Federal_government_of_the_United_States",
+        "http://en.wikipedia.org/wiki/Donald_Trump"
+      ]
+    },
+    {
+      "id": "polysilicon-price-floor-tariff-global-solar-costs",
+      "label": "Trump Issues Tariffs on Key Ingredient for Electronics and Solar Panels",
+      "firstSeen": "2026-08-06T22:10:36.130Z",
+      "lastCovered": "2026-08-06T22:10:36.130Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-polysilicon-price-floor-tariff-global-solar-costs"
+      ],
+      "eventUri": "eng-11892769",
+      "summary": "A 15 percent tariff on products made with polysilicon plus a minimum import price — lead with the price floor, because it is the unusual instrument. A tariff raises the cost of imports proportionally; a floor makes it illegal to sell below a set number, which is designed specifically against a producer whose costs are lower than anyone else's, and that producer is China, which makes the large majority of the world's polysilicon. The mechanism our reader should carry is that polysilicon sits four steps upstream of a solar panel and also inside every semiconductor, so a floor at that layer propagates into module prices worldwide, not just American ones. The consequence lands hardest where solar is being built fastest and margins are thinnest: Pakistan's rooftop boom, India's module assembly, Gulf utility-scale programmes and African mini-grids all buy from the same Chinese supply chain this is aimed at. Establish the record: current polysilicon prices against the floor, US domestic capacity and how long it would take to matter, and what module makers say. This is distinct from the IEEPA refund story this file ran — different statute, different layer, and this one sets a price rather than a rate.",
+      "conceptUris": []
+    },
+    {
+      "id": "anthropic-custom-silicon-inference-cost-integration",
+      "label": "Anthropic confirms plans to build an in-house silicon team",
+      "firstSeen": "2026-08-06T22:10:36.130Z",
+      "lastCovered": "2026-08-06T22:10:36.130Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-anthropic-custom-silicon-inference-cost-integration"
+      ],
+      "eventUri": "eng-11895853",
+      "summary": "An AI lab that buys compute is hiring semiconductor designers to build its own — lead with the vertical integration, not the job listings. The mechanism our reader should carry is why a model company would attempt the hardest and most capital-intensive step in the stack: inference cost per token is now the binding constraint on what an AI business can charge, general-purpose GPUs spend most of their transistor budget on things a transformer does not need, and a chip designed for one company's own model shape is the only lever left once the model architecture and the datacentre are already optimised. It is also a hedge against a single supplier setting the price of the entire industry's input. Establish the record with scepticism: this is a hiring signal, not a tape-out — custom silicon takes years and hundreds of millions of dollars, Google's TPU took a decade to reach parity, and most attempts by non-chip companies have failed. Say which is which. Then the frame: compute is being re-nationalised inside a handful of firms, and everyone outside them — including every state trying to build sovereign AI capacity — rents from the same three suppliers.",
+      "conceptUris": []
+    },
+    {
+      "id": "north-carolina-ports-cyberattack-manual-processing",
+      "label": "Cyberattack on North Carolina Ports 'contained' as Coast Guard, state officials investigate",
+      "firstSeen": "2026-08-06T22:10:36.130Z",
+      "lastCovered": "2026-08-06T22:10:36.130Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-north-carolina-ports-cyberattack-manual-processing"
+      ],
+      "eventUri": null,
+      "summary": "A port authority was breached and kept operating by switching to manual processing — lead with that detail, because it is the finding. The mechanism our reader should carry is what a modern port's IT system actually does: it is not email, it is the terminal operating system that decides which container sits in which stack and which truck is allowed through the gate, so losing it does not stop the cranes, it destroys the index that says what is in the yard. Manual processing means clerks and paper, and it means throughput falls by an order of magnitude while the backlog compounds at the berth. That is why ports are attacked and why the recovery time, not the intrusion, is the number that matters. Establish the record: what was affected, how long manual operations ran, whether cargo or vessel traffic was delayed, who is investigating and what has not been attributed. Then the frame: this is the same dependency our reader saw in the Hormuz and Jebel Ali coverage from the other direction — a chokepoint that fails through software rather than through a strait, and the ports with the least redundancy are the ones with the fewest berths.",
+      "conceptUris": []
+    },
+    {
+      "id": "simulated-methanogen-biosignature-target-selection",
+      "label": "Scientists Designed a Virtual Alien Lifeform to Hunt for Extraterrestrials",
+      "firstSeen": "2026-08-06T22:10:36.130Z",
+      "lastCovered": "2026-08-06T22:10:36.130Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-simulated-methanogen-biosignature-target-selection"
+      ],
+      "eventUri": null,
+      "summary": "Researchers built a working computational model of a methanogen — a microbe that lives on hydrogen and carbon dioxide and excretes methane — and ran it against the conditions of a wide range of exoplanets to see where its metabolism would still close. Lead with the inversion in method: the search for life normally starts from a telescope and asks what a spectrum might mean, and this starts from a cell and asks what it would have to emit. The mechanism our reader should carry is why methanogens are the right organism to simulate: they are among the oldest metabolisms on Earth, they need no sunlight and no oxygen, and methane is detectable across interstellar distances — which makes them the most likely life to exist elsewhere and the most likely to be seen. Establish the limits honestly: a model is not a detection, methane has abundant geological sources, and the value of the work is that it narrows which planets are worth expensive telescope time. Then what's next: which targets it points at, and which instrument could actually look.",
+      "conceptUris": []
+    },
+    {
+      "id": "touch-pain-pleasure-fibre-classes-valence",
+      "label": "How Does Touch Lead To Pain Or Pleasure?",
+      "firstSeen": "2026-08-06T22:10:36.130Z",
+      "lastCovered": "2026-08-06T22:10:36.130Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-touch-pain-pleasure-fibre-classes-valence"
+      ],
+      "eventUri": null,
+      "summary": "Neuroscientist Ishmail Abdus-Saboor's work asks how the same skin contact becomes pain in one context and pleasure in another — lead with the fact that the difference is not in the skin. The mechanism our reader should carry is that touch is not one sense: distinct nerve fibre classes carry pressure, temperature, damage and slow gentle stroking along separate lines into the spinal cord, and the brain assigns the valence afterwards using context, expectation and social meaning. That is why the same pressure is a comfort from one person and an assault from another, and why chronic pain can persist with no tissue left to damage. Establish the record: what the lab actually measures — high-speed behavioural readouts in mice rather than self-report — which fibre types are implicated, and what remains unproven in the jump from rodent to human. Naked mole rats matter here because they lack a specific pain pathway entirely, which is what makes the comparison informative rather than a curiosity. Then the stakes: pain is one of the most poorly treated conditions worldwide, and the countries with the least access to opioid analgesia are precisely the ones a non-opioid mechanism would serve.",
+      "conceptUris": []
+    },
+    {
+      "id": "spacex-to-build-natural-gas-power-plants-for-texas-chip-fact",
+      "label": "SpaceX to Build Natural Gas Power Plants for Texas Chip Factory",
+      "firstSeen": "2026-08-06T22:10:36.130Z",
+      "lastCovered": "2026-08-06T22:10:36.130Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-spacex-to-build-natural-gas-power-plants-for-texas-chip-fact"
+      ],
+      "eventUri": "eng-11899351",
+      "summary": "[Auto-backfill for economy floor] SpaceX plans to build its own power plants to support the massive semiconductor manufacturing facility it's developing in Texas with Tesla Inc.\n\n\"We're bringing our own power,\" Riley Trettel, who oversees energy and data center development for SpaceX, said Wednesday during a public meeting in Grimes",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/SpaceX",
+        "http://en.wikipedia.org/wiki/Tesla,_Inc.",
+        "http://en.wikipedia.org/wiki/Texas",
+        "http://en.wikipedia.org/wiki/Elon_Musk",
+        "http://en.wikipedia.org/wiki/Grimes_County,_Texas",
+        "http://en.wikipedia.org/wiki/Semiconductor",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Integrated_circuit"
+      ]
+    },
+    {
+      "id": "bbc-radio-4-the-vicar-of-wakefield-by-oliver-goldsmith-episo",
+      "label": "BBC Radio 4 - The Vicar of Wakefield by Oliver Goldsmith, Episode Four",
+      "firstSeen": "2026-08-06T22:10:36.130Z",
+      "lastCovered": "2026-08-06T22:10:36.130Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-06-bbc-radio-4-the-vicar-of-wakefield-by-oliver-goldsmith-episo"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for tech floor] Dr Primrose and his son are both duped at the fair. And there is a falling out with Mr Burchell.\n\nA classic comic novel from the 18th century.\n\nLife is good to the Reverend Dr Primrose, in his idyllic country parsonage, surrounded by his beloved family. But then his world unravels in a series of mis",
+      "conceptUris": []
+    },
+    {
       "id": "tinubu-efcc-osun-account-freeze-executive-override",
       "label": "BREAKING: Tinubu orders EFCC to vacate Osun account freeze order",
       "firstSeen": "2026-08-06T17:08:12.573Z",
       "lastCovered": "2026-08-06T17:08:12.573Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-tinubu-efcc-osun-account-freeze-executive-override"
@@ -33,7 +270,7 @@
       "lastCovered": "2026-08-06T17:08:12.573Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-board-of-peace-gaza-sequencing-reversal-article-8"
@@ -49,7 +286,7 @@
       "lastCovered": "2026-08-06T17:08:12.573Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-sudan-kordofan-blackout-financing-planting-season"
@@ -65,7 +302,7 @@
       "lastCovered": "2026-08-06T17:08:12.573Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-quneitra-massacre-officers-identified-accountability-gap"
@@ -81,7 +318,7 @@
       "lastCovered": "2026-08-06T17:08:12.573Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-tejpal-conviction-bombay-high-court-acquittal-overturned"
@@ -106,7 +343,7 @@
       "lastCovered": "2026-08-06T17:08:12.573Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-hormuz-closure-gulf-crude-malaysia-import-substitution"
@@ -122,7 +359,7 @@
       "lastCovered": "2026-08-06T17:08:12.573Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-tether-saudi-real-estate-tokenization-settlement-layer"
@@ -138,7 +375,7 @@
       "lastCovered": "2026-08-06T17:08:12.573Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-china-steel-scrap-transition-australia-iron-ore-demand"
@@ -154,7 +391,7 @@
       "lastCovered": "2026-08-06T17:08:12.573Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-china-15th-five-year-plan-climate-binding-targets"
@@ -170,7 +407,7 @@
       "lastCovered": "2026-08-06T17:08:12.573Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-x2370-pseudoscalar-glueball-besiii-qcd"
@@ -186,7 +423,7 @@
       "lastCovered": "2026-08-06T17:08:12.573Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-cities-flock-to-axon-alpr-invisible-cameras"
@@ -202,7 +439,7 @@
       "lastCovered": "2026-08-06T17:08:12.573Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-ransom-cartel-operator-16-years-jurisdiction"
@@ -218,7 +455,7 @@
       "lastCovered": "2026-08-06T17:08:12.573Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-08-06-cloudflare-os-open-source-agent-code-containment"
@@ -234,7 +471,7 @@
       "lastCovered": "2026-08-06T12:07:58.476Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-06-malaysia-rohingya-repatriation-non-refoulement"
@@ -250,7 +487,7 @@
       "lastCovered": "2026-08-06T12:07:58.476Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-06-north-korea-wonsan-launch-us-south-korea-drills"
@@ -275,7 +512,7 @@
       "lastCovered": "2026-08-06T12:07:58.476Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-06-india-comprehensive-national-power-gdp-gap-2047"
@@ -291,7 +528,7 @@
       "lastCovered": "2026-08-06T12:07:58.476Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-06-russia-far-east-eastern-economic-forum-80bn-pivot"
@@ -307,7 +544,7 @@
       "lastCovered": "2026-08-06T12:07:58.476Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-06-cyclospora-outbreak-6000-cases-irrigation-water"
@@ -323,7 +560,7 @@
       "lastCovered": "2026-08-06T12:07:58.476Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-06-cnes-full-flow-staged-combustion-2028-hot-fire"
@@ -339,7 +576,7 @@
       "lastCovered": "2026-08-06T12:07:58.476Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-06-bluetooth-mesh-india-shutdown-github-geoblock"
@@ -355,7 +592,7 @@
       "lastCovered": "2026-08-06T12:07:58.476Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-06-ai-moderation-slop-asymmetry-volunteer-moderators"
@@ -371,7 +608,7 @@
       "lastCovered": "2026-08-06T12:07:58.476Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-06-xq-58-valkyrie-crash-dugway-attritable-autonomy"
@@ -387,7 +624,7 @@
       "lastCovered": "2026-08-06T12:07:58.476Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-06-man-charged-with-murder-of-scottish-woman-in-athens-remanded"
@@ -412,7 +649,7 @@
       "lastCovered": "2026-08-06T12:07:58.476Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-06-ukraine-says-two-russian-oil-refineries-hit-as-moscow-target"
@@ -437,7 +674,7 @@
       "lastCovered": "2026-08-06T08:12:39.985Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-06-trump-denies-munitions-shortage-leakers-jail-disclosure"
@@ -462,7 +699,7 @@
       "lastCovered": "2026-08-06T08:12:39.985Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-06-thailand-min-aung-hlaing-asean-consensus-rohingya"
@@ -487,7 +724,7 @@
       "lastCovered": "2026-08-06T08:12:39.985Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-06-asad-toor-nccia-inquiry-peca-process-as-punishment"
@@ -503,7 +740,7 @@
       "lastCovered": "2026-08-06T08:12:39.985Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-06-yaroslavl-refinery-strike-refining-not-crude-discount"
@@ -528,7 +765,7 @@
       "lastCovered": "2026-08-06T08:12:39.985Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-06-commerzbank-unicredit-mittelstand-credit-banking-union"
@@ -553,7 +790,7 @@
       "lastCovered": "2026-08-06T08:12:39.985Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-06-canada-fire-attribution-doubled-odds-not-ignition"
@@ -569,7 +806,7 @@
       "lastCovered": "2026-08-06T08:12:39.985Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-06-cfdna-hpv-cervical-cancer-monitoring-low-resource-limits"
@@ -585,7 +822,7 @@
       "lastCovered": "2026-08-06T08:12:39.985Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-06-bitcoin-audit-85-critical-bugs-ai-review-asymmetry"
@@ -601,7 +838,7 @@
       "lastCovered": "2026-08-06T08:12:39.985Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-06-ai-jobs-outsourcing-decoupling-global-south-labour"
@@ -617,7 +854,7 @@
       "lastCovered": "2026-08-06T08:12:39.985Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-06-clinical-and-radiographic-evaluation-of-natural-bovine-bone"
@@ -633,7 +870,7 @@
       "lastCovered": "2026-08-06T08:12:39.985Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-04-the-screen-act-is-a-christian-nationalist-nightmare"
@@ -649,7 +886,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-06-us-munitions-shortage-iran-war-production-rate-constraint"
@@ -674,7 +911,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-06-hormuz-kumzar-explosions-transit-count-war-risk-premium"
@@ -690,7 +927,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-06-sambhal-inquiry-report-mosque-survey-places-of-worship-act"
@@ -706,7 +943,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-06-hiroshima-81st-matsui-deterrence-intimidation-npt-asymmetry"
@@ -731,7 +968,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-06-iepa-tariff-refunds-importers-not-consumers-pass-through"
@@ -747,7 +984,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-06-indonesia-salt-harvest-el-nino-uneven-redistribution"
@@ -763,7 +1000,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-06-moderna-mrna-flu-approval-strain-lag-prasad-reversal"
@@ -779,7 +1016,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-06-heatwave-grid-derating-thermodynamics-every-technology"
@@ -795,7 +1032,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-06-ai-agents-escape-sandbox-zero-day-evaluation-containment"
@@ -811,7 +1048,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-06-india-ccpa-dark-patterns-basket-sneaking-drip-pricing"
@@ -827,7 +1064,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-06-google-assistant-shutdown-gemini-on-device-to-cloud"
@@ -852,7 +1089,7 @@
       "lastCovered": "2026-08-06T04:13:54.149Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-05-channel-islands-eclipse-a-once-or-twice-in-a-lifetime-event"
@@ -877,7 +1114,7 @@
       "lastCovered": "2026-08-05T22:13:03.090Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-lebanon-strikes-resume-ceasefire-sequencing-soldiers-killed"
@@ -902,7 +1139,7 @@
       "lastCovered": "2026-08-05T22:13:03.090Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-north-korea-missile-unit-voronezh-interceptor-arithmetic"
@@ -927,7 +1164,7 @@
       "lastCovered": "2026-08-05T22:13:03.090Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-new-mexico-doj-epstein-evidence-federalism-gap"
@@ -952,7 +1189,7 @@
       "lastCovered": "2026-08-05T22:13:03.090Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-pakistan-fuel-price-petroleum-levy-regressive-imf"
@@ -968,7 +1205,7 @@
       "lastCovered": "2026-08-05T22:13:03.090Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-binance-redotpay-stablecoin-card-user-exposure"
@@ -984,7 +1221,7 @@
       "lastCovered": "2026-08-05T22:13:03.090Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-spacex-first-public-earnings-starlink-revenue-concentration"
@@ -1004,7 +1241,7 @@
       "lastCovered": "2026-08-05T22:13:03.090Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-deepmind-hassabis-chair-jeff-dean-departs-research-charter"
@@ -1029,7 +1266,7 @@
       "lastCovered": "2026-08-05T22:13:03.090Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-chinese-telcos-us-peering-salt-typhoon-licence-gap"
@@ -1045,7 +1282,7 @@
       "lastCovered": "2026-08-05T22:13:03.090Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-youtube-ai-labels-photorealism-wrong-axis-disclosure"
@@ -1061,7 +1298,7 @@
       "lastCovered": "2026-08-05T22:13:03.090Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-folded-surface-code-shuttling-error-correction-overhead"
@@ -1077,257 +1314,13 @@
       "lastCovered": "2026-08-05T22:13:03.090Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-05-orexin-agonist-narcolepsy-approval-first-causal-treatment"
       ],
       "eventUri": "eng-11887740",
       "summary": "The FDA approved Takeda's twice-daily orexin receptor agonist for narcolepsy — the first drug that treats the disease's cause rather than its symptoms. Lead with what narcolepsy actually is, because the popular understanding is wrong and the correction is the story: type 1 narcolepsy is an autoimmune condition in which the roughly 20,000 to 70,000 neurons that produce orexin — the peptide that holds the brain in a waking state — are destroyed, permanently. Every existing treatment has been a stimulant or a sedative managing the consequences of that loss. This drug replaces the missing signal at the receptor. Teach the mechanism and then the reason it matters far beyond a rare disease: orexin is the switch between sleep and wakefulness for everyone, so a molecule that can turn that switch on pharmacologically is a tool aimed at a much wider set of conditions, and the same target read in reverse — orexin antagonists — is already how the newest insomnia drugs work. Establish the record with proper scepticism: the trial endpoints and effect sizes, the adverse events and why an earlier compound in this class was halted, whether type 2 and idiopathic hypersomnia patients are covered by the label, and the price. Then the access frame this reader should get and rarely does: narcolepsy is diagnosed late or never across South Asia, Africa and the Middle East because diagnosis requires an overnight sleep laboratory and a lumbar puncture, so a first-in-class drug arrives in health systems that cannot yet identify the patients it is for.",
-      "conceptUris": []
-    },
-    {
-      "id": "hormuz-lane-split-iran-oman-administered-transit",
-      "label": "Iran, Oman, US 'close' to Hormuz deal: What do they all want?",
-      "firstSeen": "2026-08-05T17:08:33.600Z",
-      "lastCovered": "2026-08-05T17:08:33.600Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-hormuz-lane-split-iran-oman-administered-transit"
-      ],
-      "eventUri": "eng-11892844",
-      "summary": "The Hormuz arrangement now has terms, not just a rumour: inbound traffic transits Iranian-administered lanes, outbound transits Omani-administered lanes, with Tehran notified of departures and both states possibly collecting service fees — and the whole thing reportedly conditioned on lifting the US blockade of Iranian ports. Lead with the lane split, because that is the concession: Iran's earlier position demanded Iranian waters in both directions. The structural why is that Washington's stated aim (deny Iran control) and its actual interest (predictable, non-discriminatory passage) have come apart, and the deal only works if it accepts the second. Follows our 08-05 filing on Oman mediation — that one reported talks, this one reports the mechanism.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Oman",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/Petroleum"
-      ]
-    },
-    {
-      "id": "ukraine-air-defence-interceptor-supply-two-thirds-drop",
-      "label": "Air defense missile deliveries drop by two-thirds from 2025 levels, Zelensky says",
-      "firstSeen": "2026-08-05T17:08:33.600Z",
-      "lastCovered": "2026-08-05T17:08:33.600Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-ukraine-air-defence-interceptor-supply-two-thirds-drop"
-      ],
-      "eventUri": "eng-11891171",
-      "summary": "Lead with the number, not the strike: allied air-defence missile deliveries to Ukraine fell by two-thirds in the first half of 2026 against the same period in 2025, disclosed by Zelensky hours after ballistic missiles hit Kyiv. The mechanism worth explaining is that interceptor supply, not launcher count, is the binding constraint on what a city can defend — a shortfall in the supply line converts directly into civilian casualties weeks later. Who holds power here is the supplying capitals, whose reduction was never announced; the disclosure came from the receiving end.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Ballistic_missile",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Kiev",
-        "http://en.wikipedia.org/wiki/Missile",
-        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
-        "http://en.wikipedia.org/wiki/Anti-aircraft_warfare"
-      ]
-    },
-    {
-      "id": "lebanon-rome-talks-sequencing-cemetery-drone-strike",
-      "label": "Lebanon and Israel still split over disarming Hezbollah at Rome talks",
-      "firstSeen": "2026-08-05T17:08:33.600Z",
-      "lastCovered": "2026-08-05T17:08:33.600Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-lebanon-rome-talks-sequencing-cemetery-drone-strike"
-      ],
-      "eventUri": "spa-4290063",
-      "summary": "Talks in Rome suspended over sequencing while an Israeli drone struck a prayer area inside a cemetery in southern Lebanon the same afternoon, killing one and wounding 11 after residents were ordered from their homes. Name the victims' setting precisely — a cemetery prayer area is not a military target — and lead with the simultaneity: negotiation and bombardment are running as one policy, not two. The mechanism is identical to Gaza's: disarmament demanded first, withdrawal deferred, strikes continuing throughout. Do not use the Middle East Eye liveblog as the spine; build from the Al Jazeera and Al-Monitor reports.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Lebanon",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Hezbollah",
-        "http://en.wikipedia.org/wiki/Rome",
-        "http://en.wikipedia.org/wiki/Israel_Defense_Forces",
-        "http://en.wikipedia.org/wiki/Southern_Lebanon",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Ceasefire"
-      ]
-    },
-    {
-      "id": "sinaloa-cartel-fragmentation-territorial-rivals",
-      "label": "The Sinaloa Cartel's Fractured Future",
-      "firstSeen": "2026-08-05T17:08:33.600Z",
-      "lastCovered": "2026-08-05T17:08:33.600Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-sinaloa-cartel-fragmentation-territorial-rivals"
-      ],
-      "eventUri": null,
-      "summary": "Original InSight Crime mapping of what one alleged betrayal did to Mexico's dominant criminal structure: an internal war that has redrawn territorial control and opened space for rival groups. The reader-facing point is structural, not lurid — fragmentation of a monopoly supplier raises violence rather than lowering it, because contested routes must be re-fought rather than administered. Follows our Ecuador kingpin-strategy filing on the same mechanism; make the comparison explicit and keep the body on the organisational map, not on personalities.",
-      "conceptUris": []
-    },
-    {
-      "id": "kwara-woro-abductees-released-six-months-terms-undisclosed",
-      "label": "BREAKING: Kwara villagers regain freedom six months after abduction",
-      "firstSeen": "2026-08-05T17:08:33.600Z",
-      "lastCovered": "2026-08-05T17:08:33.600Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-kwara-woro-abductees-released-six-months-terms-undisclosed"
-      ],
-      "eventUri": "eng-11896228",
-      "summary": "Residents seized in the attack on Woro, Kaiama LGA, are free after six months in captivity — and the Kwara state government announced it on Facebook, crediting the president and security agencies without saying how the release was obtained. Lead with the six months, then with the silence: whether ransom was paid, and by whom, is the accountability question the announcement is built to avoid. Who is affected is a farming community in north-central Nigeria whose captivity outlasted the news cycle that reported the abduction.",
-      "conceptUris": []
-    },
-    {
-      "id": "el-nino-wfp-49-million-acute-food-insecurity-southern-africa",
-      "label": "UN warns strengthening El Nino could push 49 million into acute hunger",
-      "firstSeen": "2026-08-05T17:08:33.600Z",
-      "lastCovered": "2026-08-05T17:08:33.600Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-el-nino-wfp-49-million-acute-food-insecurity-southern-africa"
-      ],
-      "eventUri": "eng-11894805",
-      "summary": "The WFP puts an unprecedented Pacific El Nino at 49 million additional people in acute food insecurity within 18 months, with southern Africa the hardest-hit region. Lead with the number and the lag — the forecast is 18 months out, which means this is a financing story before it is a hunger story, and appeals made now are what determine whether the projection is realised. The structural why: southern Africa's maize belt is rain-fed and its import cover thin, so an ocean anomaly in the Pacific arrives as a price shock in Lusaka and Harare.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/El_Niño",
-        "http://en.wikipedia.org/wiki/World_Food_Programme",
-        "http://en.wikipedia.org/wiki/United_Nations",
-        "http://en.wikipedia.org/wiki/Food_security",
-        "http://en.wikipedia.org/wiki/Drought",
-        "http://en.wikipedia.org/wiki/Southern_Africa",
-        "http://en.wikipedia.org/wiki/Pacific_Ocean",
-        "http://en.wikipedia.org/wiki/Central_America"
-      ]
-    },
-    {
-      "id": "syria-fuel-queues-iraqi-transit-route-bypassing-hormuz",
-      "label": "Syrians Queue for Fuel as Iraqi Oil Flows Past Them",
-      "firstSeen": "2026-08-05T17:08:33.600Z",
-      "lastCovered": "2026-08-05T17:08:33.600Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-syria-fuel-queues-iraqi-transit-route-bypassing-hormuz"
-      ],
-      "eventUri": null,
-      "summary": "Ground reporting along the road from Syria's eastern border to the coast: thousands of Iraqi tankers cross the country daily on Baghdad's new western export route — built to bypass the Strait of Hormuz — while Syrian filling stations run dry. Lead with the two facts in one frame: the fuel is physically passing the people who cannot buy it. The mechanism is that transit is not supply; a corridor state earns fees, not barrels, and Damascus has no offtake right on cargo merely crossing its territory. This is the ground-level counterpart to today's Hormuz-deal filing — the workaround has its own victims.",
-      "conceptUris": []
-    },
-    {
-      "id": "pakistan-iran-border-crossings-round-the-clock-trade",
-      "label": "Pakistan, Iran agree to keep border crossings open round the clock to boost trade",
-      "firstSeen": "2026-08-05T17:08:33.600Z",
-      "lastCovered": "2026-08-05T17:08:33.600Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-pakistan-iran-border-crossings-round-the-clock-trade"
-      ],
-      "eventUri": "eng-11890557",
-      "summary": "Shehbaz Sharif and a six-member Iranian delegation agreed to run the Pakistan-Iran border crossings 24 hours, with harmonised customs and improved logistics. Lead with what round-the-clock actually changes: crossing hours, not tariffs, are the binding constraint on Balochistan-Sistan trade, and doubling the operating window is the cheapest capacity expansion available to either state. The structural why is that Islamabad is deepening a trade channel with a sanctioned neighbour in the same week it hosts US-Iran mediation — the commercial and diplomatic tracks are the same policy. Continues our 08-05 Islamabad-channel filing.",
-      "conceptUris": []
-    },
-    {
-      "id": "flock-alpr-travel-pattern-manufactured-probable-cause",
-      "label": "Cops Used Flock to Track a Man Across State Lines to Create Pretext to Search His Car for Weed",
-      "firstSeen": "2026-08-05T17:08:33.600Z",
-      "lastCovered": "2026-08-05T17:08:33.600Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-flock-alpr-travel-pattern-manufactured-probable-cause"
-      ],
-      "eventUri": null,
-      "summary": "A probable-cause justification reads, in writing, that the vehicle 'travels to Michigan frequently which is a known source state for marijuana as it is legal there' — meaning a licence-plate reader network turned lawful interstate travel into the grounds for a search. Lead with that sentence verbatim. The mechanism readers should carry away is inversion: ALPR networks were sold as tools for finding known suspects, and are being used to manufacture suspicion from ordinary movement patterns. Precedent is the story — this reasoning generalises to any legal-in-one-state activity.",
-      "conceptUris": []
-    },
-    {
-      "id": "icloud-private-relay-ip-address-leak-verified",
-      "label": "Apple's 'Private Relay' Is Exposing Users' Real IP Addresses",
-      "firstSeen": "2026-08-05T17:08:33.600Z",
-      "lastCovered": "2026-08-05T17:08:33.600Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-icloud-private-relay-ip-address-leak-verified"
-      ],
-      "eventUri": null,
-      "summary": "Researchers found a cluster of flaws in iCloud Private Relay that leak users' real IP addresses, and 404 Media independently verified the leaks. Lead with the verification, not the claim. The stakes are specific rather than general: Private Relay is the privacy feature Apple markets to users who cannot safely be located — journalists, organisers, people under surveillance in states where a resolved IP is the first step of an arrest — so a silent failure is worse than no feature, because it was relied upon. Name what Apple has and has not said.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-panel-meta-modi-video-moderation-leverage",
-      "label": "India panel warns Meta over Modi video removal",
-      "firstSeen": "2026-08-05T17:08:33.600Z",
-      "lastCovered": "2026-08-05T17:08:33.600Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-india-panel-meta-modi-video-moderation-leverage"
-      ],
-      "eventUri": "eng-11887465",
-      "summary": "An Indian parliamentary panel demanded a personal apology from Mark Zuckerberg over the temporary removal of a Modi video — in Meta's largest market by users, with hundreds of millions of accounts. Lead with the asymmetry: the leverage is user count, and it runs from the state to the platform, not the other way. The mechanism worth teaching is that content moderation at national scale is negotiated, not applied — a moderation decision that would stand anywhere else becomes a summons when the market is too large to exit. Note that the video was restored before the panel convened.",
-      "conceptUris": []
-    },
-    {
-      "id": "coral-cilia-vortices-oxygen-transport-warming",
-      "label": "Corals Spin Tiny Vortices to Get Oxygen, but Not if It's Too Hot",
-      "firstSeen": "2026-08-05T17:08:33.600Z",
-      "lastCovered": "2026-08-05T17:08:33.600Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-coral-cilia-vortices-oxygen-transport-warming"
-      ],
-      "eventUri": null,
-      "summary": "Corals drive their own oxygen supply by beating cilia to spin microscopic vortices at the tissue surface — and the stirring fails as water warms. Lead with the physics: the boundary layer around a coral is a diffusion bottleneck the animal actively pumps through, so bleaching is not only a symbiont story but a fluid-transport one. The reader takeaway is that a second, mechanical failure mode compounds thermal stress, which changes what a survivable temperature actually means for a reef.",
-      "conceptUris": []
-    },
-    {
-      "id": "crispr-beagles-can-f-1-allergen-companion-animal-precedent",
-      "label": "Two dogs lack the protein that causes allergies thanks to gene editing",
-      "firstSeen": "2026-08-05T17:08:33.600Z",
-      "lastCovered": "2026-08-05T17:08:33.600Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-05-crispr-beagles-can-f-1-allergen-companion-animal-precedent"
-      ],
-      "eventUri": "eng-11895261",
-      "summary": "Two beagles, Alfie and Bailey, were CRISPR-edited to lack Can f 1 — the dominant dog allergen — and turn two in September with no reported adverse effects, per the company that made them, Kindred Companion Sciences. Lead with the fact that the claim is the company's and the sample is two animals. The precedent is the story: this is germline editing of a companion animal for a human convenience trait, arriving through a commercial route with no equivalent of the oversight that governs human editing. Two dogs and two years is not a safety record.",
       "conceptUris": []
     }
   ]
