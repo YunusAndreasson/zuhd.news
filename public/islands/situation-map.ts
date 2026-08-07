@@ -766,6 +766,8 @@ export function mount(
   const groundSelect = document.createElement('select')
   groundSelect.className = 'map-ground-select'
   groundSelect.setAttribute('aria-label', 'Shade countries by')
+  // The heading's job, for a pointer, now that the heading is gone.
+  groundSelect.title = 'Shade the land by'
   groundSelect.addEventListener('change', () => {
     void loadMetric(groundSelect.value)
   })
@@ -842,21 +844,21 @@ export function mount(
    * is not competing with the map for a row.
    */
   /**
-   * The picker's visible name, in the rail only.
+   * The picker had a visible name and no longer needs one (2026-08-07).
    *
-   * On the strip it needed none: the `<select>` sits among chips that are
-   * plainly the map's controls, and it names its own value. In a column, a bare
-   * dropdown reading `population` above a gradient is a control with no subject
-   * — the reader can see *what it is set to* and not *what it sets*. The
-   * accessible name ("Shade countries by") has always said so; this is that
-   * sentence made visible, in the register the other group names use.
+   * It was added when this control was a row in a column of readings, and the
+   * argument was right there: a bare dropdown reading `population` above a
+   * gradient lets a reader see *what it is set to* and not *what it sets*. In a
+   * box of its own on the canvas — a `<select>` above a colour ramp with the
+   * value printed at each end, over a map whose countries are shaded — the word
+   * was labelling the only thing in the box, and a box of one control needs no
+   * heading to say which control it is.
+   *
+   * The accessible name is unchanged and is where that sentence still lives:
+   * `aria-label="Shade countries by"`, plus a `title` for a pointer, so nothing
+   * that depended on the word is left without it.
    */
-  const groundLabel = document.createElement('span')
-  groundLabel.className = 'map-group-label'
-  groundLabel.textContent = 'ground'
-  groundLabel.setAttribute('aria-hidden', 'true')
-
-  ground.append(groundLabel, groundSelect, groundScale)
+  ground.append(groundSelect, groundScale)
 
   /** Fills the picker once the index has landed. */
   const buildMetricPicker = () => {
@@ -1048,7 +1050,11 @@ export function mount(
   // eating its own trigger, which is the `click`-versus-`pointerdown` trap the
   // markets panel already records, arriving from the other side.
   mapEl.addEventListener('pointerdown', (e) => {
-    if (e.target instanceof Node && mapCtl.contains(e.target)) return
+    if (
+      e.target instanceof Node &&
+      (mapCtl.contains(e.target) || mapCtlRight.contains(e.target))
+    )
+      return
     setMoreOpen(false)
   })
 
@@ -1209,31 +1215,34 @@ export function mount(
    * `.map-hud-more` and the phone layout is exactly what it was.
    */
   const mapCtl = document.createElement('div')
-  mapCtl.className = 'map-mapctl'
-  mapEl.append(mapCtl)
+  mapCtl.className = 'map-mapctl is-left'
+  const mapCtlRight = document.createElement('div')
+  mapCtlRight.className = 'map-mapctl is-right'
+  mapEl.append(mapCtl, mapCtlRight)
 
   /**
-   * The two disclosures share a line, and that is where the box's height went.
+   * Two boxes, in the two corners the globe cannot reach (2026-08-07).
    *
-   * The first version stacked five rows — trigger, `ground`, the picker, the
-   * ramp, trigger — for **162px** of canvas, which a reader called too much for
-   * what it holds, and they were right: two of those five rows are one-word
-   * buttons that open something else, and a button that opens something else is
-   * the smallest thing in a control box, not a row of its own. Side by side they
-   * cost one row instead of two and one gap instead of two.
+   * It was one, and it was five rows: the `layers` trigger, `ground`, the
+   * picker, the ramp, the `key` trigger — **162px** of canvas, which a reader
+   * called too much. Sharing a line between the two triggers took it to 118, and
+   * this takes the argument the rest of the way, because the box was holding two
+   * unrelated questions: *what is drawn over the world* and *what the land is
+   * shaded by*. A disc inscribed in the canvas leaves **both** top corners
+   * empty, so there is no reason for them to queue.
    *
-   * `ground` keeps its own line. It is the only word here that says what a
-   * control *does* rather than what it opens — a bare dropdown reading
-   * `population` above a gradient tells a reader what it is set to and not what
-   * it sets — and the fourteen pixels it costs are the cheapest in the box.
+   * Left is what is drawn — the trigger and its seven switches. Right is the
+   * ground — the picker, its ramp, and the `key` that explains them, which goes
+   * with the ground rather than with the layers because `groundNote` lives
+   * inside it and a legend two boxes from the control it decodes is the fault
+   * this whole move exists to fix.
    *
-   * Both panels open below the whole block rather than under their own trigger:
-   * one box grows downward, which is what a column does, and splitting them
-   * would put the ground note (inside `legend`) above the ramp it explains.
+   * **`ground` loses its heading.** It earned it in a column of readings, where
+   * a bare dropdown reading `population` was a control with no stated subject.
+   * In a box of its own, above its own colour ramp with the value at each end,
+   * the word was labelling the only thing in the box — and the accessible name
+   * ("Shade countries by") says it to anyone who cannot infer it from a gradient.
    */
-  const mapCtlHead = document.createElement('div')
-  mapCtlHead.className = 'map-mapctl-head'
-
   /**
    * The home before the first resize, and the reason it is this one.
    *
@@ -5439,8 +5448,8 @@ export function mount(
    */
   const placeMapControls = () => {
     if (wideQuery.matches) {
-      mapCtlHead.append(layersTrigger, moreBtn)
-      mapCtl.append(mapCtlHead, filters, ground, legend)
+      mapCtl.append(layersTrigger, filters)
+      mapCtlRight.append(ground, moreBtn, legend)
     } else {
       // The phone's own panel, in the order it has always had: the trigger, the
       // group it discloses, then the picker. `moreBtn` is the strip's control

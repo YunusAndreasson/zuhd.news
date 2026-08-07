@@ -1045,13 +1045,22 @@ const entryFrom = (
  * Four more rows is 202px of it, which is the trade stated plainly: seven
  * switches a reader touches rarely, for four readings they look at constantly.
  *
- * The ceiling is real and worth keeping. The selection rule ranks by absolute
- * change over the window, so a larger `BLOCK_ROWS` is not more information, it
- * is a longer tail — and both blocks draw from feeds whose interesting end is
- * short: six live Polymarket series and fifteen Wikipedia ones. Past five the
- * rows stop being the ones that moved and start being the ones that are left.
+ * The ceiling was real and it was a ceiling on **height**, not on interest
+ * (2026-08-07). The argument below is still the right shape and its number was
+ * a function of the row: at 50.4px a two-line row, five was what a 1080px column
+ * could hold. These rows are one line now — they print the movement and not the
+ * level, which is what the blocks are scanned for — so the same pixels buy twice
+ * as many, and ten is what fits with the money and the world above them.
+ *
+ * The tail argument survives and is what stops this going further. The selection
+ * ranks by change over the window, so a larger cap is a longer tail rather than
+ * more information, and both blocks draw from feeds whose interesting end is
+ * short: **six** live Polymarket series and **fifteen** Wikipedia ones. Ten is
+ * therefore every market there is — the ranking has nothing left to decide on
+ * `odds`, which is honest, since a block that shows all six is not selecting —
+ * and two thirds of the pageview set, where it still is.
  */
-const BLOCK_ROWS = 5
+const BLOCK_ROWS = 10
 
 /**
  * The shortest series a selected block will draw.
@@ -2679,7 +2688,29 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
        * rather than by position.
        */
       el('span', `map-markets-label${caption ? ' map-markets-caption' : ''}`, entry.label),
-      ...(level ? [el('span', 'map-markets-level', level)] : []),
+      /**
+       * The level, on the one-line blocks only (2026-08-07).
+       *
+       * `odds` and `attention` print the movement and not the reading it moved
+       * from — a reader's decision, and the right one for what these blocks are
+       * for: *which questions are moving*, scanned. It is what buys them one line
+       * each instead of two and therefore twice as many rows, which is more
+       * information than a column of probabilities beside half as many subjects.
+       *
+       * What it costs is stated rather than hidden. On `odds` the row no longer
+       * says whether `−18 pts` landed at 37% or at 5%, and those are different
+       * facts; the card a press opens leads with the level, and the `aria-label`
+       * below still carries it, so nothing is unreachable — it is one press
+       * further away than it was.
+       *
+       * On `attention` it costs nothing at all, and only because of the change
+       * directly above it: the block used to rank on **views moved** while
+       * printing a percentage, so the level was the only thing making the
+       * ordering derivable from the row. It ranks on that same percentage now,
+       * so the figure explains its own position and the level was the third
+       * number the record wanted removed rather than the one it wanted kept.
+       */
+      ...(level && !caption ? [el('span', 'map-markets-level', level)] : []),
       /* There was a `map-markets-break` here — a zero-height `flex: 1 0 100%`
          item, the idiom for breaking a flex line without taking the whole of it.
          It is gone (2026-08-07): these rows are a **grid** now, so a second line

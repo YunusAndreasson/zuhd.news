@@ -4046,7 +4046,6 @@ body.map-wide {
 body.map-wide .map-mapctl {
   position: absolute;
   top: var(--space-sm);
-  left: var(--space-sm);
   z-index: 3;
   display: flex;
   flex-direction: column;
@@ -4084,25 +4083,26 @@ body.map-wide .map-mapctl {
   & .map-filters.is-open { display: flex; }
 }
 
-/* The two disclosures share a line, which is where this box's height went.
+/* Two boxes, in the two corners a disc inscribed in the canvas cannot reach.
 
-   It stacked five rows — trigger, `ground`, the picker, the ramp, trigger — for
-   **162px** of canvas, and a reader called it too much for what it holds. Two of
-   those five are one-word buttons that open something else, and a button that
-   opens something else is the smallest thing in a control box rather than a row
-   of its own. Side by side they cost one row and one gap instead of two of each:
-   measured **162px → 108px**, with nothing removed.
+   One box held both, and it was five rows — the `layers` trigger, `ground`, the
+   picker, the ramp, the `key` trigger — for **162px** of canvas, which a reader
+   called too much. It was holding two unrelated questions: *what is drawn over
+   the world*, and *what the land is shaded by*. Splitting them is the rest of
+   that argument, because there is no reason for two questions to queue when both
+   corners are free.
 
-   `space-between` rather than a gap, so `key` sits on the box's right edge and
-   the two read as the two ends of one line instead of as a pair that happens to
-   be adjacent. */
-body.map-wide .map-mapctl-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  min-height: var(--map-hud-row-h);
-}
+   Left is what is drawn. Right is the ground, with the `key` under it — the
+   legend goes with the ramp rather than with the layers because `groundNote`
+   lives inside it, and a legend two boxes from the control it decodes is the
+   fault this whole move exists to end.
+
+   `--map-aside-w` needs no term in either offset: these are children of
+   `.map-canvas-host`, which is its own grid column and already ends where the
+   instrument rail begins. `.map-reset` needs one because it hangs off the root
+   instead. */
+body.map-wide .map-mapctl.is-left { left: var(--space-sm); }
+body.map-wide .map-mapctl.is-right { right: var(--space-sm); }
 
 /* The Hijri date is the rail's alone. On the strip the clock is one
    absolutely-positioned line with no room beside it, and the scrubber's readout
@@ -5022,64 +5022,51 @@ body.map-wide {
      rule exists because a *fixed-width* label plus a line does not fit, which
      is still true of every block it governs; here the wrap is the intent
      instead of the symptom. */
-  /* A grid, so the question can wrap and the reading still lines up (2026-08-07).
+  /* One line, three columns: the question, which way it went, and the door.
 
-     These rows were a wrap run with the caption held to one line by
+     ── The two things that got these rows here ──────────────────────────────
+     They were a flex wrap run with the caption held to one line by
      `text-overflow: ellipsis`, and a reader reported the obvious: the questions
      were cut. `US x Iran Effective Ceasefire by August 31` rendered as
      `US x Iran Effective Ceasefire by August…` — a row that kept its alignment
      and lost the thing it is about, which is the exact failure the caption
-     treatment was invented to *prevent* one bullet earlier.
+     treatment was invented to *prevent*. A grid fixes that by letting column one
+     wrap instead of clip.
 
-     Letting it wrap inside the flex run costs a third line, because the reading
-     already had a line of its own. A grid gets it for nothing: the caption spans
-     both rows in a `1fr` column and wraps freely there, while the level and the
-     reading stack in an `auto` column beside it. Same two lines, same right
-     edge, no ellipsis until a question genuinely exceeds two lines — measured at
-     1920, `US x Iran Effective Ceasefire by August 31` now sets whole.
+     Then the **level went** (2026-08-07): these blocks are scanned for which
+     questions are moving, not read for what they stand at, so the row prints the
+     movement and the card behind it carries the reading. That takes the second
+     grid row with it — one line each, `BLOCK_ROWS` doubled to ten, and twice as
+     many subjects in fewer pixels than five of the old rows cost.
 
-     The caret takes a column of its own rather than a `::after` at the end of a
-     flex line, which is what the old `--map-caret-w` reservation and
+     ── Why it still wraps rather than truncating ────────────────────────────
+     `minmax(0, 1fr)` and a caption that wraps, so a question too long for the
+     column takes a second line rather than losing its end. Most set on one:
+     at 1920 the column is ~270px against `Fed raises rates 25bp after Sept 2026`
+     at ~230. Below 1200px, where `--map-rail-base` steps to 17rem, the longest
+     wrap to two — which is the row growing to fit its subject, and is the
+     opposite failure from the one that was reported.
+
+     The caret takes a column of its own rather than being a `::after` at the end
+     of a flex line, which is what the old `--map-caret-w` reservation and
      `.map-markets-break` existed to fake. Both are gone. */
   & .map-markets-odds .map-markets-summary,
   & .map-markets-attention .map-markets-summary {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto var(--map-caret-w);
-    grid-template-rows: auto auto;
     column-gap: 0.45rem;
     row-gap: 0;
-    align-items: baseline;
-    /* The one-line rows set their own rhythm through `--map-hud-row-h`; a
-       two-line row that also claimed it came out at 50px against a money row's
-       22, so six of them spent 300px saying what the block above says in 110.
-       The floor is per *row*, and these rows have two lines to put it in. */
-    min-height: 0;
+    align-items: center;
+    /* The money rows' own floor, which these rows can claim again now that they
+       are one line like every other row in the rail. It is what puts all four
+       blocks back on one 27px pitch. */
+    min-height: var(--map-hud-row-h);
+    padding-block: 0.1rem;
 
-    /* Which line belongs to which question — asymmetric padding, and it is the
-       whole of the grouping.
-
-       A two-line row set with equal space above and below sits exactly as far
-       from its own reading as from the next row's caption, so the eye has
-       nothing to go on and reads `Wildfire` as the label of Bitcoin's figure.
-       Proximity decides grouping before anything else does, and here it was
-       saying the wrong thing. Tight above, loose below: ~2px inside a row
-       against ~9px between them. The hover box covers both lines, which is the
-       same statement made a second way. */
-    padding-block: 0.1rem 0.4rem;
-
-    /* The question, spanning both rows of its own row. `center` rather than the
-       grid's `baseline`, so a one-line question sits between the level and the
-       figure beside it instead of on the first of the two. */
-    & .map-markets-caption {
-      grid-area: 1 / 1 / 3 / 2;
-      align-self: center;
-    }
-    & .map-markets-level { grid-area: 1 / 2 / 2 / 3; }
-    & .map-markets-move { grid-area: 2 / 2 / 3 / 3; }
-    /* Bottom-right, beside the figure rather than after the question: a caret
-       level with the first line of a two-line phrase points at the phrase, and
-       what opens is the reading. */
-    &::after { grid-area: 2 / 3 / 3 / 4; align-self: baseline; }
+    /* `center`, not the grid's `baseline`: a question that wraps to two lines
+       must sit centred against the figure beside it, or a one-line neighbour and
+       a two-line one put their figures on different offsets from their own text. */
+    & .map-markets-caption { align-self: center; }
   }
 
   /* The question, and its probability, on one line; the trend on the next.
