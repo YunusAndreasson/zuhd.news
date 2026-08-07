@@ -27,8 +27,10 @@ const markets = await import(await bundleIsland(dir, 'public/islands/_map/market
 
 const { seriesDates, windowByDate, windowPoints, coverage, bucketCounts, halfOverHalf, DAY_MS } = win
 const { sparkline, sparkPct } = spark
-const { sparkInput, oddsEntries, attentionEntries, nextRelease, ribbonPoints, createMarketStrip } =
-  markets
+const {
+  sparkInput, oddsEntries, attentionEntries, nextRelease, ribbonPoints, createMarketStrip,
+  BLOCK_ROWS,
+} = markets
 
 /** `["Jul 1", "Jul 2", …]` for `n` consecutive days ending on `asOf`. */
 const dailyPeriods = (asOf, n) => {
@@ -580,20 +582,47 @@ test('the odds block takes the biggest movers, by points, up to the cap', () => 
   assert.ok(rows.length <= 5, 'and capped, so the rail keeps its controls on screen')
 })
 
-test('a young market cannot win the block by being young', () => {
-  // Polymarket publishes a question from the day it opens, so the payload
-  // carries a seven-point series beside a thirty-two-point one. Ranked on
-  // change, a market whose whole history *is* the move that created it wins
-  // almost by construction.
-  const rows = oddsEntries(
-    [
-      poly('poly-new', 'Will the new thing happen?', steady(7, 5, 95)),
-      poly('poly-old', 'Will the old thing happen?', steady(20, 40, 50)),
-    ],
-    30,
-    NOW,
+/**
+ * A young market never *displaces* one with a history, and fills a gap when
+ * there is one.
+ *
+ * Polymarket publishes a question from the day it opens, so the payload carries
+ * a seven-point series beside a thirty-two-point one, and ranked on change a
+ * market whose whole history *is* the move that created it wins almost by
+ * construction. That is what `MIN_SELECT_POINTS` is for and it is unchanged.
+ *
+ * What changed (2026-08-07) is that the floor used to drop such a market from
+ * the payload entirely, and the argument for it is about **selection** — which
+ * stops applying when there is nothing to select. `odds` draws on six live
+ * markets against a cap of twelve, so the floor was not protecting an order, it
+ * was deleting a row: measured, five of six rendered and the missing one was an
+ * Israel–Iran ceasefire market. It sorts below every qualified series now and
+ * takes what is left.
+ *
+ * Both halves are asserted, because either alone passes for the wrong reason: a
+ * test that only checks the order would pass if the floor were removed outright,
+ * and one that only counts rows would pass if it were still excluding.
+ */
+test('a young market ranks last, and only fills what is left', () => {
+  const young = poly('poly-new', 'Will the new thing happen?', steady(7, 5, 95))
+  const old = poly('poly-old', 'Will the old thing happen?', steady(20, 40, 50))
+
+  // It moved 90 points against the other's 10 and must still come second.
+  assert.deepEqual(
+    oddsEntries([young, old], 30, NOW).map((r) => r.id),
+    ['poly-old', 'poly-new'],
+    'a history outranks a bigger move made without one',
   )
-  assert.deepEqual(rows.map((r) => r.id), ['poly-old'])
+
+  // And it must not be able to push a qualified series out. `BLOCK_ROWS` is the
+  // cap, so the test builds one more qualified market than there are slots and
+  // asserts the young one is the row that goes.
+  const many = Array.from({ length: BLOCK_ROWS }, (_, i) =>
+    poly(`poly-${i}`, `Will ${i} happen?`, steady(20, 40, 41 + i)),
+  )
+  const withYoung = oddsEntries([young, ...many], 30, NOW).map((r) => r.id)
+  assert.equal(withYoung.length, BLOCK_ROWS)
+  assert.equal(withYoung.includes('poly-new'), false, 'a full block has no room for it')
 })
 
 test('selection is deterministic, so a redraw cannot reshuffle the block', () => {

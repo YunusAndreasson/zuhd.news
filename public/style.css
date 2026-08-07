@@ -4681,7 +4681,6 @@ body.map-wide {
     &:not(:first-child) { margin-top: 0.85rem; }
   }
 
-  & .map-markets-row,
   & .map-markets-world,
   & .map-markets-odds,
   & .map-markets-attention {
@@ -4690,6 +4689,89 @@ body.map-wide {
     align-items: stretch;
     gap: 0;
     min-width: 0;
+  }
+
+  /* Two rows abreast where the labels are short, and the column count is nobody's
+     decision (2026-08-07).
+
+     ── What was wrong ───────────────────────────────────────────────────────
+     A money row measured **346px of box carrying 44px of ink**: a 107px label at
+     the left edge, a tick and a figure at the right, and 177px of nothing
+     between them — because `.map-markets-move` grows to fill the row and, with
+     the sparkline gone, has nothing in it but a glyph and five characters. A
+     384px column was being read as a 100px one, twice over, eighteen times down.
+     The gap is not whitespace doing work; the eye has to cross it on every row
+     to join a name to its number.
+
+     ── Why two columns rather than a narrower rail ──────────────────────────
+     Narrowing the rail spends the width on the map, which the map does not need
+     — the globe is bound by the *shorter* side and gains nothing from it. The
+     width is genuinely free, so the honest thing is to put a second reading in
+     it: the money block goes 5 rows → 3 lines and attention 10 → 5, which is the
+     same information in **half the height** and with the canyon gone from both.
+
+     ── `auto-fill`, so this is not a third layout ───────────────────────────
+     This file records that the HUD had three layouts and two breakpoints and
+     that the third was deleted because *which* layout a reader got depended on
+     the shape of their window. A media query here would rebuild exactly that. An
+     intrinsic track list does not: the block is as many columns as fit at the
+     minimum, so it is two at a 21rem rail, one at the 15rem floor and one on a
+     phone, continuously and without a threshold anyone has to maintain.
+
+     **9.6rem is the widest row's own min-content, measured**, not a taste. Inside
+     a cell the label is content-width rather than the shared `--map-row-label-w`
+     column — `CURRENCIES` sets at 72px against the column's 77 — and with the
+     glyph, the figure, the caret and their gaps the widest money row will not go
+     below **154px**. Anything smaller declared here is a track the content
+     overflows, which is where a `minmax()` floor stops meaning anything.
+
+     What that buys is stated plainly rather than oversold: **two columns on a
+     383px rail and one on a 287px rail**, which is 1600px of viewport and up.
+     Two 154px cells and their gap need 318px and the rail below that step is
+     287, so the pair does not fit and `auto-fill` gives one column — the right
+     answer, arrived at by arithmetic rather than by a threshold someone has to
+     maintain. Shrinking the parts to force it was tried: at 8.6rem the tracks
+     were narrower than the rows in them and `CURRENCIES` overflowed its own
+     cell, which is worse than a canyon.
+
+     The figures stay flush right *within each track*, so both columns keep an
+     edge; a label's own right edge is not something anyone reads down.
+
+     ── Money only, and `attention` was tried and looks wrong ────────────────
+     The rule is the one this file already draws between a `.map-markets-label`
+     and a `.map-markets-caption`: **a code pairs up, a phrase takes a line.**
+     `MARKETS ⌃+0.3%  CURRENCIES —0.1%` sets cleanly in a 172px track because
+     those are four-to-ten-character codes. Attention's labels are subjects —
+     rendered 2-up at the same width, `Strait of Hormuz` and `Artificial
+     intelligence` each wrapped to two lines while their neighbours stayed on
+     one, so the block came out a ragged grid of 30px and 39px cells that reads
+     as broken rather than as dense. Measured, then reverted; the height it would
+     have saved is not worth a block that looks like a layout fault.
+
+     `align-items: start` stays, because a money row can still outgrow its
+     neighbour at the rail's floor and stretching the short one to match would
+     centre a one-line reading in a two-line box. */
+  & .map-markets-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9.6rem, 1fr));
+    column-gap: 0.6rem;
+    row-gap: 0;
+    align-items: start;
+    min-width: 0;
+
+    /* The outdent goes. Every row in this rail outdents by its own padding so
+       its hover box reaches past the content edge — and on a grid cell that same
+       negative margin makes each track overhang its neighbour, so two adjacent
+       hover boxes overlap by 0.8rem and the pointer lights both. A clean seam
+       between the columns is worth more than a bled outer edge, and the outer
+       edge is the only thing that loses it. */
+    & .map-markets-item,
+    & .map-markets-summary { margin-inline: 0; }
+
+    /* Content-width, not the shared column — see the arithmetic above. The
+       block-level rule that gives a money label the mark column's width and gap
+       is a *flex-basis*, so this has to unset the basis rather than the width. */
+    & .map-markets-label { flex: 0 1 auto; }
   }
 
   & .map-markets-next { display: block; }

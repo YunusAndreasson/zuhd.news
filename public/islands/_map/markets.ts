@@ -1059,8 +1059,14 @@ const entryFrom = (
  * therefore every market there is — the ranking has nothing left to decide on
  * `odds`, which is honest, since a block that shows all six is not selecting —
  * and two thirds of the pageview set, where it still is.
+ *
+ * **Twelve** since the money block went two-up and gave 54px back, and since
+ * measurement showed the rail running to ~730px of a 1080px column with the
+ * rest empty: the cap was rationing a resource that was not scarce. Twelve of
+ * fifteen Wikipedia series still leaves the ranking something to decide, which
+ * is the line the paragraph above draws and the reason this is not fifteen.
  */
-const BLOCK_ROWS = 10
+export const BLOCK_ROWS = 12
 
 /**
  * The shortest series a selected block will draw.
@@ -1166,11 +1172,30 @@ const selectEntries = (
   shorten: (label: string) => string,
   note: string,
 ): TickerEntry[] => {
-  const scored: Array<{ entry: TickerEntry; score: number }> = []
+  const scored: Array<{ entry: TickerEntry; score: number; young: boolean }> = []
   for (const ind of indicators) {
     if (ind.source !== source) continue
     if (ind.cadence && ind.cadence !== 'daily') continue
-    if (ind.values.length < MIN_SELECT_POINTS) continue
+    /**
+     * The young-market floor **ranks** now; it used to exclude (2026-08-07).
+     *
+     * Its argument is about *selection*: a market's whole history is the move
+     * that created it, so ranked against thirty-day series a week-old one wins
+     * almost by construction and the block fills with whatever opened. Every
+     * word of that holds while there are more candidates than rows.
+     *
+     * It stops holding when there are not. `odds` draws on six live Polymarket
+     * series against a cap of twelve — the ranking has nothing to decide, so the
+     * floor is not protecting an order, it is deleting a row. Measured: five of
+     * the six rendered, and the missing one was an Israel–Iran ceasefire market
+     * with eleven points, which is a question this map exists to carry.
+     *
+     * So a short series sorts *below* every qualified one and fills what is
+     * left. It can never displace a series with a real history, which is the
+     * whole of what the floor was for, and it appears exactly when the
+     * alternative is an empty slot.
+     */
+    const young = ind.values.length < MIN_SELECT_POINTS
     const member: SparkMember = {
       values: ind.values,
       periods: ind.periods,
@@ -1213,12 +1238,22 @@ const selectEntries = (
       // Either direction: a collapse in attention is as much a fact as a
       // spike, and an unsigned rank is what lets the block say so.
       score: Math.abs(move),
+      young,
     })
   }
   // Ties break on id so a payload that scores two rows identically still
   // produces the same three rows on every render — a block whose membership
   // flickers between two redraws of the same data is a block nobody can read.
-  scored.sort((a, b) => b.score - a.score || (a.entry.id < b.entry.id ? -1 : 1))
+  scored.sort(
+    (a, b) =>
+      // Qualified first, always — see `young` above. Only then by how far it
+      // moved, and only then by id, so a payload that scores two rows
+      // identically still produces the same block on every render: a membership
+      // that flickers between two redraws of the same data is unreadable.
+      Number(a.young) - Number(b.young) ||
+      b.score - a.score ||
+      (a.entry.id < b.entry.id ? -1 : 1),
+  )
   return scored.slice(0, BLOCK_ROWS).map((s) => s.entry)
 }
 
