@@ -1,36 +1,37 @@
 {
-  "date": "2026-08-06",
+  "date": "2026-08-07",
   "metrics": {
-    "articles": { "value": 56, "detail": "5 cycles completed, avg 11/cycle (64 yesterday)" },
-    "freshness": { "median": 0.2, "p90": 1.3, "max": 1.3, "target": 1.0, "met": true },
-    "categories": { "politics": 19, "economy": 14, "tech": 13, "science": 10 },
+    "articles": { "value": 54, "detail": "5 cycles completed, avg 11/cycle (56 yesterday)" },
+    "freshness": { "median": 0.6, "p90": 1.2, "max": 1.2, "target": 1.0, "met": true },
+    "categories": { "politics": 22, "economy": 13, "science": 10, "tech": 9 },
     "multiSource": { "value": 11, "target": 4, "met": true },
     "regions": {
-      "count": 6,
+      "count": 5,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 22, "AS": 15, "ME": 10, "EU": 6, "AF": 2, "OC": 1 }
+      "breakdown": { "AM": 20, "ME": 12, "EU": 9, "AS": 7, "AF": 6, "OC": 0 }
     },
-    "sciTech": { "ratio": 41, "target": 25, "met": true },
-    "topSourceShare": { "source": "Bloomberg Business", "pct": 9, "target": 20, "met": true },
-    "uniqueSources": 55,
+    "sciTech": { "ratio": 35, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 13, "target": 20, "met": true },
+    "uniqueSources": 43,
     "duplicates": 0,
-    "avgCycleDuration": 966
+    "avgCycleDuration": 1174
   },
-  "experiment": "Skipped — every goal metric is inside target and no experiment is active. Freshness 0.2d, sci-tech 41%, multi-source 11, six regions, top source 9%. Introducing a variable today would only add noise.",
-  "weakestArea": "Africa, at 2 of 56 articles (3.6%), down from 6 yesterday and the thinnest region after Oceania's 1. The region-count target of 4 is met on breadth, so this does not trip a gate, but the Americas hold 39% of output and the AF tail is where a genuinely under-covered continent gets squeezed. Sudan's blackout and Tinubu's Osun override were the only two African datelines; Sahel security, Horn drought, and DRC all went unrepresented despite live developments.",
+  "experiment": "Skipped — every goal metric is inside target and no experiment is active. Freshness 0.6d, sci-tech 35%, multi-source 11, five regions, top source 13%. Yesterday's weakest area (Africa at 2) self-corrected to 6 without intervention, which is exactly the case where adding a variable would only obscure the baseline.",
+  "weakestArea": "Region breadth, at 5 of the 6 buckets — the narrowest margin above any gate today. Oceania produced zero articles (down from 1), and Asia fell from 16 to 7 even as the Americas held 20. The count still clears the target of 4, but the drop is not a thin-news artifact: Typhoon Dolphin near Okinawa and the SK Hynix $38B bet were the only substantial Asia-Pacific datelines in a day that also had Japan, Korea and Australian policy stories available in the feed. Politics also took 41% of output (22 of 54), its highest share this week, which is what compressed the specialist categories — tech fell 14 to 9 and the sci-tech ratio slid 41% to 35%. Both remain well above their floors, so this is drift worth naming rather than a breach worth acting on.",
   "watching": [
-    "Hormuz — tanker blast reports plus Malaysia's exposure suggest an escalating chokepoint story with real freight and energy consequences.",
-    "Ukraine's refinery campaign hit Yaroslavl and other Russian refining capacity twice today; the discount story is refining, not crude.",
-    "US munitions-shortage denial versus reporting that the shortage is surfacing — a contradiction worth tracking across sources.",
-    "Cyclospora outbreak has passed 6,000 cases and is still climbing.",
-    "12 August total solar eclipse across Greenland, Iceland and Spain — two pre-written articles already staged."
+    "Hormuz is now a two-sided story — measured shipping-traffic decline plus Syria emerging as the overland bypass — and has moved from risk to observable reroute.",
+    "Yesterday's munitions contradiction closed: Trump admitted the shortage the administration had denied, so the follow-on is procurement and allied stockpiles.",
+    "Spain escalated against Italy twice in one day, from ultimatum to actual border checks — an intra-EU enforcement dispute with Schengen implications.",
+    "Congo's court ruling enabling a third term is the kind of constitutional workaround that tends to produce a months-long sequence.",
+    "The 12 August eclipse across Greenland, Iceland and Spain is now five days out, with pre-written coverage staged and a solar-retinopathy evidence piece already run.",
+    "AI-designed viruses and the White House vaccine draft order are converging on the same biosecurity-governance question from opposite ends."
   ],
   "coverageGaps": [
-    "Africa fell to 2 articles; Sahel, Horn of Africa and DRC produced no coverage today.",
-    "Oceania at 1 article remains a persistent structural thin spot.",
-    "Latin America appears only inside the aggregate AM bucket, which is dominated by US datelines — worth separating in future metrics.",
-    "Climate coverage was strong (Canada fire attribution, China's climate-only plan) but energy-transition finance went untouched."
+    "Oceania produced nothing; the Typhoon Dolphin track toward Okinawa was the closest the day came to the region.",
+    "Asia halved to 7 articles despite live Japan, Korea and South Asia policy stories in the feed.",
+    "Latin America again appears only inside the AM bucket, which US datelines dominate — the aggregate hides whether the continent was covered at all.",
+    "Energy-transition finance went untouched for a second day, despite the day's oil-sanctions and refinery threads."
   ],
-  "context": "Output eased from 64 to 56 articles across the same five completed cycles, with average cycle duration at 966s (selector 245s, writer 159s, editor 84s) — comfortably inside all stage timeouts and notably faster than historical baselines. Freshness improved to a 0.2-day median. The experiment slate is empty and the queued numerical-density experiment remains blocked on its own preflight requirement to replicate the bench gain at n≥20 before promotion; it touches scripts/write-prompt.md, which is outside daily-tuning scope in any case."
+  "context": "Output held at 54 articles across five completed cycles, with average duration rising 966s to 1174s — the writer stage more than doubled to 390s while the editor fell to 120s, so the total stays far inside every stage timeout. Freshness eased from a 0.2-day median to 0.6, still comfortably under the 1.0 target. Unique sources fell 55 to 43, tracking the smaller politics-heavy mix rather than any concentration problem: Dawn at 13% is the largest share and well under the 20% ceiling. The experiment slate is empty and the queued numerical-density experiment stays blocked on its own preflight (replicate the bench gain at n>=20 before promotion); it targets scripts/write-prompt.md, which is outside daily-tuning scope regardless."
 }
