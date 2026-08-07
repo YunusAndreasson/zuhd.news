@@ -235,6 +235,39 @@ test('the money rows’ caveats are quiet by ink, not by alpha', () => {
   }
 })
 
+/**
+ * The controls that stand on the canvas, and why they get their own assertion.
+ *
+ * `.map-mapctl` holds the layer trigger, the ground picker and the key — the
+ * three things that decide what the map draws — and it is the only chrome on
+ * this site that sits over a surface the *reader* moves. Whatever the globe is
+ * panned to is behind it, and the land ramp's brightest stop is a long way from
+ * `--map-ground`, so an `opacity` here would dim its contents against a ground
+ * that is not fixed and cannot be measured from a token.
+ *
+ * The translucency of the box itself is deliberate and is not what this checks:
+ * it is a `color-mix` over `--map-panel`, a *colour*, which the literal scan
+ * above already covers and which says the map continues underneath. What must
+ * not appear is `opacity` on the box or on anything in it — the failure mode
+ * that has already put a filter chip at 2.33:1, the scrubber's day labels at
+ * 1.51:1 and the seam toggle at 2.97:1, each time invisibly to this suite.
+ */
+test('the map’s own controls are quiet by ink, not by alpha', () => {
+  const block = css.match(/body\.map-wide \.map-mapctl\s*\{(?:[^{}]|\{[^{}]*\})*\}/)
+  assert.ok(block, 'body.map-wide .map-mapctl should exist — it is the map’s control cluster')
+  assert.ok(
+    !/\bopacity\s*:/.test(block[0]),
+    'the map control cluster is dimmed with opacity, which this suite cannot measure — use an ink step',
+  )
+  // Its own edge, and the quietest label in it, against the ground it floats on
+  // and against the panel tone it is mixed from.
+  for (const surface of ['--map-ground', '--map-panel']) {
+    assertContrast('--map-line-card', token('--map-line-card'), surface, token(surface), 1.2)
+    assertContrast('--map-ink-dim', token('--map-ink-dim'), surface, token(surface), NON_TEXT)
+    assertContrast('--map-ink-strong', token('--map-ink-strong'), surface, token(surface), AA)
+  }
+})
+
 test('the seam control is quiet by ink, not by alpha', () => {
   const block = css.match(/\.map-seam-toggle\s*\{[^}]*\}/)
   assert.ok(block, '.map-seam-toggle should exist — it is the only way to unfold a pane')

@@ -1041,7 +1041,16 @@ export function mount(
   // Touching the map is the reader saying they are done with the panel. Not a
   // click — a pan or a pinch never becomes one, and a panel that survives the
   // gesture it was in the way of is a panel you have to dismiss twice.
-  mapEl.addEventListener('pointerdown', () => setMoreOpen(false))
+  //
+  // **Except inside the controls themselves**, which now stand *in* the canvas
+  // host (see `mapCtl`): without the guard the press that opens the key would
+  // bubble to this listener and shut it in the same gesture — the light-dismiss
+  // eating its own trigger, which is the `click`-versus-`pointerdown` trap the
+  // markets panel already records, arriving from the other side.
+  mapEl.addEventListener('pointerdown', (e) => {
+    if (e.target instanceof Node && mapCtl.contains(e.target)) return
+    setMoreOpen(false)
+  })
 
   /**
    * The head of the instrument rail: what time it is, in both calendars.
@@ -1108,22 +1117,36 @@ export function mount(
    * settings panel that happened to be always open, in a column whose whole job
    * is what the world is doing.
    *
-   * The trigger goes where the group was and the group goes into a sheet over
-   * the map — which is also where it belongs, since what it configures is the
-   * map rather than the rail. `filters` is **moved**, not copied: the chips are
-   * live buttons with listeners and a pressed state, and one element in two
-   * places is the duplication this codebase keeps a rule about.
+   * The trigger goes where the group was and the group goes behind it.
+   * `filters` is **moved**, not copied: the chips are live buttons with
+   * listeners and a pressed state, and one element in two places is the
+   * duplication this codebase keeps a rule about.
    *
-   * One control for both surfaces. On a desktop `.map-more` is a pass-through,
-   * so this row *is* a rail row in the reading order; on a phone `.map-more` is
-   * the panel behind the `layers` button, so the same row sits inside it. The
-   * alternative was a rail row on one surface and a different route on the
-   * other, with `filters` needing to exist in two parents.
+   * ── It opened a modal sheet for four days, and that was too much (2026-08-07)
+   *
+   * `sheet.showPanel` was a `showModal()` — a backdrop over the whole page, the
+   * map inert, focus taken — to reveal **seven toggles**. That is the objection
+   * this file already makes twice: about the markets panel (*"a backdrop that
+   * makes the page inert and takes focus is more ceremony than a glance at a
+   * ticker deserves"*) and about a docked card (*"dimming the map the reader was
+   * just flown to is the card hiding its own answer"*). It applies harder here:
+   * the whole point of a layer switch is to watch the map change as you press
+   * it, and a modal is the one arrangement that guarantees you cannot.
+   *
+   * So it is a disclosure in place, the mechanism the `key` beside it already
+   * uses — the chips open *inside* `.map-mapctl`, over a live canvas, so
+   * pressing `conflict` shows the marks going. It also removes a level of menu
+   * on the phone, where a `layers` row inside a panel called `more` opened a
+   * second panel titled with the same word.
+   *
+   * One control for both surfaces: `placeMapControls` puts the trigger and its
+   * group in the cluster above 900px and back in `.map-hud-more` below it.
    */
   const layersTrigger = document.createElement('button')
   layersTrigger.type = 'button'
   layersTrigger.className = 'map-filter map-layers-open'
-  layersTrigger.setAttribute('aria-haspopup', 'dialog')
+  layersTrigger.setAttribute('aria-expanded', 'false')
+  layersTrigger.setAttribute('aria-controls', 'map-layer-filters')
   layersTrigger.title = 'Choose what is drawn over the map'
   layersTrigger.innerHTML =
     '<span class="map-filter-mark">' +
@@ -1137,16 +1160,102 @@ export function mount(
     // specificity mistake, and the caret here is a permanent affordance rather
     // than a hover reveal — so it may as well be a node this file controls.
     '<span class="map-layers-caret" aria-hidden="true">\u203a</span>'
+  const setLayersOpen = (open: boolean) => {
+    filters.classList.toggle('is-open', open)
+    layersTrigger.setAttribute('aria-expanded', String(open))
+  }
   layersTrigger.addEventListener('click', () => {
-    sheet.showPanel('What is drawn over the map', filters)
+    setLayersOpen(!filters.classList.contains('is-open'))
   })
 
-  more.append(layersTrigger, ground, legend)
-  // The button is last, which is a desktop fact: `.map-hud-more` is a
-  // pass-through there, so `more`'s children *are* strip items and a button
-  // appended before them would sit between the time range and the chips. On the
-  // phone the panel is out of flow and the button's `margin-left: auto` puts it
-  // at the right end regardless of where it appears in the markup.
+  /**
+   * The map's own controls, on the map (2026-08-07).
+   *
+   * `layers` decides what is drawn over the world and the ground picker decides
+   * what the land is shaded by. Both stood in the instrument rail, which is the
+   * column that answers *what is the world doing* — and a reader has already
+   * named that exact fault once, about the time range: **a control in the right
+   * pane changes something that is not in the right pane.** That complaint moved
+   * the range chips to the scrubber, and it was never only about the range.
+   *
+   * So the rail becomes what it says it is — the clock and four blocks of
+   * readings, nothing to press except a row that opens its own detail — and
+   * everything that configures the map stands on the map.
+   *
+   * ── Why the top-left corner ───────────────────────────────────────────────
+   *
+   * Because it is empty by construction, not by luck. The globe is a disc of
+   * diameter `min(canvasW, canvasH)` inscribed in the canvas, so a canvas corner
+   * holds no planet at any viewport — the same arithmetic that makes the surplus
+   * *width* free, read around one axis. Nothing else is there either: `.map-reset`
+   * is bottom-right, a peek card is bottom-left, and `.map-loading` is centred.
+   * It is a fixed-width box that never negotiates with a wrap run, which is what
+   * the old top strip did and is most of why it thrashed between 1200 and 1400px.
+   *
+   * ── The legend comes too, and that is not scope creep ─────────────────────
+   *
+   * `groundNote` is `metric.description` — *"0 = most free, 100 = no press
+   * freedom"* — the one sentence that says which end of the ramp is which. Left
+   * behind the rail's disclosure it would be a picker on the map and its only
+   * explanation two panes away, which is the fault above committed a second time
+   * in the course of fixing it. So `moreBtn` and `.map-hud-legend` travel with
+   * the picker, and on the desktop the button's word is `key`.
+   *
+   * ── Moved, not copied ─────────────────────────────────────────────────────
+   *
+   * One element with one set of listeners and one pressed state, re-parented by
+   * `placeMapControls` on the same path `placeRangeGroup` and `placeMarketStrip`
+   * already run on. Below `NARROW_PX` every one of them goes back into
+   * `.map-hud-more` and the phone layout is exactly what it was.
+   */
+  const mapCtl = document.createElement('div')
+  mapCtl.className = 'map-mapctl'
+  mapEl.append(mapCtl)
+
+  /**
+   * The two disclosures share a line, and that is where the box's height went.
+   *
+   * The first version stacked five rows — trigger, `ground`, the picker, the
+   * ramp, trigger — for **162px** of canvas, which a reader called too much for
+   * what it holds, and they were right: two of those five rows are one-word
+   * buttons that open something else, and a button that opens something else is
+   * the smallest thing in a control box, not a row of its own. Side by side they
+   * cost one row instead of two and one gap instead of two.
+   *
+   * `ground` keeps its own line. It is the only word here that says what a
+   * control *does* rather than what it opens — a bare dropdown reading
+   * `population` above a gradient tells a reader what it is set to and not what
+   * it sets — and the fourteen pixels it costs are the cheapest in the box.
+   *
+   * Both panels open below the whole block rather than under their own trigger:
+   * one box grows downward, which is what a column does, and splitting them
+   * would put the ground note (inside `legend`) above the ramp it explains.
+   */
+  const mapCtlHead = document.createElement('div')
+  mapCtlHead.className = 'map-mapctl-head'
+
+  /**
+   * The home before the first resize, and the reason it is this one.
+   *
+   * `placeMapControls` runs from `onResize`, which the `ResizeObserver` fires on
+   * observe — so in practice these move within a frame. In practice is not the
+   * same as always: this is the same bargain `rangeHead` strikes with the rail,
+   * where the alternative was zero range chips in a document that never got a
+   * scrubber. A control whose only home is created by something that can fail is
+   * a control a failure removes from the page.
+   *
+   * **`filters` is in this list and was not**, which is the bug that argument
+   * exists to prevent, committed inside it. The group used to be held *detached*
+   * until the trigger moved it into a sheet, so leaving it out was correct then;
+   * now the trigger only sets a class, and a group with no parent is a group with
+   * no pixels however many times it is toggled. `map-island.test.js` stubs its
+   * `ResizeObserver` to never fire — which is exactly the failure this list is
+   * for — and reported seven missing switches.
+   */
+  more.append(layersTrigger, filters, ground, legend)
+  // The button is last, which is a phone fact: on the phone the panel is out of
+  // flow and the button's `margin-left: auto` puts it at the right end. On the
+  // desktop neither it nor `more` holds anything — see `placeMapControls`.
   //
   // The clock is first, and it is *in* the strip now rather than beside it. It
   // was a child of the root, absolutely positioned over the HUD's top-right —
@@ -5311,6 +5420,36 @@ export function mount(
     timeline?.controls.prepend(rangeHead)
   }
 
+  /**
+   * The map's controls, on the map above 900px and in the phone's panel below.
+   *
+   * A move rather than two copies, for the reason every re-parent on this
+   * surface is: `layersTrigger` and `moreBtn` are live buttons with listeners
+   * and a pressed state, `ground`'s `<select>` holds the metric the land is
+   * currently painted by, and `legend` holds a rendered scale. Two of any of
+   * those is two chances for them to disagree, which is what this codebase keeps
+   * a rule about.
+   *
+   * Idempotent by construction — `append` on a node that is already the last
+   * child is a no-op the browser optimises, and `onResize` runs on every frame a
+   * seam is dragged for. The order inside `mapCtl` is stated rather than
+   * inherited: `legend` is built *inside* `more` because the phone needs it
+   * there, so it precedes the button that opens it, and a panel above its own
+   * disclosure is the one arrangement that reads as unrelated to it.
+   */
+  const placeMapControls = () => {
+    if (wideQuery.matches) {
+      mapCtlHead.append(layersTrigger, moreBtn)
+      mapCtl.append(mapCtlHead, filters, ground, legend)
+    } else {
+      // The phone's own panel, in the order it has always had: the trigger, the
+      // group it discloses, then the picker. `moreBtn` is the strip's control
+      // and goes back to the strip, not into the panel it opens.
+      more.append(layersTrigger, filters, ground, legend)
+      hud.append(moreBtn)
+    }
+  }
+
   const placeMarketStrip = () => {
     const wide = wideQuery.matches
     if (wide) moneyBox.append(marketStrip.element)
@@ -5343,6 +5482,7 @@ export function mount(
     syncWide()
     placeMarketStrip()
     placeRangeGroup()
+    placeMapControls()
     // MapLibre sizes its drawing buffer from the container, and nothing else
     // here tells it the container moved — `applyPadding` and `globeFitZoom`
     // both *read* dimensions, they don't apply them. Without this the canvas

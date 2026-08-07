@@ -15,7 +15,7 @@
 // was only a matter of time.
 
 import { el } from '../_dom'
-import { sparkline } from '../_spark'
+import { sparkPct, sparkline } from '../_spark'
 import { FRESH_DAYS, isTrading, quoteLevel, shortDate, staleLabel } from './format'
 import { coverage, DAY_MS, seriesDates, windowByDate } from './series-window'
 import { glyphSvg } from './glyphs'
@@ -1066,6 +1066,52 @@ const BLOCK_ROWS = 5
 const MIN_SELECT_POINTS = 14
 
 /**
+ * The floor under a percentage ranking, as the series' own median views a day.
+ *
+ * This is the missing half of a fix made twice and got wrong both times.
+ * `attention` ranked on **percent** first, and the diagnosis of its failure was
+ * exactly right: *Wildfire at 1,132 views moved 219 and outranked Donald Trump
+ * at 34,427 moving 2,365* — a move eleven times smaller winning because the base
+ * was thirty times smaller. Small-denominator bias, measured, in a block whose
+ * subject is how much attention moved.
+ *
+ * The remedy chosen was to rank on **volume** instead, and that treated the
+ * symptom by inverting the bias. Ranked on views moved, the articles with the
+ * most views to move are the same articles every day: measured on a live
+ * payload, the block printed `United States · India · Artificial intelligence`
+ * at 3d and `Donald Trump · Iran · Artificial intelligence` at 30d, and it
+ * printed them yesterday too. A block whose membership is a constant is a
+ * caption, not a reading — which is what a reader reported.
+ *
+ * A *floor* treats the cause. Small denominators are the problem; excluding
+ * small denominators is the fix; and percentage is then free to do the thing it
+ * is good at, which is finding the article that moved unusually rather than the
+ * article that is merely large. Measured against the same payload, at 3d it
+ * gives `Lebanon +17% · Strait of Hormuz +16% · India +15%`.
+ *
+ * **2,000 is a guard rather than a cull.** All fifteen published series clear it
+ * today — the smallest sits near 4,900 — so it removes nothing this map
+ * currently fetches; what it removes is the 1,132-view article the record above
+ * names, and any future series of that size. A bound that does nothing yet is
+ * still worth stating, which is the rule `fetch-firms.js` keeps for `skipped`.
+ *
+ * A z-score against each series' own volatility was written first and measured
+ * *worse*: large articles are proportionally **less** volatile, so dividing by
+ * their own deviation promotes them, and the block came back
+ * `Russia · India · United States` — the perennials, arrived at by a longer
+ * route. Recorded because it is the obvious idea and it does not work.
+ */
+const MIN_ATTENTION_LEVEL = 2000
+
+/** The series' own typical level, for the floor `attention` needs under it. */
+const medianOf = (values: number[]): number => {
+  const ok = values.filter((v) => Number.isFinite(v)).sort((a, b) => a - b)
+  if (!ok.length) return 0
+  const mid = ok.length >> 1
+  return ok.length % 2 ? (ok[mid] ?? 0) : ((ok[mid - 1] ?? 0) + (ok[mid] ?? 0)) / 2
+}
+
+/**
  * The most-moved members of a source, as instrument rows.
  *
  * A *rule over the payload* rather than a catalog of ids, and that is forced
@@ -1094,21 +1140,20 @@ const selectEntries = (
    * `points` for odds: a probability's points are comparable across markets by
    * construction — 20→25 and 70→75 are both five points of probability.
    *
-   * `volume` for attention, and it replaced `percent` because `percent` was
-   * measuring the wrong thing. Ranked by percentage, **Wildfire's 219 views
-   * moved outranked Donald Trump's 2,365** — measured on a live payload, a move
-   * eleven times smaller winning because the base was thirty times smaller. That
-   * is small-denominator bias, and in a block whose whole subject is *how much
-   * attention moved* it is a measurement error rather than a preference: it
-   * structurally promotes the least-read articles, which is the opposite of what
-   * the block is for. `volume` ranks on the change in views themselves.
-   *
-   * The **figure printed stays a percentage**, because a reader cannot do
-   * anything with "−8,766 views" — but the level is printed beside it, so the
-   * ordering is now derivable from the two numbers on the row rather than from
-   * a third that is nowhere on screen.
+   * `percent` for attention, **with `minLevel` under it** — see
+   * `MIN_ATTENTION_LEVEL` for why the floor is the fix and ranking on views
+   * moved was not. The figure printed is the same percentage the ranking used,
+   * so the ordering is derivable from what is on the row.
    */
-  metric: 'points' | 'percent' | 'volume',
+  metric: 'points' | 'percent',
+  /**
+   * The smallest series the block will consider, as the published median.
+   *
+   * Absent where every candidate is comparable by construction: a probability's
+   * points mean the same thing at 5% and at 95%, so `odds` needs no floor and
+   * giving it one would silently drop the quiet markets it exists to surface.
+   */
+  minLevel: number | null,
   shorten: (label: string) => string,
   note: string,
 ): TickerEntry[] => {
@@ -1127,13 +1172,16 @@ const selectEntries = (
     const ends = input?.ends
     if (!input || !ends) continue
     const [open, last] = ends
-    const move =
-      metric === 'points' || metric === 'volume'
-        ? last - open
-        : open === 0
-          ? 0
-          : ((last - open) / open) * 100
+    const pct = open === 0 ? 0 : ((last - open) / open) * 100
+    const move = metric === 'points' ? last - open : pct
     if (!Number.isFinite(move)) continue
+    // `ind.values`, the **published** series — never `input.values`, which is
+    // `meanIndex` output and therefore rebased to 100. A floor compared against
+    // that measures every article on earth against the number 100 and empties
+    // the block; found by running the selection against a real payload and
+    // getting nothing back, which is a mistake with no shape to it — the
+    // comparison ran and the answer was silently empty.
+    if (minLevel !== null && medianOf(ind.values) < minLevel) continue
     scored.push({
       entry: {
         group,
@@ -1145,8 +1193,7 @@ const selectEntries = (
         // The tick's direction, and it is the *window's* move rather than the
         // last day's: these rows have no other figure, so a green tick over a
         // falling week would be the row disagreeing with its own line.
-        pct:
-          metric === 'percent' ? move : open === 0 ? 0 : ((last - open) / open) * 100,
+        pct,
         unit: ind.unit,
         level: ind.values[ind.values.length - 1],
         values: ind.values,
@@ -1154,6 +1201,8 @@ const selectEntries = (
         asOf: ind.asOf,
         sourceLabel: (ind as { sourceLabel?: string }).sourceLabel,
       },
+      // Either direction: a collapse in attention is as much a fact as a
+      // spike, and an unsigned rank is what lets the block say so.
       score: Math.abs(move),
     })
   }
@@ -1209,7 +1258,7 @@ export const oddsEntries = (
   days: number,
   now = Date.now(),
 ): TickerEntry[] =>
-  selectEntries(indicators, 'polymarket', 'odds', days, now, 'points', oddsShort, ODDS_NOTE)
+  selectEntries(indicators, 'polymarket', 'odds', days, now, 'points', null, oddsShort, ODDS_NOTE)
 
 /**
  * What the world is reading — the `attention` block.
@@ -1246,8 +1295,11 @@ export const attentionEntries = (
         'attention',
         days,
         now,
-        // See `metric`: ranked on views moved, printed as a percentage.
-        'volume',
+        // Ranked on the percentage it moved, above a readership floor — see
+        // `MIN_ATTENTION_LEVEL` for why the floor is what makes a percentage
+        // safe here and ranking on views moved was not.
+        'percent',
+        MIN_ATTENTION_LEVEL,
         attentionShort,
         ATTENTION_NOTE,
       )
@@ -1534,9 +1586,9 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * third and `15 closed` on the fourth. A heading on a line of its own is a
    * heading that has stopped labelling anything.
    */
-  const tallySpark = el('span', 'map-markets-spark')
+  const tallyMove = el('span', 'map-markets-move')
   const tallyGroup = el('button', 'map-markets-group map-markets-summary')
-  tallyGroup.append(label, tally, tallySpark, note)
+  tallyGroup.append(label, tally, tallyMove, note)
 
   /**
    * One row of the money block.
@@ -1553,9 +1605,9 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * never owed the same row. The value lives here, where the reader asks what
    * the world's money is doing; the switch lives with every other switch in
    * `layers`, where the reader asks what is drawn on the map. Neither group
-   * repeats the other — the chip carries no line — and this block goes back to
-   * being what it reads as: one column of readings, every label flush, every
-   * sparkline on one edge.
+   * repeats the other — the chip carries no reading — and this block goes back
+   * to being what it reads as: one column of readings, every label flush, every
+   * figure on one edge.
    */
   const moneyItem = (summary: HTMLElement) => {
     const box = el('div', 'map-markets-item')
@@ -1655,7 +1707,7 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * What the money is waiting for — the one forward-looking line on this map.
    *
    * Everything else in the rail is a record: a beacon is a story that ran, a
-   * sparkline is a month that happened, the scrubber is a fortnight already
+   * change is a month that happened, the scrubber is a fortnight already
    * spent. `releaseCalendar` is the only field in any payload the site fetches
    * that points the other way, and it has been published and drawn by nothing
    * since it landed.
@@ -1726,8 +1778,34 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    */
   const panelMeta = el('span', 'map-markets-panel-meta')
   panelTitle.append(panelName, panelMeta)
+  /**
+   * The group's composite, drawn where there is finally room to draw it.
+   *
+   * The rail's rows stopped drawing a shape on 2026-08-07 — the argument is in
+   * `sparkInto` — and for six of them that cost nothing, because a press already
+   * opens `showIndicator`'s full chart. **For the four group rows and the
+   * straits it would have deleted a reading outright**: a basket has no card of
+   * its own, so its composite existed on this rail as a 17px line and nowhere
+   * else on the site. Pressing `currencies` opened fifteen constituent rows and
+   * never once said what the basket had done.
+   *
+   * So the line moves here, and it arrives larger than it left: the panel is up
+   * to 24rem wide against a rail row's 158px, and the box gives it 2.6rem of
+   * height against 1.05, which is about six times the area. It sits directly
+   * above the rows it composites, which is the one place it can be checked
+   * against its own constituents.
+   *
+   * It is a sparkline and not a `createChart` figure, and `charts.md`'s "a chart
+   * that can only be looked at is half a chart" is the reason rather than an
+   * objection to it: that rule is about a card whose *subject* is the series, and
+   * it is what `showIndicator` spends a cursor, a range control, ringed extremes
+   * and a table of every observation on. This is a summary standing over a list —
+   * the same job `_spark.ts` exists for — and every constituent under it is one
+   * press from exactly that card.
+   */
+  const panelFig = el('div', 'map-markets-panel-figure')
   const panelList = el('div', 'map-markets-panel-list')
-  panel.append(panelTitle, panelList)
+  panel.append(panelTitle, panelFig, panelList)
   document.body.append(panel)
 
   /** Which summary the panel is currently open on, so a second press closes. */
@@ -1835,27 +1913,6 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * second shape to read the same fact about the currencies.
    */
   /**
-   * A group's path, and the change across it.
-   *
-   * What replaced the breadth bar on the rail, and the two answer different
-   * questions: breadth is *how much of the group moved which way today*, which
-   * a bar states in no time at all; a sparkline is *where the group has been*,
-   * which no bar and no numeral can state at any length. On a row there was
-   * only ever space for one shape and breadth was the better one. A column has
-   * room for a line, and a line is the thing a reader cannot get anywhere else
-   * on this map — the counts go where the user put them, in the panel.
-   *
-   * The tone lands on this box rather than on the row, so it reaches the line
-   * and the figure and nothing else: the group's name is not a signed quantity
-   * and colouring it would make a falling basket read as an alert about the
-   * interface, which is the mistake the genocide caption records one file over.
-   * It is one fact in one channel — and it is the channel that survives the
-   * fold, where the figure is dropped and the shape is all there is.
-   *
-   * `null` when the constituents have no drawable series between them, so the
-   * caller can leave the row unshaped rather than reserving space for a gap.
-   */
-  /**
    * What the last `sparkInto` left out, as a phrase, or `''` when it left out
    * nothing. Read straight afterwards by the caller building the label — the
    * two calls are adjacent and single-threaded, which is the whole reason this
@@ -1895,6 +1952,46 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     return staleLabel(newest, rangeDays, now) ?? ''
   }
 
+  /**
+   * The reading: a direction, a change, and — when there is neither — an age.
+   *
+   * ── Why there is no line here any more (2026-08-07) ────────────────────────
+   *
+   * Every row in this rail drew a 100x20 sparkline, and the argument for it was
+   * good: *"a column can carry a line, which is thirty observations, and a line
+   * is the one thing about the world's money that this map could not otherwise
+   * state at any length."* What that argument never asked is **what a reader
+   * does with a column of fourteen of them.** Measured off the built rail: 1,323
+   * px of content in a 1,080px column, every row carrying the same 17px shape,
+   * and the one question a glance is actually asking — *is this up or down* —
+   * answerable only by reading a slope or the sign of a numeral. A reader said
+   * so about the odds block in as many words (*"I get the point, but it isn't
+   * intuitive at first glance"*), the fix was a tick, and the tick was given to
+   * six rows of fourteen because the other eight had a tinted line and a glyph
+   * beside a tinted line is the same fact twice.
+   *
+   * Both halves of that resolve the same way: **the line goes and the tick
+   * stays.** A shape is what a reader asks for *second*, and it has had a home
+   * one press away the whole time — `showIndicator`'s card, which is the
+   * interrogable figure `charts.md` argues a shape is only half of (a cursor,
+   * a range, the extremes ringed, every observation in a table). What is lost is
+   * a glance at where a series has been; what is bought is a glance at which way
+   * everything went, which is the question the rail exists to answer.
+   *
+   * So the box holds `[tick] [figure] [age]`, keeps its tone, and keeps its
+   * name's job even though its name has changed with it — see
+   * `.map-markets-move`.
+   *
+   * ── The tick is drawn at zero too, and that is not a stray glyph ───────────
+   *
+   * `tick-flat` is a rule rather than a decoration. The figure sits in a fixed
+   * `min-width` column so every change in the rail ends on one edge; a row that
+   * omitted its glyph would push its own figure 9px plus a gap left of its
+   * neighbours', which is the ragged column this file has already had to
+   * measure its way out of twice. And a flat bar is the true answer for a move
+   * inside `FLAT_PCT` — the same threshold the marks on the canvas use, so a
+   * quote the map draws as neutral reads as neutral here.
+   */
   const sparkInto = (
     host: HTMLElement,
     members: SparkMember[],
@@ -1925,16 +2022,27 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
           : `, from ${m.drawn} of ${m.total} with a full window`
         : ''
     const age = rowAge(members, now)
-    const spark = input
-      ? sparkline({
+    /**
+     * The window's own change, taken without building the shape it describes.
+     *
+     * `sparkPct` is `sparkline`'s first four lines, exported so this row and the
+     * chart a press opens still resolve one `seriesModel` over one window — the
+     * `reference: 'open'` trap in `charts.md`, which is only ever avoided by
+     * there being one calculation rather than two that agree today.
+     *
+     * `null` here means exactly what `sparkline` returning `null` used to mean:
+     * fewer than two finite points inside the window, so there is no change to
+     * state and the age is the only true thing left to say.
+     */
+    const windowPct = input
+      ? sparkPct({
           values: input.values,
           window: input.values.length,
-          span: input.span,
           domain: input.domain,
         })
       : null
-    if (!spark || !input) {
-      host.className = 'map-markets-spark'
+    if (windowPct === null || !input) {
+      host.className = 'map-markets-move'
       sparkFigure = ''
       /**
        * No line, and the age is the answer rather than the excuse.
@@ -1949,11 +2057,17 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
        * The age alone was not enough, which a browser said and no measurement
        * could. At the 24h step four rows of the nine — straits, brent, vix and
        * the 10-year — carried a level, a hundred and forty pixels of nothing,
-       * and a date. Four holes in a column of lines reads as content that
-       * failed to arrive, however true each row is. `.map-markets-nil` fills
-       * the slot with a *mark*: a dotted rule where the line would have been,
-       * in the ink the rail draws its rules in. A drawn absence is a
-       * measurement; a gap is a bug.
+       * and a date. Four holes in a column reads as content that failed to
+       * arrive, however true each row is. `.map-markets-nil` fills the slot
+       * with a *mark*: a dotted rule where the reading would have been, in the
+       * ink the rail draws its rules in. A drawn absence is a measurement; a
+       * gap is a bug.
+       *
+       * **And no tick.** The glyph is drawn at zero everywhere else precisely
+       * because a flat bar is a true statement about a move — here there is no
+       * move to be flat about, and `tick-flat` would be the row claiming it
+       * measured a quiet period rather than none at all. That is the whole
+       * difference this branch exists to draw.
        */
       host.replaceChildren(
         el('span', 'map-markets-nil'),
@@ -1962,9 +2076,10 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
       if (age) sparkNote = `, ${age} old`
       return null
     }
-    // The drawn line's own change, except at the day step, where the line is a
-    // slope in percent space and `windowPct` would be a percentage of zero.
-    const pct = input.pct ?? spark.windowPct
+    // The window's own change, except at the day step, where `sparkInput`
+    // measures a slope in percent space and `windowPct` would be a percentage
+    // of zero.
+    const pct = input.pct ?? windowPct
     // A percent-quoted series states its change as a difference. The tone and
     // the tick still ride on `pct`, because "which way" is the same question
     // whichever unit answers "how far".
@@ -1972,14 +2087,16 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     const figure =
       unit === '%' && ends ? ribbonPoints(ends[1] - ends[0]) : ribbonPct(pct)
     sparkFigure = figure
-    host.className = `map-markets-spark${toneClass(pct)}`
+    host.className = `map-markets-move${toneClass(pct)}`
     host.replaceChildren(
-      spark.element,
+      // Direction first, because it is what the glance is for, and it is read
+      // before the figure it qualifies rather than after it.
+      tick(marketDirection(pct)),
       el('span', 'map-markets-window', figure),
-      // Drawn *and* late: the line is short at its right-hand end, which says
-      // the shortfall without naming it, and the token names it. Both, because
-      // the gap is only legible against a neighbouring row that fills the box —
-      // and at 90d the gap is 8% of the width, which nothing would notice.
+      // Reported *and* late. Without the line there is no short right-hand end
+      // to say the shortfall silently, so this token is now the only thing that
+      // says it — which is why it survived a change that removed the shape it
+      // used to be a footnote to.
       ...(age ? [el('span', 'map-markets-age', age)] : []),
     )
     if (age) sparkNote += `, ${age} old`
@@ -2008,6 +2125,54 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
   }
 
   /**
+   * Fill the panel's figure box from a group's members, or empty and hide it.
+   *
+   * Built at open rather than cached with the trigger, and windowed with the
+   * *current* `rangeDays` — the same discipline the rows and the counts follow,
+   * for the same reason: a panel that drew the window the reader had selected
+   * when the block was last rebuilt would be a shape captioned with a period it
+   * does not cover, which is the `reference: 'open'` trap in `charts.md`.
+   *
+   * Hidden rather than emptied when there is nothing to draw. A titled box with
+   * no line in it reads as a chart that failed to load; the constituent rows
+   * below are still the answer, and the row that opened this has already printed
+   * its own dotted rule and its age.
+   */
+  const fillPanelFigure = (members: SparkMember[]) => {
+    const input = sparkInput(members, rangeDays, Date.now())
+    const spark = input
+      ? sparkline({
+          values: input.values,
+          window: input.values.length,
+          span: input.span,
+          domain: input.domain,
+        })
+      : null
+    if (!spark || !input) {
+      panelFig.replaceChildren()
+      panelFig.hidden = true
+      return
+    }
+    const pct = input.pct ?? spark.windowPct
+    // The tone on the box, never on the caption's words — the same one-fact-one-
+    // channel rule the rail rows keep, and the reason a falling basket does not
+    // paint its own name orange.
+    panelFig.className = `map-markets-panel-figure${toneClass(pct)}`
+    panelFig.hidden = false
+    const caption = el('p', 'map-markets-panel-caption')
+    caption.append(
+      tick(marketDirection(pct)),
+      el('span', 'map-markets-panel-change', ribbonPct(pct)),
+      // The period in words, because the shape above it has no axis and the
+      // reader has no other way to learn what it spans. `sparkNote` is not read
+      // here: it belongs to whichever row `sparkInto` last touched, and this
+      // runs on a press rather than on a redraw.
+      el('span', 'map-markets-panel-window', `over ${rangeLabel()}`),
+    )
+    panelFig.replaceChildren(spark.element, caption)
+  }
+
+  /**
    * Make a summary open the modal on its own group.
    *
    * Per group rather than one control for the whole strip, because the four
@@ -2026,6 +2191,15 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     name: string,
     meta: () => string,
     rows: () => HTMLElement[],
+    /**
+     * The group's constituents, for the composite drawn above them.
+     *
+     * A thunk rather than an array, because the members of a group are rebuilt
+     * on every payload and a captured array would be the set that existed when
+     * the trigger was wired. Absent on any panel that is not a composite of
+     * anything — see the call sites.
+     */
+    members?: () => SparkMember[],
   ) => {
     // A second press on the control that opened it closes it. Pressing a
     // *different* summary swaps the contents rather than stacking a second
@@ -2040,6 +2214,11 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     // are built fresh: the counts must not be able to describe a state the
     // strip behind the panel has already replaced.
     panelMeta.textContent = meta()
+    if (members) fillPanelFigure(members())
+    else {
+      panelFig.replaceChildren()
+      panelFig.hidden = true
+    }
     panelList.replaceChildren(...rows())
     panel.show()
     openOn = btn
@@ -2055,12 +2234,13 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     name: string,
     meta: () => string,
     rows: () => HTMLElement[],
+    members?: () => SparkMember[],
   ) => {
     btn.setAttribute('type', 'button')
     btn.setAttribute('aria-haspopup', 'dialog')
     btn.setAttribute('aria-expanded', 'false')
     btn.setAttribute('aria-label', `${name}, show detail`)
-    btn.addEventListener('click', () => openPanel(btn, name, meta, rows))
+    btn.addEventListener('click', () => openPanel(btn, name, meta, rows, members))
   }
 
   /**
@@ -2163,6 +2343,23 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
   let lastIndicators: TrendIndicator[] | null = null
   let lastReleases: TrendRelease[] = []
 
+  /**
+   * The thirty exchanges as composite members, from whatever landed last.
+   *
+   * Read off `lastMarkets` rather than taken as an argument, because the two
+   * callers reach it at different moments — the row builds it on a payload and
+   * the panel builds it on a press, which may be a range change and two
+   * refreshes later. One function so the panel's line and the row's figure are
+   * composited from the same thirty series; two would be a chance for them to
+   * disagree, which is what this file's own header keeps a rule about.
+   */
+  const exchangeMembers = (): SparkMember[] =>
+    (lastMarkets ?? []).flatMap((m) =>
+      Array.isArray(m.series?.values)
+        ? [{ values: m.series.values, periods: m.series.periods, asOf: m.asOf, pct: m.changePct ?? 0 }]
+        : [],
+    )
+
   const update = (markets: MapExchange[], now = Date.now()) => {
     lastMarkets = markets
     const t = marketTally(markets, now)
@@ -2172,28 +2369,14 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     tally.replaceChildren()
     countsInto(tally, s)
     // Two renderings of the same group, one per layout: the counts for the
-    // scrubber's line, the shape for the rail. Both are built and CSS shows
-    // one, because which layout is live is a media query the island resolves
-    // and this module has no business asking about.
+    // scrubber's line, the direction and its size for the rail. Both are built
+    // and CSS shows one, because which layout is live is a media query the
+    // island resolves and this module has no business asking about.
     //
-    // The world's equity market as one line, from the thirty indices this map
-    // already draws. `series.values` has been in the payload since the layer
-    // shipped and nothing but the exchange card ever read it.
-    const pct = sparkInto(
-      tallySpark,
-      markets.flatMap((m) =>
-        Array.isArray(m.series?.values)
-          ? [
-              {
-                values: m.series.values,
-                periods: m.series.periods,
-                asOf: m.asOf,
-                pct: m.changePct ?? 0,
-              },
-            ]
-          : [],
-      ),
-    )
+    // The world's equity market as one figure, composited from the thirty
+    // indices this map already draws. `series.values` has been in the payload
+    // since the layer shipped and nothing but the exchange card ever read it.
+    const pct = sparkInto(tallyMove, exchangeMembers())
     tallyGroup.setAttribute(
       'aria-label',
       `Exchanges — ${countsText(s)}${t.closed ? `, ${t.closed} closed` : ''}${
@@ -2204,9 +2387,9 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     // The caveat on the whole readout: at any given moment most exchanges are
     // shut, and those numbers are last night's. One number rather than thirty
     // mark-states. In the scrubber it sits on the line beside the counts; in
-    // the rail the line is spent on a shape, so it travels with the counts into
-    // the panel — it is not a re-encoding of either, it says how much of them
-    // is yesterday's.
+    // the rail the row has room for a direction and a figure and not for a
+    // sentence, so it travels with the counts into the panel — it is not a
+    // re-encoding of either, it says how much of them is yesterday's.
     note.textContent = t.closed ? `${t.closed} closed` : ''
     exchangeMeta = countsText(s) + (t.closed ? ` · ${t.closed} closed` : '')
   }
@@ -2216,6 +2399,7 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     'markets',
     () => exchangeMeta,
     () => allExchanges.map(exchangeRow),
+    exchangeMembers,
   )
 
   /**
@@ -2250,60 +2434,88 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    */
   let lastStraits: MapChokepoint[] = []
   const straitsSummary = el('button', 'map-markets-group map-markets-summary')
-  const straitsSpark = el('span', 'map-markets-spark')
+  const straitsMove = el('span', 'map-markets-move')
   const straitsItem = moneyItem(straitsSummary)
   straitsItem.classList.add('is-straits')
   straitsItem.hidden = true
+
+  /** The eleven chokepoints as composite members — see `exchangeMembers`. */
+  const straitsMembers = (): SparkMember[] =>
+    lastStraits.flatMap((c) => {
+      const vals = c.series?.total
+      if (!Array.isArray(vals) || vals.length < 2) return []
+      return [{
+        values: vals,
+        periods: c.series?.periods,
+        asOf: c.asOf,
+        // The day step wants this member's own last-against-previous.
+        // `delta7vs90` is on the payload and is a week against a quarter —
+        // a different quantity, and printing it here would caption a shape
+        // that does not draw it.
+        pct: seriesChangePct(vals) ?? 0,
+      }]
+    })
+
+  /**
+   * Wired **once**, on an element that outlives every payload — and it was
+   * inside `setStraits` until a browser was pointed at it (2026-08-07).
+   *
+   * `straitsSummary` is created here and reused; the three ribbon groups build a
+   * fresh `<button>` on every `setTrends` and the exchange tally is triggered at
+   * construction, so this was the one row where `trigger` ran repeatedly on a
+   * persistent node. Each call added another `click` listener, and each listener
+   * calls `openPanel`, whose first line is *a second press on the control that
+   * opened it closes it*. So the panel toggled once per accumulated listener:
+   * after the first redraw it opened and shut inside one click and the row
+   * simply stopped responding — **at even numbers of range presses only**, which
+   * is why it reads as intermittent rather than broken.
+   *
+   * Found by driving the built page across `30d` and `90d` and asking whether a
+   * dialog was open, not by reading the code: a leak whose symptom is "nothing
+   * happened" leaves nothing in the DOM to inspect afterwards.
+   *
+   * The thunks read `lastStraits` rather than closing over a `points` argument,
+   * which is what makes wiring once safe — and is the same reason
+   * `exchangeMembers` reads `lastMarkets`.
+   */
+  trigger(
+    straitsSummary,
+    'straits',
+    () => `${lastStraits.length} chokepoints`,
+    () =>
+      [...lastStraits]
+        .sort((a, b) => (b.delta7vs90?.n_total ?? 0) - (a.delta7vs90?.n_total ?? 0))
+        .map((c) => {
+          const d = (c.delta7vs90?.n_total ?? 0) * 100
+          const btn = el('button', `map-markets-row-item${toneClass(d)}`)
+          btn.setAttribute('type', 'button')
+          btn.append(
+            tick(marketDirection(d)),
+            el('span', 'map-markets-row-name', c.name),
+            el('span', 'map-markets-row-pct', ribbonPct(d)),
+          )
+          btn.addEventListener('click', () => {
+            const from = openOn ?? btn
+            closePanel()
+            opts.onStrait(c.id, from)
+          })
+          return btn
+        }),
+    straitsMembers,
+  )
 
   const setStraits = (points: MapChokepoint[]) => {
     lastStraits = points
     straitsItem.hidden = points.length === 0
     if (!points.length) return
-    straitsSummary.replaceChildren(el('span', 'map-markets-label', 'straits'), straitsSpark)
-    const pct = sparkInto(
-      straitsSpark,
-      points.flatMap((c) => {
-        const vals = c.series?.total
-        if (!Array.isArray(vals) || vals.length < 2) return []
-        return [{
-          values: vals,
-          periods: c.series?.periods,
-          asOf: c.asOf,
-          // The day step wants this member's own last-against-previous.
-          // `delta7vs90` is on the payload and is a week against a quarter —
-          // a different quantity, and printing it here would caption a line
-          // that does not draw it.
-          pct: seriesChangePct(vals) ?? 0,
-        }]
-      }),
-    )
+    straitsSummary.replaceChildren(el('span', 'map-markets-label', 'straits'), straitsMove)
+    const pct = sparkInto(straitsMove, straitsMembers())
+    // The accessible name is rewritten per payload; only the *listener* had to
+    // stop being. `trigger` sets a name too, so this must run after it — which
+    // it does, being the redraw rather than the wiring.
     straitsSummary.setAttribute(
       'aria-label',
       `Straits${pct == null ? '' : ` — ${ribbonPct(pct)} over ${rangeLabel()}${sparkNote}`}`,
-    )
-    trigger(
-      straitsSummary,
-      'straits',
-      () => `${points.length} chokepoints`,
-      () =>
-        [...points]
-          .sort((a, b) => (b.delta7vs90?.n_total ?? 0) - (a.delta7vs90?.n_total ?? 0))
-          .map((c) => {
-            const d = (c.delta7vs90?.n_total ?? 0) * 100
-            const btn = el('button', `map-markets-row-item${toneClass(d)}`)
-            btn.setAttribute('type', 'button')
-            btn.append(
-              tick(marketDirection(d)),
-              el('span', 'map-markets-row-name', c.name),
-              el('span', 'map-markets-row-pct', ribbonPct(d)),
-            )
-            btn.addEventListener('click', () => {
-              const from = openOn ?? btn
-              closePanel()
-              opts.onStrait(c.id, from)
-            })
-            return btn
-          }),
     )
   }
 
@@ -2349,17 +2561,17 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
       // went, ahead of the counts saying how unanimous that was. A group can be
       // 4 up and 3 down and still net down, and those are two different facts —
       // which is the whole reason the tick is not derived from the counts.
-      const spark = el('span', 'map-markets-spark')
+      const move = el('span', 'map-markets-move')
       // `values` and not the raw series: FX is published `X / USD` and inverted
       // on the way into the entry, so this is the basket the way the row reads
       // it. `usd-index` is excluded because it is *derived from* the rest of the
       // basket — it moves opposite to them by construction, so averaging it back
-      // in cancels a fifteenth of the signal the line exists to carry.
+      // in cancels a fifteenth of the signal the composite exists to carry.
       const pct = sparkInto(
-        spark,
+        move,
         items.filter((e) => e.id !== 'usd-index'),
       )
-      summary.append(tick(s.net), el('span', 'map-markets-label', name), counts, spark)
+      summary.append(tick(s.net), el('span', 'map-markets-label', name), counts, move)
       summary.setAttribute(
         'aria-label',
         `${name} — ${countsText(s)}${
@@ -2371,6 +2583,10 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
         name,
         () => countsText(s),
         () => items.map(quoteRow),
+        // Safe to capture, unlike the exchanges and the straits: these summaries
+        // are rebuilt from scratch on every `setTrends`, so the closure and the
+        // row it is wired to are always the same generation of the payload.
+        () => items.filter((e) => e.id !== 'usd-index'),
       )
       row.append(moneyItem(summary))
     }
@@ -2392,15 +2608,15 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
     // Both selected blocks are re-derived on every redraw rather than chosen
     // once, because "the three that moved most" is a question about the *window*
     // — at 24h and at 90d they are legitimately different three, and a block
-    // that kept its 90d membership while drawing 24h lines would be ranking on
-    // one period and drawing another where nothing could see it.
+    // that kept its 90d membership while printing 24h figures would be ranking
+    // on one period and reporting another where nothing could see it.
     const now = Date.now()
     fillInstruments(odds, oddsHead, oddsEntries(indicators, rangeDays, now), true)
     fillInstruments(attention, attentionHead, attentionEntries(indicators, rangeDays, now), true)
   }
 
   /**
-   * A row that *is* an instrument: a tick, a name, the level, the line.
+   * A row that *is* an instrument: a tick, a name, the level, the reading.
    *
    * Three blocks are built from this — `world`, `odds` and `attention` — and it
    * was written out once for the first of them. Extracting it is the rule this
@@ -2408,47 +2624,35 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
    * and the thing three copies would have had to agree about is the row's
    * grammar, which is the one thing the rail is arranged around.
    *
-   * **The level is new, and it is the fact.** The rail printed a change and
-   * never a value, so it could say Brent rose 1.2% and never say what a barrel
-   * costs — the footnote without the sentence. `entry.level` and `entry.unit`
-   * were on the entry the whole time and reached only the card.
+   * **The level is the fact.** The rail printed a change and never a value, so
+   * it could say Brent rose 1.2% and never say what a barrel costs — the
+   * footnote without the sentence. `entry.level` and `entry.unit` were on the
+   * entry the whole time and reached only the card.
+   *
+   * ── Direction is a shape on every block, and colour only where it may be ──
+   *
+   * The tick used to be inserted here, and only on the two blocks that refuse
+   * to say direction in colour: `--map-pos`/`--map-neg` read as good and bad,
+   * and a green *US invade Iran +35 pts* is this map calling a likelier war
+   * good news. **That argument holds and is not reopened** — what changed is
+   * that the eight rows it did *not* cover no longer have a tinted line to say
+   * direction with either, so the exemption that kept the glyph off them ("a
+   * glyph beside a tinted line is the same fact twice") has no line left to
+   * point at.
+   *
+   * So `sparkInto` draws the tick for every row family, once, in the box that
+   * carries the tone. The split this file has always named is finally spent
+   * whole: **identity in the hue, magnitude in the figure, direction in the
+   * tick** — and only the first of those three is ever allowed to be a verdict.
    */
   const instrumentRow = (entry: TickerEntry, caption = false) => {
     const item = el('button', 'map-markets-group map-markets-summary')
     item.setAttribute('type', 'button')
     item.setAttribute('aria-haspopup', 'dialog')
-    const spark = el('span', 'map-markets-spark')
-    const pct = sparkInto(spark, [entry], entry.unit, entry.edge)
+    const move = el('span', 'map-markets-move')
+    const pct = sparkInto(move, [entry], entry.unit, entry.edge)
     const figure = sparkFigure
     const note = sparkNote
-
-    /**
-     * Direction as a **shape**, on the blocks that refuse to say it in colour.
-     *
-     * The money rows paint their figure green or orange, and odds and attention
-     * deliberately do not: `--map-pos`/`--map-neg` read as good and bad, and a
-     * green *US invade Iran +35 pts* is this map calling a likelier war good
-     * news. That argument holds and is not being reopened. What it left behind
-     * is a block where every figure is the same hue whichever way it moved, so
-     * "up or down" had to be read off a 100×20 sparkline or off the sign of a
-     * number — true at a glance to nobody, which is what a reader reported.
-     *
-     * So the third channel gets used: identity in the hue, magnitude in the
-     * figure, and **direction in the tick**, which is the split this file
-     * already states and had spent only two thirds of. The glyph is the one the
-     * map draws for a rising and falling market, and it inherits the block's own
-     * `--cat` through `currentColor` — so it says which way without saying
-     * whether that is good.
-     *
-     * Inside the spark box rather than at the row's head: the head is the label
-     * column, and `.map-markets-summary > .map-markets-tick` is `display: none`
-     * there precisely because a glyph beside a tinted line was the same fact
-     * twice. Beside the figure it is the fact the line is too small to carry.
-     */
-    if (caption && pct != null && spark.lastElementChild) {
-      const dir = marketDirection(pct)
-      if (dir !== 0) spark.insertBefore(tick(dir), spark.lastElementChild)
-    }
     const level = quoteLevel(entry.level, entry.unit)
     item.append(
       tick(marketDirection(entry.pct)),
@@ -2469,31 +2673,22 @@ export function createMarketStrip(opts: MarketStripOptions): MarketStrip {
        * So the phrase takes a line of its own, set one rung down and out of
        * small caps so it reads as a caption, and the **reading indents to the
        * shared grid** — see `.map-markets-caption` in the stylesheet. Every
-       * level, line and figure in the rail then stands in the same three
-       * columns whichever block it is in, which is the alignment a column of
-       * readings is for; the captions are a second, subordinate rhythm the eye
-       * separates by weight rather than by position.
+       * level and figure in the rail then stands in the same columns whichever
+       * block it is in, which is the alignment a column of readings is for; the
+       * captions are a second, subordinate rhythm the eye separates by weight
+       * rather than by position.
        */
       el('span', `map-markets-label${caption ? ' map-markets-caption' : ''}`, entry.label),
       ...(level ? [el('span', 'map-markets-level', level)] : []),
-      /**
-       * A zero-height flex break, so the trend starts a line without taking the
-       * whole of it.
-       *
-       * The obvious way to break a flex line is `flex-basis: 100%` on the item
-       * you want moved down — and it moves everything *after* it down too. The
-       * disclosure caret is a `::after` and therefore always the last item, so
-       * it landed on a third line of its own: 11px tall, invisible, and enough
-       * to let the change figure run 10px right of every other figure in the
-       * rail because nothing followed it on its own line. Measured at 50px
-       * against a money row's 22.
-       *
-       * An empty item with `flex: 1 0 100%; height: 0` is the idiom that does
-       * only the one thing. The line it occupies costs nothing, and the trend
-       * and the caret then sit together exactly as they do on a money row.
-       */
-      ...(caption ? [el('span', 'map-markets-break')] : []),
-      spark,
+      /* There was a `map-markets-break` here — a zero-height `flex: 1 0 100%`
+         item, the idiom for breaking a flex line without taking the whole of it.
+         It is gone (2026-08-07): these rows are a **grid** now, so a second line
+         is a second row rather than a thing that has to be manufactured, and the
+         caret gets a track instead of a reserved margin. The change that forced
+         it was the caption, which had to be allowed to *wrap* — a reader
+         reported `US x Iran Effective Ceasefire by August…`, a row that kept its
+         alignment and lost its subject. */
+      move,
     )
     item.setAttribute(
       'aria-label',

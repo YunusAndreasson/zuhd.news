@@ -76,16 +76,12 @@ export interface Sheet {
   showGenocide(situation: GenocideSituation, pinned: boolean): void
   showThermal(event: ThermalEvent, pinned: boolean): void
   showFamine(area: IpcArea, pinned: boolean): void
-  /**
-   * A configuration panel rather than a card about a mark.
-   *
-   * Every other `show*` here answers "what is this thing on the map"; this one
-   * carries a control group the rail has no room to keep open. It takes the
-   * caller's own element and moves it in — the layer chips are live buttons with
-   * listeners and pressed state, and a DOM move preserves both, so there is no
-   * second copy to keep in step with the first.
-   */
-  showPanel(title: string, body: HTMLElement): void
+  /* There was a `showPanel` here, for the layer switches. It is gone (2026-08-07)
+     along with `is-panel`: a `showModal()` over the whole page to reveal seven
+     toggles is the ceremony this file already rejects for a ticker glance and a
+     docked card, and worse here, because a layer switch is watched *on the map*.
+     They are a disclosure inside `.map-mapctl` now. Every `show*` left answers
+     "what is this thing on the map", which is what this interface is for. */
   showStar(star: StarHit, pinned: boolean): void
   showBody(body: BodyHit, hijri: string | null, pinned: boolean): void
   close(): void
@@ -96,7 +92,7 @@ export interface Sheet {
 
 
 /**
- * The shortest window a card is allowed to open on, in days.
+ * The shortest window a card's **chart** is allowed to draw, in days.
  *
  * The rail's bottom rung is a single day, and a single day of daily closes is
  * two points — which is a legible *slope* in a 100×20 box beside a figure and
@@ -104,9 +100,26 @@ export interface Sheet {
  * y-gutter, two observations produce a diagonal in a large frame that looks
  * like a rendering fault.
  *
- * So the card floors at a week. The reader loses nothing by it: the hero above
- * the chart prints the day's move, which is the number they pressed, and the
- * shape underneath is the context a card is for.
+ * ── It used to floor the hero too, and that was a wrong number (2026-08-07) ──
+ *
+ * This docblock said "the reader loses nothing by it: the hero above the chart
+ * prints the day's move, which is the number they pressed" — which stopped being
+ * true the day the hero was rewritten to derive from `sparkInput`, and nothing
+ * noticed for as long as the row also carried a *line* the reader could compare
+ * shapes with. Measured on the built page at the default 3d: the rail printed
+ * **+26 pts** for a ceasefire market and the card it opened printed **+43 pts**.
+ * Two numbers about one thing, disagreeing about the period, which is precisely
+ * the failure that hero block was written to end — arriving through this
+ * constant instead.
+ *
+ * It bites much harder now that the rows draw no shape, because the figure *is*
+ * the row's whole reading and "the shape is one press away" is the argument the
+ * lines were removed on. So the floor now applies to the chart alone: the hero
+ * answers over the window the reader selected, and the chart draws a week or
+ * more and says so on its own axis, under a `reference: 'open'` rule and the
+ * caption that names it. A big number that matches the row you pressed and a
+ * picture that admits it covers longer is the arrangement with no wrong number
+ * in it.
  */
 const CARD_MIN_DAYS = 7
 
@@ -341,7 +354,6 @@ export function createSheet(): Sheet {
 
   const render = (nodes: Node[], pin: boolean, docked = false) => {
     if (pinned && !pin) return
-    dialog.classList.remove('is-panel')
     // The app line used to hang off the story sheet, which the map no longer
     // opens — stories now read in a popup anchored to their own coordinate. It
     // belongs on whichever sheet the reader has actually committed to, and only
@@ -656,7 +668,11 @@ export function createSheet(): Sheet {
        * card's own window — rather than read off a field that answers a
        * different question.
        */
-      const days = Math.max(rangeDays ?? CARD_MIN_DAYS, CARD_MIN_DAYS)
+      // **The rail's window, not the chart's.** `CARD_MIN_DAYS` is a floor on
+      // what can be *drawn* and was floored here too, so at the map's default 3d
+      // this hero measured a week and printed a figure the row that opened it
+      // did not — see the constant. The chart below still floors, and says so.
+      const days = rangeDays ?? CARD_MIN_DAYS
       // `entry.edge` too, or the card and the row it opened from window against
       // two different right edges — the disagreement this hero was rewritten to
       // end, coming back through the other door.
@@ -784,17 +800,6 @@ export function createSheet(): Sheet {
      * finding in the body's own terms, and the link goes to where it can be
      * read in full. The map asserts nothing it did not source.
      */
-    showPanel(title, body) {
-      // `render` is deliberately not used: it appends the app prompt on a
-      // pinned open, and a download offer under a set of layer switches is an
-      // advert in a settings panel. This is the same two lines without it.
-      // A settings panel is as wide as its widest switch, not as wide as a card
-      // that has to hold a chart and a paragraph. `render` clears the class, so
-      // the next card opened after this one comes back at its own size.
-      dialog.classList.add('is-panel')
-      inner.replaceChildren(el('h2', 'island-sheet-title', title), body)
-      open(true, false)
-    },
     showGenocide(situation, pin) {
       const nodes: Node[] = []
       nodes.push(kicker(['genocide', `UN finding · ${fmt.fullDate(situation.date)}`]))

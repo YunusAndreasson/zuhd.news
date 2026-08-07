@@ -26,8 +26,9 @@ const spark = await import(await bundleIsland(dir, 'public/islands/_spark.ts', '
 const markets = await import(await bundleIsland(dir, 'public/islands/_map/markets.ts', 'mk.mjs'))
 
 const { seriesDates, windowByDate, windowPoints, coverage, bucketCounts, halfOverHalf, DAY_MS } = win
-const { sparkline } = spark
-const { sparkInput, oddsEntries, attentionEntries, nextRelease, ribbonPoints } = markets
+const { sparkline, sparkPct } = spark
+const { sparkInput, oddsEntries, attentionEntries, nextRelease, ribbonPoints, createMarketStrip } =
+  markets
 
 /** `["Jul 1", "Jul 2", …]` for `n` consecutive days ending on `asOf`. */
 const dailyPeriods = (asOf, n) => {
@@ -193,6 +194,45 @@ test('a level draws a line with weight under it and a dot on the latest', () => 
     assert.equal(dot.getAttribute('x1'), dot.getAttribute('x2'))
     assert.equal(dot.getAttribute('y1'), dot.getAttribute('y2'))
     assert.equal(s.element.querySelector('circle'), null, 'no circle may enter this box')
+  })
+})
+
+/**
+ * The rail stopped drawing a shape on 2026-08-07 and still prints the change,
+ * so the change had to become obtainable without the shape. It is `sparkPct`,
+ * and the whole of its correctness is that it is *the same calculation* — not a
+ * second one that agrees today.
+ *
+ * The failure it replaces is worth naming: the alternative to this function was
+ * calling `sparkline()` and discarding the `<svg>`, fourteen built-and-thrown
+ * documents per range press for one float. The failure it *prevents* is the one
+ * `charts.md` calls the `reference: 'open'` trap — a percentage describing a
+ * period the chart a press opens does not cover, which no measurement of either
+ * one alone can catch.
+ *
+ * A fixed domain is in the sweep on purpose: the 24h step clamps the drawing to
+ * ±3% and must never clamp the figure, so this is the one input where the two
+ * could most plausibly part.
+ */
+test('the change without the shape is the change with it', () => {
+  withDom(() => {
+    const cases = [
+      { values: [10, 12, 11, 15], window: 4 },
+      { values: [100, 99.4], window: 2 },
+      { values: [100, 140], window: 2, domain: [97, 103] },
+      { values: ramp(30), window: 30 },
+    ]
+    for (const opts of cases) {
+      assert.equal(
+        sparkPct(opts),
+        sparkline(opts).windowPct,
+        `sparkPct parted from the drawn line on ${JSON.stringify(opts)}`,
+      )
+    }
+    // And `null` on exactly the input the line returns `null` for, so a caller
+    // can treat "no figure" and "no shape" as one answer, because they are.
+    assert.equal(sparkPct({ values: [7], window: 1 }), null)
+    assert.equal(sparkline({ values: [7], window: 1 }), null)
   })
 })
 
@@ -599,28 +639,39 @@ test('attention has no answer at the day step', () => {
     asOf: '2026-07-30',
     sourceLabel: 'Wikipedia pageviews',
   })
-  const feed = [wiki('Iran', steady(20, 100, 400)), wiki('Ukraine', steady(20, 900, 300))]
+  // Scaled ×50 from the shapes this fixture used to carry (100→400 and
+  // 900→300), for one reason and it is not the metric: both series have to clear
+  // `MIN_ATTENTION_LEVEL` or the floor culls them and `week` is empty, which
+  // would have this test reporting green about the *day step* while measuring
+  // the floor. The ratios are untouched, so what it pins is untouched.
+  const feed = [wiki('Iran', steady(20, 5000, 20000)), wiki('Ukraine', steady(20, 45000, 15000))]
   assert.deepEqual(attentionEntries(feed, 1, NOW), [])
   const week = attentionEntries(feed, 7, NOW)
   assert.equal(week.length, 2)
-  // Ukraine either way — it moved 221 views against Iran's 111 *and* 42% against
-  // 38% — so this line pins the day-step rule above it and says nothing about
-  // the metric. It used to claim it was pinning "ranked as a percentage", which
-  // it never was. The metric is pinned by the test below.
+  // Ukraine either way — it moves further in both views and proportion — so this
+  // line pins the day-step rule above it and says nothing about the metric. It
+  // used to claim it was pinning "ranked as a percentage", which it never was.
+  // The metric is pinned by the test below.
   assert.equal(week[0].label, 'Ukraine', 'and the block ranks by how far a series moved')
 })
 
-test('attention ranks on views moved, not on percentage', () => {
-  // The bug this pins, measured on a live payload: **Wildfire** at 1,132 views
-  // moved 219 and **Donald Trump** at 34,427 moved 2,365 — eleven times more
-  // attention — and Wildfire ranked *above* him, because 219/1,132 beats
-  // 2,365/34,427. Ranking a block about how much attention moved by a ratio
-  // structurally promotes the least-read articles, which is the opposite of
-  // what it is for.
-  //
-  // Constructed so the two metrics disagree outright rather than by a margin:
-  // the small series wins on percentage and loses on views, so a revert to
-  // `percent` fails this line rather than squeaking past it.
+/**
+ * Attention ranks on percentage **above a readership floor**, and the floor is
+ * the whole of it.
+ *
+ * Two failures are pinned here, and they are mirror images. Ranked on a bare
+ * percentage, **Wildfire** at 1,132 views moved 219 and outranked **Donald
+ * Trump** at 34,427 moving 2,365 — a move eleven times smaller winning on a base
+ * thirty times smaller. Ranked on views moved instead, the articles with the
+ * most views to move are the same articles every day, and the block printed
+ * `United States · India · Artificial intelligence` on Monday and again on
+ * Tuesday: a membership that is a constant, which a reader reported.
+ *
+ * The floor is what lets a percentage do the job it is good at — finding the
+ * article that moved unusually rather than the one that is merely large — and
+ * the two cases below are constructed so that each metric fails one of them.
+ */
+test('attention needs a readership before a percentage can rank it', () => {
   const wiki = (id, values) => ({
     id,
     label: `${id} — Wikipedia views`,
@@ -633,17 +684,34 @@ test('attention ranks on views moved, not on percentage', () => {
     sourceLabel: 'Wikipedia pageviews',
   })
   const flatThen = (base, last) => [...Array(19).fill(base), last]
-  const feed = [
-    wiki('Wildfire', flatThen(1000, 1200)), // +200 views, +20%
-    wiki('Trump', flatThen(30000, 27000)), // −3000 views, −10%
-  ]
-  const rows = attentionEntries(feed, 7, NOW)
-  assert.equal(rows.length, 2)
-  assert.equal(rows[0].label, 'Trump', 'the bigger movement of attention leads')
-  // And the figure is still a percentage, because "−3,000 views" is not a thing
-  // a reader can do anything with — the level beside it is what makes the
-  // ordering derivable from the row instead of from a number nowhere on screen.
-  assert.ok(Math.abs(rows[0].pct + 10) < 0.01, 'printed as its own percentage')
+
+  // (1) Small denominators are excluded rather than out-ranked. Wildfire's
+  // median is 1,000 — under the floor — so it never reaches the comparison that
+  // a bare percentage would have let it win.
+  const small = attentionEntries(
+    [wiki('Wildfire', flatThen(1000, 1200)), wiki('Trump', flatThen(30000, 27000))],
+    7,
+    NOW,
+  )
+  assert.deepEqual(small.map((r) => r.label), ['Trump'], 'the noise floor never ranks')
+
+  // (2) Above the floor, the *proportional* move wins — which is what stops the
+  // block being the same three large articles every day. `Quiet` moves 6,000
+  // views against `Huge`'s 9,000 and must still lead, because 20% is the unusual
+  // thing here and 9% is a large article having an ordinary week.
+  const both = attentionEntries(
+    [wiki('Huge', flatThen(100000, 91000)), wiki('Quiet', flatThen(30000, 36000))],
+    7,
+    NOW,
+  )
+  assert.deepEqual(
+    both.map((r) => r.label),
+    ['Quiet', 'Huge'],
+    'ranked on how far it moved, not on how large it already was',
+  )
+  // The figure is the percentage the ranking used, so the ordering is derivable
+  // from the row rather than from a number that is nowhere on screen.
+  assert.ok(Math.abs(both[0].pct - 20) < 0.01, 'printed as its own percentage')
 })
 
 // --- The release calendar --------------------------------------------------
@@ -679,4 +747,67 @@ test('the research CPI is not the CPI', () => {
     ),
     null,
   )
+})
+
+/**
+ * The straits row survives a redraw, and it did not.
+ *
+ * `straitsSummary` is created once and reused; the three ribbon groups build a
+ * fresh `<button>` per payload and the exchange tally is triggered at
+ * construction, so this was the one row where `trigger` ran repeatedly on a
+ * *persistent* node — once per `setStraits`, and `setStraits` runs on every
+ * range press through `redraw`. Each call added another `click` listener, each
+ * listener calls `openPanel`, and `openPanel`'s first line is "a second press on
+ * the control that opened it closes it". So the panel toggled once per
+ * accumulated listener and the row stopped responding at **even** numbers of
+ * redraws, which is what made it read as intermittent rather than broken.
+ *
+ * Two redraws, one click, and the panel must be open. The symptom of the bug is
+ * that nothing happens, so there is nothing left in the DOM to inspect
+ * afterwards — which is why it was found by driving the built page and why the
+ * assertion here is on the dialog rather than on any listener count.
+ */
+test('a redrawn row opens its panel once, not once per redraw', () => {
+  withDom(() => {
+    // jsdom's <dialog> is inert in this version; model only what is asserted.
+    globalThis.window.HTMLDialogElement.prototype.show = function () {
+      this.setAttribute('open', '')
+    }
+    globalThis.window.HTMLDialogElement.prototype.close = function () {
+      this.removeAttribute('open')
+    }
+    const strip = createMarketStrip({
+      rangeDays: 90,
+      onSelect() {},
+      onQuote() {},
+      onStrait() {},
+    })
+    const point = {
+      id: 'hormuz',
+      name: 'Strait of Hormuz',
+      lat: 26.3,
+      lng: 56.9,
+      primaryField: 'n_total',
+      delta7vs90: { n_total: -0.2 },
+      series: { periods: dailyPeriods('2026-08-03', 30), total: ramp(30) },
+      asOf: '2026-08-03',
+    }
+    // `setTrends` is what appends the straits row to the money block — it is
+    // re-appended under the groups on every payload — so the row is not in the
+    // tree until it has run once.
+    strip.setTrends([])
+    // Twice, which is exactly what one range press already costs.
+    strip.setStraits([point])
+    strip.setStraits([point])
+
+    const summary =
+      strip.element.querySelector('.is-straits .map-markets-summary') ??
+      document.querySelector('.is-straits .map-markets-summary')
+    assert.ok(summary, 'the straits row is built')
+    summary.dispatchEvent(new globalThis.window.MouseEvent('click', { bubbles: true }))
+    const panel = document.querySelector('dialog.map-markets-panel')
+    assert.ok(panel, 'the panel exists')
+    assert.equal(panel.hasAttribute('open'), true, 'one press must leave it open')
+    strip.destroy()
+  })
 })

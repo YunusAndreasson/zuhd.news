@@ -331,3 +331,77 @@ test('a chokepoint peek is the number, not the chart', async () => {
     env.restore()
   }
 })
+
+/**
+ * A percent-quoted indicator, as `tickerEntries` builds one — thirty daily
+ * observations ending on `asOf`, so a 3-day and a 7-day window are genuinely
+ * different numbers and a floor applied to the wrong one is visible.
+ */
+const dailyLabels = (asOf, n) => {
+  const end = Date.parse(`${asOf}T00:00:00Z`)
+  return Array.from({ length: n }, (_, i) => {
+    const d = new Date(end - (n - 1 - i) * 86_400_000)
+    return `${d.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' })} ${d.getUTCDate()}`
+  })
+}
+
+/**
+ * The row and the card it opens report one window.
+ *
+ * `CARD_MIN_DAYS` floors what the chart may *draw*, because two observations in
+ * a full-size figure read as a rendering fault. It floored the **hero** too, and
+ * nothing caught it: measured on the built page at the map's default 3d, a
+ * ceasefire row printed `+26 pts` and the card it opened printed `+43 pts` — the
+ * "two numbers about one thing" failure that hero was rewritten to end, arriving
+ * through a constant meant for the chart.
+ *
+ * It went unnoticed for as long as the rail also drew a line the reader could
+ * compare shapes with. The rows draw no shape since 2026-08-07 and the figure is
+ * the whole reading, so the press has to land on the same number. This asserts
+ * the hero against the *rail's* arithmetic rather than against a literal, since
+ * a literal here would be a third opinion about the same window.
+ */
+test('the card’s figure is the row’s, even inside the chart’s floor', async () => {
+  const env = setupDom()
+  try {
+    const { createSheet } = await import(bundlePath)
+    const marketsPath = await bundleIsland(dir, 'public/islands/_map/markets.ts', 'mk.mjs')
+    const { sparkInput, ribbonPoints } = await import(marketsPath)
+
+    // Dated to *today*, because `showIndicator` reads the real clock and a
+    // fixture pinned to a literal date would drift out of every window it names
+    // and pass by comparing two fallbacks. The dates are the fixture's only
+    // moving part; the shape below is fixed.
+    const now = Date.now()
+    const asOf = new Date(now).toISOString().slice(0, 10)
+    // A shape that moves in opposite directions inside and outside three days,
+    // so a window mix-up cannot pass by producing a similar number.
+    const values = [40, 44, 48, 52, 56, 60, 58, 56]
+    const entry = {
+      id: 'poly-test', group: 'odds', label: 'A question', name: 'A question',
+      unit: '%', level: 56, pct: -2, values, periods: dailyLabels(asOf, values.length),
+      asOf, flag: '',
+    }
+
+    for (const days of [1, 3, 7, 30]) {
+      const sheet = createSheet()
+      sheet.showIndicator(entry, true, days, false)
+      const focal = sheet.element.querySelector('.map-sheet-hero-focal')
+      assert.ok(focal, `the card leads with a figure at ${days}d`)
+      const shown = focal.textContent
+      const drawn = sparkInput([entry], days, now, entry.edge)
+      const expected = drawn?.ends
+        ? ribbonPoints(drawn.ends[1] - drawn.ends[0])
+        : null
+      if (expected) {
+        assert.ok(
+          shown.includes(expected),
+          `at ${days}d the card should print the row's ${expected}, got "${shown.slice(0, 40)}"`,
+        )
+      }
+      sheet.destroy()
+    }
+  } finally {
+    env.restore()
+  }
+})

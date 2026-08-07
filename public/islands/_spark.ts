@@ -129,6 +129,36 @@ export interface SparkOptions {
 }
 
 /**
+ * Last against first over exactly what *would* be drawn — without drawing it.
+ *
+ * The instrument rail stopped rendering a line on every row (2026-08-07: the
+ * shape moved behind a press and the direction moved to a tick), and it still
+ * needs this number: it is what the change figure beside the tick states, and
+ * on the calendar steps `sparkInput` has no `pct` of its own to offer. Before
+ * this existed the only way to obtain it was to call `sparkline()` and throw
+ * the `<svg>` away — fourteen built-and-discarded documents per range press,
+ * bought for one float.
+ *
+ * It lives *here*, next to `sparkline`, and `sparkline` returns it, so the two
+ * cannot part. That is the whole point: a figure computed from a second
+ * `seriesModel` call with its own arguments is the `reference: 'open'` trap in
+ * `charts.md` arriving through the back door — a percentage describing a period
+ * that the chart a press opens does not cover. One model, one window, one
+ * number.
+ *
+ * `null` on exactly the input `sparkline` returns `null` for, so a caller can
+ * treat "no figure" and "no shape" as the same answer, because they are.
+ */
+export const sparkPct = (opts: Pick<SparkOptions, 'values' | 'window' | 'domain'>): number | null => {
+  const model = seriesModel({
+    values: opts.values,
+    window: opts.window,
+    domain: opts.domain,
+  })
+  return model.ok ? model.windowPct : null
+}
+
+/**
  * One series as a bare polyline, or `null` when there is nothing to draw.
  *
  * `null` rather than an empty box: `seriesModel` already decides that fewer

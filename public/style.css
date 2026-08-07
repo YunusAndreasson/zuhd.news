@@ -4005,10 +4005,103 @@ body.map-wide {
      height is paid for in the rows themselves — one line each, on the shared
      grid — rather than by exiling a block. See `.map-markets-caption`. */
   & .map-signals { order: 3; }
-  & .map-filters { order: 4; }
-  & .map-ground { order: 5; }
-  & .map-more { order: 6; }
-  & .map-hud-legend { order: 7; }
+}
+
+/* --- The map's controls, on the map ---------------------------------------
+
+   The rail used to end in four more items — the layer chips at `order: 4`, the
+   ground picker at 5, the disclosure at 6 and the legend at 7 — and every one of
+   them configures or explains the **map** rather than reporting on the world.
+   A reader named that fault about the time range in as many words (*a control in
+   the right pane changes the left one*), which is what moved the range chips to
+   the scrubber, and the complaint was never only about the range. So the four
+   go where what they act on is, the rail keeps its clock and its four blocks of
+   readings, and the `order` list above is three lines because there are three
+   things left in the column.
+
+   ── The corner is empty by construction ──────────────────────────────────
+   The globe is a disc of diameter `min(canvasW, canvasH)` inscribed in the
+   canvas, so no viewport puts planet in a canvas *corner* — the arithmetic that
+   makes the surplus width free, read around one axis instead of two. Nothing
+   else is up here: `.map-reset` is bottom-right, a peek card is bottom-left and
+   `.map-loading` is centred.
+
+   ── Fixed width, so it can never negotiate ───────────────────────────────
+   The old top strip was a wrap run and it did not degrade with width, it
+   *thrashed* — 128px of map at 1920, 193px at 1400, 125px at 1200. A box with a
+   stated width has no line to break and nothing to reflow; it is the same size
+   at 901px as at 3440. 13rem is the `<select>`'s: a metric name is the widest
+   thing here and "refugees produced" and "refugees hosted" share their first
+   word, so a column that truncates is a control that cannot be read.
+
+   ── The treatment is `.map-reset`'s, deliberately ────────────────────────
+   That button is the other piece of chrome floating on this canvas, and one
+   treatment for one class of object is the whole of why it is copied rather
+   than chosen: same `color-mix` over `--map-panel`, same card hairline, same
+   3px radius, same blur, same `z-index`. Not opaque — what the translucency
+   says is that the map continues underneath, which is true and is the
+   difference between chrome on a map and a toolbar above one. */
+.map-mapctl { display: none; }
+
+body.map-wide .map-mapctl {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* 0.35rem, not 0.5. A control box is read as one object and its rows are not
+     four separate groups; the gap only has to keep a `<select>` off a gradient. */
+  gap: 0.35rem;
+  width: 13rem;
+  /* A phone never sees this box, but a 901px window with both rails open leaves
+     the canvas about 340px — narrow enough that a stated width is a claim the
+     frame cannot always honour. */
+  max-width: calc(100% - 2 * var(--space-sm));
+  padding: 0.4rem 0.5rem;
+  background: color-mix(in srgb, var(--map-panel) 85%, transparent);
+  border: 1px solid var(--map-line-card);
+  border-radius: 3px;
+  backdrop-filter: blur(6px);
+
+  /* The rail's foot rules do not travel with the button. `margin-top: auto` was
+     pushing it to the bottom of a 1,300px column and the negative left margin
+     was outdenting it onto the rail's own content edge; in a 13rem box both are
+     a control that has wandered out of its container. */
+  & .map-more {
+    align-self: auto;
+    margin: 0;
+    padding-block: 0;
+    padding-inline: 0;
+  }
+
+  /* The layer group, disclosed in place rather than in a modal over the page.
+     `display: none` until opened — the phone block already states the rule this
+     follows, and `hidden` is not available because the group is a live flex
+     column whose own `display` the two layouts each declare. */
+  & .map-filters { display: none; }
+  & .map-filters.is-open { display: flex; }
+}
+
+/* The two disclosures share a line, which is where this box's height went.
+
+   It stacked five rows — trigger, `ground`, the picker, the ramp, trigger — for
+   **162px** of canvas, and a reader called it too much for what it holds. Two of
+   those five are one-word buttons that open something else, and a button that
+   opens something else is the smallest thing in a control box rather than a row
+   of its own. Side by side they cost one row and one gap instead of two of each:
+   measured **162px → 108px**, with nothing removed.
+
+   `space-between` rather than a gap, so `key` sits on the box's right edge and
+   the two read as the two ends of one line instead of as a pair that happens to
+   be adjacent. */
+body.map-wide .map-mapctl-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-height: var(--map-hud-row-h);
 }
 
 /* The Hijri date is the rail's alone. On the strip the clock is one
@@ -4145,19 +4238,16 @@ body.map-wide .map-filters {
    `.map-feed-filters`, because it has to beat that rule's padding and the two
    have the same specificity: source order is the whole of the difference, and up
    there it also read as a descending-specificity mistake to Biome. */
-/* A settings panel is as wide as its widest switch. The card width is set for a
-   chart, a paragraph and a source line; seven two-word rows in that box is a
-   third of a screen of nothing beside them, which reads as content that failed
-   to arrive rather than as a short list. */
-.island-sheet.is-panel {
-  width: max-content;
-  max-width: min(22rem, calc(100vw - 2rem));
-}
+/* The group, wherever it is disclosed. It keeps its column shape — the chips are
+   the same rows they were in the rail — and only loses the rail's outdent, which
+   was pulling them against a pane edge that is no longer there.
 
-/* The group, inside the sheet. It keeps its column shape — the chips are the
-   same rows they were in the rail — and only loses the rail's outdent, which
-   was pulling them against a pane edge that is no longer there. */
-.island-sheet .map-filters {
+   It was `.island-sheet .map-filters` until 2026-08-07, when the sheet stopped
+   being where the layers open: a `showModal()` over the whole page for seven
+   toggles is ceremony this file rejects elsewhere, and a layer switch is watched
+   on the map. `.is-panel` went with it. */
+.map-mapctl .map-filters,
+.map-hud-more .map-filters {
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -4255,7 +4345,7 @@ body.map-wide .map-filter {
 
    Outside the rail there is no room for either — the phone's chips sit in a
    wrap run across the top of the map — so this exists in the DOM at every
-   width and is shown in one, the same bargain `.map-markets-spark` strikes. */
+   width and is shown in one, the same bargain `.map-markets-move` strikes. */
 .map-filter-spark { display: none; }
 
 body.map-wide .map-filter-spark {
@@ -4477,12 +4567,14 @@ body.map-wide .map-ground {
   flex-direction: column;
   align-items: stretch;
   gap: 0.4rem;
-  /* The pill goes. On the strip this group floats over the canvas and the
-     translucent box is what stops a picker and a 150px gradient from having to
-     be read against whatever ocean the reader has panned to. In a rail there is
-     no map underneath, so it is a box around nothing — and its 0.6rem of
-     horizontal padding was pushing the one group here that has a background
-     9.6px right of every other left edge in the column. */
+  /* The pill goes, and it stays gone now that the picker is back over the map.
+     The original argument was that a rail has no map underneath, so a
+     translucent box is a box around nothing. The picker moved to the canvas on
+     2026-08-07 and the argument survived the move intact for the other reason:
+     `.map-mapctl` is the box, and a second one nested inside it would be two
+     edges around one control — with its 0.6rem of horizontal padding pushing
+     the ramp 9.6px right of the `<select>` above it. One box per group of
+     controls, at the outside. */
   padding: 0;
   background: none;
 
@@ -4535,7 +4627,7 @@ body.map-wide .map-ground {
 .map-markets-odds,
 .map-markets-attention,
 .map-markets-next,
-.map-markets-spark { display: none; }
+.map-markets-move { display: none; }
 
 /* Outside the rail the row wrapper dissolves and its switch goes with it.
 
@@ -4680,20 +4772,33 @@ body.map-wide {
     }
   }
 
-  /* The direction tick goes, and the line takes over saying it.
-     A glyph beside a tinted sparkline is the same fact twice — the
-     cluster-glow mistake in miniature — and it costs alignment as well:
-     the exchange group has no tick to draw, so with the other six carrying one
-     its label would start 13px left of theirs. Direct child only: the ticks
-     inside `.map-markets-count` and every row of the panel are untouched. */
+  /* The tick at the row's *head* goes, and the one in the reading box says it.
+
+     Two ticks on one row is the same fact twice, and where it lands is decided
+     by which column can afford it: the head is the label column, so a glyph
+     there moves every label that has one 13px right of every label that has not
+     — and the exchange group's net direction is a different quantity from the
+     composite's, so it genuinely has no single tick to draw. In the reading box
+     the glyph sits in front of a figure held to a `min-width` column, so it
+     costs no alignment anywhere.
+
+     The head's tick is still *built*, because on the phone strip this rule does
+     not apply and `.map-markets-move` is `display: none` — there the head is the
+     only direction channel there is. Direct child only: the ticks inside
+     `.map-markets-count` and every row of the panel are untouched. */
   & .map-markets-summary > .map-markets-tick { display: none; }
 
-  /* …but a tick *inside* the spark box stays, and only the caption blocks put
-     one there. See `instrumentRow`: odds and attention refuse the signed palette
-     on purpose, which left them saying magnitude and identity and never
-     direction. A direct-child selector is what makes this possible without an
-     override — the rule above never reached here. */
-  & .map-markets-spark .map-markets-tick {
+  /* The tick in the reading box, on every block (2026-08-07).
+
+     It used to be here for `odds` and `attention` alone: they refuse the signed
+     palette on purpose — `--map-pos`/`--map-neg` read as good and bad, and a
+     green *US invade Iran +35 pts* is this map calling a likelier war good news
+     — which left them saying identity and magnitude and never direction. The
+     other eight rows were exempt because a tinted **line** was saying it for
+     them, and there is no line here any more. So the third channel is spent
+     whole: identity in the hue, magnitude in the figure, direction in the tick,
+     and only the first of the three is ever allowed to be a verdict. */
+  & .map-markets-move .map-markets-tick {
     display: inline-flex;
     flex: 0 0 auto;
     align-items: center;
@@ -4767,36 +4872,41 @@ body.map-wide {
     text-align: right;
   }
 
-  /* Shape, then the change across it, on one line. The svg takes the slack so
-     every row's line starts and ends on the same two columns whatever its
-     label is doing — an interval the eye learns once and stops re-finding. */
-  & .map-markets-spark {
+  /* The reading: which way it went, and how far. Was `.map-markets-spark`, and
+     the rename is the point — a box named for a shape it no longer holds is the
+     drift this file logs about half a dozen other names.
+
+     It still grows to fill the row, but nothing inside it grows any more, so the
+     slack has to be spent explicitly: `flex-end` puts the tick, the figure and
+     the age against the row's right edge, which is where the sparkline's own
+     `flex: 1 1 0` used to push them. Same three columns, one fewer element
+     deciding them. */
+  & .map-markets-move {
     display: flex;
     flex: 1 1 auto;
     align-items: center;
+    justify-content: flex-end;
     gap: 0.45rem;
     min-width: 0;
 
-    /* The tone lands here and reaches the line and the figure — one fact in
-       one channel, and the channel that survives the fold. `--map-ink-dim` at
-       rest rather than an alpha: a flat month is quiet, not translucent. */
+    /* The tone lands here and reaches the tick and the figure — one fact in one
+       channel, and the channel that survives the fold. `--map-ink-dim` at rest
+       rather than an alpha: a flat month is quiet, not translucent. */
     color: var(--map-ink-dim);
 
     &.is-pos { color: var(--map-pos); }
     &.is-neg { color: var(--map-neg); }
   }
 
-  /* The change, in a column of its own — which is what makes the *lines* line
-     up, not the figures.
+  /* The change, in a column of its own.
 
      The figures were already flush right; the box holding them was not. At
-     `auto` its width is its text, so `0.0%` reserved 23.5px and `+14.7%` 34.8,
-     and since the svg beside it takes the slack every sparkline in the rail
-     ended on a different column — measured across twelve rows, 11px of rag on a
-     158px box. The note on `--map-row-label-w` records the mirror of this on the
-     left edge and says the lines "still ended on one column, which is what hid
-     it"; that stopped being true the moment the figure moved inside the spark
-     box, and nothing was checking.
+     `auto` its width is its text, so `0.0%` reserved 23.5px and `+14.7%` 34.8 —
+     and with a growing sparkline beside it, every line in the rail ended on a
+     different column (measured across twelve rows, 11px of rag on a 158px box).
+     The sparkline is gone and this is not: the `min-width` is now what holds the
+     **tick's** left edge on one column, since the glyph sits in front of the
+     figure and a narrower figure would drag it right.
 
      A `min-width` rather than a fixed basis, and **2.2rem rather than the 2.6
      that would fit every figure this rail can print**. Both halves are the same
@@ -4839,38 +4949,46 @@ body.map-wide {
        measured rather than an oversight. An age is two or three characters —
        `7d` is 12px against a figure's 35 — so holding it to the figure's column
        adds 23px to a row that has already spent its width on a label, a level
-       and a line: at the 17rem rail below 1200px `BRENT` and `US 10Y` overflowed
-       their own box by 19px, which is the age clipped at the rail's edge. The
-       dotted rule takes the slack instead and the age still lands flush right,
-       one column short of the figures above it. Alignment is worth a lot and it
-       is not worth a clipped number. */
+       and a reading: at the 17rem rail below 1200px `BRENT` and `US 10Y`
+       overflowed their own box by 19px, which is the age clipped at the rail's
+       edge. The age lands flush right instead, one column short of the figures
+       above it. Alignment is worth a lot and it is not worth a clipped
+       number. */
     color: var(--map-ink-muted);
     font-size: var(--size-2xs);
     font-variant-numeric: tabular-nums;
     letter-spacing: 0;
     text-align: right;
 
-    /* Standing alone — no line drawn, so the age *is* the row's figure — it
+    /* Standing alone — nothing reported, so the age *is* the row's figure — it
        takes the column the change would have been in. Left where it fell it
        sat mid-row with empty space either side, and three of those in a column
        read as three rows that failed to render rather than as three
        instruments that have not reported. A column of figures with one edge is
-       what makes the age legible as an answer. */
+       what makes the age legible as an answer. Redundant under the box's own
+       `flex-end` and kept anyway: it is the rule that states the intent, and
+       the intent must not depend on which way the box happens to justify. */
     &:only-child { margin-left: auto; }
   }
 
-  /* The line that is not there, drawn.
+  /* The reading that is not there, drawn.
 
-     `.map-markets-age` put the date in the right column and left 140px of
-     nothing where the shape belongs — and at the 24h step four rows of nine
-     were that shape, which reads as content that failed to arrive however true
-     each row is. A dotted rule says the opposite: this was measured, and the
-     answer for this window is nothing.
+     `.map-markets-age` put the date in the right column and left the rest of
+     the row empty — and at the 24h step four rows of nine were empty, which
+     reads as content that failed to arrive however true each row is. A dotted
+     rule says the opposite: this was measured, and the answer for this window
+     is nothing.
+
+     It is now the only thing in the box that grows, which is what keeps the
+     rule spanning the gap rather than huddling against the age at the right
+     edge — the box justifies to `flex-end` and a `flex: 1 1 auto` child
+     overrides that by taking the slack itself.
 
      `--map-line` and a 1px height, so it is the same weight and the same ink as
-     every other rule in this column — the gaps in the dashes are what separate
-     it from a flat sparkline, which is a solid stroke in a data colour. No
-     literal: the dashes are a repeating gradient over the token. */
+     every other rule in this column, and it carries no tick — see `sparkInto`:
+     a flat glyph here would claim a quiet period was measured where in fact
+     none was. No literal: the dashes are a repeating gradient over the
+     token. */
   & .map-markets-nil {
     flex: 1 1 auto;
     min-width: 3rem;
@@ -4904,9 +5022,31 @@ body.map-wide {
      rule exists because a *fixed-width* label plus a line does not fit, which
      is still true of every block it governs; here the wrap is the intent
      instead of the symptom. */
+  /* A grid, so the question can wrap and the reading still lines up (2026-08-07).
+
+     These rows were a wrap run with the caption held to one line by
+     `text-overflow: ellipsis`, and a reader reported the obvious: the questions
+     were cut. `US x Iran Effective Ceasefire by August 31` rendered as
+     `US x Iran Effective Ceasefire by August…` — a row that kept its alignment
+     and lost the thing it is about, which is the exact failure the caption
+     treatment was invented to *prevent* one bullet earlier.
+
+     Letting it wrap inside the flex run costs a third line, because the reading
+     already had a line of its own. A grid gets it for nothing: the caption spans
+     both rows in a `1fr` column and wraps freely there, while the level and the
+     reading stack in an `auto` column beside it. Same two lines, same right
+     edge, no ellipsis until a question genuinely exceeds two lines — measured at
+     1920, `US x Iran Effective Ceasefire by August 31` now sets whole.
+
+     The caret takes a column of its own rather than a `::after` at the end of a
+     flex line, which is what the old `--map-caret-w` reservation and
+     `.map-markets-break` existed to fake. Both are gone. */
   & .map-markets-odds .map-markets-summary,
   & .map-markets-attention .map-markets-summary {
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto var(--map-caret-w);
+    grid-template-rows: auto auto;
+    column-gap: 0.45rem;
     row-gap: 0;
     align-items: baseline;
     /* The one-line rows set their own rhythm through `--map-hud-row-h`; a
@@ -4919,13 +5059,27 @@ body.map-wide {
        whole of the grouping.
 
        A two-line row set with equal space above and below sits exactly as far
-       from its own trend as from the next row's caption, so the eye has nothing
-       to go on and reads `Wildfire` as the label of Bitcoin's line. Proximity
-       decides grouping before anything else does, and here it was saying the
-       wrong thing. Tight above, loose below: ~2px inside a row against ~9px
-       between them. The hover box covers both lines, which is the same
-       statement made a second way. */
+       from its own reading as from the next row's caption, so the eye has
+       nothing to go on and reads `Wildfire` as the label of Bitcoin's figure.
+       Proximity decides grouping before anything else does, and here it was
+       saying the wrong thing. Tight above, loose below: ~2px inside a row
+       against ~9px between them. The hover box covers both lines, which is the
+       same statement made a second way. */
     padding-block: 0.1rem 0.4rem;
+
+    /* The question, spanning both rows of its own row. `center` rather than the
+       grid's `baseline`, so a one-line question sits between the level and the
+       figure beside it instead of on the first of the two. */
+    & .map-markets-caption {
+      grid-area: 1 / 1 / 3 / 2;
+      align-self: center;
+    }
+    & .map-markets-level { grid-area: 1 / 2 / 2 / 3; }
+    & .map-markets-move { grid-area: 2 / 2 / 3 / 3; }
+    /* Bottom-right, beside the figure rather than after the question: a caret
+       level with the first line of a two-line phrase points at the phrase, and
+       what opens is the reading. */
+    &::after { grid-area: 2 / 3 / 3 / 4; align-self: baseline; }
   }
 
   /* The question, and its probability, on one line; the trend on the next.
@@ -4971,8 +5125,28 @@ body.map-wide {
     /* Tight, because every unit of leading here is space between a question and
        its own answer — see the padding rule on the summary. */
     line-height: 1.15;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+
+    /* **It wraps** (2026-08-07). It was `white-space: nowrap` with an ellipsis,
+       and a reader reported the result: `US x Iran Effective Ceasefire by
+       August 31` rendered as `US x Iran Effective Ceasefire by August…`, a row
+       that kept its alignment and lost its subject — the failure the caption
+       treatment exists to prevent, committed by the treatment itself.
+
+       Two lines, not unbounded: `line-clamp` holds the block to the height the
+       grid beside it already needs for a level and a figure, so an unusually
+       long question ellipsises on its *second* line rather than growing the row.
+       At the rail's 18rem floor two lines are about 44 characters, which covers
+       every live Polymarket question and every Wikipedia title in the payload.
+
+       `overflow-wrap: anywhere` for the one case a word cannot: a title like
+       `Israel–Hamas war` has a 16-character token, and without it a word wider
+       than the column overflows the box rather than breaking. */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow-wrap: anywhere;
+    white-space: normal;
   }
 
   /* The caret's column, held open on the line the caret is not on.
@@ -4990,30 +5164,16 @@ body.map-wide {
      twice (6.2rem guessed from `--map-spine-w`, then 4.8rem measured off
      `currencies`) and a number typed here would be right only for the layout it
      was typed against. */
-  /* The break itself: a line with nothing on it and no height. See
-     `map-markets-break` in `_map/markets.ts` for what it is instead of. */
-  & .map-markets-break {
-    flex: 1 0 100%;
-    height: 0;
-  }
+  /* `.map-markets-break` is gone (2026-08-07). It was a zero-height flex line
+     break, which is what a grid does by having rows — see the grid rule on these
+     summaries above. */
 
-  & .map-markets-summary .map-markets-caption ~ .map-markets-spark {
-    margin-left: calc(var(--map-row-label-w) + 1.9rem + 0.45rem);
-    /* Basis zero, and it is the third time this file has had to say it: flex
-       decides wrapping on an item's *base* size, before it shrinks anything. At
-       `auto` this box is based on its own svg plus its own figure, and with the
-       indent above that came to exactly the width of the row — so the caret,
-       being a `::after` and therefore last, wrapped to a **third** line, 11px
-       tall, alone at the rail's left edge. Present on every odds and attention
-       row at 1280 and 1366, where `--map-rail-base` steps down to 17rem, and
-       invisible at 1920 where it does not.
-
-       At zero the line is based on the indent, the figure and the caret — 167px
-       against 243 of room — and the shape then grows into whatever is left,
-       which is what a sparkline is for. Same fix, same reason, as
-       `.map-markets-caption`'s own basis directly above. */
-    flex: 1 1 0;
-  }
+  /* The indent is gone with the flex run (2026-08-07): the grid's second column
+     *is* the alignment, and a `margin-left` on top of a grid track would push the
+     reading out of the track that positions it. Three regressions this file
+     records — the caption's own basis, the reading's basis, and the caret exiled
+     to a third line at 1280 — were all flex deciding a wrap on a *base* size,
+     which is a question a grid never asks. */
 
   /* The tone is the block's own hue, never the money's signed pair.
 
@@ -5021,20 +5181,22 @@ body.map-wide {
      that is a convention; on the odds of an invasion it is a verdict, and a
      green **US invade Iran +35 pts** is this map calling a likelier war good
      news — the trap the layer trends already record for a green
-     *DISASTERS +40%*. Identity rides on hue, direction on the shape, magnitude
+     *DISASTERS +40%*. Identity rides on hue, direction on the tick, magnitude
      on the figure, and none of the three is a judgement.
 
      `--cat` arrives inline from `CATEGORY_COLOUR`, the way a filter chip
      receives its layer's colour, so the rail is one palette and no hue is
      named here. The `.is-pos`/`.is-neg` classes are still written by
      `sparkInto` — they are how the money rows work — so these have to outrank
-     them, which is what the extra compound is for. */
-  & .map-markets-odds .map-markets-spark,
-  & .map-markets-attention .map-markets-spark,
-  & .map-markets-odds .map-markets-spark.is-pos,
-  & .map-markets-odds .map-markets-spark.is-neg,
-  & .map-markets-attention .map-markets-spark.is-pos,
-  & .map-markets-attention .map-markets-spark.is-neg {
+     them, which is what the extra compound is for. **The tick inherits this
+     through `currentColor`**, which is what lets these two blocks state a
+     direction without stating a verdict about it. */
+  & .map-markets-odds .map-markets-move,
+  & .map-markets-attention .map-markets-move,
+  & .map-markets-odds .map-markets-move.is-pos,
+  & .map-markets-odds .map-markets-move.is-neg,
+  & .map-markets-attention .map-markets-move.is-pos,
+  & .map-markets-attention .map-markets-move.is-neg {
     color: var(--cat, var(--map-ink-dim));
   }
 
@@ -5067,9 +5229,13 @@ body.map-wide {
    Outside the `body.map-wide` block above for the reason stated there — a
    compound `&` selector is scored without its parent — which is why this reads
    from the body class rather than continuing the nesting. */
-body.map-wide .map-markets-caption ~ .map-markets-level {
-  margin-right: calc(var(--map-caret-w) + 0.45rem);
-}
+/* The caret's column used to be faked with a margin on the level, because a
+   `::after` is the last flex item and therefore sat at the end of line *two* —
+   so line one had nothing holding its place and the probability, the largest
+   numeral in the block, was the only figure in the rail overhanging its column
+   by exactly 10.3px. The grid gives the caret a track (`--map-caret-w`, third
+   column), so the reservation is the layout rather than a compensation for
+   it. */
 
 /* --- The spine -----------------------------------------------------------
 
@@ -5084,9 +5250,18 @@ body.map-wide .map-markets-caption ~ .map-markets-level {
 
    So the fold narrows instead of hiding. Everything that is a *control* goes
    and the money block stays, because those are two different kinds of thing
-   and only one of them was in the way. The label sits over its own sparkline
-   and the percentage drops: at this width the shape and its tone are the whole
-   readout, which is why the tone was put on a box that holds both.
+   and only one of them was in the way.
+
+   **What the spine shows changed with the rows themselves** (2026-08-07). This
+   used to read "the label sits over its own sparkline and the percentage
+   drops: at this width the shape and its tone are the whole readout" — which
+   was the best answer available while a reading *was* a 17px line, and it was
+   a poor one, because a shape compressed to 71px is a shape you cannot read.
+   The rail's rows are `[tick] [figure]` now, and both of those fit: `▲ +14.7%`
+   measures 51px in a 55px column. So the fold hands back a column that states
+   **which way and how far** where it used to state a smudge, and the label
+   still sits over its own line. The tone stays on the box that holds them, for
+   the same reason it always did — it is the channel that survives the fold.
 
    It costs the map nothing, exactly as the full rail does — the globe is bound
    by the shorter side, so the 15rem this hands back is margin either way. */
@@ -5104,10 +5279,10 @@ body.map-page.map-wide.map-aside-off {
      ≤1250px block already makes about the clock for the same reason.
 
      `.map-signals` goes with them, and it is the one *reading* the fold drops.
-     The spine keeps what cannot be got anywhere else on this map — a shape for
-     the world's money — and its rows are 71px wide, which is not a width a
-     question fits in. A block whose every label would ellipsis to two words is
-     not a reading at that size, it is a list of stubs. */
+     The spine keeps the money, whose labels are codes; these rows are 71px wide
+     and a prediction market is only readable as the question it asks. A block
+     whose every label would ellipsis to two words is not a reading at that
+     size, it is a list of stubs. */
   & .map-status,
   & .map-range-group,
   & .map-hud-more,
@@ -5126,23 +5301,26 @@ body.map-page.map-wide.map-aside-off {
     &::after { display: none; }
   }
 
-  /* Its own line, above the shape it names. */
+  /* Its own line, above the reading it names. */
   & .map-markets-label { flex: 1 0 100%; }
 
-  & .map-markets-spark { gap: 0; }
+  /* The tick and its figure are the whole readout at this width, and they fit:
+     `▲ +14.7%` is 9 + 7 + 35 = 51px in the 55px a 71px column leaves after its
+     padding. The gap between them stays — it is the only thing separating a
+     glyph from a numeral — and only the *outer* gaps go, since with two items
+     there are none. */
+  & .map-markets-move { gap: 0.25rem; }
 
-  /* At 71px the shape and its tone are the whole readout, so everything that
-     is a figure goes — the change, the level and the age alike. The level is
-     the newest of the three and follows the same rule for the same reason: a
-     3.1rem column of digits inside a 4.4rem row leaves the line 20px, which is
-     a smudge, and the spine's whole bargain is that the *readings* survive the
-     fold. A shape is a reading; a numeral needs room to be read. */
-  & .map-markets-window,
+  /* What goes is what needs a column to be read down. A level is a 3.1rem block
+     of digits inside a 4.4rem row and an age is a caveat about a number rather
+     than the number, so both spend width the change itself needs. The change
+     stays, and that is the change of 2026-08-07: the spine used to drop it and
+     keep a 55px sparkline, which is a smudge standing in for a fact the row
+     could simply have printed. */
   & .map-markets-level,
   & .map-markets-age,
   /* Measured folded: `next · US jobs · 7 Aug` wraps to three lines and 37px in
-     a 71px column, which is a sentence rendered as a stack. It is words rather
-     than a figure, and the spine's bargain is that a *shape* survives. */
+     a 71px column, which is a sentence rendered as a stack. */
   & .map-markets-next { display: none; }
 }
 
@@ -5254,12 +5432,15 @@ body.map-page.map-wide.map-aside-off {
   stroke: none;
 }
 
-/* Pushed to the foot of the rail, which is a grouping decision rather than a
-   spacing one. Everything above it either changes the map or reports on it;
-   this explains it, and it is the only thing here a reader stops needing once
-   they have read it. `margin-top: auto` puts the rail's leftover height between
-   the two kinds — so on a tall screen the gap is the separation, and on a short
-   one it collapses to nothing and the rule above still does the work. */
+/* Kept for the frame before `placeMapControls` runs, and for nothing else.
+
+   This used to push the disclosure to the foot of the rail on the argument that
+   everything above it either changes the map or reports on it while this
+   explains it. Both of the first two are true of the *canvas* cluster now, and
+   the button went with them — so what is left here is the rule that governs the
+   button while it is still in the rail, which is the interval between mount and
+   the first `ResizeObserver` callback. The cluster overrides all of it; see
+   `.map-mapctl`. */
 body.map-wide .map-more {
   align-self: flex-start;
   margin-left: -0.5rem;
@@ -5729,25 +5910,37 @@ body.map-wide .map-key {
    this one first Biome reads the pair as a descending-specificity mistake. The
    cascade is indifferent — the two selectors never match the same element — so
    source order is free to satisfy the linter. */
-/* The layers trigger: a rail row that opens a sheet, not a switch.
+/* The layers trigger: a disclosure, not a switch and no longer a door.
 
-   It stands where the group did, so the reading order is unchanged, and it wears
-   the chips' own row shape because it *is* one of that column's rows — the mark
-   column, the label, the same 27px box. What it must not wear is a pressed
-   state: nothing here is on or off, and `.map-filter`'s `is-on` ink would say
-   otherwise. The caret is the same `::after` the money rows use to say a row is
-   a door, and it is permanent for the same reason: alone in a column of
-   readouts, the caret is the only thing saying this one opens. */
+   It wears the chips' own row shape because it *is* one of that group's rows —
+   the mark column, the label, the same 27px box. What it must not wear is a
+   pressed state: nothing here is on or off, and `.map-filter`'s `is-on` ink
+   would say otherwise.
+
+   **`width: 100%` is gone and the caret sits against its own word** (2026-08-07).
+   Both were right while this was a rail row spanning a column; on the cluster's
+   head line it shares a row with `key`, and a full-width button pushed its caret
+   to the middle of the box where it read as belonging to neither control. It is
+   content-width now, and `space-between` on the head puts the two at the two
+   ends.
+
+   The caret **turns** rather than pointing away, because what it does changed:
+   it used to open a modal sheet — a door, so `›` — and it now unfolds the group
+   in place. A chevron that rotates is the one mark a reader already knows means
+   *this expands here*, and leaving it pointing right after the group had opened
+   below it was the control describing the wrong action. */
 .map-layers-open {
-  width: 100%;
   color: var(--map-ink-body);
 
   & .map-layers-caret {
-    margin-left: auto;
+    margin-left: 0.15rem;
     font-size: var(--size-2xs);
     line-height: 1;
     color: var(--map-ink-dim);
+    transition: transform var(--dur-fast);
   }
+
+  &[aria-expanded='true'] .map-layers-caret { transform: rotate(90deg); }
 
   &:hover { color: var(--map-ink); }
 }
@@ -5856,11 +6049,10 @@ body.map-wide .map-key {
   color: var(--map-ink-dim);
 }
 
-/* The counts, which the rail's row spends its width on a shape instead of.
-   A step quieter than the name beside them and in the same line, because they
-   are what that name resolves to rather than a second heading — and `:empty`
-   so a group with nothing to say about breadth does not leave a gap where a
-   figure should be. */
+/* The counts. A step quieter than the name beside them and in the same line,
+   because they are what that name resolves to rather than a second heading —
+   and `:empty` so a group with nothing to say about breadth does not leave a
+   gap where a figure should be. */
 .map-markets-panel-meta {
   font-variant-caps: normal;
   font-weight: 400;
@@ -5868,6 +6060,71 @@ body.map-wide .map-key {
   color: var(--map-ink-muted);
 
   &:empty { display: none; }
+}
+
+/* The group's composite, above the members it composites (2026-08-07).
+
+   The rail's rows stopped drawing a shape, and for the four group rows and the
+   straits there was nowhere else it could go: a basket has no card of its own,
+   so its line lived on a 158px row and nowhere else on the site. Here it is up
+   to 24rem wide and 2.6rem tall — about six times the area — and it stands
+   directly over the rows it is a mean of, which is the one place a reader can
+   check the two against each other.
+
+   Height stated here rather than in `_spark.ts`, because `.spark` is `height:
+   1.05rem` on the deliberate rule that a sparkline is *a line in a line of
+   type*. This is not in a line of type. It is the panel's subject, so it gets
+   the panel's height, and `preserveAspectRatio: none` is what makes that a
+   one-property change rather than a second viewBox.
+
+   The tone is on this box and reaches the line, the tick and the change — the
+   same one-fact-one-channel rule the rail rows keep. The caption's words are
+   `--map-ink-muted` regardless, because a period is not a signed quantity. */
+.map-markets-panel-figure {
+  margin: 0 0 0.5rem;
+  color: var(--map-ink-dim);
+  /* The panel is `width: max-content`, sized by its widest row — fifteen
+     exchange names, or four short currency ones. A composite that inherited a
+     four-row panel's width would be a 120px line. This is the floor that makes
+     the figure worth opening, and it is a *min* rather than a width so a long
+     list still sets the panel and the line still fills it. */
+  min-width: 15rem;
+
+  &[hidden] { display: none; }
+  &.is-pos { color: var(--map-pos); }
+  &.is-neg { color: var(--map-neg); }
+
+  /* `.spark` is `flex: 1 1 0` for the row it was written for; this is block
+     flow, so the width has to be asked for. */
+  & .spark { width: 100%; height: 2.6rem; }
+}
+
+.map-markets-panel-caption {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0.25rem 0 0;
+  font-size: var(--size-2xs);
+  letter-spacing: 0;
+
+  & .map-markets-tick {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+
+    & svg { width: 9px; height: 9px; }
+  }
+}
+
+.map-markets-panel-change {
+  font-variant-numeric: tabular-nums;
+}
+
+/* The period the shape above covers, in words, because it has no axis to say
+   it with. Muted rather than tinted: it is a caveat about the figure beside
+   it, not part of the figure — the rule `.map-markets-age` already keeps. */
+.map-markets-panel-window {
+  color: var(--map-ink-muted);
 }
 
 /* No close button. The control that opened it closes it, Escape closes it, and

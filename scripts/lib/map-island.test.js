@@ -418,19 +418,33 @@ test('the island mounts, renders, and tears down cleanly', async () => {
     // about the *scrubber*, and the test for it is `no time filter reaches a
     // determination` below — this line is not that test and must not be read
     // as relaxing it.
-    // **The panel has to be opened first, and that is the point of the test.**
-    // The layer group moved into a `<dialog>` on 2026-08-03 — it configures the
-    // map rather than reading it, and seven blank toggles were 223px of a rail
-    // whose job is what the world is doing. The group is built at mount and held
-    // *detached* until the trigger moves it in, so a query before the click
-    // finds nothing: written the obvious way round this assertion goes
-    // green-on-empty and stops covering the thing it names. It also means the
-    // one route to the layers is this button, on both surfaces, so the button
-    // failing is the whole feature failing.
+    /**
+     * The layer group, and the one control that reveals it.
+     *
+     * It configures the map rather than reading it, so it does not stand open in
+     * a column whose job is what the world is doing — seven blank toggles were
+     * 223px of the rail. It spent four days behind a `showModal()` and is a
+     * **disclosure in place** since 2026-08-07: a backdrop over the whole page
+     * for seven switches is ceremony this codebase rejects for a ticker glance,
+     * and a layer switch is watched *on the map*, which a modal is precisely the
+     * arrangement that prevents.
+     *
+     * So the chips are in the tree from mount and the press changes `is-open`
+     * rather than a parent — which is why this queries **`env.host`** and not
+     * `document`. It read `env.window.document` while the group was moved into a
+     * dialog on `<body>`; against a host that is not attached to that document,
+     * the same line finds nothing and reports it as seven missing switches.
+     *
+     * The press stays, because the button is still the only route to the group
+     * on both surfaces, so a button that stops working is the whole feature
+     * gone — and `aria-expanded` is what says it worked.
+     */
     const layersOpen = env.host.querySelector('.map-layers-open')
     assert.ok(layersOpen, 'the layers group has a control that opens it')
+    assert.equal(layersOpen.getAttribute('aria-expanded'), 'false', 'shut at rest')
     layersOpen.dispatchEvent(new env.window.MouseEvent('click', { bubbles: true }))
-    const layers = [...env.window.document.querySelectorAll('.map-filter[data-kind="layer"]')]
+    assert.equal(layersOpen.getAttribute('aria-expanded'), 'true', 'and the press opens it')
+    const layers = [...env.host.querySelectorAll('.map-filter[data-kind="layer"]')]
     assert.deepEqual(
       layers.map((b) => b.textContent),
       ['disasters', 'thermal', 'conflict', 'markets', 'straits', 'famine', 'genocide'],
@@ -447,6 +461,33 @@ test('the island mounts, renders, and tears down cleanly', async () => {
     // would pass by finding nothing whichever way the code went. They are
     // checked by driving the built page instead. A test that cannot see its
     // subject is worse than no test, because it reports green.
+
+    /**
+     * The map's controls moved onto the map, and the phone did not (2026-08-07).
+     *
+     * `layers`, the ground picker and the key left the instrument rail for a
+     * cluster in the canvas's top-left corner, because every one of them
+     * configures or explains the *map* while the rail's job is what the world is
+     * doing — the fault a reader named about the time range, committed three
+     * more times. `placeMapControls` re-parents them, and **below 900px it
+     * re-parents them straight back**, because a 390px screen has no canvas to
+     * spare and the phone reaches all three through `.map-hud-more`.
+     *
+     * This harness stubs `matchMedia` to `matches: false`, so it *is* the phone,
+     * and the assertion is the one it can honestly make: the narrow route is
+     * unchanged and nothing has been hidden that a phone reader cannot get to —
+     * the test `.map-hud-more` has had to pass since it existed. The desktop
+     * placement is measured by driving the built page, for the reason stated
+     * where the money block's switches are deliberately not asserted here: a
+     * test that cannot see its subject reports green.
+     */
+    const ctl = env.host.querySelector('.map-mapctl')
+    assert.ok(ctl, 'the canvas keeps a home for the map’s own controls')
+    assert.equal(ctl.children.length, 0, 'and on a phone it holds none of them')
+    const morePanel = env.host.querySelector('.map-hud-more')
+    for (const sel of ['.map-layers-open', '.map-ground-select', '.map-hud-legend']) {
+      assert.ok(morePanel.querySelector(sel), `${sel} stays reachable from the phone panel`)
+    }
 
     // The prayer lines lost their chip and kept their claim. The method is not
     // optional detail — the lines are drawn to one school's angles and no
