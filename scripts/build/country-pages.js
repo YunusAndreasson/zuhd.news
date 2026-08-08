@@ -207,7 +207,7 @@ export const buildCountryPages = async ({
       ? `<section class="country-coverage">
           <h2 class="label country-section-title">Recent coverage · ${recent.length}</h2>
           <ol class="country-coverage-list">
-            ${recent.slice(0, 20).map((a) => `
+            ${recent.map((a) => `
               <li>
                 <a href="/a/${a.slug}" class="country-coverage-row">
                   <time datetime="${escHtml(a.meta.date)}" class="t-tabular">${escHtml(a.dateFormatted)}</time>

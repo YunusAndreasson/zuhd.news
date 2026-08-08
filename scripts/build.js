@@ -1703,7 +1703,7 @@ console.log(`  Built: api/map-leads.json (${Object.keys(mapLeads).length} leads)
 const feedArticles = sorted.filter(a => a.addedAt >= cutoff).slice(0, 30)
 const atomEntries = feedArticles.map(a => `  <entry>
     <title>${escXml(a.meta.title || 'Untitled')}</title>
-    <link href="https://zuhd.news/#${a.slug}" rel="alternate"/>
+    <link href="https://zuhd.news/a/${a.slug}" rel="alternate"/>
     <id>tag:zuhd.news,${a.meta.date?.slice(0, 10) || '2026'}:${a.slug}</id>
     <updated>${new Date(a.correctedAt || a.meta.date || a.addedAt).toISOString()}</updated>
     <category term="${escXml(a.meta.category || 'politics')}"/>
