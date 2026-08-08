@@ -2,13 +2,452 @@
   "version": 1,
   "stories": [
     {
+      "id": "hormuz-reparations-demand-irreversible-closure",
+      "label": "Iran makes dramatic new demands around Strait of Hormuz",
+      "firstSeen": "2026-08-08T22:12:41.674Z",
+      "lastCovered": "2026-08-08T22:12:41.674Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-hormuz-reparations-demand-irreversible-closure"
+      ],
+      "eventUri": "eng-11904977",
+      "summary": "Iran's Supreme National Security Council says Hormuz stays shut until the US 'corrects its behavior' — and the new conditions reportedly include compensation for war damage, which is a different demand class from the sanctions-relief terms the talks were built around. Lead with what actually changed since this morning's cycle: the closure moved from a bargaining posture to a stated permanent arrangement, with the Army spokesman in Tehran calling Iran's new governance of the strait 'irreversible' and an Iraqi energy analyst putting the closure horizon at up to a year. The mechanism for the reader: a demand for reparations cannot be met by an executive waiver the way sanctions relief can, so adding it moves the exit from an administrative act to a political one and lengthens every shipping, insurance and refinery decision downstream. Establish the current transit count versus pre-closure, who is rerouting overland through Syria, and what Oman's mediation channel is actually carrying. Attribute each demand to the body that issued it — SNSC, the Army, the foreign ministry — because they have not been saying the same thing. OIC sourcing satisfied: Mehr News (IR) carries Tehran's own framing and is merged into the sources below. Note for the feed audit: this is one of only four multi-source clusters in the 22:00 feed, and the other three are the Bulgaria drone (already covered this cycle), Biden's cancer, and the eclipse — so the two-multi-source-per-category floor for politics could not be met from this feed at all.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/United_Arab_Emirates",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Abu_Dhabi_National_Oil_Company",
+        "http://en.wikipedia.org/wiki/Yemen",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Houthi_movement",
+        "http://en.wikipedia.org/wiki/Strait"
+      ]
+    },
+    {
+      "id": "pakistan-petroleum-levy-sit-ins-nfc-bypass",
+      "label": "JI announces Aug 16 sit-ins in provincial capitals to protest petroleum levy",
+      "firstSeen": "2026-08-08T22:12:41.674Z",
+      "lastCovered": "2026-08-08T22:12:41.674Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-pakistan-petroleum-levy-sit-ins-nfc-bypass"
+      ],
+      "eventUri": "eng-11902782",
+      "summary": "Jamaat-i-Islami will sit in simultaneously in all four provincial capitals on 16 August to force withdrawal of Pakistan's petroleum levy. Lead with the levy itself, not the protest: the levy is a per-litre charge that sits outside the sales-tax base, which is precisely why it was chosen — it raises revenue that does not have to be shared with the provinces under the NFC award, and it is not creditable, so it passes straight through to freight and food prices. That is the mechanism a reader can carry: fiscal consolidation agreed at the federal level is being financed by a tax whose burden is regressive and whose proceeds bypass the provinces protesting it. Establish the current levy per litre and its trajectory over the past year, the share of federal non-tax revenue it now supplies, and the IMF programme commitment it services. Note who bears it — transporters, farmers, and every household buying anything moved by road — and what the government says it would cut instead. OIC sourcing satisfied: Dawn (PK) is the affected country's own outlet.",
+      "conceptUris": []
+    },
+    {
+      "id": "dram-2027-capacity-allocation-hbm-crowding",
+      "label": "2027 memory capacity is reportedly sold out",
+      "firstSeen": "2026-08-08T22:12:41.674Z",
+      "lastCovered": "2026-08-08T22:12:41.674Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-dram-2027-capacity-allocation-hbm-crowding"
+      ],
+      "eventUri": null,
+      "summary": "Memory fabs have reportedly sold out their entire 2027 output, a second straight year of what the industry is calling RAMageddon. Lead with the allocation, not the price: when capacity is contracted a year and a half ahead, the spot market stops being a price signal and becomes a queue, and everyone outside the queue — phone makers in Shenzhen, server integrators in Lagos, anyone building consumer hardware on thin margins — pays whatever is left. The mechanism: HBM for AI accelerators and conventional DRAM compete for the same wafer starts and the same advanced packaging, so every AI datacentre order is a direct subtraction from the memory in ordinary devices. Establish the actual contract prices versus a year ago, which three suppliers control the market, how much of 2027 capacity HBM has taken, and how long a new fab takes to come online — the answer to that last one is why this does not self-correct. The consequence to name: hardware price inflation in import-dependent economies is being set by capex decisions in a handful of US and Chinese AI firms. This entered the feed on volume of reader attention (487 points on Hacker News), which is the public-attention signal we treat as selection weight.",
+      "conceptUris": []
+    },
+    {
+      "id": "nigeria-tcn-tower-vandalism-grid-asymmetry",
+      "label": "Suspected thief dies while allegedly vandalising TCN electricity transmission tower",
+      "firstSeen": "2026-08-08T22:12:41.674Z",
+      "lastCovered": "2026-08-08T22:12:41.674Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-nigeria-tcn-tower-vandalism-grid-asymmetry"
+      ],
+      "eventUri": null,
+      "summary": "A man was found dead under a collapsed transmission tower in Delta State that he was allegedly stripping for metal. Do not write this as a crime brief — write it as the economics that put him under the tower. Lead with the scrap value of a tower's angle iron against the daily wage in the Niger Delta, then the asymmetry: the metal is worth a few hundred dollars, the collapse takes out a line serving hundreds of thousands, and the replacement cost and the outage both land on the public. That ratio is the story, and it is why tower vandalism has survived every enforcement campaign — the incentive is individual and immediate, the cost is collective and deferred. Establish how many TCN towers have been vandalised this year, how many grid collapses Nigeria has had in the same period, what a tower costs to rebuild, and what TCN is actually asking host communities to do. Name the accountability gap honestly: a grid that can be disabled by one person with a spanner was not built to be defended, and the utility's answer so far is an appeal for vigilance. OIC sourcing satisfied: Premium Times (NG).",
+      "conceptUris": []
+    },
+    {
+      "id": "ice-custody-death-rate-oversight-removal",
+      "label": "Deep Dive: Detained by ICE, More and More People Are Dying",
+      "firstSeen": "2026-08-08T22:12:41.674Z",
+      "lastCovered": "2026-08-08T22:12:41.674Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-ice-custody-death-rate-oversight-removal"
+      ],
+      "eventUri": null,
+      "summary": "Deaths in US immigration custody have nearly quadrupled since the previous administration. Lead with the rate, not the raw count, because the count alone can be explained away by a larger detained population — deaths per thousand detainees per year is the number that separates 'more people held' from 'held worse'. The mechanism to explain: detention capacity expanded faster than medical staffing and faster than the inspection regime, and the bodies that were supposed to catch this — the DHS Office for Civil Rights and Civil Liberties and the detention ombudsman — were cut. Oversight was removed at the same moment the population it oversaw doubled. Name the detainees where names are known, the facilities with more than one death, and how many of those facilities are run by private contractors on per-bed contracts. Establish what ICE's own death reviews found and how many deaths were classified as preventable. Attribute every figure to its source document — this is a single-source piece from an outlet with a point of view, so the arithmetic must be traceable to ICE's own releases or to court filings.",
+      "conceptUris": []
+    },
+    {
+      "id": "flying-focus-dephasing-plasma-accelerator",
+      "label": "'Flying focus' laser overcomes key limitation in plasma-based particle accelerators",
+      "firstSeen": "2026-08-08T22:12:41.674Z",
+      "lastCovered": "2026-08-08T22:12:41.674Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-flying-focus-dephasing-plasma-accelerator"
+      ],
+      "eventUri": null,
+      "summary": "A Nature Physics team accelerated electrons past twice the energy the dephasing limit allows over the same distance, using a laser pulse whose focal point is engineered to travel at a chosen speed — the 'flying focus'. Lead with the number and the constraint it broke. The mechanism, and it is teachable in three sentences: a laser-driven plasma wave travels slightly slower than light, so the electrons it is pushing eventually outrun the accelerating phase and start being decelerated — dephasing. A flying focus decouples the focal point's velocity from the pulse's own, so the wave can be made to keep pace with the particles it is carrying. Why it matters beyond physics: conventional accelerators need kilometres because the field they can sustain is capped by material breakdown; plasma has no surface to break down, and the only thing standing between that and a metre-scale accelerator was dephasing. Establish the actual energy achieved, the acceleration distance, and honestly state what remains unsolved — beam quality, repetition rate, and staging — because compact free-electron lasers and medical beams are the promise, not the result.",
+      "conceptUris": []
+    },
+    {
+      "id": "aldosteronism-screening-gap-southeast-asia",
+      "label": "Prevalence and clinical correlates of positive aldosterone-to-renin ratio screening in obese hypertensive patients with obstructive sleep apnea: a Southeast Asian cross-sectional study",
+      "firstSeen": "2026-08-08T22:12:41.674Z",
+      "lastCovered": "2026-08-08T22:12:41.674Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-aldosteronism-screening-gap-southeast-asia"
+      ],
+      "eventUri": null,
+      "summary": "A Southeast Asian cross-sectional study screened obese hypertensive patients with sleep apnoea for primary aldosteronism and found a substantial share screening positive on the aldosterone-to-renin ratio. Lead with the share, because the clinical consequence is immediate and concrete: primary aldosteronism is a curable cause of high blood pressure — surgery or a targeted drug — and patients who have it are typically treated for years with medications that do not address the mechanism while their cardiovascular and kidney damage accumulates faster than blood pressure alone predicts. The structural why for our reader: the ARR test is cheap, and the reason this population goes unscreened is not cost but guidelines written from Western cohorts and screening pathways that assume a specialist referral most patients in the region will never get. Establish the sample size, the positivity rate, how many went on to confirmatory testing, and what current regional hypertension guidance says about who to screen. Be careful with the language: a positive ARR is a screen, not a diagnosis, and the study measured screening positivity — do not write it as prevalence of the disease. Feed-side note: no regional Southeast Asian outlet covered this, so the only source is the journal.",
+      "conceptUris": []
+    },
+    {
+      "id": "bip110-uasf-node-versus-hashpower",
+      "label": "Bitcoin hits block 961,632 as the controversial BIP-110 soft fork attempt begins",
+      "firstSeen": "2026-08-08T22:12:41.674Z",
+      "lastCovered": "2026-08-08T22:12:41.674Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-bip110-uasf-node-versus-hashpower"
+      ],
+      "eventUri": "eng-11903622",
+      "summary": "Bitcoin reached block 961,632, starting the mandatory signalling period for BIP-110 with under 3% of miners supporting it. Lead with that gap, because it is the whole story: the proposal is being pushed as a user-activated soft fork, which means it is an explicit test of whether node operators or hash power decide Bitcoin's rules — the question the 2017 blocksize war was supposed to have settled. The mechanism to explain plainly: nodes enforce consensus rules, miners produce blocks, and a UASF works by nodes agreeing to reject blocks that do not signal, so a rule change with 3% miner support either forces the remaining 97% to comply or splits the chain into two incompatible ledgers. Establish what BIP-110 actually does, who is behind it and who is opposing it (Blockstream and Adam Back are named), the signalling deadline, and what happens at that deadline in each scenario. The reader's stake: anyone holding coins on an exchange during a chain split does not control which side they end up on. Name the exchanges that have published a contingency policy and those that have not.",
+      "conceptUris": []
+    },
+    {
+      "id": "russia-hardware-wallets-custody-versus-control",
+      "label": "Russia: hardware wallet sales more than double as crypto rules near",
+      "firstSeen": "2026-08-08T22:12:41.674Z",
+      "lastCovered": "2026-08-08T22:12:41.674Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-russia-hardware-wallets-custody-versus-control"
+      ],
+      "eventUri": null,
+      "summary": "Russian hardware wallet sales more than doubled in the first half of 2026 as new crypto rules approach — a retail purchase pattern that is really a forecast. Lead with the doubling and what buyers are anticipating: rules that impose withdrawal restrictions on regulated exchanges, and a device that moves keys off those exchanges before the restrictions bind. The mechanism worth teaching, and it generalises well beyond Russia: custody and control are separable, and a state can regulate the custodian far more easily than the key. But be precise about the limit, which the source is careful about and most coverage is not — a hardware wallet does not defeat withdrawal restrictions on the exchange you are still trying to withdraw from, it only changes where the coins sit afterwards, and it introduces device, backup and seed-phrase risks that the exchange was absorbing for you. Establish which rules take effect and when, what the two retailers' sales data actually covers, and what Russia's central bank has said about self-custody. Follow-up context: this is the second self-custody-versus-capital-controls story this week after Brazil's transfer-delay rule — same mechanism, opposite direction of travel, and worth one sentence linking them.",
+      "conceptUris": []
+    },
+    {
+      "id": "ssbn-netting-drone-threat-port-survivability",
+      "label": "Russian Nuclear Ballistic Missile Submarines Are Now Cocooned In Nets",
+      "firstSeen": "2026-08-08T22:12:41.674Z",
+      "lastCovered": "2026-08-08T22:12:41.674Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-ssbn-netting-drone-threat-port-survivability"
+      ],
+      "eventUri": null,
+      "summary": "Satellite imagery shows Russia draping nets over ballistic missile submarines at their berths, part of a wider set of improvised defences appearing at naval bases. Lead with the asymmetry the netting admits to: a state's most survivable nuclear platform is being protected in port by physical barriers, because the threat is a cheap uncrewed system and there is no economical missile answer to it. The mechanism for the reader: an SSBN's survivability is entirely a function of being at sea and undetected, so a port strike does not need to sink one — it only needs to keep boats alongside, and the deterrent degrades without a shot being fired at anything nuclear. This is the same lesson as the Bulgarian drone we covered this morning, arriving at the opposite end of the capability scale: interceptors that cost more than their targets do not scale, so both NATO and Russia are reaching for nets, cages and cope shelters. Establish which bases and which classes are involved, the imagery dates and who published them, and the record of Ukrainian uncrewed surface and aerial attacks on Russian naval facilities. Treat it as OSINT: state what the imagery shows and what is inference.",
+      "conceptUris": []
+    },
+    {
+      "id": "trump-highlights-peace-in-south-caucasus-as-aliyev-hails-us",
+      "label": "Trump highlights peace in South Caucasus as Aliyev hails US president's efforts",
+      "firstSeen": "2026-08-08T22:12:41.674Z",
+      "lastCovered": "2026-08-08T22:12:41.674Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-trump-highlights-peace-in-south-caucasus-as-aliyev-hails-us"
+      ],
+      "eventUri": "rus-2106570",
+      "summary": "[Auto-backfill for politics floor] The US president holds separate phone calls with Azerbaijani president, Armenian premier amid the first anniversary of the Washington declaration.\n\nUS President Donald Trump has highlighted the ongoing peace in the South Caucasus region, together with Azerbaijani President Ilham Aliyev and Armenian ",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Armenia",
+        "http://en.wikipedia.org/wiki/Azerbaijan",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Nikol_Pashinyan",
+        "http://en.wikipedia.org/wiki/Washington,_D.C.",
+        "http://en.wikipedia.org/wiki/Ilham_Aliyev",
+        "http://en.wikipedia.org/wiki/President_of_Azerbaijan",
+        "http://en.wikipedia.org/wiki/Prime_minister"
+      ]
+    },
+    {
+      "id": "ajk-polls-voting-in-remaining-poonch-division-seats-may-be-h",
+      "label": "AJK polls: Voting in remaining Poonch division seats may be held by Aug 20-21, says CEC",
+      "firstSeen": "2026-08-08T22:12:41.674Z",
+      "lastCovered": "2026-08-08T22:12:41.674Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-ajk-polls-voting-in-remaining-poonch-division-seats-may-be-h"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for politics floor] MUZAFFARABAD: Azad Jammu and Kashmir (AJK) Chief Election Commissioner Justice (retd) Ghulam Mustafa Mughal said on Saturday that the Election Commission had decided, for security reasons, to first complete the electoral process in four constituencies of Bagh and Haveli districts and hinted that pol",
+      "conceptUris": []
+    },
+    {
+      "id": "abu-safiya-detention-appeal-retaliation",
+      "label": "Israel's Brutal Retaliation Against Imprisoned Palestinian Doctors Seeking Legal Appeals",
+      "firstSeen": "2026-08-08T17:08:44.588Z",
+      "lastCovered": "2026-08-08T17:08:44.588Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-abu-safiya-detention-appeal-retaliation"
+      ],
+      "eventUri": null,
+      "summary": "Dr Hussam Abu Safiya — the director of Kamal Adwan hospital, seized from his ward — was reportedly subjected to escalated abuse immediately after his lawyers filed a legal challenge to his detention. Lead with the sequence, because the sequence is the mechanism: if petitioning a court reliably produces worse treatment, the remedy becomes the punishment, and every other detained medical worker's family learns that using the law costs their relative. Name the detainees, the facility, the dates of the filing and the reported retaliation, and what Israel's prison service says. Who holds power: the detaining state, which controls both the prison and the tribunal reviewing the detention. Establish how many Gaza medical workers remain held without charge under unlawful-combatant detention and how many have died in custody. SOURCING: single-source, but Drop Site does original document-and-testimony reporting and this is exactly the exception the file allows — attribute each claim to the lawyer, family member or record it came from, and mark what is uncorroborated. No Palestinian or regional outlet in today's feed carried this item, which is a feed-side gap worth auditing.",
+      "conceptUris": []
+    },
+    {
+      "id": "gaza-plan-stage-dispute-board-of-peace",
+      "label": "Hamas says still ready to go ahead with Gaza plan",
+      "firstSeen": "2026-08-08T17:08:44.588Z",
+      "lastCovered": "2026-08-08T17:08:44.588Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-gaza-plan-stage-dispute-board-of-peace"
+      ],
+      "eventUri": "deu-2158113",
+      "summary": "Hamas told the US-backed Board of Peace it stands by the latest stage of the Gaza plan; Israel says it never agreed to that stage. Lead with the disagreement about what was agreed, not with either party's willingness — when the two sides dispute the text rather than the terms, the plan has no arbiter, and the Board of Peace is being asked to be one without any enforcement instrument. Set out precisely which stage is contested and what it requires of each side (disarmament, withdrawal lines, prisoner exchange, aid volumes), and who verifies compliance. The consequence lands on Gazans: every week of ambiguity is a week of the crossing regime, the tonnage of aid entering, and the displacement status quo continuing unchanged — continuation is the development. Attribute each position to the party that stated it and note that the US mechanism's composition and legal standing remain undefined. OIC sourcing satisfied: Dawn (PK); Palestine is the affected party.",
+      "conceptUris": []
+    },
+    {
+      "id": "bulgaria-drone-nato-airspace-detection-gap",
+      "label": "Drone, Likely From Ukraine, Explodes In Bulgaria Near Gas Pipeline",
+      "firstSeen": "2026-08-08T17:08:44.588Z",
+      "lastCovered": "2026-08-08T17:08:44.588Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-bulgaria-drone-nato-airspace-detection-gap"
+      ],
+      "eventUri": "rus-2106621",
+      "summary": "A drone crossed from Romania into Bulgaria and exploded about 100 metres inside the border, near gas pipeline infrastructure — the first such incident on Bulgarian soil, and it transited two NATO members' airspace before anyone stopped it. Lead with the detection failure rather than the blast: the consequential fact is that neither state's air defence intercepted a slow, low, propeller-driven object over allied territory, which is what makes cheap drones a NATO problem rather than a Ukrainian one. The mechanism to explain is Article 4 — consultation, not collective defence — and why alliances built around missile and aircraft threats have no cost-effective answer to a $20,000 airframe. Then the part our readers feel: the pipeline near the impact site is part of the corridor moving gas north from Turkey into southeastern Europe, so the risk premium on that route is set by objects nobody claims. Establish what Radev actually said, whether Ukraine or Russia has commented, whether Bulgaria has requested consultations, and the prior record of similar debris in Romania and Moldova. This is the only genuine multi-source news cluster in the entire 17:00 feed.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Bulgaria",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Romania",
+        "http://en.wikipedia.org/wiki/Rumen_Radev",
+        "http://en.wikipedia.org/wiki/Pipeline_transport",
+        "http://en.wikipedia.org/wiki/Prime_minister",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Airspace"
+      ]
+    },
+    {
+      "id": "hormuz-closure-conditions-oman-mediation",
+      "label": "Hormuz to remain closed until US meets Iran's demands",
+      "firstSeen": "2026-08-08T17:08:44.588Z",
+      "lastCovered": "2026-08-08T17:08:44.588Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-hormuz-closure-conditions-oman-mediation"
+      ],
+      "eventUri": null,
+      "summary": "Iran's Supreme National Security Council secretary, Mohammad Bagher Zolghadr, says the Strait of Hormuz stays closed until Washington changes its behaviour and meets a set of demands — while JD Vance, the same day, describes 'some progress' in talks running through Oman on how to restore safe traffic. Lead with the two statements side by side, because the gap between them is the price signal: one party is describing a negotiation and the other is describing a condition, and the strait is a bargaining chip only while it stays shut. The mechanism our reader should carry is what closure actually means — not a chain across the water but insurance, war-risk premiums and charterers refusing to nominate vessels, which is why a strait can be closed without a single further shot and why reopening lags any deal by weeks. Consequence, and it belongs to our readers directly: roughly a fifth of world seaborne oil and the LNG that Pakistan, Bangladesh, India, Japan and Korea buy moves through it, and this file has already tracked the Syria overland bypass and the measured traffic decline — this is the political precondition for both. Establish Zolghadr's actual demands as stated, Oman's mediating role, what Vance conceded and did not, and current transit counts. SOURCING: an Iranian state agency and a Russian state wire, each relaying its own government's preferred framing — attribute every claim and treat neither as confirmation of the other.",
+      "conceptUris": []
+    },
+    {
+      "id": "berkshire-cash-drawdown-buyback-signal",
+      "label": "Berkshire accelerates buybacks, lowers cash stake as profit tops forecasts",
+      "firstSeen": "2026-08-08T17:08:44.588Z",
+      "lastCovered": "2026-08-08T17:08:44.588Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-berkshire-cash-drawdown-buyback-signal"
+      ],
+      "eventUri": "eng-11903101",
+      "summary": "Berkshire Hathaway began spending down its record cash pile in the second quarter — buying equities including Alphabet and repurchasing billions of its own shares — after years of accumulating it. Lead with the reversal and the number, because Berkshire's cash position is the most-watched patience indicator in public markets: the pile grew when Buffett judged everything expensive, so it shrinking is a judgement that something has become cheap, and this is the first such judgement under the post-Buffett leadership transition. The mechanism to explain for a reader who is not a fund manager: a buyback is a company saying its own stock is the best asset it can find, which is simultaneously a bullish signal about the company and a bearish one about the opportunity set — and at Berkshire's size, the alternative is an acquisition large enough to move a $1 trillion balance sheet, of which there are perhaps a dozen in the world. Give the actual repurchase figure, the cash balance before and after, the Alphabet stake, and the operating-earnings beat separated from mark-to-market investment swings, which is the distinction Buffett himself insists on. Note this is a Reuters report of a filing — every figure should come from the 10-Q.",
+      "conceptUris": []
+    },
+    {
+      "id": "memecoin-etf-wrapper-fiduciary-distribution",
+      "label": "T. Rowe Price defends memecoin exposure in new crypto ETF, calling it a blockchain 'stress test'",
+      "firstSeen": "2026-08-08T17:08:44.588Z",
+      "lastCovered": "2026-08-08T17:08:44.588Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-memecoin-etf-wrapper-fiduciary-distribution"
+      ],
+      "eventUri": null,
+      "summary": "A $1.9 trillion asset manager put memecoins inside a regulated, actively managed exchange-traded fund and defends them as a 'stress test' of blockchain throughput. Lead with the justification and then test it, because the claim is the story: a memecoin is being characterised as network-diagnostic infrastructure in order to make it an allocatable asset class, and that reframing is what carries it into retirement accounts. The mechanism our reader should carry is what an ETF wrapper does — it converts an asset a fiduciary may not buy directly into a line item that a pension or an adviser can, without changing anything about the asset itself. Give the actual weightings, the fund's fee, its custody and pricing arrangements, and who is legally responsible when a token with no cash flows is marked. Then the structural point: this file has tracked tokenised settlement and stablecoin legislation from the institutional end all week, and this is the same convergence arriving from the retail end — traditional finance is not being disrupted by crypto so much as it is packaging crypto for distribution and keeping the fee. Mark T. Rowe Price's rationale as an interested party's rationale.",
+      "conceptUris": []
+    },
+    {
+      "id": "typhoon-dolphin-preemptive-port-closure",
+      "label": "Typhoon Dolphin hits Japan's Okinawa, China shuts ports ahead of landfall",
+      "firstSeen": "2026-08-08T17:08:44.588Z",
+      "lastCovered": "2026-08-08T17:08:44.588Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-typhoon-dolphin-preemptive-port-closure"
+      ],
+      "eventUri": "eng-11900985",
+      "summary": "Typhoon Dolphin injured six people and cut power to more than 50,000 buildings in Okinawa, and China pre-emptively shut ports and halted ferries along its east coast before the storm arrived. Lead with the Chinese port closures rather than the Okinawa damage, because the closures are the more instructive fact: they happened before landfall, on a forecast, and shutting a major container port for a day is a measurable economic cost accepted to avoid an unmeasured one. That is disaster risk reduction working, and it is the part of typhoon coverage that is almost never written. The mechanism our reader should carry is why the western North Pacific produces the planet's strongest storms — the warmest, deepest reservoir of ocean heat on Earth, feeding intensification right up to a coastline with no cool shelf water to weaken it — and why sea-surface temperature alone underpredicts intensity, which connects directly to this cycle's shark-borne ocean sensor piece. Give the storm's track, current intensity, which ports closed and for how long, the Okinawa outage and injury counts, and the forecast landfall. Consequence: Okinawa's grid and the Yangtze delta's export throughput, and the seasonal exposure that Bangladesh, Pakistan and the Philippines share.",
+      "conceptUris": []
+    },
+    {
+      "id": "radiofrequency-noise-avian-magnetoreception",
+      "label": "Pulsed radiofrequency magnetic fields may disorient migratory birds, experiments suggest",
+      "firstSeen": "2026-08-08T17:08:44.588Z",
+      "lastCovered": "2026-08-08T17:08:44.588Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-radiofrequency-noise-avian-magnetoreception"
+      ],
+      "eventUri": null,
+      "summary": "Experiments suggest that pulsed radiofrequency magnetic fields — the kind emitted by ordinary electronic and communications equipment — can disrupt the magnetic compass migratory birds navigate by. Lead with the sensitivity, because it is the astonishing part: the fields that disorient are vastly weaker than anything that affects human tissue, which means the bird compass is not a magnet but a quantum-scale chemical process, and only a chemical process could be that easily jammed. The mechanism our reader should carry is the radical-pair hypothesis — light hitting a cryptochrome protein in the retina creates a pair of electrons whose spins evolve differently depending on the angle of Earth's field, so the bird effectively sees the field as a pattern; radiofrequency noise scrambles the spins before the bird can read them. Give what was actually done: species, field strengths and frequencies, whether the birds were orientationally disoriented or merely randomised, sample sizes, and how the authors state their limits. Then the consequence, kept proportionate: this is an environmental-exposure question about built infrastructure along flyways, and billions of birds cross the Middle East and South Asia each year on routes that now run through dense electromagnetic environments — it is a hypothesis with policy implications, not yet a finding with them.",
+      "conceptUris": []
+    },
+    {
+      "id": "shark-borne-sensors-subsurface-heat-intensity",
+      "label": "Scientists turn to sharks to improve hurricane predictions",
+      "firstSeen": "2026-08-08T17:08:44.588Z",
+      "lastCovered": "2026-08-08T17:08:44.588Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-shark-borne-sensors-subsurface-heat-intensity"
+      ],
+      "eventUri": "eng-11897327",
+      "summary": "Researchers are fitting sharks off the US East Coast with sensors so that the animals' ordinary diving collects the ocean-temperature profiles hurricane forecasters need. Lead with the reason it is sharks and not instruments, because that is the mechanism: intensity forecasting depends on how much warm water sits beneath the surface, not on the surface itself, and the subsurface is exactly what satellites cannot see and what buoys sample too sparsely — while a shark swims through the storm-relevant water column repeatedly, for free, in places no research vessel goes in August. The reader should come away understanding why hurricane track forecasts have improved enormously and intensity forecasts have barely improved at all: track is a steering problem in the atmosphere, intensity is a heat problem in the ocean, and rapid intensification happens when a storm crosses a deep warm layer that nobody measured. Give the number of animals tagged, the sensor type and what it records, how data are transmitted, whose programme it is, and what the researchers themselves say the coverage limits are. Consequence beyond Delaware: the same subsurface blind spot governs Bay of Bengal and Arabian Sea cyclone forecasts, where a missed rapid intensification is measured in evacuation time for tens of millions.",
+      "conceptUris": []
+    },
+    {
+      "id": "brazil-self-custody-transfer-delay-rule",
+      "label": "Brazil's central bank orders exchanges to delay large crypto transfers abroad",
+      "firstSeen": "2026-08-08T17:08:44.588Z",
+      "lastCovered": "2026-08-08T17:08:44.588Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-brazil-self-custody-transfer-delay-rule"
+      ],
+      "eventUri": "eng-11905316",
+      "summary": "Under Resolution BCB No. 584/2026, Brazilian exchanges must hold some customer transfers to foreign platforms and to self-custody wallets for up to 24 hours from 1 January 2027. Lead with the self-custody clause, because that is the precedent: a delay on transfers to another exchange is ordinary anti-fraud friction, but a delay on withdrawals to a wallet the customer alone controls means a state has inserted a waiting period between a person and their own keys. The mechanism our reader should carry is why 24 hours is the chosen number — fraud reversal windows work only if the funds are still reachable, and crypto's irreversibility is precisely what made it a scam settlement rail, so the regulator is reintroducing the reversibility the technology removed. That is a real consumer protection and a real change to what self-custody means, and both should be stated. Then the part that matters to our readers rather than to Brazilians: Brazil is one of the largest crypto markets outside the US, its central bank is unusually influential among Global South regulators through Pix, and the countries where dollar-stablecoins function as savings — Nigeria, Turkey, Argentina, Pakistan, Egypt — copy templates like this one. Establish the thresholds that trigger the delay, the exemptions, the stated fraud figures, and the industry's objection.",
+      "conceptUris": []
+    },
+    {
+      "id": "nigeria-2027-synthetic-media-language-asymmetry",
+      "label": "Nigeria's 2027 Election Will Be Fought in the Age of AI. Is the Country Ready?",
+      "firstSeen": "2026-08-08T17:08:44.588Z",
+      "lastCovered": "2026-08-08T17:08:44.588Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-nigeria-2027-synthetic-media-language-asymmetry"
+      ],
+      "eventUri": null,
+      "summary": "Nigeria votes in 2027, and the question posed here is whether its electoral and information institutions can withstand synthetic media at scale. Write the capability audit, not the warning: the useful article establishes what actually exists — whether INEC has any detection or rapid-response capacity, what content rules the NBC and NDPC can enforce, whether Meta, TikTok and X operate Hausa, Yoruba and Igbo moderation at all, and what the 2023 cycle's documented manipulation looked like. The mechanism our reader should carry is why African elections are the softest target for synthetic media and it is not credulity: detection tooling, platform trust-and-safety staffing and fact-checking capacity are all built for English and a handful of European languages, so the marginal cost of a convincing fake in Hausa is near zero while the marginal cost of catching it is high — the asymmetry is linguistic and economic, not cultural. Consequence: 200 million people, Africa's largest electorate, in a country whose last two elections were already litigated over results transmission. Note this is an interview-and-analysis piece from Premium Times — take the framing from it and every institutional fact from INEC, the regulators or the platforms' own transparency reports. OIC sourcing satisfied: Premium Times (NG). This also fills the audit's flagged Africa and tech gaps.",
+      "conceptUris": []
+    },
+    {
+      "id": "asi-commissioner-esa-vote-concentration",
+      "label": "ASI Board Resigns to Allow for the Appointment of an Extraordinary Commissioner",
+      "firstSeen": "2026-08-08T17:08:44.588Z",
+      "lastCovered": "2026-08-08T17:08:44.588Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-08-08-asi-commissioner-esa-vote-concentration"
+      ],
+      "eventUri": null,
+      "summary": "Three directors of the Italian Space Agency resigned to dissolve their own board, clearing the way for a government-appointed extraordinary commissioner after the death of ASI president Teodoro Valente on 16 July. Lead with the instrument, because 'extraordinary commissioner' is a specific and consequential thing in Italian public administration: it replaces a collegiate board with a single appointee who answers to the ministry, and it is normally reserved for institutions in crisis rather than institutions in mourning. The mechanism our reader should carry is what that concentrates — ASI is the third-largest contributor to ESA and the Italian vote on ESA programmes, launcher policy and the Vega line is now cast by one person the government chose, at exactly the moment IRIS2 has moved to full implementation and Europe is deciding how much sovereign launch capacity to buy. This file covered IRIS2's cost revision this morning; this is who will be in the room for the next one. Establish the timeline, the legal basis for the commissioner, who is being named and by whom, what ASI's board is normally required to approve, and how long the arrangement is meant to last. Keep it institutional and avoid speculation about motive — the appointment is the fact, and its duration is the question.",
+      "conceptUris": []
+    },
+    {
+      "id": "eclipse-12-august-totality-path-retinopathy",
+      "label": "Solar Eclipse 2026: When and Where to See Totality",
+      "firstSeen": "2026-08-08T04:09:57.657Z",
+      "lastCovered": "2026-08-08T22:12:41.674Z",
+      "coverageCount": 3,
+      "category": "science",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-08-08-eclipse-12-august-totality-path-retinopathy",
+        "2026-08-07-solar-eclipse-2026-when-and-where-to-see-totality",
+        "2026-08-08-eclipse-totality-horizon-geometry-spain"
+      ],
+      "eventUri": "eng-11897647",
+      "summary": "Europe's first total solar eclipse in decades falls on Wednesday 12 August, with totality crossing Greenland, Iceland and northern Spain and a partial eclipse over most of the continent, North Africa and the Middle East. Lead with the geometry, because it is the part that makes the event comprehensible rather than merely spectacular: the Moon's apparent diameter varies with its distance, totality requires it to be near enough to fully cover the Sun, and the shadow's path is only about a hundred kilometres wide, which is why a total eclipse is common on Earth and rare at any given place. Give the reader the practical facts in usable form — the times of totality in Reykjavík and in the Spanish path, the duration, the partial magnitude in Cairo, Istanbul, Karachi and Jakarta, and the weather-risk caveat the forecasters are already flagging for Spain. Then the safety point, stated once and firmly, because it is the only part with a casualty count: the eye has no pain receptors in the retina, so solar retinopathy is painless while it happens and is discovered hours later; only ISO 12312-2 filters or projection are safe, and ordinary sunglasses and exposed film are not. This file has already run the retinopathy evidence piece — do not repeat it, reference it. Finally the point our reader will value most: the eclipse is the one astronomical event that is both perfectly predicted centuries in advance and completely indifferent to who is watching, and Muslim communities across the partial path will pray salat al-kusuf — note it plainly, with the times, as a fact about what will happen rather than as colour. FEED NOTE: this and a video-game trailer were the only two multi-source clusters in the entire 04:00 feed, so the cycle's multi-source floors for politics and economy could not be met from what was supplied.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Solar_eclipse",
+        "http://en.wikipedia.org/wiki/Sun",
+        "http://en.wikipedia.org/wiki/Moon",
+        "http://en.wikipedia.org/wiki/Eclipse",
+        "http://en.wikipedia.org/wiki/Glasses",
+        "http://en.wikipedia.org/wiki/Earth",
+        "http://en.wikipedia.org/wiki/Spain",
+        "http://en.wikipedia.org/wiki/Iceland",
+        "http://en.wikipedia.org/wiki/Astronomy"
+      ]
+    },
+    {
       "id": "womens-quota-delimitation-deferred-precondition",
       "label": "Rahul, Rijiju spar over linking delimitation to women's quota law",
       "firstSeen": "2026-08-08T12:10:17.304Z",
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-womens-quota-delimitation-deferred-precondition"
@@ -33,7 +472,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-aes-nigeria-summons-regional-security-attribution"
@@ -49,7 +488,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-armenia-azerbaijan-year-one-corridor-implementation"
@@ -74,7 +513,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-karachi-exhumation-medical-board-forensic-control"
@@ -90,7 +529,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-turkey-black-sea-passage-denial-montreux-war-risk"
@@ -106,7 +545,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-caspian-seabed-undivided-trans-caspian-gas"
@@ -122,7 +561,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-la-nina-duration-bering-ice-teleconnection"
@@ -138,7 +577,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-royan-namira-curated-microrna-cancer-database"
@@ -154,7 +593,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-gut-cell-turnover-cytoplasm-crowding-hunger-sensor"
@@ -170,7 +609,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-perseverance-autonav-distance-record-light-time"
@@ -186,7 +625,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-india-satellite-diplomacy-capacity-without-control"
@@ -202,7 +641,7 @@
       "lastCovered": "2026-08-08T12:10:17.304Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-08-08-clarity-act-procedural-vote-stablecoin-yield"
@@ -212,40 +651,13 @@
       "conceptUris": []
     },
     {
-      "id": "eclipse-12-august-totality-path-retinopathy",
-      "label": "Solar Eclipse 2026: When and Where to See Totality",
-      "firstSeen": "2026-08-08T04:09:57.657Z",
-      "lastCovered": "2026-08-08T12:10:17.304Z",
-      "coverageCount": 2,
-      "category": "science",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-08-08-eclipse-12-august-totality-path-retinopathy",
-        "2026-08-07-solar-eclipse-2026-when-and-where-to-see-totality"
-      ],
-      "eventUri": "eng-11897647",
-      "summary": "Europe's first total solar eclipse in decades falls on Wednesday 12 August, with totality crossing Greenland, Iceland and northern Spain and a partial eclipse over most of the continent, North Africa and the Middle East. Lead with the geometry, because it is the part that makes the event comprehensible rather than merely spectacular: the Moon's apparent diameter varies with its distance, totality requires it to be near enough to fully cover the Sun, and the shadow's path is only about a hundred kilometres wide, which is why a total eclipse is common on Earth and rare at any given place. Give the reader the practical facts in usable form — the times of totality in Reykjavík and in the Spanish path, the duration, the partial magnitude in Cairo, Istanbul, Karachi and Jakarta, and the weather-risk caveat the forecasters are already flagging for Spain. Then the safety point, stated once and firmly, because it is the only part with a casualty count: the eye has no pain receptors in the retina, so solar retinopathy is painless while it happens and is discovered hours later; only ISO 12312-2 filters or projection are safe, and ordinary sunglasses and exposed film are not. This file has already run the retinopathy evidence piece — do not repeat it, reference it. Finally the point our reader will value most: the eclipse is the one astronomical event that is both perfectly predicted centuries in advance and completely indifferent to who is watching, and Muslim communities across the partial path will pray salat al-kusuf — note it plainly, with the times, as a fact about what will happen rather than as colour. FEED NOTE: this and a video-game trailer were the only two multi-source clusters in the entire 04:00 feed, so the cycle's multi-source floors for politics and economy could not be met from what was supplied.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Solar_eclipse",
-        "http://en.wikipedia.org/wiki/Sun",
-        "http://en.wikipedia.org/wiki/Moon",
-        "http://en.wikipedia.org/wiki/Eclipse",
-        "http://en.wikipedia.org/wiki/Glasses",
-        "http://en.wikipedia.org/wiki/Earth",
-        "http://en.wikipedia.org/wiki/Spain",
-        "http://en.wikipedia.org/wiki/Iceland",
-        "http://en.wikipedia.org/wiki/Astronomy"
-      ]
-    },
-    {
       "id": "xrp-ledger-confidential-transfers-validator-governance",
       "label": "Ripple news: New XRP Ledger proposals target $530 million in tokenized Wall Street assets",
       "firstSeen": "2026-08-08T04:09:57.657Z",
       "lastCovered": "2026-08-08T08:09:07.098Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-08-08-xrp-ledger-confidential-transfers-validator-governance",
@@ -262,7 +674,7 @@
       "lastCovered": "2026-08-08T08:09:07.098Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-08-yemen-saudi-strike-escalation-doctrine"
@@ -278,7 +690,7 @@
       "lastCovered": "2026-08-08T08:09:07.098Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-08-sindh-spsc-exam-pass-rate-legitimacy"
@@ -294,7 +706,7 @@
       "lastCovered": "2026-08-08T08:09:07.098Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-08-nilin-ramallah-checkpoint-movement-control"
@@ -310,7 +722,7 @@
       "lastCovered": "2026-08-08T08:09:07.098Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-07-us-1-2bn-payment-halt-offshore-wind"
@@ -326,7 +738,7 @@
       "lastCovered": "2026-08-08T08:09:07.098Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-08-india-secondary-sanctions-strategic-autonomy"
@@ -351,7 +763,7 @@
       "lastCovered": "2026-08-08T08:09:07.098Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-08-gulf-nuclear-dispersion-transboundary-dose"
@@ -367,7 +779,7 @@
       "lastCovered": "2026-08-08T08:09:07.098Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-08-silver-nanocatalyst-reversible-solid-oxide-cells"
@@ -383,7 +795,7 @@
       "lastCovered": "2026-08-08T08:09:07.098Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-08-btcpay-lightning-node-drain-hot-custody"
@@ -399,7 +811,7 @@
       "lastCovered": "2026-08-08T08:09:07.098Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-08-iris2-implementation-sovereign-constellation-cost"
@@ -415,7 +827,7 @@
       "lastCovered": "2026-08-08T08:09:07.098Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-08-08-param-pragya-india-sovereign-ai-compute"
@@ -440,7 +852,7 @@
       "lastCovered": "2026-08-08T04:09:57.657Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-08-hassankhel-drone-strikes-unacknowledged-kp"
@@ -456,7 +868,7 @@
       "lastCovered": "2026-08-08T04:09:57.657Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-08-minnesota-primary-super-pac-independent-expenditure"
@@ -472,7 +884,7 @@
       "lastCovered": "2026-08-08T04:09:57.657Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-08-uyghur-government-in-exile-recognition-evidence"
@@ -488,7 +900,7 @@
       "lastCovered": "2026-08-08T04:09:57.657Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-08-egypt-turkey-normalisation-sequence-brotherhood"
@@ -504,7 +916,7 @@
       "lastCovered": "2026-08-08T04:09:57.657Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-08-timema-asexual-genome-unused-genes-decay"
@@ -520,7 +932,7 @@
       "lastCovered": "2026-08-08T04:09:57.657Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-08-india-solar-evening-peak-storage-coal"
@@ -536,7 +948,7 @@
       "lastCovered": "2026-08-08T04:09:57.657Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-08-bip-110-fork-replay-protection-holder-risk"
@@ -552,7 +964,7 @@
       "lastCovered": "2026-08-08T04:09:57.657Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-08-tsmc-arizona-supplier-ecosystem-concentration"
@@ -568,7 +980,7 @@
       "lastCovered": "2026-08-08T04:09:57.657Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-08-08-mq-25-carrier-control-centre-combat-radius"
@@ -584,7 +996,7 @@
       "lastCovered": "2026-08-07T22:10:40.513Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-07-spain-reciprocal-border-checks-schengen-erosion"
@@ -609,7 +1021,7 @@
       "lastCovered": "2026-08-07T22:10:40.513Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-07-zelenskyy-serbia-visit-non-alignment-ammunition"
@@ -634,7 +1046,7 @@
       "lastCovered": "2026-08-07T22:10:40.513Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-07-tirah-displaced-return-plan-compensation-gap"
@@ -650,7 +1062,7 @@
       "lastCovered": "2026-08-07T22:10:40.513Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-07-maasai-loliondo-green-grabbing-customary-land"
@@ -666,7 +1078,7 @@
       "lastCovered": "2026-08-07T22:10:40.513Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-07-senate-secondary-tariffs-russian-oil-buyers"
@@ -691,7 +1103,7 @@
       "lastCovered": "2026-08-07T22:10:40.513Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-07-cook-removal-second-attempt-fed-independence"
@@ -715,7 +1127,7 @@
       "lastCovered": "2026-08-07T22:10:40.513Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-07-iran-stablecoin-sanctions-issuer-chokepoint"
@@ -731,7 +1143,7 @@
       "lastCovered": "2026-08-07T22:10:40.513Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-07-screwworm-mexico-sterile-insect-barrier-failure"
@@ -747,7 +1159,7 @@
       "lastCovered": "2026-08-07T22:10:40.513Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-07-silicon-anode-interphase-battery-energy-density"
@@ -763,7 +1175,7 @@
       "lastCovered": "2026-08-07T22:10:40.513Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-07-mesh-messaging-shutdowns-github-geoblock-distribution"
@@ -779,7 +1191,7 @@
       "lastCovered": "2026-08-07T22:10:40.513Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-07-rural-water-utilities-volunteer-defence-ics-exposure"
@@ -795,7 +1207,7 @@
       "lastCovered": "2026-08-07T22:10:40.513Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-08-07-copernicus-wildfire-imagery-open-detection"
@@ -803,503 +1215,6 @@
       "eventUri": null,
       "summary": "The Copernicus Browser now ships a wildfire visualisation anyone can run over Sentinel-2 imagery — lead with the fact that the script is nearly a decade old and was written by a user, because the story is not a new capability but a public one finally becoming usable. The mechanism our reader should carry is what the imagery actually measures: shortwave-infrared bands see through smoke and register the thermal signature of active burning, so the same pixels that look like grey cloud in visible light resolve into a fire front — and Copernicus publishes those bands free, globally, with no licence, which is the part that matters. Then the consequence, which is about who gets to know: fire detection in most of the world is a commercial product or a government prerogative, and communities downwind of a burn are told what is happening rather than able to check. A free browser-based tool moves that capability to any journalist, farmer or local official with a connection — in Indonesia's peatland fires, in the Sahel, in Pakistan's crop-burning season and across the Amazon, where the official count and the observable count have historically disagreed. Establish the resolution, the revisit interval and the honest limits (cloud, timing, no thermal alerting), and say how it compares with NASA FIRMS. Practical: our reader should be able to open it and use it after reading.",
       "conceptUris": []
-    },
-    {
-      "id": "mecca-joint-deterrence-agreement-signed-trigger-question",
-      "label": "Mecca defence pact: A new 'Sunni NATO' in the Middle East?",
-      "firstSeen": "2026-08-07T17:13:10.326Z",
-      "lastCovered": "2026-08-07T17:13:10.326Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-mecca-joint-deterrence-agreement-signed-trigger-question"
-      ],
-      "eventUri": "eng-11889846",
-      "summary": "The confirmation this file has been chasing for two cycles: the Turkey-Saudi-Pakistan agreement is signed, in Mecca, and it has a name — the Mecca Joint Deterrence Agreement. Lead with the signing and the text, because our two previous entries both led with what was NOT confirmed: yesterday we reported a single unnamed Turkish official via a Reuters wire and said plainly that regional confirmation was not in hand; this morning we placed Shehbaz Sharif and Field Marshal Munir with MBS in Makkah and said the meeting was confirmed but the pact was not. Now four outlets across QA, PK and the region carry it. So the reportable question moves on: does the document contain a mutual-defence trigger, or is 'deterrence' the deliberate word chosen to avoid one? Establish what the signed text actually commits each state to, who signed for whom, and what each capital's readout says. The mechanism our reader should carry is unchanged and now testable: two of the three sit under a US security umbrella and the third holds nuclear weapons, so a trilateral pact is a hedge written against Washington's reliability during a war on the Gulf's coastline that the US started and cannot end. Handle the 'Sunni NATO' framing sceptically — it is Al Jazeera's headline question, not a finding, and NATO's Article 5 has an automaticity nothing here is yet shown to have. Third entry in this arc; the cap allows it and this is the event the first two anticipated. OIC sourcing satisfied: Al Jazeera (QA), Dawn (PK) and The New Arab all carry it.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Turkey",
-        "http://en.wikipedia.org/wiki/Recep_Tayyip_Erdoğan",
-        "http://en.wikipedia.org/wiki/Mecca",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Mohammed_bin_Salman",
-        "http://en.wikipedia.org/wiki/President_of_Turkey"
-      ]
-    },
-    {
-      "id": "hadramout-marib-houthi-offensive-oil-provinces",
-      "label": "Houthi strikes in Yemen as Saudi Arabia braces for attacks: What we know",
-      "firstSeen": "2026-08-07T17:13:10.326Z",
-      "lastCovered": "2026-08-07T17:13:10.326Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-hadramout-marib-houthi-offensive-oil-provinces"
-      ],
-      "eventUri": "eng-11900977",
-      "summary": "At least twelve missile attacks on Hadramout and Marib on Friday, following drone and ballistic strikes on Thursday that killed at least 30 soldiers — lead with the dead and with where the fighting has moved, because Marib and Hadramout are the hydrocarbon provinces and the internal front, not the Red Sea shipping story the world has been watching. Who is affected: Yemeni soldiers and civilians in two provinces that have absorbed a decade of this war, in the poorest country in the region, and Yemenis are the ones counted first here, not the Saudi cities bracing. The mechanism our reader should carry is how the Iran war has re-domesticated the Yemeni conflict: the Houthis' external campaign against shipping bought them standing, and the return leg is a renewed push for the territory that holds Yemen's oil and gas and the road to it — so escalation against Saudi Arabia and consolidation inside Yemen are the same operation, financed by the same logic. Note precisely what is claimed by whom and what is confirmed: casualty counts on this front are issued by belligerents. This directly complicates today's Mecca pact story — Saudi Arabia signed a deterrence agreement on Friday while bracing for attack the same day. Continues this file's Najran entry; report the new operation, not the old one. SOURCING: Al Jazeera (QA) for the record; Mehr (IR) carries the same operation from the Houthi side ('Saudi-backed mercenaries') — use it only to show how the two sides count, and drop its characterisations.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Houthi_movement",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/Yemen",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Riyadh",
-        "http://en.wikipedia.org/wiki/Iraq"
-      ]
-    },
-    {
-      "id": "ceuta-influx-italy-spain-schengen-reciprocity",
-      "label": "Italy defies Spanish demand to lift border curbs over Ceuta migrant crisis",
-      "firstSeen": "2026-08-07T17:13:10.326Z",
-      "lastCovered": "2026-08-07T17:13:10.326Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-ceuta-influx-italy-spain-schengen-reciprocity"
-      ],
-      "eventUri": "eng-11899464",
-      "summary": "Spain has given Italy until Sunday to lift the border controls Rome imposed after a mass influx of migrants into Ceuta, and Italy has refused, saying it will not accept 'ultimatums'. Lead with the deadline and the refusal, because two founding Schengen members are now threatening each other's travellers over an event that happened on the African coast. The mechanism our reader should carry is the specific engineering of Schengen's failure mode: internal border controls are permitted only as a temporary exception, there is no arbiter empowered to end one, and the enforcement instrument available to the aggrieved state is reciprocal restriction — so a single arrival surge at one enclave propagates through the free-movement area as tit-for-tat, and the treaty erodes by mutual retaliation rather than by any decision. Who is affected first and is at risk of vanishing from a story about two European governments: the people who crossed into Ceuta, a Spanish enclave on Moroccan territory, and who are the object of both governments' measures without being a party to any of it — count them, say where they are being held, and say what happens to them. Who holds power: Rome, Madrid, and a European Commission that has so far not acted. The structural why: Ceuta and Melilla are the EU's only land borders in Africa, which makes them the place where the union's external migration policy is tested physically rather than rhetorically. SOURCING NOTE: the feed carried this only through Dawn's wire; no Moroccan or Spanish-enclave outlet covered it in today's feed, which is a feed-side gap worth auditing.",
-      "conceptUris": []
-    },
-    {
-      "id": "knight-foundation-honest-reporting-grant-press-freedom",
-      "label": "Pro-Israel Pressure Group Honest Reporting Received Grant from Knight Foundation",
-      "firstSeen": "2026-08-07T17:13:10.326Z",
-      "lastCovered": "2026-08-07T17:13:10.326Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-knight-foundation-honest-reporting-grant-press-freedom"
-      ],
-      "eventUri": null,
-      "summary": "The Knight Foundation — one of American journalism's largest philanthropic funders, whose stated purpose is press freedom — gave a $100,000 'emergency grant' to Honest Reporting, a pressure group whose accusations against Palestinian journalists have preceded their being targeted. Lead with the two facts side by side and let the reader hold them: the money is small, the naming of it is the story. The mechanism our reader should carry is how funding launders pressure into legitimacy: a media-monitoring group with a foundation grant is cited as a watchdog rather than as an advocate, and its allegations then travel into wire copy and editorial decisions that determine which Palestinian reporters keep accreditation, employment and — in a war zone where journalists have been killed in numbers without precedent — their lives. That is the accountability chain, and every link in it should be named: who at Knight approved it, under what 'emergency', what Honest Reporting has published, and which journalists it named. Give both organisations the chance to answer on the record and print what they say. Who is affected: Palestinian journalists, the last remaining independent record of what is happening in Gaza. Drop Site is a single source but does original document-based reporting, which is exactly the exception this file allows — hold every load-bearing claim to the document it rests on, distinguish the grant record (verifiable) from the causal claim about endangerment (contested, and must be argued from named cases).",
-      "conceptUris": []
-    },
-    {
-      "id": "white-house-ballroom-halted-appropriations-power",
-      "label": "US appeals court halts construction of Trump's $400 million White House ballroom project",
-      "firstSeen": "2026-08-07T17:13:10.326Z",
-      "lastCovered": "2026-08-07T17:13:10.326Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-white-house-ballroom-halted-appropriations-power"
-      ],
-      "eventUri": "eng-11902751",
-      "summary": "A federal appeals court has ordered construction stopped on a $400 million ballroom built where the White House East Wing used to stand, holding that a president cannot fundamentally reshape the building without congressional approval. Lead with the holding, not the ballroom — the demolition already happened, so the remedy here is prospective and the value of the ruling is the principle it states. The mechanism our reader should carry is the appropriations power, which is the least glamorous and most load-bearing check in the American system: Congress controls money and the disposition of federal property, and the question the court answered is whether a president may reconfigure a public building using privately raised funds and thereby route around the branch that would otherwise have to authorise it. Say plainly who paid, because the private-donor structure is the actual innovation being tested. Establish the procedural posture with care — this is an appeals court order pending fuller review, not a final judgment, and it can be stayed; say what happens next and on what timetable. The structural why for a global reader, and the reason this belongs in the file rather than in a US politics column: this file has been tracking a sequence of rulings testing whether a US executive is bound by process, and the pattern that matters is not any single ballroom but which of these orders are complied with. Keep it short and mechanical; resist the aesthetic outrage angle entirely.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/White_House",
-        "http://en.wikipedia.org/wiki/United_States_Congress",
-        "http://en.wikipedia.org/wiki/United_States_courts_of_appeals",
-        "http://en.wikipedia.org/wiki/Ballroom",
-        "http://en.wikipedia.org/wiki/Supreme_Court_of_the_United_States",
-        "http://en.wikipedia.org/wiki/Washington,_D.C.",
-        "http://en.wikipedia.org/wiki/United_States"
-      ]
-    },
-    {
-      "id": "dollar-weakest-since-may-payrolls-supply-shock-regime",
-      "label": "Dollar Falls to Lowest Level Since May as Rate Hike in Doubt",
-      "firstSeen": "2026-08-07T17:13:10.326Z",
-      "lastCovered": "2026-08-07T17:13:10.326Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-dollar-weakest-since-may-payrolls-supply-shock-regime"
-      ],
-      "eventUri": "eng-11901173",
-      "summary": "US payrolls fell by 23,000 in July while unemployment dropped to 4.1%, and the dollar fell to its weakest since May against every major peer as traders priced out a near-term Fed hike. Lead with the contradiction inside the labour data — employment falling and unemployment falling at the same time means the participation denominator is shrinking, and the writer should explain that plainly rather than reporting two numbers that appear to disagree. The mechanism our reader should carry is why the market is pricing a *hike* rather than a cut in a weakening labour market: this is a supply-shock inflation regime, in which a war-driven energy and freight shock raises prices while demand softens, and a central bank facing both has no instrument that addresses either without worsening the other. That is the same shock this file reported yesterday at the FAO index and at Hormuz, arriving in the reserve currency. Who is affected far beyond the US: a weaker dollar is immediate relief for every dollar-indebted emerging economy — Pakistan, Egypt, Nigeria, Kenya — because the local-currency cost of servicing external debt falls, and it is simultaneously a warning, because the same softness that weakens the dollar weakens the export demand those economies sell into. Give the actual figures, the BLS caveats, and mark clearly which are BofA estimates versus official prints. Keep it mechanical and short; this is an explainer, not a forecast.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Unemployment",
-        "http://en.wikipedia.org/wiki/Labour_economics",
-        "http://en.wikipedia.org/wiki/Federal_Reserve",
-        "http://en.wikipedia.org/wiki/Bureau_of_Labor_Statistics",
-        "http://en.wikipedia.org/wiki/Inflation",
-        "http://en.wikipedia.org/wiki/Economy_of_the_United_States",
-        "http://en.wikipedia.org/wiki/Interest_rate",
-        "http://en.wikipedia.org/wiki/Local_government"
-      ]
-    },
-    {
-      "id": "sk-hynix-38bn-fabs-memory-cycle-concentration",
-      "label": "SK Hynix Drops 5% After Approving $38B in New Memory Fabs; Seagate Falls 7%, Micron Barely Dips",
-      "firstSeen": "2026-08-07T17:13:10.326Z",
-      "lastCovered": "2026-08-07T17:13:10.326Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-sk-hynix-38bn-fabs-memory-cycle-concentration"
-      ],
-      "eventUri": "eng-11901696",
-      "summary": "SK Hynix approved $38 billion of new memory fabs at Cheongju and Yongin and its shares fell 5% on the announcement. Lead with that inversion — a company committing the largest capital sum in its history was punished for it — because the market's reaction contains the argument. The mechanism our reader should carry is the memory cycle, which is the oldest and most brutal in semiconductors: DRAM is a commodity, capacity takes three to four years to build and arrives all at once, and every prior boom has ended with three suppliers' new fabs opening into the same softening demand. Investors are not doubting AI demand; they are pricing the possibility that this fab opens in 2029 alongside Samsung's and Micron's. Pair it with the concentration figure in the same report — roughly 73% of the DRAM index sits in three companies, two of them South Korean — and name the consequence: the memory supply of the entire AI build-out depends on a duopoly located within artillery range of a hostile border, and a $38bn commitment is also a sovereign-risk commitment. This is the same constraint this file reported yesterday from the opposite end, when AMD bought Taalas to etch model weights into silicon precisely to stop paying for memory bandwidth — the whole industry is converging on memory as the binding limit, and one response is to buy more of it while the other is to design around it. Give the capex numbers, the fab timelines, current utilisation and pricing, and mark clearly which figures are company guidance.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/SK_Hynix",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Cheongju",
-        "http://en.wikipedia.org/wiki/Yongin",
-        "http://en.wikipedia.org/wiki/Dynamic_random-access_memory",
-        "http://en.wikipedia.org/wiki/Semiconductor_fabrication_plant",
-        "http://en.wikipedia.org/wiki/South_Korea",
-        "http://en.wikipedia.org/wiki/Semiconductor"
-      ]
-    },
-    {
-      "id": "nafdac-counterfeit-inhaler-anambra-traceability",
-      "label": "NAFDAC warns of suspected counterfeit asthma medication found in Nigerian market",
-      "firstSeen": "2026-08-07T17:13:10.326Z",
-      "lastCovered": "2026-08-07T17:13:10.326Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-nafdac-counterfeit-inhaler-anambra-traceability"
-      ],
-      "eventUri": "eng-11895189",
-      "summary": "Nigeria's drug regulator has traced a suspected counterfeit asthma inhaler to a named distributor address in Anambra State — lead with the fact that a regulator could name the address, because traceability is the whole subject and it usually fails. Who is affected: asthmatic Nigerians, for whom a fake reliever inhaler is not an ineffective purchase but a fatal one, since the failure is discovered during an attack. The mechanism our reader should carry is why falsified medicines concentrate in exactly this product class and this market: originator inhalers are expensive and dollar-priced, Nigeria's currency has made them unaffordable, and the resulting price gap is what the counterfeit supply chain is arbitraging — falsification is a market response to unaffordability, which is why enforcement alone has never closed it. Then the structural layer, which is what makes this more than a product recall: WHO estimates roughly one in ten medical products in low- and middle-income countries is substandard or falsified, the open-market distribution model means a regulator must find a batch rather than a supplier, and the mobile-verification schemes deployed against it depend on the counterfeiter not also copying the sticker. Establish what NAFDAC actually found, the batch numbers, what the originator manufacturer says, and whether anyone has been harmed. Africa produced two of fifty-six articles yesterday and the audit named it the weakest area; this is a Nigerian outlet reporting Nigeria, and it should stay that way.",
-      "conceptUris": []
-    },
-    {
-      "id": "vaccine-autism-executive-order-draft-global-confidence",
-      "label": "Report: White House drafting executive order linking vaccines and autism",
-      "firstSeen": "2026-08-07T17:13:10.326Z",
-      "lastCovered": "2026-08-07T17:13:10.326Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-vaccine-autism-executive-order-draft-global-confidence"
-      ],
-      "eventUri": "eng-11893857",
-      "summary": "The White House is drafting an executive order asserting a link between vaccines and autism — a link that does not exist, and whose original 1998 paper was retracted and its author struck off. Lead with the drafting and with the two independent outlets that reported it, the Washington Post and Bloomberg, both citing unnamed sources, and say plainly that this is a reported draft rather than a signed order. The mechanism our reader should carry is what an executive order can and cannot do to a scientific question: it cannot make the epidemiology false, but it can direct agencies to reopen settled reviews, redirect research funding toward a disproven hypothesis, and alter the schedule and liability framework that make routine childhood immunisation universal — so the harm is administrative, not epistemic, and it lands on the schedule rather than on the science. Give the evidence base properly and once: the cohort studies, their combined sample sizes, and what is actually known about autism's aetiology, so the reader has the refutation rather than a characterisation of it. Then the stakes our reader will care about most and which US coverage will not carry: vaccine confidence is globally coupled. Measles and polio elimination depend on coverage rates in Pakistan, Nigeria, Afghanistan and Indonesia, where vaccination campaigns already contend with a well-documented history of Western public-health programmes being used as cover — and an American government endorsement of anti-vaccine claims is the single most useful gift that suspicion could receive. Who holds power: the drafters, and HHS. Report the draft; do not report it as policy.",
-      "conceptUris": []
-    },
-    {
-      "id": "geoneutrinos-mantle-radiogenic-heat-budget",
-      "label": "Neutrinos From Deep Inside Earth Provide a New Picture of the Mantle",
-      "firstSeen": "2026-08-07T17:13:10.326Z",
-      "lastCovered": "2026-08-07T17:13:10.326Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-geoneutrinos-mantle-radiogenic-heat-budget"
-      ],
-      "eventUri": null,
-      "summary": "A global network of neutrino detectors is now mapping the radioactive elements inside the Earth — the first direct measurement of what actually powers the planet's heat engine. Lead with the strangeness of the method, because it is the teachable part: neutrinos pass through the entire planet almost without interacting, which makes them useless for everything except this, the one measurement where seeing straight through six thousand kilometres of rock is the point. Everything else we know about the deep Earth is inferred from seismic waves, which tell you about density and phase but nothing about chemistry. The mechanism our reader should carry: uranium, thorium and potassium decaying in the mantle and crust emit antineutrinos at characteristic energies, so counting them measures how much of those elements the Earth contains and roughly where — which resolves a genuinely open question, namely what fraction of the planet's internal heat is primordial (left over from formation) versus radiogenic (generated now). That number sets the budget for mantle convection, and mantle convection is what drives plate tectonics, volcanism and the geodynamo that generates the magnetic field shielding the surface. Give the actual detector network, the count rates, the error bars — this is a statistics-starved measurement and the honesty is in the uncertainty — and what the result changes about existing models of Earth's composition. Say what would settle it: an ocean-bottom or purpose-built detector that can localise the source. Pure discovery science, and the only such story in today's feed.",
-      "conceptUris": []
-    },
-    {
-      "id": "meta-new-mexico-567m-product-design-liability",
-      "label": "New Mexico judge orders Meta to pay $567 million in kids online safety case",
-      "firstSeen": "2026-08-07T17:13:10.326Z",
-      "lastCovered": "2026-08-07T17:13:10.326Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-meta-new-mexico-567m-product-design-liability"
-      ],
-      "eventUri": null,
-      "summary": "A New Mexico judge has ordered Meta to pay $567 million in a child online safety case, with $420 million of it ring-fenced to treat young people harmed on the platforms. Lead with the remedy structure rather than the headline number, because that is the precedent: a court has treated platform harm as a public-health injury requiring a remediation fund, which is the template used against tobacco and opioids and has never before been applied to a social network. The mechanism our reader should carry is why this succeeded where a decade of privacy and speech claims failed — the case was built on product design and on what the company's own internal research showed it knew, which routes around Section 230's immunity for third-party content by arguing the defect is in the recommendation and engagement machinery rather than in anything a user posted. That is the doctrinal move, and if it survives appeal it is portable to every other jurisdiction that has been unable to reach these companies. Establish what was actually found, which claims Meta lost and which it won, the appeal posture, and what Meta says. Who is affected beyond New Mexico: a single US state won more from Meta than most national regulators have extracted, which tells our reader something specific about where enforcement leverage now sits — and about how little of it exists in the markets where Meta's growth is, across South Asia and Africa, whose users have no comparable forum. Keep the number in proportion: $567m against Meta's revenue is a rounding error, and the finding is what matters.",
-      "conceptUris": []
-    },
-    {
-      "id": "kansas-data-center-hearing-closed-public-comment",
-      "label": "City That Arrested Person for Clapping at Data Center Meeting Moves to Virtual Meetings for 'Public Safety'",
-      "firstSeen": "2026-08-07T17:13:10.326Z",
-      "lastCovered": "2026-08-07T17:13:10.326Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-kansas-data-center-hearing-closed-public-comment"
-      ],
-      "eventUri": null,
-      "summary": "A small Kansas town that arrested a resident for clapping at a data centre hearing has now moved its council meetings online and ended public comment entirely, citing death threats against city leaders. Lead with the sequence — arrest, then closure — and report the death threats as a real fact rather than as a pretext, because the honest version of this story is that both things are true and the town has responded to genuine intimidation by removing the lawful participation as well. The mechanism our reader should carry is why data centres specifically are producing this collision, and it is arithmetic rather than ideology: a hyperscale facility arrives in a jurisdiction of a few thousand people, brings water and electricity demand at metropolitan scale, is negotiated under a non-disclosure agreement so residents cannot see the terms before the vote, and delivers a tax abatement and almost no permanent jobs. A council with no capacity to evaluate it and no authority to disclose it faces a public that can only be heard in the three minutes of a comment period — and closing that period is the last available pressure valve. Then the transferable point: this is now happening across dozens of US counties, and the same template — opaque siting, sovereign-scale utility draw, local body outmatched — is being exported to Gulf, Malaysian and Indian sites where there is no comment period to close at all. Establish the specifics: which company, what the abatement is, the power and water figures, the arrest, what the threats were, and what the city says. 404 Media is a single source doing original local reporting; this is the third in its data-centre thread and the escalation the earlier ones implied.",
-      "conceptUris": []
-    },
-    {
-      "id": "iris2-acceleration-communications-sovereignty-leo",
-      "label": "EU Accelerates Sovereign Satellite Plans Citing Defense Needs",
-      "firstSeen": "2026-08-07T17:13:10.326Z",
-      "lastCovered": "2026-08-07T17:13:10.326Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-iris2-acceleration-communications-sovereignty-leo"
-      ],
-      "eventUri": "spa-4296891",
-      "summary": "The EU is pulling its IRIS² constellation forward by a year to 2029 and adding 66 satellites, citing defence needs. Lead with the word 'sovereign', because it is doing all the work: this is a bloc of 27 states paying billions to own a capability it can already buy commercially, and the only thing that justifies the premium is the ability to refuse someone else's off switch. The mechanism our reader should carry is what satellite dependence actually means operationally — a constellation operator can geofence coverage, throttle a region, or decline service to a government, and this has already been demonstrated in a live war, which is why 'we have access to Starlink' and 'we have satellite communications' turned out to be different sentences. Low Earth orbit compounds it: LEO capacity requires hundreds of satellites and constant replacement, so the barrier is launch cadence rather than technology, and Europe's own launch capacity is the real constraint behind the 2029 date. Then the point that makes this global rather than European: every other bloc is reading the same lesson, and our reader should carry the pattern — China's Guowang, India's ambitions, and Gulf states buying capacity they cannot build — because communications sovereignty is becoming a tier of state capability alongside currency and energy, and the states that cannot afford a constellation will be renting from those who can. Establish the actual figures: cost, the Eutelsat and Hispasat industrial arrangements, satellite counts, the slipped original timeline, and what 'accelerate' has historically meant for this programme. Mark clearly what is committed money versus announced intention.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Satellite",
-        "http://en.wikipedia.org/wiki/Europe",
-        "http://en.wikipedia.org/wiki/European_Commission",
-        "http://en.wikipedia.org/wiki/Constellation",
-        "http://en.wikipedia.org/wiki/Low_Earth_orbit",
-        "http://en.wikipedia.org/wiki/Hispasat",
-        "http://en.wikipedia.org/wiki/Euro",
-        "http://en.wikipedia.org/wiki/Eutelsat"
-      ]
-    },
-    {
-      "id": "fao-food-price-index-cereals-oils-import-bill",
-      "label": "Global food prices at three-year high as heatwaves and wars push up crop costs",
-      "firstSeen": "2026-08-07T12:10:45.236Z",
-      "lastCovered": "2026-08-07T12:10:45.236Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-fao-food-price-index-cereals-oils-import-bill"
-      ],
-      "eventUri": "fra-1332234",
-      "summary": "The FAO Food Price Index has hit its highest level in three and a half years, and the lead is the composition of the rise rather than the number: cereals and vegetable oils, the two lines that dominate the import bill of a low-income food-deficit country. Who is affected: Egypt, Pakistan, Bangladesh, Nigeria and Indonesia, which buy wheat and cooking oil in dollars and sell bread in local currency — a global index move is a domestic subsidy crisis for them within one budget cycle. The mechanism our reader should carry is that this is a supply shock stacked on a supply shock: European and Black Sea heatwaves cut wheat yields at the same time that the Iran war and the Hormuz disruption raised freight and insurance on every tonne moved, so the physical shortfall and the delivery cost are compounding rather than substituting. That is the direct downstream consequence of this file's own Hormuz transit story from this morning — the chokepoint arrives in the world's kitchens as a price, and it arrives on the poorest tables first. Establish the actual index figures, the sub-index breakdown, the comparison points (2022 peak, pre-war baseline), and what the FAO says about the harvest outlook. Then the honest limit: the index is a global export-price average and does not translate one-for-one into retail prices, which move with currency and subsidy policy. Note the 2007-08 and 2010-11 precedent without over-claiming it — food price spikes have preceded political ruptures, and our reader will make that connection themselves. SOURCING NOTE: the only two sources are The Guardian and Zero Hedge; use the Guardian for the record, treat Zero Hedge's framing as commentary, and go to the FAO release itself for the numbers. Category: the feed filed this as politics; it is economy.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Food_and_Agriculture_Organization",
-        "http://en.wikipedia.org/wiki/Cereal",
-        "http://en.wikipedia.org/wiki/Black_Sea",
-        "http://en.wikipedia.org/wiki/Wheat",
-        "http://en.wikipedia.org/wiki/Vegetable_oil",
-        "http://en.wikipedia.org/wiki/Food_prices",
-        "http://en.wikipedia.org/wiki/Sugar",
-        "http://en.wikipedia.org/wiki/Meat"
-      ]
-    },
-    {
-      "id": "shehbaz-munir-mbs-makkah-pact-confirmation-gap",
-      "label": "PM Shehbaz, CDF Munir meet Saudi crown prince in Makkah",
-      "firstSeen": "2026-08-07T12:10:45.236Z",
-      "lastCovered": "2026-08-07T12:10:45.236Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-shehbaz-munir-mbs-makkah-pact-confirmation-gap"
-      ],
-      "eventUri": "eng-11901280",
-      "summary": "This is the regional confirmation that this morning's defence-pact story explicitly said was not in hand — and that is how to lead it. Yesterday we reported, from a Reuters wire carried by a South African outlet, that Turkey, Saudi Arabia and Pakistan would sign a joint defence agreement, and flagged that no Pakistani, Turkish or Gulf outlet had covered it. Dawn now places Shehbaz Sharif and Field Marshal Asim Munir in a bilateral with Mohammed bin Salman in Makkah, and the writer should say plainly what that does and does not confirm: it confirms the meeting and the composition, not the text of any pact. Lead with the location and the delegation, because both carry information — Makkah rather than Riyadh, during the Hajj-adjacent season, frames the meeting in the register of Muslim solidarity rather than transactional security; and the presence of the Chief of Defence Forces alongside the prime minister means the substantive conversation is military, with the civilian government present rather than leading. The mechanism our reader should carry is Pakistan's actual bargaining position: it brings manpower, a nuclear deterrent and a decades-old troop presence in the Kingdom, and it needs balance-of-payments support, which makes any Saudi-Pakistani security understanding also a financing instrument — and that dual character is why the commitments stay undefined. Establish what the PMO said, what the Saudi side said, and what was not said. Follows this file's Erdogan-Riyadh mediation thread and the Saudi-Turkey-Pakistan pact entry; do not re-report the pact itself, report what today adds. OIC sourcing satisfied: Dawn is the Pakistani record; check whether Arab News or Anadolu carried a matching readout.",
-      "conceptUris": []
-    },
-    {
-      "id": "el-sayed-michigan-primary-party-consolidation-refusal",
-      "label": "'Progressive' Dr Abdul El-Sayed wins Michigan primary in jolt to Democrats",
-      "firstSeen": "2026-08-07T12:10:45.236Z",
-      "lastCovered": "2026-08-07T12:10:45.236Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-el-sayed-michigan-primary-party-consolidation-refusal"
-      ],
-      "eventUri": "eng-11893666",
-      "summary": "Consolidate the two feed entries into one story: Abdul El-Sayed, an Egyptian-American physician and former Detroit health commissioner, beat Haley Stevens for the Democratic Senate nomination in Michigan, and a bloc of his own party is now saying it will not back him in November. Lead with the second half, not the first — the primary result is a datum, the refusal to consolidate behind the winner is the finding. The mechanism our reader should carry is what a US Senate primary actually decides and what it does not: the party has no formal power to withhold the nomination, but it controls the committee money, the donor introductions and the endorsement infrastructure, so 'we won't back him' is a resource decision dressed as a conscience one. Who is affected beyond Michigan: this is the state with the largest Arab and Muslim electorate in the country, a bloc that withheld votes over Gaza in 2024 and was told it had cost the party the presidency — and which has now produced a nominee through the process it was told to use. Whether the party accepts that result is the actual test, and our reader will read it as one. Give the vote margins, the turnout, El-Sayed's stated positions on the ones that are load-bearing here (Gaza, arms transfers, healthcare), and name which Democrats have said what, on the record, rather than characterising 'some'. Avoid the identity-first frame; he won on a policy coalition and the objection is being made in policy terms. Two independent sources: Dawn's Washington wire and New Lines' reporting on the holdouts.",
-      "conceptUris": []
-    },
-    {
-      "id": "ice-custody-deaths-civil-detention-medical-standard",
-      "label": "Deep Dive: Detained by ICE, More and More People Are Dying",
-      "firstSeen": "2026-08-07T12:10:45.236Z",
-      "lastCovered": "2026-08-07T12:10:45.236Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-ice-custody-deaths-civil-detention-medical-standard"
-      ],
-      "eventUri": null,
-      "summary": "Deaths in US immigration detention have nearly quadrupled against the previous administration — lead with the multiple, and then immediately with the denominator, because the honest version of this story is a rate and not a count. The detained population has itself expanded sharply, so the writer must say whether deaths per thousand detainees rose or whether the total rose because the system did, and report both. The mechanism our reader should carry is what makes immigration detention lethal in a way that criminal incarceration is not: detainees are held under civil rather than criminal authority, which means no sentencing, no fixed release date, and — crucially — a medical standard set by agency policy rather than by the constitutional floor that applies to convicted prisoners, enforced by an inspectorate that answers to the same department it inspects. Add the newer variable: rapid capacity expansion into county jails and contractor facilities that were never staffed for chronic care, at a scale that outran the medical hiring. Who is affected: name the dead. Every person who died in custody has a name, a nationality and a cause of death that the agency is required to publish, and this file counts victims by name rather than by aggregate. Who holds power: ICE, the contractors, and the congressional committees that fund the beds. Establish which figures are official agency releases, which are advocacy-compiled, and where they disagree. Accountability story with named actors and named victims — write it as a record, not as an argument.",
-      "conceptUris": []
-    },
-    {
-      "id": "afghan-women-exclusion-normalisation-health-workforce",
-      "label": "How the World Learned to Live with the Exclusion of Afghan Women",
-      "firstSeen": "2026-08-07T12:10:45.236Z",
-      "lastCovered": "2026-08-07T12:10:45.236Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-afghan-women-exclusion-normalisation-health-workforce"
-      ],
-      "eventUri": null,
-      "summary": "Continuation of injustice is the development, and this is the clearest case of it in today's feed: nearly five years into the exclusion of Afghan women from secondary school, university, most employment and unaccompanied movement, the story is that it has stopped being a story. Lead with the normalisation itself and give it a measurable shape — the number of countries that have since upgraded diplomatic contact with Kabul, the aid volumes that resumed, the international meetings held without the condition attached. That sequence is the mechanism our reader should carry: a policy that was initially framed as a temporary suspension pending 'conditions' outlasted the world's willingness to make anything contingent on it, and each incremental re-engagement made the next one cheaper. Who is affected: an entire cohort — girls who were in grade six in 2021 are now adults who never returned to a classroom, and the compounding damage is not education but the second-order collapse in female health workers, which in a country where women may not be treated by male clinicians converts a schooling ban into a maternal mortality figure. That causal chain is the strongest thing to give the reader and it should be sourced hard. Who holds power: the Kabul authorities who issued the edicts, and the states and institutions that decided engagement was worth more than the condition. Handle the source honestly — this is an argument piece, so use it for its framing and anchor every factual claim to the UN, WHO and UNAMA record it draws on, and give the Afghan women quoted in that record the last word rather than the outside advocates. Afghanistan has not appeared in this file's recent coverage. SOURCING NOTE: no Afghan or regional outlet in today's feed covered this; that gap is itself worth flagging.",
-      "conceptUris": []
-    },
-    {
-      "id": "china-internet-addiction-industry-adult-confinement",
-      "label": "When Chinese parents outsource control over their adult children",
-      "firstSeen": "2026-08-07T12:10:45.236Z",
-      "lastCovered": "2026-08-07T12:10:45.236Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-china-internet-addiction-industry-adult-confinement"
-      ],
-      "eventUri": null,
-      "summary": "China's 'internet addiction' treatment industry has rebranded, and its clients are now families paying private institutions to confine adult children who are legally free to leave. Lead with the legal impossibility of that sentence, because it is the whole story: a competent adult is being detained, by contract, and no part of the arrangement is lawful — it works because nobody enforces the law against it. The mechanism our reader should carry is how a private detention market forms in the gap between a written right and an absent enforcer: the institutions are licensed as education or wellness providers rather than as medical facilities, so they fall outside psychiatric commitment law entirely; the paying customer is the parent, not the patient, so the duty of care runs to the wrong person; and the detained adult's only remedy — calling the police — requires a phone they no longer have. That structure is not specific to China and our reader should be able to carry it to any jurisdiction with strong filial norms and weak enforcement of adult autonomy: the same shape appears in conversion facilities, in 'troubled teen' programmes, and in family-run confinement of the mentally ill across South and Southeast Asia. Who is affected: young adults, disproportionately those whose parents object to something the state has also stigmatised. Establish what the reporting actually documents — named institutions, their marketing, the fees, the physical conditions, any regulatory response — and mark clearly where it relies on survivor testimony that cannot be independently verified. Report the abuse without sensationalising it.",
-      "conceptUris": []
-    },
-    {
-      "id": "syria-overland-corridor-hormuz-bypass-returnee-economy",
-      "label": "Syria walks a tightrope as war engulfs the Middle East",
-      "firstSeen": "2026-08-07T12:10:45.236Z",
-      "lastCovered": "2026-08-07T12:10:45.236Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-syria-overland-corridor-hormuz-bypass-returnee-economy"
-      ],
-      "eventUri": null,
-      "summary": "The most useful thing in this piece is a fact our Hormuz coverage has been missing: with the strait constricted, Iraqi crude is moving overland across Syria to Mediterranean ports, and there is renewed talk of Gulf-to-Mediterranean pipeline routes through Jordan and Syria. Lead with that — a country that spent fourteen years as a battlefield is becoming a bypass, and the reason is a chokepoint 1,500km away. This is the same 'second corridor' Tehran said this week it would not permit, seen from the land end of it, and it is the direct continuation of this file's Hormuz thread. The mechanism our reader should carry is why geography reasserts itself under blockade: seaborne routing is cheap and overland routing is expensive, so land bridges are dormant until the sea gets expensive enough, at which point a transit state's leverage is created out of nothing by someone else's war. The Hejaz Railway revival that Turkey and Saudi Arabia are discussing is the same logic on a longer horizon. Then the ledger against it, and it should be given equal weight: GCC economies are contracting under the Iran war, so the memoranda Damascus signed with Gulf investors are likely to be cut back; war-risk insurance and freight are raising the cost of Syria's own imports; and Syrian refugees are returning from a collapsing Lebanese economy, which means an immediate spending bump and the permanent loss of the remittances that were sustaining households at home — Landis makes that point precisely and it is the sharpest economics in the piece. Who is affected: returnees arriving into a country with no housing and no jobs. SOURCING NOTE: Responsible Statecraft is advocacy-adjacent, so use it for the named-expert interviews it actually conducted — Karam Shaar, Joshua Landis, Bassam Barabandi, attributed by name — and do not carry its editorial framing or its policy prescriptions as findings. The July 17 Iranian strike in eastern Syria: report it as claimed, and note that the piece's own experts disagree about whether it mattered. No Syrian or regional outlet in today's feed covered this.",
-      "conceptUris": []
-    },
-    {
-      "id": "bitcoin-volatility-collapse-etf-bid-put-skew",
-      "label": "Bitcoin's volatility has nearly disappeared. The risk hasn't: Crypto Daily",
-      "firstSeen": "2026-08-07T12:10:45.236Z",
-      "lastCovered": "2026-08-07T12:10:45.236Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-bitcoin-volatility-collapse-etf-bid-put-skew"
-      ],
-      "eventUri": null,
-      "summary": "Spot bitcoin ETFs took in $754 million in the first week of August with no outflow days, and the price did not move — it sat near $64,700 while realised volatility collapsed. Lead with that divergence, because a market absorbing three quarters of a billion dollars without repricing is telling you something specific about who is on the other side. The mechanism our reader should carry is the difference between a bid and a conviction: ETF inflows are largely allocation-driven and price-insensitive, so they are met by sellers who are happy to be met, and the result is a market with depth but no direction. The options tape confirms it — flow is concentrated in downside protection at $62,000 and $63,000, which means the same investors buying the spot exposure are paying to insure it. Low realised volatility with bid-up puts is not calm; it is a market that has priced its own tail and is holding its breath, and the honest way to say that is that suppressed volatility is a coiled position, not a safe one. Give the actual figures — inflow totals, realised versus implied volatility, the strikes and the skew — and explain implied volatility plainly for a reader who does not trade options. The context that belongs alongside it and is in the same day's second CoinDesk piece: gold is up 1.5% to $4,300 on the Middle East escalation while bitcoin is flat, which is the cleanest available refutation of the digital-gold thesis this cycle — when the safe-haven bid actually arrived, it went somewhere else. Keep this short and mechanical; it is a markets explainer, not a call.",
-      "conceptUris": []
-    },
-    {
-      "id": "ai-designed-phage-genomes-synthesis-screening-gap",
-      "label": "Scientists use AI to create entirely new viruses - and give urgent warning",
-      "firstSeen": "2026-08-07T12:10:45.236Z",
-      "lastCovered": "2026-08-07T12:10:45.236Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-ai-designed-phage-genomes-synthesis-screening-gap"
-      ],
-      "eventUri": "eng-11901947",
-      "summary": "A Stanford group used a generative model to design bacteriophage genomes that had never existed, synthesised them, and showed they infect E. coli — the first AI-designed functional viruses, announced together with the researchers' own warning about what comes next. Lead with the fact that the warning is from the authors, not from critics, because that is unusual and it is the responsible frame. The mechanism our reader should carry is why phages specifically: they are viruses that infect bacteria and not humans, their genomes are small enough for a model to hold whole, and they are the leading candidate therapy for antibiotic-resistant infection — which makes this simultaneously the most defensible place to demonstrate the capability and the exact capability that does not stay confined to phages. Be precise about what was and was not done: a model proposed sequences, humans synthesised and tested them, most designs presumably failed, and the successful ones infected a lab strain. That is design assistance at genome scale, not autonomous creation of a pathogen, and the article's headline overstates it — say so plainly. Then the structural stakes, which are the reason this belongs in a global feed. Biosecurity has been governed by a physical bottleneck: making a novel virus required tacit expertise and a well-equipped lab. A generative model moves part of that expertise into software that can be copied, and the remaining bottleneck is DNA synthesis — which is a commercial service, screened voluntarily, unevenly, and only against known agents. A model that generates sequences no screening database has seen is a screening problem before it is a laboratory problem. That is the accountability gap, and it should be named: no international instrument governs it, and the Biological Weapons Convention has no verification protocol. Who holds power: a handful of model developers and synthesis vendors, self-regulating. Give the paper's actual numbers and its stated limits.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Virus",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Bacteria",
-        "http://en.wikipedia.org/wiki/Genome",
-        "http://en.wikipedia.org/wiki/Bacteriophage",
-        "http://en.wikipedia.org/wiki/Stanford_University",
-        "http://en.wikipedia.org/wiki/Escherichia_coli",
-        "http://en.wikipedia.org/wiki/DNA"
-      ]
-    },
-    {
-      "id": "solar-retinopathy-evidence-gap-eclipse-photochemical",
-      "label": "Photic retinal injury: Time to move beyond case reports -- A PRISM Study Group perspective - Eye",
-      "firstSeen": "2026-08-07T12:10:45.236Z",
-      "lastCovered": "2026-08-07T12:10:45.236Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-solar-retinopathy-evidence-gap-eclipse-photochemical"
-      ],
-      "eventUri": null,
-      "summary": "Five days before a total solar eclipse crosses Greenland, Iceland and Spain, an international ophthalmology group publishes the finding that everything medicine knows about solar retinopathy comes from scattered case reports and that this is not enough to answer the questions people actually ask. Lead with that timing and that gap together — the advice 'do not look at the sun' is universally issued and the evidence base beneath it is a century of anecdotes. The mechanism our reader should carry is why solar retinopathy is unlike other eye injury and why the folk understanding of it is wrong: the damage is photochemical, not thermal — short-wavelength light drives free-radical reactions in the photoreceptors of the fovea — so it is painless at the time, the retina has no nociceptors to warn you, and symptoms appear hours later as a central blind spot. That is also why the injury concentrates in the one part of the retina you read and recognise faces with, and why 'it did not hurt' is exactly the wrong reassurance. Give the practical content our reader can use, because this is a service story as well as a science one: what actually protects (ISO 12312-2 filters, and why a welding shade below 14, exposed film and stacked sunglasses do not), what the safe interval is during totality and why the partial phases either side are the dangerous ones, and what the honest prognosis is — much of it recovers over months, some does not, and there is no treatment. The second injury class in the paper is the one with the larger global burden and it should not be dropped: welding arc retinopathy, an occupational exposure carried overwhelmingly by informal-sector workers without eye protection. Say what the PRISM group is proposing — a registry and prospective study rather than more case reports — and why that is the right ask.",
-      "conceptUris": []
-    },
-    {
-      "id": "flock-gig-driver-alpr-fleet-consent-routing",
-      "label": "Flock Pitched a Plan To Turn Uber and Lyft Drivers Into Roaming Surveillance Vehicles",
-      "firstSeen": "2026-08-07T12:10:45.236Z",
-      "lastCovered": "2026-08-07T12:10:45.236Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-flock-gig-driver-alpr-fleet-consent-routing"
-      ],
-      "eventUri": null,
-      "summary": "An internal Flock presentation shows the company planned to recruit roughly 350,000 Uber, Lyft and delivery drivers to carry licence-plate readers — lead with the number and with the fact that it is a plan on a slide, not a deployment, and say which it is in the first two sentences. The mechanism our reader should carry is the specific engineering property this changes. A fixed ALPR camera surveils a point: it records what passes one intersection, and its coverage map is a set of dots that a city council can at least in principle count and vote on. A camera on a gig vehicle surveils an area, because the vehicles are dense exactly where people are and their routes are shaped by demand — so 350,000 moving readers do not add dots, they convert the network from a set of checkpoints into a continuous field, and there is no longer any location that can be described as unwatched. That is the difference between knowing a car passed a corner and knowing where it sleeps. Second mechanism, and it is the accountability one: this routes around consent at every layer. The municipality never approves a camera, because there is no camera to approve. The driver is a contractor being offered a side payment, not an employee subject to policy. The passenger is not told. And the plate-owners being logged have no relationship with any party in the transaction. Who holds power: a private company assembling a national surveillance record and selling access to police departments — which this file has already documented being used to manufacture a pretext for a search. Establish what the presentation actually says, whether Uber, Lyft or any delivery firm was approached or agreed, and what Flock says now. Third entry in this file's Flock arc — the arc cap allows it and this is the escalation the earlier two implied.",
-      "conceptUris": []
-    },
-    {
-      "id": "taalas-amd-weights-in-silicon-memory-bandwidth-bet",
-      "label": "AMD acquires Taalas to boost inference performance by etching models in silicon",
-      "firstSeen": "2026-08-07T12:10:45.236Z",
-      "lastCovered": "2026-08-07T12:10:45.236Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-taalas-amd-weights-in-silicon-memory-bandwidth-bet"
-      ],
-      "eventUri": null,
-      "summary": "AMD has bought Taalas, a startup whose proposition is to etch a specific trained model directly into silicon rather than run it on programmable hardware. Lead with what that literally means, because it inverts the last twenty years of computing: the weights stop being data loaded from memory and become wires. The mechanism our reader should carry is that inference is not compute-bound, it is memory-bound — a GPU spends most of its energy and most of its latency moving billions of weights from HBM into the compute units for every single token, and the arithmetic itself is comparatively cheap. Hard-wiring the weights deletes that traffic entirely, which is where the order-of-magnitude claims come from. Then the trade, stated honestly and it is a brutal one: a chip that is one model cannot be another model. Fabricating a mask set costs millions and takes months, so the bet only pays if a model's useful life exceeds its silicon's lead time — and in 2026 the average frontier model is obsolete in under a year. That is the real question to leave the reader with, and it is answerable: this makes sense for small, stable, extremely high-volume models (speech, translation, on-device assistants, embedding), and makes no sense for a frontier model still being updated. Pair it with this file's Anthropic in-house-silicon entry from yesterday to name the pattern rather than repeat it: three different actors — a model lab, a GPU vendor, a startup — are all attacking the same constraint, inference cost per token, from different layers of the stack, because that number now sets the price of every AI product. And the geopolitical tail our reader should carry: each of these approaches deepens dependence on the same handful of leading-edge fabs, so 'cheaper inference' and 'more concentrated supply' are the same sentence. Give the deal terms if disclosed, Taalas's actual published claims, and mark clearly which are vendor numbers.",
-      "conceptUris": []
-    },
-    {
-      "id": "assistant-to-gemini-forced-migration-low-end-devices",
-      "label": "Google Assistant is shutting down, here's when",
-      "firstSeen": "2026-08-07T12:10:45.236Z",
-      "lastCovered": "2026-08-07T12:10:45.236Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-08-07-assistant-to-gemini-forced-migration-low-end-devices"
-      ],
-      "eventUri": "eng-11894694",
-      "summary": "On 4 September Google Assistant stops working on Android and every 'Hey Google' is routed to Gemini instead. Lead with the scale and the substitution, not the date: this is a forced migration of the voice interface on billions of devices from a deterministic command parser to a generative model, without user consent and without an opt-out. The mechanism our reader should carry is that these two things are not the same product wearing different names. Assistant matched an utterance against a fixed intent grammar and ran a local action — set a timer, call a contact — mostly on-device, cheaply, deterministically, and identically every time. Gemini interprets, which means it is probabilistic, materially more expensive per invocation, and for most requests requires a round trip to a datacentre. Three consequences follow and they are the reportable ones. First, hardware: Assistant ran on cheap phones and on Wear OS watches with very little memory; whether the same devices get a usable Gemini experience determines whether hundreds of millions of low-end handsets lose a working voice interface rather than gaining a better one — establish what Google has actually committed to for entry-level and older devices. Second, connectivity: an assistant that needs the network stops being an assistant on an intermittent connection, which is the normal condition across much of South Asia and Africa. Third, determinism: 'call Ammi' either matched or it did not; a model can plausibly do something else, and for accessibility users who navigate their phone by voice, a non-deterministic interface is a different tool. The honest counterweight: Gemini genuinely does things Assistant never could, and Assistant had been unmaintained for years. Say what languages are supported at launch versus what Assistant supported — that list is where a global reader finds out whether this is an upgrade or a removal.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Google",
-        "http://en.wikipedia.org/wiki/Google_Assistant",
-        "http://en.wikipedia.org/wiki/Android_(operating_system)",
-        "http://en.wikipedia.org/wiki/Tablet_computer",
-        "http://en.wikipedia.org/wiki/Wear_OS",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Smartphone",
-        "http://en.wikipedia.org/wiki/Android_Auto"
-      ]
     }
   ]
 }
