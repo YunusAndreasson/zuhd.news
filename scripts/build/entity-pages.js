@@ -349,7 +349,7 @@ export const buildEntityPages = async ({
       ? `<section class="entity-mentioned">
           <h2 class="label archive-section-title">Mentioned in · ${mentions.length}</h2>
           <ol class="archive-article-list">
-            ${mentions.slice(0, 30).map((a) => `<li>
+            ${mentions.map((a) => `<li>
               <a class="archive-article-row" href="/a/${a.slug}">
                 <time datetime="${escHtml(a.meta.date)}" class="t-tabular">${escHtml(a.dateFormatted)}</time>
                 <span class="archive-article-title">${escHtml(a.title)}</span>
