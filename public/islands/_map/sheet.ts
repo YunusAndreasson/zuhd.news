@@ -738,7 +738,14 @@ export function createSheet(): Sheet {
       // Before the chart, because a reader who cannot name the instrument
       // cannot read the line either. Since 2026-08-08 this is normally the
       // dispatch's `standing`, written per row — see `TickerEntry.note`.
-      if (entry.note) nodes.push(el('p', 'map-sheet-lead', entry.note))
+      //
+      // `.map-sheet-standing` rather than `.map-sheet-lead`: this sentence is
+      // definitional ("what a Polymarket contract is"), not a claim about the
+      // world, and the reader's actual answer — the figure above and the chart
+      // and table below — is what the card exists to show. Full body weight on
+      // a paragraph of background reads as though the definition outranks the
+      // data it is only there to make legible.
+      if (entry.note) nodes.push(el('p', 'map-sheet-standing', entry.note))
 
       if (pin) {
         nodes.push(
@@ -859,7 +866,11 @@ export function createSheet(): Sheet {
       nodes.push(kicker([entry.institution, fmt.fullDate(entry.date), relative ? countdown : null]))
       nodes.push(el('h2', 'island-sheet-title', entry.title))
 
-      if (entry.standing) nodes.push(el('p', 'map-sheet-lead', entry.standing))
+      // Definitional, same reasoning as the indicator card above: what an FOMC
+      // decision *is* stays true for years, and is not why a reader opened
+      // this card today. `entry.recent` — why *this* occurrence matters — is
+      // the actual claim about the world, so it keeps full weight below.
+      if (entry.standing) nodes.push(el('p', 'map-sheet-standing', entry.standing))
 
       if (pin) {
         if (entry.recent) nodes.push(el('p', 'map-sheet-lead', entry.recent))

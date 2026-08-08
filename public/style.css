@@ -7169,6 +7169,19 @@ a.map-popup-source-name {
   color: var(--text);
 }
 
+/* The dispatch's `standing` sentence — what an instrument or an event *is*,
+   evergreen and true whether or not anything happened today. `.map-sheet-lead`
+   is the right size for a claim about the world (a disaster narrative, a
+   genocide finding, "why this occurrence matters"); a definition is
+   background for reading the figure and the chart, not competing with them,
+   so it steps down the same rung `.map-sheet-meta` already does. */
+.map-sheet-standing {
+  margin: 0 0 var(--space-xs);
+  font-size: var(--size-xs);
+  line-height: var(--leading-body);
+  color: var(--text-dim);
+}
+
 /* Where the indicator card grows once `/api/entity/{id}.json` lands: the
    account of what moved, the stories it was read from, and the route to the
    full record.
